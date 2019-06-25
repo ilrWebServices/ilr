@@ -1,13 +1,13 @@
-uuid: 89d284ff-cd5e-4d4a-ac6e-a3b9dd4c34a7
+uuid: 769a9b00-1ef0-4339-b6c6-aba5100a2879
 langcode: en
 status: true
 dependencies:
   theme:
-    - stark
+    - union_marketing
 _core:
   default_config_hash: 8yptDf6WrXxeyevUz4nP5vfr7BtxQqCBMninhV2IJ1g
-id: stark_page_title
-theme: stark
+id: union_marketing_page_title
+theme: union_marketing
 region: content
 weight: -30
 provider: null

@@ -1,4 +1,4 @@
-uuid: e055a390-e652-4b12-8c54-b041e86068d4
+uuid: 97d316f3-0eb3-4c7b-8820-65613baeceeb
 langcode: en
 status: true
 dependencies:
@@ -7,11 +7,11 @@ dependencies:
   module:
     - system
   theme:
-    - stark
+    - union_marketing
 _core:
   default_config_hash: uUF2GYN2x5fcmOu26M-gwqUA-yVWMDD_MRmnYfmPzlM
-id: stark_tools
-theme: stark
+id: union_marketing_tools
+theme: union_marketing
 region: sidebar_first
 weight: 0
 provider: null

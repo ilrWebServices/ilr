@@ -1,15 +1,15 @@
-uuid: 49e5754f-2127-49ac-8921-4f97807666e1
+uuid: 6e69d088-d5a4-4865-aee1-e120334baf58
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - stark
+    - union_marketing
 _core:
   default_config_hash: 5MNdk3fpMKx_xxBTcz2T11DL4XEU1H5SgHl8BsYdFsA
-id: stark_messages
-theme: stark
+id: union_marketing_messages
+theme: union_marketing
 region: highlighted
 weight: 0
 provider: null
