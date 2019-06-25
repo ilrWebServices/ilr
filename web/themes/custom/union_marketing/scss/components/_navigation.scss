@@ -1,0 +1,14 @@
+#block-union-register-footer-menu {
+  ul {
+    display: flex;
+    list-style: none;
+
+    li {
+      margin-right: 1em;
+
+      a {
+        color: $white;
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.layout-container--commerce {
+  @include medium {
+    grid-template-columns: [left-gutter] 1fr [content] 22fr [right-gutter] 1fr;
+  }
+
+  main {
+    grid-column: content/right-gutter;
+  }
+
+  aside.layout-sidebar-first {
+    grid-row: content-bottom;
+    grid-column: content;
+  }
+}
+
+// Special case for the survey link block on the order completion page.
+#block-qualtrics-link {
+  float: right;
+  max-width: 50%;
+
+  h2 {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,16 @@
+name: Union Marketing
+type: theme
+description: 'A custom theme using the Cornell ILR Union Component Library'
+package: Union
+core: 8.x
+libraries:
+  - union_marketing/global
+  - union_organizer/ilr
+base theme: stable
+regions:
+    header: Header
+    highlighted: Highlighted
+    help: Help
+    content: Content
+    sidebar_first: Sidebar
+    footer: Footer

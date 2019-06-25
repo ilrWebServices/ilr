@@ -1,0 +1,14 @@
+global:
+  version: 1.x
+  css:
+    theme:
+      css/style.css: {}
+livereload:
+  remote: https://github.com/mklabs/tiny-lr
+  version: 1.1.1
+  license:
+    name: MIT
+    url: https://github.com/mklabs/tiny-lr/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    http://localhost:35779/livereload.js: { type: external }

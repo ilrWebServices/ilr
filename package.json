@@ -1,0 +1,35 @@
+{
+  "name": "@ilr-web-services/ilr",
+  "version": "1.0.0",
+  "description": "Composer-based Drupal 8 site for www.ilr.cornell.edu",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "breakpoint-sass": "^2.7.1",
+    "gulp": "^4.0.2",
+    "gulp-livereload": "^4.0.1",
+    "gulp-sass": "^4.0.2"
+  },
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp sass"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilrWebServices/ilr.git"
+  },
+  "author": {
+    "name": "Aaron Froehlich",
+    "email": "aaronfroehlich@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Jeff Amaral",
+      "email": "jeff@freethoughtdesign.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ilrWebServices/ilr/issues"
+  },
+  "homepage": "https://github.com/ilrWebServices/ilr#readme"
+}

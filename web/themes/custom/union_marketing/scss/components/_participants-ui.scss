@@ -1,0 +1,47 @@
+// @todo consider how to better integrate with union
+.field--name-participants.field--widget-inline-entity-form-complex {
+  margin-bottom: 2rem;
+
+  fieldset {
+    border: 1px solid $cornell-red;
+    border-radius: 2px;
+  }
+  .tabledrag-toggle-weight-wrapper,
+  thead,
+  .ief-tabledrag-handle {
+    display: none;
+  }
+
+  .ief-entity-table {
+    width: 100%;
+  }
+
+  .ief-row-entity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--cu-ps-1);
+  }
+
+  .ief-form-row {
+    border-bottom: 1px solid $color-border;
+    margin-bottom: var(--cu-ms-1);
+    padding-bottom: var(--cu-ms1);
+  }
+
+  .button {
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    margin-left: var(--cu-vr-1);
+    margin-bottom: 0;
+  }
+
+  div[data-drupal-selector="edit-participants-actions"] {
+    text-align: center;
+    margin-bottom: -38px;
+  }
+}

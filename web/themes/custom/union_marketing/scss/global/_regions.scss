@@ -1,0 +1,15 @@
+header {
+  background: $white;
+  padding: 1em 0;
+}
+
+aside.layout-sidebar-first {
+  @include breakpoint($medium) {
+    margin-top: 4.5rem;
+  }
+}
+
+footer {
+  background: $cornell_red;
+  padding: 1em;
+}

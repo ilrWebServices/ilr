@@ -1,0 +1,16 @@
+<?php
+
+use Drupal\Core\Link;
+
+/**
+ * @file Theme file for the union_marketing.theme.
+ */
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function union_marketing_preprocess_page(array &$variables) {
+  if (getenv('LIVERELOAD')) {
+    $variables['#attached']['library'][] = 'union_marketing/livereload';
+  }
+}

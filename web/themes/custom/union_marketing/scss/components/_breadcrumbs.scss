@@ -1,0 +1,38 @@
+#block-union-register-breadcrumbs {
+  ol {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    align-items: flex-start;
+
+    li {
+      align-items: center;
+      display: flex;
+    }
+
+    li + li {
+      &::before {
+        color: $color-breadcrumbs;
+        content: "\0002f";
+      }
+
+      a {
+        padding-left: 0.75rem;
+      }
+    }
+
+    a {
+      color: $color-breadcrumbs;
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-right: 0.75rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

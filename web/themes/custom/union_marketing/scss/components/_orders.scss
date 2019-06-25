@@ -1,0 +1,41 @@
+.cart--registration {
+  .cart__items {
+    list-style-type: none;
+    padding: 0;
+
+    .cart__item {
+      display: grid;
+      grid-gap: 1rem;
+    }
+  }
+}
+
+// Shows on the cart and summary
+.views-field-participants {
+  .participant>div {
+    display: inline-block;
+  }
+}
+
+// @todo fix once responsive strategy implemented
+@media (min-width: 769px) {
+  .cart--registration {
+    .cart__item {
+      grid-template-columns: 2fr 1fr;
+
+      .cart-item__participants {
+        grid-row: 2;
+      }
+
+      .views-field-remove-button {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+      }
+
+      .views-field-total-price__number {
+        justify-self: end;
+      }
+    }
+  }
+}

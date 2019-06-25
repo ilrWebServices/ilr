@@ -1,0 +1,33 @@
+%tabs {
+  display: flex;
+  list-style-type: none;
+  border-bottom: 1px solid $color-border;
+  padding: 0;
+
+  li {
+    display: block;
+    padding-right: 0 0.5rem;
+
+    + li {
+      padding-left: 0.5rem;
+    }
+
+    a {
+      display: block;
+      color: $color-link;
+      text-decoration: none;
+      padding: 0 0.75rem 0.5rem;
+
+      &.is-active,
+      &:hover {
+        border-bottom: 1px solid $color-link;
+      }
+    }
+  }
+}
+
+#block-union-register-local-tasks {
+  ul {
+    @extend %tabs;
+  }
+}
