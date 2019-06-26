@@ -99,6 +99,30 @@ Then run `git diff` to determine if any of the scaffolding files have changed.
 
 Review changes and restore any customizations to `.htaccess` or `robots.txt`. Commit everything together in a single commit (or merge), so `web` will remain in sync with `core` when checking out branches or running `git bisect`.
 
+## Salesforce Integration
+
+When installing the site from scratch, you'll need to configure two groups of settings to connect to Salesforce.
+
+As of this writing (June 2019), you can get values for these settings from the production instance of the Drupal 7 site. Search the `variables` table for the following keys:
+
+- `salesforce_consumer_key`
+- `salesforce_consumer_secret`
+- `salesforce_endpoint` (AKA `login_url`)
+- `salesforce_instance_url`
+- `salesforce_refresh_token`
+
+### 1. Remote/Connected App Settings
+
+These are set in `settings.php` via environment variables. For developers, this means adding them to your `.env` file. See the Setup section above.
+
+### 2. Authorization Settings
+
+These are set using the Drupal 8 State API, so they cannot be added via config or config overrides. Once you have the value for the refresh token from the production site, you can add it to your local state using drush:
+
+```
+$ drush state-set salesforce.refresh_token [VALUE_FROM_PROD_SITE]
+```
+
 ## Theme Development
 
 This project uses a custom theme that includes shared components from the [Union Component Library][].
