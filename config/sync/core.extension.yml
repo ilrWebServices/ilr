@@ -1,6 +1,8 @@
 module:
   block: 0
   breakpoint: 0
+  config_filter: 0
+  config_split: 0
   dblog: 0
   dynamic_page_cache: 0
   field: 0
@@ -14,6 +16,7 @@ module:
   toolbar: 0
   union_organizer: 0
   user: 0
+  views: 0
   minimal: 1000
 theme:
   classy: 0
