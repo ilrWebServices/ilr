@@ -9,6 +9,7 @@ module:
   filter: 0
   ilr: 0
   link: 0
+  menu_ui: 0
   node: 0
   page_cache: 0
   system: 0
@@ -17,6 +18,7 @@ module:
   union_organizer: 0
   user: 0
   views: 0
+  menu_link_content: 1
   minimal: 1000
 theme:
   classy: 0
