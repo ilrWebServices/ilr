@@ -1,19 +1,16 @@
-add collection entities:
-  title: 'Create new Collection entities'
-
-administer collection entities:
-  title: 'Administer Collection entities'
-  description: 'Allow to access the administration form to configure Collection entities.'
+administer collections:
+  title: 'Administer Collections'
+  description: 'Allow to access the administration form to configure Collections.'
   restrict access: true
 
-delete collection entities:
-  title: 'Delete Collection entities'
+view collections:
+  title: 'View Collections'
 
-edit collection entities:
-  title: 'Edit Collection entities'
+add collections:
+  title: 'Create new Collections'
 
-view published collection entities:
-  title: 'View published Collection entities'
+edit collections:
+  title: 'Edit Collections'
 
-view unpublished collection entities:
-  title: 'View unpublished Collection entities'
+delete collections:
+  title: 'Delete Collections'

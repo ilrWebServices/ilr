@@ -21,16 +21,13 @@ class CollectionAccessControlHandler extends EntityAccessControlHandler {
     /** @var \Drupal\collection\Entity\CollectionInterface $entity */
     switch ($operation) {
       case 'view':
-        if (!$entity->isPublished()) {
-          return AccessResult::allowedIfHasPermission($account, 'view unpublished collection entities');
-        }
-        return AccessResult::allowedIfHasPermission($account, 'view published collection entities');
+        return AccessResult::allowedIfHasPermission($account, 'view collections');
 
       case 'update':
-        return AccessResult::allowedIfHasPermission($account, 'edit collection entities');
+        return AccessResult::allowedIfHasPermission($account, 'edit collections');
 
       case 'delete':
-        return AccessResult::allowedIfHasPermission($account, 'delete collection entities');
+        return AccessResult::allowedIfHasPermission($account, 'delete collections');
     }
 
     // Unknown operation, no opinion.
@@ -41,7 +38,7 @@ class CollectionAccessControlHandler extends EntityAccessControlHandler {
    * {@inheritdoc}
    */
   protected function checkCreateAccess(AccountInterface $account, array $context, $entity_bundle = NULL) {
-    return AccessResult::allowedIfHasPermission($account, 'add collection entities');
+    return AccessResult::allowedIfHasPermission($account, 'add collections');
   }
 
 }

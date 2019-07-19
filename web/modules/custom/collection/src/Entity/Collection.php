@@ -40,7 +40,7 @@ use Drupal\user\UserInterface;
  *   base_table = "collection",
  *   data_table = "collection_field_data",
  *   translatable = TRUE,
- *   admin_permission = "administer collection entities",
+ *   admin_permission = "administer collections",
  *   entity_keys = {
  *     "id" = "id",
  *     "bundle" = "type",
