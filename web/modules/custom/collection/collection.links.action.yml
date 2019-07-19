@@ -1,0 +1,10 @@
+entity.collection.add_form:
+  route_name: entity.collection.add_page
+  title: 'Add Collection'
+  appears_on:
+    - entity.collection.collection
+entity.collection_type.add_form:
+  route_name: entity.collection_type.add_form
+  title: 'Add Collection type'
+  appears_on:
+    - entity.collection_type.collection

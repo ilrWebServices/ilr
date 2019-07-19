@@ -1,0 +1,11 @@
+{
+  "name": "drupal/collection",
+  "type": "drupal-module",
+  "description": "Allows collections of content and configuration entities",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "require": {
+    "drupal/dynamic_entity_reference": "^2.0"
+  }
+}

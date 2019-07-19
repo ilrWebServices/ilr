@@ -1,0 +1,7 @@
+name: 'Collection'
+type: module
+description: 'Allows collections of content and configuration entities.'
+core: 8.x
+package: 'Collection'
+dependencies:
+  - dynamic_entity_reference
