@@ -4,7 +4,6 @@ namespace Drupal\collection\Entity;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
-use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\user\EntityOwnerInterface;
 
 /**
@@ -12,7 +11,7 @@ use Drupal\user\EntityOwnerInterface;
  *
  * @ingroup collection
  */
-interface CollectionInterface extends ContentEntityInterface, EntityChangedInterface, EntityPublishedInterface, EntityOwnerInterface {
+interface CollectionInterface extends ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface {
 
   /**
    * Add get/set methods for your configuration properties here.
