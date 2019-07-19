@@ -20,7 +20,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *       "delete" = "Drupal\collection\Form\CollectionTypeDeleteForm"
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\collection\CollectionTypeHtmlRouteProvider",
+ *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
  *     },
  *   },
  *   config_prefix = "collection_type",

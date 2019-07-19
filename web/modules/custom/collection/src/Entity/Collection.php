@@ -33,7 +33,7 @@ use Drupal\user\UserInterface;
  *       "delete" = "Drupal\collection\Form\CollectionDeleteForm",
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\collection\CollectionHtmlRouteProvider",
+ *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
  *     },
  *     "access" = "Drupal\collection\CollectionAccessControlHandler",
  *   },
