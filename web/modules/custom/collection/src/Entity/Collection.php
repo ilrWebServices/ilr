@@ -141,8 +141,8 @@ class Collection extends ContentEntityBase implements CollectionInterface {
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Authored by'))
-      ->setDescription(t('The user ID of author of the Collection entity.'))
+      ->setLabel(t('Owner'))
+      ->setDescription(t('The user that owns this Collection.'))
       ->setRevisionable(TRUE)
       ->setSetting('target_type', 'user')
       ->setSetting('handler', 'default')
