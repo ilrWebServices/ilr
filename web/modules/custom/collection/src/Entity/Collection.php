@@ -174,7 +174,7 @@ class Collection extends ContentEntityBase implements CollectionInterface {
       ])
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
-        'label' => 'above',
+        'label' => 'hidden',
         'type' => 'string',
         'weight' => -4,
       ])

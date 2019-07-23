@@ -172,7 +172,7 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ])
       ->setDefaultValue('')
       ->setDisplayOptions('view', [
-        'label' => 'above',
+        'label' => 'hidden',
         'type' => 'string',
         'weight' => -4,
       ])
@@ -189,22 +189,21 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ->setDescription(t('The collection to which this item belongs.'))
       ->setSetting('target_type', 'collection')
       ->setSetting('handler', 'default:collection')
-      // ->setSetting('handler_settings', [
-      //   'target_bundles' => [ 'department' => 'department'],
-      // ])
       ->setCardinality(1)
       ->setTranslatable(TRUE)
       ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'author',
+        'label' => 'above',
+        'type' => 'entity_reference_label',
         'weight' => 0,
+        'settings' => ['link' => TRUE]
       ])
       ->setDisplayOptions('form', [
         'type' => 'options_select',
         'weight' => 4,
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
 
     $fields['item'] = BaseFieldDefinition::create('dynamic_entity_reference')
       ->setLabel(t('Collected item'))
@@ -227,7 +226,8 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
         'weight' => 5,
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRequired(TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
