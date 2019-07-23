@@ -19,6 +19,8 @@ class CollectionItemListBuilder extends EntityListBuilder {
   public function buildHeader() {
     $header['name'] = $this->t('Name');
     $header['type'] = $this->t('Type');
+    $header['collection'] = $this->t('Collection');
+    $header['item'] = $this->t('Item');
     return $header + parent::buildHeader();
   }
 
@@ -27,12 +29,14 @@ class CollectionItemListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /* @var \Drupal\collection\Entity\CollectionItem $entity */
-    $row['name'] = Link::createFromRoute(
-      $entity->label(),
-      'entity.collection_item.canonical',
-      ['collection_item' => $entity->id()]
-    );
+    $row['name'] = $entity->toLink();
     $row['type'] = $entity->bundle();
+    $row['collection'] = $entity->collection->entity->toLink();
+    // $row['item'] = $entity->item->entity->toLink();
+    $row['item'] = Link::fromTextAndUrl(
+      $entity->item->entity->label(),
+      $entity->item->entity->toURL()
+    );
     return $row + parent::buildRow($entity);
   }
 
