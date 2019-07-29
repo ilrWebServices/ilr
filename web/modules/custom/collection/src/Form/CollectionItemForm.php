@@ -72,7 +72,6 @@ class CollectionItemForm extends ContentEntityForm {
    */
   public function save(array $form, FormStateInterface $form_state) {
     $entity = $this->entity;
-
     $status = parent::save($form, $form_state);
 
     switch ($status) {
@@ -87,7 +86,8 @@ class CollectionItemForm extends ContentEntityForm {
           '%label' => $entity->label(),
         ]));
     }
-    $form_state->setRedirect('entity.collection_item.canonical', ['collection_item' => $entity->id()]);
+
+    $form_state->setRedirect('entity.collection_item.collection');
   }
 
 }
