@@ -1,0 +1,115 @@
+uuid: bf286c9f-c4f5-4362-88dc-106c6c35db31
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_promo
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Nodes (Promo)'
+source:
+  plugin: d7_node
+  node_type: promo
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_promo/0/status:
+    -
+      plugin: get
+      source: comment
+  field_image:
+    -
+      plugin: get
+      source: field_image
+  field_link_type:
+    -
+      plugin: get
+      source: field_link_type
+  field_tags:
+    -
+      plugin: get
+      source: field_tags
+  field_teaser:
+    -
+      plugin: get
+      source: field_teaser
+  field_website_url:
+    -
+      plugin: field_link
+      source: field_website_url
+  field_category_type:
+    -
+      plugin: get
+      source: field_category_type
+  field_internal_link:
+    -
+      plugin: get
+      source: field_internal_link
+  field_published_date:
+    -
+      plugin: get
+      source: field_published_date
+destination:
+  plugin: 'entity:node'
+  default_bundle: promo
+migration_dependencies:
+  required:
+    - d7_user
+    - d7_node_type
+  optional:
+    - d7_field_instance

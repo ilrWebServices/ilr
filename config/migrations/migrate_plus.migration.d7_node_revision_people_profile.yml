@@ -1,0 +1,216 @@
+uuid: 7c4e50d1-c7fe-4f6a-a1ab-14c0e126bd14
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_revision_people_profile
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Node revisions (People Profile)'
+source:
+  plugin: d7_node_revision
+  node_type: people_profile
+process:
+  nid:
+    -
+      plugin: get
+      source: nid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_people_profile/0/status:
+    -
+      plugin: get
+      source: comment
+  field_address_line_1:
+    -
+      plugin: get
+      source: field_address_line_1
+  field_ai_honors_awards:
+    -
+      plugin: get
+      source: field_ai_honors_awards
+  field_ai_links:
+    -
+      plugin: get
+      source: field_ai_links
+  field_ai_other_expertise:
+    -
+      plugin: get
+      source: field_ai_other_expertise
+  field_ai_overview:
+    -
+      plugin: get
+      source: field_ai_overview
+  field_ai_professional_activities:
+    -
+      plugin: get
+      source: field_ai_professional_activities
+  field_ai_publications:
+    -
+      plugin: get
+      source: field_ai_publications
+  field_ai_research_statement:
+    -
+      plugin: get
+      source: field_ai_research_statement
+  field_ai_teaching_statement:
+    -
+      plugin: get
+      source: field_ai_teaching_statement
+  field_areas_of_expertise:
+    -
+      plugin: get
+      source: field_areas_of_expertise
+  field_email:
+    -
+      plugin: sub_process
+      source: field_email
+      process:
+        value: email
+  field_fax:
+    -
+      plugin: get
+      source: field_fax
+  field_first_name:
+    -
+      plugin: get
+      source: field_first_name
+  field_ilrweb_vita_file:
+    -
+      plugin: get
+      source: field_ilrweb_vita_file
+  field_last_name:
+    -
+      plugin: get
+      source: field_last_name
+  field_local_address:
+    -
+      plugin: get
+      source: field_local_address
+  field_netid:
+    -
+      plugin: get
+      source: field_netid
+  field_phone:
+    -
+      plugin: get
+      source: field_phone
+  field_profile_image:
+    -
+      plugin: get
+      source: field_profile_image
+  field_profile_type:
+    -
+      plugin: get
+      source: field_profile_type
+  field_visibility_settings:
+    -
+      plugin: get
+      source: field_visibility_settings
+  field_working_title:
+    -
+      plugin: get
+      source: field_working_title
+  field_faculty_on_leave:
+    -
+      plugin: get
+      source: field_faculty_on_leave
+  field_ai_outreach_statement:
+    -
+      plugin: get
+      source: field_ai_outreach_statement
+  field_ai_service_statement:
+    -
+      plugin: get
+      source: field_ai_service_statement
+  field_profile_department:
+    -
+      plugin: get
+      source: field_profile_department
+  field_display_in_faculty_lists:
+    -
+      plugin: get
+      source: field_display_in_faculty_lists
+  field_office_hours:
+    -
+      plugin: get
+      source: field_office_hours
+destination:
+  plugin: 'entity_revision:node'
+  default_bundle: people_profile
+migration_dependencies:
+  required:
+    - d7_node_author
+    - d7_node_basic_page
+    - d7_node_certificate_programs
+    - d7_node_channel_page
+    - d7_node_experience_report
+    - d7_node_instagram_post
+    - d7_node_memory_book
+    - d7_node_mentor
+    - d7_node_news_item
+    - d7_node_people_profile
+    - d7_node_post
+    - d7_node_promo
+    - d7_node_reflection
+    - d7_node_registration_page
+    - d7_node_scheinman_neutral
+    - d7_node_sdc_class
+    - d7_node_sdc_course
+    - d7_node_sdc_faculty
+    - d7_node_student_portrait
+    - d7_node_visiting_fellow
+    - d7_node_workspan
+    - d7_node_youtube_video
+  optional: {  }

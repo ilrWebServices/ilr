@@ -1,0 +1,103 @@
+uuid: bb1c104d-1ba2-41de-b133-003028d84f22
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_channel_page
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Nodes (Channel page)'
+source:
+  plugin: d7_node
+  node_type: channel_page
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_channel_page/0/status:
+    -
+      plugin: get
+      source: comment
+  field_category_type:
+    -
+      plugin: get
+      source: field_category_type
+  field_image:
+    -
+      plugin: get
+      source: field_image
+  field_para_main_page_content:
+    -
+      plugin: get
+      source: field_para_main_page_content
+  field_tags:
+    -
+      plugin: get
+      source: field_tags
+  field_teaser:
+    -
+      plugin: get
+      source: field_teaser
+destination:
+  plugin: 'entity:node'
+  default_bundle: channel_page
+migration_dependencies:
+  required:
+    - d7_user
+    - d7_node_type
+  optional:
+    - d7_field_instance

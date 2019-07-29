@@ -1,0 +1,147 @@
+uuid: 2adc316d-97f9-4caf-bc2e-884c409e77b1
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_sdc_class
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Nodes (SDC Class)'
+source:
+  plugin: d7_node
+  node_type: sdc_class
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_sdc_class/0/status:
+    -
+      plugin: get
+      source: comment
+  body:
+    -
+      plugin: get
+      source: body
+  field_address:
+    -
+      plugin: get
+      source: field_address
+  field_class_dates:
+    -
+      plugin: get
+      source: field_class_dates
+  field_class_id:
+    -
+      plugin: get
+      source: field_class_id
+  field_course:
+    -
+      plugin: get
+      source: field_course
+  field_faculty:
+    -
+      plugin: get
+      source: field_faculty
+  field_is_full:
+    -
+      plugin: get
+      source: field_is_full
+  field_on_demand:
+    -
+      plugin: get
+      source: field_on_demand
+  field_online_class:
+    -
+      plugin: get
+      source: field_online_class
+  field_registration_end_date:
+    -
+      plugin: get
+      source: field_registration_end_date
+  field_building:
+    -
+      plugin: get
+      source: field_building
+  field_price:
+    -
+      plugin: get
+      source: field_price
+  field_setting:
+    -
+      plugin: get
+      source: field_setting
+  field_cancelled:
+    -
+      plugin: get
+      source: field_cancelled
+  field_class_number:
+    -
+      plugin: get
+      source: field_class_number
+  field_sf_record_id:
+    -
+      plugin: get
+      source: field_sf_record_id
+destination:
+  plugin: 'entity:node'
+  default_bundle: sdc_class
+migration_dependencies:
+  required:
+    - d7_user
+    - d7_node_type
+  optional:
+    - d7_field_instance

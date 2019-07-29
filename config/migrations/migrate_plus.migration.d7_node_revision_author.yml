@@ -1,0 +1,122 @@
+uuid: 9cc307ec-0af8-4857-a156-44de8b9b2a69
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_revision_author
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Node revisions (Author)'
+source:
+  plugin: d7_node_revision
+  node_type: author
+process:
+  nid:
+    -
+      plugin: get
+      source: nid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_author/0/status:
+    -
+      plugin: get
+      source: comment
+  body:
+    -
+      plugin: get
+      source: body
+  field_first_name:
+    -
+      plugin: get
+      source: field_first_name
+  field_image:
+    -
+      plugin: get
+      source: field_image
+  field_last_name:
+    -
+      plugin: get
+      source: field_last_name
+  field_people_profile_reference:
+    -
+      plugin: get
+      source: field_people_profile_reference
+destination:
+  plugin: 'entity_revision:node'
+  default_bundle: author
+migration_dependencies:
+  required:
+    - d7_node_author
+    - d7_node_basic_page
+    - d7_node_certificate_programs
+    - d7_node_channel_page
+    - d7_node_experience_report
+    - d7_node_instagram_post
+    - d7_node_memory_book
+    - d7_node_mentor
+    - d7_node_news_item
+    - d7_node_people_profile
+    - d7_node_post
+    - d7_node_promo
+    - d7_node_reflection
+    - d7_node_registration_page
+    - d7_node_scheinman_neutral
+    - d7_node_sdc_class
+    - d7_node_sdc_course
+    - d7_node_sdc_faculty
+    - d7_node_student_portrait
+    - d7_node_visiting_fellow
+    - d7_node_workspan
+    - d7_node_youtube_video
+  optional: {  }

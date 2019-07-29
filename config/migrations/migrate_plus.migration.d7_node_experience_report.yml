@@ -1,0 +1,119 @@
+uuid: 0ecda328-c47e-467e-a9ad-48997e3019b0
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_experience_report
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Nodes (Experience Report)'
+source:
+  plugin: d7_node
+  node_type: experience_report
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_experience_report/0/status:
+    -
+      plugin: get
+      source: comment
+  field_blocks:
+    -
+      plugin: get
+      source: field_blocks
+  field_category_type:
+    -
+      plugin: get
+      source: field_category_type
+  field_country:
+    -
+      plugin: get
+      source: field_country
+  field_image:
+    -
+      plugin: get
+      source: field_image
+  field_tags:
+    -
+      plugin: get
+      source: field_tags
+  field_teaser:
+    -
+      plugin: get
+      source: field_teaser
+  field_para_main_page_content:
+    -
+      plugin: get
+      source: field_para_main_page_content
+  field_program:
+    -
+      plugin: get
+      source: field_program
+  field_year_as_text:
+    -
+      plugin: get
+      source: field_year_as_text
+destination:
+  plugin: 'entity:node'
+  default_bundle: experience_report
+migration_dependencies:
+  required:
+    - d7_user
+    - d7_node_type
+  optional:
+    - d7_field_instance

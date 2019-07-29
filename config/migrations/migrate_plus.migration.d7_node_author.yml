@@ -1,0 +1,103 @@
+uuid: 7d3850ac-e6ad-4198-a404-2046f16347c3
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_author
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Nodes (Author)'
+source:
+  plugin: d7_node
+  node_type: author
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_author/0/status:
+    -
+      plugin: get
+      source: comment
+  body:
+    -
+      plugin: get
+      source: body
+  field_first_name:
+    -
+      plugin: get
+      source: field_first_name
+  field_image:
+    -
+      plugin: get
+      source: field_image
+  field_last_name:
+    -
+      plugin: get
+      source: field_last_name
+  field_people_profile_reference:
+    -
+      plugin: get
+      source: field_people_profile_reference
+destination:
+  plugin: 'entity:node'
+  default_bundle: author
+migration_dependencies:
+  required:
+    - d7_user
+    - d7_node_type
+  optional:
+    - d7_field_instance

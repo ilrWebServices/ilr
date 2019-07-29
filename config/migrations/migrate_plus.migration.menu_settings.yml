@@ -1,0 +1,30 @@
+uuid: 9c9e7dc6-d21d-4e26-9bd3-f4285456a70f
+langcode: en
+status: true
+dependencies: {  }
+id: menu_settings
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - 'Drupal 7'
+  - Configuration
+migration_group: migrate_drupal_7
+label: 'Menu UI configuration'
+source:
+  plugin: variable
+  variables:
+    - menu_override_parent_selector
+  source_module: menu
+process:
+  override_parent_selector:
+    -
+      plugin: get
+      source: menu_override_parent_selector
+destination:
+  plugin: config
+  config_name: menu_ui.settings
+migration_dependencies:
+  required: {  }
+  optional: {  }

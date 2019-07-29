@@ -1,0 +1,16 @@
+uuid: d6c8a43a-383a-4040-bcb4-9e72d8ce56e4
+langcode: en
+status: true
+dependencies: {  }
+id: migrations
+label: Migrations
+description: 'This is a place to store exported migrate plus configuration.'
+folder: ../config/migrations
+module: {  }
+theme: {  }
+blacklist:
+  - 'migrate_plus.*'
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0

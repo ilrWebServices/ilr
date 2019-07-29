@@ -1,0 +1,121 @@
+uuid: 6af6a05d-ddfe-480b-b024-358fa7ad794d
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_reflection
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Nodes (Reflection)'
+source:
+  plugin: d7_node
+  node_type: reflection
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_reflection/0/status:
+    -
+      plugin: get
+      source: comment
+  body:
+    -
+      plugin: get
+      source: body
+  field_email:
+    -
+      plugin: sub_process
+      source: field_email
+      process:
+        value: email
+  field_full_name:
+    -
+      plugin: get
+      source: field_full_name
+  field_tags:
+    -
+      plugin: get
+      source: field_tags
+  field_year_as_list_text:
+    -
+      plugin: get
+      source: field_year_as_list_text
+  field_youtube_video:
+    -
+      plugin: get
+      source: field_youtube_video
+  field_image:
+    -
+      plugin: get
+      source: field_image
+  field_location_string:
+    -
+      plugin: get
+      source: field_location_string
+  field_referenced_node:
+    -
+      plugin: get
+      source: field_referenced_node
+destination:
+  plugin: 'entity:node'
+  default_bundle: reflection
+migration_dependencies:
+  required:
+    - d7_user
+    - d7_node_type
+  optional:
+    - d7_field_instance

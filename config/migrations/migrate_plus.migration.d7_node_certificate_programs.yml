@@ -1,0 +1,151 @@
+uuid: a1665cd6-d4fa-4a4e-ad6c-7a638095c4b7
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_certificate_programs
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Nodes (Certificate Programs)'
+source:
+  plugin: d7_node
+  node_type: certificate_programs
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_certificate_programs/0/status:
+    -
+      plugin: get
+      source: comment
+  field_category_type:
+    -
+      plugin: get
+      source: field_category_type
+  field_comments:
+    -
+      plugin: get
+      source: field_comments
+  field_continuing_ed_reference:
+    -
+      plugin: get
+      source: field_continuing_ed_reference
+  field_course:
+    -
+      plugin: get
+      source: field_course
+  field_course_format_reference:
+    -
+      plugin: get
+      source: field_course_format_reference
+  field_course_sponsor_reference:
+    -
+      plugin: get
+      source: field_course_sponsor_reference
+  field_course_topic_reference:
+    -
+      plugin: get
+      source: field_course_topic_reference
+  field_description_long:
+    -
+      plugin: get
+      source: field_description_long
+  field_file_upload_general:
+    -
+      plugin: get
+      source: field_file_upload_general
+  field_image:
+    -
+      plugin: get
+      source: field_image
+  field_prerequisites_requirements:
+    -
+      plugin: get
+      source: field_prerequisites_requirements
+  field_setting:
+    -
+      plugin: get
+      source: field_setting
+  field_tags:
+    -
+      plugin: get
+      source: field_tags
+  field_teaser:
+    -
+      plugin: get
+      source: field_teaser
+  field_value_propositions:
+    -
+      plugin: get
+      source: field_value_propositions
+  field_thumbnail:
+    -
+      plugin: get
+      source: field_thumbnail
+  field_website_url:
+    -
+      plugin: field_link
+      source: field_website_url
+destination:
+  plugin: 'entity:node'
+  default_bundle: certificate_programs
+migration_dependencies:
+  required:
+    - d7_user
+    - d7_node_type
+  optional:
+    - d7_field_instance

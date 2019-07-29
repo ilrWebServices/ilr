@@ -1,0 +1,119 @@
+uuid: 10fcc881-93df-45f2-99cf-84e39731d135
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_student_portrait
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Nodes (Student Portrait)'
+source:
+  plugin: d7_node
+  node_type: student_portrait
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_student_portrait/0/status:
+    -
+      plugin: get
+      source: comment
+  body:
+    -
+      plugin: get
+      source: body
+  field_expected_graduation_date:
+    -
+      plugin: get
+      source: field_expected_graduation_date
+  field_image:
+    -
+      plugin: get
+      source: field_image
+  field_interests_and_goals:
+    -
+      plugin: get
+      source: field_interests_and_goals
+  field_teaser:
+    -
+      plugin: get
+      source: field_teaser
+  field_portrait_experience:
+    -
+      plugin: get
+      source: field_portrait_experience
+  field_quote:
+    -
+      plugin: get
+      source: field_quote
+  field_tags:
+    -
+      plugin: get
+      source: field_tags
+  field_category_type:
+    -
+      plugin: get
+      source: field_category_type
+destination:
+  plugin: 'entity:node'
+  default_bundle: student_portrait
+migration_dependencies:
+  required:
+    - d7_user
+    - d7_node_type
+  optional:
+    - d7_field_instance

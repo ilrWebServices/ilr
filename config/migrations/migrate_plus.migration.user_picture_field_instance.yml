@@ -1,0 +1,62 @@
+uuid: fba3a28c-83b2-41c4-8435-8b6049e9c19e
+langcode: en
+status: true
+dependencies: {  }
+id: user_picture_field_instance
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 6'
+  - 'Drupal 7'
+  - Configuration
+migration_group: migrate_drupal_7
+label: 'User picture field instance configuration'
+source:
+  plugin: user_picture_instance
+  constants:
+    entity_type: user
+    bundle: user
+    name: user_picture
+    settings:
+      file_extensions: 'png gif jpg jpeg'
+      alt_field: false
+      title_field: false
+      min_resolution: ''
+      alt_field_required: false
+      title_field_required: false
+process:
+  entity_type:
+    -
+      plugin: get
+      source: constants/entity_type
+  bundle:
+    -
+      plugin: get
+      source: constants/bundle
+  field_name:
+    -
+      plugin: get
+      source: constants/name
+  settings:
+    -
+      plugin: get
+      source: constants/settings
+  settings/file_directory:
+    -
+      plugin: get
+      source: file_directory
+  settings/max_filesize:
+    -
+      plugin: get
+      source: max_filesize
+  settings/max_resolution:
+    -
+      plugin: get
+      source: max_resolution
+destination:
+  plugin: 'entity:field_config'
+migration_dependencies:
+  required:
+    - user_picture_field
+  optional: {  }

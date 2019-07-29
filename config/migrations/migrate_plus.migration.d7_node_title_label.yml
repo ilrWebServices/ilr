@@ -1,0 +1,41 @@
+uuid: 53831cba-4f40-49a1-8fd8-0cf84cbeaf90
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_title_label
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Configuration
+migration_group: migrate_drupal_7
+label: 'Node title label'
+source:
+  plugin: d7_node_type
+  constants:
+    entity_type: node
+    field_name: title
+process:
+  entity_type:
+    -
+      plugin: get
+      source: constants/entity_type
+  bundle:
+    -
+      plugin: get
+      source: type
+  field_name:
+    -
+      plugin: get
+      source: constants/field_name
+  label:
+    -
+      plugin: get
+      source: title_label
+destination:
+  plugin: 'entity:base_field_override'
+migration_dependencies:
+  required:
+    - d7_node_type
+  optional: {  }

@@ -1,0 +1,111 @@
+uuid: 3c1cbdc3-302e-484d-99b3-f23c69907afd
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_basic_page
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Nodes (Basic Page)'
+source:
+  plugin: d7_node
+  node_type: basic_page
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_basic_page/0/status:
+    -
+      plugin: get
+      source: comment
+  field_blocks:
+    -
+      plugin: get
+      source: field_blocks
+  field_image:
+    -
+      plugin: get
+      source: field_image
+  field_editor_notes:
+    -
+      plugin: get
+      source: field_editor_notes
+  field_tags:
+    -
+      plugin: get
+      source: field_tags
+  field_category_type:
+    -
+      plugin: get
+      source: field_category_type
+  field_para_main_page_content:
+    -
+      plugin: get
+      source: field_para_main_page_content
+  field_teaser:
+    -
+      plugin: get
+      source: field_teaser
+destination:
+  plugin: 'entity:node'
+  default_bundle: basic_page
+migration_dependencies:
+  required:
+    - d7_user
+    - d7_node_type
+  optional:
+    - d7_field_instance

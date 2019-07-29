@@ -1,0 +1,185 @@
+uuid: 1894df32-6251-4322-abe1-bcbc6e66ca31
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_scheinman_neutral
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Nodes (Scheinman Neutral)'
+source:
+  plugin: d7_node
+  node_type: scheinman_neutral
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_scheinman_neutral/0/status:
+    -
+      plugin: get
+      source: comment
+  field_additional_dispute_resolut:
+    -
+      plugin: get
+      source: field_additional_dispute_resolut
+  field_address_line_1:
+    -
+      plugin: get
+      source: field_address_line_1
+  field_address_line_2:
+    -
+      plugin: get
+      source: field_address_line_2
+  field_city:
+    -
+      plugin: get
+      source: field_city
+  field_company:
+    -
+      plugin: get
+      source: field_company
+  field_dispute_resolution_experie:
+    -
+      plugin: get
+      source: field_dispute_resolution_experie
+  field_dispute_resolution_trainin:
+    -
+      plugin: get
+      source: field_dispute_resolution_trainin
+  field_education:
+    -
+      plugin: get
+      source: field_education
+  field_email:
+    -
+      plugin: sub_process
+      source: field_email
+      process:
+        value: email
+  field_fax:
+    -
+      plugin: get
+      source: field_fax
+  field_fee_policy:
+    -
+      plugin: get
+      source: field_fee_policy
+  field_first_name:
+    -
+      plugin: get
+      source: field_first_name
+  field_job_title:
+    -
+      plugin: get
+      source: field_job_title
+  field_last_name:
+    -
+      plugin: get
+      source: field_last_name
+  field_middle_name:
+    -
+      plugin: get
+      source: field_middle_name
+  field_name_title:
+    -
+      plugin: get
+      source: field_name_title
+  field_phone:
+    -
+      plugin: get
+      source: field_phone
+  field_professional_associations:
+    -
+      plugin: get
+      source: field_professional_associations
+  field_professional_work_history_:
+    -
+      plugin: get
+      source: field_professional_work_history_
+  field_profile_image:
+    -
+      plugin: get
+      source: field_profile_image
+  field_references:
+    -
+      plugin: get
+      source: field_references
+  field_state_inc_outside_us:
+    -
+      plugin: get
+      source: field_state_inc_outside_us
+  field_suffix:
+    -
+      plugin: get
+      source: field_suffix
+  field_website_url:
+    -
+      plugin: field_link
+      source: field_website_url
+  field_zip_code:
+    -
+      plugin: get
+      source: field_zip_code
+destination:
+  plugin: 'entity:node'
+  default_bundle: scheinman_neutral
+migration_dependencies:
+  required:
+    - d7_user
+    - d7_node_type
+  optional:
+    - d7_field_instance

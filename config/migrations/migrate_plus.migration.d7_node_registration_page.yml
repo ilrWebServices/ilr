@@ -1,0 +1,131 @@
+uuid: bdfd39ba-ff10-4c9e-978b-9b4cc0a37231
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_registration_page
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Nodes (Registration page)'
+source:
+  plugin: d7_node
+  node_type: registration_page
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_registration_page/0/status:
+    -
+      plugin: get
+      source: comment
+  body:
+    -
+      plugin: get
+      source: body
+  field_event_date:
+    -
+      plugin: get
+      source: field_event_date
+  field_location_as_long_text:
+    -
+      plugin: get
+      source: field_location_as_long_text
+  field_image:
+    -
+      plugin: get
+      source: field_image
+  field_form_active_date_range:
+    -
+      plugin: get
+      source: field_form_active_date_range
+  field_message_after_form_close:
+    -
+      plugin: get
+      source: field_message_after_form_close
+  field_message_before_form_open:
+    -
+      plugin: get
+      source: field_message_before_form_open
+  field_aa_member_price:
+    -
+      plugin: get
+      source: field_aa_member_price
+  field_aa_non_member_price:
+    -
+      plugin: get
+      source: field_aa_non_member_price
+  field_blocks:
+    -
+      plugin: get
+      source: field_blocks
+  field_registration_form_type:
+    -
+      plugin: get
+      source: field_registration_form_type
+  field_total_tickets:
+    -
+      plugin: get
+      source: field_total_tickets
+destination:
+  plugin: 'entity:node'
+  default_bundle: registration_page
+migration_dependencies:
+  required:
+    - d7_user
+    - d7_node_type
+  optional:
+    - d7_field_instance

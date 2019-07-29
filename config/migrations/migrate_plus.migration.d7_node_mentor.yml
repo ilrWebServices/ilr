@@ -1,0 +1,119 @@
+uuid: 5e0db07c-b87a-4da6-8095-1fff1a595983
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_mentor
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Nodes (Mentor)'
+source:
+  plugin: d7_node
+  node_type: mentor
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_mentor/0/status:
+    -
+      plugin: get
+      source: comment
+  field_activities:
+    -
+      plugin: get
+      source: field_activities
+  field_benefits:
+    -
+      plugin: get
+      source: field_benefits
+  field_challenge:
+    -
+      plugin: get
+      source: field_challenge
+  field_expected_graduation_date:
+    -
+      plugin: get
+      source: field_expected_graduation_date
+  field_interests_and_goals:
+    -
+      plugin: get
+      source: field_interests_and_goals
+  field_profile_image:
+    -
+      plugin: get
+      source: field_profile_image
+  field_transfer_student:
+    -
+      plugin: get
+      source: field_transfer_student
+  field_description_long:
+    -
+      plugin: get
+      source: field_description_long
+  field_teaser:
+    -
+      plugin: get
+      source: field_teaser
+destination:
+  plugin: 'entity:node'
+  default_bundle: mentor
+migration_dependencies:
+  required:
+    - d7_user
+    - d7_node_type
+  optional:
+    - d7_field_instance

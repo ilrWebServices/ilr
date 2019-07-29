@@ -1,0 +1,138 @@
+uuid: eed74440-5970-4479-bbfe-e1d6a5d99586
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_revision_mentor
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Node revisions (Mentor)'
+source:
+  plugin: d7_node_revision
+  node_type: mentor
+process:
+  nid:
+    -
+      plugin: get
+      source: nid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_mentor/0/status:
+    -
+      plugin: get
+      source: comment
+  field_activities:
+    -
+      plugin: get
+      source: field_activities
+  field_benefits:
+    -
+      plugin: get
+      source: field_benefits
+  field_challenge:
+    -
+      plugin: get
+      source: field_challenge
+  field_expected_graduation_date:
+    -
+      plugin: get
+      source: field_expected_graduation_date
+  field_interests_and_goals:
+    -
+      plugin: get
+      source: field_interests_and_goals
+  field_profile_image:
+    -
+      plugin: get
+      source: field_profile_image
+  field_transfer_student:
+    -
+      plugin: get
+      source: field_transfer_student
+  field_description_long:
+    -
+      plugin: get
+      source: field_description_long
+  field_teaser:
+    -
+      plugin: get
+      source: field_teaser
+destination:
+  plugin: 'entity_revision:node'
+  default_bundle: mentor
+migration_dependencies:
+  required:
+    - d7_node_author
+    - d7_node_basic_page
+    - d7_node_certificate_programs
+    - d7_node_channel_page
+    - d7_node_experience_report
+    - d7_node_instagram_post
+    - d7_node_memory_book
+    - d7_node_mentor
+    - d7_node_news_item
+    - d7_node_people_profile
+    - d7_node_post
+    - d7_node_promo
+    - d7_node_reflection
+    - d7_node_registration_page
+    - d7_node_scheinman_neutral
+    - d7_node_sdc_class
+    - d7_node_sdc_course
+    - d7_node_sdc_faculty
+    - d7_node_student_portrait
+    - d7_node_visiting_fellow
+    - d7_node_workspan
+    - d7_node_youtube_video
+  optional: {  }

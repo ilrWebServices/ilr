@@ -1,0 +1,197 @@
+uuid: 1a7e8368-4606-4493-a98c-d6672d7048bb
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_people_profile
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Nodes (People Profile)'
+source:
+  plugin: d7_node
+  node_type: people_profile
+process:
+  nid:
+    -
+      plugin: get
+      source: tnid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_people_profile/0/status:
+    -
+      plugin: get
+      source: comment
+  field_address_line_1:
+    -
+      plugin: get
+      source: field_address_line_1
+  field_ai_honors_awards:
+    -
+      plugin: get
+      source: field_ai_honors_awards
+  field_ai_links:
+    -
+      plugin: get
+      source: field_ai_links
+  field_ai_other_expertise:
+    -
+      plugin: get
+      source: field_ai_other_expertise
+  field_ai_overview:
+    -
+      plugin: get
+      source: field_ai_overview
+  field_ai_professional_activities:
+    -
+      plugin: get
+      source: field_ai_professional_activities
+  field_ai_publications:
+    -
+      plugin: get
+      source: field_ai_publications
+  field_ai_research_statement:
+    -
+      plugin: get
+      source: field_ai_research_statement
+  field_ai_teaching_statement:
+    -
+      plugin: get
+      source: field_ai_teaching_statement
+  field_areas_of_expertise:
+    -
+      plugin: get
+      source: field_areas_of_expertise
+  field_email:
+    -
+      plugin: sub_process
+      source: field_email
+      process:
+        value: email
+  field_fax:
+    -
+      plugin: get
+      source: field_fax
+  field_first_name:
+    -
+      plugin: get
+      source: field_first_name
+  field_ilrweb_vita_file:
+    -
+      plugin: get
+      source: field_ilrweb_vita_file
+  field_last_name:
+    -
+      plugin: get
+      source: field_last_name
+  field_local_address:
+    -
+      plugin: get
+      source: field_local_address
+  field_netid:
+    -
+      plugin: get
+      source: field_netid
+  field_phone:
+    -
+      plugin: get
+      source: field_phone
+  field_profile_image:
+    -
+      plugin: get
+      source: field_profile_image
+  field_profile_type:
+    -
+      plugin: get
+      source: field_profile_type
+  field_visibility_settings:
+    -
+      plugin: get
+      source: field_visibility_settings
+  field_working_title:
+    -
+      plugin: get
+      source: field_working_title
+  field_faculty_on_leave:
+    -
+      plugin: get
+      source: field_faculty_on_leave
+  field_ai_outreach_statement:
+    -
+      plugin: get
+      source: field_ai_outreach_statement
+  field_ai_service_statement:
+    -
+      plugin: get
+      source: field_ai_service_statement
+  field_profile_department:
+    -
+      plugin: get
+      source: field_profile_department
+  field_display_in_faculty_lists:
+    -
+      plugin: get
+      source: field_display_in_faculty_lists
+  field_office_hours:
+    -
+      plugin: get
+      source: field_office_hours
+destination:
+  plugin: 'entity:node'
+  default_bundle: people_profile
+migration_dependencies:
+  required:
+    - d7_user
+    - d7_node_type
+  optional:
+    - d7_field_instance

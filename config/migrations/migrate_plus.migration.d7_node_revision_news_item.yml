@@ -1,0 +1,134 @@
+uuid: 5fed8065-db8c-43f7-b6e7-0be5d712cb88
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_revision_news_item
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: migrate_drupal_7
+label: 'Node revisions (News Item)'
+source:
+  plugin: d7_node_revision
+  node_type: news_item
+process:
+  nid:
+    -
+      plugin: get
+      source: nid
+  vid:
+    -
+      plugin: get
+      source: vid
+  langcode:
+    -
+      plugin: default_value
+      source: language
+      default_value: und
+  title:
+    -
+      plugin: get
+      source: title
+  uid:
+    -
+      plugin: get
+      source: node_uid
+  status:
+    -
+      plugin: get
+      source: status
+  created:
+    -
+      plugin: get
+      source: created
+  changed:
+    -
+      plugin: get
+      source: changed
+  promote:
+    -
+      plugin: get
+      source: promote
+  sticky:
+    -
+      plugin: get
+      source: sticky
+  revision_uid:
+    -
+      plugin: get
+      source: revision_uid
+  revision_log:
+    -
+      plugin: get
+      source: log
+  revision_timestamp:
+    -
+      plugin: get
+      source: timestamp
+  comment_node_news_item/0/status:
+    -
+      plugin: get
+      source: comment
+  body:
+    -
+      plugin: get
+      source: body
+  field_description:
+    -
+      plugin: get
+      source: field_description
+  field_image:
+    -
+      plugin: get
+      source: field_image
+  field_published_date:
+    -
+      plugin: get
+      source: field_published_date
+  field_short_title:
+    -
+      plugin: get
+      source: field_short_title
+  field_tags:
+    -
+      plugin: get
+      source: field_tags
+  field_website_url:
+    -
+      plugin: field_link
+      source: field_website_url
+  field_category_type:
+    -
+      plugin: get
+      source: field_category_type
+destination:
+  plugin: 'entity_revision:node'
+  default_bundle: news_item
+migration_dependencies:
+  required:
+    - d7_node_author
+    - d7_node_basic_page
+    - d7_node_certificate_programs
+    - d7_node_channel_page
+    - d7_node_experience_report
+    - d7_node_instagram_post
+    - d7_node_memory_book
+    - d7_node_mentor
+    - d7_node_news_item
+    - d7_node_people_profile
+    - d7_node_post
+    - d7_node_promo
+    - d7_node_reflection
+    - d7_node_registration_page
+    - d7_node_scheinman_neutral
+    - d7_node_sdc_class
+    - d7_node_sdc_course
+    - d7_node_sdc_faculty
+    - d7_node_student_portrait
+    - d7_node_visiting_fellow
+    - d7_node_workspan
+    - d7_node_youtube_video
+  optional: {  }
