@@ -29,6 +29,7 @@
     "drupal/config_split": "^1.4",
     "drupal/console": "^1.0.2",
     "drupal/core": "^8.7.0",
+    "drupal/dynamic_entity_reference": "^2.0",
     "drush/drush": "^9.0.0",
     "vlucas/phpdotenv": "^2.4",
     "webflo/drupal-finder": "^1.0.0",
@@ -36,6 +37,7 @@
     "zaporylie/composer-drupal-optimizations": "^1.0"
   },
   "require-dev": {
+    "drupal/devel_entity_updates": "^1.0@RC",
     "webflo/drupal-core-require-dev": "^8.7.0"
   },
   "conflict": {

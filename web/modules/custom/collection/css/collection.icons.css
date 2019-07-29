@@ -1,0 +1,20 @@
+/**
+ * @file
+ * Entity Registration Form toolbar icon styling.
+ */
+
+/* Bar styling (first row), currently unused. */
+.toolbar-bar .toolbar-link-collection-admin:before {
+  background-image: url("/core/themes/stable/images/core/icons/787878/orgchart.svg");
+}
+.toolbar-bar .toolbar-icon-collection-admin:active:before {
+  background-image: url("/core/themes/stable/images/core/icons/000000/orgchart.svg");
+}
+
+/* Tray styling (second row) */
+.toolbar-tray .toolbar-icon.toolbar-icon-collection-admin:before {
+  background-image: url("/core/themes/stable/images/core/icons/787878/orgchart.svg");
+}
+.toolbar-tray .toolbar-icon.toolbar-icon-collection-admin:active:before {
+  background-image: url("/core/themes/stable/images/core/icons/000000/orgchart.svg");
+}

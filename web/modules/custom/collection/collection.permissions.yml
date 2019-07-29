@@ -1,0 +1,16 @@
+administer collections:
+  title: 'Administer Collections'
+  description: 'Allow to access the administration form to configure Collections.'
+  restrict access: true
+
+view collections:
+  title: 'View Collections'
+
+add collections:
+  title: 'Create new Collections'
+
+edit collections:
+  title: 'Edit Collections'
+
+delete collections:
+  title: 'Delete Collections'
