@@ -8,7 +8,9 @@ module:
   dblog: 0
   dynamic_entity_reference: 0
   dynamic_page_cache: 0
+  entity_reference_revisions: 0
   field: 0
+  file: 0
   filter: 0
   ilr: 0
   link: 0
@@ -27,6 +29,7 @@ module:
   user: 0
   views: 0
   menu_link_content: 1
+  paragraphs: 11
   minimal: 1000
 theme:
   classy: 0
