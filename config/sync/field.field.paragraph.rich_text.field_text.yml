@@ -1,0 +1,21 @@
+uuid: ba963723-6ee6-45cb-a880-ef28df078a1d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text
+    - paragraphs.paragraphs_type.rich_text
+  module:
+    - text
+id: paragraph.rich_text.field_text
+field_name: field_text
+entity_type: paragraph
+bundle: rich_text
+label: Text
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

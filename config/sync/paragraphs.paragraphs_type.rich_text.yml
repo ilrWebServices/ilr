@@ -1,0 +1,9 @@
+uuid: 1c26761b-9358-468c-8553-8a8226204a4f
+langcode: en
+status: true
+dependencies: {  }
+id: rich_text
+label: 'Rich Text'
+icon_uuid: null
+description: 'A basic WYSIWYG editor for formatted text. Inline formats like bold and italics are allowed, but inline media and embedded entities should not be.'
+behavior_plugins: {  }
