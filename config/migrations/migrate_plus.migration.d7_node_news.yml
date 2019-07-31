@@ -36,7 +36,7 @@ process:
   field_external_url:
     plugin: field_link
     source: field_website_url
-  news_paragraphs:
+  _news_body_paragraphs:
     plugin: migration_lookup
     migration: d7_node_news_body
     source: nid
@@ -44,7 +44,7 @@ process:
   field_component_content:
     plugin: sub_process
     source:
-      - '@news_paragraphs'
+      - '@_news_body_paragraphs'
     process:
       target_id: '0'
       target_revision_id: '1'
