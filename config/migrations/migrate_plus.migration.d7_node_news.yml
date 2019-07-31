@@ -48,6 +48,15 @@ process:
     process:
       target_id: '0'
       target_revision_id: '1'
+  field_publication_date:
+    plugin: sub_process
+    source: field_published_date
+    process:
+      value:
+        plugin: substr
+        source: value
+        start: 0
+        length: 10
   field_representative_image: field_image
 destination:
   plugin: 'entity:node'
@@ -55,4 +64,4 @@ destination:
 migration_dependencies:
   required:
     - d7_node_news_body
-  optional: {}
+  optional: {  }
