@@ -1,0 +1,105 @@
+uuid: 7bab6aa8-463b-418d-95f5-70c084097175
+langcode: en
+status: true
+dependencies: {  }
+id: d7_file_media
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+  - status-done
+migration_group: drupal_7
+label: 'Files to Media'
+source:
+  plugin: ilr_d7_file
+  constants:
+    source_base_path: 'https://www.ilr.cornell.edu'
+    file_destination: 'public://'
+# Note that all media bundle fields are here, but they are skipped if they are
+# not meant for the type of the current row. This allows all media entities to
+# be created from all files in a single migration.
+process:
+  mid: fid
+  uid: uid
+  bundle: type
+  # Remote video bundles can generate their own names.
+  name:
+    -
+      plugin: skip_on_value
+      source: type
+      method: process
+      value: remote_video
+    -
+      plugin: get
+      source: filename
+  langcode:
+    plugin: default_value
+    default_value: en
+  status: status
+  created: timestamp
+  changed: timestamp
+  _source_full_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/source_base_path
+        - filepath
+    -
+      plugin: urlencode
+  field_media_oembed_video: uri
+  field_media_image:
+    -
+      plugin: skip_on_value
+      source: type
+      not_equals: true
+      method: process
+      value: image
+    -
+      plugin: image_import
+      source: '@_source_full_path'
+      destination: constants/file_destination
+      uid: '@uid'
+      alt: '!file'
+      skip_on_missing_source: true
+  field_media_file:
+    -
+      plugin: skip_on_value
+      source: type
+      not_equals: true
+      method: process
+      value: file
+    -
+      plugin: file_import
+      source: '@_source_full_path'
+      destination: constants/file_destination
+  field_media_audio_file:
+    -
+      plugin: skip_on_value
+      source: type
+      not_equals: true
+      method: process
+      value: audio
+    -
+      plugin: file_import
+      source: '@_source_full_path'
+      destination: constants/file_destination
+  field_media_video_file:
+    -
+      plugin: skip_on_value
+      source: type
+      not_equals: true
+      method: process
+      value: video
+    -
+      plugin: file_import
+      source: '@_source_full_path'
+      destination: constants/file_destination
+destination:
+  plugin: 'entity:media'
+  default_bundle: file
+migration_dependencies:
+  required: {  }
+  optional: {  }
