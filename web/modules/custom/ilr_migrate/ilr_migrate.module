@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains ilr_migrate.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function ilr_migrate_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the ilr_migrate module.
+    case 'help.page.ilr_migrate':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Helpers and custom code for the D7 to D8 migration.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
