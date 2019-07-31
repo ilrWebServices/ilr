@@ -1,0 +1,17 @@
+uuid: 93a68a59-7cc9-45fc-bbfb-2f2656ef42d2
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'News Article'
+type: article
+description: 'Use <em>News Articles</em> for news stories.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

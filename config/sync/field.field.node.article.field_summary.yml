@@ -1,0 +1,21 @@
+uuid: 2fe7509c-e75d-4ec1-9dc4-0c97e3189a39
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_summary
+    - node.type.article
+  module:
+    - text
+id: node.article.field_summary
+field_name: field_summary
+entity_type: node
+bundle: article
+label: Summary
+description: 'This field may be used in teasers, meta descriptions, and/or social media sharing.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

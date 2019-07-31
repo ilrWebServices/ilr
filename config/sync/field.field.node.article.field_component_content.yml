@@ -1,0 +1,31 @@
+uuid: c06c58b9-b837-4a55-b781-23ff6d249659
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_component_content
+    - node.type.article
+    - paragraphs.paragraphs_type.rich_text
+  module:
+    - entity_reference_revisions
+id: node.article.field_component_content
+field_name: field_component_content
+entity_type: node
+bundle: article
+label: 'Main Content'
+description: 'Build your primary content here using layouts and components.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      rich_text: rich_text
+    target_bundles_drag_drop:
+      rich_text:
+        enabled: true
+        weight: 2
+field_type: entity_reference_revisions

@@ -1,0 +1,25 @@
+uuid: 036387fc-1554-4d51-b56e-dc1086ffddf0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.article
+  module:
+    - user
+id: node.article.teaser
+targetEntityType: node
+bundle: article
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_component_content: true
+  field_external_url: true
+  field_publication_date: true
+  field_representative_image: true
+  field_summary: true
