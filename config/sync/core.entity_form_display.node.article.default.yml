@@ -8,11 +8,9 @@ dependencies:
     - field.field.node.article.field_publication_date
     - field.field.node.article.field_representative_image
     - field.field.node.article.field_summary
-    - image.style.thumbnail
     - node.type.article
   module:
     - datetime
-    - image
     - link
     - paragraphs
     - text
@@ -54,12 +52,13 @@ content:
     type: datetime_default
     region: content
   field_representative_image:
-    weight: 121
+    weight: 126
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: image_image
+    type: entity_reference_autocomplete
     region: content
   field_summary:
     weight: 122
