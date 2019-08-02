@@ -773,6 +773,16 @@ $settings['entity_update_batch_size'] = 50;
 $settings['entity_update_backup'] = TRUE;
 
 /**
+ * Migration data sources.
+ *
+ * The source of some migrations, like files, can be overridden via an
+ * environment variable. @see .env.example.
+ */
+if (!empty(getenv('MIGRATE_SOURCE_BASE_OVERRIDE'))) {
+  $config['migrate_plus.migration.d7_file_media']['source']['constants']['source_base_path']= getenv('MIGRATE_SOURCE_BASE_OVERRIDE');
+}
+
+/**
  * Load local development override configuration, if available.
  *
  * Use settings.local.php to override variables on secondary (staging,
