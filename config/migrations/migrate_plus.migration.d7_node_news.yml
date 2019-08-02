@@ -57,7 +57,11 @@ process:
         source: value
         start: 0
         length: 10
-  field_representative_image: field_image
+  field_representative_image:
+    plugin: sub_process
+    source: field_image
+    process:
+      target_id: fid
 destination:
   plugin: 'entity:node'
   default_bundle: article
