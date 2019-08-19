@@ -1,0 +1,13 @@
+rest_api_version:
+  label: ''
+  url: ''
+  version: '39.0'
+use_latest: true
+global_push_limit: 100000
+pull_max_queue_size: 100000
+show_all_objects: false
+standalone: false
+limit_mapped_object_revisions: 10
+salesforce_auth_provider: oauth_default
+_core:
+  default_config_hash: EjFTlHhnxj9PlzBk2nJ7rVdK1MdUy67s4U9n84FuMho
