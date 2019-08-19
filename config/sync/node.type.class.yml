@@ -1,0 +1,17 @@
+uuid: a275e3eb-9d46-4407-83b1-e2828b90e8e4
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Class
+type: class
+description: 'Use a <em>Class</em> to represent a datetime and location for a <em>Course</em> instance.'
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false

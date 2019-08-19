@@ -1,0 +1,17 @@
+uuid: 5ce417f4-6eb6-4bc6-9404-228ac07d28ab
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Course
+type: course
+description: 'Use <em>Courses</em> to represent Professional Programs and other courses imported from Salesforce.'
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false
