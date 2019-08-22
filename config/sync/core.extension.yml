@@ -9,6 +9,7 @@ module:
   dblog: 0
   dynamic_entity_reference: 0
   dynamic_page_cache: 0
+  facets: 0
   field: 0
   filter: 0
   ilr: 0
@@ -19,6 +20,8 @@ module:
   salesforce: 0
   salesforce_mapping: 0
   salesforce_pull: 0
+  search_api: 0
+  search_api_db: 0
   system: 0
   taxonomy: 0
   text: 0
