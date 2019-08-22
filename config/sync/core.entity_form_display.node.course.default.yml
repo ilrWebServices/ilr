@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.course.body
+    - field.field.node.course.field_topics
     - node.type.course
   module:
     - text
@@ -27,6 +28,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_topics:
+    weight: 122
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   promote:
     type: boolean_checkbox
     settings:
