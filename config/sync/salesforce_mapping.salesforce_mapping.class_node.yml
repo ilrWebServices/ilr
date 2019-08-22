@@ -1,0 +1,54 @@
+uuid: ecb4f238-6e81-4a95-b003-944f1a0b8cb6
+langcode: en
+status: true
+dependencies:
+  module:
+    - salesforce_pull
+id: class_node
+label: 'Class Node'
+weight: 1
+type: salesforce_mapping
+key: ''
+async: false
+push_standalone: false
+pull_standalone: false
+pull_trigger_date: LastModifiedDate
+pull_where_clause: ''
+sync_triggers:
+  pull_create: true
+  pull_update: true
+  pull_delete: false
+salesforce_object_type: EXECED_Event_Class__c
+drupal_entity_type: node
+drupal_bundle: class
+field_mappings:
+  -
+    drupal_field_type: properties
+    drupal_field_value: title
+    salesforce_field: Name
+    direction: sf_drupal
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_date_start
+    salesforce_field: Start__c
+    direction: sf_drupal
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_date_end
+    salesforce_field: End__c
+    direction: sf_drupal
+  -
+    drupal_field_type: RelatedIDs
+    drupal_field_value: field_course
+    salesforce_field: Course__c
+    direction: sf_drupal
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_price
+    salesforce_field: Event_Class_Fee__c
+    direction: sf_drupal
+push_limit: 0
+push_retries: 3
+push_frequency: 0
+pull_frequency: 0
+always_upsert: false
