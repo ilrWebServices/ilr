@@ -5,6 +5,7 @@ module:
   config: 0
   config_filter: 0
   config_split: 0
+  contextual: 0
   datetime: 0
   dblog: 0
   dynamic_entity_reference: 0
@@ -13,6 +14,8 @@ module:
   field: 0
   filter: 0
   ilr: 0
+  layout_builder: 0
+  layout_discovery: 0
   link: 0
   menu_ui: 0
   node: 0
