@@ -6,9 +6,77 @@ dependencies:
     - field.field.node.course.body
     - field.field.node.course.field_topics
     - node.type.course
+    - views.view.course_classes
   module:
+    - layout_builder
+    - layout_discovery
     - text
     - user
+    - views
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings: {  }
+        components:
+          cca9af87-3062-48a0-ba29-f466292d17b5:
+            uuid: cca9af87-3062-48a0-ba29-f466292d17b5
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:node:course:links'
+            additional: {  }
+            weight: 4
+          e8f79d2a-651d-4187-a90d-67fb631b4973:
+            uuid: e8f79d2a-651d-4187-a90d-67fb631b4973
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:course:body'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+            additional: {  }
+            weight: 1
+          83dfebb1-4059-464a-8073-c2ec74cd681e:
+            uuid: 83dfebb1-4059-464a-8073-c2ec74cd681e
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:course:field_topics'
+              formatter:
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+                type: entity_reference_label
+            additional: {  }
+            weight: 0
+          b172c740-4b20-4d09-8faf-1c8cd5d3f2ef:
+            uuid: b172c740-4b20-4d09-8faf-1c8cd5d3f2ef
+            region: content
+            configuration:
+              id: 'views_block:course_classes-block_1'
+              label: ''
+              provider: views
+              label_display: visible
+              views_label: ''
+              items_per_page: none
+              context_mapping: {  }
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
 id: node.course.default
 targetEntityType: node
 bundle: course
@@ -34,4 +102,5 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  search_api_excerpt: true
