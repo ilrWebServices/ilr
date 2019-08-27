@@ -38,7 +38,7 @@ $settings['trusted_host_patterns'] = [];
 $config['config_split.config_split.dev']['status'] = TRUE;
 
 // Enable local development services.
-$settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
+$settings['container_yamls'][] = DRUPAL_ROOT . '/sites/local_development.services.yml';
 
 // Show all error messages, with backtrace information.
 $config['system.logging']['error_level'] = 'verbose';
