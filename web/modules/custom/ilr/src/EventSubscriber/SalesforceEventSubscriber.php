@@ -93,6 +93,36 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     }
 
     $course_node->set('field_sponsor', $course_sponsor_term->id());
+
+    // Assign a random topic term, creating one if necessary.
+    // @todo: Replace this with an actual sensical topic selection system.
+    $temp_topics = [
+      'Conflict resolution',
+      'Disability and employment',
+      'Diversity and inclusion',
+      'Human resources',
+      'Employment law',
+      'Employee relations',
+      'Labor relations',
+      'Leadership development and organizational change',
+    ];
+    $random_topic_key = array_rand($temp_topics);
+    $course_topic_term = $term_storage->loadByProperties([
+      'name' => $temp_topics[$random_topic_key],
+      'vid' => 'topics',
+    ]);
+    $course_topic_term = reset($course_topic_term);
+
+    // If there is no term for this topic, create a new one.
+    if (empty($course_topic_term)) {
+      $course_topic_term = $term_storage->create([
+        'name' => $temp_topics[$random_topic_key],
+        'vid' => 'topics',
+      ]);
+      $course_topic_term->save();
+    }
+
+    $course_node->set('field_topics', $course_topic_term->id());
   }
 
 }
