@@ -1,0 +1,81 @@
+uuid: 274fafd7-eb38-45dd-8f59-ed4b9d1ef1cd
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+    - search_api
+  config:
+    - field.storage.node.field_sponsor
+    - field.storage.node.field_topics
+    - search_api.server.database
+id: courses
+name: Courses
+description: ''
+read_only: false
+field_settings:
+  date_start:
+    label: 'Reverse reference: Content using Course » Start Date'
+    datasource_id: 'entity:node'
+    property_path: 'search_api_reverse_entity_references_node__field_course:field_date_start'
+    type: date
+  nid:
+    label: ID
+    datasource_id: 'entity:node'
+    property_path: nid
+    type: integer
+    dependencies:
+      module:
+        - node
+  sponsor_name:
+    label: 'Sponsor » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_sponsor:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_sponsor
+      module:
+        - taxonomy
+        - taxonomy
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+    dependencies:
+      module:
+        - node
+  topic_name:
+    label: 'Topics » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_topics:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_topics
+      module:
+        - taxonomy
+        - taxonomy
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - course
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  rendered_item: {  }
+  reverse_entity_references: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: database
