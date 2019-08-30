@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.course.body
+    - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
     - node.type.course
   module:
@@ -28,6 +29,15 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_sponsor:
+    weight: 123
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_topics:
     weight: 122
     settings: {  }

@@ -1,0 +1,29 @@
+uuid: 090e2fa2-afa6-4bc9-b757-d3586d63c1a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sponsor
+    - node.type.course
+    - taxonomy.vocabulary.course_sponsor
+id: node.course.field_sponsor
+field_name: field_sponsor
+entity_type: node
+bundle: course
+label: Sponsor
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      course_sponsor: course_sponsor
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

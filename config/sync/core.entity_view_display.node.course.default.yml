@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.course.body
+    - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
     - node.type.course
     - views.view.course_classes
@@ -76,6 +77,22 @@ third_party_settings:
               context_mapping: {  }
             additional: {  }
             weight: 1
+          976bb1ec-2448-4782-baf7-47091f534e78:
+            uuid: 976bb1ec-2448-4782-baf7-47091f534e78
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:course:field_sponsor'
+              formatter:
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+                type: entity_reference_label
+            additional: {  }
+            weight: 5
         third_party_settings: {  }
 id: node.course.default
 targetEntityType: node
@@ -88,6 +105,14 @@ content:
     weight: 101
     settings: {  }
     third_party_settings: {  }
+    region: content
+  field_sponsor:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   field_topics:
     weight: 102
