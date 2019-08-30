@@ -1,0 +1,6 @@
+services:
+  ilr_salesforce_event_subscriber:
+    class: Drupal\ilr\EventSubscriber\SalesforceEventSubscriber
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }

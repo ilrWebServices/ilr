@@ -3,3 +3,5 @@ type: module
 description: 'Update hooks and misc custom code for the ILR site'
 core: 8.x
 package: 'ILR'
+dependencies:
+  - salesforce
