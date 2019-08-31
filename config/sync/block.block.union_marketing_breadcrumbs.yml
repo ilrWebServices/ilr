@@ -1,0 +1,20 @@
+uuid: 7306973a-71ce-41c4-b51f-8ed350d995ed
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - union_marketing
+id: union_marketing_breadcrumbs
+theme: union_marketing
+region: content
+weight: -40
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }
