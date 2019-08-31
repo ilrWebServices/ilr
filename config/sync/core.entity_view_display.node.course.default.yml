@@ -32,7 +32,7 @@ third_party_settings:
                 entity: layout_builder.entity
               id: 'extra_field_block:node:course:links'
             additional: {  }
-            weight: 4
+            weight: 5
           e8f79d2a-651d-4187-a90d-67fb631b4973:
             uuid: e8f79d2a-651d-4187-a90d-67fb631b4973
             region: content
@@ -64,19 +64,6 @@ third_party_settings:
                 type: entity_reference_label
             additional: {  }
             weight: 0
-          b172c740-4b20-4d09-8faf-1c8cd5d3f2ef:
-            uuid: b172c740-4b20-4d09-8faf-1c8cd5d3f2ef
-            region: content
-            configuration:
-              id: 'views_block:course_classes-block_1'
-              label: ''
-              provider: views
-              label_display: visible
-              views_label: ''
-              items_per_page: none
-              context_mapping: {  }
-            additional: {  }
-            weight: 1
           976bb1ec-2448-4782-baf7-47091f534e78:
             uuid: 976bb1ec-2448-4782-baf7-47091f534e78
             region: content
@@ -92,7 +79,20 @@ third_party_settings:
                 third_party_settings: {  }
                 type: entity_reference_label
             additional: {  }
-            weight: 5
+            weight: 6
+          48d8bbaa-0c48-49f1-acfd-c8c15a57373e:
+            uuid: 48d8bbaa-0c48-49f1-acfd-c8c15a57373e
+            region: content
+            configuration:
+              id: 'views_block:course_classes-block'
+              label: ''
+              provider: views
+              label_display: visible
+              views_label: ''
+              items_per_page: none
+              context_mapping: {  }
+            additional: {  }
+            weight: 4
         third_party_settings: {  }
 id: node.course.default
 targetEntityType: node
