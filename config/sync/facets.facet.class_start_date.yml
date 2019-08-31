@@ -1,20 +1,20 @@
-uuid: 728dd26f-8ff1-4525-ad60-d5fb24496e15
+uuid: 8acd365f-8e97-469a-8f17-756e3045ac9b
 langcode: en
 status: true
 dependencies:
   config:
-    - search_api.index.courses
-    - views.view.course_search
+    - search_api.index.classes
+    - views.view.class_search
   module:
     - search_api
-id: reverse_reference_content_using_course_start_date
-name: 'Course » Start Date'
+id: class_start_date
+name: 'Class » Start Date'
 url_alias: start_date
 weight: 0
 min_count: 1
 show_only_one_result: false
 field_identifier: date_start
-facet_source_id: 'search_api:views_block__course_search__block'
+facet_source_id: 'search_api:views_block__class_search__block_listing'
 widget:
   type: links
   config:

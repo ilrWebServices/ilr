@@ -1,20 +1,20 @@
-uuid: e324ec23-b28f-4faf-9460-b93cfa202520
+uuid: 353052c1-dd43-431e-ba83-557ead65aa7a
 langcode: en
 status: true
 dependencies:
   config:
-    - search_api.index.courses
-    - views.view.course_search
+    - search_api.index.classes
+    - views.view.class_search
   module:
     - search_api
-id: topics_taxonomy_term_name
-name: 'Course » Course Topic'
-url_alias: topic
+id: class_course_topic
+name: 'Class » Course Topic'
+url_alias: topics
 weight: -1
 min_count: 1
 show_only_one_result: false
 field_identifier: topic_name
-facet_source_id: 'search_api:views_block__course_search__block'
+facet_source_id: 'search_api:views_block__class_search__block_listing'
 widget:
   type: links
   config:

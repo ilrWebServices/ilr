@@ -1,20 +1,20 @@
-uuid: 8acd365f-8e97-469a-8f17-756e3045ac9b
+uuid: e324ec23-b28f-4faf-9460-b93cfa202520
 langcode: en
 status: true
 dependencies:
   config:
-    - search_api.index.classes
-    - views.view.class_search
+    - search_api.index.courses
+    - views.view.course_search
   module:
     - search_api
-id: start_date
-name: 'Class » Start Date'
-url_alias: start_date
-weight: 0
+id: course_course_topic
+name: 'Course » Course Topic'
+url_alias: topic
+weight: -1
 min_count: 1
 show_only_one_result: false
-field_identifier: date_start
-facet_source_id: 'search_api:views_block__class_search__block_listing'
+field_identifier: topic_name
+facet_source_id: 'search_api:views_block__course_search__block'
 widget:
   type: links
   config:
@@ -37,35 +37,21 @@ processor_configs:
   active_widget_order:
     processor_id: active_widget_order
     weights:
-      sort: -7
+      sort: 20
     settings:
       sort: DESC
   count_widget_order:
     processor_id: count_widget_order
     weights:
-      sort: -9
+      sort: 30
     settings:
       sort: DESC
-  date_item:
-    processor_id: date_item
-    weights:
-      build: 35
-    settings:
-      date_display: actual_date
-      granularity: 5
-      date_format: ''
   display_value_widget_order:
     processor_id: display_value_widget_order
     weights:
-      sort: -8
+      sort: 40
     settings:
       sort: ASC
-  raw_value_widget_order:
-    processor_id: raw_value_widget_order
-    weights:
-      sort: -10
-    settings:
-      sort: DESC
   url_processor_handler:
     processor_id: url_processor_handler
     weights:
