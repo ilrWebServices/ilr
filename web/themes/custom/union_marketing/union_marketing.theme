@@ -14,3 +14,17 @@ function union_marketing_preprocess_page(array &$variables) {
     $variables['#attached']['library'][] = 'union_marketing/livereload';
   }
 }
+
+/**
+ * Implements template_preporcess_views_view__VIEW_ID().
+ *
+ * Sets the row content for the view template.
+ * @see views-view--courses-by-topic.html.twig
+ */
+function union_marketing_preprocess_views_view__courses_by_topic(&$variables) {
+  $rows = $variables['rows'];
+  foreach ($rows as $id => $row) {
+    $variables['rows'][$id] = [];
+    $variables['rows'][$id]['content'] = $row;
+  }
+}
