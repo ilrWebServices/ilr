@@ -253,21 +253,19 @@ display:
             group_items: {  }
           plugin_id: datetime
       sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          order: DESC
-          entity_type: node
-          entity_field: created
-          plugin_id: date
-          relationship: none
+        field_date_start_value:
+          id: field_date_start_value
+          table: node__field_date_start
+          field: field_date_start_value
+          relationship: reverse__node__field_course
           group_type: group
           admin_label: ''
+          order: ASC
           exposed: false
           expose:
             label: ''
-          granularity: second
+          granularity: day
+          plugin_id: datetime
       title: 'Courses by topic'
       header: {  }
       footer: {  }

@@ -72,5 +72,10 @@
 #}
 
 {% include "@union/_course-teaser.twig" with {
-  title: label
+  title: label,
+  details: course_details,
+  cta: {
+    url: url,
+    text: 'Learn more'
+  }
 } only %}

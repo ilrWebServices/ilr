@@ -28,3 +28,14 @@ function union_marketing_preprocess_views_view__courses_by_topic(&$variables) {
     $variables['rows'][$id]['content'] = $row;
   }
 }
+
+/**
+ * Implements template_preprocess_node().
+ *
+ */
+function union_marketing_preprocess_node__course__teaser(&$variables) {
+  $next_class_result = views_get_view_result('next_class_course', 'block', $variables['node']->id());
+  $next_class = reset($next_class_result)->_entity;
+  $variables['course_details'][] = $next_class->field_date_start->date->format('M j, Y');
+  $variables['course_details'][] = $next_class->field_price->getString();
+}
