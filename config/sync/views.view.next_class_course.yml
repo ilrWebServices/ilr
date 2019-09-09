@@ -51,9 +51,8 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: some
+        type: none
         options:
-          items_per_page: 1
           offset: 0
       style:
         type: default
@@ -315,7 +314,7 @@ display:
             label: ''
           granularity: day
           plugin_id: datetime
-      title: 'Next class course'
+      title: 'Upcoming classes for course'
       header: {  }
       footer: {  }
       empty: {  }
