@@ -12,8 +12,16 @@ body {
 
   @include medium {
     grid-column-gap: 2rem;
-    grid-template-columns: [left-gutter] 2fr [content] 9fr [sidebar] 3fr [right-gutter] 2fr;
+    grid-template-columns: [left-gutter] 2fr [content] 12fr [right-gutter] 2fr;
     justify-items: stretch;
+  }
+
+  &--sidebar-right {
+    @include medium {
+      grid-column-gap: 2rem;
+      grid-template-columns: [left-gutter] 2fr [content] 9fr [sidebar] 3fr [right-gutter] 2fr;
+      justify-items: stretch;
+    }
   }
 }
 
