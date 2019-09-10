@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Contains ilr.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function ilr_theme($existing, $type, $theme, $path) {
+  return [
+    'ilr_related_courses_block' => [
+      'variables' => [
+        'topic' => NULL,
+      ],
+    ],
+  ];
+}

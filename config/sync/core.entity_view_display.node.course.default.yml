@@ -7,13 +7,12 @@ dependencies:
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
     - node.type.course
-    - views.view.course_classes
   module:
+    - ilr
     - layout_builder
     - layout_discovery
     - text
     - user
-    - views
 third_party_settings:
   layout_builder:
     allow_custom: false
@@ -32,7 +31,7 @@ third_party_settings:
                 entity: layout_builder.entity
               id: 'extra_field_block:node:course:links'
             additional: {  }
-            weight: 5
+            weight: 6
           e8f79d2a-651d-4187-a90d-67fb631b4973:
             uuid: e8f79d2a-651d-4187-a90d-67fb631b4973
             region: content
@@ -47,52 +46,18 @@ third_party_settings:
                 settings: {  }
                 third_party_settings: {  }
             additional: {  }
-            weight: 1
-          83dfebb1-4059-464a-8073-c2ec74cd681e:
-            uuid: 83dfebb1-4059-464a-8073-c2ec74cd681e
+            weight: 4
+          4b46e1c7-778c-4bbe-ab8d-18aedb0b4018:
+            uuid: 4b46e1c7-778c-4bbe-ab8d-18aedb0b4018
             region: content
             configuration:
+              id: related_courses_block
+              label: 'Related courses block'
+              provider: ilr
               label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:course:field_topics'
-              formatter:
-                label: above
-                settings:
-                  link: true
-                third_party_settings: {  }
-                type: entity_reference_label
-            additional: {  }
-            weight: 0
-          976bb1ec-2448-4782-baf7-47091f534e78:
-            uuid: 976bb1ec-2448-4782-baf7-47091f534e78
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:course:field_sponsor'
-              formatter:
-                label: above
-                settings:
-                  link: true
-                third_party_settings: {  }
-                type: entity_reference_label
-            additional: {  }
-            weight: 6
-          48d8bbaa-0c48-49f1-acfd-c8c15a57373e:
-            uuid: 48d8bbaa-0c48-49f1-acfd-c8c15a57373e
-            region: content
-            configuration:
-              id: 'views_block:course_classes-block'
-              label: ''
-              provider: views
-              label_display: visible
-              views_label: ''
-              items_per_page: none
               context_mapping: {  }
             additional: {  }
-            weight: 4
+            weight: 5
         third_party_settings: {  }
 id: node.course.default
 targetEntityType: node

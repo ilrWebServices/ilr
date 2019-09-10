@@ -1,0 +1,28 @@
+uuid: 48f4963f-acf3-4835-8612-e910b9202f25
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.course_nodes
+  module:
+    - block_visibility_groups
+    - ilr
+  theme:
+    - union_marketing
+id: coursebannerblock
+theme: union_marketing
+region: content
+weight: 0
+provider: null
+plugin: course_banner_block
+settings:
+  id: course_banner_block
+  label: 'Course banner block'
+  provider: ilr
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: course_nodes
+    context_mapping: {  }

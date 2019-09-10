@@ -1,0 +1,13 @@
+{# topic set in RelatedCoursesBlock.php #}
+{% set view = drupal_view('courses_by_topic', 'related_courses', topic) %}
+
+<div class="cu-section">
+  {% include '@union/_section-heading.twig' with {
+    attributes: { class: 'cu-section-heading--framed cu-section-heading--framed-right' },
+    heading: 'Similar & Related',
+    subheading: 'Courses'
+  } only %}
+
+  {{ view }}
+</div>
+

@@ -78,6 +78,7 @@
 
 {% include "@union/_course-teaser.twig" with {
   title: label,
+  description: node.body.0.summary,
   details: course_details,
   cta: {
     url: url,
