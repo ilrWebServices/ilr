@@ -1,0 +1,71 @@
+<style type="text/css">
+  .registration-form {
+
+  }
+
+  @media (min-width: 768px) {
+    .registration-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 2em;
+    }
+
+    .cu-checkbutton__label {
+      margin: 0;
+    }
+
+    .cu-input--submit--alt {
+      margin-bottom: 0;
+    }
+  }
+
+</style>
+
+{# @todo: fix issues with outputting the time #}
+{% set class_details = [] %}
+{% for class in classes %}
+  {% set class_details = class_details|merge([{
+      id: class.id,
+      date: class.field_date_start.value|date("M d, Y"),
+      time: class.field_date_start.value|date("h:i a") ~ ' - ' ~ class.field_date_end.value|date("h:i a"),
+    }]) %}
+{% endfor %}
+
+{% set checkbuttons %}
+<div class="registration-form">
+  {% for detail in class_details %}
+    {% set input = {
+        'id': 'class-checkbutton-'~detail.id,
+        'type': 'radio',
+        'name': 'class-checkbutton',
+        'value': detail.id,
+        'checked': ''
+      } %}
+
+    {% set content %}
+
+    <p class="cu-checkbutton__content--date">{{ detail.date }}</p>
+    <time class="cu-checkbutton__content--time">{{ detail.time }}</time>
+    {% endset %}
+
+    {% include '@union/_form-checkbutton.twig' with {
+        label_content: content,
+        input: input
+      } only %}
+  {% endfor %}
+
+  {% include '@union/_form-input.twig' with {
+    attributes: {
+      class: 'cu-input--submit cu-input--submit--alt',
+      name: '[form][submit]',
+      type: 'submit',
+      value: 'Register',
+      id: 'form.submit'
+    }
+  } only %}
+</div>
+{% endset %}
+
+{% include '@union/_form.twig' with {
+  children: checkbuttons,
+} only %}

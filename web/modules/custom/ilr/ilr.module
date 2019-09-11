@@ -15,5 +15,10 @@ function ilr_theme($existing, $type, $theme, $path) {
         'topic' => NULL,
       ],
     ],
+    'ilr_class_register_block' => [
+      'variables' => [
+        'classes' => [],
+      ],
+    ],
   ];
 }
