@@ -27,7 +27,6 @@ Setting up your local web server and database is left as an excercise for the de
 As of this writing in June of 2019, two projects that would normally be included via Composer are included as [git submodules][] for more rapid development:
 
 - `drupal/union_organizer`
-- `cornell/union`
 
 This means that they won't be installed automatically by Composer. It also means that these projects will be nested git repositories in the following locations:
 
