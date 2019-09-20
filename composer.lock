@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "495ce083001c65bfca511319e0f9f79d",
+    "content-hash": "a8bf364bf6d7c83ef3029725090d85cd",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2798,6 +2798,35 @@
                 "issues": "http://drupal.org/project/dynamic_entity_reference",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             }
+        },
+        {
+            "name": "drupal/union_organizer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ilrWebServices/union_organizer.git",
+                "reference": "062041713b5f2bd0fe796dc0a4d146a9fa2479d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/062041713b5f2bd0fe796dc0a4d146a9fa2479d4",
+                "reference": "062041713b5f2bd0fe796dc0a4d146a9fa2479d4",
+                "shasum": ""
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "A simple integration module for the Union component system",
+            "homepage": "https://github.com/ilrWebServices/union_organizer",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "issues": "https://github.com/ilrWebServices/union_organizer/issues",
+                "source": "https://github.com/ilrWebServices/union_organizer.git"
+            },
+            "time": "2019-09-20T15:13:17+00:00"
         },
         {
             "name": "drush/drush",
@@ -8862,6 +8891,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/union_organizer": 20,
         "drupal/devel_entity_updates": 5
     },
     "prefer-stable": true,
