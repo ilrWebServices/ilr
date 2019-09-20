@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b3fbe6be9e9deeb9f07b0455c42f51e",
+    "content-hash": "a8bf364bf6d7c83ef3029725090d85cd",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2800,6 +2800,35 @@
             }
         },
         {
+            "name": "drupal/union_organizer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ilrWebServices/union_organizer.git",
+                "reference": "062041713b5f2bd0fe796dc0a4d146a9fa2479d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/062041713b5f2bd0fe796dc0a4d146a9fa2479d4",
+                "reference": "062041713b5f2bd0fe796dc0a4d146a9fa2479d4",
+                "shasum": ""
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "A simple integration module for the Union component system",
+            "homepage": "https://github.com/ilrWebServices/union_organizer",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "issues": "https://github.com/ilrWebServices/union_organizer/issues",
+                "source": "https://github.com/ilrWebServices/union_organizer.git"
+            },
+            "time": "2019-09-20T15:13:17+00:00"
+        },
+        {
             "name": "drush/drush",
             "version": "9.7.0",
             "source": {
@@ -3620,6 +3649,60 @@
                 "php"
             ],
             "time": "2019-05-25T20:07:01+00:00"
+        },
+        {
+            "name": "npm-asset/cornell_ilr--union",
+            "version": "0.1.3",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/@cornell_ilr/union/-/union-0.1.3.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "oomphinc/composer-installers-extender",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oomphinc/composer-installers-extender.git",
+                "reference": "ca1c4b16b0905c81d1e77e608f36a2eff1a56f56"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oomphinc/composer-installers-extender/zipball/ca1c4b16b0905c81d1e77e608f36a2eff1a56f56",
+                "reference": "ca1c4b16b0905c81d1e77e608f36a2eff1a56f56",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "composer/installers": "^1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "OomphInc\\ComposerInstallersExtender\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "OomphInc\\ComposerInstallersExtender\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stephen Beemsterboer",
+                    "email": "stephen@oomphinc.com",
+                    "homepage": "https://github.com/balbuf"
+                }
+            ],
+            "description": "Extend the composer/installers plugin to accept any arbitrary package type.",
+            "homepage": "http://www.oomphinc.com/",
+            "time": "2017-03-31T16:57:39+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -6724,7 +6807,7 @@
             "version": "8.3.5",
             "source": {
                 "type": "git",
-                "url": "https://git.drupal.org/project/coder.git",
+                "url": "https://git.drupalcode.org/project/coder.git",
                 "reference": "35277fc8675b6a2cbb194f8880145a9c85c845c4"
             },
             "require": {
@@ -8808,6 +8891,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/union_organizer": 20,
         "drupal/devel_entity_updates": 5
     },
     "prefer-stable": true,
