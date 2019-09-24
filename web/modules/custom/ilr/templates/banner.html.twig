@@ -1,0 +1,13 @@
+<div class="layout-banner">
+
+{% set rendered_content %}
+<div class="framed framed--right">
+  {{ content.banner }}
+</div>
+{% endset %}
+
+{% include '@union/_banner.twig' with {
+  attributes: { class: 'cu-banner--page'},
+  content: rendered_content,
+} only %}
+</div>

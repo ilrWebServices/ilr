@@ -1,0 +1,10 @@
+banner:
+  label: 'Banner'
+  category: 'ILR'
+  template: templates/banner
+  default_region: banner
+  icon_map:
+    - [banner]
+  regions:
+    banner:
+      label: Banner
