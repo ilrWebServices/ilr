@@ -5,6 +5,10 @@
  * Contains ilr.module.
  */
 
+use \Drupal\Core\Entity\EntityTypeInterface;
+use \Drupal\ilr\FieldStorageDefinition;
+use \Drupal\Core\Field\FieldDefinition;
+
 /**
  * Implements hook_theme().
  */
@@ -21,4 +25,54 @@ function ilr_theme($existing, $type, $theme, $path) {
       ],
     ],
   ];
+}
+
+/**
+ * Implements hook_entity_field_storage_info().
+ */
+function ilr_entity_field_storage_info(EntityTypeInterface $entity_type) {
+  $definitions = [];
+
+  if ($entity_type->id() == 'node') {
+    $definitions['classes'] = FieldStorageDefinition::create('entity_reference')
+      ->setName('classes')
+      ->setLabel(t('Classes'))
+      ->setRevisionable(TRUE)
+      ->setTargetEntityTypeId($entity_type->id());
+  }
+
+  return $definitions;
+}
+
+/**
+ * Implements hook_entity_bundle_field_info().
+ */
+function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle) {
+  if ($entity_type->id() == 'node' && $bundle == 'course') {
+    $fields = [];
+
+    $custom_field_storage = ilr_entity_field_storage_info($entity_type);
+
+    $fields[$custom_field_storage['classes']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['classes']);
+
+    $fields[$custom_field_storage['classes']->getName()]
+      ->setLabel(t('Classes'))
+      ->setComputed(TRUE)
+      ->setClass('\Drupal\ilr\CourseClassItemList')
+      ->setSettings([
+        'handler' => 'default:node',
+        'handler_settings' => [
+          'target_bundles' => [
+            'class' => 'class'
+          ]
+        ],
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'weight' => -5,
+      ]);
+
+    return $fields;
+  }
 }
