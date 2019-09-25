@@ -3,23 +3,28 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.topics.field_body
     - taxonomy.vocabulary.topics
+    - views.view.courses_by_topic
+    - views.view.topic_courses
   module:
     - ilr
     - layout_builder
+    - layout_discovery
     - system
     - text
+    - views
 third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: true
     sections:
       -
-        layout_id: test_with_banner
+        layout_id: banner
         layout_settings: {  }
         components:
-          09943364-d122-4de0-a58d-e5685057e440:
-            uuid: 09943364-d122-4de0-a58d-e5685057e440
+          189e896f-6453-46c6-821e-9ff0f95d8f20:
+            uuid: 189e896f-6453-46c6-821e-9ff0f95d8f20
             region: banner
             configuration:
               id: system_breadcrumb_block
@@ -29,8 +34,8 @@ third_party_settings:
               context_mapping: {  }
             additional: {  }
             weight: 0
-          e5337e72-1059-44bb-802a-695e8a03855a:
-            uuid: e5337e72-1059-44bb-802a-695e8a03855a
+          bb5a47b5-52d3-46f0-955b-4d3382dc7787:
+            uuid: bb5a47b5-52d3-46f0-955b-4d3382dc7787
             region: banner
             configuration:
               id: 'field_block:taxonomy_term:topics:name'
@@ -47,23 +52,72 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 1
-          e817491c-26ba-4e8c-b6a2-cc2f0d050331:
-            uuid: e817491c-26ba-4e8c-b6a2-cc2f0d050331
-            region: main
+          77526faa-3e39-4d00-aac8-35baa3697471:
+            uuid: 77526faa-3e39-4d00-aac8-35baa3697471
+            region: banner
             configuration:
-              id: 'field_block:taxonomy_term:topics:description'
-              label: Description
+              id: 'field_block:taxonomy_term:topics:field_body'
+              label: Body
               provider: layout_builder
               label_display: '0'
               formatter:
-                label: above
+                label: hidden
+                type: text_summary_or_trimmed
+                settings:
+                  trim_length: 600
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 3
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings: {  }
+        components:
+          67e7c09f-2510-43e9-b5f1-cd3287d8ea73:
+            uuid: 67e7c09f-2510-43e9-b5f1-cd3287d8ea73
+            region: content
+            configuration:
+              id: 'field_block:taxonomy_term:topics:field_body'
+              label: Body
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
                 type: text_default
                 settings: {  }
                 third_party_settings: {  }
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
-            weight: 0
+            weight: 3
+          c4eaf67a-5e3b-41c0-b442-3e791e2ec028:
+            uuid: c4eaf67a-5e3b-41c0-b442-3e791e2ec028
+            region: content
+            configuration:
+              id: 'views_block:courses_by_topic-related_courses'
+              label: ''
+              provider: views
+              label_display: '0'
+              views_label: ''
+              items_per_page: '40'
+              context_mapping: {  }
+            additional: {  }
+            weight: 4
+          f328b444-d4d1-4905-ad7c-de7fa398fbab:
+            uuid: f328b444-d4d1-4905-ad7c-de7fa398fbab
+            region: content
+            configuration:
+              id: 'views_block:topic_courses-block'
+              label: ''
+              provider: views
+              label_display: '0'
+              views_label: ''
+              items_per_page: none
+              context_mapping: {  }
+            additional: {  }
+            weight: 5
         third_party_settings: {  }
 id: taxonomy_term.topics.default
 targetEntityType: taxonomy_term
@@ -77,5 +131,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_body:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: banner
 hidden:
   search_api_excerpt: true

@@ -70,15 +70,14 @@
  *   in different view modes.
  */
 #}
-
-{% set more_link = (class_count > 0)
+{% set more_link = (class_count > 1)
   ? { url: url, text: 'See more dates and locations'|t }
   : false
 %}
 
 {% include "@union/_course-teaser.twig" with {
   title: label,
-  description: node.body.0.summary,
+  description: node.body.summary,
   details: course_details,
   cta: {
     url: url,
