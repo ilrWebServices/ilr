@@ -1,0 +1,19 @@
+uuid: 162d9633-5d31-40c5-bed0-8f25b7561d04
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_subtitle
+    - taxonomy.vocabulary.topics
+id: taxonomy_term.topics.field_subtitle
+field_name: field_subtitle
+entity_type: taxonomy_term
+bundle: topics
+label: Subtitle
+description: 'The <em>Subtitle</em> appears below the banner and above the main body content.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
