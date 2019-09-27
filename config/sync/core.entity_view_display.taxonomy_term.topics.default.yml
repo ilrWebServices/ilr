@@ -135,17 +135,18 @@ third_party_settings:
             uuid: 81917a5b-e82c-4a43-9ebc-040a026450b6
             region: content
             configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
               id: 'field_block:taxonomy_term:topics:field_media_section'
+              label: 'Media Section'
+              provider: layout_builder
+              label_display: '0'
               formatter:
+                label: hidden
                 type: entity_reference_revisions_entity_view
-                label: above
                 settings:
                   view_mode: default
-                  link: ''
                 third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
             additional: {  }
             weight: 6
           8ce75467-194e-4f36-9579-3c5210f5d85b:
