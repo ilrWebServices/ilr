@@ -1,0 +1,19 @@
+uuid: 30892080-6773-4226-b24d-627126464fd9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_remark
+    - paragraphs.paragraphs_type.testimonial
+id: paragraph.testimonial.field_remark
+field_name: field_remark
+entity_type: paragraph
+bundle: testimonial
+label: Remark
+description: 'Additional information about the quote. Use this to give the quote context.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

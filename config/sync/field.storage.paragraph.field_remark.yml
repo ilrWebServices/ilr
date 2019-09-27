@@ -1,0 +1,19 @@
+uuid: 444f541c-df10-422f-9611-d3f93bc96a52
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_remark
+field_name: field_remark
+entity_type: paragraph
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
