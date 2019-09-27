@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.topics.field_body
+    - field.field.taxonomy_term.topics.field_page_links
     - taxonomy.vocabulary.topics
     - views.view.courses_by_topic
     - views.view.topic_courses
@@ -11,6 +12,7 @@ dependencies:
     - ilr
     - layout_builder
     - layout_discovery
+    - link
     - system
     - text
     - views
@@ -70,6 +72,28 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 3
+          8d30a640-8ace-4065-8018-82ecb1962490:
+            uuid: 8d30a640-8ace-4065-8018-82ecb1962490
+            region: banner
+            configuration:
+              id: 'field_block:taxonomy_term:topics:field_page_links'
+              label: Explore
+              provider: layout_builder
+              label_display: visible
+              formatter:
+                label: hidden
+                type: link
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: '0'
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 5
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -137,6 +161,18 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: banner
+  field_page_links:
+    weight: 3
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
     region: banner
 hidden:
   search_api_excerpt: true
