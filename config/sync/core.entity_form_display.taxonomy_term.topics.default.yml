@@ -4,11 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.topics.field_body
+    - field.field.taxonomy_term.topics.field_media_section
     - field.field.taxonomy_term.topics.field_page_links
     - field.field.taxonomy_term.topics.field_subtitle
     - taxonomy.vocabulary.topics
   module:
     - link
+    - paragraphs
     - path
     - text
 id: taxonomy_term.topics.default
@@ -24,6 +26,18 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea_with_summary
+    region: content
+  field_media_section:
+    type: entity_reference_paragraphs
+    weight: 35
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
     region: content
   field_page_links:
     weight: 33

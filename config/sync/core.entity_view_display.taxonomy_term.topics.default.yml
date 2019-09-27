@@ -4,12 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.topics.field_body
+    - field.field.taxonomy_term.topics.field_media_section
     - field.field.taxonomy_term.topics.field_page_links
     - field.field.taxonomy_term.topics.field_subtitle
     - taxonomy.vocabulary.topics
     - views.view.courses_by_topic
     - views.view.topic_courses
   module:
+    - entity_reference_revisions
     - ilr
     - layout_builder
     - layout_discovery
@@ -111,6 +113,23 @@ third_party_settings:
                 type: string
             additional: {  }
             weight: 6
+          81917a5b-e82c-4a43-9ebc-040a026450b6:
+            uuid: 81917a5b-e82c-4a43-9ebc-040a026450b6
+            region: banner
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:taxonomy_term:topics:field_media_section'
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: above
+                settings:
+                  view_mode: default
+                  link: ''
+                third_party_settings: {  }
+            additional: {  }
+            weight: 7
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -178,6 +197,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: banner
+  field_media_section:
+    type: entity_reference_revisions_entity_view
+    weight: 5
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
     region: banner
   field_page_links:
     weight: 3
