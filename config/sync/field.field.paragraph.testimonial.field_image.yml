@@ -1,0 +1,28 @@
+uuid: b6e72820-d4f3-4c79-aa8c-2327f2fd5b6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_image
+    - media.type.image
+    - paragraphs.paragraphs_type.testimonial
+id: paragraph.testimonial.field_image
+field_name: field_image
+entity_type: paragraph
+bundle: testimonial
+label: Image
+description: 'If this is a photo of a person, be sure that the person is placed to the far left or right.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
