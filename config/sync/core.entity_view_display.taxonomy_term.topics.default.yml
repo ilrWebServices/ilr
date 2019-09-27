@@ -8,7 +8,6 @@ dependencies:
     - field.field.taxonomy_term.topics.field_page_links
     - field.field.taxonomy_term.topics.field_subtitle
     - taxonomy.vocabulary.topics
-    - views.view.courses_by_topic
     - views.view.topic_courses
   module:
     - entity_reference_revisions
@@ -97,39 +96,6 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 5
-          8ce75467-194e-4f36-9579-3c5210f5d85b:
-            uuid: 8ce75467-194e-4f36-9579-3c5210f5d85b
-            region: banner
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:taxonomy_term:topics:field_subtitle'
-              formatter:
-                label: above
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-                type: string
-            additional: {  }
-            weight: 6
-          81917a5b-e82c-4a43-9ebc-040a026450b6:
-            uuid: 81917a5b-e82c-4a43-9ebc-040a026450b6
-            region: banner
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:taxonomy_term:topics:field_media_section'
-              formatter:
-                type: entity_reference_revisions_entity_view
-                label: above
-                settings:
-                  view_mode: default
-                  link: ''
-                third_party_settings: {  }
-            additional: {  }
-            weight: 7
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -151,19 +117,6 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
-            weight: 3
-          c4eaf67a-5e3b-41c0-b442-3e791e2ec028:
-            uuid: c4eaf67a-5e3b-41c0-b442-3e791e2ec028
-            region: content
-            configuration:
-              id: 'views_block:courses_by_topic-related_courses'
-              label: ''
-              provider: views
-              label_display: '0'
-              views_label: ''
-              items_per_page: '40'
-              context_mapping: {  }
-            additional: {  }
             weight: 4
           f328b444-d4d1-4905-ad7c-de7fa398fbab:
             uuid: f328b444-d4d1-4905-ad7c-de7fa398fbab
@@ -178,6 +131,41 @@ third_party_settings:
               context_mapping: {  }
             additional: {  }
             weight: 5
+          81917a5b-e82c-4a43-9ebc-040a026450b6:
+            uuid: 81917a5b-e82c-4a43-9ebc-040a026450b6
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:taxonomy_term:topics:field_media_section'
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: above
+                settings:
+                  view_mode: default
+                  link: ''
+                third_party_settings: {  }
+            additional: {  }
+            weight: 6
+          8ce75467-194e-4f36-9579-3c5210f5d85b:
+            uuid: 8ce75467-194e-4f36-9579-3c5210f5d85b
+            region: content
+            configuration:
+              id: 'field_block:taxonomy_term:topics:field_subtitle'
+              label: Subtitle
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 3
         third_party_settings: {  }
 id: taxonomy_term.topics.default
 targetEntityType: taxonomy_term
