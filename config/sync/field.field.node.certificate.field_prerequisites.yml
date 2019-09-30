@@ -1,0 +1,19 @@
+uuid: 4bdf9332-6094-40e5-a58e-0e8274ae33c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_prerequisites
+    - node.type.certificate
+id: node.certificate.field_prerequisites
+field_name: field_prerequisites
+entity_type: node
+bundle: certificate
+label: Prerequisites
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

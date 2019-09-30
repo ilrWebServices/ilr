@@ -7,6 +7,8 @@ dependencies:
     - field.field.node.certificate.field_course
     - field.field.node.certificate.field_media_section
     - field.field.node.certificate.field_outcomes
+    - field.field.node.certificate.field_prerequisites
+    - field.field.node.certificate.field_representative_image
     - field.field.node.certificate.field_total_cost
     - node.type.certificate
   module:
@@ -58,6 +60,23 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_prerequisites:
+    weight: 127
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_representative_image:
+    weight: 126
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_total_cost:
     weight: 124
