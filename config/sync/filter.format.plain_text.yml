@@ -1,7 +1,9 @@
 uuid: a7132364-d37b-4374-b5c3-70edad60a9f6
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - token_filter
 _core:
   default_config_hash: NIKBt6kw_uPhNI0qtR2DnRf7mSOgAQdx7Q94SKMjXbQ
 name: 'Plain text'
@@ -27,3 +29,10 @@ filters:
     status: true
     weight: 0
     settings: {  }
+  token_filter:
+    id: token_filter
+    provider: token_filter
+    status: true
+    weight: 0
+    settings:
+      replace_empty: '1'
