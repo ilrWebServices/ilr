@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.section_heading
   module:
     - link
+    - text
 id: paragraph.section_heading.default
 targetEntityType: paragraph
 bundle: section_heading
@@ -36,7 +37,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: text_textfield
     region: content
 hidden:
   created: true

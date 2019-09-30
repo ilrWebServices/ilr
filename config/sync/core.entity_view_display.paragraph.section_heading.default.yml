@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.section_heading
   module:
     - link
+    - text
 id: paragraph.section_heading.default
 targetEntityType: paragraph
 bundle: section_heading
@@ -37,10 +38,9 @@ content:
   field_subheading:
     weight: 1
     label: hidden
-    settings:
-      link_to_entity: false
+    settings: {  }
     third_party_settings: {  }
-    type: string
+    type: text_default
     region: content
 hidden:
   search_api_excerpt: true

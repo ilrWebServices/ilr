@@ -1,10 +1,12 @@
-uuid: 4f590d88-cb70-4d0c-9f3c-754c41ebd3a5
+uuid: 32bc0e6b-94f2-4899-940d-0045441d0093
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_subheading
     - paragraphs.paragraphs_type.section_heading
+  module:
+    - text
 id: paragraph.section_heading.field_subheading
 field_name: field_subheading
 entity_type: paragraph
@@ -16,4 +18,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: string
+field_type: text
