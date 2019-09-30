@@ -7,7 +7,6 @@ dependencies:
     - field.field.taxonomy_term.topics.field_content_header
     - field.field.taxonomy_term.topics.field_media_section
     - field.field.taxonomy_term.topics.field_page_links
-    - field.field.taxonomy_term.topics.field_subtitle
     - taxonomy.vocabulary.topics
   module:
     - link
@@ -66,14 +65,6 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
-  field_subtitle:
-    weight: 34
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
     region: content
   name:
     type: string_textfield
