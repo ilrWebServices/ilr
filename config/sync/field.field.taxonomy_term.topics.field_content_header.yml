@@ -1,0 +1,34 @@
+uuid: f5b95284-bdd5-4089-95db-e7819a3b283e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_content_header
+    - paragraphs.paragraphs_type.section_heading
+    - taxonomy.vocabulary.topics
+  module:
+    - entity_reference_revisions
+id: taxonomy_term.topics.field_content_header
+field_name: field_content_header
+entity_type: taxonomy_term
+bundle: topics
+label: 'Content Header'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      section_heading: section_heading
+    target_bundles_drag_drop:
+      section_heading:
+        enabled: true
+        weight: 3
+      testimonial:
+        weight: 4
+        enabled: false
+field_type: entity_reference_revisions
