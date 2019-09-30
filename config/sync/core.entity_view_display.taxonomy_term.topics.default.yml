@@ -99,7 +99,9 @@ third_party_settings:
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
-        layout_settings: {  }
+        layout_settings:
+          extra_classes: ''
+          full_width: 0
         components:
           59f5703d-d5be-4223-a576-9886055bcb3f:
             uuid: 59f5703d-d5be-4223-a576-9886055bcb3f
@@ -210,7 +212,9 @@ third_party_settings:
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
-        layout_settings: {  }
+        layout_settings:
+          extra_classes: ''
+          full_width: 1
         components:
           b0d2e8ee-5ec0-4013-bccc-b54b620eaa41:
             uuid: b0d2e8ee-5ec0-4013-bccc-b54b620eaa41
