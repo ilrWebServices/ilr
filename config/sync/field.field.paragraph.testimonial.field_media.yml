@@ -1,16 +1,16 @@
-uuid: b6e72820-d4f3-4c79-aa8c-2327f2fd5b6e
+uuid: 7497be48-360c-44f9-af26-6cfd63199a9f
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_image
+    - field.storage.paragraph.field_media
     - media.type.image
     - paragraphs.paragraphs_type.testimonial
-id: paragraph.testimonial.field_image
-field_name: field_image
+id: paragraph.testimonial.field_media
+field_name: field_media
 entity_type: paragraph
 bundle: testimonial
-label: Image
+label: Media
 description: 'If this is a photo of a person, be sure that the person is placed to the far left or right.'
 required: false
 translatable: false

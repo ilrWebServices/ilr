@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.testimonial.field_image
+    - field.field.paragraph.testimonial.field_media
     - field.field.paragraph.testimonial.field_name
     - field.field.paragraph.testimonial.field_quote
     - field.field.paragraph.testimonial.field_remark
@@ -13,8 +13,8 @@ targetEntityType: paragraph
 bundle: testimonial
 mode: default
 content:
-  field_image:
-    weight: 3
+  field_media:
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
