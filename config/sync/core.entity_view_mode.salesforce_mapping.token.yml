@@ -1,0 +1,10 @@
+uuid: 384583a6-03f7-413e-a5bf-60f7a54b4bfb
+langcode: en
+status: true
+dependencies:
+  module:
+    - salesforce_mapping
+id: salesforce_mapping.token
+label: Token
+targetEntityType: salesforce_mapping
+cache: true

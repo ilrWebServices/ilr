@@ -1,0 +1,10 @@
+uuid: 354d89ce-a742-4f39-b9b7-ce6b8d2af292
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: collection.token
+label: Token
+targetEntityType: collection
+cache: true
