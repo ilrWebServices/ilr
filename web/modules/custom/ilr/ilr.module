@@ -8,6 +8,7 @@
 use \Drupal\Core\Entity\EntityTypeInterface;
 use \Drupal\ilr\FieldStorageDefinition;
 use \Drupal\Core\Field\FieldDefinition;
+use Drupal\Core\Render\BubbleableMetadata;
 
 /**
  * Implements hook_theme().
@@ -90,4 +91,35 @@ function ilr_preprocess_node__course__teaser(&$variables) {
     $variables['course_details'][] = $next_class->field_date_start->date->format('M j, Y');
     $variables['course_details'][] = $next_class->field_price->getString();
   }
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function ilr_token_info() {
+  $info = [];
+  $info['tokens']['paragraph']['parent_entity_label'] = [
+    'name' => 'Parent Entity Label',
+    'description' => 'The label of the paragraph parent entity.'
+  ];
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function ilr_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
+  $replacements = array();
+
+  if ($type == 'paragraph' && !empty($data['paragraph'])) {
+    $host_entity = $data['paragraph']->getParentEntity();
+
+    foreach ($tokens as $name => $token) {
+      if ($name === 'parent_entity_label') {
+        $replacements[$token] = $host_entity->label();
+      }
+    }
+  }
+
+  return $replacements;
 }
