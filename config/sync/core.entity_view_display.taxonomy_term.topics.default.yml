@@ -13,10 +13,10 @@ dependencies:
     - entity_reference_revisions
     - ilr
     - layout_builder
-    - layout_discovery
     - link
     - system
     - text
+    - union_organizer
     - views
 third_party_settings:
   layout_builder:
@@ -98,11 +98,29 @@ third_party_settings:
             weight: 5
         third_party_settings: {  }
       -
-        layout_id: layout_onecol
+        layout_id: layout_cu_section
         layout_settings: {  }
         components:
-          67e7c09f-2510-43e9-b5f1-cd3287d8ea73:
-            uuid: 67e7c09f-2510-43e9-b5f1-cd3287d8ea73
+          59f5703d-d5be-4223-a576-9886055bcb3f:
+            uuid: 59f5703d-d5be-4223-a576-9886055bcb3f
+            region: header
+            configuration:
+              id: 'field_block:taxonomy_term:topics:field_subtitle'
+              label: Subtitle
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+          08152c1c-fa89-4fc1-b1f2-ef2697267b7f:
+            uuid: 08152c1c-fa89-4fc1-b1f2-ef2697267b7f
             region: content
             configuration:
               id: 'field_block:taxonomy_term:topics:field_body'
@@ -117,22 +135,49 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
-            weight: 4
-          f328b444-d4d1-4905-ad7c-de7fa398fbab:
-            uuid: f328b444-d4d1-4905-ad7c-de7fa398fbab
-            region: content
+            weight: 0
+          64c7a3ba-4158-44e2-a592-91b7646ac725:
+            uuid: 64c7a3ba-4158-44e2-a592-91b7646ac725
+            region: main
             configuration:
-              id: 'views_block:topic_courses-block'
-              label: ''
-              provider: views
+              id: 'field_block:taxonomy_term:topics:field_body'
+              label: Body
+              provider: layout_builder
               label_display: '0'
-              views_label: ''
-              items_per_page: none
-              context_mapping: {  }
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
             additional: {  }
-            weight: 5
-          81917a5b-e82c-4a43-9ebc-040a026450b6:
-            uuid: 81917a5b-e82c-4a43-9ebc-040a026450b6
+            weight: 1
+          c89b9674-4d0f-484e-b066-50aff2d97fd8:
+            uuid: c89b9674-4d0f-484e-b066-50aff2d97fd8
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:topics:field_subtitle'
+              label: Subtitle
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings: {  }
+        components:
+          858b98d4-f3a0-43a6-8fe4-a3253b7f987f:
+            uuid: 858b98d4-f3a0-43a6-8fe4-a3253b7f987f
             region: content
             configuration:
               id: 'field_block:taxonomy_term:topics:field_media_section'
@@ -148,25 +193,43 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
-            weight: 6
-          8ce75467-194e-4f36-9579-3c5210f5d85b:
-            uuid: 8ce75467-194e-4f36-9579-3c5210f5d85b
-            region: content
+            weight: 0
+          c7a5617f-f224-4768-84de-87a9cf6773a9:
+            uuid: c7a5617f-f224-4768-84de-87a9cf6773a9
+            region: main
             configuration:
-              id: 'field_block:taxonomy_term:topics:field_subtitle'
-              label: Subtitle
+              id: 'views_block:topic_courses-block'
+              label: ''
+              provider: views
+              label_display: '0'
+              views_label: ''
+              items_per_page: none
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings: {  }
+        components:
+          b0d2e8ee-5ec0-4013-bccc-b54b620eaa41:
+            uuid: b0d2e8ee-5ec0-4013-bccc-b54b620eaa41
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:topics:field_media_section'
+              label: 'Media Section'
               provider: layout_builder
               label_display: '0'
               formatter:
                 label: hidden
-                type: string
+                type: entity_reference_revisions_entity_view
                 settings:
-                  link_to_entity: false
+                  view_mode: default
                 third_party_settings: {  }
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
-            weight: 3
+            weight: 0
         third_party_settings: {  }
 id: taxonomy_term.topics.default
 targetEntityType: taxonomy_term
