@@ -1,0 +1,46 @@
+uuid: b86fb247-b3ab-4625-81f8-543bc3cda509
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.section_heading.field_heading
+    - field.field.paragraph.section_heading.field_link
+    - field.field.paragraph.section_heading.field_subheading
+    - paragraphs.paragraphs_type.section_heading
+  module:
+    - link
+id: paragraph.section_heading.default
+targetEntityType: paragraph
+bundle: section_heading
+mode: default
+content:
+  field_heading:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_link:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_subheading:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  search_api_excerpt: true
