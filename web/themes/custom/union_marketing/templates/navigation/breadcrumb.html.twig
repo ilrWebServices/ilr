@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override for a breadcrumb trail.
+ *
+ * Available variables:
+ * - breadcrumb: Breadcrumb trail items.
+ */
+#}
+{% if breadcrumb %}
+  {% include '@union/_breadcrumb.twig' with {
+    breadcrumb: breadcrumb,
+    attributes: attributes
+  } only %}
+{% endif %}
+
