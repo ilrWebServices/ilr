@@ -1,0 +1,19 @@
+uuid: 642a5ac6-ea7a-4a03-b39d-1c6016d71e94
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_outcomes
+    - node.type.certificate
+id: node.certificate.field_outcomes
+field_name: field_outcomes
+entity_type: node
+bundle: certificate
+label: Outcomes
+description: '<em>Outcomes are brief bullet points. They are usually displayed in the banner.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

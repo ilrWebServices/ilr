@@ -1,0 +1,23 @@
+uuid: 58c6d19f-b4d7-49a9-82ed-ba0154ec8fed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_total_cost
+    - node.type.certificate
+id: node.certificate.field_total_cost
+field_name: field_total_cost
+entity_type: node
+bundle: certificate
+label: 'Total Cost'
+description: 'This is the total cost of all the courses in the Certificate.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: $
+  suffix: ''
+field_type: integer

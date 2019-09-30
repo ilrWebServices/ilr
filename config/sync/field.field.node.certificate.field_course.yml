@@ -1,0 +1,28 @@
+uuid: ca70a9fe-598b-4985-ad61-9ff89db8e8ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_course
+    - node.type.certificate
+    - node.type.course
+id: node.certificate.field_course
+field_name: field_course
+entity_type: node
+bundle: certificate
+label: Courses
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      course: course
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

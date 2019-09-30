@@ -1,0 +1,31 @@
+uuid: 777d492e-29c8-4778-850f-e57ffbe9c7e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_section
+    - node.type.certificate
+    - paragraphs.paragraphs_type.testimonial
+  module:
+    - entity_reference_revisions
+id: node.certificate.field_media_section
+field_name: field_media_section
+entity_type: node
+bundle: certificate
+label: 'Media Section'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      testimonial: testimonial
+    target_bundles_drag_drop:
+      testimonial:
+        enabled: true
+        weight: 2
+field_type: entity_reference_revisions

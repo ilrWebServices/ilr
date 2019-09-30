@@ -1,0 +1,20 @@
+uuid: 49360e07-e64e-4b68-af92-8a9b521a7a51
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_total_cost
+field_name: field_total_cost
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

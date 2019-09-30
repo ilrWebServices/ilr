@@ -1,0 +1,69 @@
+uuid: d0bb8e3d-ba30-44ec-a63e-eae714c7b3da
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.certificate.field_completion_time
+    - field.field.node.certificate.field_course
+    - field.field.node.certificate.field_media_section
+    - field.field.node.certificate.field_outcomes
+    - field.field.node.certificate.field_total_cost
+    - node.type.certificate
+  module:
+    - entity_reference_revisions
+    - user
+id: node.certificate.default
+targetEntityType: node
+bundle: certificate
+mode: default
+content:
+  field_completion_time:
+    weight: 103
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_course:
+    weight: 101
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_media_section:
+    type: entity_reference_revisions_entity_view
+    weight: 105
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_outcomes:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_total_cost:
+    weight: 104
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  search_api_excerpt: true
