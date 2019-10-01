@@ -8,7 +8,6 @@ dependencies:
     - field.field.node.course.field_topics
     - node.type.course
   module:
-    - ilr
     - layout_builder
     - layout_discovery
     - text
@@ -22,8 +21,8 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings: {  }
         components:
-          cca9af87-3062-48a0-ba29-f466292d17b5:
-            uuid: cca9af87-3062-48a0-ba29-f466292d17b5
+          221b1757-c196-45b9-9fb7-848550cc1385:
+            uuid: 221b1757-c196-45b9-9fb7-848550cc1385
             region: content
             configuration:
               label_display: '0'
@@ -31,9 +30,9 @@ third_party_settings:
                 entity: layout_builder.entity
               id: 'extra_field_block:node:course:links'
             additional: {  }
-            weight: 7
-          e8f79d2a-651d-4187-a90d-67fb631b4973:
-            uuid: e8f79d2a-651d-4187-a90d-67fb631b4973
+            weight: 0
+          d11772b1-e847-4a39-bb5c-008fbd3f34e2:
+            uuid: d11772b1-e847-4a39-bb5c-008fbd3f34e2
             region: content
             configuration:
               label_display: '0'
@@ -46,29 +45,39 @@ third_party_settings:
                 settings: {  }
                 third_party_settings: {  }
             additional: {  }
-            weight: 5
-          4b46e1c7-778c-4bbe-ab8d-18aedb0b4018:
-            uuid: 4b46e1c7-778c-4bbe-ab8d-18aedb0b4018
+            weight: 1
+          aa2db536-cebc-4f95-b2c0-92f61a869648:
+            uuid: aa2db536-cebc-4f95-b2c0-92f61a869648
             region: content
             configuration:
-              id: related_courses_block
-              label: 'Related courses block'
-              provider: ilr
               label_display: '0'
-              context_mapping: {  }
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:course:field_topics'
+              formatter:
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+                type: entity_reference_label
             additional: {  }
-            weight: 6
-          ed6c5af5-268e-4eac-bbaa-fe7937654dba:
-            uuid: ed6c5af5-268e-4eac-bbaa-fe7937654dba
+            weight: 2
+          f4693a6c-009a-4b9f-b1ed-3a91fa24a664:
+            uuid: f4693a6c-009a-4b9f-b1ed-3a91fa24a664
             region: content
             configuration:
-              id: class_register_block
-              label: 'Class register block'
-              provider: ilr
               label_display: '0'
-              context_mapping: {  }
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:course:field_sponsor'
+              formatter:
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+                type: entity_reference_label
             additional: {  }
-            weight: 4
+            weight: 3
         third_party_settings: {  }
 id: node.course.default
 targetEntityType: node
@@ -78,12 +87,12 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 101
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     region: content
   field_sponsor:
-    weight: 103
+    weight: 3
     label: above
     settings:
       link: true
@@ -91,7 +100,7 @@ content:
     type: entity_reference_label
     region: content
   field_topics:
-    weight: 102
+    weight: 2
     label: above
     settings:
       link: true
@@ -99,9 +108,10 @@ content:
     type: entity_reference_label
     region: content
   links:
-    weight: 100
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
+  classes: true
   search_api_excerpt: true

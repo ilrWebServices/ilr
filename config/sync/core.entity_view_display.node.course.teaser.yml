@@ -22,6 +22,14 @@ content:
       trim_length: 600
     third_party_settings: {  }
     region: content
+  classes:
+    label: hidden
+    weight: -5
+    region: content
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
   links:
     weight: 100
     settings: {  }
