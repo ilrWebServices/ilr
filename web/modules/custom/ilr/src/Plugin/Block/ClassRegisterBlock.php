@@ -9,7 +9,7 @@ use Drupal\Core\Block\BlockBase;
  *
  * @Block(
  *  id = "class_register_block",
- *  admin_label = @Translation("Class register block"),
+ *  admin_label = @Translation("Class register"),
  * )
  */
 class ClassRegisterBlock extends BlockBase {
