@@ -129,24 +129,6 @@ third_party_settings:
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
-        layout_settings: {  }
-        components:
-          0e0fa6cc-64e6-4b4a-a51a-bc2c5f862353:
-            uuid: 0e0fa6cc-64e6-4b4a-a51a-bc2c5f862353
-            region: main
-            configuration:
-              id: 'views_block:instructors_for_course-block_distinct'
-              label: ''
-              provider: views
-              label_display: '0'
-              views_label: ''
-              items_per_page: none
-              context_mapping: {  }
-            additional: {  }
-            weight: 0
-        third_party_settings: {  }
-      -
-        layout_id: layout_cu_section
         layout_settings:
           full_width: 0
           extra_classes: ''
@@ -193,6 +175,24 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 1
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings: {  }
+        components:
+          3de5583f-b904-4423-84bd-58a2dabe1884:
+            uuid: 3de5583f-b904-4423-84bd-58a2dabe1884
+            region: main
+            configuration:
+              id: 'views_block:instructors_for_course-block_distinct'
+              label: ''
+              provider: views
+              label_display: '0'
+              views_label: ''
+              items_per_page: none
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
