@@ -1,0 +1,38 @@
+uuid: 627f3a0b-a824-48d6-be5f-7837fe9b99eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.instructor.body
+    - field.field.node.instructor.field_job_title
+    - node.type.instructor
+  module:
+    - text
+    - user
+id: node.instructor.default
+targetEntityType: node
+bundle: instructor
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_job_title:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  search_api_excerpt: true
