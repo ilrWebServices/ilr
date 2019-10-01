@@ -1,0 +1,34 @@
+uuid: 204db259-c044-4d7b-8553-1a0e1a314b86
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_section
+    - node.type.course
+    - paragraphs.paragraphs_type.testimonial
+  module:
+    - entity_reference_revisions
+id: node.course.field_media_section
+field_name: field_media_section
+entity_type: node
+bundle: course
+label: 'Media section'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      testimonial: testimonial
+    target_bundles_drag_drop:
+      section_heading:
+        weight: 3
+        enabled: false
+      testimonial:
+        enabled: true
+        weight: 4
+field_type: entity_reference_revisions

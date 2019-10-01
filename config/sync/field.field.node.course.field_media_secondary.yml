@@ -1,0 +1,41 @@
+uuid: 28cac584-81e7-4a68-9ffa-9f593fe75202
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_secondary
+    - node.type.course
+    - paragraphs.paragraphs_type.rich_text
+    - paragraphs.paragraphs_type.section_heading
+    - paragraphs.paragraphs_type.testimonial
+  module:
+    - entity_reference_revisions
+id: node.course.field_media_secondary
+field_name: field_media_secondary
+entity_type: node
+bundle: course
+label: 'Media secondary'
+description: 'The secondary media section appears after the course description, and can contain testimonials, videos or other marketing text.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      section_heading: section_heading
+      rich_text: rich_text
+      testimonial: testimonial
+    target_bundles_drag_drop:
+      section_heading:
+        enabled: true
+        weight: 3
+      rich_text:
+        enabled: true
+        weight: 4
+      testimonial:
+        enabled: true
+        weight: 4
+field_type: entity_reference_revisions

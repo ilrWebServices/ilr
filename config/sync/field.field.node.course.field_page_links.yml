@@ -1,0 +1,23 @@
+uuid: c2ea96ca-a524-4c1a-ae89-204523b73f4a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_page_links
+    - node.type.course
+  module:
+    - link
+id: node.course.field_page_links
+field_name: field_page_links
+entity_type: node
+bundle: course
+label: 'Page links'
+description: '<em>Page Links</em> are usually placed in the top banner and link to content within the page (e.g. #related-courses). External links are allowed, but discouraged.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

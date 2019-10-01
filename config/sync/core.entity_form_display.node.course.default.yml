@@ -4,10 +4,16 @@ status: true
 dependencies:
   config:
     - field.field.node.course.body
+    - field.field.node.course.field_media_secondary
+    - field.field.node.course.field_media_section
+    - field.field.node.course.field_page_links
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
     - node.type.course
   module:
+    - link
+    - paragraphs
+    - path
     - text
 id: node.course.default
 targetEntityType: node
@@ -29,6 +35,38 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_media_secondary:
+    type: entity_reference_paragraphs
+    weight: 127
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_media_section:
+    type: entity_reference_paragraphs
+    weight: 126
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+  field_page_links:
+    weight: 125
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_sponsor:
     weight: 123
     settings:
