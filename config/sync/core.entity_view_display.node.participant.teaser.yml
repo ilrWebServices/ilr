@@ -1,0 +1,23 @@
+uuid: c6b5ba8f-9750-45a4-bea7-867ea281a516
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.participant
+  module:
+    - user
+id: node.participant.teaser
+targetEntityType: node
+bundle: participant
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_class: true
+  field_instructor: true
+  search_api_excerpt: true
