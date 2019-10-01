@@ -1,0 +1,28 @@
+uuid: 411f3644-ce83-4223-bcc5-1c382c2cc966
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_class
+    - node.type.class
+    - node.type.participant
+id: node.participant.field_class
+field_name: field_class
+entity_type: node
+bundle: participant
+label: Class
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      class: class
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,19 @@
+uuid: 99f85808-82d7-422c-babf-77826671cf42
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_instructor
+field_name: field_instructor
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
