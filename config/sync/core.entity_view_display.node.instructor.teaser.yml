@@ -5,8 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.instructor.body
+    - field.field.node.instructor.field_job_title
+    - field.field.node.instructor.field_representative_image
+    - image.style.thumbnail_square
     - node.type.instructor
   module:
+    - media
     - text
     - user
 id: node.instructor.teaser
@@ -16,17 +20,32 @@ mode: teaser
 content:
   body:
     label: hidden
-    type: text_summary_or_trimmed
-    weight: 101
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
-    region: content
-  links:
-    weight: 100
+    type: text_default
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     region: content
+  field_job_title:
+    type: string
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_representative_image:
+    type: media_thumbnail
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      image_style: thumbnail_square
+      image_link: ''
+    third_party_settings: {  }
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
-  field_job_title: true
   search_api_excerpt: true

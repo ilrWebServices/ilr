@@ -24,7 +24,7 @@ content:
     region: content
   field_job_title:
     weight: 102
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -32,16 +32,17 @@ content:
     region: content
   field_representative_image:
     weight: 103
-    label: above
+    label: hidden
     settings:
-      link: true
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
     region: content
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   search_api_excerpt: true
