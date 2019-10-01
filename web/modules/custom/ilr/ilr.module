@@ -25,6 +25,9 @@ function ilr_theme($existing, $type, $theme, $path) {
         'classes' => [],
       ],
     ],
+    'ilr_course_page_nav_block' => [
+      'variables' => [],
+    ],
   ];
 }
 

@@ -94,6 +94,17 @@ third_party_settings:
                 type: link
             additional: {  }
             weight: 3
+          67c13d00-4dc9-46b2-b305-3d432c3ffd9c:
+            uuid: 67c13d00-4dc9-46b2-b305-3d432c3ffd9c
+            region: banner
+            configuration:
+              id: course_page_nav
+              label: 'Course page nav'
+              provider: ilr
+              label_display: '0'
+              context_mapping: {  }
+            additional: {  }
+            weight: 4
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
