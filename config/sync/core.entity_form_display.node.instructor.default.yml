@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.instructor.body
     - field.field.node.instructor.field_job_title
+    - field.field.node.instructor.field_representative_image
     - node.type.instructor
   module:
     - path
@@ -36,6 +37,15 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_representative_image:
+    weight: 123
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   path:
     type: path
