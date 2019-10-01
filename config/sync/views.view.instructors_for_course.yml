@@ -807,6 +807,8 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:core.entity_view_display.node.certificate.default'
+        - 'config:core.entity_view_display.node.certificate.teaser'
         - 'config:core.entity_view_display.node.class.default'
         - 'config:core.entity_view_display.node.class.teaser'
         - 'config:core.entity_view_display.node.course.default'
@@ -953,13 +955,19 @@ display:
         sorts: false
         filters: false
         filter_groups: false
+        css_class: false
       group_by: true
       style:
-        type: default
+        type: grid
         options:
           grouping: {  }
-          row_class: ''
-          default_row_class: true
+          columns: 3
+          automatic_width: true
+          alignment: horizontal
+          col_class_default: true
+          col_class_custom: ''
+          row_class_default: true
+          row_class_custom: ''
       row:
         type: fields
         options: {  }
@@ -1061,6 +1069,7 @@ display:
         operator: AND
         groups:
           1: AND
+      css_class: cu-grid--people
     cache_metadata:
       max-age: -1
       contexts:
@@ -1070,6 +1079,8 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:core.entity_view_display.node.certificate.default'
+        - 'config:core.entity_view_display.node.certificate.teaser'
         - 'config:core.entity_view_display.node.class.default'
         - 'config:core.entity_view_display.node.class.teaser'
         - 'config:core.entity_view_display.node.course.default'
@@ -1099,6 +1110,8 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:core.entity_view_display.node.certificate.default'
+        - 'config:core.entity_view_display.node.certificate.teaser'
         - 'config:core.entity_view_display.node.class.default'
         - 'config:core.entity_view_display.node.class.teaser'
         - 'config:core.entity_view_display.node.course.default'
