@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
     - node.type.course
+    - views.view.instructors_for_course
     - views.view.related_courses
   module:
     - ilr
@@ -122,6 +123,24 @@ third_party_settings:
               label: 'Class register'
               provider: ilr
               label_display: '0'
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings: {  }
+        components:
+          0e0fa6cc-64e6-4b4a-a51a-bc2c5f862353:
+            uuid: 0e0fa6cc-64e6-4b4a-a51a-bc2c5f862353
+            region: main
+            configuration:
+              id: 'views_block:instructors_for_course-block_distinct'
+              label: ''
+              provider: views
+              label_display: '0'
+              views_label: ''
+              items_per_page: none
               context_mapping: {  }
             additional: {  }
             weight: 0

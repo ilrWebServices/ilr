@@ -37,6 +37,9 @@ content:
     region: content
 hidden:
   field_classes: true
+  field_media_secondary: true
+  field_media_section: true
+  field_page_links: true
   field_sponsor: true
   field_topics: true
   search_api_excerpt: true
