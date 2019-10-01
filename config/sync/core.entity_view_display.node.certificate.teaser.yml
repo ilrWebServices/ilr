@@ -18,4 +18,11 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_completion_time: true
+  field_course: true
+  field_media_section: true
+  field_outcomes: true
+  field_prerequisites: true
+  field_representative_image: true
+  field_total_cost: true
   search_api_excerpt: true
