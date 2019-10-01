@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
     - node.type.course
+    - views.view.related_courses
   module:
     - ilr
     - layout_builder
@@ -18,6 +19,7 @@ dependencies:
     - text
     - union_organizer
     - user
+    - views
 third_party_settings:
   layout_builder:
     allow_custom: false
@@ -195,6 +197,26 @@ third_party_settings:
                 third_party_settings: {  }
               context_mapping:
                 entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          full_width: 0
+          extra_classes: ''
+        components:
+          4ca4cead-f28b-4b08-9cb3-17493a985908:
+            uuid: 4ca4cead-f28b-4b08-9cb3-17493a985908
+            region: main
+            configuration:
+              id: 'views_block:related_courses-block'
+              label: ''
+              provider: views
+              label_display: '0'
+              views_label: ''
+              items_per_page: none
+              context_mapping: {  }
             additional: {  }
             weight: 0
         third_party_settings: {  }
