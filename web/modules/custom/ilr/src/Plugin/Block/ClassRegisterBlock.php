@@ -24,17 +24,13 @@ class ClassRegisterBlock extends BlockBase {
       return $build;
     }
 
-    if (!$node->hasField('field_topics')) {
+    if ($node->bundle() != 'course' || !$node->hasField('field_topics')) {
       return $build;
     }
 
-    $upcoming_classes_result = views_get_view_result('next_class_course', 'block', $node->id());
-
-    $classes = array_column($upcoming_classes_result, '_entity');
-
     $build = [
       '#theme' => 'ilr_class_register_block',
-      '#classes' => $classes,
+      '#classes' => $node->classes->referencedEntities(),
     ];
 
     return $build;
