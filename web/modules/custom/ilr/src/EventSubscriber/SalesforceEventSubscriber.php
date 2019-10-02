@@ -97,14 +97,14 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     // Assign a random topic term, creating one if necessary.
     // @todo: Replace this with an actual sensical topic selection system.
     $temp_topics = [
-      'Conflict resolution',
-      'Disability and employment',
-      'Diversity and inclusion',
-      'Human resources',
-      'Employment law',
-      'Employee relations',
-      'Labor relations',
-      'Leadership development and organizational change',
+      'Conflict Resolution',
+      'Disability and Employment',
+      'Diversity and Inclusion',
+      'Human Resources',
+      'Employment Law',
+      'Employee Relations',
+      'Labor Relations',
+      'Leadership Development and Organizational Change',
     ];
     $random_topic_key = array_rand($temp_topics);
     $course_topic_term = $term_storage->loadByProperties([
