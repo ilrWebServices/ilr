@@ -75,9 +75,15 @@
   : false
 %}
 
+{% set rendered_description %}
+{{ node.body.summary }}
+{{ title_suffix }}
+{% endset %}
+
 {% include "@union/_course-teaser.twig" with {
+  attributes: attributes,
   title: label,
-  description: node.body.summary,
+  description: rendered_description,
   details: course_details,
   cta: {
     url: url,
