@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.course.body
+    - field.field.node.course.field_course_number
     - field.field.node.course.field_media_secondary
     - field.field.node.course.field_media_section
     - field.field.node.course.field_page_links
@@ -35,6 +36,14 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_course_number:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_media_secondary:
     type: entity_reference_paragraphs
     weight: 127
