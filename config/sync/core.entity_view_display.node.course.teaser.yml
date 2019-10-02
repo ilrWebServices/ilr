@@ -6,6 +6,11 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.course.body
     - field.field.node.course.field_course_number
+    - field.field.node.course.field_media_secondary
+    - field.field.node.course.field_media_section
+    - field.field.node.course.field_page_links
+    - field.field.node.course.field_sponsor
+    - field.field.node.course.field_topics
     - node.type.course
   module:
     - text
@@ -33,9 +38,9 @@ content:
     type: entity_reference_label
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   field_classes: true
   field_course_number: true
