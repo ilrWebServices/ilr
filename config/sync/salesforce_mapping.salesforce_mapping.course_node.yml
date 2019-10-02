@@ -32,6 +32,11 @@ field_mappings:
     drupal_field_value: status
     salesforce_field: Show_on_Web__c
     direction: sf_drupal
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_course_number
+    salesforce_field: Course_Number__c
+    direction: sf_drupal
 push_limit: 0
 push_retries: 3
 push_frequency: 0
