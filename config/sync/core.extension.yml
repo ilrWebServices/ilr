@@ -7,6 +7,7 @@ module:
   config_filter: 0
   config_split: 0
   contextual: 0
+  ctools: 0
   datetime: 0
   dblog: 0
   dynamic_entity_reference: 0
@@ -24,6 +25,7 @@ module:
   layout_discovery: 0
   link: 0
   media: 0
+  menu_trail_by_path: 0
   menu_ui: 0
   node: 0
   page_cache: 0
@@ -44,6 +46,7 @@ module:
   user: 0
   views: 0
   menu_link_content: 1
+  pathauto: 1
   paragraphs: 11
   minimal: 1000
 theme:
