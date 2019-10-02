@@ -13,6 +13,7 @@ dependencies:
     - node.type.course
     - views.view.instructors_for_course
     - views.view.related_courses
+    - views.view.topics_list
   module:
     - ilr
     - layout_builder
@@ -27,6 +28,26 @@ third_party_settings:
     allow_custom: false
     enabled: true
     sections:
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          full_width: 1
+          extra_classes: ''
+        components:
+          9f7bbffc-c349-4ece-a229-6a099c6cc787:
+            uuid: 9f7bbffc-c349-4ece-a229-6a099c6cc787
+            region: main
+            configuration:
+              id: 'views_block:topics_list-block'
+              label: ''
+              provider: views
+              label_display: '0'
+              views_label: ''
+              items_per_page: none
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
       -
         layout_id: banner
         layout_settings: {  }
