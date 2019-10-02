@@ -1,0 +1,9 @@
+{% set attributes = attributes.addClass('cu-text') %}
+
+{% if paragraph.field_column_count.value == '2' %}
+  {% set attributes = attributes.addClass('cu-text--2col') %}
+{% endif %}
+
+<div{{ attributes }}>
+  {{ content }}
+</div>

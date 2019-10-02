@@ -1,0 +1,21 @@
+uuid: 6dc9c6fa-5f0d-46e7-8209-412be2727ff2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subheading
+    - paragraphs.paragraphs_type.rich_text
+  module:
+    - text
+id: paragraph.rich_text.field_subheading
+field_name: field_subheading
+entity_type: paragraph
+bundle: rich_text
+label: Subheading
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

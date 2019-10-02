@@ -5,6 +5,8 @@ dependencies:
   config:
     - field.field.paragraph.rich_text.field_body
     - field.field.paragraph.rich_text.field_column_count
+    - field.field.paragraph.rich_text.field_heading
+    - field.field.paragraph.rich_text.field_subheading
     - paragraphs.paragraphs_type.rich_text
   module:
     - text
@@ -14,7 +16,7 @@ bundle: rich_text
 mode: default
 content:
   field_body:
-    weight: 0
+    weight: 2
     settings:
       rows: 5
       placeholder: ''
@@ -22,11 +24,27 @@ content:
     type: text_textarea
     region: content
   field_column_count:
-    weight: 1
+    weight: 3
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
+  field_heading:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_subheading:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textfield
     region: content
 hidden:
   created: true

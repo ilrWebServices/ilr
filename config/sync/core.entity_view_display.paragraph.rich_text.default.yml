@@ -5,6 +5,8 @@ dependencies:
   config:
     - field.field.paragraph.rich_text.field_body
     - field.field.paragraph.rich_text.field_column_count
+    - field.field.paragraph.rich_text.field_heading
+    - field.field.paragraph.rich_text.field_subheading
     - paragraphs.paragraphs_type.rich_text
   module:
     - text
@@ -14,6 +16,21 @@ bundle: rich_text
 mode: default
 content:
   field_body:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_heading:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_subheading:
     weight: 0
     label: hidden
     settings: {  }
