@@ -1,0 +1,22 @@
+uuid: d315cd44-c100-43cd-b6e4-e113d2bae781
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: certificate_nodes
+label: 'Certificate nodes'
+type: 'canonical_entities:node'
+pattern: 'programs/professional-programs/certificates/[node:title]'
+selection_criteria:
+  12c42900-05e2-4010-9999-a748f97f9314:
+    id: node_type
+    bundles:
+      certificate: certificate
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 12c42900-05e2-4010-9999-a748f97f9314
+selection_logic: and
+weight: -5
+relationships: {  }
