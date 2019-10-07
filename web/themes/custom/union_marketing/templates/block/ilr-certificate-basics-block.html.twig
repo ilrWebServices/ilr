@@ -1,0 +1,37 @@
+{% set completion_time = node.fields.field_completion_time.value %}
+{% set course_count = node.fields.field_course.value|length %}
+{% set total_cost = node.fields.field_total_cost.value %}
+{% set basics = [
+  {
+    name: 'Required Courses'|t,
+    description: '<span class="strong block">' ~ course_count ~ ' Focussed Workshops</span>Register for individual workshops to fit your schedule',
+    icon: 'check-circle'
+  },
+  {
+    name: 'Time to Complete',
+    description: '<span class="strong block">' ~ completion_time ~ ' months</span>Time participants have to complete the entire certificate program',
+    icon: 'check-circle'
+  },
+  {
+    name: 'Total Cost',
+    description: '<span class="strong block">$' ~ total_cost ~ '</span>Pay for individual workshops as you go'|raw,
+    icon: 'check-circle'
+  }
+]%}
+{% set basics_grid %}
+{% include "@union/_feature-list.twig" with {
+    items: basics,
+    content_attributes: { class: 'cu-grid--3col cu-certificate-basics cu-inline-list' }
+  } only %}
+{% endset %}
+
+{% set box_content %}
+<div class="certificate-basics">
+  <h2 class="cu-heading">Certificate Basics</h2>
+  {{ basics_grid }}
+</div>
+{% endset %}
+
+{% include '@union/_highlight-box.twig' with {
+  content: box_content
+} only %}

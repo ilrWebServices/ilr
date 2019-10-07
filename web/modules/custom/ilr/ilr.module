@@ -15,6 +15,11 @@ use Drupal\Core\Render\BubbleableMetadata;
  */
 function ilr_theme($existing, $type, $theme, $path) {
   return [
+    'ilr_certificate_basics_block' => [
+      'variables' => [
+        'node' => [],
+      ],
+    ],
     'ilr_class_register_block' => [
       'variables' => [
         'classes' => [],
