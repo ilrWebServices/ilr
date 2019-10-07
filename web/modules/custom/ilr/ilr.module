@@ -15,11 +15,6 @@ use Drupal\Core\Render\BubbleableMetadata;
  */
 function ilr_theme($existing, $type, $theme, $path) {
   return [
-    'ilr_related_courses_block' => [
-      'variables' => [
-        'topic' => NULL,
-      ],
-    ],
     'ilr_class_register_block' => [
       'variables' => [
         'classes' => [],
