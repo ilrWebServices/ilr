@@ -4,6 +4,14 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.certificate.body
+    - field.field.node.certificate.field_completion_time
+    - field.field.node.certificate.field_course
+    - field.field.node.certificate.field_media_section
+    - field.field.node.certificate.field_outcomes
+    - field.field.node.certificate.field_prerequisites
+    - field.field.node.certificate.field_representative_image
+    - field.field.node.certificate.field_total_cost
     - node.type.certificate
   module:
     - user
@@ -14,10 +22,11 @@ mode: teaser
 content:
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
+  body: true
   field_completion_time: true
   field_course: true
   field_media_section: true

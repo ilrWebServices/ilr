@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.certificate.body
     - field.field.node.certificate.field_completion_time
     - field.field.node.certificate.field_course
     - field.field.node.certificate.field_media_section
@@ -13,12 +14,273 @@ dependencies:
     - node.type.certificate
   module:
     - entity_reference_revisions
+    - ilr
+    - layout_builder
+    - layout_discovery
+    - system
+    - text
+    - union_organizer
     - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: banner
+        layout_settings: {  }
+        components:
+          afbfeda1-bea9-41d8-8649-031588ca42c3:
+            uuid: afbfeda1-bea9-41d8-8649-031588ca42c3
+            region: banner
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              provider: system
+              label_display: '0'
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+          38a16e29-ff59-4498-9723-ef44e5deca4d:
+            uuid: 38a16e29-ff59-4498-9723-ef44e5deca4d
+            region: banner
+            configuration:
+              id: 'field_block:node:certificate:title'
+              label: Title
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 1
+          5a395ad3-64f5-4529-bf91-e734770cd74b:
+            uuid: 5a395ad3-64f5-4529-bf91-e734770cd74b
+            region: banner
+            configuration:
+              id: 'field_block:node:certificate:field_outcomes'
+              label: Outcomes
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 2
+          b0e922ef-4160-4605-b9ac-c4170e446dad:
+            uuid: b0e922ef-4160-4605-b9ac-c4170e446dad
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:node:certificate:links'
+            additional: {  }
+            weight: 0
+          7b7e298c-433c-4407-9b17-01903f84a4a5:
+            uuid: 7b7e298c-433c-4407-9b17-01903f84a4a5
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:certificate:field_course'
+              formatter:
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+                type: entity_reference_label
+            additional: {  }
+            weight: 1
+          b3552817-bd16-4023-9780-cd13ff1671c7:
+            uuid: b3552817-bd16-4023-9780-cd13ff1671c7
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:certificate:field_outcomes'
+              formatter:
+                label: above
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+                type: string
+            additional: {  }
+            weight: 2
+          46337029-ea83-47dd-a3cb-fee2fc451864:
+            uuid: 46337029-ea83-47dd-a3cb-fee2fc451864
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:certificate:field_completion_time'
+              formatter:
+                label: above
+                settings:
+                  thousand_separator: ''
+                  prefix_suffix: true
+                third_party_settings: {  }
+                type: number_integer
+            additional: {  }
+            weight: 3
+          5134ce50-d3e6-4272-af28-52acd3bfb82e:
+            uuid: 5134ce50-d3e6-4272-af28-52acd3bfb82e
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:certificate:field_total_cost'
+              formatter:
+                label: above
+                settings:
+                  thousand_separator: ''
+                  prefix_suffix: true
+                third_party_settings: {  }
+                type: number_integer
+            additional: {  }
+            weight: 4
+          5d0625cb-b51e-4dbf-a753-02b8ed98a66f:
+            uuid: 5d0625cb-b51e-4dbf-a753-02b8ed98a66f
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:certificate:field_media_section'
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: above
+                settings:
+                  view_mode: default
+                  link: ''
+                third_party_settings: {  }
+            additional: {  }
+            weight: 5
+          e68ccd75-71ae-4190-b4ff-4111f8e3c7e2:
+            uuid: e68ccd75-71ae-4190-b4ff-4111f8e3c7e2
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:certificate:field_representative_image'
+              formatter:
+                type: entity_reference_entity_view
+                label: above
+                settings:
+                  view_mode: default
+                  link: false
+                third_party_settings: {  }
+            additional: {  }
+            weight: 6
+          096221ef-6027-4816-b250-d7366c1e2aba:
+            uuid: 096221ef-6027-4816-b250-d7366c1e2aba
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:certificate:field_prerequisites'
+              formatter:
+                label: above
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+                type: string
+            additional: {  }
+            weight: 7
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          full_width: 1
+          extra_classes: ''
+        components:
+          40574358-ea53-4784-9f8a-7acc9e9e95c8:
+            uuid: 40574358-ea53-4784-9f8a-7acc9e9e95c8
+            region: main
+            configuration:
+              id: certificate_basics_block
+              label: 'Certificate basics'
+              provider: ilr
+              label_display: '0'
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          full_width: 0
+          extra_classes: ''
+        components:
+          a898965b-ed9e-430e-aa0f-8469aa931719:
+            uuid: a898965b-ed9e-430e-aa0f-8469aa931719
+            region: main
+            configuration:
+              id: 'field_block:node:certificate:body'
+              label: Body
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+          03885a70-5792-45a5-ba6c-4e1906f6584a:
+            uuid: 03885a70-5792-45a5-ba6c-4e1906f6584a
+            region: main
+            configuration:
+              id: 'field_block:node:certificate:field_course'
+              label: Courses
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: teaser
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings: {  }
+        components: {  }
+        third_party_settings: {  }
 id: node.certificate.default
 targetEntityType: node
 bundle: certificate
 mode: default
 content:
+  body:
+    weight: 108
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: banner
   field_completion_time:
     weight: 103
     label: above

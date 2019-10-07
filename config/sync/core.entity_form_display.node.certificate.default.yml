@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.certificate.body
     - field.field.node.certificate.field_completion_time
     - field.field.node.certificate.field_course
     - field.field.node.certificate.field_media_section
@@ -14,11 +15,21 @@ dependencies:
   module:
     - paragraphs
     - path
+    - text
 id: node.certificate.default
 targetEntityType: node
 bundle: certificate
 mode: default
 content:
+  body:
+    weight: 128
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
   created:
     type: datetime_timestamp
     weight: 10

@@ -1,0 +1,16 @@
+{% set grid_content %}
+  {% for item in items %}
+    {{ item.content }}
+  {% endfor %}
+{% endset %}
+
+{% include '@union/_section-heading.twig' with {
+  attributes: { class: 'cu-section-heading--framed cu-section-heading--framed-right' },
+  heading: 'Core Curriculum'|t,
+  subheading: 'Register'|t
+} only %}
+
+{% include '@union/_grid.twig' with {
+  grid_content: grid_content,
+  attributes: { class: 'cu-grid--2col' }
+} only %}
