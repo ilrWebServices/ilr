@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Installation and uninstallation functions.
+ */
+
+use Drupal\menu_link_content\Entity\MenuLinkContent;
+
+/**
+ * Adds the top level links to the main menu
+ */
+function ilr_update_8001() {
+  $menu_items = [
+    'About ILR' => '/about-ilr',
+    'Programs & Admissions' => '/programs',
+    'Student Experience' => '/student-experience',
+    'Faculty & Research' => '/faculty-and-research',
+    'Public Engagment' => '/public-engagement',
+    'Alumni' => '/alumni'
+  ];
+
+  $count = 0;
+
+  foreach ($menu_items as $title => $url) {
+    $menu_link = MenuLinkContent::create([
+      'title' => $title,
+      'link' => ['uri' => 'internal:' . $url],
+      'menu_name' => 'main',
+      'expanded' => FALSE,
+      'weight' => $count,
+    ]);
+    $menu_link->save();
+    $count++;
+  }
+}
