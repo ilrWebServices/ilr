@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.certificate.field_representative_image
     - field.field.node.certificate.field_total_cost
     - node.type.certificate
+    - views.view.topics_list
   module:
     - entity_reference_revisions
     - ilr
@@ -21,11 +22,32 @@ dependencies:
     - text
     - union_organizer
     - user
+    - views
 third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: true
     sections:
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          full_width: 1
+          extra_classes: ''
+        components:
+          fd013c7e-a857-453b-95fc-d5f4566a8270:
+            uuid: fd013c7e-a857-453b-95fc-d5f4566a8270
+            region: main
+            configuration:
+              id: 'views_block:topics_list-block'
+              label: ''
+              provider: views
+              label_display: '0'
+              views_label: ''
+              items_per_page: none
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
       -
         layout_id: banner
         layout_settings: {  }
