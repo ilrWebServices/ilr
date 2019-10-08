@@ -123,6 +123,48 @@ These are set using the Drupal 8 State API, so they cannot be added via config o
 $ drush state-set salesforce.refresh_token [VALUE_FROM_PROD_SITE]
 ```
 
+## Content Migration
+
+Several migrations are defined in `config/migrations/migrate_plus.migration.*.yml`.
+
+Most of these migrations require a connection to the Drupal 7 database, which, as of this writing, should be defined in `settings.local.php`. Here's an example (note the `drupal7` key):
+
+```
+// D7 database connection.
+$databases['drupal7']['default'] = [
+  'database' => 'ilr',
+  'username' => 'root',
+  'password' => '',
+  'prefix' => '',
+  'host' => '127.0.0.1',
+  'port' => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+];
+```
+
+Additionally, some custom migrate code, including source plugins, can be found in the custom `ilr_migrate` module.
+
+### Viewing Migration Status
+
+```
+$ drush ms --group=drupal_7
+```
+
+### Running Migrations
+
+All Drupal 7 content can be migrated via:
+
+```
+$ drush mim --group=drupal_7
+```
+
+Individual migrations can be run like so:
+
+```
+$ drush mim d7_node_course
+```
+
 ## Theme Development
 
 This project uses a custom theme that includes shared components from the [Union Component Library][].
