@@ -1,0 +1,12 @@
+uuid: 4b439c79-b11e-4a6d-876b-af881a1a7bb9
+langcode: en
+status: true
+dependencies: {  }
+id: drupal_7
+label: 'Drupal 7'
+description: 'Migrations from the Drupal 7 site'
+source_type: 'Drupal 7'
+module: null
+shared_configuration:
+  source:
+    key: drupal7
