@@ -33,7 +33,7 @@
 #}
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
 
-{% set attributes = attributes.addClass('cu-menu cu-menu--main') %}
+{% set attributes = attributes.addClass('cu-menu cu-menu--main').removeClass('contextual-region') %}
 
 <nav
   role="navigation" aria-labelledby="{{ heading_id }}" {{ attributes|without('role', 'aria-labelledby') }}>
