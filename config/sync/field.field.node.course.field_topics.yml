@@ -11,8 +11,8 @@ field_name: field_topics
 entity_type: node
 bundle: course
 label: Topics
-description: ''
-required: false
+description: 'Please enter no more than two topics. The <em>primary</em> topic should be placed first.'
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

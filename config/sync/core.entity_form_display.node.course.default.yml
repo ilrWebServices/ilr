@@ -87,9 +87,12 @@ content:
     region: content
   field_topics:
     weight: 122
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_buttons
+    type: entity_reference_autocomplete
     region: content
   path:
     type: path
