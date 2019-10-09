@@ -9,7 +9,23 @@ aside.layout-sidebar-first {
   }
 }
 
+// @todo: Discuss where this should live
 footer {
-  background: $cornell_red;
-  padding: 1em;
+  .cu-section {
+    justify-self: stretch;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    :first-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  ul {
+    --cu-current-link-color: #222;
+    columns: 2;
+    list-style-type: none;
+    padding: 0;
+  }
 }

@@ -7,7 +7,7 @@ body {
   display: grid;
   grid-row-gap: 1em;
   grid-column-gap: 0;
-  grid-template-rows: [header] auto [body] auto [content-bottom] auto [footer] 100px;
+  grid-template-rows: [header] auto [body] auto [content-bottom] auto [footer] auto;
   grid-template-columns: [left-gutter] 1fr [content] 22fr [right-gutter] 1fr;
 
   @include medium {

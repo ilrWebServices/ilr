@@ -1,0 +1,20 @@
+uuid: 23cef696-3b29-4fad-8a6e-2c0121102412
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+  theme:
+    - union_marketing
+id: ilrwordmark
+theme: union_marketing
+region: footer
+weight: 0
+provider: null
+plugin: ilrwordmark_block
+settings:
+  id: ilrwordmark_block
+  label: 'ILR Wordmark'
+  provider: ilr
+  label_display: '0'
+visibility: {  }
