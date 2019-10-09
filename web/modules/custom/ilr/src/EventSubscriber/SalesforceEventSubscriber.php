@@ -7,11 +7,14 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\salesforce\Event\SalesforceEvents;
 use Drupal\salesforce_mapping\Event\SalesforceQueryEvent;
 use Drupal\salesforce_mapping\Event\SalesforcePullEvent;
+use Drupal\ilr\CourseToTopicsTrait;
 
 /**
  * Class SalesforceEventSubscriber.
  */
 class SalesforceEventSubscriber implements EventSubscriberInterface {
+
+  use CourseToTopicsTrait;
 
   /**
    * Drupal\Core\Entity\EntityTypeManager definition.
@@ -94,35 +97,44 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
 
     $course_node->set('field_sponsor', $course_sponsor_term->id());
 
-    // Assign a random topic term, creating one if necessary.
-    // @todo: Replace this with an actual sensical topic selection system.
-    $temp_topics = [
-      'Conflict Resolution',
-      'Disability and Employment',
-      'Diversity and Inclusion',
-      'Human Resources',
-      'Employment Law',
-      'Employee Relations',
-      'Labor Relations',
-      'Leadership Development and Organizational Change',
-    ];
-    $random_topic_key = array_rand($temp_topics);
-    $course_topic_term = $term_storage->loadByProperties([
-      'name' => $temp_topics[$random_topic_key],
-      'vid' => 'topics',
-    ]);
-    $course_topic_term = reset($course_topic_term);
+    // Assign a topic term from the mapping.
+    $topics_for_course = $this->getTopicsForCourseNumber($course_node->get('field_course_number')->value);
+    $tids_for_course = [];
 
-    // If there is no term for this topic, create a new one.
-    if (empty($course_topic_term)) {
-      $course_topic_term = $term_storage->create([
-        'name' => $temp_topics[$random_topic_key],
+    foreach ($topics_for_course as $topic) {
+      $course_topic_term = $term_storage->loadByProperties([
+        'name' => $topic,
         'vid' => 'topics',
       ]);
-      $course_topic_term->save();
+      $course_topic_term = reset($course_topic_term);
+
+      // If there is no term for this topic, create a new one.
+      if (empty($course_topic_term)) {
+        $course_topic_term = $term_storage->create([
+          'name' => $topic,
+          'vid' => 'topics',
+        ]);
+        $course_topic_term->save();
+      }
+
+      $tids_for_course[] = $course_topic_term->id();
     }
 
-    $course_node->set('field_topics', $course_topic_term->id());
+    $course_node->set('field_topics', $tids_for_course);
+  }
+
+  private function getTopicsForCourseNumber($course_number) {
+    // `course_to_topics_tsv` is set in CourseToTopicsTrait.
+    $mapping_records = preg_split('/$\R?^/m', $this->course_to_topics_tsv);
+
+    foreach ($mapping_records as $mapping_record) {
+      if (preg_match('/^' . $course_number . '\t([^\t]+)\t?([^\t]+)?/', $mapping_record, $matches)) {
+        array_shift($matches);
+        return $matches;
+      }
+    }
+
+    return [];
   }
 
 }
