@@ -1,4 +1,7 @@
-{% include '@union/_course-finder.twig' with {
-  heading: 'Course Finder'|t,
-  content: content
-} only %}
+<div{{attributes}}>
+  {{ title_suffix }}
+  {% include '@union/_course-finder.twig' with {
+    heading: 'Course Finder'|t,
+    content: content
+  } only %}
+</div>
