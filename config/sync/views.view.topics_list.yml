@@ -157,6 +157,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
+      display_description: ''
     cache_metadata:
       max-age: -1
       contexts:
@@ -164,32 +165,14 @@ display:
         - 'languages:language_interface'
         - user.permissions
       tags: {  }
-  page:
-    display_plugin: page
-    id: page
-    display_title: Page
-    position: 2
+  course_finder:
+    display_plugin: block
+    id: course_finder
+    display_title: 'Course finder'
+    position: 1
     display_options:
       display_extenders: {  }
-      path: programs/professional-programs
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          tokenize: false
-          content:
-            value: "<h1 class=\"cu-heading\">Professional Programs</h1>\r\n<p>This is a temporary view for navigating to the various topics for review and editing.</p>"
-            format: full_html
-          plugin_id: text
-      defaults:
-        header: false
-        title: false
-      title: 'Professional Programs'
+      display_description: ''
     cache_metadata:
       max-age: -1
       contexts:

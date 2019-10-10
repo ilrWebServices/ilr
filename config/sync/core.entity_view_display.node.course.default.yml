@@ -34,14 +34,14 @@ third_party_settings:
           full_width: 1
           extra_classes: ''
         components:
-          9f7bbffc-c349-4ece-a229-6a099c6cc787:
-            uuid: 9f7bbffc-c349-4ece-a229-6a099c6cc787
+          e60f9c55-0dac-47cd-b977-1fb18324545c:
+            uuid: e60f9c55-0dac-47cd-b977-1fb18324545c
             region: main
             configuration:
-              id: 'views_block:topics_list-block'
+              id: 'views_block:topics_list-course_finder'
               label: ''
               provider: views
-              label_display: '0'
+              label_display: visible
               views_label: ''
               items_per_page: none
               context_mapping: {  }
