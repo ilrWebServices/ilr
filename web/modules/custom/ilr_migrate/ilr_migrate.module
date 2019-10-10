@@ -6,6 +6,9 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\migrate\Row;
+use Drupal\migrate\Plugin\MigrateSourceInterface;
+use Drupal\migrate\Plugin\MigrationInterface;
 
 /**
  * Implements hook_help().
@@ -20,5 +23,32 @@ function ilr_migrate_help($route_name, RouteMatchInterface $route_match) {
       return $output;
 
     default:
+  }
+}
+
+/**
+ * Implements hook_migrate_MIGRATION_ID_prepare_row().
+ *
+ * Preprocess the `d7_node_instructor` migration to include instructor data
+ * from associated people records.
+ */
+function ilr_migrate_migrate_d7_node_instructor_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
+  $profile_ref = $row->getSourceProperty('field_people_profile_reference');
+
+  // See if the source has a 'field_people_profile_reference' property value.
+  if (!empty($profile_ref[0]['target_id'])) {
+    // Load the 'people profile' node working title.
+    $source_db = $source->getDatabase();
+    $query = $source_db->select('field_data_field_working_title', 'fwt');
+    $query->fields('fwt', ['field_working_title_value']);
+    $query->condition('fwt.entity_id', $profile_ref[0]['target_id']);
+    $result = $query->execute();
+
+    foreach ($result as $record) {
+      // Assign the 'people profile' data to the analog fields on this source.
+      $row->setSourceProperty('field_job_title', $record->field_working_title_value);
+    }
+
+    // TBD: image reference
   }
 }
