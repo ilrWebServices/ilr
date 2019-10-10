@@ -1,0 +1,22 @@
+uuid: 20d11934-5b46-42b6-82a1-0aa5b21d6412
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_intro_text
+    - node.type.basic_page
+  module:
+    - text
+id: node.basic_page.field_intro_text
+field_name: field_intro_text
+entity_type: node
+bundle: basic_page
+label: 'Intro Text'
+description: 'If there is intro text, it is added to the banner section of the page and can be used in social media posts. Summaries added here are also used in smaller components, such as cards.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary
