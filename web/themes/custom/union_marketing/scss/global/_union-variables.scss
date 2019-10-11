@@ -1,0 +1,11 @@
+/**
+ *
+ * This file is for setting and overriding union css variables
+ *
+ */
+
+.cu-topic-list {
+  .cu-feature-list__name {
+    --cu-current-heading-size: var(--cu-ms2);
+  }
+}

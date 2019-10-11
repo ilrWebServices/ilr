@@ -1,4 +1,28 @@
-<div{{attributes}}>
+{# Use the taxonomy term view result rows to transform the topics #}
+{% set topics_results = drupal_view_result('topics_list', 'block') %}
+{% set topics = [] %}
+{% for result in topics_results %}
+  {% set topic = {
+    name: result._entity.label,
+    link: path('entity.taxonomy_term.canonical', {'taxonomy_term': result.tid})
+  } %}
+  {% set topics = topics|merge([topic]) %}
+{% endfor %}
+
+{# Add the wrapper #}
+<div{{ attributes}}>
   {{ title_suffix }}
-  {{ content }}
+
+  {# Add the heading #}
+  {% include '@union/_section-heading.twig' with {
+    attributes: { class: 'cu-section-heading--framed' },
+    heading: 'Topics'|t,
+    subheading: 'Professional Programs'|t
+  } only %}
+
+  {# Render the topics as a feature list #}
+  {% include "@union/_feature-list.twig" with {
+    items: topics,
+    content_attributes: { class: 'cu-grid--3col cu-topic-list' }
+  } only %}
 </div>
