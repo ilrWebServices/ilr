@@ -2,8 +2,9 @@
 {% set class_details = [] %}
 {% for class in classes %}
   {% set content %}
-    <p class="cu-checkbutton__content--date">{{ class.field_date_start.value|date("M d, Y") }}</p>
-    <time class="cu-checkbutton__content--time">{{ class.field_date_start.value|date("h:i a") ~ ' - ' ~ class.field_date_end.value|date("h:i a") }}</time>
+    <p class="cu-checkbutton__date">{{ class.field_date_start.value|date("M d, Y") }}</p>
+    <time class="cu-checkbutton__time">{{ class.field_date_start.value|date("h:i a") ~ ' - ' ~ class.field_date_end.value|date("h:i a") }}</time>
+    <p clas="cu-checkbutton__price">${{ class.field_price.value }}</p>
   {% endset %}
 
   {% set class_details = class_details|merge([{
