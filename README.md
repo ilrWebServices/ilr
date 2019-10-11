@@ -165,6 +165,23 @@ Individual migrations can be run like so:
 $ drush mim d7_node_course
 ```
 
+### Migration Notes
+
+Some migrations can take a long time to run. For those migrations, you can configure the `--feedback` parameter so you can see some progress. For example:
+
+```
+$ drush mim d7_file_media --feedback="500 items"
+```
+
+The `d7_file_media` migration can run especially long, since it must download media items from the production D7 site via http. During development, you can speed this migration by copying the D7 site files to your local machine and overriding the source to use these local files.
+
+There are two things you must do to enable local files as the source of the media migration.
+
+- Get a copy of the D7 files with something like `rsync -av --progress dd2imk5jkez6q-master-7rqtwti--app@ssh.us-2.platform.sh:/app/docroot/sites/default/files/ /Users/YOUR_USERNAME/work/ilr/d7_files/sites/default/files/`. Be sure to
+- Configure the `MIGRATE_MEDIA_SOURCE_BASE_PATH_OVERRIDE` environment variable in `.env` to point to the local file source (e.g. the `rsync` destination from the above command). See `.env.example` for more info.
+
+Note that the migration source will be looking for files relative to the Drupal root, so if your local files are in `/Users/YOUR_USERNAME/work/ilr/d7_files/sites/default/files`, you'll set `MIGRATE_MEDIA_SOURCE_BASE_PATH_OVERRIDE` to `/Users/YOUR_USERNAME/work/ilr/d7_files`.
+
 ## Theme Development
 
 This project uses a custom theme that includes shared components from the [Union Component Library][].

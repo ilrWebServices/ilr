@@ -789,6 +789,16 @@ $config['salesforce.settings']['consumer_secret'] = getenv('SALESFORCE_CONSUMER_
 $config['salesforce.settings']['login_url'] = getenv('SALESFORCE_LOGIN_URL');
 
 /**
+ * Migration data sources.
+ *
+ * The source of some migrations, like files, can be overridden via an
+ * environment variable. @see .env.example.
+ */
+if (!empty(getenv('MIGRATE_MEDIA_SOURCE_BASE_PATH_OVERRIDE'))) {
+  $config['migrate_plus.migration.d7_file_media']['source']['constants']['source_base_path']= getenv('MIGRATE_MEDIA_SOURCE_BASE_PATH_OVERRIDE');
+}
+
+/**
  * Load local development override configuration, if available.
  *
  * Use settings.local.php to override variables on secondary (staging,
