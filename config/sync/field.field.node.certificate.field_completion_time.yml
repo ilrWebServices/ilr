@@ -13,11 +13,13 @@ label: 'Completion Time'
 description: 'Time <em>in months</em> that participants have to complete the entire certificate program.'
 required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    value: 18
 default_value_callback: ''
 settings:
   min: null
   max: null
   prefix: ''
-  suffix: ''
+  suffix: months
 field_type: integer
