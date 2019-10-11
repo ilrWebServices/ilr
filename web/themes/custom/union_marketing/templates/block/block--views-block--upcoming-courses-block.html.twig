@@ -1,0 +1,10 @@
+<div{{ attributes }}>
+  {{ title_suffix }}
+  {% include '@union/_section-heading.twig' with {
+    attributes: { class: 'cu-section-heading--framed cu-section-heading--framed-right' },
+    heading: 'Upcoming Classes'|t,
+    subheading: 'All Topics'|t
+  } only %}
+
+  {{ content }}
+</div>
