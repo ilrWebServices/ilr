@@ -219,10 +219,9 @@ third_party_settings:
               id: 'field_block:node:certificate:field_prerequisites'
               formatter:
                 label: above
-                settings:
-                  link_to_entity: false
+                settings: {  }
                 third_party_settings: {  }
-                type: string
+                type: text_default
             additional: {  }
             weight: 7
         third_party_settings: {  }
@@ -340,11 +339,10 @@ content:
   field_prerequisites:
     weight: 107
     label: above
-    settings:
-      link_to_entity: false
+    settings: {  }
     third_party_settings: {  }
-    type: string
-    region: content
+    type: text_default
+    region: main
   field_representative_image:
     type: entity_reference_entity_view
     weight: 106

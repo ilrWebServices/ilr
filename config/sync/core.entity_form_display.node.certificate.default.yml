@@ -82,10 +82,10 @@ content:
   field_prerequisites:
     weight: 8
     settings:
-      size: 60
+      rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: text_textarea
     region: content
   field_representative_image:
     weight: 12
