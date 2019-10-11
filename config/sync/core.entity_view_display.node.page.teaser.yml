@@ -4,17 +4,17 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.basic_page.field_components
-    - field.field.node.basic_page.field_intro_text
-    - field.field.node.basic_page.field_representative_image
-    - field.field.node.basic_page.layout_builder__layout
-    - node.type.basic_page
+    - field.field.node.page.field_components
+    - field.field.node.page.field_intro_text
+    - field.field.node.page.field_representative_image
+    - field.field.node.page.layout_builder__layout
+    - node.type.page
   module:
     - text
     - user
-id: node.basic_page.teaser
+id: node.page.teaser
 targetEntityType: node
-bundle: basic_page
+bundle: page
 mode: teaser
 content:
   field_intro_text:

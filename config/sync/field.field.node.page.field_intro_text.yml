@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_intro_text
-    - node.type.basic_page
+    - node.type.page
   module:
     - text
-id: node.basic_page.field_intro_text
+id: node.page.field_intro_text
 field_name: field_intro_text
 entity_type: node
-bundle: basic_page
+bundle: page
 label: 'Intro Text'
 description: 'If there is intro text, it is added to the banner section of the page and can be used in social media posts. Summaries added here are also used in smaller components, such as cards.'
 required: false

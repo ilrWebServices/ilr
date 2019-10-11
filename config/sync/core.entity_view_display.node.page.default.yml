@@ -3,12 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.basic_page.field_components
-    - field.field.node.basic_page.field_intro_text
-    - field.field.node.basic_page.field_representative_image
-    - field.field.node.basic_page.layout_builder__layout
-    - node.type.basic_page
-    - views.view.topics_list
+    - field.field.node.page.field_components
+    - field.field.node.page.field_intro_text
+    - field.field.node.page.field_representative_image
+    - field.field.node.page.layout_builder__layout
+    - node.type.page
   module:
     - entity_reference_revisions
     - ilr
@@ -17,7 +16,6 @@ dependencies:
     - text
     - union_organizer
     - user
-    - views
 third_party_settings:
   layout_builder:
     allow_custom: true
@@ -42,7 +40,7 @@ third_party_settings:
             uuid: 63750b08-0f64-4c37-8ac1-308d035b5b59
             region: banner
             configuration:
-              id: 'field_block:node:basic_page:field_intro_text'
+              id: 'field_block:node:page:field_intro_text'
               label: 'Intro Text'
               provider: layout_builder
               label_display: '0'
@@ -59,7 +57,7 @@ third_party_settings:
             uuid: cba962d8-8d80-46a0-8bd2-f24d8bfd5536
             region: banner
             configuration:
-              id: 'field_block:node:basic_page:title'
+              id: 'field_block:node:page:title'
               label: Title
               provider: layout_builder
               label_display: '0'
@@ -80,31 +78,11 @@ third_party_settings:
           full_width: 1
           extra_classes: ''
         components:
-          81f9cc1f-c37d-4a92-819d-5a0c945dca27:
-            uuid: 81f9cc1f-c37d-4a92-819d-5a0c945dca27
-            region: main
-            configuration:
-              id: 'views_block:topics_list-block'
-              label: ''
-              provider: views
-              label_display: '0'
-              views_label: ''
-              items_per_page: none
-              context_mapping: {  }
-            additional: {  }
-            weight: 0
-        third_party_settings: {  }
-      -
-        layout_id: layout_cu_section
-        layout_settings:
-          full_width: 1
-          extra_classes: ''
-        components:
           2ac9aaeb-90f1-4971-b5a0-bd015591bec9:
             uuid: 2ac9aaeb-90f1-4971-b5a0-bd015591bec9
             region: main
             configuration:
-              id: 'field_block:node:basic_page:field_components'
+              id: 'field_block:node:page:field_components'
               label: Components
               provider: layout_builder
               label_display: '0'
@@ -119,9 +97,9 @@ third_party_settings:
             additional: {  }
             weight: 0
         third_party_settings: {  }
-id: node.basic_page.default
+id: node.page.default
 targetEntityType: node
-bundle: basic_page
+bundle: page
 mode: default
 content:
   field_components:

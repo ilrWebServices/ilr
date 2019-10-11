@@ -9,9 +9,9 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: 'Basic page'
-type: basic_page
-description: 'Basic pages are used for marketing, informational and transactional content, and are the most commonly used page type for the site.'
+name: Page
+type: page
+description: 'Pages are used for marketing, informational and transactional content, and are the most commonly used page type for the site.'
 help: ''
 new_revision: true
 preview_mode: 0
