@@ -25,11 +25,12 @@
  * @see template_preprocess_block()
  */
 #}
-
-{% include '@union/_section-heading.twig' with {
-  attributes: { class: 'cu-section-heading--framed cu-section-heading--framed-right' },
-  heading: 'Upcoming Classes',
-  subheading: 'Programs'
-} only %}
-
-{{ content }}
+<div{{ attributes}}>
+  {{ title_suffix }}
+  {% include '@union/_section-heading.twig' with {
+    attributes: { class: 'cu-section-heading--framed cu-section-heading--framed-right' },
+    heading: 'Upcoming Classes',
+    subheading: 'Programs'
+  } only %}
+  {{ content }}
+</div>
