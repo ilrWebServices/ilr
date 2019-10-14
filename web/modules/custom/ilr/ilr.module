@@ -25,6 +25,12 @@ function ilr_theme($existing, $type, $theme, $path) {
         'classes' => [],
       ],
     ],
+    'ilr_course_certificates_block' => [
+      'variables' => [
+        'node' => [],
+        'certificates' => [],
+      ],
+    ],
     'ilr_course_page_nav_block' => [
       'variables' => [],
     ],
@@ -41,6 +47,11 @@ function ilr_entity_field_storage_info(EntityTypeInterface $entity_type) {
     $definitions['classes'] = FieldStorageDefinition::create('entity_reference')
       ->setName('classes')
       ->setLabel(t('Classes'))
+      ->setRevisionable(TRUE)
+      ->setTargetEntityTypeId($entity_type->id());
+    $definitions['certificates'] = FieldStorageDefinition::create('entity_reference')
+      ->setName('certificates')
+      ->setLabel(t('Certificates'))
       ->setRevisionable(TRUE)
       ->setTargetEntityTypeId($entity_type->id());
   }
@@ -76,6 +87,22 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle)
         'label' => 'hidden',
         'weight' => -5,
       ]);
+
+    $fields[$custom_field_storage['certificates']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['certificates']);
+
+    $fields[$custom_field_storage['certificates']->getName()]
+      ->setLabel(t('Certificates'))
+      ->setComputed(TRUE)
+      ->setClass('\Drupal\ilr\CourseCertificateItemList')
+      ->setSettings([
+        'handler' => 'default:node',
+        'handler_settings' => [
+          'target_bundles' => [
+            'certificate' => 'certificate'
+          ]
+        ],
+      ])
+      ->setDisplayConfigurable('view', FALSE);
 
     return $fields;
   }

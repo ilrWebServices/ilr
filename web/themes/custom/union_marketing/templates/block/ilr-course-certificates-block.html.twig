@@ -1,0 +1,30 @@
+{% if certificates is not empty %}
+  {% set certs = [] %}
+  {% for certificate in certificates %}
+    {% set cert = {
+      name: certificate.label,
+      link: path('entity.node.canonical', {'node': certificate.id})
+    } %}
+    {% set certs = certs|merge([cert]) %}
+  {% endfor %}
+
+  {# Add the wrapper #}
+  <div{{attributes}}>
+    {{ title_suffix }}
+
+    {% set box_content %}
+      <h2 class="cu-heading">Certificates Including this Course</h2>
+      {% include "@union/_feature-list.twig" with {
+        items: certs,
+        content_attributes: { class: 'cu-grid--3col' }
+      } only %}
+    {% endset %}
+
+    <div class="course-certificates">
+      {% include '@union/_highlight-box.twig' with {
+        content: box_content
+      } only %}
+    </div>
+  </div>
+{% endif %}
+
