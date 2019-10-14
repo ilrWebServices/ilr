@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.certificate.field_outcomes
     - field.field.node.certificate.field_prerequisites
     - field.field.node.certificate.field_representative_image
+    - field.field.node.certificate.field_topics
     - field.field.node.certificate.field_total_cost
     - node.type.certificate
   module:
@@ -89,6 +90,15 @@ content:
     region: content
   field_representative_image:
     weight: 12
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_topics:
+    weight: 26
     settings:
       match_operator: CONTAINS
       size: 60

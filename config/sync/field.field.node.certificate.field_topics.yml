@@ -1,0 +1,29 @@
+uuid: 83e22631-7d06-46bd-8372-618c1d5b003c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_topics
+    - node.type.certificate
+    - taxonomy.vocabulary.topics
+id: node.certificate.field_topics
+field_name: field_topics
+entity_type: node
+bundle: certificate
+label: Topics
+description: 'These values are computed from the Courses included in this Certificate.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      topics: topics
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.certificate.field_outcomes
     - field.field.node.certificate.field_prerequisites
     - field.field.node.certificate.field_representative_image
+    - field.field.node.certificate.field_topics
     - field.field.node.certificate.field_total_cost
     - node.type.certificate
     - views.view.topics_list
@@ -283,6 +284,22 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
+            weight: 2
+          ce7fab6a-14a1-4686-b908-26fad724a64a:
+            uuid: ce7fab6a-14a1-4686-b908-26fad724a64a
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:certificate:field_topics'
+              formatter:
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+                type: entity_reference_label
+            additional: {  }
             weight: 1
         third_party_settings: {  }
       -
@@ -352,6 +369,14 @@ content:
       link: false
     third_party_settings: {  }
     region: content
+  field_topics:
+    weight: 109
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: main
   field_total_cost:
     weight: 104
     label: above
