@@ -130,23 +130,11 @@ $ drush state-set salesforce.refresh_token [VALUE_FROM_PROD_SITE]
 
 Several migrations are defined in `config/migrations/migrate_plus.migration.*.yml`.
 
-Most of these migrations require a connection to the Drupal 7 database, which, as of this writing, should be defined in `settings.local.php`. Here's an example (note the `drupal7` key):
+Most of these migrations require a `drupal7` database 'Connection key', which should define a connection to the Drupal 7 database.
 
-```
-// D7 database connection.
-$databases['drupal7']['default'] = [
-  'database' => 'ilr',
-  'username' => 'root',
-  'password' => '',
-  'prefix' => '',
-  'host' => '127.0.0.1',
-  'port' => '3306',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-];
-```
+For local development and testing, the connection key can be configured via the `.env` file. See `.env.example` for more information on populating the `MYSQL_MIGRATE_*` environment variables.
 
-Additionally, some custom migrate code, including source plugins, can be found in the custom `ilr_migrate` module.
+In addition to the migration configurations, some custom migrate code, including source plugins, can be found in the custom `ilr_migrate` module.
 
 ### Viewing Migration Status
 
