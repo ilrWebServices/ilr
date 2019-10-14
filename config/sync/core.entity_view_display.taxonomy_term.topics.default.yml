@@ -8,6 +8,7 @@ dependencies:
     - field.field.taxonomy_term.topics.field_media_section
     - field.field.taxonomy_term.topics.field_page_links
     - taxonomy.vocabulary.topics
+    - views.view.topic_certificates
     - views.view.topic_courses
     - views.view.topics_list
   module:
@@ -176,6 +177,19 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 1
+          3466d363-3446-4a65-abb4-c1318f9a6df4:
+            uuid: 3466d363-3446-4a65-abb4-c1318f9a6df4
+            region: main
+            configuration:
+              id: 'views_block:topic_certificates-block'
+              label: ''
+              provider: views
+              label_display: '0'
+              views_label: ''
+              items_per_page: none
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
