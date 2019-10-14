@@ -16,14 +16,14 @@ source:
   node_type: certificate_programs
 process:
   title: title
-  'body/value': 'field_description_long/0/value'
-  'body/summary': 'field_teaser/0/value'
-  'body/format':
+  body/value: field_description_long/0/value
+  body/summary: field_teaser/0/value
+  body/format:
     plugin: default_value
     default_value: basic_formatting
   field_outcomes: field_value_propositions
-  'field_prerequisites/value': 'field_prerequisites_requirements/0/value'
-  'field_prerequisites/format':
+  field_prerequisites/value: field_prerequisites_requirements/0/value
+  field_prerequisites/format:
     plugin: default_value
     default_value: basic_formatting
   field_course:
@@ -34,7 +34,7 @@ process:
         plugin: migration_lookup
         source: target_id
         migration: d7_node_course
-  field_notes: { }
+  field_notes: {  }
 destination:
   plugin: 'entity:node'
   default_bundle: certificate
