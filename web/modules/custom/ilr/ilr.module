@@ -185,3 +185,27 @@ function ilr_node_presave(EntityInterface $entity) {
     $entity->set('field_topics', $certificate_topics);
   }
 }
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function ilr_taxonomy_term_presave(EntityInterface $entity) {
+  // If this is a new topic, add some default page links to Certificates,
+  // Programs, and Customized Programs.
+  if ($entity->bundle() === 'topics' && $entity->isNew()) {
+    $entity->set('field_page_links', [
+      [
+        'uri' => 'internal:#certificates',
+        'title' => 'Certificates'
+      ],
+      [
+        'uri' => 'internal:#programs',
+        'title' => 'Programs'
+      ],
+      [
+        'uri' => 'internal:/customized-programs',
+        'title' => 'Customized Programs'
+      ],
+    ]);
+  }
+}
