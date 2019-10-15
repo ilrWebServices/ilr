@@ -1,15 +1,18 @@
 {# @todo: fix issues with outputting the time #}
 {% set class_details = [] %}
 {% for class in classes %}
+  {% set class_register_url = drupal_config('ilr_registration_system.settings', 'url') ~ class.salesforce_id %}
   {% set content %}
-    <p class="cu-checkbutton__date">{{ class.field_date_start.value|date("M d, Y") }}</p>
-    <time class="cu-checkbutton__time">{{ class.field_date_start.value|date("h:i a") ~ ' - ' ~ class.field_date_end.value|date("h:i a") }}</time>
-    <p clas="cu-checkbutton__price">${{ class.field_price.value }}</p>
+    <p class="cu-checkbutton__date">{{ class.entity.field_date_start.value|date("M d, Y") }}</p>
+    <time class="cu-checkbutton__time">{{ class.entity.field_date_start.value|date("h:i a") ~ ' - ' ~ class.entity.field_date_end.value|date("h:i a") }}</time>
+    <p class="cu-checkbutton__price cu-js-price">${{ class.entity.field_price.value }}</p>
+    <a href="{{ class_register_url }}" class="cu-button cu-button--alt">Register</a>
   {% endset %}
-
   {% set class_details = class_details|merge([{
-      id: class.id,
-      content: content
+      id: class.entity.id,
+      content: content,
+      price: class.entity.field_price.value|round,
+      url: class_register_url,
     }]) %}
 {% endfor %}
 
