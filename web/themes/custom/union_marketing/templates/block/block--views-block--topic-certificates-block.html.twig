@@ -25,12 +25,35 @@
  * @see template_preprocess_block()
  */
 #}
-<div{{ attributes}}>
+
+{# Use the topic_certificates view result rows to transform the certificates #}
+{% set certificate_results = drupal_view_result('topic_certificates', 'block') %}
+{% set certificates = [] %}
+{% for result in certificate_results %}
+  {% set cert = {
+    name: result._entity.label,
+    link: path('entity.node.canonical', {'node': result.nid})
+  } %}
+  {% set certificates = certificates|merge([cert]) %}
+{% endfor %}
+
+{% set term = drupal_field('name', 'taxonomy_term', tid) %}
+{% set term_name = term['#object'].getName() %}
+
+{# Add the wrapper #}
+<div{{attributes}}>
   {{ title_suffix }}
+
+  {# Add the heading #}
   {% include '@union/_section-heading.twig' with {
     attributes: { class: 'cu-section-heading--framed' },
-    heading: 'Certificates'|t,
+    heading: 'Certificates in ' ~ term_name|t,
     subheading: 'Topic'|t
   } only %}
-  {{ content }}
+
+  {# Render the topics as a feature list #}
+  {% include "@union/_feature-list.twig" with {
+    items: certificates,
+    content_attributes: { class: 'cu-grid--3col cu-certificate-list' }
+  } only %}
 </div>
