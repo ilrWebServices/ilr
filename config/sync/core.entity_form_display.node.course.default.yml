@@ -12,7 +12,6 @@ dependencies:
     - field.field.node.course.field_topics
     - node.type.course
   module:
-    - link
     - paragraphs
     - path
     - text
@@ -67,14 +66,6 @@ content:
       form_display_mode: default
       default_paragraph_type: ''
     third_party_settings: {  }
-    region: content
-  field_page_links:
-    weight: 125
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
     region: content
   field_sponsor:
     weight: 123
@@ -138,4 +129,5 @@ content:
       placeholder: ''
     region: content
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_page_links: true
