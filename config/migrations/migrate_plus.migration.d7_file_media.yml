@@ -62,7 +62,7 @@ process:
       source: '@_source_full_path'
       destination: constants/file_destination
       uid: '@uid'
-      alt: '!file'
+      alt: image_alt
       skip_on_missing_source: true
   field_media_file:
     -
