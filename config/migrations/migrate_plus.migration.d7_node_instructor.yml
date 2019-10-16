@@ -18,12 +18,19 @@ process:
   nid: d8_nid
   body: body
   field_job_title: field_job_title
+  field_representative_image:
+    plugin: sub_process
+    source: field_thumbnail
+    process:
+      target_id: fid
 destination:
   plugin: 'entity:node'
   default_bundle: instructor
   overwrite_properties:
     - body
     - field_job_title
+    - field_representative_image
 migration_dependencies:
-  required: {  }
+  required:
+    - d7_file_media
   optional: {  }
