@@ -44,17 +44,30 @@ class D7NodeWithSalesforceMapping extends D7_node {
     $query->innerJoin('salesforce_mapping_object', 'sf', 'sf.entity_type = \'node\' AND n.nid = sf.entity_id');
     $query->addField('sf', 'salesforce_id');
 
-    // Now join the records to the current D8 database salesforce mappings.
-    // Since `$this->query()` is the D7 database, we'll have to prefix the join
-    // with the name of the current, default database. Also, the salesforce
-    // module should be enabled.
-    $d8_db_conn = Database::getConnectionInfo('default');
-    if (!empty($d8_db_conn['default']['database']) && $this->moduleHandler->moduleExists('salesforce')) {
-      $query->innerJoin($d8_db_conn['default']['database'] . '.salesforce_mapped_object', 'd8_sf', 'sf.salesforce_id = d8_sf.salesforce_id');
-      $query->addField('d8_sf', 'drupal_entity__target_id', 'd8_nid');
+    return $query;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function prepareRow(Row $row) {
+    $sf_mapped_object_storage = $this->entityManager->getStorage('salesforce_mapped_object');
+    $d8_node_mapped_object_results = $sf_mapped_object_storage->loadByProperties([
+      'drupal_entity__target_type' => 'node',
+      'salesforce_id' => $row->getSourceProperty('salesforce_id')
+    ]);
+
+    if ($d8_node_mapped_object_results) {
+      /** @var \Drupal\salesforce_mapping\Entity\MappedObject $d8_node_mapped_object */
+      $d8_node_mapped_object = reset($d8_node_mapped_object_results);
+      $row->setSourceProperty('d8_nid', $d8_node_mapped_object->getMappedEntity()->id());
+    }
+    else {
+      // skip this row if there is no D8 node for this Salesforce ID.
+      return false;
     }
 
-    return $query;
+    return parent::prepareRow($row);
   }
 
 }
