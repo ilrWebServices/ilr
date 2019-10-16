@@ -173,6 +173,8 @@ There are two things you must do to enable local files as the source of the medi
 
 Note that the migration source will be looking for files relative to the Drupal root, so if your local files are in `/Users/YOUR_USERNAME/work/ilr/d7_files/sites/default/files`, you'll set `MIGRATE_MEDIA_SOURCE_BASE_PATH_OVERRIDE` to `/Users/YOUR_USERNAME/work/ilr/d7_files`.
 
+A few words about how image and media migration is handled in this codebase: The `d7_file_media` migration transforms the D7 site files (including images) into D8 media entities. Importantly, the D7 file id (`fid`) is mapped to the D7 media id (`mid`), so that for any given file entity in D7, there is a corresponding media entity in D8 _with the same id_. We take advantage of this in other migrations to ensure that images and other files are attached to D8 entities as media references.
+
 ## Theme Development
 
 This project uses a custom theme that includes shared components from the [Union Component Library][].
