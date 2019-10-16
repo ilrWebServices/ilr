@@ -29,6 +29,18 @@ class IlrFile extends File {
   /**
    * {@inheritdoc}
    */
+  public function query() {
+    $query = parent::query();
+
+    // Don't import private files. Most of them are for entity forms.
+    $query->condition('uri', 'private://%', 'NOT LIKE');
+
+    return $query;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function prepareRow(Row $row) {
     if (in_array($row->getSourceProperty('type'), ['document', 'undefined'])) {
       $row->setSourceProperty('type', 'file');
