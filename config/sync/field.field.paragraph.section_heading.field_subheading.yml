@@ -1,21 +1,19 @@
-uuid: 32bc0e6b-94f2-4899-940d-0045441d0093
+uuid: 1ecf6f99-7e32-4e14-aa11-2b684c6e82c2
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_subheading
     - paragraphs.paragraphs_type.section_heading
-  module:
-    - text
 id: paragraph.section_heading.field_subheading
 field_name: field_subheading
 entity_type: paragraph
 bundle: section_heading
 label: Subheading
-description: 'Tokens are allowed in this field. For example, <code>[paragraph:parent_entity:title]</code>.'
+description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: text
+field_type: string

@@ -16,7 +16,7 @@ bundle: rich_text
 mode: default
 content:
   field_body:
-    weight: 2
+    weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -31,11 +31,12 @@ content:
     type: string
     region: content
   field_subheading:
-    weight: 0
+    weight: 2
     label: hidden
-    settings: {  }
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
-    type: text_default
+    type: string
     region: content
 hidden:
   field_column_count: true
