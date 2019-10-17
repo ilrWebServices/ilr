@@ -1,0 +1,42 @@
+uuid: 49791507-6e55-4b08-8b36-057daeb3f3eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sections
+    - node.type.page
+  module:
+    - entity_reference_layout
+id: node.page.field_sections
+field_name: field_sections
+entity_type: node
+bundle: page
+label: Sections
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: '1'
+    target_bundles: null
+    target_bundles_drag_drop:
+      section:
+        weight: '4'
+        enabled: 0
+      rich_text:
+        weight: '5'
+        enabled: 0
+      section_heading:
+        weight: '6'
+        enabled: 0
+      testimonial:
+        weight: '8'
+        enabled: 0
+    layout_bundles: section
+    allowed_layouts:
+      ILR:
+        layout_cu_section: 'Union section'
+field_type: entity_reference_layout_revisioned
