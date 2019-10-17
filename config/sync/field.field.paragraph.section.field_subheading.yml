@@ -1,18 +1,18 @@
-uuid: 1ecf6f99-7e32-4e14-aa11-2b684c6e82c2
+uuid: e318088d-3612-4fcd-840e-d8f198cb89fe
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_subheading
-    - paragraphs.paragraphs_type.section_heading
-id: paragraph.section_heading.field_subheading
+    - paragraphs.paragraphs_type.section
+id: paragraph.section.field_subheading
 field_name: field_subheading
 entity_type: paragraph
-bundle: section_heading
-label: Subheading
+bundle: section
+label: 'Section subheading'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }

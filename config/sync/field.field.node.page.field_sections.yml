@@ -29,13 +29,11 @@ settings:
       rich_text:
         weight: '5'
         enabled: 0
-      section_heading:
-        weight: '6'
-        enabled: 0
       testimonial:
         weight: '8'
         enabled: 0
-    layout_bundles: section
+    layout_bundles:
+      - section
     allowed_layouts:
       ILR:
         layout_cu_section: 'Union section'
