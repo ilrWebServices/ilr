@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.page.body
     - field.field.node.page.field_components
-    - field.field.node.page.field_intro_text
     - field.field.node.page.field_representative_image
     - field.field.node.page.layout_builder__layout
     - node.type.page
@@ -17,6 +17,15 @@ targetEntityType: node
 bundle: page
 mode: default
 content:
+  body:
+    weight: 35
+    settings:
+      rows: 5
+      placeholder: ''
+      summary_rows: 3
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
   created:
     type: datetime_timestamp
     weight: 10
@@ -41,15 +50,6 @@ content:
         add_above: add_above
         duplicate: '0'
     third_party_settings: {  }
-    region: content
-  field_intro_text:
-    weight: 35
-    settings:
-      rows: 5
-      placeholder: ''
-      summary_rows: 3
-    third_party_settings: {  }
-    type: text_textarea_with_summary
     region: content
   field_representative_image:
     weight: 40

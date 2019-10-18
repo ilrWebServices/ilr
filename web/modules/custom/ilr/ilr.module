@@ -229,5 +229,5 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
 
   // Move the representative image and intro text fields into the new section.
   $form['field_representative_image']['#group'] = 'ilr_meta';
-  $form['field_intro_text']['#group'] = 'ilr_meta';
+  $form['body']['#group'] = 'ilr_meta';
 }
