@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\ilr\FieldStorageDefinition;
 use Drupal\Core\Field\FieldDefinition;
 use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_theme().
@@ -208,4 +209,25 @@ function ilr_taxonomy_term_presave(EntityInterface $entity) {
       ],
     ]);
   }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add a new node add/edit form advance group section. This is generally shown
+  // in the right-hand column.
+  /** @see Drupal\node\NodeForm */
+  $form['ilr_meta'] = [
+    '#type' => 'details',
+    '#title' => t('Meta'),
+    '#group' => 'advanced',
+    '#weight' => -10,
+    '#optional' => TRUE,
+    '#open' => TRUE,
+  ];
+
+  // Move the representative image and intro text fields into the new section.
+  $form['field_representative_image']['#group'] = 'ilr_meta';
+  $form['field_intro_text']['#group'] = 'ilr_meta';
 }
