@@ -1,16 +1,14 @@
-uuid: 3ecc47d3-e235-4e09-b248-5811001dd168
+uuid: 99a9f2f4-d141-45ac-9b81-e11b7a849dbd
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
-id: paragraph.field_column_count
-field_name: field_column_count
+id: paragraph.field_text_columns
+field_name: field_text_columns
 entity_type: paragraph
-type: integer
-settings:
-  unsigned: false
-  size: normal
+type: boolean
+settings: {  }
 module: core
 locked: false
 cardinality: 1

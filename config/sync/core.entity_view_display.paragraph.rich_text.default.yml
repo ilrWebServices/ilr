@@ -4,9 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.rich_text.field_body
-    - field.field.paragraph.rich_text.field_column_count
     - field.field.paragraph.rich_text.field_heading
     - field.field.paragraph.rich_text.field_subheading
+    - field.field.paragraph.rich_text.field_text_columns
     - paragraphs.paragraphs_type.rich_text
   module:
     - text
@@ -39,5 +39,5 @@ content:
     type: string
     region: content
 hidden:
-  field_column_count: true
+  field_text_columns: true
   search_api_excerpt: true
