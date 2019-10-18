@@ -32,9 +32,10 @@ settings:
       testimonial:
         weight: '8'
         enabled: 0
-    layout_bundles:
-      - section
+    layout_bundles: section
     allowed_layouts:
+      'Columns: 1':
+        layout_onecol: 'One column'
       ILR:
-        layout_cu_section: 'Union section'
+        layout_cu_twocol: 'Two column'
 field_type: entity_reference_layout_revisioned

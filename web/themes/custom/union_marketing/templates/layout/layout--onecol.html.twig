@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a one-column layout.
+ *
+ * Available variables:
+ * - content: The content for this layout.
+ * - attributes: HTML attributes for the layout <div>.
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'layout',
+    'cu-layout--onecol',
+  ]
+%}
+{% if content %}
+  {% set rendered_content %}
+    <div{{attributes.addClass(classes)}}>
+      <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content') }}>
+        {{ content.content }}
+      </div>
+    </div>
+  {% endset %}
+{% endif %}
+
+{% include '@union/_cu-section.twig' with {
+  content: rendered_content
+} only %}
