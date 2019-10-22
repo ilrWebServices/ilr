@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7281a3093061fa97ee7ae1f067f14be3",
+    "content-hash": "d8c52021e600354807217e047a926e49",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4008,7 +4008,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.4",
-                    "datestamp": "1563096785",
+                    "datestamp": "1563099329",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4093,12 +4093,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union_organizer.git",
-                "reference": "ee65bcb81f36ec42f3436cd1650024132039b9a1"
+                "reference": "4cb851b6fdeeeca88999c4187f25c6a5b36c4aa7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/ee65bcb81f36ec42f3436cd1650024132039b9a1",
-                "reference": "ee65bcb81f36ec42f3436cd1650024132039b9a1",
+                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/4cb851b6fdeeeca88999c4187f25c6a5b36c4aa7",
+                "reference": "4cb851b6fdeeeca88999c4187f25c6a5b36c4aa7",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -4114,7 +4114,7 @@
                 "issues": "https://github.com/ilrWebServices/union_organizer/issues",
                 "source": "https://github.com/ilrWebServices/union_organizer.git"
             },
-            "time": "2019-09-30T22:43:23+00:00"
+            "time": "2019-10-22T17:00:15+00:00"
         },
         {
             "name": "drush/drush",
@@ -5007,10 +5007,10 @@
         },
         {
             "name": "npm-asset/cornell_ilr--union",
-            "version": "0.2.5",
+            "version": "0.2.6",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/@cornell_ilr/union/-/union-0.2.5.tgz"
+                "url": "https://registry.npmjs.org/@cornell_ilr/union/-/union-0.2.6.tgz"
             },
             "type": "npm-asset",
             "license": [
