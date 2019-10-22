@@ -11,6 +11,7 @@ dependencies:
     - node.type.class
   module:
     - datetime
+    - path
     - text
 id: node.class.default
 targetEntityType: node
@@ -103,5 +104,10 @@ content:
       size: 60
       placeholder: ''
     region: content
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden: {  }
