@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.taxonomy_term.field_content_header
-    - paragraphs.paragraphs_type.section_heading
     - taxonomy.vocabulary.topics
   module:
     - entity_reference_revisions
@@ -22,8 +21,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     negate: 0
-    target_bundles:
-      section_heading: section_heading
+    target_bundles: {  }
     target_bundles_drag_drop:
       section_heading:
         enabled: true

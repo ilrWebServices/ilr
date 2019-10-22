@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7281a3093061fa97ee7ae1f067f14be3",
+    "content-hash": "d8c52021e600354807217e047a926e49",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3036,6 +3036,53 @@
             }
         },
         {
+            "name": "drupal/entity_reference_layout",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/entity_reference_layout.git",
+                "reference": "b7bb1eacc798099b1dc65219e7c5ac0f42a39e41"
+            },
+            "require": {
+                "drupal/core": "*",
+                "drupal/paragraphs": "^1.6"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha2+45-dev",
+                    "datestamp": "1570024986",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "justin2pin",
+                    "homepage": "https://www.drupal.org/user/278450"
+                }
+            ],
+            "description": "Entity reference field with layouts",
+            "homepage": "https://www.drupal.org/project/entity_reference_layout",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/entity_reference_layout",
+                "issues": "https://www.drupal.org/project/issues/entity_reference_layout"
+            },
+            "time": "2019-10-02T15:43:15+00:00"
+        },
+        {
             "name": "drupal/entity_reference_revisions",
             "version": "1.6.0",
             "source": {
@@ -4046,12 +4093,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union_organizer.git",
-                "reference": "ee65bcb81f36ec42f3436cd1650024132039b9a1"
+                "reference": "4cb851b6fdeeeca88999c4187f25c6a5b36c4aa7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/ee65bcb81f36ec42f3436cd1650024132039b9a1",
-                "reference": "ee65bcb81f36ec42f3436cd1650024132039b9a1",
+                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/4cb851b6fdeeeca88999c4187f25c6a5b36c4aa7",
+                "reference": "4cb851b6fdeeeca88999c4187f25c6a5b36c4aa7",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -4067,7 +4114,7 @@
                 "issues": "https://github.com/ilrWebServices/union_organizer/issues",
                 "source": "https://github.com/ilrWebServices/union_organizer.git"
             },
-            "time": "2019-09-30T22:43:23+00:00"
+            "time": "2019-10-22T17:00:15+00:00"
         },
         {
             "name": "drush/drush",
@@ -4960,10 +5007,10 @@
         },
         {
             "name": "npm-asset/cornell_ilr--union",
-            "version": "0.2.5",
+            "version": "0.2.6",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/@cornell_ilr/union/-/union-0.2.5.tgz"
+                "url": "https://registry.npmjs.org/@cornell_ilr/union/-/union-0.2.6.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -8324,6 +8371,80 @@
             }
         },
         {
+            "name": "drupal/inline_entity_form",
+            "version": "1.0.0-rc2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/inline_entity_form.git",
+                "reference": "8.x-1.0-rc2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-8.x-1.0-rc2.zip",
+                "reference": "8.x-1.0-rc2",
+                "shasum": "f56c071ef499c20f0b1d63fa1ea30f06248ee0a4"
+            },
+            "require": {
+                "drupal/core": "^8.5"
+            },
+            "require-dev": {
+                "drupal/entity_reference_revisions": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-rc2",
+                    "datestamp": "1568446684",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "bojanz",
+                    "homepage": "https://www.drupal.org/user/86106"
+                },
+                {
+                    "name": "dawehner",
+                    "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "joachim",
+                    "homepage": "https://www.drupal.org/user/107701"
+                },
+                {
+                    "name": "kaythay",
+                    "homepage": "https://www.drupal.org/user/2182186"
+                },
+                {
+                    "name": "rszrama",
+                    "homepage": "https://www.drupal.org/user/49344"
+                },
+                {
+                    "name": "slashrsm",
+                    "homepage": "https://www.drupal.org/user/744628"
+                },
+                {
+                    "name": "webflo",
+                    "homepage": "https://www.drupal.org/user/254778"
+                }
+            ],
+            "description": "Provides a widget for inline management (creation, modification, removal) of referenced entities.",
+            "homepage": "https://www.drupal.org/project/inline_entity_form",
+            "support": {
+                "source": "https://git.drupalcode.org/project/inline_entity_form"
+            }
+        },
+        {
             "name": "fabpot/goutte",
             "version": "v3.2.3",
             "source": {
@@ -10238,6 +10359,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/entity_reference_layout": 20,
         "drupal/union_organizer": 20,
         "drupal/devel_entity_updates": 5
     },

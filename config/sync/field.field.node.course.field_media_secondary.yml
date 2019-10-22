@@ -6,7 +6,6 @@ dependencies:
     - field.storage.node.field_media_secondary
     - node.type.course
     - paragraphs.paragraphs_type.rich_text
-    - paragraphs.paragraphs_type.section_heading
     - paragraphs.paragraphs_type.testimonial
   module:
     - entity_reference_revisions
@@ -25,7 +24,6 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      section_heading: section_heading
       rich_text: rich_text
       testimonial: testimonial
     target_bundles_drag_drop:

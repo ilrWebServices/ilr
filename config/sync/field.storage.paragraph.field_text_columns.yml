@@ -1,16 +1,15 @@
-uuid: a0151ff3-9626-4dbd-a1e9-2c0780836a4b
+uuid: 99a9f2f4-d141-45ac-9b81-e11b7a849dbd
 langcode: en
 status: true
 dependencies:
   module:
-    - link
     - paragraphs
-id: paragraph.field_link
-field_name: field_link
+id: paragraph.field_text_columns
+field_name: field_text_columns
 entity_type: paragraph
-type: link
+type: boolean
 settings: {  }
-module: link
+module: core
 locked: false
 cardinality: 1
 translatable: true

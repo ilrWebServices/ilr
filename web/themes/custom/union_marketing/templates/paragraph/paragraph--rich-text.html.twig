@@ -1,6 +1,5 @@
 {% set attributes = attributes.addClass('cu-text') %}
-
-{% if paragraph.field_column_count.value == '2' %}
+{% if paragraph.field_text_columns.value == '1' %}
   {% set attributes = attributes.addClass('cu-text--2col') %}
 {% endif %}
 

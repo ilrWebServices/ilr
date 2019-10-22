@@ -1,0 +1,19 @@
+uuid: 1dc08a0e-807f-4e1a-8b9c-302d73df6b53
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.section
+id: paragraph.section.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: section
+label: 'Section heading'
+description: 'Section headings are centered above the section, with a frame to the right or the left of the heading.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

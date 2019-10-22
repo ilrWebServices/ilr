@@ -4,9 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.rich_text.field_body
-    - field.field.paragraph.rich_text.field_column_count
     - field.field.paragraph.rich_text.field_heading
     - field.field.paragraph.rich_text.field_subheading
+    - field.field.paragraph.rich_text.field_text_columns
     - paragraphs.paragraphs_type.rich_text
   module:
     - text
@@ -23,13 +23,6 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_column_count:
-    weight: 3
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
-    region: content
   field_heading:
     weight: 0
     settings:
@@ -44,7 +37,14 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: text_textfield
+    type: string_textfield
+    region: content
+  field_text_columns:
+    weight: 3
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
 hidden:
   created: true

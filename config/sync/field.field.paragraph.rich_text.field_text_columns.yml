@@ -1,0 +1,23 @@
+uuid: 3d8b2f52-aea3-41f9-83eb-8170b425bcdf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text_columns
+    - paragraphs.paragraphs_type.rich_text
+id: paragraph.rich_text.field_text_columns
+field_name: field_text_columns
+entity_type: paragraph
+bundle: rich_text
+label: 'Flow text'
+description: 'Select if you want to flow the text into columns at wider breakpoints. Note that due to scrolling behavior, this should only be used with relatively short blocks of text.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
