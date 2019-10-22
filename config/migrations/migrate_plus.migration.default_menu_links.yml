@@ -17,57 +17,57 @@ source:
     -
       id: 1
       title: 'About ILR'
-      uri: 'https://www.ilr.cornell.edu/about-ilr'
+      uri: 'internal:/about-ilr'
       menu: main
     -
       id: 2
       title: 'Programs & Admissions'
-      uri: 'https://www.ilr.cornell.edu/programs'
+      uri: 'internal:/programs'
       menu: main
     -
       id: 3
       title: 'Student Experience'
-      uri: 'https://www.ilr.cornell.edu/student-experience'
+      uri: 'internal:/student-experience'
       menu: main
     -
       id: 4
       title: 'Faculty & Research'
-      uri: 'https://www.ilr.cornell.edu/faculty-and-research'
+      uri: 'internal:/faculty-and-research'
       menu: main
     -
       id: 5
       title: 'Public Engagment'
-      uri: 'https://www.ilr.cornell.edu/public-engagement'
+      uri: 'internal:/public-engagement'
       menu: main
     -
       id: 6
       title: Alumni
-      uri: 'https://www.ilr.cornell.edu/alumni'
+      uri: 'internal:/alumni'
       menu: main
     -
       id: 10
       title: News
-      uri: 'https://www.ilr.cornell.edu/news'
+      uri: 'internal:/news'
       menu: footer
     -
       id: 11
       title: Events
-      uri: 'https://www.ilr.cornell.edu/events'
+      uri: 'internal:/events'
       menu: footer
     -
       id: 12
       title: 'About ILR'
-      uri: 'https://www.ilr.cornell.edu/about-ilr'
+      uri: 'internal:/about-ilr'
       menu: footer
     -
       id: 13
       title: 'Contact Us'
-      uri: 'https://www.ilr.cornell.edu/about-ilr/contact-us'
+      uri: 'internal:/about-ilr/contact-us'
       menu: footer
     -
       id: 14
       title: 'Privacy Policy'
-      uri: 'https://www.ilr.cornell.edu/about-ilr/privacy-policy'
+      uri: 'internal:/about-ilr/privacy-policy'
       menu: footer
     -
       id: 15
@@ -77,12 +77,12 @@ source:
     -
       id: 16
       title: Directory
-      uri: 'https://www.ilr.cornell.edu/people'
+      uri: 'internal:/people'
       menu: footer
     -
       id: 17
       title: 'Centers & Institutes'
-      uri: 'https://www.ilr.cornell.edu/centers-institutes'
+      uri: 'internal:/centers-institutes'
       menu: footer
     -
       id: 18
@@ -92,17 +92,17 @@ source:
     -
       id: 19
       title: 'Conference Centers'
-      uri: 'https://www.ilr.cornell.edu/centers-institutes/conference-centers'
+      uri: 'internal:/centers-institutes/conference-centers'
       menu: footer
     -
       id: 20
       title: 'College Map'
-      uri: 'https://www.ilr.cornell.edu/about-ilr/ilr-school-map'
+      uri: 'internal:/about-ilr/ilr-school-map'
       menu: footer
     -
       id: 21
       title: 'For faculty and staff'
-      uri: 'https://www.ilr.cornell.edu/about-ilr/faculty-and-staff-resources'
+      uri: 'internal:/about-ilr/faculty-and-staff-resources'
       menu: footer
   ids:
     id:
