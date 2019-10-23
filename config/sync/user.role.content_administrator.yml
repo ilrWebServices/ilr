@@ -6,4 +6,26 @@ id: content_administrator
 label: 'Content Administrator'
 weight: 4
 is_admin: null
-permissions: {  }
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access media overview'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'administer media'
+  - 'administer menu'
+  - 'administer nodes'
+  - 'administer redirect settings'
+  - 'administer redirects'
+  - 'administer taxonomy'
+  - 'bypass node access'
+  - 'create media'
+  - 'create url aliases'
+  - 'delete any media'
+  - 'update any media'
+  - 'view all media revisions'
+  - 'view all revisions'
+  - 'view media'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view the administration theme'
