@@ -7,6 +7,12 @@ _core:
 id: taxonomy_term
 label: 'Taxonomy term'
 tags:
-  canonical_url: '[term:url]'
-  description: '[term:description]'
   title: '[term:name] | [site:name]'
+  canonical_url: '[term:url]'
+  description: '[term:field_body:summary]'
+  og_description: '[term:field_body:summary]'
+  og_site_name: '[site:name]'
+  og_title: '[term:name] | [site:name]'
+  twitter_cards_description: '[term:field_body:summary]'
+  twitter_cards_type: summary
+  twitter_cards_title: '[term:name] | [site:name]'
