@@ -30,8 +30,8 @@ third_party_settings:
           full_width: 1
           extra_classes: ''
         components:
-          d7836207-b457-4264-a8f6-ed872634bb0b:
-            uuid: d7836207-b457-4264-a8f6-ed872634bb0b
+          fe11d445-881b-4891-9950-5e91eb0774d3:
+            uuid: fe11d445-881b-4891-9950-5e91eb0774d3
             region: main
             configuration:
               id: 'views_block:topics_list-course_finder'
@@ -158,6 +158,26 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          full_width: 1
+          extra_classes: ''
+        components:
+          9dcdc8d3-8062-4ef0-aec9-cdc512534d02:
+            uuid: 9dcdc8d3-8062-4ef0-aec9-cdc512534d02
+            region: main
+            configuration:
+              id: 'views_block:topic_certificates-block'
+              label: ''
+              provider: views
+              label_display: '0'
+              views_label: ''
+              items_per_page: none
+              context_mapping: {  }
+            additional: {  }
+            weight: 1
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
