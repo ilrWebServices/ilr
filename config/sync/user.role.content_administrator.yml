@@ -9,6 +9,7 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access content overview'
+  - 'access contextual links'
   - 'access media overview'
   - 'access taxonomy overview'
   - 'access toolbar'
@@ -23,6 +24,7 @@ permissions:
   - 'create url aliases'
   - 'delete any media'
   - 'update any media'
+  - 'use text format basic_formatting'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view media'
