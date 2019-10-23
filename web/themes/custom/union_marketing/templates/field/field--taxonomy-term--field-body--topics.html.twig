@@ -1,0 +1,12 @@
+{% if element['#formatter'] == 'text_default' %}
+  {% include '@union/_section-heading.twig' with {
+    attributes: { class: 'cu-section-heading--framed', id: 'overview' },
+    heading: 'Overview'|t,
+    subheading: element['#object'].getName()|t
+  } only %}
+{% endif %}
+
+{% for item in items %}
+  {{ item.content }}
+{% endfor %}
+

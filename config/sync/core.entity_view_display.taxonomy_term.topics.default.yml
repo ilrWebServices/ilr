@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.topics.field_body
-    - field.field.taxonomy_term.topics.field_content_header
     - field.field.taxonomy_term.topics.field_media_section
     - field.field.taxonomy_term.topics.field_page_links
     - taxonomy.vocabulary.topics
@@ -158,37 +157,6 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
-            weight: 2
-          8af3ec73-c9da-4ca9-916c-96ad83e47ad9:
-            uuid: 8af3ec73-c9da-4ca9-916c-96ad83e47ad9
-            region: main
-            configuration:
-              id: 'field_block:taxonomy_term:topics:field_content_header'
-              label: 'Content Header'
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: entity_reference_revisions_entity_view
-                settings:
-                  view_mode: default
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-            additional: {  }
-            weight: 1
-          3466d363-3446-4a65-abb4-c1318f9a6df4:
-            uuid: 3466d363-3446-4a65-abb4-c1318f9a6df4
-            region: main
-            configuration:
-              id: 'views_block:topic_certificates-block'
-              label: ''
-              provider: views
-              label_display: '0'
-              views_label: ''
-              items_per_page: none
-              context_mapping: {  }
-            additional: {  }
             weight: 0
         third_party_settings: {  }
       -
@@ -270,15 +238,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: banner
-  field_content_header:
-    type: entity_reference_revisions_entity_view
-    weight: 6
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
     region: banner
   field_media_section:
     type: entity_reference_revisions_entity_view
