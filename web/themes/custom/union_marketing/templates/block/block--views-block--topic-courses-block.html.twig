@@ -27,10 +27,12 @@
 #}
 <div{{ attributes}}>
   {{ title_suffix }}
-  {% include '@union/_section-heading.twig' with {
-    attributes: { class: 'cu-section-heading--framed cu-section-heading--framed-right' },
-    heading: 'Upcoming Classes',
-    subheading: 'Programs'
-  } only %}
-  {{ content }}
+  {% if content.view_build['#rows'] is not empty %}
+    {% include '@union/_section-heading.twig' with {
+      attributes: { class: 'cu-section-heading--framed cu-section-heading--framed-right' },
+      heading: 'Upcoming Classes',
+      subheading: 'Programs'
+    } only %}
+    {{ content }}
+  {% endif %}
 </div>

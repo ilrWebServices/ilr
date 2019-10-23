@@ -44,7 +44,7 @@
   {{ title_suffix }}
 
   {# Only if on a term page #}
-  {% if tid %}
+  {% if tid and certificates is not empty %}
     {% set term = drupal_field('name', 'taxonomy_term', tid) %}
 
     {# Create a grid #}
