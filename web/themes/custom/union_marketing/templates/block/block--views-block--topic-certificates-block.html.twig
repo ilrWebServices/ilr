@@ -37,23 +37,35 @@
   {% set certificates = certificates|merge([cert]) %}
 {% endfor %}
 
-{% set term = drupal_field('name', 'taxonomy_term', tid) %}
-{% set term_name = term['#object'].getName() %}
+{% set tid = content['#view'].args|first %}
 
 {# Add the wrapper #}
 <div{{attributes}}>
   {{ title_suffix }}
 
-  {# Add the heading #}
-  {% include '@union/_section-heading.twig' with {
-    attributes: { class: 'cu-section-heading--framed' },
-    heading: 'Certificates in ' ~ term_name|t,
-    subheading: 'Topic'|t
-  } only %}
+  {# Only if on a term page #}
+  {% if tid %}
+    {% set term = drupal_field('name', 'taxonomy_term', tid) %}
 
-  {# Render the topics as a feature list #}
-  {% include "@union/_feature-list.twig" with {
-    items: certificates,
-    content_attributes: { class: 'cu-grid--3col cu-certificate-list' }
-  } only %}
+    {# Create a grid #}
+    {% set certificate_grid %}
+    {% include "@union/_feature-list.twig" with {
+        items: certificates,
+        content_attributes: { class: 'cu-grid--3col cu-certificate-list' }
+      } only %}
+    {% endset %}
+
+    {# Set the box content to the grid #}
+    {% set box_content %}
+    <div class="certificate-highlights">
+      <h2 id="certificates" class="cu-heading">{{ 'Certificates in ' ~ term['#object'].getName()}}</h2>
+      {{ certificate_grid }}
+    </div>
+    {% endset %}
+
+    {# Render the content in a highlight box #}
+    {% include '@union/_highlight-box.twig' with {
+      content: box_content
+    } only %}
+  {% endif %}
 </div>
