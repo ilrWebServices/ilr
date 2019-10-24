@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.instructor.field_representative_image
     - node.type.instructor
   module:
+    - media_library
     - path
     - text
 id: node.instructor.default
@@ -41,11 +42,9 @@ content:
   field_representative_image:
     weight: 123
     settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: media_library_widget
     region: content
   path:
     type: path
