@@ -71,6 +71,24 @@ third_party_settings:
               context_mapping: {  }
             additional: {  }
             weight: 0
+          ee3862f3-e8f9-4a3f-8610-f0a33055873f:
+            uuid: ee3862f3-e8f9-4a3f-8610-f0a33055873f
+            region: banner
+            configuration:
+              id: 'field_block:node:page:field_representative_image'
+              label: 'Representative Image'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 3
         third_party_settings: {  }
       -
         layout_id: layout_onecol
