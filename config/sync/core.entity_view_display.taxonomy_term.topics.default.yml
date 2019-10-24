@@ -6,6 +6,7 @@ dependencies:
     - field.field.taxonomy_term.topics.field_body
     - field.field.taxonomy_term.topics.field_media_section
     - field.field.taxonomy_term.topics.field_page_links
+    - field.field.taxonomy_term.topics.field_representative_image
     - taxonomy.vocabulary.topics
     - views.view.topic_certificates
     - views.view.topic_courses
@@ -30,8 +31,8 @@ third_party_settings:
           full_width: 1
           extra_classes: ''
         components:
-          fe11d445-881b-4891-9950-5e91eb0774d3:
-            uuid: fe11d445-881b-4891-9950-5e91eb0774d3
+          16c02e63-81cf-4bdf-b395-8a067860a641:
+            uuid: 16c02e63-81cf-4bdf-b395-8a067860a641
             region: main
             configuration:
               id: 'views_block:topics_list-course_finder'
@@ -280,5 +281,14 @@ content:
     third_party_settings: {  }
     type: link
     region: banner
+  field_representative_image:
+    type: entity_reference_entity_view
+    weight: 6
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: main
 hidden:
   search_api_excerpt: true

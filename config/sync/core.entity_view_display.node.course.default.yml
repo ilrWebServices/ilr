@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.course.field_media_secondary
     - field.field.node.course.field_media_section
     - field.field.node.course.field_page_links
+    - field.field.node.course.field_representative_image
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
     - node.type.course
@@ -34,14 +35,14 @@ third_party_settings:
           full_width: 1
           extra_classes: ''
         components:
-          e60f9c55-0dac-47cd-b977-1fb18324545c:
-            uuid: e60f9c55-0dac-47cd-b977-1fb18324545c
+          daf861c7-7761-4c78-843f-ca25189bad2c:
+            uuid: daf861c7-7761-4c78-843f-ca25189bad2c
             region: main
             configuration:
               id: 'views_block:topics_list-course_finder'
               label: ''
               provider: views
-              label_display: visible
+              label_display: '0'
               views_label: ''
               items_per_page: none
               context_mapping: {  }
@@ -311,6 +312,14 @@ content:
     third_party_settings: {  }
     type: link
     region: banner
+  field_representative_image:
+    weight: 7
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: main
   field_sponsor:
     weight: 3
     label: above

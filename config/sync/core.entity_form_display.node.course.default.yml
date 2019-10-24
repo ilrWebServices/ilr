@@ -8,10 +8,12 @@ dependencies:
     - field.field.node.course.field_media_secondary
     - field.field.node.course.field_media_section
     - field.field.node.course.field_page_links
+    - field.field.node.course.field_representative_image
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
     - node.type.course
   module:
+    - media_library
     - paragraphs
     - path
     - text
@@ -66,6 +68,13 @@ content:
       form_display_mode: default
       default_paragraph_type: ''
     third_party_settings: {  }
+    region: content
+  field_representative_image:
+    weight: 128
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    type: media_library_widget
     region: content
   field_sponsor:
     weight: 123
