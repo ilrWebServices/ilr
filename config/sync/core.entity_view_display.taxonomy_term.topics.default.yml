@@ -118,6 +118,24 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 5
+          3bc8237c-efdf-4c74-8b41-ee8666ef6e7a:
+            uuid: 3bc8237c-efdf-4c74-8b41-ee8666ef6e7a
+            region: banner
+            configuration:
+              id: 'field_block:taxonomy_term:topics:field_representative_image'
+              label: 'Representative Image'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 6
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
