@@ -4,6 +4,8 @@ body {
 
 .layout-container {
   width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
   display: grid;
   grid-row-gap: 1em;
   grid-column-gap: 0;
