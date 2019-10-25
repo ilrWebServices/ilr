@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b697be7d22d8337d71497701c194a66f",
+    "content-hash": "85509d3d909efb0777362962e68b8df7",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3666,6 +3666,53 @@
             "homepage": "https://www.drupal.org/project/pathauto",
             "support": {
                 "source": "https://git.drupalcode.org/project/pathauto"
+            }
+        },
+        {
+            "name": "drupal/readmore_js",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/readmore_js.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/readmore_js-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "7658509fbcb732b7694613e79813a02ceafeb3b2"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1565819287",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "rudam",
+                    "homepage": "https://www.drupal.org/user/2437850"
+                }
+            ],
+            "description": "Field Formatter for collapsing and expanding long blocks of text with \"Read more\" and \"Close\" links.",
+            "homepage": "https://www.drupal.org/project/readmore_js",
+            "support": {
+                "source": "https://git.drupalcode.org/project/readmore_js"
             }
         },
         {

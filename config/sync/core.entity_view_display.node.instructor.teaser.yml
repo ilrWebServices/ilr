@@ -11,7 +11,7 @@ dependencies:
     - node.type.instructor
   module:
     - media
-    - text
+    - readmore_js
     - user
 id: node.instructor.teaser
 targetEntityType: node
@@ -20,9 +20,13 @@ mode: teaser
 content:
   body:
     label: hidden
-    type: text_default
+    type: read_more_field_formatter
     weight: 1
-    settings: {  }
+    settings:
+      more_link: 'Read more'
+      more_link_classes: ''
+      close_link: Close
+      close_link_classes: ''
     third_party_settings: {  }
     region: content
   field_job_title:
