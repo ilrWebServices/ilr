@@ -8,7 +8,6 @@ dependencies:
     - field.field.node.course.field_course_number
     - field.field.node.course.field_media_secondary
     - field.field.node.course.field_media_section
-    - field.field.node.course.field_page_links
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
     - node.type.course
@@ -46,7 +45,6 @@ hidden:
   field_course_number: true
   field_media_secondary: true
   field_media_section: true
-  field_page_links: true
   field_sponsor: true
   field_topics: true
   search_api_excerpt: true

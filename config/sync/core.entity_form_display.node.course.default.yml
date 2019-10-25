@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.course.field_course_number
     - field.field.node.course.field_media_secondary
     - field.field.node.course.field_media_section
-    - field.field.node.course.field_page_links
     - field.field.node.course.field_representative_image
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
@@ -143,5 +142,4 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  field_page_links: true
+hidden: {  }

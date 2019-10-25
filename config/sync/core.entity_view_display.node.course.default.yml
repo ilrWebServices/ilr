@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.course.field_course_number
     - field.field.node.course.field_media_secondary
     - field.field.node.course.field_media_section
-    - field.field.node.course.field_page_links
     - field.field.node.course.field_representative_image
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
@@ -18,7 +17,6 @@ dependencies:
   module:
     - ilr
     - layout_builder
-    - link
     - system
     - text
     - union_organizer
@@ -100,26 +98,6 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 1
-          d853946e-1ff1-4847-ab42-dfa20bcc2698:
-            uuid: d853946e-1ff1-4847-ab42-dfa20bcc2698
-            region: banner
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:course:field_page_links'
-              formatter:
-                label: above
-                settings:
-                  trim_length: 80
-                  url_only: false
-                  url_plain: false
-                  rel: ''
-                  target: ''
-                third_party_settings: {  }
-                type: link
-            additional: {  }
-            weight: 3
           67c13d00-4dc9-46b2-b305-3d432c3ffd9c:
             uuid: 67c13d00-4dc9-46b2-b305-3d432c3ffd9c
             region: banner
@@ -299,18 +277,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: banner
-  field_page_links:
-    weight: 5
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
     region: banner
   field_representative_image:
     weight: 7
