@@ -1,0 +1,19 @@
+uuid: 9b6e86b0-7a8d-4dcb-bf7b-92db6786af74
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_body_heading
+    - taxonomy.vocabulary.topics
+id: taxonomy_term.topics.field_body_heading
+field_name: field_body_heading
+entity_type: taxonomy_term
+bundle: topics
+label: 'Body heading'
+description: 'The body heading displays as a section heading above the body field.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

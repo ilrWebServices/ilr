@@ -1,0 +1,19 @@
+uuid: 4427f49b-79bc-45cc-9672-d12e57b1b531
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_body_subheading
+    - taxonomy.vocabulary.topics
+id: taxonomy_term.topics.field_body_subheading
+field_name: field_body_subheading
+entity_type: taxonomy_term
+bundle: topics
+label: 'Body subheading'
+description: 'The body subheading displays above the heading. It is optional.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

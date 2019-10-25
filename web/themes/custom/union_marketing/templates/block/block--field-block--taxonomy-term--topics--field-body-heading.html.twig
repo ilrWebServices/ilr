@@ -1,0 +1,8 @@
+{% set term = content['#object'] %}
+{% set subheading = term.get('field_body_subheading').value|default('') %}
+
+{% include '@union/_section-heading.twig' with {
+  attributes: { class: 'cu-section-heading--framed' },
+  heading: content|render|striptags|t,
+  subheading: subheading|t
+} only %}

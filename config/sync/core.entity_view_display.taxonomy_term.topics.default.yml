@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.topics.field_body
+    - field.field.taxonomy_term.topics.field_body_heading
+    - field.field.taxonomy_term.topics.field_body_subheading
     - field.field.taxonomy_term.topics.field_media_section
     - field.field.taxonomy_term.topics.field_page_links
     - field.field.taxonomy_term.topics.field_representative_image
@@ -176,6 +178,24 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
+            weight: 1
+          eb1566bf-0f66-4162-9579-49db7698863f:
+            uuid: eb1566bf-0f66-4162-9579-49db7698863f
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:topics:field_body_heading'
+              label: 'Body heading'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
             weight: 0
         third_party_settings: {  }
       -
@@ -278,6 +298,22 @@ content:
     third_party_settings: {  }
     type: text_default
     region: banner
+  field_body_heading:
+    weight: 7
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: main
+  field_body_subheading:
+    weight: 8
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: main
   field_media_section:
     type: entity_reference_revisions_entity_view
     weight: 5
