@@ -1,0 +1,89 @@
+<?php
+
+/**
+ * @file
+ * Contains summary_word_limit.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\Core\Entity\EntityTypeInterface;
+
+/**
+ * Implements hook_help().
+ */
+function summary_word_limit_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the summary_word_limit module.
+    case 'help.page.summary_word_limit':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Adds a setting to Text with Summary fields to limit the number of words in the summary.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function summary_word_limit_form_field_config_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\field\Entity\FieldConfig $field_config */
+  $field_config = $form_state->getFormObject()->getEntity();
+
+  if ($field_config->getType() !== 'text_with_summary') {
+    return;
+  }
+
+  $form['settings']['summary_word_limit_count'] = [
+    '#type' => 'number',
+    '#title' => t('Summary word limit count'),
+    '#description' => t('Maximum number of words allowed in the summary. Enter 0 for no limit.'),
+    '#default_value' => $field_config->getThirdPartySetting('summary_word_limit', 'summary_word_limit_count'),
+    '#states' => [
+      'visible' => [
+        ':input[name="settings[display_summary]"]' => ['checked' => TRUE],
+      ],
+    ],
+  ];
+
+  $form['#entity_builders'][] = 'summary_word_limit_field_config_edit_form_builder';
+}
+
+/**
+ * Entity builder callback for FieldConfig entity form.
+ *
+ * Sets the third party setting for the FieldConfig entity.
+ *
+ * @see summary_word_limit_form_field_config_edit_form_alter().
+ */
+function summary_word_limit_field_config_edit_form_builder($entity_type, FieldConfig $field_config, &$form, FormStateInterface $form_state) {
+  $settings = $form_state->getValue('settings');
+
+  if ($settings['display_summary'] && !empty($settings['summary_word_limit_count'])) {
+    $field_config->setThirdPartySetting('summary_word_limit', 'summary_word_limit_count', $settings['summary_word_limit_count']);
+    return;
+  }
+
+  $field_config->unsetThirdPartySetting('summary_word_limit', 'summary_word_limit_count');
+}
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ */
+function summary_word_limit_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $entity_type, $bundle) {
+
+  foreach ($fields as $key => $field) {
+    if ($field instanceof \Drupal\field\Entity\FieldConfig) {
+      /** @var \Drupal\field\Entity\FieldConfig $field */
+
+      $summary_word_limit_count = $field->getThirdPartySetting('summary_word_limit', 'summary_word_limit_count');
+
+      if ($summary_word_limit_count) {
+        $fields[$key]->addConstraint('SummaryWordLimit');
+      }
+    }
+  }
+}
