@@ -59,7 +59,7 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
-            weight: 2
+            weight: 3
           26c5ec80-4c2a-486d-9206-45f4caf49eac:
             uuid: 26c5ec80-4c2a-486d-9206-45f4caf49eac
             region: banner
@@ -88,7 +88,7 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
-            weight: 3
+            weight: 2
         third_party_settings: {  }
       -
         layout_id: layout_onecol

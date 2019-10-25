@@ -79,7 +79,7 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
-            weight: 2
+            weight: 3
           d09dd993-a763-4a0d-bd72-652247eec7cc:
             uuid: d09dd993-a763-4a0d-bd72-652247eec7cc
             region: banner
@@ -98,6 +98,24 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 1
+          b098a94e-41f0-4d6c-8fe7-2e4fd261beae:
+            uuid: b098a94e-41f0-4d6c-8fe7-2e4fd261beae
+            region: banner
+            configuration:
+              id: 'field_block:node:course:field_representative_image'
+              label: 'Representative Image'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 2
           67c13d00-4dc9-46b2-b305-3d432c3ffd9c:
             uuid: 67c13d00-4dc9-46b2-b305-3d432c3ffd9c
             region: banner

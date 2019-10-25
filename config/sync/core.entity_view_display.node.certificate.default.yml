@@ -98,7 +98,7 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
-            weight: 2
+            weight: 3
           b0e922ef-4160-4605-b9ac-c4170e446dad:
             uuid: b0e922ef-4160-4605-b9ac-c4170e446dad
             region: content
@@ -224,6 +224,24 @@ third_party_settings:
                 type: text_default
             additional: {  }
             weight: 7
+          b3ba24ab-19a2-416f-8ecb-cd31e3ac9b5f:
+            uuid: b3ba24ab-19a2-416f-8ecb-cd31e3ac9b5f
+            region: banner
+            configuration:
+              id: 'field_block:node:certificate:field_representative_image'
+              label: 'Representative Image'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 2
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
