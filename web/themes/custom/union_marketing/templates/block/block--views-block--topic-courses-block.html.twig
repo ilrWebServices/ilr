@@ -30,8 +30,7 @@
   {% if content.view_build['#rows'] is not empty %}
     {% include '@union/_section-heading.twig' with {
       attributes: { class: 'cu-section-heading--framed cu-section-heading--framed-right' },
-      heading: 'Upcoming Classes',
-      subheading: 'Programs'
+      heading: 'Upcoming Courses'|t
     } only %}
     {{ content }}
   {% endif %}
