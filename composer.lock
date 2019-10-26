@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cce9eb2eff2b2a82cb3fae25abe8bec8",
+    "content-hash": "5b9594a6f088b496c38fa6e15e2158b4",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3948,6 +3948,54 @@
             }
         },
         {
+            "name": "drupal/summary_word_limit",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/summary_word_limit.git",
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/summary_word_limit-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "0984d2a6f3969bf39774ac28752860b273663116"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1572045487",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "jeffam",
+                    "homepage": "https://www.drupal.org/user/397127"
+                }
+            ],
+            "description": "Adds a setting to Text with Summary fields to limit the number of words in the summary.",
+            "homepage": "https://www.drupal.org/project/summary_word_limit",
+            "support": {
+                "source": "http://cgit.drupalcode.org/summary_word_limit",
+                "issues": "https://www.drupal.org/project/issues/summary_word_limit"
+            }
+        },
+        {
             "name": "drupal/token",
             "version": "1.5.0",
             "source": {
@@ -4113,7 +4161,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.4",
-                    "datestamp": "1563096785",
+                    "datestamp": "1563099329",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"

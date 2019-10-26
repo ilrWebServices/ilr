@@ -6,7 +6,11 @@ dependencies:
     - field.storage.node.body
     - node.type.course
   module:
+    - summary_word_limit
     - text
+third_party_settings:
+  summary_word_limit:
+    summary_word_limit_count: '50'
 id: node.course.body
 field_name: body
 entity_type: node
