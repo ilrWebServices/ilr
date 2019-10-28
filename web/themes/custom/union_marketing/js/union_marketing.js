@@ -17,4 +17,34 @@
     }
   };
 
+  Drupal.behaviors.union_marketing_course_notification_form = {
+    attach: function (context, settings) {
+      const course_notification_forms = context.querySelectorAll('.webform-submission-course-notification-form');
+
+      for (const course_notification_form of course_notification_forms) {
+        let inputs = course_notification_form.querySelector('.info-fields');
+
+        // Hide most of the form inputs by default.
+        inputs.style.display = 'none';
+
+        course_notification_form.addEventListener('click', function(event) {
+          if (event.target.matches('.webform-button--submit' === false)) {
+            return;
+          }
+
+          // `currentTarget` is the form, where this event handler is attached.
+          let inputs = event.currentTarget.querySelector('.info-fields');
+
+          // If the inputs are hidden, show them and don't submit the form. From
+          // now on, when the submit button is clicked the form will be actually
+          // submitted.
+          if (inputs.style.display === 'none') {
+            inputs.style.display = 'block';
+            event.preventDefault();
+          }
+        });
+      }
+    }
+  };
+
 })(window, document, Drupal);

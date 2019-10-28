@@ -14,7 +14,11 @@ dependencies:
     - views.view.instructors_for_course
     - views.view.related_courses
     - views.view.topics_list
+    - webform.webform.course_notification
+  content:
+    - 'block_content:simple_text:d300d9db-a8e3-4082-84f4-fea3ae4f21ae'
   module:
+    - block_content
     - ilr
     - layout_builder
     - system
@@ -22,6 +26,7 @@ dependencies:
     - union_organizer
     - user
     - views
+    - webform
 third_party_settings:
   layout_builder:
     allow_custom: false
@@ -201,6 +206,39 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 1
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_twocol
+        layout_settings: {  }
+        components:
+          c2d905b7-a63b-4895-bb23-248d5423fac5:
+            uuid: c2d905b7-a63b-4895-bb23-248d5423fac5
+            region: second
+            configuration:
+              id: 'block_content:d300d9db-a8e3-4082-84f4-fea3ae4f21ae'
+              label: 'Have Questions?'
+              provider: block_content
+              label_display: visible
+              status: true
+              info: ''
+              view_mode: full
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+          758725c7-af6c-43b8-aaec-a3d909aa1f32:
+            uuid: 758725c7-af6c-43b8-aaec-a3d909aa1f32
+            region: first
+            configuration:
+              id: webform_block
+              label: 'Get Updates'
+              provider: webform
+              label_display: visible
+              webform_id: course_notification
+              default_data: ''
+              redirect: false
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
