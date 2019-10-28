@@ -6,3 +6,7 @@
     font-weight: bold;
   }
 }
+
+.course-notification-course-ref {
+  display: none !important; // This is filled in via JS.
+}
