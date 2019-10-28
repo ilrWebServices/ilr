@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b9594a6f088b496c38fa6e15e2158b4",
+    "content-hash": "0f92d4d7ee31af43e0a527655b709897",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4161,7 +4161,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.4",
-                    "datestamp": "1563099329",
+                    "datestamp": "1563096785",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5161,10 +5161,10 @@
         },
         {
             "name": "npm-asset/cornell_ilr--union",
-            "version": "0.2.8",
+            "version": "0.2.9",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/@cornell_ilr/union/-/union-0.2.8.tgz"
+                "url": "https://registry.npmjs.org/@cornell_ilr/union/-/union-0.2.9.tgz"
             },
             "type": "npm-asset",
             "license": [
