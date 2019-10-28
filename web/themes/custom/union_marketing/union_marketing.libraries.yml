@@ -5,6 +5,8 @@ global:
       css/style.css: {}
   js:
     js/union_marketing.js: {}
+  dependencies:
+    - core/drupal
 livereload:
   remote: https://github.com/mklabs/tiny-lr
   version: 1.1.1
