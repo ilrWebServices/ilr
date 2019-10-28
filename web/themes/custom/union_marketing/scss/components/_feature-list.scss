@@ -1,0 +1,10 @@
+// Include union overrides here for feature lists
+.certificate-list {
+  .cu-feature-list__item {
+    margin-bottom: var(--cu-vr1);
+  }
+
+  .cu-feature-list__description {
+    --cu-current-font-size: var(--cu-ms-1);
+  }
+}
