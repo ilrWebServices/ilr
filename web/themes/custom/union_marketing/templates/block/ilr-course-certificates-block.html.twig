@@ -13,7 +13,12 @@
     {{ title_suffix }}
 
     {% set box_content %}
-      <h2 class="cu-heading">Certificates Including this Course</h2>
+      {% set heading = (certs|length > 1)
+        ? 'This course is part of these certificates'
+        :  'This course is part of this certificate'
+      %}
+
+      <h2 class="cu-heading">{{ heading|t }}</h2>
       {% include "@union/_feature-list.twig" with {
         items: certs,
         content_attributes: { class: 'cu-grid--3col' }
