@@ -29,7 +29,7 @@
   {{ title_suffix }}
   {% if content.view_build['#rows'] is not empty %}
     {% include '@union/_section-heading.twig' with {
-      attributes: { class: 'cu-section-heading--framed cu-section-heading--framed-right' },
+      attributes: { class: 'cu-section-heading--framed cu-section-heading--framed-right', id: 'programs' },
       heading: 'Upcoming Courses'|t
     } only %}
     {{ content }}
