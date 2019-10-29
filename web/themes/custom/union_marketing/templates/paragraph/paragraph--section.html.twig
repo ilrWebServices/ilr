@@ -66,13 +66,18 @@
     }
   } %}
 
-  {# Egad! See https://www.drupal.org/project/components/issues/3081314 for a
-  possible future improvement to this syntax. #}
-  {% set content = content|merge({
-    '_entity_reference_layout': content._entity_reference_layout|merge({
-      'content': content._entity_reference_layout.content|merge(ilr_header)
-    })
-  }) %}
+  {# Make sure there is content in the section #}
+  {% if content._entity_reference_layout %}
+    {# Egad! See https://www.drupal.org/project/components/issues/3081314 for a
+    possible future improvement to this syntax. #}
+    {% set content = content|merge({
+      '_entity_reference_layout': content._entity_reference_layout|merge({
+        'content': content._entity_reference_layout.content|merge(ilr_header)
+      })
+    }) %}
+  {% else %}
+    {% set content = content|merge(ilr_header) %}
+  {% endif %}
 {% endif %}
 
 {{ content|without('field_heading','field_subheading') }}
