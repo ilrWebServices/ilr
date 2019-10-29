@@ -96,7 +96,8 @@
     ],
     "post-update-cmd": [
       "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
-    ]
+    ],
+    "sync-prod": "drush sql:drop && drush sql:sync @ilr-web.master @self"
   },
   "extra": {
     "composer-exit-on-patch-failure": true,
