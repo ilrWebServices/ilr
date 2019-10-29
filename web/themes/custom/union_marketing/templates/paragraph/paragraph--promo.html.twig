@@ -1,0 +1,20 @@
+{% set rendered_media %}
+  {% if content.field_media is not empty %}
+    {{ content.field_media }}
+    {% set attributes = attributes.addClass('cu-card--promo-with-media') %}
+  {% endif %}
+
+{% endset %}
+
+{% set attributes = attributes.addClass('cu-card--promo') %}
+
+{% set rendered_content %}
+  {{ content|without('field_media') }}
+{% endset %}
+
+{% include '@union/_card.twig' with {
+  card_content: rendered_content,
+  card_media: rendered_media,
+  attributes: attributes
+} only %}
+

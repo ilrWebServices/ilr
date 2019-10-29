@@ -1,0 +1,21 @@
+uuid: 9379f965-5395-4af7-8de9-5a847f1ff565
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - paragraphs.paragraphs_type.promo
+  module:
+    - text
+id: paragraph.promo.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: promo
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

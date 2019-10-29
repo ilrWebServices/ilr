@@ -1,0 +1,3 @@
+{% for item in items %}
+  {{ item.content|merge({'#options': {'attributes': {'class': ['cu-button', 'cu-button--overlay']}}}) }}
+{% endfor %}
