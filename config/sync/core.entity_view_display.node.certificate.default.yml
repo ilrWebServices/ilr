@@ -303,6 +303,31 @@ third_party_settings:
             additional: {  }
             weight: 2
         third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          full_width: 1
+          extra_classes: ''
+        components:
+          14ac907d-c792-4f48-ac1c-586ed2fff093:
+            uuid: 14ac907d-c792-4f48-ac1c-586ed2fff093
+            region: main
+            configuration:
+              id: 'field_block:node:certificate:field_media_section'
+              label: 'Media Section'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_revisions_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
 id: node.certificate.default
 targetEntityType: node
 bundle: certificate
