@@ -1,3 +1,11 @@
+{# {% if paragraph.field_full_width.value %}
+  {% set section_attributes = { class:'cu-section--wide' } %}
+{% endif %} #}
+
+{# {% if paragraph.field_collapse_margins.value %}
+  {% set section_attributes = { class:'cu-section--gapless' } %}
+{% endif %} #}
+
 {% if content.field_heading['#items'] is not empty %}
   {% set heading = content.field_heading['#items'].getValue().0.value %}
   {% set subheading = (content.field_subheading['#items'] is not empty)
@@ -12,7 +20,4 @@
   } only %}
 {% endif %}
 
-<div{{attributes}}>
-  {{ content|without('field_heading','field_subheading') }}
-</div>
-
+{{ content|without('field_heading','field_subheading') }}

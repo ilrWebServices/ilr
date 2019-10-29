@@ -12,9 +12,9 @@ dependencies:
     - entity_reference_layout
     - ilr
     - layout_builder
-    - layout_discovery
     - system
     - text
+    - union_organizer
     - user
 third_party_settings:
   layout_builder:
@@ -91,12 +91,14 @@ third_party_settings:
             weight: 2
         third_party_settings: {  }
       -
-        layout_id: layout_onecol
-        layout_settings: {  }
+        layout_id: layout_cu_section
+        layout_settings:
+          full_width: 1
+          extra_classes: ''
         components:
-          1bd194e1-4b89-4a86-8cce-6b39e10d6710:
-            uuid: 1bd194e1-4b89-4a86-8cce-6b39e10d6710
-            region: content
+          963a14fe-dc41-4c60-b299-bac9aeacc5d5:
+            uuid: 963a14fe-dc41-4c60-b299-bac9aeacc5d5
+            region: main
             configuration:
               id: 'field_block:node:page:field_sections'
               label: Sections

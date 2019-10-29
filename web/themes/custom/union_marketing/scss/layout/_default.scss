@@ -25,6 +25,17 @@ body {
   }
 }
 
+.layout__region--first,
+.layout__region--second {
+  display: grid;
+  grid-gap: var(--cu-vr2) var(--cu-grid-column-gap);
+
+  .cu-section--gapless & {
+    grid-gap: 0;
+  }
+}
+
+
 header {
   grid-row: header;
   grid-column: content;

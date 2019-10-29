@@ -26,17 +26,18 @@ settings:
       section:
         weight: '4'
         enabled: 0
+      promo:
+        weight: '5'
+        enabled: 0
       rich_text:
         weight: '5'
         enabled: 0
       testimonial:
         weight: '8'
         enabled: 0
-    layout_bundles:
-      - section
+    layout_bundles: section
     allowed_layouts:
-      'Columns: 1':
-        layout_onecol: 'One column'
       ILR:
-        layout_cu_twocol: 'Two column'
+        layout_cu_onecol: 'Union Sublayout: 1 Column'
+        layout_cu_twocol: 'Union Sublayout: 2 Columns'
 field_type: entity_reference_layout_revisioned
