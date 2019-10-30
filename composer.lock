@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b3e855bfd0ace36babe740e527d0bf24",
+    "content-hash": "eb9c48eedef7a4feee0a6ecd8dc2cfe7",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5326,10 +5326,16 @@
         },
         {
             "name": "npm-asset/cornell_ilr--union",
-            "version": "0.2.11",
+            "version": "v0.2.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ilrWebServices/union.git",
+                "reference": "f3bb9b3cdc1ec8e24ecda4c707de191b0860ab12"
+            },
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/@cornell_ilr/union/-/union-0.2.11.tgz"
+                "type": "zip",
+                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/f3bb9b3cdc1ec8e24ecda4c707de191b0860ab12",
+                "reference": "f3bb9b3cdc1ec8e24ecda4c707de191b0860ab12"
             },
             "type": "npm-asset",
             "license": [
