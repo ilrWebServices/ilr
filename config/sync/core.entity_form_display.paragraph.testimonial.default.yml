@@ -8,6 +8,8 @@ dependencies:
     - field.field.paragraph.testimonial.field_quote
     - field.field.paragraph.testimonial.field_remark
     - paragraphs.paragraphs_type.testimonial
+  module:
+    - media_library
 id: paragraph.testimonial.default
 targetEntityType: paragraph
 bundle: testimonial
@@ -16,11 +18,9 @@ content:
   field_media:
     weight: 4
     settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: media_library_widget
     region: content
   field_name:
     weight: 0
