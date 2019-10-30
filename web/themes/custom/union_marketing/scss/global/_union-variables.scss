@@ -10,3 +10,8 @@
     --cu-current-heading-size: var(--cu-ms2);
   }
 }
+
+.cu-card--padded {
+  --cu-card-background: #efefef;
+  --cu-grid-row-gap: .5em;
+}
