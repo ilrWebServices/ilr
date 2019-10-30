@@ -21,10 +21,6 @@
       "url": "https://packages.drupal.org/8"
     },
     {
-      "type": "composer",
-      "url": "https://asset-packagist.org"
-    },
-    {
       "type": "vcs",
       "url": "https://github.com/ilrWebServices/union_organizer.git"
     }
@@ -58,7 +54,6 @@
     "drupal/union_organizer": "dev-master",
     "drupal/webform": "^5.4",
     "drush/drush": "^9.0.0",
-    "npm-asset/cornell_ilr--union": "^0.2.12",
     "oomphinc/composer-installers-extender": "^1.1",
     "platformsh/config-reader": "^2.3",
     "vlucas/phpdotenv": "^2.4",
@@ -108,7 +103,6 @@
     "installer-paths": {
       "web/core": ["type:drupal-core"],
       "web/libraries/{$name}": ["type:drupal-library"],
-      "web/libraries/union": ["npm-asset/cornell_ilr--union"],
       "web/modules/contrib/{$name}": ["type:drupal-module"],
       "web/profiles/contrib/{$name}": ["type:drupal-profile"],
       "web/themes/contrib/{$name}": ["type:drupal-theme"],

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb9c48eedef7a4feee0a6ecd8dc2cfe7",
+    "content-hash": "11edf12b8b1f4eb5ed9c9be10065ef38",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5323,24 +5323,6 @@
                 "php"
             ],
             "time": "2019-05-25T20:07:01+00:00"
-        },
-        {
-            "name": "npm-asset/cornell_ilr--union",
-            "version": "v0.2.12",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ilrWebServices/union.git",
-                "reference": "f3bb9b3cdc1ec8e24ecda4c707de191b0860ab12"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/f3bb9b3cdc1ec8e24ecda4c707de191b0860ab12",
-                "reference": "f3bb9b3cdc1ec8e24ecda4c707de191b0860ab12"
-            },
-            "type": "npm-asset",
-            "license": [
-                "MIT"
-            ]
         },
         {
             "name": "oomphinc/composer-installers-extender",
