@@ -70,24 +70,42 @@
  *   in different view modes.
  */
 #}
-{% set more_link = (class_count > 1)
-  ? { url: url, text: 'See more dates and locations'|t }
-  : false
-%}
+{{ attach_library('union_organizer/button') }}
+{% set feature_list_items = [] %}
+
+{% for detail in course_details %}
+{% set feature_list_items = feature_list_items|merge([{
+  name: detail,
+  icon: 'check-circle',
+  icon_size: '1em'
+}]) %}
+{% endfor %}
 
 {% set rendered_description %}
-{{ content.body }}
+<div class="pinned-wrapper">
+<h3 class="cu-heading">{{ label }}</h3>
 {{ title_suffix }}
+
+{{ content.body }}
+
+<hr class="pad" />
+
+{% include '@union/_feature-list.twig' with {
+  items: feature_list_items,
+  content_attributes: { class: 'cu-grid' }
+} only %}
+
+<hr class="pad" />
+
+{% if class_count > 1 %}<a href="{{ url }}">{{ 'See more dates and locations'|t }}</a><hr class="pad" />{% endif %}
+</div>
+
+<a href="{{ url }}" class="cu-button">Learn more</a>
 {% endset %}
 
-{% include "@union/_course-teaser.twig" with {
-  attributes: attributes,
-  title: node.label,
-  description: rendered_description,
-  details: course_details,
-  cta: {
-    url: url,
-    text: 'Learn more'
-  },
-  more_link: more_link
+{% include '@union/_card.twig' with {
+  card_content: rendered_description,
+  card_link_url: url,
+  card_link_alt: 'See more dates and locations for ' ~ node.label|t,
+  attributes: attributes.addClass('cu-card--padded cu-card--pinned')
 } only %}
