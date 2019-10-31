@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.node.class.body
+    - field.field.node.class.field_class_cancelled
+    - field.field.node.class.field_class_full
     - field.field.node.class.field_course
     - field.field.node.class.field_date_end
     - field.field.node.class.field_date_start
@@ -24,6 +26,26 @@ content:
     weight: 101
     settings: {  }
     third_party_settings: {  }
+    region: content
+  field_class_cancelled:
+    weight: 107
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_class_full:
+    weight: 106
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_course:
     weight: 105
