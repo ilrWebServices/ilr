@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11edf12b8b1f4eb5ed9c9be10065ef38",
+    "content-hash": "d737cf3532dce154ace16c4f273520fa",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4212,7 +4212,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.4",
-                    "datestamp": "1563099329",
+                    "datestamp": "1563096785",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4297,12 +4297,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union_organizer.git",
-                "reference": "821e26fe052319fb859669a72a01e22b7a57c98a"
+                "reference": "ca6c52f4c6104e61cf576298d27ad3f0be4af7b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/821e26fe052319fb859669a72a01e22b7a57c98a",
-                "reference": "821e26fe052319fb859669a72a01e22b7a57c98a",
+                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/ca6c52f4c6104e61cf576298d27ad3f0be4af7b5",
+                "reference": "ca6c52f4c6104e61cf576298d27ad3f0be4af7b5",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -4318,7 +4318,7 @@
                 "issues": "https://github.com/ilrWebServices/union_organizer/issues",
                 "source": "https://github.com/ilrWebServices/union_organizer.git"
             },
-            "time": "2019-10-29T18:42:26+00:00"
+            "time": "2019-10-31T15:03:07+00:00"
         },
         {
             "name": "drupal/webform",
