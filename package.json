@@ -15,7 +15,7 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp sass",
-    "postinstall": "cp -rf ./node_modules/@cornell_ilr/union ./web/libraries/union"
+    "postinstall": "rsync -av --delete ./node_modules/@cornell_ilr/union web/libraries/"
   },
   "repository": {
     "type": "git",
