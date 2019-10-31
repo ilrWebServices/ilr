@@ -99,6 +99,11 @@
     "patchLevel": {
       "drupal/core": "-p2"
     },
+    "patches": {
+      "drupal/core": {
+        "Form blocks rendered inside layout builder break save": "https://www.drupal.org/files/issues/2019-08-12/3045171-79.patch"
+      }
+    },
     "installer-types": ["npm-asset"],
     "installer-paths": {
       "web/core": ["type:drupal-core"],
