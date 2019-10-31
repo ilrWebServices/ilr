@@ -47,6 +47,16 @@ field_mappings:
     drupal_field_value: field_price
     salesforce_field: Event_Class_Fee__c
     direction: sf_drupal
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_class_full
+    salesforce_field: Is_Full__c
+    direction: sf_drupal
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_class_cancelled
+    salesforce_field: Is_Cancelled__c
+    direction: sf_drupal
 push_limit: 0
 push_retries: 3
 push_frequency: 0
