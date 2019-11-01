@@ -15,7 +15,7 @@
   "scripts": {
     "start": "gulp",
     "build": "gulp sass",
-    "postinstall": "if [[ -L \"./web/libraries/union\" ]]; then echo \"./web/libraries/union is a symlink; skipping copy from ./node_modules\"; else rsync -av --delete ./node_modules/@cornell_ilr/union ./web/libraries/; fi"
+    "postinstall": "if [ -L \"./web/libraries/union\" ]; then echo \"./web/libraries/union is a symlink; skipping copy from ./node_modules\"; else rsync -av --delete ./node_modules/@cornell_ilr/union ./web/libraries/; fi"
   },
   "repository": {
     "type": "git",
