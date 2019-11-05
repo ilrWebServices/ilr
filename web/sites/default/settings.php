@@ -796,10 +796,12 @@ if (file_exists($app_root . '/' . $site_path . '/settings.platformsh.php')) {
  * the web server environment (or the .env file, generally only used by
  * developers).
  */
-$config['salesforce.settings']['consumer_key'] = getenv('SALESFORCE_CONSUMER_KEY');
-$config['salesforce.settings']['consumer_secret'] = getenv('SALESFORCE_CONSUMER_SECRET');
-$config['salesforce.settings']['login_url'] = getenv('SALESFORCE_LOGIN_URL');
-$config['ilr_registration_system.settings']['url'] = getenv('REGISTRATION_SYSTEM_URL');
+if (getenv('SALESFORCE_ENABLED')) {
+  $config['salesforce.settings']['consumer_key'] = getenv('SALESFORCE_CONSUMER_KEY');
+  $config['salesforce.settings']['consumer_secret'] = getenv('SALESFORCE_CONSUMER_SECRET');
+  $config['salesforce.settings']['login_url'] = getenv('SALESFORCE_LOGIN_URL');
+  $config['ilr_registration_system.settings']['url'] = getenv('REGISTRATION_SYSTEM_URL');
+}
 
 /**
  * Migration data sources.
