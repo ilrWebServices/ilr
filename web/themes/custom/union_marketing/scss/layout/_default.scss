@@ -14,6 +14,7 @@ body {
 
   @include medium {
     justify-items: stretch;
+    grid-template-columns: [left-gutter] 1fr [content] 44fr [right-gutter] 1fr;
   }
 
   &--sidebar-right {
@@ -58,7 +59,7 @@ aside.layout-sidebar-first {
 
 footer {
   grid-row: footer;
-  grid-column: 1 / -1;
+  grid-column: content;
 }
 
 hr.pad {
