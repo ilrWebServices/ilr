@@ -1,8 +1,3 @@
-// Start libs - paths starting from /node-modules/ directory
-// A cleaner way to do breakpoints/media queries, http://breakpoint-sass.com/
-@import "breakpoint-sass/stylesheets/breakpoint";
-// End libs
-
 @import "global/variables";
 @import "global/union-variables";
 @import "global/breakpoints";

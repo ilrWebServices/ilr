@@ -4,7 +4,7 @@ header {
 }
 
 aside.layout-sidebar-first {
-  @include breakpoint($medium) {
+  @include breakpoint(md) {
     margin-top: 4.5rem;
   }
 }

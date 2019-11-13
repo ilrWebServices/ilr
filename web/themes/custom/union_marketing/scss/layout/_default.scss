@@ -12,13 +12,13 @@ body {
   grid-template-rows: [header] auto [body] auto [content-bottom] auto [footer] auto;
   grid-template-columns: [left-gutter] 1fr [content] 22fr [right-gutter] 1fr;
 
-  @include medium {
+  @include breakpoint(md) {
     justify-items: stretch;
     grid-template-columns: [left-gutter] 1fr [content] 44fr [right-gutter] 1fr;
   }
 
   &--sidebar-right {
-    @include medium {
+    @include breakpoint(md) {
       grid-column-gap: 2rem;
       grid-template-columns: [left-gutter] 2fr [content] 9fr [sidebar] 3fr [right-gutter] 2fr;
       justify-items: stretch;
@@ -51,7 +51,7 @@ aside.layout-sidebar-first {
   grid-row: content-bottom;
   grid-column: content;
 
-  @include medium {
+  @include breakpoint(md) {
     grid-row: body;
     grid-column: sidebar;
   }
