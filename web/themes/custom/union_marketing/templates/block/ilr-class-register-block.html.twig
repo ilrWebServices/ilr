@@ -1,21 +1,54 @@
 {# @todo: fix issues with outputting the time #}
-{% set class_details = [] %}
+{% set form_elements = [] %}
 {% for class in classes %}
+  {% set cancelled = class.entity.field_class_cancelled.value == '1' %}
   {% set class_register_url = drupal_config('ilr_registration_system.settings', 'url') ~ class.salesforce_id %}
+
   {% set content %}
+    {% if cancelled %}
+      <p class="message--cancelled">Cancelled</p>
+    {% endif %}
     <p class="cu-checkbutton__date">{{ class.entity.field_date_start.value|date("M d, Y") }}</p>
     <time class="cu-checkbutton__time">{{ class.entity.field_date_start.value|date("h:i a") ~ ' - ' ~ class.entity.field_date_end.value|date("h:i a") }}</time>
-    <p class="cu-checkbutton__price cu-js-price">${{ class.entity.field_price.value }}</p>
-    <a href="{{ class_register_url }}" class="cu-button cu-button--alt">Register</a>
+    {% if not cancelled %}
+      <p class="cu-checkbutton__price cu-js-price">${{ class.entity.field_price.value }}</p>
+      <a href="{{ class_register_url }}" class="cu-button cu-button--alt">Register</a>
+    {% endif %}
   {% endset %}
-  {% set class_details = class_details|merge([{
-      id: class.entity.id,
-      content: content,
-      price: class.entity.field_price.value|round,
-      url: class_register_url,
-    }]) %}
+
+  {% set input = {
+    'id': 'event-checkbutton-'~class.entity.id,
+    'type': 'radio',
+    'name': 'event-checkbutton-'~class.group,
+    'value': class_register_url,
+    'data-price': '$'~class.entity.field_price.value|round,
+    'disabled': cancelled
+  } %}
+
+  {% set element %}
+    {% include '@union/_form-checkbutton.twig' with {
+        label_content: content,
+        input_attributes: input,
+        disabled: cancelled
+      } only %}
+  {% endset %}
+  {% set form_elements = form_elements|merge([element]) %}
 {% endfor %}
 
+{% set form_content %}
+  <div class="cu-registration-form__active-price">{# This content gets populated via js #}
+  </div>
+  <div class="cu-registration-form__form">
+    {% if form_elements is not empty %}
+    {% for element in form_elements %}
+      {{ element }}
+    {% endfor %}
+    {% else %}
+      {{ empty_message }}
+    {% endif %}
+  </div>
+{% endset %}
+
 {% include '@union/_registration-form.twig' with {
-  events: class_details
+  checkbuttons: form_content
 } only %}
