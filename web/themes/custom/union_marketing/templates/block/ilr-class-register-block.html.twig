@@ -1,6 +1,7 @@
 {# @todo: fix issues with outputting the time #}
 {% set form_elements = [] %}
 {% for class in classes %}
+  {% set course_nid = class.entity.field_course.value[0].target_id %}
   {% set cancelled = class.entity.field_class_cancelled.value == '1' %}
   {% set class_register_url = drupal_config('ilr_registration_system.settings', 'url') ~ class.salesforce_id %}
 
@@ -19,7 +20,7 @@
   {% set input = {
     'id': 'event-checkbutton-'~class.entity.id,
     'type': 'radio',
-    'name': 'event-checkbutton-'~class.group,
+    'name': 'event-checkbutton-'~course_nid,
     'value': class_register_url,
     'data-price': '$'~class.entity.field_price.value|round,
     'disabled': cancelled
