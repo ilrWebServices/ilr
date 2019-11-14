@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.class.body
+    - field.field.node.class.field_address
     - field.field.node.class.field_class_cancelled
     - field.field.node.class.field_class_full
     - field.field.node.class.field_course
@@ -12,6 +13,7 @@ dependencies:
     - field.field.node.class.field_price
     - node.type.class
   module:
+    - address
     - datetime
     - path
     - text
@@ -35,22 +37,28 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_address:
+    weight: 125
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
   field_class_cancelled:
-    weight: 127
+    weight: 128
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_class_full:
-    weight: 126
+    weight: 127
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_course:
-    weight: 125
+    weight: 126
     settings:
       match_operator: CONTAINS
       size: 60

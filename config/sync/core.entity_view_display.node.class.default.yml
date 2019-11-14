@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.class.body
+    - field.field.node.class.field_address
     - field.field.node.class.field_class_cancelled
     - field.field.node.class.field_class_full
     - field.field.node.class.field_course
@@ -12,6 +13,7 @@ dependencies:
     - field.field.node.class.field_price
     - node.type.class
   module:
+    - address
     - datetime
     - text
     - user
@@ -26,6 +28,13 @@ content:
     weight: 101
     settings: {  }
     third_party_settings: {  }
+    region: content
+  field_address:
+    weight: 108
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
     region: content
   field_class_cancelled:
     weight: 107
