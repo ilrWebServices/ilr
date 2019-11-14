@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - salesforce_pull
+    - typed_data
 id: class_node
 label: 'Class Node'
 weight: 1
@@ -56,6 +57,31 @@ field_mappings:
     drupal_field_type: properties
     drupal_field_value: field_class_cancelled
     salesforce_field: Is_Cancelled__c
+    direction: sf_drupal
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_address.address_line1
+    salesforce_field: Event_Location_Street__c
+    direction: sf_drupal
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_address.locality
+    salesforce_field: Event_Location_City__c
+    direction: sf_drupal
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_address.administrative_area
+    salesforce_field: Event_Location_State__c
+    direction: sf_drupal
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_address.postal_code
+    salesforce_field: Event_Location_Zip_Postal_Code__c
+    direction: sf_drupal
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_address.country_code
+    salesforce_field: Event_Location_Country__c
     direction: sf_drupal
 push_limit: 0
 push_retries: 3

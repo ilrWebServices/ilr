@@ -8,6 +8,7 @@ use Drupal\salesforce\Event\SalesforceEvents;
 use Drupal\salesforce_mapping\Event\SalesforceQueryEvent;
 use Drupal\salesforce_mapping\Event\SalesforcePullEvent;
 use Drupal\ilr\CourseToTopicsTrait;
+use Drupal\ilr\CountryISO3To2Trait;
 
 /**
  * Class SalesforceEventSubscriber.
@@ -15,6 +16,7 @@ use Drupal\ilr\CourseToTopicsTrait;
 class SalesforceEventSubscriber implements EventSubscriberInterface {
 
   use CourseToTopicsTrait;
+  use CountryISO3To2Trait;
 
   /**
    * Drupal\Core\Entity\EntityTypeManager definition.
@@ -64,6 +66,10 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
   public function pullPresave(SalesforcePullEvent $event) {
     if ($event->getMapping()->id() === 'course_node') {
       $this->pullPresaveCourseNode($event);
+    }
+
+    if ($event->getMapping()->id() === 'class_node') {
+      $this->pullPresaveClassNode($event);
     }
   }
 
@@ -137,4 +143,28 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     return [];
   }
 
+  /**
+   * Pull presave event callback for class nodes.
+   *
+   * @param \Drupal\salesforce_mapping\Event\SalesforcePullEvent $event
+   *   The event.
+   */
+  private function pullPresaveClassNode(SalesforcePullEvent $event) {
+    $class_node = $event->getEntity();
+    $sf = $event->getMappedObject()->getSalesforceRecord();
+    // Check the country code, and convert 3 letter codes to 2
+    if (strlen($sf->field('Event_Location_Country__c')) == 3) {
+      $address = $class_node->field_address->value;
+      $class_node->field_address->country_code = $this->getTwoLetterCountryCode($sf->field('Event_Location_Country__c'));
+    }
+  }
+
+  private function getTwoLetterCountryCode($three_letter_code) {
+    // `country_code_map` is set in CountryISO3to2Trait.
+    if (array_key_exists($three_letter_code, $this->country_code_map)) {
+      return $this->country_code_map[$three_letter_code];
+    }
+
+    return NULL;
+  }
 }
