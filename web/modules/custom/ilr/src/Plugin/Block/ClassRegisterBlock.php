@@ -67,7 +67,7 @@ class ClassRegisterBlock extends BlockBase implements ContainerFactoryPluginInte
       return $build;
     }
 
-    $classes = $node->classes->referencedEntities();
+    $classes = $this->removeOverflowSessions($node->classes->referencedEntities());
 
     $class_info = [];
     foreach ($classes as $class) {
@@ -96,6 +96,57 @@ class ClassRegisterBlock extends BlockBase implements ContainerFactoryPluginInte
     ];
 
     return $build;
+  }
+
+  /**
+   * If a class session is full, there are times when additional
+   * sessions at the same date/time are created to accommodate
+   * more participants. In such cases, we should remove
+   * the full class session from the display to avoid confusion.
+   *
+   * @param [Array] $classes
+   * @return [Array] $classes
+   */
+  private function removeOverflowSessions($classes) {
+    if (count($classes) == 1) {
+      return $classes;
+    }
+
+    $possible_duplicates = [];
+
+    // Loop through and check date/location for classes
+    foreach ($classes as $class) {
+      $city = (!empty($class->field_address->locality))
+        ? $class->field_address->locality
+        : 'online';
+      $time_and_place = $class->field_date_start->value . $city;
+      $class_info = [$time_and_place => $class];
+
+      // If there is already a class with the same time_place
+      // turn that value into an array
+      if (array_key_exists($time_and_place, $possible_duplicates)) {
+        $first = $possible_duplicates[$time_and_place];
+        $possible_duplicates[$time_and_place] = [$first, $class];
+      }
+      else {
+        $possible_duplicates[$time_and_place] = $class;
+      }
+    }
+
+    // Remove the full class from the display
+    foreach ($possible_duplicates as $classes_at_time_and_place) {
+      if (is_array($classes_at_time_and_place)) {
+        foreach ($classes_at_time_and_place as $class) {
+          if ($class->field_class_full->value == 1) {
+            if (($key = array_search($class, $classes)) !== FALSE) {
+              unset($classes[$key]);
+            }
+          }
+        }
+      }
+    }
+
+    return $classes;
   }
 
 }
