@@ -93,7 +93,7 @@
     "post-update-cmd": [
       "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
     ],
-    "sync-prod": "drush sql:drop && drush sql:sync @ilr-web.master @self"
+    "sync-prod": "drush sql:drop && drush sql:sync @ilr-web.master @self && echo \"Be sure to update trigger DEFINERs to prevent database errors.\""
   },
   "extra": {
     "composer-exit-on-patch-failure": true,
