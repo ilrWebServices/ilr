@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.class.body
     - field.field.node.class.field_address
     - field.field.node.class.field_class_cancelled
+    - field.field.node.class.field_class_date
     - field.field.node.class.field_class_full
     - field.field.node.class.field_course
     - field.field.node.class.field_date_end
@@ -15,6 +16,7 @@ dependencies:
   module:
     - address
     - datetime
+    - datetime_range
     - text
     - user
 id: node.class.default
@@ -45,6 +47,16 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
+  field_class_date:
+    weight: 109
+    label: above
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
     region: content
   field_class_full:
     weight: 106

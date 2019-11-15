@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.class.body
     - field.field.node.class.field_address
     - field.field.node.class.field_class_cancelled
+    - field.field.node.class.field_class_date
     - field.field.node.class.field_class_full
     - field.field.node.class.field_course
     - field.field.node.class.field_date_end
@@ -15,6 +16,7 @@ dependencies:
   module:
     - address
     - datetime
+    - datetime_range
     - path
     - text
 id: node.class.default
@@ -38,27 +40,33 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_address:
-    weight: 125
+    weight: 126
     settings: {  }
     third_party_settings: {  }
     type: address_default
     region: content
   field_class_cancelled:
+    weight: 129
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_class_date:
+    weight: 123
+    settings: {  }
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  field_class_full:
     weight: 128
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
-  field_class_full:
-    weight: 127
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
   field_course:
-    weight: 126
+    weight: 127
     settings:
       match_operator: CONTAINS
       size: 60
@@ -67,13 +75,13 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_date_end:
-    weight: 124
+    weight: 125
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_date_start:
-    weight: 123
+    weight: 124
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
