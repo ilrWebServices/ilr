@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.course.body
     - field.field.node.course.field_course_number
+    - field.field.node.course.field_delivery_method
     - field.field.node.course.field_media_secondary
     - field.field.node.course.field_media_section
     - field.field.node.course.field_representative_image
@@ -336,6 +337,14 @@ content:
     third_party_settings: {  }
     type: string
     region: banner
+  field_delivery_method:
+    weight: 8
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: main
   field_representative_image:
     weight: 7
     label: above
