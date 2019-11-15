@@ -2,6 +2,7 @@
 {% set form_elements = [] %}
 {% for class in classes %}
   {% set course_nid = class.entity.field_course.value[0].target_id %}
+  {% set course = drupal_entity('node', course_nid)['#node'] %}
   {% set cancelled = class.entity.field_class_cancelled.value == '1' %}
   {% set full = class.entity.field_class_full.value == '1' %}
   {% set disabled = null %}
@@ -9,7 +10,11 @@
 
   {% set content %}
     {{ drupal_field('field_class_date', 'node', class.entity.id, 'teaser') }}
-    {{ drupal_field('field_date_start', 'node', class.entity.id, 'teaser') }} - {{ drupal_field('field_date_end', 'node', class.entity.id, 'teaser') }}
+    {% if 'online' in course.field_delivery_method.value|lower %}
+      <p>All instruction will be completed between these dates</p>
+    {% else %}
+      {{ drupal_field('field_date_start', 'node', class.entity.id, 'teaser') }} - {{ drupal_field('field_date_end', 'node', class.entity.id, 'teaser') }}
+    {% endif %}
     {% if cancelled or full %}
       {% set message = (cancelled)
         ? 'Sorry, but this class session was cancelled.'
