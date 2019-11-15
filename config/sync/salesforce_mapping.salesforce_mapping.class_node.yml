@@ -83,6 +83,16 @@ field_mappings:
     drupal_field_value: field_address.country_code
     salesforce_field: Event_Location_Country__c
     direction: sf_drupal
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_class_date.value
+    salesforce_field: Start__c
+    direction: sf_drupal
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_class_date.end_value
+    salesforce_field: End__c
+    direction: sf_drupal
 push_limit: 0
 push_retries: 3
 push_frequency: 0
