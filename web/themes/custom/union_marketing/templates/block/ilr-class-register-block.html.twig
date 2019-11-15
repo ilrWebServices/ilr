@@ -8,16 +8,16 @@
   {% set class_register_url = drupal_config('ilr_registration_system.settings', 'url') ~ class.salesforce_id %}
 
   {% set content %}
+    <p class="cu-checkbutton__date">{{ class.entity.field_date_start.value|date("M d, Y") }}</p>
+    <time class="cu-checkbutton__time">{{ class.entity.field_date_start.value|date("h:i a") ~ ' - ' ~ class.entity.field_date_end.value|date("h:i a") }}</time>
     {% if cancelled or full %}
       {% set message = (cancelled)
         ? 'Sorry, but this class session was cancelled.'
-        : 'Seats in this session are limited. Please contact ilrcustomerservice@cornell.edu or call 866-470-1922.' %}
-      {% set indicator_attributes = { 'data-message': message } %}
+        : 'Seats in this session are limited. Please contact <a href="mailto:ilrcustomerservice@cornell.edu">customer service</a> or call 866-470-1922.' %}
+      {% set indicator_attributes = { 'data-message': message|striptags } %}
       {% set disabled = 'disabled' %}
-    {% endif %}
-    <p class="cu-checkbutton__date">{{ class.entity.field_date_start.value|date("M d, Y") }}</p>
-    <time class="cu-checkbutton__time">{{ class.entity.field_date_start.value|date("h:i a") ~ ' - ' ~ class.entity.field_date_end.value|date("h:i a") }}</time>
-    {% if not cancelled %}
+      <p class="touchscreen-only message">{{ message|raw }}</p>
+    {% else %}
       <p class="cu-checkbutton__price cu-js-price">${{ class.entity.field_price.value }}</p>
       <a href="{{ class_register_url }}" class="cu-button cu-button--alt">Register</a>
     {% endif %}
