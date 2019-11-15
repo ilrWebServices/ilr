@@ -15,7 +15,8 @@ dependencies:
     - field.field.node.class.field_price
     - node.type.class
   module:
-    - datetime_range
+    - date_range_formatter
+    - datetime
     - user
 id: node.class.teaser
 targetEntityType: node
@@ -23,18 +24,42 @@ bundle: class
 mode: teaser
 content:
   field_class_date:
-    type: daterange_default
+    type: date_range_without_time
     weight: 0
     region: content
     label: hidden
     settings:
-      separator: '-'
-      format_type: medium
       timezone_override: ''
+      single: 'M j, Y'
+      single_all_day: 'M j, Y'
+      one_day: 'M j, Y'
+      one_month: 'M j - {j}, Y'
+      several_months: 'M j - {M} {j} Y'
+      several_years: 'M j, Y - {M} {j}, {Y}'
+      separator: '-'
+      date_format: 'Y-m-d\TH:i:s'
+    third_party_settings: {  }
+  field_date_end:
+    type: datetime_default
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: ilr_time
+    third_party_settings: {  }
+  field_date_start:
+    type: datetime_default
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: ilr_time
     third_party_settings: {  }
   field_price:
     type: number_decimal
-    weight: 1
+    weight: 3
     region: content
     label: hidden
     settings:
@@ -43,17 +68,11 @@ content:
       scale: 2
       prefix_suffix: true
     third_party_settings: {  }
-  links:
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
   body: true
   field_address: true
   field_class_cancelled: true
   field_class_full: true
   field_course: true
-  field_date_end: true
-  field_date_start: true
+  links: true
   search_api_excerpt: true
