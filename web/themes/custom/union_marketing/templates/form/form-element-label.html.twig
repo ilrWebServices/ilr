@@ -1,1 +1,4 @@
-{% include "@union/_form-label.twig" %}
+{# Make sure there is content in the label for a11y #}
+{% if element['#title'] %}
+  {% include "@union/_form-label.twig" %}
+{% endif %}
