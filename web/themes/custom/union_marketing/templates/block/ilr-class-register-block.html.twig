@@ -51,7 +51,8 @@
 {% set form_content %}
   <div class="cu-registration-form__active-price">{# This content gets populated via js #}
   </div>
-  <div class="cu-registration-form__form">
+  <div class="cu-registration-form__form" role="radiogroup" aria-labelledby="class-checkbuttons">
+    <h2 id="class-checkbuttons" class="cu-heading visually-hidden">{{ "Choose your Class"|t }}</h2>
     {% if form_elements is not empty %}
     {% for element in form_elements %}
       {{ element }}
