@@ -7,6 +7,7 @@ dependencies:
     - node.type.course
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.testimonial
+    - paragraphs.paragraphs_type.video
   module:
     - entity_reference_revisions
 id: node.course.field_media_secondary
@@ -26,14 +27,21 @@ settings:
     target_bundles:
       rich_text: rich_text
       testimonial: testimonial
+      video: video
     target_bundles_drag_drop:
-      section_heading:
-        enabled: true
-        weight: 3
       rich_text:
         enabled: true
         weight: 4
       testimonial:
         enabled: true
         weight: 4
+      video:
+        enabled: true
+        weight: 6
+      promo:
+        weight: 7
+        enabled: false
+      section:
+        weight: 9
+        enabled: false
 field_type: entity_reference_revisions

@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_media_section
     - node.type.course
     - paragraphs.paragraphs_type.testimonial
+    - paragraphs.paragraphs_type.video
   module:
     - entity_reference_revisions
 id: node.course.field_media_section
@@ -24,11 +25,21 @@ settings:
     negate: 0
     target_bundles:
       testimonial: testimonial
+      video: video
     target_bundles_drag_drop:
-      section_heading:
-        weight: 3
-        enabled: false
       testimonial:
         enabled: true
         weight: 4
+      video:
+        enabled: true
+        weight: 6
+      promo:
+        weight: 7
+        enabled: false
+      rich_text:
+        weight: 8
+        enabled: false
+      section:
+        weight: 9
+        enabled: false
 field_type: entity_reference_revisions
