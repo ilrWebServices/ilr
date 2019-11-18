@@ -1,3 +1,4 @@
+{{ attach_library('union_organizer/form') }}
 
 {% set form_elements = [] %}
 {% for class in classes %}
@@ -63,7 +64,6 @@
   </div>
 {% endset %}
 
-{% include '@union/_form.twig' with {
-  children: form_content,
-  attributes: attributes.addClass(['cu-registration-form'])
-} only %}
+<div class="cu-form cu-registration-form">
+  {{ form_content }}
+</div>
