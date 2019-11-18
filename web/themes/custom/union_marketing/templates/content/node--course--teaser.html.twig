@@ -97,11 +97,11 @@
 
 <hr class="pad" />
 
-{% if class_count > 1 %}<a href="{{ url }}">{{ 'See more dates and locations'|t }}</a><hr class="pad" />{% endif %}
+{% if class_count > 1 %}<p class="cu-style cu-style--link">{{ 'See more dates and locations'|t }}</p><hr class="pad" />{% endif %}
 </div>
 
 {% set register_link_text = 'Register <span class="visually-hidden"> for ' ~ node.label ~ '</span>'%}
-  <a href="{{ url }}" class="cu-button">{{ register_link_text|raw }}</a>
+  <p class="cu-button">{{ register_link_text|raw }}</p>
 {% endset %}
 
 {% include '@union/_card.twig' with {
