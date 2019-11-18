@@ -1,6 +1,10 @@
+{% set logo_attributes = {
+  src: union_file('images/ilr-wordmark.svg'),
+  alt: 'The ILR School home'
+}%}
+
 {% include '@union/_logo.twig' with {
-  logo_src: union_file('images/ilr-wordmark.svg'),
   logo_link: path('<front>'),
-  logo_alt: site_name,
+  attributes: logo_attributes,
   wrapper_attributes: { class: 'cu-logo--ilr-wordmark'}
 } only %}
