@@ -32,6 +32,11 @@ field_mappings:
     drupal_field_value: field_job_title
     salesforce_field: Title
     direction: sf_drupal
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_last_name
+    salesforce_field: LastName
+    direction: sf_drupal
 push_limit: 0
 push_retries: 3
 push_frequency: 0
