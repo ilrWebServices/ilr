@@ -209,6 +209,19 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 1
+          d7aa2004-49b9-4be1-93d0-5138dcac3778:
+            uuid: d7aa2004-49b9-4be1-93d0-5138dcac3778
+            region: main
+            configuration:
+              id: 'views_block:instructors_for_course-block_simple_list'
+              label: Instructors
+              provider: views
+              label_display: visible
+              views_label: Instructors
+              items_per_page: none
+              context_mapping: {  }
+            additional: {  }
+            weight: 2
         third_party_settings: {  }
       -
         layout_id: layout_cu_twocol
@@ -239,24 +252,6 @@ third_party_settings:
               webform_id: course_notification
               default_data: ''
               redirect: false
-              context_mapping: {  }
-            additional: {  }
-            weight: 0
-        third_party_settings: {  }
-      -
-        layout_id: layout_cu_section
-        layout_settings: {  }
-        components:
-          3de5583f-b904-4423-84bd-58a2dabe1884:
-            uuid: 3de5583f-b904-4423-84bd-58a2dabe1884
-            region: main
-            configuration:
-              id: 'views_block:instructors_for_course-block_distinct'
-              label: ''
-              provider: views
-              label_display: '0'
-              views_label: ''
-              items_per_page: none
               context_mapping: {  }
             additional: {  }
             weight: 0

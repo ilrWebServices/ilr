@@ -1,0 +1,40 @@
+.node--instructor {
+  #block-pagetitle {
+    display: grid;
+    grid-gap: 0 var(--cu-ps1);
+
+    @include breakpoint(sm) {
+      grid-template-columns: 200px auto;
+
+      h1 {
+        grid-column: 2;
+      }
+    }
+  }
+}
+
+.article--instructor {
+  .node__content {
+    display: grid;
+    grid-gap: 0 var(--cu-ps1);
+
+    @include breakpoint(sm) {
+      grid-template-columns: 200px auto;
+    }
+  }
+
+  @include breakpoint(sm) {
+    .field-representative-image {
+      grid-row: 2;
+    }
+
+    .field--field-job-title {
+      grid-column: 2;
+    }
+
+    .field--body {
+      grid-row: 2;
+      grid-column: 2;
+    }
+  }
+}

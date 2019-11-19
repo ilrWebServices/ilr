@@ -16,6 +16,16 @@ function union_marketing_preprocess_page(array &$variables) {
 }
 
 /**
+ * Implements template_preprocess_html().
+ */
+function union_marketing_preprocess_html(&$variables) {
+  if (isset($variables['node_type'])) {
+    // Add node-TYPE class to the <body> element.
+    $variables['attributes']['class'][] = 'node--' . $variables['node_type'];
+  }
+}
+
+/**
  * Implements template_preporcess_views_view__VIEW_ID().
  *
  * Sets the row content for the view template.

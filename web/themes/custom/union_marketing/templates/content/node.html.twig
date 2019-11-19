@@ -70,7 +70,16 @@
  *   in different view modes.
  */
 #}
-<article{{attributes|without('role')}}>
+{%
+  set classes = [
+    'article',
+    'article--' ~ node.bundle|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+<article{{attributes.addClass(classes)|without('role')}}>
 
 	{{ title_prefix }}
 	{% if not page %}
@@ -93,7 +102,7 @@
 		</footer>
 	{% endif %}
 
-	<div{{content_attributes}}>
+  <div{{content_attributes.addClass('node__content')}}>
 		{{ content }}
 	</div>
 

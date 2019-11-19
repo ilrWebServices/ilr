@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - field.storage.taxonomy_term.field_media_section
+    - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.testimonial
+    - paragraphs.paragraphs_type.video
     - taxonomy.vocabulary.topics
   module:
     - entity_reference_revisions
@@ -24,8 +26,22 @@ settings:
     negate: 0
     target_bundles:
       testimonial: testimonial
+      promo: promo
+      video: video
     target_bundles_drag_drop:
       testimonial:
         enabled: true
         weight: 2
+      promo:
+        enabled: true
+        weight: 6
+      rich_text:
+        weight: 7
+        enabled: false
+      section:
+        weight: 8
+        enabled: false
+      video:
+        enabled: true
+        weight: 10
 field_type: entity_reference_revisions

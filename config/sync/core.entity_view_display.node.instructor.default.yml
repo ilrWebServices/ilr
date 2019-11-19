@@ -19,39 +19,32 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 101
+    weight: 102
     settings: {  }
     third_party_settings: {  }
     region: content
   field_job_title:
-    weight: 102
+    weight: 101
     label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_last_name:
-    weight: 104
-    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
   field_representative_image:
-    weight: 103
+    weight: 100
     label: hidden
     settings:
-      view_mode: default
+      view_mode: media_library
       link: false
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: content
   links:
-    weight: 100
+    weight: 103
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_last_name: true
   search_api_excerpt: true
