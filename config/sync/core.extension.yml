@@ -1,4 +1,5 @@
 module:
+  address: 0
   block: 0
   block_content: 0
   breakpoint: 0
@@ -9,7 +10,9 @@ module:
   config_split: 0
   contextual: 0
   ctools: 0
+  date_range_formatter: 0
   datetime: 0
+  datetime_range: 0
   dblog: 0
   dynamic_entity_reference: 0
   dynamic_page_cache: 0
@@ -57,6 +60,7 @@ module:
   token_filter: 0
   toolbar: 0
   twig_tweak: 0
+  typed_data: 0
   union_organizer: 0
   user: 0
   views: 0

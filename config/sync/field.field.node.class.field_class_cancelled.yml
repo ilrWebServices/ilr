@@ -1,0 +1,23 @@
+uuid: 7519bbaf-a976-4987-a732-085b40351052
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_class_cancelled
+    - node.type.class
+id: node.class.field_class_cancelled
+field_name: field_class_cancelled
+entity_type: node
+bundle: class
+label: Cancelled
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

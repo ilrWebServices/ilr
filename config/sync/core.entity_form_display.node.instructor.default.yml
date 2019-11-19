@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.instructor.body
     - field.field.node.instructor.field_job_title
+    - field.field.node.instructor.field_last_name
     - field.field.node.instructor.field_representative_image
     - node.type.instructor
   module:
@@ -33,6 +34,14 @@ content:
     third_party_settings: {  }
   field_job_title:
     weight: 122
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_last_name:
+    weight: 124
     settings:
       size: 60
       placeholder: ''

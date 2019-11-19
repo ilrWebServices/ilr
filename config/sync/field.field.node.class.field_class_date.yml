@@ -1,0 +1,21 @@
+uuid: 69e39cdf-4fb3-465c-96d9-a036827559ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_class_date
+    - node.type.class
+  module:
+    - datetime_range
+id: node.class.field_class_date
+field_name: field_class_date
+entity_type: node
+bundle: class
+label: 'Class Dates'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

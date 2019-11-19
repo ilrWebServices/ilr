@@ -1,0 +1,19 @@
+uuid: ca1e968a-8eb7-47d8-9502-193241c012cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_delivery_method
+    - node.type.course
+id: node.course.field_delivery_method
+field_name: field_delivery_method
+entity_type: node
+bundle: course
+label: 'Delivery Method'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

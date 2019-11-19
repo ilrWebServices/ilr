@@ -1,5 +1,5 @@
 .layout-container--commerce {
-  @include medium {
+  @include breakpoint(md) {
     grid-template-columns: [left-gutter] 1fr [content] 22fr [right-gutter] 1fr;
   }
 

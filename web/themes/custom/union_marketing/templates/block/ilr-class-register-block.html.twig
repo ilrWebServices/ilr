@@ -1,21 +1,69 @@
-{# @todo: fix issues with outputting the time #}
-{% set class_details = [] %}
+{{ attach_library('union_organizer/form') }}
+
+{% set form_elements = [] %}
 {% for class in classes %}
+  {% set course_nid = class.entity.field_course.value[0].target_id %}
+  {% set course = drupal_entity('node', course_nid)['#node'] %}
+  {% set cancelled = class.entity.field_class_cancelled.value == '1' %}
+  {% set full = class.entity.field_class_full.value == '1' %}
+  {% set disabled = null %}
   {% set class_register_url = drupal_config('ilr_registration_system.settings', 'url') ~ class.salesforce_id %}
+
   {% set content %}
-    <p class="cu-checkbutton__date">{{ class.entity.field_date_start.value|date("M d, Y") }}</p>
-    <time class="cu-checkbutton__time">{{ class.entity.field_date_start.value|date("h:i a") ~ ' - ' ~ class.entity.field_date_end.value|date("h:i a") }}</time>
-    <p class="cu-checkbutton__price cu-js-price">${{ class.entity.field_price.value }}</p>
-    <a href="{{ class_register_url }}" class="cu-button cu-button--alt">Register</a>
+    {{ drupal_field('field_class_date', 'node', class.entity.id, 'teaser') }}
+    {% if course.field_delivery_method.value and 'online' in course.field_delivery_method.value|lower %}
+      <p>All instruction will be completed between these dates</p>
+    {% else %}
+      {{ drupal_field('field_date_start', 'node', class.entity.id, 'teaser') }} - {{ drupal_field('field_date_end', 'node', class.entity.id, 'teaser') }}
+    {% endif %}
+    {% if cancelled or full %}
+      {% set message = (cancelled)
+        ? 'Sorry, but this class session was cancelled.'
+        : 'Seats in this session are limited. Please contact <a href="mailto:ilrcustomerservice@cornell.edu">customer service</a> or call 866-470-1922.' %}
+      {% set indicator_attributes = { 'data-message': message|striptags } %}
+      {% set disabled = 'disabled' %}
+      <p class="touchscreen-only message">{{ message|raw }}</p>
+    {% else %}
+      <p class="cu-checkbutton__price cu-js-price">${{ class.entity.field_price.value }}</p>
+      <a href="{{ class_register_url }}" class="cu-button cu-button--alt">Register</a>
+    {% endif %}
   {% endset %}
-  {% set class_details = class_details|merge([{
-      id: class.entity.id,
-      content: content,
-      price: class.entity.field_price.value|round,
-      url: class_register_url,
-    }]) %}
+
+  {% set input = {
+    'id': 'event-checkbutton-'~class.entity.id,
+    'type': 'radio',
+    'name': 'event-checkbutton-'~course_nid,
+    'value': class_register_url,
+    'data-price': '$'~class.entity.field_price.value|round,
+    'disabled': disabled
+  } %}
+
+  {% set element %}
+    {% include '@union/_form-checkbutton.twig' with {
+        label_content: content,
+        input_attributes: input,
+        disabled: disabled,
+        indicator_attributes: indicator_attributes
+      } only %}
+  {% endset %}
+  {% set form_elements = form_elements|merge([element]) %}
 {% endfor %}
 
-{% include '@union/_registration-form.twig' with {
-  events: class_details
-} only %}
+{% set form_content %}
+  <div class="cu-registration-form__active-price">{# This content gets populated via js #}
+  </div>
+  <div class="cu-registration-form__form" role="radiogroup" aria-labelledby="class-checkbuttons">
+    <h2 id="class-checkbuttons" class="cu-heading visually-hidden">{{ "Choose your Class"|t }}</h2>
+    {% if form_elements is not empty %}
+    {% for element in form_elements %}
+      {{ element }}
+    {% endfor %}
+    {% else %}
+      {{ empty_message }}
+    {% endif %}
+  </div>
+{% endset %}
+
+<div class="cu-form cu-registration-form">
+  {{ form_content }}
+</div>

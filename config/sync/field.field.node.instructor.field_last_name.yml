@@ -1,0 +1,19 @@
+uuid: 6edf3df1-2776-4f5a-be4d-62fb3376aedb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_last_name
+    - node.type.instructor
+id: node.instructor.field_last_name
+field_name: field_last_name
+entity_type: node
+bundle: instructor
+label: 'Last Name'
+description: 'Used to alphabetically sort instructors'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
