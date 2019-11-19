@@ -15,7 +15,7 @@
  *   Calling other methods, such as node.delete(), will result in an exception.
  *   See \Drupal\node\Entity\Node for a full list of public properties and
  *   methods for the node object.
- * - label: (optional) The title of the node.
+ * - label: The title of the node.
  * - content: All node items. Use {{ content }} to print them all,
  *   or print a subset such as {{ content.field_example }}. Use
  *   {{ content|without('field_example') }} to temporarily suppress the printing
@@ -23,8 +23,8 @@
  * - author_picture: The node author user entity, rendered using the "compact"
  *   view mode.
  * - metadata: Metadata for this node.
- * - date: (optional) Themed creation date field.
- * - author_name: (optional) Themed author name field.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
  * - url: Direct URL of the current node.
  * - display_submitted: Whether submission information should be displayed.
  * - attributes: HTML attributes for the containing element.
@@ -70,43 +70,32 @@
  *   in different view modes.
  */
 #}
-{{ attach_library('union_organizer/button') }}
-{% set feature_list_items = [] %}
+<article{{attributes|without('role')}}>
 
-{% for detail in course_details %}
-{% set feature_list_items = feature_list_items|merge([{
-  name: detail,
-  icon: 'check-circle',
-  icon_size: '1em'
-}]) %}
-{% endfor %}
+	{{ title_prefix }}
+	{% if not page %}
+		<h2{{title_attributes}}>
+			<a href="{{ url }}" rel="bookmark">{{ label }}</a>
+		</h2>
+	{% endif %}
+	{{ title_suffix }}
 
-{% set rendered_description %}
-<div class="pinned-wrapper">
-<h3 class="cu-heading">{{ label }}</h3>
-{{ title_suffix }}
+	{% if display_submitted %}
+		<footer>
+			{{ author_picture }}
+			<div{{author_attributes}}>
+				{% trans %}Submitted by
+				{{ author_name }}
+				on
+				{{ date }}{% endtrans %}
+				{{ metadata }}
+			</div>
+		</footer>
+	{% endif %}
 
-{{ content.body }}
+	<div{{content_attributes}}>
+		{{ content }}
+	</div>
 
-<hr class="pad" />
+</article>
 
-{% include '@union/_feature-list.twig' with {
-  items: feature_list_items,
-  content_attributes: { class: 'cu-grid' }
-} only %}
-
-<hr class="pad" />
-
-{% if class_count > 1 %}<p class="cu-style cu-style--link">{{ 'See more dates and locations'|t }}</p><hr class="pad" />{% endif %}
-</div>
-
-{% set register_link_text = 'Register <span class="visually-hidden"> for ' ~ node.label ~ '</span>'%}
-  <p class="cu-button">{{ register_link_text|raw }}</p>
-{% endset %}
-
-{% include '@union/_card.twig' with {
-  card_content: rendered_description,
-  card_link_url: url,
-  card_link_alt: 'See more dates and locations for ' ~ node.label|t,
-  attributes: attributes.addClass('cu-card--padded cu-card--pinned')
-} only %}

@@ -41,13 +41,13 @@
 #}
 
 <div{{ attributes.addClass('layout-container') }}>
-  <header class="cu-header" role="banner">
+  <header class="cu-header">
     {{ page.header }}
     {{ page.highlighted }}
     {{ page.help }}
   </header>
 
-  <main role="main">
+  <main>
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
     {{ page.content }}
   </main>
@@ -59,7 +59,7 @@
   {% endif %}
 
   {% if page.footer %}
-    <footer class="cu-footer" role="contentinfo">
+    <footer class="cu-footer">
       {{ page.footer }}
     </footer>
   {% endif %}
