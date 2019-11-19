@@ -1,0 +1,22 @@
+uuid: 81c33929-0fae-4613-8fe4-4f1a8302358b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: instructor_nodes
+label: 'Instructor nodes'
+type: 'canonical_entities:node'
+pattern: 'programs/professional-programs/instructors/[node:title]'
+selection_criteria:
+  7435d0d1-db14-4d58-8f4c-c244685f7f1f:
+    id: node_type
+    bundles:
+      instructor: instructor
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 7435d0d1-db14-4d58-8f4c-c244685f7f1f
+selection_logic: and
+weight: -5
+relationships: {  }
