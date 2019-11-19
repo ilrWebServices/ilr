@@ -1,0 +1,16 @@
+uuid: 26fc0b7c-04c4-4677-8020-b86da6d3cf2c
+langcode: en
+status: false
+dependencies: {  }
+id: production
+label: Production
+description: 'Modules and configuration that should only be enabled on the production site. Examples include Google Tag Manager (GTM), SimpleSAML authentication, etc.'
+folder: ../config/prod
+module:
+  google_tag: 0
+theme: {  }
+blacklist: {  }
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0
