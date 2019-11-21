@@ -72,6 +72,10 @@
 
  */
 #}
+
+{% set job_title = (node.field_job_title.value)
+  ? content.field_job_title
+  : null %}
 {% set rendered_content %}
 {{ content.body }}
 {{ title_suffix }}
@@ -79,7 +83,7 @@
 {% include "@union/_person.twig" with {
   attributes: attributes.addClass('cu-person--thumb'),
   name: label,
-  title: content.field_job_title,
+  title: job_title,
   content: rendered_content,
   img: content.field_representative_image
 } only %}
