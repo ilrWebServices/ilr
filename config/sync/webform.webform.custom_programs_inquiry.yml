@@ -193,7 +193,7 @@ handlers:
       from_mail: _default
       from_options: {  }
       from_name: _default
-      subject: _default
+      subject: '[webform_submission:webform]'
       body: _default
       excluded_elements: {  }
       ignore_access: false
