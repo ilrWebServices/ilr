@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a897df44448710388121432d7a7dfca",
+    "content-hash": "a046edfa1703b12eb334ed2d8040cbfe",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3225,7 +3225,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/entity_reference_layout.git",
-                "reference": "b7bb1eacc798099b1dc65219e7c5ac0f42a39e41"
+                "reference": "5e8850af01e8f30808ac2a7a9cf2e9177fd6ed16"
             },
             "require": {
                 "drupal/core": "*",
@@ -3237,8 +3237,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha2+45-dev",
-                    "datestamp": "1570024986",
+                    "version": "8.x-1.0-alpha3+1-dev",
+                    "datestamp": "1573147689",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -3264,7 +3264,7 @@
                 "source": "http://cgit.drupalcode.org/entity_reference_layout",
                 "issues": "https://www.drupal.org/project/issues/entity_reference_layout"
             },
-            "time": "2019-10-02T15:43:15+00:00"
+            "time": "2019-11-07T17:22:57+00:00"
         },
         {
             "name": "drupal/entity_reference_revisions",
