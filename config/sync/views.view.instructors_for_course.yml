@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.mini
     - core.entity_view_mode.node.teaser
     - field.storage.node.field_date_start
     - field.storage.node.field_last_name
@@ -815,6 +816,7 @@ display:
         - 'config:core.entity_view_display.node.course.default'
         - 'config:core.entity_view_display.node.course.teaser'
         - 'config:core.entity_view_display.node.instructor.default'
+        - 'config:core.entity_view_display.node.instructor.mini'
         - 'config:core.entity_view_display.node.instructor.teaser'
         - 'config:core.entity_view_display.node.page.default'
         - 'config:core.entity_view_display.node.page.teaser'
@@ -1146,6 +1148,7 @@ display:
         - 'config:core.entity_view_display.node.course.default'
         - 'config:core.entity_view_display.node.course.teaser'
         - 'config:core.entity_view_display.node.instructor.default'
+        - 'config:core.entity_view_display.node.instructor.mini'
         - 'config:core.entity_view_display.node.instructor.teaser'
         - 'config:core.entity_view_display.node.page.default'
         - 'config:core.entity_view_display.node.page.teaser'
@@ -1289,10 +1292,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        title_1:
-          id: title_1
-          table: node_field_data
-          field: title
+        rendered_entity:
+          id: rendered_entity
+          table: node
+          field: rendered_entity
           relationship: field_instructor
           group_type: group
           admin_label: ''
@@ -1337,23 +1340,9 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
+          view_mode: mini
           entity_type: node
-          entity_field: title
-          plugin_id: field
+          plugin_id: rendered_entity
       defaults:
         fields: false
         group_by: false
@@ -1479,6 +1468,19 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:core.entity_view_display.node.certificate.default'
+        - 'config:core.entity_view_display.node.certificate.teaser'
+        - 'config:core.entity_view_display.node.class.default'
+        - 'config:core.entity_view_display.node.class.teaser'
+        - 'config:core.entity_view_display.node.course.default'
+        - 'config:core.entity_view_display.node.course.teaser'
+        - 'config:core.entity_view_display.node.instructor.default'
+        - 'config:core.entity_view_display.node.instructor.mini'
+        - 'config:core.entity_view_display.node.instructor.teaser'
+        - 'config:core.entity_view_display.node.page.default'
+        - 'config:core.entity_view_display.node.page.teaser'
+        - 'config:core.entity_view_display.node.participant.default'
+        - 'config:core.entity_view_display.node.participant.teaser'
         - 'config:field.storage.node.field_last_name'
   embed_1:
     display_plugin: embed
@@ -1504,6 +1506,7 @@ display:
         - 'config:core.entity_view_display.node.course.default'
         - 'config:core.entity_view_display.node.course.teaser'
         - 'config:core.entity_view_display.node.instructor.default'
+        - 'config:core.entity_view_display.node.instructor.mini'
         - 'config:core.entity_view_display.node.instructor.teaser'
         - 'config:core.entity_view_display.node.page.default'
         - 'config:core.entity_view_display.node.page.teaser'
