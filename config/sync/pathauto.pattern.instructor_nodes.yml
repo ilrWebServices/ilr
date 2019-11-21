@@ -7,7 +7,7 @@ dependencies:
 id: instructor_nodes
 label: 'Instructor nodes'
 type: 'canonical_entities:node'
-pattern: 'programs/professional-programs/instructors/[node:title]'
+pattern: 'programs/professional-education/instructors/[node:title]'
 selection_criteria:
   7435d0d1-db14-4d58-8f4c-c244685f7f1f:
     id: node_type

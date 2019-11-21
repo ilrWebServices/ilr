@@ -7,7 +7,7 @@ dependencies:
 id: certificate_nodes
 label: 'Certificate nodes'
 type: 'canonical_entities:node'
-pattern: 'programs/professional-programs/certificates/[node:title]'
+pattern: 'programs/professional-education/certificates/[node:title]'
 selection_criteria:
   12c42900-05e2-4010-9999-a748f97f9314:
     id: node_type

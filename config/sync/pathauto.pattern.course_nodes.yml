@@ -7,7 +7,7 @@ dependencies:
 id: course_nodes
 label: 'Course Nodes'
 type: 'canonical_entities:node'
-pattern: 'programs/professional-programs/[node:field_course_number]/[node:title]'
+pattern: 'programs/professional-education/[node:field_course_number]/[node:title]'
 selection_criteria:
   3cd80cb0-bc6b-4cfa-ab0c-5ff551ecb238:
     id: node_type

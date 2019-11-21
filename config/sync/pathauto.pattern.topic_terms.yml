@@ -8,7 +8,7 @@ dependencies:
 id: topic_terms
 label: 'Topic Terms'
 type: 'canonical_entities:taxonomy_term'
-pattern: 'programs/professional-programs/topic/[term:name]'
+pattern: 'programs/professional-education/topic/[term:name]'
 selection_criteria:
   89c37094-7a00-463a-8868-8ccede03e008:
     id: 'entity_bundle:taxonomy_term'
