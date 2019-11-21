@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - ilr
     - token_filter
 name: 'Full html'
 format: full_html
@@ -30,3 +31,9 @@ filters:
     weight: 0
     settings:
       replace_empty: '0'
+  filter_cu_heading:
+    id: filter_cu_heading
+    provider: ilr
+    status: true
+    weight: 0
+    settings: {  }
