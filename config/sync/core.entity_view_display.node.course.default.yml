@@ -15,6 +15,7 @@ dependencies:
     - views.view.instructors_for_course
     - views.view.related_courses
     - views.view.topics_list
+    - webform.webform.course_customization_request
     - webform.webform.course_notification
   content:
     - 'block_content:simple_text:d300d9db-a8e3-4082-84f4-fea3ae4f21ae'
@@ -227,23 +228,9 @@ third_party_settings:
         layout_id: layout_cu_twocol
         layout_settings: {  }
         components:
-          c2d905b7-a63b-4895-bb23-248d5423fac5:
-            uuid: c2d905b7-a63b-4895-bb23-248d5423fac5
-            region: second
-            configuration:
-              id: 'block_content:d300d9db-a8e3-4082-84f4-fea3ae4f21ae'
-              label: 'Have Questions?'
-              provider: block_content
-              label_display: visible
-              status: true
-              info: ''
-              view_mode: full
-              context_mapping: {  }
-            additional: {  }
-            weight: 0
           758725c7-af6c-43b8-aaec-a3d909aa1f32:
             uuid: 758725c7-af6c-43b8-aaec-a3d909aa1f32
-            region: first
+            region: second
             configuration:
               id: webform_block
               label: 'Get Updates'
@@ -252,6 +239,42 @@ third_party_settings:
               webform_id: course_notification
               default_data: ''
               redirect: false
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+          6d2266ad-c14a-4c49-95c6-69da443a563e:
+            uuid: 6d2266ad-c14a-4c49-95c6-69da443a563e
+            region: first
+            configuration:
+              id: webform_block
+              label: 'Customized Delivery'
+              provider: webform
+              label_display: visible
+              webform_id: course_customization_request
+              default_data: ''
+              redirect: false
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_twocol
+        layout_settings:
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          c2d905b7-a63b-4895-bb23-248d5423fac5:
+            uuid: c2d905b7-a63b-4895-bb23-248d5423fac5
+            region: first
+            configuration:
+              id: 'block_content:d300d9db-a8e3-4082-84f4-fea3ae4f21ae'
+              label: 'Have Questions?'
+              provider: block_content
+              label_display: visible
+              status: true
+              info: ''
+              view_mode: full
               context_mapping: {  }
             additional: {  }
             weight: 0
