@@ -54,16 +54,16 @@
   </div>
   <div class="cu-registration-form__form" role="radiogroup" aria-labelledby="class-checkbuttons">
     <h2 id="class-checkbuttons" class="cu-heading visually-hidden">{{ "Choose your Class"|t }}</h2>
-    {% if form_elements is not empty %}
     {% for element in form_elements %}
       {{ element }}
     {% endfor %}
-    {% else %}
-      {{ empty_message }}
-    {% endif %}
   </div>
 {% endset %}
 
 <div class="cu-form cu-registration-form">
-  {{ form_content }}
+  {% if form_elements is empty %}
+    <p>{{ "This course isn't currently scheduled. Would you like to know when we announce new dates? Get updates below."|t }}</p>
+  {% else %}
+    {{ form_content }}
+  {% endif %}
 </div>
