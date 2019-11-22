@@ -52,7 +52,8 @@ content:
   field_sections:
     weight: 9
     settings:
-      always_show_options_form: false
+      preview_view_mode: preview
+      always_show_options_form: 0
     third_party_settings: {  }
     type: entity_reference_layout_widget
     region: content

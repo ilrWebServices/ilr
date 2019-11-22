@@ -38,3 +38,13 @@ function union_marketing_preprocess_views_view__courses_by_topic(&$variables) {
     $variables['rows'][$id]['content'] = $row;
   }
 }
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function union_marketing_library_info_alter(&$libraries, $extension) {
+  // Add the Union forms component library to webforms.
+  if ($extension === 'webform' && isset($libraries['webform.form'])) {
+    $libraries['webform.form']['dependencies'][] = 'union_organizer/form';
+  }
+}

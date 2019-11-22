@@ -5,6 +5,12 @@ dependencies:
   config:
     - field.storage.node.field_sections
     - node.type.page
+    - paragraphs.paragraphs_type.form
+    - paragraphs.paragraphs_type.promo
+    - paragraphs.paragraphs_type.rich_text
+    - paragraphs.paragraphs_type.section
+    - paragraphs.paragraphs_type.testimonial
+    - paragraphs.paragraphs_type.video
   module:
     - entity_reference_layout
 id: node.page.field_sections
@@ -20,23 +26,34 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: '1'
-    target_bundles: null
+    negate: '0'
+    target_bundles:
+      section: section
+      promo: promo
+      rich_text: rich_text
+      form: form
+      testimonial: testimonial
+      video: video
     target_bundles_drag_drop:
       section:
+        enabled: '1'
         weight: '4'
-        enabled: 0
       promo:
+        enabled: '1'
         weight: '5'
-        enabled: 0
       rich_text:
+        enabled: '1'
         weight: '5'
-        enabled: 0
+      form:
+        enabled: '1'
+        weight: '7'
       testimonial:
+        enabled: '1'
         weight: '8'
-        enabled: 0
-    layout_bundles:
-      - section
+      video:
+        enabled: '1'
+        weight: '12'
+    layout_bundles: section
     allowed_layouts:
       ILR:
         layout_cu_twocol: 'Union Sublayout: 2 Columns'

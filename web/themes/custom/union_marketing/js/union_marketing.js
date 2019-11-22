@@ -19,7 +19,7 @@
 
   Drupal.behaviors.union_marketing_course_notification_form = {
     attach: function (context, settings) {
-      const course_notification_forms = context.querySelectorAll('.webform-submission-course-notification-form');
+      const course_notification_forms = context.querySelectorAll('.webform-submission-course-notification-form, .webform-submission-course-customization-request-form');
 
       for (const course_notification_form of course_notification_forms) {
         let inputs = course_notification_form.querySelector('.info-fields');
