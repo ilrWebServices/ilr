@@ -1,0 +1,30 @@
+uuid: de80c103-f1b0-41c4-9a49-b0fe9708e31d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.mini
+    - field.field.node.instructor.body
+    - field.field.node.instructor.field_job_title
+    - field.field.node.instructor.field_last_name
+    - field.field.node.instructor.field_representative_image
+    - node.type.instructor
+  module:
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: node.instructor.mini
+targetEntityType: node
+bundle: instructor
+mode: mini
+content: {  }
+hidden:
+  body: true
+  field_job_title: true
+  field_last_name: true
+  field_representative_image: true
+  links: true
+  search_api_excerpt: true
