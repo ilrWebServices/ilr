@@ -81,13 +81,13 @@
 
 <article{{attributes.addClass(classes)|without('role')}}>
   {{ title_prefix }}
-    <p class="cu-heading cu-text--xl">
+    <span class="cu-text cu-text--lg">
     {% if node.body.value is not empty %}
       <a href="{{ url }}" rel="bookmark">{{ label }}</a>
     {% else %}
       {{ label }}
     {% endif %}
-    </p>
+    </span>
   {{ title_suffix }}
 
   {% if content %}
