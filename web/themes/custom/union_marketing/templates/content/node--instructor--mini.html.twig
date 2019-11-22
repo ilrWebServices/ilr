@@ -72,22 +72,26 @@
 #}
 {%
   set classes = [
-    'article',
-    'article--' ~ node.bundle|clean_class,
+    'node--' ~ node.bundle|clean_class,
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
   ]
 %}
 
-<article{{attributes.addClass(classes)|without('role')}}>
+<div{{attributes.addClass(classes)|without('role')}}>
   {{ title_prefix }}
-    <span class="cu-text cu-text--lg">
-    {% if node.body.value is not empty %}
-      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-    {% else %}
-      {{ label }}
-    {% endif %}
-    </span>
+  {% include "@union/_icon.twig" with (node.body.value is not empty) ? {
+    title: 'Instructor',
+    icon: 'student',
+    label: label,
+    link: url,
+    attributes: { class: 'cu-icon--inline' }
+  } : {
+    title: 'Instructor',
+    icon: 'student',
+    label: label,
+    attributes: { class: 'cu-icon--inline' }
+  } only %}
   {{ title_suffix }}
 
   {% if content %}
@@ -95,5 +99,5 @@
       {{ content }}
     </div>
   {% endif %}
-</article>
+</div>
 
