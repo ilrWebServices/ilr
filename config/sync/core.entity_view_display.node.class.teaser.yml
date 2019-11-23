@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.class.field_price
     - node.type.class
   module:
+    - address
     - date_range_formatter
     - datetime
     - user
@@ -23,6 +24,26 @@ targetEntityType: node
 bundle: class
 mode: teaser
 content:
+  field_address:
+    type: address_default
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      field_settings:
+        locality: locality
+        administrativeArea: administrativeArea
+        givenName: 0
+        additionalName: 0
+        familyName: 0
+        organization: 0
+        addressLine1: 0
+        addressLine2: 0
+        postalCode: 0
+        sortingCode: 0
+        dependentLocality: 0
+        country: 0
+    third_party_settings: {  }
   field_class_date:
     type: date_range_without_time
     weight: 0
@@ -70,7 +91,6 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
-  field_address: true
   field_class_cancelled: true
   field_class_full: true
   field_course: true

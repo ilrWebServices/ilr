@@ -7,6 +7,11 @@
   }
 }
 
+.node--course.node--view-mode-teaser .field {
+  margin-bottom: 0;
+  line-height: 1;
+}
+
 .course-notification-course-ref {
   display: none !important; // This is filled in via JS.
 }

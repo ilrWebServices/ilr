@@ -71,15 +71,27 @@
  */
 #}
 {{ attach_library('union_organizer/button') }}
-{% set feature_list_items = [] %}
 
-{% for detail in course_details %}
+{% set feature_list_items = [
+  {
+    name: next_class.field_class_date|view('teaser'),
+    icon: 'check-circle',
+    icon_size: '1em'
+  },
+  {
+    name: next_class.field_price|view('teaser'),
+    icon: 'check-circle',
+    icon_size: '1em'
+  }
+] %}
+
+{% if not next_class.field_address.isEmpty() %}
 {% set feature_list_items = feature_list_items|merge([{
-  name: detail,
+  name: next_class.field_address|view('teaser'),
   icon: 'check-circle',
   icon_size: '1em'
 }]) %}
-{% endfor %}
+{% endif %}
 
 {% set rendered_description %}
 <div class="pinned-wrapper">
@@ -108,5 +120,11 @@
   card_content: rendered_description,
   card_link_url: url,
   card_link_alt: 'See more dates and locations for ' ~ node.label|t,
-  attributes: attributes.addClass('cu-card--padded cu-card--pinned')
+  attributes: attributes.addClass([
+    'node--' ~ node.bundle|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'cu-card--padded',
+    'cu-card--pinned'
+  ])
 } only %}

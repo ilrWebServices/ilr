@@ -15,6 +15,7 @@
       <p>All instruction will be completed between these dates</p>
     {% else %}
       {{ drupal_field('field_date_start', 'node', class.entity.id, 'teaser') }} - {{ drupal_field('field_date_end', 'node', class.entity.id, 'teaser') }}
+      {{ drupal_field('field_address', 'node', class.entity.id, 'teaser') }}
     {% endif %}
     {% if cancelled or full %}
       {% set message = (cancelled)

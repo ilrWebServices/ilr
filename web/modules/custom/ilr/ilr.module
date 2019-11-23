@@ -116,12 +116,9 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle)
  */
 function ilr_preprocess_node__course__teaser(&$variables) {
   $variables['class_count'] = $variables['node']->classes->count();
-  $variables['course_details'] = [];
 
   if ($variables['class_count']) {
-    $next_class = $variables['node']->classes->first()->entity;
-    $variables['course_details'][] = $next_class->field_date_start->date->format('M j, Y');
-    $variables['course_details'][] = $next_class->field_price->getString();
+    $variables['next_class'] = $variables['node']->classes->first()->entity;
   }
 }
 
