@@ -29,3 +29,8 @@
 .node--course .cu-banner--page .cu-heading {
   --cu-component-margin-bottom: .25em;
 }
+
+// Red links in the page banner are no good.
+.cu-banner--page .field--body {
+  --cu-current-link-color: white;
+}
