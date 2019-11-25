@@ -15,3 +15,17 @@
 .course-notification-course-ref {
   display: none !important; // This is filled in via JS.
 }
+
+.field--field-course-number {
+  display: flex;
+  font-weight: 100;
+  margin-bottom: 1.25em;
+}
+
+.field--field-course-number > div {
+  margin-right: .25em;
+}
+
+.node--course .cu-banner--page .cu-heading {
+  --cu-component-margin-bottom: .25em;
+}
