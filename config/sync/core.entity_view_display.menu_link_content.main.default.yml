@@ -1,0 +1,40 @@
+uuid: 42c3b24b-1c07-4ce2-bb26-08f649e618d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    allow_custom: true
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings: {  }
+        components:
+          2097c217-0675-4e90-bfac-fc785e031f94:
+            uuid: 2097c217-0675-4e90-bfac-fc785e031f94
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:menu_link_content:main:children'
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+id: menu_link_content.main.default
+targetEntityType: menu_link_content
+bundle: main
+mode: default
+content:
+  children:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -1,0 +1,19 @@
+uuid: 830a6afc-c922-465f-bc7e-972dcf6636cb
+langcode: en
+status: true
+dependencies:
+  module:
+    - layout_builder
+    - menu_link_content
+id: menu_link_content.layout_builder__layout
+field_name: layout_builder__layout
+entity_type: menu_link_content
+type: layout_section
+settings: {  }
+module: layout_builder
+locked: true
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
