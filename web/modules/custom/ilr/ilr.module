@@ -49,12 +49,14 @@ function ilr_entity_field_storage_info(EntityTypeInterface $entity_type) {
     $definitions['classes'] = FieldStorageDefinition::create('entity_reference')
       ->setName('classes')
       ->setLabel(t('Classes'))
-      ->setRevisionable(TRUE)
+      ->setRevisionable(FALSE)
+      ->setCustomStorage(TRUE)
       ->setTargetEntityTypeId($entity_type->id());
     $definitions['certificates'] = FieldStorageDefinition::create('entity_reference')
       ->setName('certificates')
       ->setLabel(t('Certificates'))
-      ->setRevisionable(TRUE)
+      ->setRevisionable(FALSE)
+      ->setCustomStorage(TRUE)
       ->setTargetEntityTypeId($entity_type->id());
   }
 
