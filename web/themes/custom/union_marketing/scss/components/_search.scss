@@ -1,0 +1,71 @@
+#block-union-marketing-searchform {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #222;
+  z-index: 30;
+  font-size: larger;
+}
+
+#ilr_search_reveal:checked + #block-union-marketing-searchform {
+  display: block;
+}
+
+#ilr_search_reveal {
+  display: none;
+}
+
+#cu-search-form {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#cu-search-form .searchBtn,
+#cu-search-form .closeSearch {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+}
+
+#ilr_search_reveal_trigger {
+  font-size: 1.5rem;
+  margin-left: 1em;
+  position: absolute;
+  right: 30px;
+
+  @include breakpoint(md) {
+    position: unset;
+  }
+}
+
+#ilr_search_reveal_trigger,
+#cu-search-form .searchBtn {
+  transform: rotate(-45deg);
+}
+
+#ilr_search_reveal_trigger::before,
+#cu-search-form .searchBtn::before {
+  content: "⚲";
+  // content: "𐌒";
+}
+
+#cu-search-form .closeSearch::before {
+  content: "\2573";
+}
+
+#search-form-query {
+  border: none;
+  padding: 0 0 0 15px;
+  background: #222;
+  color: white;
+  margin: 1.5em 1em 1.5em 0;
+  flex-grow: 1;
+}
+
+#search-form-query::placeholder {
+  color: white;
+  opacity: 1;
+}

@@ -1,6 +1,32 @@
 // Miscellaneous javascript functions for this custom theme.
 (function (window, document, Drupal) {
 
+  Drupal.behaviors.union_marketing_search_toggle = {
+    attach: function (context, settings) {
+      if (context !== document) {
+        return;
+      }
+
+      // The search box is normally toggled via an invisible checkbox and some
+      // CSS. This is here to trigger that checkbox from the close button within
+      // the search form.
+      document.addEventListener('click', function(event) {
+        if (event.target.matches('.closeSearch')) {
+          document.getElementById('ilr_search_reveal').checked = false;
+        }
+      });
+
+      // For accessibility, always dismiss the search box when the escape key is
+      // pressed.
+      document.addEventListener('keyup', function(event) {
+        // The escape key maps to keycode `27`.
+        if (event.keyCode == 27) {
+          document.getElementById('ilr_search_reveal').checked = false;
+        }
+      });
+    }
+  };
+
   Drupal.behaviors.union_marketing_banner_bg_fixup = {
     attach: function (context, settings) {
       const banner_images = context.querySelectorAll('.cu-banner--page .field-representative-image .cu-image');

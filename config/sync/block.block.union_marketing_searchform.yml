@@ -1,0 +1,22 @@
+uuid: b77f1563-bd14-4098-af53-64dc3c0f21be
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+  theme:
+    - union_marketing
+id: union_marketing_searchform
+theme: union_marketing
+region: header
+weight: 2
+provider: null
+plugin: remote_html_snippet_block
+settings:
+  id: remote_html_snippet_block
+  label: 'Remote html snippet block'
+  provider: ilr
+  label_display: '0'
+  url: 'https://www.master-7rqtwti-dd2imk5jkez6q.us-2.platformsh.site/'
+  xpath: '//*[@id="search-form"]'
+visibility: {  }
