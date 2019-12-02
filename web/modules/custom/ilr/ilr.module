@@ -137,7 +137,7 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
   if ($display->getComponent('ilr_certificates') && $view_mode === 'full') {
     $build['ilr_certificates'] = [
       '#theme' => 'ilr_course_certificates_block',
-      '#node' => $node,
+      '#node' => $entity,
       '#certificates' => $entity->certificates->referencedEntities(),
     ];
   }
