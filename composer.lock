@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d802f5eb3a6b03754407bb0f2fc2df0f",
+    "content-hash": "97e578e97ed63f0ed904546adeb959cf",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2851,7 +2851,8 @@
                 },
                 "patches_applied": {
                     "Form blocks rendered inside layout builder break save": "https://www.drupal.org/files/issues/2019-08-12/3045171-79.patch",
-                    "Remove invalid iframe attributes from oembed field formatter": "https://www.drupal.org/files/issues/2019-07-31/remove-iframe-attributes-3071446-4.patch"
+                    "Remove invalid iframe attributes from oembed field formatter": "https://www.drupal.org/files/issues/2019-07-31/remove-iframe-attributes-3071446-4.patch",
+                    "Cannot delete or edit a block that is placed in a section of the layout_builder": "https://gist.githubusercontent.com/jeffam/392e7c96351faf36fc084de5e76d6622/raw/715146a144b17ad7bb2b83fdcaeccaa432267641/3005403-35.patch"
                 }
             },
             "autoload": {
