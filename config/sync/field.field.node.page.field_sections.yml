@@ -53,7 +53,8 @@ settings:
       video:
         enabled: '1'
         weight: '12'
-    layout_bundles: section
+    layout_bundles:
+      - section
     allowed_layouts:
       ILR:
         layout_cu_twocol: 'Union Sublayout: 2 Columns'
