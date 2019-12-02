@@ -9,7 +9,9 @@
 }
 
 .cu-menu--main .cu-menu__item:hover .menu_link_content {
-  display: block;
+  @include breakpoint(md) {
+    display: block;
+  }
 }
 
 .menu_link_content a {
