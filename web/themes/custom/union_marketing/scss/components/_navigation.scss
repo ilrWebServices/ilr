@@ -63,7 +63,9 @@
 
 // Temporary workaround to raise the logo over the mega menu.
 #block-union-marketing-branding {
-  z-index: 20;
+  @include breakpoint(md) {
+    z-index: 20;
+  }
 }
 
 // Override of Union ILR skin.
