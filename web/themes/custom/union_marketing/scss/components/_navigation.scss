@@ -1,3 +1,31 @@
+// Mega Menu via Menu Item Extras. No progressive enhancement here. These menus
+// are always hidden by default, and revealed via javascript.
+.menu_link_content {
+  display: none;
+  position: fixed;
+  left: 0;
+  width: 100%;
+  background: pink;
+}
+
+.cu-menu--main .cu-menu__item:hover {
+  .menu_link_content {
+    display: block;
+  }
+}
+
+.cu-menu__link {
+  padding: 0;
+}
+
+.cu-menu--main {
+  align-self: center;
+}
+
+.cu-header .cu-logo {
+  padding-bottom: 0;
+}
+
 #block-union-register-footer-menu {
   ul {
     display: flex;
