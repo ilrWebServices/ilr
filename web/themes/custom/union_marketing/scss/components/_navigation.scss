@@ -1,19 +1,28 @@
-// Mega Menu via Menu Item Extras. No progressive enhancement here. These menus
-// are always hidden by default, and revealed via javascript.
+// Mega Menu via Menu Item Extras layout builder contents.
 .menu_link_content {
   display: none;
   position: fixed;
   left: 0;
   width: 100%;
-  background: pink;
+  background: white;
+  border-bottom: 2px solid #ccc;
 }
 
-.cu-menu--main .cu-menu__item:hover {
-  .menu_link_content {
-    display: block;
-  }
+.cu-menu--main .cu-menu__item:hover .menu_link_content {
+  display: block;
 }
 
+.menu_link_content a {
+  text-decoration: none;
+}
+
+.menu_link_content h2 {
+  font-size: var(--cu-text-lg);
+  font-weight: 300;
+}
+
+// Adjust some of the menu item padding. This should eventually be modified in
+// the Union ILR skin.
 .cu-menu__link {
   padding: 0;
 }
@@ -24,6 +33,21 @@
 
 .cu-header .cu-logo {
   padding-bottom: 0;
+}
+
+// Re-apply some simple styles for the content snipped from the D7 site.
+.bean-mega-menu > .content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.bean-mega-menu > .content > .field {
+  margin: 0 1em;
+}
+
+// Temporary workaround to raise the logo over the mega menu.
+#block-union-marketing-branding {
+  z-index: 20;
 }
 
 #block-union-register-footer-menu {
