@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Theme implementation to each level of menu.
+ * Copied from modules/contrib/menu_item_extras/templates/menu-levels.html.twig
+ */
+#}
+<ul class="cu-menu__list menu menu-level-{{ items|first.menu_level }}">
+{% for key, item in items if key|first != '#' %}
+  {% set menu_item_classes = [
+    'menu-item',
+    item.is_expanded ? 'menu-item--expanded',
+    item.is_collapsed ? 'menu-item--collapsed',
+    item.in_active_trail ? 'menu-item--active-trail',
+  ] %}
+
+  <li{{ item.attributes.addClass(menu_item_classes).addClass('cu-menu__item') }}>
+    {{ link(item.title, item.url, {class: 'cu-menu__link'}) }}
+
+    {% set rendered_content = item.content|without('') %}
+    {% if rendered_content|render %}
+      {{ rendered_content }}
+    {% endif %}
+  </li>
+{% endfor %}
+</ul>
