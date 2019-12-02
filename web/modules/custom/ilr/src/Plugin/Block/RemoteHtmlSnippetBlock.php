@@ -5,6 +5,7 @@ namespace Drupal\ilr\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Cache\Cache;
+use Drupal\Component\Utility\Xss;
 
 /**
  * Provides a 'RemoteHtmlSnippetBlock' block.
@@ -20,7 +21,10 @@ class RemoteHtmlSnippetBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
-    return [] + parent::defaultConfiguration();
+    return [
+      'url' => '',
+      'xpath' => ''
+    ] + parent::defaultConfiguration();
   }
 
   /**
@@ -86,7 +90,10 @@ class RemoteHtmlSnippetBlock extends BlockBase {
     // Add the remote snippet to the build array.
     if (!is_null($elements) && $elements->count() > 0) {
       $first_element = $elements->item(0);
-      $build['remote_html_snippet']['#markup'] = $document->saveHTML($first_element);
+      $build['remote_html_snippet'] = [
+        '#markup' => $document->saveHTML($first_element),
+        '#allowed_tags' => ['form', 'label', 'input', 'button', 'span'] + Xss::getAdminTagList(),
+      ];
     }
 
     return $build;
