@@ -345,11 +345,12 @@ third_party_settings:
             uuid: dda27402-2fca-4c34-9ce0-67f1b7595610
             region: main
             configuration:
-              id: course_certificate_block
-              label: 'Course certificate'
-              provider: ilr
+              id: 'extra_field_block:node:course:ilr_certificates'
+              label: 'Certificates (computed)'
+              provider: layout_builder
               label_display: '0'
-              context_mapping: {  }
+              context_mapping:
+                entity: layout_builder.entity
             additional: {  }
             weight: 0
         third_party_settings: {  }
@@ -405,6 +406,11 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  ilr_certificates:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: main
   links:
     weight: 0
     region: content
