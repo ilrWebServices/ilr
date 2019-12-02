@@ -42,7 +42,7 @@
 {{ attach_library('union_organizer/button') }}
 
 {% set rendered_media %}
-  {% if content.field_media is not empty %}
+  {% if paragraph.field_media.value is not empty %}
     {{ content.field_media }}
     {% set attributes = attributes.addClass('cu-card--promo-with-media') %}
   {% endif %}
