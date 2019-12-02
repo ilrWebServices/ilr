@@ -27,6 +27,20 @@
 // the Union ILR skin.
 .cu-menu__link {
   padding: 0;
+  text-align: left;
+
+  @include breakpoint(md) {
+    text-align: center;
+  }
+}
+
+.cu-menu__item {
+  margin: 0;
+  padding: 0.5em 0;
+
+  @include breakpoint(md) {
+    margin: 0 .5em;
+  }
 }
 
 .cu-menu--main {
