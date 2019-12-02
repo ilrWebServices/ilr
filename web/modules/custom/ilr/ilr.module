@@ -111,6 +111,37 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle)
 }
 
 /**
+ * Implements hook_entity_extra_field_info().
+ */
+function ilr_entity_extra_field_info() {
+  $extra = [];
+
+  // Add a pseudo-field that can display the computed certificates field on this
+  // course node. This will be exposed as a field block to layout builder.
+  $extra['node']['course']['display']['ilr_certificates'] = [
+    'label' => t('Certificates (computed)'),
+    'description' => t('This is a computed backreference to certificates.'),
+    'weight' => 0,
+    'visible' => TRUE,
+  ];
+
+  return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  if ($display->getComponent('ilr_certificates') && $view_mode === 'full') {
+    $build['ilr_certificates'] = [
+      '#theme' => 'ilr_course_certificates_block',
+      '#node' => $node,
+      '#certificates' => $entity->certificates->referencedEntities(),
+    ];
+  }
+}
+
+/**
  * Implements template_preprocess_node().
  *
  */
