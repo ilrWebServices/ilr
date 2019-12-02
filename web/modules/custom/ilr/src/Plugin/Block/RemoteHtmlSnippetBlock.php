@@ -92,7 +92,7 @@ class RemoteHtmlSnippetBlock extends BlockBase {
       $first_element = $elements->item(0);
       $build['remote_html_snippet'] = [
         '#markup' => $document->saveHTML($first_element),
-        '#allowed_tags' => ['form', 'label', 'input', 'button', 'span'] + Xss::getAdminTagList(),
+        '#allowed_tags' => ['a', 'form', 'label', 'input', 'button', 'span'] + Xss::getAdminTagList(),
       ];
     }
 
