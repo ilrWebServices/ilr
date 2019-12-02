@@ -50,6 +50,12 @@
   z-index: 20;
 }
 
+// Override of Union ILR skin.
+label[for="nav-trigger"] {
+  right: 0;
+  top: 35px;
+}
+
 #block-union-register-footer-menu {
   ul {
     display: flex;
