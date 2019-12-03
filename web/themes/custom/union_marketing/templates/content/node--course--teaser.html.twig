@@ -102,6 +102,7 @@
 
 <hr class="pad" />
 
+{% if class_count > 1 %}
 {% include '@union/_feature-list.twig' with {
   items: feature_list_items,
   content_attributes: { class: 'cu-grid' }
@@ -109,7 +110,8 @@
 
 <hr class="pad" />
 
-{% if class_count > 1 %}<p class="cu-style cu-style--link">{{ 'See more dates and locations'|t }}</p><hr class="pad" />{% endif %}
+<p class="cu-style cu-style--link">{{ 'See more dates and locations'|t }}</p><hr class="pad" />
+{% endif %}
 </div>
 
 {% set register_link_text = 'Register <span class="visually-hidden"> for ' ~ node.label ~ '</span>'%}
