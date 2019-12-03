@@ -1,3 +1,9 @@
+{% set classes = ['cu-button'] %}
+
+{% if element['#object'].field_media.value is not empty %}
+  {% set classes = classes|merge(['cu-button--overlay']) %}
+{% endif %}
+
 {% for item in items %}
-  {{ item.content|merge({'#options': {'attributes': {'class': ['cu-button', 'cu-button--overlay']}}}) }}
+  {{ item.content|merge({'#options': {'attributes': {'class': classes}}}) }}
 {% endfor %}
