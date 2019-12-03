@@ -1,6 +1,5 @@
 {% set completion_time = node.fields.field_completion_time.value %}
 {% set course_count = node.fields.field_course.value|length %}
-{% set total_cost = node.fields.field_total_cost.value %}
 {% set basics = [
   {
     name: 'Required Courses'|t,
@@ -10,11 +9,6 @@
   {
     name: 'Time to Complete',
     description: '<span class="strong block">' ~ completion_time ~ ' months</span>Time participants have to complete the entire certificate program',
-    icon: 'check-circle'
-  },
-  {
-    name: 'Total Cost',
-    description: '<span class="strong block">$' ~ total_cost ~ '</span>Pay for individual workshops as you go'|raw,
     icon: 'check-circle'
   }
 ]%}
