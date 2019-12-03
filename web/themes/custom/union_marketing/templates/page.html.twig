@@ -43,11 +43,11 @@
 <div{{ attributes.addClass('layout-container') }}>
   <header class="cu-header">
     {{ page.header }}
-    {{ page.highlighted }}
-    {{ page.help }}
   </header>
 
   <main>
+    {{ page.highlighted }}
+    {{ page.help }}
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
     {{ page.content }}
   </main>
