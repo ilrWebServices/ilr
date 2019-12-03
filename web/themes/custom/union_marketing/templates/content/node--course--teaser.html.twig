@@ -102,14 +102,16 @@
 
 <hr class="pad" />
 
-{% if class_count > 1 %}
+{% if class_count > 0 %}
 {% include '@union/_feature-list.twig' with {
   items: feature_list_items,
   content_attributes: { class: 'cu-grid' }
 } only %}
 
 <hr class="pad" />
+{% endif %}
 
+{% if class_count > 1 %}
 <p class="cu-style cu-style--link">{{ 'See more dates and locations'|t }}</p><hr class="pad" />
 {% endif %}
 </div>
