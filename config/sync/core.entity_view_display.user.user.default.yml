@@ -1,0 +1,28 @@
+uuid: f593976a-8a8f-4573-b8d9-37a0f6fed717
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_common_name
+  module:
+    - user
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  field_common_name:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  member_for:
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  search_api_excerpt: true
