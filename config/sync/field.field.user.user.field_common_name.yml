@@ -1,0 +1,20 @@
+uuid: ccd6e364-fb52-4335-abed-b2b11b1d0ce3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_common_name
+  module:
+    - user
+id: user.user.field_common_name
+field_name: field_common_name
+entity_type: user
+bundle: user
+label: Name
+description: 'This field is auto-populated when logging in via NetID.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
