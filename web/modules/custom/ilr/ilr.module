@@ -11,6 +11,7 @@ use Drupal\ilr\FieldStorageDefinition;
 use Drupal\Core\Field\FieldDefinition;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_theme().
@@ -239,6 +240,36 @@ function ilr_taxonomy_term_presave(EntityInterface $entity) {
       ],
     ]);
   }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function ilr_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['saml_login_title'] = [
+    '#markup' => '<h2>' . t('Cornell Users') . '</h2>',
+    '#weight' => -3
+  ];
+
+  $form['saml_login'] = [
+    '#type' => 'link',
+    '#url' => Url::fromRoute('samlauth.saml_controller_login'),
+    '#title' => t('NetID Login'),
+    '#weight' => -2,
+    '#attributes' => [
+      'class' => 'cu-button'
+    ],
+    '#attached' => [
+      'library' => [
+        'union_organizer/button'
+      ]
+    ]
+  ];
+
+  $form['drupal_login_title'] = [
+    '#markup' => '<h2>' . t('No Cornell NetID?') . '</h2>',
+    '#weight' => -1
+  ];
 }
 
 /**
