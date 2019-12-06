@@ -828,7 +828,7 @@ if (!empty(getenv('SAMLAUTH_SP_PRIVATE_KEY'))) {
  *
  * This is automatically configured for the current host.
  */
-$config['samlauth.authentication']['sp_entity_id'] = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/saml/metadata';
+$config['samlauth.authentication']['sp_entity_id'] = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/saml/metadata';
 
 /**
  * Load local development override configuration, if available.
