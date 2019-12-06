@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f982d11f83417b74388331040540e1c",
+    "content-hash": "9716ed223919152865e46436f15773a0",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4364,6 +4364,9 @@
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "https://www.drupal.org/project/samlauth/issues/3099353": "https://www.drupal.org/files/issues/2019-12-06/samlauth-allow_idp_assertion_encryption-3099353-1.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
