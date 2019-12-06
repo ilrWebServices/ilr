@@ -6,13 +6,13 @@
     --cu-current-font-size: var(--cu-text-xxl);
     --cu-current-font-weight: var(--cu-heading-font-weight);
     margin: 0 auto var(--cu-vr1);
-    // max-width: var(--cu-max-width-section, #{$max-width-section});
+    max-width: var(--cu-max-width-section, #{$max-width-section});
   }
 
   &__form {
     display: grid;
     margin: 0 auto;
-    // max-width: var(--cu-max-width-section, #{$max-width-section});
+    max-width: var(--cu-max-width-section, #{$max-width-section});
 
     @include breakpoint(sm) {
       grid-template-columns: 1fr 1fr;
