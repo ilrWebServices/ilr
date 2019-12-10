@@ -40,6 +40,15 @@ function union_marketing_preprocess_views_view__courses_by_topic(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_media_oembed_iframe().
+ */
+function union_marketing_preprocess_media_oembed_iframe(&$variables) {
+  // Remove the frameborder attribute, generally found in youtube iframes, and
+  // place in a new template variable.
+  $variables['media_processed'] = str_replace(' frameborder="0"', ' style="border: 0;"', $variables['media']);
+}
+
+/**
  * Implements hook_library_info_alter().
  */
 function union_marketing_library_info_alter(&$libraries, $extension) {
