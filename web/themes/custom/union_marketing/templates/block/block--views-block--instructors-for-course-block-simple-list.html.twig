@@ -25,12 +25,15 @@
  * @see template_preprocess_block()
  */
 #}
-{% set box_content %}
-<h2 class="cu-heading">{{ label }}</h2>
-{{ content }}
-{% endset %}
 
-{% include '@union/_highlight-box.twig' with {
-  content: box_content,
-  attributes: attributes.setAttribute('id', 'instructors')
-} only %}
+{% if content['#view'].result is not empty %}
+  {% set box_content %}
+  <h2 class="cu-heading">{{ label }}</h2>
+  {{ content }}
+  {% endset %}
+
+  {% include '@union/_highlight-box.twig' with {
+    content: box_content,
+    attributes: attributes.setAttribute('id', 'instructors')
+  } only %}
+{% endif %}
