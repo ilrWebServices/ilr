@@ -41,11 +41,46 @@ function union_marketing_preprocess_views_view__courses_by_topic(&$variables) {
 
 /**
  * Implements template_preprocess_media_oembed_iframe().
+ *
+ * Create a new `media_processed` variable that fixes some accessibility issues
+ * with oembed markup.
  */
 function union_marketing_preprocess_media_oembed_iframe(&$variables) {
-  // Remove the frameborder attribute, generally found in youtube iframes, and
-  // place in a new template variable.
-  $variables['media_processed'] = str_replace(' frameborder="0"', ' style="border: 0;"', $variables['media']);
+  $variables['media_processed']  = '';
+  $document = new \DOMDocument('1.0', 'UTF-8');
+  $internalErrors = libxml_use_internal_errors(true); // Disable XML errors;
+  $document->loadHTML($variables['media']);
+  libxml_use_internal_errors($internalErrors); // Restore XML error settings;
+
+  // Fix iframes, specifically those from youtube.
+  foreach ($document->getElementsByTagName('iframe') as $iframe) {
+    // If there is no title on the iframe, add a generic one.
+    if ($iframe->hasAttribute('title') === FALSE) {
+      $parsed_url = parse_url($iframe->getAttribute('src'));
+      $iframe->setAttribute('title', 'Embedded media from ' . $parsed_url['host']);
+    }
+
+    // Remove the frameborder attribute if it exists.
+    if ($iframe->hasAttribute('frameborder')) {
+      $iframe->removeAttribute('frameborder');
+    }
+
+    // Add an inline border style, since we just removed the frameborder.
+    if ($iframe->hasAttribute('style')) {
+      $iframe->setAttribute('style', $iframe->getAttribute('style') . ' border: 0;');
+    }
+    else {
+      $iframe->setAttribute('style', 'border: 0;');
+    }
+  }
+
+  $body_node = $document->getElementsByTagName('body')->item(0);
+  $comment_node = $document->createComment('Processed by union_marketing_preprocess_media_oembed_iframe():');
+  $body_node->insertBefore($comment_node, $body_node->firstChild);
+
+  foreach ($body_node->childNodes as $node) {
+    $variables['media_processed'] .= $document->saveHTML($node);
+  }
 }
 
 /**
