@@ -128,11 +128,12 @@ third_party_settings:
             uuid: 67c13d00-4dc9-46b2-b305-3d432c3ffd9c
             region: banner
             configuration:
-              id: course_page_nav
-              label: 'Course page nav'
-              provider: ilr
+              id: 'extra_field_block:node:course:ilr_course_page_links'
+              label: 'Course Page Links (extra)'
+              provider: layout_builder
               label_display: '0'
-              context_mapping: {  }
+              context_mapping:
+                entity: layout_builder.entity
             additional: {  }
             weight: 5
           843326c4-8871-48f9-bcdc-0670dce865f7:
@@ -407,6 +408,11 @@ content:
     type: entity_reference_label
     region: content
   ilr_certificates:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: main
+  ilr_course_page_links:
     weight: 0
     settings: {  }
     third_party_settings: {  }

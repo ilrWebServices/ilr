@@ -1,22 +1,3 @@
-{% set items = [
-  {
-    url: '#course-details',
-    text: 'Course Details',
-  },
-  {
-    url: '#instructors',
-    text: 'The Instructors',
-  },
-  {
-    url: '#related-courses',
-    text: 'Related Courses',
-  },
-  {
-    url: '/programs/professional-programs/registration-information',
-    text: 'Registration Information',
-  },
-] %}
-
 {% include '@union/_page-nav.twig' with {
-  items: items
+  items: links
 } only %}

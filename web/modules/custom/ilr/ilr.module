@@ -35,7 +35,10 @@ function ilr_theme($existing, $type, $theme, $path) {
       ],
     ],
     'ilr_course_page_nav_block' => [
-      'variables' => [],
+      'variables' => [
+        'node' => [],
+        'links' => [],
+      ],
     ],
   ];
 }
@@ -128,6 +131,14 @@ function ilr_entity_extra_field_info() {
     'visible' => TRUE,
   ];
 
+  // Add a pseudo-field that can display the course page links.
+  $extra['node']['course']['display']['ilr_course_page_links'] = [
+    'label' => t('Course Page Links (extra)'),
+    'description' => t('A list of course page links.'),
+    'weight' => 0,
+    'visible' => TRUE,
+  ];
+
   return $extra;
 }
 
@@ -140,6 +151,38 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
       '#theme' => 'ilr_course_certificates_block',
       '#node' => $entity,
       '#certificates' => $entity->certificates->referencedEntities(),
+    ];
+  }
+
+  if ($display->getComponent('ilr_course_page_links') && $view_mode === 'full') {
+    $page_links = [
+      [
+        'url' => '#course-details',
+        'text' => 'Course Details',
+      ],
+      [
+        'url' => '#instructors',
+        'text' => 'The Instructors',
+      ],
+      [
+        'url' => '#related-courses',
+        'text' => 'Related Courses',
+      ],
+      [
+        'url' => '/programs/professional-programs/registration-information',
+        'text' => 'Registration Information',
+      ]
+    ];
+
+    if ($entity->classes->count() === 0) {
+      // Remove the instructors link when there are no classes.
+      unset($page_links[1]);
+    }
+
+    $build['ilr_course_page_links'] = [
+      '#theme' => 'ilr_course_page_nav_block',
+      '#node' => $entity,
+      '#links' => $page_links,
     ];
   }
 }
