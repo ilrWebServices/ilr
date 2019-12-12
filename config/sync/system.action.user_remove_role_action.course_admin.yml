@@ -1,0 +1,14 @@
+uuid: 5d74a9e7-cfdb-4ebf-9c56-ab53fb520470
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.course_admin
+  module:
+    - user
+id: user_remove_role_action.course_admin
+label: 'Remove the Course Admin role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: course_admin
