@@ -1,0 +1,32 @@
+uuid: f119cb1a-5b0e-4b9f-ac1f-6a7c993171ec
+langcode: en
+status: true
+dependencies: {  }
+id: course_admin
+label: 'Course Admin'
+weight: 5
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access media overview'
+  - 'access toolbar'
+  - 'administer media'
+  - 'create media'
+  - 'delete any media'
+  - 'edit any certificate content'
+  - 'edit any course content'
+  - 'edit any instructor content'
+  - 'revert certificate revisions'
+  - 'revert course revisions'
+  - 'revert instructor revisions'
+  - 'update any media'
+  - 'view all media revisions'
+  - 'view all revisions'
+  - 'view certificate revisions'
+  - 'view course revisions'
+  - 'view instructor revisions'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view the administration theme'

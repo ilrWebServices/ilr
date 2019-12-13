@@ -1,0 +1,14 @@
+uuid: e17f7b6d-95a7-48ff-9d88-934ff0ecef09
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.course_admin
+  module:
+    - user
+id: user_add_role_action.course_admin
+label: 'Add the Course Admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: course_admin
