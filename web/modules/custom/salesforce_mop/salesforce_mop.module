@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Contains salesforce_mop.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function salesforce_mop_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the salesforce_mop module.
+    case 'help.page.salesforce_mop':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A small custom module used to prevent editing of fields mapped to SalesForce') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function salesforce_mop_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\node\NodeForm $form_object */
+  $form_object = $form_state->getFormObject();
+
+  if ($form_object instanceof \Drupal\node\NodeForm) {
+    $node = $form_object->getEntity();
+
+    // Check if the node is mapped to SalesForce.
+    $mapped_object_array = \Drupal::service('entity.manager')
+      ->getStorage('salesforce_mapped_object')
+      ->loadByDrupal('node', $node->id());
+
+    // Disable fields that are mapped.
+    if (!empty($mapped_object_array)) {
+      $mapped_object = reset($mapped_object_array);
+      $field_mappings = $mapped_object->getMapping()->getFieldMappings();
+      foreach ($field_mappings as $field_mapping) {
+        $field_name = $field_mapping->getConfiguration()['drupal_field_value'];
+        $form[$field_name]['#disabled'] = TRUE;
+      }
+    }
+  }
+}
