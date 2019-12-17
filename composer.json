@@ -29,16 +29,15 @@
     "php": ">=5.6",
     "composer/installers": "^1.2",
     "cweagans/composer-patches": "^1.6.5",
-    "drupal-composer/drupal-scaffold": "^2.5",
     "drupal/address": "^1.7",
     "drupal/config_split": "^1.4",
     "drupal/console": "^1.0.2",
-    "drupal/core": "^8.7.0",
+    "drupal/core-composer-scaffold": "^8.8",
+    "drupal/core-recommended": "^8.8",
     "drupal/date_range_formatter": "^3.1",
     "drupal/dynamic_entity_reference": "^2.0",
     "drupal/easy_breadcrumb": "^1.12",
     "drupal/entity_reference_layout": "1.x-dev#5e8850af01e8f30808ac2a7a9cf2e9177fd6ed16",
-    "drupal/facets": "^1.4",
     "drupal/google_tag": "^1.2",
     "drupal/menu_item_extras": "^2.8",
     "drupal/metatag": "^1.10",
@@ -47,7 +46,6 @@
     "drupal/migrate_tools": "^4.3",
     "drupal/paragraphs": "^1.9",
     "drupal/pathauto": "^1.4",
-    "drupal/readmore_js": "^1.1",
     "drupal/recreate_block_content": "^2.0",
     "drupal/redirect": "^1.4",
     "drupal/redis": "^1.2",
@@ -59,18 +57,15 @@
     "drupal/twig_tweak": "^2.4",
     "drupal/union_organizer": "dev-master",
     "drupal/webform": "^5.4",
-    "drush/drush": "^9.0.0",
-    "oomphinc/composer-installers-extender": "^1.1",
+    "drush/drush": "^10.0.0",
     "platformsh/config-reader": "^2.3",
     "vlucas/phpdotenv": "^2.4",
-    "webflo/drupal-finder": "^1.0.0",
-    "webmozart/path-util": "^2.3",
     "zaporylie/composer-drupal-optimizations": "^1.0"
   },
   "require-dev": {
+    "drupal/core-dev": "^8.8",
     "drupal/devel_entity_updates": "^1.0@RC",
-    "drupal/stage_file_proxy": "^1.0@RC",
-    "webflo/drupal-core-require-dev": "^8.7.0"
+    "drupal/stage_file_proxy": "^1.0@RC"
   },
   "conflict": {
     "drupal/drupal": "*"
@@ -81,24 +76,9 @@
     "sort-packages": true
   },
   "autoload": {
-    "classmap": [
-      "scripts/composer/ScriptHandler.php"
-    ],
     "files": ["load.environment.php"]
   },
   "scripts": {
-    "pre-install-cmd": [
-      "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
-    ],
-    "pre-update-cmd": [
-      "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
-    ],
-    "post-install-cmd": [
-      "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
-    ],
-    "post-update-cmd": [
-      "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
-    ],
     "sync-prod": "drush sql:drop && drush sql:sync @ilr-web.master @self && echo \"Be sure to update trigger DEFINERs to prevent database errors.\""
   },
   "extra": {
@@ -119,19 +99,19 @@
         "https://www.drupal.org/project/samlauth/issues/3099353": "https://www.drupal.org/files/issues/2019-12-06/samlauth-allow_idp_assertion_encryption-3099353-1.patch"
       }
     },
-    "installer-types": ["npm-asset"],
     "installer-paths": {
       "web/core": ["type:drupal-core"],
       "web/libraries/{$name}": ["type:drupal-library"],
       "web/modules/contrib/{$name}": ["type:drupal-module"],
       "web/profiles/contrib/{$name}": ["type:drupal-profile"],
       "web/themes/contrib/{$name}": ["type:drupal-theme"],
-      "drush/Commands/{$name}": ["type:drupal-drush"]
+      "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
+      "web/modules/custom/{$name}": ["type:drupal-custom-module"],
+      "web/themes/custom/{$name}": ["type:drupal-custom-theme"]
     },
     "drupal-scaffold": {
-      "initial": {
-        ".editorconfig": "../.editorconfig",
-        ".gitattributes": "../.gitattributes"
+      "locations": {
+        "web-root": "web/"
       }
     }
   }

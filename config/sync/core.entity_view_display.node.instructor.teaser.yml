@@ -11,24 +11,12 @@ dependencies:
     - node.type.instructor
   module:
     - media
-    - readmore_js
     - user
 id: node.instructor.teaser
 targetEntityType: node
 bundle: instructor
 mode: teaser
 content:
-  body:
-    label: hidden
-    type: read_more_field_formatter
-    weight: 1
-    settings:
-      more_link: 'Read more'
-      more_link_classes: ''
-      close_link: Close
-      close_link_classes: ''
-    third_party_settings: {  }
-    region: content
   field_job_title:
     type: string
     weight: 2
@@ -52,4 +40,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  body: true
+  field_last_name: true
   search_api_excerpt: true

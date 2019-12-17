@@ -7,6 +7,7 @@ dependencies:
     - media.type.remote_video
   module:
     - media
+    - path
 id: media.remote_video.default
 targetEntityType: media
 bundle: remote_video
@@ -46,6 +47,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     region: content
     third_party_settings: {  }
 hidden:
