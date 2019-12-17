@@ -554,7 +554,7 @@ $settings['file_public_path'] = 'sites/default/files-d8';
  *
  * @see \Drupal\Component\FileSystem\FileSystem::getOsTemporaryDirectory()
  */
-// # $settings['file_temp_path'] = '/tmp';
+# $settings['file_temp_path'] = '/tmp';
 
 /**
  * Session write interval:
