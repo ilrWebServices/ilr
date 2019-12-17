@@ -24,6 +24,7 @@ content:
       rows: 5
       placeholder: ''
       summary_rows: 3
+      show_summary: false
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
@@ -39,6 +40,7 @@ content:
       rows: 5
       placeholder: ''
       summary_rows: 3
+      show_summary: false
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
@@ -99,6 +101,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     region: content
     third_party_settings: {  }
   url_redirects:
