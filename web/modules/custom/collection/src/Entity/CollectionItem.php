@@ -46,7 +46,7 @@ use Drupal\user\UserInterface;
  *     "uid" = "user_id",
  *   },
  *   links = {
- *     "canonical" = "/collection-item/{collection_item}",
+ *     "canonical" = "/collection/{collection}/items/{collection_item}",
  *     "add-page" = "/collection/{collection}/items/add",
  *     "add-form" = "/collection/{collection}/items/add/{collection_item_type}",
  *     "edit-form" = "/collection/{collection}/items/{collection_item}/edit",
