@@ -1,29 +1,19 @@
-collection.admin:
-  title: 'Collections'
-  route_name: 'collection.admin'
-  parent: 'system.admin'
-  description: 'Administer and configure Collections.'
-
-# Collection menu items definition
 entity.collection.collection:
   title: 'Collections'
   route_name: entity.collection.collection
   description: 'Manage Collections'
-  parent: collection.admin
-  weight: 0
+  parent: system.admin
 
 # Collection type menu items definition
 entity.collection_type.collection:
   title: 'Collection types'
   route_name: entity.collection_type.collection
   description: 'Manage collection types'
-  parent: collection.admin
-  weight: 2
+  parent: system.admin_structure
 
 # Collection item type menu items definition
 entity.collection_item_type.collection:
   title: 'Collection item types'
   route_name: entity.collection_item_type.collection
   description: 'Manage collection item types'
-  parent: collection.admin
-  weight: 3
+  parent: system.admin_structure

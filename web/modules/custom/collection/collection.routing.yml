@@ -1,7 +1,0 @@
-collection.admin:
-  path: '/admin/collection'
-  defaults:
-    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
-    _title: 'Collections'
-  requirements:
-    _permission: 'administer collections'

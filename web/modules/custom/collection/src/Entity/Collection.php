@@ -54,7 +54,7 @@ use Drupal\user\UserInterface;
  *     "add-form" = "/collection/add/{collection_type}",
  *     "edit-form" = "/collection/{collection}/edit",
  *     "delete-form" = "/collection/{collection}/delete",
- *     "collection" = "/admin/collection/collections",
+ *     "collection" = "/admin/collections",
  *   },
  *   bundle_entity_type = "collection_type",
  *   field_ui_base_route = "entity.collection_type.edit_form"
