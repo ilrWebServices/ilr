@@ -9,6 +9,11 @@ entity.collection.edit_form:
   base_route: entity.collection.canonical
   title: 'Edit'
 
+entity.collection.items:
+  route_name: entity.collection_item.collection
+  base_route: entity.collection.canonical
+  title: Items
+
 entity.collection.delete_form:
   route_name:  entity.collection.delete_form
   base_route:  entity.collection.canonical

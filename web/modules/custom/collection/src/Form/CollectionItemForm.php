@@ -61,9 +61,9 @@ class CollectionItemForm extends ContentEntityForm {
   public function buildForm(array $form, FormStateInterface $form_state) {
     /* @var \Drupal\collection\Entity\CollectionItem $entity */
     $form = parent::buildForm($form, $form_state);
-
-    $entity = $this->entity;
-
+    $collection_id = \Drupal::routeMatch()->getRawParameter('collection');
+    $form['collection']['widget']['#default_value'] = $collection_id;
+    $form['collection']['widget']['#disabled'] = TRUE;
     return $form;
   }
 
@@ -87,7 +87,7 @@ class CollectionItemForm extends ContentEntityForm {
         ]));
     }
 
-    $form_state->setRedirect('entity.collection_item.collection');
+    $form_state->setRedirect('entity.collection_item.collection', ['collection' => $entity->collection->target_id]);
   }
 
 }

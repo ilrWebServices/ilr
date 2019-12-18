@@ -31,7 +31,7 @@ use Drupal\user\UserInterface;
  *       "delete" = "Drupal\collection\Form\CollectionItemDeleteForm",
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
+ *       "default" = "Drupal\collection\CollectionItemRouteProvider",
  *     },
  *     "access" = "Drupal\collection\CollectionAccessControlHandler",
  *   },
@@ -47,11 +47,11 @@ use Drupal\user\UserInterface;
  *   },
  *   links = {
  *     "canonical" = "/collection-item/{collection_item}",
- *     "add-page" = "/collection-item/add",
- *     "add-form" = "/collection-item/add/{collection_item_type}",
- *     "edit-form" = "/collection-item/{collection_item}/edit",
- *     "delete-form" = "/collection-item/{collection_item}/delete",
- *     "collection" = "/admin/collection/collection-items",
+ *     "add-page" = "/collection/{collection}/items/add",
+ *     "add-form" = "/collection/{collection}/items/add/{collection_item_type}",
+ *     "edit-form" = "/collection/{collection}/items/{collection_item}/edit",
+ *     "delete-form" = "/collection/{collection}/items/{collection_item}/delete",
+ *     "collection" = "/collection/{collection}/items",
  *   },
  *   bundle_entity_type = "collection_item_type",
  *   field_ui_base_route = "entity.collection_item_type.edit_form"
@@ -60,6 +60,15 @@ use Drupal\user\UserInterface;
 class CollectionItem extends ContentEntityBase implements CollectionItemInterface {
 
   use EntityChangedTrait;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function urlRouteParameters($rel) {
+    $uri_route_parameters = parent::urlRouteParameters($rel);
+    $uri_route_parameters['collection'] = $this->get('collection')->target_id;
+    return $uri_route_parameters;
+  }
 
   /**
    * {@inheritdoc}

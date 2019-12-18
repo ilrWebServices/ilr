@@ -20,14 +20,6 @@ entity.collection_type.collection:
   parent: collection.admin
   weight: 2
 
-# Collection item menu items definition
-entity.collection_item.collection:
-  title: 'Collection items'
-  route_name: entity.collection_item.collection
-  description: 'Manage Collection Items'
-  parent: collection.admin
-  weight: 1
-
 # Collection item type menu items definition
 entity.collection_item_type.collection:
   title: 'Collection item types'
