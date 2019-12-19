@@ -44,6 +44,54 @@ function ilr_theme($existing, $type, $theme, $path) {
 }
 
 /**
+ * Implements hook_entity_base_field_info_alter().
+ *
+ * - Refine the settings for the collection_item `item` field:
+ *   - Allow `media` and `taxonomy_term` entities.
+ *   - Restrict the bundles for all allowed entities.
+ *   - @todo: Allow these settings to be configured per collection_item bundle
+ *     via the UI.
+ */
+function ilr_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+  if ($entity_type->id() === 'collection_item' && !empty($fields['item'])) {
+    $entity_type_ids_setting = $fields['item']->getSetting('entity_type_ids');
+
+    $fields['item']
+      ->setSetting('entity_type_ids', $entity_type_ids_setting + [
+        'media' => 'media',
+        'taxonomy_term' => 'taxonomy_term',
+      ])
+      ->setSetting('media', [
+        'handler' => 'default:media',
+        'handler_settings' => [
+          'target_bundles' => [
+            'image' => 'image',
+            'remote_video' => 'remote_video',
+          ]
+        ]
+      ])
+      ->setSetting('node', [
+        'handler' => 'default:node',
+        'handler_settings' => [
+          'target_bundles' => [
+            'certificate' => 'certificate',
+            'course' => 'course',
+            'page' => 'page',
+          ]
+        ]
+      ])
+      ->setSetting('taxonomy_term', [
+        'handler' => 'default:taxonomy_term',
+        'handler_settings' => [
+          'target_bundles' => [
+            'topics' => 'topics',
+          ]
+        ]
+      ]);
+  }
+}
+
+/**
  * Implements hook_entity_field_storage_info().
  */
 function ilr_entity_field_storage_info(EntityTypeInterface $entity_type) {
