@@ -58,20 +58,10 @@ class CollectionItemForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
-    /* @var \Drupal\collection\Entity\CollectionItem $entity */
-    $form = parent::buildForm($form, $form_state);
-    $collection_id = \Drupal::routeMatch()->getRawParameter('collection');
-    $form['collection']['widget']['#default_value'] = $collection_id;
-    $form['collection']['widget']['#disabled'] = TRUE;
-    return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function save(array $form, FormStateInterface $form_state) {
     $entity = $this->entity;
+    $entity->collection = \Drupal::routeMatch()->getRawParameter('collection');
+
     $status = parent::save($form, $form_state);
 
     switch ($status) {
