@@ -55,4 +55,26 @@ class CollectionItemController extends EntityController {
     }
   }
 
+  /**
+   * Provides an add title callback for collection items with bundles.
+   *
+   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+   *   The route match.
+   * @param string $entity_type_id
+   *   The entity type ID.
+   * @param string $bundle_parameter
+   *   The name of the route parameter that holds the bundle.
+   *
+   * @return string
+   *   The title for the entity add page, if the bundle was found.
+   */
+  public function addBundleTitle(RouteMatchInterface $route_match, $entity_type_id, $bundle_parameter) {
+    $collection = $route_match->getParameter('collection');
+
+    return $this->t('Add new item to %collection @collection_type collection', [
+      '%collection' => $collection->label(),
+      '@collection_type' => $collection->bundle()
+    ]);
+  }
+
 }

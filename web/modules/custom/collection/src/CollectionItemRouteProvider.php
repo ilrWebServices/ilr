@@ -32,6 +32,7 @@ class CollectionItemRouteProvider extends AdminHtmlRouteProvider {
    */
   protected function getAddFormRoute(EntityTypeInterface $entity_type) {
     $route = parent::getAddFormRoute($entity_type);
+    $route->setDefault('_title_callback', CollectionItemController::class . '::addBundleTitle');
     $route->setOption('parameters', [
       'collection' => [
         'type' => 'entity:collection',
