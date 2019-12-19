@@ -55,5 +55,12 @@ interface CollectionInterface extends ContentEntityInterface, EntityChangedInter
    */
   public function setCreatedTime($timestamp);
 
+  /**
+   * Gets the collection items for this collection
+   *
+   * @return array
+   *   A bunch of \Drupal\collection\Entity\CollectionItemInterface
+   */
+  public function getItems();
 
 }

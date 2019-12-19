@@ -8,5 +8,11 @@ Organize any content or configuration entity into an arbitrary collection.
 - Implement user interface for adding items to collection (e.g. contextual links, custom block, node add/edit form).
 - Add 'in collection' condition and admin block (maybe).
 - Implement exposed filters in the collection item listing. Investigate using Views as the listbuilder.
+- Allow bulk operations on collection item lists.
 - Fix Views integration.
 - Add collection item listing to collection pages.
+- Improve collection permissions
+  - per collection type add/edit/delete
+- Offer to remove collection items when deleting a collection
+  - Or prevent deletion of collections with items
+- Add tests

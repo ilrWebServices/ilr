@@ -58,20 +58,10 @@ class CollectionItemForm extends ContentEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
-    /* @var \Drupal\collection\Entity\CollectionItem $entity */
-    $form = parent::buildForm($form, $form_state);
-
-    $entity = $this->entity;
-
-    return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function save(array $form, FormStateInterface $form_state) {
     $entity = $this->entity;
+    $entity->collection = \Drupal::routeMatch()->getRawParameter('collection');
+
     $status = parent::save($form, $form_state);
 
     switch ($status) {
@@ -87,7 +77,7 @@ class CollectionItemForm extends ContentEntityForm {
         ]));
     }
 
-    $form_state->setRedirect('entity.collection_item.collection');
+    $form_state->setRedirect('entity.collection_item.collection', ['collection' => $entity->collection->target_id]);
   }
 
 }

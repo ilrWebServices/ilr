@@ -29,7 +29,7 @@ class CollectionListBuilder extends EntityListBuilder {
     /* @var \Drupal\collection\Entity\Collection $entity */
     $row['name'] = Link::createFromRoute(
       $entity->label(),
-      'entity.collection.canonical',
+      'entity.collection_item.collection',
       ['collection' => $entity->id()]
     );
     $row['type'] = $entity->bundle();

@@ -54,7 +54,7 @@ use Drupal\user\UserInterface;
  *     "add-form" = "/collection/add/{collection_type}",
  *     "edit-form" = "/collection/{collection}/edit",
  *     "delete-form" = "/collection/{collection}/delete",
- *     "collection" = "/admin/collection/collections",
+ *     "collection" = "/admin/collections",
  *   },
  *   bundle_entity_type = "collection_type",
  *   field_ui_base_route = "entity.collection_type.edit_form"
@@ -132,6 +132,18 @@ class Collection extends ContentEntityBase implements CollectionInterface {
   public function setOwner(UserInterface $account) {
     $this->set('user_id', $account->id());
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getItems() {
+    $collection_item_ids = \Drupal::entityQuery('collection_item')
+      ->condition('collection', $this->id())
+      ->sort('changed', 'DESC')
+      ->execute();
+    $items = $this->entityTypeManager()->getStorage('collection_item')->loadMultiple($collection_item_ids);
+    return $items;
   }
 
   /**

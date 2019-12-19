@@ -31,7 +31,7 @@ use Drupal\user\UserInterface;
  *       "delete" = "Drupal\collection\Form\CollectionItemDeleteForm",
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
+ *       "default" = "Drupal\collection\CollectionItemRouteProvider",
  *     },
  *     "access" = "Drupal\collection\CollectionAccessControlHandler",
  *   },
@@ -46,12 +46,12 @@ use Drupal\user\UserInterface;
  *     "uid" = "user_id",
  *   },
  *   links = {
- *     "canonical" = "/collection-item/{collection_item}",
- *     "add-page" = "/collection-item/add",
- *     "add-form" = "/collection-item/add/{collection_item_type}",
- *     "edit-form" = "/collection-item/{collection_item}/edit",
- *     "delete-form" = "/collection-item/{collection_item}/delete",
- *     "collection" = "/admin/collection/collection-items",
+ *     "canonical" = "/collection/{collection}/items/{collection_item}",
+ *     "add-page" = "/collection/{collection}/items/add",
+ *     "add-form" = "/collection/{collection}/items/add/{collection_item_type}",
+ *     "edit-form" = "/collection/{collection}/items/{collection_item}/edit",
+ *     "delete-form" = "/collection/{collection}/items/{collection_item}/delete",
+ *     "collection" = "/collection/{collection}/items",
  *   },
  *   bundle_entity_type = "collection_item_type",
  *   field_ui_base_route = "entity.collection_item_type.edit_form"
@@ -60,6 +60,15 @@ use Drupal\user\UserInterface;
 class CollectionItem extends ContentEntityBase implements CollectionItemInterface {
 
   use EntityChangedTrait;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function urlRouteParameters($rel) {
+    $uri_route_parameters = parent::urlRouteParameters($rel);
+    $uri_route_parameters['collection'] = $this->get('collection')->target_id;
+    return $uri_route_parameters;
+  }
 
   /**
    * {@inheritdoc}
@@ -160,19 +169,9 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ->setSetting('handler', 'default')
       ->setTranslatable(TRUE)
       ->setDisplayOptions('view', [
-        'label' => 'hidden',
+        'label' => 'above',
         'type' => 'author',
         'weight' => 0,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
-        'weight' => 5,
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ],
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
@@ -209,10 +208,6 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
         'type' => 'entity_reference_label',
         'weight' => 0,
         'settings' => ['link' => TRUE]
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'options_select',
-        'weight' => 4,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)

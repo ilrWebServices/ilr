@@ -32,10 +32,10 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *     "uuid" = "uuid"
  *   },
  *   links = {
- *     "add-form" = "/admin/collection/item/types/add",
- *     "edit-form" = "/admin/collection/item/types/{collection_item_type}",
- *     "delete-form" = "/admin/collection/item/types/{collection_item_type}/delete",
- *     "collection" = "/admin/collection/item/types"
+ *     "add-form" = "/admin/structure/collection_item/add",
+ *     "edit-form" = "/admin/structure/collection_item/{collection_item_type}",
+ *     "delete-form" = "/admin/structure/collection_item/{collection_item_type}/delete",
+ *     "collection" = "/admin/structure/collection_item"
  *   }
  * )
  */
