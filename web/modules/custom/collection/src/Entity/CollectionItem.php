@@ -169,19 +169,9 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ->setSetting('handler', 'default')
       ->setTranslatable(TRUE)
       ->setDisplayOptions('view', [
-        'label' => 'hidden',
+        'label' => 'above',
         'type' => 'author',
         'weight' => 0,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
-        'weight' => 5,
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ],
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
@@ -218,10 +208,6 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
         'type' => 'entity_reference_label',
         'weight' => 0,
         'settings' => ['link' => TRUE]
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'options_select',
-        'weight' => 4,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
