@@ -217,6 +217,17 @@ class Collection extends ContentEntityBase implements CollectionInterface {
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
 
+    $fields['path'] = BaseFieldDefinition::create('path')
+      ->setLabel(t('URL alias'))
+      ->setDescription(t('The collection URL alias.'))
+      ->setTranslatable(TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'path',
+        'weight' => 30,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setComputed(TRUE);
+
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
       ->setDescription(t('The time that the entity was created.'));
