@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Contains collection_subsites.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\collection\Entity\CollectionType;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * - Add a 'Contains Subsites' setting to collection_types.
+ */
+function collection_subsites_form_collection_type_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $collection_type = $form_state->getFormObject()->getEntity();
+
+  $form['contains_subsites'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Contains subsites'),
+    '#description' => t('If enabled, a collection of this type will represent a subsite.'),
+    '#default_value' => $collection_type->getThirdPartySetting('collection_subsites', 'contains_subsites'),
+    '#weight' => 1
+  ];
+
+  $form['#entity_builders'][] = 'collection_subsites_form_collection_form_builder';
+}
+
+/**
+ * Entity builder for the collection type configuration entity.
+ */
+function collection_subsites_form_collection_form_builder($entity_type, CollectionType $collection_type, &$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('contains_subsites')) {
+    $collection_type->setThirdPartySetting('collection_subsites', 'contains_subsites', $form_state->getValue('contains_subsites'));
+    return;
+  }
+
+  $collection_type->unsetThirdPartySetting('collection_subsites', 'contains_subsites');
+}
