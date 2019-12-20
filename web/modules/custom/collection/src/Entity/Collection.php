@@ -8,6 +8,8 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\user\UserInterface;
+use Drupal\collection\Event\CollectionEvents;
+use Drupal\collection\Event\CollectionCreateEvent;
 
 /**
  * Defines the Collection entity.
@@ -132,6 +134,23 @@ class Collection extends ContentEntityBase implements CollectionInterface {
   public function setOwner(UserInterface $account) {
     $this->set('user_id', $account->id());
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
+    parent::postSave($storage);
+
+    // Is the collection being inserted (e.g. is new)?
+    if (!$update) {
+      // Dispatch new collection event.
+      $event = new CollectionCreateEvent($this);
+
+      // Get the event_dispatcher service and dispatch the event.
+      $event_dispatcher = \Drupal::service('event_dispatcher');
+      $event_dispatcher->dispatch(CollectionEvents::COLLECTION_ENTITY_CREATE, $event);
+    }
   }
 
   /**
