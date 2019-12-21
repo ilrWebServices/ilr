@@ -64,12 +64,21 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
       return;
     }
 
+    // Set a unique 'machine name' for this collection. It will be used for the
+    // machine names of the generated menu, block visibility group, and any
+    // other config entities.
+    $collection_machine_name = 'subsite-' . $collection->id();
+
+    // Initialize the collection_item storage. We'll use this later to add
+    // auto-generated items to the new collection.
+    $collection_item_storage = $this->entityTypeManager->getStorage('collection_item');
+
     // Create a menu for this subsite.
     $menu = $this->entityTypeManager->getStorage('menu')->create([
       'langcode' => 'en',
       'status' => TRUE,
-      'id' => 'subsite-' . $collection->id(),
-      'label' => $collection->label() . ' main navigation',
+      'id' => $collection_machine_name,
+      'label' => $collection->label() . ' subsite main navigation',
       'description' => 'Auto-generated menu for ' . $collection->label() . ' subsite',
     ]);
     $menu->save();
@@ -80,14 +89,46 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
       ]));
 
       // Add the menu to this new collection.
-      $collection_item_storage = $this->entityTypeManager->getStorage('collection_item');
-      $collection_item = $collection_item_storage->create([
-        'type' => 'default',
-        'user_id' => '0',
+      $collection_item_menu = $collection_item_storage->create([
+        'type' => 'default', // @todo: Consider a dedicated type.
         'collection' => $collection->id(),
       ]);
-      $collection_item->item = $menu;
-      $collection_item->save();
+      $collection_item_menu->item = $menu;
+      $collection_item_menu->save();
+    }
+
+    // Create a block visibility group for this subsite.
+    $bvg_storage = $this->entityTypeManager->getStorage('block_visibility_group');
+    $bvg = $bvg_storage->create([
+      'label' => $collection->label() . ' subsite',
+      'id' => $collection_machine_name,
+      'logic' => 'or',
+    ]);
+
+    // Add the subsite collection path to the BVG as a condition.
+    $bvg->addCondition([
+      'id' => 'request_path',
+      'pages' => $collection->path->first()->alias . '*', // e.g. '/scheinman-institute*',
+      'negate' => FALSE,
+      'context_mapping' => [],
+    ]);
+
+    // @todo: Add the menu to the BVG as a condition.
+
+    $bvg->save();
+
+    if ($bvg) {
+      $this->messenger->addMessage($this->t('Created new %bvg_name subsite block visibility group.', [
+        '%bvg_name' => $bvg->label()
+      ]));
+
+      // Add the bvg to this new collection.
+      $collection_item_bvg = $collection_item_storage->create([
+        'type' => 'default', // @todo: Consider a dedicated type.
+        'collection' => $collection->id(),
+      ]);
+      $collection_item_bvg->item = $bvg;
+      $collection_item_bvg->save();
     }
   }
 
