@@ -130,6 +130,10 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
       $collection_item_bvg->item = $bvg;
       $collection_item_bvg->save();
     }
+
+    // @todo Remove the following if https://www.drupal.org/project/menu_item_extras/issues/3061342 is fixed.
+    \Drupal::service('cache.discovery')->deleteAll();
+    \Drupal::service('kernel')->rebuildContainer();
   }
 
 }
