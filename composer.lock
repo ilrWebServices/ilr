@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ec9869fa3d45a1b6b87896fc8f26c0b",
+    "content-hash": "8c53a61d955028331175c96e1af52773",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3348,6 +3348,55 @@
             }
         },
         {
+            "name": "drupal/menu_condition",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/menu_condition.git",
+                "reference": "072b9668e22b1a81b90d638c92346b4035725bf7"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0+1-dev",
+                    "datestamp": "1538990880",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                },
+                "patches_applied": {
+                    "Fix summary when the menu is chosen as the condition context": "https://gist.githubusercontent.com/a-fro/ec31b2c83dd74c3ef1796bd880f63f6b/raw/13e7ce5224101c322771b5579907894222e221a0/menu_condition_parent_selection_fix.patch"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "joachim",
+                    "homepage": "https://www.drupal.org/user/107701"
+                },
+                {
+                    "name": "rupertj",
+                    "homepage": "https://www.drupal.org/user/549944"
+                }
+            ],
+            "description": "Provides a condition based on the active menu trail.",
+            "homepage": "https://www.drupal.org/project/menu_condition",
+            "support": {
+                "source": "https://git.drupalcode.org/project/menu_condition"
+            },
+            "time": "2018-10-08T09:23:28+00:00"
+        },
+        {
             "name": "drupal/menu_item_extras",
             "version": "2.9.0",
             "source": {
@@ -4433,7 +4482,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.4",
-                    "datestamp": "1563099329",
+                    "datestamp": "1563096785",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -11377,6 +11426,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/entity_reference_layout": 20,
+        "drupal/menu_condition": 20,
         "drupal/samlauth": 20,
         "drupal/union_organizer": 20,
         "drupal/devel_entity_updates": 5,
