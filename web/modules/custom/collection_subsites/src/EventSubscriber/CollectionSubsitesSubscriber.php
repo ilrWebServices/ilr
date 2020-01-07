@@ -95,6 +95,17 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
       ]);
       $collection_item_menu->item = $menu;
       $collection_item_menu->save();
+
+      // Add the collection to the new menu.
+      $menu_link_content = $this->entityTypeManager->getStorage('menu_link_content')->create([
+        'title' => $collection->label(),
+        'menu_name' => $collection_machine_name,
+        'link' => ['uri' => 'entity:collection/' . $collection->id()],
+        'weight' => -1,
+        'expanded' => TRUE,
+        'langcode' => 'en'
+      ]);
+      $menu_link_content->save();
     }
 
     // Create a block visibility group for this subsite.
