@@ -121,7 +121,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
     $bvg_storage = $this->entityTypeManager->getStorage('block_visibility_group');
     $bvg = $bvg_storage->create([
       'label' => $collection->label() . ' subsite',
-      'id' => $collection_machine_name,
+      'id' => str_replace('-', '_', $collection_machine_name),
       'logic' => 'and',
     ]);
 
