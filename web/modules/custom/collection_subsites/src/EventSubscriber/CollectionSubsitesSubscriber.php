@@ -107,7 +107,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
 
       // Add the collection to the new menu.
       $menu_link_content = $this->entityTypeManager->getStorage('menu_link_content')->create([
-        'title' => $collection->label(),
+        'title' => $collection->label() . ' Home',
         'menu_name' => $collection_machine_name,
         'link' => ['uri' => 'entity:collection/' . $collection->id()],
         'weight' => -1,
