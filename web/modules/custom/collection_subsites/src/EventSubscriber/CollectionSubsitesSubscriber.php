@@ -9,6 +9,7 @@ use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\collection\Event\CollectionEvents;
 use Symfony\Component\EventDispatcher\Event;
+use Drupal\Core\Extension\ThemeHandlerInterface;
 
 /**
  * Class CollectionSubsitesSubscriber.
@@ -32,12 +33,20 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
   protected $messenger;
 
   /**
+   * The theme handler.
+   *
+   * @var \Drupal\Core\Extension\ThemeHandlerInterface
+   */
+  protected $themeHandler;
+
+  /**
    * Constructs a new MenuSubsitesSubscriber object.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, TranslationInterface $string_translation) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, TranslationInterface $string_translation, ThemeHandlerInterface $theme_handler) {
     $this->entityTypeManager = $entity_type_manager;
     $this->messenger = $messenger;
     $this->stringTranslation = $string_translation;
+    $this->themeHandler = $theme_handler;
   }
 
   /**
@@ -113,7 +122,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
     $bvg = $bvg_storage->create([
       'label' => $collection->label() . ' subsite',
       'id' => $collection_machine_name,
-      'logic' => 'or',
+      'logic' => 'and',
     ]);
 
     // Add the subsite collection path to the BVG as a condition.
@@ -124,7 +133,13 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
       'context_mapping' => [],
     ]);
 
-    // @todo: Add the menu to the BVG as a condition.
+    // Add the subsite menu to the BVG as a condition.
+    $bvg->addCondition([
+      'id' => 'menu_position',
+      'menu_parent' => $collection_machine_name . ':',
+      'negate' => FALSE,
+      'context_mapping' => [],
+    ]);
 
     $bvg->save();
 
@@ -140,6 +155,32 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
       ]);
       $collection_item_bvg->item = $bvg;
       $collection_item_bvg->save();
+
+      // @todo: Add a subsite branding block to the BVG.
+
+      if ($menu) {
+        // Add the new menu block to the header region of the new
+        // block visibility group.
+        $block_storage = $this->entityTypeManager->getStorage('block');
+        $default_theme = $this->themeHandler->getDefault();
+        $subsite_menu_block = $block_storage->create([
+          'id' => $default_theme . '_menu_' . str_replace('-', '_', $collection_machine_name),
+          'plugin' => 'system_menu_block:' . $collection_machine_name,
+          'theme' => $default_theme,
+          'region' => 'header',
+          'settings' => [
+            'label' => $collection->label() . ' menu block',
+            'label_display' => FALSE,
+          ],
+          'weight' => 100,
+        ]);
+        $subsite_menu_block->setVisibilityConfig('condition_group', [
+          'id' => 'condition_group',
+          'negate' => FALSE,
+          'block_visibility_group' => $bvg->id(),
+        ]);
+        $subsite_menu_block->save();
+      }
     }
 
     // @todo Remove the following if https://www.drupal.org/project/menu_item_extras/issues/3061342 is fixed.
