@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\user\UserInterface;
 use Drupal\collection\Event\CollectionEvents;
 use Drupal\collection\Event\CollectionCreateEvent;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Defines the Collection entity.
@@ -163,6 +164,49 @@ class Collection extends ContentEntityBase implements CollectionInterface {
       ->execute();
     $items = $this->entityTypeManager()->getStorage('collection_item')->loadMultiple($collection_item_ids);
     return $items;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getItem(EntityInterface $entity) {
+    foreach ($this->getItems() as $collection_item) {
+      if ($collection_item->item->first()->entity === $entity) {
+        return $collection_item;
+      }
+    }
+
+    return FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function addItem(EntityInterface $entity) {
+    if ($this->getItem($entity)) {
+      return FALSE;
+    }
+
+    $collection_item = $this->entityTypeManager()->getStorage('collection_item')->create([
+      'collection' => $this->id(),
+      'type' => 'default',
+      'item' => $entity
+    ]);
+
+    $collection_item->save();
+    return $collection_item;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function removeItem(EntityInterface $entity) {
+    if ($existing_collection_item = $this->getItem($entity)) {
+      $existing_collection_item->delete();
+      return TRUE;
+    }
+
+    return FALSE;
   }
 
   /**

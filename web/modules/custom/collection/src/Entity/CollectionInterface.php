@@ -5,6 +5,7 @@ namespace Drupal\collection\Entity;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\user\EntityOwnerInterface;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Provides an interface for defining Collection entities.
@@ -63,4 +64,37 @@ interface CollectionInterface extends ContentEntityInterface, EntityChangedInter
    */
   public function getItems();
 
+  /**
+   * Get the collection item for a given entity in this collection.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   A content or config entity.
+   *
+   * @return \Drupal\collection\Entity\CollectionItemInterface|FALSE
+   *   A collection item if this collection has one for the entity or false if
+   *   not.
+   */
+  public function getItem(EntityInterface $entity);
+
+  /**
+   * Add any entity as an item to this collection.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   A content or config entity.
+   *
+   * @return \Drupal\collection\Entity\CollectionItemInterface|FALSE
+   *   The collection item if it was created successfully.
+   */
+  public function addItem(EntityInterface $entity);
+
+  /**
+   * Remove an entity from this collection.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   A content or config entity.
+   *
+   * @return bool
+   *   TRUE if the entity was in this collection and removed successfully.
+   */
+  public function removeItem(EntityInterface $entity);
 }
