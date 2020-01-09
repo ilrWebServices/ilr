@@ -1,0 +1,9 @@
+name: 'Collection Subsites'
+type: module
+description: 'Allows creation of custom collection-based subsites.'
+core: 8.x
+package: 'Collection'
+dependencies:
+  - collection
+  - block_visibility_groups
+  - menu_condition

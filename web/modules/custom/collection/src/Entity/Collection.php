@@ -8,6 +8,9 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\user\UserInterface;
+use Drupal\collection\Event\CollectionEvents;
+use Drupal\collection\Event\CollectionCreateEvent;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Defines the Collection entity.
@@ -137,6 +140,23 @@ class Collection extends ContentEntityBase implements CollectionInterface {
   /**
    * {@inheritdoc}
    */
+  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
+    parent::postSave($storage);
+
+    // Is the collection being inserted (e.g. is new)?
+    if (!$update) {
+      // Dispatch new collection event.
+      $event = new CollectionCreateEvent($this);
+
+      // Get the event_dispatcher service and dispatch the event.
+      $event_dispatcher = \Drupal::service('event_dispatcher');
+      $event_dispatcher->dispatch(CollectionEvents::COLLECTION_ENTITY_CREATE, $event);
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getItems() {
     $collection_item_ids = \Drupal::entityQuery('collection_item')
       ->condition('collection', $this->id())
@@ -144,6 +164,61 @@ class Collection extends ContentEntityBase implements CollectionInterface {
       ->execute();
     $items = $this->entityTypeManager()->getStorage('collection_item')->loadMultiple($collection_item_ids);
     return $items;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getItem(EntityInterface $entity) {
+    foreach ($this->getItems() as $collection_item) {
+      if ($collection_item->item->first()->entity === $entity) {
+        return $collection_item;
+      }
+    }
+
+    return FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function findItems(string $type) {
+    $collection_item_ids = \Drupal::entityQuery('collection_item')
+      ->condition('collection', $this->id())
+      ->condition('item__target_type', $type)
+      ->execute();
+    $items = $this->entityTypeManager()->getStorage('collection_item')->loadMultiple($collection_item_ids);
+    return $items;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function addItem(EntityInterface $entity) {
+    if ($this->getItem($entity)) {
+      return FALSE;
+    }
+
+    $collection_item = $this->entityTypeManager()->getStorage('collection_item')->create([
+      'collection' => $this->id(),
+      'type' => 'default',
+      'item' => $entity
+    ]);
+
+    $collection_item->save();
+    return $collection_item;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function removeItem(EntityInterface $entity) {
+    if ($existing_collection_item = $this->getItem($entity)) {
+      $existing_collection_item->delete();
+      return TRUE;
+    }
+
+    return FALSE;
   }
 
   /**
@@ -197,6 +272,17 @@ class Collection extends ContentEntityBase implements CollectionInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
+
+    $fields['path'] = BaseFieldDefinition::create('path')
+      ->setLabel(t('URL alias'))
+      ->setDescription(t('The collection URL alias.'))
+      ->setTranslatable(TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'path',
+        'weight' => 30,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setComputed(TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))

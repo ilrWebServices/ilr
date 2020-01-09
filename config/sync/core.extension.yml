@@ -2,9 +2,11 @@ module:
   address: 0
   block: 0
   block_content: 0
+  block_visibility_groups: 0
   breakpoint: 0
   ckeditor: 0
   collection: 0
+  collection_subsites: 0
   config: 0
   config_filter: 0
   config_split: 0
@@ -32,6 +34,7 @@ module:
   link: 0
   media: 0
   media_library: 0
+  menu_condition: 0
   menu_item_extras: 0
   menu_ui: 0
   metatag: 0
@@ -46,6 +49,7 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
+  prepopulate: 0
   recreate_block_content: 0
   redirect: 0
   salesforce: 0

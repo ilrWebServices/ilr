@@ -1,0 +1,11 @@
+uuid: f9a425ea-ddde-4310-8b25-874c29e7c177
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection_subsites
+third_party_settings:
+  collection_subsites:
+    contains_subsites: 1
+id: subsite
+label: Subsite

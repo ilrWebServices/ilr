@@ -1,0 +1,12 @@
+collection.node.collections:
+  path: '/node/{node}/collections'
+  defaults:
+    _form: '\Drupal\collection\Form\NodeCollectionsForm'
+    _title: 'Collections'
+  requirements:
+    _permission: 'edit collections'
+  options:
+    _admin_route: TRUE
+    parameters:
+      node:
+        type: entity:node
