@@ -182,6 +182,18 @@ class Collection extends ContentEntityBase implements CollectionInterface {
   /**
    * {@inheritdoc}
    */
+  public function findItems(string $type) {
+    $collection_item_ids = \Drupal::entityQuery('collection_item')
+      ->condition('collection', $this->id())
+      ->condition('item__target_type', $type)
+      ->execute();
+    $items = $this->entityTypeManager()->getStorage('collection_item')->loadMultiple($collection_item_ids);
+    return $items;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function addItem(EntityInterface $entity) {
     if ($this->getItem($entity)) {
       return FALSE;

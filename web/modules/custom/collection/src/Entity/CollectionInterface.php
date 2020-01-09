@@ -77,6 +77,17 @@ interface CollectionInterface extends ContentEntityInterface, EntityChangedInter
   public function getItem(EntityInterface $entity);
 
   /**
+   * Search a collection for items by a given entity type.
+   *
+   * @param string $type
+   *   The entity type
+   *
+   * @return array
+   *   A bunch of \Drupal\collection\Entity\CollectionItemInterface
+   */
+  public function findItems(string $type);
+
+  /**
    * Add any entity as an item to this collection.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
