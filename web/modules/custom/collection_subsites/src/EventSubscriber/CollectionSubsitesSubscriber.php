@@ -13,6 +13,7 @@ use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Config\ConfigEvents;
 use Drupal\Core\Config\DatabaseStorage;
 use Drupal\Core\Config\StorageTransformEvent;
+use Drupal\Core\Url;
 
 /**
  * Class CollectionSubsitesSubscriber.
@@ -66,6 +67,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
   public static function getSubscribedEvents() {
     return [
       CollectionEvents::COLLECTION_ENTITY_CREATE => 'collectionCreate',
+      CollectionEvents::COLLECTION_ITEM_FORM_CREATE => 'collectionItemFormCreate',
       ConfigEvents::STORAGE_TRANSFORM_IMPORT => 'onImportTransform',
     ];
   }
@@ -198,6 +200,62 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
     // @todo Remove the following if https://www.drupal.org/project/menu_item_extras/issues/3061342 is fixed.
     \Drupal::service('cache.discovery')->deleteAll();
     \Drupal::service('kernel')->rebuildContainer();
+  }
+
+  /**
+   * Process the COLLECTION_ITEM_FORM_CREATE event.
+   *
+   * @param \Symfony\Component\EventDispatcher\Event $event
+   *   The dispatched event.
+   */
+  public function collectionItemFormCreate(Event $event) {
+    $collection_item = $event->collectionItem;
+    $collection = $collection_item->collection->first()->entity;
+    $collection_item_entity = $collection_item->item->first()->entity;
+    $collection_type = $this->entityTypeManager->getStorage('collection_type')->load($collection->bundle());
+    $is_subsite = (bool) $collection_type->getThirdPartySetting('collection_subsites', 'contains_subsites');
+
+    if (!$is_subsite) {
+      return;
+    }
+
+    // Check whether there is a menu and add a link if so.
+    foreach ($collection->findItems('menu') as $collection_item_menu) {
+      $subsite_menu = $collection_item_menu->item->first()->entity;
+
+      if (strpos($subsite_menu->id(), 'subsite-') !== FALSE) {
+        $url = Url::fromRoute(
+          'entity.menu.add_link_form',
+          ['menu' => $subsite_menu->id()]
+        );
+
+        if (strpos(\Drupal::request()->server->get('HTTP_REFERER'), '/node/') > 0) {
+          $destination = Url::fromRoute(
+            'collection.node.collections',
+            ['node' => $collection_item_entity->id()]
+          );
+        }
+        else {
+          $destination = Url::fromRoute(
+            'entity.collection_item.collection',
+            ['collection' => $collection->id()]
+          );
+        }
+
+        $url->setOption('query', [
+          'destination' => $destination->toString(),
+          'edit[title][widget][0][value]' => $collection_item_entity->label(),
+          'edit[link][widget][0][uri]' => $collection_item_entity->label() . ' (' . $collection_item_entity->id() . ')',
+        ]);
+
+        $text = $this->t('Add %entity to %menu.', [
+          '%entity' => $collection_item_entity->label(),
+          '%menu' => $subsite_menu->label(),
+        ]);
+
+        $this->messenger->addMessage(\Drupal::l($text, $url));
+      }
+    }
   }
 
   /**

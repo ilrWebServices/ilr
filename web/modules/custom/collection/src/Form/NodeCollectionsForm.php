@@ -32,6 +32,8 @@ class NodeCollectionsForm extends FormBase {
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface;
+   *   The symfony event dispatcher.
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager, EventDispatcherInterface $event_dispatcher) {
     $this->entityTypeManager = $entity_type_manager;
