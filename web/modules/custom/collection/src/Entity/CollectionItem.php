@@ -235,6 +235,7 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
+      ->addConstraint('UniqueItem')
       ->setRequired(TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
