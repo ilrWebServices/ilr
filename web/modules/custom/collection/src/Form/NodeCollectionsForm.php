@@ -5,8 +5,11 @@ namespace Drupal\collection\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
+use Drupal\collection\Event\CollectionEvents;
+use Drupal\collection\Event\CollectionItemFormCreateEvent;
 
 class NodeCollectionsForm extends FormBase {
 
@@ -18,13 +21,21 @@ class NodeCollectionsForm extends FormBase {
   protected $entityTypeManager;
 
   /**
+   * The event dispatcher service.
+   *
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+   */
+  protected $eventDispatcher;
+
+  /**
    * Constructs a new NodeCollectionsForm.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EventDispatcherInterface $event_dispatcher) {
     $this->entityTypeManager = $entity_type_manager;
+    $this->eventDispatcher = $event_dispatcher;
   }
 
   /**
@@ -33,7 +44,8 @@ class NodeCollectionsForm extends FormBase {
   public static function create(ContainerInterface $container) {
     // Instantiates this form class.
     return new static(
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('event_dispatcher')
     );
   }
 
@@ -98,8 +110,12 @@ class NodeCollectionsForm extends FormBase {
         if ($collection_item = $collections[$collection_id]->addItem($node)) {
           $this->messenger()->addMessage($this->t('Added %entity to %collection.', [
             '%entity' => $node->label(),
-            '%collection' => $collections[$collection_id]->label()
+            '%collection' => $collections[$collection_id]->label(),
           ]));
+
+          // Dispatch new collection item form event.
+          $event = new CollectionItemFormCreateEvent($collection_item);
+          $this->eventDispatcher->dispatch(CollectionEvents::COLLECTION_ITEM_FORM_CREATE, $event);
         }
       }
       else {
