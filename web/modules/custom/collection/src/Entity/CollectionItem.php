@@ -54,7 +54,10 @@ use Drupal\user\UserInterface;
  *     "collection" = "/collection/{collection}/items",
  *   },
  *   bundle_entity_type = "collection_item_type",
- *   field_ui_base_route = "entity.collection_item_type.edit_form"
+ *   field_ui_base_route = "entity.collection_item_type.edit_form",
+ *   constraints = {
+ *     "UniqueItem" = {}
+ *   }
  * )
  */
 class CollectionItem extends ContentEntityBase implements CollectionItemInterface {
@@ -85,6 +88,11 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
    */
   public function preSave(EntityStorageInterface $storage) {
     parent::preSave($storage);
+
+    // Check for an existing collection item.
+    if ($this->collection->entity->getItem($this->item->entity)) {
+      throw new \LogicException('Collection already has this entity.');
+    }
 
     // Automatically update the name of this collection item to a combination of
     // the collection and the item.
@@ -201,6 +209,7 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ->setDescription(t('The collection to which this item belongs.'))
       ->setSetting('target_type', 'collection')
       ->setSetting('handler', 'default:collection')
+      ->setDefaultValueCallback(static::class . '::getCollectionParam')
       ->setCardinality(1)
       ->setTranslatable(TRUE)
       ->setDisplayOptions('view', [
@@ -247,4 +256,15 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
 
     return $fields;
   }
+
+  /**
+   * Returns the default value for the collection field.
+   *
+   * @return int
+   *   The entity id of the collection in the current route.
+   */
+  public static function getCollectionParam() {
+    return \Drupal::routeMatch()->getRawParameter('collection');
+  }
+
 }
