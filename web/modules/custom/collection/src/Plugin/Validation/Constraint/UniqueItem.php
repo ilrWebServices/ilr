@@ -16,5 +16,6 @@ use Symfony\Component\Validator\Constraint;
 class UniqueItem extends Constraint {
 
   // The message that will be shown if the item is in the collection.
-  public $duplicate = '%entity is already in the %collection collection.';
+  public $duplicate = '%entity is already in %collection.';
+
 }
