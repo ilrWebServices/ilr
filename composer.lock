@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf69920649f4dca36dec9c74318d1e08",
+    "content-hash": "5c223d2786f289c558e1cd6ce3fde09d",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4711,6 +4711,9 @@
                     "services": {
                         "drush.services.yml": "^9"
                     }
+                },
+                "patches_applied": {
+                    "Render issue when saving nodes due to renderPlain": "https://www.drupal.org/files/issues/2019-12-05/3099030-10.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",

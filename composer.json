@@ -103,6 +103,9 @@
       },
       "drupal/menu_condition": {
         "Fix summary when the menu is chosen as the condition context": "https://gist.githubusercontent.com/a-fro/ec31b2c83dd74c3ef1796bd880f63f6b/raw/13e7ce5224101c322771b5579907894222e221a0/menu_condition_parent_selection_fix.patch"
+      },
+      "drupal/webform": {
+        "Render issue when saving nodes due to renderPlain": "https://www.drupal.org/files/issues/2019-12-05/3099030-10.patch"
       }
     },
     "installer-paths": {
