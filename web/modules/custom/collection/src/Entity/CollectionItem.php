@@ -54,7 +54,10 @@ use Drupal\user\UserInterface;
  *     "collection" = "/collection/{collection}/items",
  *   },
  *   bundle_entity_type = "collection_item_type",
- *   field_ui_base_route = "entity.collection_item_type.edit_form"
+ *   field_ui_base_route = "entity.collection_item_type.edit_form",
+ *   constraints = {
+ *     "UniqueItem" = {}
+ *   }
  * )
  */
 class CollectionItem extends ContentEntityBase implements CollectionItemInterface {
@@ -241,7 +244,6 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
-      ->addConstraint('UniqueItem')
       ->setRequired(TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')

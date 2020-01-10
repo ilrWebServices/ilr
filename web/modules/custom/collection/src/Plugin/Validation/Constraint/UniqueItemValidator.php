@@ -4,8 +4,6 @@ namespace Drupal\collection\Plugin\Validation\Constraint;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use Drupal\collection\Entity\Collection;
-use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Validates the UniqueItem constraint.
@@ -15,32 +13,19 @@ class UniqueItemValidator extends ConstraintValidator {
   /**
    * {@inheritdoc}
    */
-  public function validate($items, Constraint $constraint) {
-    foreach ($items as $item) {
-      $collection = \Drupal::routeMatch()->getParameter('collection');
+  public function validate($collection_item, Constraint $constraint) {
+    /** @var Drupal\collection\Entity\CollectionItemInterface $collection_item */
+    $collection = $collection_item->collection->entity;
 
-      if ($this->inCollection($item->entity, $collection)) {
-        $this->context->addViolation($constraint->duplicate, [
-          '%entity' => $item->entity->label(),
-          '%collection' => $collection->label(),
-        ]);
-      }
+    /** @var Drupal\Core\Entity\EntityInterface $item_entity */
+    $item_entity = $collection_item->item->entity;
+
+    if ($collection->getItem($item_entity)) {
+      $this->context->addViolation($constraint->duplicate, [
+        '%entity' => $item_entity->label(),
+        '%collection' => $collection->label(),
+      ]);
     }
   }
 
-  /**
-   * Check whether the item is already in the collection.
-   *
-   * @param Drupal\Core\Entity\EntityInterface $entity
-   *   The entity attempting to be added.
-   * @param Drupal\collection\Entity\Collection $collection
-   *   The collection entity.
-   */
-  private function inCollection(EntityInterface $entity, Collection $collection) {
-    if ($collection->getItem($entity)) {
-      return TRUE;
-    }
-
-    return FALSE;
-  }
 }
