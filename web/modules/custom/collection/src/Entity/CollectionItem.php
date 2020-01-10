@@ -206,6 +206,7 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ->setDescription(t('The collection to which this item belongs.'))
       ->setSetting('target_type', 'collection')
       ->setSetting('handler', 'default:collection')
+      ->setDefaultValueCallback(static::class . '::getCollectionParam')
       ->setCardinality(1)
       ->setTranslatable(TRUE)
       ->setDisplayOptions('view', [
@@ -253,4 +254,15 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
 
     return $fields;
   }
+
+  /**
+   * Returns the default value for the collection field.
+   *
+   * @return int
+   *   The entity id of the collection in the current route.
+   */
+  public static function getCollectionParam() {
+    return \Drupal::routeMatch()->getRawParameter('collection');
+  }
+
 }
