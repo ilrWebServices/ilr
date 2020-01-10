@@ -75,6 +75,9 @@ class CollectionForm extends ContentEntityForm {
 
     $status = parent::save($form, $form_state);
 
+    // Set new Revision.
+    $entity->setNewRevision();
+
     switch ($status) {
       case SAVED_NEW:
         $this->messenger()->addMessage($this->t('Created the %label Collection.', [
