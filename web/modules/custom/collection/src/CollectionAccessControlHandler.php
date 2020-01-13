@@ -21,6 +21,9 @@ class CollectionAccessControlHandler extends EntityAccessControlHandler {
     /** @var \Drupal\collection\Entity\CollectionInterface $entity */
     switch ($operation) {
       case 'view':
+        if ($entity->getEntityTypeId() === 'collection' && !$entity->isPublished()) {
+          return AccessResult::allowedIfHasPermission($account, 'edit collections');
+        }
         return AccessResult::allowedIfHasPermission($account, 'view collections');
 
       case 'update':

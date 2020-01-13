@@ -4,7 +4,7 @@ namespace Drupal\collection\Entity;
 
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\Core\Entity\ContentEntityBase;
+use Drupal\Core\Entity\EditorialContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\user\UserInterface;
@@ -41,15 +41,26 @@ use Drupal\Core\Entity\EntityInterface;
  *   },
  *   base_table = "collection",
  *   data_table = "collection_field_data",
+ *   revision_table = "collection_revision",
+ *   revision_data_table = "collection_field_revision",
+ *   show_revision_ui = TRUE,
  *   translatable = TRUE,
  *   admin_permission = "administer collections",
  *   entity_keys = {
  *     "id" = "id",
+ *     "revision" = "revision_id",
  *     "bundle" = "type",
  *     "label" = "name",
  *     "uuid" = "uuid",
+ *     "status" = "status",
+ *     "published" = "status",
  *     "uid" = "user_id",
  *     "langcode" = "langcode",
+ *   },
+ *   revision_metadata_keys = {
+ *     "revision_user" = "revision_uid",
+ *     "revision_created" = "revision_timestamp",
+ *     "revision_log_message" = "revision_log"
  *   },
  *   links = {
  *     "canonical" = "/collection/{collection}",
@@ -63,9 +74,7 @@ use Drupal\Core\Entity\EntityInterface;
  *   field_ui_base_route = "entity.collection_type.edit_form"
  * )
  */
-class Collection extends ContentEntityBase implements CollectionInterface {
-
-  use EntityChangedTrait;
+class Collection extends EditorialContentEntityBase implements CollectionInterface {
 
   /**
    * {@inheritdoc}
@@ -255,6 +264,7 @@ class Collection extends ContentEntityBase implements CollectionInterface {
     $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Name'))
       ->setDescription(t('The name of the Collection entity.'))
+      ->setRevisionable(TRUE)
       ->setSettings([
         'max_length' => 50,
         'text_processing' => 0,
@@ -276,6 +286,7 @@ class Collection extends ContentEntityBase implements CollectionInterface {
     $fields['path'] = BaseFieldDefinition::create('path')
       ->setLabel(t('URL alias'))
       ->setDescription(t('The collection URL alias.'))
+      ->setRevisionable(TRUE)
       ->setTranslatable(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'path',
@@ -284,13 +295,25 @@ class Collection extends ContentEntityBase implements CollectionInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setComputed(TRUE);
 
+    $fields['status']
+      ->setDisplayOptions('form', [
+        'type' => 'boolean_checkbox',
+        'settings' => [
+          'display_label' => TRUE,
+        ],
+        'weight' => 100,
+      ])
+      ->setDisplayConfigurable('form', TRUE);
+
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
-      ->setDescription(t('The time that the entity was created.'));
+      ->setDescription(t('The time that the entity was created.'))
+      ->setRevisionable(TRUE);
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
-      ->setDescription(t('The time that the entity was last edited.'));
+      ->setDescription(t('The time that the entity was last edited.'))
+      ->setRevisionable(TRUE);
 
     return $fields;
   }
