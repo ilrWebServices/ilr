@@ -149,11 +149,17 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
   /**
    * {@inheritdoc}
    */
-  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
-    parent::postSave($storage);
+  public function save() {
+    // Check the new status before running parent::save(), where it will be set
+    // to false.
+    $is_new = $this->isNew();
+
+    // Save the collection and run core postSave hooks (e.g.
+    // hook_entity_insert()).
+    $return = parent::save();
 
     // Is the collection being inserted (e.g. is new)?
-    if (!$update) {
+    if ($is_new) {
       // Dispatch new collection event.
       $event = new CollectionCreateEvent($this);
 
@@ -161,6 +167,8 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
       $event_dispatcher = \Drupal::service('event_dispatcher');
       $event_dispatcher->dispatch(CollectionEvents::COLLECTION_ENTITY_CREATE, $event);
     }
+
+    return $return;
   }
 
   /**
@@ -286,7 +294,6 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
     $fields['path'] = BaseFieldDefinition::create('path')
       ->setLabel(t('URL alias'))
       ->setDescription(t('The collection URL alias.'))
-      ->setRevisionable(TRUE)
       ->setTranslatable(TRUE)
       ->setDisplayOptions('form', [
         'type' => 'path',

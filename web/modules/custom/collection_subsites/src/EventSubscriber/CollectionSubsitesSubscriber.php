@@ -142,7 +142,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
     // Add the subsite collection path to the BVG as a condition.
     $bvg->addCondition([
       'id' => 'request_path',
-      'pages' => $collection->path->first()->alias . '*', // e.g. '/scheinman-institute*',
+      'pages' => $collection->toUrl()->toString() . '*', // e.g. '/scheinman-institute*',
       'negate' => FALSE,
       'context_mapping' => [],
     ]);
