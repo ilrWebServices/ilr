@@ -6,3 +6,4 @@ package: 'Collection'
 dependencies:
   - dynamic_entity_reference
   - drupal:path
+  - key_value_field
