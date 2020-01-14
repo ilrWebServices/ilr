@@ -117,6 +117,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
         'collection' => $collection->id(),
       ]);
       $collection_item_menu->item = $menu;
+      $collection_item_menu->setAttribute('subsite_collection_id', $collection->id());
       $collection_item_menu->save();
 
       // Add the collection to the new menu.
@@ -168,6 +169,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
         'collection' => $collection->id(),
       ]);
       $collection_item_bvg->item = $bvg;
+      $collection_item_bvg->setAttribute('subsite_collection_id', $collection->id());
       $collection_item_bvg->save();
 
       // @todo: Add a subsite branding block to the BVG.
