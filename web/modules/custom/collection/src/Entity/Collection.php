@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\user\UserInterface;
 use Drupal\collection\Event\CollectionEvents;
 use Drupal\collection\Event\CollectionCreateEvent;
+use Drupal\collection\Event\CollectionUpdateEvent;
 use Drupal\Core\Entity\EntityInterface;
 
 /**
@@ -158,14 +159,19 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
     // hook_entity_insert()).
     $return = parent::save();
 
+    // Get the event_dispatcher service and dispatch the event.
+    $event_dispatcher = \Drupal::service('event_dispatcher');
+
     // Is the collection being inserted (e.g. is new)?
     if ($is_new) {
       // Dispatch new collection event.
       $event = new CollectionCreateEvent($this);
-
-      // Get the event_dispatcher service and dispatch the event.
-      $event_dispatcher = \Drupal::service('event_dispatcher');
       $event_dispatcher->dispatch(CollectionEvents::COLLECTION_ENTITY_CREATE, $event);
+    }
+    else { // Check whether the url is being changed.
+      // Dispatch update collection event.
+      $event = new CollectionUpdateEvent($this);
+      $event_dispatcher->dispatch(CollectionEvents::COLLECTION_ENTITY_UPDATE, $event);
     }
 
     return $return;
