@@ -165,6 +165,40 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
 
   /**
    * {@inheritdoc}
+   *
+   * Returns \Drupal\Core\TypedData\TypedDataInterface
+   */
+  public function getAttribute(string $key) {
+    foreach ($this->attributes as $attribute) {
+      if ($attribute->key === $key) {
+        return $attribute;
+      }
+    }
+
+    return FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * Returns \Drupal\Core\TypedData\TypedDataInterface
+   */
+  public function setAttribute(string $key, string $value) {
+    // Update existing attribute.
+    if ($attribute = $this->getAttribute($key)) {
+      $attribute->value = $value;
+      return $attribute;
+    }
+
+    // Add new attribute.
+    return $this->attributes->appendItem([
+      'key' => $key,
+      'value' => $value,
+    ]);
+  }
+
+  /**
+   * {@inheritdoc}
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
@@ -245,6 +279,17 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
+
+    $fields['attributes'] = BaseFieldDefinition::create('key_value')
+      ->setLabel(t('Attributes'))
+      ->setCardinality(\Drupal\Core\Field\FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+      ->setSetting('key_max_length', 255)
+      ->setSetting('max_length', 255)
+      ->setSetting('key_is_ascii', FALSE)
+      ->setSetting('is_ascii', FALSE)
+      ->setSetting('case_sensitive', FALSE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', FALSE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
