@@ -67,6 +67,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
   public static function getSubscribedEvents() {
     return [
       CollectionEvents::COLLECTION_ENTITY_CREATE => 'collectionCreate',
+      CollectionEvents::COLLECTION_ENTITY_UPDATE => 'collectionUpdate',
       CollectionEvents::COLLECTION_ITEM_FORM_CREATE => 'collectionItemFormCreate',
       ConfigEvents::STORAGE_TRANSFORM_IMPORT => 'onImportTransform',
     ];
@@ -202,6 +203,53 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
     // @todo Remove the following if https://www.drupal.org/project/menu_item_extras/issues/3061342 is fixed.
     \Drupal::service('cache.discovery')->deleteAll();
     \Drupal::service('kernel')->rebuildContainer();
+  }
+
+  /**
+   * Process the COLLECTION_ENTITY_CREATE event.
+   *
+   * @param \Symfony\Component\EventDispatcher\Event $event
+   *   The dispatched event.
+   */
+  public function collectionUpdate(Event $event) {
+    $collection = $event->collection;
+    $collection_type = $this->entityTypeManager->getStorage('collection_type')->load($collection->bundle());
+    $is_subsite = (bool) $collection_type->getThirdPartySetting('collection_subsites', 'contains_subsites');
+
+    if ($is_subsite === FALSE) {
+      return;
+    }
+
+    if (($bvg_collection_items = $collection->findItems('block_visibility_group')) === FALSE) {
+      return;
+    }
+
+    // Check if the subsite path condition needs updating.
+    foreach ($bvg_collection_items as $bvg_collection_item) {
+      if ($bvg_collection_item->getAttribute('subsite_collection_id') === FALSE) {
+        continue;
+      }
+
+      $bvg = $bvg_collection_item->item->first()->entity;
+      $path_changed = FALSE;
+
+      foreach ($bvg->getConditions() as $condition_id => $condition) {
+        if ($condition->getPluginId() !== 'request_path') {
+          continue;
+        }
+
+        $condition_config = $condition->getConfiguration();
+        $path_changed = $condition_config['pages'] !== $collection->toUrl()->toString() . '*';
+        $condition_config['pages'] = $collection->toUrl()->toString() . '*';
+        $condition->setConfiguration($condition_config);
+      }
+
+      if ($path_changed && $bvg->save()) {
+        $this->messenger->addMessage($this->t('Updated the path condition for %bvg_name block visibility group.', [
+          '%bvg_name' => $bvg->label()
+        ]));
+      }
+    }
   }
 
   /**
