@@ -9,3 +9,7 @@ services:
     arguments: ['@entity_type.manager']
     tags:
       - { name: event_subscriber }
+  ilr_response_event_subscriber:
+    class: Drupal\ilr\EventSubscriber\ResponseEventSubscriber
+    tags:
+      - { name: event_subscriber }
