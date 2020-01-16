@@ -23,12 +23,12 @@ use Drupal\user\UserInterface;
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\collection\CollectionItemListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
- *
  *     "form" = {
  *       "default" = "Drupal\collection\Form\CollectionItemForm",
  *       "add" = "Drupal\collection\Form\CollectionItemForm",
  *       "edit" = "Drupal\collection\Form\CollectionItemForm",
  *       "delete" = "Drupal\collection\Form\CollectionItemDeleteForm",
+ *       "delete-multiple-confirm" = "Drupal\collection\Form\CollectionItemDeleteMultipleForm",
  *     },
  *     "route_provider" = {
  *       "default" = "Drupal\collection\CollectionItemRouteProvider",
@@ -51,6 +51,7 @@ use Drupal\user\UserInterface;
  *     "add-form" = "/collection/{collection}/items/add/{collection_item_type}",
  *     "edit-form" = "/collection/{collection}/items/{collection_item}/edit",
  *     "delete-form" = "/collection/{collection}/items/{collection_item}/delete",
+ *     "delete-multiple-form" = "/collection/{collection}/items/delete",
  *     "collection" = "/collection/{collection}/items",
  *   },
  *   bundle_entity_type = "collection_item_type",

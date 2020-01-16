@@ -82,6 +82,20 @@ class CollectionItemRouteProvider extends AdminHtmlRouteProvider {
   /**
    * {@inheritdoc}
    */
+  protected function getDeleteMultipleFormRoute(EntityTypeInterface $entity_type) {
+    $route = parent::getDeleteMultipleFormRoute($entity_type);
+    $route->setOption('parameters', [
+      'collection' => [
+        'type' => 'entity:collection',
+      ],
+    ]);
+
+    return $route;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   protected function getCollectionRoute(EntityTypeInterface $entity_type) {
     $route = new Route($entity_type->getLinkTemplate('collection'));
     $route

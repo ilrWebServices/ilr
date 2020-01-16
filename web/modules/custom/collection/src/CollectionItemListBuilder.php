@@ -3,19 +3,18 @@
 namespace Drupal\collection;
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Link;
 
 /**
  * Defines a class to build a listing of Collection items.
  *
  * @ingroup collection
  */
-class CollectionItemListBuilder extends EntityListBuilder {
+class CollectionItemListBuilder extends BulkFormEntityListBuilder {
 
   /** The parent collection.
    *
@@ -30,11 +29,15 @@ class CollectionItemListBuilder extends EntityListBuilder {
    *   The entity type definition.
    * @param \Drupal\Core\Entity\EntityStorageInterface $storage
    *   The entity storage.
+   * @param \Drupal\Core\Entity\EntityStorageInterface $action_storage
+   *   The action storage.
+   * @param \Drupal\Core\Form\FormBuilderInterface $form_builder
+   *   The form builder.
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
    *   The current route match.
    */
-  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, RouteMatchInterface $route_match) {
-    parent::__construct($entity_type, $storage);
+  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage, EntityStorageInterface $action_storage, FormBuilderInterface $form_builder, RouteMatchInterface $route_match) {
+    parent::__construct($entity_type, $storage, $action_storage, $form_builder);
     $this->collection = $route_match->getParameter('collection');
   }
 
@@ -45,6 +48,8 @@ class CollectionItemListBuilder extends EntityListBuilder {
     return new static(
       $entity_type,
       $container->get('entity_type.manager')->getStorage($entity_type->id()),
+      $container->get('entity_type.manager')->getStorage('action'),
+      $container->get('form_builder'),
       $container->get('current_route_match')
     );
   }
@@ -70,18 +75,24 @@ class CollectionItemListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /* @var \Drupal\collection\Entity\CollectionItem $entity */
-    $row['item'] = Link::fromTextAndUrl(
-      $entity->item->entity->label(),
-      $entity->item->entity->toURL()
-    );
-    $row['type'] = $entity->item->entity->getEntityType()->getLabel();
+    $row['item'] = [
+      '#type' => 'link',
+      '#title' => $entity->item->entity->label(),
+      '#url' => $entity->item->entity->toURL()
+    ];
+
+    $type = $entity->item->entity->getEntityType()->getLabel();
 
     if ($entity->item->entity->getEntityTypeId() === 'node') {
-      $row['type'] .= ': ' . node_get_type_label($entity->item->entity);
+      $type .= ': ' . node_get_type_label($entity->item->entity);
     }
     elseif ($entity->item->entity->getEntityType()->get('bundle_entity_type') !== NULL) {
-      $row['type'] .= ': ' . $entity->item->entity->bundle();
+      $type .= ': ' . $entity->item->entity->bundle();
     }
+
+    $row['type'] = [
+      '#markup' => $type
+    ];
 
     return $row + parent::buildRow($entity);
   }

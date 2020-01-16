@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: collection_item_delete_action
+label: 'Remove from collection'
+type: collection_item
+plugin: 'entity:delete_action:collection_item'
+configuration: {  }
