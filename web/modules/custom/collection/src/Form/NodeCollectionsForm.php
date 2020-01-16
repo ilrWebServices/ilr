@@ -10,6 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
 use Drupal\collection\Event\CollectionEvents;
 use Drupal\collection\Event\CollectionItemFormCreateEvent;
+use Drupal\Core\Link;
 
 class NodeCollectionsForm extends FormBase {
 
@@ -73,20 +74,18 @@ class NodeCollectionsForm extends FormBase {
     // Get a list of collections. Access control will ensure that the list only
     // shows collections that the current user can modify.
     foreach ($collections_storage->loadMultiple() as $id => $collection) {
-      $options[$id] = $collection->label();
-
-      // Is this node in this collection?
-      if ($collection->getItem($node)) {
-        $default[] = $id;
-      }
+      $options[$id] = ['name' => Link::createFromRoute($collection->label(), 'entity.collection_item.collection', ['collection' => $id])->toString()];
+      $default[$id] = ($collection->getItem($node)) ? TRUE : FALSE;
     }
 
     $form['collections'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Collections'),
+      '#type' => 'tableselect',
+      '#empty' => $this->t('No collections have been created yet.'),
+      '#header' => ['name' => $this->t('Collection')],
       '#description' => $this->t('Select the collections in which to place this node.'),
       '#options' => $options,
-      '#default_value' => $default
+      '#default_value' => $default,
+      '#js_select' => FALSE,
     ];
 
     $form['submit'] = [
