@@ -103,7 +103,7 @@ class CollectionItemRouteProvider extends AdminHtmlRouteProvider {
         '_entity_list' => 'collection_item',
         '_title_callback' => CollectionItemController::class . '::title',
       ])
-      ->setRequirement('_permission', 'administer collections')
+      ->setRequirement('_collection_items_access', 'TRUE')
       ->setOption('parameters', [
         'collection' => [
           'type' => 'entity:collection',

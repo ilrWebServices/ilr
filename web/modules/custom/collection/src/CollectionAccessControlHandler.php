@@ -3,6 +3,7 @@
 namespace Drupal\collection;
 
 use Drupal\Core\Entity\EntityAccessControlHandler;
+use Drupal\collection\Access\CollectionOwnerTrait;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
@@ -13,6 +14,8 @@ use Drupal\Core\Access\AccessResult;
  * @see \Drupal\collection\Entity\Collection.
  */
 class CollectionAccessControlHandler extends EntityAccessControlHandler {
+
+  use CollectionOwnerTrait;
 
   /**
    * {@inheritdoc}
@@ -77,15 +80,6 @@ class CollectionAccessControlHandler extends EntityAccessControlHandler {
       'create ' . $entity_bundle . ' collection',
     ];
     return AccessResult::allowedIfHasPermissions($account, $permissions, 'OR');
-  }
-
-  /**
-   * Determine if an account is the owner of a collection.
-   *
-   * %todo: Check ownership via collection items that target users.
-   */
-  protected function isOwner(EntityInterface $collection_entity, AccountInterface $account) {
-    return ($account->id() && $account->id() === $collection_entity->getOwnerId());
   }
 
 }

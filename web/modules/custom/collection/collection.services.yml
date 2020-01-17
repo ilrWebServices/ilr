@@ -1,0 +1,5 @@
+services:
+  collection_item.collection.access_checker:
+    class: Drupal\collection\Access\CollectionItemsAccessCheck
+    tags:
+      - { name: access_check, applies_to: _collection_items_access }
