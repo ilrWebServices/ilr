@@ -36,7 +36,7 @@ use Drupal\Core\Entity\EntityInterface;
  *       "delete" = "Drupal\collection\Form\CollectionDeleteForm",
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
+ *       "default" = "Drupal\collection\CollectionRouteProvider",
  *     },
  *     "access" = "Drupal\collection\CollectionAccessControlHandler",
  *   },
