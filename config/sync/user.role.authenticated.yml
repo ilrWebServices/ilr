@@ -9,6 +9,12 @@ label: 'Authenticated user'
 weight: 1
 is_admin: false
 permissions:
+  - 'access collection overview'
   - 'access content'
+  - 'access toolbar'
+  - 'delete own collections'
+  - 'edit own collections'
   - 'use text format basic_formatting'
   - 'view media'
+  - 'view own collections'
+  - 'view the administration theme'
