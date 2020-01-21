@@ -90,6 +90,30 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
   /**
    * {@inheritdoc}
    */
+  public static function postDelete(EntityStorageInterface $storage, array $entities) {
+    // Delete the collection items of a deleted collection.
+    $items_for_deletion = [];
+
+    foreach ($entities as $entity) {
+      $items = $entity->getItems();
+      if (empty($items)) {
+        continue;
+      }
+
+      foreach ($items as $item) {
+        $items_for_deletion[$item->id()] = $item;
+      }
+    }
+
+    $item_storage = \Drupal::service('entity_type.manager')->getStorage('collection_item');
+    $item_storage->delete($items_for_deletion);
+  }
+
+
+
+  /**
+   * {@inheritdoc}
+   */
   public function getName() {
     return $this->get('name')->value;
   }
