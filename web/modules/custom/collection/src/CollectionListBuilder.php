@@ -16,6 +16,23 @@ class CollectionListBuilder extends EntityListBuilder {
   /**
    * {@inheritdoc}
    */
+  public function load() {
+    $entity_ids = $this->getEntityIds();
+    $loaded_collections = $this->storage->loadMultiple($entity_ids);
+    $displayed_collections = [];
+
+    foreach ($loaded_collections as $collection) {
+      if ($collection->access('view')) {
+        $displayed_collections[] = $collection;
+      }
+    }
+
+    return $displayed_collections;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function buildHeader() {
     $header['name'] = $this->t('Name');
     $header['type'] = $this->t('Type');
