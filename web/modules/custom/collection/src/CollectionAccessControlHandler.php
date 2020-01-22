@@ -21,7 +21,7 @@ class CollectionAccessControlHandler extends EntityAccessControlHandler {
    * {@inheritdoc}
    */
   protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
-    if ($account->hasPermission('administer collections')) {
+    if ($account->hasPermission($this->entityType->getAdminPermission())) {
       return AccessResult::allowed();
     }
 
@@ -75,11 +75,26 @@ class CollectionAccessControlHandler extends EntityAccessControlHandler {
    * {@inheritdoc}
    */
   protected function checkCreateAccess(AccountInterface $account, array $context, $entity_bundle = NULL) {
-    $permissions = [
-      'administer collections',
-      'create ' . $entity_bundle . ' collection',
-    ];
-    return AccessResult::allowedIfHasPermissions($account, $permissions, 'OR');
+    if ($account->hasPermission($this->entityType->getAdminPermission())) {
+      return AccessResult::allowed();
+    }
+
+    if ($context['entity_type_id'] === 'collection') {
+      if ($account->hasPermission('create ' . $entity_bundle . ' collection')) {
+        return AccessResult::allowed();
+      }
+    }
+
+    if ($context['entity_type_id'] === 'collection_item') {
+      $collection = \Drupal::routeMatch()->getParameter('collection');
+      $is_owner = $this->isOwner($collection, $account);
+
+      if ($account->hasPermission('edit own collections') && $is_owner) {
+        return AccessResult::allowed();
+      }
+    }
+
+    return AccessResult::neutral();
   }
 
 }
