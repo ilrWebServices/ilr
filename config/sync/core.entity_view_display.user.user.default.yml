@@ -5,7 +5,46 @@ dependencies:
   config:
     - field.field.user.user.field_common_name
   module:
+    - layout_builder
+    - layout_discovery
     - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          7025247d-4e63-453e-a3f7-09b5be3395b7:
+            uuid: 7025247d-4e63-453e-a3f7-09b5be3395b7
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:user:user:field_common_name'
+              formatter:
+                label: above
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+                type: string
+            additional: {  }
+            weight: 0
+          419cf1be-4b54-427b-b882-b50d6808f9a7:
+            uuid: 419cf1be-4b54-427b-b882-b50d6808f9a7
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:user:user:member_for'
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
 id: user.user.default
 targetEntityType: user
 bundle: user
