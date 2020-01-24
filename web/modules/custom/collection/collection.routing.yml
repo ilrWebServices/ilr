@@ -4,9 +4,22 @@ collection.node.collections:
     _form: '\Drupal\collection\Form\NodeCollectionsForm'
     _title: 'Collections'
   requirements:
-    _permission: 'edit collections'
+    _permission: 'edit own collections'
   options:
     _admin_route: TRUE
     parameters:
       node:
         type: entity:node
+
+collection_item.new.node:
+  path: '/collection/{collection}/items/new/node'
+  defaults:
+    _form: '\Drupal\collection\Form\CollectionNewNodeForm'
+    _title: 'Add new node to collection'
+  requirements:
+    _permission: 'edit own collections'
+  options:
+    _admin_route: TRUE
+    parameters:
+      collection:
+        type: entity:collection

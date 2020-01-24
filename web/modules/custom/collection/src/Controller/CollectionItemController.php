@@ -77,8 +77,8 @@ class CollectionItemController extends EntityController {
    */
   public function title(RouteMatchInterface $route_match, EntityInterface $_entity = NULL) {
     if ($entity = $this->doGetEntity($route_match, $_entity)) {
-      return $this->t('Items for %label @collection_type collection', [
-        '%label' => $entity->label(),
+      return $this->t('Items for @label @collection_type collection', [
+        '@label' => $entity->label(),
         '@collection_type' => $entity->bundle()
       ]);
     }
@@ -100,7 +100,7 @@ class CollectionItemController extends EntityController {
   public function addBundleTitle(RouteMatchInterface $route_match, $entity_type_id, $bundle_parameter) {
     $collection = $route_match->getParameter('collection');
 
-    return $this->t('Add new item to %collection @collection_type collection', [
+    return $this->t('Add existing item to %collection @collection_type collection', [
       '%collection' => $collection->label(),
       '@collection_type' => $collection->bundle()
     ]);
