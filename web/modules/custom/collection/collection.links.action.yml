@@ -12,7 +12,7 @@ entity.collection_type.add_form:
     - entity.collection_type.collection
 entity.collection_item.add_form:
   route_name: entity.collection_item.add_page
-  title: 'Add Collection item'
+  title: 'Add existing item'
   appears_on:
     - entity.collection_item.collection
 entity.collection_item_type.add_form:
