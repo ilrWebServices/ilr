@@ -62,7 +62,7 @@ To work on a blank slate of the codebase without syncing content and data from p
 $ drush si minimal --existing-config
 ```
 
-## Adding and Updating Modules and Other Dependencies
+## Managing Modules and Other Dependencies
 
 Use standard composer commands to add, remove, and update project dependencies. To add the rules module, for example, run:
 
@@ -74,6 +74,18 @@ To add a module for developer use only, which will prevent its installation on t
 
 ```
 $ composer require --dev drupal/devel:~1.0
+```
+
+Outdated Drupal modules can be listed with the following command:
+
+```
+$ composer outdated "drupal/*"
+```
+
+To update a specific module, run something like:
+
+```
+composer update drupal/rules
 ```
 
 ## Patching Contributed modules
@@ -95,12 +107,14 @@ To add a patch to drupal module foobar insert the patches section in the extra s
 ## Updating Drupal core
 
 ```
-$ composer update --with-dependencies drupal/core webflo/drupal-core-require-dev symfony/*
+$ composer update drupal/core-recommended --with-dependencies
 ```
 
 Then run `git diff` to determine if any of the scaffolding files have changed.
 
 Review changes and restore any customizations to `.htaccess` or `robots.txt`. Commit everything together in a single commit (or merge), so `web` will remain in sync with `core` when checking out branches or running `git bisect`.
+
+See https://www.drupal.org/node/2700999 for more information.
 
 ## Salesforce Integration
 
