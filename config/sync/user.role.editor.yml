@@ -6,4 +6,21 @@ id: editor
 label: Editor
 weight: 3
 is_admin: null
-permissions: {  }
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access media overview'
+  - 'create media'
+  - 'create page content'
+  - 'create url aliases'
+  - 'delete media'
+  - 'delete own page content'
+  - 'edit any page content'
+  - 'edit entity reference layout plugin config'
+  - 'edit own page content'
+  - 'update media'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view page revisions'
+  - 'view unpublished paragraphs'
