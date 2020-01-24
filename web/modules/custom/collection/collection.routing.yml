@@ -4,7 +4,7 @@ collection.node.collections:
     _form: '\Drupal\collection\Form\NodeCollectionsForm'
     _title: 'Collections'
   requirements:
-    _permission: 'edit collections'
+    _permission: 'edit own collections'
   options:
     _admin_route: TRUE
     parameters:
