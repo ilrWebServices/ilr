@@ -1,3 +1,5 @@
+collection.local_actions:
+  deriver: 'Drupal\collection\Plugin\Derivative\DynamicLocalActions'
 entity.collection.add_form:
   route_name: entity.collection.add_page
   title: 'Add Collection'
