@@ -34,16 +34,6 @@ third_party_settings:
                 type: string
             additional: {  }
             weight: 0
-          419cf1be-4b54-427b-b882-b50d6808f9a7:
-            uuid: 419cf1be-4b54-427b-b882-b50d6808f9a7
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'extra_field_block:user:user:member_for'
-            additional: {  }
-            weight: 1
         third_party_settings: {  }
 id: user.user.default
 targetEntityType: user
