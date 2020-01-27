@@ -5,6 +5,7 @@ namespace Drupal\collection\Entity;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EditorialContentEntityBase;
+use Drupal\collection\Access\CollectionOwnerTrait;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\user\UserInterface;
@@ -12,6 +13,7 @@ use Drupal\collection\Event\CollectionEvents;
 use Drupal\collection\Event\CollectionCreateEvent;
 use Drupal\collection\Event\CollectionUpdateEvent;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountInterface;
 
 /**
  * Defines the Collection entity.
@@ -76,6 +78,8 @@ use Drupal\Core\Entity\EntityInterface;
  * )
  */
 class Collection extends EditorialContentEntityBase implements CollectionInterface {
+
+  use CollectionOwnerTrait;
 
   /**
    * {@inheritdoc}
@@ -266,6 +270,13 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
     }
 
     return FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function hasOwner(AccountInterface $account) {
+    return $this->isOwner($this, $account);
   }
 
   /**
