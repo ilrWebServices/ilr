@@ -107,23 +107,21 @@ function collection_subsites_form_collection_new_node_form_submit($form, FormSta
   if ($node = $form_state->get('node')) {
     $values = $form_state->getValue('collection_subsite_menu');
 
-    if (empty($values['enabled'])) {
-      return;
+    if ($values['enabled']) {
+      list($menu_name, $parent) = explode(':', $values['menu_parent'], 2);
+
+      // Create a new menu_link_content entity.
+      $entity = MenuLinkContent::create([
+        'link' => ['uri' => 'entity:node/' . $node->id()],
+        'langcode' => $node->language()->getId(),
+      ]);
+      $entity->enabled->value = 1;
+      $entity->title->value = $node->label();
+      $entity->menu_name->value = $menu_name;
+      $entity->parent->value = $parent;
+      $entity->isDefaultRevision($node->isDefaultRevision());
+      $entity->save();
     }
-
-    list($menu_name, $parent) = explode(':', $values['menu_parent'], 2);
-
-    // Create a new menu_link_content entity.
-    $entity = MenuLinkContent::create([
-      'link' => ['uri' => 'entity:node/' . $node->id()],
-      'langcode' => $node->language()->getId(),
-    ]);
-    $entity->enabled->value = 1;
-    $entity->title->value = $node->label();
-    $entity->menu_name->value = $menu_name;
-    $entity->parent->value = $parent;
-    $entity->isDefaultRevision($node->isDefaultRevision());
-    $entity->save();
 
     // Save the node again to trigger pathauto.
     $node->save();
