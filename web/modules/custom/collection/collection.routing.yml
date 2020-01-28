@@ -17,7 +17,7 @@ collection_item.new.node:
     _form: '\Drupal\collection\Form\CollectionNewNodeForm'
     _title: 'Add new node to collection'
   requirements:
-    _permission: 'edit own collections'
+    _custom_access: '\Drupal\collection\Access\CollectionItemsAccessCheck::access'
   options:
     _admin_route: TRUE
     parameters:
