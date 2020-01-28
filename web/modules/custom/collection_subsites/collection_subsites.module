@@ -8,6 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\collection\Entity\CollectionType;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
+use Drupal\Component\Utility\Html;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
@@ -106,9 +107,14 @@ function collection_subsites_form_collection_new_node_form_alter(&$form, FormSta
 function collection_subsites_form_collection_new_node_form_submit($form, FormStateInterface $form_state) {
   if ($node = $form_state->get('node')) {
     $values = $form_state->getValue('collection_subsite_menu');
+    $generate_custom_path = FALSE;
 
     if ($values['enabled']) {
       list($menu_name, $parent) = explode(':', $values['menu_parent'], 2);
+
+      if (!$parent) {
+        $generate_custom_path = TRUE;
+      }
 
       // Create a new menu_link_content entity.
       $entity = MenuLinkContent::create([
@@ -122,8 +128,25 @@ function collection_subsites_form_collection_new_node_form_submit($form, FormSta
       $entity->isDefaultRevision($node->isDefaultRevision());
       $entity->save();
     }
+    else {
+      $generate_custom_path = TRUE;
+    }
 
-    // Save the node again to trigger pathauto.
+    if ($generate_custom_path) {
+      if (\Drupal::moduleHandler()->moduleExists('pathauto')) {
+        $node->path->pathauto = \Drupal\pathauto\PathautoState::SKIP;
+        $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
+        $clean_title = $alias_cleaner->cleanString($node->label());
+      }
+      else {
+        $clean_title = strtolower(Html::cleanCssIdentifier($node->label()));
+      }
+
+      $collection = $form_state->get('collection');
+      $node->path->alias = $collection->toUrl()->toString() . '/' . $clean_title;
+    }
+
+    // Save the node again to trigger path updates.
     $node->save();
   }
 }
