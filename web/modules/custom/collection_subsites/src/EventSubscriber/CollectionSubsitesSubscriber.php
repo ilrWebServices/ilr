@@ -149,14 +149,6 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
       'context_mapping' => [],
     ]);
 
-    // Add the subsite menu to the BVG as a condition.
-    $bvg->addCondition([
-      'id' => 'menu_position',
-      'menu_parent' => $collection_machine_name . ':',
-      'negate' => FALSE,
-      'context_mapping' => [],
-    ]);
-
     $bvg->save();
 
     if ($bvg) {
