@@ -74,6 +74,9 @@ class NodeCollectionsForm extends FormBase {
     // Get a list of collections. Access control will ensure that the list only
     // shows collections that the current user can modify.
     foreach ($collections_storage->loadMultiple() as $id => $collection) {
+      if (!$collection->access('update')) {
+        continue;
+      }
       $options[$id] = ['name' => Link::createFromRoute($collection->label(), 'entity.collection_item.collection', ['collection' => $id])->toString()];
       $default[$id] = ($collection->getItem($node)) ? TRUE : FALSE;
     }
