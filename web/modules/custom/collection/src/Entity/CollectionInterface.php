@@ -8,7 +8,6 @@ use Drupal\user\EntityOwnerInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Session\AccountInterface;
 
 /**
  * Provides an interface for defining Collection entities.
@@ -111,14 +110,4 @@ interface CollectionInterface extends ContentEntityInterface, EntityChangedInter
    *   TRUE if the entity was in this collection and removed successfully.
    */
   public function removeItem(EntityInterface $entity);
-
-  /**
-   * Check if a given user account is an owner of this collection.
-   *
-   * @param \Drupal\Core\Session\AccountInterface $account
-   *
-   * @return bool
-   *   TRUE if user is an owner of this collection.
-   */
-  public function hasOwner(AccountInterface $account);
 }
