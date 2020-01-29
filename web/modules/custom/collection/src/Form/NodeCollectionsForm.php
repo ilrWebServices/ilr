@@ -78,15 +78,22 @@ class NodeCollectionsForm extends FormBase {
       if (!$collection->access('update')) {
         continue;
       }
-      $options[$id] = ['name' => Link::createFromRoute($collection->label(), 'entity.collection_item.collection', ['collection' => $id])->toString()];
+
+      $collection_items_link = Link::createFromRoute($collection->label(), 'entity.collection_item.collection', ['collection' => $id]);
+
+      $options[$id] = [
+        'name' => $collection_items_link->toString(),
+        'type' => $collection->bundle(),
+      ];
+
       $default[$id] = ($collection->getItem($node)) ? TRUE : FALSE;
     }
 
     $form['collections'] = [
       '#type' => 'tableselect',
       '#empty' => $this->t('No collections have been created yet.'),
-      '#header' => ['name' => $this->t('Collection')],
       '#description' => $this->t('Select the collections in which to place this node.'),
+      '#header' => ['name' => $this->t('Collection'), 'type' => $this->t('Type')],
       '#options' => $options,
       '#default_value' => $default,
       '#js_select' => FALSE,
