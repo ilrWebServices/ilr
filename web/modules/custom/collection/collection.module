@@ -1,5 +1,7 @@
 <?php
 
+use \Drupal\Core\Entity\EntityInterface;
+
 /**
  * @file
  * Contains collection.module.
@@ -62,4 +64,21 @@ function collection_theme_suggestions_collection(array $variables) {
   $suggestions[] = 'collection__' . $entity->id();
   $suggestions[] = 'collection__' . $entity->id() . '__' . $sanitized_view_mode;
   return $suggestions;
+}
+
+/**
+ * Implements hook_entity_delete().
+ *
+ * Delete any corresponding collection items when an entity is deleted.
+ */
+function collection_entity_delete(EntityInterface $entity) {
+  $item_storage = \Drupal::service('entity_type.manager')->getStorage('collection_item');
+  $collection_items = $item_storage->loadByProperties([
+    'item__target_id' => $entity->id(),
+    'item__target_type' => $entity->getEntityTypeId()
+  ]);
+
+  foreach ($collection_items as $collection_item) {
+    $collection_item->delete();
+  }
 }
