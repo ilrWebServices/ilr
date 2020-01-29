@@ -53,6 +53,17 @@ class UserCollectionsBlock extends BlockBase implements ContainerFactoryPluginIn
     $query = $collection_storage->getQuery();
     $collection_ids = $query->execute();
     $loaded_collections = $collection_storage->loadMultiple($collection_ids);
+    $user_collections = [];
+    foreach ($loaded_collections as $collection) {
+      // Add the item to the list if the user from the current route has update access.
+      if ($collection->access('update', $user)) {
+        $user_collections[] = $collection;
+      }
+    }
+
+    if (empty($user_collections)) {
+      return [];
+    }
 
     $build['user_collections_block'] = [
       '#theme' => 'item_list',
@@ -71,12 +82,7 @@ class UserCollectionsBlock extends BlockBase implements ContainerFactoryPluginIn
       ],
     ];
 
-    foreach ($loaded_collections as $collection) {
-      // Add the item to the list if the user from the current route has update access.
-      if (!$collection->access('update', $user)) {
-        continue;
-      }
-
+    foreach ($user_collections as $collection) {
       $build['user_collections_block']['#items'][] = [
         '#access' => $collection->access('view', $current_user),
         [
