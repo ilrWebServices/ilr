@@ -4,6 +4,7 @@ namespace Drupal\collection\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Url;
 
@@ -44,20 +45,41 @@ class UserCollectionsBlock extends BlockBase implements ContainerFactoryPluginIn
   /**
    * {@inheritdoc}
    */
+  public function defaultConfiguration() {
+    return [
+      'collection_type' => '',
+    ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function build() {
     if (!$user = $this->route_match->getParameter('user')) {
       return [];
     }
     $current_user = \Drupal::currentUser();
+    $config = $this->getConfiguration();
     $collection_storage = $this->entityTypeManager->getStorage('collection');
-    $query = $collection_storage->getQuery();
-    $collection_ids = $query->execute();
-    $loaded_collections = $collection_storage->loadMultiple($collection_ids);
+    $loaded_collections = $collection_storage->loadByProperties([
+      'type' => $config['collection_type']
+    ]);
+
+    $user_collections = [];
+    foreach ($loaded_collections as $collection) {
+      // Add the item to the list if the user from the current route has update access.
+      if ($collection->access('update', $user)) {
+        $user_collections[] = $collection;
+      }
+    }
+
+    if (empty($user_collections)) {
+      return [];
+    }
 
     $build['user_collections_block'] = [
       '#theme' => 'item_list',
       '#items' => [],
-      '#title' => $this->t('@name\'s collections', ['@name' => $user->label()]),
       '#empty' => $this->t('No collections.'),
       '#cache' => [
         'contexts' => [
@@ -72,12 +94,7 @@ class UserCollectionsBlock extends BlockBase implements ContainerFactoryPluginIn
       ],
     ];
 
-    foreach ($loaded_collections as $collection) {
-      // Add the item to the list if the user from the current route has update access.
-      if (!$collection->access('update', $user)) {
-        continue;
-      }
-
+    foreach ($user_collections as $collection) {
       $build['user_collections_block']['#items'][] = [
         '#access' => $collection->access('view', $current_user),
         [
@@ -111,6 +128,39 @@ class UserCollectionsBlock extends BlockBase implements ContainerFactoryPluginIn
     }
 
     return $build;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockForm($form, FormStateInterface $form_state) {
+    $form = parent::blockForm($form, $form_state);
+    $config = $this->getConfiguration();
+    $collection_type_options = [];
+
+    foreach ($this->entityTypeManager->getStorage('collection_type')->loadMultiple() as $collection_type) {
+      $collection_type_options[$collection_type->id()] = $collection_type->label();
+    }
+
+    $form['collection_type'] = [
+      '#type' => 'select',
+      '#required' => TRUE,
+      '#title' => $this->t('Collection type'),
+      '#options' => $collection_type_options,
+      '#title' => $this->t('Collection type'),
+      '#default_value' => isset($config['collection_type']) ? $config['collection_type'] : 'subsite',
+    ];
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockSubmit($form, FormStateInterface $form_state) {
+    parent::blockSubmit($form, $form_state);
+    $values = $form_state->getValues();
+    $this->configuration['collection_type'] = $values['collection_type'];
   }
 
 }

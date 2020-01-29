@@ -24,16 +24,19 @@ third_party_settings:
             uuid: 7025247d-4e63-453e-a3f7-09b5be3395b7
             region: content
             configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
               id: 'field_block:user:user:field_common_name'
+              label: Name
+              provider: layout_builder
+              label_display: '0'
               formatter:
-                label: above
+                label: hidden
+                type: string
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-                type: string
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
             additional: {  }
             weight: 0
         third_party_settings: {  }
@@ -50,10 +53,11 @@ third_party_settings:
             region: first
             configuration:
               id: user_collections_block
-              label: Collections
+              label: Subsites
               provider: collection
-              label_display: '0'
+              label_display: visible
               context_mapping: {  }
+              collection_type: subsite
             additional: {  }
             weight: 0
         third_party_settings: {  }
