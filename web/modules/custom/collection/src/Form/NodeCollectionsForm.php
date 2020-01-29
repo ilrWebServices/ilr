@@ -89,10 +89,15 @@ class NodeCollectionsForm extends FormBase {
       $default[$id] = ($collection->getItem($node)) ? TRUE : FALSE;
     }
 
+    if (count($options) > 0) {
+      $form['help'] = [
+        '#markup' => '<p>' . $this->t('Add or remove this content from the following collections.') . '</p>',
+      ];
+    }
+
     $form['collections'] = [
       '#type' => 'tableselect',
       '#empty' => $this->t('No collections have been created yet.'),
-      '#description' => $this->t('Select the collections in which to place this node.'),
       '#header' => ['name' => $this->t('Collection'), 'type' => $this->t('Type')],
       '#options' => $options,
       '#default_value' => $default,
