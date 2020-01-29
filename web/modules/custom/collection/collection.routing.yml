@@ -2,7 +2,7 @@ collection.node.collections:
   path: '/node/{node}/collections'
   defaults:
     _form: '\Drupal\collection\Form\NodeCollectionsForm'
-    _title: 'Collections'
+    _title_callback: '\Drupal\collection\Form\NodeCollectionsForm::addTitle'
   requirements:
     _permission: 'edit own collections'
   options:

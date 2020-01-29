@@ -11,6 +11,7 @@ use Drupal\node\NodeInterface;
 use Drupal\collection\Event\CollectionEvents;
 use Drupal\collection\Event\CollectionItemFormCreateEvent;
 use Drupal\Core\Link;
+use Drupal\Core\Routing\RouteMatchInterface;
 
 class NodeCollectionsForm extends FormBase {
 
@@ -132,6 +133,22 @@ class NodeCollectionsForm extends FormBase {
         }
       }
     }
+  }
+
+  /**
+   * Provides an add title callback for add node to collection form.
+   *
+   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+   *   The route match.
+   *
+   * @return string
+   *   The title for the entity add page, if the bundle was found.
+   */
+  public function addTitle(RouteMatchInterface $route_match) {
+    $node = $route_match->getParameter('node');
+    return $this->t('Collections containing %node', [
+      '%node' => $node->label(),
+    ]);
   }
 
 }
