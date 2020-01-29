@@ -45,6 +45,15 @@ class UserCollectionsBlock extends BlockBase implements ContainerFactoryPluginIn
   /**
    * {@inheritdoc}
    */
+  public function defaultConfiguration() {
+    return [
+      'collection_type' => '',
+    ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function build() {
     if (!$user = $this->route_match->getParameter('user')) {
       return [];
