@@ -50,9 +50,9 @@ third_party_settings:
             region: first
             configuration:
               id: user_collections_block
-              label: Collections
+              label: Subsites
               provider: collection
-              label_display: '0'
+              label_display: visible
               context_mapping: {  }
             additional: {  }
             weight: 0
