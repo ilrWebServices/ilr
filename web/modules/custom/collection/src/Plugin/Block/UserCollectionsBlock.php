@@ -4,6 +4,7 @@ namespace Drupal\collection\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Url;
 
@@ -49,10 +50,10 @@ class UserCollectionsBlock extends BlockBase implements ContainerFactoryPluginIn
       return [];
     }
     $current_user = \Drupal::currentUser();
+    $config = $this->getConfiguration();
     $collection_storage = $this->entityTypeManager->getStorage('collection');
-    $type = 'subsite'; // Replace with block config
     $loaded_collections = $collection_storage->loadByProperties([
-      'type' => $type
+      'type' => $config['collection_type']
     ]);
 
     $user_collections = [];
@@ -118,6 +119,32 @@ class UserCollectionsBlock extends BlockBase implements ContainerFactoryPluginIn
     }
 
     return $build;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockForm($form, FormStateInterface $form_state) {
+    $form = parent::blockForm($form, $form_state);
+
+    $config = $this->getConfiguration();
+
+    $form['collection_type'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Collection type'),
+      '#default_value' => isset($config['collection_type']) ? $config['collection_type'] : 'subsite',
+    ];
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockSubmit($form, FormStateInterface $form_state) {
+    parent::blockSubmit($form, $form_state);
+    $values = $form_state->getValues();
+    $this->configuration['collection_type'] = $values['collection_type'];
   }
 
 }
