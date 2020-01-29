@@ -50,9 +50,11 @@ class UserCollectionsBlock extends BlockBase implements ContainerFactoryPluginIn
     }
     $current_user = \Drupal::currentUser();
     $collection_storage = $this->entityTypeManager->getStorage('collection');
-    $query = $collection_storage->getQuery();
-    $collection_ids = $query->execute();
-    $loaded_collections = $collection_storage->loadMultiple($collection_ids);
+    $type = 'subsite'; // Replace with block config
+    $loaded_collections = $collection_storage->loadByProperties([
+      'type' => $type
+    ]);
+
     $user_collections = [];
     foreach ($loaded_collections as $collection) {
       // Add the item to the list if the user from the current route has update access.
