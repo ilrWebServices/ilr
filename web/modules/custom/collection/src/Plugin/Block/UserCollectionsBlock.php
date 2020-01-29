@@ -126,11 +126,18 @@ class UserCollectionsBlock extends BlockBase implements ContainerFactoryPluginIn
    */
   public function blockForm($form, FormStateInterface $form_state) {
     $form = parent::blockForm($form, $form_state);
-
     $config = $this->getConfiguration();
+    $collection_type_options = [];
+
+    foreach ($this->entityTypeManager->getStorage('collection_type')->loadMultiple() as $collection_type) {
+      $collection_type_options[$collection_type->id()] = $collection_type->label();
+    }
 
     $form['collection_type'] = [
-      '#type' => 'textfield',
+      '#type' => 'select',
+      '#required' => TRUE,
+      '#title' => $this->t('Collection type'),
+      '#options' => $collection_type_options,
       '#title' => $this->t('Collection type'),
       '#default_value' => isset($config['collection_type']) ? $config['collection_type'] : 'subsite',
     ];
