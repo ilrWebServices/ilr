@@ -15,7 +15,7 @@ collection_item.new.node:
   path: '/collection/{collection}/items/new/node'
   defaults:
     _form: '\Drupal\collection\Form\CollectionNewNodeForm'
-    _title: 'Add new node to collection'
+    _title_callback: '\Drupal\collection\Form\CollectionNewNodeForm::addTitle'
   requirements:
     _custom_access: '\Drupal\collection\Access\CollectionItemsAccessCheck::access'
   options:

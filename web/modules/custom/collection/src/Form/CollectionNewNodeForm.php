@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\collection\Entity\CollectionInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Class CollectionNewNodeForm.
@@ -124,6 +125,22 @@ class CollectionNewNodeForm extends FormBase {
       'item' => $node,
     ]);
     $collection_item->save();
+  }
+
+  /**
+   * Provides an add title callback for add node to collection form.
+   *
+   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+   *   The route match.
+   *
+   * @return string
+   *   The title for the entity add page, if the bundle was found.
+   */
+  public function addTitle(RouteMatchInterface $route_match) {
+    $collection = $route_match->getParameter('collection');
+    return $this->t('Add content to @collection', [
+      '@collection' => $collection->label(),
+    ]);
   }
 
 }
