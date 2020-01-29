@@ -57,7 +57,6 @@ class UserCollectionsBlock extends BlockBase implements ContainerFactoryPluginIn
     $build['user_collections_block'] = [
       '#theme' => 'item_list',
       '#items' => [],
-      '#title' => $this->t('@name\'s collections', ['@name' => $user->label()]),
       '#empty' => $this->t('No collections.'),
       '#cache' => [
         'contexts' => [
