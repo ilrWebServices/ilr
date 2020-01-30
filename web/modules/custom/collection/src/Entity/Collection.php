@@ -12,6 +12,7 @@ use Drupal\collection\Event\CollectionEvents;
 use Drupal\collection\Event\CollectionCreateEvent;
 use Drupal\collection\Event\CollectionUpdateEvent;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 
 /**
  * Defines the Collection entity.
@@ -109,8 +110,6 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
     $item_storage->delete($items_for_deletion);
   }
 
-
-
   /**
    * {@inheritdoc}
    */
@@ -144,31 +143,15 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
   /**
    * {@inheritdoc}
    */
-  public function getOwner() {
-    return $this->get('user_id')->entity;
-  }
+  public function getOwnerIds() {
+    $owner_ids = [];
+    $owners = $this->get('user_id');
 
-  /**
-   * {@inheritdoc}
-   */
-  public function getOwnerId() {
-    return $this->get('user_id')->target_id;
-  }
+    foreach ($owners as $owner) {
+      $owner_ids[] = $owner->target_id;
+    }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function setOwnerId($uid) {
-    $this->set('user_id', $uid);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setOwner(UserInterface $account) {
-    $this->set('user_id', $account->id());
-    return $this;
+    return $owner_ids;
   }
 
   /**
@@ -275,9 +258,10 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Owner'))
-      ->setDescription(t('The user that owns this Collection.'))
+      ->setLabel(t('Owners'))
+      ->setDescription(t('The users that own this Collection.'))
       ->setRevisionable(TRUE)
+      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
       ->setSetting('target_type', 'user')
       ->setSetting('handler', 'default')
       ->setTranslatable(TRUE)
