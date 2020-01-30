@@ -59,10 +59,9 @@ class CollectionForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /* @var \Drupal\collection\Entity\Collection $entity */
     $form = parent::buildForm($form, $form_state);
 
-    $entity = $this->entity;
+    $form['user_id']['#access'] = $this->account->hasPermission('administer collections');
 
     return $form;
   }

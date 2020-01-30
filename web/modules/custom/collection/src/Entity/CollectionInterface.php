@@ -4,7 +4,6 @@ namespace Drupal\collection\Entity;
 
 use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Entity\RevisionLogInterface;
-use Drupal\user\EntityOwnerInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -14,7 +13,7 @@ use Drupal\Core\Entity\EntityInterface;
  *
  * @ingroup collection
  */
-interface CollectionInterface extends ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface, RevisionLogInterface, EntityPublishedInterface {
+interface CollectionInterface extends ContentEntityInterface, EntityChangedInterface, RevisionLogInterface, EntityPublishedInterface {
 
   /**
    * Add get/set methods for your configuration properties here.
@@ -57,6 +56,14 @@ interface CollectionInterface extends ContentEntityInterface, EntityChangedInter
    *   The called Collection entity.
    */
   public function setCreatedTime($timestamp);
+
+  /**
+   * Gets a list of collection owner user ids.
+   *
+   * @return array
+   *   A list of owner user ids.
+   */
+  public function getOwnerIds();
 
   /**
    * Gets the collection items for this collection
