@@ -77,7 +77,7 @@ class CollectionItemController extends EntityController {
    */
   public function title(RouteMatchInterface $route_match, EntityInterface $_entity = NULL) {
     if ($entity = $this->doGetEntity($route_match, $_entity)) {
-      return $this->t('Items for @label @collection_type collection', [
+      return $this->t('@label @collection_type items', [
         '@label' => $entity->label(),
         '@collection_type' => $entity->bundle()
       ]);
