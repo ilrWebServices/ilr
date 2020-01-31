@@ -392,3 +392,18 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
     }
   }
 }
+
+/**
+ * Implements hook_user_format_name_alter().
+ *
+ * Display the common name, if available, as the username.
+ */
+function ilr_user_format_name_alter(&$name, $account) {
+  if ($account instanceof \Drupal\user\Entity\User === FALSE) {
+    return;
+  }
+
+  if (!$account->field_common_name->isEmpty()) {
+    $name = $account->field_common_name->value;
+  }
+}
