@@ -7,6 +7,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Url;
+use Drupal\Core\Cache\Cache;
 
 /**
  * Provides a 'UserCollectionsBlock' block.
@@ -81,17 +82,6 @@ class UserCollectionsBlock extends BlockBase implements ContainerFactoryPluginIn
       '#theme' => 'item_list',
       '#items' => [],
       '#empty' => $this->t('No collections.'),
-      '#cache' => [
-        'contexts' => [
-          // Cache this list per-user.
-          'user',
-        ],
-        'tags' => [
-          // Invalidate this cached list whenever any collection is modified,
-          // added, or removed.
-          'collection_list'
-        ],
-      ],
     ];
 
     foreach ($user_collections as $collection) {
@@ -161,6 +151,23 @@ class UserCollectionsBlock extends BlockBase implements ContainerFactoryPluginIn
     parent::blockSubmit($form, $form_state);
     $values = $form_state->getValues();
     $this->configuration['collection_type'] = $values['collection_type'];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheContexts() {
+    // Cache this list per-user.
+    return Cache::mergeContexts(parent::getCacheContexts(), ['user']);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTags() {
+    // Invalidate this cached list whenever any collection is modified, added,
+    // or removed.
+    return Cache::mergeTags(parent::getCacheTags(), ['collection_list']);
   }
 
 }
