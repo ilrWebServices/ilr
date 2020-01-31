@@ -5,9 +5,9 @@ dependencies:
   module:
     - system
   theme:
-    - seven
-id: seven_main_content
-theme: seven
+    - union_admin
+id: union_admin_main_content
+theme: union_admin
 region: content
 weight: 3
 provider: null
