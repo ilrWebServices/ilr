@@ -19,26 +19,7 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings:
           label: ''
-        components:
-          7025247d-4e63-453e-a3f7-09b5be3395b7:
-            uuid: 7025247d-4e63-453e-a3f7-09b5be3395b7
-            region: content
-            configuration:
-              id: 'field_block:user:user:field_common_name'
-              label: Name
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: string
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: 0
+        components: {  }
         third_party_settings: {  }
       -
         layout_id: layout_cu_twocol

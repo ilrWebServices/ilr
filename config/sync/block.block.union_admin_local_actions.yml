@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   theme:
-    - seven
+    - union_admin
 _core:
   default_config_hash: PffmQ-ABSz5tFjWmVsR7NesunDnEivvopnJnBjl8KNE
-id: seven_local_actions
-theme: seven
+id: union_admin_local_actions
+theme: union_admin
 region: content
 weight: 2
 provider: null

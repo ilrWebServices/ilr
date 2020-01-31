@@ -5,9 +5,9 @@ dependencies:
   module:
     - system
   theme:
-    - seven
-id: seven_breadcrumbs
-theme: seven
+    - union_admin
+id: union_admin_breadcrumbs
+theme: union_admin
 region: breadcrumb
 weight: 0
 provider: null
