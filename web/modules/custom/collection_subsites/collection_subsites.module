@@ -9,6 +9,9 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\collection\Entity\CollectionType;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\ilr\FieldStorageDefinition;
+use Drupal\Core\Field\FieldDefinition;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
@@ -149,4 +152,61 @@ function collection_subsites_form_collection_new_node_form_submit($form, FormSta
     // Save the node again to trigger path updates.
     $node->save();
   }
+}
+
+/**
+ * Implements hook_entity_field_storage_info().
+ */
+function collection_subsites_entity_field_storage_info(EntityTypeInterface $entity_type) {
+  $definitions = [];
+
+  if ($entity_type->id() == 'collection') {
+    $definitions['logo'] = FieldStorageDefinition::create('entity_reference')
+      ->setName('logo')
+      ->setLabel(t('Logo'))
+      ->setRevisionable(TRUE)
+      ->setTargetEntityTypeId($entity_type->id())
+      ->setSetting('target_type', 'media');
+  }
+
+  return $definitions;
+}
+
+/**
+ * Implements hook_entity_bundle_field_info().
+ *
+ * - Add the logo field to subsite collections.
+ */
+function collection_subsites_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle, array $base_field_definitions) {
+  if ($entity_type->id() !== 'collection') {
+    return [];
+  }
+
+  $collection_type = \Drupal::service('entity_type.manager')->getStorage('collection_type')->load($bundle);
+  $is_subsite = (bool) $collection_type->getThirdPartySetting('collection_subsites', 'contains_subsites');
+  $fields = [];
+
+  if ($is_subsite) {
+    $custom_field_storage = collection_subsites_entity_field_storage_info($entity_type);
+    $fields[$custom_field_storage['logo']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['logo']);
+
+    $fields[$custom_field_storage['logo']->getName()]
+      ->setLabel(t('Logo'))
+      ->setSettings([
+        'handler' => 'default:media',
+        'handler_settings' => [
+          'target_bundles' => [
+            'image' => 'image'
+          ]
+        ],
+      ])
+      ->setDisplayConfigurable('view', FALSE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'media_library_widget',
+        'weight' => 1,
+      ]);
+  }
+
+  return $fields;
 }
