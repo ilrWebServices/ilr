@@ -5,6 +5,8 @@ dependencies:
   config:
     - system.menu.main
   module:
+    - block_visibility_groups
+    - collection_subsites
     - system
   theme:
     - union_marketing
@@ -22,4 +24,16 @@ settings:
   level: 1
   depth: 1
   expand_all_items: false
-visibility: {  }
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  in_subsite:
+    id: in_subsite
+    in_subsite: 1
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'
+      collection: '@collection.collection_route_context:collection'
