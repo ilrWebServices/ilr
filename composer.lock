@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "020a417089124c1e420dfb9376aec2ee",
+    "content-hash": "1ecedde90906d29594625e8ad3f03594",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2362,16 +2362,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.8.0",
+            "version": "8.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "c4890669449ccbab770818de9c9cb7a9f0ffc32e"
+                "reference": "f997857003276c2ae6d27db30f0eab9c7dd10e62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/c4890669449ccbab770818de9c9cb7a9f0ffc32e",
-                "reference": "c4890669449ccbab770818de9c9cb7a9f0ffc32e",
+                "url": "https://api.github.com/repos/drupal/core/zipball/f997857003276c2ae6d27db30f0eab9c7dd10e62",
+                "reference": "f997857003276c2ae6d27db30f0eab9c7dd10e62",
                 "shasum": ""
             },
             "require": {
@@ -2396,7 +2396,7 @@
                 "ext-xml": "*",
                 "guzzlehttp/guzzle": "^6.3",
                 "masterminds/html5": "^2.1",
-                "pear/archive_tar": "^1.4.8",
+                "pear/archive_tar": "^1.4.9",
                 "php": ">=7.0.8",
                 "stack/builder": "^1.0",
                 "symfony-cmf/routing": "^1.4",
@@ -2568,8 +2568,7 @@
                 },
                 "patches_applied": {
                     "Form blocks rendered inside layout builder break save": "https://www.drupal.org/files/issues/2019-08-12/3045171-79.patch",
-                    "Remove invalid iframe attributes from oembed field formatter": "https://www.drupal.org/files/issues/2019-07-31/remove-iframe-attributes-3071446-4.patch",
-                    "Cannot delete or edit a block that is placed in a section of the layout_builder": "https://gist.githubusercontent.com/jeffam/392e7c96351faf36fc084de5e76d6622/raw/715146a144b17ad7bb2b83fdcaeccaa432267641/3005403-35.patch"
+                    "Remove invalid iframe attributes from oembed field formatter": "https://www.drupal.org/files/issues/2019-07-31/remove-iframe-attributes-3071446-4.patch"
                 }
             },
             "autoload": {
@@ -2593,7 +2592,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2019-12-04T08:44:18+00:00"
+            "time": "2020-02-01T19:51:15+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
@@ -2644,16 +2643,16 @@
         },
         {
             "name": "drupal/core-recommended",
-            "version": "8.8.0",
+            "version": "8.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-recommended.git",
-                "reference": "8d7b0ddac7c3a39e55f8cbbf71b9f4f6ecf765e6"
+                "reference": "67ed5b68da2784ead5a55330c6c0fde6bb3cb9f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/8d7b0ddac7c3a39e55f8cbbf71b9f4f6ecf765e6",
-                "reference": "8d7b0ddac7c3a39e55f8cbbf71b9f4f6ecf765e6",
+                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/67ed5b68da2784ead5a55330c6c0fde6bb3cb9f3",
+                "reference": "67ed5b68da2784ead5a55330c6c0fde6bb3cb9f3",
                 "shasum": ""
             },
             "require": {
@@ -2666,7 +2665,7 @@
                 "doctrine/common": "v2.7.3",
                 "doctrine/inflector": "v1.2.0",
                 "doctrine/lexer": "1.0.2",
-                "drupal/core": "8.8.0",
+                "drupal/core": "8.8.2",
                 "easyrdf/easyrdf": "0.9.1",
                 "egulias/email-validator": "2.1.11",
                 "guzzlehttp/guzzle": "6.3.3",
@@ -2674,7 +2673,7 @@
                 "guzzlehttp/psr7": "1.6.1",
                 "masterminds/html5": "2.3.0",
                 "paragonie/random_compat": "v9.99.99",
-                "pear/archive_tar": "1.4.8",
+                "pear/archive_tar": "1.4.9",
                 "pear/console_getopt": "v1.4.2",
                 "pear/pear-core-minimal": "v1.10.9",
                 "pear/pear_exception": "v1.0.0",
@@ -2720,7 +2719,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Locked core dependencies; require this project INSTEAD OF drupal/core.",
-            "time": "2019-12-04T08:44:18+00:00"
+            "time": "2020-02-01T19:51:15+00:00"
         },
         {
             "name": "drupal/ctools",
@@ -4596,7 +4595,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.4",
-                    "datestamp": "1563099329",
+                    "datestamp": "1563096785",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5790,16 +5789,16 @@
         },
         {
             "name": "pear/archive_tar",
-            "version": "1.4.8",
+            "version": "1.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/Archive_Tar.git",
-                "reference": "442bdffb7edb84c898cfd94f7ac8500e49d5bbb5"
+                "reference": "c5b00053770e1d72128252c62c2c1a12c26639f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pear/Archive_Tar/zipball/442bdffb7edb84c898cfd94f7ac8500e49d5bbb5",
-                "reference": "442bdffb7edb84c898cfd94f7ac8500e49d5bbb5",
+                "url": "https://api.github.com/repos/pear/Archive_Tar/zipball/c5b00053770e1d72128252c62c2c1a12c26639f0",
+                "reference": "c5b00053770e1d72128252c62c2c1a12c26639f0",
                 "shasum": ""
             },
             "require": {
@@ -5852,7 +5851,7 @@
                 "archive",
                 "tar"
             ],
-            "time": "2019-10-21T13:31:24+00:00"
+            "time": "2019-12-04T10:17:28+00:00"
         },
         {
             "name": "pear/console_getopt",
