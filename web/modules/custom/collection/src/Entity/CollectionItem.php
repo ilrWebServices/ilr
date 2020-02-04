@@ -8,6 +8,7 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\user\UserInterface;
+use Drupal\Core\Cache\Cache;
 
 /**
  * Defines the Collection item entity.
@@ -102,6 +103,15 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
 
     // TODO: Possibly truncate this name to the length of the field.
     $this->set('name', $collection_label . ' - ' . $item_label);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function postDelete(EntityStorageInterface $storage, array $entities) {
+    foreach ($entities as $entity) {
+      Cache::invalidateTags($entity->collection->entity->getCacheTagsToInvalidate());
+    }
   }
 
   /**
