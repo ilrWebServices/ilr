@@ -9,3 +9,7 @@ services:
       - '@config.storage.active'
     tags:
       - { name: event_subscriber }
+  collection_subsites.resolver:
+    class: Drupal\collection_subsites\CollectionSubsitesResolver
+    arguments:
+      - '@entity_type.manager'

@@ -14,6 +14,23 @@ use Drupal\ilr\FieldStorageDefinition;
 use Drupal\Core\Field\FieldDefinition;
 
 /**
+ * Implements hook_theme().
+ */
+function collection_subsites_theme() {
+  return [
+    'subsite_branding_block' => [
+      'variables' => [
+        'subsite_logo' => NULL,
+        'subsite_slogan' => NULL,
+        'subsite_name' => NULL,
+        'subsite_path' => '/',
+      ],
+      'render element' => 'children',
+    ],
+  ];
+}
+
+/**
  * Implements hook_form_BASE_FORM_ID_alter().
  *
  * - Add a 'Contains Subsites' setting to collection_types.
