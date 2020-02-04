@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Adds 'logo' base field to subsite collections.
+ */
+function collection_subsites_update_8101(&$sandbox) {
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $collection_entity_type = $definition_update_manager->getEntityType('collection');
+  $custom_field_storage = collection_subsites_entity_field_storage_info($collection_entity_type);
+  $definition_update_manager->installFieldStorageDefinition('logo', 'collection', 'collection_subsites', $custom_field_storage['logo']);
+
+  return t('Logo base field added to subsite collections.');
+}
