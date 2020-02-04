@@ -64,8 +64,9 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
     // If the collection has a logo, use it.
     if ($subsite_collection->hasField('logo') && !$subsite_collection->logo->isEmpty()) {
       $build['#subsite_logo'] = [
-        '#theme' => 'image',
+        '#theme' => 'image_style',
         '#uri' => $subsite_collection->logo->first()->entity->field_media_image->entity->getFileUri(),
+        '#style_name' => 'media_library',
         '#alt' => $this->t('@collection logo', ['@collection' => $subsite_collection->label()]),
       ];
     }
