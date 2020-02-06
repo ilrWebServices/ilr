@@ -1,0 +1,5 @@
+entity.person.collection:
+  title: People
+  route_name: entity.person.collection
+  base_route: system.admin_content
+  weight: 10
