@@ -3,3 +3,19 @@ entity.person.collection:
   route_name: entity.person.collection
   base_route: system.admin_content
   weight: 10
+
+entity.person.canonical:
+  route_name: entity.person.canonical
+  base_route: entity.person.canonical
+  title: 'View'
+
+entity.person.edit_form:
+  route_name: entity.person.edit_form
+  base_route: entity.person.canonical
+  title: 'Edit'
+
+entity.person.delete_form:
+  route_name:  entity.person.delete_form
+  base_route:  entity.person.canonical
+  title: Delete
+  weight: 10
