@@ -22,6 +22,12 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
  * @ContentEntityType(
  *   id = "collection",
  *   label = @Translation("Collection"),
+ *   label_singular = @Translation("collection"),
+ *   label_plural = @Translation("collections"),
+ *   label_count = @PluralTranslation(
+ *     singular = "@count collection",
+ *     plural = "@count collections"
+ *   ),
  *   label_collection = @Translation("Collections"),
  *   bundle_label = @Translation("Collection type"),
  *   handlers = {
