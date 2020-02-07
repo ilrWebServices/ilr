@@ -70,26 +70,21 @@ class CollectionForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
-    $entity = $this->entity;
-
     $status = parent::save($form, $form_state);
-
-    // Set new Revision.
-    $entity->setNewRevision();
 
     switch ($status) {
       case SAVED_NEW:
         $this->messenger()->addMessage($this->t('Created the %label Collection.', [
-          '%label' => $entity->label(),
+          '%label' => $this->entity->label(),
         ]));
         break;
 
       default:
         $this->messenger()->addMessage($this->t('Saved the %label Collection.', [
-          '%label' => $entity->label(),
+          '%label' => $this->entity->label(),
         ]));
     }
-    $form_state->setRedirect('entity.collection_item.collection', ['collection' => $entity->id()]);
+    $form_state->setRedirect('entity.collection_item.collection', ['collection' => $this->entity->id()]);
   }
 
 }
