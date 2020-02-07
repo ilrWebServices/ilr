@@ -187,6 +187,26 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
   /**
    * {@inheritdoc}
    */
+  public function preSaveRevision(EntityStorageInterface $storage, \stdClass $record) {
+    parent::preSaveRevision($storage, $record);
+
+    $is_new_revision = $this->isNewRevision();
+    if (!$is_new_revision && isset($this->original) && empty($record->revision_log_message)) {
+      // If we are updating an existing collection without adding a new
+      // revision, we need to make sure $entity->revision_log_message is reset
+      // whenever it is empty. Therefore, this code allows us to avoid
+      // clobbering an existing log entry with an empty one.
+      $record->revision_log_message = $this->original->revision_log_message->value;
+    }
+
+    if ($is_new_revision) {
+      $record->revision_created = self::getRequestTime();
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getItems() {
     $collection_item_ids = \Drupal::entityQuery('collection_item')
       ->condition('collection', $this->id())
@@ -337,6 +357,13 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
       ->setRevisionable(TRUE);
 
     return $fields;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function getRequestTime() {
+    return \Drupal::time()->getRequestTime();
   }
 
 }
