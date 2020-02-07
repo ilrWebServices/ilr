@@ -30,7 +30,7 @@ class PersonaRouteProvider extends AdminHtmlRouteProvider {
    */
   protected function getAddFormRoute(EntityTypeInterface $entity_type) {
     $route = parent::getAddFormRoute($entity_type);
-    // $route->setDefault('_title_callback', CollectionItemController::class . '::addBundleTitle');
+    $route->setDefault('_title_callback', PersonaController::class . '::addBundleTitle');
     $route->setOption('parameters', [
       'person' => [
         'type' => 'entity:person',
@@ -48,6 +48,7 @@ class PersonaRouteProvider extends AdminHtmlRouteProvider {
    */
   protected function getEditFormRoute(EntityTypeInterface $entity_type) {
     $route = parent::getEditFormRoute($entity_type);
+    $route->setDefault('_title_callback', PersonaController::class . '::editTitle');
     $route->setOption('parameters', [
       'person' => [
         'type' => 'entity:person',
@@ -81,13 +82,13 @@ class PersonaRouteProvider extends AdminHtmlRouteProvider {
    */
   protected function getCollectionRoute(EntityTypeInterface $entity_type) {
     $route = parent::getCollectionRoute($entity_type);
-    $route
-      ->setOption('parameters', [
-        'person' => [
-          'type' => 'entity:person',
-        ],
-      ])
-      ->setOption('_admin_route', TRUE);
+    $route->setDefault('_title_callback', PersonaController::class . '::collectionTitle');
+    $route->setOption('parameters', [
+      'person' => [
+        'type' => 'entity:person',
+      ],
+    ]);
+    $route->setOption('_admin_route', TRUE);
 
     return $route;
   }
