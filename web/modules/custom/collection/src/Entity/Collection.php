@@ -29,7 +29,6 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
  *     "list_builder" = "Drupal\collection\CollectionListBuilder",
  *     "views_data" = "Drupal\collection\Entity\CollectionViewsData",
  *     "translation" = "Drupal\collection\CollectionTranslationHandler",
- *
  *     "form" = {
  *       "default" = "Drupal\collection\Form\CollectionForm",
  *       "add" = "Drupal\collection\Form\CollectionForm",
@@ -49,8 +48,8 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
  *   translatable = TRUE,
  *   admin_permission = "administer collections",
  *   entity_keys = {
- *     "id" = "id",
- *     "revision" = "revision_id",
+ *     "id" = "cid",
+ *     "revision" = "vid",
  *     "bundle" = "type",
  *     "label" = "name",
  *     "uuid" = "uuid",
@@ -60,9 +59,9 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
  *     "langcode" = "langcode",
  *   },
  *   revision_metadata_keys = {
- *     "revision_user" = "revision_uid",
- *     "revision_created" = "revision_timestamp",
- *     "revision_log_message" = "revision_log"
+ *     "revision_user" = "revision_user",
+ *     "revision_created" = "revision_created",
+ *     "revision_log_message" = "revision_log_message",
  *   },
  *   links = {
  *     "canonical" = "/collection/{collection}",
