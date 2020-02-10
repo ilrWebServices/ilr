@@ -33,7 +33,7 @@ CO100	Employment Law	Human Resources
 CO213	Employment Law	Human Resources
 DR146	Conflict Resolution	Human Resources
 DR148	Conflict Resolution	Human Resources
-DR210	Conflict Resolution	Diversity & Inclusion
+DR210	Conflict Resolution	Diversity and Inclusion
 DR152	Conflict Resolution	Employee Relations
 DR170	Conflict Resolution	Labor Relations
 DR110	Conflict Resolution	Employment Law
@@ -77,25 +77,25 @@ LS117	Labor Relations	Leadership Development and Organizational Change
 LS187	Labor Relations	Leadership Development and Organizational Change
 LS184	Labor Relations	Leadership Development and Organizational Change
 LS208	Labor Relations	Leadership Development and Organizational Change
-DV227	Diversity & Inclusion	Human Resources
-DV310	Diversity & Inclusion	Human Resources
+DV227	Diversity and Inclusion	Human Resources
+DV310	Diversity and Inclusion	Human Resources
 LD305	Leadership Development and Organizational Change	Human Resources
-DV350	Diversity & Inclusion	Human Resources
-LD255	Leadership Development and Organizational Change	Diversity & Inclusion
+DV350	Diversity and Inclusion	Human Resources
+LD255	Leadership Development and Organizational Change	Diversity and Inclusion
 LD320	Leadership Development and Organizational Change	Human Resources
-DV247	Diversity & Inclusion	Human Resources
+DV247	Diversity and Inclusion	Human Resources
 HR409	Human Resources
-DV235	Diversity & Inclusion	Human Resources
-DV120	Diversity & Inclusion	Human Resources
+DV235	Diversity and Inclusion	Human Resources
+DV120	Diversity and Inclusion	Human Resources
 HR415	Human Resources
 HR417	Human Resources
-DV221	Diversity & Inclusion	Human Resources
-DV320	Diversity & Inclusion	Human Resources
+DV221	Diversity and Inclusion	Human Resources
+DV320	Diversity and Inclusion	Human Resources
 HR413	Human Resources
 HR104	Human Resources
 LD250	Leadership Development and Organizational Change
 HR420	Human Resources
-DV358	Diversity & Inclusion	Human Resources
+DV358	Diversity and Inclusion	Human Resources
 LD314	Leadership Development and Organizational Change
 EOD;
 
