@@ -71,6 +71,15 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
   /**
    * {@inheritdoc}
    */
+  public function label() {
+    $label = parent::label();
+    \Drupal::moduleHandler()->alter('persona_label', $label, $this);
+    return $label;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   protected function urlRouteParameters($rel) {
     $uri_route_parameters = parent::urlRouteParameters($rel);
     $uri_route_parameters['person'] = $this->person->target_id;
