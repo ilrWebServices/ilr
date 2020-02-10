@@ -31,6 +31,7 @@ third_party_settings:
       -
         layout_id: layout_cu_section
         layout_settings:
+          label: ''
           full_width: 1
           collapse_margins: 1
           extra_classes: ''
@@ -51,7 +52,8 @@ third_party_settings:
         third_party_settings: {  }
       -
         layout_id: banner
-        layout_settings: {  }
+        layout_settings:
+          label: ''
         components:
           afbfeda1-bea9-41d8-8649-031588ca42c3:
             uuid: afbfeda1-bea9-41d8-8649-031588ca42c3
@@ -247,6 +249,7 @@ third_party_settings:
       -
         layout_id: layout_cu_section
         layout_settings:
+          label: ''
           full_width: 1
           collapse_margins: 1
           extra_classes: ''
@@ -266,7 +269,9 @@ third_party_settings:
       -
         layout_id: layout_cu_section
         layout_settings:
+          label: ''
           full_width: 0
+          collapse_margins: false
           extra_classes: ''
         components:
           a898965b-ed9e-430e-aa0f-8469aa931719:
@@ -304,11 +309,31 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 2
+          e9f44bac-c8b6-424a-a5bc-793e3d8a97b2:
+            uuid: e9f44bac-c8b6-424a-a5bc-793e3d8a97b2
+            region: main
+            configuration:
+              id: 'field_block:node:certificate:field_prerequisites'
+              label: Prerequisites
+              provider: layout_builder
+              label_display: visible
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
         layout_settings:
+          label: ''
           full_width: 1
+          collapse_margins: false
           extra_classes: ''
         components:
           14ac907d-c792-4f48-ac1c-586ed2fff093:

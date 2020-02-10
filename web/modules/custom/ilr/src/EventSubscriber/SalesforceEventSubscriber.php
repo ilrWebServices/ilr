@@ -103,30 +103,32 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
 
     $course_node->set('field_sponsor', $course_sponsor_term->id());
 
-    // Assign a topic term from the mapping.
-    $topics_for_course = $this->getTopicsForCourseNumber($course_node->get('field_course_number')->value);
-    $tids_for_course = [];
+    if ($course_node->field_topics->isEmpty()) {
+      // Assign a topic term from the mapping.
+      $topics_for_course = $this->getTopicsForCourseNumber($course_node->get('field_course_number')->value);
+      $tids_for_course = [];
 
-    foreach ($topics_for_course as $topic) {
-      $course_topic_term = $term_storage->loadByProperties([
-        'name' => $topic,
-        'vid' => 'topics',
-      ]);
-      $course_topic_term = reset($course_topic_term);
-
-      // If there is no term for this topic, create a new one.
-      if (empty($course_topic_term)) {
-        $course_topic_term = $term_storage->create([
+      foreach ($topics_for_course as $topic) {
+        $course_topic_term = $term_storage->loadByProperties([
           'name' => $topic,
           'vid' => 'topics',
         ]);
-        $course_topic_term->save();
+        $course_topic_term = reset($course_topic_term);
+
+        // If there is no term for this topic, create a new one.
+        if (empty($course_topic_term)) {
+          $course_topic_term = $term_storage->create([
+            'name' => $topic,
+            'vid' => 'topics',
+          ]);
+          $course_topic_term->save();
+        }
+
+        $tids_for_course[] = $course_topic_term->id();
       }
 
-      $tids_for_course[] = $course_topic_term->id();
+      $course_node->set('field_topics', $tids_for_course);
     }
-
-    $course_node->set('field_topics', $tids_for_course);
   }
 
   private function getTopicsForCourseNumber($course_number) {
