@@ -29,3 +29,8 @@ person.settings_tab:
   route_name: entity.person.admin_form
   title: 'Settings'
   base_route: entity.person.admin_form
+
+persona.edit_tab:
+  route_name: entity.persona_type.edit_form
+  title: 'Edit'
+  base_route: entity.persona_type.edit_form
