@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.person.person.field_first_name
+    - field.field.person.person.field_last_name
+  module:
+    - person
+id: person.person.default
+targetEntityType: person
+bundle: person
+mode: default
+content:
+  display_name:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_first_name:
+    type: string
+    weight: 1
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_last_name:
+    type: string
+    weight: 2
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden: {  }
