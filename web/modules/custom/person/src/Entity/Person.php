@@ -33,7 +33,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *       "default" = "Drupal\person\Form\PersonForm",
  *       "add" = "Drupal\person\Form\PersonForm",
  *       "edit" = "Drupal\person\Form\PersonForm",
- *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
+ *       "delete" = "Drupal\person\Form\PersonDeleteForm",
  *     },
  *     "route_provider" = {
  *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
@@ -123,6 +123,19 @@ class Person extends EditorialContentEntityBase implements PersonInterface {
         $persona->save();
       }
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function postDelete(EntityStorageInterface $storage, array $entities) {
+    $persona_ids = \Drupal::entityQuery('persona')
+      ->condition('person', array_keys($entities), 'IN')
+      ->execute();
+
+    $persona_storage = \Drupal::service('entity_type.manager')->getStorage('persona');
+    $personas = $persona_storage->loadMultiple($persona_ids);
+    $persona_storage->delete($personas);
   }
 
   /**
