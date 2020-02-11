@@ -17,7 +17,29 @@ class PersonaForm extends ContentEntityForm {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildForm($form, $form_state);
+    $persona = $this->entity;
+
+    $form['inherited'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Inherited Fields'),
+      '#description' => $this->t('The values of these fields are inherited from @link. If modified here, they will override the original values.', [
+        '@link' => $persona->person->entity->toLink(NULL, 'edit-form')->toString()
+      ]),
+      '#collapsible' => TRUE,
+      '#open' => FALSE,
+      '#weight' => -50,
+    ];
+
+    foreach ($persona->getInheritedFieldNames() as $field_name) {
+      if (!$persona->fieldIsOverridden($field_name) || $persona->$field_name->isEmpty()) {
+        $form['inherited'][$field_name] = $form[$field_name];
+        $form['inherited'][$field_name]['widget'][0]['value']['#placeholder'] = $persona->person->entity->$field_name->value;
+        unset($form[$field_name]);
+      }
+    }
+
     $form['revision']['#default_value'] = TRUE;
+
     return $form;
   }
 

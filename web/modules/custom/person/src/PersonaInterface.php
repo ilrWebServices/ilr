@@ -22,4 +22,14 @@ interface PersonaInterface extends ContentEntityInterface, EntityChangedInterfac
    */
   public function getInheritedFieldNames();
 
+  /**
+   * Checks if a field value is overridden from the person.
+   *
+   * @param string $field_name
+   *
+   * @return boolean
+   *   TRUE if the value is overridden.
+   */
+  public function fieldIsOverridden($field_name);
+
 }

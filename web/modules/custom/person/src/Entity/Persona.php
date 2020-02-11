@@ -151,6 +151,19 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
   /**
    * {@inheritdoc}
    */
+  public function fieldIsOverridden($field_name) {
+    if (!in_array($field_name, $this->getInheritedFieldNames())) {
+      return FALSE;
+    }
+
+    // `array_filter` is used to trim any empty items in the list. This appears
+    // to happen when `EntityForm`s add an extra item to multi-value fields.
+    return $this->person->entity->$field_name->getValue() !== array_filter($this->$field_name->getValue());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
@@ -160,7 +173,6 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
         'settings' => [
           'display_label' => TRUE,
         ],
-        'weight' => 100,
       ])
       ->setDisplayConfigurable('form', TRUE);
 
