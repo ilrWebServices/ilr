@@ -60,6 +60,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *     "collection" = "/admin/content/people",
  *     "revision" = "/person/{person}/revisions/{person_revision}/view",
  *   },
+ *   field_ui_base_route = "entity.person.admin_form",
  * )
  */
 class Person extends EditorialContentEntityBase implements PersonInterface {

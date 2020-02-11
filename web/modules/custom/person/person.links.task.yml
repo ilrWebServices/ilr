@@ -24,3 +24,8 @@ entity.person.delete_form:
   base_route:  entity.person.canonical
   title: Delete
   weight: 10
+
+person.settings_tab:
+  route_name: entity.person.admin_form
+  title: 'Settings'
+  base_route: entity.person.admin_form
