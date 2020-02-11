@@ -44,7 +44,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *   entity_keys = {
  *     "id" = "pid",
  *     "revision" = "vid",
- *     "label" = "name",
+ *     "label" = "display_name",
  *     "uuid" = "uuid",
  *     "published" = "status",
  *     "bundle" = "type",
@@ -131,51 +131,9 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
       ->setCardinality(1)
       ->setRequired(TRUE);
 
-    $fields['name'] = BaseFieldDefinition::create('string')
+    $fields['display_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Display Name'))
       ->setDescription(t('Generally, the full name of this Persona, suitable for display.'))
-      ->setSettings([
-        'default_value' => '',
-        'max_length' => 255,
-        'text_processing' => 0,
-      ])
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'string',
-        'weight' => 0,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => 0,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-      ->setRevisionable(TRUE);
-
-    $fields['first_name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('First Name'))
-      ->setDescription(t('The first name of this Persona.'))
-      ->setSettings([
-        'default_value' => '',
-        'max_length' => 255,
-        'text_processing' => 0,
-      ])
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'string',
-        'weight' => 0,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => 0,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-      ->setRevisionable(TRUE);
-
-    $fields['last_name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Last Name'))
-      ->setDescription(t('The last name of this Persona, used for sorting.'))
       ->setSettings([
         'default_value' => '',
         'max_length' => 255,

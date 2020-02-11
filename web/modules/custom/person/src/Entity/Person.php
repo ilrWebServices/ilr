@@ -43,7 +43,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *   entity_keys = {
  *     "id" = "pid",
  *     "revision" = "vid",
- *     "label" = "name",
+ *     "label" = "display_name",
  *     "uuid" = "uuid",
  *     "published" = "status",
  *   },
@@ -90,61 +90,9 @@ class Person extends EditorialContentEntityBase implements PersonInterface {
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
-    $fields['status']
-      ->setDisplayOptions('form', [
-        'type' => 'boolean_checkbox',
-        'settings' => [
-          'display_label' => TRUE,
-        ],
-        'weight' => 100,
-      ])
-      ->setDisplayConfigurable('form', TRUE);
-
-    $fields['name'] = BaseFieldDefinition::create('string')
+    $fields['display_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Display Name'))
       ->setDescription(t('Generally, the full name of this Person, suitable for display.'))
-      ->setSettings([
-        'default_value' => '',
-        'max_length' => 255,
-        'text_processing' => 0,
-      ])
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'string',
-        'weight' => 0,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => 0,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-      ->setRevisionable(TRUE);
-
-    $fields['first_name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('First Name'))
-      ->setDescription(t('The first name of this Person.'))
-      ->setSettings([
-        'default_value' => '',
-        'max_length' => 255,
-        'text_processing' => 0,
-      ])
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'string',
-        'weight' => 0,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => 0,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-      ->setRevisionable(TRUE);
-
-    $fields['last_name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Last Name'))
-      ->setDescription(t('The last name of this Person, used for sorting.'))
       ->setSettings([
         'default_value' => '',
         'max_length' => 255,
