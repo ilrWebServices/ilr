@@ -87,6 +87,46 @@ class Person extends EditorialContentEntityBase implements PersonInterface {
 
   /**
    * {@inheritdoc}
+   *
+   * Update inherited Persona fields when saving an existing Person.
+   */
+  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
+    parent::postSave($storage, $update);
+
+    if ($update === FALSE) {
+      return;
+    }
+
+    // Load all personas for this person.
+    $personas = $this->entityTypeManager()->getStorage('persona')->loadByProperties([
+      'person' => $this->id(),
+    ]);
+
+    foreach ($personas as $persona) {
+      $needs_save = FALSE;
+
+      foreach ($persona->getInheritedFieldNames() as $field_name) {
+        $original_value = $this->original->$field_name->getValue();
+
+        // Check if the value of this inherited Person field is changing.
+        if ($original_value !== $this->$field_name->getValue()) {
+          // Check if the value of the Persona field was inherited (i.e. has the
+          // same value as the original Person field value).
+          if ($persona->$field_name->getValue() === $original_value) {
+            $persona->$field_name = $this->$field_name;
+            $needs_save = TRUE;
+          }
+        }
+      }
+
+      if ($needs_save) {
+        $persona->save();
+      }
+    }
+  }
+
+  /**
+   * {@inheritdoc}
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);

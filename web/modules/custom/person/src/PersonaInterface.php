@@ -14,4 +14,12 @@ use Drupal\Core\Entity\EntityPublishedInterface;
  */
 interface PersonaInterface extends ContentEntityInterface, EntityChangedInterface, RevisionLogInterface, EntityPublishedInterface {
 
+  /**
+   * Get a list of names of fields whose values this Persona inherits.
+   *
+   * @return array
+   *   A list of names of inherited fields for this Persona.
+   */
+  public function getInheritedFieldNames();
+
 }

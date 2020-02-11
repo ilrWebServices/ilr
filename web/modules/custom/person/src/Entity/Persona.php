@@ -89,6 +89,19 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
   /**
    * {@inheritdoc}
    */
+  public function preSave(EntityStorageInterface $storage) {
+    parent::preSave($storage);
+
+    foreach ($this->getInheritedFieldNames() as $field_name) {
+      if ($this->$field_name->isEmpty()) {
+        $this->$field_name = $this->person->entity->$field_name;
+      }
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function preSaveRevision(EntityStorageInterface $storage, \stdClass $record) {
     parent::preSaveRevision($storage, $record);
 
@@ -104,6 +117,35 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
     if ($is_new_revision) {
       $record->revision_created = self::getRequestTime();
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getInheritedFieldNames() {
+    $field_names = [];
+
+    if (!$this->person) {
+      return $field_names;
+    }
+
+    foreach ($this->person->entity->getFields() as $person_field_name => $person_field) {
+      // Only the display_name and Field API fields can possibly be inherited.
+      if ($person_field_name === 'display_name' || strpos($person_field_name, 'field_') === 0) {
+        // To inherit a value, this Persona must have a field of the same name
+        // and type, and it must not be required.
+        if ($this->hasField($person_field_name)) {
+          $person_field_def = $person_field->getFieldDefinition();
+          $persona_field_def = $this->$person_field_name->getFieldDefinition();
+
+          if ($person_field_def->getType() === $persona_field_def->getType() && !$persona_field_def->isRequired()) {
+            $field_names[] = $person_field_name;
+          }
+        }
+      }
+    }
+
+    return $field_names;
   }
 
   /**
