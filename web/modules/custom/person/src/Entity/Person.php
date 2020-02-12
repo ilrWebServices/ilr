@@ -29,6 +29,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\person\PersonListBuilder",
+ *     "views_data" = "Drupal\views\EntityViewsData",
  *     "form" = {
  *       "default" = "Drupal\person\Form\PersonForm",
  *       "add" = "Drupal\person\Form\PersonForm",
