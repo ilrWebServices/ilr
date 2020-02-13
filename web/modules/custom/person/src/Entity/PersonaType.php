@@ -4,6 +4,9 @@ namespace Drupal\person\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
 use Drupal\person\PersonaTypeInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Defines the Persona type entity.
@@ -40,7 +43,6 @@ use Drupal\person\PersonaTypeInterface;
  *   }
  * )
  */
-
 class PersonaType extends ConfigEntityBundleBase implements PersonaTypeInterface {
 
   /**
@@ -59,9 +61,67 @@ class PersonaType extends ConfigEntityBundleBase implements PersonaTypeInterface
 
   /**
    * {@inheritdoc}
+   *
+   * Add custom inheritable Person fields to new Persona types.
+   */
+  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
+    parent::postSave($storage, $update);
+
+    if ($update || \Drupal::isConfigSyncing()) {
+      return;
+    }
+
+    $entity_type_manager = $this->entityTypeManager();
+    $entity_field_manager = $this->entityFieldManager();
+    $fieldStorageConfigStorage = $entity_type_manager->getStorage('field_storage_config');
+    $fieldConfigStorage = $entity_type_manager->getStorage('field_config');
+
+    // Check all of the inheritable Person fields to see if this Persona type
+    // has the storage and config.
+    foreach ($entity_field_manager->getFieldDefinitions('person', 'person') as $person_field_name => $person_field_def) {
+      // `FieldConfig` definitions are user created fields (i.e. `field_*`).
+      // This filters out base fields, which would be `BaseFieldDefinition`s.
+      if ($person_field_def instanceof FieldConfig) {
+        /** @var \Drupal\field\Entity\FieldStorageConfig $person_field_storage */
+        $person_field_storage_config = $person_field_def->getFieldStorageDefinition();
+
+        // Create the FieldStorageConfig for all Persona types if missing. This
+        // is the 'base field' for all Persona types and is only necessary if
+        // this is an new field that no Persona types have yet.
+        $persona_field_storage_config = FieldStorageConfig::loadByName('persona', $person_field_name);
+        if (empty($persona_field_storage_config)) {
+          $persona_field_storage_config = $fieldStorageConfigStorage->create([
+            'field_name' => $person_field_name,
+            'entity_type' => 'persona',
+            'type' => $person_field_storage_config->getType(),
+            'settings' => $person_field_storage_config->getSettings(),
+          ]);
+          $persona_field_storage_config->save();
+        }
+
+        // Create the FieldConfig for this Persona type if missing. This is the
+        // 'field instance' for this type.
+        $persona_field_config = FieldConfig::loadByName('persona', $this->id(), $person_field_name);
+        if (empty($persona_field_config)) {
+          $persona_field_config = $fieldConfigStorage->create([
+            'field_storage' => $persona_field_storage_config,
+            'bundle' => $this->id(),
+            'label' => $person_field_def->getLabel(),
+            'settings' => $person_field_def->getSettings(),
+          ]);
+          $persona_field_config->save();
+        }
+
+        // @todo Configure form and view modes to match Person fields, too.
+      }
+    }
+  }
+
+  /**
+   * {@inheritdoc}
    */
   public function getInheritedFieldNames() {
-    $entity_field_manager = \Drupal::service('entity_field.manager');
+    $entity_field_manager = $this->entityFieldManager();
     $field_names = [];
     $person_field_defs = $entity_field_manager->getFieldDefinitions('person', 'person');
     $persona_field_defs = $entity_field_manager->getFieldDefinitions('persona', $this->id());
@@ -84,6 +144,15 @@ class PersonaType extends ConfigEntityBundleBase implements PersonaTypeInterface
     }
 
     return $field_names;
+  }
+
+  /**
+   * Gets the entity field manager.
+   *
+   * @return \Drupal\Core\Entity\EntityFieldManager
+   */
+  protected function entityFieldManager() {
+    return \Drupal::service('entity_field.manager');
   }
 
 }
