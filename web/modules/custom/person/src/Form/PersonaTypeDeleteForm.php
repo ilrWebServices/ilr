@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\collection\Form;
+namespace Drupal\person\Form;
 
 use Drupal\Core\Entity\EntityConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -39,9 +39,8 @@ class PersonaTypeDeleteForm extends EntityConfirmFormBase {
     $this->entity->delete();
 
     $this->messenger()->addMessage(
-      $this->t('content @type: deleted @label.', [
-        '@type' => $this->entity->bundle(),
-        '@label' => $this->entity->label(),
+      $this->t('Deleted %label Persona type.', [
+        '%label' => $this->entity->label(),
       ])
     );
 
