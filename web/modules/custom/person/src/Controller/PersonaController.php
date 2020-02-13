@@ -70,6 +70,15 @@ class PersonaController extends EntityController {
   /**
    * {@inheritdoc}
    */
+  public function title(RouteMatchInterface $route_match, EntityInterface $_entity = NULL) {
+    if ($entity = $this->doGetEntity($route_match, $_entity)) {
+      return $entity->getDisplayName();
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function editTitle(RouteMatchInterface $route_match, EntityInterface $_entity = NULL) {
     // Don't use $this->doGetEntity($route_match, $_entity) here, because it
     // will get the `person` entity that is included in all `persona` routes.

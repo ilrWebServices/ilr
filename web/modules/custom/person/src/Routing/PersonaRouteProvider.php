@@ -14,6 +14,15 @@ class PersonaRouteProvider extends AdminHtmlRouteProvider {
   /**
    * {@inheritdoc}
    */
+  protected function getCanonicalRoute(EntityTypeInterface $entity_type) {
+    $route = parent::getCanonicalRoute($entity_type);
+    $route->setDefault('_title_callback', PersonaController::class . '::title');
+    return $route;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   protected function getAddPageRoute(EntityTypeInterface $entity_type) {
     $route = parent::getAddPageRoute($entity_type);
     $route->setDefault('_controller', PersonaController::class . '::addPage');

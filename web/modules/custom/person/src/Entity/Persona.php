@@ -45,7 +45,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *   entity_keys = {
  *     "id" = "pid",
  *     "revision" = "vid",
- *     "label" = "display_name",
+ *     "label" = "admin_label",
  *     "uuid" = "uuid",
  *     "published" = "status",
  *     "bundle" = "type",
@@ -72,10 +72,10 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
   /**
    * {@inheritdoc}
    */
-  public function label() {
-    $label = parent::label();
-    \Drupal::moduleHandler()->alter('persona_label', $label, $this);
-    return $label;
+  public function getDisplayName() {
+    $display_name = $this->display_name->value;
+    $display_name = \Drupal::moduleHandler()->alter('persona_display_name', $display_name, $this);
+    return $display_name;
   }
 
   /**
@@ -157,26 +157,42 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
       ->setCardinality(1)
       ->setRequired(TRUE);
 
-    $fields['display_name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Display Name'))
-      ->setDescription(t('Generally, the full name of this Persona, suitable for display.'))
+    $fields['admin_label'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Admin Label'))
+      ->setDescription(t('A label for this Persona used to distinguish it from similar Personas (e.g. Jane Doe - Department Staffer).'))
       ->setSettings([
         'default_value' => '',
         'max_length' => 255,
         'text_processing' => 0,
-      ])
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'string',
-        'weight' => 0,
       ])
       ->setDisplayOptions('form', [
         'type' => 'string_textfield',
         'weight' => 0,
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-      ->setRevisionable(TRUE);
+      ->setRevisionable(TRUE)
+      ->setRequired(TRUE);
+
+    $fields['display_name'] = BaseFieldDefinition::create('string')
+        ->setLabel(t('Display Name'))
+        ->setDescription(t('Generally, the full name of this Persona, suitable for display.'))
+        ->setSettings([
+          'default_value' => '',
+          'max_length' => 255,
+          'text_processing' => 0,
+        ])
+        ->setDisplayOptions('view', [
+          'label' => 'hidden',
+          'type' => 'string',
+          'weight' => 0,
+        ])
+        ->setDisplayOptions('form', [
+          'type' => 'string_textfield',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setDisplayConfigurable('view', TRUE)
+        ->setRevisionable(TRUE);
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
