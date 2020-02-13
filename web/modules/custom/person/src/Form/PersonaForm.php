@@ -31,7 +31,7 @@ class PersonaForm extends ContentEntityForm {
     ];
 
     foreach ($persona->type->entity->getInheritedFieldNames() as $field_name) {
-      if (!$persona->fieldIsOverridden($field_name) || $persona->$field_name->isEmpty()) {
+      if (isset($form[$field_name]) && (!$persona->fieldIsOverridden($field_name) || $persona->$field_name->isEmpty())) {
         $form['inherited'][$field_name] = $form[$field_name];
         $form['inherited'][$field_name]['widget'][0]['value']['#placeholder'] = $persona->person->entity->$field_name->value;
         unset($form[$field_name]);
