@@ -30,7 +30,7 @@ class PersonaForm extends ContentEntityForm {
       '#weight' => -50,
     ];
 
-    foreach ($persona->getInheritedFieldNames() as $field_name) {
+    foreach ($persona->type->entity->getInheritedFieldNames() as $field_name) {
       if (!$persona->fieldIsOverridden($field_name) || $persona->$field_name->isEmpty()) {
         $form['inherited'][$field_name] = $form[$field_name];
         $form['inherited'][$field_name]['widget'][0]['value']['#placeholder'] = $persona->person->entity->$field_name->value;

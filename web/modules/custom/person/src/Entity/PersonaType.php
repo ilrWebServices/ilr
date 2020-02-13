@@ -57,4 +57,33 @@ class PersonaType extends ConfigEntityBundleBase implements PersonaTypeInterface
    */
   protected $label;
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getInheritedFieldNames() {
+    $entity_field_manager = \Drupal::service('entity_field.manager');
+    $field_names = [];
+    $person_field_defs = $entity_field_manager->getFieldDefinitions('person', 'person');
+    $persona_field_defs = $entity_field_manager->getFieldDefinitions('persona', $this->id());
+
+    foreach ($person_field_defs as $person_field_name => $person_field_def) {
+      // Only the display_name and Field API fields can possibly be inherited.
+      if ($person_field_name === 'display_name' || strpos($person_field_name, 'field_') === 0) {
+        // To inherit a value, this Persona must have a field of the same name,
+        // type, and settings, and it must not be required.
+        if (isset($persona_field_defs[$person_field_name])) {
+          $persona_field_def = $persona_field_defs[$person_field_name];
+          $types_match = $person_field_def->getType() === $persona_field_def->getType();
+          $settings_match = $person_field_def->getSettings() === $persona_field_def->getSettings();
+
+          if ($types_match && $settings_match && !$persona_field_def->isRequired()) {
+            $field_names[] = $person_field_name;
+          }
+        }
+      }
+    }
+
+    return $field_names;
+  }
+
 }
