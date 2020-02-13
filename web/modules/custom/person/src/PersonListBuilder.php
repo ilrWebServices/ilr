@@ -4,7 +4,7 @@ namespace Drupal\person;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
-use Drupal\Core\Link;
+use Drupal\Core\Url;
 
 /**
  * Defines a class to build a listing of Person entities.
@@ -29,7 +29,7 @@ class PersonListBuilder extends EntityListBuilder {
     $row['name']['data'] = [
       '#type' => 'link',
       '#title' => $entity->label(),
-      '#url' => $entity->toUrl(),
+      '#url' => Url::fromRoute('entity.persona.collection', ['person' => $entity->id()]),
     ];
     return $row + parent::buildRow($entity);
   }
