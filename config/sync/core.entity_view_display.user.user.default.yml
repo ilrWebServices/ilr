@@ -5,7 +5,43 @@ dependencies:
   config:
     - field.field.user.user.field_common_name
   module:
+    - collection
+    - layout_builder
+    - layout_discovery
+    - union_organizer
     - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_twocol
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          99228495-11b4-4178-a753-669b1cdfc030:
+            uuid: 99228495-11b4-4178-a753-669b1cdfc030
+            region: first
+            configuration:
+              id: user_collections_block
+              label: Subsites
+              provider: collection
+              label_display: visible
+              context_mapping: {  }
+              collection_type: subsite
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
 id: user.user.default
 targetEntityType: user
 bundle: user

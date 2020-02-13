@@ -2,8 +2,11 @@ module:
   address: 0
   block: 0
   block_content: 0
+  block_visibility_groups: 0
   breakpoint: 0
   ckeditor: 0
+  collection: 0
+  collection_subsites: 0
   config: 0
   config_filter: 0
   config_split: 0
@@ -26,6 +29,7 @@ module:
   ilr: 0
   ilr_migrate: 0
   image: 0
+  key_value_field: 0
   layout_builder: 0
   layout_discovery: 0
   link: 0
@@ -45,6 +49,7 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
+  prepopulate: 0
   recreate_block_content: 0
   redirect: 0
   salesforce: 0
@@ -77,6 +82,7 @@ theme:
   classy: 0
   seven: 0
   stable: 0
+  union_admin: 0
   union_marketing: 0
 profile: minimal
 _core:

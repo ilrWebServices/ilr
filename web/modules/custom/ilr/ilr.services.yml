@@ -13,3 +13,7 @@ services:
     class: Drupal\ilr\EventSubscriber\ResponseEventSubscriber
     tags:
       - { name: event_subscriber }
+  ilr_route_subscriber:
+    class: Drupal\ilr\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

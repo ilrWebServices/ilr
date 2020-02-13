@@ -1,0 +1,23 @@
+uuid: 4abf537d-18e2-40cb-9d70-c3643def919d
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - ctools
+id: subsite_collections
+label: 'Subsite Collections'
+type: 'canonical_entities:collection'
+pattern: '[collection:name]'
+selection_criteria:
+  cabe6dc8-ba79-431e-95b0-e1473f6c4e16:
+    id: 'entity_bundle:collection'
+    bundles:
+      subsite: subsite
+    negate: false
+    context_mapping:
+      collection: collection
+    uuid: cabe6dc8-ba79-431e-95b0-e1473f6c4e16
+selection_logic: and
+weight: -5
+relationships: {  }

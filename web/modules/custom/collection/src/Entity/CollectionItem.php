@@ -8,6 +8,7 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\user\UserInterface;
+use Drupal\Core\Cache\Cache;
 
 /**
  * Defines the Collection item entity.
@@ -23,15 +24,15 @@ use Drupal\user\UserInterface;
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\collection\CollectionItemListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
- *
  *     "form" = {
  *       "default" = "Drupal\collection\Form\CollectionItemForm",
  *       "add" = "Drupal\collection\Form\CollectionItemForm",
  *       "edit" = "Drupal\collection\Form\CollectionItemForm",
  *       "delete" = "Drupal\collection\Form\CollectionItemDeleteForm",
+ *       "delete-multiple-confirm" = "Drupal\collection\Form\CollectionItemDeleteMultipleForm",
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
+ *       "default" = "Drupal\collection\CollectionItemRouteProvider",
  *     },
  *     "access" = "Drupal\collection\CollectionAccessControlHandler",
  *   },
@@ -46,20 +47,33 @@ use Drupal\user\UserInterface;
  *     "uid" = "user_id",
  *   },
  *   links = {
- *     "canonical" = "/collection-item/{collection_item}",
- *     "add-page" = "/collection-item/add",
- *     "add-form" = "/collection-item/add/{collection_item_type}",
- *     "edit-form" = "/collection-item/{collection_item}/edit",
- *     "delete-form" = "/collection-item/{collection_item}/delete",
- *     "collection" = "/admin/collection/collection-items",
+ *     "canonical" = "/collection/{collection}/items/{collection_item}",
+ *     "add-page" = "/collection/{collection}/items/add",
+ *     "add-form" = "/collection/{collection}/items/add/{collection_item_type}",
+ *     "edit-form" = "/collection/{collection}/items/{collection_item}/edit",
+ *     "delete-form" = "/collection/{collection}/items/{collection_item}/delete",
+ *     "delete-multiple-form" = "/collection/{collection}/items/delete",
+ *     "collection" = "/collection/{collection}/items",
  *   },
  *   bundle_entity_type = "collection_item_type",
- *   field_ui_base_route = "entity.collection_item_type.edit_form"
+ *   field_ui_base_route = "entity.collection_item_type.edit_form",
+ *   constraints = {
+ *     "UniqueItem" = {}
+ *   }
  * )
  */
 class CollectionItem extends ContentEntityBase implements CollectionItemInterface {
 
   use EntityChangedTrait;
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function urlRouteParameters($rel) {
+    $uri_route_parameters = parent::urlRouteParameters($rel);
+    $uri_route_parameters['collection'] = $this->get('collection')->target_id;
+    return $uri_route_parameters;
+  }
 
   /**
    * {@inheritdoc}
@@ -77,6 +91,11 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
   public function preSave(EntityStorageInterface $storage) {
     parent::preSave($storage);
 
+    // Check for an existing collection item.
+    if ($this->collection->entity->getItem($this->item->entity)) {
+      throw new \LogicException('Collection already has this entity.');
+    }
+
     // Automatically update the name of this collection item to a combination of
     // the collection and the item.
     $collection_label = $this->collection->entity->label();
@@ -84,6 +103,15 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
 
     // TODO: Possibly truncate this name to the length of the field.
     $this->set('name', $collection_label . ' - ' . $item_label);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function postDelete(EntityStorageInterface $storage, array $entities) {
+    foreach ($entities as $entity) {
+      Cache::invalidateTags($entity->collection->entity->getCacheTagsToInvalidate());
+    }
   }
 
   /**
@@ -148,6 +176,40 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
 
   /**
    * {@inheritdoc}
+   *
+   * Returns \Drupal\Core\TypedData\TypedDataInterface
+   */
+  public function getAttribute(string $key) {
+    foreach ($this->attributes as $attribute) {
+      if ($attribute->key === $key) {
+        return $attribute;
+      }
+    }
+
+    return FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * Returns \Drupal\Core\TypedData\TypedDataInterface
+   */
+  public function setAttribute(string $key, string $value) {
+    // Update existing attribute.
+    if ($attribute = $this->getAttribute($key)) {
+      $attribute->value = $value;
+      return $attribute;
+    }
+
+    // Add new attribute.
+    return $this->attributes->appendItem([
+      'key' => $key,
+      'value' => $value,
+    ]);
+  }
+
+  /**
+   * {@inheritdoc}
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
@@ -160,19 +222,9 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ->setSetting('handler', 'default')
       ->setTranslatable(TRUE)
       ->setDisplayOptions('view', [
-        'label' => 'hidden',
+        'label' => 'above',
         'type' => 'author',
         'weight' => 0,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
-        'weight' => 5,
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ],
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
@@ -202,6 +254,7 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ->setDescription(t('The collection to which this item belongs.'))
       ->setSetting('target_type', 'collection')
       ->setSetting('handler', 'default:collection')
+      ->setDefaultValueCallback(static::class . '::getCollectionParam')
       ->setCardinality(1)
       ->setTranslatable(TRUE)
       ->setDisplayOptions('view', [
@@ -209,10 +262,6 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
         'type' => 'entity_reference_label',
         'weight' => 0,
         'settings' => ['link' => TRUE]
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'options_select',
-        'weight' => 4,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
@@ -242,6 +291,17 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
 
+    $fields['attributes'] = BaseFieldDefinition::create('key_value')
+      ->setLabel(t('Attributes'))
+      ->setCardinality(\Drupal\Core\Field\FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+      ->setSetting('key_max_length', 255)
+      ->setSetting('max_length', 255)
+      ->setSetting('key_is_ascii', FALSE)
+      ->setSetting('is_ascii', FALSE)
+      ->setSetting('case_sensitive', FALSE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', FALSE);
+
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
       ->setDescription(t('The time that the collection item was created.'));
@@ -252,4 +312,15 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
 
     return $fields;
   }
+
+  /**
+   * Returns the default value for the collection field.
+   *
+   * @return int
+   *   The entity id of the collection in the current route.
+   */
+  public static function getCollectionParam() {
+    return \Drupal::routeMatch()->getRawParameter('collection');
+  }
+
 }

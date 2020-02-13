@@ -9,6 +9,11 @@ entity.collection.edit_form:
   base_route: entity.collection.canonical
   title: 'Edit'
 
+entity.collection.items:
+  route_name: entity.collection_item.collection
+  base_route: entity.collection.canonical
+  title: Items
+
 entity.collection.delete_form:
   route_name:  entity.collection.delete_form
   base_route:  entity.collection.canonical
@@ -41,3 +46,9 @@ entity.collection_item_type.edit_form:
   route_name: entity.collection_item_type.edit_form
   base_route: entity.collection_item_type.edit_form
   title: 'Edit'
+
+# Collection listings for nodes
+entity.node.collections:
+  route_name: collection.node.collections
+  base_route: entity.node.canonical
+  title: Collections

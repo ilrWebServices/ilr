@@ -5,11 +5,11 @@ dependencies:
   module:
     - system
   theme:
-    - seven
+    - union_admin
 _core:
   default_config_hash: fRKXNB91UxDvEMkzCR8ZBsawfC6Fqbme2gtobei3gu4
-id: seven_branding
-theme: seven
+id: union_admin_branding
+theme: union_admin
 region: header
 weight: 0
 provider: null
@@ -20,6 +20,6 @@ settings:
   provider: system
   label_display: '0'
   use_site_logo: true
-  use_site_name: true
+  use_site_name: false
   use_site_slogan: true
 visibility: {  }

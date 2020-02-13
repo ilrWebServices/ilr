@@ -59,10 +59,9 @@ class CollectionForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /* @var \Drupal\collection\Entity\Collection $entity */
     $form = parent::buildForm($form, $form_state);
 
-    $entity = $this->entity;
+    $form['user_id']['#access'] = $this->account->hasPermission('administer collections');
 
     return $form;
   }
@@ -71,23 +70,21 @@ class CollectionForm extends ContentEntityForm {
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
-    $entity = $this->entity;
-
     $status = parent::save($form, $form_state);
 
     switch ($status) {
       case SAVED_NEW:
         $this->messenger()->addMessage($this->t('Created the %label Collection.', [
-          '%label' => $entity->label(),
+          '%label' => $this->entity->label(),
         ]));
         break;
 
       default:
         $this->messenger()->addMessage($this->t('Saved the %label Collection.', [
-          '%label' => $entity->label(),
+          '%label' => $this->entity->label(),
         ]));
     }
-    $form_state->setRedirect('entity.collection.canonical', ['collection' => $entity->id()]);
+    $form_state->setRedirect('entity.collection_item.collection', ['collection' => $this->entity->id()]);
   }
 
 }

@@ -88,3 +88,37 @@ label[for="nav-trigger"] {
     }
   }
 }
+
+.subsite-menu {
+  --cu-current-link-color: #{$black};
+  font-size: var(--cu-ms-1);
+  list-style-type: none;
+  margin: 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid $gray-light;
+}
+
+.subsite-menu__item {
+  display: inline-block;
+  padding: 0.25rem 1rem;
+}
+
+.subsite-menu__link {
+  text-decoration: none;
+
+  &.is-active {
+    --cu-current-link-color: #{$cornell-red};
+    font-weight: bold;
+  }
+}
+
+// @todo: Note that this should move with the union main-menu header styles refactor.
+.subsite .cu-header {
+  flex-wrap: wrap;
+  border: none;
+
+  nav[id^="block-union-marketing-menu-subsite"] {
+    flex-basis: 100%;
+    flex-grow: 1;
+  }
+}

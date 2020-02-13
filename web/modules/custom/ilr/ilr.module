@@ -12,6 +12,7 @@ use Drupal\Core\Field\FieldDefinition;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\Core\Field\Entity\BaseFieldOverride;
 
 /**
  * Implements hook_theme().
@@ -69,11 +70,18 @@ function ilr_entity_field_storage_info(EntityTypeInterface $entity_type) {
 
 /**
  * Implements hook_entity_bundle_field_info().
+ *
+ * - Add computed fields to course nodes.
+ * - Refine the settings for the collection_item `item` field:
+ *   - Allow `media` and `taxonomy_term` entities.
+ *   - Restrict the bundles for all allowed entities.
+ *   - @todo: Allow these settings to be configured per collection_item bundle
+ *     via the UI.
  */
-function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle) {
-  if ($entity_type->id() == 'node' && $bundle == 'course') {
-    $fields = [];
+function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle, array $base_field_definitions) {
+  $fields = [];
 
+  if ($entity_type->id() == 'node' && $bundle == 'course') {
     $custom_field_storage = ilr_entity_field_storage_info($entity_type);
 
     $fields[$custom_field_storage['classes']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['classes']);
@@ -111,9 +119,48 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle)
         ],
       ])
       ->setDisplayConfigurable('view', FALSE);
-
-    return $fields;
   }
+
+  // Update all collection_item bundles to use updated field settings.
+  // @todo Move this to the collection module and configure each bundle dynamically.
+  if ($entity_type->id() === 'collection_item') {
+    $fields['item'] = BaseFieldOverride::createFromBaseFieldDefinition($base_field_definitions['item'], $bundle);
+    $entity_type_ids_setting = $fields['item']->getSetting('entity_type_ids');
+    $fields['item']
+      ->setSetting('entity_type_ids', $entity_type_ids_setting + [
+        'media' => 'media',
+        'taxonomy_term' => 'taxonomy_term',
+      ])
+      ->setSetting('media', [
+        'handler' => 'default:media',
+        'handler_settings' => [
+          'target_bundles' => [
+            'image' => 'image',
+            'remote_video' => 'remote_video',
+          ]
+        ]
+      ])
+      ->setSetting('node', [
+        'handler' => 'default:node',
+        'handler_settings' => [
+          'target_bundles' => [
+            'certificate' => 'certificate',
+            'course' => 'course',
+            'page' => 'page',
+          ]
+        ]
+      ])
+      ->setSetting('taxonomy_term', [
+        'handler' => 'default:taxonomy_term',
+        'handler_settings' => [
+          'target_bundles' => [
+            'topics' => 'topics',
+          ]
+        ]
+      ]);
+  }
+
+  return $fields;
 }
 
 /**
@@ -343,5 +390,20 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
     if ($node->bundle() === 'page') {
       $form['body']['#group'] = 'ilr_meta';
     }
+  }
+}
+
+/**
+ * Implements hook_user_format_name_alter().
+ *
+ * Display the common name, if available, as the username.
+ */
+function ilr_user_format_name_alter(&$name, $account) {
+  if ($account instanceof \Drupal\user\Entity\User === FALSE) {
+    return;
+  }
+
+  if (!$account->field_common_name->isEmpty()) {
+    $name = $account->field_common_name->value;
   }
 }

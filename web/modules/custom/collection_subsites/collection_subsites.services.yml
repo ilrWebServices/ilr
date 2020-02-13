@@ -1,0 +1,15 @@
+services:
+  collection_subsites_subscriber:
+    class: Drupal\collection_subsites\EventSubscriber\CollectionSubsitesSubscriber
+    arguments:
+      - '@entity_type.manager'
+      - '@messenger'
+      - '@string_translation'
+      - '@theme_handler'
+      - '@config.storage.active'
+    tags:
+      - { name: event_subscriber }
+  collection_subsites.resolver:
+    class: Drupal\collection_subsites\CollectionSubsitesResolver
+    arguments:
+      - '@entity_type.manager'

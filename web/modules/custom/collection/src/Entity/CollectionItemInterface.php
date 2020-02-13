@@ -55,4 +55,30 @@ interface CollectionItemInterface extends ContentEntityInterface, EntityChangedI
    *   The called Collection item entity.
    */
   public function setCreatedTime($timestamp);
+
+  /**
+   * Get a key-value attribute for this collection item.
+   *
+   * @param string $key
+   *   The key of the attribute to return.
+   *
+   * @return \Drupal\Core\TypedData\TypedDataInterface|FALSE
+   *   The key-value attribute if it exists, FALSE if not.
+   */
+  public function getAttribute(string $key);
+
+  /**
+   * Add or update a key-value attribute for this collection item.
+   *
+   * @param string $key
+   *   The attribute key.
+   *
+   * @param string $value
+   *   The attribute value.
+   *
+   * @return \Drupal\Core\TypedData\TypedDataInterface
+   *   The new or updated attribute.
+   */
+  public function setAttribute(string $key, string $value);
+
 }

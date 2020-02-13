@@ -1,0 +1,7 @@
+collection.collection_type.*:third_party_settings.collection_subsites:
+  type: mapping
+  label: 'Collection Subsites'
+  mapping:
+    contains_subsites:
+      type: boolean
+      label: 'Contains Subsites'

@@ -7,9 +7,9 @@ dependencies:
   module:
     - system
   theme:
-    - seven
-id: seven_main_nav
-theme: seven
+    - union_admin
+id: union_admin_main_nav
+theme: union_admin
 region: header
 weight: 1
 provider: null

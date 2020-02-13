@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a subsite branding block.
+ *
+ * Each branding element variable (logo, name, slogan) is only available if
+ * configured for the subsite collection.
+ *
+ * Available variables:
+ * - subsite_logo: Logo for the subsite.
+ * - subsite_name: Name for the subsite.
+ * - subsite_slogan: Slogan for subsite.
+ * - subsite_path: The path to the subsite home page.
+ *
+ * @ingroup themeable
+ */
+#}
+{% if subsite_logo %}
+  <a href="{{ subsite_path }}" rel="home">
+    {{ subsite_logo }}
+  </a>
+{% endif %}
+{% if subsite_name %}
+  <a href="{{ subsite_path }}" title="{{ 'Home'|t }}" rel="home">{{ subsite_name }}</a>
+{% endif %}
+{% if subsite_slogan %}
+  {{ subsite_slogan }}
+{% endif %}

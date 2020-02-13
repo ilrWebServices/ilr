@@ -1,0 +1,252 @@
+<?php
+
+/**
+ * @file
+ * Contains collection_subsites.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\collection\Entity\CollectionType;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\ilr\FieldStorageDefinition;
+use Drupal\Core\Field\FieldDefinition;
+
+/**
+ * Implements hook_theme().
+ */
+function collection_subsites_theme() {
+  return [
+    'subsite_branding_block' => [
+      'variables' => [
+        'subsite_logo' => NULL,
+        'subsite_slogan' => NULL,
+        'subsite_name' => NULL,
+        'subsite_path' => '/',
+      ],
+      'render element' => 'children',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function collection_subsites_preprocess_html(&$variables) {
+  $collection_subsites_resolver = \Drupal::service('collection_subsites.resolver');
+  foreach (\Drupal::routeMatch()->getParameters() as $parameter) {
+    if ($parameter instanceof \Drupal\Core\Entity\EntityInterface) {
+      if ($subsite = $collection_subsites_resolver->getSubsite($parameter)) {
+        $variables['attributes']['class'][] = 'subsite';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function collection_subsites_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
+  if (isset($variables['menu_name']) && strpos($variables['menu_name'], 'subsite-') === 0) {
+    $suggestions[] = 'menu__type_subsite';
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * - Add a 'Contains Subsites' setting to collection_types.
+ */
+function collection_subsites_form_collection_type_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $collection_type = $form_state->getFormObject()->getEntity();
+
+  $form['contains_subsites'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Contains subsites'),
+    '#description' => t('If enabled, a collection of this type will represent a subsite.'),
+    '#default_value' => $collection_type->getThirdPartySetting('collection_subsites', 'contains_subsites'),
+    '#weight' => 1
+  ];
+
+  $form['#entity_builders'][] = 'collection_subsites_form_collection_form_builder';
+}
+
+/**
+ * Entity builder for the collection type configuration entity.
+ */
+function collection_subsites_form_collection_form_builder($entity_type, CollectionType $collection_type, &$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('contains_subsites')) {
+    $collection_type->setThirdPartySetting('collection_subsites', 'contains_subsites', $form_state->getValue('contains_subsites'));
+    return;
+  }
+
+  $collection_type->unsetThirdPartySetting('collection_subsites', 'contains_subsites');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Modify the collection new node form to add a subsite menu option.
+ *
+ * @see CollectionNewNodeForm::buildForm()
+ */
+function collection_subsites_form_collection_new_node_form_alter(&$form, FormStateInterface $form_state) {
+  /** @var \Drupal\Core\Menu\MenuParentFormSelectorInterface $menu_parent_selector */
+  $menu_parent_selector = \Drupal::service('menu.parent_form_selector');
+
+  /** @var \Drupal\collection\Entity\CollectionInterface $collection */
+  $collection = $form_state->get('collection');
+
+  // Check if this collection has a subsite menu.
+  foreach ($collection->findItems('menu') as $collection_item_menu) {
+    if ($collection_item_menu->getAttribute('subsite_collection_id') !== FALSE) {
+      $subsite_menu = $collection_item_menu->item->entity;
+    }
+  }
+
+  if (empty($subsite_menu)) {
+    return;
+  }
+
+  $available_menus[$subsite_menu->id()] = $subsite_menu->label();
+  $default = $subsite_menu->id() . ':';
+  $parent_element = $menu_parent_selector->parentSelectElement($default, '', $available_menus);
+
+  $form['collection_subsite_menu'] = [
+    '#type' => 'details',
+    '#title' => $subsite_menu->label(),
+    '#open' => TRUE,
+    '#tree' => TRUE,
+    '#attributes' => ['class' => ['menu-link-form']],
+  ];
+  $form['collection_subsite_menu']['enabled'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Provide a menu link'),
+  ];
+  $form['collection_subsite_menu']['link'] = [
+    '#type' => 'container',
+    '#parents' => ['collection_subsite_menu'],
+    '#states' => [
+      'invisible' => [
+        'input[name="collection_subsite_menu[enabled]"]' => ['checked' => FALSE],
+      ],
+    ],
+  ];
+
+  $form['collection_subsite_menu']['link']['menu_parent'] = $parent_element;
+  $form['collection_subsite_menu']['link']['menu_parent']['#title'] = t('Parent item');
+  $form['collection_subsite_menu']['link']['menu_parent']['#attributes']['class'][] = 'menu-parent-select';
+
+  // Add an additional submit handler.
+  $form['#submit'][] = 'collection_subsites_form_collection_new_node_form_submit';
+}
+
+/**
+ * Form submission handler for menu item field on the collection new node form.
+ *
+ * @see collection_subsites_form_collection_new_node_form_alter()
+ */
+function collection_subsites_form_collection_new_node_form_submit($form, FormStateInterface $form_state) {
+  if ($node = $form_state->get('node')) {
+    $values = $form_state->getValue('collection_subsite_menu');
+    $generate_custom_path = FALSE;
+
+    if ($values['enabled']) {
+      list($menu_name, $parent) = explode(':', $values['menu_parent'], 2);
+
+      if (!$parent) {
+        $generate_custom_path = TRUE;
+      }
+
+      // Create a new menu_link_content entity.
+      $entity = MenuLinkContent::create([
+        'link' => ['uri' => 'entity:node/' . $node->id()],
+        'langcode' => $node->language()->getId(),
+      ]);
+      $entity->enabled->value = 1;
+      $entity->title->value = $node->label();
+      $entity->menu_name->value = $menu_name;
+      $entity->parent->value = $parent;
+      $entity->isDefaultRevision($node->isDefaultRevision());
+      $entity->save();
+    }
+    else {
+      $generate_custom_path = TRUE;
+    }
+
+    if ($generate_custom_path) {
+      if (\Drupal::moduleHandler()->moduleExists('pathauto')) {
+        $node->path->pathauto = \Drupal\pathauto\PathautoState::SKIP;
+        $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
+        $clean_title = $alias_cleaner->cleanString($node->label());
+      }
+      else {
+        $clean_title = strtolower(Html::cleanCssIdentifier($node->label()));
+      }
+
+      $collection = $form_state->get('collection');
+      $node->path->alias = $collection->toUrl()->toString() . '/' . $clean_title;
+    }
+
+    // Save the node again to trigger path updates.
+    $node->save();
+  }
+}
+
+/**
+ * Implements hook_entity_field_storage_info().
+ */
+function collection_subsites_entity_field_storage_info(EntityTypeInterface $entity_type) {
+  $definitions = [];
+
+  if ($entity_type->id() == 'collection') {
+    $definitions['logo'] = FieldStorageDefinition::create('entity_reference')
+      ->setName('logo')
+      ->setLabel(t('Logo'))
+      ->setRevisionable(TRUE)
+      ->setTargetEntityTypeId($entity_type->id())
+      ->setSetting('target_type', 'media');
+  }
+
+  return $definitions;
+}
+
+/**
+ * Implements hook_entity_bundle_field_info().
+ *
+ * - Add the logo field to subsite collections.
+ */
+function collection_subsites_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle, array $base_field_definitions) {
+  if ($entity_type->id() !== 'collection') {
+    return [];
+  }
+
+  $collection_type = \Drupal::service('entity_type.manager')->getStorage('collection_type')->load($bundle);
+  $is_subsite = (bool) $collection_type->getThirdPartySetting('collection_subsites', 'contains_subsites');
+  $fields = [];
+
+  if ($is_subsite) {
+    $custom_field_storage = collection_subsites_entity_field_storage_info($entity_type);
+    $fields[$custom_field_storage['logo']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['logo']);
+
+    $fields[$custom_field_storage['logo']->getName()]
+      ->setLabel(t('Logo'))
+      ->setSettings([
+        'handler' => 'default:media',
+        'handler_settings' => [
+          'target_bundles' => [
+            'image' => 'image'
+          ]
+        ],
+      ])
+      ->setDisplayConfigurable('view', FALSE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'media_library_widget',
+        'weight' => 1,
+      ]);
+  }
+
+  return $fields;
+}

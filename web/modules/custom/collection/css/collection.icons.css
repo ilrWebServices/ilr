@@ -4,17 +4,17 @@
  */
 
 /* Bar styling (first row), currently unused. */
-.toolbar-bar .toolbar-link-collection-admin:before {
+.toolbar-bar .toolbar-link-entity-collection-collection:before {
   background-image: url("/core/themes/stable/images/core/icons/787878/orgchart.svg");
 }
-.toolbar-bar .toolbar-icon-collection-admin:active:before {
+.toolbar-bar .toolbar-icon-entity-collection-collection:active:before {
   background-image: url("/core/themes/stable/images/core/icons/000000/orgchart.svg");
 }
 
 /* Tray styling (second row) */
-.toolbar-tray .toolbar-icon.toolbar-icon-collection-admin:before {
+.toolbar-tray .toolbar-icon.toolbar-icon-entity-collection-collection:before {
   background-image: url("/core/themes/stable/images/core/icons/787878/orgchart.svg");
 }
-.toolbar-tray .toolbar-icon.toolbar-icon-collection-admin:active:before {
+.toolbar-tray .toolbar-icon.toolbar-icon-entity-collection-collection:active:before {
   background-image: url("/core/themes/stable/images/core/icons/000000/orgchart.svg");
 }

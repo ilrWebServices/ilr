@@ -1,16 +1,20 @@
 administer collections:
-  title: 'Administer Collections'
-  description: 'Allow to access the administration form to configure Collections.'
+  title: 'Administer collections'
+  description: 'Allow access to the administration form to configure Collections.'
   restrict access: true
 
-view collections:
-  title: 'View Collections'
+access collection overview:
+  title: 'Access collection overview'
+  description: 'Users with this permission can access the collection overview page.'
 
-add collections:
-  title: 'Create new Collections'
+view own collections:
+  title: 'View own collections'
 
-edit collections:
-  title: 'Edit Collections'
+edit own collections:
+  title: 'Edit own collections'
 
-delete collections:
-  title: 'Delete Collections'
+delete own collections:
+  title: 'Delete own collections'
+
+permission_callbacks:
+  - \Drupal\collection\CollectionPermissions::collectionTypePermissions
