@@ -34,4 +34,19 @@ class PersonListBuilder extends EntityListBuilder {
     return $row + parent::buildRow($entity);
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getOperations(EntityInterface $entity) {
+    $operations['add_persona'] = [
+      'title' => $this->t('Add persona'),
+      'weight' => -10,
+      'url' => $this->ensureDestination(Url::fromRoute('entity.persona.add_page', ['person' => $entity->id()])),
+    ];
+
+    $operations += parent::getOperations($entity);
+
+    return $operations;
+  }
+
 }
