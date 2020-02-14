@@ -1,0 +1,23 @@
+uuid: 2ffd8352-9f67-4a5d-a085-eb7c583847ba
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+_core:
+  default_config_hash: iyk_5oz5qqq4aD8n40IGKlUgLiZMSKqLZIfzDOaUVug
+id: person.field_last_name
+field_name: field_last_name
+entity_type: person
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

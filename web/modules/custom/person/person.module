@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains person.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function person_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the person module.
+    case 'help.page.person':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Allows creation and management non-user people and their personas.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
