@@ -5,3 +5,20 @@ entity.person.admin_form:
     _title: 'Person settings'
   requirements:
     _permission: 'administer content'
+
+entity.persona.standalone_form:
+  path: '/persona/add/{persona_type}'
+  defaults:
+    _entity_form: persona.standalone
+    entity_type_id: persona
+    bundle_parameter: persona_type
+    _title: 'Standalone Persona'
+  requirements:
+    _permission: 'administer content'
+  options:
+    _admin_route: TRUE
+    parameters:
+      persona_type:
+        type: 'entity:persona_type'
+        with_config_overrides: true
+        converter: paramconverter.entity

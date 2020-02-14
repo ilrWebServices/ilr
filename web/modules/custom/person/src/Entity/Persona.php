@@ -35,6 +35,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *       "default" = "Drupal\person\Form\PersonaForm",
  *       "add" = "Drupal\person\Form\PersonaForm",
  *       "edit" = "Drupal\person\Form\PersonaForm",
+ *       "standalone" = "Drupal\person\Form\PersonaForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
  *     "route_provider" = {
@@ -124,7 +125,7 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
    * {@inheritdoc}
    */
   public function fieldIsOverridden($field_name) {
-    if (!in_array($field_name, $this->type->entity->getInheritedFieldNames())) {
+    if (!in_array($field_name, $this->type->entity->getInheritedFieldNames()) || $this->person->isEmpty()) {
       return FALSE;
     }
 
@@ -155,6 +156,7 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
       ->setSetting('handler', 'default:person')
       ->setDefaultValueCallback(static::class . '::getPersonParam')
       ->setCardinality(1)
+      ->setDisplayConfigurable('form', TRUE)
       ->setRequired(TRUE);
 
     $fields['admin_label'] = BaseFieldDefinition::create('string')

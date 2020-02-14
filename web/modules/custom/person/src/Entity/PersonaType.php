@@ -122,6 +122,16 @@ class PersonaType extends ConfigEntityBundleBase implements PersonaTypeInterface
         $persona_view_display->setComponent($person_field_name, $person_view_display->getComponent($person_field_name))->save();
       }
     }
+
+    // Add a standalone form mode for this new Persona type.
+    $persona_standalone_form_display = $display_repository->getFormDisplay('persona', $this->id(), 'standalone');
+
+    // Display the `person` reference field on the new standalone form mode.
+    $persona_standalone_form_display->setComponent('person', [
+      'type' => 'options_select',
+      'weight' => -100,
+      'region' => 'content'
+    ])->save();
   }
 
   /**

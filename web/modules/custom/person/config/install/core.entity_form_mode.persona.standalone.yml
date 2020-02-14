@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.standalone
+label: Standalone
+targetEntityType: persona
+cache: true

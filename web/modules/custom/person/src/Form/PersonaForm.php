@@ -22,7 +22,7 @@ class PersonaForm extends ContentEntityForm {
     $form['inherited'] = [
       '#type' => 'details',
       '#title' => $this->t('Inherited Fields'),
-      '#description' => $this->t('The values of these fields are inherited from @link. If modified here, they will override the original values.', [
+      '#description' => $persona->person->isEmpty() ? '' : $this->t('The values of these fields are inherited from @link. If modified here, they will override the original values.', [
         '@link' => $persona->person->entity->toLink(NULL, 'edit-form')->toString()
       ]),
       '#collapsible' => TRUE,
@@ -33,7 +33,7 @@ class PersonaForm extends ContentEntityForm {
     foreach ($persona->type->entity->getInheritedFieldNames() as $field_name) {
       if (isset($form[$field_name]) && (!$persona->fieldIsOverridden($field_name) || $persona->$field_name->isEmpty())) {
         $form['inherited'][$field_name] = $form[$field_name];
-        $form['inherited'][$field_name]['widget'][0]['value']['#placeholder'] = $persona->person->entity->$field_name->value;
+        $form['inherited'][$field_name]['widget'][0]['value']['#placeholder'] = $persona->person->isEmpty() ? '' : $persona->person->entity->$field_name->value;
         unset($form[$field_name]);
       }
     }
