@@ -1,0 +1,42 @@
+uuid: 70e12f9e-6d32-4fe9-9efe-ba5245831026
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.person.person.field_first_name
+    - field.field.person.person.field_last_name
+  module:
+    - person
+_core:
+  default_config_hash: jW7yU1YCkpdhbfGn_zCMcln6zrTwd6rD8xGEaLKu0ug
+id: person.person.default
+targetEntityType: person
+bundle: person
+mode: default
+content:
+  display_name:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_first_name:
+    type: string
+    weight: 1
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_last_name:
+    type: string
+    weight: 2
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  search_api_excerpt: true
