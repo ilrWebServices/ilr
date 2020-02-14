@@ -73,8 +73,13 @@ class PersonaType extends ConfigEntityBundleBase implements PersonaTypeInterface
 
     $entity_type_manager = $this->entityTypeManager();
     $entity_field_manager = $this->entityFieldManager();
+    $display_repository = \Drupal::service('entity_display.repository');
     $fieldStorageConfigStorage = $entity_type_manager->getStorage('field_storage_config');
     $fieldConfigStorage = $entity_type_manager->getStorage('field_config');
+    $person_form_display = $display_repository->getFormDisplay('person', 'person');
+    $person_view_display = $display_repository->getViewDisplay('person', 'person');
+    $persona_form_display = $display_repository->getFormDisplay('persona', $this->id());
+    $persona_view_display = $display_repository->getViewDisplay('persona', $this->id());
 
     // Check all of the inheritable Person fields to see if this Persona type
     // has the storage and config.
@@ -112,7 +117,9 @@ class PersonaType extends ConfigEntityBundleBase implements PersonaTypeInterface
           $persona_field_config->save();
         }
 
-        // @todo Configure form and view modes to match Person fields, too.
+        // Configure form and view modes to match Person fields, too.
+        $persona_form_display->setComponent($person_field_name, $person_form_display->getComponent($person_field_name))->save();
+        $persona_view_display->setComponent($person_field_name, $person_view_display->getComponent($person_field_name))->save();
       }
     }
   }
