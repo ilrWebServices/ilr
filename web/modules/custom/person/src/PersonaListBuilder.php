@@ -34,7 +34,7 @@ class PersonaListBuilder extends EntityListBuilder {
     ];
 
     $row['type']['data'] = [
-      '#markup' => $entity->bundle(),
+      '#markup' => $entity->type->entity->label(),
     ];
 
     return $row + parent::buildRow($entity);
