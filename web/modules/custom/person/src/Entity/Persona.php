@@ -56,12 +56,12 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *     "revision_log_message" = "revision_log_message",
  *   },
  *   links = {
- *     "canonical" = "/person/{person}/persona/{persona}",
- *     "add-page" = "/person/{person}/persona/add",
- *     "add-form" = "/person/{person}/persona/add/{persona_type}",
- *     "edit-form" = "/person/{person}/persona/{persona}/edit",
- *     "delete-form" = "/person/{person}/persona/{persona}/delete",
- *     "collection" = "/person/{person}/personas",
+ *     "canonical" = "/persona/{persona}",
+ *     "add-page" = "/persona/add",
+ *     "add-form" = "/persona/add/{persona_type}",
+ *     "edit-form" = "/persona/{persona}/edit",
+ *     "delete-form" = "/persona/{persona}/delete",
+ *     "collection" = "/admin/content/people/personas",
  *   },
  *   bundle_entity_type = "persona_type",
  *   field_ui_base_route = "entity.persona_type.edit_form",
@@ -76,15 +76,6 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
     $display_name = $this->display_name->value;
     \Drupal::moduleHandler()->alter('persona_display_name', $display_name, $this);
     return $display_name;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function urlRouteParameters($rel) {
-    $uri_route_parameters = parent::urlRouteParameters($rel);
-    $uri_route_parameters['person'] = $this->person->target_id;
-    return $uri_route_parameters;
   }
 
   /**
@@ -222,7 +213,7 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
    *   The entity id of the collection in the current route.
    */
   public static function getPersonParam() {
-    return \Drupal::routeMatch()->getRawParameter('person');
+    return \Drupal::request()->query->get('person');
   }
 
 }

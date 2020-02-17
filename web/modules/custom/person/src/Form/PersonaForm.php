@@ -66,7 +66,7 @@ class PersonaForm extends ContentEntityForm {
         ]));
     }
 
-    $form_state->setRedirect('entity.persona.collection', ['person' => $this->entity->person->target_id]);
+    $form_state->setRedirect('entity.persona.collection');
   }
 
 }
