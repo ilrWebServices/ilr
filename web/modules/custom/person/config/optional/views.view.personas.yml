@@ -3,6 +3,7 @@ status: true
 dependencies:
   module:
     - person
+    - user
 id: personas
 label: Personas
 module: views
@@ -18,8 +19,9 @@ display:
     position: 0
     display_options:
       access:
-        type: none
-        options: {  }
+        type: perm
+        options:
+          perm: 'administer nodes'
       cache:
         type: tag
         options: {  }
@@ -74,11 +76,15 @@ display:
           summary: ''
           description: ''
           columns:
-            display_name: display_name
+            admin_label: admin_label
             type: type
+            display_name: display_name
+            pid: pid
+            edit_person: edit_person
+            operations: operations
           info:
-            display_name:
-              sortable: false
+            admin_label:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -91,19 +97,45 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
+            display_name:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            pid:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            edit_person:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            operations:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
           default: '-1'
           empty_table: false
       row:
         type: fields
       fields:
-        display_name:
-          id: display_name
+        admin_label:
+          id: admin_label
           table: persona
-          field: display_name
+          field: admin_label
           relationship: none
           group_type: group
           admin_label: ''
-          label: Name
+          label: 'Admin Label'
           exclude: false
           alter:
             alter_text: false
@@ -158,8 +190,8 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: null
-          entity_field: display_name
+          entity_type: persona
+          entity_field: admin_label
           plugin_id: field
         type:
           id: type
@@ -226,6 +258,190 @@ display:
           entity_type: persona
           entity_field: type
           plugin_id: field
+        display_name:
+          id: display_name
+          table: person
+          field: display_name
+          relationship: person
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: person
+          entity_field: display_name
+          plugin_id: field
+        pid:
+          id: pid
+          table: person
+          field: pid
+          relationship: person
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: person
+          entity_field: pid
+          plugin_id: field
+        edit_person:
+          id: edit_person
+          table: person
+          field: edit_person
+          relationship: person
+          group_type: group
+          admin_label: ''
+          label: Person
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ display_name }} ({{ pid }})'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: edit
+          output_url_as_text: false
+          absolute: false
+          entity_type: person
+          plugin_id: entity_link_edit
         operations:
           id: operations
           table: persona
@@ -278,11 +494,11 @@ display:
           entity_type: persona
           plugin_id: entity_operations
       filters:
-        display_name:
-          id: display_name
-          table: persona
+        display_name_1:
+          id: display_name_1
+          table: person
           field: display_name
-          relationship: none
+          relationship: person
           group_type: group
           admin_label: ''
           operator: contains
@@ -290,14 +506,14 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: display_name_op
-            label: Name
+            operator_id: display_name_1_op
+            label: Person
             description: ''
             use_operator: false
-            operator: display_name_op
+            operator: display_name_1_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: display_name
+            identifier: person_name
             required: false
             remember: false
             multiple: false
@@ -321,7 +537,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: persona
+          entity_type: person
           entity_field: display_name
           plugin_id: string
         type:
@@ -370,12 +586,38 @@ display:
           entity_type: persona
           entity_field: type
           plugin_id: bundle
-      sorts: {  }
+      sorts:
+        changed:
+          id: changed
+          table: persona
+          field: changed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          granularity: second
+          entity_type: persona
+          entity_field: changed
+          plugin_id: date
       title: Personas
       header: {  }
       footer: {  }
       empty: {  }
-      relationships: {  }
+      relationships:
+        person:
+          id: person
+          table: persona
+          field: person
+          relationship: none
+          group_type: group
+          admin_label: Person
+          required: true
+          entity_type: persona
+          entity_field: person
+          plugin_id: standard
       arguments: {  }
       display_extenders: {  }
       filter_groups:
@@ -389,6 +631,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.permissions
       tags: {  }
   page_1:
     display_plugin: page
@@ -397,7 +640,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: admin/content/personas
+      path: admin/content/people/personas
       menu:
         type: tab
         title: Personas
@@ -414,4 +657,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.permissions
       tags: {  }

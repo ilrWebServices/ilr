@@ -115,7 +115,7 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
    * {@inheritdoc}
    */
   public function fieldIsOverridden($field_name) {
-    if (!in_array($field_name, $this->type->entity->getInheritedFieldNames()) || $this->person->isEmpty()) {
+    if (!in_array($field_name, $this->type->entity->getInheritedFieldNames()) || !$this->person->entity) {
       return FALSE;
     }
 
