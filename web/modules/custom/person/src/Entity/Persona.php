@@ -74,7 +74,7 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
    */
   public function getDisplayName() {
     $display_name = $this->display_name->value;
-    $display_name = \Drupal::moduleHandler()->alter('persona_display_name', $display_name, $this);
+    \Drupal::moduleHandler()->alter('persona_display_name', $display_name, $this);
     return $display_name;
   }
 
