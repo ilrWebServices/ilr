@@ -35,7 +35,6 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *       "default" = "Drupal\person\Form\PersonaForm",
  *       "add" = "Drupal\person\Form\PersonaForm",
  *       "edit" = "Drupal\person\Form\PersonaForm",
- *       "standalone" = "Drupal\person\Form\PersonaForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *     },
  *     "route_provider" = {
@@ -157,6 +156,10 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
       ->setDefaultValueCallback(static::class . '::getPersonParam')
       ->setCardinality(1)
       ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'weight' => -100,
+      ])
       ->setRequired(TRUE);
 
     $fields['admin_label'] = BaseFieldDefinition::create('string')

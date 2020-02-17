@@ -19,6 +19,10 @@ class PersonaForm extends ContentEntityForm {
     $form = parent::buildForm($form, $form_state);
     $persona = $this->entity;
 
+    if (isset($form['person']) && !$persona->person->isEmpty()) {
+      $form['person']['#access'] = FALSE;
+    }
+
     $form['inherited'] = [
       '#type' => 'details',
       '#title' => $this->t('Inherited Fields'),
