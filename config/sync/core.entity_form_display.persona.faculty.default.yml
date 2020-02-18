@@ -8,6 +8,8 @@ dependencies:
     - field.field.persona.faculty.field_photo
     - field.field.persona.faculty.field_title
     - person.persona_type.faculty
+  module:
+    - media_library
 id: persona.faculty.default
 targetEntityType: persona
 bundle: faculty

@@ -7,7 +7,10 @@ dependencies:
     - field.field.persona.faculty.field_last_name
     - field.field.persona.faculty.field_photo
     - field.field.persona.faculty.field_title
+    - image.style.media_library
     - person.persona_type.faculty
+  module:
+    - media
 id: persona.faculty.default
 targetEntityType: persona
 bundle: faculty
@@ -21,26 +24,10 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  field_first_name:
-    type: string
-    weight: 1
-    region: content
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-  field_last_name:
-    type: string
-    weight: 2
-    region: content
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   field_photo:
     type: media_thumbnail
-    weight: 3
-    label: above
+    weight: 2
+    label: hidden
     settings:
       image_style: media_library
       image_link: ''
@@ -48,11 +35,13 @@ content:
     region: content
   field_title:
     type: string
-    weight: 4
+    weight: 1
     region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
 hidden:
+  field_first_name: true
+  field_last_name: true
   search_api_excerpt: true

@@ -8,6 +8,8 @@ dependencies:
     - field.field.persona.staff.field_photo
     - field.field.persona.staff.field_title
     - person.persona_type.staff
+  module:
+    - media_library
 id: persona.staff.default
 targetEntityType: persona
 bundle: staff
