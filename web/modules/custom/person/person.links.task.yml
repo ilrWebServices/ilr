@@ -1,3 +1,13 @@
+person.settings_tab:
+  route_name: entity.person.admin_form
+  title: 'Settings'
+  base_route: entity.person.admin_form
+
+entity.persona_type.edit_tab:
+  route_name: entity.persona_type.edit_form
+  base_route: entity.persona_type.edit_form
+  title: 'Edit'
+
 entity.person.collection:
   title: People
   route_name: entity.person.collection
@@ -14,23 +24,24 @@ entity.person.edit_form:
   base_route: entity.person.canonical
   title: 'Edit'
 
-entity.persona.collection:
-  route_name: entity.persona.collection
-  base_route: entity.person.canonical
-  title: 'Personas'
-
 entity.person.delete_form:
   route_name:  entity.person.delete_form
   base_route:  entity.person.canonical
   title: Delete
   weight: 10
 
-person.settings_tab:
-  route_name: entity.person.admin_form
-  title: 'Settings'
-  base_route: entity.person.admin_form
+entity.persona.collection:
+  route_name: entity.persona.collection
+  base_route: system.admin_content
+  title: 'Personas'
+  weight: 10
 
-persona.edit_tab:
-  route_name: entity.persona_type.edit_form
+entity.persona.canonical:
+  route_name: entity.persona.canonical
+  base_route: entity.persona.canonical
+  title: 'View'
+
+entity.persona.edit_form:
+  route_name: entity.persona.edit_form
   title: 'Edit'
-  base_route: entity.persona_type.edit_form
+  base_route: entity.persona.canonical

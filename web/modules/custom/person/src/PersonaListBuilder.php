@@ -16,19 +16,6 @@ class PersonaListBuilder extends EntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  protected function getEntityIds() {
-    $query = $this->getStorage()->getQuery()
-      ->sort($this->entityType->getKey('id'));
-
-    $person = \Drupal::service('current_route_match')->getParameter('person');
-    $query->condition('person', $person->id());
-
-    return $query->execute();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function buildHeader() {
     $header['name'] = $this->t('Name');
     $header['type'] = $this->t('Type');
@@ -47,7 +34,7 @@ class PersonaListBuilder extends EntityListBuilder {
     ];
 
     $row['type']['data'] = [
-      '#markup' => $entity->bundle(),
+      '#markup' => $entity->type->entity->label(),
     ];
 
     return $row + parent::buildRow($entity);

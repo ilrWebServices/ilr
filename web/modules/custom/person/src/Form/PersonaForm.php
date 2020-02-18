@@ -19,22 +19,31 @@ class PersonaForm extends ContentEntityForm {
     $form = parent::buildForm($form, $form_state);
     $persona = $this->entity;
 
-    $form['inherited'] = [
-      '#type' => 'details',
-      '#title' => $this->t('Inherited Fields'),
-      '#description' => $this->t('The values of these fields are inherited from @link. If modified here, they will override the original values.', [
-        '@link' => $persona->person->entity->toLink(NULL, 'edit-form')->toString()
-      ]),
-      '#collapsible' => TRUE,
-      '#open' => FALSE,
-      '#weight' => -50,
-    ];
+    if (isset($form['person']) && isset($persona->person->entity)) {
+      $form['person']['widget']['#disabled'] = TRUE;
+      $form['person']['widget']['info'] = [
+        '#type' => 'link',
+        '#title' => $this->t('Edit') . ' ' . $persona->person->entity->label(),
+        '#url' => $persona->person->entity->toUrl('edit-form'),
+      ];
 
-    foreach ($persona->type->entity->getInheritedFieldNames() as $field_name) {
-      if (isset($form[$field_name]) && (!$persona->fieldIsOverridden($field_name) || $persona->$field_name->isEmpty())) {
-        $form['inherited'][$field_name] = $form[$field_name];
-        $form['inherited'][$field_name]['widget'][0]['value']['#placeholder'] = $persona->person->entity->$field_name->value;
-        unset($form[$field_name]);
+      $form['inherited'] = [
+        '#type' => 'details',
+        '#title' => $this->t('Inherited Fields'),
+        '#description' => isset($persona->person->entity) ? $this->t('The values of these fields are inherited from @link. If modified here, they will override the original values.', [
+          '@link' => $persona->person->entity->toLink(NULL, 'edit-form')->toString()
+        ]) : '',
+        '#collapsible' => TRUE,
+        '#open' => FALSE,
+        '#weight' => -50,
+      ];
+
+      foreach ($persona->type->entity->getInheritedFieldNames() as $field_name) {
+        if (isset($form[$field_name]) && (!$persona->fieldIsOverridden($field_name) || $persona->$field_name->isEmpty())) {
+          $form['inherited'][$field_name] = $form[$field_name];
+          $form['inherited'][$field_name]['widget'][0]['value']['#placeholder'] = isset($persona->person->entity) ? $persona->person->entity->$field_name->value : '';
+          unset($form[$field_name]);
+        }
       }
     }
 
@@ -62,7 +71,7 @@ class PersonaForm extends ContentEntityForm {
         ]));
     }
 
-    $form_state->setRedirect('entity.persona.collection', ['person' => $this->entity->person->target_id]);
+    $form_state->setRedirect('entity.persona.collection');
   }
 
 }

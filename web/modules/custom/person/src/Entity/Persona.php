@@ -56,12 +56,12 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *     "revision_log_message" = "revision_log_message",
  *   },
  *   links = {
- *     "canonical" = "/person/{person}/persona/{persona}",
- *     "add-page" = "/person/{person}/persona/add",
- *     "add-form" = "/person/{person}/persona/add/{persona_type}",
- *     "edit-form" = "/person/{person}/persona/{persona}/edit",
- *     "delete-form" = "/person/{person}/persona/{persona}/delete",
- *     "collection" = "/person/{person}/personas",
+ *     "canonical" = "/persona/{persona}",
+ *     "add-page" = "/persona/add",
+ *     "add-form" = "/persona/add/{persona_type}",
+ *     "edit-form" = "/persona/{persona}/edit",
+ *     "delete-form" = "/persona/{persona}/delete",
+ *     "collection" = "/admin/content/people/personas",
  *   },
  *   bundle_entity_type = "persona_type",
  *   field_ui_base_route = "entity.persona_type.edit_form",
@@ -74,17 +74,8 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
    */
   public function getDisplayName() {
     $display_name = $this->display_name->value;
-    $display_name = \Drupal::moduleHandler()->alter('persona_display_name', $display_name, $this);
+    \Drupal::moduleHandler()->alter('persona_display_name', $display_name, $this);
     return $display_name;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function urlRouteParameters($rel) {
-    $uri_route_parameters = parent::urlRouteParameters($rel);
-    $uri_route_parameters['person'] = $this->person->target_id;
-    return $uri_route_parameters;
   }
 
   /**
@@ -93,9 +84,16 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
   public function preSave(EntityStorageInterface $storage) {
     parent::preSave($storage);
 
-    foreach ($this->type->entity->getInheritedFieldNames() as $field_name) {
-      if ($this->$field_name->isEmpty()) {
-        $this->$field_name = $this->person->entity->$field_name;
+    if ($person = $this->person->entity) {
+      foreach ($this->type->entity->getInheritedFieldNames() as $field_name) {
+        if ($this->$field_name->isEmpty()) {
+          $this->$field_name = $this->person->entity->$field_name;
+        }
+      }
+    } // It's a persona for a non-existing person
+    else {
+      if ($person = $this->createPerson()) {
+        $this->person = $person->id();
       }
     }
   }
@@ -124,13 +122,33 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
    * {@inheritdoc}
    */
   public function fieldIsOverridden($field_name) {
-    if (!in_array($field_name, $this->type->entity->getInheritedFieldNames())) {
+    if (!in_array($field_name, $this->type->entity->getInheritedFieldNames()) || !$this->person->entity) {
       return FALSE;
     }
 
     // `array_filter` is used to trim any empty items in the list. This appears
     // to happen when `EntityForm`s add an extra item to multi-value fields.
     return $this->person->entity->$field_name->getValue() !== array_filter($this->$field_name->getValue());
+  }
+
+  /**
+   * Create a person for this persona. Used when personas are created on the fly.
+    *
+    * @return int
+    */
+  protected function createPerson() {
+    $person_values = [];
+    $inherited_fields = $this->type->entity->getInheritedFieldNames();
+    foreach ($inherited_fields as $field_name) {
+      if ($persona_value = $this->$field_name->getValue()) {
+        $person_values[$field_name] = $persona_value;
+      }
+    }
+    if ($person = $this->entityTypeManager()->getStorage('person')->create($person_values)) {
+      $person->save();
+      return $person;
+    }
+    return FALSE;
   }
 
   /**
@@ -150,12 +168,16 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
 
     $fields['person'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Person'))
-      ->setDescription(t('The person represented by this persona.'))
+      ->setDescription(t('The person represented by this persona. If you leave this field blank, a new person will be created based on the persona.'))
       ->setSetting('target_type', 'person')
       ->setSetting('handler', 'default:person')
       ->setDefaultValueCallback(static::class . '::getPersonParam')
       ->setCardinality(1)
-      ->setRequired(TRUE);
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'weight' => -100,
+      ]);
 
     $fields['admin_label'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Admin Label'))
@@ -217,7 +239,7 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
    *   The entity id of the collection in the current route.
    */
   public static function getPersonParam() {
-    return \Drupal::routeMatch()->getRawParameter('person');
+    return \Drupal::request()->query->get('person');
   }
 
 }
