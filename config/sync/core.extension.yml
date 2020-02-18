@@ -20,6 +20,8 @@ module:
   dynamic_page_cache: 0
   easy_breadcrumb: 0
   editor: 0
+  entity_browser: 0
+  entity_browser_entity_form: 0
   entity_reference_layout: 0
   entity_reference_revisions: 0
   field: 0
@@ -29,6 +31,7 @@ module:
   ilr: 0
   ilr_migrate: 0
   image: 0
+  inline_entity_form: 0
   key_value_field: 0
   layout_builder: 0
   layout_discovery: 0
