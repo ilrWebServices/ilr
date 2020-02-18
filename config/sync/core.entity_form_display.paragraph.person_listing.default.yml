@@ -1,0 +1,25 @@
+uuid: 0c3ee95d-09ba-42cd-bccb-dc8f9931295a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.person_listing.field_people
+    - paragraphs.paragraphs_type.person_listing
+id: paragraph.person_listing.default
+targetEntityType: paragraph
+bundle: person_listing
+mode: default
+content:
+  field_people:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden:
+  created: true
+  status: true
