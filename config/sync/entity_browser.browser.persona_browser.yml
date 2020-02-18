@@ -1,0 +1,52 @@
+uuid: 8e3a26cd-a820-4d0f-bf37-39110d70e70b
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.persona_browser
+  module:
+    - entity_browser_entity_form
+    - views
+name: persona_browser
+label: 'Persona browser'
+display: modal
+display_configuration:
+  width: '650'
+  height: '500'
+  link_text: Add
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: drop_down
+widget_selector_configuration: {  }
+widgets:
+  75f8df85-ad00-4a96-9cb7-7b4585833dea:
+    settings:
+      view: persona_browser
+      view_display: entity_browser_1
+      submit_text: Select
+      auto_select: false
+    uuid: 75f8df85-ad00-4a96-9cb7-7b4585833dea
+    weight: 1
+    label: 'Choose existing'
+    id: view
+  cecec722-c5a0-47b1-923d-ffbf8c309912:
+    settings:
+      entity_type: persona
+      bundle: staff
+      form_mode: default
+      submit_text: Save
+    uuid: cecec722-c5a0-47b1-923d-ffbf8c309912
+    weight: 2
+    label: 'New staff persona'
+    id: entity_form
+  7bfe7249-a398-4cb2-8466-eeaa623408c6:
+    settings:
+      entity_type: persona
+      bundle: faculty
+      form_mode: default
+      submit_text: Save
+    uuid: 7bfe7249-a398-4cb2-8466-eeaa623408c6
+    weight: 3
+    label: 'New faculty persona'
+    id: entity_form
