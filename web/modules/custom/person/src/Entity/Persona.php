@@ -84,9 +84,16 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
   public function preSave(EntityStorageInterface $storage) {
     parent::preSave($storage);
 
-    foreach ($this->type->entity->getInheritedFieldNames() as $field_name) {
-      if ($this->$field_name->isEmpty()) {
-        $this->$field_name = $this->person->entity->$field_name;
+    if ($person = $this->person->entity) {
+      foreach ($this->type->entity->getInheritedFieldNames() as $field_name) {
+        if ($this->$field_name->isEmpty()) {
+          $this->$field_name = $this->person->entity->$field_name;
+        }
+      }
+    } // It's a persona for a non-existing person
+    else {
+      if ($person = $this->createPerson()) {
+        $this->person = $person->id();
       }
     }
   }
@@ -125,6 +132,26 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
   }
 
   /**
+   * Create a person for this persona. Used when personas are created on the fly.
+    *
+    * @return int
+    */
+  protected function createPerson() {
+    $person_values = [];
+    $inherited_fields = $this->type->entity->getInheritedFieldNames();
+    foreach ($inherited_fields as $field_name) {
+      if ($persona_value = $this->$field_name->getValue()) {
+        $person_values[$field_name] = $persona_value;
+      }
+    }
+    if ($person = $this->entityTypeManager()->getStorage('person')->create($person_values)) {
+      $person->save();
+      return $person;
+    }
+    return FALSE;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
@@ -141,7 +168,7 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
 
     $fields['person'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Person'))
-      ->setDescription(t('The person represented by this persona.'))
+      ->setDescription(t('The person represented by this persona. If you leave this field blank, a new person will be created based on the persona.'))
       ->setSetting('target_type', 'person')
       ->setSetting('handler', 'default:person')
       ->setDefaultValueCallback(static::class . '::getPersonParam')
@@ -150,8 +177,7 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
       ->setDisplayOptions('form', [
         'type' => 'entity_reference_autocomplete',
         'weight' => -100,
-      ])
-      ->setRequired(TRUE);
+      ]);
 
     $fields['admin_label'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Admin Label'))
