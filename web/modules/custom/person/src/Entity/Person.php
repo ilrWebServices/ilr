@@ -106,7 +106,7 @@ class Person extends EditorialContentEntityBase implements PersonInterface {
     foreach ($personas as $persona) {
       $needs_save = FALSE;
 
-      foreach ($persona->getInheritedFieldNames() as $field_name) {
+      foreach ($persona->type->entity->getInheritedFieldNames() as $field_name) {
         $original_value = $this->original->$field_name->getValue();
 
         // Check if the value of this inherited Person field is changing.
