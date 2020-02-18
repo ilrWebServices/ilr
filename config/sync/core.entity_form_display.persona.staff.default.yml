@@ -6,6 +6,7 @@ dependencies:
     - field.field.persona.staff.field_first_name
     - field.field.persona.staff.field_last_name
     - field.field.persona.staff.field_photo
+    - field.field.persona.staff.field_title
     - person.persona_type.staff
 id: persona.staff.default
 targetEntityType: persona
@@ -50,6 +51,14 @@ content:
     settings:
       media_types: {  }
     third_party_settings: {  }
+    region: content
+  field_title:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   person:
     type: entity_reference_autocomplete

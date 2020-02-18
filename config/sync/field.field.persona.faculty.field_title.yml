@@ -1,0 +1,19 @@
+uuid: eac5d33c-20ef-422b-8bbb-f9e081b07e00
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_title
+    - person.persona_type.faculty
+id: persona.faculty.field_title
+field_name: field_title
+entity_type: persona
+bundle: faculty
+label: Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

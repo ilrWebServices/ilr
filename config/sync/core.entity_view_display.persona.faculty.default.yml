@@ -6,6 +6,7 @@ dependencies:
     - field.field.persona.faculty.field_first_name
     - field.field.persona.faculty.field_last_name
     - field.field.persona.faculty.field_photo
+    - field.field.persona.faculty.field_title
     - person.persona_type.faculty
 id: persona.faculty.default
 targetEntityType: persona
@@ -45,5 +46,13 @@ content:
       image_link: ''
     third_party_settings: {  }
     region: content
+  field_title:
+    type: string
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
 hidden:
   search_api_excerpt: true
