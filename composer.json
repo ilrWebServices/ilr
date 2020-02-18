@@ -82,7 +82,7 @@
     "files": ["load.environment.php"]
   },
   "scripts": {
-    "sync-prod": "drush sql:drop && drush sql:sync @ilr-web.master @self && echo \"Be sure to update trigger DEFINERs to prevent database errors.\""
+    "sync-prod": "drush sql:drop && drush sql:sync @ilr-web.master @self && ./post_sync_fix_triggers.php"
   },
   "extra": {
     "composer-exit-on-patch-failure": true,
