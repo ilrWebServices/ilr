@@ -5,7 +5,9 @@ dependencies:
   config:
     - field.field.person.person.field_first_name
     - field.field.person.person.field_last_name
+    - field.field.person.person.field_photo
   module:
+    - media_library
     - person
 _core:
   default_config_hash: CHYhfLljyPv414lZPX5PJ8pEhGAdRS-dk0BHidtTOFg
@@ -38,4 +40,11 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_photo:
+    type: media_library_widget
+    weight: 26
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
 hidden: {  }
