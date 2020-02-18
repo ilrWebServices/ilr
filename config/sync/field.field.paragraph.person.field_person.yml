@@ -1,17 +1,17 @@
-uuid: d37ddd40-db9e-4608-a8ce-38999c92ff4c
+uuid: 02fa56c6-e7a2-4cc3-a6cb-9f4ac7784084
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_people
-    - paragraphs.paragraphs_type.person_listing
+    - field.storage.paragraph.field_person
+    - paragraphs.paragraphs_type.person
     - person.persona_type.faculty
     - person.persona_type.staff
-id: paragraph.person_listing.field_people
-field_name: field_people
+id: paragraph.person.field_person
+field_name: field_person
 entity_type: paragraph
-bundle: person_listing
-label: People
+bundle: person
+label: Person
 description: ''
 required: true
 translatable: false

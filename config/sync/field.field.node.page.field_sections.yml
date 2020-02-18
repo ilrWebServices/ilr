@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_sections
     - node.type.page
     - paragraphs.paragraphs_type.form
-    - paragraphs.paragraphs_type.person_listing
+    - paragraphs.paragraphs_type.person
     - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.section
@@ -34,7 +34,7 @@ settings:
       rich_text: rich_text
       form: form
       testimonial: testimonial
-      person_listing: person_listing
+      person: person
       video: video
     target_bundles_drag_drop:
       section:
@@ -53,8 +53,11 @@ settings:
         enabled: '1'
         weight: '8'
       person_listing:
-        enabled: '1'
         weight: '9'
+        enabled: 0
+      person:
+        enabled: '1'
+        weight: '10'
       video:
         enabled: '1'
         weight: '12'
