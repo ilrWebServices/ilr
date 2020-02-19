@@ -1,0 +1,29 @@
+{#
+ * Theme override of persona teasers.
+ *
+ * Available variables:
+ * - persona: The persona entity with limited access to object properties and methods.
+ * - view_mode: View mode; for example, "teaser" or "default".
+ * - label: The display name of the persona.
+ * - content: A list of content items. Use 'content' to print all content, or
+ *          content.field_name to access public fields
+ * - attributes: HTML attributes for the container element.
+ * - url: Direct URL of the current node.
+ */
+#}
+
+{% set job_title = (persona.field_title.value)
+  ? content.field_title
+  : null %}
+{% set rendered_content %}
+{{ title_suffix }}
+{% endset %}
+{% include "@union/_person.twig" with {
+  attributes: attributes.addClass('cu-person--thumb'),
+  name: label,
+  title: job_title,
+  content: rendered_content,
+  img: content.field_photo
+} only %}
+
+
