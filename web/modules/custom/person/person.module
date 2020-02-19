@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Render\Element;
 
 /**
  * Implements hook_help().
@@ -21,4 +22,60 @@ function person_help($route_name, RouteMatchInterface $route_match) {
 
     default:
   }
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Provides a theme definition for persona entities.
+ */
+function person_theme($existing, $type, $theme, $path) {
+  $theme = [
+     'persona' => [
+      'path' => $path . '/templates',
+      'template'  => 'persona',
+      'render element' => 'elements',
+    ],
+  ];
+
+  return $theme;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function person_theme_suggestions_persona(array $variables) {
+  $suggestions = [];
+  $persona = $variables['elements']['#persona'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'persona__' . $sanitized_view_mode;
+  $suggestions[] = 'persona__' . $persona->bundle();
+  $suggestions[] = 'persona__' . $persona->bundle() . '__' . $sanitized_view_mode;
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Prepares variables for templates.
+ */
+function template_preprocess_persona(&$variables) {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  // Helpful $content variable for templates.
+  $variables += ['content' => []];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+  // Add article ARIA role.
+  $variables['attributes']['role'] = 'article';
+  /** @var \Drupal\person\PersonaInterface $persona */
+  $persona = $variables['elements']['#persona'];
+  //make the persona available
+  $variables['persona'] = $persona;
+  //provide the label
+  $variables['label'] = $persona->display_name->value;
+  //provide the alias
+  $variables['url'] = $persona->toUrl()->toString();
 }
