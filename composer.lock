@@ -4546,7 +4546,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.4",
-                    "datestamp": "1563099329",
+                    "datestamp": "1563096785",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4631,12 +4631,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union_organizer.git",
-                "reference": "ca6c52f4c6104e61cf576298d27ad3f0be4af7b5"
+                "reference": "2b49b207b5e0b837d3495001ce97e3e799d4bf8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/ca6c52f4c6104e61cf576298d27ad3f0be4af7b5",
-                "reference": "ca6c52f4c6104e61cf576298d27ad3f0be4af7b5",
+                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/2b49b207b5e0b837d3495001ce97e3e799d4bf8d",
+                "reference": "2b49b207b5e0b837d3495001ce97e3e799d4bf8d",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -4652,7 +4652,7 @@
                 "issues": "https://github.com/ilrWebServices/union_organizer/issues",
                 "source": "https://github.com/ilrWebServices/union_organizer.git"
             },
-            "time": "2019-10-31T15:03:07+00:00"
+            "time": "2020-02-20T21:01:34+00:00"
         },
         {
             "name": "drupal/webform",
