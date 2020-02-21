@@ -16,14 +16,14 @@
   ? content.field_title
   : null %}
 {% set rendered_content %}
-{{ title_suffix }}
+  {{ title_suffix }}
+  {{ content.field_bio }}
 {% endset %}
+
 {% include "@union/_person.twig" with {
   attributes: attributes.addClass('cu-person--thumb'),
-  name: label,
+  name: content.display_name,
   title: job_title,
   content: rendered_content,
   img: content.field_photo
 } only %}
-
-
