@@ -1,0 +1,23 @@
+uuid: 7538f3d3-d67c-44fb-9d8c-e016594c7727
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.person.field_bio
+  module:
+    - person
+    - text
+id: person.person.field_bio
+field_name: field_bio
+entity_type: person
+bundle: person
+label: Bio
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

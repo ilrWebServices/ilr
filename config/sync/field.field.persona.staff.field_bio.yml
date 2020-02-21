@@ -1,0 +1,23 @@
+uuid: f65a8fc7-c449-49eb-8225-5e7bb3da161c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_bio
+    - person.persona_type.staff
+  module:
+    - text
+id: persona.staff.field_bio
+field_name: field_bio
+entity_type: persona
+bundle: staff
+label: Bio
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

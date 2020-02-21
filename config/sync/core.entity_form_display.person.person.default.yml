@@ -3,12 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.person.person.field_bio
     - field.field.person.person.field_first_name
     - field.field.person.person.field_last_name
     - field.field.person.person.field_photo
+    - field.field.person.person.field_title
   module:
     - media_library
     - person
+    - text
 _core:
   default_config_hash: CHYhfLljyPv414lZPX5PJ8pEhGAdRS-dk0BHidtTOFg
 id: person.person.default
@@ -24,6 +27,16 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_bio:
+    weight: 28
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
   field_first_name:
     type: string_textfield
     weight: 1
@@ -46,5 +59,13 @@ content:
     settings:
       media_types: {  }
     third_party_settings: {  }
+    region: content
+  field_title:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
 hidden: {  }

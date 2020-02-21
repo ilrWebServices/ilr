@@ -1,0 +1,20 @@
+uuid: f1569873-3afe-4506-88be-900740c478cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.person.field_title
+  module:
+    - person
+id: person.person.field_title
+field_name: field_title
+entity_type: person
+bundle: person
+label: Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,23 @@
+uuid: f8f1d96d-2142-448b-af56-fe08beca01c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.person.field_person
+    - paragraphs.paragraphs_type.person
+id: paragraph.person.default
+targetEntityType: paragraph
+bundle: person
+mode: default
+content:
+  field_person:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  search_api_excerpt: true

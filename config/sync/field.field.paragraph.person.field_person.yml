@@ -1,0 +1,30 @@
+uuid: 02fa56c6-e7a2-4cc3-a6cb-9f4ac7784084
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_person
+    - paragraphs.paragraphs_type.person
+    - person.persona_type.faculty
+    - person.persona_type.staff
+id: paragraph.person.field_person
+field_name: field_person
+entity_type: paragraph
+bundle: person
+label: Person
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:persona'
+  handler_settings:
+    target_bundles:
+      faculty: faculty
+      staff: staff
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: faculty
+field_type: entity_reference

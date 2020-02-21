@@ -1,0 +1,20 @@
+uuid: 8e05e332-9300-4c97-941a-cd2a8d1cfd73
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - person
+id: paragraph.field_person
+field_name: field_person
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: persona
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

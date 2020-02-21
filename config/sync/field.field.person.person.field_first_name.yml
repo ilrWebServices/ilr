@@ -14,7 +14,7 @@ entity_type: person
 bundle: person
 label: 'First name'
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
