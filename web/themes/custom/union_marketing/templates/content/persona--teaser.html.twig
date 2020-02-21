@@ -11,19 +11,16 @@
  * - url: Direct URL of the current node.
  */
 #}
-
-{% set job_title = (persona.field_title.value)
-  ? content.field_title
-  : null %}
 {% set rendered_content %}
-  {{ title_suffix }}
   {{ content.field_bio }}
 {% endset %}
-
+<div{{ attributes }}>
 {% include "@union/_person.twig" with {
-  attributes: attributes.addClass('cu-person--thumb'),
+  attributes: {class: ['cu-person--thumb']},
   name: content.display_name,
-  title: job_title,
+  title: content.field_title.0,
   content: rendered_content,
   img: content.field_photo
 } only %}
+{{ title_suffix }}
+</div>

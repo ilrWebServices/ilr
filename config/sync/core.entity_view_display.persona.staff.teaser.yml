@@ -30,7 +30,7 @@ content:
     weight: 0
     region: content
     settings:
-      link_to_entity: false
+      link_to_entity: true
     third_party_settings: {  }
   field_bio:
     type: text_summary_or_trimmed
@@ -46,7 +46,7 @@ content:
     label: hidden
     settings:
       image_style: thumbnail_square
-      image_link: ''
+      image_link: content
     third_party_settings: {  }
     region: content
   field_title:
