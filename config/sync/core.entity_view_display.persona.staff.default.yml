@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.persona.staff.field_bio
     - field.field.persona.staff.field_first_name
     - field.field.persona.staff.field_last_name
     - field.field.persona.staff.field_photo
@@ -11,6 +12,7 @@ dependencies:
     - person.persona_type.staff
   module:
     - media
+    - text
 id: persona.staff.default
 targetEntityType: persona
 bundle: staff
@@ -24,6 +26,13 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+  field_bio:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
   field_photo:
     type: media_thumbnail
     weight: 1

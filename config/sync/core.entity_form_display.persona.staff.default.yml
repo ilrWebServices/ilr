@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.persona.staff.field_bio
     - field.field.persona.staff.field_first_name
     - field.field.persona.staff.field_last_name
     - field.field.persona.staff.field_photo
@@ -31,6 +32,16 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_bio:
+    weight: 28
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
   field_first_name:
     type: string_textfield
     weight: 1

@@ -4,15 +4,17 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.persona.teaser
+    - field.field.persona.staff.field_bio
     - field.field.persona.staff.field_first_name
     - field.field.persona.staff.field_last_name
     - field.field.persona.staff.field_photo
     - field.field.persona.staff.field_title
-    - image.style.thumbnail
+    - image.style.thumbnail_square
     - person.persona_type.staff
   module:
     - layout_builder
     - media
+    - text
 third_party_settings:
   layout_builder:
     allow_custom: false
@@ -30,12 +32,20 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+  field_bio:
+    type: text_summary_or_trimmed
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      trim_length: 200
+    third_party_settings: {  }
   field_photo:
     type: media_thumbnail
     weight: 2
     label: hidden
     settings:
-      image_style: thumbnail
+      image_style: thumbnail_square
       image_link: ''
     third_party_settings: {  }
     region: content
