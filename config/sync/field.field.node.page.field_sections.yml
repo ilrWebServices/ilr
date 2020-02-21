@@ -53,10 +53,10 @@ settings:
       video:
         enabled: '1'
         weight: '12'
-    layout_bundles:
-      - section
+    layout_bundles: section
     allowed_layouts:
       ILR:
-        layout_cu_twocol: 'Union Sublayout: 2 Columns'
         layout_cu_onecol: 'Union Sublayout: 1 Column'
+        layout_cu_twocol: 'Union Sublayout: 2 Columns'
+        layout_cu_autogrid: 'Union Sublayout: Grid'
 field_type: entity_reference_layout_revisioned
