@@ -52,15 +52,12 @@ settings:
       testimonial:
         enabled: '1'
         weight: '8'
-      person_listing:
-        weight: '9'
-        enabled: 0
       person:
         enabled: '1'
-        weight: '10'
+        weight: '9'
       video:
         enabled: '1'
-        weight: '12'
+        weight: '10'
     layout_bundles: section
     allowed_layouts:
       ILR:
