@@ -1,0 +1,10 @@
+uuid: d1d77a10-85d8-4653-8fcf-1828aec0d348
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.teaser
+label: Teaser
+targetEntityType: persona
+cache: true

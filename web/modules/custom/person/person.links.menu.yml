@@ -1,0 +1,12 @@
+entity.persona_type.collection:
+  title: 'Persona types'
+  route_name: entity.persona_type.collection
+  description: 'Create and manage Persona types.'
+  parent: system.admin_structure
+
+entity.person.admin_form:
+  title: 'Person settings'
+  parent: user.admin_index
+  description: 'Configure Person entities, including fields.'
+  weight: 10
+  route_name: entity.person.admin_form

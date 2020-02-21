@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_sections
     - node.type.page
     - paragraphs.paragraphs_type.form
+    - paragraphs.paragraphs_type.person
     - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.section
@@ -33,6 +34,7 @@ settings:
       rich_text: rich_text
       form: form
       testimonial: testimonial
+      person: person
       video: video
     target_bundles_drag_drop:
       section:
@@ -50,13 +52,16 @@ settings:
       testimonial:
         enabled: '1'
         weight: '8'
+      person:
+        enabled: '1'
+        weight: '9'
       video:
         enabled: '1'
-        weight: '12'
-    layout_bundles:
-      - section
+        weight: '10'
+    layout_bundles: section
     allowed_layouts:
       ILR:
-        layout_cu_twocol: 'Union Sublayout: 2 Columns'
         layout_cu_onecol: 'Union Sublayout: 1 Column'
+        layout_cu_twocol: 'Union Sublayout: 2 Columns'
+        layout_cu_autogrid: 'Union Sublayout: Grid'
 field_type: entity_reference_layout_revisioned

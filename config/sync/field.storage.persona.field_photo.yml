@@ -1,0 +1,20 @@
+uuid: 956f011e-c1f4-476e-b2cb-c65bba6f31ee
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+    - person
+id: persona.field_photo
+field_name: field_photo
+entity_type: persona
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,63 @@
+uuid: b53940d0-425b-420f-bae1-c90631a84c09
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.persona.teaser
+    - field.field.persona.staff.field_bio
+    - field.field.persona.staff.field_first_name
+    - field.field.persona.staff.field_last_name
+    - field.field.persona.staff.field_photo
+    - field.field.persona.staff.field_title
+    - image.style.thumbnail_square
+    - person.persona_type.staff
+  module:
+    - layout_builder
+    - media
+    - text
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: persona.staff.teaser
+targetEntityType: persona
+bundle: staff
+mode: teaser
+content:
+  display_name:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: true
+    third_party_settings: {  }
+  field_bio:
+    type: text_summary_or_trimmed
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      trim_length: 200
+    third_party_settings: {  }
+  field_photo:
+    type: media_thumbnail
+    weight: 2
+    label: hidden
+    settings:
+      image_style: thumbnail_square
+      image_link: content
+    third_party_settings: {  }
+    region: content
+  field_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_first_name: true
+  field_last_name: true
+  search_api_excerpt: true

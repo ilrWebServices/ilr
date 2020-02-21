@@ -1,0 +1,72 @@
+uuid: 70e12f9e-6d32-4fe9-9efe-ba5245831026
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.person.person.field_bio
+    - field.field.person.person.field_first_name
+    - field.field.person.person.field_last_name
+    - field.field.person.person.field_photo
+    - field.field.person.person.field_title
+    - image.style.media_library
+  module:
+    - media
+    - person
+    - text
+_core:
+  default_config_hash: jW7yU1YCkpdhbfGn_zCMcln6zrTwd6rD8xGEaLKu0ug
+id: person.person.default
+targetEntityType: person
+bundle: person
+mode: default
+content:
+  display_name:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_bio:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_first_name:
+    type: string
+    weight: 1
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_last_name:
+    type: string
+    weight: 2
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_photo:
+    type: media_thumbnail
+    weight: 3
+    label: above
+    settings:
+      image_style: media_library
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+  field_title:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  search_api_excerpt: true

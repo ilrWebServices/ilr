@@ -1,0 +1,7 @@
+entity.person.admin_form:
+  path: '/admin/config/people/person'
+  defaults:
+    _form: '\Drupal\person\Form\PersonSettingsForm'
+    _title: 'Person settings'
+  requirements:
+    _permission: 'administer content'

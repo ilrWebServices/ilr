@@ -1,0 +1,13 @@
+{
+  "name": "drupal/person",
+  "type": "drupal-module",
+  "description": "Allows creation and management non-user people and their personas.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/person",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/person",
+    "source": "http://cgit.drupalcode.org/person"
+  }
+}

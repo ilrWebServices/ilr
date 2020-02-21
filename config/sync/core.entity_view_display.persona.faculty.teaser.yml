@@ -1,0 +1,63 @@
+uuid: 2ef07104-ed12-4d02-b7a2-0c942fb352a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.persona.teaser
+    - field.field.persona.faculty.field_bio
+    - field.field.persona.faculty.field_first_name
+    - field.field.persona.faculty.field_last_name
+    - field.field.persona.faculty.field_photo
+    - field.field.persona.faculty.field_title
+    - image.style.thumbnail_square
+    - person.persona_type.faculty
+  module:
+    - layout_builder
+    - media
+    - text
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: persona.faculty.teaser
+targetEntityType: persona
+bundle: faculty
+mode: teaser
+content:
+  display_name:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: true
+    third_party_settings: {  }
+  field_bio:
+    type: text_summary_or_trimmed
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      trim_length: 200
+    third_party_settings: {  }
+  field_photo:
+    type: media_thumbnail
+    weight: 2
+    label: hidden
+    settings:
+      image_style: thumbnail_square
+      image_link: content
+    third_party_settings: {  }
+    region: content
+  field_title:
+    type: string
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  field_first_name: true
+  field_last_name: true
+  search_api_excerpt: true
