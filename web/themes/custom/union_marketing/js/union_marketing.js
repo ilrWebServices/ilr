@@ -115,7 +115,7 @@
       }
 
       const checkButtonChangeHandler = function (checkbutton_input) {
-        let registrationForm = checkbutton_input.closest('form');
+        let registrationForm = checkbutton_input.closest('.cu-registration-form');
         setActivePrice(registrationForm, checkbutton_input);
         setRegisterLink(registrationForm, checkbutton_input);
       }
