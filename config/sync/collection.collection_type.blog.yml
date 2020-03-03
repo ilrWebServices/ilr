@@ -1,0 +1,11 @@
+uuid: abc7d4f6-00fe-46cf-a1df-617240dc1ce4
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection_blogs
+third_party_settings:
+  collection_blogs:
+    contains_blogs: 1
+id: blog
+label: Blog

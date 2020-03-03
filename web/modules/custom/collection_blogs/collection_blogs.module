@@ -1,0 +1,60 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\collection\Entity\CollectionType;
+
+/**
+ * @file
+ * Contains collection_blogs.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function collection_blogs_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the collection_blogs module.
+    case 'help.page.collection_blogs':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Allows creation of custom collection-based blogs.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * - Add a 'Contains Blogs' setting to collection_types.
+ * - @todo:
+ *   - Decide how to handle the possibility of both "Contains subsites" and "Contains blogs" being checked.
+ */
+function collection_blogs_form_collection_type_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $collection_type = $form_state->getFormObject()->getEntity();
+
+  $form['contains_blogs'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Contains blogs'),
+    '#description' => t('If enabled, a collection of this type will represent a blog.'),
+    '#default_value' => $collection_type->getThirdPartySetting('collection_blogs', 'contains_blogs'),
+    '#weight' => 1
+  ];
+
+  $form['#entity_builders'][] = 'collection_blogs_form_collection_form_builder';
+}
+
+/**
+ * Entity builder for the collection type configuration entity.
+ */
+function collection_blogs_form_collection_form_builder($entity_type, CollectionType $collection_type, &$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('contains_blogs')) {
+    $collection_type->setThirdPartySetting('collection_blogs', 'contains_blogs', $form_state->getValue('contains_blogs'));
+    return;
+  }
+
+  $collection_type->unsetThirdPartySetting('contains_blogs', 'contains_blogs');
+}

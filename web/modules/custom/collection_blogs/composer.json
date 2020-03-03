@@ -1,0 +1,11 @@
+{
+    "name": "drupal/collection_blogs",
+    "type": "drupal-module",
+    "description": "Allows creation of custom collection-based blogs.",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/collection": "^1.0"
+    }
+}
