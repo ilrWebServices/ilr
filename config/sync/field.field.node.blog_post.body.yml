@@ -1,0 +1,27 @@
+uuid: 7157ee6e-b732-4ab0-8870-089aa3b609fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.blog_post
+  module:
+    - summary_word_limit
+    - text
+third_party_settings:
+  summary_word_limit:
+    summary_word_limit_count: '50'
+id: node.blog_post.body
+field_name: body
+entity_type: node
+bundle: blog_post
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: true
+field_type: text_with_summary

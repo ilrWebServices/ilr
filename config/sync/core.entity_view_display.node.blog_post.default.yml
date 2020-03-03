@@ -1,0 +1,51 @@
+uuid: b513b05e-bc8d-4518-9757-7dcf5c6701ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.blog_post.body
+    - field.field.node.blog_post.field_published_date
+    - field.field.node.blog_post.field_representative_image
+    - image.style.large_21_9_1200x514_
+    - node.type.blog_post
+  module:
+    - datetime
+    - media
+    - text
+    - user
+id: node.blog_post.default
+targetEntityType: node
+bundle: blog_post
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_published_date:
+    weight: 3
+    label: hidden
+    settings:
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_plain
+    region: content
+  field_representative_image:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: large_21_9_1200x514_
+      image_link: ''
+    third_party_settings: {  }
+    type: media_thumbnail
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  search_api_excerpt: true
