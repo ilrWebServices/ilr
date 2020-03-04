@@ -6,9 +6,15 @@ dependencies:
     - field.storage.node.body
     - node.type.blog_post
   module:
+    - allowed_formats
     - summary_word_limit
     - text
 third_party_settings:
+  allowed_formats:
+    basic_formatting_with_media: basic_formatting_with_media
+    basic_formatting: '0'
+    full_html: '0'
+    plain_text: '0'
   summary_word_limit:
     summary_word_limit_count: '50'
 id: node.blog_post.body
