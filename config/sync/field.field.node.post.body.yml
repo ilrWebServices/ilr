@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - node.type.blog_post
+    - node.type.post
   module:
     - allowed_formats
     - summary_word_limit
@@ -17,10 +17,10 @@ third_party_settings:
     plain_text: '0'
   summary_word_limit:
     summary_word_limit_count: '50'
-id: node.blog_post.body
+id: node.post.body
 field_name: body
 entity_type: node
-bundle: blog_post
+bundle: post
 label: Body
 description: ''
 required: false
