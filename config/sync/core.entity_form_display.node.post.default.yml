@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.post.body
     - field.field.node.post.field_authors
+    - field.field.node.post.field_components
     - field.field.node.post.field_published_date
     - field.field.node.post.field_representative_image
     - node.type.post
@@ -12,23 +12,13 @@ dependencies:
     - datetime
     - entity_browser_entity_form
     - inline_entity_form
+    - paragraphs
     - path
-    - text
 id: node.post.default
 targetEntityType: node
 bundle: post
 mode: default
 content:
-  body:
-    type: text_textarea_with_summary
-    weight: 8
-    settings:
-      rows: 9
-      summary_rows: 3
-      placeholder: ''
-      show_summary: false
-    third_party_settings: {  }
-    region: content
   created:
     type: datetime_timestamp
     weight: 2
@@ -53,6 +43,25 @@ content:
       entity_browser_entity_form:
         entity_browser_id: _none
     type: inline_entity_form_complex
+    region: content
+  field_components:
+    type: paragraphs
+    weight: 26
+    settings:
+      title: content
+      title_plural: content
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 2
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: rich_text
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: '0'
+        add_above: '0'
+    third_party_settings: {  }
     region: content
   field_published_date:
     weight: 10

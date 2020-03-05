@@ -1,0 +1,23 @@
+uuid: 7ec011ce-0884-42ff-9ac7-cac78b915ac9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.image.field_media
+    - paragraphs.paragraphs_type.image
+id: paragraph.image.default
+targetEntityType: paragraph
+bundle: image
+mode: default
+content:
+  field_media:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  search_api_excerpt: true
