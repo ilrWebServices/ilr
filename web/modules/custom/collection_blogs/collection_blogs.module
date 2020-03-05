@@ -58,3 +58,43 @@ function collection_blogs_form_collection_form_builder($entity_type, CollectionT
 
   $collection_type->unsetThirdPartySetting('contains_blogs', 'contains_blogs');
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Modify the collection new node form to add a form submit handler for blogs.
+ *
+ * @see CollectionNewNodeForm::buildForm()
+ */
+function collection_blogs_form_collection_new_node_form_alter(&$form, FormStateInterface $form_state) {
+  /** @var \Drupal\collection\Entity\CollectionInterface $collection */
+  $collection = $form_state->get('collection');
+
+  if ($collection->bundle() === 'blog') {
+    $form['#submit'][] = 'collection_blogs_form_collection_new_node_form_submit';
+  }
+}
+
+/**
+ * Form submission handler to automatically set the alias for blog items.
+ *
+ * @see collection_blogs_form_collection_new_node_form_alter()
+ */
+function collection_blogs_form_collection_new_node_form_submit($form, FormStateInterface $form_state) {
+  if ($node = $form_state->get('node')) {
+    if (\Drupal::moduleHandler()->moduleExists('pathauto')) {
+      $node->path->pathauto = \Drupal\pathauto\PathautoState::SKIP;
+      $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
+      $clean_title = $alias_cleaner->cleanString($node->label());
+    }
+    else {
+      $clean_title = strtolower(Html::cleanCssIdentifier($node->label()));
+    }
+
+    $collection = $form_state->get('collection');
+    $node->path->alias = $collection->toUrl()->toString() . '/' . $clean_title;
+
+    // Save the node again to trigger path updates.
+    $node->save();
+  }
+}
