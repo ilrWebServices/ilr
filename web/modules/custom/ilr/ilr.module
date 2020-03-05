@@ -415,3 +415,22 @@ function ilr_user_format_name_alter(&$name, $account) {
     $name = $account->field_common_name->value;
   }
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Modify the collection new node form to add a subsite menu option.
+ *
+ * @see CollectionNewNodeForm::buildForm()
+ */
+function ilr_form_collection_new_node_form_alter(&$form, FormStateInterface $form_state) {
+  /** @var \Drupal\collection\Entity\CollectionInterface $collection */
+  $collection = $form_state->get('collection');
+
+  if ($collection->bundle() === 'blog') {
+    $form['bundle']['#default_value'] = 'post';
+    $form['bundle']['#options'] = [
+      'post' => 'Post',
+    ];
+  }
+}
