@@ -41,6 +41,18 @@ third_party_settings:
               collection_type: subsite
             additional: {  }
             weight: 0
+          8270c894-ecf7-4aba-9d23-74337c7a4c52:
+            uuid: 8270c894-ecf7-4aba-9d23-74337c7a4c52
+            region: second
+            configuration:
+              id: user_collections_block
+              label: Blogs
+              provider: collection
+              label_display: visible
+              collection_type: blog
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
         third_party_settings: {  }
 id: user.user.default
 targetEntityType: user
