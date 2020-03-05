@@ -1,0 +1,20 @@
+uuid: 740e38e0-4eb7-49ff-bb8f-916a73a6a2eb
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - person
+id: node.field_authors
+field_name: field_authors
+entity_type: node
+type: entity_reference
+settings:
+  target_type: persona
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

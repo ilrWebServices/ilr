@@ -1,0 +1,55 @@
+uuid: b2098147-63dc-4ecd-aabe-751c3c08121a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.persona.teaser
+    - field.field.persona.author.field_bio
+    - field.field.persona.author.field_first_name
+    - field.field.persona.author.field_last_name
+    - field.field.persona.author.field_photo
+    - field.field.persona.author.field_title
+    - image.style.media_library
+    - person.persona_type.author
+  module:
+    - layout_builder
+    - media
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: persona.author.teaser
+targetEntityType: persona
+bundle: author
+mode: teaser
+content:
+  display_name:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_photo:
+    type: media_thumbnail
+    weight: 2
+    label: hidden
+    settings:
+      image_style: media_library
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+  field_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  field_bio: true
+  field_first_name: true
+  field_last_name: true
+  search_api_excerpt: true
