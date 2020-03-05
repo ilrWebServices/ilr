@@ -390,6 +390,14 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
     if ($node->bundle() === 'page') {
       $form['body']['#group'] = 'ilr_meta';
     }
+
+    if ($node->bundle() === 'blog_post') {
+      $form['field_authors']['#group'] = 'ilr_meta';
+      $form['field_published_date']['#group'] = 'ilr_meta';
+      $form['author']['#title'] = t('Creation information');
+      $form['uid']['widget'][0]['target_id']['#title'] = t('Created by');
+      $form['created']['widget'][0]['value']['#title'] = t('Created on');
+    }
   }
 }
 
