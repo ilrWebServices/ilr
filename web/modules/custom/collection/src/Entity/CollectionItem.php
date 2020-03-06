@@ -272,6 +272,7 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ->setDescription(t('The item for the collection.'))
       ->setSetting('exclude_entity_types', FALSE)
       ->setSetting('entity_type_ids', [
+        'collection' => 'collection',
         'menu' => 'menu',
         'node' => 'node',
         'user' => 'user'
