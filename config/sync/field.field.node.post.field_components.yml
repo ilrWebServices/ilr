@@ -7,6 +7,7 @@ dependencies:
     - node.type.post
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.rich_text
+    - paragraphs.paragraphs_type.video
   module:
     - entity_reference_revisions
 id: node.post.field_components
@@ -26,6 +27,7 @@ settings:
     target_bundles:
       image: image
       rich_text: rich_text
+      video: video
     target_bundles_drag_drop:
       form:
         weight: 8
@@ -49,6 +51,6 @@ settings:
         weight: 13
         enabled: false
       video:
+        enabled: true
         weight: 14
-        enabled: false
 field_type: entity_reference_revisions
