@@ -3,6 +3,5 @@
   {% set attributes = attributes.addClass('cu-text--2col') %}
 {% endif %}
 
-<div{{ attributes }}>
-  {{ content }}
-</div>
+{# Since we have set the attributes, we can use the basic paragraph template #}
+{% include 'paragraph.html.twig' %}

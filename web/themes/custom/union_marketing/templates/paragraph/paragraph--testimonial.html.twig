@@ -14,9 +14,19 @@
   {{ content|without('field_media') }}
 {% endset %}
 
-{% include '@union/_card.twig' with {
-  card_content: rendered_content,
-  content_attributes: { class: 'cu-card__content--narrow' },
-  card_media: rendered_media,
-  attributes: attributes
-} only %}
+{% set rendered_paragraph %}
+  {% include '@union/_card.twig' with {
+    card_content: rendered_content,
+    content_attributes: { class: 'cu-card__content--narrow' },
+    card_media: rendered_media,
+    attributes: attributes
+  } only %}
+{% endset %}
+
+{% if render_section %}
+  {% include '@union/_cu-section.twig' with {
+    content: rendered_paragraph
+  } only %}
+{% else %}
+  {{ rendered_paragraph }}
+{% endif %}

@@ -112,3 +112,17 @@ function union_marketing_preprocess_persona(&$variables) {
     }
   }
 }
+
+/**
+ * Implements template_preprocess_paragraph().
+ *
+ * Check if the paragraph is being rendered within a node. If so, tell
+ * the template to add a section.
+ */
+function union_marketing_preprocess_paragraph(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $parent = $paragraph->getParentEntity();
+  if ($parent && $parent->getEntityTypeId() === 'node') {
+    $variables['render_section'] = TRUE;
+  }
+}
