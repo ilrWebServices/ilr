@@ -15,7 +15,7 @@ filters:
     status: true
     weight: -10
     settings:
-      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol type start> <li> <dl> <dt> <dd> <h2 id class="cu-heading"> <h3 id class="cu-heading"> <h4 id class="cu-heading"> <br> <div style> <p>'
+      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol type start> <li> <dl> <dt> <dd> <h2 id class="cu-heading column-break"> <h3 id class="cu-heading"> <br> <div class="simple-columns"> <p> <hr>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_htmlcorrector:

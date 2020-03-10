@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains simple_columns.module.
+ */
+
+use Drupal\editor\Entity\Editor;
+
+/**
+ * Implements hook_ckeditor_css_alter().
+ */
+function simple_columns_ckeditor_css_alter(array &$css, Editor $editor) {
+  $editor_settings = $editor->getSettings();
+
+  foreach ($editor_settings['toolbar']['rows'] as $row) {
+    $all_items = array_merge(...array_column($row, 'items'));
+
+    if (in_array('SimpleColumns', $all_items)) {
+      $css[] = drupal_get_path('module', 'simple_columns') . '/css/simplecolumns.css';
+      return;
+    }
+  }
+}

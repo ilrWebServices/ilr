@@ -8,13 +8,13 @@
 (function ($, Drupal, CKEDITOR) {
 
   let hasColumnParent = function(element) {
-    if ((element instanceof CKEDITOR.dom.element) && element.getComputedStyle('column-count') === '2') {
+    if ((element instanceof CKEDITOR.dom.element) && element.hasClass('simple-columns')) {
       return element;
     } else {
       // Search up the parent element to see if the selection in already in a column div.
       // let columnParent = selectionParentElement.getAscendant('div');
       return element.getAscendant(function (el) {
-        return (el instanceof CKEDITOR.dom.element) && el.getComputedStyle('column-count') === '2';
+        return (el instanceof CKEDITOR.dom.element) && el.hasClass('simple-columns');
       });
     }
   };
@@ -57,7 +57,7 @@
               }
             }
 
-            let columnWrapper = new CKEDITOR.dom.element('div').setStyle('column-count', '2');
+            let columnWrapper = new CKEDITOR.dom.element('div').addClass('simple-columns');
             let nextElement = startElement;
             let elements = [nextElement];
 
