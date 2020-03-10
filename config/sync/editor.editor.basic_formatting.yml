@@ -19,6 +19,10 @@ settings:
             - Italic
             - Format
         -
+          name: Layout
+          items:
+            - SimpleColumns
+        -
           name: Links
           items:
             - DrupalLink
