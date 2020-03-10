@@ -19,8 +19,9 @@ class FilterCuHeading extends FilterBase {
    * {@inheritdoc}
    */
   public function process($text, $langcode) {
-    $new_text = preg_replace('/<h(\d)>/', '<h$1 class="cu-heading">', $text);
-    return new FilterProcessResult($new_text);
+    $text = preg_replace('/<h(\d) class="/', '<h$1 class="cu-heading ', $text);
+    $text = preg_replace('/<h(\d)>/', '<h$1 class="cu-heading">', $text);
+    return new FilterProcessResult($text);
   }
 
 }

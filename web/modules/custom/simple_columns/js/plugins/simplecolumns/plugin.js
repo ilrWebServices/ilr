@@ -20,7 +20,7 @@
   };
 
   CKEDITOR.plugins.add('simplecolumns', {
-    icons: 'simplecolumns',
+    icons: 'simplecolumns,simplecolumnbreak',
     hidpi: false,
 
     init: function (editor) {
@@ -31,6 +31,12 @@
           let columnParent = hasColumnParent(selection.getCommonAncestor());
 
           if (columnParent) {
+            // Remove any column breaks on child elements.
+            let children = columnParent.getChildren();
+            for (let i = 0; i < children.count(); i++) {
+              children.getItem(i).removeClass('simple-columns--column-break')
+            }
+
             // Remove column wrapper while preserving its contents.
             columnParent.remove(true);
             this.setState(CKEDITOR.TRISTATE_OFF);
@@ -90,10 +96,56 @@
         }
       });
 
+      editor.addCommand('addColumnBreak', {
+        contextSensitive: 1,
+        startDisabled: 1,
+
+        exec: function (editor) {
+          let selection = editor.getSelection();
+          let startElement = selection.getStartElement();
+          let isColumnChild = startElement.getParent().hasClass('simple-columns');
+          let siblings;
+
+          // Only elements with an immediate column wrapper parent can get the column break class.
+          if (isColumnChild) {
+            if (startElement.hasClass('simple-columns--column-break')) {
+              startElement.removeClass('simple-columns--column-break');
+              this.setState(CKEDITOR.TRISTATE_OFF);
+            } else {
+              siblings = startElement.getParent().getChildren();
+
+              for (let i = 0; i < siblings.count(); i++) {
+                if (siblings.getItem(i).hasClass('simple-columns--column-break')) {
+                  siblings.getItem(i).removeClass('simple-columns--column-break');
+                }
+              }
+
+              startElement.addClass('simple-columns--column-break');
+              this.setState(CKEDITOR.TRISTATE_ON);
+            }
+          }
+        },
+
+        refresh: function (editor, path) {
+          // Set the button to 'on' when the cursor is in a column wrapper.
+          if (path.lastElement.hasClass('simple-columns--column-break')) {
+            this.setState(CKEDITOR.TRISTATE_ON);
+          } else if (path.lastElement.getParent().hasClass('simple-columns')) {
+            this.setState(CKEDITOR.TRISTATE_OFF);
+          } else {
+            this.setState(CKEDITOR.TRISTATE_DISABLED);
+          }
+        }
+      });
+
       editor.ui.addButton('SimpleColumns', {
         label: 'Simple Columns',
-        command: 'toggleColumns',
-        toolbar: 'insert'
+        command: 'toggleColumns'
+      });
+
+      editor.ui.addButton('SimpleColumnBreak', {
+        label: 'Column Break',
+        command: 'addColumnBreak'
       });
     }
   });

@@ -34,6 +34,10 @@ class SimpleColumns extends CKEditorPluginBase {
         'label' => $this->t('Simple Columns'),
         'image' => drupal_get_path('module', 'simple_columns') . '/js/plugins/simplecolumns/icons/simplecolumns.png',
       ],
+      'SimpleColumnBreak' => [
+        'label' => $this->t('Simple Column Break'),
+        'image' => drupal_get_path('module', 'simple_columns') . '/js/plugins/simplecolumns/icons/simplecolumnbreak.png',
+      ],
     ];
   }
 

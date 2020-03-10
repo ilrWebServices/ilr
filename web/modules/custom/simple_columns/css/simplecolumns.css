@@ -1,3 +1,8 @@
 .simple-columns {
   columns: 2;
 }
+
+.simple-columns--column-break {
+  break-before: column;
+  -webkit-column-break-before: always;
+}
