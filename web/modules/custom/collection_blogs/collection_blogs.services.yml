@@ -1,0 +1,7 @@
+services:
+  collection_blogs_subscriber:
+    class: Drupal\collection_blogs\EventSubscriber\CollectionBlogsSubscriber
+    arguments:
+      - '@entity_type.manager'
+    tags:
+      - { name: event_subscriber }
