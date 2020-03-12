@@ -18,6 +18,7 @@ function simple_columns_ckeditor_css_alter(array &$css, Editor $editor) {
 
     if (in_array('SimpleColumns', $all_items)) {
       $css[] = drupal_get_path('module', 'simple_columns') . '/css/simplecolumns.css';
+      $css[] = drupal_get_path('module', 'simple_columns') . '/css/simplecolumns-editor.css';
       return;
     }
   }
