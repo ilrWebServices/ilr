@@ -7,6 +7,7 @@ dependencies:
   module:
     - block_content
     - block_visibility_groups
+    - ctools
   theme:
     - union_marketing
 id: dismissible
@@ -29,3 +30,10 @@ visibility:
     negate: false
     block_visibility_group: ''
     context_mapping: {  }
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      course: course
+    negate: true
+    context_mapping:
+      node: '@node.node_route_context:node'

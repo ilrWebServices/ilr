@@ -18,6 +18,7 @@ dependencies:
     - webform.webform.course_customization_request
     - webform.webform.course_notification
   content:
+    - 'block_content:simple_text:280c1d2d-0456-45eb-84dc-d114c5e7b2fa'
     - 'block_content:simple_text:d300d9db-a8e3-4082-84f4-fea3ae4f21ae'
   module:
     - block_content
@@ -37,6 +38,7 @@ third_party_settings:
       -
         layout_id: layout_cu_section
         layout_settings:
+          label: ''
           full_width: 1
           collapse_margins: 1
           extra_classes: ''
@@ -57,7 +59,8 @@ third_party_settings:
         third_party_settings: {  }
       -
         layout_id: banner
-        layout_settings: {  }
+        layout_settings:
+          label: ''
         components:
           31e0b82f-e5f0-4462-b916-55ade9f6e41b:
             uuid: 31e0b82f-e5f0-4462-b916-55ade9f6e41b
@@ -158,6 +161,7 @@ third_party_settings:
       -
         layout_id: layout_cu_section
         layout_settings:
+          label: ''
           full_width: 1
           collapse_margins: 1
           extra_classes: ''
@@ -177,14 +181,32 @@ third_party_settings:
       -
         layout_id: layout_cu_section
         layout_settings:
+          label: ''
           full_width: 0
+          collapse_margins: 0
           extra_classes: ''
-        components: {  }
+        components:
+          727ee7e0-5581-40db-bad5-6ff7c03011de:
+            uuid: 727ee7e0-5581-40db-bad5-6ff7c03011de
+            region: main
+            configuration:
+              id: 'block_content:280c1d2d-0456-45eb-84dc-d114c5e7b2fa'
+              label: 'Course Message'
+              provider: block_content
+              label_display: '0'
+              status: true
+              info: ''
+              view_mode: full
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
         layout_settings:
+          label: ''
           full_width: 1
+          collapse_margins: false
           extra_classes: ''
         components:
           2da97fe0-5f32-406e-88c7-e1e81c12492d:
@@ -209,7 +231,9 @@ third_party_settings:
       -
         layout_id: layout_cu_section
         layout_settings:
+          label: ''
           full_width: 0
+          collapse_margins: false
           extra_classes: ''
         components:
           d11772b1-e847-4a39-bb5c-008fbd3f34e2:
@@ -245,7 +269,11 @@ third_party_settings:
         third_party_settings: {  }
       -
         layout_id: layout_cu_twocol
-        layout_settings: {  }
+        layout_settings:
+          label: ''
+          full_width: false
+          collapse_margins: false
+          extra_classes: ''
         components:
           758725c7-af6c-43b8-aaec-a3d909aa1f32:
             uuid: 758725c7-af6c-43b8-aaec-a3d909aa1f32
@@ -279,6 +307,7 @@ third_party_settings:
       -
         layout_id: layout_cu_twocol
         layout_settings:
+          label: ''
           full_width: 0
           collapse_margins: 0
           extra_classes: ''
@@ -301,7 +330,9 @@ third_party_settings:
       -
         layout_id: layout_cu_section
         layout_settings:
+          label: ''
           full_width: 1
+          collapse_margins: false
           extra_classes: ''
         components:
           6d7a6297-6ee2-48f8-bb25-a800485d1b0f:
@@ -326,7 +357,9 @@ third_party_settings:
       -
         layout_id: layout_cu_section
         layout_settings:
+          label: ''
           full_width: 0
+          collapse_margins: false
           extra_classes: ''
         components:
           4ca4cead-f28b-4b08-9cb3-17493a985908:

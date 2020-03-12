@@ -14,4 +14,14 @@
 .cu-card--padded {
   --cu-card-background: #efefef;
   --cu-grid-row-gap: .5em;
+  color: var(--cu-color-text);
+}
+
+.union-marketing-card--dark {
+  --cu-card-background: #333;
+  --cu-color-text: #efefef;
+
+  a {
+    --cu-current-link-color: var(--cu-color-text);
+  }
 }
