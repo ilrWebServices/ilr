@@ -1,0 +1,15 @@
+{{ attach_library('union_organizer/dismissible') }}
+{{ attach_library('union_organizer/button') }}
+
+{% set content %}
+  {% include '@union/_card.twig' with {
+    card_content: content,
+    attributes: attributes.addClass([
+      'cu-card--padded',
+    ])
+  } only %}
+{% endset %}
+
+{% include '@union/_dismissible.twig' with {
+  content: content
+} only %}
