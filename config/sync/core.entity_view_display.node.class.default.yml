@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.class.field_course
     - field.field.node.class.field_date_end
     - field.field.node.class.field_date_start
+    - field.field.node.class.field_delivery_method
     - field.field.node.class.field_price
     - node.type.class
   module:
@@ -93,6 +94,14 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
+    region: content
+  field_delivery_method:
+    weight: 110
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   field_price:
     weight: 102
