@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.class.field_course
     - field.field.node.class.field_date_end
     - field.field.node.class.field_date_start
+    - field.field.node.class.field_delivery_method
     - field.field.node.class.field_price
     - node.type.class
   module:
@@ -94,5 +95,6 @@ hidden:
   field_class_cancelled: true
   field_class_full: true
   field_course: true
+  field_delivery_method: true
   links: true
   search_api_excerpt: true

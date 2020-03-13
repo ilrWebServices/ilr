@@ -13,11 +13,11 @@ async: false
 push_standalone: false
 pull_standalone: false
 pull_trigger_date: LastModifiedDate
-pull_where_clause: 'Show_on_Web__c = TRUE AND Program_Type__c = ''Open Enrollment'''
+pull_where_clause: 'Synchronized_with_Web__c = TRUE AND Program_Type__c = ''Open Enrollment'''
 sync_triggers:
   pull_create: true
   pull_update: true
-  pull_delete: false
+  pull_delete: true
 salesforce_object_type: EXECED_Course__c
 drupal_entity_type: node
 drupal_bundle: course
