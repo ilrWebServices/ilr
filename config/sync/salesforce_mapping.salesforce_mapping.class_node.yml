@@ -93,6 +93,11 @@ field_mappings:
     drupal_field_value: field_class_date.end_value
     salesforce_field: End__c
     direction: sf_drupal
+  -
+    drupal_field_type: properties
+    drupal_field_value: status
+    salesforce_field: Class_Show_on_Web__c
+    direction: sf_drupal
 push_limit: 0
 push_retries: 3
 push_frequency: 0
