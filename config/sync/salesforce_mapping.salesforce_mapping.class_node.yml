@@ -18,7 +18,7 @@ pull_where_clause: 'Class_Show_on_Web__c = TRUE'
 sync_triggers:
   pull_create: true
   pull_update: true
-  pull_delete: false
+  pull_delete: true
 salesforce_object_type: EXECED_Event_Class__c
 drupal_entity_type: node
 drupal_bundle: class
