@@ -19,7 +19,10 @@
         <p>All instruction will be delivered online for this date.</p>
       {% endif %}
     {% else %}
+      {# Time display #}
+      {% if not cancelled %}
       {{ drupal_field('field_date_start', 'node', class.entity.id, 'teaser') }} - {{ drupal_field('field_date_end', 'node', class.entity.id, 'teaser') }}
+      {% endif %}
       {{ drupal_field('field_address', 'node', class.entity.id, 'teaser') }}
     {% endif %}
     {% if cancelled or full %}

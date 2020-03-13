@@ -47,7 +47,9 @@
     justify-content: center;
   }
 
-  .cu-checkbutton--disabled .field--field-class-date {
+  .cu-checkbutton--disabled .field--field-class-date,
+  .cu-checkbutton--disabled .field--field-address {
     text-decoration: line-through;
+    text-decoration: $cornell-red solid line-through 2px;
   }
 }
