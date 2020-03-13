@@ -17,6 +17,12 @@ settings:
           items:
             - Bold
             - Italic
+            - Format
+        -
+          name: Layout
+          items:
+            - SimpleColumns
+            - SimpleColumnBreak
         -
           name: Links
           items:

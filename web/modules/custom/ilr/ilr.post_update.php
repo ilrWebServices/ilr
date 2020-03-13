@@ -59,3 +59,34 @@ function ilr_post_update_course_message_block(&$sandbox) {
 
   $block->save();
 }
+
+/**
+ * Move rich text paragraph heading field values into the formatted text.
+ */
+function ilr_post_update_rich_text_headings(&$sandbox) {
+  // Get all rich text paragraphs with heading or subheading values.
+  $query = \Drupal::entityQuery('paragraph');
+  $group = $query->orConditionGroup()
+    ->condition('field_heading', NULL, 'IS NOT NULL')
+    ->condition('field_subheading', NULL, 'IS NOT NULL');
+  $query->condition('type', 'rich_text')->condition($group);
+  $rich_text_paragraph_ids = $query->execute();
+
+  $rich_text_paragraphs = \Drupal\paragraphs\Entity\Paragraph::loadMultiple($rich_text_paragraph_ids);
+
+  // Prepend the headings to the body field as h2 and h3 elements.
+  foreach ($rich_text_paragraphs as $rich_text_paragraph) {
+    $body = $rich_text_paragraph->field_body->value;
+
+    if (!$rich_text_paragraph->field_subheading->isEmpty()) {
+      $body = '<h3>' . $rich_text_paragraph->field_subheading->value . '</h3>' . PHP_EOL . $body;
+    }
+
+    if (!$rich_text_paragraph->field_heading->isEmpty()) {
+      $body = '<h2>' . $rich_text_paragraph->field_heading->value . '</h2>' . PHP_EOL . $body;
+    }
+
+    $rich_text_paragraph->field_body->value = $body;
+    $rich_text_paragraph->save();
+  }
+}
