@@ -46,4 +46,8 @@
     align-items: center;
     justify-content: center;
   }
+
+  .cu-checkbutton--disabled .field--field-class-date {
+    text-decoration: line-through;
+  }
 }

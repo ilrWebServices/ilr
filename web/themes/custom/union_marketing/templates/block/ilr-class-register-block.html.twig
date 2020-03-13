@@ -24,10 +24,13 @@
     {% endif %}
     {% if cancelled or full %}
       {% set message = (cancelled)
-        ? 'Sorry, but this class session was cancelled.'
+        ? 'For more info contact <a href="mailto:ilrcustomerservice@cornell.edu">customer service</a> or call 866-470-1922.'
         : 'Seats in this session are limited. Please contact <a href="mailto:ilrcustomerservice@cornell.edu">customer service</a> or call 866-470-1922.' %}
       {% set indicator_attributes = { 'data-message': message|striptags } %}
       {% set disabled = 'disabled' %}
+      {% if cancelled %}
+        <p>This date has been cancelled.</p>
+      {% endif %}
       <p class="touchscreen-only message">{{ message|raw }}</p>
     {% else %}
       <p class="cu-checkbutton__price cu-js-price">${{ class.entity.field_price.value }}</p>
