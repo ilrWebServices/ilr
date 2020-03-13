@@ -11,8 +11,13 @@
 
   {% set content %}
     {{ drupal_field('field_class_date', 'node', class.entity.id, 'teaser') }}
-    {% if course.field_delivery_method.value and 'online' in course.field_delivery_method.value|lower %}
-      <p>All instruction will be completed between these dates</p>
+    {% if class.entity.field_delivery_method.value and 'online' in class.entity.field_delivery_method.value|lower %}
+      {% if 'date driven' in class.entity.field_delivery_method.value|lower %}
+        <p>All instruction will be completed between these dates.</p>
+      {% else %}
+        {# Fix this once we know the actual value #}
+        <p>All instruction will be delivered online for this date.</p>
+      {% endif %}
     {% else %}
       {{ drupal_field('field_date_start', 'node', class.entity.id, 'teaser') }} - {{ drupal_field('field_date_end', 'node', class.entity.id, 'teaser') }}
       {{ drupal_field('field_address', 'node', class.entity.id, 'teaser') }}
