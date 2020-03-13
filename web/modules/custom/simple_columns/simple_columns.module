@@ -23,3 +23,12 @@ function simple_columns_ckeditor_css_alter(array &$css, Editor $editor) {
     }
   }
 }
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function simple_columns_element_info_alter(array &$types) {
+  if (isset($types['processed_text'])) {
+    $types['processed_text']['#attached']['library'][] = 'simple_columns/simple_columns';
+  }
+}
