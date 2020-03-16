@@ -1,0 +1,19 @@
+uuid: 03ff2411-4700-485b-83b9-90b8938e4b35
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_first_name
+    - person.persona_type.author
+id: persona.author.field_first_name
+field_name: field_first_name
+entity_type: persona
+bundle: author
+label: 'First name'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

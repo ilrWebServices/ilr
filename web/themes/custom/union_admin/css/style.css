@@ -1,3 +1,8 @@
 .site-logo img {
   max-width: 50px;
 }
+
+.page-node-type-post .field--name-body .form-item-body-0-value,
+.page-node-type-post .field--name-body .filter-wrapper {
+  display: none;
+}

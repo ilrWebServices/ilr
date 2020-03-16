@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Link;
+use Drupal\entity_reference_layout\EntityReferenceLayoutRevisionsFieldItemList;
 
 /**
  * @file Theme file for the union_marketing.theme.
@@ -110,5 +111,24 @@ function union_marketing_preprocess_persona(&$variables) {
         'data-dialog-type' => 'modal',
       ]);
     }
+  }
+}
+
+/**
+ * Implements template_preprocess_paragraph().
+ *
+ * Check if the paragraph is being rendered within an entity refererence with
+ * layout field. If not, tell the template to add a section.
+ */
+function union_marketing_preprocess_paragraph(&$variables) {
+  $paragraph = $variables['paragraph'];
+
+  if ($parent_field_name = $paragraph->parent_field_name) {
+    $parent = $paragraph->getParentEntity();
+    $parent_field = $parent->get($parent_field_name->value);
+
+    // We don't want to wrap `EntityReferenceLayoutRevisionsFieldItemList`,
+    // since it uses layouts that already render `cu-section`.
+    $variables['render_section'] = !($parent_field instanceof EntityReferenceLayoutRevisionsFieldItemList);
   }
 }

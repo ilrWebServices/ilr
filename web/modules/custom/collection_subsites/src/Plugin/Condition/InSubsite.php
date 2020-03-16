@@ -24,18 +24,18 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class InSubsite extends ConditionPluginBase implements ContainerFactoryPluginInterface {
 
   /**
-   * Drupal\Core\Entity\EntityTypeManagerInterface definition.
+   * Drupal\collection_subsites\CollectionSubsitesResolver definition.
    *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   * @var \Drupal\collection_subsites\CollectionSubsitesResolver
    */
-  protected $entityTypeManager;
+  protected $collectionSubsitesResolver;
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = new static($configuration, $plugin_id, $plugin_definition);
-    $instance->entityTypeManager = $container->get('entity_type.manager');
+    $instance->collectionSubsitesResolver = $container->get('collection_subsites.resolver');
     return $instance;
   }
 
@@ -80,26 +80,14 @@ class InSubsite extends ConditionPluginBase implements ContainerFactoryPluginInt
     }
 
     if ($collection = $this->getContextValue('collection')) {
-      return $this->isSubsite($collection);
+      if ($this->collectionSubsitesResolver->getSubsite($collection)) {
+        return TRUE;
+      }
     }
     elseif ($node = $this->getContextValue('node')) {
-      $node_path = $node->toUrl()->toString();
-      $collection_item_storage = $this->entityTypeManager->getStorage('collection_item');
-      $query = $collection_item_storage->getQuery();
-      $query->condition('item__target_id', $node->id());
-      $query->condition('item__target_type', $node->getEntityTypeId());
-      $results = $query->execute();
-      $collection_items = $collection_item_storage->loadMultiple($results);
-
-      foreach ($collection_items as $item) {
-        $collection = $item->collection->entity;
-        $collection_path = $collection->toUrl()->toString();
-        // Is the collection path part of this node path? If so, position should be 0.
-        if ($this->isSubsite($collection) && strpos($node_path, $collection_path) === 0) {
-          return TRUE;
-        }
+      if ($this->collectionSubsitesResolver->getSubsite($node)) {
+        return TRUE;
       }
-
     }
     return FALSE;
   }
@@ -113,16 +101,4 @@ class InSubsite extends ConditionPluginBase implements ContainerFactoryPluginInt
     }
     return '';
   }
-
-  /**
-   * Check whether a collection entity is a subsite.
-   *
-   * @return bool
-   *   True if collection is a subsite.
-   */
-  protected function isSubsite(CollectionInterface $collection) {
-    $collection_type = $this->entityTypeManager->getStorage('collection_type')->load($collection->bundle());
-    return (bool) $collection_type->getThirdPartySetting('collection_subsites', 'contains_subsites');
-  }
-
 }

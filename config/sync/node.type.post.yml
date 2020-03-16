@@ -1,0 +1,17 @@
+uuid: 6e1deb60-e6eb-483c-9b42-346d47ee7b44
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Post
+type: post
+description: 'Use <em>Posts</em> to add content to pages and listings'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

@@ -1,0 +1,23 @@
+uuid: fbc29569-080b-42b7-9189-8f08e2b99b86
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_bio
+    - person.persona_type.author
+  module:
+    - text
+id: persona.author.field_bio
+field_name: field_bio
+entity_type: persona
+bundle: author
+label: Bio
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

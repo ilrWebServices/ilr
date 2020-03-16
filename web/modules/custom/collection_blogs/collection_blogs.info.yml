@@ -1,0 +1,7 @@
+name: 'Collection Blogs'
+type: module
+description: 'Allows creation of custom collection-based blogs.'
+core: 8.x
+package: 'Collection'
+dependencies:
+  - collection

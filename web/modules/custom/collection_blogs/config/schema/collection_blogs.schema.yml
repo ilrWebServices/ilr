@@ -1,0 +1,7 @@
+collection.collection_type.*:third_party_settings.collection_blogs:
+  type: mapping
+  label: 'Collection Blogs'
+  mapping:
+    contains_blogs:
+      type: boolean
+      label: 'Contains Blogs'

@@ -1,0 +1,28 @@
+uuid: 0ad8d456-3364-4e9e-9dcb-b098d84c4f59
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_photo
+    - media.type.image
+    - person.persona_type.author
+id: persona.author.field_photo
+field_name: field_photo
+entity_type: persona
+bundle: author
+label: Photo
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
