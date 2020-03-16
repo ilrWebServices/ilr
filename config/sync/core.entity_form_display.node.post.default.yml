@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.post.body
     - field.field.node.post.field_authors
     - field.field.node.post.field_components
     - field.field.node.post.field_published_date
@@ -14,11 +15,22 @@ dependencies:
     - inline_entity_form
     - paragraphs
     - path
+    - text
 id: node.post.default
 targetEntityType: node
 bundle: post
 mode: default
 content:
+  body:
+    weight: 28
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
   created:
     type: datetime_timestamp
     weight: 2
