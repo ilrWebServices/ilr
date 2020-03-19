@@ -108,6 +108,14 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
   /**
    * {@inheritdoc}
    */
+  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
+    parent::postSave($storage, $update);
+    Cache::invalidateTags($this->collection->entity->getCacheTagsToInvalidate());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function postDelete(EntityStorageInterface $storage, array $entities) {
     foreach ($entities as $entity) {
       Cache::invalidateTags($entity->collection->entity->getCacheTagsToInvalidate());
