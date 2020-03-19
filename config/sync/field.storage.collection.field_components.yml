@@ -1,0 +1,21 @@
+uuid: 6f36ecef-6e43-41eb-96df-a488962a36fd
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - entity_reference_revisions
+    - paragraphs
+id: collection.field_components
+field_name: field_components
+entity_type: collection
+type: entity_reference_revisions
+settings:
+  target_type: paragraph
+module: entity_reference_revisions
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
