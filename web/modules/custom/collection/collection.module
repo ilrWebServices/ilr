@@ -1,12 +1,11 @@
 <?php
 
-use \Drupal\Core\Entity\EntityInterface;
-
 /**
  * @file
  * Contains collection.module.
  */
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormStateInterface;
 
