@@ -8,6 +8,7 @@ use \Drupal\Core\Entity\EntityInterface;
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_help().
@@ -48,6 +49,22 @@ function collection_theme() {
     'file' => 'collection.page.inc',
   ];
   return $theme;
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function collection_form_collection_form_alter(&$form, FormStateInterface $form_state) {
+  $form['owners'] = [
+    '#type' => 'details',
+    '#title' => t('Owners'),
+    '#group' => 'advanced',
+    '#weight' => 50,
+    '#optional' => TRUE,
+    '#open' => FALSE,
+  ];
+
+  $form['user_id']['#group'] = 'owners';
 }
 
 /**
