@@ -13,6 +13,7 @@ dependencies:
     - datetime
     - entity_browser_entity_form
     - inline_entity_form
+    - media_library
     - paragraphs
     - path
     - text
@@ -84,12 +85,9 @@ content:
   field_representative_image:
     weight: 9
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: media_library_widget
     region: content
   path:
     type: path
