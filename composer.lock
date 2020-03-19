@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6238568fc7bf1e96e9a824495fcf5fc8",
+    "content-hash": "1ec0b900d4e7163c3dcddecfab01ea67",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2615,7 +2615,9 @@
                 },
                 "patches_applied": {
                     "Form blocks rendered inside layout builder break save": "https://www.drupal.org/files/issues/2019-08-12/3045171-79.patch",
-                    "Remove invalid iframe attributes from oembed field formatter": "https://www.drupal.org/files/issues/2019-07-31/remove-iframe-attributes-3071446-4.patch"
+                    "Remove invalid iframe attributes from oembed field formatter": "https://www.drupal.org/files/issues/2019-07-31/remove-iframe-attributes-3071446-4.patch",
+                    "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch",
+                    "add __toString() to the entity Query class": "https://www.drupal.org/files/issues/2019-11-27/add_tostring_to_the-2902311-29.patch"
                 }
             },
             "autoload": {
@@ -2941,6 +2943,9 @@
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "entityQuery reference JOINs don't specify target_type": "https://www.drupal.org/files/issues/2020-03-19/3120952-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4771,7 +4776,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.4",
-                    "datestamp": "1563099329",
+                    "datestamp": "1563096785",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
