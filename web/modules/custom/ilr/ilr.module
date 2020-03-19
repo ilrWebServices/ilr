@@ -129,6 +129,7 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
     $fields['item']
       ->setSetting('entity_type_ids', $entity_type_ids_setting + [
         'media' => 'media',
+        'persona' => 'persona',
         'taxonomy_term' => 'taxonomy_term',
       ])
       ->setSetting('media', [
@@ -147,6 +148,16 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
             'certificate' => 'certificate',
             'course' => 'course',
             'page' => 'page',
+          ]
+        ]
+      ])
+      ->setSetting('persona', [
+        'handler' => 'default:persona',
+        'handler_settings' => [
+          'target_bundles' => [
+            'author' => 'author',
+            'faculty' => 'faculty',
+            'staff' => 'staff',
           ]
         ]
       ])
