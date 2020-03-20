@@ -142,6 +142,18 @@ class ParagraphsCollectionListing extends ParagraphsBehaviorBase {
 
         $group->condition($entity_group);
         $view_builders[$entity_type_name] = $this->entityTypeManager->getViewBuilder($entity_type_name);
+
+        // Determine the cache tags for the types of items in this listing.
+        // Drupal 8.9 and up allow for more specific tags (per bundle). See
+        // https://www.drupal.org/node/3107058.
+        if (version_compare(\Drupal::VERSION, '8.9', '>=') && $entity_type->getKey('bundle')) {
+          foreach ($settings['bundles'] as $bundle) {
+            $cache_tags = array_merge($cache_tags, [$entity_type_name . '_list:' . $bundle]);
+          }
+        }
+        else {
+          $cache_tags = array_merge($cache_tags, [$entity_type_name . '_list']);
+        }
       }
 
       $query->condition($group);
@@ -155,7 +167,6 @@ class ParagraphsCollectionListing extends ParagraphsBehaviorBase {
       foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
         $entity_type = $collection_item->item->entity->getEntityTypeId();
         $items[] = $view_builders[$entity_type]->view($collection_item->item->entity, $paragraph->getBehaviorSetting($this->getPluginId(), ['entity_settings', $entity_type, 'view_mode']));
-        $cache_tags = array_merge($cache_tags, $collection_item->item->entity->getCacheTags());
       }
 
       $variables['content'][$collection_field_name] = [
