@@ -122,41 +122,44 @@ class ParagraphsCollectionListing extends ParagraphsBehaviorBase {
 
       $query = $collection_item_storage->getQuery();
       $query->condition('collection', $paragraph->$collection_field_name->entity->id());
-      $group = $query->orConditionGroup();
 
-      foreach ($paragraph->getBehaviorSetting($this->getPluginId(), 'entity_settings') as $entity_type_name => $settings) {
-        /** @var \Drupal\Core\Entity\ContentEntityType $entity_type */
-        $entity_type = $this->entityTypeManager->getDefinition($entity_type_name);
-        $entity_group = $query->andConditionGroup();
+      if ($entity_type_settings = $paragraph->getBehaviorSetting($this->getPluginId(), 'entity_settings')) {
+        $group = $query->orConditionGroup();
 
-        if ($entity_type->getKey('published')) {
-          $entity_group->condition('item.entity:' . $entity_type_name . '.' . $entity_type->getKey('published'), 1);
-        }
+        foreach ($paragraph->getBehaviorSetting($this->getPluginId(), 'entity_settings') as $entity_type_name => $settings) {
+          /** @var \Drupal\Core\Entity\ContentEntityType $entity_type */
+          $entity_type = $this->entityTypeManager->getDefinition($entity_type_name);
+          $entity_group = $query->andConditionGroup();
 
-        if ($entity_type->getKey('bundle')) {
-          $entity_group->condition('item.entity:' . $entity_type_name . '.' . $entity_type->getKey('bundle'), $settings['bundles'], 'IN');
-        }
-        else {
-          $entity_group->condition('item.target_type', $entity_type_name);
-        }
+          if ($entity_type->getKey('published')) {
+            $entity_group->condition('item.entity:' . $entity_type_name . '.' . $entity_type->getKey('published'), 1);
+          }
 
-        $group->condition($entity_group);
-        $view_builders[$entity_type_name] = $this->entityTypeManager->getViewBuilder($entity_type_name);
+          if ($entity_type->getKey('bundle')) {
+            $entity_group->condition('item.entity:' . $entity_type_name . '.' . $entity_type->getKey('bundle'), $settings['bundles'], 'IN');
+          }
+          else {
+            $entity_group->condition('item.target_type', $entity_type_name);
+          }
 
-        // Determine the cache tags for the types of items in this listing.
-        // Drupal 8.9 and up allow for more specific tags (per bundle). See
-        // https://www.drupal.org/node/3107058.
-        if (version_compare(\Drupal::VERSION, '8.9', '>=') && $entity_type->getKey('bundle')) {
-          foreach ($settings['bundles'] as $bundle) {
-            $cache_tags = array_merge($cache_tags, [$entity_type_name . '_list:' . $bundle]);
+          $group->condition($entity_group);
+          $view_builders[$entity_type_name] = $this->entityTypeManager->getViewBuilder($entity_type_name);
+
+          // Determine the cache tags for the types of items in this listing.
+          // Drupal 8.9 and up allow for more specific tags (per bundle). See
+          // https://www.drupal.org/node/3107058.
+          if (version_compare(\Drupal::VERSION, '8.9', '>=') && $entity_type->getKey('bundle')) {
+            foreach ($settings['bundles'] as $bundle) {
+              $cache_tags = array_merge($cache_tags, [$entity_type_name . '_list:' . $bundle]);
+            }
+          }
+          else {
+            $cache_tags = array_merge($cache_tags, [$entity_type_name . '_list']);
           }
         }
-        else {
-          $cache_tags = array_merge($cache_tags, [$entity_type_name . '_list']);
-        }
-      }
 
-      $query->condition($group);
+        $query->condition($group);
+      }
 
       if ($paragraph->getBehaviorSetting($this->getPluginId(), 'count') > 0) {
         $query->range(0, $paragraph->getBehaviorSetting($this->getPluginId(), 'count'));
@@ -216,15 +219,17 @@ class ParagraphsCollectionListing extends ParagraphsBehaviorBase {
       'value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'count') ?? 'All',
     ];
 
-    foreach ($paragraph->getBehaviorSetting($this->getPluginId(), 'entity_settings') as $entity_type => $settings) {
-      if (empty($settings['bundles'])) {
-        continue;
-      }
+    if ($entity_type_settings = $paragraph->getBehaviorSetting($this->getPluginId(), 'entity_settings')) {
+      foreach ($entity_type_settings as $entity_type => $settings) {
+        if (empty($settings['bundles'])) {
+          continue;
+        }
 
-      $summary[] = [
-        'label' => $entity_type,
-        'value' => implode(', ', $settings['bundles']),
-      ];
+        $summary[] = [
+          'label' => $entity_type,
+          'value' => implode(', ', $settings['bundles']),
+        ];
+      }
     }
 
     return $summary;
