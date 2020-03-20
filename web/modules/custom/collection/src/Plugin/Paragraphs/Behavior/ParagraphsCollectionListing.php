@@ -127,14 +127,20 @@ class ParagraphsCollectionListing extends ParagraphsBehaviorBase {
       foreach ($paragraph->getBehaviorSetting($this->getPluginId(), 'entity_settings') as $entity_type_name => $settings) {
         /** @var \Drupal\Core\Entity\ContentEntityType $entity_type */
         $entity_type = $this->entityTypeManager->getDefinition($entity_type_name);
+        $entity_group = $query->andConditionGroup();
+
+        if ($entity_type->getKey('published')) {
+          $entity_group->condition('item.entity:' . $entity_type_name . '.' . $entity_type->getKey('published'), 1);
+        }
 
         if ($entity_type->getKey('bundle')) {
-          $group->condition('item.entity:' . $entity_type_name . '.' . $entity_type->getKey('bundle'), $settings['bundles'], 'IN');
+          $entity_group->condition('item.entity:' . $entity_type_name . '.' . $entity_type->getKey('bundle'), $settings['bundles'], 'IN');
         }
         else {
-          $group->condition('item.target_type', $entity_type_name);
+          $entity_group->condition('item.target_type', $entity_type_name);
         }
 
+        $group->condition($entity_group);
         $view_builders[$entity_type_name] = $this->entityTypeManager->getViewBuilder($entity_type_name);
       }
 
