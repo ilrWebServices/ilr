@@ -143,7 +143,6 @@ class ParagraphsCollectionListing extends ParagraphsBehaviorBase {
           }
 
           $group->condition($entity_group);
-          $view_builders[$entity_type_name] = $this->entityTypeManager->getViewBuilder($entity_type_name);
 
           // Determine the cache tags for the types of items in this listing.
           // Drupal 8.9 and up allow for more specific tags (per bundle). See
@@ -169,6 +168,11 @@ class ParagraphsCollectionListing extends ParagraphsBehaviorBase {
 
       foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
         $entity_type = $collection_item->item->entity->getEntityTypeId();
+
+        if (empty($view_builders[$entity_type])) {
+          $view_builders[$entity_type] = $this->entityTypeManager->getViewBuilder($entity_type);
+        }
+
         $items[] = $view_builders[$entity_type]->view($collection_item->item->entity, $paragraph->getBehaviorSetting($this->getPluginId(), ['entity_settings', $entity_type, 'view_mode']));
       }
 
