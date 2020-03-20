@@ -1,0 +1,10 @@
+uuid: ba578680-08ed-4d02-91e4-4a3eb4e37b9e
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: collection.teaser
+label: Teaser
+targetEntityType: collection
+cache: true
