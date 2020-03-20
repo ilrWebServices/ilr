@@ -21,8 +21,8 @@ id: collection.blog.body
 field_name: body
 entity_type: collection
 bundle: blog
-label: Summary
-description: ''
+label: 'Intro Text'
+description: 'If there is intro text, it is added to the banner section of the page and can be used in social media posts. Summaries added here are also used in smaller components, such as cards. The summary will also be used when sharing this page via social media.'
 required: false
 translatable: false
 default_value: {  }
