@@ -1,0 +1,48 @@
+uuid: a7ffcd85-98f6-43fd-968e-5b89c16d0e8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.blog
+    - field.field.collection.blog.body
+    - field.field.collection.blog.field_components
+    - field.field.collection.blog.field_representative_image
+    - image.style.large_21_9_1200x514_
+  module:
+    - entity_reference_revisions
+    - media
+id: collection.blog.default
+targetEntityType: collection
+bundle: blog
+mode: default
+content:
+  field_components:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  field_representative_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: large_21_9_1200x514_
+      image_link: ''
+    third_party_settings: {  }
+    type: media_thumbnail
+    region: content
+  name:
+    label: hidden
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  body: true
+  search_api_excerpt: true
+  user_id: true
