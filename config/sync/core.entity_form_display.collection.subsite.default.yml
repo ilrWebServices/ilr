@@ -5,6 +5,7 @@ dependencies:
   config:
     - collection.collection_type.subsite
     - field.field.collection.subsite.field_components
+    - field.field.collection.subsite.field_representative_image
   module:
     - media_library
     - paragraphs
@@ -33,9 +34,16 @@ content:
         add_above: '0'
     third_party_settings: {  }
     region: content
-  logo:
+  field_representative_image:
     type: media_library_widget
     weight: 1
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
+  logo:
+    type: media_library_widget
+    weight: 2
     region: content
     settings:
       media_types: {  }

@@ -5,8 +5,11 @@ dependencies:
   config:
     - collection.collection_type.subsite
     - field.field.collection.subsite.field_components
+    - field.field.collection.subsite.field_representative_image
+    - image.style.large_21_9_1200x514_
   module:
     - entity_reference_revisions
+    - media
 id: collection.subsite.default
 targetEntityType: collection
 bundle: subsite
@@ -14,11 +17,20 @@ mode: default
 content:
   field_components:
     type: entity_reference_revisions_entity_view
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       view_mode: default
       link: ''
+    third_party_settings: {  }
+    region: content
+  field_representative_image:
+    type: media_thumbnail
+    weight: 1
+    label: hidden
+    settings:
+      image_style: large_21_9_1200x514_
+      image_link: ''
     third_party_settings: {  }
     region: content
   name:
