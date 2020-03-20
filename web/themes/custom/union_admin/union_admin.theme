@@ -14,8 +14,9 @@ function union_admin_preprocess_html(&$variables) {
   if ($suggestions = theme_get_suggestions($path_args, 'page', '-')) {
     foreach ($suggestions as $suggestion) {
       if ($suggestion === 'page--node-edit' || strpos($suggestion, 'page--node-add') !== FALSE) {
-        $type = $path_args[3];
-        $variables['attributes']['class'][] = 'page-node-type-' . $type;
+        if (isset($path_args[3])) {
+          $variables['attributes']['class'][] = 'page-node-type-' . $path_args[3];
+        }
       }
     }
   }
