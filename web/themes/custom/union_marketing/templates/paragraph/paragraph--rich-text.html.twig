@@ -1,7 +1,4 @@
 {% set attributes = attributes.addClass('cu-text') %}
-{% if paragraph.field_text_columns.value == '1' %}
-  {% set attributes = attributes.addClass('cu-text--2col') %}
-{% endif %}
 
 {# Since we have set the attributes, we can use the basic paragraph template #}
 {% include 'paragraph.html.twig' %}
