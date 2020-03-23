@@ -30,14 +30,21 @@ content:
   field_components:
     weight: 1
     settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
+      title: content
+      title_plural: content
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 2
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: _none
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: '0'
+        add_above: '0'
     third_party_settings: {  }
-    type: entity_reference_paragraphs
+    type: paragraphs
     region: content
   field_representative_image:
     weight: 2
