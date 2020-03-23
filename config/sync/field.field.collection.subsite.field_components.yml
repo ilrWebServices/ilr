@@ -6,6 +6,7 @@ dependencies:
     - collection.collection_type.subsite
     - field.storage.collection.field_components
     - paragraphs.paragraphs_type.collection_listing
+    - paragraphs.paragraphs_type.deck
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.testimonial
@@ -28,6 +29,7 @@ settings:
     negate: 0
     target_bundles:
       collection_listing: collection_listing
+      deck: deck
       image: image
       rich_text: rich_text
       testimonial: testimonial
@@ -36,6 +38,9 @@ settings:
       collection_listing:
         enabled: true
         weight: 10
+      deck:
+        enabled: true
+        weight: 11
       form:
         weight: 11
         enabled: false
