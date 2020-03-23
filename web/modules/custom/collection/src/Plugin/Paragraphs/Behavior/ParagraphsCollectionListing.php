@@ -173,7 +173,8 @@ class ParagraphsCollectionListing extends ParagraphsBehaviorBase {
           $view_builders[$entity_type] = $this->entityTypeManager->getViewBuilder($entity_type);
         }
 
-        $items[] = $view_builders[$entity_type]->view($collection_item->item->entity, $paragraph->getBehaviorSetting($this->getPluginId(), ['entity_settings', $entity_type, 'view_mode']));
+        $view_mode = $paragraph->getBehaviorSetting($this->getPluginId(), ['entity_settings', $entity_type, 'view_mode']) ?? 'teaser';
+        $items[] = $view_builders[$entity_type]->view($collection_item->item->entity, $view_mode);
       }
 
       $variables['content'][$collection_field_name] = [
