@@ -62,6 +62,9 @@ settings:
       testimonial:
         enabled: true
         weight: 17
+      referenced_entity:
+        weight: 18
+        enabled: false
       video:
         enabled: true
         weight: 18

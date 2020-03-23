@@ -1,0 +1,23 @@
+uuid: 05f0a6a4-c163-4687-862e-2da3b0fb6a4b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.referenced_entity.field_node
+    - paragraphs.paragraphs_type.referenced_entity
+id: paragraph.referenced_entity.default
+targetEntityType: paragraph
+bundle: referenced_entity
+mode: default
+content:
+  field_node:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  search_api_excerpt: true
