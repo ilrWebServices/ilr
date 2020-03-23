@@ -22,11 +22,12 @@ bundle: post
 mode: teaser
 content:
   body:
-    type: text_default
+    type: text_summary_or_trimmed
     weight: 2
     region: content
     label: hidden
-    settings: {  }
+    settings:
+      trim_length: 600
     third_party_settings: {  }
   field_published_date:
     type: datetime_default

@@ -1,0 +1,33 @@
+uuid: 0d808929-d070-47cd-ac2c-813670074f18
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.blog
+    - field.storage.collection.body
+  module:
+    - allowed_formats
+    - summary_word_limit
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_formatting: basic_formatting
+    basic_formatting_with_media: '0'
+    full_html: '0'
+    plain_text: '0'
+  summary_word_limit:
+    summary_word_limit_count: '50'
+id: collection.blog.body
+field_name: body
+entity_type: collection
+bundle: blog
+label: 'Intro Text'
+description: 'If there is intro text, it is added to the banner section of the page and can be used in social media posts. Summaries added here are also used in smaller components, such as cards. The summary will also be used when sharing this page via social media.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: true
+field_type: text_with_summary

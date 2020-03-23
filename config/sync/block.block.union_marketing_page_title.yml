@@ -6,7 +6,7 @@ dependencies:
     - ctools
   theme:
     - union_marketing
-id: pagetitle
+id: union_marketing_page_title
 theme: union_marketing
 region: content
 weight: 0
@@ -22,6 +22,7 @@ visibility:
     id: 'entity_bundle:node'
     bundles:
       instructor: instructor
+      post: post
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'

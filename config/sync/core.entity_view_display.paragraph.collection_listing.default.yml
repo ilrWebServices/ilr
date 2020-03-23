@@ -1,0 +1,21 @@
+uuid: 61a74911-3f78-4e92-b814-302a1f126249
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.collection_listing.field_collection
+    - paragraphs.paragraphs_type.collection_listing
+id: paragraph.collection_listing.default
+targetEntityType: paragraph
+bundle: collection_listing
+mode: default
+content:
+  field_collection:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: entity_reference_entity_id
+    region: content
+hidden:
+  search_api_excerpt: true

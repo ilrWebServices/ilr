@@ -73,6 +73,22 @@ function collection_subsites_form_collection_type_form_alter(&$form, FormStateIn
 }
 
 /**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function collection_subsites_form_collection_form_alter(&$form, FormStateInterface $form_state) {
+  $form['branding'] = [
+    '#type' => 'details',
+    '#title' => t('Branding'),
+    '#group' => 'advanced',
+    '#weight' => 60,
+    '#optional' => TRUE,
+    '#open' => FALSE,
+  ];
+
+  $form['logo']['#group'] = 'branding';
+}
+
+/**
  * Entity builder for the collection type configuration entity.
  */
 function collection_subsites_form_collection_form_builder($entity_type, CollectionType $collection_type, &$form, FormStateInterface $form_state) {

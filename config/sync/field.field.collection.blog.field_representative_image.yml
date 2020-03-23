@@ -1,0 +1,28 @@
+uuid: bb44a9e1-a766-44c3-8f15-e1c278523a11
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.blog
+    - field.storage.collection.field_representative_image
+    - media.type.image
+id: collection.blog.field_representative_image
+field_name: field_representative_image
+entity_type: collection
+bundle: blog
+label: 'Representative Image'
+description: 'This image may be used: As the banner background; when sharing this content on social media; or when representing it a smaller component, such as a teaser.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

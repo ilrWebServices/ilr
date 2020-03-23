@@ -129,6 +129,7 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
     $fields['item']
       ->setSetting('entity_type_ids', $entity_type_ids_setting + [
         'media' => 'media',
+        'persona' => 'persona',
         'taxonomy_term' => 'taxonomy_term',
       ])
       ->setSetting('media', [
@@ -147,6 +148,16 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
             'certificate' => 'certificate',
             'course' => 'course',
             'page' => 'page',
+          ]
+        ]
+      ])
+      ->setSetting('persona', [
+        'handler' => 'default:persona',
+        'handler_settings' => [
+          'target_bundles' => [
+            'author' => 'author',
+            'faculty' => 'faculty',
+            'staff' => 'staff',
           ]
         ]
       ])
@@ -434,4 +445,29 @@ function ilr_form_collection_new_node_form_alter(&$form, FormStateInterface $for
       'post' => 'Post',
     ];
   }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function ilr_form_collection_form_alter(&$form, FormStateInterface $form_state) {
+  if (isset($form['body']) || isset($form['field_representative_image'])) {
+    $form['ilr_meta'] = [
+      '#type' => 'details',
+      '#title' => t('Meta'),
+      '#group' => 'advanced',
+      '#weight' => 0,
+      '#optional' => TRUE,
+      '#open' => TRUE,
+    ];
+
+    if (isset($form['field_representative_image'])) {
+      $form['field_representative_image']['#group'] = 'ilr_meta';
+    }
+
+    if (isset($form['body'])) {
+      $form['body']['#group'] = 'ilr_meta';
+    }
+  }
+
 }

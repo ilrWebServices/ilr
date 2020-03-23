@@ -1,0 +1,20 @@
+uuid: 5a2e554d-b448-40ee-8e2c-5db580fea7dc
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - paragraphs
+id: paragraph.field_collection
+field_name: field_collection
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: collection
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

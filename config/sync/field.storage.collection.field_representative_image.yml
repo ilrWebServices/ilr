@@ -1,0 +1,20 @@
+uuid: 9a089d5e-8700-4dab-878a-39d2afa67528
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - media
+id: collection.field_representative_image
+field_name: field_representative_image
+entity_type: collection
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
