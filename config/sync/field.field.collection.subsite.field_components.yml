@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.collection_listing
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.rich_text
+    - paragraphs.paragraphs_type.simple_collection_listing
     - paragraphs.paragraphs_type.testimonial
     - paragraphs.paragraphs_type.video
   module:
@@ -31,6 +32,7 @@ settings:
       image: image
       rich_text: rich_text
       testimonial: testimonial
+      simple_collection_listing: simple_collection_listing
       video: video
     target_bundles_drag_drop:
       collection_listing:
@@ -57,6 +59,9 @@ settings:
       testimonial:
         enabled: true
         weight: 17
+      simple_collection_listing:
+        enabled: true
+        weight: 18
       video:
         enabled: true
         weight: 18

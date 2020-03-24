@@ -246,6 +246,50 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
 }
 
 /**
+ * Implements template_preprocess_paragraph().
+ *
+ * Render the collection reference field on the simple_collection_listing
+ * paragraph as a list of post nodes in that collection.
+ *
+ * Note that this _could_ be a field formatter, but this is mainly a prototype
+ * (hello 2024!).
+ */
+function ilr_preprocess_paragraph__simple_collection_listing(&$variables) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $view_builder = $entity_type_manager->getViewBuilder('node');
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+  $collection = $variables['paragraph']->field_collection->entity;
+  $items = [];
+  $cache_tags = $collection->getCacheTags();
+  $cache_tags[] = 'node_list';
+  // $cache_tags[] = 'node_list:post'; // 8.9 and above
+
+  $query = $collection_item_storage->getQuery();
+  $query->condition('collection', $collection->id());
+  $query->condition('item.entity:node.status', 1);
+  $query->condition('item.entity:node.type', 'post');
+  $query->sort('item.entity:node.field_published_date', 'DESC');
+  $result = $query->execute();
+
+  foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
+    $items[] = $view_builder->view($collection_item->item->entity, 'teaser');
+  }
+
+  // Replace the default field rendering with our listing.
+  $variables['content']['field_collection'] = [
+    '#theme' => 'item_list__collection_listing',
+    '#items' => $items,
+    '#attributes' => ['class' => 'collection-listing'],
+    '#collection_listing' => TRUE,
+    '#empty' => t('No items.'),
+    '#context' => ['paragraph' => $variables['paragraph']],
+    '#cache' => [
+      'tags' => $cache_tags
+    ],
+  ];
+}
+
+/**
  * Implements template_preprocess_node().
  *
  */
