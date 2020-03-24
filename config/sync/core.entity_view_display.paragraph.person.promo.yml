@@ -1,0 +1,30 @@
+uuid: 50711c03-3a76-44eb-b8a9-71b9d9aec1c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.promo
+    - field.field.paragraph.person.field_person
+    - paragraphs.paragraphs_type.person
+  module:
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: paragraph.person.promo
+targetEntityType: paragraph
+bundle: person
+mode: promo
+content:
+  field_person:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: promo
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  search_api_excerpt: true

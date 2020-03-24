@@ -1,0 +1,10 @@
+uuid: f1483bcf-34c6-4075-8960-cd985e2e38cf
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.promo
+label: Promo
+targetEntityType: paragraph
+cache: true

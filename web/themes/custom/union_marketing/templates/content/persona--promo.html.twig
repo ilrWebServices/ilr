@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Theme override to display a persona promo.
+
+ * Available variables:
+ * - persona: The persona entity with limited access to object properties and methods.
+ * - view_mode: View mode; for example, "teaser" or "default".
+ * - label: The display name of the persona.
+ * - content: A list of content items. Use 'content' to print all content, or
+ *          content.field_name to access public fields
+ * - attributes: HTML attributes for the container element.
+ * - url: Direct URL of the current persona.
+
+ * @see template_preprocess_persona()
+ */
+#}
+{% set rendered_content %}
+  {% include '@union/_icon.twig' with {
+    title: 'Persona',
+    label: 'Spotlight',
+    icon: 'student',
+    attributes: { class: 'cu-icon--color-light' }
+  } only %}
+
+  <h3 class="cu-heading cu-text--xxxl">{{ content.display_name }}</h3>
+  <div class="cu-heading">{{ content.field_title.0 }}</div>
+  {{ title_suffix }}
+  {{ content.field_bio }}
+{% endset %}
+
+{% include '@union/_card.twig' with {
+  card_content: rendered_content,
+  card_media: persona.field_photo.isEmpty() ? '' : content.field_photo,
+  card_link_url: url,
+  attributes: attributes.addClass([
+    'persona--' ~ persona.bundle|clean_class,
+    'persona--view-mode-' ~ view_mode|clean_class,
+    'cu-card--' ~ view_mode|clean_class,
+    not persona.field_photo.isEmpty() ? 'cu-card--' ~ view_mode|clean_class ~ '-with-media',
+    'cu-card--pinned'
+  ])
+} only %}
