@@ -1,0 +1,12 @@
+uuid: 52fe0bca-8852-4313-b118-918bf7b0bb24
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: simple_collection_listing
+label: 'Post listing'
+icon_uuid: null
+description: ''
+behavior_plugins:
+  collection_listing: {  }
