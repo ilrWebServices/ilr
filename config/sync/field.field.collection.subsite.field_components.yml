@@ -29,48 +29,48 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      collection_listing: collection_listing
+      rich_text: rich_text
       deck: deck
       image: image
-      rich_text: rich_text
-      testimonial: testimonial
-      simple_collection_listing: simple_collection_listing
       video: video
+      simple_collection_listing: simple_collection_listing
+      testimonial: testimonial
+      collection_listing: collection_listing
     target_bundles_drag_drop:
-      collection_listing:
-        enabled: true
-        weight: 10
-      deck:
-        enabled: true
-        weight: 11
-      form:
-        weight: 11
-        enabled: false
-      image:
-        enabled: true
-        weight: 12
-      person:
-        weight: 13
-        enabled: false
-      promo:
-        weight: 14
-        enabled: false
       rich_text:
         enabled: true
-        weight: 15
-      section:
-        weight: 16
-        enabled: false
-      testimonial:
+        weight: 0
+      deck:
         enabled: true
-        weight: 17
-      simple_collection_listing:
+        weight: 1
+      image:
         enabled: true
-        weight: 18
-      referenced_entity:
-        weight: 19
-        enabled: false
+        weight: 2
       video:
         enabled: true
-        weight: 18
+        weight: 3
+      simple_collection_listing:
+        enabled: true
+        weight: 4
+      testimonial:
+        enabled: true
+        weight: 5
+      collection_listing:
+        enabled: true
+        weight: 6
+      form:
+        weight: 0
+        enabled: false
+      person:
+        weight: 0
+        enabled: false
+      promo:
+        weight: 0
+        enabled: false
+      section:
+        weight: 0
+        enabled: false
+      referenced_entity:
+        weight: 0
+        enabled: false
 field_type: entity_reference_revisions
