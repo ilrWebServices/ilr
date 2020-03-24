@@ -1,0 +1,10 @@
+uuid: dcadf841-f0da-4f34-94fa-ae00a17044ab
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.promo
+label: Promo
+targetEntityType: persona
+cache: true

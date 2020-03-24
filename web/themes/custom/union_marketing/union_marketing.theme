@@ -115,20 +115,54 @@ function union_marketing_preprocess_persona(&$variables) {
 }
 
 /**
- * Implements template_preprocess_paragraph().
+ * Implements hook_preprocess_paragraph().
  *
  * Check if the paragraph is being rendered within an entity refererence with
- * layout field. If not, tell the template to add a section.
+ * layout field. If not, tell the template to add a cu-section.
  */
 function union_marketing_preprocess_paragraph(&$variables) {
   $paragraph = $variables['paragraph'];
+  $parent = $paragraph->getParentEntity();
+  $render_section = TRUE;
+
+  // Don't wrap nested paragraphs with a cu-section.
+  if ($parent instanceof \Drupal\paragraphs\ParagraphInterface) {
+    $render_section = FALSE;
+  }
 
   if ($parent_field_name = $paragraph->parent_field_name) {
-    $parent = $paragraph->getParentEntity();
     $parent_field = $parent->get($parent_field_name->value);
 
-    // We don't want to wrap `EntityReferenceLayoutRevisionsFieldItemList`,
-    // since it uses layouts that already render `cu-section`.
-    $variables['render_section'] = !($parent_field instanceof EntityReferenceLayoutRevisionsFieldItemList);
+    // Don't wrap `EntityReferenceLayoutRevisionsFieldItemList`, since it uses
+    // layouts that already render `cu-section`.
+    if ($parent_field instanceof EntityReferenceLayoutRevisionsFieldItemList) {
+      $render_section = FALSE;
+    }
   }
+
+  $variables['render_section'] = $render_section;
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function union_marketing_preprocess_paragraph__deck(&$variables) {
+  $grid_variant = ($variables['paragraph']->hasField('field_grid_variant')) ? $variables['paragraph']->field_grid_variant->value : 'two-up';
+
+  $variables['attributes']['class'][] = 'cu-grid--' . $grid_variant;
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function union_marketing_preprocess_field__paragraph__field_heading__promo(&$variables) {
+  $variables['attributes']['class'][] = 'cu-heading';
+  $variables['attributes']['class'][] = 'cu-text--xxxl';
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function union_marketing_preprocess_field__paragraph__field_subheading__promo(&$variables) {
+  $variables['attributes']['class'][] = 'cu-heading';
 }

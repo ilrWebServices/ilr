@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display a promo.
+ * Theme override to display a deck.
  *
  * Available variables:
  * - paragraph: Full paragraph entity.
@@ -38,26 +38,15 @@
  * @ingroup themeable
  */
 #}
-
-{{ attach_library('union_organizer/button') }}
-
-{% set rendered_media %}
-  {% if paragraph.field_media.value is not empty %}
-    {{ content.field_media }}
-    {% set attributes = attributes.addClass('cu-card--promo-with-media') %}
-  {% endif %}
-
-{% endset %}
-
-{% set attributes = attributes.addClass('cu-card--promo') %}
-
 {% set rendered_content %}
-  {{ content|without('field_media') }}
+  {% include '@union/_grid.twig' with {
+    grid_content: content,
+    attributes: attributes.addClass('cu-grid--2col cu-grid--gapless')
+  } only %}
 {% endset %}
 
-{% include '@union/_card.twig' with {
-  card_content: rendered_content,
-  card_media: rendered_media,
-  attributes: attributes
+{% include '@union/_cu-section.twig' with {
+  content: rendered_content,
+  attributes: { class: 'cu-section--wide' }
 } only %}
 

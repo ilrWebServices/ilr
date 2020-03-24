@@ -1,0 +1,43 @@
+uuid: a04572ec-1a3f-4548-bde3-cc6e3af7c991
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.deck.field_cards
+    - field.field.paragraph.deck.field_grid_variant
+    - paragraphs.paragraphs_type.deck
+  module:
+    - paragraphs
+id: paragraph.deck.default
+targetEntityType: paragraph
+bundle: deck
+mode: default
+content:
+  field_cards:
+    type: paragraphs
+    weight: 0
+    settings:
+      title: card
+      title_plural: cards
+      edit_mode: closed_expand_nested
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: promo
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: '0'
+        add_above: '0'
+    third_party_settings: {  }
+    region: content
+  field_grid_variant:
+    weight: -1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden:
+  created: true
+  status: true

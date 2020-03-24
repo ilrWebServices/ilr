@@ -1,0 +1,65 @@
+uuid: 8c72dcc6-4f76-41fc-a9e6-60ca1486c0a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cards
+    - paragraphs.paragraphs_type.deck
+    - paragraphs.paragraphs_type.person
+    - paragraphs.paragraphs_type.promo
+    - paragraphs.paragraphs_type.referenced_entity
+  module:
+    - entity_reference_revisions
+id: paragraph.deck.field_cards
+field_name: field_cards
+entity_type: paragraph
+bundle: deck
+label: Cards
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      person: person
+      promo: promo
+      referenced_entity: referenced_entity
+    target_bundles_drag_drop:
+      deck:
+        weight: 11
+        enabled: false
+      collection_listing:
+        weight: 12
+        enabled: false
+      form:
+        weight: 13
+        enabled: false
+      image:
+        weight: 14
+        enabled: false
+      person:
+        enabled: true
+        weight: 15
+      promo:
+        enabled: true
+        weight: 16
+      rich_text:
+        weight: 17
+        enabled: false
+      referenced_entity:
+        enabled: true
+        weight: 18
+      section:
+        weight: 18
+        enabled: false
+      testimonial:
+        weight: 19
+        enabled: false
+      video:
+        weight: 20
+        enabled: false
+field_type: entity_reference_revisions
