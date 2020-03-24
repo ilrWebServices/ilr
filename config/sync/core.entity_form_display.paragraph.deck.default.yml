@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.deck.field_cards
+    - field.field.paragraph.deck.field_grid_variant
     - paragraphs.paragraphs_type.deck
   module:
     - paragraphs
@@ -30,6 +31,12 @@ content:
         duplicate: '0'
         add_above: '0'
     third_party_settings: {  }
+    region: content
+  field_grid_variant:
+    weight: -1
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
 hidden:
   created: true

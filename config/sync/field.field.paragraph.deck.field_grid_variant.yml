@@ -1,0 +1,23 @@
+uuid: 760cc394-04ee-4459-aba2-ea6408339ea4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_grid_variant
+    - paragraphs.paragraphs_type.deck
+  module:
+    - options
+id: paragraph.deck.field_grid_variant
+field_name: field_grid_variant
+entity_type: paragraph
+bundle: deck
+label: Layout
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: two-up
+default_value_callback: ''
+settings: {  }
+field_type: list_string

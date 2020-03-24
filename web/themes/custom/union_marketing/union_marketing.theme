@@ -144,6 +144,15 @@ function union_marketing_preprocess_paragraph(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_paragraph().
+ */
+function union_marketing_preprocess_paragraph__deck(&$variables) {
+  $grid_variant = ($variables['paragraph']->hasField('field_grid_variant')) ? $variables['paragraph']->field_grid_variant->value : 'two-up';
+
+  $variables['attributes']['class'][] = 'cu-grid--' . $grid_variant;
+}
+
+/**
  * Implements hook_preprocess_field().
  */
 function union_marketing_preprocess_field__paragraph__field_heading__promo(&$variables) {
