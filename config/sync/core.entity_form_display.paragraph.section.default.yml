@@ -3,14 +3,36 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.section.field_components
     - field.field.paragraph.section.field_heading
     - field.field.paragraph.section.field_subheading
     - paragraphs.paragraphs_type.section
+  module:
+    - paragraphs
 id: paragraph.section.default
 targetEntityType: paragraph
 bundle: section
 mode: default
 content:
+  field_components:
+    type: paragraphs
+    weight: 0
+    settings:
+      title: component
+      title_plural: components
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 2
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: '0'
+        add_above: '0'
+    third_party_settings: {  }
+    region: content
   field_heading:
     weight: -2
     settings:
