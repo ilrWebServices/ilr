@@ -5,11 +5,7 @@ dependencies:
   config:
     - collection.collection_type.blog
     - field.storage.collection.field_components
-    - paragraphs.paragraphs_type.collection_listing
-    - paragraphs.paragraphs_type.image
-    - paragraphs.paragraphs_type.rich_text
-    - paragraphs.paragraphs_type.testimonial
-    - paragraphs.paragraphs_type.video
+    - paragraphs.paragraphs_type.section
   module:
     - entity_reference_revisions
 id: collection.blog.field_components
@@ -27,37 +23,42 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      collection_listing: collection_listing
-      image: image
-      rich_text: rich_text
-      testimonial: testimonial
-      video: video
+      section: section
     target_bundles_drag_drop:
       collection_listing:
-        enabled: true
         weight: 10
+        enabled: false
       form:
         weight: 11
         enabled: false
       image:
-        enabled: true
         weight: 12
+        enabled: false
       person:
         weight: 13
+        enabled: false
+      deck:
+        weight: 14
         enabled: false
       promo:
         weight: 14
         enabled: false
       rich_text:
-        enabled: true
         weight: 15
-      section:
-        weight: 16
         enabled: false
+      section:
+        enabled: true
+        weight: 16
       testimonial:
-        enabled: true
         weight: 17
+        enabled: false
       video:
-        enabled: true
         weight: 18
+        enabled: false
+      referenced_entity:
+        weight: 19
+        enabled: false
+      simple_collection_listing:
+        weight: 22
+        enabled: false
 field_type: entity_reference_revisions

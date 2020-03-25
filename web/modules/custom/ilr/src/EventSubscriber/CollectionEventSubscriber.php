@@ -60,18 +60,23 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
   public function collectionCreate(Event $event) {
     $collection = $event->collection;
     if ($collection->bundle() == 'blog') {
-      // Create the collection listing paragraph and add it to the
-      // collection entity components field
-      $paragraph = Paragraph::create([
+      // Create a section paragraph with a collection listing nested inside it
+      // and add it to the collection entity components field
+      $section = Paragraph::create([
+        'type' => 'section',
+      ]);
+
+      $listing = Paragraph::create([
         'type' => 'collection_listing',
         'field_collection' => [
           'target_id' => $collection->id(),
         ],
       ]);
 
-      $paragraph->save();
-
-      $collection->field_components->appendItem($paragraph);
+      $listing->save();
+      $section->field_components->appendItem($listing);
+      $section->save();
+      $collection->field_components->appendItem($section);
 
       if ($collection->save()) {
         $collection_item_add_url = Url::fromRoute('collection_item.new.node', ['collection' => $collection->id()]);
