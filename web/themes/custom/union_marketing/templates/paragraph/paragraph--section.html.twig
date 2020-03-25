@@ -38,6 +38,7 @@
  * @ingroup themeable
  */
 #}
+
 {% if content.field_heading['#items'] is not empty %}
   {% set heading = content.field_heading['#items'].getValue().0.value %}
   {% set subheading = (content.field_subheading['#items'] is not empty)
@@ -68,6 +69,7 @@
 
   {# Make sure there is content in the section #}
   {% if content._entity_reference_layout %}
+    {% set render_section = true %}
     {# Egad! See https://www.drupal.org/project/components/issues/3081314 for a
     possible future improvement to this syntax. #}
     {% set content = content|merge({
@@ -80,4 +82,10 @@
   {% endif %}
 {% endif %}
 
-{{ content|without('field_heading','field_subheading') }}
+{% set rendered_content %}
+  {{ content|without('field_heading','field_subheading') }}
+{% endset %}
+
+{% include '@union/_cu-section.twig' with {
+  content: rendered_content
+} only %}
