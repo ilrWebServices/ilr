@@ -85,7 +85,8 @@
     "files": ["load.environment.php"]
   },
   "scripts": {
-    "sync-prod": "drush sql:drop && drush sql:sync @ilr-web.master @self && ./post_sync_fix_triggers.php"
+    "sync-prod": "drush sql:drop && drush sql:sync @ilr-web.master @self && ./post_sync_fix_triggers.php",
+    "sync-prod-update": "drush updatedb --no-post-updates && drush config:import && drush updatedb"
   },
   "extra": {
     "composer-exit-on-patch-failure": true,
