@@ -5,13 +5,7 @@ dependencies:
   config:
     - collection.collection_type.subsite
     - field.storage.collection.field_components
-    - paragraphs.paragraphs_type.collection_listing
-    - paragraphs.paragraphs_type.deck
-    - paragraphs.paragraphs_type.image
-    - paragraphs.paragraphs_type.rich_text
-    - paragraphs.paragraphs_type.simple_collection_listing
-    - paragraphs.paragraphs_type.testimonial
-    - paragraphs.paragraphs_type.video
+    - paragraphs.paragraphs_type.section
   module:
     - entity_reference_revisions
 id: collection.subsite.field_components
@@ -29,35 +23,8 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      rich_text: rich_text
-      deck: deck
-      image: image
-      video: video
-      simple_collection_listing: simple_collection_listing
-      testimonial: testimonial
-      collection_listing: collection_listing
+      section: section
     target_bundles_drag_drop:
-      rich_text:
-        enabled: true
-        weight: 0
-      deck:
-        enabled: true
-        weight: 1
-      image:
-        enabled: true
-        weight: 2
-      video:
-        enabled: true
-        weight: 3
-      simple_collection_listing:
-        enabled: true
-        weight: 4
-      testimonial:
-        enabled: true
-        weight: 5
-      collection_listing:
-        enabled: true
-        weight: 6
       form:
         weight: 0
         enabled: false
@@ -67,10 +34,31 @@ settings:
       promo:
         weight: 0
         enabled: false
-      section:
-        weight: 0
-        enabled: false
       referenced_entity:
         weight: 0
+        enabled: false
+      rich_text:
+        weight: 0
+        enabled: false
+      section:
+        enabled: true
+        weight: 0
+      deck:
+        weight: 1
+        enabled: false
+      image:
+        weight: 2
+        enabled: false
+      video:
+        weight: 3
+        enabled: false
+      simple_collection_listing:
+        weight: 4
+        enabled: false
+      testimonial:
+        weight: 5
+        enabled: false
+      collection_listing:
+        weight: 6
         enabled: false
 field_type: entity_reference_revisions
