@@ -6,11 +6,13 @@ dependencies:
     - field.field.node.page.body
     - field.field.node.page.field_representative_image
     - field.field.node.page.field_sections
+    - field.field.node.page.field_sections_legacy
     - field.field.node.page.layout_builder__layout
     - node.type.page
   module:
     - entity_reference_layout
     - media_library
+    - paragraphs
     - path
     - text
 id: node.page.default
@@ -52,6 +54,25 @@ content:
     type: media_library_widget
     region: content
   field_sections:
+    type: paragraphs
+    weight: 9
+    settings:
+      title: section
+      title_plural: sections
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: section
+      features:
+        collapse_edit_all: collapse_edit_all
+        add_above: add_above
+        duplicate: '0'
+    third_party_settings: {  }
+    region: content
+  field_sections_legacy:
     weight: 9
     settings:
       preview_view_mode: preview
@@ -59,6 +80,12 @@ content:
     third_party_settings: {  }
     type: entity_reference_layout_widget
     region: content
+  layout_builder__layout:
+    type: null
+    weight: 51
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   path:
     type: path
     weight: 5
@@ -109,5 +136,4 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  layout_builder__layout: true
+hidden: {  }

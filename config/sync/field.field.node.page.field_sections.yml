@@ -1,19 +1,13 @@
-uuid: 49791507-6e55-4b08-8b36-057daeb3f3eb
+uuid: 176cd845-4010-447b-86e1-7508dbca5212
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_sections
     - node.type.page
-    - paragraphs.paragraphs_type.form
-    - paragraphs.paragraphs_type.person
-    - paragraphs.paragraphs_type.promo
-    - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.section
-    - paragraphs.paragraphs_type.testimonial
-    - paragraphs.paragraphs_type.video
   module:
-    - entity_reference_layout
+    - entity_reference_revisions
 id: node.page.field_sections
 field_name: field_sections
 entity_type: node
@@ -27,41 +21,44 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: '0'
+    negate: 0
     target_bundles:
       section: section
-      promo: promo
-      rich_text: rich_text
-      form: form
-      testimonial: testimonial
-      person: person
-      video: video
     target_bundles_drag_drop:
-      section:
-        enabled: '1'
-        weight: '4'
-      promo:
-        enabled: '1'
-        weight: '5'
-      rich_text:
-        enabled: '1'
-        weight: '5'
+      collection_listing:
+        weight: 13
+        enabled: false
+      deck:
+        weight: 14
+        enabled: false
       form:
-        enabled: '1'
-        weight: '7'
-      testimonial:
-        enabled: '1'
-        weight: '8'
+        weight: 15
+        enabled: false
+      image:
+        weight: 16
+        enabled: false
       person:
-        enabled: '1'
-        weight: '9'
+        weight: 17
+        enabled: false
+      promo:
+        weight: 18
+        enabled: false
+      referenced_entity:
+        weight: 19
+        enabled: false
+      rich_text:
+        weight: 20
+        enabled: false
+      section:
+        enabled: true
+        weight: 21
+      simple_collection_listing:
+        weight: 22
+        enabled: false
+      testimonial:
+        weight: 23
+        enabled: false
       video:
-        enabled: '1'
-        weight: '10'
-    layout_bundles: section
-    allowed_layouts:
-      ILR:
-        layout_cu_onecol: 'Union Sublayout: 1 Column'
-        layout_cu_twocol: 'Union Sublayout: 2 Columns'
-        layout_cu_autogrid: 'Union Sublayout: Grid'
-field_type: entity_reference_layout_revisioned
+        weight: 24
+        enabled: false
+field_type: entity_reference_revisions

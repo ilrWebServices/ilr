@@ -90,3 +90,16 @@ function ilr_post_update_rich_text_headings(&$sandbox) {
     $rich_text_paragraph->save();
   }
 }
+
+/**
+ * Copy node field_sections tmp data to new legacy field.
+ */
+function ilr_post_update_node_field_sections_legacy(&$sandbox) {
+  $connection = \Drupal::service('database');
+
+  foreach (['node__field_sections_tmp', 'node_revision__field_sections_tmp'] as $table) {
+    $query = $connection->select($table)->fields($table);
+    $connection->insert(str_replace('tmp', 'legacy', $table))->from($query)->execute();
+    $query = $connection->query("DROP TABLE {$table}");
+  }
+}
