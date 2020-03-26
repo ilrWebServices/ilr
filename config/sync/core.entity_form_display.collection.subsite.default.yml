@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - collection.collection_type.subsite
-    - field.field.collection.subsite.field_components
     - field.field.collection.subsite.field_representative_image
+    - field.field.collection.subsite.field_sections
   module:
     - media_library
     - paragraphs
@@ -15,7 +15,14 @@ targetEntityType: collection
 bundle: subsite
 mode: default
 content:
-  field_components:
+  field_representative_image:
+    type: media_library_widget
+    weight: 1
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
+  field_sections:
     type: paragraphs
     weight: 0
     settings:
@@ -32,13 +39,6 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: '0'
         add_above: '0'
-    third_party_settings: {  }
-    region: content
-  field_representative_image:
-    type: media_library_widget
-    weight: 1
-    settings:
-      media_types: {  }
     third_party_settings: {  }
     region: content
   logo:

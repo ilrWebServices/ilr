@@ -1,18 +1,18 @@
-uuid: d07d0f56-535e-49b7-b6e5-0e172d165dfc
+uuid: 09a7bc3c-e410-4675-8a00-e2b26d7c4cc5
 langcode: en
 status: true
 dependencies:
   config:
     - collection.collection_type.blog
-    - field.storage.collection.field_components
+    - field.storage.collection.field_sections
     - paragraphs.paragraphs_type.section
   module:
     - entity_reference_revisions
-id: collection.blog.field_components
-field_name: field_components
+id: collection.blog.field_sections
+field_name: field_sections
 entity_type: collection
 bundle: blog
-label: 'Page content'
+label: Sections
 description: ''
 required: false
 translatable: true
@@ -26,39 +26,39 @@ settings:
       section: section
     target_bundles_drag_drop:
       collection_listing:
-        weight: 10
-        enabled: false
-      form:
-        weight: 11
-        enabled: false
-      image:
-        weight: 12
-        enabled: false
-      person:
         weight: 13
         enabled: false
       deck:
         weight: 14
         enabled: false
-      promo:
-        weight: 14
-        enabled: false
-      rich_text:
+      form:
         weight: 15
         enabled: false
-      section:
-        enabled: true
+      image:
         weight: 16
-      testimonial:
+        enabled: false
+      person:
         weight: 17
         enabled: false
-      video:
+      promo:
         weight: 18
         enabled: false
       referenced_entity:
         weight: 19
         enabled: false
+      rich_text:
+        weight: 20
+        enabled: false
+      section:
+        enabled: true
+        weight: 21
       simple_collection_listing:
         weight: 22
+        enabled: false
+      testimonial:
+        weight: 23
+        enabled: false
+      video:
+        weight: 24
         enabled: false
 field_type: entity_reference_revisions

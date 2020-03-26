@@ -76,7 +76,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
       $listing->save();
       $section->field_components->appendItem($listing);
       $section->save();
-      $collection->field_components->appendItem($section);
+      $collection->field_sections->appendItem($section);
 
       if ($collection->save()) {
         $collection_item_add_url = Url::fromRoute('collection_item.new.node', ['collection' => $collection->id()]);
