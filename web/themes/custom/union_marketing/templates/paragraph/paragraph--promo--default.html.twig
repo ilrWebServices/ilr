@@ -40,22 +40,25 @@
 #}
 {{ attach_library('union_organizer/button') }}
 
-{% set rendered_media %}
-  {% if paragraph.field_media.value is not empty %}
-    {{ content.field_media }}
-    {% set attributes = attributes.addClass('cu-card--promo-with-media') %}
-  {% endif %}
-{% endset %}
+{% if paragraph.field_content.isEmpty() %}
+  {% set rendered_media %}
+    {% if paragraph.field_media.value is not empty %}
+      {{ content.field_media }}
+      {% set attributes = attributes.addClass('cu-card--promo-with-media') %}
+    {% endif %}
+  {% endset %}
 
-{% set attributes = attributes.addClass('cu-card--promo') %}
+  {% set attributes = attributes.addClass('cu-card--promo') %}
 
-{% set rendered_content %}
-  {{ content|without('field_media') }}
-{% endset %}
+  {% set rendered_content %}
+    {{ content|without('field_media') }}
+  {% endset %}
 
-{% include '@union/_card.twig' with {
-  card_content: rendered_content,
-  card_media: rendered_media,
-  attributes: attributes
-} only %}
-
+  {% include '@union/_card.twig' with {
+    card_content: rendered_content,
+    card_media: rendered_media,
+    attributes: attributes
+  } only %}
+{% else %}
+  {{ content.field_content }}
+{% endif %}
