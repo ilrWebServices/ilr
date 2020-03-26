@@ -5,9 +5,7 @@ dependencies:
   config:
     - field.storage.paragraph.field_cards
     - paragraphs.paragraphs_type.deck
-    - paragraphs.paragraphs_type.person
     - paragraphs.paragraphs_type.promo
-    - paragraphs.paragraphs_type.referenced_entity
   module:
     - entity_reference_revisions
 id: paragraph.deck.field_cards
@@ -25,9 +23,7 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      person: person
       promo: promo
-      referenced_entity: referenced_entity
     target_bundles_drag_drop:
       deck:
         weight: 11
@@ -42,17 +38,14 @@ settings:
         weight: 14
         enabled: false
       person:
-        enabled: true
         weight: 15
+        enabled: false
       promo:
         enabled: true
         weight: 16
       rich_text:
         weight: 17
         enabled: false
-      referenced_entity:
-        enabled: true
-        weight: 18
       section:
         weight: 18
         enabled: false
@@ -61,5 +54,8 @@ settings:
         enabled: false
       video:
         weight: 20
+        enabled: false
+      simple_collection_listing:
+        weight: 22
         enabled: false
 field_type: entity_reference_revisions

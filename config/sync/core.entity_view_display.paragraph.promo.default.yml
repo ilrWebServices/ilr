@@ -4,12 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.promo.field_body
+    - field.field.paragraph.promo.field_content
     - field.field.paragraph.promo.field_heading
     - field.field.paragraph.promo.field_link
     - field.field.paragraph.promo.field_media
     - field.field.paragraph.promo.field_subheading
     - paragraphs.paragraphs_type.promo
   module:
+    - dynamic_entity_reference
     - link
     - text
 id: paragraph.promo.default
@@ -23,6 +25,62 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
+  field_content:
+    weight: 7
+    label: hidden
+    settings:
+      node:
+        view_mode: promo
+      persona:
+        view_mode: promo
+      collection:
+        view_mode: default
+        link: false
+      collection_item:
+        view_mode: default
+        link: false
+      block_content:
+        view_mode: default
+        link: false
+      menu_link_content:
+        view_mode: default
+        link: false
+      file:
+        view_mode: default
+        link: false
+      media:
+        view_mode: default
+        link: false
+      paragraph:
+        view_mode: default
+        link: false
+      person:
+        view_mode: default
+        link: false
+      redirect:
+        view_mode: default
+        link: false
+      salesforce_mapped_object:
+        view_mode: default
+        link: false
+      search_api_task:
+        view_mode: default
+        link: false
+      taxonomy_term:
+        view_mode: default
+        link: false
+      path_alias:
+        view_mode: default
+        link: false
+      user:
+        view_mode: default
+        link: false
+      webform_submission:
+        view_mode: default
+        link: false
+    third_party_settings: {  }
+    type: dynamic_entity_reference_entity_view
     region: content
   field_heading:
     weight: 0

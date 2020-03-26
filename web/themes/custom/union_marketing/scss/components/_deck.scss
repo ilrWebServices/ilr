@@ -1,4 +1,4 @@
-.cu-grid > .paragraph--type--referenced-entity,
-.cu-grid > .paragraph--type--referenced-entity > .field {
+.cu-grid > .field-type--dynamic-entity-reference,
+.cu-grid > .field-type--dynamic-entity-reference > .field {
   display: contents;
 }

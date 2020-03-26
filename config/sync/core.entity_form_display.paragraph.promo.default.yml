@@ -4,12 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.promo.field_body
+    - field.field.paragraph.promo.field_content
     - field.field.paragraph.promo.field_heading
     - field.field.paragraph.promo.field_link
     - field.field.paragraph.promo.field_media
     - field.field.paragraph.promo.field_subheading
     - paragraphs.paragraphs_type.promo
   module:
+    - dynamic_entity_reference
     - link
     - media_library
     - text
@@ -25,6 +27,16 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_content:
+    weight: -1
+    settings:
+      match_operator: CONTAINS
+      size: 40
+      placeholder: ''
+      match_limit: 10
+    third_party_settings: {  }
+    type: dynamic_entity_reference_default
     region: content
   field_heading:
     weight: 0
