@@ -1,14 +1,13 @@
-uuid: de88022b-60f5-43c7-8ed4-983bf9160cd3
+uuid: 44f2834b-8088-4545-9453-bd180e600c9e
 langcode: en
 status: true
 dependencies:
   module:
     - entity_reference_revisions
-    - node
     - paragraphs
-id: node.field_sections
-field_name: field_sections
-entity_type: node
+id: paragraph.field_components
+field_name: field_components
+entity_type: paragraph
 type: entity_reference_revisions
 settings:
   target_type: paragraph

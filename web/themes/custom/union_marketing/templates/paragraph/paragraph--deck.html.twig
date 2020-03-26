@@ -38,15 +38,8 @@
  * @ingroup themeable
  */
 #}
-{% set rendered_content %}
-  {% include '@union/_grid.twig' with {
-    grid_content: content,
-    attributes: attributes.addClass('cu-grid--2col cu-grid--gapless')
-  } only %}
-{% endset %}
-
-{% include '@union/_cu-section.twig' with {
-  content: rendered_content,
-  attributes: { class: 'cu-section--wide' }
+{% include '@union/_grid.twig' with {
+  grid_content: content,
+  attributes: attributes.addClass('cu-grid--2col cu-grid--gapless')
 } only %}
 

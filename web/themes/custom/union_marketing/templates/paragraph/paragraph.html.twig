@@ -47,19 +47,9 @@
     not paragraph.isPublished() ? 'paragraph--unpublished'
   ]
 %}
-{% set rendered_content %}
-  <div{{attributes.addClass(classes)}}>
-    {% block content %}
-      {{ content }}
-    {% endblock %}
-  </div>
-{% endset %}
 
-{# @see union_marketing_preprocess_paragraph #}
-{% if render_section %}
-  {% include '@union/_cu-section.twig' with {
-    content: rendered_content
-  } only %}
-{% else %}
-  {{ rendered_content }}
-{% endif %}
+<div{{attributes.addClass(classes)}}>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>

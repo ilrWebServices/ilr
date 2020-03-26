@@ -26,3 +26,14 @@ function ilr_update_8002() {
   $field_storage_definition->setRevisionable(FALSE);
   $entity_definition_update_manager->updateFieldStorageDefinition($field_storage_definition);
 }
+
+/**
+ * Copy node field_sections data to tmp tables.
+ */
+function ilr_update_8003(&$sandbox) {
+  $connection = \Drupal::service('database');
+
+  foreach (['node__field_sections', 'node_revision__field_sections'] as $table) {
+    $query = $connection->query("CREATE TABLE {$table}_tmp AS SELECT * FROM {$table}");
+  }
+}

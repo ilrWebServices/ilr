@@ -5,8 +5,8 @@ dependencies:
   config:
     - collection.collection_type.blog
     - field.field.collection.blog.body
-    - field.field.collection.blog.field_components
     - field.field.collection.blog.field_representative_image
+    - field.field.collection.blog.field_sections
     - image.style.large_21_9_1200x514_
   module:
     - entity_reference_revisions
@@ -16,15 +16,6 @@ targetEntityType: collection
 bundle: blog
 mode: default
 content:
-  field_components:
-    weight: 1
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
-    region: content
   field_representative_image:
     weight: 0
     label: hidden
@@ -33,6 +24,15 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: media_thumbnail
+    region: content
+  field_sections:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
     region: content
   name:
     label: hidden

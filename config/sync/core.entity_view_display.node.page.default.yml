@@ -6,15 +6,17 @@ dependencies:
     - field.field.node.page.body
     - field.field.node.page.field_representative_image
     - field.field.node.page.field_sections
+    - field.field.node.page.field_sections_legacy
     - field.field.node.page.layout_builder__layout
     - node.type.page
   module:
     - entity_reference_layout
+    - entity_reference_revisions
     - ilr
     - layout_builder
+    - layout_discovery
     - system
     - text
-    - union_organizer
     - user
 third_party_settings:
   layout_builder:
@@ -23,7 +25,8 @@ third_party_settings:
     sections:
       -
         layout_id: banner
-        layout_settings: {  }
+        layout_settings:
+          label: ''
         components:
           cba962d8-8d80-46a0-8bd2-f24d8bfd5536:
             uuid: cba962d8-8d80-46a0-8bd2-f24d8bfd5536
@@ -91,17 +94,35 @@ third_party_settings:
             weight: 2
         third_party_settings: {  }
       -
-        layout_id: layout_cu_section
+        layout_id: layout_onecol
         layout_settings:
-          full_width: 1
-          extra_classes: ''
+          label: 'Page components'
         components:
-          963a14fe-dc41-4c60-b299-bac9aeacc5d5:
-            uuid: 963a14fe-dc41-4c60-b299-bac9aeacc5d5
-            region: main
+          7ab5d735-5fc6-4a5c-b4a3-a52e775d5f16:
+            uuid: 7ab5d735-5fc6-4a5c-b4a3-a52e775d5f16
+            region: content
             configuration:
               id: 'field_block:node:page:field_sections'
               label: Sections
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_revisions_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 0
+          933a3a4f-3d9e-458a-afb6-24498fbf04fb:
+            uuid: 933a3a4f-3d9e-458a-afb6-24498fbf04fb
+            region: content
+            configuration:
+              id: 'field_block:node:page:field_sections_legacy'
+              label: 'Sections (Legacy)'
               provider: layout_builder
               label_display: '0'
               formatter:
@@ -112,6 +133,7 @@ third_party_settings:
                 third_party_settings: {  }
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
             additional: {  }
             weight: 0
         third_party_settings: {  }
@@ -136,7 +158,16 @@ content:
     type: entity_reference_label
     region: content
   field_sections:
+    type: entity_reference_revisions_entity_view
     weight: 104
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: banner
+  field_sections_legacy:
+    weight: 105
     label: above
     settings:
       view_mode: default

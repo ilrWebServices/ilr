@@ -5,8 +5,8 @@ dependencies:
   config:
     - collection.collection_type.blog
     - field.field.collection.blog.body
-    - field.field.collection.blog.field_components
     - field.field.collection.blog.field_representative_image
+    - field.field.collection.blog.field_sections
   module:
     - media_library
     - paragraphs
@@ -27,7 +27,14 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
-  field_components:
+  field_representative_image:
+    weight: 2
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    type: media_library_widget
+    region: content
+  field_sections:
     weight: 1
     settings:
       title: content
@@ -45,13 +52,6 @@ content:
         add_above: '0'
     third_party_settings: {  }
     type: paragraphs
-    region: content
-  field_representative_image:
-    weight: 2
-    settings:
-      media_types: {  }
-    third_party_settings: {  }
-    type: media_library_widget
     region: content
   name:
     type: string_textfield

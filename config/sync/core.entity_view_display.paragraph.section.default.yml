@@ -3,14 +3,26 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.section.field_components
     - field.field.paragraph.section.field_heading
     - field.field.paragraph.section.field_subheading
     - paragraphs.paragraphs_type.section
+  module:
+    - entity_reference_revisions
 id: paragraph.section.default
 targetEntityType: paragraph
 bundle: section
 mode: default
 content:
+  field_components:
+    type: entity_reference_revisions_entity_view
+    weight: 3
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
   field_heading:
     weight: 1
     label: hidden

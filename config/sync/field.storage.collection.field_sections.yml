@@ -1,4 +1,4 @@
-uuid: 6f36ecef-6e43-41eb-96df-a488962a36fd
+uuid: f6310dd3-9d0e-4faf-b362-7a1eccb1a036
 langcode: en
 status: true
 dependencies:
@@ -6,8 +6,8 @@ dependencies:
     - collection
     - entity_reference_revisions
     - paragraphs
-id: collection.field_components
-field_name: field_components
+id: collection.field_sections
+field_name: field_sections
 entity_type: collection
 type: entity_reference_revisions
 settings:

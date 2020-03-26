@@ -1,21 +1,21 @@
-uuid: 176cd845-4010-447b-86e1-7508dbca5212
+uuid: 09a7bc3c-e410-4675-8a00-e2b26d7c4cc5
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_sections
-    - node.type.page
+    - collection.collection_type.blog
+    - field.storage.collection.field_sections
     - paragraphs.paragraphs_type.section
   module:
     - entity_reference_revisions
-id: node.page.field_sections
+id: collection.blog.field_sections
 field_name: field_sections
-entity_type: node
-bundle: page
+entity_type: collection
+bundle: blog
 label: Sections
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
