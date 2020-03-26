@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.deck
     - paragraphs.paragraphs_type.form
     - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.simple_collection_listing
@@ -38,6 +39,7 @@ settings:
       testimonial: testimonial
       simple_collection_listing: simple_collection_listing
       collection_listing: collection_listing
+      promo: promo
     target_bundles_drag_drop:
       rich_text:
         enabled: true
@@ -67,11 +69,8 @@ settings:
         weight: -17
         enabled: false
       promo:
+        enabled: true
         weight: -16
-        enabled: false
-      referenced_entity:
-        weight: -15
-        enabled: false
       section:
         weight: -14
         enabled: false
