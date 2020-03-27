@@ -13,6 +13,7 @@ use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Field\Entity\BaseFieldOverride;
+use Drupal\Core\Field\WidgetBase;
 
 /**
  * Implements hook_theme().
@@ -454,6 +455,42 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
       $form['uid']['widget'][0]['target_id']['#title'] = t('Created by');
       $form['created']['widget'][0]['value']['#title'] = t('Created on');
     }
+  }
+}
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ */
+function ilr_field_widget_paragraphs_form_alter(&$element, FormStateInterface &$form_state, $context) {
+  $paragraphs_entity = NULL;
+  $delta = $element['#delta'];
+  $field_name = $context['items']->getName();
+  $widget_state = WidgetBase::getWidgetState($element['#field_parents'], $field_name, $form_state);
+
+  // Load the paragraph entity if possible.
+  /** @see \Drupal\paragraphs\Plugin\Field\FieldWidget\ParagraphsWidget::formElement() */
+  if (isset($widget_state['paragraphs'][$delta]['entity'])) {
+    $paragraphs_entity = $widget_state['paragraphs'][$delta]['entity'];
+  }
+  elseif (isset($context['items'][$delta]->entity)) {
+    $paragraphs_entity = $context['items'][$delta]->entity;
+  }
+
+  // Section paragraph types should show the heading as the label if the heading
+  // has a value.
+  if ($paragraphs_entity && $paragraphs_entity->bundle() === 'section' && $heading = $paragraphs_entity->field_heading->value) {
+    $element['top']['type']['label']['#markup'] = '<span class="paragraph-type-label">' . $heading . '</span>';
+  }
+
+  // If any paragraph type has heading and subheading fields, hide the
+  // subheading until the heading has a value.
+  if (isset($element['subform']['field_heading']) && isset($element['subform']['field_subheading'])) {
+    $selector = sprintf(':input[name="%s[%d][subform][field_heading][0][value]"]', $field_name, $delta);
+    $element['subform']['field_subheading']['#states'] = [
+      'invisible' => [
+        $selector => ['value' => ''],
+      ],
+    ];
   }
 }
 
