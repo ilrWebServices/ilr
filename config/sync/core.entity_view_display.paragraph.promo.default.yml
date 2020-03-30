@@ -9,6 +9,7 @@ dependencies:
     - field.field.paragraph.promo.field_link
     - field.field.paragraph.promo.field_media
     - field.field.paragraph.promo.field_subheading
+    - field.field.paragraph.promo.field_suppress_media
     - paragraphs.paragraphs_type.promo
   module:
     - dynamic_entity_reference
@@ -120,4 +121,5 @@ content:
     type: string
     region: content
 hidden:
+  field_suppress_media: true
   search_api_excerpt: true

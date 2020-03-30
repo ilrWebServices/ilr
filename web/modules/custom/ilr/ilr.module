@@ -291,6 +291,10 @@ function ilr_entity_prepare_view($entity_type_id, array $entities, array $displa
         $paragraph->include_button = FALSE;
       }
     }
+
+    if ($paragraph->bundle() === 'promo' && !$paragraph->field_media->isEmpty() && !$paragraph->field_suppress_media->isEmpty() && $paragraph->field_suppress_media->value) {
+      $paragraph->field_media->removeItem(0);
+    }
   }
 }
 
