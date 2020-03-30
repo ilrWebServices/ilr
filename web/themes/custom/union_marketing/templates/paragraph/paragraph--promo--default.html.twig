@@ -40,25 +40,26 @@
 #}
 {{ attach_library('union_organizer/button') }}
 
-{% if paragraph.field_content.isEmpty() %}
-  {% set rendered_media %}
-    {% if paragraph.field_media.value is not empty %}
-      {{ content.field_media }}
-      {% set attributes = attributes.addClass('cu-card--promo-with-media') %}
-    {% endif %}
-  {% endset %}
+{% set rendered_media %}
+  {% if paragraph.field_media.value is not empty %}
+    {{ content.field_media }}
+    {% set attributes = attributes.addClass('cu-card--promo-with-media') %}
+  {% endif %}
+{% endset %}
 
-  {% set attributes = attributes.addClass('cu-card--promo') %}
+{% set attributes = attributes.addClass('cu-card--promo') %}
 
-  {% set rendered_content %}
-    {{ content|without('field_media') }}
-  {% endset %}
+{% set rendered_content %}
+  {{ content|without('field_media', 'field_link', 'field_content') }}
+  {% if not paragraph.field_link.isEmpty() and paragraph.include_button %}
+  <div class="cu-button cu-button--overlay">{{ content.field_link[0]['#title'] }}</div>
+  {% endif %}
+{% endset %}
 
-  {% include '@union/_card.twig' with {
-    card_content: rendered_content,
-    card_media: rendered_media,
-    attributes: attributes
-  } only %}
-{% else %}
-  {{ content.field_content }}
-{% endif %}
+{% include '@union/_card.twig' with {
+  card_content: rendered_content,
+  card_media: rendered_media,
+  card_link_url: content.field_link[0]['#url'],
+  card_link_alt: content.field_link[0]['#title'],
+  attributes: attributes
+} only %}
