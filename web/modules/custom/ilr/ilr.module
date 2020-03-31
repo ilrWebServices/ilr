@@ -250,57 +250,75 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
  * Implements hook_entity_prepare_view().
  */
 function ilr_entity_prepare_view($entity_type_id, array $entities, array $displays, $view_mode) {
-  if (empty($entities) || $entity_type_id !== 'paragraph') {
+  if (empty($entities)) {
     return;
   }
 
-  foreach ($entities as $paragraph) {
-    $paragraph->include_button = TRUE; // You can do this!?
-    $paragraph->cu_icon = [];
+  // Use a default value for course `field_message` if empty. This means that
+  // courses can either use the default message as defined in the custom block
+  // _or_ override that value. They cannot disable the message completely.
+  if ($entity_type_id === 'node') {
+    foreach ($entities as $node) {
+      if ($node->bundle() === 'course' && $node->field_message->isEmpty()) {
+        $default_message_block = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', '280c1d2d-0456-45eb-84dc-d114c5e7b2fa');
 
-    if ($paragraph->bundle() === 'promo' && !$paragraph->field_content->isEmpty()) {
-      $content = $paragraph->field_content->entity;
-
-      if ($content->getEntityTypeId() === 'persona') {
-        $heading = $content->getDisplayName();
-        $body = $content->field_bio->summary;
-        $media = $content->hasField('field_photo') ? $content->field_photo : NULL;
-        $paragraph->cu_icon = [
-          'title' => 'Persona',
-          'label' => 'Spotlight',
-          'icon' => 'student',
-          'attributes' => ['class' => 'cu-icon--color-light'],
-        ];
-      }
-      else {
-        $heading = $content->label();
-        $body = $content->body->summary;
-        $media = $content->hasField('field_representative_image') ? $content->field_representative_image : NULL;
-      }
-
-      if ($paragraph->field_heading->isEmpty()) {
-        $paragraph->field_heading->value = $heading;
-      }
-
-      if ($paragraph->field_body->isEmpty()) {
-        $paragraph->field_body->value = $body;
-      }
-
-      if ($paragraph->field_media->isEmpty() && !$media->isEmpty()) {
-        $paragraph->field_media->target_id = $media->target_id;
-      }
-
-      if ($paragraph->field_link->isEmpty()) {
-        $paragraph->field_link = [
-          'uri' => 'entity:' . $content->toUrl()->getInternalPath(),
-          'title' => t('Read more about') . ' ' . $paragraph->field_heading->value,
-        ];
-        $paragraph->include_button = FALSE;
+        if ($default_message_block) {
+          $node->field_message->value = $default_message_block->body->value;
+          $node->field_message->format = $default_message_block->body->format;
+        }
       }
     }
+  }
 
-    if ($paragraph->bundle() === 'promo' && !$paragraph->field_media->isEmpty() && !$paragraph->field_suppress_media->isEmpty() && $paragraph->field_suppress_media->value) {
-      $paragraph->field_media->removeItem(0);
+  if ($entity_type_id === 'paragraph') {
+    foreach ($entities as $paragraph) {
+      $paragraph->include_button = TRUE; // You can do this!?
+      $paragraph->cu_icon = [];
+
+      if ($paragraph->bundle() === 'promo' && !$paragraph->field_content->isEmpty()) {
+        $content = $paragraph->field_content->entity;
+
+        if ($content->getEntityTypeId() === 'persona') {
+          $heading = $content->getDisplayName();
+          $body = $content->field_bio->summary;
+          $media = $content->hasField('field_photo') ? $content->field_photo : NULL;
+          $paragraph->cu_icon = [
+            'title' => 'Persona',
+            'label' => 'Spotlight',
+            'icon' => 'student',
+            'attributes' => ['class' => 'cu-icon--color-light'],
+          ];
+        }
+        else {
+          $heading = $content->label();
+          $body = $content->body->summary;
+          $media = $content->hasField('field_representative_image') ? $content->field_representative_image : NULL;
+        }
+
+        if ($paragraph->field_heading->isEmpty()) {
+          $paragraph->field_heading->value = $heading;
+        }
+
+        if ($paragraph->field_body->isEmpty()) {
+          $paragraph->field_body->value = $body;
+        }
+
+        if ($paragraph->field_media->isEmpty() && !$media->isEmpty()) {
+          $paragraph->field_media->target_id = $media->target_id;
+        }
+
+        if ($paragraph->field_link->isEmpty()) {
+          $paragraph->field_link = [
+            'uri' => 'entity:' . $content->toUrl()->getInternalPath(),
+            'title' => t('Read more about') . ' ' . $paragraph->field_heading->value,
+          ];
+          $paragraph->include_button = FALSE;
+        }
+      }
+
+      if ($paragraph->bundle() === 'promo' && !$paragraph->field_media->isEmpty() && !$paragraph->field_suppress_media->isEmpty() && $paragraph->field_suppress_media->value) {
+        $paragraph->field_media->removeItem(0);
+      }
     }
   }
 }

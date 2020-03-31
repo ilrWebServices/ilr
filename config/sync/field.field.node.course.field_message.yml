@@ -1,0 +1,21 @@
+uuid: b0a46a23-6ef6-46b8-8d9d-ea265b9a5e3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_message
+    - node.type.course
+  module:
+    - text
+id: node.course.field_message
+field_name: field_message
+entity_type: node
+bundle: course
+label: Message
+description: 'Leave blank to use the <a href="/block/2">default message</a>.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

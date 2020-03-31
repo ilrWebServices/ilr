@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.course.field_delivery_method
     - field.field.node.course.field_media_secondary
     - field.field.node.course.field_media_section
+    - field.field.node.course.field_message
     - field.field.node.course.field_representative_image
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
@@ -77,6 +78,14 @@ content:
       form_display_mode: default
       default_paragraph_type: ''
     third_party_settings: {  }
+    region: content
+  field_message:
+    weight: 121
+    settings:
+      rows: 4
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
     region: content
   field_representative_image:
     weight: 128
