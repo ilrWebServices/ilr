@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee83d22d764c82a72825c1bc3b724f43",
+    "content-hash": "0c2ad2c0f8cc324987308317c39f3029",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4066,6 +4066,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Entities using layoutbuilder cannot get fields previewed": "https://gist.githubusercontent.com/a-fro/1c9b5fcf778edcc49eb39dab292cbc0c/raw/c2352a640270412d2d73232a1e5d3ca69a606726/paragraphs-preview-no-output-layout-builder.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
