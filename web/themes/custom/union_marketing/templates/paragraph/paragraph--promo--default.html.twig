@@ -41,6 +41,9 @@
 {{ attach_library('union_organizer/button') }}
 
 {% set rendered_content %}
+  {% if paragraph.cu_icon %}
+    {% include '@union/_icon.twig' with paragraph.cu_icon only %}
+  {% endif %}
   {{ content|without('field_media', 'field_link', 'field_content') }}
   {% if not paragraph.field_link.isEmpty() and paragraph.include_button %}
   <div class="cu-button cu-button--overlay">{{ content.field_link[0]['#title'] }}</div>
@@ -54,6 +57,7 @@
   card_link_alt: content.field_link[0]['#title'],
   attributes: attributes.addClass([
     'cu-card--promo',
-    not paragraph.field_media.isEmpty() ? 'cu-card--promo-with-media'
+    not paragraph.field_media.isEmpty() ? 'cu-card--promo-with-media',
+    paragraph.cu_icon ? 'cu-card--pinned'
   ])
 } only %}
