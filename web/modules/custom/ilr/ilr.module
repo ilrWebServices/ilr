@@ -235,6 +235,31 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
 }
 
 /**
+ * Implements hook_entity_prepare_view().
+ */
+function ilr_entity_prepare_view($entity_type_id, array $entities, array $displays, $view_mode) {
+  if (empty($entities)) {
+    return;
+  }
+
+  // Use a default value for course `field_message` if empty. This means that
+  // courses can either use the default message as defined in the custom block
+  // _or_ override that value. They cannot disable the message completely.
+  if ($entity_type_id === 'node') {
+    foreach ($entities as $node) {
+      if ($node->bundle() === 'course' && $node->field_message->isEmpty()) {
+        $default_message_block = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', '280c1d2d-0456-45eb-84dc-d114c5e7b2fa');
+
+        if ($default_message_block) {
+          $node->field_message->value = $default_message_block->body->value;
+          $node->field_message->format = $default_message_block->body->format;
+        }
+      }
+    }
+  }
+}
+
+/**
  * Implements template_preprocess_node().
  *
  */

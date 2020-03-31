@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.course.field_delivery_method
     - field.field.node.course.field_media_secondary
     - field.field.node.course.field_media_section
+    - field.field.node.course.field_message
     - field.field.node.course.field_representative_image
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
@@ -186,18 +187,22 @@ third_party_settings:
           collapse_margins: 0
           extra_classes: ''
         components:
-          727ee7e0-5581-40db-bad5-6ff7c03011de:
-            uuid: 727ee7e0-5581-40db-bad5-6ff7c03011de
+          8aa64cc4-2d2f-4af4-b0d1-528a08fed59a:
+            uuid: 8aa64cc4-2d2f-4af4-b0d1-528a08fed59a
             region: main
             configuration:
-              id: 'block_content:280c1d2d-0456-45eb-84dc-d114c5e7b2fa'
-              label: 'Course Message'
-              provider: block_content
+              id: 'field_block:node:course:field_message'
+              label: Message
+              provider: layout_builder
               label_display: '0'
-              status: true
-              info: ''
-              view_mode: full
-              context_mapping: {  }
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
             additional: {  }
             weight: 0
         third_party_settings: {  }
@@ -415,6 +420,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: main
+  field_message:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
     region: main
   field_representative_image:
     weight: 7
