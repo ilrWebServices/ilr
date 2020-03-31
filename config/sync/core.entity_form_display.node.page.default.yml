@@ -12,7 +12,7 @@ dependencies:
   module:
     - entity_reference_layout
     - media_library
-    - paragraphs
+    - paragraphs_previewer
     - path
     - text
 id: node.page.default
@@ -54,7 +54,7 @@ content:
     type: media_library_widget
     region: content
   field_sections:
-    type: paragraphs
+    type: paragraphs_previewer
     weight: 9
     settings:
       title: section

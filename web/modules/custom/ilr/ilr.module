@@ -554,6 +554,13 @@ function ilr_field_widget_paragraphs_form_alter(&$element, FormStateInterface &$
 }
 
 /**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ */
+function ilr_field_widget_paragraphs_previewer_form_alter(&$element, FormStateInterface &$form_state, $context) {
+  ilr_field_widget_paragraphs_form_alter($element, $form_state, $context);
+}
+
+/**
  * Implements hook_user_format_name_alter().
  *
  * Display the common name, if available, as the username.

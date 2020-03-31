@@ -8,7 +8,7 @@ dependencies:
     - field.field.collection.subsite.field_sections
   module:
     - media_library
-    - paragraphs
+    - paragraphs_previewer
     - path
 id: collection.subsite.default
 targetEntityType: collection
@@ -23,7 +23,7 @@ content:
     third_party_settings: {  }
     region: content
   field_sections:
-    type: paragraphs
+    type: paragraphs_previewer
     weight: 0
     settings:
       title: content
