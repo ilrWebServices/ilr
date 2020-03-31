@@ -9,6 +9,7 @@ dependencies:
     - field.field.paragraph.promo.field_link
     - field.field.paragraph.promo.field_media
     - field.field.paragraph.promo.field_subheading
+    - field.field.paragraph.promo.field_suppress_media
     - paragraphs.paragraphs_type.promo
   module:
     - dynamic_entity_reference
@@ -68,6 +69,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_suppress_media:
+    weight: 5
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
 hidden:
   created: true

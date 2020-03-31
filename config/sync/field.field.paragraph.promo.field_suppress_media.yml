@@ -1,0 +1,23 @@
+uuid: 077162e7-61c0-4f27-a6e1-806c7574dc88
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_suppress_media
+    - paragraphs.paragraphs_type.promo
+id: paragraph.promo.field_suppress_media
+field_name: field_suppress_media
+entity_type: paragraph
+bundle: promo
+label: 'Suppress Media'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
