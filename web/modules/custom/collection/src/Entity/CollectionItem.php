@@ -118,7 +118,9 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
    */
   public static function postDelete(EntityStorageInterface $storage, array $entities) {
     foreach ($entities as $entity) {
-      Cache::invalidateTags($entity->collection->entity->getCacheTagsToInvalidate());
+      if ($entity->collection->entity) {
+        Cache::invalidateTags($entity->collection->entity->getCacheTagsToInvalidate());
+      }
     }
   }
 
