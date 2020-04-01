@@ -275,6 +275,7 @@ function ilr_entity_prepare_view($entity_type_id, array $entities, array $displa
       $paragraph->include_button = TRUE; // You can do this!?
       $paragraph->cu_icon = [];
 
+      // Use data values from existing content (if specified) in promos.
       if ($paragraph->bundle() === 'promo' && !$paragraph->field_content->isEmpty()) {
         $content = $paragraph->field_content->entity;
 
