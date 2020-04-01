@@ -6,3 +6,9 @@
 .page-node-type-post .field--name-body .filter-wrapper {
   display: none;
 }
+
+/* This is a fix for paragraph previewer widget Edit All button location. */
+.js .field--widget-paragraphs-previewer th .paragraphs-actions {
+  float: right;
+  margin-right: -11px;
+}
