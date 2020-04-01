@@ -569,6 +569,31 @@ function ilr_field_widget_paragraphs_form_alter(&$element, FormStateInterface &$
       ],
     ];
   }
+
+  // If it's a promo, combine relevant fields in a details box for existing
+  // content.
+  if ($paragraphs_entity && $paragraphs_entity->bundle() === 'promo') {
+    if (isset($element['subform']['field_content'])) {
+      $group_selector = implode('][', array_merge($element['subform']['#parents'], ['ilr_content_wrapper']));
+
+      $element['subform']['ilr_content_wrapper'] = [
+        '#type' => 'details',
+        '#title' => $element['subform']['field_content']['widget'][0]['#title'],
+        '#weight' => $element['subform']['field_content']['#weight'],
+        '#open' => !$paragraphs_entity->field_content->isEmpty(),
+      ];
+
+      $element['subform']['field_content']['widget'][0]['#type'] = 'container';
+      $element['subform']['field_content']['#group'] = $group_selector;
+      $element['subform']['field_suppress_media']['#group'] = $group_selector;
+    }
+
+    // Collapse the button (link) field if there is no value.
+    if (isset($element['subform']['field_link'])) {
+      $element['subform']['field_link']['widget'][0]['#type'] = 'details';
+      $element['subform']['field_link']['widget'][0]['#open'] = !$paragraphs_entity->field_link->isEmpty();
+    }
+  }
 }
 
 /**
