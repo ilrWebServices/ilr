@@ -1,0 +1,29 @@
+uuid: 266666e6-bb44-4636-920d-788028e4c0e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_categories
+    - paragraphs.paragraphs_type.simple_collection_listing
+    - taxonomy.vocabulary.post_categories
+id: paragraph.simple_collection_listing.field_categories
+field_name: field_categories
+entity_type: paragraph
+bundle: simple_collection_listing
+label: Categories
+description: 'Choose one or more categories to filter the listing. Posts with <em>all</em> of the categories will be returned.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      post_categories: post_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

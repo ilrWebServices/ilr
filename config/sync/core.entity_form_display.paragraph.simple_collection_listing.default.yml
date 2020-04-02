@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.simple_collection_listing.field_categories
     - field.field.paragraph.simple_collection_listing.field_collection
     - paragraphs.paragraphs_type.simple_collection_listing
 id: paragraph.simple_collection_listing.default
@@ -10,6 +11,16 @@ targetEntityType: paragraph
 bundle: simple_collection_listing
 mode: default
 content:
+  field_categories:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+    region: content
   field_collection:
     weight: 0
     settings: {  }

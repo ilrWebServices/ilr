@@ -347,6 +347,13 @@ function ilr_preprocess_paragraph__simple_collection_listing(&$variables) {
   $query->condition('collection', $collection->id());
   $query->condition('item.entity:node.status', 1);
   $query->condition('item.entity:node.type', 'post');
+
+  foreach ($variables['paragraph']->field_categories as $value) {
+    $group = $query->andConditionGroup();
+    $group->condition('item.entity:node.field_categories', $value->target_id);
+    $query->condition($group);
+  }
+
   $query->sort('item.entity:node.field_published_date', 'DESC');
   $result = $query->execute();
 
