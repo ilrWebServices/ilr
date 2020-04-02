@@ -103,3 +103,27 @@ function ilr_post_update_node_field_sections_legacy(&$sandbox) {
     $query = $connection->query("DROP TABLE {$table}");
   }
 }
+
+/**
+ * Add some initial post category terms.
+ */
+function ilr_post_update_add_post_category_terms(&$sandbox) {
+  $term_entity_manager = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term');
+
+  $terms = [
+    'Workers',
+    'Vulnerable Workers',
+    'Employment Policy',
+    'Professional Education',
+    'Executive Education',
+    'COVID',
+    'Webinar',
+  ];
+
+  foreach ($terms as $term_name) {
+    $term_entity_manager->create([
+      'vid' => 'post_categories',
+      'name' => $term_name,
+    ])->save();
+  }
+}
