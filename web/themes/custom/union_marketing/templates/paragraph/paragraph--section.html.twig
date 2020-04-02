@@ -86,7 +86,12 @@
   {{ content|without('field_heading','field_subheading') }}
 {% endset %}
 
-{% include '@union/_cu-section.twig' with {
-  content: rendered_content,
-  attributes: attributes,
-} only %}
+{% if paragraph.parent_field_name.value == 'field_sections_legacy' %}
+  {{ rendered_content }}
+{% else %}
+  {% include '@union/_cu-section.twig' with {
+    content: rendered_content,
+    attributes: attributes,
+  } only %}
+{% endif %}
+
