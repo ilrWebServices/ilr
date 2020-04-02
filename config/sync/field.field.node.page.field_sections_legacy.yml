@@ -73,7 +73,8 @@ settings:
       simple_collection_listing:
         weight: '-14'
         enabled: 0
-    layout_bundles: section
+    layout_bundles:
+      - section
     allowed_layouts:
       ILR:
         layout_cu_onecol: 'Union Sublayout: 1 Column'
