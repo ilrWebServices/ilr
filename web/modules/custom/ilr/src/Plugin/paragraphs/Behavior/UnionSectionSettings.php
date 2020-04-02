@@ -15,7 +15,6 @@ use Drupal\paragraphs\ParagraphsBehaviorBase;
  * @ParagraphsBehavior(
  *   id = "union_section_settings",
  *   label = @Translation("Union section settings"),
- *   description = @Translation("Configure settings for union sections."),
  *   weight = 1
  * )
  */
@@ -25,12 +24,11 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
-    $form['full_width'] = [
+    $form['wide'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Full width'),
-      '#description' => $this->t('Full width sections reduce the right and left margins for this section. This is typically used to for decks, images, or videos as a way of creating better visual flow down the page.'),
+      '#title' => $this->t('Wide'),
       '#min' => 1,
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'full_width'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'wide'),
     ];
 
     return $form;
@@ -41,7 +39,7 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
    */
   public function preprocess(&$variables) {
     // Check the behavior settings and set the class modifier if full width.
-    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'full_width')) {
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'wide')) {
       $variables['attributes']['class'] = ['cu-section--wide'];
     }
   }
@@ -56,11 +54,11 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
    */
   public function settingsSummary(Paragraph $paragraph) {
     $summary = [];
-    $full_width = $paragraph->getBehaviorSetting($this->getPluginId(), 'full_width');
+    $wide = $paragraph->getBehaviorSetting($this->getPluginId(), 'wide');
 
     $summary[] = [
-      'label' => 'Full width',
-      'value' =>  ($full_width) ? 'yes' : 'no',
+      'label' => 'Wide',
+      'value' =>  ($wide) ? 'yes' : 'no',
     ];
 
     return $summary;

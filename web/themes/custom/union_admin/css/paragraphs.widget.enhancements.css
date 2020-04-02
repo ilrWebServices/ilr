@@ -1,0 +1,24 @@
+.paragraphs-behavior {
+  display: initial;
+}
+
+.field--type-entity-reference-revisions {
+  --paragraph-widget-inactive: #fff;
+}
+
+/* Remove the hover color. */
+.field--type-entity-reference-revisions tbody tr:hover,
+.field--type-entity-reference-revisions tbody tr:focus {
+  background: transparent;
+}
+
+.field--type-entity-reference-revisions tr.draggable.closed {
+  --paragraph-widget-inactive: #edede8;
+  background: var(--paragraph-widget-inactive);
+}
+
+.js .paragraphs-description .paragraphs-content-wrapper::after,
+.js .paragraphs-description .paragraphs-plugin-wrapper::after {
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), to(var(--paragraph-widget-inactive)));
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, var(--paragraph-widget-inactive) 100%);
+}
