@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.simple_collection_listing.field_categories
     - field.field.paragraph.simple_collection_listing.field_collection
+    - field.field.paragraph.simple_collection_listing.field_count
     - paragraphs.paragraphs_type.simple_collection_listing
 id: paragraph.simple_collection_listing.default
 targetEntityType: paragraph
@@ -20,4 +21,5 @@ content:
     region: content
 hidden:
   field_categories: true
+  field_count: true
   search_api_excerpt: true

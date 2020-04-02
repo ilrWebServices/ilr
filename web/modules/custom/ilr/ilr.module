@@ -354,6 +354,10 @@ function ilr_preprocess_paragraph__simple_collection_listing(&$variables) {
     $query->condition($group);
   }
 
+  if ($limit = $variables['paragraph']->field_count->value) {
+    $query->range(0, $limit);
+  }
+
   $query->sort('item.entity:node.field_published_date', 'DESC');
   $result = $query->execute();
 
