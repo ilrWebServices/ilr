@@ -66,3 +66,7 @@ hr.pad {
   border: none;
   margin: 2em 0 0;
 }
+
+.layout-banner {
+  margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr1));
+}
