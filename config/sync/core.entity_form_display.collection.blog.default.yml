@@ -9,7 +9,7 @@ dependencies:
     - field.field.collection.blog.field_sections
   module:
     - media_library
-    - paragraphs
+    - paragraphs_previewer
     - path
     - text
 id: collection.blog.default
@@ -51,7 +51,7 @@ content:
         duplicate: '0'
         add_above: '0'
     third_party_settings: {  }
-    type: paragraphs
+    type: paragraphs_previewer
     region: content
   name:
     type: string_textfield
