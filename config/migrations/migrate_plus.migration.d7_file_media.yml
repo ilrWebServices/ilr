@@ -17,14 +17,10 @@ source:
   constants:
     source_base_path: 'https://www.ilr.cornell.edu'
     file_destination: 'public://'
-# Note that all media bundle fields are here, but they are skipped if they are
-# not meant for the type of the current row. This allows all media entities to
-# be created from all files in a single migration.
 process:
   mid: fid
   uid: uid
   bundle: type
-  # Remote video bundles can generate their own names.
   name:
     -
       plugin: skip_on_value
