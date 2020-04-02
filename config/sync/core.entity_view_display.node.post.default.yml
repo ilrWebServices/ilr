@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.post.body
     - field.field.node.post.field_authors
+    - field.field.node.post.field_categories
     - field.field.node.post.field_components
     - field.field.node.post.field_published_date
     - field.field.node.post.field_representative_image
@@ -151,6 +152,14 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: content
+  field_categories:
+    weight: 5
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: main
   field_components:
     type: entity_reference_revisions_entity_view
     weight: 4

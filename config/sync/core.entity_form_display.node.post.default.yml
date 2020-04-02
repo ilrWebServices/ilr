@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.post.body
     - field.field.node.post.field_authors
+    - field.field.node.post.field_categories
     - field.field.node.post.field_components
     - field.field.node.post.field_published_date
     - field.field.node.post.field_representative_image
@@ -56,6 +57,16 @@ content:
       entity_browser_entity_form:
         entity_browser_id: _none
     type: inline_entity_form_complex
+    region: content
+  field_categories:
+    weight: 29
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
     region: content
   field_components:
     type: paragraphs

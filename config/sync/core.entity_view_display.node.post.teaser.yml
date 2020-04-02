@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.post.body
     - field.field.node.post.field_authors
+    - field.field.node.post.field_categories
     - field.field.node.post.field_components
     - field.field.node.post.field_published_date
     - field.field.node.post.field_representative_image
@@ -54,5 +55,6 @@ content:
     third_party_settings: {  }
 hidden:
   field_authors: true
+  field_categories: true
   field_components: true
   search_api_excerpt: true
