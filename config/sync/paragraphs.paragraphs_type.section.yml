@@ -1,9 +1,13 @@
 uuid: 7e85e5cd-2972-4f0e-a893-ea29da3bf79e
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
 id: section
 label: Section
 icon_uuid: null
 description: ''
-behavior_plugins: {  }
+behavior_plugins:
+  union_section_settings:
+    enabled: true

@@ -87,5 +87,6 @@
 {% endset %}
 
 {% include '@union/_cu-section.twig' with {
-  content: rendered_content
+  content: rendered_content,
+  attributes: attributes,
 } only %}
