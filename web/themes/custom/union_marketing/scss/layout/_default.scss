@@ -70,3 +70,8 @@ hr.pad {
 .layout-banner {
   margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr1));
 }
+
+.article--post .cu-section > div,
+.article--post .field--field-components .field__item {
+  margin: var(--cu-component-margin-bottom, var(--cu-vr1)) 0;
+}

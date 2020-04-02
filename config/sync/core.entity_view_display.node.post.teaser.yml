@@ -35,8 +35,8 @@ content:
     region: content
     label: hidden
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: ilr_date
     third_party_settings: {  }
   field_representative_image:
     type: media_thumbnail

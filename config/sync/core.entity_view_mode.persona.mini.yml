@@ -1,0 +1,10 @@
+uuid: b47c48c2-6231-4f8a-baa5-9e67ce63d6df
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.mini
+label: Mini
+targetEntityType: persona
+cache: true

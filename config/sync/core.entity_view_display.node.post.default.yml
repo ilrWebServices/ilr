@@ -13,8 +13,130 @@ dependencies:
   module:
     - datetime
     - entity_reference_revisions
+    - layout_builder
     - media
+    - union_organizer
     - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 1
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          9aa98971-c066-4115-a79c-a8fb131f8fa8:
+            uuid: 9aa98971-c066-4115-a79c-a8fb131f8fa8
+            region: main
+            configuration:
+              id: 'field_block:node:post:field_representative_image'
+              label: 'Representative Image'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: media_thumbnail
+                settings:
+                  image_style: large_21_9_1200x514_
+                  image_link: ''
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          c5ce143a-eb40-4f7c-9a56-dc1e648214b5:
+            uuid: c5ce143a-eb40-4f7c-9a56-dc1e648214b5
+            region: main
+            configuration:
+              id: 'field_block:node:post:field_components'
+              label: 'Post content'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_revisions_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -7
+          e42e92b8-a6e5-46cd-bebe-94c0855336a4:
+            uuid: e42e92b8-a6e5-46cd-bebe-94c0855336a4
+            region: main
+            configuration:
+              id: 'field_block:node:post:title'
+              label: Title
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -10
+          301f6365-4495-4b60-ba04-257d5b77f364:
+            uuid: 301f6365-4495-4b60-ba04-257d5b77f364
+            region: main
+            configuration:
+              id: 'field_block:node:post:field_published_date'
+              label: 'Published Date'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: datetime_default
+                settings:
+                  timezone_override: ''
+                  format_type: ilr_date
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -8
+          60f385c1-c640-4c06-a2ff-089c0757bff4:
+            uuid: 60f385c1-c640-4c06-a2ff-089c0757bff4
+            region: main
+            configuration:
+              id: 'field_block:node:post:field_authors'
+              label: 'Authored by'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: mini
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -9
+        third_party_settings: {  }
 id: node.post.default
 targetEntityType: node
 bundle: post

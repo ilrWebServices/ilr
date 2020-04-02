@@ -22,7 +22,6 @@ visibility:
     id: 'entity_bundle:node'
     bundles:
       instructor: instructor
-      post: post
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
