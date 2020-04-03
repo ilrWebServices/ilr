@@ -69,6 +69,11 @@ hr.pad {
 
 .layout-banner {
   margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr1));
+
+  // Remove the bottom margin on course nodes.
+  .node--course & {
+    margin-bottom: 0;
+  }
 }
 
 .article--post .cu-section > div,
