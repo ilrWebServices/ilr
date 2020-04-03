@@ -10,7 +10,7 @@ dependencies:
     - field.field.node.post.field_components
     - field.field.node.post.field_published_date
     - field.field.node.post.field_representative_image
-    - image.style.media_library
+    - image.style.medium_3_2_600x400
     - node.type.post
   module:
     - datetime
@@ -45,7 +45,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: media_library
+      image_style: medium_3_2_600x400
       image_link: ''
     third_party_settings: {  }
   links:
