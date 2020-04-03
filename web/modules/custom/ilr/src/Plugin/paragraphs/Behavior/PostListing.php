@@ -42,6 +42,18 @@ class PostListing extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    $form['post_categories'] = [
+      '#type' => 'entity_autocomplete',
+      '#title' => $this->t('Categories'),
+      '#description' => $this->t('Choose one or more categories to filter the listing. Posts with all of the categories will be returned.'),
+      '#target_type' => 'taxonomy_term',
+      '#tags' => TRUE,
+      '#selection_settings' => [
+        'target_bundles' => ['post_categories'],
+      ],
+      '#default_value' => $this->getCategoryTermsFromBehavior($paragraph),
+    ];
+
     $form['count'] = [
       '#type' => 'number',
       '#title' => $this->t('Number of posts'),
@@ -71,9 +83,9 @@ class PostListing extends ParagraphsBehaviorBase {
     $query->condition('item.entity:node.status', 1);
     $query->condition('item.entity:node.type', 'post');
 
-    foreach ($paragraph->field_categories as $value) {
+    foreach ($this->getCategoryTermsFromBehavior($paragraph) as $category_term) {
       $group = $query->andConditionGroup();
-      $group->condition('item.entity:node.field_categories', $value->target_id);
+      $group->condition('item.entity:node.field_categories', $category_term->id());
       $query->condition($group);
     }
 
@@ -111,8 +123,21 @@ class PostListing extends ParagraphsBehaviorBase {
    */
   public function settingsSummary(Paragraph $paragraph) {
     $summary = [];
+    $category_labels = [];
+
+    if ($categories = $this->getCategoryTermsFromBehavior($paragraph)) {
+      foreach ($categories as $category_term) {
+        $category_labels[] = $category_term->label();
+      }
+    }
+
     $summary[] = [
-      'label' => 'Posts',
+      'label' => 'Categories',
+      'value' =>  ($category_labels) ? implode(', ', $category_labels) : 'All',
+    ];
+
+    $summary[] = [
+      'label' => 'Show',
       'value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'count') ?? 'All',
     ];
 
@@ -127,5 +152,29 @@ class PostListing extends ParagraphsBehaviorBase {
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {
     return $paragraphs_type->id() === 'simple_collection_listing';
+  }
+
+  /**
+   * Get category terms from the behavior setting on the paragraph.
+   *
+   * @param Paragraph $paragraph
+   *
+   * @return array
+   *   List of TermInterface objects
+   */
+  protected function getCategoryTermsFromBehavior(Paragraph $paragraph) {
+    $categories = [];
+    $category_settings_tids = [];
+    $category_settings = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories') ?? [];
+
+    foreach ($category_settings as $value) {
+      $category_settings_tids[] = $value['target_id'];
+    }
+
+    if ($category_settings_tids) {
+      $categories = $this->entityTypeManager->getStorage('taxonomy_term')->loadMultiple($category_settings_tids);
+    }
+
+    return $categories;
   }
 }
