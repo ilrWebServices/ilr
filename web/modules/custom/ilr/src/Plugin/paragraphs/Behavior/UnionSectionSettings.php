@@ -54,12 +54,14 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
    */
   public function settingsSummary(Paragraph $paragraph) {
     $summary = [];
-    $wide = $paragraph->getBehaviorSetting($this->getPluginId(), 'wide');
 
-    $summary[] = [
-      'label' => 'Wide',
-      'value' =>  ($wide) ? 'yes' : 'no',
-    ];
+    // If it's a wide section, display the summary.
+    if ($wide = $paragraph->getBehaviorSetting($this->getPluginId(), 'wide')) {
+      $summary[] = [
+        'label' => 'Wide',
+        'value' =>  '✓',
+      ];
+    }
 
     return $summary;
   }
