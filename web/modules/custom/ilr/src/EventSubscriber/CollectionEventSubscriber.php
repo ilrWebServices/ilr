@@ -67,7 +67,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
       ]);
 
       $listing = Paragraph::create([
-        'type' => 'collection_listing',
+        'type' => 'simple_collection_listing',
         'field_collection' => [
           'target_id' => $collection->id(),
         ],
