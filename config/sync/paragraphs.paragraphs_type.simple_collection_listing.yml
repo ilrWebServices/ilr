@@ -4,9 +4,12 @@ status: true
 dependencies:
   module:
     - collection
+    - ilr
 id: simple_collection_listing
 label: 'Post listing'
 icon_uuid: null
 description: ''
 behavior_plugins:
   collection_listing: {  }
+  post_listing:
+    enabled: true
