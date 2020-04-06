@@ -1,0 +1,21 @@
+uuid: f35862fa-1687-4f72-a9e1-56771d6dda4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.blog
+    - field.storage.collection.layout_builder__layout
+  module:
+    - layout_builder
+id: collection.blog.layout_builder__layout
+field_name: layout_builder__layout
+entity_type: collection
+bundle: blog
+label: Layout
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: layout_section
