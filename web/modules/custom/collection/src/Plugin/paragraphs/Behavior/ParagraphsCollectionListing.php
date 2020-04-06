@@ -112,6 +112,7 @@ class ParagraphsCollectionListing extends ParagraphsBehaviorBase {
   public function preprocess(&$variables) {
     $collection_field_names = self::getCollectionReferenceFieldNames($variables['paragraph']->type->entity);
     $collection_item_storage = $this->entityTypeManager->getStorage('collection_item');
+    $applicable_entity_types = $this->getContentEntityTypeNames();
     $view_builders = [];
 
     foreach ($collection_field_names as $collection_field_name) {
@@ -168,6 +169,10 @@ class ParagraphsCollectionListing extends ParagraphsBehaviorBase {
 
       foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
         $entity_type = $collection_item->item->entity->getEntityTypeId();
+
+        if (!array_key_exists($entity_type, $applicable_entity_types)) {
+          continue;
+        }
 
         if (empty($view_builders[$entity_type])) {
           $view_builders[$entity_type] = $this->entityTypeManager->getViewBuilder($entity_type);
