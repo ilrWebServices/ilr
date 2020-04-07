@@ -31,8 +31,47 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     return [
+      CollectionEvents::COLLECTION_ENTITY_CREATE => 'collectionCreate',
       CollectionEvents::COLLECTION_ITEM_FORM_CREATE => 'collectionItemFormCreate',
     ];
+  }
+
+  /**
+   * Process the COLLECTION_CREATE event.
+   *
+   * @param \Symfony\Component\EventDispatcher\Event $event
+   *   The dispatched event.
+   */
+  public function collectionCreate(Event $event) {
+    $collection = $event->collection;
+    $collection_type = $this->entityTypeManager->getStorage('collection_type')->load($collection->bundle());
+    $is_blog = (bool) $collection_type->getThirdPartySetting('collection_blogs', 'contains_blogs');
+
+    if ($is_blog === FALSE) {
+      return;
+    }
+
+    // Create a vocab for the blog
+    $vocab = $this->entityTypeManager->getStorage('taxonomy_vocabulary')->create([
+      'langcode' => 'en',
+      'status' => TRUE,
+      'name' => $collection->label() . ' categories',
+      'vid' => 'blog_' . $collection->id() . '_categories',
+      'description' => 'Auto-generated vocabulary for ' . $collection->label() . ' blog',
+    ]);
+    $vocab->save();
+
+    if ($vocab) {
+      // Add the vocab to this new collection.
+      $collection_item_vocab = $this->entityTypeManager->getStorage('collection_item')->create([
+        'type' => 'blog',
+        'collection' => $collection->id(),
+      ]);
+
+      $collection_item_vocab->item = $vocab;
+      $collection_item_vocab->setAttribute('blog_collection_id', $collection->id());
+      $collection_item_vocab->save();
+    }
   }
 
   /**
