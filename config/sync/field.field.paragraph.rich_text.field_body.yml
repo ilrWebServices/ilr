@@ -11,7 +11,7 @@ dependencies:
 third_party_settings:
   allowed_formats:
     basic_formatting: basic_formatting
-    basic_formatting_with_media: '0'
+    basic_formatting_with_media: basic_formatting_with_media
     full_html: '0'
     plain_text: '0'
 id: paragraph.rich_text.field_body
