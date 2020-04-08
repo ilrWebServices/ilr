@@ -10,5 +10,6 @@ weight: 0
 is_admin: false
 permissions:
   - 'access content'
+  - 'view blog collection'
   - 'view media'
   - 'view subsite collection'
