@@ -598,6 +598,7 @@ function ilr_form_collection_new_node_form_alter(&$form, FormStateInterface $for
     $form['bundle']['#default_value'] = 'post';
     $form['bundle']['#options'] = [
       'post' => 'Post',
+      'page' => 'Page',
     ];
   }
 }
