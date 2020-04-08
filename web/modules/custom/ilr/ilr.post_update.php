@@ -159,15 +159,12 @@ function ilr_post_update_add_covid_blog_category_terms(&$sandbox) {
 
     // Create the child terms.
     $terms = [
+      'Online Training',
+      'Vulnerable Workers',
       'Workers',
-      'At-risk Workers',
       'Employers',
       'Employment Policy',
-      'Professional Education',
-      'Executive Education',
-      'Online training',
-      'COVID',
-      'Webinar',
+      'ILR Voices',
     ];
 
     foreach ($terms as $term_name) {
