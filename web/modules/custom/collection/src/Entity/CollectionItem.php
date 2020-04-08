@@ -92,7 +92,7 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
     parent::preSave($storage);
 
     // Check for an existing collection item.
-    if ($this->collection->entity->getItem($this->item->entity)) {
+    if ($this->isNew() && $this->collection->entity->getItem($this->item->entity)) {
       throw new \LogicException('Collection already has this entity.');
     }
 

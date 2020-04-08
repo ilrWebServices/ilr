@@ -20,7 +20,7 @@ class UniqueItemValidator extends ConstraintValidator {
     /** @var Drupal\Core\Entity\EntityInterface $item_entity */
     $item_entity = $collection_item->item->entity;
 
-    if ($collection->getItem($item_entity)) {
+    if ($collection_item->isNew() && $collection->getItem($item_entity)) {
       $this->context->addViolation($constraint->duplicate, [
         '%entity' => $item_entity->label(),
         '%collection' => $collection->label(),
