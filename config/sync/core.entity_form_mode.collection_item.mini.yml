@@ -1,0 +1,10 @@
+uuid: da0cbeee-c852-4817-9e6f-0bb3b5e6f173
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: collection_item.mini
+label: Mini
+targetEntityType: collection_item
+cache: true

@@ -59,7 +59,24 @@ class CollectionContextSelection extends SelectionPluginBase implements Containe
     $collection = \Drupal::routeMatch()->getParameter('collection');
 
     if (!$collection) {
-      return $options;
+      $node = \Drupal::routeMatch()->getParameter('node');
+      $collection_item_storage = $this->entityTypeManager->getStorage('collection_item');
+
+      $collection_item_ids = $collection_item_storage->getQuery()
+        ->condition('type', 'blog')
+        ->condition('item__target_type', 'node')
+        ->condition('item__target_id', $node->id())
+        ->execute();
+
+      $collection_items = $collection_item_storage->loadMultiple($collection_item_ids);
+
+      if ($collection_items) {
+        $collection_item = reset($collection_items);
+        $collection = $collection_item->collection->entity;
+      }
+      else {
+        return $options;
+      }
     }
 
     $collection_items = $collection->findItems('taxonomy_vocabulary');

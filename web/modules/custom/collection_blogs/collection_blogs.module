@@ -49,6 +49,45 @@ function collection_blogs_form_collection_type_form_alter(&$form, FormStateInter
 }
 
 /**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function collection_blogs_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getFormObject()->getEntity();
+
+  if ($node->bundle() !== 'post') {
+    return;
+  }
+
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+
+  // Load all collection items that reference this node.
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+
+  $collection_item_ids = $collection_item_storage->getQuery()
+    ->condition('type', 'blog')
+    ->condition('item__target_type', 'node')
+    ->condition('item__target_id', $node->id())
+    ->execute();
+
+  $collection_items = $collection_item_storage->loadMultiple($collection_item_ids);
+
+  // Create the inline entity form element.
+  $form['collection_blog_categories'] = [
+    '#type' => 'inline_entity_form',
+    '#entity_type' => 'collection_item',
+    '#bundle' => 'blog',
+    '#weight' => 100,
+    '#default_value' => count($collection_items) === 1 ? reset($collection_items) : NULL,
+    '#form_mode' => 'mini',
+    '#save_entity' => TRUE,
+    '#op' => 'edit',
+    '#group' => 'ilr_meta',
+    '#access' => count($collection_items) === 1,
+  ];
+}
+
+/**
  * Entity builder for the collection type configuration entity.
  */
 function collection_blogs_form_collection_form_builder($entity_type, CollectionType $collection_type, &$form, FormStateInterface $form_state) {
