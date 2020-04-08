@@ -7,6 +7,8 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\person\PersonaInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Access\AccessResult;
 
 /**
  * Defines the Persona entity.
@@ -68,6 +70,18 @@ use Drupal\Core\Entity\EntityTypeInterface;
  * )
  */
 class Persona extends EditorialContentEntityBase implements PersonaInterface {
+
+  /**
+   * {@inheritdoc}
+   *
+   * This is a workaround until we properly deal with persona access control.
+   */
+  public function access($operation, AccountInterface $account = NULL, $return_as_object = FALSE) {
+    if ($operation == 'view' && $this->isPublished()) {
+      return AccessResult::allowed();
+    }
+    return parent::access($operation, $account, $return_as_object);
+  }
 
   /**
    * {@inheritdoc}
