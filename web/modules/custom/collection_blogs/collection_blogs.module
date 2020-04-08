@@ -71,8 +71,58 @@ function collection_blogs_form_collection_new_node_form_alter(&$form, FormStateI
   /** @var \Drupal\collection\Entity\CollectionInterface $collection */
   $collection = $form_state->get('collection');
 
-  if ($collection->bundle() === 'blog') {
-    $form['#submit'][] = 'collection_blogs_form_collection_new_node_form_submit';
+  if (!$collection->type->entity->getThirdPartySetting('collection_blogs', 'contains_blogs')) {
+    return;
+  }
+
+  // Add a submit handler to process the alias and any categories.
+  $form['#submit'][] = 'collection_blogs_form_collection_new_node_form_submit';
+
+  // Check if this collection has a taxonomy vocabulary.
+  foreach ($collection->findItems('taxonomy_vocabulary') as $collection_item_vocab) {
+    if ($collection_item_vocab->getAttribute('blog_collection_id') !== FALSE) {
+      $vocabulary = $collection_item_vocab->item->entity;
+    }
+  }
+
+  if (empty($vocabulary)) {
+    return;
+  }
+
+  $options = [];
+  $terms = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term')->loadTree($vocabulary->id(), 0, NULL, TRUE);
+
+  // Add a 'presubmit' handler to allow setting the collection item type to blog.
+  array_unshift($form['#submit'], 'collection_blogs_form_collection_new_node_form_presubmit');
+
+  foreach ($terms as $term) {
+    $options[$term->id()] = $term->label();
+  }
+
+  // Note that we currently limit categories to posts. Revisit in the future.
+  $form['blog_collection_categories'] = [
+    '#access' => (bool) $options,
+    '#type' => 'checkboxes',
+    '#title' => t('Post categories'),
+    '#description' => t('Choose which categories are appropriate for this post.'),
+    '#options' => $options,
+    '#states' => [
+      'visible' => [
+        'input[name="bundle"]' => ['value' => 'post'],
+      ],
+    ],
+    '#default_value' => [],
+  ];
+}
+
+/**
+ * Form submission handler to set the collection_item_type.
+ *
+ * @see collection_blogs_form_collection_new_node_form_alter()
+ */
+function collection_blogs_form_collection_new_node_form_presubmit($form, FormStateInterface $form_state) {
+  if ($form_state->getValue('bundle') === 'post') {
+    $form_state->set('collection_item_type', 'blog');
   }
 }
 
@@ -97,5 +147,16 @@ function collection_blogs_form_collection_new_node_form_submit($form, FormStateI
 
     // Save the node again to trigger path updates.
     $node->save();
+  }
+
+  if ($collection_item = $form_state->get('collection_item')) {
+    if ($collection_item->type->entity->id() === 'blog' && $form_state->hasValue('blog_collection_categories')) {
+      foreach ($form_state->getValue('blog_collection_categories') as $tid) {
+        if ($tid) {
+          $collection_item->field_blog_categories->appendItem($tid);
+        }
+      }
+      $collection_item->save();
+    }
   }
 }
