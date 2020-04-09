@@ -254,9 +254,18 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
       return FALSE;
     }
 
+    // @todo: This is a temporary workaround to set the type if it finds a
+    // matching item type. This will need to be refactored as a part of
+    // #allowed_collection_items.
+    $defined_bundles = [];
+    foreach (\Drupal::service('entity_type.bundle.info')->getBundleInfo('collection_item') as $bundle_key => $bundle_info) {
+      $defined_bundles[] = $bundle_key;
+    }
+    $type = (in_array($this->bundle(), $defined_bundles)) ? $this->bundle() : 'default';
+
     $collection_item = $this->entityTypeManager()->getStorage('collection_item')->create([
       'collection' => $this->id(),
-      'type' => 'default',
+      'type' => $type,
       'item' => $entity
     ]);
 
