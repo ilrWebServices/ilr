@@ -110,12 +110,27 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 3
+          48085ad2-e3fe-41ad-8b6a-4cef1b5ee7c5:
+            uuid: 48085ad2-e3fe-41ad-8b6a-4cef1b5ee7c5
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:taxonomy_term:blog_2_categories:collection_items_category_term'
+            additional: {  }
+            weight: 4
         third_party_settings: {  }
 id: taxonomy_term.blog_2_categories.default
 targetEntityType: taxonomy_term
 bundle: blog_2_categories
 mode: default
 content:
+  collection_items_category_term:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: banner
   description:
     label: hidden
     type: text_default
