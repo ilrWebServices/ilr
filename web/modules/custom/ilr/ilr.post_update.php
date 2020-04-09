@@ -135,14 +135,8 @@ function ilr_post_update_add_covid_blog_category_terms(&$sandbox) {
   $entity_type_manager = \Drupal::service('entity_type.manager');
   $collection = $entity_type_manager->getStorage('collection')->load(2);
 
-  $vocabulary = $entity_type_manager->getStorage('taxonomy_vocabulary')->create([
-    'langcode' => 'en',
-    'status' => TRUE,
-    'name' => $collection->label() . ' categories',
-    'vid' => 'blog_' . $collection->id() . '_categories',
-    'description' => 'Auto-generated vocabulary for ' . $collection->label() . ' blog',
-  ]);
-  $vocabulary->save();
+  // Load the covid vocabulary
+  $vocabulary = $entity_type_manager->getStorage('taxonomy_vocabulary')->load('blog_2_categories');
 
   if ($vocabulary) {
     // Add the vocabulary to the collection.
