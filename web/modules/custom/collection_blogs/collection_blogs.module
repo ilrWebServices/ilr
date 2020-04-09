@@ -72,6 +72,10 @@ function collection_blogs_form_node_form_alter(&$form, FormStateInterface $form_
 
   $collection_items = $collection_item_storage->loadMultiple($collection_item_ids);
 
+  if (!$collection_items) {
+    return;
+  }
+
   // Create the inline entity form element.
   $form['collection_blog_categories'] = [
     '#type' => 'inline_entity_form',
