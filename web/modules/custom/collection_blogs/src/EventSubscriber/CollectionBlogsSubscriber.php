@@ -4,6 +4,7 @@ namespace Drupal\collection_blogs\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Path\AliasManagerInterface;
 use Drupal\collection\Event\CollectionEvents;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -20,10 +21,18 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
   protected $entityTypeManager;
 
   /**
+   * The alias manager.
+   *
+   * @var \Drupal\Core\Path\AliasManagerInterface
+   */
+  protected $aliasManager;
+
+  /**
    * Constructs a new CollectionBlogsSubscriber object.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, AliasManagerInterface $alias_manager) {
     $this->entityTypeManager = $entity_type_manager;
+    $this->aliasManager = $alias_manager;
   }
 
   /**
@@ -71,6 +80,25 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
       $collection_item_vocab->item = $vocab;
       $collection_item_vocab->setAttribute('blog_collection_id', $collection->id());
       $collection_item_vocab->save();
+
+      // Create a pattern for the new vocabulary
+      $collection_alias = $this->aliasManager->getAliasByPath($collection->toUrl()->toString());
+      $term_storage = $this->entityTypeManager->getStorage('taxonomy_term');
+
+      $pattern = $this->entityTypeManager->getStorage('pathauto_pattern')->create([
+        'id' => $vocab->id() . '_terms',
+        'label' => $vocab->label() . ' Terms',
+        'type' => 'canonical_entities:taxonomy_term',
+        'status' => TRUE,
+      ]);
+      $pattern->setPattern($collection_alias . '/[term:name]');
+      $pattern->addSelectionCondition([
+        'id' => 'entity_bundle:taxonomy_term',
+        'bundles' => [$vocab->id() => $vocab->id()],
+        'negate' => FALSE,
+        'context_mapping' => ['taxonomy_term' => 'taxonomy_term'],
+      ]);
+      $pattern->save();
     }
   }
 

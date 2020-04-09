@@ -3,5 +3,6 @@ services:
     class: Drupal\collection_blogs\EventSubscriber\CollectionBlogsSubscriber
     arguments:
       - '@entity_type.manager'
+      - '@path.alias_manager'
     tags:
       - { name: event_subscriber }
