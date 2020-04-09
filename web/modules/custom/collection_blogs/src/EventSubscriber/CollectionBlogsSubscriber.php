@@ -5,8 +5,11 @@ namespace Drupal\collection_blogs\EventSubscriber;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Path\AliasManagerInterface;
+use Drupal\Core\Config\DatabaseStorage;
 use Drupal\collection\Event\CollectionEvents;
+use Drupal\Core\Config\ConfigEvents;
 use Symfony\Component\EventDispatcher\Event;
+use Drupal\Core\Config\StorageTransformEvent;
 
 /**
  * Class CollectionSubsitesSubscriber.
@@ -28,11 +31,19 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
   protected $aliasManager;
 
   /**
+   * The database (active) storage.
+   *
+   * @var \Drupal\Core\Config\DatabaseStorage
+   */
+  protected $activeStorage;
+
+  /**
    * Constructs a new CollectionBlogsSubscriber object.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, AliasManagerInterface $alias_manager) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, AliasManagerInterface $alias_manager, DatabaseStorage $database_storage) {
     $this->entityTypeManager = $entity_type_manager;
     $this->aliasManager = $alias_manager;
+    $this->activeStorage = $database_storage;
   }
 
   /**
@@ -42,6 +53,7 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
     return [
       CollectionEvents::COLLECTION_ENTITY_CREATE => 'collectionCreate',
       CollectionEvents::COLLECTION_ITEM_FORM_CREATE => 'collectionItemFormCreate',
+      ConfigEvents::STORAGE_TRANSFORM_IMPORT => 'onImportTransform',
     ];
   }
 
@@ -148,4 +160,42 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
       $collection_item_entity->save();
     }
   }
+
+  /**
+   * Ignore blog-related config entities.
+   *
+   * This prevents deleting configuration during deployment and configuration
+   * synchronization.
+   *
+   * @param \Drupal\Core\Config\StorageTransformEvent $event The config storage
+   *   transform event.
+   */
+  public function onImportTransform(StorageTransformEvent $event) {
+    /** @var \Drupal\Core\Config\StorageInterface $sync_storage */
+    $sync_storage = $event->getStorage();
+
+    // List the patterns that we don't want to mistakenly remove from the active store.
+    $collection_blogs_config_patterns = [
+      'taxonomy.vocabulary.blog_', // e.g. taxonomy.vocabulary.blog_2_categories
+      'pathauto.pattern.blog_', // e.g. pathauto.pattern.blog_2_categories_terms
+    ];
+
+    // Filter active configuration for the ignored items.
+    $ignored_config = array_filter($this->activeStorage->listAll(), function($config_name) use ($collection_blogs_config_patterns) {
+      foreach ($collection_blogs_config_patterns as $pattern) {
+        // @todo Change to regex pattern if any name collisions occur.
+        if (strpos($config_name, $pattern) !== FALSE) {
+          return TRUE;
+        }
+      }
+      return FALSE;
+    });
+
+    // Set the sync_storage to the active store values. This makes them appear
+    // to be identical ("There are no changes to import").
+    foreach ($ignored_config as $config_name) {
+      $sync_storage->write($config_name, $this->activeStorage->read($config_name));
+    }
+  }
+
 }

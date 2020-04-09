@@ -4,5 +4,6 @@ services:
     arguments:
       - '@entity_type.manager'
       - '@path.alias_manager'
+      - '@config.storage.active'
     tags:
       - { name: event_subscriber }
