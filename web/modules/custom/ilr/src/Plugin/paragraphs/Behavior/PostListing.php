@@ -43,15 +43,11 @@ class PostListing extends ParagraphsBehaviorBase {
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
     $form['post_categories'] = [
-      '#type' => 'entity_autocomplete',
-      '#title' => $this->t('Categories'),
-      '#description' => $this->t('Choose one or more categories to filter the listing. Posts with all of the categories will be returned.'),
-      '#target_type' => 'taxonomy_term',
-      '#tags' => TRUE,
-      '#selection_settings' => [
-        'target_bundles' => ['post_categories'],
-      ],
-      '#default_value' => $this->getCategoryTermsFromBehavior($paragraph),
+      '#type' => 'select',
+      '#title' => $this->t('Category'),
+      '#description' => $this->t('Choose a category to filter the listing.'),
+      '#options' => $this->getCategoryTermOptions($paragraph),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories'),
     ];
 
     $form['count'] = [
@@ -80,12 +76,18 @@ class PostListing extends ParagraphsBehaviorBase {
 
     $query = $collection_item_storage->getQuery();
     $query->condition('collection', $collection->id());
+    $query->condition('type', 'blog');
     $query->condition('item.entity:node.status', 1);
     $query->condition('item.entity:node.type', 'post');
 
-    foreach ($this->getCategoryTermsFromBehavior($paragraph) as $category_term) {
+    $terms = [];
+    if ($tid = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories')) {
+      $terms[] = $tid;
+    }
+
+    foreach ($terms as $term_id) {
       $group = $query->andConditionGroup();
-      $group->condition('item.entity:node.field_categories', $category_term->id());
+      $group->condition('field_blog_categories', $term_id);
       $query->condition($group);
     }
 
@@ -125,15 +127,13 @@ class PostListing extends ParagraphsBehaviorBase {
     $summary = [];
     $category_labels = [];
 
-    if ($categories = $this->getCategoryTermsFromBehavior($paragraph)) {
-      foreach ($categories as $category_term) {
-        $category_labels[] = $category_term->label();
-      }
+    if ($selected_category_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories')) {
+      $selected_category = $this->entityTypeManager->getStorage('taxonomy_term')->load($selected_category_id);
     }
 
     $summary[] = [
-      'label' => 'Categories',
-      'value' =>  ($category_labels) ? implode(', ', $category_labels) : 'All',
+      'label' => 'Category',
+      'value' =>  $selected_category_id ? $selected_category->label() : 'All',
     ];
 
     $summary[] = [
@@ -155,26 +155,34 @@ class PostListing extends ParagraphsBehaviorBase {
   }
 
   /**
-   * Get category terms from the behavior setting on the paragraph.
+   * Get category term options collection set on the paragraph.
    *
    * @param Paragraph $paragraph
    *
    * @return array
-   *   List of TermInterface objects
+   *   List of term labels keyed by tid.
    */
-  protected function getCategoryTermsFromBehavior(Paragraph $paragraph) {
-    $categories = [];
-    $category_settings_tids = [];
-    $category_settings = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories') ?? [];
+  protected function getCategoryTermOptions(Paragraph $paragraph) {
+    $collection = $paragraph->field_collection->entity;
+    $options = [
+      '' => '-- all --',
+    ];
 
-    foreach ($category_settings as $value) {
-      $category_settings_tids[] = $value['target_id'];
+    if ($collection) {
+      $collection_items = $collection->findItems('taxonomy_vocabulary');
+      $term_manager = $this->entityTypeManager->getStorage('taxonomy_term');
+
+      foreach ($collection_items as $collection_item) {
+        $vocab = $collection_item->item->entity;
+        $terms = $term_manager->loadTree($vocab->id(), 0, NULL, TRUE);
+
+        foreach ($terms as $term) {
+          $options[$term->id()] = $term->label();
+        }
+      }
     }
 
-    if ($category_settings_tids) {
-      $categories = $this->entityTypeManager->getStorage('taxonomy_term')->loadMultiple($category_settings_tids);
-    }
-
-    return $categories;
+    return $options;
   }
+
 }
