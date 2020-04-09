@@ -60,6 +60,11 @@ class CollectionContextSelection extends SelectionPluginBase implements Containe
 
     if (!$collection) {
       $node = \Drupal::routeMatch()->getParameter('node');
+
+      if (!$node) {
+        return $options;
+      }
+
       $collection_item_storage = $this->entityTypeManager->getStorage('collection_item');
 
       $collection_item_ids = $collection_item_storage->getQuery()
