@@ -13,6 +13,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Implementation of the CollectionContext Entity Reference Selection plugin.
  *
+ * @todo Limit this to applicable (e.g. taxonomy term reference) fields.
+ *
  * @EntityReferenceSelection(
  *   id = "collection_context_selection",
  *   label = @Translation("Collection context"),
