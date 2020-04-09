@@ -1,0 +1,50 @@
+uuid: 1a9332ad-de15-4b6c-913b-9ef917e7df53
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.teaser
+    - field.field.taxonomy_term.blog_2_categories.field_body
+    - field.field.taxonomy_term.blog_2_categories.field_representative_image
+    - field.field.taxonomy_term.blog_2_categories.field_sections
+    - image.style.medium_3_2_600x400
+    - taxonomy.vocabulary.blog_2_categories
+  module:
+    - layout_builder
+    - media
+    - text
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: taxonomy_term.blog_2_categories.teaser
+targetEntityType: taxonomy_term
+bundle: blog_2_categories
+mode: teaser
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_body:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_representative_image:
+    type: media_thumbnail
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: medium_3_2_600x400
+      image_link: content
+    third_party_settings: {  }
+hidden:
+  field_sections: true
+  search_api_excerpt: true
