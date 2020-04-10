@@ -14,6 +14,7 @@ dependencies:
     - layout_discovery
     - system
     - text
+    - union_organizer
 third_party_settings:
   layout_builder:
     allow_custom: false
@@ -110,16 +111,27 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 3
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
           48085ad2-e3fe-41ad-8b6a-4cef1b5ee7c5:
             uuid: 48085ad2-e3fe-41ad-8b6a-4cef1b5ee7c5
-            region: content
+            region: main
             configuration:
-              label_display: '0'
+              id: 'extra_field_block:taxonomy_term:blog_2_categories:collection_items_category_term'
+              label: 'Work and the Coronavirus categories'
+              provider: layout_builder
+              label_display: visible
               context_mapping:
                 entity: layout_builder.entity
-              id: 'extra_field_block:taxonomy_term:blog_2_categories:collection_items_category_term'
             additional: {  }
-            weight: 4
+            weight: 1
         third_party_settings: {  }
 id: taxonomy_term.blog_2_categories.default
 targetEntityType: taxonomy_term
