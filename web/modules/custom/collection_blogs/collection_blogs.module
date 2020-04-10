@@ -126,10 +126,6 @@ function collection_blogs_node_view(array &$build, EntityInterface $entity, Enti
   if ($display->getComponent('blog_collection') && $view_mode === 'full') {
     $entity_type_manager = \Drupal::service('entity_type.manager');
     $collection_item_storage = $entity_type_manager->getStorage('collection_item');
-    $cache_tags = $entity->getCacheTags();
-    $cache_tags[] = 'node_list'; // 'node_list:post'; // 8.9 and above
-    $cache_tags[] = 'collection_item_list'; // 'collection_item_list:blog'; // 8.9 and above
-    $posts = [];
 
     $blog_post_collection_items = $collection_item_storage->getQuery()
       ->condition('type', 'blog')
