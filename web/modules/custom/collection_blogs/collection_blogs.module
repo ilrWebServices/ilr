@@ -180,9 +180,6 @@ function collection_blogs_form_collection_new_node_form_alter(&$form, FormStateI
     return;
   }
 
-  // Add a submit handler to process the alias and any categories.
-  $form['#submit'][] = 'collection_blogs_form_collection_new_node_form_submit';
-
   // Add a 'presubmit' handler to allow setting the collection item type to blog.
   array_unshift($form['#submit'], 'collection_blogs_form_collection_new_node_form_presubmit');
 }
@@ -199,36 +196,38 @@ function collection_blogs_form_collection_new_node_form_presubmit($form, FormSta
 }
 
 /**
- * Form submission handler to automatically set the alias for blog items.
+ * Implements hook_pathauto_alias_alter().
  *
- * @see collection_blogs_form_collection_new_node_form_alter()
+ * Updates the alias when the entity uses the auto-generated alias and is in a blog collection.
  */
-function collection_blogs_form_collection_new_node_form_submit($form, FormStateInterface $form_state) {
-  if ($node = $form_state->get('node')) {
-    if (\Drupal::moduleHandler()->moduleExists('pathauto')) {
-      $node->path->pathauto = PathautoState::SKIP;
-      $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
-      $clean_title = $alias_cleaner->cleanString($node->label());
+function collection_blogs_pathauto_alias_alter(&$alias, array &$context) {
+  if (isset($context['data']['node'])) {
+    $node = $context['data']['node'];
+    // Load all collection items that reference this node.
+    $entity_type_manager = \Drupal::service('entity_type.manager');
+    $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+    $collection_item_ids = $collection_item_storage->getQuery()
+      ->condition('type', 'blog')
+      ->condition('item__target_type', 'node')
+      ->condition('item__target_id', $node->id())
+      ->execute();
+
+    $collection_items = $collection_item_storage->loadMultiple($collection_item_ids);
+
+    if (!$collection_items) {
+      return;
     }
-    else {
-      $clean_title = strtolower(Html::cleanCssIdentifier($node->label()));
+
+    $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
+    $clean_title = $alias_cleaner->cleanString($node->label());
+    $first_collection_item = reset($collection_items);
+
+    // Use the collection path if there is no category.
+    if ($first_collection_item->field_blog_categories->isEmpty()) {
+      $alias = $first_collection_item->collection->entity->toUrl()->toString() . '/' . $clean_title;
     }
-
-    $collection = $form_state->get('collection');
-    $node->path->alias = $collection->toUrl()->toString() . '/' . $clean_title;
-
-    // Save the node again to trigger path updates.
-    $node->save();
-  }
-
-  if ($collection_item = $form_state->get('collection_item')) {
-    if ($collection_item->type->entity->id() === 'blog' && $form_state->hasValue('blog_collection_categories')) {
-      foreach ($form_state->getValue('blog_collection_categories') as $tid) {
-        if ($tid) {
-          $collection_item->field_blog_categories->appendItem($tid);
-        }
-      }
-      $collection_item->save();
+    else { // Use the category path.
+      $alias = $first_collection_item->field_blog_categories->entity->toUrl()->toString() . '/' . $clean_title;
     }
   }
 }
