@@ -67,6 +67,7 @@ class CollectionNewNodeForm extends FormBase {
     // Set the collection to which we are adding a node. This will be used in
     // the submit handler.
     $form_state->set('collection', $collection);
+    $form_state->set('collection_item_type', 'default');
 
     // Node label (e.g. title).
     $form['label'] = [
@@ -120,11 +121,13 @@ class CollectionNewNodeForm extends FormBase {
 
     // Add the node to this collection.
     $collection_item = $collection_item_storage->create([
-      'type' => 'default',
+      'type' => $form_state->get('collection_item_type'),
       'collection' => $collection,
       'item' => $node,
     ]);
-    $collection_item->save();
+    if ($collection_item->save()) {
+      $form_state->set('collection_item', $collection_item);
+    }
   }
 
   /**

@@ -127,3 +127,45 @@ function ilr_post_update_add_post_category_terms(&$sandbox) {
     ])->save();
   }
 }
+
+/**
+ * Add initial category vocabulary and terms for covid blog.
+ */
+function ilr_post_update_add_covid_blog_category_terms(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $collection = $entity_type_manager->getStorage('collection')->load(2);
+
+  // Load the covid vocabulary
+  $vocabulary = $entity_type_manager->getStorage('taxonomy_vocabulary')->load('blog_2_categories');
+
+  if ($vocabulary) {
+    // Add the vocabulary to the collection.
+    $collection_item_vocab = $entity_type_manager->getStorage('collection_item')->create([
+      'type' => 'blog',
+      'collection' => $collection->id(),
+    ]);
+
+    $collection_item_vocab->item = $vocabulary;
+    $collection_item_vocab->setAttribute('blog_collection_id', $collection->id());
+    $collection_item_vocab->save();
+
+    $term_storage = $entity_type_manager->getStorage('taxonomy_term');
+
+    // Create the child terms.
+    $terms = [
+      'Online Training',
+      'Vulnerable Workers',
+      'Workers',
+      'Employers',
+      'Employment Policy',
+      'ILR Voices',
+    ];
+
+    foreach ($terms as $term_name) {
+      $term_storage->create([
+        'vid' => $vocabulary->id(),
+        'name' => $term_name,
+      ])->save();
+    }
+  }
+}

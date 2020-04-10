@@ -1,0 +1,179 @@
+uuid: 67746574-7ba3-439d-93d9-e6c3d05bba4e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.blog_2_categories.field_body
+    - field.field.taxonomy_term.blog_2_categories.field_representative_image
+    - field.field.taxonomy_term.blog_2_categories.field_sections
+    - taxonomy.vocabulary.blog_2_categories
+  module:
+    - entity_reference_revisions
+    - ilr
+    - layout_builder
+    - layout_discovery
+    - system
+    - text
+    - union_organizer
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: banner
+        layout_settings:
+          label: ''
+        components:
+          6e90ac46-b878-4170-9145-55964092e2e7:
+            uuid: 6e90ac46-b878-4170-9145-55964092e2e7
+            region: banner
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:taxonomy_term:blog_2_categories:field_body'
+              formatter:
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+                type: text_default
+            additional: {  }
+            weight: 3
+          d5f23711-c043-484f-aee8-a3755421e1dd:
+            uuid: d5f23711-c043-484f-aee8-a3755421e1dd
+            region: banner
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:taxonomy_term:blog_2_categories:field_representative_image'
+              formatter:
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+                type: entity_reference_label
+            additional: {  }
+            weight: 2
+          e302e017-edec-43c7-b0c5-9b8b87618cdb:
+            uuid: e302e017-edec-43c7-b0c5-9b8b87618cdb
+            region: banner
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              provider: system
+              label_display: '0'
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+          a2be4c62-6406-4992-926a-5d892395f889:
+            uuid: a2be4c62-6406-4992-926a-5d892395f889
+            region: banner
+            configuration:
+              id: 'field_block:taxonomy_term:blog_2_categories:name'
+              label: Name
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          6bf45558-35f5-480e-9773-776769e2e6af:
+            uuid: 6bf45558-35f5-480e-9773-776769e2e6af
+            region: content
+            configuration:
+              id: 'field_block:taxonomy_term:blog_2_categories:field_sections'
+              label: 'Page content'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_revisions_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 3
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          48085ad2-e3fe-41ad-8b6a-4cef1b5ee7c5:
+            uuid: 48085ad2-e3fe-41ad-8b6a-4cef1b5ee7c5
+            region: main
+            configuration:
+              id: 'extra_field_block:taxonomy_term:blog_2_categories:collection_items_category_term'
+              label: 'Work and the Coronavirus categories'
+              provider: layout_builder
+              label_display: visible
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
+id: taxonomy_term.blog_2_categories.default
+targetEntityType: taxonomy_term
+bundle: blog_2_categories
+mode: default
+content:
+  collection_items_category_term:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: banner
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_body:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_representative_image:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sections:
+    type: entity_reference_revisions_entity_view
+    weight: 1
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  layout_builder__layout: true
+  search_api_excerpt: true

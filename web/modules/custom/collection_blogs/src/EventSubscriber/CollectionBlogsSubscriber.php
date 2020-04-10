@@ -4,8 +4,12 @@ namespace Drupal\collection_blogs\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Path\AliasManagerInterface;
+use Drupal\Core\Config\DatabaseStorage;
 use Drupal\collection\Event\CollectionEvents;
+use Drupal\Core\Config\ConfigEvents;
 use Symfony\Component\EventDispatcher\Event;
+use Drupal\Core\Config\StorageTransformEvent;
 
 /**
  * Class CollectionSubsitesSubscriber.
@@ -20,10 +24,26 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
   protected $entityTypeManager;
 
   /**
+   * The alias manager.
+   *
+   * @var \Drupal\Core\Path\AliasManagerInterface
+   */
+  protected $aliasManager;
+
+  /**
+   * The database (active) storage.
+   *
+   * @var \Drupal\Core\Config\DatabaseStorage
+   */
+  protected $activeStorage;
+
+  /**
    * Constructs a new CollectionBlogsSubscriber object.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, AliasManagerInterface $alias_manager, DatabaseStorage $database_storage) {
     $this->entityTypeManager = $entity_type_manager;
+    $this->aliasManager = $alias_manager;
+    $this->activeStorage = $database_storage;
   }
 
   /**
@@ -31,8 +51,67 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     return [
+      CollectionEvents::COLLECTION_ENTITY_CREATE => 'collectionCreate',
       CollectionEvents::COLLECTION_ITEM_FORM_CREATE => 'collectionItemFormCreate',
+      ConfigEvents::STORAGE_TRANSFORM_IMPORT => 'onImportTransform',
     ];
+  }
+
+  /**
+   * Process the COLLECTION_CREATE event.
+   *
+   * @param \Symfony\Component\EventDispatcher\Event $event
+   *   The dispatched event.
+   */
+  public function collectionCreate(Event $event) {
+    $collection = $event->collection;
+    $collection_type = $this->entityTypeManager->getStorage('collection_type')->load($collection->bundle());
+    $is_blog = (bool) $collection_type->getThirdPartySetting('collection_blogs', 'contains_blogs');
+
+    if ($is_blog === FALSE) {
+      return;
+    }
+
+    // Create a vocab for the blog
+    $vocab = $this->entityTypeManager->getStorage('taxonomy_vocabulary')->create([
+      'langcode' => 'en',
+      'status' => TRUE,
+      'name' => $collection->label() . ' categories',
+      'vid' => 'blog_' . $collection->id() . '_categories',
+      'description' => 'Auto-generated vocabulary for ' . $collection->label() . ' blog',
+    ]);
+    $vocab->save();
+
+    if ($vocab) {
+      // Add the vocab to this new collection.
+      $collection_item_vocab = $this->entityTypeManager->getStorage('collection_item')->create([
+        'type' => 'blog',
+        'collection' => $collection->id(),
+      ]);
+
+      $collection_item_vocab->item = $vocab;
+      $collection_item_vocab->setAttribute('blog_collection_id', $collection->id());
+      $collection_item_vocab->save();
+
+      // Create a pattern for the new vocabulary
+      $collection_alias = $this->aliasManager->getAliasByPath($collection->toUrl()->toString());
+      $term_storage = $this->entityTypeManager->getStorage('taxonomy_term');
+
+      $pattern = $this->entityTypeManager->getStorage('pathauto_pattern')->create([
+        'id' => $vocab->id() . '_terms',
+        'label' => $vocab->label() . ' Terms',
+        'type' => 'canonical_entities:taxonomy_term',
+        'status' => TRUE,
+      ]);
+      $pattern->setPattern($collection_alias . '/[term:name]');
+      $pattern->addSelectionCondition([
+        'id' => 'entity_bundle:taxonomy_term',
+        'bundles' => [$vocab->id() => $vocab->id()],
+        'negate' => FALSE,
+        'context_mapping' => ['taxonomy_term' => 'taxonomy_term'],
+      ]);
+      $pattern->save();
+    }
   }
 
   /**
@@ -81,4 +160,42 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
       $collection_item_entity->save();
     }
   }
+
+  /**
+   * Ignore blog-related config entities.
+   *
+   * This prevents deleting configuration during deployment and configuration
+   * synchronization.
+   *
+   * @param \Drupal\Core\Config\StorageTransformEvent $event The config storage
+   *   transform event.
+   */
+  public function onImportTransform(StorageTransformEvent $event) {
+    /** @var \Drupal\Core\Config\StorageInterface $sync_storage */
+    $sync_storage = $event->getStorage();
+
+    // List the patterns that we don't want to mistakenly remove from the active store.
+    $collection_blogs_config_patterns = [
+      'taxonomy.vocabulary.blog_', // e.g. taxonomy.vocabulary.blog_2_categories
+      'pathauto.pattern.blog_', // e.g. pathauto.pattern.blog_2_categories_terms
+    ];
+
+    // Filter active configuration for the ignored items.
+    $ignored_config = array_filter($this->activeStorage->listAll(), function($config_name) use ($collection_blogs_config_patterns) {
+      foreach ($collection_blogs_config_patterns as $pattern) {
+        // @todo Change to regex pattern if any name collisions occur.
+        if (strpos($config_name, $pattern) !== FALSE) {
+          return TRUE;
+        }
+      }
+      return FALSE;
+    });
+
+    // Set the sync_storage to the active store values. This makes them appear
+    // to be identical ("There are no changes to import").
+    foreach ($ignored_config as $config_name) {
+      $sync_storage->write($config_name, $this->activeStorage->read($config_name));
+    }
+  }
+
 }

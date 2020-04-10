@@ -1,0 +1,21 @@
+uuid: 76e8e4be-d419-4bb0-933a-51cf1408cb42
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.blog
+    - field.storage.collection_item.field_blog_categories
+id: collection_item.blog.field_blog_categories
+field_name: field_blog_categories
+entity_type: collection_item
+bundle: blog
+label: 'Blog category'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: collection_context_selection
+  handler_settings: {  }
+field_type: entity_reference

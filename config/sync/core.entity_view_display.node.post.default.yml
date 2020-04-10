@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.field.node.post.body
     - field.field.node.post.field_authors
-    - field.field.node.post.field_categories
     - field.field.node.post.field_components
     - field.field.node.post.field_published_date
     - field.field.node.post.field_representative_image
@@ -14,8 +13,10 @@ dependencies:
   module:
     - datetime
     - entity_reference_revisions
+    - ilr
     - layout_builder
     - media
+    - system
     - union_organizer
     - user
 third_party_settings:
@@ -24,16 +25,24 @@ third_party_settings:
     enabled: true
     sections:
       -
-        layout_id: layout_cu_section
+        layout_id: banner
         layout_settings:
           label: ''
-          full_width: 1
-          collapse_margins: 0
-          extra_classes: ''
         components:
+          ab37babd-50d9-4092-8785-6f149592b6df:
+            uuid: ab37babd-50d9-4092-8785-6f149592b6df
+            region: banner
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              provider: system
+              label_display: '0'
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
           9aa98971-c066-4115-a79c-a8fb131f8fa8:
             uuid: 9aa98971-c066-4115-a79c-a8fb131f8fa8
-            region: main
+            region: banner
             configuration:
               id: 'field_block:node:post:field_representative_image'
               label: 'Representative Image'
@@ -50,7 +59,45 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
             additional: {  }
-            weight: 0
+            weight: 2
+          e42e92b8-a6e5-46cd-bebe-94c0855336a4:
+            uuid: e42e92b8-a6e5-46cd-bebe-94c0855336a4
+            region: banner
+            configuration:
+              id: 'field_block:node:post:title'
+              label: Title
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
+          4b437da8-b884-46a7-9687-660cd402312a:
+            uuid: 4b437da8-b884-46a7-9687-660cd402312a
+            region: banner
+            configuration:
+              id: 'field_block:node:post:body'
+              label: 'Intro Text'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_summary_or_trimmed
+                settings:
+                  trim_length: 600
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 3
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
@@ -79,25 +126,6 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: -7
-          e42e92b8-a6e5-46cd-bebe-94c0855336a4:
-            uuid: e42e92b8-a6e5-46cd-bebe-94c0855336a4
-            region: main
-            configuration:
-              id: 'field_block:node:post:title'
-              label: Title
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: string
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: -10
           301f6365-4495-4b60-ba04-257d5b77f364:
             uuid: 301f6365-4495-4b60-ba04-257d5b77f364
             region: main
@@ -152,14 +180,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: content
-  field_categories:
-    weight: 5
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: main
   field_components:
     type: entity_reference_revisions_entity_view
     weight: 4

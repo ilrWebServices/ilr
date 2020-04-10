@@ -1,19 +1,19 @@
-uuid: 7463e7b2-3e98-4254-8458-f6c0e22ab990
+uuid: d7c5075a-8ea5-4e0c-90e9-c1346f193fed
 langcode: en
 status: true
 dependencies:
   module:
-    - node
+    - collection
     - taxonomy
-id: node.field_categories
-field_name: field_categories
-entity_type: node
+id: collection_item.field_blog_categories
+field_name: field_blog_categories
+entity_type: collection_item
 type: entity_reference
 settings:
   target_type: taxonomy_term
 module: core
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

@@ -1,0 +1,35 @@
+uuid: 44158b82-998b-4550-a976-3c6c7b8d6865
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.blog
+    - field.field.collection_item.blog.field_blog_categories
+  module:
+    - dynamic_entity_reference
+id: collection_item.blog.default
+targetEntityType: collection_item
+bundle: blog
+mode: default
+content:
+  field_blog_categories:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  item:
+    type: dynamic_entity_reference_default
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: 40
+      placeholder: ''
+      match_limit: 10
+    third_party_settings: {  }
+hidden:
+  attributes: true
+  collection: true
+  name: true
+  user_id: true

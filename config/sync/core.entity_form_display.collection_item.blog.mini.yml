@@ -1,0 +1,25 @@
+uuid: eae55363-ad04-47c1-9e44-96283fc6e508
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.blog
+    - core.entity_form_mode.collection_item.mini
+    - field.field.collection_item.blog.field_blog_categories
+id: collection_item.blog.mini
+targetEntityType: collection_item
+bundle: blog
+mode: mini
+content:
+  field_blog_categories:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden:
+  attributes: true
+  collection: true
+  item: true
+  name: true
+  user_id: true

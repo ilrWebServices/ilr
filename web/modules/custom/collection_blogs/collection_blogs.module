@@ -49,6 +49,111 @@ function collection_blogs_form_collection_type_form_alter(&$form, FormStateInter
 }
 
 /**
+ * Implements hook_entity_extra_field_info().
+ *
+ * @see collection_blogs_taxonomy_term_view().
+ */
+function collection_blogs_entity_extra_field_info() {
+  $extra = [];
+  $entity_type_info = \Drupal::service('entity_type.bundle.info');
+
+  foreach ($entity_type_info->getBundleInfo('taxonomy_term') as $vocabulary_id => $info) {
+    if (preg_match('/^blog_\d+_categories$/', $vocabulary_id)) {
+      $extra['taxonomy_term'][$vocabulary_id]['display']['collection_items_category_term'] = [
+        'label' => $info['label'],
+        'description' => t('This is a computed reference.'),
+        'weight' => 0,
+        'visible' => TRUE,
+      ];
+    }
+  }
+
+  return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function collection_blogs_taxonomy_term_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  if ($display->getComponent('collection_items_category_term') && $view_mode === 'full') {
+    $entity_type_manager = \Drupal::service('entity_type.manager');
+    $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+    $view_builder = $entity_type_manager->getViewBuilder('node');
+    $cache_tags = $entity->getCacheTags();
+    $cache_tags[] = 'node_list'; // 'node_list:post'; // 8.9 and above
+    $cache_tags[] = 'collection_item_list'; // 'collection_item_list:blog'; // 8.9 and above
+    $posts = [];
+
+    $blog_post_collection_items = $collection_item_storage->getQuery()
+      ->condition('type', 'blog')
+      ->condition('item.entity:node.status', 1)
+      ->condition('item.entity:node.type', 'post') // @todo
+      ->condition('field_blog_categories', $entity->id())
+      ->sort('item.entity:node.field_published_date', 'DESC')
+      ->execute();
+
+    foreach ($collection_item_storage->loadMultiple($blog_post_collection_items) as $collection_item) {
+      $posts[] = $view_builder->view($collection_item->item->entity, 'teaser');
+    }
+
+    $build['collection_items_term'] = [
+      '#theme' => 'item_list__collection_listing',
+      '#items' => $posts,
+      '#attributes' => ['class' => 'collection-listing'],
+      '#collection_listing' => TRUE,
+      '#empty' => t('Content coming soon.'),
+      '#context' => ['taxonomy_term' => $entity],
+      '#cache' => [
+        'tags' => $cache_tags,
+      ],
+    ];
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function collection_blogs_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getFormObject()->getEntity();
+
+  if ($node->bundle() !== 'post') {
+    return;
+  }
+
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+
+  // Load all collection items that reference this node.
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+
+  $collection_item_ids = $collection_item_storage->getQuery()
+    ->condition('type', 'blog')
+    ->condition('item__target_type', 'node')
+    ->condition('item__target_id', $node->id())
+    ->execute();
+
+  $collection_items = $collection_item_storage->loadMultiple($collection_item_ids);
+
+  if (!$collection_items) {
+    return;
+  }
+
+  // Create the inline entity form element.
+  $form['collection_blog_categories'] = [
+    '#type' => 'inline_entity_form',
+    '#entity_type' => 'collection_item',
+    '#bundle' => 'blog',
+    '#weight' => 100,
+    '#default_value' => count($collection_items) === 1 ? reset($collection_items) : NULL,
+    '#form_mode' => 'mini',
+    '#save_entity' => TRUE,
+    '#op' => 'edit',
+    '#group' => 'ilr_meta',
+    '#access' => count($collection_items) === 1,
+  ];
+}
+
+/**
  * Entity builder for the collection type configuration entity.
  */
 function collection_blogs_form_collection_form_builder($entity_type, CollectionType $collection_type, &$form, FormStateInterface $form_state) {
@@ -71,31 +176,58 @@ function collection_blogs_form_collection_new_node_form_alter(&$form, FormStateI
   /** @var \Drupal\collection\Entity\CollectionInterface $collection */
   $collection = $form_state->get('collection');
 
-  if ($collection->bundle() === 'blog') {
-    $form['#submit'][] = 'collection_blogs_form_collection_new_node_form_submit';
+  if (!$collection->type->entity->getThirdPartySetting('collection_blogs', 'contains_blogs')) {
+    return;
+  }
+
+  // Add a 'presubmit' handler to allow setting the collection item type to blog.
+  array_unshift($form['#submit'], 'collection_blogs_form_collection_new_node_form_presubmit');
+}
+
+/**
+ * Form submission handler to set the collection_item_type.
+ *
+ * @see collection_blogs_form_collection_new_node_form_alter()
+ */
+function collection_blogs_form_collection_new_node_form_presubmit($form, FormStateInterface $form_state) {
+  if ($form_state->getValue('bundle') === 'post') {
+    $form_state->set('collection_item_type', 'blog');
   }
 }
 
 /**
- * Form submission handler to automatically set the alias for blog items.
+ * Implements hook_pathauto_alias_alter().
  *
- * @see collection_blogs_form_collection_new_node_form_alter()
+ * Updates the alias when the entity uses the auto-generated alias and is in a blog collection.
  */
-function collection_blogs_form_collection_new_node_form_submit($form, FormStateInterface $form_state) {
-  if ($node = $form_state->get('node')) {
-    if (\Drupal::moduleHandler()->moduleExists('pathauto')) {
-      $node->path->pathauto = PathautoState::SKIP;
-      $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
-      $clean_title = $alias_cleaner->cleanString($node->label());
-    }
-    else {
-      $clean_title = strtolower(Html::cleanCssIdentifier($node->label()));
+function collection_blogs_pathauto_alias_alter(&$alias, array &$context) {
+  if (isset($context['data']['node'])) {
+    $node = $context['data']['node'];
+    // Load all collection items that reference this node.
+    $entity_type_manager = \Drupal::service('entity_type.manager');
+    $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+    $collection_item_ids = $collection_item_storage->getQuery()
+      ->condition('type', 'blog')
+      ->condition('item__target_type', 'node')
+      ->condition('item__target_id', $node->id())
+      ->execute();
+
+    $collection_items = $collection_item_storage->loadMultiple($collection_item_ids);
+
+    if (!$collection_items) {
+      return;
     }
 
-    $collection = $form_state->get('collection');
-    $node->path->alias = $collection->toUrl()->toString() . '/' . $clean_title;
+    $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
+    $clean_title = $alias_cleaner->cleanString($node->label());
+    $first_collection_item = reset($collection_items);
 
-    // Save the node again to trigger path updates.
-    $node->save();
+    // Use the collection path if there is no category.
+    if ($first_collection_item->field_blog_categories->isEmpty()) {
+      $alias = $first_collection_item->collection->entity->toUrl()->toString() . '/' . $clean_title;
+    }
+    else { // Use the category path.
+      $alias = $first_collection_item->field_blog_categories->entity->toUrl()->toString() . '/' . $clean_title;
+    }
   }
 }
