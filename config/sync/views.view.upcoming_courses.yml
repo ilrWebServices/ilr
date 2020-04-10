@@ -53,7 +53,7 @@ display:
       pager:
         type: some
         options:
-          items_per_page: 3
+          items_per_page: 15
           offset: 0
       style:
         type: grid
