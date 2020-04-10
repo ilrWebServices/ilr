@@ -1,0 +1,90 @@
+uuid: 1c554d70-39c4-40f9-ae8a-4322273ef718
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.blog_4_categories.field_representative_image
+    - taxonomy.vocabulary.blog_4_categories
+  module:
+    - layout_builder
+    - layout_discovery
+    - text
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          1e7465bc-0b6e-49fc-87af-c212dec8e665:
+            uuid: 1e7465bc-0b6e-49fc-87af-c212dec8e665
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:taxonomy_term:blog_4_categories:collection_items_category_term'
+            additional: {  }
+            weight: 0
+          74b1671e-bc4f-4687-9b02-08a0e5e21b94:
+            uuid: 74b1671e-bc4f-4687-9b02-08a0e5e21b94
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:taxonomy_term:blog_4_categories:description'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+            additional: {  }
+            weight: 1
+          2b7afa64-457d-4963-a91f-f0cfcfc2f3db:
+            uuid: 2b7afa64-457d-4963-a91f-f0cfcfc2f3db
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:taxonomy_term:blog_4_categories:field_representative_image'
+              formatter:
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+                type: entity_reference_label
+            additional: {  }
+            weight: 2
+        third_party_settings: {  }
+id: taxonomy_term.blog_4_categories.default
+targetEntityType: taxonomy_term
+bundle: blog_4_categories
+mode: default
+content:
+  collection_items_category_term:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_representative_image:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden:
+  search_api_excerpt: true

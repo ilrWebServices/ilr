@@ -1,0 +1,35 @@
+uuid: 74c44304-682e-4b07-ab19-e6e9c4ad7033
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.teaser
+    - field.field.taxonomy_term.blog_4_categories.field_representative_image
+    - taxonomy.vocabulary.blog_4_categories
+  module:
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: taxonomy_term.blog_4_categories.teaser
+targetEntityType: taxonomy_term
+bundle: blog_4_categories
+mode: teaser
+content:
+  collection_items_category_term:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_representative_image: true
+  search_api_excerpt: true

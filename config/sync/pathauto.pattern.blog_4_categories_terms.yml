@@ -1,0 +1,23 @@
+uuid: b499db58-869a-4f1f-b7be-d3084379ec38
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: blog_4_categories_terms
+label: 'ILR in the News categories Terms'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/news/ilr-news/[term:name]'
+selection_criteria:
+  804596a7-3765-467b-b748-c32a45d53c63:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      blog_4_categories: blog_4_categories
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: 804596a7-3765-467b-b748-c32a45d53c63
+selection_logic: and
+weight: 0
+relationships: {  }
