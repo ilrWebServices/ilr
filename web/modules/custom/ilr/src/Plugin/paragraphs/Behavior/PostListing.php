@@ -65,9 +65,15 @@ class PostListing extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function preprocess(&$variables) {
-    $collection_item_storage = $this->entityTypeManager->getStorage('collection_item');
     $paragraph = $variables['paragraph'];
-    $collection = $variables['paragraph']->field_collection->entity;
+    $collection = $paragraph->field_collection->entity;
+
+    // If the collection was deleted, return nothing to prevent errors.
+    if ($collection === NULL) {
+      return;
+    }
+
+    $collection_item_storage = $this->entityTypeManager->getStorage('collection_item');
     $view_builder = $this->entityTypeManager->getViewBuilder('node');
     $cache_tags = $collection->getCacheTags();
     $cache_tags[] = 'node_list';
