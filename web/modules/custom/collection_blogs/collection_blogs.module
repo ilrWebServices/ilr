@@ -105,7 +105,7 @@ function collection_blogs_taxonomy_term_view(array &$build, \Drupal\Core\Entity\
       $posts[] = $view_builder->view($collection_item->item->entity, 'teaser');
     }
 
-    $build['collection_items_term'] = [
+    $build['collection_items_category_term'] = [
       '#theme' => 'item_list__collection_listing',
       '#items' => $posts,
       '#attributes' => ['class' => 'collection-listing'],
@@ -142,7 +142,7 @@ function collection_blogs_node_view(array &$build, EntityInterface $entity, Enti
         continue;
       }
 
-      $build['banner'] = $entity_type_manager->getViewBuilder('collection')->view($collection_item->collection->entity, 'banner');
+      $build['blog_collection'] = $entity_type_manager->getViewBuilder('collection')->view($collection_item->collection->entity, 'banner');
       break;
     }
   }
