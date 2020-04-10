@@ -3,9 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.blog_4_categories.field_body
     - field.field.taxonomy_term.blog_4_categories.field_representative_image
+    - field.field.taxonomy_term.blog_4_categories.field_sections
     - taxonomy.vocabulary.blog_4_categories
   module:
+    - media_library
+    - paragraphs_previewer
     - path
     - text
 id: taxonomy_term.blog_4_categories.default
@@ -13,23 +17,41 @@ targetEntityType: taxonomy_term
 bundle: blog_4_categories
 mode: default
 content:
-  description:
-    type: text_textfield
-    weight: 0
+  field_body:
+    weight: 3
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    type: text_textarea_with_summary
     region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_representative_image:
-    weight: 101
+    weight: 1
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: media_library_widget
+    region: content
+  field_sections:
+    weight: 2
+    settings:
+      title: section
+      title_plural: sections
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: '2'
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: section
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: 0
+        add_above: 0
+    third_party_settings: {  }
+    type: paragraphs_previewer
     region: content
   name:
     type: string_textfield
@@ -52,4 +74,5 @@ content:
     weight: 100
     region: content
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  description: true

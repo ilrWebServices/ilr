@@ -3,50 +3,42 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.blog_4_categories.field_body
     - field.field.taxonomy_term.blog_4_categories.field_representative_image
+    - field.field.taxonomy_term.blog_4_categories.field_sections
     - taxonomy.vocabulary.blog_4_categories
   module:
+    - entity_reference_revisions
+    - ilr
     - layout_builder
     - layout_discovery
+    - system
     - text
+    - union_organizer
 third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: true
     sections:
       -
-        layout_id: layout_onecol
+        layout_id: banner
         layout_settings:
           label: ''
         components:
-          1e7465bc-0b6e-49fc-87af-c212dec8e665:
-            uuid: 1e7465bc-0b6e-49fc-87af-c212dec8e665
-            region: content
+          3192ff0a-ad17-49c4-a946-f2ac4680ba88:
+            uuid: 3192ff0a-ad17-49c4-a946-f2ac4680ba88
+            region: banner
             configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              provider: system
               label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'extra_field_block:taxonomy_term:blog_4_categories:collection_items_category_term'
+              context_mapping: {  }
             additional: {  }
-            weight: 0
-          74b1671e-bc4f-4687-9b02-08a0e5e21b94:
-            uuid: 74b1671e-bc4f-4687-9b02-08a0e5e21b94
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:taxonomy_term:blog_4_categories:description'
-              formatter:
-                label: hidden
-                type: text_default
-                settings: {  }
-                third_party_settings: {  }
-            additional: {  }
-            weight: 1
+            weight: -10
           2b7afa64-457d-4963-a91f-f0cfcfc2f3db:
             uuid: 2b7afa64-457d-4963-a91f-f0cfcfc2f3db
-            region: content
+            region: banner
             configuration:
               label_display: '0'
               context_mapping:
@@ -59,7 +51,83 @@ third_party_settings:
                 third_party_settings: {  }
                 type: entity_reference_label
             additional: {  }
-            weight: 2
+            weight: -8
+          943642a0-5468-4f92-bbe1-b1091cc2f251:
+            uuid: 943642a0-5468-4f92-bbe1-b1091cc2f251
+            region: banner
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:taxonomy_term:blog_4_categories:field_body'
+              formatter:
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+                type: text_default
+            additional: {  }
+            weight: -7
+          69ea9da6-50d0-48df-828b-de24f1cb943f:
+            uuid: 69ea9da6-50d0-48df-828b-de24f1cb943f
+            region: banner
+            configuration:
+              id: 'field_block:taxonomy_term:blog_4_categories:name'
+              label: Name
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -9
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          b9fadd7b-9988-4ac3-9a97-94f5f94708ba:
+            uuid: b9fadd7b-9988-4ac3-9a97-94f5f94708ba
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:taxonomy_term:blog_4_categories:field_sections'
+              formatter:
+                label: above
+                settings:
+                  view_mode: default
+                  link: ''
+                third_party_settings: {  }
+                type: entity_reference_revisions_entity_view
+            additional: {  }
+            weight: 3
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          1e7465bc-0b6e-49fc-87af-c212dec8e665:
+            uuid: 1e7465bc-0b6e-49fc-87af-c212dec8e665
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:taxonomy_term:blog_4_categories:collection_items_category_term'
+            additional: {  }
+            weight: 0
         third_party_settings: {  }
 id: taxonomy_term.blog_4_categories.default
 targetEntityType: taxonomy_term
@@ -78,6 +146,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_body:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
   field_representative_image:
     weight: 1
     label: above
@@ -85,6 +160,15 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
+  field_sections:
+    weight: 2
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
     region: content
 hidden:
   search_api_excerpt: true

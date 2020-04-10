@@ -1,0 +1,61 @@
+uuid: 05c24678-111f-4b7b-a6e8-a9956cf43f83
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_sections
+    - paragraphs.paragraphs_type.section
+    - taxonomy.vocabulary.blog_4_categories
+  module:
+    - entity_reference_revisions
+id: taxonomy_term.blog_4_categories.field_sections
+field_name: field_sections
+entity_type: taxonomy_term
+bundle: blog_4_categories
+label: 'Page content'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      section: section
+    target_bundles_drag_drop:
+      collection_listing:
+        weight: 12
+        enabled: false
+      deck:
+        weight: 13
+        enabled: false
+      form:
+        weight: 14
+        enabled: false
+      image:
+        weight: 15
+        enabled: false
+      person:
+        weight: 16
+        enabled: false
+      promo:
+        weight: 17
+        enabled: false
+      rich_text:
+        weight: 18
+        enabled: false
+      section:
+        enabled: true
+        weight: 19
+      simple_collection_listing:
+        weight: 20
+        enabled: false
+      testimonial:
+        weight: 21
+        enabled: false
+      video:
+        weight: 22
+        enabled: false
+field_type: entity_reference_revisions

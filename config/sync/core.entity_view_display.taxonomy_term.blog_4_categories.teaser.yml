@@ -4,10 +4,14 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.taxonomy_term.teaser
+    - field.field.taxonomy_term.blog_4_categories.field_body
     - field.field.taxonomy_term.blog_4_categories.field_representative_image
+    - field.field.taxonomy_term.blog_4_categories.field_sections
+    - image.style.medium_3_2_600x400
     - taxonomy.vocabulary.blog_4_categories
   module:
     - layout_builder
+    - media
     - text
 third_party_settings:
   layout_builder:
@@ -18,18 +22,24 @@ targetEntityType: taxonomy_term
 bundle: blog_4_categories
 mode: teaser
 content:
-  collection_items_category_term:
-    weight: 0
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  description:
-    label: hidden
+  field_body:
     type: text_default
     weight: 0
     region: content
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+  field_representative_image:
+    type: media_thumbnail
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      image_style: medium_3_2_600x400
+      image_link: ''
+    third_party_settings: {  }
 hidden:
-  field_representative_image: true
+  collection_items_category_term: true
+  description: true
+  field_sections: true
   search_api_excerpt: true
