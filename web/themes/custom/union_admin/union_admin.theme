@@ -4,6 +4,8 @@
  * @file Theme file for the union_admin.theme.
  */
 
+use Drupal\Core\Form\FormStateInterface;
+
 /**
  * Implements template_preprocess_html().
  */
@@ -40,3 +42,47 @@ function union_admin_library_info_alter(&$libraries, $extension) {
     $libraries['drupal.paragraphs.widget']['css']['theme'][$theme_path . '/css/paragraphs.widget.enhancements.css'] = [];
   }
 }
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function union_admin_form_taxonomy_term_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['advanced'] = [
+    '#type' => 'vertical_tabs',
+    '#weight' => 99,
+    '#attributes' => [
+      'class' => 'entity-meta'
+    ],
+  ];
+
+  // Add a new term add/edit form advance group section. This is generally shown
+  // in the right-hand column.
+  /** @see Drupal\node\NodeForm */
+  $form['ilr_meta'] = [
+    '#type' => 'details',
+    '#title' => t('Meta'),
+    '#group' => 'advanced',
+    '#weight' => -10,
+    '#optional' => TRUE,
+    '#open' => TRUE,
+  ];
+
+  if (isset($form['path'])) {
+    $form['path']['widget'][0]['#group'] = 'advanced';
+    $form['path']['widget'][0]['#type'] = 'details';
+  }
+
+  if (isset($form['relations'])) {
+    $form['relations']['#group'] = 'advanced';
+  }
+
+  if (isset($form['field_body'])) {
+    $form['field_body']['#group'] = 'ilr_meta';
+  }
+
+  if (isset($form['field_representative_image'])) {
+    $form['field_representative_image']['#group'] = 'ilr_meta';
+  }
+
+}
+
