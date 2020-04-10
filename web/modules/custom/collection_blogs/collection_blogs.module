@@ -183,41 +183,8 @@ function collection_blogs_form_collection_new_node_form_alter(&$form, FormStateI
   // Add a submit handler to process the alias and any categories.
   $form['#submit'][] = 'collection_blogs_form_collection_new_node_form_submit';
 
-  // Check if this collection has a taxonomy vocabulary.
-  foreach ($collection->findItems('taxonomy_vocabulary') as $collection_item_vocab) {
-    if ($collection_item_vocab->getAttribute('blog_collection_id') !== FALSE) {
-      $vocabulary = $collection_item_vocab->item->entity;
-    }
-  }
-
-  if (empty($vocabulary)) {
-    return;
-  }
-
-  $options = [];
-  $terms = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term')->loadTree($vocabulary->id(), 0, NULL, TRUE);
-
   // Add a 'presubmit' handler to allow setting the collection item type to blog.
   array_unshift($form['#submit'], 'collection_blogs_form_collection_new_node_form_presubmit');
-
-  foreach ($terms as $term) {
-    $options[$term->id()] = $term->label();
-  }
-
-  // Note that we currently limit categories to posts. Revisit in the future.
-  $form['blog_collection_categories'] = [
-    '#access' => (bool) $options,
-    '#type' => 'checkboxes',
-    '#title' => t('Post categories'),
-    '#description' => t('Choose which categories are appropriate for this post.'),
-    '#options' => $options,
-    '#states' => [
-      'visible' => [
-        'input[name="bundle"]' => ['value' => 'post'],
-      ],
-    ],
-    '#default_value' => [],
-  ];
 }
 
 /**
