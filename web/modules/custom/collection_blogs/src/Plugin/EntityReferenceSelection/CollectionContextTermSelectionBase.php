@@ -11,18 +11,11 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Implementation of the CollectionContext Entity Reference Selection plugin.
- *
- * @todo Limit this to applicable (e.g. taxonomy term reference) fields.
- *
- * @EntityReferenceSelection(
- *   id = "collection_context_selection",
- *   label = @Translation("Collection context"),
- *   group = "collection_context_selection",
- *   weight = 0
- * )
+ * Base class for CollectionContext Entity Reference Selection plugins.
  */
-class CollectionContextSelection extends SelectionPluginBase implements ContainerFactoryPluginInterface {
+class CollectionContextTermSelectionBase extends SelectionPluginBase implements ContainerFactoryPluginInterface {
+
+  protected $identifier = '';
 
   /**
    * The entity type manager service.
@@ -90,6 +83,10 @@ class CollectionContextSelection extends SelectionPluginBase implements Containe
     $term_manager = $this->entityTypeManager->getStorage('taxonomy_term');
 
     foreach ($collection_items as $collection_item) {
+      if ($collection_item->getAttribute($this->identifier) === FALSE) {
+        continue;
+      }
+
       $vocab = $collection_item->item->entity;
       $terms = $term_manager->loadTree($vocab->id(), 0, NULL, TRUE);
 

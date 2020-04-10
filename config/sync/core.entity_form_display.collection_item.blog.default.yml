@@ -5,6 +5,7 @@ dependencies:
   config:
     - collection.collection_item_type.blog
     - field.field.collection_item.blog.field_blog_categories
+    - field.field.collection_item.blog.field_blog_tags
   module:
     - dynamic_entity_reference
 id: collection_item.blog.default
@@ -17,6 +18,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_blog_tags:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
     region: content
   item:
     type: dynamic_entity_reference_default
