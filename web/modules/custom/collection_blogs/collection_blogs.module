@@ -67,11 +67,18 @@ function collection_blogs_entity_extra_field_info() {
         'weight' => 0,
         'visible' => TRUE,
       ];
+
+      $extra['taxonomy_term'][$vocabulary_id]['display']['blog_collection'] = [
+        'label' => t('Blog'),
+        'description' => t('This is a computed reference.'),
+        'weight' => 1,
+        'visible' => TRUE,
+      ];
     }
   }
 
   $extra['node']['post']['display']['blog_collection'] = [
-    'label' => 'Blog',
+    'label' => t('Blog'),
     'description' => t('This is a computed reference.'),
     'weight' => 0,
     'visible' => TRUE,
@@ -116,6 +123,18 @@ function collection_blogs_taxonomy_term_view(array &$build, \Drupal\Core\Entity\
         'tags' => $cache_tags,
       ],
     ];
+
+    if ($display->getComponent('blog_collection')) {
+      $vocabulary_collection_items = $collection_item_storage->getQuery()
+        ->condition('item__target_type', 'taxonomy_vocabulary')
+        ->condition('item__target_id', $entity->getVocabularyId())
+        ->execute();
+
+      if ($vocabulary_collection_items) {
+        $vocabulary_collection_item = $collection_item_storage->load(reset($vocabulary_collection_items));
+        $build['blog_collection'] = $entity_type_manager->getViewBuilder('collection')->view($vocabulary_collection_item->collection->entity, 'banner');
+      }
+    }
   }
 }
 
