@@ -25,3 +25,8 @@
     --cu-current-link-color: var(--cu-color-text);
   }
 }
+
+.collection-listing.cu-grid {
+  --cu-grid-row-gap: var(--cu-vr3);
+  --cu-grid-column-gap: inherit; // var(--cu-ps2)
+}
