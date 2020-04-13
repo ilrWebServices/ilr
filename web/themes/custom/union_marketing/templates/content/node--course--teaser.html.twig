@@ -72,27 +72,6 @@
 #}
 {{ attach_library('union_organizer/button') }}
 
-{% set feature_list_items = [
-  {
-    name: next_class.field_class_date|view('teaser'),
-    icon: 'check-circle',
-    icon_size: '1em'
-  },
-  {
-    name: next_class.field_price|view('teaser'),
-    icon: 'check-circle',
-    icon_size: '1em'
-  }
-] %}
-
-{% if not next_class.field_address.isEmpty() %}
-{% set feature_list_items = feature_list_items|merge([{
-  name: next_class.field_address|view('teaser'),
-  icon: 'check-circle',
-  icon_size: '1em'
-}]) %}
-{% endif %}
-
 {% set rendered_description %}
 <div class="pinned-wrapper">
 <h3 class="cu-heading">{{ label }}</h3>
@@ -102,7 +81,28 @@
 
 <hr class="pad" />
 
-{% if class_count > 0 %}
+{% if upcoming_classes|length > 0 %}
+  {% set feature_list_items = [
+    {
+      name: upcoming_classes.0.field_class_date|view('teaser'),
+      icon: 'check-circle',
+      icon_size: '1em'
+    },
+    {
+      name: upcoming_classes.0.field_price|view('teaser'),
+      icon: 'check-circle',
+      icon_size: '1em'
+    }
+  ] %}
+
+  {% if not upcoming_classes.0.field_address.isEmpty() %}
+  {% set feature_list_items = feature_list_items|merge([{
+    name: upcoming_classes.0.field_address|view('teaser'),
+    icon: 'check-circle',
+    icon_size: '1em'
+  }]) %}
+  {% endif %}
+
 {% include '@union/_feature-list.twig' with {
   items: feature_list_items,
   content_attributes: { class: 'cu-grid' }
@@ -111,7 +111,7 @@
 <hr class="pad" />
 {% endif %}
 
-{% if class_count > 1 %}
+{% if upcoming_classes|length > 1 %}
 <p class="cu-style cu-style--link">{{ 'See more dates and locations'|t }}</p><hr class="pad" />
 {% endif %}
 </div>
