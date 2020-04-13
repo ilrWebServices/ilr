@@ -3,6 +3,8 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\collection\Entity\CollectionType;
 use Drupal\pathauto\PathautoState;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
 /**
  * @file
@@ -65,8 +67,22 @@ function collection_blogs_entity_extra_field_info() {
         'weight' => 0,
         'visible' => TRUE,
       ];
+
+      $extra['taxonomy_term'][$vocabulary_id]['display']['blog_collection'] = [
+        'label' => t('Blog'),
+        'description' => t('This is a computed reference.'),
+        'weight' => 1,
+        'visible' => TRUE,
+      ];
     }
   }
+
+  $extra['node']['post']['display']['blog_collection'] = [
+    'label' => t('Blog'),
+    'description' => t('This is a computed reference.'),
+    'weight' => 0,
+    'visible' => TRUE,
+  ];
 
   return $extra;
 }
@@ -96,7 +112,7 @@ function collection_blogs_taxonomy_term_view(array &$build, \Drupal\Core\Entity\
       $posts[] = $view_builder->view($collection_item->item->entity, 'teaser');
     }
 
-    $build['collection_items_term'] = [
+    $build['collection_items_category_term'] = [
       '#theme' => 'item_list__collection_listing',
       '#items' => $posts,
       '#attributes' => ['class' => 'collection-listing'],
@@ -107,6 +123,43 @@ function collection_blogs_taxonomy_term_view(array &$build, \Drupal\Core\Entity\
         'tags' => $cache_tags,
       ],
     ];
+
+    if ($display->getComponent('blog_collection')) {
+      $vocabulary_collection_items = $collection_item_storage->getQuery()
+        ->condition('item__target_type', 'taxonomy_vocabulary')
+        ->condition('item__target_id', $entity->getVocabularyId())
+        ->execute();
+
+      if ($vocabulary_collection_items) {
+        $vocabulary_collection_item = $collection_item_storage->load(reset($vocabulary_collection_items));
+        $build['blog_collection'] = $entity_type_manager->getViewBuilder('collection')->view($vocabulary_collection_item->collection->entity, 'banner');
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function collection_blogs_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($display->getComponent('blog_collection') && $view_mode === 'full') {
+    $entity_type_manager = \Drupal::service('entity_type.manager');
+    $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+
+    $blog_post_collection_items = $collection_item_storage->getQuery()
+      ->condition('type', 'blog')
+      ->condition('item__target_type', 'node')
+      ->condition('item__target_id', $entity->id())
+      ->execute();
+
+    foreach ($collection_item_storage->loadMultiple($blog_post_collection_items) as $collection_item) {
+      if (!$collection_item->collection->entity->type->entity->getThirdPartySetting('collection_blogs', 'contains_blogs')) {
+        continue;
+      }
+
+      $build['blog_collection'] = $entity_type_manager->getViewBuilder('collection')->view($collection_item->collection->entity, 'banner');
+      break;
+    }
   }
 }
 

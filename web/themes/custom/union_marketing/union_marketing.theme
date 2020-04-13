@@ -137,3 +137,18 @@ function union_marketing_preprocess_field__paragraph__field_heading__promo(&$var
 function union_marketing_preprocess_field__paragraph__field_subheading__promo(&$variables) {
   $variables['attributes']['class'][] = 'cu-heading';
 }
+
+/**
+ * Implements hook_preprocess_collection().
+ *
+ * Modify the template theme suggestions when blog collections are rendered as
+ * banners through layout builder. This allows us to modify the heading level.
+ */
+function union_marketing_preprocess_collection__blog__banner(&$variables) {
+  $elements = &$variables['content']['_layout_builder'][0]['banner'];
+  foreach ($elements as $uuid => $render_array) {
+    if ($elements[$uuid]["#plugin_id"] == "field_block:collection:blog:name") {
+      $elements[$uuid]['#theme'] = 'block__blog_collection__banner__name';
+    }
+  }
+}

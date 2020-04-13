@@ -1,0 +1,10 @@
+uuid: 45b2d6bc-1f57-45ba-a313-2dd8ced3c00b
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: collection.banner
+label: Banner
+targetEntityType: collection
+cache: true
