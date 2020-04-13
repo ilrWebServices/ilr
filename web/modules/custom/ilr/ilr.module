@@ -330,10 +330,12 @@ function ilr_entity_prepare_view($entity_type_id, array $entities, array $displa
  *
  */
 function ilr_preprocess_node__course__teaser(&$variables) {
-  $variables['class_count'] = $variables['node']->classes->count();
+  $variables['upcoming_classes'] = [];
 
-  if ($variables['class_count']) {
-    $variables['next_class'] = $variables['node']->classes->first()->entity;
+  foreach ($variables['node']->classes as $upcoming_class) {
+    if (!$upcoming_class->entity->field_class_cancelled->value) {
+      $variables['upcoming_classes'][] = $upcoming_class->entity;
+    }
   }
 }
 
