@@ -103,7 +103,11 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
           'type' => 'canonical_entities:taxonomy_term',
           'status' => TRUE,
         ]);
-        $pattern->setPattern($collection_alias . '/[term:name]');
+        // This prevents duplicate paths when both the categories and tags
+        // vocabularies have the same term. Categories are special in that their
+        // terms are also used in the post aliases.
+        $subpath = ($vocabulary_type !== 'categories') ? '/' . $vocabulary_type : '';
+        $pattern->setPattern($collection_alias . $subpath . '/[term:name]');
         $pattern->addSelectionCondition([
           'id' => 'entity_bundle:taxonomy_term',
           'bundles' => [$vocab->id() => $vocab->id()],
