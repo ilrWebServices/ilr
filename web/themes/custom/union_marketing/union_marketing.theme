@@ -146,9 +146,9 @@ function union_marketing_preprocess_field__paragraph__field_subheading__promo(&$
  */
 function union_marketing_preprocess_collection__blog__banner(&$variables) {
   $elements = &$variables['content']['_layout_builder'][0]['banner'];
-  foreach ($elements as $uuid => $render_array) {
-    if ($elements[$uuid]["#plugin_id"] == "field_block:collection:blog:name") {
-      $elements[$uuid]['#theme'] = 'block__blog_collection__banner__name';
+  foreach ($elements as &$render_array) {
+    if (isset($render_array["#plugin_id"]) && $render_array["#plugin_id"] == "field_block:collection:blog:name") {
+      $render_array['#theme'] = 'block__blog_collection__banner__name';
     }
   }
 }
