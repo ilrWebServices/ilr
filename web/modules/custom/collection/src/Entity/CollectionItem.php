@@ -221,6 +221,20 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
   /**
    * {@inheritdoc}
    */
+  public function removeAttribute(string $key) {
+    foreach ($this->attributes as $index => $attribute) {
+      if ($attribute->key === $key) {
+        $this->attributes->removeItem($index);
+        return TRUE;
+      }
+    }
+
+    return FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 

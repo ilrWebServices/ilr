@@ -81,4 +81,15 @@ interface CollectionItemInterface extends ContentEntityInterface, EntityChangedI
    */
   public function setAttribute(string $key, string $value);
 
+  /**
+   * REmove a key-value attribute for this collection item.
+   *
+   * @param string $key
+   *   The attribute key.
+   *
+   * @return boolean
+   *   TRUE if the item was deleted. FALSE if not.
+   */
+  public function removeAttribute(string $key);
+
 }
