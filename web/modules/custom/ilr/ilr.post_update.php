@@ -169,3 +169,101 @@ function ilr_post_update_add_covid_blog_category_terms(&$sandbox) {
     }
   }
 }
+
+/**
+ * Change `blog_collection_id` attribute key to `blog_taxonomy_categories` with
+ * a value of 1 for the vocabulary collection items for the covid and ILR in the
+ * News blogs.
+ */
+function ilr_post_update_fix_blog_category_collection_item_attributes(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+
+  // 17 and 23 are the collection_item ids for the blog vocabularies.
+  $blog_categories_collection_items = $collection_item_storage->loadMultiple([17, 23]);
+
+  foreach ($blog_categories_collection_items as $collection_item) {
+    $collection_item->setAttribute('blog_taxonomy_categories', TRUE);
+    $collection_item->removeAttribute('blog_collection_id');
+    $collection_item->save();
+  }
+}
+
+/**
+ * Add `blog_2_tags` and `blog_4_tags` vocabularies. Also add them to their blog
+ * collections with the `blog_taxonomy_tags` attribute set to 1 (TRUE).
+ */
+function ilr_post_update_add_blog_tag_terms(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $path_alias_manager = \Drupal::service('path.alias_manager');
+  $vocabulary_storage = $entity_type_manager->getStorage('taxonomy_vocabulary');
+  $collection_storage = $entity_type_manager->getStorage('collection');
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+  $pathauto_pattern_storage = $entity_type_manager->getStorage('pathauto_pattern');
+  $term_storage = $entity_type_manager->getStorage('taxonomy_term');
+
+  foreach ([2, 4] as $collection_id) {
+    $collection = $collection_storage->load($collection_id);
+
+    $vocabulary = $vocabulary_storage->create([
+      'langcode' => 'en',
+      'status' => TRUE,
+      'name' => $collection->label() . ' tags',
+      'vid' => 'blog_' . $collection->id() . '_tags',
+      'description' => 'Auto-generated vocabulary for ' . $collection->label() . ' blog',
+    ]);
+    $vocabulary->save();
+
+    if ($vocabulary) {
+      // Add the vocabulary to the collection with the proper attribute so that
+      // it can be identified later.
+      $collection_item_vocab = $collection_item_storage->create([
+        'type' => 'default',
+        'collection' => $collection->id(),
+      ]);
+
+      $collection_item_vocab->item = $vocabulary;
+      $collection_item_vocab->setAttribute('blog_taxonomy_tags', TRUE);
+      $collection_item_vocab->save();
+
+      // Create a pattern for the new vocabulary
+      $collection_alias = $path_alias_manager->getAliasByPath($collection->toUrl()->toString());
+
+      $pattern = $pathauto_pattern_storage->create([
+        'id' => $vocabulary->id() . '_terms',
+        'label' => $vocabulary->label() . ' Terms',
+        'type' => 'canonical_entities:taxonomy_term',
+        'status' => TRUE,
+      ]);
+      $pattern->setPattern($collection_alias . '/tags/[term:name]');
+      $pattern->addSelectionCondition([
+        'id' => 'entity_bundle:taxonomy_term',
+        'bundles' => [$vocabulary->id() => $vocabulary->id()],
+        'negate' => FALSE,
+        'context_mapping' => ['taxonomy_term' => 'taxonomy_term'],
+      ]);
+      $pattern->save();
+
+      // Add some initial terms to the covid tags vocabulary.
+      if ($collection_id === 2) {
+        $terms = [
+          'Formerly incarcerated',
+          'Workers with disabilities',
+          'Benefits advisors',
+          'Undocumented employees',
+          'Gig economy workers',
+          'Unions and employers',
+          'Unemployment benefits',
+          'Webinars',
+        ];
+
+        foreach ($terms as $term_name) {
+          $term_storage->create([
+            'vid' => $vocabulary->id(),
+            'name' => $term_name,
+          ])->save();
+        }
+      }
+    }
+  }
+}
