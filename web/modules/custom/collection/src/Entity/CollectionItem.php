@@ -111,6 +111,7 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
   public function postSave(EntityStorageInterface $storage, $update = TRUE) {
     parent::postSave($storage, $update);
     Cache::invalidateTags($this->collection->entity->getCacheTagsToInvalidate());
+    Cache::invalidateTags($this->item->entity->getCacheTagsToInvalidate());
   }
 
   /**
@@ -120,6 +121,7 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
     foreach ($entities as $entity) {
       if ($entity->collection->entity) {
         Cache::invalidateTags($entity->collection->entity->getCacheTagsToInvalidate());
+        Cache::invalidateTags($entity->item->entity->getCacheTagsToInvalidate());
       }
     }
   }
