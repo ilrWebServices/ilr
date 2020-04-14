@@ -249,6 +249,19 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
   /**
    * {@inheritdoc}
    */
+  public function findItemsByAttribute(string $key, string $value) {
+    $collection_item_ids = \Drupal::entityQuery('collection_item')
+      ->condition('collection', $this->id())
+      ->condition('attributes.key', $key)
+      ->condition('attributes.value', $value)
+      ->execute();
+    $items = $this->entityTypeManager()->getStorage('collection_item')->loadMultiple($collection_item_ids);
+    return $items;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function addItem(EntityInterface $entity) {
     if ($this->getItem($entity)) {
       return FALSE;

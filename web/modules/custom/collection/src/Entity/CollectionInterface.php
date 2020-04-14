@@ -97,6 +97,20 @@ interface CollectionInterface extends ContentEntityInterface, EntityChangedInter
   public function findItems(string $type);
 
   /**
+   * Search a collection for items with a given attribute key and value.
+   *
+   * @param string $key
+   *   The attribute key
+   *
+   * @param string $value
+   *   The attribute value
+   *
+   * @return array
+   *   A bunch of \Drupal\collection\Entity\CollectionItemInterface
+   */
+  public function findItemsByAttribute(string $key, string $value);
+
+  /**
    * Add any entity as an item to this collection.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
