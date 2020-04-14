@@ -63,6 +63,24 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 0
+          08014ba9-c30a-4d90-8e9f-7a2a20a706a7:
+            uuid: 08014ba9-c30a-4d90-8e9f-7a2a20a706a7
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:blog_2_categories:field_body'
+              label: 'Intro text'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
         third_party_settings: {  }
       -
         layout_id: layout_onecol
