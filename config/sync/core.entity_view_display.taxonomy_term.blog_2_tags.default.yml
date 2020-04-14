@@ -1,0 +1,129 @@
+uuid: f753ef3f-2d0a-419d-b7cc-4fb861325a63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.blog_2_tags.field_body
+    - field.field.taxonomy_term.blog_2_tags.field_representative_image
+    - taxonomy.vocabulary.blog_2_tags
+  module:
+    - layout_builder
+    - layout_discovery
+    - text
+    - union_organizer
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          a2786a17-5200-4edf-9303-dd585b8f09ad:
+            uuid: a2786a17-5200-4edf-9303-dd585b8f09ad
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:taxonomy_term:blog_2_tags:blog_collection'
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          7956f549-516e-4158-bd3c-082e4d964f04:
+            uuid: 7956f549-516e-4158-bd3c-082e4d964f04
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:blog_2_tags:field_body'
+              label: 'Intro text'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
+          01075656-f972-4b63-8354-930766be86a0:
+            uuid: 01075656-f972-4b63-8354-930766be86a0
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:blog_2_tags:name'
+              label: Name
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 0
+          d281568e-0b07-420a-b1af-12680e2ecb53:
+            uuid: d281568e-0b07-420a-b1af-12680e2ecb53
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:taxonomy_term:blog_2_tags:collection_items_tag_term'
+            additional: {  }
+            weight: 2
+        third_party_settings: {  }
+id: taxonomy_term.blog_2_tags.default
+targetEntityType: taxonomy_term
+bundle: blog_2_tags
+mode: default
+content:
+  blog_collection:
+    weight: -1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  collection_items_tag_term:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_body:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_representative_image:
+    weight: 2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden:
+  search_api_excerpt: true
