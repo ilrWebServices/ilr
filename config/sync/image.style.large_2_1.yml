@@ -1,0 +1,15 @@
+uuid: e4c0228c-b7b3-4162-95cd-480dbf3f72f5
+langcode: en
+status: true
+dependencies: {  }
+name: large_2_1
+label: 'Large 2:1 (1200x600)'
+effects:
+  90f1742f-1f5b-4518-b2c8-3ad7a46f0218:
+    uuid: 90f1742f-1f5b-4518-b2c8-3ad7a46f0218
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 600
+      anchor: center-center
