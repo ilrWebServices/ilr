@@ -1,0 +1,15 @@
+uuid: 185367c6-06f8-4eac-b0a5-f0ffa3ffe9df
+langcode: en
+status: true
+dependencies: {  }
+name: open_graph
+label: 'Open graph'
+effects:
+  5102240d-aeb5-4bf6-9d59-65c74c036009:
+    uuid: 5102240d-aeb5-4bf6-9d59-65c74c036009
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 630
+      anchor: center-center
