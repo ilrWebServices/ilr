@@ -326,6 +326,54 @@ function ilr_entity_prepare_view($entity_type_id, array $entities, array $displa
 }
 
 /**
+ * Implements hook_query_TAG_alter().
+ *
+ * De-dupe post listing queries during the same request.
+ *
+ * NOTE: This will alter the SelectQuery that is compiled from the EntityQuery
+ * in  \Drupal\ilr\Plugin\paragraphs\Behavior\PostListing::preprocess(). There
+ * is a contrib module that allows the altering of EntityQuery:
+ * https://www.drupal.org/project/entity_query_alter.
+ */
+function ilr_query_post_listing_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
+  if ($query->hasTag('post_listing_clone')) {
+    return;
+  }
+
+  // Find the 'dedupe_group' for this post listing. All post listings in the
+  // same group are de-duped. `alterTags` is a protected property in QueryBase,
+  // but it seems we can access it here anyway. Which is lucky for us!
+  foreach (array_keys($query->alterTags) as $tag) {
+    if (strpos($tag, 'dedupe__') === 0) {
+      $dedupe_group = $tag;
+    }
+  }
+
+  if (empty($dedupe_group)) {
+    return;
+  }
+
+  // Fetch previously returned collection item ids.
+  $cached_collection_item_ids = &drupal_static(__FUNCTION__ . '_' . $dedupe_group, []);
+
+  // Add a condition to filter out previously returned collection item ids.
+  // Since this is a SelectQuery transformed from and EntityQuery, we can't use
+  // a condition field name like `id` as we would in the original query in
+  // PostListing::preprocess.
+  if (!empty($cached_collection_item_ids)) {
+    $query->condition('collection_item.id', $cached_collection_item_ids, 'NOT IN');
+  }
+
+  // Clone this query so we can execute it without interfering with the
+  // original. Plus, tag it to prevent an endless loop of this hook.
+  $clone = clone $query;
+  $clone->addTag('post_listing_clone');
+
+  // Execute the clone and append the collection item ids from this query to the cache.
+  $cached_collection_item_ids = array_merge($cached_collection_item_ids, $clone->execute()->fetchAllKeyed());
+}
+
+/**
  * Implements template_preprocess_node().
  *
  */
