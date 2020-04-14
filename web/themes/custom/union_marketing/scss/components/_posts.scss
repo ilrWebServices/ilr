@@ -23,8 +23,9 @@
       }
 
       .field--field-authors,
+      .field--field-published-date,
       .field--field-components {
-        display: grid;
+        display: block;
         grid-column: 1/-1;
       }
     }
@@ -35,6 +36,7 @@
 
     .cu-section-heading--framed {
       padding: 0;
+      min-height: 75px;
     }
   }
 
