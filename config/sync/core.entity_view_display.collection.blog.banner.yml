@@ -36,8 +36,9 @@ third_party_settings:
               label_display: '0'
               formatter:
                 label: hidden
-                type: text_default
-                settings: {  }
+                type: text_summary_or_trimmed
+                settings:
+                  trim_length: 600
                 third_party_settings: {  }
               context_mapping:
                 entity: layout_builder.entity
