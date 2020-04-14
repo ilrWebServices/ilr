@@ -95,7 +95,6 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
 
         // Create a pattern for the new vocabulary
         $collection_alias = $this->aliasManager->getAliasByPath($collection->toUrl()->toString());
-        $term_storage = $this->entityTypeManager->getStorage('taxonomy_term');
 
         $pattern = $this->entityTypeManager->getStorage('pathauto_pattern')->create([
           'id' => $vocab->id() . '_terms',
