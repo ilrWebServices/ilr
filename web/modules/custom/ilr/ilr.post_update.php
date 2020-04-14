@@ -205,14 +205,8 @@ function ilr_post_update_add_blog_tag_terms(&$sandbox) {
   foreach ([2, 4] as $collection_id) {
     $collection = $collection_storage->load($collection_id);
 
-    $vocabulary = $vocabulary_storage->create([
-      'langcode' => 'en',
-      'status' => TRUE,
-      'name' => $collection->label() . ' tags',
-      'vid' => 'blog_' . $collection->id() . '_tags',
-      'description' => 'Auto-generated vocabulary for ' . $collection->label() . ' blog',
-    ]);
-    $vocabulary->save();
+    // Load the relevant vocabulary.
+    $vocabulary = $entity_type_manager->getStorage('taxonomy_vocabulary')->load('blog_' . $collection_id . '_tags');
 
     if ($vocabulary) {
       // Add the vocabulary to the collection with the proper attribute so that
@@ -225,24 +219,6 @@ function ilr_post_update_add_blog_tag_terms(&$sandbox) {
       $collection_item_vocab->item = $vocabulary;
       $collection_item_vocab->setAttribute('blog_taxonomy_tags', TRUE);
       $collection_item_vocab->save();
-
-      // Create a pattern for the new vocabulary
-      $collection_alias = $path_alias_manager->getAliasByPath($collection->toUrl()->toString());
-
-      $pattern = $pathauto_pattern_storage->create([
-        'id' => $vocabulary->id() . '_terms',
-        'label' => $vocabulary->label() . ' Terms',
-        'type' => 'canonical_entities:taxonomy_term',
-        'status' => TRUE,
-      ]);
-      $pattern->setPattern($collection_alias . '/tags/[term:name]');
-      $pattern->addSelectionCondition([
-        'id' => 'entity_bundle:taxonomy_term',
-        'bundles' => [$vocabulary->id() => $vocabulary->id()],
-        'negate' => FALSE,
-        'context_mapping' => ['taxonomy_term' => 'taxonomy_term'],
-      ]);
-      $pattern->save();
 
       // Add some initial terms to the covid tags vocabulary.
       if ($collection_id === 2) {
