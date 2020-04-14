@@ -50,6 +50,14 @@ class PostListing extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories'),
     ];
 
+    $form['post_tags'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Tag(s)'),
+      '#description' => $this->t('Optionally choose one or more tags to filter the listing.'),
+      '#options' => $this->getTagTermOptions($paragraph),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'post_tags'),
+    ];
+
     $form['count'] = [
       '#type' => 'number',
       '#title' => $this->t('Number of posts'),
@@ -86,15 +94,18 @@ class PostListing extends ParagraphsBehaviorBase {
     $query->condition('item.entity:node.status', 1);
     $query->condition('item.entity:node.type', 'post');
 
-    $terms = [];
-    if ($tid = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories')) {
-      $terms[] = $tid;
+    if ($category_term_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories')) {
+      $category_group = $query->andConditionGroup();
+      $category_group->condition('field_blog_categories', $category_term_id);
+      $query->condition($category_group);
     }
 
-    foreach ($terms as $term_id) {
-      $group = $query->andConditionGroup();
-      $group->condition('field_blog_categories', $term_id);
-      $query->condition($group);
+    if ($tags_terms = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_tags')) {
+      foreach ($tags_terms as $tags_term_id) {
+        $tags_group = $query->andConditionGroup();
+        $tags_group->condition('field_blog_tags', $tags_term_id);
+        $query->condition($tags_group);
+      }
     }
 
     if ($limit = $paragraph->getBehaviorSetting($this->getPluginId(), 'count')) {
@@ -175,14 +186,43 @@ class PostListing extends ParagraphsBehaviorBase {
     ];
 
     if ($collection) {
-      $collection_items = $collection->findItems('taxonomy_vocabulary');
+      $collection_items = $collection->findItemsByAttribute('blog_taxonomy_categories', TRUE);
       $term_manager = $this->entityTypeManager->getStorage('taxonomy_term');
 
       foreach ($collection_items as $collection_item) {
         $vocab = $collection_item->item->entity;
-        $terms = $term_manager->loadTree($vocab->id(), 0, NULL, TRUE);
+        $category_terms = $term_manager->loadTree($vocab->id(), 0, NULL, TRUE);
 
-        foreach ($terms as $term) {
+        foreach ($category_terms as $term) {
+          $options[$term->id()] = $term->label();
+        }
+      }
+    }
+
+    return $options;
+  }
+
+  /**
+   * Get tag term options collection set on the paragraph.
+   *
+   * @param Paragraph $paragraph
+   *
+   * @return array
+   *   List of term labels keyed by tid.
+   */
+  protected function getTagTermOptions(Paragraph $paragraph) {
+    $collection = $paragraph->field_collection->entity;
+    $options = [];
+
+    if ($collection) {
+      $collection_items = $collection->findItemsByAttribute('blog_taxonomy_tags', TRUE);
+      $term_manager = $this->entityTypeManager->getStorage('taxonomy_term');
+
+      foreach ($collection_items as $collection_item) {
+        $vocab = $collection_item->item->entity;
+        $category_terms = $term_manager->loadTree($vocab->id(), 0, NULL, TRUE);
+
+        foreach ($category_terms as $term) {
           $options[$term->id()] = $term->label();
         }
       }
