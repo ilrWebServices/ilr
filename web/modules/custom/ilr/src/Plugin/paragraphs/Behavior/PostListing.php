@@ -143,14 +143,28 @@ class PostListing extends ParagraphsBehaviorBase {
   public function settingsSummary(Paragraph $paragraph) {
     $summary = [];
     $category_labels = [];
+    $tags_labels = [];
 
     if ($selected_category_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories')) {
       $selected_category = $this->entityTypeManager->getStorage('taxonomy_term')->load($selected_category_id);
     }
 
+    if ($selected_tags_ids = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_tags')) {
+      $selected_tags = $this->entityTypeManager->getStorage('taxonomy_term')->loadMultiple($selected_tags_ids);
+
+      foreach ($selected_tags as $selected_tag) {
+        $tags_labels[] = $selected_tag->label();
+      }
+    }
+
     $summary[] = [
       'label' => 'Category',
       'value' =>  $selected_category_id ? $selected_category->label() : 'All',
+    ];
+
+    $summary[] = [
+      'label' => 'Tags',
+      'value' =>  $tags_labels ? implode(', ', $tags_labels) : 'All',
     ];
 
     $summary[] = [
