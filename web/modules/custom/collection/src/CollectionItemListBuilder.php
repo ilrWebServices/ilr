@@ -67,6 +67,7 @@ class CollectionItemListBuilder extends BulkFormEntityListBuilder {
   public function buildHeader() {
     $header['item'] = $this->t('Item');
     $header['type'] = $this->t('Type');
+    $header['status'] = $this->t('Published');
     return $header + parent::buildHeader();
   }
 
@@ -78,7 +79,7 @@ class CollectionItemListBuilder extends BulkFormEntityListBuilder {
     $row['item'] = [
       '#type' => 'link',
       '#title' => $entity->item->entity->label(),
-      '#url' => $entity->item->entity->toURL()
+      '#url' => $entity->item->entity->toURL(),
     ];
 
     $type = $entity->item->entity->getEntityType()->getLabel();
@@ -92,6 +93,17 @@ class CollectionItemListBuilder extends BulkFormEntityListBuilder {
 
     $row['type'] = [
       '#markup' => $type
+    ];
+
+    if ($entity->item->entity->getEntityType()->hasKey('status')) {
+      $published = ($entity->item->entity->isPublished()) ? 'Yes' : 'No';
+    }
+    else {
+      $published = 'n/a';
+    }
+
+    $row['status'] = [
+      '#markup' => $this->t($published),
     ];
 
     return $row + parent::buildRow($entity);
