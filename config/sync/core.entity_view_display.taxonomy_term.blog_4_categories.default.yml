@@ -86,6 +86,16 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: -9
+          edd1b616-07cc-40f3-ab18-45abb2e3ee39:
+            uuid: edd1b616-07cc-40f3-ab18-45abb2e3ee39
+            region: banner
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:taxonomy_term:blog_4_categories:blog_collection'
+            additional: {  }
+            weight: -6
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -134,6 +144,11 @@ targetEntityType: taxonomy_term
 bundle: blog_4_categories
 mode: default
 content:
+  blog_collection:
+    weight: -1
+    settings: {  }
+    third_party_settings: {  }
+    region: banner
   collection_items_category_term:
     weight: 0
     settings: {  }

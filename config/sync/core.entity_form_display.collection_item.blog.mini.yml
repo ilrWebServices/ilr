@@ -6,6 +6,7 @@ dependencies:
     - collection.collection_item_type.blog
     - core.entity_form_mode.collection_item.mini
     - field.field.collection_item.blog.field_blog_categories
+    - field.field.collection_item.blog.field_blog_tags
 id: collection_item.blog.mini
 targetEntityType: collection_item
 bundle: blog
@@ -17,6 +18,12 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
+  field_blog_tags:
+    type: options_buttons
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   attributes: true
   collection: true

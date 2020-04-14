@@ -22,6 +22,11 @@ targetEntityType: taxonomy_term
 bundle: blog_4_categories
 mode: teaser
 content:
+  blog_collection:
+    weight: -1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   field_body:
     type: text_default
     weight: 0

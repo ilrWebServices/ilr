@@ -54,6 +54,7 @@ function collection_blogs_form_collection_type_form_alter(&$form, FormStateInter
  * Implements hook_entity_extra_field_info().
  *
  * @see collection_blogs_taxonomy_term_view().
+ * @see collection_blogs_node_view().
  */
 function collection_blogs_entity_extra_field_info() {
   $extra = [];
@@ -71,7 +72,21 @@ function collection_blogs_entity_extra_field_info() {
       $extra['taxonomy_term'][$vocabulary_id]['display']['blog_collection'] = [
         'label' => t('Blog'),
         'description' => t('This is a computed reference.'),
-        'weight' => 1,
+        'weight' => -1,
+        'visible' => TRUE,
+      ];
+    }
+
+    if (preg_match('/^blog_\d+_tags$/', $vocabulary_id)) {
+      $extra['taxonomy_term'][$vocabulary_id]['display']['collection_items_tag_term'] = [
+        'label' => $info['label'],
+        'weight' => 0,
+        'visible' => TRUE,
+      ];
+
+      $extra['taxonomy_term'][$vocabulary_id]['display']['blog_collection'] = [
+        'label' => t('Blog'),
+        'weight' => -1,
         'visible' => TRUE,
       ];
     }
@@ -80,7 +95,13 @@ function collection_blogs_entity_extra_field_info() {
   $extra['node']['post']['display']['blog_collection'] = [
     'label' => t('Blog'),
     'description' => t('This is a computed reference.'),
-    'weight' => 0,
+    'weight' => -1,
+    'visible' => TRUE,
+  ];
+
+  $extra['node']['post']['display']['blog_tags'] = [
+    'label' => t('Blog tags'),
+    'weight' => 100,
     'visible' => TRUE,
   ];
 
@@ -90,50 +111,58 @@ function collection_blogs_entity_extra_field_info() {
 /**
  * Implements hook_ENTITY_TYPE_view().
  */
-function collection_blogs_taxonomy_term_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
-  if ($display->getComponent('collection_items_category_term') && $view_mode === 'full') {
-    $entity_type_manager = \Drupal::service('entity_type.manager');
-    $collection_item_storage = $entity_type_manager->getStorage('collection_item');
-    $view_builder = $entity_type_manager->getViewBuilder('node');
-    $cache_tags = $entity->getCacheTags();
-    $cache_tags[] = 'node_list'; // 'node_list:post'; // 8.9 and above
-    $cache_tags[] = 'collection_item_list'; // 'collection_item_list:blog'; // 8.9 and above
-    $posts = [];
+function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+  $view_builder = $entity_type_manager->getViewBuilder('node');
 
-    $blog_post_collection_items = $collection_item_storage->getQuery()
-      ->condition('type', 'blog')
-      ->condition('item.entity:node.status', 1)
-      ->condition('item.entity:node.type', 'post') // @todo
-      ->condition('field_blog_categories', $entity->id())
-      ->sort('item.entity:node.field_published_date', 'DESC')
-      ->execute();
+  $mapping = [
+    'collection_items_category_term' => 'field_blog_categories',
+    'collection_items_tag_term' => 'field_blog_tags',
+  ];
 
-    foreach ($collection_item_storage->loadMultiple($blog_post_collection_items) as $collection_item) {
-      $posts[] = $view_builder->view($collection_item->item->entity, 'teaser');
-    }
+  foreach ($mapping as $component_name => $term_reference_field_name) {
+    if ($display->getComponent($component_name) && $view_mode === 'full') {
+      $cache_tags = $entity->getCacheTags();
+      $cache_tags[] = 'node_list'; // 'node_list:post'; // 8.9 and above
+      $cache_tags[] = 'collection_item_list'; // 'collection_item_list:blog'; // 8.9 and above
+      $posts = [];
 
-    $build['collection_items_category_term'] = [
-      '#theme' => 'item_list__collection_listing',
-      '#items' => $posts,
-      '#attributes' => ['class' => 'collection-listing'],
-      '#collection_listing' => TRUE,
-      '#empty' => t('Content coming soon.'),
-      '#context' => ['taxonomy_term' => $entity],
-      '#cache' => [
-        'tags' => $cache_tags,
-      ],
-    ];
-
-    if ($display->getComponent('blog_collection')) {
-      $vocabulary_collection_items = $collection_item_storage->getQuery()
-        ->condition('item__target_type', 'taxonomy_vocabulary')
-        ->condition('item__target_id', $entity->getVocabularyId())
+      $blog_post_collection_items = $collection_item_storage->getQuery()
+        ->condition('type', 'blog')
+        ->condition('item.entity:node.status', 1)
+        ->condition('item.entity:node.type', 'post') // @todo
+        ->condition($term_reference_field_name, $entity->id())
+        ->sort('item.entity:node.field_published_date', 'DESC')
         ->execute();
 
-      if ($vocabulary_collection_items) {
-        $vocabulary_collection_item = $collection_item_storage->load(reset($vocabulary_collection_items));
-        $build['blog_collection'] = $entity_type_manager->getViewBuilder('collection')->view($vocabulary_collection_item->collection->entity, 'banner');
+      foreach ($collection_item_storage->loadMultiple($blog_post_collection_items) as $collection_item) {
+        $posts[] = $view_builder->view($collection_item->item->entity, 'teaser');
       }
+
+      $build[$component_name] = [
+        '#theme' => 'item_list__collection_listing',
+        '#items' => $posts,
+        '#attributes' => ['class' => 'collection-listing'],
+        '#collection_listing' => TRUE,
+        '#empty' => t('Content coming soon.'),
+        '#context' => ['taxonomy_term' => $entity],
+        '#cache' => [
+          'tags' => $cache_tags,
+        ],
+      ];
+    }
+  }
+
+  if ($display->getComponent('blog_collection')) {
+    $vocabulary_collection_items = $collection_item_storage->getQuery()
+      ->condition('item__target_type', 'taxonomy_vocabulary')
+      ->condition('item__target_id', $entity->getVocabularyId())
+      ->execute();
+
+    if ($vocabulary_collection_items) {
+      $vocabulary_collection_item = $collection_item_storage->load(reset($vocabulary_collection_items));
+      $build['blog_collection'] = $entity_type_manager->getViewBuilder('collection')->view($vocabulary_collection_item->collection->entity, 'banner');
     }
   }
 }
@@ -159,6 +188,26 @@ function collection_blogs_node_view(array &$build, EntityInterface $entity, Enti
 
       $build['blog_collection'] = $entity_type_manager->getViewBuilder('collection')->view($collection_item->collection->entity, 'banner');
       break;
+    }
+  }
+
+  if ($display->getComponent('blog_tags')) {
+    // Find the collection item for this post node.
+    $entity_type_manager = \Drupal::service('entity_type.manager');
+    $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+
+    $blog_post_collection_item_id = $collection_item_storage->getQuery()
+      ->condition('type', 'blog')
+      ->condition('item__target_type', 'node')
+      ->condition('item__target_id', $entity->id())
+      ->range(0, 1) // Limit to one; posts should only be in a single collection.
+      ->execute();
+
+    $blog_post_collection_item = $collection_item_storage->load(reset($blog_post_collection_item_id));
+
+    // If the collection item was found, display the blog tags field as a teaser.
+    if ($blog_post_collection_item) {
+      $build['blog_tags'] = $blog_post_collection_item->field_blog_tags->view('teaser');
     }
   }
 }
