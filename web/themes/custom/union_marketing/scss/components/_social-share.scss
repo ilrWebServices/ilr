@@ -1,0 +1,29 @@
+.social-sharing-buttons {
+  justify-content: start;
+  margin: var(--cu-vr0) 0;
+
+  @include breakpoint(md) {
+    margin-top: 0;
+    justify-content: end;
+  }
+
+  :first-child {
+    margin-left: 0;
+  }
+
+  :last-child {
+    margin-right: 0;
+  }
+
+  a {
+    margin: 0 var(--cu-ps-2);
+  }
+}
+
+.social-sharing-buttons__button {
+  margin: 0 var(--cu-ps1);
+
+  svg {
+    background: #e1e1e1;
+  }
+}
