@@ -1,0 +1,19 @@
+// This is basic formatting for tables until we create a Union component.
+
+.paragraph--type--rich-text caption {
+  padding: var(--cu-vr-1) 0;
+  font-size: larger;
+}
+
+.paragraph--type--rich-text table {
+  --border-color: rgb(208, 208, 208);
+  border-collapse: collapse;
+  border: 2px solid var(--border-color);
+  margin-bottom: var(--cu-vr2);
+}
+
+.paragraph--type--rich-text td,
+.paragraph--type--rich-text th {
+  border: 1px solid var(--border-color);
+  padding: var(--cu-vr-1) var(--cu-ps-1);
+}
