@@ -9,10 +9,8 @@ dependencies:
     - taxonomy.vocabulary.blog_4_categories
   module:
     - entity_reference_revisions
-    - ilr
     - layout_builder
     - layout_discovery
-    - system
     - text
     - union_organizer
 third_party_settings:
@@ -21,81 +19,20 @@ third_party_settings:
     enabled: true
     sections:
       -
-        layout_id: banner
+        layout_id: layout_onecol
         layout_settings:
           label: ''
         components:
-          3192ff0a-ad17-49c4-a946-f2ac4680ba88:
-            uuid: 3192ff0a-ad17-49c4-a946-f2ac4680ba88
-            region: banner
-            configuration:
-              id: system_breadcrumb_block
-              label: Breadcrumbs
-              provider: system
-              label_display: '0'
-              context_mapping: {  }
-            additional: {  }
-            weight: -10
-          2b7afa64-457d-4963-a91f-f0cfcfc2f3db:
-            uuid: 2b7afa64-457d-4963-a91f-f0cfcfc2f3db
-            region: banner
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:taxonomy_term:blog_4_categories:field_representative_image'
-              formatter:
-                label: above
-                settings:
-                  link: true
-                third_party_settings: {  }
-                type: entity_reference_label
-            additional: {  }
-            weight: -8
-          943642a0-5468-4f92-bbe1-b1091cc2f251:
-            uuid: 943642a0-5468-4f92-bbe1-b1091cc2f251
-            region: banner
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:taxonomy_term:blog_4_categories:field_body'
-              formatter:
-                label: above
-                settings: {  }
-                third_party_settings: {  }
-                type: text_default
-            additional: {  }
-            weight: -7
-          69ea9da6-50d0-48df-828b-de24f1cb943f:
-            uuid: 69ea9da6-50d0-48df-828b-de24f1cb943f
-            region: banner
-            configuration:
-              id: 'field_block:taxonomy_term:blog_4_categories:name'
-              label: Name
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: string
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: -9
           edd1b616-07cc-40f3-ab18-45abb2e3ee39:
             uuid: edd1b616-07cc-40f3-ab18-45abb2e3ee39
-            region: banner
+            region: content
             configuration:
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
               id: 'extra_field_block:taxonomy_term:blog_4_categories:blog_collection'
             additional: {  }
-            weight: -6
+            weight: 0
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -119,6 +56,40 @@ third_party_settings:
                 type: entity_reference_revisions_entity_view
             additional: {  }
             weight: 3
+          943642a0-5468-4f92-bbe1-b1091cc2f251:
+            uuid: 943642a0-5468-4f92-bbe1-b1091cc2f251
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:taxonomy_term:blog_4_categories:field_body'
+              formatter:
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+                type: text_default
+            additional: {  }
+            weight: 2
+          69ea9da6-50d0-48df-828b-de24f1cb943f:
+            uuid: 69ea9da6-50d0-48df-828b-de24f1cb943f
+            region: content
+            configuration:
+              id: 'field_block:taxonomy_term:blog_4_categories:name'
+              label: Name
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -9
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
