@@ -77,6 +77,11 @@ hr.pad {
 }
 
 .article--post .cu-section > div,
-.article--post .field--field-components .field__item {
-  margin: var(--cu-component-margin-bottom, var(--cu-vr1)) 0;
+.article--post .field--field-components > .field__item,
+.collection .field--field-components > .field__item {
+  margin: var(--cu-component-margin-bottom, var(--cu-vr2)) 0;
+
+  @include breakpoint(md) {
+    margin: 0 0 var(--cu-component-margin-bottom, var(--cu-vr3));
+  }
 }
