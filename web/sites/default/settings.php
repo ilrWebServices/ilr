@@ -400,6 +400,14 @@ $settings['update_free_access'] = FALSE;
  */
 # $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL | \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED;
 
+/**
+ * Enable reverse proxy configuration when one is detected.
+ */
+if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+  $settings['reverse_proxy'] = TRUE;
+  $settings['reverse_proxy_addresses'] = array_map('trim', explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']));
+  $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL;
+}
 
 /**
  * Page caching:
