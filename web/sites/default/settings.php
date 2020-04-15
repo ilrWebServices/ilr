@@ -401,12 +401,14 @@ $settings['update_free_access'] = FALSE;
 # $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL | \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED;
 
 /**
- * Enable reverse proxy configuration when one is detected.
+ * Enable reverse proxy configuration when one is detected. Trust all but the
+ * port headers in an attempt to keep them out of canonical URLs and social
+ * links.
  */
 if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
   $settings['reverse_proxy'] = TRUE;
   $settings['reverse_proxy_addresses'] = array_map('trim', explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']));
-  $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL;
+  $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO;
 }
 
 /**
