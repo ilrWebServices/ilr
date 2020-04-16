@@ -4,7 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.image.field_media
+    - image.style.full
     - paragraphs.paragraphs_type.image
+  module:
+    - media
 id: paragraph.image.default
 targetEntityType: paragraph
 bundle: image
@@ -14,10 +17,10 @@ content:
     weight: 0
     label: hidden
     settings:
-      view_mode: default
-      link: false
+      image_style: full
+      image_link: ''
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    type: media_thumbnail
     region: content
 hidden:
   search_api_excerpt: true

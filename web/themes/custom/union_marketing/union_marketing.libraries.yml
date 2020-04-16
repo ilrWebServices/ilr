@@ -5,6 +5,7 @@ global:
       css/style.css: {}
   js:
     js/union_marketing.js: {}
+    js/union_marketing_responsive_tables.js: {}
   dependencies:
     - core/drupal
 livereload:
