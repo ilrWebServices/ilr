@@ -34,6 +34,7 @@ visibility:
     id: 'entity_bundle:node'
     bundles:
       course: course
+      post: post
     negate: true
     context_mapping:
       node: '@node.node_route_context:node'
