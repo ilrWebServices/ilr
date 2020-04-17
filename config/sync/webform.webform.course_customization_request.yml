@@ -1,3 +1,4 @@
+uuid: a9855086-fe0b-449d-b702-2add8a6df5f2
 langcode: en
 status: open
 dependencies: {  }
@@ -210,4 +211,5 @@ handlers:
       sender_name: ''
       theme_name: ''
       parameters: {  }
-uuid: a9855086-fe0b-449d-b702-2add8a6df5f2
+      exclude_attachments: false
+variants: {  }

@@ -122,12 +122,9 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
+  rendered_item: {  }
   add_url: {  }
   aggregated_field: {  }
-  content_access:
-    weights:
-      preprocess_query: -30
-  entity_status: {  }
   highlight:
     highlight: always
     highlight_partial: false
@@ -138,6 +135,7 @@ processor_settings:
     suffix: '</strong>'
     weights:
       postprocess_query: 0
+  entity_status: {  }
   ignorecase:
     all_fields: true
     fields:
@@ -151,7 +149,6 @@ processor_settings:
     weights:
       preprocess_index: -20
       preprocess_query: -20
-  rendered_item: {  }
   type_boost:
     boosts:
       'entity:node':
@@ -162,6 +159,10 @@ processor_settings:
         datasource_boost: !!float 13
     weights:
       preprocess_index: 0
+  language_with_fallback: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
 tracker_settings:
   default:
     indexing_order: fifo
