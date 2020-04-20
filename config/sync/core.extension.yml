@@ -35,6 +35,7 @@ module:
   ilr_migrate: 0
   image: 0
   inline_entity_form: 0
+  key: 0
   key_value_field: 0
   layout_builder: 0
   layout_discovery: 0
@@ -62,6 +63,7 @@ module:
   recreate_block_content: 0
   redirect: 0
   salesforce: 0
+  salesforce_jwt: 0
   salesforce_mapping: 0
   salesforce_mop: 0
   salesforce_pull: 0
