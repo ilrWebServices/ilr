@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.paragraph.field_components
     - paragraphs.paragraphs_type.collection_listing
+    - paragraphs.paragraphs_type.curated_post_listing
     - paragraphs.paragraphs_type.deck
     - paragraphs.paragraphs_type.form
     - paragraphs.paragraphs_type.image
@@ -37,9 +38,10 @@ settings:
       video: video
       form: form
       testimonial: testimonial
-      simple_collection_listing: simple_collection_listing
-      collection_listing: collection_listing
       promo: promo
+      simple_collection_listing: simple_collection_listing
+      curated_post_listing: curated_post_listing
+      collection_listing: collection_listing
     target_bundles_drag_drop:
       rich_text:
         enabled: true
@@ -59,18 +61,21 @@ settings:
       testimonial:
         enabled: true
         weight: -20
-      simple_collection_listing:
-        enabled: true
-        weight: -19
-      collection_listing:
-        enabled: true
-        weight: -18
-      person:
-        weight: -17
-        enabled: false
       promo:
         enabled: true
         weight: -19
+      simple_collection_listing:
+        enabled: true
+        weight: -18
+      curated_post_listing:
+        enabled: true
+        weight: -17
+      collection_listing:
+        enabled: true
+        weight: -16
+      person:
+        weight: -15
+        enabled: false
       section:
         weight: -14
         enabled: false
