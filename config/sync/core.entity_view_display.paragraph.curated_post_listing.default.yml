@@ -1,0 +1,23 @@
+uuid: 7a4f31b3-6257-4ecc-9505-8a85c1d27996
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.curated_post_listing.field_posts
+    - paragraphs.paragraphs_type.curated_post_listing
+id: paragraph.curated_post_listing.default
+targetEntityType: paragraph
+bundle: curated_post_listing
+mode: default
+content:
+  field_posts:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  search_api_excerpt: true

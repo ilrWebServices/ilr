@@ -1,0 +1,25 @@
+uuid: fb97d414-eb0f-459f-b451-a79e459a34b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.curated_post_listing.field_posts
+    - paragraphs.paragraphs_type.curated_post_listing
+id: paragraph.curated_post_listing.default
+targetEntityType: paragraph
+bundle: curated_post_listing
+mode: default
+content:
+  field_posts:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden:
+  created: true
+  status: true
