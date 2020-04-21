@@ -8,9 +8,6 @@ pull_max_queue_size: 100000
 show_all_objects: false
 standalone: false
 limit_mapped_object_revisions: 10
-salesforce_auth_provider: oauth_default
-consumer_key: '000000'
-consumer_secret: '000000'
-login_url: 'https://login.salesforce.com'
+salesforce_auth_provider: ilr_marketing_jwt_oauth_dev
 _core:
   default_config_hash: EjFTlHhnxj9PlzBk2nJ7rVdK1MdUy67s4U9n84FuMho

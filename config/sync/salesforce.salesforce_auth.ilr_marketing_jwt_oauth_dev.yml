@@ -1,0 +1,16 @@
+uuid: 1df91863-9e56-4291-880f-c9551e5c0fd4
+langcode: en
+status: true
+dependencies:
+  config:
+    - key.key.ilr_marketing_jwt_x509_key
+  module:
+    - salesforce_jwt
+id: ilr_marketing_jwt_oauth_dev
+label: 'ILR Marketing JWT OAuth (Dev)'
+provider: jwt
+provider_settings:
+  consumer_key: 3MVG9eMnfmfDO5NA6tmo3ZHVb40Skd._UdKfGpdp.5WhQbOpKgpNtuM4iSD9pMIMMM5Vz.DiG16SQau2cNAYD
+  login_user: apionly@ilr.cornell.edu.tiger
+  login_url: 'https://test.salesforce.com'
+  encrypt_key: ilr_marketing_jwt_x509_key

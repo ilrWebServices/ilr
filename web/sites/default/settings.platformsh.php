@@ -163,6 +163,10 @@ if ($platformsh->onProduction()) {
   // Enable the config split for production-only modules.
   $config['config_split.config_split.production']['status'] = TRUE;
 
+  // Switch the salesforce auth provider for production. Otherwise, we will use
+  // the default for dev.
+  $config['salesforce.settings']['salesforce_auth_provider'] = 'ilr_marketing_jwt_oauth';
+
   // Configure samlauth with production SP settings.
   $config['samlauth.authentication']['idp_entity_id'] = 'https://shibidp.cit.cornell.edu/idp/shibboleth';
   $config['samlauth.authentication']['idp_single_sign_on_service'] = 'https://shibidp.cit.cornell.edu/idp/profile/SAML2/Redirect/SSO';

@@ -57,7 +57,7 @@
     "drupal/recreate_block_content": "^2.0",
     "drupal/redirect": "^1.4",
     "drupal/redis": "^1.2",
-    "drupal/salesforce": "^3.4",
+    "drupal/salesforce": "^4",
     "drupal/samlauth": "3.x-dev",
     "drupal/search_api": "^1.14",
     "drupal/summary_word_limit": "^1.0",
@@ -88,7 +88,8 @@
   },
   "scripts": {
     "sync-prod": "drush sql:drop && drush sql:sync @ilr-web.master @self && ./post_sync_fix_triggers.php",
-    "sync-prod-update": "drush updatedb --no-post-updates && drush config:import && drush updatedb"
+    "sync-prod-update": "drush updatedb --no-post-updates && drush config:import && drush updatedb",
+    "sf-dev": "drush sfrvk ilr_marketing_jwt_oauth && drush sfrt ilr_marketing_jwt_oauth_dev && drush sflp"
   },
   "extra": {
     "composer-exit-on-patch-failure": true,

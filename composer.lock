@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "10711eb948c0a6181f4a50b7df14ce47",
+    "content-hash": "1517c65bb64960d6863b22a070710f60",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3096,74 +3096,6 @@
             }
         },
         {
-            "name": "drupal/encrypt",
-            "version": "3.0.0-rc2",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/encrypt.git",
-                "reference": "8.x-3.0-rc2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/encrypt-8.x-3.0-rc2.zip",
-                "reference": "8.x-3.0-rc2",
-                "shasum": "784f41ad69bdff14f180ceeec70512738402e8e8"
-            },
-            "require": {
-                "drupal/core": "~8.0",
-                "drupal/key": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-3.0-rc2",
-                    "datestamp": "1553277784",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "gisle",
-                    "homepage": "https://www.drupal.org/user/409554"
-                },
-                {
-                    "name": "greggles",
-                    "homepage": "https://www.drupal.org/user/36762"
-                },
-                {
-                    "name": "nerdstein",
-                    "homepage": "https://www.drupal.org/user/1557710"
-                },
-                {
-                    "name": "rlhawk",
-                    "homepage": "https://www.drupal.org/user/352283"
-                },
-                {
-                    "name": "theunraveler",
-                    "homepage": "https://www.drupal.org/user/71548"
-                },
-                {
-                    "name": "zzolo",
-                    "homepage": "https://www.drupal.org/user/147331"
-                }
-            ],
-            "description": "Provides an API for two-way encryption.",
-            "homepage": "https://www.drupal.org/project/encrypt",
-            "support": {
-                "source": "https://git.drupalcode.org/project/encrypt"
-            }
-        },
-        {
             "name": "drupal/entity_browser",
             "version": "2.4.0",
             "source": {
@@ -4416,41 +4348,44 @@
         },
         {
             "name": "drupal/salesforce",
-            "version": "3.5.0",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/salesforce.git",
-                "reference": "8.x-3.5"
+                "reference": "8.x-4.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/salesforce-8.x-3.5.zip",
-                "reference": "8.x-3.5",
-                "shasum": "bc24468d7dde73cf03298e840e2f4671109f4ae8"
+                "url": "https://ftp.drupal.org/files/projects/salesforce-8.x-4.0.zip",
+                "reference": "8.x-4.0",
+                "shasum": "532f2d95a40fcf2e6feff889da162b86f9c1e58d"
             },
             "require": {
                 "consolidation/output-formatters": "^3.2.0",
-                "drupal/core": "~8.0",
+                "drupal/core": "^8",
                 "drupal/dynamic_entity_reference": "^2.0@alpha",
-                "drupal/encrypt": "^3.0@rc",
+                "drupal/key": "^1.7",
                 "drupal/typed_data": "^1.0@alpha",
+                "ext-json": "*",
+                "firebase/php-jwt": "^5.0",
                 "lusitanian/oauth": "^0.8.11"
             },
             "require-dev": {
                 "drupal/dynamic_entity_reference": "~2.0",
-                "drupal/encrypt": "*",
+                "drupal/key": "*",
                 "drupal/salesforce_mapping": "*",
                 "drupal/salesforce_push": "*",
+                "drupal/typed_data": "*",
                 "drupal/webform": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-3.x": "3.x-dev"
+                    "dev-4.x": "4.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.5",
-                    "datestamp": "1572375185",
+                    "version": "8.x-4.0",
+                    "datestamp": "1578084171",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4478,8 +4413,9 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "gcb",
-                    "homepage": "https://www.drupal.org/user/1682976"
+                    "name": "Colin Corrigan",
+                    "homepage": "https://www.drupal.org/u/cwcorrigan",
+                    "role": "Maintainer"
                 },
                 {
                     "name": "ironsizide",
@@ -5334,6 +5270,56 @@
                 "validator"
             ],
             "time": "2019-08-13T17:33:27+00:00"
+        },
+        {
+            "name": "firebase/php-jwt",
+            "version": "v5.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/firebase/php-jwt.git",
+                "reference": "feb0e820b8436873675fd3aca04f3728eb2185cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/feb0e820b8436873675fd3aca04f3728eb2185cb",
+                "reference": "feb0e820b8436873675fd3aca04f3728eb2185cb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=4.8 <=9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Firebase\\JWT\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Neuman Vong",
+                    "email": "neuman+pear@twilio.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Anant Narayanan",
+                    "email": "anant@php.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
+            "homepage": "https://github.com/firebase/php-jwt",
+            "keywords": [
+                "jwt",
+                "php"
+            ],
+            "time": "2020-03-25T18:49:23+00:00"
         },
         {
             "name": "grasmash/expander",
