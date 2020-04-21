@@ -244,3 +244,13 @@ function ilr_post_update_add_blog_tag_terms(&$sandbox) {
     }
   }
 }
+
+/**
+ * Fix the node.field_sections schema.
+ */
+function ilr_post_update_fix_node_field_sections_definition(&$sandbox) {
+  $storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('node');
+  // Calling getSchema() also sets it, so the following save() will store it.
+  $storage_definitions['field_sections']->getSchema();
+  $storage_definitions['field_sections']->save();
+}
