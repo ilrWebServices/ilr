@@ -4,5 +4,6 @@ description: 'Custom code related to the ILR''s connection to SalesForce'
 core: 8.x
 package: 'ILR'
 dependencies:
+  - datetime_range
   - salesforce
   - salesforce_pull
