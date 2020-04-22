@@ -8,7 +8,7 @@ use Drupal\salesforce\Event\SalesforceEvents;
 use Drupal\salesforce_mapping\Event\SalesforceQueryEvent;
 use Drupal\salesforce_mapping\Event\SalesforcePullEvent;
 use Drupal\ilr_salesforce\CourseToTopicsTrait;
-use Drupal\ilr_salesforce\CountryISO3To2Trait;
+use Drupal\ilr_salesforce\CountryCodeTransformTrait;
 
 /**
  * Class SalesforceEventSubscriber.
@@ -16,7 +16,7 @@ use Drupal\ilr_salesforce\CountryISO3To2Trait;
 class SalesforceEventSubscriber implements EventSubscriberInterface {
 
   use CourseToTopicsTrait;
-  use CountryISO3To2Trait;
+  use CountryCodeTransformTrait;
 
   /**
    * Drupal\Core\Entity\EntityTypeManager definition.
@@ -154,17 +154,15 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
   private function pullPresaveClassNode(SalesforcePullEvent $event) {
     $class_node = $event->getEntity();
     $sf = $event->getMappedObject()->getSalesforceRecord();
-    // Check the country code, and convert 3 letter codes to 2
-    if (strlen($sf->field('Event_Location_Country__c')) == 3) {
-      $address = $class_node->field_address->value;
-      $class_node->field_address->country_code = $this->getTwoLetterCountryCode($sf->field('Event_Location_Country__c'));
-    }
+    // Check the country code, and convert incoming country codes to 2 letter version
+    $address = $class_node->field_address->value;
+    $class_node->field_address->country_code = $this->getTwoLetterCountryCode($sf->field('Event_Location_Country__c'));
   }
 
-  private function getTwoLetterCountryCode($three_letter_code) {
-    // `country_code_map` is set in CountryISO3to2Trait.
-    if (array_key_exists($three_letter_code, $this->country_code_map)) {
-      return $this->country_code_map[$three_letter_code];
+  private function getTwoLetterCountryCode($incoming_country_code) {
+    // `country_code_map` is set in CountryCodeTransformTrait.
+    if (array_key_exists($incoming_country_code, $this->country_code_map)) {
+      return $this->country_code_map[$incoming_country_code];
     }
 
     return NULL;
