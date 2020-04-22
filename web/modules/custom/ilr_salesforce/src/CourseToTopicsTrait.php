@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\ilr;
+namespace Drupal\ilr_salesforce;
 
 trait CourseToTopicsTrait {
 

@@ -4,11 +4,6 @@ services:
     arguments: ['@entity_type.manager', '@messenger', '@string_translation']
     tags:
       - { name: event_subscriber }
-  ilr_salesforce_event_subscriber:
-    class: Drupal\ilr\EventSubscriber\SalesforceEventSubscriber
-    arguments: ['@entity_type.manager']
-    tags:
-      - { name: event_subscriber }
   ilr_samlauth_event_subscriber:
     class: Drupal\ilr\EventSubscriber\SamlAuthSubscriber
     arguments: ['@entity_type.manager']

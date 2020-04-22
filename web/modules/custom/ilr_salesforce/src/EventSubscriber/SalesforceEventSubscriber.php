@@ -1,14 +1,14 @@
 <?php
 
-namespace Drupal\ilr\EventSubscriber;
+namespace Drupal\ilr_salesforce\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\salesforce\Event\SalesforceEvents;
 use Drupal\salesforce_mapping\Event\SalesforceQueryEvent;
 use Drupal\salesforce_mapping\Event\SalesforcePullEvent;
-use Drupal\ilr\CourseToTopicsTrait;
-use Drupal\ilr\CountryISO3To2Trait;
+use Drupal\ilr_salesforce\CourseToTopicsTrait;
+use Drupal\ilr_salesforce\CountryISO3To2Trait;
 
 /**
  * Class SalesforceEventSubscriber.
