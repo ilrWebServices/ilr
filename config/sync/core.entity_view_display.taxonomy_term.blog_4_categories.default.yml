@@ -27,53 +27,26 @@ third_party_settings:
             uuid: edd1b616-07cc-40f3-ab18-45abb2e3ee39
             region: content
             configuration:
+              id: 'extra_field_block:taxonomy_term:blog_2_categories:blog_collection'
+              label: Blog
+              provider: layout_builder
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'extra_field_block:taxonomy_term:blog_4_categories:blog_collection'
             additional: {  }
             weight: 0
         third_party_settings: {  }
       -
-        layout_id: layout_onecol
+        layout_id: layout_cu_section
         layout_settings:
           label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
         components:
-          b9fadd7b-9988-4ac3-9a97-94f5f94708ba:
-            uuid: b9fadd7b-9988-4ac3-9a97-94f5f94708ba
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:taxonomy_term:blog_4_categories:field_sections'
-              formatter:
-                label: above
-                settings:
-                  view_mode: default
-                  link: ''
-                third_party_settings: {  }
-                type: entity_reference_revisions_entity_view
-            additional: {  }
-            weight: 3
-          943642a0-5468-4f92-bbe1-b1091cc2f251:
-            uuid: 943642a0-5468-4f92-bbe1-b1091cc2f251
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:taxonomy_term:blog_4_categories:field_body'
-              formatter:
-                label: above
-                settings: {  }
-                third_party_settings: {  }
-                type: text_default
-            additional: {  }
-            weight: 2
           69ea9da6-50d0-48df-828b-de24f1cb943f:
             uuid: 69ea9da6-50d0-48df-828b-de24f1cb943f
-            region: content
+            region: main
             configuration:
               id: 'field_block:taxonomy_term:blog_4_categories:name'
               label: Name
@@ -89,7 +62,50 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
             additional: {  }
-            weight: -9
+            weight: 0
+          943642a0-5468-4f92-bbe1-b1091cc2f251:
+            uuid: 943642a0-5468-4f92-bbe1-b1091cc2f251
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:blog_4_categories:field_body'
+              label: 'Intro text'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 2
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          b9fadd7b-9988-4ac3-9a97-94f5f94708ba:
+            uuid: b9fadd7b-9988-4ac3-9a97-94f5f94708ba
+            region: content
+            configuration:
+              id: 'field_block:taxonomy_term:blog_4_categories:field_sections'
+              label: 'Page content'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_revisions_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 3
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
