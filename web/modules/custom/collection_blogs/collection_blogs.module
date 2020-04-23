@@ -5,6 +5,7 @@ use Drupal\collection\Entity\CollectionType;
 use Drupal\pathauto\PathautoState;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Url;
 
 /**
  * @file
@@ -209,6 +210,23 @@ function collection_blogs_node_view(array &$build, EntityInterface $entity, Enti
     if ($blog_post_collection_item) {
       $build['blog_tags'] = $blog_post_collection_item->field_blog_tags->view('teaser');
     }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ *
+ * Add a head link to the feed for a given blog.
+ */
+function collection_blogs_collection_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($entity->bundle() === 'blog') {
+    // Attach a link to the Atom feed, which is an alternate representation.
+    $build['#attached']['html_head_link'][][] = [
+      'rel' => 'alternate',
+      'type' => 'application/atom+xml',
+      'title' => $entity->label(),
+      'href' => Url::fromRoute('blog.feed', ['collection' => $entity->id()], ['absolute' => TRUE])->toString(),
+    ];
   }
 }
 

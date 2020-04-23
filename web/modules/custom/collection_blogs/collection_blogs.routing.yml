@@ -1,0 +1,11 @@
+blog.feed:
+  path: 'blog/{collection}/feed'
+  defaults:
+    _title: 'Atom Feed'
+    _controller: '\Drupal\collection_blogs\Controller\AtomFeed::content'
+  requirements:
+    _permission: 'view blog collection'
+  options:
+    parameters:
+      collection:
+        type: entity:collection
