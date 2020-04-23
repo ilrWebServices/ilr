@@ -72,7 +72,8 @@ function ilr_entity_field_storage_info(EntityTypeInterface $entity_type) {
       ->setRevisionable(FALSE)
       ->setCustomStorage(TRUE)
       ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
-      ->setTargetEntityTypeId('class_session');
+      ->setTargetEntityTypeId($entity_type->id())
+      ->setSetting('target_type', 'class_session');
   }
 
   return $definitions;
@@ -141,12 +142,9 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
       ->setComputed(TRUE)
       ->setClass('\Drupal\ilr\ClassSessionItemList')
       ->setSettings([
-        'target_type' => 'class_session',
-        'handler' => 'default',
+        'handler' => 'default:class_session',
         'handler_settings' => [
-          'target_bundles' => [
-            'class_session' => 'class_session'
-          ]
+          'target_bundles' => NULL,
         ],
       ]);
   }
