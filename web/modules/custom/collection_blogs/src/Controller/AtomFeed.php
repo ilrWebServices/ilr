@@ -19,6 +19,9 @@ class AtomFeed extends ControllerBase {
       'title' => $collection->label(),
       'id' => 'urn:uuid:' . $collection->uuid->value,
       'updated' => &$recent_pub_date,
+      'author' => [
+        'name' => $collection->label(),
+      ],
       'entry' => [],
     ];
 
