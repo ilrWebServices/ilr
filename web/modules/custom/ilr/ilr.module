@@ -88,6 +88,7 @@ function ilr_entity_field_storage_info(EntityTypeInterface $entity_type) {
  *   - Restrict the bundles for all allowed entities.
  *   - @todo: Allow these settings to be configured per collection_item bundle
  *     via the UI.
+ *  - Add computed fields to class nodes.
  */
 function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle, array $base_field_definitions) {
   $fields = [];

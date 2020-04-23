@@ -1,0 +1,50 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\collection\Entity\CollectionType;
+use Drupal\pathauto\PathautoState;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Url;
+
+/**
+ * @file
+ * Contains ilr_salesforce.module.
+ */
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function ilr_salesforce_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getFormObject()->getEntity();
+
+  if ($node->bundle() !== 'class') {
+    return;
+  }
+
+  $form['class_sessions'] = [
+    '#type' => 'details',
+    '#title' => 'Class sessions',
+    '#open' => TRUE,
+    '#weight' => 125,
+  ];
+
+  // Loop over the computed `sessions` base field.
+  // @see ilr_entity_field_storage_info() and ilr_entity_bundle_field_info().
+  foreach ($node->sessions as $class_session) {
+    $form['class_sessions'][$class_session->entity->id()] = [
+      '#type' => 'inline_entity_form',
+      '#entity_type' => 'class_session',
+      '#bundle' => 'class_session',
+      '#default_value' => $class_session->entity,
+      '#form_mode' => 'mini',
+      // '#save_entity' => TRUE,
+      '#op' => 'edit',
+      // '#prefix' => $class_session->entity->uuid(),
+      '#suffix' => '<hr/>',
+      // '#disabled' => TRUE,
+    ];
+  }
+
+}

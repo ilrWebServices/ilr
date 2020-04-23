@@ -24,7 +24,6 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
  *   },
  * )
  */
-
 class ClassSession extends ContentEntityBase implements ContentEntityInterface {
 
   /**
@@ -59,13 +58,17 @@ class ClassSession extends ContentEntityBase implements ContentEntityInterface {
       ->setReadOnly(TRUE);
 
     $fields['title'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Title'))
+      ->setLabel(t('Session title'))
       ->setDescription(t('The title given to this session.'))
       ->setSettings([
         'max_length' => 50,
         'text_processing' => 0,
       ])
-      ->setDefaultValue('');
+      ->setDefaultValue('')
+      ->setDisplayOptions('form', [
+        'type' => 'string',
+        'weight' => 0,
+      ]);
 
     $fields['class'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Class'))
@@ -74,7 +77,14 @@ class ClassSession extends ContentEntityBase implements ContentEntityInterface {
 
     $fields['date'] = BaseFieldDefinition::create('daterange')
       ->setLabel(t('Date and time'))
-      ->setDescription(t('The start and end date and time.'));
+      ->setDescription(t('The start and end date and time.'))
+      ->setSettings([
+        'datetime_type' => 'datetime',
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'daterange_default',
+        'weight' => 1,
+      ]);
 
     $fields['address'] = BaseFieldDefinition::create('address')
       ->setLabel(t('Address'))
