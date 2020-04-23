@@ -4,23 +4,29 @@ namespace Drupal\collection_blogs\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\collection\Entity\CollectionInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 class AtomFeed extends ControllerBase {
 
-  public function content(CollectionInterface $collection) {
+  public function content(CollectionInterface $collection, Request $request) {
     $entity_type_manager = \Drupal::service('entity_type.manager');
     $response = new Response();
     $xmlEncoder = new XmlEncoder();
-    $recent_pub_date = '';
+    $recent_updated_date = '';
     $xml_array = [
       '@xmlns' => 'http://www.w3.org/2005/Atom',
       'title' => $collection->label(),
       'id' => 'urn:uuid:' . $collection->uuid->value,
-      'updated' => &$recent_pub_date,
+      'updated' => &$recent_updated_date,
       'author' => [
         'name' => $collection->label(),
+      ],
+      'link' => [
+        '@rel' => 'self',
+        '@href' => $request->getUri(),
       ],
       'entry' => [],
     ];
@@ -38,25 +44,41 @@ class AtomFeed extends ControllerBase {
     foreach ($blog_post_collection_items as $blog_post_collection_item) {
       $post = $blog_post_collection_item->item->entity;
       $post_pub_date = $post->field_published_date->date->getPhpDateTime();
-      $post_date_rfc_3339 = $post_pub_date->format(\DateTime::RFC3339);
-
-      $xml_array['entry'][] = [
+      $post_pub_date_rfc_3339 = $post_pub_date->format(\DateTime::RFC3339);
+      $post_updated_date = DrupalDateTime::createFromTimestamp($post->changed->value);
+      $post_updated_date_rfc_3339 = $post_updated_date->format(\DateTime::RFC3339);
+      $authors = [];
+      $entry = [
         'title' => $post->label(),
         'link' => [
           '@href' => $post->toUrl('canonical', ['absolute' => TRUE])->toString(),
         ],
         'id' => 'urn:uuid:' . $post->uuid->value,
-        'updated' => $post_date_rfc_3339,
+        'published' => $post_pub_date_rfc_3339,
+        'updated' => $post_updated_date_rfc_3339,
         'summary' => $post->body->summary,
-        'category' => [
-          '@term' => $blog_post_collection_item->field_blog_categories->entity->label()
-        ],
       ];
 
+      foreach ($post->field_authors as $author) {
+        $authors[] = ['name' => $author->entity->getDisplayName()];
+      }
+
+      if ($authors) {
+        $entry['author'] = $authors;
+      }
+
+      if ($blog_post_collection_item->field_blog_categories->isEmpty() === FALSE) {
+        $entry['category'] = [
+          '@term' => $blog_post_collection_item->field_blog_categories->entity->label()
+        ];
+      }
+
+      $xml_array['entry'][] = $entry;
+
       // Since $xml_array['updated'] is set to the referenced value of
-      // $recent_pub_date, it will be updated when the variable is.
-      if (empty($recent_pub_date)) {
-        $recent_pub_date = $post_date_rfc_3339;
+      // $recent_updated_date, it will be updated when the variable is.
+      if (empty($recent_updated_date)) {
+        $recent_updated_date = $post_updated_date_rfc_3339;
       }
     }
 
