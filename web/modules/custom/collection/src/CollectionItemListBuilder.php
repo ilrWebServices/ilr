@@ -114,12 +114,20 @@ class CollectionItemListBuilder extends BulkFormEntityListBuilder {
    */
   public function buildOperations(EntityInterface $entity) {
     $build = parent::buildOperations($entity);
+    $item_entity_type = ($entity->item->entity instanceof \Drupal\Core\Entity\ContentEntityInterface) ? 'content' : 'configuration';
+
+    // Add a link to edit the collection item referenced item.
+    $build['#links'] = array_merge([
+      'edit_item' => [
+        'title' => $this->t('Edit @entity_type', ['@entity_type' => $item_entity_type]),
+        'url' => $this->ensureDestination($entity->item->entity->toURL('edit-form')),
+        'weight' => -1,
+      ]
+    ], $build['#links']);
+
     if (!empty($build['#links']['edit'])) {
-      // Move the edit link operation to the end of the options list. It seems
-      // that the 'weight' key is ignored, so we're doing it this hacky way.
-      $edit = $build['#links']['edit'];
-      unset($build['#links']['edit']);
-      $build['#links']['edit'] = $edit;
+      // Rename the edit link title.
+      $build['#links']['edit']['title'] = $this->t('Edit collection item');
     }
     if (!empty($build['#links']['delete'])) {
       // Rename the delete link title.
