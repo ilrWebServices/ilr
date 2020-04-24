@@ -6,9 +6,11 @@ dependencies:
     - field.field.paragraph.section.field_components
     - field.field.paragraph.section.field_heading
     - field.field.paragraph.section.field_subheading
+    - field.field.paragraph.section.field_subheading_link
     - paragraphs.paragraphs_type.section
   module:
     - entity_reference_revisions
+    - link
 id: paragraph.section.default
 targetEntityType: paragraph
 bundle: section
@@ -38,6 +40,18 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_subheading_link:
+    weight: 4
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link_separate
     region: content
 hidden:
   search_api_excerpt: true

@@ -568,7 +568,8 @@ function ilr_field_widget_paragraphs_form_alter(&$element, FormStateInterface &$
     $element['top']['type']['label']['#markup'] = '<span class="paragraph-type-label">' . $heading . '</span>';
   }
 
-  // Hide the subheading on section paragraphs until the heading has a value.
+  // Hide the subheading and subheading link on section paragraphs until the
+  // heading has a value.
   if ($paragraphs_entity && $paragraphs_entity->bundle() === 'section' && isset($element['subform']['field_heading'])) {
     $selector = sprintf(':input[name="%s[%d][subform][field_heading][0][value]"]', $field_name, $delta);
     $element['subform']['field_subheading']['#states'] = [
@@ -576,6 +577,15 @@ function ilr_field_widget_paragraphs_form_alter(&$element, FormStateInterface &$
         $selector => ['value' => ''],
       ],
     ];
+    $element['subform']['field_subheading_link']['#states'] = [
+      'invisible' => [
+        $selector => ['value' => ''],
+      ],
+    ];
+
+    // Change the the subheading link field to a details element so it will be
+    // collapsed by default.
+    $element['subform']['field_subheading_link']['widget'][0]['#type'] = 'details';
   }
 
   // Move non-section paragraph behaviors below the content fields subform.

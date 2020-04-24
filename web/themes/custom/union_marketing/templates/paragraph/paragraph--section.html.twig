@@ -38,16 +38,9 @@
  * @ingroup themeable
  */
 #}
-
-{% if content.field_heading['#items'] is not empty %}
-  {% set heading = content.field_heading['#items'].getValue().0.value %}
-  {% set subheading = (content.field_subheading['#items'] is not empty)
-    ? content.field_subheading['#items'].getValue().0.value|t
-    : ''
-  %}
-
-  {# Render these paragraph fields as a cu-section-heading component and pass
-  that along to the layout.
+{% if not paragraph.field_heading.isEmpty() %}
+  {# Render the paragraph heading fields as a cu-section-heading component and
+  pass that along to the content/layout.
 
   This only works because a) this section paragraph type is defined as a layout
   using Entity Reference Layout module and 2) we display a special
@@ -61,8 +54,9 @@
     'ilr_hidden_header': {
       '#markup': include('@union/_section-heading.twig', {
         attributes: { class: 'cu-section-heading--framed' },
-        heading: heading|t,
-        subheading: subheading
+        heading: paragraph.field_heading.value,
+        subheading: not paragraph.field_subheading.isEmpty() ? paragraph.field_subheading.value,
+        link: not paragraph.field_subheading_link.isEmpty() ? { url: paragraph.field_subheading_link.uri, text: paragraph.field_subheading_link.title }
       }, with_context = false)
     }
   } %}
@@ -83,7 +77,7 @@
 {% endif %}
 
 {% set rendered_content %}
-  {{ content|without('field_heading','field_subheading') }}
+  {{ content|without('field_heading', 'field_subheading', 'field_subheading_link') }}
 {% endset %}
 
 {% if paragraph.parent_field_name.value == 'field_sections_legacy' %}

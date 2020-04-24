@@ -6,8 +6,10 @@ dependencies:
     - field.field.paragraph.section.field_components
     - field.field.paragraph.section.field_heading
     - field.field.paragraph.section.field_subheading
+    - field.field.paragraph.section.field_subheading_link
     - paragraphs.paragraphs_type.section
   module:
+    - link
     - paragraphs
 id: paragraph.section.default
 targetEntityType: paragraph
@@ -48,6 +50,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_subheading_link:
+    weight: -1
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
 hidden:
   created: true

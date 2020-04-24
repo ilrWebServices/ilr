@@ -1,0 +1,23 @@
+uuid: fcfdc3fd-532f-4f53-8a05-8073cc2a5f97
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subheading_link
+    - paragraphs.paragraphs_type.section
+  module:
+    - link
+id: paragraph.section.field_subheading_link
+field_name: field_subheading_link
+entity_type: paragraph
+bundle: section
+label: 'Subheading link'
+description: 'Optional. A link to add to the section header.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link
