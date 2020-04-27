@@ -19,7 +19,8 @@ class ClassSessionItemList extends EntityReferenceFieldItemList {
   protected function computeValue() {
     $class_entity = $this->getEntity();
     $query = \Drupal::entityQuery('class_session')
-      ->condition('class', $class_entity->id());
+      ->condition('class', $class_entity->id())
+      ->sort('session_date__value');
 
     $results = $query->execute();
     $key = 0;

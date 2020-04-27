@@ -9,19 +9,28 @@
     max-width: var(--cu-max-width-section, #{$max-width-section});
   }
 
+  @include breakpoint(md) {
+    .cu-checkbutton__indicator {
+      flex-basis: 10%;
+    }
+    .cu-checkbutton__content {
+      flex-basis: 80%;
+      display: flex;
+      padding-right: 0;
+
+      .price {
+        flex-grow: 1;
+        align-self: flex-end;
+        text-align: right;
+      }
+    }
+  }
+
   &__form {
-    display: grid;
     margin: 0 auto;
     max-width: var(--cu-max-width-section, #{$max-width-section});
 
-    @include breakpoint(sm) {
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 2em;
-    }
-
     @include breakpoint(md) {
-      grid-template-columns: 1fr 1fr 1fr;
-
       .cu-checkbutton__label {
         margin: 0;
       }
@@ -40,17 +49,18 @@
     }
   }
 
-  .cu-button {
-    margin-bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .cu-checkbutton {
+    margin-bottom: var(--cu-vr1);
   }
 
   .cu-checkbutton--disabled .field--field-class-date,
-  .cu-checkbutton--disabled .field--field-address {
+  .cu-checkbutton--disabled .cu-class-session-date {
     text-decoration: line-through;
     text-decoration-color: $cornell-red;
     text-decoration-thickness: 2px;
+  }
+
+  .cu-class-deliver-method {
+    font-weight: bold;
   }
 }

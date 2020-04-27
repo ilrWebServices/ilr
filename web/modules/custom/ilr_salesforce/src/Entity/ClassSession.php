@@ -84,6 +84,16 @@ class ClassSession extends ContentEntityBase implements ContentEntityInterface {
       ->setDisplayOptions('form', [
         'type' => 'daterange_default',
         'weight' => 1,
+      ])
+      ->setDisplayOptions('view', [
+        'type' => 'daterange_custom',
+        'weight' => 1,
+        'label' => 'hidden',
+        'settings' => [
+          'timezone_override' => '',
+          'date_format' => 'g:i a',
+          'separator' => '-',
+        ],
       ]);
 
     $fields['address'] = BaseFieldDefinition::create('address')
