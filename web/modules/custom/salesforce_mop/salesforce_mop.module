@@ -54,3 +54,27 @@ function salesforce_mop_form_node_form_alter(&$form, FormStateInterface $form_st
     }
   }
 }
+
+/**
+ * Implements hook_inline_entity_form_entity_form_alter().
+ */
+function salesforce_mop_inline_entity_form_entity_form_alter(&$entity_form, &$form_state) {
+  // Check if the inline entity type is mapped to SalesForce.
+  $mapped_object_array = \Drupal::service('entity.manager')
+    ->getStorage('salesforce_mapped_object')
+    ->loadByDrupal($entity_form['#entity_type'], $entity_form['#entity']->id());
+
+  // Disable fields that are mapped.
+  if (!empty($mapped_object_array)) {
+    $mapped_object = reset($mapped_object_array);
+    $field_mappings = $mapped_object->getMapping()->getFieldMappings();
+
+    foreach ($field_mappings as $field_mapping) {
+      $field_name = $field_mapping->getConfiguration()['drupal_field_value'];
+
+      if (isset($entity_form[$field_name])) {
+        $entity_form[$field_name]['#disabled'] = TRUE;
+      }
+    }
+  }
+}
