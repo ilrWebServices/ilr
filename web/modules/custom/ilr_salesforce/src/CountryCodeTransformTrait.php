@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\ilr;
+namespace Drupal\ilr_salesforce;
 
-trait CountryISO3To2Trait {
+trait CountryCodeTransformTrait {
 
-  // This data maps 3 letter country codes to 2
-  // Copied from http://country.io/iso3.json
+  // This data maps incoming country codes to 2 letter version.
+  // Mostly copied from http://country.io/iso3.json
   private $country_code_map = [
     'BGD' => 'BD',
     'BEL' => 'BE',
@@ -160,7 +160,7 @@ trait CountryISO3To2Trait {
     'CMR' => 'CM',
     'CHL' => 'CL',
     'CCK' => 'CC',
-    'CAN' => 'CA',
+    'CANADA' => 'CA',
     'COG' => 'CG',
     'CAF' => 'CF',
     'COD' => 'CD',

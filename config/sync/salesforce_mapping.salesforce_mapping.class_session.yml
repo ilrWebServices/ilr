@@ -1,0 +1,48 @@
+uuid: 98b6c449-8a07-4eb5-9665-16c2e12e91d7
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr_salesforce
+    - salesforce_pull
+id: class_session
+label: 'Class session'
+weight: 0
+type: salesforce_mapping
+key: ''
+async: false
+push_standalone: false
+pull_standalone: false
+pull_trigger_date: LastModifiedDate
+pull_where_clause: 'Event_Class__c IN (SELECT Id FROM EXECED_Event_Class__c WHERE Class_Show_on_Web__c = true)'
+sync_triggers:
+  pull_create: true
+  pull_update: true
+  pull_delete: true
+salesforce_object_type: EXECED_Class_Session__c
+drupal_entity_type: class_session
+drupal_bundle: class_session
+field_mappings:
+  -
+    drupal_field_type: properties
+    drupal_field_value: session_date
+    salesforce_field: Session_Date__c
+    direction: sf_drupal
+    id: 0
+  -
+    drupal_field_type: RelatedIDs
+    drupal_field_value: class
+    salesforce_field: Event_Class__c
+    direction: sf_drupal
+    id: 1
+  -
+    drupal_field_type: properties
+    drupal_field_value: title
+    salesforce_field: Title__c
+    direction: sf_drupal
+    id: 2
+push_limit: 0
+push_retries: 3
+push_frequency: 0
+pull_frequency: 0
+always_upsert: false

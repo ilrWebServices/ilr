@@ -83,14 +83,8 @@
         }
 
         for (const registrationForm of registrationForms) {
-          const prices = registrationForm.querySelectorAll('.cu-js-price');
           const buttons = registrationForm.querySelectorAll('.cu-button');
           const input_name = registrationForm.querySelector('.cu-checkbutton__input').getAttribute('name');
-
-          // Hide any displayed prices.
-          prices.forEach(function (price) {
-            price.style.display = 'none';
-          });
 
           // Hide any checkbutton registration links.
           buttons.forEach(function (button) {
@@ -100,15 +94,13 @@
           let first_input = registrationForm.querySelector('input[name="' + input_name + '"]:not([disabled])')
           let checked_input = registrationForm.querySelector('input[name="' + input_name + '"]:checked');
 
-          // If there is a checked input, activate its price.
+          // If there is a checked input, ???.
           if (checked_input) {
-            setActivePrice(registrationForm, checked_input);
             addRegistrationButton(registrationForm, checked_input);
           }
-          // Otherwise, activate the price of the first input.
+          // Otherwise, ???.
           else {
             first_input.checked = true;
-            setActivePrice(registrationForm, first_input);
             addRegistrationButton(registrationForm, first_input);
           }
         }
@@ -116,14 +108,7 @@
 
       const checkButtonChangeHandler = function (checkbutton_input) {
         let registrationForm = checkbutton_input.closest('.cu-registration-form');
-        setActivePrice(registrationForm, checkbutton_input);
         setRegisterLink(registrationForm, checkbutton_input);
-      }
-
-      const setActivePrice = function (registrationForm, input) {
-        let priceElement = registrationForm.querySelector('.cu-registration-form__active-price');
-        priceElement.textContent = input.dataset.price;
-        activePriceSet = true;
       }
 
       const addRegistrationButton = function (registrationForm, checked_input) {

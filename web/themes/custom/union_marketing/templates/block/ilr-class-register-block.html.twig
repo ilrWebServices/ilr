@@ -10,21 +10,23 @@
   {% set class_register_url = drupal_config('ilr_registration_system.settings', 'url') ~ class.salesforce_id %}
 
   {% set content %}
-    {{ drupal_field('field_class_date', 'node', class.entity.id, 'teaser') }}
+    <div class="details">
     {% if class.entity.field_delivery_method.value and 'online' in class.entity.field_delivery_method.value|lower %}
-      {% if 'date driven' in class.entity.field_delivery_method.value|lower %}
-        <p>All instruction will be completed between these dates.</p>
-      {% else %}
-        {# Fix this once we know the actual value #}
-        <p>All instruction will be delivered online for this date.</p>
-      {% endif %}
+      <div class="cu-class-deliver-method">Online</div>
     {% else %}
-      {# Time display #}
-      {% if not cancelled %}
-      {{ drupal_field('field_date_start', 'node', class.entity.id, 'teaser') }} - {{ drupal_field('field_date_end', 'node', class.entity.id, 'teaser') }}
-      {% endif %}
-      {{ drupal_field('field_address', 'node', class.entity.id, 'teaser') }}
+      <div class="cu-class-deliver-method">In Person</div>
     {% endif %}
+
+    {% if course.field_course_number.value|upper starts with 'OLLB' %}
+      {{ drupal_field('field_class_date', 'node', class.entity.id, 'teaser') }}
+      <p>All instruction will be completed between these dates.</p>
+    {% else %}
+      {% for session in class.entity.sessions %}
+        {# @see ClassSession::baseFieldDefinitions() session_date field setDisplayOptions() #}
+        <div class="cu-class-session-date">{{ session.entity.session_date.value|date('D, F j, ') }} {{ drupal_field('session_date', 'class_session', session.entity.id.value, 'default', NULL, FALSE) }}</div>
+      {% endfor %}
+    {% endif %}
+
     {% if cancelled or full %}
       {% set message = (cancelled)
         ? 'For more info contact <a href="mailto:ilrcustomerservice@cornell.edu">customer service</a> or call 866-470-1922.'
@@ -36,9 +38,13 @@
       {% endif %}
       <p class="touchscreen-only message">{{ message|raw }}</p>
     {% else %}
-      <p class="cu-checkbutton__price cu-js-price">${{ class.entity.field_price.value }}</p>
       <a href="{{ class_register_url }}" class="cu-button cu-button--alt">Register</a>
     {% endif %}
+    </div>
+
+    <div class="price">
+      <p class="cu-checkbutton__price cu-heading cu-text--xl">${{ class.entity.field_price.value }}</p>
+    </div>
   {% endset %}
 
   {% set input = {
@@ -62,8 +68,6 @@
 {% endfor %}
 
 {% set form_content %}
-  <div class="cu-registration-form__active-price">{# This content gets populated via js #}
-  </div>
   <div class="cu-registration-form__form" role="radiogroup" aria-labelledby="class-checkbuttons">
     <h2 id="class-checkbuttons" class="cu-heading visually-hidden">{{ "Choose your Class"|t }}</h2>
     {% for element in form_elements %}
