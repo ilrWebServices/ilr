@@ -25,7 +25,7 @@ drupal_bundle: class_session
 field_mappings:
   -
     drupal_field_type: properties
-    drupal_field_value: date
+    drupal_field_value: session_date
     salesforce_field: Session_Date__c
     direction: sf_drupal
     id: 0

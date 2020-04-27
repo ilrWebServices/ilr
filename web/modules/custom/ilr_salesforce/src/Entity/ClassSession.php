@@ -75,7 +75,7 @@ class ClassSession extends ContentEntityBase implements ContentEntityInterface {
       ->setDescription(t('The class to which this session belongs.'))
       ->setSetting('target_type', 'node');
 
-    $fields['date'] = BaseFieldDefinition::create('daterange')
+    $fields['session_date'] = BaseFieldDefinition::create('daterange')
       ->setLabel(t('Date and time'))
       ->setDescription(t('The start and end date and time.'))
       ->setSettings([
