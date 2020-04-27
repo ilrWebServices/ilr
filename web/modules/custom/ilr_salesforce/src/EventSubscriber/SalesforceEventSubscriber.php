@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\salesforce\Event\SalesforceEvents;
 use Drupal\salesforce_mapping\Event\SalesforceQueryEvent;
 use Drupal\salesforce_mapping\Event\SalesforcePullEvent;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\ilr_salesforce\CourseToTopicsTrait;
 use Drupal\ilr_salesforce\CountryCodeTransformTrait;
 
@@ -49,11 +50,19 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
    *   The event.
    */
   public function pullQueryAlter(SalesforceQueryEvent $event) {
-    // Add an additional field to the `course_node` mapping, to be used in
-    // self::pullPresave().
+    $query = $event->getQuery();
+
     if ($event->getMapping()->id() === 'course_node') {
-      $query = $event->getQuery();
+      // Add an additional field to the `course_node` mapping, to be used in
+      // self::pullPresaveCourseNode().
       $query->fields[] = "Cornell_Department__c";
+    }
+
+    if ($event->getMapping()->id() === 'class_session') {
+      // Add time fields the `class_session` mapping, to be used in
+      // self::pullPresaveClassSession().
+      $query->fields[] = "End_Time__c";
+      $query->fields[] = "Start_Time__c";
     }
   }
 
@@ -70,6 +79,10 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
 
     if ($event->getMapping()->id() === 'class_node') {
       $this->pullPresaveClassNode($event);
+    }
+
+    if ($event->getMapping()->id() === 'class_session') {
+      $this->pullPresaveClassSession($event);
     }
   }
 
@@ -157,6 +170,32 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     // Check the country code, and convert incoming country codes to 2 letter version
     $address = $class_node->field_address->value;
     $class_node->field_address->country_code = $this->getTwoLetterCountryCode($sf->field('Event_Location_Country__c'));
+  }
+
+  /**
+   * Pull presave event callback for class sessions.
+   *
+   * @param \Drupal\salesforce_mapping\Event\SalesforcePullEvent $event
+   *   The event.
+   *
+   * Assumptions
+   * - Times are stored in America/New_York but do not account for DST
+   * - End times are the same date as the start times.
+   */
+  private function pullPresaveClassSession(SalesforcePullEvent $event) {
+    $class_session = $event->getEntity();
+    $sf = $event->getMappedObject()->getSalesforceRecord();
+    $session_date = $sf->field('Session_Date__c');
+    $start_time = substr($sf->field('Start_Time__c'), 0, 8);
+    $end_time = substr($sf->field('End_Time__c'), 0, 8);
+
+    $start_datetime = new DrupalDateTime("$session_date $start_time", 'America/New_York');
+    $start_datetime->setTimezone(new \DateTimeZone('UTC'));
+    $class_session->session_date->value = $start_datetime->format('Y-m-d\TH:i:s');
+
+    $end_datetime = new DrupalDateTime("$session_date $end_time", 'America/New_York');
+    $end_datetime->setTimezone(new \DateTimeZone('UTC'));
+    $class_session->session_date->end_value = $end_datetime->format('Y-m-d\TH:i:s');
   }
 
   private function getTwoLetterCountryCode($incoming_country_code) {
