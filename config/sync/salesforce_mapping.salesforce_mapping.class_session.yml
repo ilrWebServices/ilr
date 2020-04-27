@@ -30,23 +30,17 @@ field_mappings:
     direction: sf_drupal
     id: 0
   -
-    drupal_field_type: properties_extended
-    drupal_field_value: address.additional_name
-    salesforce_field: Location__c
-    direction: sf_drupal
-    id: 1
-  -
     drupal_field_type: RelatedIDs
     drupal_field_value: class
     salesforce_field: Event_Class__c
     direction: sf_drupal
-    id: 2
+    id: 1
   -
     drupal_field_type: properties
     drupal_field_value: title
     salesforce_field: Title__c
     direction: sf_drupal
-    id: 3
+    id: 2
 push_limit: 0
 push_retries: 3
 push_frequency: 0
