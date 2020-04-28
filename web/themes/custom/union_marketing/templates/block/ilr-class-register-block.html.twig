@@ -12,9 +12,9 @@
   {% set content %}
     <div class="details">
     {% if class.entity.field_delivery_method.value and 'online' in class.entity.field_delivery_method.value|lower %}
-      <div class="cu-class-deliver-method">Online</div>
+      <div class="cu-class-delivery-method">Online</div>
     {% else %}
-      <div class="cu-class-deliver-method">In Person</div>
+      <div class="cu-class-delivery-method">In Person</div>
     {% endif %}
 
     {% if course.field_course_number.value|upper starts with 'OLLB' %}
