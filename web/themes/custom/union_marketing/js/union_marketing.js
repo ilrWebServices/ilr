@@ -75,62 +75,48 @@
 
   Drupal.behaviors.union_marketing_registration_form = {
     attach: function (context, settings) {
-      const processRegistrationForms = function () {
-        const registrationForms = document.querySelectorAll('.cu-registration-form');
+      const registrationForms = context.querySelectorAll('.cu-registration-form');
 
-        if (registrationForms == null) {
-          return;
-        }
-
-        for (const registrationForm of registrationForms) {
-          const buttons = registrationForm.querySelectorAll('.cu-button');
-          const input_name = registrationForm.querySelector('.cu-checkbutton__input').getAttribute('name');
-
-          // Hide any checkbutton registration links.
-          buttons.forEach(function (button) {
-            button.style.display = 'none';
-          });
-
-          let first_input = registrationForm.querySelector('input[name="' + input_name + '"]:not([disabled])')
-          let checked_input = registrationForm.querySelector('input[name="' + input_name + '"]:checked');
-
-          // If there is a checked input, ???.
-          if (checked_input) {
-            addRegistrationButton(registrationForm, checked_input);
-          }
-          // Otherwise, ???.
-          else {
-            first_input.checked = true;
-            addRegistrationButton(registrationForm, first_input);
-          }
-        }
+      if (!registrationForms) {
+        return;
       }
 
-      const checkButtonChangeHandler = function (checkbutton_input) {
-        let registrationForm = checkbutton_input.closest('.cu-registration-form');
-        setRegisterLink(registrationForm, checkbutton_input);
-      }
-
-      const addRegistrationButton = function (registrationForm, checked_input) {
-        let registerButton = document.createElement('a');
-        registerButton.setAttribute('class', 'cu-button cu-button--alt cu-js-register-link');
-        registerButton.setAttribute('href', checked_input.value);
-        registerButton.innerHTML = 'Register';
-        checked_input.parentNode.parentNode.appendChild(registerButton, registrationForm);
-      }
-
-      const setRegisterLink = function (registrationForm, checked_input) {
-        let registerButton = registrationForm.querySelector('.cu-js-register-link');
-        registerButton.setAttribute('href', checked_input.value);
-      }
-
-      window.addEventListener('DOMContentLoaded', processRegistrationForms);
-
-      document.addEventListener('change', function (event) {
+      context.addEventListener('change', function(event) {
         if (event.target.matches('.cu-checkbutton__input')) {
-          checkButtonChangeHandler(event.target);
+          let registerButton = event.target.closest('.cu-registration-form').querySelector('.cu-js-register-link');
+
+          if (registerButton) {
+            registerButton.setAttribute('href', event.target.value);
+          }
         }
       }, false);
+
+      for (const registrationForm of registrationForms) {
+        const buttons = registrationForm.querySelectorAll('.cu-button');
+        const input_name = registrationForm.querySelector('.cu-checkbutton__input').getAttribute('name');
+
+        let registerButton = document.createElement('a');
+        registerButton.setAttribute('class', 'cu-button cu-button--alt cu-js-register-link');
+        registerButton.innerHTML = 'Register';
+        registrationForm.querySelector('.cu-registration-form__form').appendChild(registerButton);
+
+        // Hide any checkbutton registration links.
+        buttons.forEach(function (button) {
+          button.style.display = 'none';
+        });
+
+        let available_inputs = registrationForm.querySelectorAll('input[name="' + input_name + '"]:not([disabled])');
+        let checked_input = registrationForm.querySelector('input[name="' + input_name + '"]:checked');
+
+        if (checked_input) {
+          checked_input.checked = true;
+          checked_input.dispatchEvent(new Event('change', {bubbles: true}));
+        }
+        else if (available_inputs.length === 1) {
+          available_inputs[0].checked = true;
+          available_inputs[0].dispatchEvent(new Event('change', {bubbles: true}));
+        }
+      }
     }
   };
 

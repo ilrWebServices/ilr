@@ -67,4 +67,10 @@
   .field--field-address {
     display: inline-block;
   }
+
+  .cu-js-register-link:not([href]) {
+    background-color: #666;
+    border-color: #333;
+    opacity: .5;
+  }
 }
