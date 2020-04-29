@@ -93,6 +93,18 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 3
+          ef89d5ca-54fc-4606-9029-3ceddb947c0d:
+            uuid: ef89d5ca-54fc-4606-9029-3ceddb947c0d
+            region: banner
+            configuration:
+              id: 'extra_field_block:collection:blog:ilr_section_navigation'
+              label: Overridden!
+              provider: layout_builder
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 4
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -140,6 +152,11 @@ content:
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
     region: content
+  ilr_section_navigation:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: banner
   name:
     label: hidden
     type: string
