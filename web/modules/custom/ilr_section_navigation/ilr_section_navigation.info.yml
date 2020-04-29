@@ -1,0 +1,7 @@
+name: 'ILR Section Navigation'
+type: module
+description: 'Add the ability to create in-page links via section behaviors.'
+core: 8.x
+package: 'ILR'
+dependencies:
+  - paragraphs
