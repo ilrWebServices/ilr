@@ -55,4 +55,18 @@ class CollectionType extends ConfigEntityBundleBase implements CollectionTypeInt
    */
   protected $label;
 
+  /**
+   * The Collection type allow collection item types.
+   *
+   * @var array
+   */
+  protected $allowed_collection_item_types = [];
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getAllowedCollectionItemTypes() {
+    return $this->allowed_collection_item_types;
+  }
+
 }
