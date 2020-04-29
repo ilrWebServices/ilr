@@ -2,3 +2,17 @@
 .paragraphs-previewer-html .cu-section-heading__link {
   order: 3;
 }
+
+.paragraph--type--image,
+.paragraph--type--rich-text .field--field-media-image {
+  margin: var(--cu-component-margin-bottom, var(--cu-vr2)) 0;
+
+  @include breakpoint(md) {
+    margin: var(--cu-component-margin-bottom, var(--cu-vr3)) 0;
+  }
+}
+
+.cu-section--wide .paragraph--type--rich-text {
+  max-width: var(--cu-max-width-section, 1060px);
+  margin: 0 auto;
+}

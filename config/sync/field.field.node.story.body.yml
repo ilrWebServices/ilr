@@ -1,0 +1,23 @@
+uuid: f2dd6288-08db-44be-9c47-2551641e4609
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.story
+  module:
+    - text
+id: node.story.body
+field_name: body
+entity_type: node
+bundle: story
+label: 'Intro Text'
+description: 'If there is intro text, it is added to the banner section of the page and can be used in social media posts. Summaries added here are also used in smaller components, such as cards. The summary will also be used when sharing this page via social media.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

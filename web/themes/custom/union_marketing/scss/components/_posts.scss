@@ -57,14 +57,6 @@
   .persona__name {
     margin-bottom: 0;
   }
-
-  .paragraph--type--rich-text .field--field-media-image {
-    margin: var(--cu-component-margin-bottom, var(--cu-vr2)) 0;
-
-    @include breakpoint(md) {
-      margin: var(--cu-component-margin-bottom, var(--cu-vr3)) 0;
-    }
-  }
 }
 
 .collection-listing .field-type--entity-reference {

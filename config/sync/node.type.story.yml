@@ -1,0 +1,17 @@
+uuid: fb181941-62d6-45be-a541-164649fdfc8d
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Story
+type: story
+description: 'Stories are used for long-form content such as news and articles for publications such as the ILRie magazine.'
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false
