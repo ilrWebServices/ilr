@@ -84,7 +84,8 @@ class CollectionForm extends ContentEntityForm {
           '%label' => $this->entity->label(),
         ]));
     }
-    $form_state->setRedirect('entity.collection_item.collection', ['collection' => $this->entity->id()]);
+
+    $form_state->setRedirectUrl($this->entity->toUrl());
   }
 
 }
