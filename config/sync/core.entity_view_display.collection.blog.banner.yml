@@ -111,6 +111,11 @@ content:
     third_party_settings: {  }
     type: media_thumbnail
     region: content
+  ilr_section_navigation:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: banner
   name:
     label: hidden
     type: string

@@ -4,10 +4,14 @@ status: true
 dependencies:
   module:
     - ilr
+    - ilr_section_navigation
 id: section
 label: Section
 icon_uuid: null
+icon_default: null
 description: ''
 behavior_plugins:
   union_section_settings:
+    enabled: true
+  in_page_nav:
     enabled: true
