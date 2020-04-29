@@ -4,7 +4,6 @@ namespace Drupal\collection;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
-use Drupal\Core\Link;
 
 /**
  * Defines a class to build a listing of Collection entities.
@@ -44,11 +43,7 @@ class CollectionListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /* @var \Drupal\collection\Entity\Collection $entity */
-    $row['name'] = Link::createFromRoute(
-      $entity->label(),
-      'entity.collection_item.collection',
-      ['collection' => $entity->id()]
-    );
+    $row['name'] = $entity->toLink();
     $row['type'] = $entity->bundle();
     return $row + parent::buildRow($entity);
   }
