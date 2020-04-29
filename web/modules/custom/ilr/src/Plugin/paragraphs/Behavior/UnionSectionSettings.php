@@ -15,6 +15,7 @@ use Drupal\paragraphs\ParagraphsBehaviorBase;
  * @ParagraphsBehavior(
  *   id = "union_section_settings",
  *   label = @Translation("Union section settings"),
+ *   description = @Translation("Settions related to Union sections"),
  *   weight = 1
  * )
  */
