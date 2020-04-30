@@ -200,4 +200,13 @@ settings:
   base_field_override:
     handler: 'default:base_field_override'
     handler_settings: {  }
+  class_session:
+    handler: 'default:class_session'
+    handler_settings: {  }
+  key:
+    handler: 'default:key'
+    handler_settings: {  }
+  key_config_override:
+    handler: 'default:key_config_override'
+    handler_settings: {  }
 field_type: dynamic_entity_reference
