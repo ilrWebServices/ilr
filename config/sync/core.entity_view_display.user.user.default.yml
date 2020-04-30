@@ -53,6 +53,18 @@ third_party_settings:
               context_mapping: {  }
             additional: {  }
             weight: 0
+          be01682a-06a9-4965-b5d2-dd024e402802:
+            uuid: be01682a-06a9-4965-b5d2-dd024e402802
+            region: second
+            configuration:
+              id: user_collections_block
+              label: 'Publication issues'
+              provider: collection
+              label_display: visible
+              collection_type: publication_issue
+              context_mapping: {  }
+            additional: {  }
+            weight: 1
         third_party_settings: {  }
 id: user.user.default
 targetEntityType: user
