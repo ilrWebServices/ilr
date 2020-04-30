@@ -6,8 +6,10 @@ dependencies:
     - collection.collection_type.publication_issue
     - field.field.collection.publication_issue.body
     - field.field.collection.publication_issue.field_representative_image
+    - field.field.collection.publication_issue.field_sections
   module:
     - media_library
+    - paragraphs_previewer
     - path
     - text
 id: collection.publication_issue.default
@@ -31,6 +33,25 @@ content:
       media_types: {  }
     third_party_settings: {  }
     type: media_library_widget
+    region: content
+  field_sections:
+    weight: 2
+    settings:
+      title: content
+      title_plural: content
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: '2'
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: section
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: 0
+        add_above: 0
+    third_party_settings: {  }
+    type: paragraphs_previewer
     region: content
   name:
     type: string_textfield
