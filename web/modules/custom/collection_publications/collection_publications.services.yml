@@ -1,0 +1,11 @@
+services:
+  collection_publications_subscriber:
+    class: Drupal\collection_publications\EventSubscriber\CollectionPublicationsSubscriber
+    arguments:
+      - '@entity_type.manager'
+      - '@messenger'
+      - '@string_translation'
+      - '@theme_handler'
+      - '@config.storage.active'
+    tags:
+      - { name: event_subscriber }

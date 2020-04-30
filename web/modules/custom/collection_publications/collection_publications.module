@@ -1,0 +1,109 @@
+<?php
+
+/**
+ * @file
+ * Contains collection_publications.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\ilr\FieldStorageDefinition;
+use Drupal\Core\Field\FieldDefinition;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function collection_publications_form_taxonomy_term_form_alter(&$form, FormStateInterface $form_state) {
+  $form['branding'] = [
+    '#type' => 'details',
+    '#title' => t('Branding'),
+    '#group' => 'advanced',
+    '#weight' => 60,
+    '#optional' => TRUE,
+    '#open' => FALSE,
+  ];
+
+  $form['logo']['#group'] = 'branding';
+}
+
+/**
+ * Implements hook_entity_field_storage_info().
+ */
+function collection_publications_entity_field_storage_info(EntityTypeInterface $entity_type) {
+  $definitions = [];
+
+  if ($entity_type->id() == 'taxonomy_term') {
+    $definitions['logo'] = FieldStorageDefinition::create('entity_reference')
+      ->setName('logo')
+      ->setLabel(t('Logo'))
+      ->setRevisionable(TRUE)
+      ->setTargetEntityTypeId($entity_type->id())
+      ->setSetting('target_type', 'media');
+  }
+
+  if ($entity_type->id() == 'collection') {
+    $definitions['publication'] = FieldStorageDefinition::create('entity_reference')
+      ->setName('publication')
+      ->setLabel(t('Publication'))
+      ->setRevisionable(FALSE)
+      ->setTargetEntityTypeId($entity_type->id())
+      ->setSetting('target_type', 'taxonomy_term');
+  }
+
+  return $definitions;
+}
+
+/**
+ * Implements hook_entity_bundle_field_info().
+ *
+ * - Add the logo field to publication terms.
+ * - Add the publication field to publication issue collections.
+ */
+function collection_publications_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle, array $base_field_definitions) {
+  $fields = [];
+  $custom_field_storage = collection_publications_entity_field_storage_info($entity_type);
+
+  if ($entity_type->id() === 'taxonomy_term' && $bundle === 'publication') {
+    $fields[$custom_field_storage['logo']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['logo']);
+
+    $fields[$custom_field_storage['logo']->getName()]
+      ->setLabel(t('Logo'))
+      ->setSettings([
+        'handler' => 'default:media',
+        'handler_settings' => [
+          'target_bundles' => [
+            'image' => 'image'
+          ]
+        ],
+      ])
+      ->setDisplayConfigurable('view', FALSE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'media_library_widget',
+        'weight' => 1,
+      ]);
+  }
+
+  if ($entity_type->id() === 'collection' && $bundle === 'publication_issue') {
+    $fields[$custom_field_storage['publication']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['publication']);
+
+    $fields[$custom_field_storage['publication']->getName()]
+      ->setLabel(t('Publication'))
+      ->setSettings([
+        'handler' => 'default:taxonomy_term',
+        'handler_settings' => [
+          'target_bundles' => [
+            'publication' => 'publication'
+          ]
+        ],
+      ])
+      ->setDisplayConfigurable('view', FALSE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'weight' => 1,
+      ]);
+  }
+
+  return $fields;
+}
