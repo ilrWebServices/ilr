@@ -150,55 +150,73 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
       ]);
   }
 
-  // Update all collection_item bundles to use updated field settings.
-  // @todo Move this to the collection module and configure each bundle dynamically.
+  // Apply custom settings to different collection item types.
+  /** @todo Move this to dynamic settings in a new function collection_entity_bundle_field_info() */
   if ($entity_type->id() === 'collection_item') {
-    $fields['item'] = BaseFieldOverride::createFromBaseFieldDefinition($base_field_definitions['item'], $bundle);
-    $entity_type_ids_setting = $fields['item']->getSetting('entity_type_ids');
-    $fields['item']
-      ->setSetting('entity_type_ids', $entity_type_ids_setting + [
-        'media' => 'media',
-        'persona' => 'persona',
-        'taxonomy_term' => 'taxonomy_term',
-      ])
-      ->setSetting('media', [
-        'handler' => 'default:media',
-        'handler_settings' => [
-          'target_bundles' => [
-            'image' => 'image',
-            'remote_video' => 'remote_video',
+    // Update default collection_item to allow lots of entity types.
+    if ($bundle === 'default') {
+      $fields['item'] = BaseFieldOverride::createFromBaseFieldDefinition($base_field_definitions['item'], $bundle);
+      $entity_type_ids_setting = $fields['item']->getSetting('entity_type_ids');
+      $fields['item']
+        ->setSetting('entity_type_ids', $entity_type_ids_setting + [
+          'collection' => 'collection',
+          'media' => 'media',
+          'persona' => 'persona',
+          'taxonomy_term' => 'taxonomy_term',
+        ])
+        ->setSetting('media', [
+          'handler' => 'default:media',
+          'handler_settings' => [
+            'target_bundles' => [
+              'image' => 'image',
+              'remote_video' => 'remote_video',
+            ]
           ]
-        ]
-      ])
-      ->setSetting('node', [
-        'handler' => 'default:node',
-        'handler_settings' => [
-          'target_bundles' => [
-            'certificate' => 'certificate',
-            'course' => 'course',
-            'page' => 'page',
-            'post' => 'post',
+        ])
+        ->setSetting('node', [
+          'handler' => 'default:node',
+          'handler_settings' => [
+            'target_bundles' => [
+              'certificate' => 'certificate',
+              'course' => 'course',
+              'page' => 'page',
+              'post' => 'post',
+            ]
           ]
-        ]
-      ])
-      ->setSetting('persona', [
-        'handler' => 'default:persona',
-        'handler_settings' => [
-          'target_bundles' => [
-            'author' => 'author',
-            'faculty' => 'faculty',
-            'staff' => 'staff',
+        ])
+        ->setSetting('persona', [
+          'handler' => 'default:persona',
+          'handler_settings' => [
+            'target_bundles' => [
+              'author' => 'author',
+              'faculty' => 'faculty',
+              'staff' => 'staff',
+            ]
           ]
-        ]
-      ])
-      ->setSetting('taxonomy_term', [
-        'handler' => 'default:taxonomy_term',
-        'handler_settings' => [
-          'target_bundles' => [
-            'topics' => 'topics',
+        ])
+        ->setSetting('taxonomy_term', [
+          'handler' => 'default:taxonomy_term',
+          'handler_settings' => [
+            'target_bundles' => [
+              'topics' => 'topics',
+            ]
           ]
-        ]
-      ]);
+        ]);
+    }
+
+    // Update blog collection_item to allow only post nodes.
+    if ($bundle === 'blog') {
+      $fields['item'] = BaseFieldOverride::createFromBaseFieldDefinition($base_field_definitions['item'], $bundle);
+      $fields['item']
+        ->setSetting('node', [
+          'handler' => 'default:node',
+          'handler_settings' => [
+            'target_bundles' => [
+              'post' => 'post',
+            ]
+          ]
+        ]);
+    }
   }
 
   return $fields;
