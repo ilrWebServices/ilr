@@ -107,3 +107,33 @@ function collection_publications_entity_bundle_field_info(EntityTypeInterface $e
 
   return $fields;
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Modify the collection new node form to add a form submit handler for publication issues.
+ *
+ * @see CollectionNewNodeForm::buildForm()
+ */
+function collection_publications_form_collection_new_node_form_alter(&$form, FormStateInterface $form_state) {
+  /** @var \Drupal\collection\Entity\CollectionInterface $collection */
+  $collection = $form_state->get('collection');
+
+  if ($collection->bundle() !== 'publication_issue') {
+    return;
+  }
+
+  // Add a 'presubmit' handler to allow setting the collection item type to publication_issue.
+  array_unshift($form['#submit'], 'collection_publications_form_collection_new_node_form_presubmit');
+}
+
+/**
+ * Form submission handler to set the collection_item_type.
+ *
+ * @see collection_publications_form_collection_new_node_form_alter()
+ */
+function collection_publications_form_collection_new_node_form_presubmit($form, FormStateInterface $form_state) {
+  if ($form_state->getValue('bundle') === 'story') {
+    $form_state->set('collection_item_type', 'publication_issue');
+  }
+}
