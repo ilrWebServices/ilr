@@ -12,7 +12,7 @@ entity_type: node
 bundle: story
 label: 'Representative Image'
 description: 'This image may be used: As the banner background; when sharing this content on social media; or when representing it a smaller component, such as a teaser.'
-required: false
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
