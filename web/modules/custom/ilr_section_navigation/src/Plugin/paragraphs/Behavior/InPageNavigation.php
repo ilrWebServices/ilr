@@ -45,8 +45,10 @@ class InPageNavigation extends ParagraphsBehaviorBase {
    * We currently only allow in page links on blog collections.
    */
   protected function showBehaviorForm(Paragraph $paragraph) {
-    $parent_entity = $paragraph->getParentEntity();
-    return $parent_entity->getEntityTypeId() === 'collection' && $parent_entity->bundle() === 'blog';
+    if ($parent_entity = $paragraph->getParentEntity()) {
+      return $parent_entity->getEntityTypeId() === 'collection' && $parent_entity->bundle() === 'blog';
+    }
+    return FALSE;
   }
 
   /**
