@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - collection.collection_type.blog
+    - collection.collection_type.publication_issue
     - collection.collection_type.subsite
     - field.storage.paragraph.field_collection
     - paragraphs.paragraphs_type.collection_listing
@@ -22,6 +23,7 @@ settings:
   handler_settings:
     target_bundles:
       blog: blog
+      publication_issue: publication_issue
       subsite: subsite
     sort:
       field: _none
