@@ -254,3 +254,15 @@ function ilr_post_update_fix_node_field_sections_definition(&$sandbox) {
   $storage_definitions['field_sections']->getSchema();
   $storage_definitions['field_sections']->save();
 }
+
+/**
+ * Add initial ilrie publication.
+ */
+function ilr_post_update_add_ilrie_publication(&$sandbox) {
+  $term_entity_manager = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term');
+
+  $term_entity_manager->create([
+    'vid' => 'publication',
+    'name' => 'ILRie',
+  ])->save();
+}
