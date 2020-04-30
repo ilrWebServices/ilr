@@ -1,0 +1,23 @@
+uuid: b32b3251-dc21-41a2-907d-955fd7fb1d3d
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - ctools
+id: publication_issues
+label: 'Publication issues'
+type: 'canonical_entities:collection'
+pattern: '[collection:publication:entity:name]/[collection:name]'
+selection_criteria:
+  b0d3ac8f-39e6-460c-8719-e682796a8855:
+    id: 'entity_bundle:collection'
+    bundles:
+      publication_issue: publication_issue
+    negate: false
+    context_mapping:
+      collection: collection
+    uuid: b0d3ac8f-39e6-460c-8719-e682796a8855
+selection_logic: and
+weight: -5
+relationships: {  }

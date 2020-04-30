@@ -1,0 +1,76 @@
+uuid: c876f8df-d1e4-4535-bce1-24cac71b45b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.publication_issue
+    - field.field.collection.publication_issue.body
+    - field.field.collection.publication_issue.field_representative_image
+  module:
+    - media_library
+    - path
+    - text
+id: collection.publication_issue.default
+targetEntityType: collection
+bundle: publication_issue
+mode: default
+content:
+  body:
+    weight: 102
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
+  field_representative_image:
+    weight: 101
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    type: media_library_widget
+    region: content
+  name:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  publication:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 100
+    region: content
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+hidden: {  }
