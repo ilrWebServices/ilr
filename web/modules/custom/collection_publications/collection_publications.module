@@ -89,6 +89,7 @@ function collection_publications_entity_bundle_field_info(EntityTypeInterface $e
 
     $fields[$custom_field_storage['publication']->getName()]
       ->setLabel(t('Publication'))
+      ->setRequired(TRUE)
       ->setSettings([
         'handler' => 'default:taxonomy_term',
         'handler_settings' => [
