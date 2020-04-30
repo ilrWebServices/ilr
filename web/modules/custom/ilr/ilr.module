@@ -217,6 +217,20 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
           ]
         ]);
     }
+
+    // Update publication issues collection_item to allow only post nodes.
+    if ($bundle === 'publication_issue') {
+      $fields['item'] = BaseFieldOverride::createFromBaseFieldDefinition($base_field_definitions['item'], $bundle);
+      $fields['item']
+        ->setSetting('node', [
+          'handler' => 'default:node',
+          'handler_settings' => [
+            'target_bundles' => [
+              'story' => 'story',
+            ]
+          ]
+        ]);
+    }
   }
 
   return $fields;
@@ -712,6 +726,13 @@ function ilr_form_collection_new_node_form_alter(&$form, FormStateInterface $for
     $form['bundle']['#options'] = [
       'post' => 'Post',
       'page' => 'Page',
+    ];
+  }
+
+  if ($collection->bundle() === 'publication_issue') {
+    $form['bundle']['#default_value'] = 'story';
+    $form['bundle']['#options'] = [
+      'story' => 'Story',
     ];
   }
 }
