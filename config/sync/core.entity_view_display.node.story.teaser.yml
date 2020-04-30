@@ -7,8 +7,10 @@ dependencies:
     - field.field.node.story.body
     - field.field.node.story.field_representative_image
     - field.field.node.story.field_sections
+    - image.style.medium_3_2_600x400
     - node.type.story
   module:
+    - media
     - text
     - user
 id: node.story.teaser
@@ -24,12 +26,13 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_representative_image:
-    type: entity_reference_label
+    type: media_thumbnail
     weight: 2
     region: content
     label: hidden
     settings:
-      link: true
+      image_style: medium_3_2_600x400
+      image_link: ''
     third_party_settings: {  }
   links:
     weight: 0
