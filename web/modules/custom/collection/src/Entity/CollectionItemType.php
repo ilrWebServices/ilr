@@ -39,7 +39,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *   }
  * )
  */
-class CollectionItemType extends ConfigEntityBundleBase implements CollectionTypeInterface {
+class CollectionItemType extends ConfigEntityBundleBase implements CollectionItemTypeInterface {
 
   /**
    * The Collection item type ID.
