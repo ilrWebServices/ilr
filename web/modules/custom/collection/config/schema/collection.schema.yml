@@ -8,6 +8,13 @@ collection.collection_type.*:
     label:
       type: label
       label: 'Label'
+    allowed_collection_item_types:
+      type: sequence
+      label: 'Allowed collection item types'
+      nullable: true
+      sequence:
+        type: string
+        label: 'Bundle'
     uuid:
       type: string
 

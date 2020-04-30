@@ -9,3 +9,5 @@ third_party_settings:
     contains_subsites: 1
 id: subsite
 label: Subsite
+allowed_collection_item_types:
+  - default

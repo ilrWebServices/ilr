@@ -5,38 +5,21 @@ namespace Drupal\collection\Controller;
 use Drupal\Core\Entity\Controller\EntityController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Url;
+use Drupal\Core\Link;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 class CollectionItemController extends EntityController {
 
   /**
-   * Returns a redirect response object for the specified route.
-   *
-   * This is overridden from EntityController because we need to ensure that the
-   * `collection` parameter is included in the redirect response. This method is
-   * only called from the parent of $this->addPage.
-   *
-   * @param string $route_name The name of the route to which to redirect.
-   * @param array $route_parameters (optional) Parameters for the route.
-   * @param array $options (optional) An associative array of additional
-   *   options.
-   * @param int $status (optional) The HTTP redirect status code for the
-   *   redirect. The default is 302 Found.
-   *
-   * @return \Symfony\Component\HttpFoundation\RedirectResponse A redirect
-   *   response object that may be returned by the controller.
-   */
-  protected function redirect($route_name, array $route_parameters = [], array $options = [], $status = 302) {
-    $options['absolute'] = TRUE;
-    $route_parameters['collection'] = \Drupal::routeMatch()->getRawParameter('collection');
-    return new RedirectResponse(Url::fromRoute($route_name, $route_parameters, $options)->toString(), $status);
-  }
-
-  /**
    * Displays add links for the available collection item bundles.
    *
    * Redirects to the add form if there's only one bundle available.
+   *
+   * This method does two things differently from EntityController::addpage():
+   *
+   * - Removes collection item types not allowed in this collection type.
+   * - Adds the 'collection' parameter to the add links and redirect.
    *
    * @param string $entity_type_id
    *   The entity type ID.
@@ -46,19 +29,71 @@ class CollectionItemController extends EntityController {
    *   Otherwise, a render array with the add links for each bundle.
    */
   public function addPage($entity_type_id) {
-    $build = parent::addPage($entity_type_id);
+    $entity_type = $this->entityTypeManager->getDefinition($entity_type_id);
+    $bundles = $this->entityTypeBundleInfo->getBundleInfo($entity_type_id);
+    $bundle_key = $entity_type->getKey('bundle');
+    $bundle_entity_type_id = $entity_type->getBundleEntityType();
+    $build = [
+      '#theme' => 'entity_add_list',
+      '#bundles' => [],
+    ];
 
-    if ($build instanceof RedirectResponse) {
-      return $build;
+    // Filter out bundles that are not allowed for this collection type.
+    $collection = \Drupal::routeMatch()->getParameter('collection');
+    $allowed_collection_item_types = $collection->type->entity->getAllowedCollectionItemTypes();
+    $bundles = array_filter($bundles, function($bundle_name) use ($allowed_collection_item_types) {
+      return in_array($bundle_name, $allowed_collection_item_types);
+    }, ARRAY_FILTER_USE_KEY);
+
+    if ($bundle_entity_type_id) {
+      $bundle_argument = $bundle_entity_type_id;
+      $bundle_entity_type = $this->entityTypeManager->getDefinition($bundle_entity_type_id);
+      $bundle_entity_type_label = $bundle_entity_type->getSingularLabel();
+      $build['#cache']['tags'] = $bundle_entity_type->getListCacheTags();
+
+      // Build the message shown when there are no bundles.
+      $link_text = $this->t('Add a new @entity_type.', ['@entity_type' => $bundle_entity_type_label]);
+      $link_route_name = 'entity.' . $bundle_entity_type->id() . '.add_form';
+      $build['#add_bundle_message'] = $this->t('There is no @entity_type yet. @add_link', [
+        '@entity_type' => $bundle_entity_type_label,
+        '@add_link' => Link::createFromRoute($link_text, $link_route_name)->toString(),
+      ]);
+      // Filter out the bundles the user doesn't have access to.
+      $access_control_handler = $this->entityTypeManager->getAccessControlHandler($entity_type_id);
+      foreach ($bundles as $bundle_name => $bundle_info) {
+        $access = $access_control_handler->createAccess($bundle_name, NULL, [], TRUE);
+        if (!$access->isAllowed()) {
+          unset($bundles[$bundle_name]);
+        }
+        $this->renderer->addCacheableDependency($build, $access);
+      }
+      // Add descriptions from the bundle entities.
+      $bundles = $this->loadBundleDescriptions($bundles, $bundle_entity_type);
+    }
+    else {
+      $bundle_argument = $bundle_key;
     }
 
-    foreach ($build['#bundles'] as $key => $bundle) {
-      $collection_item_add_url = Url::fromRoute('entity.collection_item.add_form', [
-        'collection' => \Drupal::routeMatch()->getRawParameter('collection'),
-        'collection_item_type' => $key
+    $form_route_name = 'entity.' . $entity_type_id . '.add_form';
+    // Redirect if there's only one bundle available.
+    if (count($bundles) == 1) {
+      $bundle_names = array_keys($bundles);
+      $bundle_name = reset($bundle_names);
+      return $this->redirect($form_route_name, [
+        'collection' => $collection->id(),
+        $bundle_argument => $bundle_name
       ]);
-
-      $build['#bundles'][$key]['add_link']->setUrl($collection_item_add_url);
+    }
+    // Prepare the #bundles array for the template.
+    foreach ($bundles as $bundle_name => $bundle_info) {
+      $build['#bundles'][$bundle_name] = [
+        'label' => $bundle_info['label'],
+        'description' => isset($bundle_info['description']) ? $bundle_info['description'] : '',
+        'add_link' => Link::createFromRoute($bundle_info['label'], $form_route_name, [
+          'collection' => $collection->id(),
+          $bundle_argument => $bundle_name,
+        ]),
+      ];
     }
 
     return $build;
