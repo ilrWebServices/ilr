@@ -9,3 +9,6 @@ third_party_settings:
     contains_blogs: 1
 id: blog
 label: Blog
+allowed_collection_item_types:
+  - blog
+  - default
