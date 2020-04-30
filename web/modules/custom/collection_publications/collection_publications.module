@@ -1,0 +1,170 @@
+<?php
+
+/**
+ * @file
+ * Contains collection_publications.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\ilr\FieldStorageDefinition;
+use Drupal\Core\Field\FieldDefinition;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function collection_publications_form_taxonomy_term_form_alter(&$form, FormStateInterface $form_state) {
+  $form['branding'] = [
+    '#type' => 'details',
+    '#title' => t('Branding'),
+    '#group' => 'advanced',
+    '#weight' => 60,
+    '#optional' => TRUE,
+    '#open' => FALSE,
+  ];
+
+  $form['logo']['#group'] = 'branding';
+}
+
+/**
+ * Implements hook_entity_field_storage_info().
+ */
+function collection_publications_entity_field_storage_info(EntityTypeInterface $entity_type) {
+  $definitions = [];
+
+  if ($entity_type->id() == 'taxonomy_term') {
+    $definitions['logo'] = FieldStorageDefinition::create('entity_reference')
+      ->setName('logo')
+      ->setLabel(t('Logo'))
+      ->setRevisionable(TRUE)
+      ->setTargetEntityTypeId($entity_type->id())
+      ->setSetting('target_type', 'media');
+  }
+
+  if ($entity_type->id() == 'collection') {
+    $definitions['publication'] = FieldStorageDefinition::create('entity_reference')
+      ->setName('publication')
+      ->setLabel(t('Publication'))
+      ->setRevisionable(FALSE)
+      ->setTargetEntityTypeId($entity_type->id())
+      ->setSetting('target_type', 'taxonomy_term');
+  }
+
+  return $definitions;
+}
+
+/**
+ * Implements hook_entity_bundle_field_info().
+ *
+ * - Add the logo field to publication terms.
+ * - Add the publication field to publication issue collections.
+ */
+function collection_publications_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle, array $base_field_definitions) {
+  $fields = [];
+  $custom_field_storage = collection_publications_entity_field_storage_info($entity_type);
+
+  if ($entity_type->id() === 'taxonomy_term' && $bundle === 'publication') {
+    $fields[$custom_field_storage['logo']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['logo']);
+
+    $fields[$custom_field_storage['logo']->getName()]
+      ->setLabel(t('Logo'))
+      ->setSettings([
+        'handler' => 'default:media',
+        'handler_settings' => [
+          'target_bundles' => [
+            'image' => 'image'
+          ]
+        ],
+      ])
+      ->setDisplayConfigurable('view', FALSE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'media_library_widget',
+        'weight' => 1,
+      ]);
+  }
+
+  if ($entity_type->id() === 'collection' && $bundle === 'publication_issue') {
+    $fields[$custom_field_storage['publication']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['publication']);
+
+    $fields[$custom_field_storage['publication']->getName()]
+      ->setLabel(t('Publication'))
+      ->setRequired(TRUE)
+      ->setSettings([
+        'handler' => 'default:taxonomy_term',
+        'handler_settings' => [
+          'target_bundles' => [
+            'publication' => 'publication'
+          ]
+        ],
+      ])
+      ->setDisplayConfigurable('view', FALSE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'weight' => 1,
+      ]);
+  }
+
+  return $fields;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Modify the collection new node form to add a form submit handler for publication issues.
+ *
+ * @see CollectionNewNodeForm::buildForm()
+ */
+function collection_publications_form_collection_new_node_form_alter(&$form, FormStateInterface $form_state) {
+  /** @var \Drupal\collection\Entity\CollectionInterface $collection */
+  $collection = $form_state->get('collection');
+
+  if ($collection->bundle() !== 'publication_issue') {
+    return;
+  }
+
+  // Add a 'presubmit' handler to allow setting the collection item type to publication_issue.
+  array_unshift($form['#submit'], 'collection_publications_form_collection_new_node_form_presubmit');
+}
+
+/**
+ * Form submission handler to set the collection_item_type.
+ *
+ * @see collection_publications_form_collection_new_node_form_alter()
+ */
+function collection_publications_form_collection_new_node_form_presubmit($form, FormStateInterface $form_state) {
+  if ($form_state->getValue('bundle') === 'story') {
+    $form_state->set('collection_item_type', 'publication_issue');
+  }
+}
+
+/**
+ * Implements hook_pathauto_alias_alter().
+ *
+ * Updates the alias when the entity uses the auto-generated alias and is in a publication issue collection.
+ */
+function collection_publications_pathauto_alias_alter(&$alias, array &$context) {
+  if (isset($context['data']['node'])) {
+    $node = $context['data']['node'];
+    // Load all collection items that reference this node.
+    $entity_type_manager = \Drupal::service('entity_type.manager');
+    $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+    $collection_item_ids = $collection_item_storage->getQuery()
+      ->condition('type', 'publication_issue')
+      ->condition('item__target_type', 'node')
+      ->condition('item__target_id', $node->id())
+      ->execute();
+
+    $collection_items = $collection_item_storage->loadMultiple($collection_item_ids);
+
+    if (!$collection_items) {
+      return;
+    }
+
+    $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
+    $clean_title = $alias_cleaner->cleanString($node->label());
+    $first_collection_item = reset($collection_items);
+    $alias = $first_collection_item->collection->entity->toUrl()->toString() . '/' . $clean_title;
+  }
+}

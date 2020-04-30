@@ -1,0 +1,10 @@
+uuid: 497be2d7-6172-4509-a362-0a3c4727f4f5
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: SHLrMYXAQzwR335u-9jqfGGu7Jo4BrwkF35pvs01jXo
+id: publication_issue
+label: 'Publication issue'
+allowed_collection_item_types:
+  - publication_issue

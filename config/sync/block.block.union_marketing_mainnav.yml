@@ -37,3 +37,8 @@ visibility:
     context_mapping:
       node: '@node.node_route_context:node'
       collection: '@collection.collection_route_context:collection'
+  request_path:
+    id: request_path
+    pages: '/ilrie/*'
+    negate: true
+    context_mapping: {  }

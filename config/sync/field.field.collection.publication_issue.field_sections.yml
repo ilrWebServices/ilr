@@ -1,0 +1,64 @@
+uuid: ccaf9b72-cf3c-4a22-9e06-229566bf3108
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.publication_issue
+    - field.storage.collection.field_sections
+    - paragraphs.paragraphs_type.section
+  module:
+    - entity_reference_revisions
+id: collection.publication_issue.field_sections
+field_name: field_sections
+entity_type: collection
+bundle: publication_issue
+label: Sections
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      section: section
+    target_bundles_drag_drop:
+      collection_listing:
+        weight: 13
+        enabled: false
+      curated_post_listing:
+        weight: 14
+        enabled: false
+      deck:
+        weight: 15
+        enabled: false
+      form:
+        weight: 16
+        enabled: false
+      image:
+        weight: 17
+        enabled: false
+      person:
+        weight: 18
+        enabled: false
+      promo:
+        weight: 19
+        enabled: false
+      rich_text:
+        weight: 20
+        enabled: false
+      section:
+        enabled: true
+        weight: 21
+      simple_collection_listing:
+        weight: 22
+        enabled: false
+      testimonial:
+        weight: 23
+        enabled: false
+      video:
+        weight: 24
+        enabled: false
+field_type: entity_reference_revisions
