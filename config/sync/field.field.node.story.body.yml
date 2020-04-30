@@ -6,7 +6,14 @@ dependencies:
     - field.storage.node.body
     - node.type.story
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    basic_formatting: basic_formatting
+    basic_formatting_with_media: '0'
+    full_html: '0'
+    plain_text: '0'
 id: node.story.body
 field_name: body
 entity_type: node
