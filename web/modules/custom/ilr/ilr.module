@@ -213,6 +213,7 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
           'handler_settings' => [
             'target_bundles' => [
               'post' => 'post',
+              'media_mention' => 'media_mention',
             ]
           ]
         ]);
@@ -725,6 +726,7 @@ function ilr_form_collection_new_node_form_alter(&$form, FormStateInterface $for
     $form['bundle']['#default_value'] = 'post';
     $form['bundle']['#options'] = [
       'post' => 'Post',
+      'media_mention' => 'Media mention',
       'page' => 'Page',
     ];
   }

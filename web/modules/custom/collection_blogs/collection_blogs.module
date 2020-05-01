@@ -237,7 +237,7 @@ function collection_blogs_form_node_form_alter(&$form, FormStateInterface $form_
   /** @var \Drupal\node\NodeInterface $node */
   $node = $form_state->getFormObject()->getEntity();
 
-  if ($node->bundle() !== 'post') {
+  if (!in_array($node->bundle(), ['post', 'media_mention'])) {
     return;
   }
 
@@ -310,7 +310,7 @@ function collection_blogs_form_collection_new_node_form_alter(&$form, FormStateI
  * @see collection_blogs_form_collection_new_node_form_alter()
  */
 function collection_blogs_form_collection_new_node_form_presubmit($form, FormStateInterface $form_state) {
-  if ($form_state->getValue('bundle') === 'post') {
+  if (in_array($form_state->getValue('bundle'), ['post', 'media_mention'])) {
     $form_state->set('collection_item_type', 'blog');
   }
 }
