@@ -9,6 +9,7 @@ folder: ../config/dev
 module:
   devel: 0
   devel_entity_updates: 0
+  entity_clone: 0
   salesforce_mapping_ui: 0
   stage_file_proxy: 0
   views_ui: 0
