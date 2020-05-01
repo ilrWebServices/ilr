@@ -1,0 +1,29 @@
+.mailchimp-signup-subscribe-form {
+  background: #efefed;
+  padding: var(--cu-vr2) var(--cu-ps2);
+  margin-bottom: var(--cu-vr3);
+
+  @include breakpoint(md) {
+    display: grid;
+    grid-gap: 50px;
+
+    h2 {
+      grid-row: 1;
+      grid-column: 1;
+      text-align: center;
+    }
+  }
+
+  form {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  h2 {
+    --cu-current-heading-size: var(--cu-ps2);
+  }
+
+  .cu-fieldset {
+    padding: 0;
+  }
+}
