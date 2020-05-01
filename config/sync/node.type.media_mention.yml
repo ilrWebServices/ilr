@@ -1,0 +1,17 @@
+uuid: ae3e53de-cf87-467d-8e61-36fc4956d0e9
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Media Mention'
+type: media_mention
+description: 'Use <em>Media Mentions</em> to add links to external media content.'
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false

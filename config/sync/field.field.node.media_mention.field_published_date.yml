@@ -1,0 +1,24 @@
+uuid: d53cac1f-8fae-4a88-93f6-021107de375b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_published_date
+    - node.type.media_mention
+  module:
+    - datetime
+id: node.media_mention.field_published_date
+field_name: field_published_date
+entity_type: node
+bundle: media_mention
+label: 'Published Date'
+description: 'The published date for this post.'
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,30 @@
+uuid: bf988917-37cc-4bd4-be2b-496872547639
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_experts
+    - node.type.media_mention
+    - person.persona_type.expert
+    - person.persona_type.faculty
+id: node.media_mention.field_experts
+field_name: field_experts
+entity_type: node
+bundle: media_mention
+label: Experts
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:persona'
+  handler_settings:
+    target_bundles:
+      expert: expert
+      faculty: faculty
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: expert
+field_type: entity_reference
