@@ -1,0 +1,23 @@
+uuid: 658dc77f-5b8e-4910-a67c-2647017138a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_bio
+    - person.persona_type.expert
+  module:
+    - text
+id: persona.expert.field_bio
+field_name: field_bio
+entity_type: persona
+bundle: expert
+label: Bio
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary
