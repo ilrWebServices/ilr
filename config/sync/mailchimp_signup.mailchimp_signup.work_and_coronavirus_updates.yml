@@ -1,0 +1,64 @@
+uuid: d4e1b86f-a5e3-491f-a40d-b4319345f7a2
+langcode: en
+status: null
+dependencies: {  }
+id: work_and_coronavirus_updates
+title: 'Work and coronavirus updates'
+mc_lists:
+  0720ba7a5d: 0720ba7a5d
+  040e43292e: '0'
+  e4044a6343: '0'
+mode: 1
+mergefields:
+  EMAIL: true
+  FNAME: false
+  LNAME: false
+  MMERGE12: false
+  MMERGE13: false
+  MMERGE14: false
+  MMERGE15: false
+  MMERGE16: false
+  MMERGE18: false
+  MMERGE19: false
+  MMERGE20: false
+  MMERGE21: false
+  MMERGE4: false
+  ORG: false
+  TITLE: false
+description: ''
+doublein: false
+send_welcome: null
+include_interest_groups: true
+settings:
+  path: ''
+  submit_button: 'Notify me of new content'
+  confirmation_message: 'Thank you for subscribing.'
+  destination: ''
+  mergefields:
+    EMAIL: "O:8:\"stdClass\":8:{s:3:\"tag\";s:5:\"EMAIL\";s:4:\"name\";O:48:\"Drupal\\Core\\StringTranslation\\TranslatableMarkup\":3:{s:9:\"\0*\0string\";s:13:\"Email Address\";s:12:\"\0*\0arguments\";a:0:{}s:10:\"\0*\0options\";a:0:{}}s:4:\"type\";s:5:\"email\";s:8:\"required\";b:1;s:13:\"default_value\";s:0:\"\";s:6:\"public\";b:1;s:13:\"display_order\";i:1;s:7:\"options\";O:8:\"stdClass\":1:{s:4:\"size\";i:25;}}"
+    FNAME: '0'
+    LNAME: '0'
+    MMERGE12: '0'
+    MMERGE13: '0'
+    MMERGE14: '0'
+    MMERGE15: '0'
+    MMERGE16: '0'
+    MMERGE18: '0'
+    MMERGE19: '0'
+    MMERGE20: '0'
+    MMERGE21: '0'
+    MMERGE4: '0'
+    ORG: '0'
+    TITLE: '0'
+  description: ''
+  doublein: false
+  include_interest_groups: true
+  safe_interest_groups: false
+  configure_groups: true
+  gdpr_consent: false
+  gdpr_checkbox_label: ''
+  gdpr_consent_required: false
+  group_items:
+    0720ba7a5d:
+      2fbe7341e1:
+        8273371408: '8273371408'

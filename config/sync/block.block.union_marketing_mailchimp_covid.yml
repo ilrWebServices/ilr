@@ -1,0 +1,32 @@
+uuid: 99d2fc7c-a769-4a5b-9d26-fc67cd0d046e
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - mailchimp_signup
+    - system
+  theme:
+    - union_marketing
+id: union_marketing_mailchimp_covid
+theme: union_marketing
+region: footer
+weight: 0
+provider: null
+plugin: 'mailchimp_signup_subscribe_block:work_and_coronavirus_updates'
+settings:
+  id: 'mailchimp_signup_subscribe_block:work_and_coronavirus_updates'
+  label: 'Be in the know'
+  provider: mailchimp_signup
+  label_display: visible
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/work-and-coronavirus\r\n/work-and-coronavirus/*"
+    negate: false
+    context_mapping: {  }
