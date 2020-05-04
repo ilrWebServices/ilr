@@ -1,0 +1,29 @@
+uuid: 90323282-03db-4b6d-9ea6-9e326f4b2131
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.logo.field_media_image
+    - media.type.logo
+  module:
+    - image
+id: media.logo.default
+targetEntityType: media
+bundle: logo
+mode: default
+content:
+  field_media_image:
+    label: hidden
+    weight: 0
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+hidden:
+  created: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

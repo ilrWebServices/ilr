@@ -1,0 +1,23 @@
+uuid: 0b02350d-56a6-4e0a-a907-95d2dd158cd6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_external_link
+    - node.type.media_mention
+  module:
+    - link
+id: node.media_mention.field_external_link
+field_name: field_external_link
+entity_type: node
+bundle: media_mention
+label: 'External link'
+description: 'Media outlet <a href="/admin/content/media?type=logo" target="_blank">logos</a> are automatically derived from the host name of this URL (e.g. https://www.nytimes.com/ uses a logo named <em>nytimes.com</em>). If a logo for this media outlet is missing, <a href="http://ilr-d8.test/media/add/logo" target="_blank">add one</a>. '
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link

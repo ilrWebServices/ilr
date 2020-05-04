@@ -1,0 +1,13 @@
+uuid: 4bbe6e33-9947-4ec5-b8e3-7ab9cc87d698
+langcode: en
+status: true
+dependencies: {  }
+id: logo
+label: Logo
+description: 'Logos are images, but are generally not part of the main media library.'
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image
+field_map: {  }

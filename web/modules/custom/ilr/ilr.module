@@ -213,6 +213,7 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
           'handler_settings' => [
             'target_bundles' => [
               'post' => 'post',
+              'media_mention' => 'media_mention',
             ]
           ]
         ]);
@@ -444,6 +445,39 @@ function ilr_preprocess_node__course__teaser(&$variables) {
     if (!$upcoming_class->entity->field_class_cancelled->value) {
       $variables['upcoming_classes'][] = $upcoming_class->entity;
     }
+  }
+}
+
+/**
+ * Implements template_preprocess_node().
+ */
+function ilr_preprocess_node__media_mention(&$variables) {
+  // This is safe because `field_external_link` is required and only allows
+  // external links.
+  $external_link_host = parse_url($variables['elements']['#node']->field_external_link->uri,  PHP_URL_HOST);
+
+  // Derive a media outlet logo name (e.g. `nytimes.com`, `bloomberg.com`) from the
+  // link host by removing the (optional) `www.` prefix from the host name. See
+  // https://regex101.com/r/XvagCu/4/ to test this regex.
+  if (preg_match('/^(www\.)?(([^\.]+)\.[a-z]{2,4})$/', $external_link_host, $matches)) {
+    $variables['media_outlet'] = $matches[2];
+
+    // Find a logo media entity with a name that matches.
+    $entity_type_manager = \Drupal::service('entity_type.manager');
+    $logos = $entity_type_manager->getStorage('media')->loadByProperties([
+      'bundle' => 'logo',
+      'name' => $matches[2],
+      'status' => 1,
+    ]);
+
+    if ($logos) {
+      $logo = reset($logos);
+      $variables['content']['logo'] = $logo->field_media_image->view('default');
+    }
+  }
+  else {
+    $variables['media_outlet'] = '';
+    $variables['content']['logo'] = '';
   }
 }
 
@@ -725,6 +759,7 @@ function ilr_form_collection_new_node_form_alter(&$form, FormStateInterface $for
     $form['bundle']['#default_value'] = 'post';
     $form['bundle']['#options'] = [
       'post' => 'Post',
+      'media_mention' => 'Media mention',
       'page' => 'Page',
     ];
   }

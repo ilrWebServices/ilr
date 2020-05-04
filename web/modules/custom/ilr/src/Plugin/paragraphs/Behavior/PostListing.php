@@ -93,7 +93,7 @@ class PostListing extends ParagraphsBehaviorBase {
     $query->condition('collection', $collection->id());
     $query->condition('type', 'blog');
     $query->condition('item.entity:node.status', 1);
-    $query->condition('item.entity:node.type', 'post');
+    $query->condition('item.entity:node.type', ['post', 'media_mention'], 'IN');
     // Add tags to remove duplicates in similar post_listings. See
     // ilr_query_post_listing_alter().
     $query->addTag('post_listing');

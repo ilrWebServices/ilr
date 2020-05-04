@@ -1,0 +1,20 @@
+uuid: 91d917ad-e5e4-41ca-8606-e73da8f80028
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - person
+id: node.field_experts
+field_name: field_experts
+entity_type: node
+type: entity_reference
+settings:
+  target_type: persona
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
