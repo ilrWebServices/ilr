@@ -449,6 +449,25 @@ function ilr_preprocess_node__course__teaser(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_node().
+ */
+function ilr_preprocess_node__media_mention(&$variables) {
+  // This is safe because `field_external_link` is required and only allows
+  // external links.
+  $external_link_host = parse_url($variables['elements']['#node']->field_external_link->uri,  PHP_URL_HOST);
+
+  // Derive a media outlet id (e.g. `nytimes`, `bloomberg`) from the link host
+  // by removing the (optional) `www.` prefix and TLD from the host name. See
+  // https://regex101.com/r/XvagCu/3/ to test this regex.
+  if (preg_match('/^(www\.)?([^\.]+)\./', $external_link_host, $matches)) {
+    $variables['media_outlet'] = $matches[2];
+  }
+  else {
+    $variables['media_outlet'] = '';
+  }
+}
+
+/**
  * Implements hook_token_info().
  */
 function ilr_token_info() {

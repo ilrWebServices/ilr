@@ -1,0 +1,38 @@
+uuid: 54295b11-f731-4cbc-9650-a8f4b12cc4d1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_image
+    - media.type.logo
+  module:
+    - image
+id: media.logo.field_media_image
+field_name: field_media_image
+entity_type: media
+bundle: logo
+label: Logo
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: logos
+  file_extensions: png
+  max_filesize: '100 KB'
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image
