@@ -21,7 +21,6 @@
  * @see template_preprocess_field()
  */
 #}
-
 {{ attach_library('union_organizer/button') }}
 
 {%
@@ -29,6 +28,13 @@
     'field',
     'field--' ~ field_name|clean_class,
     'field-type--' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
   ]
 %}
 
@@ -45,9 +51,8 @@
   {% endif %}
 {% else %}
   <div{{title_attributes.addClass(title_classes)}}>{{ label }}</div>
-    {% for item in items %}
-      {{ item.content|merge({'#options': {'attributes': {'class': ['cu-button cu-button--pill']}}}) }}
-    {% endfor %}
-  </div>
+  {% for item in items %}
+    {{ item.content|merge({'#options': {'attributes': {'class': ['cu-button cu-button--pill']}}}) }}
+  {% endfor %}
 {% endif %}
 </div>

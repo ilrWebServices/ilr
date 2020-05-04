@@ -32,7 +32,7 @@ content:
     region: content
   field_blog_tags:
     weight: 3
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
