@@ -96,7 +96,7 @@ class InSubsite extends ConditionPluginBase implements ContainerFactoryPluginInt
    * Provides a human readable summary of the condition's configuration.
    */
   public function summary() {
-    if ($this->configuration('in_subsite')) {
+    if ($this->configuration['in_subsite']) {
       return $this->t('In any subsite');
     }
     return '';
