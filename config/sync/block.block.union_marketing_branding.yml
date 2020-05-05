@@ -2,9 +2,10 @@ uuid: d76e61c3-4088-43ee-b569-2dfe0a8b6f11
 langcode: en
 status: true
 dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.primary_branding
   module:
     - block_visibility_groups
-    - collection_subsites
     - system
   theme:
     - union_marketing
@@ -28,12 +29,5 @@ visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: ''
+    block_visibility_group: primary_branding
     context_mapping: {  }
-  in_subsite:
-    id: in_subsite
-    in_subsite: 1
-    negate: true
-    context_mapping:
-      node: '@node.node_route_context:node'
-      collection: '@collection.collection_route_context:collection'

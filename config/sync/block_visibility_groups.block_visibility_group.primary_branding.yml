@@ -1,0 +1,19 @@
+uuid: e1367bef-589e-42b5-a852-3e95b9941d48
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection_subsites
+id: primary_branding
+label: 'Primary branding'
+logic: and
+conditions:
+  b20070b5-d051-44b4-a4b6-d453bf776472:
+    id: in_subsite
+    in_subsite: 1
+    negate: 1
+    context_mapping:
+      node: '@node.node_route_context:node'
+      collection: '@collection.collection_route_context:collection'
+    uuid: b20070b5-d051-44b4-a4b6-d453bf776472
+allow_other_conditions: true
