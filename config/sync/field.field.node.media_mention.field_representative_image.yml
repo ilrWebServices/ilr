@@ -12,7 +12,7 @@ entity_type: node
 bundle: media_mention
 label: 'Representative Image'
 description: 'This image is used when representing it a smaller component, such as a teaser.'
-required: true
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
