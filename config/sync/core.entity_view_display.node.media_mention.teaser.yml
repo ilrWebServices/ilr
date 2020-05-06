@@ -52,6 +52,11 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  media_outlet_logo:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   blog_collection: true
   blog_tags: true

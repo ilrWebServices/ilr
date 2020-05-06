@@ -73,7 +73,7 @@
 {% set rendered_content %}
   <h3 class="cu-heading">{{ label }}</h3>
   {{ title_suffix }}
-  {{ content.logo }}
+  {{ content.media_outlet_logo }}
   {{ content.field_published_date }}
   {{ content.body }}
 {% endset %}
@@ -87,5 +87,5 @@
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
     'cu-card--' ~ view_mode|clean_class,
-  ]).setAttribute('data-media-outlet', media_outlet)
+  ])
 } only %}
