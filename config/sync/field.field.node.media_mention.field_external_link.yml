@@ -12,7 +12,7 @@ field_name: field_external_link
 entity_type: node
 bundle: media_mention
 label: 'External link'
-description: 'Media outlet <a href="/admin/content/media?type=logo" target="_blank">logos</a> are automatically derived from the host name of this URL (e.g. https://www.nytimes.com/ uses a logo named <em>nytimes.com</em>). If a logo for this media outlet is missing, <a href="/media/add/logo" target="_blank">add one</a>. '
+description: 'Media outlet <a href="/admin/content/media?type=logo" target="_blank">logos</a> are automatically derived from the host name of this URL (e.g. https://www.nytimes.com/ uses a logo with the domain name <em>nytimes.com</em>). If a logo for this media outlet is missing, <a href="/media/add/logo" target="_blank">add one</a>. '
 required: true
 translatable: false
 default_value: {  }

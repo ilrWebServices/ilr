@@ -1,0 +1,19 @@
+uuid: eddf217a-8027-4c51-94f6-92d6ce7b399a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_website_domain_name
+    - media.type.logo
+id: media.logo.field_website_domain_name
+field_name: field_website_domain_name
+entity_type: media
+bundle: logo
+label: 'Website domain name'
+description: 'Optional. If the organization for this logo has a web site, enter the domain name (e.g. nytimes.com) here. It will be used to match media mentions and other URLs to this logo.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

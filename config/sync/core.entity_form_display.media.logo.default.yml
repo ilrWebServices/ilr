@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.media.logo.field_media_image
+    - field.field.media.logo.field_website_domain_name
     - image.style.thumbnail
     - media.type.logo
   module:
@@ -27,6 +28,14 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
+  field_website_domain_name:
+    weight: -2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   name:
     type: string_textfield
