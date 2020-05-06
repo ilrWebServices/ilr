@@ -3,17 +3,19 @@ langcode: en
 status: true
 dependencies:
   module:
-    - collection_subsites
+    - ilr
 id: primary_branding
 label: 'Primary branding'
 logic: and
 conditions:
-  b20070b5-d051-44b4-a4b6-d453bf776472:
-    id: in_subsite
-    in_subsite: 1
+  db35c9eb-a667-4937-91ef-433f856cd21a:
+    id: root_path_entity_bundle
+    root_entity_bundles:
+      collection:
+        subsite: subsite
+      taxonomy_term:
+        publication: publication
     negate: 1
-    context_mapping:
-      node: '@node.node_route_context:node'
-      collection: '@collection.collection_route_context:collection'
-    uuid: b20070b5-d051-44b4-a4b6-d453bf776472
+    context_mapping: {  }
+    uuid: db35c9eb-a667-4937-91ef-433f856cd21a
 allow_other_conditions: true
