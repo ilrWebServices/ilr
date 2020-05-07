@@ -629,7 +629,6 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
     if (in_array($node->bundle(), ['post', 'media_mention'])) {
       $form['body']['#group'] = 'ilr_meta';
       $form['field_authors']['#group'] = 'ilr_meta';
-      $form['field_categories']['#group'] = 'ilr_meta';
       $form['field_experts']['#group'] = 'ilr_meta';
       $form['field_published_date']['#group'] = 'ilr_meta';
       $form['author']['#title'] = t('Creation information');
