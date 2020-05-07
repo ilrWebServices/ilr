@@ -22,7 +22,7 @@ bundle: media_mention
 mode: default
 content:
   body:
-    weight: 11
+    weight: 12
     settings:
       rows: 9
       summary_rows: 3
@@ -38,7 +38,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_experts:
-    weight: 13
+    weight: 11
     settings:
       entity_browser: persona_browser
       field_widget_display: label
@@ -60,7 +60,7 @@ content:
     type: link_default
     region: content
   field_published_date:
-    weight: 5
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
