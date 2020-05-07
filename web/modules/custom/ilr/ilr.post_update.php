@@ -266,3 +266,18 @@ function ilr_post_update_add_ilrie_publication(&$sandbox) {
     'name' => 'ILRie',
   ])->save();
 }
+
+/**
+ * Update all existing post listings to use the 'grid' list_style setting.
+ */
+function ilr_post_update_update_post_listing_styles(&$sandbox) {
+  $query = \Drupal::entityQuery('paragraph');
+  $query->condition('type', 'simple_collection_listing');
+  $post_listing_paragraph_ids = $query->execute();
+  $simple_post_listings = \Drupal\paragraphs\Entity\Paragraph::loadMultiple($post_listing_paragraph_ids);
+
+  foreach ($simple_post_listings as $simple_post_listing) {
+    $simple_post_listing->setBehaviorSettings('post_listing', ['list_style' => 'grid']);
+    $simple_post_listing->save();
+  }
+}
