@@ -204,7 +204,7 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
         ]);
     }
 
-    // Update blog collection_item to allow only post nodes.
+    // Update blog collection_item to allow only post and media_mention nodes.
     if ($bundle === 'blog') {
       $fields['item'] = BaseFieldOverride::createFromBaseFieldDefinition($base_field_definitions['item'], $bundle);
       $fields['item']
@@ -219,7 +219,7 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
         ]);
     }
 
-    // Update publication issues collection_item to allow only post nodes.
+    // Update publication issues collection_item to allow only story nodes.
     if ($bundle === 'publication_issue') {
       $fields['item'] = BaseFieldOverride::createFromBaseFieldDefinition($base_field_definitions['item'], $bundle);
       $fields['item']
