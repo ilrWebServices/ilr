@@ -5,12 +5,13 @@ dependencies:
   module:
     - block_visibility_groups
     - collection_subsites
+    - ilr
   theme:
     - union_marketing
 id: union_marketing_subsite_branding
 theme: union_marketing
 region: header
-weight: 1
+weight: 0
 provider: null
 plugin: subsite_branding_block
 settings:
@@ -26,4 +27,11 @@ visibility:
     id: condition_group
     negate: false
     block_visibility_group: ''
+    context_mapping: {  }
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles:
+      collection:
+        subsite: subsite
+    negate: false
     context_mapping: {  }
