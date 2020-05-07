@@ -70,21 +70,15 @@
  *   in different view modes.
  */
 #}
-{% set rendered_content %}
-  <h3 class="cu-heading">{{ label }}</h3>
-  {{ title_suffix }}
-  {{ content.field_published_date }}
-  {{ content.body }}
-{% endset %}
-
-{% include '@union/_card.twig' with {
-  card_content: rendered_content,
-  card_media: content.field_representative_image,
-  card_link_url: url,
-  attributes: attributes.addClass([
+<div {{ attributes.addClass([
     'node--' ~ node.bundle|clean_class,
     not node.isPublished() ? 'node--unpublished',
-    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-    'cu-card--' ~ view_mode|clean_class
-  ])
-} only %}
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class
+  ]) }}>
+  {{ title_suffix }}
+  <div class="post__info">
+    {{ content.field_published_date }}
+    {{ content.field_authors }}
+  </div>
+  <a href="{{ url }}" class="media-mention__link">{{ label }}</a>
+</div>

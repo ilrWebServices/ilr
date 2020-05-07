@@ -14,7 +14,7 @@
  * - empty: A message to display when there are no items. Allowed value is a
  *   string or render array.
  * - context: A list of contextual data associated with the list. May contain:
- *   - list_style: The custom list style.
+ *   - paragraph: The post listing paragraph associated with this listing.
  *
  * @see template_preprocess_item_list()
  */
@@ -25,7 +25,7 @@
   {%- endif -%}
 
   {%- if items -%}
-    <div{{ attributes.addClass('cu-grid cu-grid--3col')}}>
+    <div{{ attributes }}>
       {%- for item in items -%}
         {{ item.value }}
       {%- endfor -%}
