@@ -1,0 +1,8 @@
+services:
+  path_alias.entities:
+    class: Drupal\path_alias_entities\PathAliasEntities
+    arguments:
+      - '@entity_type.manager'
+      - '@entity_type.bundle.info'
+      - '@request_stack'
+      - '@path.alias_manager'
