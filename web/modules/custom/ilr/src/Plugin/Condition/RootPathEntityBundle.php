@@ -34,18 +34,11 @@ class RootPathEntityBundle extends ConditionPluginBase implements ContainerFacto
   protected $entityTypeBundleInfo;
 
   /**
-   * The request stack.
+   * The entity type bundle info service.
    *
-   * @var \Symfony\Component\HttpFoundation\RequestStack
+   * @var \Drupal\path_alias_entities\PathAliasEntities
    */
-  protected $requestStack;
-
-  /**
-   * The alias manager service.
-   *
-   * @var \Drupal\Core\Path\AliasManager
-   */
-  protected $aliasManager;
+  protected $pathAliasEntities;
 
   /**
    * {@inheritdoc}
@@ -54,8 +47,7 @@ class RootPathEntityBundle extends ConditionPluginBase implements ContainerFacto
     $instance = new static($configuration, $plugin_id, $plugin_definition);
     $instance->entityTypeManager = $container->get('entity_type.manager');
     $instance->entityTypeBundleInfo = $container->get('entity_type.bundle.info');
-    $instance->requestStack = $container->get('request_stack');
-    $instance->aliasManager = $container->get('path_alias.manager');
+    $instance->pathAliasEntities = $container->get('path_alias.entities');
     return $instance;
   }
 
@@ -156,32 +148,24 @@ class RootPathEntityBundle extends ConditionPluginBase implements ContainerFacto
       return TRUE;
     }
 
-    // Load the path and confirm it uses an alias.
-    $possible_alias = $this->requestStack->getCurrentRequest()->getPathInfo();
-
-    if ($possible_alias === $this->aliasManager->getPathByAlias($possible_alias)) {
-      return FALSE;
-    }
-
-    // Break the path into args so that we can check the first relevant arg
-    // ($args[1]). This will always exist since we already confirmed the
-    // existence of an alias above.
-    $args = explode('/', $possible_alias);
-
-    // Get the route parameters and load the entity.
-    if ($params = Url::fromUri("internal:/" . $args[1])->getRouteParameters()) {
-      $entity_type = key($params);
-      $entity = $this->entityTypeManager->getStorage($entity_type)->load($params[$entity_type]);
-
+    if ($path_entities = $this->pathAliasEntities->getPathAliasEntities()) {
       // The condition can only be met if there are settings for this entity
       // type.
+      $root_entity = $path_entities[0];
+
+      if (!$root_entity) {
+        return FALSE;
+      }
+
+      $entity_type = $root_entity->getEntityTypeId();
+
       if (!isset($this->configuration['root_entity_bundles'][$entity_type])) {
         return FALSE;
       }
 
       // Confirm the condition is met if there is a key in the settings for this
       // entity type and bundle.
-      if (array_key_exists($entity->bundle(), $this->configuration['root_entity_bundles'][$entity_type])) {
+      if (array_key_exists($root_entity->bundle(), $this->configuration['root_entity_bundles'][$entity_type])) {
         return TRUE;
       }
     }
