@@ -1,62 +1,65 @@
-uuid: 9343194c-ed36-4a39-a010-41210d90c4db
+uuid: 6c71fb6f-3502-48af-92dd-d0aa42851b87
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.promo
-    - field.field.node.media_mention.body
-    - field.field.node.media_mention.field_experts
-    - field.field.node.media_mention.field_external_link
-    - field.field.node.media_mention.field_published_date
-    - field.field.node.media_mention.field_representative_image
-    - image.style.large_21_9_1200x514_
-    - node.type.media_mention
+    - core.entity_view_mode.node.featured
+    - field.field.node.post.body
+    - field.field.node.post.field_authors
+    - field.field.node.post.field_components
+    - field.field.node.post.field_published_date
+    - field.field.node.post.field_representative_image
+    - image.style.medium_1_1
+    - node.type.post
   module:
     - datetime
     - layout_builder
     - media
+    - text
     - user
 third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
-id: node.media_mention.promo
+id: node.post.featured
 targetEntityType: node
-bundle: media_mention
-mode: promo
+bundle: post
+mode: featured
 content:
-  blog_collection:
-    weight: -1
+  body:
+    type: text_summary_or_trimmed
+    weight: 3
     region: content
-    settings: {  }
+    label: hidden
+    settings:
+      trim_length: 600
     third_party_settings: {  }
   field_published_date:
-    weight: 3
+    weight: 1
     label: hidden
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: ilr_date
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_representative_image:
-    weight: 1
+    weight: 0
     label: hidden
     settings:
-      image_style: large_21_9_1200x514_
+      image_style: medium_1_1
       image_link: ''
     third_party_settings: {  }
     type: media_thumbnail
     region: content
   links:
-    weight: 0
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  blog_collection: true
   blog_tags: true
-  body: true
-  field_experts: true
-  field_external_link: true
-  media_outlet_logo: true
+  field_authors: true
+  field_components: true
   search_api_excerpt: true

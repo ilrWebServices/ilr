@@ -260,6 +260,20 @@ function ilr_entity_extra_field_info() {
     'visible' => TRUE,
   ];
 
+  $extra['node']['media_mention']['display']['media_outlet_logo'] = [
+    'label' => t('Media outlet logo'),
+    'description' => t('The associated logo media entity image field.'),
+    'weight' => 0,
+    'visible' => TRUE,
+  ];
+
+  $extra['node']['media_mention']['display']['media_outlet_name'] = [
+    'label' => t('Media outlet name'),
+    'description' => t('The associated logo media entity name field.'),
+    'weight' => 0,
+    'visible' => FALSE,
+  ];
+
   return $extra;
 }
 
@@ -305,6 +319,54 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
       '#node' => $entity,
       '#links' => $page_links,
     ];
+  }
+
+  if ($display->getComponent('media_outlet_logo') || $display->getComponent('media_outlet_name')) {
+    $external_link_host = parse_url($entity->field_external_link->uri, PHP_URL_HOST);
+
+    // Derive a media outlet logo domain name (e.g. `nytimes.com`,
+    // `bloomberg.com`) from the link host by removing the (optional) `www.`
+    // prefix from the hostname. See https://regex101.com/r/XvagCu/4/ to test
+    // this regex.
+    if (preg_match('/^(www\.)?(([^\.]+)\.[a-z]{2,4})$/', $external_link_host, $matches)) {
+      // Find a logo media entity with a domain name that matches.
+      $entity_type_manager = \Drupal::service('entity_type.manager');
+      $logos = $entity_type_manager->getStorage('media')->loadByProperties([
+        'bundle' => 'logo',
+        'field_website_domain_name' => $matches[2],
+        'status' => 1,
+      ]);
+
+      $logo = $logos ? reset($logos) : FALSE;
+    }
+  }
+
+  if ($display->getComponent('media_outlet_logo')) {
+    $build['media_outlet_logo'] = [
+      '#cache' => [
+        'tags' => ['media_list'],
+      ],
+    ];
+
+    if ($logo) {
+      $build['media_outlet_logo']['logo'] = $logo->field_media_image->view('default');
+    }
+  }
+
+  if ($display->getComponent('media_outlet_name')) {
+    $build['media_outlet_name'] = [
+      '#cache' => [
+        'tags' => ['media_list'],
+      ],
+    ];
+
+    if ($logo) {
+      $build['media_outlet_name'] = [
+        '#type' => 'inline_template',
+        '#template' => '<div class="media-mention__outlet">{{name}}</div>',
+        '#context' => ['name' => $logo->label()],
+      ];
+    }
   }
 }
 
@@ -445,39 +507,6 @@ function ilr_preprocess_node__course__teaser(&$variables) {
     if (!$upcoming_class->entity->field_class_cancelled->value) {
       $variables['upcoming_classes'][] = $upcoming_class->entity;
     }
-  }
-}
-
-/**
- * Implements template_preprocess_node().
- */
-function ilr_preprocess_node__media_mention(&$variables) {
-  // This is safe because `field_external_link` is required and only allows
-  // external links.
-  $external_link_host = parse_url($variables['elements']['#node']->field_external_link->uri,  PHP_URL_HOST);
-
-  // Derive a media outlet logo name (e.g. `nytimes.com`, `bloomberg.com`) from the
-  // link host by removing the (optional) `www.` prefix from the host name. See
-  // https://regex101.com/r/XvagCu/4/ to test this regex.
-  if (preg_match('/^(www\.)?(([^\.]+)\.[a-z]{2,4})$/', $external_link_host, $matches)) {
-    $variables['media_outlet'] = $matches[2];
-
-    // Find a logo media entity with a name that matches.
-    $entity_type_manager = \Drupal::service('entity_type.manager');
-    $logos = $entity_type_manager->getStorage('media')->loadByProperties([
-      'bundle' => 'logo',
-      'name' => $matches[2],
-      'status' => 1,
-    ]);
-
-    if ($logos) {
-      $logo = reset($logos);
-      $variables['content']['logo'] = $logo->field_media_image->view('default');
-    }
-  }
-  else {
-    $variables['media_outlet'] = '';
-    $variables['content']['logo'] = '';
   }
 }
 

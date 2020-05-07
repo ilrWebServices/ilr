@@ -80,7 +80,6 @@
 
 {% include '@union/_card.twig' with {
   card_content: rendered_content,
-  card_media: content.field_representative_image,
   card_link_url: node.field_external_link.0.url,
   attributes: attributes.addClass([
     'node--' ~ node.bundle|clean_class,

@@ -30,6 +30,16 @@ class PostListing extends ParagraphsBehaviorBase {
   protected $entityTypeManager;
 
   /**
+   * The list style options.
+   */
+  protected $list_styles = [
+    'grid' => 'Grid',
+    'grid-compact' => 'Compact grid',
+    'list-compact' => 'Compact list',
+    'grid-featured' => 'Featured Grid',
+  ];
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
@@ -64,6 +74,15 @@ class PostListing extends ParagraphsBehaviorBase {
       '#description' => $this->t('Leave blank for all posts.'),
       '#min' => 1,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'count'),
+    ];
+
+    $form['list_style'] = [
+      '#type' => 'select',
+      '#title' => $this->t('List style'),
+      '#description' => $this->t('Grid and Feature Grid will only display posts that have images.'),
+      '#options' => $this->list_styles,
+      '#required' => TRUE,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style'),
     ];
 
     return $form;
@@ -113,6 +132,13 @@ class PostListing extends ParagraphsBehaviorBase {
       }
     }
 
+    $list_style = $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style');
+
+    // Two of the grid list styles require the posts to have images.
+    if (in_array($list_style, ['grid', 'grid-featured'])) {
+      $query->condition('item.entity:node.field_representative_image', '', '<>');
+    }
+
     if ($limit = $paragraph->getBehaviorSetting($this->getPluginId(), 'count')) {
       $query->range(0, $limit);
     }
@@ -120,14 +146,16 @@ class PostListing extends ParagraphsBehaviorBase {
     $query->sort('item.entity:node.field_published_date', 'DESC');
     $result = $query->execute();
 
+    $post_count = 0;
     foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
-      $posts[] = $view_builder->view($collection_item->item->entity, 'teaser');
+      $post_count++;
+      $posts[] = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($list_style, $post_count));
     }
 
     $variables['content']['field_collection'] = [
       '#theme' => 'item_list__collection_listing',
       '#items' => $posts,
-      '#attributes' => ['class' => 'collection-listing'],
+      '#attributes' => ['class' => array_merge(['collection-listing'], $this->getClassesForListStyle($list_style))],
       '#collection_listing' => TRUE,
       '#empty' => $this->t('Content coming soon.'),
       '#context' => ['paragraph' => $variables['paragraph']],
@@ -141,6 +169,55 @@ class PostListing extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function view(array &$build, Paragraph $paragraphs_entity, EntityViewDisplayInterface $display, $view_mode) {}
+
+  /**
+   * Get a node view mode for a given list style.
+   *
+   * @param $list_style string
+   *   One of the list style machine names from this::list_styles.
+   *
+   * @param $post_number int
+   *   The order placement of the post in the listing.
+   *
+   * @return string
+   *   A node view mode.
+   */
+  protected function getViewModeForListStyle($list_style, $post_number) {
+    switch ($list_style) {
+      case 'grid-compact':
+        return 'teaser_compact';
+      case 'list-compact':
+        return 'mini';
+      case 'grid-featured':
+        return $post_number === 1 ? 'featured' : 'teaser';
+      default:
+        return 'teaser';
+    }
+  }
+
+  /**
+   * Get CSS classes for a given list style.
+   *
+   * @param $list_style string
+   *   One of the list style machine names from this::list_styles.
+   *
+   * @return array
+   *   An array of class names for the listing wrapper.
+   */
+  protected function getClassesForListStyle($list_style) {
+    $classes = [];
+
+    if (strpos($list_style, 'grid') === 0) {
+      $classes[] = 'cu-grid';
+      $classes[] = 'cu-grid--3col';
+    }
+
+    if ($list_style === 'grid-featured') {
+      $classes[] = 'cu-grid--featured';
+    }
+
+    return $classes;
+  }
 
   /**
    * {@inheritdoc}
@@ -162,6 +239,13 @@ class PostListing extends ParagraphsBehaviorBase {
       }
     }
 
+    if ($paragraph->getBehaviorSetting($this->getPluginId(), 'list_style')) {
+      $style = $this->list_styles[$paragraph->getBehaviorSetting($this->getPluginId(), 'list_style')];
+    }
+    else {
+      $style = '';
+    }
+
     $summary[] = [
       'label' => 'Category',
       'value' =>  $selected_category_id ? $selected_category->label() : 'All',
@@ -175,6 +259,11 @@ class PostListing extends ParagraphsBehaviorBase {
     $summary[] = [
       'label' => 'Show',
       'value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'count') ?? 'All',
+    ];
+
+    $summary[] = [
+      'label' => 'Style',
+      'value' => $style,
     ];
 
     return $summary;

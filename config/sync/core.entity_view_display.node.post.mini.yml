@@ -1,0 +1,50 @@
+uuid: 25287bd1-49bc-4b74-9aa1-f28da49632d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.mini
+    - field.field.node.post.body
+    - field.field.node.post.field_authors
+    - field.field.node.post.field_components
+    - field.field.node.post.field_published_date
+    - field.field.node.post.field_representative_image
+    - node.type.post
+  module:
+    - datetime
+    - layout_builder
+    - person
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: node.post.mini
+targetEntityType: node
+bundle: post
+mode: mini
+content:
+  field_authors:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: persona_name_list
+    region: content
+  field_published_date:
+    weight: 3
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: ilr_date
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+hidden:
+  blog_collection: true
+  blog_tags: true
+  body: true
+  field_components: true
+  field_representative_image: true
+  links: true
+  search_api_excerpt: true

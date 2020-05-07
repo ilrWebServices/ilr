@@ -1,30 +1,29 @@
-uuid: f96700dc-b083-4b4b-8eaa-63303675d3e2
+uuid: 0b979eb5-7844-444f-9d38-2c68bca58e01
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.mini
     - field.field.node.media_mention.body
     - field.field.node.media_mention.field_experts
     - field.field.node.media_mention.field_external_link
     - field.field.node.media_mention.field_published_date
     - field.field.node.media_mention.field_representative_image
-    - image.style.large_21_9_1200x514_
     - node.type.media_mention
   module:
     - datetime
     - layout_builder
     - link
-    - media
-    - text
+    - person
     - user
 third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
-id: node.media_mention.default
+id: node.media_mention.mini
 targetEntityType: node
 bundle: media_mention
-mode: default
+mode: mini
 content:
   blog_collection:
     weight: 0
@@ -36,9 +35,9 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-  body:
-    type: text_default
-    weight: 0
+  field_experts:
+    type: persona_name_list
+    weight: 4
     region: content
     label: hidden
     settings: {  }
@@ -64,18 +63,14 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_representative_image:
-    weight: 1
-    label: hidden
-    settings:
-      image_style: large_21_9_1200x514_
-      image_link: ''
-    third_party_settings: {  }
-    type: media_thumbnail
+  media_outlet_name:
+    weight: 0
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
-  field_experts: true
+  body: true
+  field_representative_image: true
   links: true
   media_outlet_logo: true
-  media_outlet_name: true
   search_api_excerpt: true
