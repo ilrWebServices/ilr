@@ -277,7 +277,9 @@ function ilr_post_update_update_post_listing_styles(&$sandbox) {
   $simple_post_listings = \Drupal\paragraphs\Entity\Paragraph::loadMultiple($post_listing_paragraph_ids);
 
   foreach ($simple_post_listings as $simple_post_listing) {
-    $simple_post_listing->setBehaviorSettings('post_listing', ['list_style' => 'grid']);
+    $settings = $simple_post_listing->getAllBehaviorSettings();
+    $settings['post_listing']['list_style'] = 'grid';
+    $simple_post_listing->setAllBehaviorSettings($settings);
     $simple_post_listing->save();
   }
 }
