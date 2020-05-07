@@ -146,8 +146,10 @@ class PostListing extends ParagraphsBehaviorBase {
     $query->sort('item.entity:node.field_published_date', 'DESC');
     $result = $query->execute();
 
+    $post_count = 0;
     foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
-      $posts[] = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($list_style));
+      $post_count++;
+      $posts[] = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($list_style, $post_count));
     }
 
     $variables['content']['field_collection'] = [
@@ -174,15 +176,20 @@ class PostListing extends ParagraphsBehaviorBase {
    * @param $list_style string
    *   One of the list style machine names from this::list_styles.
    *
+   * @param $post_number int
+   *   The order placement of the post in the listing.
+   *
    * @return string
    *   A node view mode.
    */
-  protected function getViewModeForListStyle($list_style) {
+  protected function getViewModeForListStyle($list_style, $post_number) {
     switch ($list_style) {
       case 'grid-compact':
         return 'teaser_compact';
       case 'list-compact':
         return 'mini';
+      case 'grid-featured':
+        return $post_number === 1 ? 'featured' : 'teaser';
       default:
         return 'teaser';
     }
