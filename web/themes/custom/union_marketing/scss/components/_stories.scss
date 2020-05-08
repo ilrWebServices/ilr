@@ -1,0 +1,19 @@
+// @todo: Consider whether --primary should belong in Union.
+.cu-section-heading--primary .cu-heading {
+  --cu-current-heading-size: var(--cu-ms7);
+
+  @include breakpoint(md) {
+    --cu-current-heading-size: var(--cu-ms9);
+  }
+}
+
+.story__intro .cu-heading {
+  --cu-current-heading-size: var(--cu-ms4);
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+
+  @include breakpoint(md) {
+    --cu-current-heading-size: var(--cu-ms7);
+  }
+}

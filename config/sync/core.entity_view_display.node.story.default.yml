@@ -73,6 +73,24 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 0
+          5bda71b7-0211-49c2-83bb-3e00609f62c9:
+            uuid: 5bda71b7-0211-49c2-83bb-3e00609f62c9
+            region: main
+            configuration:
+              id: 'field_block:node:story:body'
+              label: 'Intro Text'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
         third_party_settings: {  }
       -
         layout_id: layout_onecol
