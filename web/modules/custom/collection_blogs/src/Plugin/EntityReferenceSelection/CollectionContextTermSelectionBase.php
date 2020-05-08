@@ -102,12 +102,30 @@ class CollectionContextTermSelectionBase extends SelectionPluginBase implements 
    * {@inheritdoc}
    */
   public function countReferenceableEntities($match = NULL, $match_operator = 'CONTAINS') {
+    $result = [];
+
+    foreach ($this->getReferenceableEntities($match, $match_operator) as $vocabulary => $terms) {
+      foreach ($terms as $tid => $term) {
+        $result[] = $tid;
+      }
+    }
+
+    return count($result);
   }
 
   /**
    * {@inheritdoc}
    */
   public function validateReferenceableEntities(array $ids) {
+    $result = [];
+
+    foreach ($this->getReferenceableEntities() as $vocabulary => $terms) {
+      foreach ($terms as $tid => $term) {
+        $result[] = $tid;
+      }
+    }
+
+    return $result;
   }
 
 }
