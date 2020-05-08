@@ -1,0 +1,7 @@
+ilr.course.sfid:
+  path: '/course/{sfid}'
+  defaults:
+    _controller: '\Drupal\ilr\Controller\CourseSalesforceIdRedirect::response'
+  requirements:
+    _permission: 'access content'
+    sfid: '[a-zA-Z0-9]{18}|[a-zA-Z0-9]{15}'
