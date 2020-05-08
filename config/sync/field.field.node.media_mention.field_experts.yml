@@ -5,8 +5,10 @@ dependencies:
   config:
     - field.storage.node.field_experts
     - node.type.media_mention
+    - person.persona_type.author
     - person.persona_type.expert
     - person.persona_type.faculty
+    - person.persona_type.staff
 id: node.media_mention.field_experts
 field_name: field_experts
 entity_type: node
@@ -21,8 +23,10 @@ settings:
   handler: 'default:persona'
   handler_settings:
     target_bundles:
+      author: author
       expert: expert
       faculty: faculty
+      staff: staff
     sort:
       field: _none
     auto_create: false
