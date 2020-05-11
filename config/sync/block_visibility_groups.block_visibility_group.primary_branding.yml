@@ -1,0 +1,21 @@
+uuid: e1367bef-589e-42b5-a852-3e95b9941d48
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: primary_branding
+label: 'Primary branding'
+logic: and
+conditions:
+  db35c9eb-a667-4937-91ef-433f856cd21a:
+    id: root_path_entity_bundle
+    root_entity_bundles:
+      collection:
+        subsite: subsite
+      taxonomy_term:
+        publication: publication
+    negate: 1
+    context_mapping: {  }
+    uuid: db35c9eb-a667-4937-91ef-433f856cd21a
+allow_other_conditions: true

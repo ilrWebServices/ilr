@@ -14,7 +14,7 @@ body {
 
   @include breakpoint(md) {
     justify-items: stretch;
-    grid-template-columns: [left-gutter] 1fr [content] 44fr [right-gutter] 1fr;
+    grid-template-columns: [content] auto;
   }
 
   &--sidebar-right {
