@@ -1,0 +1,19 @@
+uuid: bf685536-e4e6-4c99-989c-52c9088c0086
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+    - text
+id: taxonomy_term.field_inline_svg_logo
+field_name: field_inline_svg_logo
+entity_type: taxonomy_term
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

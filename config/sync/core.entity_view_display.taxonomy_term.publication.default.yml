@@ -1,0 +1,30 @@
+uuid: 7fc5579f-7408-4278-a7e7-f04585abde43
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.publication.field_inline_svg_logo
+    - taxonomy.vocabulary.publication
+  module:
+    - text
+id: taxonomy_term.publication.default
+targetEntityType: taxonomy_term
+bundle: publication
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_inline_svg_logo:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -24,6 +24,8 @@ function collection_publications_form_taxonomy_term_form_alter(&$form, FormState
   ];
 
   $form['logo']['#group'] = 'branding';
+  $form['logo']['#disabled'] = TRUE; // Until we decide if we still need it.
+  $form['field_inline_svg_logo']['#group'] = 'branding';
 }
 
 /**
