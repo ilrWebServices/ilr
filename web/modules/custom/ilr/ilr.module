@@ -645,6 +645,10 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
   // Move the representative image and page body fields into the new section.
   $form['field_representative_image']['#group'] = 'ilr_meta';
 
+  if (!empty($form['field_representative_img_caption'])) {
+    $form['field_representative_img_caption']['#group'] = 'ilr_meta';
+  }
+
   /** @var \Drupal\node\NodeForm $form_object */
   $form_object = $form_state->getFormObject();
 

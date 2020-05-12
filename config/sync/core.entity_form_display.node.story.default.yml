@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.story.body
     - field.field.node.story.field_representative_image
+    - field.field.node.story.field_representative_img_caption
     - field.field.node.story.field_sections
     - node.type.story
   module:
@@ -49,6 +50,14 @@ content:
       media_types: {  }
     third_party_settings: {  }
     type: media_library_widget
+    region: content
+  field_representative_img_caption:
+    weight: 9
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
     region: content
   field_sections:
     type: paragraphs_previewer

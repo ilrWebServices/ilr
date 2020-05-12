@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.story.body
     - field.field.node.story.field_representative_image
+    - field.field.node.story.field_representative_img_caption
     - field.field.node.story.field_sections
     - node.type.story
   module:
@@ -45,6 +46,24 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 0
+          98c71c46-241f-42f6-b221-8078a7c80e31:
+            uuid: 98c71c46-241f-42f6-b221-8078a7c80e31
+            region: main
+            configuration:
+              id: 'field_block:node:story:field_representative_img_caption'
+              label: 'Representative Image Caption'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: basic_string
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
@@ -138,6 +157,13 @@ targetEntityType: node
 bundle: story
 mode: default
 content:
+  field_representative_img_caption:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: main
   links:
     weight: 100
     settings: {  }

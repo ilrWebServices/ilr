@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.image.field_caption
     - field.field.paragraph.image.field_media
     - paragraphs.paragraphs_type.image
   module:
@@ -12,6 +13,14 @@ targetEntityType: paragraph
 bundle: image
 mode: default
 content:
+  field_caption:
+    weight: 1
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
   field_media:
     weight: 0
     settings:

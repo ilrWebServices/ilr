@@ -139,6 +139,25 @@ function union_marketing_preprocess_field__paragraph__field_subheading__promo(&$
 }
 
 /**
+ * Implements hook_preprocess_field().
+ */
+function union_marketing_preprocess_field__node__field_representative_img_caption(&$variables) {
+  $variables['attributes']['id'][] = 'media__caption-' . $variables['element']['#object']->id();
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function union_marketing_preprocess_field__node__field_representative_image(&$variables) {
+  $node = $variables['element']['#object'];
+  $variables['attributes']['role'][] = 'figure';
+
+  if ($node->hasField('field_representative_img_caption') && !$node->field_representative_img_caption->isEmpty()) {
+    $variables['attributes']['aria-labelledby'][] = 'media__caption-' . $node->id();
+  }
+}
+
+/**
  * Implements hook_preprocess_collection().
  *
  * Modify the template theme suggestions when blog collections are rendered as

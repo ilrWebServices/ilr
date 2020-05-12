@@ -1,0 +1,11 @@
+.media__caption,
+.field--field-representative-img-caption {
+  font-size: var(--cu-ms-1);
+  line-height: 1.4;
+  margin: .5em auto 0;
+  max-width: var(--cu-max-width-section, #{$max-width-section});
+}
+
+.field--field-representative-img-caption {
+  text-align: right;
+}
