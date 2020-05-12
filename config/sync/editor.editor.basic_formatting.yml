@@ -18,6 +18,7 @@ settings:
             - Bold
             - Italic
             - Format
+            - Styles
         -
           name: Layout
           items:
@@ -44,7 +45,7 @@ settings:
             - Source
   plugins:
     stylescombo:
-      styles: ''
+      styles: p.shout|Shout
     language:
       language_list: un
     tokenbrowser:
