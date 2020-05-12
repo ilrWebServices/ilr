@@ -30,3 +30,11 @@
   --cu-grid-row-gap: var(--cu-vr3);
   --cu-grid-column-gap: inherit; // var(--cu-ps2)
 }
+
+@include breakpoint(md) {
+  .cu-grid--courses {
+    --cu-grid-row-gap: var(--cu-ps2);
+    --cu-grid-column-gap: var(--cu-ps2);
+  }
+}
+
