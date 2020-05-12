@@ -1,9 +1,10 @@
 uuid: 99d2fc7c-a769-4a5b-9d26-fc67cd0d046e
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - block_visibility_groups
+    - ilr
     - mailchimp_signup
     - system
   theme:
@@ -11,12 +12,12 @@ dependencies:
 id: union_marketing_mailchimp_covid
 theme: union_marketing
 region: footer
-weight: 0
+weight: -1
 provider: null
 plugin: 'mailchimp_signup_subscribe_block:work_and_coronavirus_updates'
 settings:
   id: 'mailchimp_signup_subscribe_block:work_and_coronavirus_updates'
-  label: 'Be in the know'
+  label: 'Weekly Inbox Updates'
   provider: mailchimp_signup
   label_display: visible
 visibility:
