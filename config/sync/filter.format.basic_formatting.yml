@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - ilr
+    - media
     - token_filter
 name: 'Basic Formatting'
 format: basic_formatting
@@ -15,7 +16,7 @@ filters:
     status: true
     weight: -10
     settings:
-      allowed_html: '<a href hreflang class> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol type start> <li> <dl> <dt> <dd> <h2 id class="cu-heading simple-columns--column-break"> <h3 id class="cu-heading simple-columns--column-break"> <h4 id class="cu-heading simple-columns--column-break"> <br> <div class="simple-columns"> <p class="simple-columns--column-break"> <table> <caption> <tbody> <thead> <tfoot> <th colspan rowspan scope> <td colspan rowspan> <tr> <colgroup span> <col span class>'
+      allowed_html: '<a href hreflang class> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol type start> <li> <dl> <dt> <dd> <h2 id class="cu-heading simple-columns--column-break"> <h3 id class="cu-heading simple-columns--column-break"> <h4 id class="cu-heading simple-columns--column-break"> <br> <div class="simple-columns"> <p class="simple-columns--column-break shout"> <table> <caption> <tbody> <thead> <tfoot> <th colspan rowspan scope> <td colspan rowspan> <tr> <colgroup span> <col span class>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_htmlcorrector:
@@ -37,3 +38,12 @@ filters:
     status: true
     weight: 0
     settings: {  }
+  media_embed:
+    id: media_embed
+    provider: media
+    status: false
+    weight: 100
+    settings:
+      default_view_mode: default
+      allowed_media_types: {  }
+      allowed_view_modes: {  }

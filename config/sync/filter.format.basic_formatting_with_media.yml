@@ -19,7 +19,7 @@ filters:
     status: true
     weight: -50
     settings:
-      allowed_html: '<a href hreflang class> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol type start> <li> <dl> <dt> <dd> <h2 id class="cu-heading simple-columns--column-break"> <h3 id class="cu-heading simple-columns--column-break"> <h4 id class="cu-heading simple-columns--column-break"> <br> <div class="simple-columns"> <p class="simple-columns--column-break"> <table> <caption> <tbody> <thead> <tfoot> <th colspan rowspan scope> <td colspan rowspan> <tr> <colgroup span> <col span class> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title>'
+      allowed_html: '<a href hreflang class> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol type start> <li> <dl> <dt> <dd> <h2 id class="cu-heading simple-columns--column-break"> <h3 id class="cu-heading simple-columns--column-break"> <h4 id class="cu-heading simple-columns--column-break"> <br> <div class="simple-columns"> <p class="simple-columns--column-break shout"> <table> <caption> <tbody> <thead> <tfoot> <th colspan rowspan scope> <td colspan rowspan> <tr> <colgroup span> <col span class> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_htmlcorrector:
