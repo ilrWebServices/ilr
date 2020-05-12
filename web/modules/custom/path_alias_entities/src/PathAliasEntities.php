@@ -82,7 +82,9 @@ class PathAliasEntities {
         }
       }
 
-      $entities[] = $entity;
+      if ($entity) {
+        $entities[$partial_alias] = $entity;
+      }
     }
 
     return $entities;
