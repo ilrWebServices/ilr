@@ -9,3 +9,23 @@
 .field--field-representative-img-caption {
   text-align: right;
 }
+
+@include breakpoint(md) {
+  .cu-media.align-right,
+  .cu-media.align-left {
+    width: 50%;
+    margin: 0 0 var(--cu-vr1) 0;
+
+    .field--field-media-image {
+      margin: 0;
+    }
+  }
+
+  .cu-media.align-right {
+    margin-left: var(--cu-ps2);
+  }
+
+  .cu-media.align-left {
+    margin-right: var(--cu-ps2);
+  }
+}
