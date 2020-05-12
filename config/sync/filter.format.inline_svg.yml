@@ -15,9 +15,16 @@ filters:
     status: true
     weight: -10
     settings:
-      allowed_html: '<xml version encoding standalone> <svg xmlns:svg xmlns viewBox id> <defs> <style id type><path class d> <text class x y style> <tspan style>'
+      allowed_html: '<svg xmlns:svg xmlns viewBox id> <defs> <style id type><path class d> <text class x y> <tspan class>'
       filter_html_help: true
       filter_html_nofollow: false
+  token_filter:
+    id: token_filter
+    provider: token_filter
+    status: false
+    weight: 0
+    settings:
+      replace_empty: '0'
   media_embed:
     id: media_embed
     provider: media
@@ -27,10 +34,3 @@ filters:
       default_view_mode: default
       allowed_media_types: {  }
       allowed_view_modes: {  }
-  token_filter:
-    id: token_filter
-    provider: token_filter
-    status: false
-    weight: 0
-    settings:
-      replace_empty: '0'

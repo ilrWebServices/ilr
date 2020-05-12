@@ -1,0 +1,23 @@
+#block-union-marketing-publication-branding {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: var(--cu-max-width-section, #{$max-width-section});
+}
+
+.publication-logo {
+  width: 25vw;
+}
+
+.publication-logo--small {
+  width: 15vw;
+}
+
+.publication-logo--subtitle {
+  font-weight: bold;
+  font-size: larger;
+}
+
+.publication-logo--issue {
+  width: 100%;
+}
