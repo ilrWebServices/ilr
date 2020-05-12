@@ -3,6 +3,8 @@ type: theme
 description: 'A custom theme using the Cornell ILR Union Component Library'
 package: Union
 core: 8.x
+ckeditor_stylesheets:
+  - editor-css/editor.css
 libraries:
   - union_marketing/global
   - union_organizer/ilr

@@ -1,0 +1,27 @@
+/* Styles for the ckeditor. These apply even in the admin theme. */
+
+p.shout {
+  clear: both;
+  font-size: larger;
+}
+
+figure {
+  margin: 0 0 1em 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.align-left, .align-right {
+  max-width: 50%;
+}
+
+.align-left {
+  margin-right: 1em;
+}
+
+.align-right {
+  margin-left: 1em;
+}
