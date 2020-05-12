@@ -36,8 +36,16 @@
  * @see template_preprocess_field()
  */
 #}
+{%
+  set classes = [
+    'field',
+    'field--' ~ field_name|clean_class,
+    'field-type--' ~ field_type|clean_class,
+    'field-representative-image',
+  ]
+%}
 
-<div{{attributes.addClass('field-representative-image')}}>
+<div{{attributes.addClass(classes)}}>
   {% for item in items %}
     <div{{item.attributes}}>{{ item.content }}</div>
   {% endfor %}
