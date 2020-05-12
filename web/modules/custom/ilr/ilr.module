@@ -348,7 +348,7 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
       ],
     ];
 
-    if ($logo) {
+    if (!empty($logo)) {
       $build['media_outlet_logo']['logo'] = $logo->field_media_image->view('default');
     }
   }
@@ -360,7 +360,7 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
       ],
     ];
 
-    if ($logo) {
+    if (!empty($logo)) {
       $build['media_outlet_name'] = [
         '#type' => 'inline_template',
         '#template' => '<div class="media-mention__outlet">{{name}}</div>',
