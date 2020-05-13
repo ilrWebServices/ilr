@@ -106,16 +106,15 @@ class PostListing extends ParagraphsBehaviorBase {
     $cache_tags[] = 'node_list';
     // $cache_tags[] = 'node_list:post'; // 8.9 and above
     $posts = [];
-    $dedupe_group = 'dedupe__collection_' . $collection->id();
+    $dedupe_group = 'dedupe:collection_item.id:collection_' . $collection->id();
 
     $query = $collection_item_storage->getQuery();
     $query->condition('collection', $collection->id());
     $query->condition('type', 'blog');
     $query->condition('item.entity:node.status', 1);
     $query->condition('item.entity:node.type', ['post', 'media_mention'], 'IN');
-    // Add tags to remove duplicates in similar post_listings. See
-    // ilr_query_post_listing_alter().
-    $query->addTag('post_listing');
+    // Add a dedupe tag to remove duplicates in similar post_listings. See
+    // ilr_query_alter().
     $query->addTag($dedupe_group);
 
     if ($category_term_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories')) {
