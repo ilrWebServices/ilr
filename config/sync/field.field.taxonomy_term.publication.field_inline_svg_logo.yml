@@ -1,0 +1,29 @@
+uuid: 230dd44b-4bd8-4c42-9eb8-223300801552
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_inline_svg_logo
+    - taxonomy.vocabulary.publication
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    inline_svg: inline_svg
+    basic_formatting: '0'
+    basic_formatting_with_media: '0'
+    full_html: '0'
+    plain_text: '0'
+id: taxonomy_term.publication.field_inline_svg_logo
+field_name: field_inline_svg_logo
+entity_type: taxonomy_term
+bundle: publication
+label: 'Inline SVG Logo'
+description: 'Enter very simple SVG markup here. Markup will be filtered to a limited set of elements and the SVG will be displayed directly inline to allow CSS styling.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

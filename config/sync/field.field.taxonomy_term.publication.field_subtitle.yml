@@ -1,0 +1,19 @@
+uuid: e8849c9e-0d47-44ed-9ea9-0d0a1af409d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_subtitle
+    - taxonomy.vocabulary.publication
+id: taxonomy_term.publication.field_subtitle
+field_name: field_subtitle
+entity_type: taxonomy_term
+bundle: publication
+label: Subtitle
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

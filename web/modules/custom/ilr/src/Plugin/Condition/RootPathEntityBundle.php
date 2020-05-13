@@ -151,7 +151,7 @@ class RootPathEntityBundle extends ConditionPluginBase implements ContainerFacto
     if ($path_entities = $this->pathAliasEntities->getPathAliasEntities()) {
       // The condition can only be met if there are settings for this entity
       // type.
-      $root_entity = $path_entities[0];
+      $root_entity = reset($path_entities);
 
       if (!$root_entity) {
         return FALSE;

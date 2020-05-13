@@ -283,3 +283,41 @@ function ilr_post_update_update_post_listing_styles(&$sandbox) {
     $simple_post_listing->save();
   }
 }
+
+/**
+ * Add the SVG logo to the ILRie publication.
+ */
+function ilr_post_update_update_ilrie_logo(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $ilrie_term = $entity_type_manager->getStorage('taxonomy_term')->load(51);
+  $ilrie_term->field_inline_svg_logo->value = <<<'EOD'
+  <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46.85 20.31" id="ilrie">
+    <style type="text/css">
+      @font-face {
+        font-family: 'Replica ILRie';
+        font-style: normal;
+        font-weight: bold;
+        src: url('https://www.ilr.cornell.edu/sites/all/themes/ilr_theme/fonts/lineto-replica-pro-bold.woff2') format('woff2'), url('https://www.ilr.cornell.edu/sites/all/themes/ilr_theme/fonts/lineto-replica-pro-bold.woff') format('woff');
+      }
+      .title, .subtitle { font-family:Replica,'Replica ILRie',sans-serif; }
+      .title { font-size:14.46px; font-weight: bold; }
+      .subtitle { font-size:2.5px; font-weight: bold; letter-spacing:-0.01px; }
+      .publication-logo--small svg#ilrie .subtitle { display: none; }
+      .i { letter-spacing:-0.21px; }
+      .l { letter-spacing:-0.32px; }
+      .r { letter-spacing:0.42px; }
+      .ie { font-size:14.64px; letter-spacing:-0.2px }
+    </style>
+    <path class="frame" d="M 24.575805,17.926304 H 2.0023907 l 2.555e-4,-2.4e-4 -0.1520305,-0.152364 -0.00241,0.0027 V 1.9942514 L 1.9939758,1.8481952 H 14.005896 L 14.151202,1.7027815 V 0.1418846 L 14.00922,0 H 0.1417128 L 0,0.1416706 V 19.637173 l 0.1371598,0.137286 H 25.104333 l 0.146696,-0.146684 -2.43e-4,-1.555707 -0.145838,-0.145764" />
+    <text class="title" y="14.88" x="4.02"><tspan
+      class="i">I</tspan><tspan
+      class="l">L</tspan><tspan
+      class="r">R</tspan><tspan
+      class="ie">ie</tspan></text>
+    <text class="subtitle" x="27.28" y="19.78">Alumni Magazine</text>
+  </svg>
+  EOD;
+  $ilrie_term->field_inline_svg_logo->format = 'inline_svg';
+  $ilrie_term->field_subtitle->value = 'Alumni Magazine';
+  $ilrie_term->save();
+}
