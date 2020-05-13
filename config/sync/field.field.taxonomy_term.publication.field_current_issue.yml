@@ -1,0 +1,28 @@
+uuid: ab73b912-88af-43c5-b8fc-7be59a14d643
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.publication_issue
+    - field.storage.taxonomy_term.field_current_issue
+    - taxonomy.vocabulary.publication
+id: taxonomy_term.publication.field_current_issue
+field_name: field_current_issue
+entity_type: taxonomy_term
+bundle: publication
+label: 'Current issue'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:collection'
+  handler_settings:
+    target_bundles:
+      publication_issue: publication_issue
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
