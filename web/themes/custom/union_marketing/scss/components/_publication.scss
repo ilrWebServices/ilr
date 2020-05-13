@@ -6,16 +6,29 @@
 }
 
 .publication-logo {
-  width: 25vw;
+  width: 45vw;
+  line-height: 1;
+
+  @include breakpoint(sm) {
+    width: 30vw;
+    max-width: 440px;
+  }
 }
 
 .publication-logo--small {
-  width: 15vw;
+  width: 24vw;
+
+  @include breakpoint(sm) {
+    width: 12vw;
+  }
 }
 
 .publication-logo--subtitle {
-  font-weight: bold;
-  font-size: larger;
+  font-size: 5vw;
+
+  @include breakpoint(sm) {
+    font-size: 2.5vw;
+  }
 }
 
 .publication-logo--issue {
