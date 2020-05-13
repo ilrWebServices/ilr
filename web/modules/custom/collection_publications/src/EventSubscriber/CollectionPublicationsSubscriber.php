@@ -14,6 +14,9 @@ use Drupal\Core\Config\ConfigEvents;
 use Drupal\Core\Config\DatabaseStorage;
 use Drupal\Core\Config\StorageTransformEvent;
 use Drupal\Core\Url;
+use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 /**
  * Class CollectionPublicationsSubscriber.
@@ -70,6 +73,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
       CollectionEvents::COLLECTION_ENTITY_UPDATE => 'collectionUpdate',
       CollectionEvents::COLLECTION_ITEM_FORM_CREATE => 'collectionItemFormCreate',
       ConfigEvents::STORAGE_TRANSFORM_IMPORT => 'onImportTransform',
+      KernelEvents::REQUEST => 'redirectPublications',
     ];
   }
 
@@ -203,4 +207,25 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
       $sync_storage->write($config_name, $this->activeStorage->read($config_name));
     }
   }
+
+  /**
+   * Redirect publication term canonical routes to the current issue, if set.
+   */
+  public function redirectPublications(GetResponseEvent $event) {
+    $request = $event->getRequest();
+
+    if ($request->attributes->get('_route') !== 'entity.taxonomy_term.canonical') {
+      return;
+    }
+
+    $term = $request->attributes->get('taxonomy_term');
+
+    if ($term->bundle() !== 'publication' || $term->field_current_issue->isEmpty()) {
+      return;
+    }
+
+    $response = new RedirectResponse($term->field_current_issue->entity->toUrl()->toString(), 307);
+    $event->setResponse($response);
+  }
+
 }
