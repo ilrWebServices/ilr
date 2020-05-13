@@ -318,5 +318,6 @@ function ilr_post_update_update_ilrie_logo(&$sandbox) {
   </svg>
   EOD;
   $ilrie_term->field_inline_svg_logo->format = 'inline_svg';
+  $ilrie_term->field_subtitle->value = 'Alumni Magazine';
   $ilrie_term->save();
 }

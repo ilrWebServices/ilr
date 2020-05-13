@@ -89,10 +89,12 @@ class PublicationBrandingBlock extends BlockBase implements ContainerFactoryPlug
     elseif ($last_path_entity->getEntityType()->id() === 'node' && $last_path_entity->bundle() === 'story') {
       $build['publication_logo']['#attributes']['class'][] = 'publication-logo--small';
 
-      $build['publication_subtitle'] = [
-        '#markup' => '<div class="publication-logo--subtitle">Alumni Magazine</div>',
-        '#weight' => 10,
-      ];
+      if (!$first_path_entity->field_subtitle->isEmpty()) {
+        $build['publication_subtitle'] = [
+          '#markup' => '<div class="publication-logo--subtitle">' . $first_path_entity->field_subtitle->value . '</div>',
+          '#weight' => 10,
+        ];
+      }
     }
 
     // dump($build);
