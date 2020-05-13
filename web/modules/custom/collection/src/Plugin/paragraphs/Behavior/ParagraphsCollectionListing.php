@@ -185,7 +185,7 @@ class ParagraphsCollectionListing extends ParagraphsBehaviorBase {
       $variables['content'][$collection_field_name] = [
         '#theme' => 'item_list__collection_listing',
         '#items' => $items,
-        '#attributes' => ['class' => 'collection-listing'],
+        '#attributes' => ['class' => 'collection-listing cu-grid cu-grid--3col'],
         '#collection_listing' => TRUE,
         '#empty' => $this->t('No items.'),
         '#context' => ['paragraph' => $variables['paragraph']],
