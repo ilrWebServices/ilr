@@ -1,0 +1,21 @@
+uuid: dd67f970-9ee1-4bcd-907d-51bd512b1caa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.collection_listing_publication.field_collection
+    - paragraphs.paragraphs_type.collection_listing_publication
+id: paragraph.collection_listing_publication.default
+targetEntityType: paragraph
+bundle: collection_listing_publication
+mode: default
+content:
+  field_collection:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden:
+  created: true
+  status: true
