@@ -209,4 +209,7 @@ settings:
   key_config_override:
     handler: 'default:key_config_override'
     handler_settings: {  }
+  mailchimp_signup:
+    handler: 'default:mailchimp_signup'
+    handler_settings: {  }
 field_type: dynamic_entity_reference

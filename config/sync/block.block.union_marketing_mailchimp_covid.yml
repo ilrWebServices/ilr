@@ -4,7 +4,6 @@ status: true
 dependencies:
   module:
     - block_visibility_groups
-    - ilr
     - mailchimp_signup
     - system
   theme:
