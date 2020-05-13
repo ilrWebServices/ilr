@@ -7,13 +7,39 @@
   }
 }
 
-.story__intro .cu-heading {
-  --cu-current-heading-size: var(--cu-ms4);
+.node--view-mode-full .story__intro {
+  font-size: var(--cu-ms4);
   margin-left: 5%;
   margin-right: 5%;
   text-align: center;
 
   @include breakpoint(md) {
-    --cu-current-heading-size: var(--cu-ms7);
+    font-size: var(--cu-ms7);
+  }
+}
+
+.cu-heading--strong.cu-heading--banner {
+  @include breakpoint(sm) {
+    max-width: 30%;
+    font-size: var(--cu-ms9);
+  }
+}
+
+// Override the frame settings here
+.cu-banner .framed--right >:first-child {
+  grid-template-columns: 1fr 100px;
+}
+
+.cu-banner .framed:last-child .field-type--text-with-summary {
+  @include breakpoint(sm) {
+    max-width: 60%;
+  }
+
+  @include breakpoint(md) {
+    max-width: 50%;
+  }
+
+  @include breakpoint(lg) {
+    max-width: 40%;
   }
 }
