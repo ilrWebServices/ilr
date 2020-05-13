@@ -2,6 +2,7 @@
 
 use Drupal\Core\Link;
 use Drupal\entity_reference_layout\EntityReferenceLayoutRevisionsFieldItemList;
+use Drupal\crop\Entity\Crop;
 
 /**
  * @file Theme file for the union_marketing.theme.
@@ -174,6 +175,25 @@ function union_marketing_preprocess_field__field_representative_image(&$variable
 
   if ($entity->hasField('field_representative_img_caption') && !$entity->field_representative_img_caption->isEmpty()) {
     $variables['attributes']['aria-labelledby'][] = 'media__caption-' . $entity->id();
+  }
+
+  if (!$entity->field_representative_image->isEmpty()) {
+    $image = $entity->field_representative_image->entity->field_media_image;
+    $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
+    $crop = Crop::findCrop($image->entity->getFileUri(), $crop_type);
+
+    if ($crop) {
+      $image_props = $image->first()->getValue();
+      $anchor = \Drupal::service('focal_point.manager')
+        ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
+
+      if ($anchor['y'] <= 33) {
+        $variables['attributes']['class'][] = 'media--position-top';
+      }
+      elseif ($anchor['y'] >= 66) {
+        $variables['attributes']['class'][] = 'media--position-bottom';
+      }
+    }
   }
 }
 

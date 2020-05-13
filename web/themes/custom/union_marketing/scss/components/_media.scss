@@ -29,3 +29,13 @@
     margin-right: var(--cu-ps2);
   }
 }
+
+.cu-card__media .media--position-top .cu-image,
+.cu-banner__media .media--position-top .cu-image {
+  object-position: top;
+}
+
+.cu-card__media .media--position-bottom .cu-image,
+.cu-banner__media .media--position-bottom .cu-image {
+  object-position: bottom;
+}
