@@ -219,7 +219,8 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
         ]);
     }
 
-    // Update publication issues collection_item to allow only story nodes.
+    // Update publication issues collection_item to allow only story and
+    // media_mention nodes.
     if ($bundle === 'publication_issue') {
       $fields['item'] = BaseFieldOverride::createFromBaseFieldDefinition($base_field_definitions['item'], $bundle);
       $fields['item']
@@ -228,8 +229,9 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
           'handler_settings' => [
             'target_bundles' => [
               'story' => 'story',
-            ]
-          ]
+              'media_mention' => 'media_mention',
+            ],
+          ],
         ]);
     }
   }
@@ -814,6 +816,7 @@ function ilr_form_collection_new_node_form_alter(&$form, FormStateInterface $for
     $form['bundle']['#default_value'] = 'story';
     $form['bundle']['#options'] = [
       'story' => 'Story',
+      'media_mention' => 'Media mention',
     ];
   }
 }
