@@ -71,11 +71,17 @@ class PublicationBrandingBlock extends BlockBase implements ContainerFactoryPlug
     $has_svg_logo = !$this->firstPathEntity->field_inline_svg_logo->isEmpty();
 
     if ($has_svg_logo) {
-      $build['publication_logo'] = $this->firstPathEntity->field_inline_svg_logo->view('default');
+      $logo = $this->firstPathEntity->field_inline_svg_logo->view('default');
     }
     else {
-      $build['publication_logo'] = $this->firstPathEntity->name->view('default');
+      $logo = $this->firstPathEntity->name->view('default');
     }
+
+    $build['publication_logo'] = [
+      '#type' => 'link',
+      '#url' => $this->firstPathEntity->toUrl(),
+      '#title' => $logo,
+    ];
 
     $build['publication_logo']['#attributes']['class'][] = 'publication-logo';
 
