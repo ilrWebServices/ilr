@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.publication.field_current_issue
     - field.field.taxonomy_term.publication.field_inline_svg_logo
     - field.field.taxonomy_term.publication.field_subtitle
     - taxonomy.vocabulary.publication
@@ -16,6 +17,12 @@ targetEntityType: taxonomy_term
 bundle: publication
 mode: default
 content:
+  field_current_issue:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   field_inline_svg_logo:
     weight: 1
     settings:

@@ -1,0 +1,20 @@
+uuid: 74ce7405-3d41-423c-8f16-9834dc347527
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - taxonomy
+id: taxonomy_term.field_current_issue
+field_name: field_current_issue
+entity_type: taxonomy_term
+type: entity_reference
+settings:
+  target_type: collection
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

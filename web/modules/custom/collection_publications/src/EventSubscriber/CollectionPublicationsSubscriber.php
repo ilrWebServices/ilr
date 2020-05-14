@@ -7,6 +7,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
+use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\collection\Event\CollectionEvents;
 use Symfony\Component\EventDispatcher\Event;
 use Drupal\Core\Extension\ThemeHandlerInterface;
@@ -14,6 +15,9 @@ use Drupal\Core\Config\ConfigEvents;
 use Drupal\Core\Config\DatabaseStorage;
 use Drupal\Core\Config\StorageTransformEvent;
 use Drupal\Core\Url;
+use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 /**
  * Class CollectionPublicationsSubscriber.
@@ -51,14 +55,22 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
   protected $activeStorage;
 
   /**
+   * The current user service.
+   *
+   * @var \Drupal\Core\Session\AccountProxyInterface
+   */
+  protected $currentUser;
+
+  /**
    * Constructs a new MenuSubsitesSubscriber object.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, TranslationInterface $string_translation, ThemeHandlerInterface $theme_handler, DatabaseStorage $database_storage) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, TranslationInterface $string_translation, ThemeHandlerInterface $theme_handler, DatabaseStorage $database_storage, AccountProxyInterface $current_user) {
     $this->entityTypeManager = $entity_type_manager;
     $this->messenger = $messenger;
     $this->stringTranslation = $string_translation;
     $this->themeHandler = $theme_handler;
     $this->activeStorage = $database_storage;
+    $this->currentUser = $current_user;
   }
 
   /**
@@ -70,6 +82,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
       CollectionEvents::COLLECTION_ENTITY_UPDATE => 'collectionUpdate',
       CollectionEvents::COLLECTION_ITEM_FORM_CREATE => 'collectionItemFormCreate',
       ConfigEvents::STORAGE_TRANSFORM_IMPORT => 'onImportTransform',
+      KernelEvents::REQUEST => 'redirectPublications',
     ];
   }
 
@@ -203,4 +216,32 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
       $sync_storage->write($config_name, $this->activeStorage->read($config_name));
     }
   }
+
+  /**
+   * Redirect publication term canonical routes to the current issue, if set.
+   */
+  public function redirectPublications(GetResponseEvent $event) {
+    $request = $event->getRequest();
+
+    if ($request->attributes->get('_route') !== 'entity.taxonomy_term.canonical') {
+      return;
+    }
+
+    $term = $request->attributes->get('taxonomy_term');
+
+    if ($term->bundle() !== 'publication' || $term->field_current_issue->isEmpty()) {
+      return;
+    }
+
+    if ($this->currentUser->hasPermission('administer taxonomy')) {
+      $this->messenger->addWarning($this->t('This page redirects to %link for non-administrators.', [
+        '%link' => $term->field_current_issue->entity->toLink()->toString()
+      ]));
+    }
+    else {
+      $response = new RedirectResponse($term->field_current_issue->entity->toUrl()->toString(), 307);
+      $event->setResponse($response);
+    }
+  }
+
 }

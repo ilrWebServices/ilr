@@ -7,5 +7,6 @@ services:
       - '@string_translation'
       - '@theme_handler'
       - '@config.storage.active'
+      - '@current_user'
     tags:
       - { name: event_subscriber }
