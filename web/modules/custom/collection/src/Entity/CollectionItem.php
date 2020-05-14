@@ -326,6 +326,19 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', FALSE);
 
+    $fields['weight'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Weight'))
+      ->setSetting('unsigned', FALSE)
+      ->setSetting('size', 'normal')
+      ->setInitialValue(0)
+      ->setDefaultValue(0)
+      ->setDisplayConfigurable('view', FALSE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'number',
+        'weight' => 10,
+      ]);
+
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
       ->setDescription(t('The time that the collection item was created.'));

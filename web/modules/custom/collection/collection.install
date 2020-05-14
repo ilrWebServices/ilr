@@ -1,0 +1,22 @@
+<?php
+/**
+ * @file
+ * Installation hooks for the Collection module.
+ */
+
+use Drupal\Core\Field\BaseFieldDefinition;
+
+/**
+ * Add weight field.
+ */
+function collection_update_8001() {
+  $field_storage_definition = BaseFieldDefinition::create('integer')
+    ->setLabel(t('Weight'))
+    ->setSetting('unsigned', FALSE)
+    ->setSetting('size', 'normal')
+    ->setInitialValue(0)
+    ->setDefaultValue(0);
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('weight', 'collection_item', 'collection_item', $field_storage_definition);
+}
