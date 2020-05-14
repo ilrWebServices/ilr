@@ -215,6 +215,7 @@ class Collection extends EditorialContentEntityBase implements CollectionInterfa
   public function getItems() {
     $collection_item_ids = \Drupal::entityQuery('collection_item')
       ->condition('collection', $this->id())
+      ->sort('weight')
       ->sort('changed', 'DESC')
       ->execute();
     $items = $this->entityTypeManager()->getStorage('collection_item')->loadMultiple($collection_item_ids);
