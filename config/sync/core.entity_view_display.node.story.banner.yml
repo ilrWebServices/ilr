@@ -35,7 +35,7 @@ third_party_settings:
                 label: hidden
                 type: string
                 settings:
-                  link_to_entity: false
+                  link_to_entity: true
                 third_party_settings: {  }
               context_mapping:
                 entity: layout_builder.entity
@@ -80,6 +80,18 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 2
+          df8f0c88-cdb3-4975-a1db-f64c329be835:
+            uuid: df8f0c88-cdb3-4975-a1db-f64c329be835
+            region: banner
+            configuration:
+              id: 'extra_field_block:node:story:links'
+              label: Links
+              provider: layout_builder
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 3
         third_party_settings: {  }
 id: node.story.banner
 targetEntityType: node

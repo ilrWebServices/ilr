@@ -211,3 +211,15 @@ function union_marketing_preprocess_collection__blog__banner(&$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_block().
+ *
+ * Until we can find a better way, this allows us to pass the nid to the
+ * template for the read more link.
+ */
+function union_marketing_preprocess_block__extra_field_block__node__story__links(&$variables) {
+  if (isset($variables['content']['#lazy_builder'][1][0])) {
+    $variables['nid'] = $variables['content']['#lazy_builder'][1][0];
+  }
+}

@@ -7,8 +7,13 @@
   }
 }
 
+.story__intro {
+  font-weight: 400;
+}
+
 .node--view-mode-full .story__intro {
   font-size: var(--cu-ms4);
+  font-weight: 300;
   margin-left: 5%;
   margin-right: 5%;
   text-align: center;
@@ -23,24 +28,34 @@
     max-width: 30%;
     font-size: var(--cu-ms9);
   }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
 }
 
-// Override the frame settings here
+// Override the frame settings here.
 .cu-banner .framed--right >:first-child {
   grid-template-columns: 1fr 100px;
 }
 
-.cu-banner .framed:last-child .field-type--text-with-summary {
+// Note this override depends on the button as the last element in the frame.
+.cu-banner .framed .story__intro {
+  max-width: 60%;
+
   @include breakpoint(sm) {
-    max-width: 60%;
+    max-width: 45%;
   }
 
   @include breakpoint(md) {
-    max-width: 50%;
+    max-width: 35%;
   }
+}
 
-  @include breakpoint(lg) {
-    max-width: 40%;
+@include breakpoint(xs) {
+  .cu-banner .cu-button {
+    margin-right: 30vw;
   }
 }
 
