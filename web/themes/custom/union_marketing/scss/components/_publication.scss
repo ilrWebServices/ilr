@@ -1,8 +1,13 @@
 #block-union-marketing-publication-branding {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  max-width: var(--cu-max-width-section, #{$max-width-section});
+  flex-direction: column;
+
+  @include breakpoint(sm) {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: var(--cu-max-width-section, #{$max-width-section});
+  }
 }
 
 .publication-logo {
@@ -17,18 +22,14 @@
 }
 
 .publication-logo--small {
-  width: 24vw;
-
-  @include breakpoint(sm) {
-    width: 12vw;
-  }
+  width: 175px;
 }
 
 .publication-logo--subtitle {
-  font-size: 5vw;
+  font-size: var(--cu-ms5);
 
-  @include breakpoint(sm) {
-    font-size: 2.5vw;
+  @include breakpoint(md) {
+    font-size: var(--cu-ms6);
   }
 }
 

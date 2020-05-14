@@ -32,12 +32,10 @@
 
 #ilr_search_reveal_trigger {
   font-size: 1.5rem;
-  margin-left: 1em;
-  position: absolute;
-  right: 30px;
+  margin-left: 0.25em;
 
   @include breakpoint(md) {
-    position: unset;
+    margin-left: 1em;
   }
 }
 
