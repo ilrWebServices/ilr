@@ -212,4 +212,10 @@ settings:
   mailchimp_signup:
     handler: 'default:mailchimp_signup'
     handler_settings: {  }
+  crop:
+    handler: 'default:crop'
+    handler_settings: {  }
+  crop_type:
+    handler: 'default:crop_type'
+    handler_settings: {  }
 field_type: dynamic_entity_reference
