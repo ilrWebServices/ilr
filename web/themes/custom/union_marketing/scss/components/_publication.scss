@@ -8,6 +8,7 @@
 .publication-logo {
   width: 45vw;
   line-height: 1;
+  text-decoration: none;
 
   @include breakpoint(sm) {
     width: 30vw;
