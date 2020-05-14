@@ -1,0 +1,21 @@
+uuid: d8009581-d4fa-4ecb-bbb3-18fb9a7ee545
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.collection_listing_publication.field_collection
+    - paragraphs.paragraphs_type.collection_listing_publication
+id: paragraph.collection_listing_publication.default
+targetEntityType: paragraph
+bundle: collection_listing_publication
+mode: default
+content:
+  field_collection:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: entity_reference_entity_id
+    region: content
+hidden:
+  search_api_excerpt: true

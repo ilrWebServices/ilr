@@ -1,0 +1,16 @@
+uuid: 3bee58f7-3a5a-4b48-88ea-8a92e2907024
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - ilr
+id: collection_listing_publication
+label: 'Story listing'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  collection_listing: {  }
+  story_listing:
+    enabled: true

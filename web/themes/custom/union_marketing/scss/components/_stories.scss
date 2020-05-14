@@ -7,13 +7,58 @@
   }
 }
 
-.story__intro .cu-heading {
-  --cu-current-heading-size: var(--cu-ms4);
+.story__intro {
+  font-weight: 400;
+}
+
+.node--view-mode-full .story__intro {
+  font-size: var(--cu-ms4);
+  font-weight: 300;
   margin-left: 5%;
   margin-right: 5%;
   text-align: center;
 
   @include breakpoint(md) {
-    --cu-current-heading-size: var(--cu-ms7);
+    font-size: var(--cu-ms7);
   }
+}
+
+.cu-heading--strong.cu-heading--banner {
+  @include breakpoint(sm) {
+    max-width: 30%;
+    font-size: var(--cu-ms9);
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+// Override the frame settings here.
+.cu-banner .framed--right >:first-child {
+  grid-template-columns: 1fr 100px;
+}
+
+// Note this override depends on the button as the last element in the frame.
+.cu-banner .framed .story__intro {
+  max-width: 60%;
+
+  @include breakpoint(sm) {
+    max-width: 45%;
+  }
+
+  @include breakpoint(md) {
+    max-width: 35%;
+  }
+}
+
+@include breakpoint(xs) {
+  .cu-banner .cu-button {
+    margin-right: 30vw;
+  }
+}
+
+.node--story .collection-listing .field--field-published-date {
+  display: none;
 }

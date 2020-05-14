@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display a node teaser.
+ * Theme override to display a node.
  *
  * Available variables:
  * - node: The node entity with limited access to object properties and methods.
@@ -15,7 +15,7 @@
  *   Calling other methods, such as node.delete(), will result in an exception.
  *   See \Drupal\node\Entity\Node for a full list of public properties and
  *   methods for the node object.
- * - label: (optional) The title of the node.
+ * - label: The title of the node.
  * - content: All node items. Use {{ content }} to print them all,
  *   or print a subset such as {{ content.field_example }}. Use
  *   {{ content|without('field_example') }} to temporarily suppress the printing
@@ -23,8 +23,8 @@
  * - author_picture: The node author user entity, rendered using the "compact"
  *   view mode.
  * - metadata: Metadata for this node.
- * - date: (optional) Themed creation date field.
- * - author_name: (optional) Themed author name field.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
  * - url: Direct URL of the current node.
  * - display_submitted: Whether submission information should be displayed.
  * - attributes: HTML attributes for the containing element.
@@ -70,21 +70,16 @@
  *   in different view modes.
  */
 #}
-{% set rendered_content %}
-  {# Use the node.label to prevent it from rendering through the field template. #}
-  <h3 class="cu-heading">{{ node.label|t }}</h3>
-  {{ title_suffix }}
-  {{ content.body }}
-{% endset %}
-
-{% include '@union/_card.twig' with {
-  card_content: rendered_content,
-  card_media: content.field_representative_image,
-  card_link_url: url,
-  attributes: attributes.addClass([
-    'node--' ~ node.bundle|clean_class,
+{%
+  set classes = [
+    'article',
+    'article--' ~ node.bundle|clean_class,
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-    'cu-card--' ~ view_mode|clean_class
-  ])
-} only %}
+  ]
+%}
+
+<div{{attributes.addClass(classes)}}>
+  {{ title_suffix }}
+  {{ content }}
+</div>

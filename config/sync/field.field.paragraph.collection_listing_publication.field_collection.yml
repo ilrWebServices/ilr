@@ -1,0 +1,28 @@
+uuid: e2685e17-362f-4e31-9548-7b53a75a0381
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.publication_issue
+    - field.storage.paragraph.field_collection
+    - paragraphs.paragraphs_type.collection_listing_publication
+id: paragraph.collection_listing_publication.field_collection
+field_name: field_collection
+entity_type: paragraph
+bundle: collection_listing_publication
+label: Issue
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:collection'
+  handler_settings:
+    target_bundles:
+      publication_issue: publication_issue
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

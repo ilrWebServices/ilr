@@ -1,0 +1,7 @@
+{{ attach_library('union_organizer/button') }}
+
+{% if nid %}
+<div class="read-more">
+  {{ link('Read more'|t, 'internal:/node/'~nid, { 'class':['cu-button', 'cu-button--overlay']} ) }}
+</div>
+{% endif %}

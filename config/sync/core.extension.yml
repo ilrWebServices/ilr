@@ -15,6 +15,7 @@ module:
   config_filter: 0
   config_split: 0
   contextual: 0
+  crop: 0
   ctools: 0
   date_range_formatter: 0
   datetime: 0
@@ -32,6 +33,7 @@ module:
   field_ui: 0
   file: 0
   filter: 0
+  focal_point: 0
   ilr: 0
   ilr_migrate: 0
   ilr_salesforce: 0

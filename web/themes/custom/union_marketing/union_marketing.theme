@@ -2,6 +2,7 @@
 
 use Drupal\Core\Link;
 use Drupal\entity_reference_layout\EntityReferenceLayoutRevisionsFieldItemList;
+use Drupal\crop\Entity\Crop;
 
 /**
  * @file Theme file for the union_marketing.theme.
@@ -124,6 +125,22 @@ function union_marketing_preprocess_paragraph__deck(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_paragraph().
+ *
+ * Set grids column count on curated post listings (defaults to 3, 4 on story
+ * nodes).
+ */
+function union_marketing_preprocess_paragraph__curated_post_listing(&$variables) {
+  if ($variables['paragraph']->getParentEntity()->bundle() !== 'section') {
+    return;
+  }
+
+  $variables['attributes']['class'][] = ($variables['paragraph']->getParentEntity()->getParentEntity()->bundle() === 'story')
+   ? 'cu-grid--4col'
+   : 'cu-grid--3col';
+}
+
+/**
  * Implements hook_preprocess_field().
  */
 function union_marketing_preprocess_field__paragraph__field_heading__promo(&$variables) {
@@ -159,6 +176,25 @@ function union_marketing_preprocess_field__field_representative_image(&$variable
   if ($entity->hasField('field_representative_img_caption') && !$entity->field_representative_img_caption->isEmpty()) {
     $variables['attributes']['aria-labelledby'][] = 'media__caption-' . $entity->id();
   }
+
+  if (!$entity->field_representative_image->isEmpty()) {
+    $image = $entity->field_representative_image->entity->field_media_image;
+    $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
+    $crop = Crop::findCrop($image->entity->getFileUri(), $crop_type);
+
+    if ($crop) {
+      $image_props = $image->first()->getValue();
+      $anchor = \Drupal::service('focal_point.manager')
+        ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
+
+      if ($anchor['y'] <= 33) {
+        $variables['attributes']['class'][] = 'media--position-top';
+      }
+      elseif ($anchor['y'] >= 66) {
+        $variables['attributes']['class'][] = 'media--position-bottom';
+      }
+    }
+  }
 }
 
 /**
@@ -173,5 +209,17 @@ function union_marketing_preprocess_collection__blog__banner(&$variables) {
     if (isset($render_array["#plugin_id"]) && $render_array["#plugin_id"] == "field_block:collection:blog:name") {
       $render_array['#theme'] = 'block__blog_collection__banner__name';
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_block().
+ *
+ * Until we can find a better way, this allows us to pass the nid to the
+ * template for the read more link.
+ */
+function union_marketing_preprocess_block__extra_field_block__node__story__links(&$variables) {
+  if (isset($variables['content']['#lazy_builder'][1][0])) {
+    $variables['nid'] = $variables['content']['#lazy_builder'][1][0];
   }
 }
