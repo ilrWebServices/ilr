@@ -7,9 +7,6 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
-use Drupal\collection\Entity\CollectionInterface;
-use Drupal\Core\Cache\Cache;
-
 
 /**
  * Provides a 'PublicationBrandingBlock' block.
