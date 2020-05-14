@@ -1,0 +1,14 @@
+.cornell-seal .cu-image {
+  min-width: 76px; // Per branding guidelines
+}
+
+.collection--publication-issue .cornell-seal .cu-image {
+  min-width: 105px;
+}
+
+#block-union-marketing-cornell-seal,
+#block-union-marketing-cornell-seal + #ilr_search_reveal_trigger {
+  align-self: flex-start;
+}
+
+

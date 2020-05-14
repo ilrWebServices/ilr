@@ -1,0 +1,28 @@
+uuid: b9da28f2-310b-471b-bd0c-49f9b970c940
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.cornell_alternate_branding
+  module:
+    - block_visibility_groups
+    - ilr
+  theme:
+    - union_marketing
+id: union_marketing_cornell_seal
+theme: union_marketing
+region: header
+weight: 3
+provider: null
+plugin: cornell_seal_block
+settings:
+  id: cornell_seal_block
+  label: 'Cornell Seal'
+  provider: ilr
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: cornell_alternate_branding
+    context_mapping: {  }
