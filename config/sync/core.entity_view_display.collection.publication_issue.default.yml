@@ -23,22 +23,6 @@ third_party_settings:
         layout_settings:
           label: ''
         components:
-          53f2aa55-9905-43d0-8c76-228d7247f8eb:
-            uuid: 53f2aa55-9905-43d0-8c76-228d7247f8eb
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:collection:publication_issue:name'
-              formatter:
-                label: hidden
-                type: string
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-            additional: {  }
-            weight: 2
           52e10aed-11d2-4250-a0c3-cfe2f5caa945:
             uuid: 52e10aed-11d2-4250-a0c3-cfe2f5caa945
             region: content
@@ -58,44 +42,6 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 4
-          be590019-8db1-4c01-944d-434ce70a2516:
-            uuid: be590019-8db1-4c01-944d-434ce70a2516
-            region: content
-            configuration:
-              id: 'field_block:collection:publication_issue:field_representative_image'
-              label: 'Representative Image'
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: media_thumbnail
-                settings:
-                  image_style: full
-                  image_link: ''
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: 0
-          baa7a6d7-e1e0-4847-9306-8c6956fa0ce0:
-            uuid: baa7a6d7-e1e0-4847-9306-8c6956fa0ce0
-            region: content
-            configuration:
-              id: 'field_block:collection:publication_issue:body'
-              label: 'Intro Text'
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: text_default
-                settings: {  }
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: 3
         third_party_settings: {  }
 id: collection.publication_issue.default
 targetEntityType: collection
