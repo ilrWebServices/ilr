@@ -473,7 +473,7 @@ function ilr_entity_prepare_view($entity_type_id, array $entities, array $displa
  * https://www.drupal.org/project/entity_query_alter.
  */
 function ilr_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
-  if ($query->hasTag('dedupe_clone')) {
+  if ($query->hasTag('dedupe_clone') || empty($query->alterTags)) {
     return;
   }
 
