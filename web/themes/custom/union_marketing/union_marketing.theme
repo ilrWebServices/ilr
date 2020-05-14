@@ -25,6 +25,12 @@ function union_marketing_preprocess_html(&$variables) {
     // Add node-TYPE class to the <body> element.
     $variables['attributes']['class'][] = 'node--' . $variables['node_type'];
   }
+
+  if (isset($variables['root_path']) && $variables['root_path'] === 'collection') {
+    if ($collection = \Drupal::routeMatch()->getParameter('collection')) {
+      $variables['attributes']['class'][] = 'collection--' . str_replace('_', '-', $collection->bundle());
+    }
+  }
 }
 
 /**
