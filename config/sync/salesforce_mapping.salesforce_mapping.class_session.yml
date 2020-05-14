@@ -7,14 +7,14 @@ dependencies:
     - salesforce_pull
 id: class_session
 label: 'Class session'
-weight: 0
+weight: 2
 type: salesforce_mapping
 key: ''
 async: false
 push_standalone: false
 pull_standalone: false
 pull_trigger_date: LastModifiedDate
-pull_where_clause: 'Event_Class__c IN (SELECT Id FROM EXECED_Event_Class__c WHERE Class_Show_on_Web__c = true)'
+pull_where_clause: 'Event_Class__c IN (SELECT Id FROM EXECED_Event_Class__c WHERE Synchronized_with_Web__c = true)'
 sync_triggers:
   pull_create: true
   pull_update: true
