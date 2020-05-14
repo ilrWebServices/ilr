@@ -7,7 +7,7 @@ dependencies:
     - salesforce_pull
 id: class_session
 label: 'Class session'
-weight: 0
+weight: 2
 type: salesforce_mapping
 key: ''
 async: false
