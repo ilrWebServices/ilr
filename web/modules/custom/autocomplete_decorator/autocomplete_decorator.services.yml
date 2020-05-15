@@ -1,0 +1,9 @@
+services:
+  autocomplete_decorator.matcher:
+    class: Drupal\autocomplete_decorator\EntityAutocompleteMatcherOverride
+    decorates: entity.autocomplete_matcher
+    decoration_priority: 9
+    public: false
+    arguments:
+      - '@plugin.manager.entity_reference_selection'
+      - '@entity_type.manager'
