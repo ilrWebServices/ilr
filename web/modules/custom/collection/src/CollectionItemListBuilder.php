@@ -68,6 +68,7 @@ class CollectionItemListBuilder extends BulkFormEntityListBuilder {
     $header['item'] = $this->t('Item');
     $header['type'] = $this->t('Type');
     $header['status'] = $this->t('Published');
+    $header['weight'] = $this->t('Weight');
     return $header + parent::buildHeader();
   }
 
@@ -104,6 +105,10 @@ class CollectionItemListBuilder extends BulkFormEntityListBuilder {
 
     $row['status'] = [
       '#markup' => $this->t($published),
+    ];
+
+    $row['weight'] = [
+      '#markup' => $entity->weight->value
     ];
 
     return $row + parent::buildRow($entity);

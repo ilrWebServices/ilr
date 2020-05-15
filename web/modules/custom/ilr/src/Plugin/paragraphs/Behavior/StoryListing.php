@@ -105,7 +105,7 @@ class StoryListing extends ParagraphsBehaviorBase {
       $query->range(0, $limit);
     }
 
-    // $query->sort('item.entity:node.field_published_date', 'DESC');
+    $query->sort('weight');
     $result = $query->execute();
     $story_count = 0;
 
