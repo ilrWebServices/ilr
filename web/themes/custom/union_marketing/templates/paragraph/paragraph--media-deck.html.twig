@@ -34,22 +34,11 @@
  *   is an administrator.
  *
  * @see template_preprocess_paragraph()
+ * @see MediaDeck::preprocess()
  *
  * @ingroup themeable
  */
 #}
-
-{% set item_length = content.field_media_deck_items['#items']|length %}
-{% set image_styles = ['medium_3_2', 'medium_2_3', 'medium_1_1'] %}
-
-
-{% set media_items  %}
-  {% for item in 1..item_length %}
-    {% set index = loop.index - 1 %}
-    {% set media_entity = content.field_media_deck_items['#items'][index].entity %}
-    {{ drupal_image(media_entity.field_media_image.entity.id, image_styles[index]) }}
-  {% endfor %}
-{% endset %}
 
 {%
   set classes = [
@@ -59,11 +48,5 @@
 %}
 
 <figure{{attributes.addClass(classes)}}>
-  {{ media_items }}
-  {{ content.field_caption }}
+  {{ content|without('field_media_deck_items') }}
 </figure>
-{# {% include '@union/_grid.twig' with {
-  grid_content: media_items,
-  attributes: attributes.addClass('cu-media-deck cu-grid--two-left')
-} only %} #}
-

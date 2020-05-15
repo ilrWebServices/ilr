@@ -81,7 +81,7 @@
       margin: 0;
     }
 
-    &--two-right {
+    &--portrait-left {
       :nth-child(2) {
         order: -1;
       }
@@ -112,10 +112,4 @@
       grid-row: 6/-1;
     }
   }
-
-  // The following may be needed if we render the media entities.
-  // @see paragraph--media-deck.html.twig
-  // *:not(.cu-image) {
-  //   display: contents;
-  // }
 }

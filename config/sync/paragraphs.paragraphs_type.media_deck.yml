@@ -1,12 +1,15 @@
 uuid: 7f2dbbd7-0af3-4bfe-ae32-f546557e3e4b
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
 id: media_deck
 label: 'Media deck'
 icon_uuid: null
 icon_default: null
 description: ''
-behavior_plugins: {  }
-description: ''
-behavior_plugins: {  }
+behavior_plugins:
+  media_deck:
+    enabled: true
+    deck_style: portrait_right
