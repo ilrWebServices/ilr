@@ -62,3 +62,8 @@
 .node--story .collection-listing .field--field-published-date {
   display: none;
 }
+
+.node--story .field-representative-image,
+.node--story .paragraph--type--image .cu-image {
+  @include full-width();
+}
