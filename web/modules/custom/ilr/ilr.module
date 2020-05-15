@@ -741,6 +741,18 @@ function ilr_field_widget_paragraphs_form_alter(&$element, FormStateInterface &$
     $element['behavior_plugins']['#title'] = t('Settings');
   }
 
+  if ($paragraphs_entity && $paragraphs_entity->bundle() === 'section') {
+    // dump($paragraphs_entity);
+    if (isset($element['subform']['field_components']['widget']['add_more'])) {
+      dump($element);
+      dump($paragraphs_entity);
+      dump($context['widget']);
+      // unset($element['subform']['field_components']['widget']['add_more']['add_more_button_rich_text']);
+      unset($element['subform']['field_components']['widget']['add_more']['operations']['#links']['add_more_button_rich_text']);
+    }
+    // dump($element['subform']['field_components']['widget']['add_more']);
+  }
+
   // Add a class to closed paragraphs.
   $element['#attributes']['class'] = ['js-paragraph-mode--' . ($widget_state['paragraphs'][$delta]['mode'] ?? 'missing')];
 
