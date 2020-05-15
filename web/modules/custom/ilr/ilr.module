@@ -778,6 +778,31 @@ function ilr_field_widget_paragraphs_previewer_form_alter(&$element, FormStateIn
 }
 
 /**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ */
+function ilr_field_widget_text_textarea_with_summary_form_alter(&$element, FormStateInterface $form_state, $context) {
+  $field_definition = $context['items']->getFieldDefinition();
+
+  // Base fields are not configurable.
+  if (!$field_definition instanceof Drupal\field\Entity\FieldConfig) {
+    return;
+  }
+
+  // We can't use the protected isDefaultValueWidget() method.
+  $is_default_value_widget = (bool) $form_state->get('default_value_widget');
+  $entity_type_and_bundle = $field_definition->get('entity_type') . ':' . $field_definition->get('bundle');
+
+  if (!$is_default_value_widget) {
+    if (in_array($entity_type_and_bundle, ['node:post', 'node:media_mention'])) {
+      unset($element['summary']['#description']);
+    }
+
+    // Always show the summary field.
+    unset($element['summary']['#attached']);
+  }
+}
+
+/**
  * Implements hook_user_format_name_alter().
  *
  * Display the common name, if available, as the username.
