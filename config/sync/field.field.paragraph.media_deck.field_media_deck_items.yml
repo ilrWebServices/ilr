@@ -1,0 +1,28 @@
+uuid: 902a032a-9d38-4f6a-8b07-6a2931271a77
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_media_deck_items
+    - media.type.image
+    - paragraphs.paragraphs_type.media_deck
+id: paragraph.media_deck.field_media_deck_items
+field_name: field_media_deck_items
+entity_type: paragraph
+bundle: media_deck
+label: Media
+description: 'The media deck component is designed to include 3 images. The 1st will be displayed landscape, the 2nd portrait, and the 3rd square (3x2, 2x3, and 1x1, respectively).'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference

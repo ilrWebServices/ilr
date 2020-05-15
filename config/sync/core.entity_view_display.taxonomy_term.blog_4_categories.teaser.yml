@@ -7,7 +7,7 @@ dependencies:
     - field.field.taxonomy_term.blog_4_categories.field_body
     - field.field.taxonomy_term.blog_4_categories.field_representative_image
     - field.field.taxonomy_term.blog_4_categories.field_sections
-    - image.style.medium_3_2_600x400
+    - image.style.medium_3_2
     - taxonomy.vocabulary.blog_4_categories
   module:
     - layout_builder
@@ -40,7 +40,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: medium_3_2_600x400
+      image_style: medium_3_2
       image_link: ''
     third_party_settings: {  }
 hidden:

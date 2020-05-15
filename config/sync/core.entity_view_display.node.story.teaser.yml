@@ -8,7 +8,7 @@ dependencies:
     - field.field.node.story.field_representative_image
     - field.field.node.story.field_representative_img_caption
     - field.field.node.story.field_sections
-    - image.style.medium_3_2_600x400
+    - image.style.medium_3_2
     - node.type.story
   module:
     - media
@@ -32,7 +32,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: medium_3_2_600x400
+      image_style: medium_3_2
       image_link: ''
     third_party_settings: {  }
   links:

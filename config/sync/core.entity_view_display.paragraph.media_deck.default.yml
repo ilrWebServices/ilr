@@ -1,0 +1,34 @@
+uuid: 01f5c705-a89d-49b0-af79-90095c21437c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.media_deck.field_caption
+    - field.field.paragraph.media_deck.field_media_deck_items
+    - image.style.full
+    - paragraphs.paragraphs_type.media_deck
+  module:
+    - media
+id: paragraph.media_deck.default
+targetEntityType: paragraph
+bundle: media_deck
+mode: default
+content:
+  field_caption:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_media_deck_items:
+    type: media_thumbnail
+    weight: 0
+    label: hidden
+    settings:
+      image_style: full
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  search_api_excerpt: true

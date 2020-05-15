@@ -1,0 +1,33 @@
+uuid: be60944a-3fa9-43f9-8d7f-1843fb628f8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.media_deck.field_caption
+    - field.field.paragraph.media_deck.field_media_deck_items
+    - paragraphs.paragraphs_type.media_deck
+  module:
+    - media_library
+id: paragraph.media_deck.default
+targetEntityType: paragraph
+bundle: media_deck
+mode: default
+content:
+  field_caption:
+    weight: 1
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_media_deck_items:
+    type: media_library_widget
+    weight: 0
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true

@@ -1,5 +1,6 @@
 body {
   margin: 0 auto;
+  overflow-x: hidden; // Use of the full-width() mixin causes a tiny horizontal scrollbar.
 }
 
 .layout-container {
