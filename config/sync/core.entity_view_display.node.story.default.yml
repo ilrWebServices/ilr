@@ -7,8 +7,11 @@ dependencies:
     - field.field.node.story.field_representative_image
     - field.field.node.story.field_representative_img_caption
     - field.field.node.story.field_sections
+    - field.field.node.story.field_sections_secondary
     - node.type.story
   module:
+    - better_social_sharing_buttons
+    - entity_reference_revisions
     - layout_builder
     - layout_discovery
     - union_organizer
@@ -137,18 +140,47 @@ third_party_settings:
             weight: 1
         third_party_settings: {  }
       -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          66d33e1d-fdac-467f-9c8d-1b5676fbf962:
+            uuid: 66d33e1d-fdac-467f-9c8d-1b5676fbf962
+            region: main
+            configuration:
+              id: better_social_sharing_buttons_block
+              label: 'Better Social Sharing Buttons block'
+              provider: better_social_sharing_buttons
+              label_display: '0'
+              context_mapping: {  }
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
+      -
         layout_id: layout_onecol
         layout_settings:
           label: ''
         components:
-          a3be0c9e-2bf0-4298-8770-302059c3aaaa:
-            uuid: a3be0c9e-2bf0-4298-8770-302059c3aaaa
+          dabf7fcc-9800-4cb6-80eb-0ead779578dd:
+            uuid: dabf7fcc-9800-4cb6-80eb-0ead779578dd
             region: content
             configuration:
+              id: 'field_block:node:story:field_sections_secondary'
+              label: 'Secondary content'
+              provider: layout_builder
               label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_revisions_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
               context_mapping:
                 entity: layout_builder.entity
-              id: 'extra_field_block:node:story:links'
+                view_mode: view_mode
             additional: {  }
             weight: 0
         third_party_settings: {  }
@@ -163,6 +195,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+    region: main
+  field_sections_secondary:
+    type: entity_reference_revisions_entity_view
+    weight: 102
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
     region: main
   links:
     weight: 100

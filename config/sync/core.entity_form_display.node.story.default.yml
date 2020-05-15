@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.story.field_representative_image
     - field.field.node.story.field_representative_img_caption
     - field.field.node.story.field_sections
+    - field.field.node.story.field_sections_secondary
     - node.type.story
   module:
     - media_library
@@ -76,6 +77,25 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: '0'
         add_above: '0'
+    third_party_settings: {  }
+    region: content
+  field_sections_secondary:
+    type: paragraphs_previewer
+    weight: 10
+    settings:
+      title: section
+      title_plural: sections
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: '0'
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: section
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: 0
+        add_above: 0
     third_party_settings: {  }
     region: content
   path:

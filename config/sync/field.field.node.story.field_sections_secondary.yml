@@ -1,0 +1,70 @@
+uuid: 74d0ce00-acb5-44f0-b9b3-21aa3928c1ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sections_secondary
+    - node.type.story
+    - paragraphs.paragraphs_type.section
+  module:
+    - entity_reference_revisions
+id: node.story.field_sections_secondary
+field_name: field_sections_secondary
+entity_type: node
+bundle: story
+label: 'Secondary content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      section: section
+    target_bundles_drag_drop:
+      collection_listing:
+        weight: 15
+        enabled: false
+      collection_listing_publication:
+        weight: 16
+        enabled: false
+      curated_post_listing:
+        weight: 17
+        enabled: false
+      deck:
+        weight: 18
+        enabled: false
+      form:
+        weight: 19
+        enabled: false
+      image:
+        weight: 20
+        enabled: false
+      media_deck:
+        weight: 21
+        enabled: false
+      person:
+        weight: 22
+        enabled: false
+      promo:
+        weight: 23
+        enabled: false
+      rich_text:
+        weight: 24
+        enabled: false
+      section:
+        enabled: true
+        weight: 25
+      simple_collection_listing:
+        weight: 26
+        enabled: false
+      testimonial:
+        weight: 27
+        enabled: false
+      video:
+        weight: 28
+        enabled: false
+field_type: entity_reference_revisions
