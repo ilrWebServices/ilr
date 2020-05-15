@@ -2,11 +2,6 @@
   justify-content: start;
   margin: var(--cu-vr0) 0;
 
-  @include breakpoint(md) {
-    margin-top: 0;
-    justify-content: end;
-  }
-
   :first-child {
     margin-left: 0;
   }
@@ -25,5 +20,13 @@
 
   svg {
     background: #e1e1e1;
+  }
+}
+
+.node--post .social-sharing-buttons {
+  @include breakpoint(md) {
+    margin-top: 0;
+    margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
+    justify-content: end;
   }
 }
