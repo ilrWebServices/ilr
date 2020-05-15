@@ -64,6 +64,6 @@
 }
 
 .node--story .field-representative-image,
-.node--story .paragraph--type--image .cu-image {
-  @include full-width();
+.node--story .paragraph--type--image {
+  @include full-width(true);
 }
