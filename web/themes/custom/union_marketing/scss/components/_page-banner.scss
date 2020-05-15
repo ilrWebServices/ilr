@@ -3,3 +3,11 @@
     max-width: 80%;
   }
 }
+
+.cu-banner--page {
+  margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr2));
+
+  @include breakpoint(md) {
+    margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
+  }
+}

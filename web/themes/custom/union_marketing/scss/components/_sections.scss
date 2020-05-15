@@ -1,5 +1,9 @@
 .cu-section {
   clear: both;
+  // Margins between sections are set on the bottom, and can therefore be removed
+  // from the top. This is really only an issue for the first section on the
+  // page, and we could therefore target the section:first-of-type if preferred.
+  margin-top: 0;
 }
 
 .field--field-sections .cu-section-heading__link,
