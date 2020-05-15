@@ -6,7 +6,7 @@ dependencies:
     - core.entity_view_mode.taxonomy_term.teaser
     - field.field.taxonomy_term.blog_2_tags.field_body
     - field.field.taxonomy_term.blog_2_tags.field_representative_image
-    - image.style.medium_3_2_600x400
+    - image.style.medium_3_2
     - taxonomy.vocabulary.blog_2_tags
   module:
     - layout_builder
@@ -33,7 +33,7 @@ content:
     weight: 2
     label: hidden
     settings:
-      image_style: medium_3_2_600x400
+      image_style: medium_3_2
       image_link: content
     third_party_settings: {  }
     type: media_thumbnail

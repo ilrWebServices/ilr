@@ -9,7 +9,7 @@ dependencies:
     - field.field.node.media_mention.field_external_link
     - field.field.node.media_mention.field_published_date
     - field.field.node.media_mention.field_representative_image
-    - image.style.medium_3_2_600x400
+    - image.style.medium_3_2
     - node.type.media_mention
   module:
     - datetime
@@ -44,7 +44,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: medium_3_2_600x400
+      image_style: medium_3_2
       image_link: ''
     third_party_settings: {  }
   links:
