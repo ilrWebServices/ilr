@@ -3,13 +3,13 @@ langcode: en
 status: true
 dependencies: {  }
 name: medium_3_2
-label: 'Medium 3:2 (600x400)'
+label: 'Medium 3:2 (720x480)'
 effects:
   9679dc6d-3af3-4f80-ac4a-97f553cba8c8:
     uuid: 9679dc6d-3af3-4f80-ac4a-97f553cba8c8
     id: image_scale_and_crop
     weight: 1
     data:
-      width: 600
-      height: 400
+      width: 720
+      height: 480
       anchor: center-center
