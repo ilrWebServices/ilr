@@ -106,6 +106,7 @@ class StoryListing extends ParagraphsBehaviorBase {
     }
 
     $query->sort('weight');
+    $query->sort('changed', 'DESC');
     $result = $query->execute();
     $story_count = 0;
 

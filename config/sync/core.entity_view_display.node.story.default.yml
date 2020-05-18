@@ -158,6 +158,18 @@ third_party_settings:
               context_mapping: {  }
             additional: {  }
             weight: 1
+          51645e02-f3d2-4f8f-b596-103427a09897:
+            uuid: 51645e02-f3d2-4f8f-b596-103427a09897
+            region: main
+            configuration:
+              id: 'extra_field_block:node:story:extra_field_previous_next_story'
+              label: 'Previous and next story'
+              provider: layout_builder
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 2
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -189,6 +201,11 @@ targetEntityType: node
 bundle: story
 mode: default
 content:
+  extra_field_previous_next_story:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: main
   field_representative_img_caption:
     weight: 101
     label: above
