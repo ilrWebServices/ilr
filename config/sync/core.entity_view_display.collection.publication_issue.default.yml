@@ -9,9 +9,11 @@ dependencies:
     - field.field.collection.publication_issue.field_featured_story
     - field.field.collection.publication_issue.field_representative_image
     - field.field.collection.publication_issue.field_sections
+    - image.style.small_4x5
   module:
     - entity_reference_revisions
     - layout_builder
+    - media
     - text
 third_party_settings:
   layout_builder:
@@ -29,6 +31,15 @@ content:
     label: hidden
     settings:
       trim_length: 600
+    third_party_settings: {  }
+  field_download:
+    type: media_thumbnail
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: small_4x5
+      image_link: ''
     third_party_settings: {  }
   field_featured_story:
     weight: 1
@@ -57,7 +68,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
 hidden:
-  field_download: true
   field_representative_image: true
   search_api_excerpt: true
   user_id: true
