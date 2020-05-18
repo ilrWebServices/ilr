@@ -67,3 +67,7 @@
 .node--story .paragraph--type--image {
   @include full-width(true);
 }
+
+.previous-and-next-buttons .cu-button {
+  margin: var(--cu-vr2) 1em 0 0;
+}

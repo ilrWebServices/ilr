@@ -113,6 +113,7 @@ content:
     region: content
 hidden:
   body: true
+  extra_field_previous_next_story: true
   field_representative_image: true
   field_sections: true
   field_sections_secondary: true
