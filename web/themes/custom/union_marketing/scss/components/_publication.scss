@@ -91,6 +91,10 @@
       display: grid;
       grid-row: 2;
       grid-column: 1;
+
+      .cu-heading {
+        --cu-current-heading-size: var(--cu-ms8);
+      }
     }
   }
 }
