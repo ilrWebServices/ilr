@@ -21,11 +21,12 @@ bundle: story
 mode: teaser
 content:
   body:
-    type: text_default
+    type: text_summary_or_trimmed
     weight: 1
     region: content
     label: hidden
-    settings: {  }
+    settings:
+      trim_length: 600
     third_party_settings: {  }
   field_representative_image:
     type: media_thumbnail
