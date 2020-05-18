@@ -1,12 +1,14 @@
 /// Full Width, even outside container
 /// @link https://css-tricks.com/full-width-containers-limited-width-parents/
-/// @link https://cloudfour.com/thinks/breaking-out-with-viewport-units-and-calc/
 
 @mixin full-width($include_images: false) {
   width: 100vw;
   max-width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 
   @if $include_images {
     .cu-image {
