@@ -7,6 +7,7 @@
 
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\ilr\FieldStorageDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Field\FieldDefinition;
@@ -526,11 +527,15 @@ function ilr_preprocess_node__course__teaser(&$variables) {
 }
 
 /**
- * Implements template_preprocess_node().
+ * Implements hook_ENTITY_TYPE_view().
  *
  */
-function ilr_preprocess_collection__publication_issue__full(&$variables) {
-  $collection = $variables['collection'];
+function ilr_collection_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  $collection = $entity;
+
+  if ($collection->bundle() !== 'publication_issue' || $view_mode !== 'full') {
+    return;
+  }
 
   if ($collection->field_featured_story->isEmpty()) {
     return;
