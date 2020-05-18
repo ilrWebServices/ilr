@@ -23,7 +23,7 @@
     {% else %}
       {% for session in class.entity.sessions %}
         {# @see ClassSession::baseFieldDefinitions() session_date field setDisplayOptions() #}
-        <div class="cu-class-session-date">{{ session.entity.session_date.value|date('D, F j, ') }} {{ drupal_field('session_date', 'class_session', session.entity.id.value, 'default', NULL, FALSE) }}</div>
+        <div class="cu-class-session-date">{{ session.entity.session_date.value|date('D, F j, Y, ') }} {{ drupal_field('session_date', 'class_session', session.entity.id.value, 'default', NULL, FALSE) }}</div>
       {% endfor %}
     {% endif %}
 
