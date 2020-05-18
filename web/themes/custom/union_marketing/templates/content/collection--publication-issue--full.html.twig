@@ -1,0 +1,32 @@
+{#
+/**
+ * @file collection.html.twig
+ * Default theme implementation to present Collection data.
+ *
+ * This template is used when viewing Collection pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_collection()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{{ attach_library('union_organizer/cu-section') }}
+
+<div{{ attributes.addClass('collection collection--publication-issue') }}>
+  <div class="cu-section">
+    <div class="publication__feature">
+      <div class="publication-feature__meta">
+        {{ content.body }}
+        {{ collection.field_download.entity.field_media_image|view }}
+      </div>
+      {{ content.field_featured_story }}
+    </div>
+  </div>
+  {{ content.field_sections }}
+</div>

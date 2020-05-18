@@ -5,67 +5,43 @@ dependencies:
   config:
     - collection.collection_type.publication_issue
     - field.field.collection.publication_issue.body
+    - field.field.collection.publication_issue.field_download
+    - field.field.collection.publication_issue.field_featured_story
     - field.field.collection.publication_issue.field_representative_image
     - field.field.collection.publication_issue.field_sections
   module:
     - entity_reference_revisions
     - layout_builder
-    - layout_discovery
     - text
-    - user
 third_party_settings:
   layout_builder:
     allow_custom: false
-    enabled: true
-    sections:
-      -
-        layout_id: layout_onecol
-        layout_settings:
-          label: ''
-        components:
-          52e10aed-11d2-4250-a0c3-cfe2f5caa945:
-            uuid: 52e10aed-11d2-4250-a0c3-cfe2f5caa945
-            region: content
-            configuration:
-              id: 'field_block:collection:publication_issue:field_sections'
-              label: Sections
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: entity_reference_revisions_entity_view
-                settings:
-                  view_mode: default
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: 4
-        third_party_settings: {  }
+    enabled: false
 id: collection.publication_issue.default
 targetEntityType: collection
 bundle: publication_issue
 mode: default
 content:
   body:
-    weight: 2
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
+    type: text_summary_or_trimmed
+    weight: 0
     region: content
-  field_representative_image:
-    weight: 1
-    label: above
+    label: hidden
     settings:
-      link: true
+      trim_length: 600
     third_party_settings: {  }
-    type: entity_reference_label
+  field_featured_story:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
     region: content
   field_sections:
     weight: 3
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''
@@ -80,12 +56,8 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  user_id:
-    label: hidden
-    type: author
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
+  field_download: true
+  field_representative_image: true
   search_api_excerpt: true
+  user_id: true

@@ -1,0 +1,15 @@
+uuid: 9e799fcb-1197-4805-8482-e0095e5d3c76
+langcode: en
+status: true
+dependencies: {  }
+name: small_4x5
+label: 'Small 4:5 (240x300)'
+effects:
+  60998735-e1a7-4253-bae6-1f36fee06cab:
+    uuid: 60998735-e1a7-4253-bae6-1f36fee06cab
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 480
+      height: 600
+      anchor: center-center

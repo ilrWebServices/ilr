@@ -526,6 +526,30 @@ function ilr_preprocess_node__course__teaser(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_node().
+ *
+ */
+function ilr_preprocess_collection__publication_issue__full(&$variables) {
+  $collection = $variables['collection'];
+
+  if ($collection->field_featured_story->isEmpty()) {
+    return;
+  }
+
+  $dedupe_group = 'dedupe:collection_item.id:collection_' . $collection->id();
+  $collection_item_storage = \Drupal::service('entity_type.manager')->getStorage('collection_item');
+  $query = $collection_item_storage->getQuery();
+  $query->condition('collection', $collection->id());
+  $query->condition('type', 'publication_issue');
+  $query->condition('item.entity:node.status', 1);
+  $query->condition('item.entity:node.nid', $collection->field_featured_story->target_id);
+  // Add a dedupe tag to remove duplicates in similar story listings. See
+  // ilr_query_alter().
+  $query->addTag($dedupe_group);
+  $result = $query->execute();
+}
+
+/**
  * Implements hook_token_info().
  */
 function ilr_token_info() {
@@ -862,6 +886,10 @@ function ilr_form_collection_form_alter(&$form, FormStateInterface $form_state) 
 
     if (isset($form['field_representative_image'])) {
       $form['field_representative_image']['#group'] = 'ilr_meta';
+    }
+
+    if (!empty($form['field_download'])) {
+      $form['field_download']['#group'] = 'ilr_meta';
     }
 
     if (isset($form['body'])) {
