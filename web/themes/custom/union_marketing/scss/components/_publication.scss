@@ -94,3 +94,7 @@
     }
   }
 }
+
+.collection-listing .node--view-mode-banner .cu-banner__media::before {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 35%, rgba(0, 0, 0, 0.3) 45%, rgba(0, 0, 0, 0) 55%);
+}
