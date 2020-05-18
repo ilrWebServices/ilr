@@ -1,0 +1,20 @@
+uuid: 53e26387-aff6-42c3-a803-a32853da395c
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - media
+id: collection.field_download
+field_name: field_download
+entity_type: collection
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

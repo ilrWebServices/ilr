@@ -1,0 +1,28 @@
+uuid: 1e4a096c-c1f5-452f-b835-c02c4c63570e
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.publication_issue
+    - field.storage.collection.field_download
+    - media.type.file
+id: collection.publication_issue.field_download
+field_name: field_download
+entity_type: collection
+bundle: publication_issue
+label: Download
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      file: file
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

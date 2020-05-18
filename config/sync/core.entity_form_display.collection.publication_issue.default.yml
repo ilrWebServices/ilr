@@ -5,9 +5,13 @@ dependencies:
   config:
     - collection.collection_type.publication_issue
     - field.field.collection.publication_issue.body
+    - field.field.collection.publication_issue.field_download
+    - field.field.collection.publication_issue.field_featured_story
     - field.field.collection.publication_issue.field_representative_image
     - field.field.collection.publication_issue.field_sections
   module:
+    - entity_browser_entity_form
+    - inline_entity_form
     - media_library
     - paragraphs_previewer
     - path
@@ -18,7 +22,7 @@ bundle: publication_issue
 mode: default
 content:
   body:
-    weight: 102
+    weight: 103
     settings:
       rows: 9
       summary_rows: 3
@@ -26,6 +30,35 @@ content:
       show_summary: false
     third_party_settings: {  }
     type: text_textarea_with_summary
+    region: content
+  field_download:
+    type: inline_entity_form_complex
+    weight: 102
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: 'file download'
+      label_plural: 'file download'
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      revision: false
+      collapsible: false
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    region: content
+  field_featured_story:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_representative_image:
     weight: 101

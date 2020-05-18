@@ -5,7 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.media.media_library
     - field.field.media.file.field_media_file
-    - image.style.thumbnail
+    - image.style.thumbnail_square
     - media.type.file
   module:
     - image
@@ -22,7 +22,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: thumbnail
+      image_style: thumbnail_square
       image_link: ''
     third_party_settings: {  }
 hidden:

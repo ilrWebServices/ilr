@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3046734cccca5653eba52d70745be0ee",
+    "content-hash": "5d4187852c7de36d95f1c8a2b3a28e91",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3837,6 +3837,56 @@
             }
         },
         {
+            "name": "drupal/media_pdf_thumbnail",
+            "version": "3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/media_pdf_thumbnail.git",
+                "reference": "8.x-3.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/media_pdf_thumbnail-8.x-3.3.zip",
+                "reference": "8.x-3.3",
+                "shasum": "7c94d36ff02e64190e5bcf51716f2c2ef349b66e"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "ext-imagick": "*",
+                "spatie/pdf-to-image": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-3.3",
+                    "datestamp": "1589023095",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "sgostanyan",
+                    "homepage": "https://www.drupal.org/user/3569364"
+                }
+            ],
+            "description": "Media PDF Thumbnail",
+            "homepage": "https://www.drupal.org/project/media_pdf_thumbnail",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/media_pdf_thumbnail",
+                "issues": "http://drupal.org/project/issues/media_pdf_thumbnail"
+            }
+        },
+        {
             "name": "drupal/menu_item_extras",
             "version": "2.11.0",
             "source": {
@@ -6776,6 +6826,62 @@
                 "xmldsig"
             ],
             "time": "2019-11-05T11:44:22+00:00"
+        },
+        {
+            "name": "spatie/pdf-to-image",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/pdf-to-image.git",
+                "reference": "3b140c4ef9a8cbb72ac51592a3f13d6a6b6d969e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/3b140c4ef9a8cbb72ac51592a3f13d6a6b6d969e",
+                "reference": "3b140c4ef9a8cbb72ac51592a3f13d6a6b6d969e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-imagick": "*",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\PdfToImage\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Convert a pdf to an image",
+            "homepage": "https://github.com/spatie/pdf-to-image",
+            "keywords": [
+                "convert",
+                "image",
+                "pdf",
+                "pdf-to-image",
+                "spatie"
+            ],
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/spatie",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-04-29T08:21:17+00:00"
         },
         {
             "name": "stack/builder",

@@ -1,0 +1,28 @@
+uuid: 61d2edbd-f749-4550-8731-067ff85a908b
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.publication_issue
+    - field.storage.collection.field_featured_story
+    - node.type.story
+id: collection.publication_issue.field_featured_story
+field_name: field_featured_story
+entity_type: collection
+bundle: publication_issue
+label: 'Featured story'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      story: story
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

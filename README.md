@@ -8,6 +8,7 @@ It is based on the [Composer template for Drupal projects][].
 
 - git
 - PHP 7.2 or greater
+- the PHP [ImageMagick extension][] (for PDF thumbnail generation)
 - Composer
 - Drush ([Drush launcher][] is recommended, since a copy of Drush is included in this project)
 - Node.js 8.x or greater (for theming)
@@ -241,6 +242,7 @@ if (extension_loaded('redis')) {
 
 
 [Composer template for Drupal projects]: https://github.com/drupal-composer/drupal-project
+[ImageMagick extension]: https://www.php.net/manual/en/book.imagick.php
 [Drush launcher]: https://github.com/drush-ops/drush-launcher
 [git submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
 [OAuth JWT Bearer Token flow documentation]: https://www.drupal.org/docs/8/modules/salesforce-suite/create-a-oauth-jwt-bearer-token-flow-connected-app-4x
