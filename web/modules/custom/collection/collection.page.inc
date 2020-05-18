@@ -20,8 +20,8 @@ use Drupal\Core\Render\Element;
  *   - attributes: HTML attributes for the containing element.
  */
 function template_preprocess_collection(array &$variables) {
-  // Fetch Collection Entity Object.
-  $collection = $variables['elements']['#collection'];
+  // Add the Collection Entity to the root of the array.
+  $variables['collection'] = $variables['elements']['#collection'];
 
   // Helpful $content variable for templates.
   foreach (Element::children($variables['elements']) as $key) {
