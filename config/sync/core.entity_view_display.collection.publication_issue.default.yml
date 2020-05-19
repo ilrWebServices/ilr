@@ -7,6 +7,7 @@ dependencies:
     - field.field.collection.publication_issue.body
     - field.field.collection.publication_issue.field_download
     - field.field.collection.publication_issue.field_featured_story
+    - field.field.collection.publication_issue.field_publication_date
     - field.field.collection.publication_issue.field_representative_image
     - field.field.collection.publication_issue.field_sections
     - image.style.small_4x5
@@ -68,6 +69,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
 hidden:
+  field_publication_date: true
   field_representative_image: true
   search_api_excerpt: true
   user_id: true

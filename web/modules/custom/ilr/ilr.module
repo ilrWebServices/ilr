@@ -897,6 +897,10 @@ function ilr_form_collection_form_alter(&$form, FormStateInterface $form_state) 
       $form['field_download']['#group'] = 'ilr_meta';
     }
 
+    if (!empty($form['field_publication_date'])) {
+      $form['field_publication_date']['#group'] = 'ilr_meta';
+    }
+
     if (isset($form['body'])) {
       $form['body']['#group'] = 'ilr_meta';
     }
