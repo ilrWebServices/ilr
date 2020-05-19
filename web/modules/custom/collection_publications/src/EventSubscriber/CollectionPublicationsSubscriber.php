@@ -82,7 +82,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
       CollectionEvents::COLLECTION_ENTITY_UPDATE => 'collectionUpdate',
       CollectionEvents::COLLECTION_ITEM_FORM_CREATE => 'collectionItemFormCreate',
       ConfigEvents::STORAGE_TRANSFORM_IMPORT => 'onImportTransform',
-      KernelEvents::REQUEST => 'redirectPublications',
+      KernelEvents::REQUEST => 'handleRedirects',
     ];
   }
 
@@ -218,15 +218,23 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Redirect publication term canonical routes to the current issue, if set.
+   * Handle redirects for various publication and issue paths.
+   *
+   * - Publication term canonical routes
    */
-  public function redirectPublications(GetResponseEvent $event) {
+  public function handleRedirects(GetResponseEvent $event) {
     $request = $event->getRequest();
 
-    if ($request->attributes->get('_route') !== 'entity.taxonomy_term.canonical') {
-      return;
+    if ($request->attributes->get('_route') === 'entity.taxonomy_term.canonical') {
+      $this->redirectTerm($event);
     }
+  }
 
+  /**
+   * Redirect publication term canonical routes to the current issue, if set.
+   */
+  protected function redirectTerm(GetResponseEvent $event) {
+    $request = $event->getRequest();
     $term = $request->attributes->get('taxonomy_term');
 
     if ($term->bundle() !== 'publication' || $term->field_current_issue->isEmpty()) {
