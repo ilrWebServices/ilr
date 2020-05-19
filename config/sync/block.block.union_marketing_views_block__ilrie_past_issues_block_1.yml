@@ -1,0 +1,39 @@
+uuid: 5915baeb-3593-453a-8f18-6f589e256222
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.ilrie_past_issues
+  module:
+    - block_visibility_groups
+    - ctools
+    - ilr
+    - views
+  theme:
+    - union_marketing
+id: union_marketing_views_block__ilrie_past_issues_block_1
+theme: union_marketing
+region: content
+weight: 2
+provider: null
+plugin: 'views_block:ilrie_past_issues-block_1'
+settings:
+  id: 'views_block:ilrie_past_issues-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  'entity_bundle:collection':
+    id: 'entity_bundle:collection'
+    bundles:
+      publication_issue: publication_issue
+    negate: false
+    context_mapping:
+      collection: '@collection.collection_route_context:collection'
