@@ -7,6 +7,7 @@ dependencies:
     - field.field.collection.publication_issue.body
     - field.field.collection.publication_issue.field_download
     - field.field.collection.publication_issue.field_featured_story
+    - field.field.collection.publication_issue.field_publication
     - field.field.collection.publication_issue.field_publication_date
     - field.field.collection.publication_issue.field_representative_image
     - field.field.collection.publication_issue.field_sections
@@ -54,6 +55,16 @@ content:
     region: content
   field_featured_story:
     weight: 2
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_publication:
+    weight: 1
     settings:
       match_operator: CONTAINS
       match_limit: 10

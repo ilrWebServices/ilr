@@ -43,15 +43,6 @@ function collection_publications_entity_field_storage_info(EntityTypeInterface $
       ->setSetting('target_type', 'media');
   }
 
-  if ($entity_type->id() == 'collection') {
-    $definitions['publication'] = FieldStorageDefinition::create('entity_reference')
-      ->setName('publication')
-      ->setLabel(t('Publication'))
-      ->setRevisionable(FALSE)
-      ->setTargetEntityTypeId($entity_type->id())
-      ->setSetting('target_type', 'taxonomy_term');
-  }
-
   return $definitions;
 }
 
@@ -82,28 +73,6 @@ function collection_publications_entity_bundle_field_info(EntityTypeInterface $e
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('form', [
         'type' => 'media_library_widget',
-        'weight' => 1,
-      ]);
-  }
-
-  if ($entity_type->id() === 'collection' && $bundle === 'publication_issue') {
-    $fields[$custom_field_storage['publication']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['publication']);
-
-    $fields[$custom_field_storage['publication']->getName()]
-      ->setLabel(t('Publication'))
-      ->setRequired(TRUE)
-      ->setSettings([
-        'handler' => 'default:taxonomy_term',
-        'handler_settings' => [
-          'target_bundles' => [
-            'publication' => 'publication'
-          ]
-        ],
-      ])
-      ->setDisplayConfigurable('view', FALSE)
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
         'weight' => 1,
       ]);
   }
