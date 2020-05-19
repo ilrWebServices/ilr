@@ -15,8 +15,11 @@
  * @ingroup themeable
  */
 #}
-
 {{ attach_library('union_organizer/cu-section') }}
+
+{# This is the twig tweak method. Core may allow toUrl if this bug is fixed:
+https://www.drupal.org/project/drupal/issues/2907810 #}
+{% set featured_story_url = drupal_url('node/' ~ collection.field_featured_story.entity.id) %}
 
 <div{{ attributes.addClass('collection collection--publication-issue') }}>
   <div class="cu-section">
@@ -25,7 +28,13 @@
         {{ content.body }}
         {{ collection.field_download|view }}
       </div>
-      {{ content.field_featured_story }}
+      <div class="publication-feature__image">
+        <a href="{{ featured_story_url }}">{{ collection.field_featured_story.entity.field_representative_image|view('teaser') }}</a>
+      </div>
+      <div class="publication-feature__story">
+        <h3 class="cu-heading"><a href="{{ featured_story_url }}">{{ collection.field_featured_story.entity.label }}</a></h3>
+        {{ collection.field_featured_story.entity.body|view('teaser') }}
+      </div>
     </div>
   </div>
   {{ content.field_sections }}
