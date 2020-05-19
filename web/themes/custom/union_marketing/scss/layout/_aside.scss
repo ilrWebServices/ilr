@@ -1,0 +1,27 @@
+.cu-layout--aside-left {
+  display: grid;
+  gap: var(--cu-ps1);
+
+  .layout__region--aside {
+    order: -1;
+
+    .cu-image {
+      width: 100%;
+    }
+  }
+
+  @include breakpoint(sm) {
+    grid-template-columns: 1fr 3fr;
+    gap: var(--cu-ps2);
+
+    .layout__region--aside {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .layout__region--main {
+      grid-column: 2;
+      grid-row: 1;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+uuid: ff753bf0-a9bb-4937-a28d-be6243d60aaf
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.media
+    - field.field.block_content.media.field_media
+id: block_content.media.default
+targetEntityType: block_content
+bundle: media
+mode: default
+content:
+  field_media:
+    type: entity_reference_autocomplete
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

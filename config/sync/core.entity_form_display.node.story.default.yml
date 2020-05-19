@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.story.field_representative_img_caption
     - field.field.node.story.field_sections
     - field.field.node.story.field_sections_secondary
+    - field.field.node.story.layout_builder__layout
     - node.type.story
   module:
     - media_library
@@ -148,4 +149,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  layout_builder__layout: true

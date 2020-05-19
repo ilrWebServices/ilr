@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.story.field_representative_img_caption
     - field.field.node.story.field_sections
     - field.field.node.story.field_sections_secondary
+    - field.field.node.story.layout_builder__layout
     - node.type.story
   module:
     - ilr
@@ -117,4 +118,5 @@ hidden:
   field_representative_image: true
   field_sections: true
   field_sections_secondary: true
+  layout_builder__layout: true
   search_api_excerpt: true
