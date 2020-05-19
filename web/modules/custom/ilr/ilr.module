@@ -327,18 +327,30 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
   if ($display->getComponent('media_outlet_logo') || $display->getComponent('media_outlet_name')) {
     $external_link_host = parse_url($entity->field_external_link->uri, PHP_URL_HOST);
 
-    // Derive a media outlet logo domain name (e.g. `nytimes.com`,
-    // `bloomberg.com`) from the link host by removing the (optional) `www.`
-    // prefix from the hostname. See https://regex101.com/r/XvagCu/4/ to test
-    // this regex.
-    if (preg_match('/^(www\.)?(([^\.]+)\.[a-z]{2,4})$/', $external_link_host, $matches)) {
-      // Find a logo media entity with a domain name that matches.
+    // Derive a media outlet logo host and domain name (e.g. `nytimes.com`,
+    // `bloomberg.com`) from the link host. See https://regex101.com/r/XvagCu/5/
+    // to test this regex.
+    if (preg_match('/^(([^\.]+)\.)?(([^\.]+)\.[a-z]{2,4})$/', $external_link_host, $matches)) {
+      $host = $matches[0];
+      $domain = $matches[3];
+
+      // Find logo media entities with a host or domain name that matches.
       $entity_type_manager = \Drupal::service('entity_type.manager');
       $logos = $entity_type_manager->getStorage('media')->loadByProperties([
         'bundle' => 'logo',
-        'field_website_domain_name' => $matches[2],
+        'field_website_domain_name' => [$host, $domain],
         'status' => 1,
       ]);
+
+      // Sort the logos by the best match. For example, prefer
+      // `money.usnews.com` over `usnews.com`.
+      uasort($logos, function($a, $b) use ($host, $domain) {
+        $a_val = $a->field_website_domain_name->value;
+        $b_val = $b->field_website_domain_name->value;
+        $a_weight = $a_val === $host ? 0 : ($a_val === $domain ? 1 : 2);
+        $b_weight = $b_val === $host ? 0 : ($b_val === $domain ? 1 : 2);
+        return $a_weight <=> $b_weight;
+      });
 
       $logo = $logos ? reset($logos) : FALSE;
     }
