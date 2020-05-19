@@ -15,7 +15,7 @@
   margin: 0 0 var(--cu-vr1) 0;
 
   @include breakpoint(md) {
-    width: 50%;
+    max-width: 50%;
   }
 
   .field--field-media-image {
