@@ -83,11 +83,11 @@ function collection_theme_suggestions_collection(array $variables) {
 }
 
 /**
- * Implements hook_entity_delete().
+ * Implements hook_entity_predelete().
  *
  * Delete any corresponding collection items when an entity is deleted.
  */
-function collection_entity_delete(EntityInterface $entity) {
+function collection_entity_predelete(EntityInterface $entity) {
   $item_storage = \Drupal::service('entity_type.manager')->getStorage('collection_item');
   $collection_items = $item_storage->loadByProperties([
     'item__target_id' => $entity->id(),

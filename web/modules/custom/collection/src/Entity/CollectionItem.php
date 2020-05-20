@@ -121,6 +121,9 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
     foreach ($entities as $entity) {
       if ($entity->collection->entity) {
         Cache::invalidateTags($entity->collection->entity->getCacheTagsToInvalidate());
+      }
+
+      if ($entity->item->entity) {
         Cache::invalidateTags($entity->item->entity->getCacheTagsToInvalidate());
       }
     }
