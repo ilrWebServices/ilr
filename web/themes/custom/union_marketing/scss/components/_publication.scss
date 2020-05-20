@@ -110,13 +110,13 @@
 .collection--publication-issue .cu-highlight-box {
   max-width: 100%;
 
-  .publication-issues {
+  .publication-issues .cu-grid {
     gap: var(--cu-vr1);
     margin: 0 var(--cu-vr2);
 
     @include breakpoint(sm) {
       gap: var(--cu-vr1);
-      margin: 0 var(--cu-vr3);
+      margin: 0 var(--cu-vr4);
     }
   }
 

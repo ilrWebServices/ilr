@@ -38,7 +38,8 @@
 
   {% include '@union/_highlight-box.twig' with {
     content: box_content,
-    attributes: attributes.setAttribute('id', 'ilrie-past-issues')
+    attributes: attributes.setAttribute('id', 'ilrie-past-issues'),
+    content_attributes: { class: 'publication-issues' }
   } only %}
 {% endif %}
 
