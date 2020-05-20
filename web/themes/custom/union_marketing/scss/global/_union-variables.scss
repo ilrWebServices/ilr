@@ -29,6 +29,10 @@
 .collection-listing.cu-grid {
   --cu-grid-row-gap: var(--cu-vr3);
   --cu-grid-column-gap: inherit; // var(--cu-ps2)
+
+  &.collection-listing--grid-compact {
+    --cu-component-margin-top: var(--cu-vr2);
+  }
 }
 
 @include breakpoint(md) {

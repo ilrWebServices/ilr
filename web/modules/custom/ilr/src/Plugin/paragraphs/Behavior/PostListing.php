@@ -204,7 +204,7 @@ class PostListing extends ParagraphsBehaviorBase {
    *   An array of class names for the listing wrapper.
    */
   protected function getClassesForListStyle($list_style) {
-    $classes = [];
+    $classes = ['collection-listing--' . $list_style];
 
     if (strpos($list_style, 'grid') === 0) {
       $classes[] = 'cu-grid';
