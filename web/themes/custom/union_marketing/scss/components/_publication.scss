@@ -106,3 +106,26 @@
 .collection-listing .node--view-mode-banner .cu-banner__media::before {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 35%, rgba(0, 0, 0, 0.3) 45%, rgba(0, 0, 0, 0) 55%);
 }
+
+.collection--publication-issue .cu-highlight-box {
+  max-width: 100%;
+
+  .publication-issues {
+    gap: var(--cu-vr1);
+    margin: 0 var(--cu-vr2);
+
+    @include breakpoint(sm) {
+      gap: var(--cu-vr1);
+      margin: 0 var(--cu-vr3);
+    }
+  }
+
+  .cu-section-heading {
+    margin-top: var(--cu-vr2);
+  }
+
+  .publication-issue__name {
+    text-align: center;
+    margin-top: var(--cu-vr0);
+  }
+}

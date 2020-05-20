@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Installation and uninstallation functions.
+ */
+
+/**
+ * Remove the collection publication base field.
+ */
+function collection_publications_update_8001() {
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+  $definition = $update_manager->getFieldStorageDefinition('publication', 'collection');
+  $update_manager->uninstallFieldStorageDefinition($definition);
+}

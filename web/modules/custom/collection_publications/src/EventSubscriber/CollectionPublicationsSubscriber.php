@@ -15,6 +15,7 @@ use Drupal\Core\Config\ConfigEvents;
 use Drupal\Core\Config\DatabaseStorage;
 use Drupal\Core\Config\StorageTransformEvent;
 use Drupal\Core\Url;
+use Drupal\Core\Link;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -82,7 +83,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
       CollectionEvents::COLLECTION_ENTITY_UPDATE => 'collectionUpdate',
       CollectionEvents::COLLECTION_ITEM_FORM_CREATE => 'collectionItemFormCreate',
       ConfigEvents::STORAGE_TRANSFORM_IMPORT => 'onImportTransform',
-      KernelEvents::REQUEST => 'redirectPublications',
+      KernelEvents::REQUEST => 'handleRedirects',
     ];
   }
 
@@ -218,15 +219,27 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Redirect publication term canonical routes to the current issue, if set.
+   * Handle redirects for various publication and issue paths.
+   *
+   * - Publication term canonical routes
    */
-  public function redirectPublications(GetResponseEvent $event) {
+  public function handleRedirects(GetResponseEvent $event) {
     $request = $event->getRequest();
 
-    if ($request->attributes->get('_route') !== 'entity.taxonomy_term.canonical') {
-      return;
+    if ($request->attributes->get('_route') === 'entity.taxonomy_term.canonical') {
+      $this->redirectTerm($event);
     }
 
+    if ($request->attributes->get('_route') === 'entity.collection.canonical') {
+      $this->redirectCollection($event);
+    }
+  }
+
+  /**
+   * Redirect publication term canonical routes to the current issue, if set.
+   */
+  protected function redirectTerm(GetResponseEvent $event) {
+    $request = $event->getRequest();
     $term = $request->attributes->get('taxonomy_term');
 
     if ($term->bundle() !== 'publication' || $term->field_current_issue->isEmpty()) {
@@ -240,6 +253,41 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
     }
     else {
       $response = new RedirectResponse($term->field_current_issue->entity->toUrl()->toString(), 307);
+      $event->setResponse($response);
+    }
+  }
+
+  /**
+   * Redirect publication_issue collection canonical routes to their PDF.
+   */
+  protected function redirectCollection(GetResponseEvent $event) {
+    $request = $event->getRequest();
+    $collection = $request->attributes->get('collection');
+
+    if ($collection->bundle() !== 'publication_issue' || $collection->field_download->isEmpty()) {
+      return;
+    }
+
+    // Check for stories in this issue. If there are any, don't redirect to the
+    // PDF.
+    $story_items = array_filter($collection->getItems(), function($v) {
+      return $v->item->entity->bundle() === 'story';
+    });
+
+    if (count($story_items) > 0) {
+      return;
+    }
+
+    $url = Url::fromUri($collection->field_download->entity->field_media_file->entity->url());
+    $link = Link::fromTextAndUrl($collection->label(), $url);
+
+    if ($this->currentUser->hasPermission('administer collections')) {
+      $this->messenger->addWarning($this->t('This issue has no stories, so it redirects to the %link file for non-administrators.', [
+        '%link' => $link->toString()
+      ]));
+    }
+    else {
+      $response = new RedirectResponse($url->toString(), 307);
       $event->setResponse($response);
     }
   }

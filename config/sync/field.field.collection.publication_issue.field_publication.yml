@@ -1,0 +1,29 @@
+uuid: 2681b9c1-a4cb-462f-831b-dbf4bccaff8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.publication_issue
+    - field.storage.collection.field_publication
+    - taxonomy.vocabulary.publication
+id: collection.publication_issue.field_publication
+field_name: field_publication
+entity_type: collection
+bundle: publication_issue
+label: Publication
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      publication: publication
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

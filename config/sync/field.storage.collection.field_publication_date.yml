@@ -1,0 +1,20 @@
+uuid: 30a9d54e-c79f-410a-af35-265d9c7a53a4
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - datetime
+id: collection.field_publication_date
+field_name: field_publication_date
+entity_type: collection
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

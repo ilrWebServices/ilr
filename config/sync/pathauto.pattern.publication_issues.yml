@@ -8,7 +8,7 @@ dependencies:
 id: publication_issues
 label: 'Publication issues'
 type: 'canonical_entities:collection'
-pattern: '[collection:publication:entity:url:relative]/[collection:name]'
+pattern: '[collection:field_publication:entity:url:relative]/[collection:name]'
 selection_criteria:
   e8b7c245-220b-44c1-b456-2979e99d4761:
     id: 'entity_bundle:collection'

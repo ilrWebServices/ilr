@@ -7,9 +7,12 @@ dependencies:
     - field.field.collection.publication_issue.body
     - field.field.collection.publication_issue.field_download
     - field.field.collection.publication_issue.field_featured_story
+    - field.field.collection.publication_issue.field_publication
+    - field.field.collection.publication_issue.field_publication_date
     - field.field.collection.publication_issue.field_representative_image
     - field.field.collection.publication_issue.field_sections
   module:
+    - datetime
     - entity_browser_entity_form
     - inline_entity_form
     - media_library
@@ -59,6 +62,22 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_publication:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_publication_date:
+    weight: 104
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_representative_image:
     weight: 101
