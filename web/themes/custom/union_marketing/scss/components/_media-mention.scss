@@ -26,6 +26,11 @@
   width: auto;
 }
 
+.cu-list--grid-compact .node--media-mention .cu-heading {
+  --cu-current-heading-size: var(--cu-text-med);
+  --cu-heading-font-weight: 400;
+}
+
 .media-mention--mini {
   margin-bottom: var(--cu-vr1);
 }
