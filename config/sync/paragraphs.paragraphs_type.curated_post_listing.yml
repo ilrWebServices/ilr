@@ -1,10 +1,20 @@
 uuid: aeb028b9-294c-459c-87a7-b5b9d0e4053d
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
 id: curated_post_listing
 label: 'Curated post listing'
 icon_uuid: null
 icon_default: null
 description: ''
-behavior_plugins: {  }
+behavior_plugins:
+  list_styles:
+    enabled: true
+    list_styles:
+      grid: grid
+      grid-compact: grid-compact
+      grid-featured: grid-featured
+      list-compact: 0
+      banner: 0

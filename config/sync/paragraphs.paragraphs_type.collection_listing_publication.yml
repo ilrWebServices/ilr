@@ -14,3 +14,11 @@ behavior_plugins:
   collection_listing: {  }
   story_listing:
     enabled: true
+  list_styles:
+    enabled: true
+    list_styles:
+      grid: grid
+      banner: banner
+      grid-compact: 0
+      list-compact: 0
+      grid-featured: 0

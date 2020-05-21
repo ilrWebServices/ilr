@@ -1,0 +1,8 @@
+.cu-grid--featured {
+  grid-template-columns: repeat(4, 1fr);
+
+  .cu-card--featured {
+    grid-column: 1/3;
+    grid-row: 1/3;
+  }
+}
