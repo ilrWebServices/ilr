@@ -218,16 +218,11 @@ class ListStyle extends ParagraphsBehaviorBase {
     if ($list_style = $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style')) {
       $classes[] = 'cu-list--' . $list_style;
 
-      if (strpos($list_style, 'grid') === 0) {
-        $classes[] = 'cu-grid';
-      }
-
-      if ($list_style === 'grid') {
-        $classes[] = 'cu-grid--3col';
-      }
-
       if ($list_style === 'grid-featured') {
-        $classes[] = 'cu-grid--featured';
+        $classes[] = 'cu-grid cu-grid--featured';
+      }
+      elseif (strpos($list_style, 'grid') === 0) {
+        $classes[] = 'cu-grid cu-grid--3col';
       }
     }
 
