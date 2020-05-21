@@ -123,26 +123,31 @@ class ListStyle extends ParagraphsBehaviorBase {
 
   /**
    * {@inheritdoc}
+   *
+   * Update the view mode on entity reference fields on this paragraph
+   * depending on the list style.
    */
   public function view(array &$build, Paragraph $paragraphs_entity, EntityViewDisplayInterface $display, $view_mode) {
     if (!$list_style = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'list_style')) {
       return;
     }
 
-    foreach ($build as $key => $render_element) {
-      if (is_array($render_element) && isset($render_element['#theme']) && $render_element['#theme'] === 'field' && isset($render_element['#formatter']) && $render_element['#formatter'] === 'entity_reference_entity_view') {
-        foreach ($build[$key]['#items'] as $item_key => $item) {
-          $view_mode = $this->getViewModeForListStyle($list_style, $item_key + 1);
+    // Only update entity reference fields that are configured to display a
+    // rendered entity.
+    $build_fields = array_keys(array_filter($build, function($v) {
+      return is_array($v) && isset($v['#theme']) && $v['#theme'] === 'field' && isset($v['#formatter']) && $v['#formatter'] === 'entity_reference_entity_view';
+    }));
 
-          if (isset($build[$key][$item_key]['#view_mode'])) {
-            $build[$key][$item_key]['#view_mode'] = $view_mode;
+    foreach ($build_fields as $field) {
+      $element = &$build[$field];
 
-            // Merge the paragraph cache tags with the entity cache tags. This
-            // will invalidate the entities when the paragraph list style is
-            // modified.
-            $build[$key][$item_key]['#cache']['tags'] = array_merge($build[$key][$item_key]['#cache']['tags'], $build['#cache']['tags']);
-          }
-        }
+      foreach (array_keys(iterator_to_array($element['#items'])) as $key) {
+        $element[$key]['#view_mode'] = $this->getViewModeForListStyle($list_style, $key + 1);
+
+        // Merge the paragraph cache tags with the entity cache tags. This
+        // will invalidate the entities when the paragraph list style is
+        // modified.
+        $element[$key]['#cache']['tags'] = array_merge($element[$key]['#cache']['tags'], $build['#cache']['tags']);
       }
     }
   }
