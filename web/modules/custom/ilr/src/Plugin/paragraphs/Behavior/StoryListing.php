@@ -52,8 +52,8 @@ class StoryListing extends ParagraphsBehaviorBase {
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
     $form['count'] = [
       '#type' => 'number',
-      '#title' => $this->t('Number of storys'),
-      '#description' => $this->t('Leave blank for all storys.'),
+      '#title' => $this->t('Number of Stories'),
+      '#description' => $this->t('Leave blank for all Stories.'),
       '#min' => 1,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'count'),
     ];
