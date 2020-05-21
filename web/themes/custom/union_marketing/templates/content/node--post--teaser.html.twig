@@ -73,8 +73,8 @@
 {% set rendered_content %}
   <h3 class="cu-heading">{{ label }}</h3>
   {{ title_suffix }}
-  {{ content.field_published_date }}
   {{ content.body }}
+  {{ content.field_published_date }}
 {% endset %}
 
 {% include '@union/_card.twig' with {

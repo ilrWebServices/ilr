@@ -28,7 +28,7 @@
 
 .collection-listing.cu-grid {
   --cu-grid-row-gap: var(--cu-vr3);
-  --cu-grid-column-gap: inherit; // var(--cu-ps2)
+  --cu-grid-column-gap: var(--cu-ps1);
 
   &.collection-listing--grid-compact {
     --cu-component-margin-top: var(--cu-vr2);
@@ -40,5 +40,9 @@
     --cu-grid-row-gap: var(--cu-ps2);
     --cu-grid-column-gap: var(--cu-ps2);
   }
+}
+
+.node--view-mode-teaser.cu-card .cu-heading {
+  --cu-current-heading-size: var(--cu-ms2);
 }
 
