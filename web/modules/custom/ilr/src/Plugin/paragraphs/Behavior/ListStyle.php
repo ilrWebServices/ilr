@@ -136,6 +136,11 @@ class ListStyle extends ParagraphsBehaviorBase {
 
           if (isset($build[$key][$item_key]['#view_mode'])) {
             $build[$key][$item_key]['#view_mode'] = $view_mode;
+
+            // Merge the paragraph cache tags with the entity cache tags. This
+            // will invalidate the entities when the paragraph list style is
+            // modified.
+            $build[$key][$item_key]['#cache']['tags'] = array_merge($build[$key][$item_key]['#cache']['tags'], $build['#cache']['tags']);
           }
         }
       }
