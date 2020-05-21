@@ -321,3 +321,30 @@ function ilr_post_update_update_ilrie_logo(&$sandbox) {
   $ilrie_term->field_subtitle->value = 'Alumni Magazine';
   $ilrie_term->save();
 }
+
+/**
+ * Update all existing post listings to use the 'grid' list_style setting.
+ */
+function ilr_post_update_update_list_styles(&$sandbox) {
+  $query = \Drupal::entityQuery('paragraph');
+  $query->condition('type', ['simple_collection_listing', 'curated_post_listing', 'collection_listing_publication'], 'IN');
+  $relevant_paragraph_ids = $query->execute();
+  $paragraphs = \Drupal\paragraphs\Entity\Paragraph::loadMultiple($relevant_paragraph_ids);
+
+  foreach ($paragraphs as $paragraph) {
+    $settings = $paragraph->getAllBehaviorSettings();
+
+    if (isset($settings['post_listing']['list_style'])) {
+      $settings['list_styles']['list_style'] = $settings['post_listing']['list_style'];
+      unset($settings['post_listing']['list_style']);
+    }
+
+    if (isset($settings['story_listing']['list_style'])) {
+      $settings['list_styles']['list_style'] = $settings['story_listing']['list_style'];
+      unset($settings['story_listing']['list_style']);
+    }
+
+    $paragraph->setAllBehaviorSettings($settings);
+    $paragraph->save();
+  }
+}

@@ -58,15 +58,6 @@ class StoryListing extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'count'),
     ];
 
-    $form['list_style'] = [
-      '#type' => 'select',
-      '#title' => $this->t('List style'),
-      '#description' => $this->t('Grid and Feature Grid will only display storys that have images.'),
-      '#options' => $this->list_styles,
-      '#required' => TRUE,
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style'),
-    ];
-
     return $form;
   }
 
@@ -99,7 +90,7 @@ class StoryListing extends ParagraphsBehaviorBase {
     // ilr_query_alter().
     $query->addTag($dedupe_group);
 
-    $list_style = $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style');
+    $list_style = $paragraph->getBehaviorSetting('list_styles', 'list_style');
 
     if ($limit = $paragraph->getBehaviorSetting($this->getPluginId(), 'count')) {
       $query->range(0, $limit);
@@ -112,16 +103,12 @@ class StoryListing extends ParagraphsBehaviorBase {
 
     foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
       $story_count++;
-      $stories[] = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($list_style, $story_count));
+      $stories[] = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($paragraph, $list_style, $story_count));
     }
 
-    $variables['content']['field_collection'] = [
-      '#theme' => 'item_list__collection_listing',
-      '#items' => $stories,
-      '#attributes' => ['class' => array_merge(['collection-listing'], $this->getClassesForListStyle($list_style))],
-      '#collection_listing' => TRUE,
-      '#empty' => $this->t('Content coming soon.'),
-      '#context' => ['paragraph' => $variables['paragraph']],
+    $variables['content']['field_collection']['#printed'] = TRUE;
+    $variables['content']['story_listing'] = [
+      'items' => $stories,
       '#cache' => [
         'tags' => $cache_tags,
       ],
@@ -136,43 +123,25 @@ class StoryListing extends ParagraphsBehaviorBase {
   /**
    * Get a node view mode for a given list style.
    *
+   * @param $paragraph Paragraph
+   *
    * @param $list_style string
    *   One of the list style machine names from this::list_styles.
    *
-   * @param $story_number int
-   *   The order placement of the story in the listing.
+   * @param $post_number int
+   *   The order placement of the post in the listing.
    *
    * @return string
    *   A node view mode.
    */
-  protected function getViewModeForListStyle($list_style, $story_number) {
-    switch ($list_style) {
-      case 'banner':
-        return 'banner';
+  protected function getViewModeForListStyle(Paragraph $paragraph, $list_style, $post_number) {
+    $view_mode = 'teaser';
 
-      default:
-        return 'teaser';
-    }
-  }
-
-  /**
-   * Get CSS classes for a given list style.
-   *
-   * @param $list_style string
-   *   One of the list style machine names from this::list_styles.
-   *
-   * @return array
-   *   An array of class names for the listing wrapper.
-   */
-  protected function getClassesForListStyle($list_style) {
-    $classes = [];
-
-    if (strpos($list_style, 'grid') === 0) {
-      $classes[] = 'cu-grid';
-      $classes[] = 'cu-grid--3col';
+    if ($list_styles_plugin = $paragraph->type->entity->getBehaviorPlugin('list_styles')) {
+      $view_mode = $list_styles_plugin->getViewModeForListStyle($list_style, $post_number);
     }
 
-    return $classes;
+    return $view_mode;
   }
 
   /**
@@ -183,21 +152,9 @@ class StoryListing extends ParagraphsBehaviorBase {
     $category_labels = [];
     $tags_labels = [];
 
-    if ($paragraph->getBehaviorSetting($this->getPluginId(), 'list_style')) {
-      $style = $this->list_styles[$paragraph->getBehaviorSetting($this->getPluginId(), 'list_style')];
-    }
-    else {
-      $style = '';
-    }
-
     $summary[] = [
       'label' => 'Show',
       'value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'count') ?? 'All',
-    ];
-
-    $summary[] = [
-      'label' => 'Style',
-      'value' => $style,
     ];
 
     return $summary;
