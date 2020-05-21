@@ -172,7 +172,11 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
  * Implements hook_ENTITY_TYPE_view().
  */
 function collection_blogs_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
-  if ($display->getComponent('blog_collection') && $view_mode === 'full') {
+  if ($view_mode !== 'full') {
+    return;
+  }
+
+  if ($display->getComponent('blog_collection')) {
     $entity_type_manager = \Drupal::service('entity_type.manager');
     $collection_item_storage = $entity_type_manager->getStorage('collection_item');
 

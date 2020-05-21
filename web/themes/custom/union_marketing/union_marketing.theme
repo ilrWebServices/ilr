@@ -137,7 +137,7 @@ function union_marketing_preprocess_paragraph__deck(&$variables) {
  * nodes).
  */
 function union_marketing_preprocess_paragraph__curated_post_listing(&$variables) {
-  if ($variables['paragraph']->getParentEntity()->bundle() !== 'section') {
+  if (!$variables['paragraph']->getParentEntity() || $variables['paragraph']->getParentEntity()->bundle() !== 'section') {
     return;
   }
 
