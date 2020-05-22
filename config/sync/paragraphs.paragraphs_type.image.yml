@@ -1,9 +1,14 @@
 uuid: 3d5073cd-07e5-44bc-8a5d-7f00f1fea915
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ilr_effects
 id: image
 label: Image
 icon_uuid: null
+icon_default: null
 description: ''
-behavior_plugins: {  }
+behavior_plugins:
+  ilr_effects_image:
+    enabled: true
