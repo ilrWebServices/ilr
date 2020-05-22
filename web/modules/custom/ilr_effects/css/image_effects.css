@@ -1,0 +1,13 @@
+/* Zoom-out effect */
+.ilr-effect-image.zoom-out .cu-image {
+  transform: scale(1.1, 1.1);
+  transition: transform 1.5s ease-in-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: scale(1, 1);
+  }
+}
+
+.ilr-effect-image.zoom-out.js--in-frame .cu-image {
+  transform: scale(1, 1);
+}
