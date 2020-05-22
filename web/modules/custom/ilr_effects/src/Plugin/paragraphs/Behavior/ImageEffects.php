@@ -6,7 +6,7 @@ use Drupal\paragraphs\ParagraphsBehaviorBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\Entity\Paragraph;
-
+use Drupal\image\Entity\ImageStyle;
 use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
@@ -52,6 +52,9 @@ class ImageEffects extends ParagraphsBehaviorBase {
     if ($effect = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'image_effect')) {
       $variables['attributes']['class'][] = 'ilr-effect-image';
       $variables['attributes']['class'][] = $effect;
+      $image_style = $variables['elements']['field_media'][0]['#image_style'];
+      $image_style_url = ImageStyle::load($image_style)->buildUrl($variables['paragraph']->field_media->entity->field_media_image->entity->getFileUri());
+      $variables['attributes']['style'] = '--ilr-effects-img: url(' . $image_style_url . ')';
     }
   }
 
