@@ -19,6 +19,9 @@
       let cover = document.createElement('div');
       cover.setAttribute('class', 'js-image-cover');
       target.insertAdjacentElement('afterend', cover);
+
+      // Add a class so we can better target opacity in css.
+      target.classList.add('js-image-effect');
     });
   });
 
