@@ -21,6 +21,10 @@
   opacity: 0;
 }
 
+.ilr-effect-image.curtain-reveal.js--in-frame {
+  z-index: -1; /* Fix for Safari bug */
+}
+
 .ilr-effect-image.curtain-reveal.js--in-frame::before {
   content: '';
   display: block;
@@ -48,6 +52,7 @@
 
 .ilr-effect-image.curtain-reveal.js--in-frame .media__caption {
   position: relative;
+  z-index: 2;
 }
 
 .ilr-effect-image.curtain-reveal.js--in-frame .media__caption::before
