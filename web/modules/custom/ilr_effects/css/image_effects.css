@@ -71,6 +71,17 @@
   z-index: -1;
 }
 
+.js-image-cover {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  margin: -1rem -50vw 0;
+  background: white;
+  z-index: -1;
+}
+
 /* tmp */
 .paragraph--type--rich-text {
   background: white;

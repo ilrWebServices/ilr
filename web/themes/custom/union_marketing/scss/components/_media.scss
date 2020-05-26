@@ -123,3 +123,12 @@
     }
   }
 }
+
+// Override for the image effects
+.cu-section .js-image-cover {
+  margin-top: calc(var(--cu-vr2) * -1);
+
+  @include breakpoint(md) {
+    margin-top: calc(var(--cu-vr3) * -1);
+  }
+}

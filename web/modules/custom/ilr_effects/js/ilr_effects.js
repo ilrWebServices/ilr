@@ -15,6 +15,11 @@
   document.addEventListener('DOMContentLoaded', (event) => {
     let targets = document.querySelectorAll('.ilr-effect-image');
     targets.forEach(observer.observe.bind(observer));
+    targets.forEach(function (target) {
+      let cover = document.createElement('div');
+      cover.setAttribute('class', 'js-image-cover');
+      target.insertAdjacentElement('afterend', cover);
+    });
   });
 
 })(window, document);
