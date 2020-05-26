@@ -24,7 +24,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'administer nodes'
+          perm: 'administer persons'
       cache:
         type: tag
         options: {  }

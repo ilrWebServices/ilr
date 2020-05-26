@@ -28,7 +28,7 @@ use Drupal\field\Entity\FieldConfig;
  *     },
  *   },
  *   config_prefix = "persona_type",
- *   admin_permission = "administer site configuration",
+ *   admin_permission = "administer persons",
  *   bundle_of = "persona",
  *   entity_keys = {
  *     "id" = "id",

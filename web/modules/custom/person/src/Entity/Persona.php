@@ -43,7 +43,7 @@ use Drupal\Core\Access\AccessResult;
  *       "default" = "Drupal\person\Routing\PersonaRouteProvider",
  *     },
  *   },
- *   admin_permission = "administer content",
+ *   admin_permission = "administer persons",
  *   entity_keys = {
  *     "id" = "pid",
  *     "revision" = "vid",

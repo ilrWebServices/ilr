@@ -40,7 +40,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
  *     },
  *   },
- *   admin_permission = "administer content",
+ *   admin_permission = "administer persons",
  *   entity_keys = {
  *     "id" = "pid",
  *     "revision" = "vid",
