@@ -1,7 +1,6 @@
 // The ILR Effects main script.
 (function (window, document) {
-
-  let observer = new IntersectionObserver((entries, observer) => {
+  let onScreenObserver = new IntersectionObserver((entries, onScreenObserver) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('js--in-frame');
@@ -13,15 +12,19 @@
   });
 
   document.addEventListener('DOMContentLoaded', (event) => {
-    let targets = document.querySelectorAll('.ilr-effect-image');
-    targets.forEach(observer.observe.bind(observer));
-    targets.forEach(function (target) {
-      let cover = document.createElement('div');
-      cover.setAttribute('class', 'js-image-cover');
-      target.insertAdjacentElement('afterend', cover);
+    let imageTargets = document.querySelectorAll('.ilr-effect-image');
+    imageTargets.forEach(function(imageTarget) {
+      onScreenObserver.observe(imageTarget);
 
       // Add a class so we can better target opacity in css.
-      target.classList.add('js-image-effect');
+      imageTarget.classList.add('js-observed');
+
+      if (imageTarget.classList.contains('curtain-reveal')) {
+        let cover = document.createElement('div');
+        cover.setAttribute('class', 'js-image-cover');
+        imageTarget.insertAdjacentElement('afterend', cover);
+      }
+    });
     });
   });
 
