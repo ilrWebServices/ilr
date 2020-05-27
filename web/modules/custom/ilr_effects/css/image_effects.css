@@ -21,6 +21,13 @@
   opacity: 0;
 }
 
+/* Ensure the height is the entire viewport on smaller screens */
+@media only screen and (max-width: 64rem) {
+  .ilr-effect-image.curtain-reveal.js-observed .cu-image {
+    min-height: 100vh;
+  }
+}
+
 .ilr-effect-image.curtain-reveal.js-observed {
   z-index: -1; /* Fix for Safari bug */
 }
