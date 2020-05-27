@@ -12,18 +12,11 @@
   });
 
   document.addEventListener('DOMContentLoaded', (event) => {
-    let imageTargets = document.querySelectorAll('.ilr-effect-image');
+    let imageTargets = document.querySelectorAll('.ilr-effect-image.zoom-out');
     imageTargets.forEach(function(imageTarget) {
       onScreenObserver.observe(imageTarget);
-
       // Add a class so we can better target opacity in css.
       imageTarget.classList.add('js-observed');
-
-      if (imageTarget.classList.contains('curtain-reveal')) {
-        let cover = document.createElement('div');
-        cover.setAttribute('class', 'js-image-cover');
-        imageTarget.append(cover);
-      }
     });
 
     let shoutTargets = document.querySelectorAll('.shout');
