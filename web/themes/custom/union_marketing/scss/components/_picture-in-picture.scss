@@ -39,6 +39,10 @@
       padding: var(--cu-vr2) var(--cu-ps1);
       max-width: 40%;
     }
+
+    figure.cu-media {
+      margin: var(--cu-vr1) 0;
+    }
   }
 
   &.pip--content-right .pip__content {
@@ -47,7 +51,7 @@
 
   .paragraph--type--video {
     padding: 0;
-    margin-bottom: var(--cu-vr2);
+    margin: 0 0 var(--cu-vr2);
   }
 
   > .cu-image {
