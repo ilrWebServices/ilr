@@ -1,0 +1,15 @@
+.shout.js-observed {
+  opacity: 0;
+  transform: translateX(10%);
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.shout.js--in-frame {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 1s, transform .6s ease-out;
+}
