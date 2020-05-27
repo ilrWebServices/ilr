@@ -25,6 +25,12 @@
         imageTarget.insertAdjacentElement('afterend', cover);
       }
     });
+
+    let shoutTargets = document.querySelectorAll('.shout');
+    shoutTargets.forEach(function(shoutTarget) {
+      onScreenObserver.observe(shoutTarget);
+      // Add a class for progressive enhancement
+      shoutTarget.classList.add('js-observed');
     });
   });
 
