@@ -6,6 +6,18 @@
   max-width: var(--cu-max-width-section, #{$max-width-section});
 }
 
+.paragraph--type--image .media__caption {
+  padding-left: var(--cu-ps1);
+
+  @include breakpoint(sm) {
+    padding-left: var(--cu-ps2);
+  }
+
+  @include breakpoint(md) {
+    padding-left: 0;
+  }
+}
+
 .field--field-representative-img-caption {
   text-align: right;
 }
