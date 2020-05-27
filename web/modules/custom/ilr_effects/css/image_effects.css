@@ -21,43 +21,51 @@
   opacity: 0;
 }
 
-.ilr-effect-image.curtain-reveal.js--in-frame {
+.ilr-effect-image.curtain-reveal.js-observed {
   z-index: -1; /* Fix for Safari bug */
 }
 
-.ilr-effect-image.curtain-reveal.js--in-frame::before {
+.ilr-effect-image.curtain-reveal.js-observed::before {
   content: '';
   display: block;
   width: 100vw;
   height: 100vh;
-  background-image: var(--ilr-effects-img);
-  background-size: cover;
-  background-position: center;
   position: fixed;
   top: 0;
   z-index: -1;
+  background-image: none;
+  background-size: cover;
+  background-position: center;
 }
 
-.ilr-effect-image.curtain-reveal.js--in-frame::after {
+.ilr-effect-image.curtain-reveal.js--in-frame::before {
+  background-image: var(--ilr-effects-img);
+}
+
+/* Covers */
+.ilr-effect-image.curtain-reveal.js-observed::after,
+.js-image-cover {
   content: '';
   display: block;
   width: 100vw;
   height: 100vh;
   position: absolute;
-  top: 0;
-  margin-top: -100vh;
   background: white;
   z-index: 1;
 }
 
-.ilr-effect-image.curtain-reveal.js--in-frame .media__caption {
+.ilr-effect-image.curtain-reveal.js-observed::after {
+  top: -100vh;
+}
+
+.ilr-effect-image.curtain-reveal.js-observed .media__caption {
   position: relative;
   z-index: 2;
 }
 
-.ilr-effect-image.curtain-reveal.js--in-frame .media__caption::before
+.ilr-effect-image.curtain-reveal.js-observed .media__caption::before
   {
-  content: ' ';
+  content: '';
   display: block;
   width: 100vw;
   height: 120vh;
@@ -71,18 +79,8 @@
   z-index: -1;
 }
 
-.js-image-cover {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  left: 50%;
-  right: 50%;
-  margin: -1rem -50vw 0;
-  background: white;
-  z-index: -1;
-}
-
 /* tmp */
 .paragraph--type--rich-text {
   background: white;
+  position: relative;
 }

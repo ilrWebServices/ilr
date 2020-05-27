@@ -22,7 +22,7 @@
       if (imageTarget.classList.contains('curtain-reveal')) {
         let cover = document.createElement('div');
         cover.setAttribute('class', 'js-image-cover');
-        imageTarget.insertAdjacentElement('afterend', cover);
+        imageTarget.append(cover);
       }
     });
 
