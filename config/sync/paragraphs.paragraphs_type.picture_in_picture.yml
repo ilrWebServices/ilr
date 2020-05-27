@@ -1,0 +1,14 @@
+uuid: 3570a3b6-ee78-4e09-b800-cae9c51aa990
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: picture_in_picture
+label: 'Picture in picture'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  ilr_pip:
+    enabled: true

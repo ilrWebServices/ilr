@@ -11,6 +11,7 @@ dependencies:
     - paragraphs.paragraphs_type.form
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.media_deck
+    - paragraphs.paragraphs_type.picture_in_picture
     - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.section
@@ -35,9 +36,9 @@ settings:
     negate: 0
     target_bundles:
       rich_text: rich_text
+      image: image
       deck: deck
       media_deck: media_deck
-      image: image
       video: video
       form: form
       testimonial: testimonial
@@ -46,19 +47,20 @@ settings:
       collection_listing_publication: collection_listing_publication
       curated_post_listing: curated_post_listing
       collection_listing: collection_listing
+      picture_in_picture: picture_in_picture
     target_bundles_drag_drop:
       rich_text:
         enabled: true
         weight: -25
+      image:
+        enabled: true
+        weight: -24
       deck:
         enabled: true
         weight: -23
       media_deck:
         enabled: true
         weight: -23
-      image:
-        enabled: true
-        weight: -24
       video:
         enabled: true
         weight: -22
@@ -89,4 +91,7 @@ settings:
       section:
         weight: -14
         enabled: false
+      picture_in_picture:
+        enabled: true
+        weight: 16
 field_type: entity_reference_revisions

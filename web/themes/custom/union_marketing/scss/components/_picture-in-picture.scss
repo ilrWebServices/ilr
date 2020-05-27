@@ -1,0 +1,56 @@
+.paragraph--type--picture-in-picture {
+  @include full-width(true);
+
+  clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0);
+  margin-top: var(--cu-component-margin-top, var(--cu-vr2));
+  margin-bottom: var(--cu-component-margin-top, var(--cu-vr2));
+  padding-bottom: var(--cu-vr7);
+
+  @include breakpoint(md) {
+    margin-top: var(--cu-component-margin-top, var(--cu-vr3));
+    margin-bottom: var(--cu-component-margin-top, var(--cu-vr3));
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: -1;
+    background-image: var(--pip-background);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .pip__content {
+    background: white;
+    margin: 0 var(--cu-ps0);
+    padding: var(--cu-vr1) var(--cu-ps0);
+    max-width: 70%;
+
+    @include breakpoint(sm) {
+      max-width: 50%;
+    }
+
+    @include breakpoint(md) {
+      margin: 0 var(--cu-ps1);
+      padding: var(--cu-vr2) var(--cu-ps1);
+      max-width: 40%;
+    }
+  }
+
+  &.pip--content-right .pip__content {
+    margin-left: auto;
+  }
+
+  .paragraph--type--video {
+    padding: 0;
+    margin-bottom: var(--cu-vr2);
+  }
+
+  > .cu-image {
+    opacity: 0;
+  }
+}
