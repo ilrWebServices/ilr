@@ -1,0 +1,75 @@
+uuid: 5fdd8e91-3bbb-4daf-a429-e37d8986b5d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_components
+    - paragraphs.paragraphs_type.picture_in_picture
+    - paragraphs.paragraphs_type.rich_text
+    - paragraphs.paragraphs_type.video
+  module:
+    - entity_reference_revisions
+id: paragraph.picture_in_picture.field_components
+field_name: field_components
+entity_type: paragraph
+bundle: picture_in_picture
+label: 'Pip content'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      rich_text: rich_text
+      video: video
+    target_bundles_drag_drop:
+      picture_in_picture:
+        weight: 16
+        enabled: false
+      collection_listing:
+        weight: 17
+        enabled: false
+      collection_listing_publication:
+        weight: 18
+        enabled: false
+      curated_post_listing:
+        weight: 19
+        enabled: false
+      deck:
+        weight: 20
+        enabled: false
+      form:
+        weight: 21
+        enabled: false
+      image:
+        weight: 22
+        enabled: false
+      media_deck:
+        weight: 23
+        enabled: false
+      person:
+        weight: 24
+        enabled: false
+      promo:
+        weight: 25
+        enabled: false
+      rich_text:
+        enabled: true
+        weight: 26
+      section:
+        weight: 27
+        enabled: false
+      simple_collection_listing:
+        weight: 28
+        enabled: false
+      testimonial:
+        weight: 29
+        enabled: false
+      video:
+        enabled: true
+        weight: 30
+field_type: entity_reference_revisions
