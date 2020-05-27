@@ -48,6 +48,26 @@ class CollectionItemRouteProvider extends AdminHtmlRouteProvider {
   /**
    * {@inheritdoc}
    */
+  protected function getCanonicalRoute(EntityTypeInterface $entity_type) {
+    if ($route = parent::getCanonicalRoute($entity_type)) {
+      // Include the collection parameter in the collection item canonical
+      // route.
+      $route->setOption('parameters', [
+        'collection' => [
+          'type' => 'entity:collection',
+        ],
+        'collection_item' => [
+          'type' => 'entity:collection_item',
+        ],
+      ]);
+
+      return $route;
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   protected function getEditFormRoute(EntityTypeInterface $entity_type) {
     $route = parent::getEditFormRoute($entity_type);
     $route->setOption('parameters', [
