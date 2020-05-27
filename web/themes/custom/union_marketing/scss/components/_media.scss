@@ -135,3 +135,7 @@
     }
   }
 }
+
+.ilr-effect-image.curtain-reveal::before {
+  background-position: var(--image-focal-point);
+}
