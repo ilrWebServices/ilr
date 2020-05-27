@@ -98,3 +98,14 @@ function collection_entity_predelete(EntityInterface $entity) {
     $collection_item->delete();
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function collection_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form_object = $form_state->getFormObject();
+
+  if ($form_object instanceof Drupal\Core\Entity\ContentEntityForm) {
+    \Drupal::service('collection.content_entity_form.alter')->embedCollectionItems($form, $form_state, $form_object->getEntity());
+  }
+}
