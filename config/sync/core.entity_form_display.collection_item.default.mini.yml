@@ -1,0 +1,25 @@
+uuid: b37a3a8b-e7bd-4a38-88da-4b3c4bfc0f2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.default
+    - core.entity_form_mode.collection_item.mini
+id: collection_item.default.mini
+targetEntityType: collection_item
+bundle: default
+mode: mini
+content:
+  weight:
+    type: number
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  attributes: true
+  collection: true
+  item: true
+  name: true
+  user_id: true

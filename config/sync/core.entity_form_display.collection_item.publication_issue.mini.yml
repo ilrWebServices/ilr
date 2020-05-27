@@ -1,0 +1,25 @@
+uuid: d49ffa6e-ac19-4794-921e-69e85f7509e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.publication_issue
+    - core.entity_form_mode.collection_item.mini
+id: collection_item.publication_issue.mini
+targetEntityType: collection_item
+bundle: publication_issue
+mode: mini
+content:
+  weight:
+    type: number
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  attributes: true
+  collection: true
+  item: true
+  name: true
+  user_id: true
