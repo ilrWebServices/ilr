@@ -22,6 +22,8 @@
     background-image: var(--pip-background);
     background-size: cover;
     background-position: center;
+    /* Ensure that Safari layering bug won't affect other elements on screen. */
+    pointer-events: none;
   }
 
   .pip__content {

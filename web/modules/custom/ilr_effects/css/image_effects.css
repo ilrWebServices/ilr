@@ -25,10 +25,11 @@
   height: 100vh;
   position: fixed;
   top: 0;
-  z-index: -1;
   background-image: var(--ilr-effects-img);
   background-size: cover;
   background-position: center;
+  /* Ensure that Safari layering bug won't affect other elements on screen. */
+  pointer-events: none;
 }
 
 .ilr-effect-image.curtain-reveal .cu-image {
