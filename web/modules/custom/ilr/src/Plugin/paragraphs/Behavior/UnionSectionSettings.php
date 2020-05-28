@@ -22,6 +22,14 @@ use Drupal\paragraphs\ParagraphsBehaviorBase;
 class UnionSectionSettings extends ParagraphsBehaviorBase {
 
   /**
+   * The frame position options
+   */
+  protected $position = [
+    'left' => 'Left',
+    'right' => 'Right',
+  ];
+
+  /**
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
@@ -30,6 +38,13 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#title' => $this->t('Wide'),
       '#min' => 1,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'wide'),
+    ];
+
+    $form['frame_position'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Frame position'),
+      '#options' => $this->position,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'frame_position') ?? 'left',
     ];
 
     return $form;
@@ -43,6 +58,8 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
     if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'wide')) {
       $variables['attributes']['class'] = ['cu-section--wide'];
     }
+
+    $variables['paragraph']->field_heading->position = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'frame_position') ?? 'left';
   }
 
   /**
@@ -61,6 +78,14 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       $summary[] = [
         'label' => 'Wide',
         'value' =>  '✓',
+      ];
+    }
+
+    // Display the frame position.
+    if ($position = $paragraph->getBehaviorSetting($this->getPluginId(), 'frame_position')) {
+      $summary[] = [
+        'label' => 'Frame',
+        'value' =>  $position,
       ];
     }
 
