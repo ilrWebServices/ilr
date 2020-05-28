@@ -44,13 +44,12 @@
 }
 
 /* Ensure the caption has a white background. */
-.ilr-effect-image.curtain-reveal.js-observed .media__caption {
+.ilr-effect-image.curtain-reveal .media__caption {
   position: relative;
   z-index: 1;
 }
 
-.ilr-effect-image.curtain-reveal.js-observed .media__caption::before
-  {
+.ilr-effect-image.curtain-reveal .media__caption::before {
   content: '';
   display: block;
   width: 100vw;
