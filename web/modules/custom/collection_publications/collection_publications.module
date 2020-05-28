@@ -7,6 +7,8 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\ilr\FieldStorageDefinition;
 use Drupal\Core\Field\FieldDefinition;
 
@@ -137,5 +139,35 @@ function collection_publications_pathauto_alias_alter(&$alias, array &$context) 
     $clean_title = $alias_cleaner->cleanString($node->label());
     $first_collection_item = reset($collection_items);
     $alias = $first_collection_item->collection->entity->toUrl()->toString() . '/' . $clean_title;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ *
+ */
+function collection_publications_collection_view(array &$build, EntityInterface $collection, EntityViewDisplayInterface $display, $view_mode) {
+  if ($collection->bundle() !== 'publication_issue' || $view_mode !== 'full') {
+    return;
+  }
+
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $dedupe_group = 'dedupe:collection_item.id:collection_' . $collection->id();
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+  $query = $collection_item_storage->getQuery();
+  $query->condition('collection', $collection->id());
+  $query->condition('type', 'publication_issue');
+  $query->condition('field_item_type', ['featured_story', 'editor_letter'], 'IN');
+  // Add a dedupe tag to remove duplicates in similar story listings. See
+  // ilr_query_alter().
+  $query->addTag($dedupe_group);
+  $result = $query->execute();
+
+  if ($result) {
+    $collection_items = $collection_item_storage->loadMultiple(array_keys($result));
+
+    foreach ($collection_items as $collection_item) {
+      $build[$collection_item->field_item_type->value]['#entity'] = $collection_item->item->entity;
+    }
   }
 }
