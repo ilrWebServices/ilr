@@ -17,24 +17,38 @@
 #}
 {{ attach_library('union_organizer/cu-section') }}
 
-{# This is the twig tweak method. Core may allow toUrl if this bug is fixed:
-https://www.drupal.org/project/drupal/issues/2907810 #}
-{% set featured_story_url = drupal_url('node/' ~ collection.field_featured_story.entity.id) %}
+{# `drupal_url` is the twig tweak method. Core may allow toUrl if this bug is
+fixed: https://www.drupal.org/project/drupal/issues/2907810 #}
+{% set featured_story_node = content.featured_story['#entity'] %}
+{% set featured_story_url = drupal_url('node/' ~ featured_story_node.id) %}
+
+{% set editorial_node = content.editor_letter['#entity'] %}
 
 <div{{ attributes.addClass('collection collection--publication-issue') }}>
   <div class="cu-section">
     <div class="publication__feature">
+      {% if editorial_node %}
       <div class="publication-feature__meta">
-        {{ content.body }}
-        {{ collection.field_download|view }}
+        {{ editorial_node.body|view('teaser') }}
+        {{ editorial_node.field_representative_image|view({
+          type: 'media_thumbnail',
+          label: 'hidden',
+          settings: {
+            image_style: 'small_4x5',
+            image_link: 'content'
+          }})
+        }}
       </div>
+      {% endif %}
+      {% if featured_story_node %}
       <div class="publication-feature__image">
-        <a href="{{ featured_story_url }}">{{ collection.field_featured_story.entity.field_representative_image|view('teaser') }}</a>
+        <a href="{{ featured_story_url }}">{{ featured_story_node.field_representative_image|view('teaser') }}</a>
       </div>
       <div class="publication-feature__story">
-        <h3 class="cu-heading"><a href="{{ featured_story_url }}">{{ collection.field_featured_story.entity.label }}</a></h3>
-        {{ collection.field_featured_story.entity.body|view('teaser') }}
+        <h3 class="cu-heading"><a href="{{ featured_story_url }}">{{ featured_story_node.label }}</a></h3>
+        {{ featured_story_node.body|view('teaser') }}
       </div>
+      {% endif %}
     </div>
   </div>
   {{ content.field_sections }}

@@ -1,21 +1,32 @@
-uuid: d49ffa6e-ac19-4794-921e-69e85f7509e2
+uuid: e9cec86e-150d-4526-b0a8-8ce4c25c3ef0
 langcode: en
 status: true
 dependencies:
   config:
     - collection.collection_item_type.publication_issue
-    - core.entity_form_mode.collection_item.mini
     - field.field.collection_item.publication_issue.field_item_type
-id: collection_item.publication_issue.mini
+  module:
+    - dynamic_entity_reference
+id: collection_item.publication_issue.default
 targetEntityType: collection_item
 bundle: publication_issue
-mode: mini
+mode: default
 content:
   field_item_type:
-    type: options_select
-    weight: 0
-    region: content
+    weight: 6
     settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  item:
+    type: dynamic_entity_reference_default
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: 40
+      placeholder: ''
+      match_limit: 10
     third_party_settings: {  }
   weight:
     type: number
@@ -27,6 +38,5 @@ content:
 hidden:
   attributes: true
   collection: true
-  item: true
   name: true
   user_id: true
