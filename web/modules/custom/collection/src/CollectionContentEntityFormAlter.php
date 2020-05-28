@@ -108,7 +108,7 @@ class CollectionContentEntityFormAlter {
         '#op' => 'edit',
         '#ief_id' => 'collection_item_subform-' . $collection_item->id(),
         '#group' => 'collection_' . $collection->id(),
-        '#access' => $collection_item->access('edit', $this->account),
+        '#access' => $collection_item->access('update', $this->account),
       ];
     }
 
