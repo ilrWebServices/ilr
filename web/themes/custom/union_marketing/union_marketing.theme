@@ -141,6 +141,23 @@ function union_marketing_preprocess_paragraph__rich_text(&$variables) {
 
 /**
  * Implements hook_preprocess_paragraph().
+ */
+function union_marketing_preprocess_paragraph__image(&$variables) {
+  $image = $variables['paragraph']->field_media->entity->field_media_image;
+  $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
+  $crop = Crop::findCrop($image->entity->getFileUri(), $crop_type);
+
+  if ($crop) {
+    $image_props = $image->first()->getValue();
+    $anchor = \Drupal::service('focal_point.manager')
+      ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
+
+    $variables['attributes']['style'][] = '--image-focal-point: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;';
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
  *
  * Set grids column count on curated post listings (defaults to 3, 4 on story
  * nodes).

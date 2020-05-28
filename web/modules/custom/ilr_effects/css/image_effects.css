@@ -15,67 +15,41 @@
 /* Curtain reveal effect */
 .ilr-effect-image.curtain-reveal {
   position: relative;
+  clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0);
 }
 
-.ilr-effect-image.curtain-reveal.js-observed .cu-image {
-  opacity: 0;
-}
-
-/* Ensure the height is the entire viewport on smaller screens */
-@media only screen and (max-width: 64rem) {
-  .ilr-effect-image.curtain-reveal.js-observed .cu-image {
-    min-height: 100vh;
-  }
-}
-
-.ilr-effect-image.curtain-reveal.js-observed {
-  z-index: -1; /* Fix for Safari bug */
-}
-
-.ilr-effect-image.curtain-reveal.js-observed::before {
+.ilr-effect-image.curtain-reveal::before {
   content: '';
   display: block;
   width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
-  z-index: -1;
-  background-image: none;
+  background-image: var(--ilr-effects-img);
   background-size: cover;
   background-position: center;
+  /* Ensure that Safari layering bug won't affect other elements on screen. */
+  pointer-events: none;
 }
 
-.ilr-effect-image.curtain-reveal.js--in-frame::before {
-  background-image: var(--ilr-effects-img);
+/* Ensure the height is the entire viewport on smaller screens. */
+@media only screen and (max-width: 64rem) {
+  .ilr-effect-image.curtain-reveal .cu-image {
+    min-height: 100vh;
+  }
 }
 
-/* Covers */
-.ilr-effect-image.curtain-reveal.js-observed::after,
-.js-image-cover {
-  content: '';
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  background: white;
+/* Ensure the caption has a white background. */
+.ilr-effect-image.curtain-reveal .media__caption {
+  position: relative;
   z-index: 1;
 }
 
-.ilr-effect-image.curtain-reveal.js-observed::after {
-  top: -100vh;
-}
-
-.ilr-effect-image.curtain-reveal.js-observed .media__caption {
-  position: relative;
-  z-index: 2;
-}
-
-.ilr-effect-image.curtain-reveal.js-observed .media__caption::before
-  {
+.ilr-effect-image.curtain-reveal .media__caption::before {
   content: '';
   display: block;
   width: 100vw;
-  height: 120vh;
+  min-height: 150%;
   position: absolute;
   left: 50%;
   right: 50%;
@@ -84,10 +58,4 @@
   margin-top: -0.5em;
   background: white;
   z-index: -1;
-}
-
-/* tmp */
-.paragraph--type--rich-text {
-  background: white;
-  position: relative;
 }
