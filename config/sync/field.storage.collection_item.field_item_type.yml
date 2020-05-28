@@ -1,0 +1,27 @@
+uuid: f6ee655d-3ca1-4eb7-9982-2d0000e4dcc0
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - options
+id: collection_item.field_item_type
+field_name: field_item_type
+entity_type: collection_item
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: featured_story
+      label: 'Featured story'
+    -
+      value: editor_letter
+      label: 'Editor''s Letter'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

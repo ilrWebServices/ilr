@@ -1,0 +1,21 @@
+uuid: 66938da7-e487-49fd-9f58-b84fb709b5f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.publication_issue
+    - field.storage.collection_item.field_item_type
+  module:
+    - options
+id: collection_item.publication_issue.field_item_type
+field_name: field_item_type
+entity_type: collection_item
+bundle: publication_issue
+label: 'Item type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
