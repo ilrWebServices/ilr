@@ -16,50 +16,52 @@
   }
 }
 
-/* Curtain reveal effect */
-.ilr-effect-image.curtain-reveal {
-  position: relative;
-  clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0);
-}
-
-.ilr-effect-image.curtain-reveal::before {
-  content: '';
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  background-image: var(--ilr-effects-img);
-  background-size: cover;
-  background-position: center;
-  /* Ensure that Safari layering bug won't affect other elements on screen. */
-  pointer-events: none;
-}
-
-/* Ensure the height is the entire viewport on smaller screens. */
-@media only screen and (max-width: 64rem) {
-  .ilr-effect-image.curtain-reveal .cu-image {
-    min-height: 100vh;
+/* Curtain reveal effect; Requires clip-path */
+@supports (clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0)) {
+  .ilr-effect-image.curtain-reveal {
+    position: relative;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0);
   }
-}
 
-/* Ensure the caption has a white background. */
-.ilr-effect-image.curtain-reveal .media__caption {
-  position: relative;
-  z-index: 1;
-}
+  .ilr-effect-image.curtain-reveal::before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-image: var(--ilr-effects-img);
+    background-size: cover;
+    background-position: center;
+    /* Ensure that Safari layering bug won't affect other elements on screen. */
+    pointer-events: none;
+  }
 
-.ilr-effect-image.curtain-reveal .media__caption::before {
-  content: '';
-  display: block;
-  width: 100vw;
-  min-height: 150%;
-  position: absolute;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  margin-top: -0.5em;
-  background: white;
-  z-index: -1;
+  /* Ensure the height is the entire viewport on smaller screens. */
+  @media only screen and (max-width: 64rem) {
+    .ilr-effect-image.curtain-reveal .cu-image {
+      min-height: 100vh;
+    }
+  }
+
+  /* Ensure the caption has a white background. */
+  .ilr-effect-image.curtain-reveal .media__caption {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ilr-effect-image.curtain-reveal .media__caption::before {
+    content: '';
+    display: block;
+    width: 100vw;
+    min-height: 150%;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: -0.5em;
+    background: white;
+    z-index: -1;
+  }
 }
