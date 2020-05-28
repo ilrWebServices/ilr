@@ -9,6 +9,7 @@ use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\crop\Entity\Crop;
 
 /**
  * Provides a Picture-in-picture plugin.
@@ -50,11 +51,23 @@ class PipSettings extends ParagraphsBehaviorBase {
   public function preprocess(&$variables) {
     $alignment = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'alignment') ?? 'left';
     $variables['attributes']['class'][] = 'pip--content-' . $alignment;
+    $image = $variables['paragraph']->field_media->entity->field_media_image;
 
     // Set the background.
     $image_style = $variables['elements']['field_media'][0]['#image_style'];
-    $image_style_url = ImageStyle::load($image_style)->buildUrl($variables['paragraph']->field_media->entity->field_media_image->entity->getFileUri());
-    $variables['attributes']['style'] = '--pip-background: url(' . $image_style_url . ')';
+    $image_style_url = ImageStyle::load($image_style)->buildUrl($image->entity->getFileUri());
+    $variables['attributes']['style'][] = '--pip-background: url(' . $image_style_url . ');';
+
+    $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
+    $crop = Crop::findCrop($image->entity->getFileUri(), $crop_type);
+
+    if ($crop) {
+      $image_props = $image->first()->getValue();
+      $anchor = \Drupal::service('focal_point.manager')
+        ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
+
+      $variables['attributes']['style'][] = '--image-focal-point: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;';
+    }
   }
 
   /**

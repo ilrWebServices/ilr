@@ -21,7 +21,7 @@
     z-index: -1;
     background-image: var(--pip-background);
     background-size: cover;
-    background-position: center;
+    background-position: var(--image-focal-point, center);
     /* Ensure that Safari layering bug won't affect other elements on screen. */
     pointer-events: none;
   }
