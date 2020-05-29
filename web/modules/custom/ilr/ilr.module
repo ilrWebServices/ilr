@@ -625,6 +625,20 @@ function ilr_taxonomy_term_presave(EntityInterface $entity) {
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_load().
+ */
+function ilr_media_load(array $entities) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $users = $entity_type_manager->getStorage('user')->getQuery()->execute();
+
+  foreach ($entities as $entity) {
+    if (!in_array($entity->uid->target_id, $users)) {
+      $entity->uid = 1;
+    }
+  }
+}
+
+/**
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function ilr_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
