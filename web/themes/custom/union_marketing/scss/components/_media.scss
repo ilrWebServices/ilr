@@ -22,8 +22,8 @@
   text-align: right;
 }
 
-// All embedded media, including videos.
-.cu-media {
+// Video width hack until captioned videos are working.
+.cu-media.media--remote-video {
   width: 100%;
   min-width: 50%;
 }
@@ -31,9 +31,19 @@
 .cu-media.align-right,
 .cu-media.align-left {
   margin: 0 0 var(--cu-vr1) 0;
+  width: 100%;
 
-  @include breakpoint(md) {
+  .cu-image {
+    width: 100%;
+  }
+
+  @include breakpoint(sm) {
+    width: auto;
     max-width: 50%;
+
+    .cu-image {
+      width: auto;
+    }
   }
 
   .field--field-media-image {
@@ -41,13 +51,15 @@
   }
 }
 
-@include breakpoint(md) {
+@include breakpoint(sm) {
   .cu-media.align-right {
+    float: right;
     margin-left: var(--cu-ps2);
   }
 
   .cu-media.align-left {
-    margin-right: var(--cu-ps2);
+    float: left;
+    margin-left: var(--cu-ps2);
   }
 }
 
