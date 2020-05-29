@@ -17,7 +17,7 @@
       <div class="cu-class-delivery-method">In Person - {{ drupal_field('field_address', 'node', class.entity.id, 'teaser') }}</div>
     {% endif %}
 
-    {% if course.field_course_number.value|upper starts with 'OLLB' %}
+    {% if course.field_course_number.value|upper starts with 'OLLB' or course.field_course_number.value|upper starts with 'LS' %}
       {{ drupal_field('field_class_date', 'node', class.entity.id, 'teaser') }}
       <p>All instruction will be completed between these dates.</p>
     {% else %}
