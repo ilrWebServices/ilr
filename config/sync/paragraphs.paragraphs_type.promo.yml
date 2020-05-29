@@ -1,9 +1,14 @@
 uuid: d655e7ea-aee5-49a3-96e1-da28d85795f1
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
 id: promo
 label: Card
 icon_uuid: null
+icon_default: null
 description: ''
-behavior_plugins: {  }
+behavior_plugins:
+  ilr_card:
+    enabled: true
