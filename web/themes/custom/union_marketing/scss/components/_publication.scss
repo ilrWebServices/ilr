@@ -129,3 +129,13 @@
     margin-top: var(--cu-vr0);
   }
 }
+
+// HACK ALERT! Remove the frame on banners for publication issues.
+.collection--publication-issue .layout-banner .framed> :first-child::before,
+.collection--publication-issue .layout-banner .framed> :last-child::after {
+  display: none;
+}
+
+.collection--publication-issue .layout-banner .framed--right {
+  border: none;
+}
