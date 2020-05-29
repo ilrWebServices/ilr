@@ -1,0 +1,51 @@
+uuid: 317340b4-495b-4f37-bd90-3010943415c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.publication_issue
+    - core.entity_view_mode.collection.mini
+    - field.field.collection.publication_issue.body
+    - field.field.collection.publication_issue.field_download
+    - field.field.collection.publication_issue.field_publication
+    - field.field.collection.publication_issue.field_publication_date
+    - field.field.collection.publication_issue.field_representative_image
+    - field.field.collection.publication_issue.field_sections
+    - image.style.small_4x5
+  module:
+    - layout_builder
+    - media
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: collection.publication_issue.mini
+targetEntityType: collection
+bundle: publication_issue
+mode: mini
+content:
+  field_download:
+    type: media_thumbnail
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: small_4x5
+      image_link: content
+    third_party_settings: {  }
+  name:
+    label: hidden
+    type: string
+    weight: 1
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_publication: true
+  field_publication_date: true
+  field_representative_image: true
+  field_sections: true
+  search_api_excerpt: true
+  user_id: true
