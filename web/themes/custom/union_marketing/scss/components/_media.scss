@@ -22,6 +22,12 @@
   text-align: right;
 }
 
+// All embedded media, including videos.
+.cu-media {
+  width: 100%;
+  min-width: 50%;
+}
+
 .cu-media.align-right,
 .cu-media.align-left {
   margin: 0 0 var(--cu-vr1) 0;

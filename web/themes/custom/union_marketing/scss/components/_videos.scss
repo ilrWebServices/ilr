@@ -1,4 +1,6 @@
-.paragraph--type--video {
+// Constrain video widths in education section.
+.node--course .paragraph--type--video,
+.node--certificate .paragraph--type--video {
   @include breakpoint(md) {
     padding: 0 15%;
   }
