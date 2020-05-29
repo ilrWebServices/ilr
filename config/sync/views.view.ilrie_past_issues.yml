@@ -4,15 +4,12 @@ status: true
 dependencies:
   config:
     - collection.collection_type.publication_issue
-    - field.storage.collection.field_download
-    - field.storage.collection.field_publication
-    - image.style.small_4x5
+    - core.entity_view_mode.collection.mini
     - taxonomy.vocabulary.publication
   content:
     - 'taxonomy_term:publication:a4301522-cd76-4699-9687-8b62d68d3e04'
   module:
     - collection
-    - media
     - taxonomy
 id: ilrie_past_issues
 label: 'ILRie Past Issues'
@@ -76,210 +73,18 @@ display:
           separator: ''
           hide_empty: false
       fields:
-        field_download:
-          id: field_download
-          table: collection__field_download
-          field: field_download
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: false
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: media_thumbnail
-          settings:
-            image_style: small_4x5
-            image_link: content
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        name:
-          id: name
-          table: collection_field_data
-          field: name
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: null
-          entity_field: name
-          plugin_id: field
-        field_publication:
-          id: field_publication
-          table: collection__field_publication
-          field: field_publication
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: false
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        nothing:
-          id: nothing
-          table: views
-          field: nothing
+        rendered_entity:
+          id: rendered_entity
+          table: collection
+          field: rendered_entity
           relationship: none
           group_type: group
           admin_label: ''
           label: ''
           exclude: false
           alter:
-            alter_text: true
-            text: "<div class=\"publication-issue\">\r\n  <div class=\"publication-issue__cover\">{{ field_download }}</div>\r\n  <div class=\"publication-issue__name\">{{ name }}</div>\r\n</div>"
+            alter_text: false
+            text: ''
             make_link: false
             path: ''
             absolute: false
@@ -315,8 +120,10 @@ display:
           empty: ''
           hide_empty: false
           empty_zero: false
-          hide_alter_empty: false
-          plugin_id: custom
+          hide_alter_empty: true
+          view_mode: mini
+          entity_type: collection
+          plugin_id: rendered_entity
       filters:
         status:
           value: '1'
@@ -436,13 +243,16 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - user
       tags:
-        - 'config:field.storage.collection.field_download'
-        - 'config:field.storage.collection.field_publication'
+        - 'config:core.entity_view_display.collection.blog.banner'
+        - 'config:core.entity_view_display.collection.blog.default'
+        - 'config:core.entity_view_display.collection.blog.teaser'
+        - 'config:core.entity_view_display.collection.publication_issue.default'
+        - 'config:core.entity_view_display.collection.publication_issue.mini'
+        - 'config:core.entity_view_display.collection.subsite.default'
   block_1:
     display_plugin: block
     id: block_1
@@ -453,10 +263,13 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - user
       tags:
-        - 'config:field.storage.collection.field_download'
-        - 'config:field.storage.collection.field_publication'
+        - 'config:core.entity_view_display.collection.blog.banner'
+        - 'config:core.entity_view_display.collection.blog.default'
+        - 'config:core.entity_view_display.collection.blog.teaser'
+        - 'config:core.entity_view_display.collection.publication_issue.default'
+        - 'config:core.entity_view_display.collection.publication_issue.mini'
+        - 'config:core.entity_view_display.collection.subsite.default'

@@ -1,0 +1,10 @@
+uuid: 7b1ddfed-c425-4394-80ae-79ebd6b2f120
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: collection.mini
+label: Mini
+targetEntityType: collection
+cache: true
