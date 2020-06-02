@@ -1,10 +1,22 @@
 uuid: 01bf1f61-9007-42f3-aa8e-6e8190f2909f
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
 id: people_listing
 label: 'People listing'
 icon_uuid: null
 icon_default: null
 description: ''
-behavior_plugins: {  }
+behavior_plugins:
+  ilr_people_listing:
+    enabled: true
+  list_styles:
+    enabled: true
+    list_styles:
+      grid: grid
+      grid-compact: grid-compact
+      grid-featured: 0
+      list-compact: list-compact
+      banner: 0

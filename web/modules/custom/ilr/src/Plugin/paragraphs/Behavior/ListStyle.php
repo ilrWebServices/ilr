@@ -180,7 +180,7 @@ class ListStyle extends ParagraphsBehaviorBase {
    * `collection` entity reference field.
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {
-    return in_array($paragraphs_type->id(), ['simple_collection_listing', 'curated_post_listing', 'collection_listing_publication', 'curated_course_listing', 'event_listing']);
+    return in_array($paragraphs_type->id(), ['simple_collection_listing', 'curated_post_listing', 'collection_listing_publication', 'curated_course_listing', 'event_listing','people_listing']);
   }
 
   /**
