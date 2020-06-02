@@ -13,6 +13,7 @@ dependencies:
     - paragraphs.paragraphs_type.form
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.media_deck
+    - paragraphs.paragraphs_type.people_listing
     - paragraphs.paragraphs_type.picture_in_picture
     - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.rich_text
@@ -54,6 +55,7 @@ settings:
       picture_in_picture: picture_in_picture
       event_listing: event_listing
       section_navigation: section_navigation
+      people_listing: people_listing
     target_bundles_drag_drop:
       collection_listing:
         enabled: true
@@ -82,6 +84,9 @@ settings:
       media_deck:
         enabled: true
         weight: -30
+      people_listing:
+        enabled: true
+        weight: -21
       person:
         weight: -20
         enabled: false

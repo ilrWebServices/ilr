@@ -1,0 +1,23 @@
+uuid: 18d55f58-358d-4af4-82b3-8eabc924b9c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.people_listing.field_people
+    - paragraphs.paragraphs_type.people_listing
+id: paragraph.people_listing.default
+targetEntityType: paragraph
+bundle: people_listing
+mode: default
+content:
+  field_people:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  search_api_excerpt: true

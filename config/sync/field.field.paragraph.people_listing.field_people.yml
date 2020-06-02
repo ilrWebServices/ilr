@@ -1,0 +1,32 @@
+uuid: 3c7d3496-4de8-4816-a9db-c4cce0c7564e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_people
+    - paragraphs.paragraphs_type.people_listing
+    - person.persona_type.author
+    - person.persona_type.faculty
+    - person.persona_type.staff
+id: paragraph.people_listing.field_people
+field_name: field_people
+entity_type: paragraph
+bundle: people_listing
+label: People
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:persona'
+  handler_settings:
+    target_bundles:
+      author: author
+      faculty: faculty
+      staff: staff
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: faculty
+field_type: entity_reference
