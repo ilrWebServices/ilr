@@ -14,6 +14,7 @@ use Drupal\Core\Config\ConfigEvents;
 use Drupal\Core\Config\DatabaseStorage;
 use Drupal\Core\Config\StorageTransformEvent;
 use Drupal\Core\Url;
+use Drupal\Core\Link;
 
 /**
  * Class CollectionSubsitesSubscriber.
@@ -295,7 +296,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
           '%menu' => $subsite_menu->label(),
         ]);
 
-        $this->messenger->addMessage(\Drupal::l($text, $url));
+        $this->messenger->addMessage(Link::fromTextAndUrl($text, $url));
       }
     }
   }

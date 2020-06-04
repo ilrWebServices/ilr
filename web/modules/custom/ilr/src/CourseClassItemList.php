@@ -5,6 +5,7 @@ namespace Drupal\ilr;
 use Drupal\Core\Field\EntityReferenceFieldItemList;
 use Drupal\Core\TypedData\ComputedItemListTrait;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
  * Entity reference list for a computed field that displays classes.
@@ -28,7 +29,7 @@ class CourseClassItemList extends EntityReferenceFieldItemList {
     // Get future start dates only.
     if (TRUE) {
       $now = new DrupalDateTime('now');
-      $query->condition('field_date_start', $now->format(DATETIME_DATETIME_STORAGE_FORMAT), '>=');
+      $query->condition('field_date_start', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), '>=');
     }
 
     $results = $query->execute();
