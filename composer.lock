@@ -2690,20 +2690,20 @@
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "8.8.5",
+            "version": "8.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
-                "reference": "4825cb5234c28dff79ad298db582dfb23ff4ca59"
+                "reference": "07cdfe2799789fc0c2d0e3e1ba64cb5e2a973ece"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-composer-scaffold/zipball/4825cb5234c28dff79ad298db582dfb23ff4ca59",
-                "reference": "4825cb5234c28dff79ad298db582dfb23ff4ca59",
+                "url": "https://api.github.com/repos/drupal/core-composer-scaffold/zipball/07cdfe2799789fc0c2d0e3e1ba64cb5e2a973ece",
+                "reference": "07cdfe2799789fc0c2d0e3e1ba64cb5e2a973ece",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0.0",
+                "composer-plugin-api": "^1 || ^2",
                 "php": ">=7.0.8"
             },
             "conflict": {
@@ -2733,7 +2733,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-03-10T10:15:17+00:00"
+            "time": "2020-05-29T11:36:27+00:00"
         },
         {
             "name": "drupal/core-recommended",
