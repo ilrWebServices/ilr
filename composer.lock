@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f51200f92505db101693e14c3bd22370",
+    "content-hash": "91d3e90af24eda56a28e3ebad9dd8bc5",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3252,11 +3252,17 @@
         },
         {
             "name": "drupal/entity_reference_layout",
-            "version": "dev-1.x",
+            "version": "1.0.0-alpha6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/entity_reference_layout.git",
-                "reference": "d449c7f722293071cdf0c01cf801f2aa632e0ebf"
+                "reference": "8.x-1.0-alpha6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_reference_layout-8.x-1.0-alpha6.zip",
+                "reference": "8.x-1.0-alpha6",
+                "shasum": "ca526967d80723c1ea06fb0097d2de1775c18025"
             },
             "require": {
                 "drupal/core": "*",
@@ -3264,12 +3270,9 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.0-alpha3+5-dev",
-                    "datestamp": "1578577687",
+                    "version": "8.x-1.0-alpha6",
+                    "datestamp": "1589208965",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -3294,8 +3297,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/entity_reference_layout",
                 "issues": "https://www.drupal.org/project/issues/entity_reference_layout"
-            },
-            "time": "2020-01-21T13:33:34+00:00"
+            }
         },
         {
             "name": "drupal/entity_reference_revisions",
@@ -12331,7 +12333,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/entity_reference_layout": 20,
         "drupal/inline_entity_form": 5,
         "drupal/samlauth": 20,
         "drupal/union_organizer": 20,
