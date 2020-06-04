@@ -84,6 +84,11 @@ class ClassRegisterBlock extends BlockBase implements ContainerFactoryPluginInte
         continue;
       }
 
+      // @tmp Skip in-person classes.
+      if (strpos(strtolower($class->field_delivery_method->value), 'online') === FALSE) {
+        continue;
+      }
+
       $class_info[] = [
         'salesforce_id' => $mapping->salesforce_id->getString(),
         'entity' => $class
