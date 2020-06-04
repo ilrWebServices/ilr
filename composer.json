@@ -36,7 +36,7 @@
     "drupal/config_split": "^1.4",
     "drupal/console": "^1.0.2",
     "drupal/core-composer-scaffold": "^8.8",
-    "drupal/core-recommended": "^8.8",
+    "drupal/core-recommended": "^8.9",
     "drupal/date_range_formatter": "^3.1",
     "drupal/dynamic_entity_reference": "^2.0",
     "drupal/easy_breadcrumb": "^1.12",
@@ -103,11 +103,8 @@
     },
     "patches": {
       "drupal/core": {
-        "Form blocks rendered inside layout builder break save": "https://www.drupal.org/files/issues/2019-08-12/3045171-79.patch",
         "Remove invalid iframe attributes from oembed field formatter": "https://www.drupal.org/files/issues/2019-07-31/remove-iframe-attributes-3071446-4.patch",
-        "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch",
-        "add __toString() to the entity Query class": "https://www.drupal.org/files/issues/2019-11-27/add_tostring_to_the-2902311-29.patch"
-
+        "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch"
       },
       "drupal/address": {
         "Configure visible address fields per field formatter": "https://www.drupal.org/files/issues/2019-05-23/address-visible_address_fields_per_field_formatter-2852800-23.patch"
