@@ -62,7 +62,7 @@
     "drupal/redirect": "^1.4",
     "drupal/redis": "^1.2",
     "drupal/salesforce": "^4",
-    "drupal/samlauth": "3.x-dev",
+    "drupal/samlauth": "^3.0",
     "drupal/search_api": "^1.14",
     "drupal/summary_word_limit": "^1.0",
     "drupal/token_filter": "^1.1",
@@ -108,9 +108,6 @@
       },
       "drupal/address": {
         "Configure visible address fields per field formatter": "https://www.drupal.org/files/issues/2019-05-23/address-visible_address_fields_per_field_formatter-2852800-23.patch"
-      },
-      "drupal/samlauth": {
-        "https://www.drupal.org/project/samlauth/issues/3099353": "https://www.drupal.org/files/issues/2019-12-06/samlauth-allow_idp_assertion_encryption-3099353-1.patch"
       },
       "drupal/dynamic_entity_reference": {
         "entityQuery reference JOINs don't specify target_type": "https://www.drupal.org/files/issues/2020-03-19/3120952-2.patch"
