@@ -81,10 +81,15 @@
   margin-bottom: var(--cu-vr1);
 }
 
-.in-page-signup-jump.js {
+.in-page-signup-jump {
+  display: none;
   color: white;
   font-weight: 400;
   cursor: pointer;
+}
+
+.in-page-signup-jump.js {
+  display: initial;
 }
 
 .block-webform.js-modal {
