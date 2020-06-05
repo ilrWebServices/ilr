@@ -61,6 +61,29 @@ function ilr_post_update_course_message_block(&$sandbox) {
 }
 
 /**
+ * Add a message block for courses without classes.
+ */
+function ilr_post_update_course_without_classes_message_block(&$sandbox) {
+  $blockEntityManager = \Drupal::service('entity_type.manager')->getStorage('block_content');
+
+  $block = $blockEntityManager->create([
+    'type' => 'simple_text',
+    'uuid' => 'ef42c069-7cd4-4906-9f67-f56ef8d5d236',
+    'info' => 'Message: course without classes',
+    'label_display' => 0,
+  ]);
+
+  $block->body->value = '<div class="message__content">
+<p>Dates for online sessions will be posted as soon as they are available.<br />
+Sign up to be notified when new dates are available.</p>
+</div>
+<p><span class="cu-button cu-button--alt in-page-signup-jump">Get notified</span></p>
+';
+  $block->body->format = 'full_html';
+  $block->save();
+}
+
+/**
  * Move rich text paragraph heading field values into the formatted text.
  */
 function ilr_post_update_rich_text_headings(&$sandbox) {

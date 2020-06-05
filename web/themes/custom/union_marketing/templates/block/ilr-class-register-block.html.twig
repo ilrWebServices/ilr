@@ -78,7 +78,7 @@
 
 <div class="cu-form cu-registration-form">
   {% if form_elements is empty %}
-    <p>{{ "This course is being transitioned for online delivery. <span class=\"in-page-signup-jump\">Sign up to be notified</span> when new dates are available."|t }}</p>
+    {{ drupal_block('block_content:ef42c069-7cd4-4906-9f67-f56ef8d5d236') }}
   {% else %}
     {{ form_content }}
   {% endif %}
