@@ -124,6 +124,11 @@
 
       for (const registrationForm of registrationForms) {
         const buttons = registrationForm.querySelectorAll('.cu-button');
+
+        if (buttons.length === 0) {
+          continue;
+        }
+
         const input_name = registrationForm.querySelector('.cu-checkbutton__input').getAttribute('name');
 
         let registerButton = document.createElement('a');
