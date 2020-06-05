@@ -72,32 +72,35 @@
       }
 
       const in_page_signup_jump = context.querySelector('.in-page-signup-jump');
-      in_page_signup_jump.classList.add('js')
 
-      in_page_signup_jump.addEventListener('click', function() {
-        const course_notification_form = context.querySelector('.webform-submission-course-notification-form').closest('.block-webform');
+      if (in_page_signup_jump) {
+        in_page_signup_jump.classList.add('js')
 
-        if (course_notification_form) {
-          course_notification_form.querySelector('.info-fields').style.display = 'block';
-          course_notification_form.classList.add('js-modal');
-        }
-      });
+        in_page_signup_jump.addEventListener('click', function() {
+          const course_notification_form = context.querySelector('.webform-submission-course-notification-form').closest('.block-webform');
 
-      // If there are any `.js-modal`s on the page, disable them if the click
-      // was outside of one.
-      document.addEventListener('click', function(event) {
-        if (event.target.matches('.in-page-signup-jump') || event.target.closest('.js-modal')) {
-          return;
-        }
+          if (course_notification_form) {
+            course_notification_form.querySelector('.info-fields').style.display = 'block';
+            course_notification_form.classList.add('js-modal');
+          }
+        });
 
-        document.querySelector('.js-modal').classList.remove('js-modal');
-      });
+        // If there are any `.js-modal`s on the page, disable them if the click
+        // was outside of one.
+        document.addEventListener('click', function(event) {
+          if (event.target.matches('.in-page-signup-jump') || event.target.closest('.js-modal')) {
+            return;
+          }
 
-      document.onkeydown = function(event) {
-        if ('key' in event && event.key.substring(0, 3) === 'Esc') {
           document.querySelector('.js-modal').classList.remove('js-modal');
-        }
-      };
+        });
+
+        document.onkeydown = function(event) {
+          if ('key' in event && event.key.substring(0, 3) === 'Esc') {
+            document.querySelector('.js-modal').classList.remove('js-modal');
+          }
+        };
+      }
     }
   };
 
