@@ -11,3 +11,8 @@
     margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
   }
 }
+
+// Override banner margin on course pages for register block/message.
+.node--course .cu-banner--page {
+  margin-bottom: 0;
+}

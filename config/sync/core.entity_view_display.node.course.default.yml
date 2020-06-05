@@ -19,7 +19,6 @@ dependencies:
     - webform.webform.course_customization_request
     - webform.webform.course_notification
   content:
-    - 'block_content:simple_text:280c1d2d-0456-45eb-84dc-d114c5e7b2fa'
     - 'block_content:simple_text:d300d9db-a8e3-4082-84f4-fea3ae4f21ae'
   module:
     - block_content
@@ -176,33 +175,6 @@ third_party_settings:
               provider: ilr
               label_display: '0'
               context_mapping: {  }
-            additional: {  }
-            weight: 0
-        third_party_settings: {  }
-      -
-        layout_id: layout_cu_section
-        layout_settings:
-          label: ''
-          full_width: 0
-          collapse_margins: 0
-          extra_classes: ''
-        components:
-          8aa64cc4-2d2f-4af4-b0d1-528a08fed59a:
-            uuid: 8aa64cc4-2d2f-4af4-b0d1-528a08fed59a
-            region: main
-            configuration:
-              id: 'field_block:node:course:field_message'
-              label: Message
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: text_default
-                settings: {  }
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
             additional: {  }
             weight: 0
         third_party_settings: {  }

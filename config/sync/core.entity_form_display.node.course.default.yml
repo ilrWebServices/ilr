@@ -79,14 +79,6 @@ content:
       default_paragraph_type: ''
     third_party_settings: {  }
     region: content
-  field_message:
-    weight: 121
-    settings:
-      rows: 4
-      placeholder: ''
-    third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_representative_image:
     weight: 128
     settings:
@@ -164,4 +156,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_message: true

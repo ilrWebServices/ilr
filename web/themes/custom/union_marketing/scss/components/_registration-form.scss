@@ -74,3 +74,27 @@
     opacity: .5;
   }
 }
+
+.in-page-signup-jump.js {
+  color: $cornell-red;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.block-webform.js-modal {
+  position: fixed;
+  top: 5vh;
+  right: 7.5vw;
+  left: 7.5vw;
+  max-height: 95vh;
+  z-index: 100;
+  background: white;
+  padding: 1em;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .25);
+
+  @include breakpoint(md) {
+    right: 15vw;
+    left: 15vw;
+  }
+}

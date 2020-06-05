@@ -81,6 +81,8 @@
 
 <hr class="pad" />
 
+{# Temporarily hide upcoming dates as of 6/4/20. #}
+{#
 {% if upcoming_classes|length > 0 %}
   {% set feature_list_items = [
     {
@@ -114,6 +116,7 @@
 {% if upcoming_classes|length > 1 %}
 <p class="cu-style cu-style--link">{{ 'See more dates and locations'|t }}</p><hr class="pad" />
 {% endif %}
+#}
 </div>
 
 {% set register_link_text = 'Register <span class="visually-hidden"> for ' ~ node.label ~ '</span>'%}
