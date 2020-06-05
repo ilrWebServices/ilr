@@ -88,10 +88,11 @@
 }
 
 .block-webform.js-modal {
+  --horizontal-margin: 7.5vw;
   position: fixed;
   top: 5vh;
-  right: 7.5vw;
-  left: 7.5vw;
+  left: var(--horizontal-margin);
+  width: calc(100vw - 2 * var(--horizontal-margin));
   max-height: 95vh;
   z-index: 100;
   background: white;
@@ -100,7 +101,6 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, .25);
 
   @include breakpoint(md) {
-    right: 15vw;
-    left: 15vw;
+    --horizontal-margin: 15vw;
   }
 }
