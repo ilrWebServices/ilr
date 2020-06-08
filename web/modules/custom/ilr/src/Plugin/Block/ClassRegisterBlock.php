@@ -84,7 +84,7 @@ class ClassRegisterBlock extends BlockBase implements ContainerFactoryPluginInte
         continue;
       }
 
-      // @tmp Skip in-person classes.
+      // @todo Revisit hiding of in-person classes once conference center is open.
       if (strpos(strtolower($class->field_delivery_method->value), 'online') === FALSE) {
         continue;
       }

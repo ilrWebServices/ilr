@@ -81,8 +81,6 @@
 
 <hr class="pad" />
 
-{# Temporarily hide upcoming dates as of 6/4/20. #}
-{#
 {% if upcoming_classes|length > 0 %}
   {% set feature_list_items = [
     {
@@ -110,23 +108,27 @@
   content_attributes: { class: 'cu-grid' }
 } only %}
 
-<hr class="pad" />
+{% set register_link_text = 'Register <span class="visually-hidden"> for ' ~ node.label ~ '</span>'%}
+{% else %}
+  {# TODO Consider allowing this text to be editable.  #}
+  <p><em>{{ "Dates for online sessions will be posted as soon as they are available."|t }}</em></p>
+  {% set register_link_text = 'Learn more <span class="visually-hidden"> about ' ~ node.label ~ '</span>'%}
 {% endif %}
 
-{% if upcoming_classes|length > 1 %}
+<hr class="pad" />
+
+{# {% if upcoming_classes|length > 1 %}
 <p class="cu-style cu-style--link">{{ 'See more dates and locations'|t }}</p><hr class="pad" />
-{% endif %}
-#}
+{% endif %} #}
 </div>
 
-{% set register_link_text = 'Register <span class="visually-hidden"> for ' ~ node.label ~ '</span>'%}
-  <p class="cu-button">{{ register_link_text|raw }}</p>
+<p class="cu-button">{{ register_link_text|raw }}</p>
 {% endset %}
 
 {% include '@union/_card.twig' with {
   card_content: rendered_description,
   card_link_url: url,
-  card_link_alt: 'See more dates and locations for ' ~ node.label|t,
+  card_link_alt: register_link_text|striptags,
   attributes: attributes.addClass([
     'node--' ~ node.bundle|clean_class,
     not node.isPublished() ? 'node--unpublished',

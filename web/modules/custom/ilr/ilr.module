@@ -526,13 +526,15 @@ function ilr_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
 
 /**
  * Implements template_preprocess_node().
- *
  */
 function ilr_preprocess_node__course__teaser(&$variables) {
   $variables['upcoming_classes'] = [];
 
   foreach ($variables['node']->classes as $upcoming_class) {
-    if (!$upcoming_class->entity->field_class_cancelled->value) {
+    $class_is_in_person = strpos(strtolower($upcoming_class->entity->field_delivery_method->value), 'online') === FALSE;
+
+    // @todo Revisit hiding of upcoming in-person classes once conference center is open.
+    if (!$class_is_in_person) {
       $variables['upcoming_classes'][] = $upcoming_class->entity;
     }
   }
