@@ -22,16 +22,24 @@
   text-align: right;
 }
 
-// Video width hack until captioned videos are working.
+.cu-media {
+  clear: both;
+  width: 100%;
+}
+
 .cu-media.media--remote-video {
   width: 100%;
   min-width: 50%;
+
+  + .media__caption {
+    display: block; // Prevents responsive videos from disappearing.
+  }
 }
 
 .cu-media.align-right,
 .cu-media.align-left {
   margin: 0 0 var(--cu-vr1) 0;
-  width: 100%;
+  width: auto;
 
   .cu-image {
     width: 100%;
