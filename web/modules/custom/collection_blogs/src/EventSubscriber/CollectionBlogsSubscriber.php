@@ -4,7 +4,7 @@ namespace Drupal\collection_blogs\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Path\AliasManagerInterface;
+use Drupal\path_alias\AliasManagerInterface;
 use Drupal\Core\Config\DatabaseStorage;
 use Drupal\collection\Event\CollectionEvents;
 use Drupal\Core\Config\ConfigEvents;
@@ -26,7 +26,7 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
   /**
    * The alias manager.
    *
-   * @var \Drupal\Core\Path\AliasManagerInterface
+   * @var \Drupal\path_alias\AliasManagerInterface
    */
   protected $aliasManager;
 

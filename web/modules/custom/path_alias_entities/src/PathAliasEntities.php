@@ -5,7 +5,7 @@ namespace Drupal\path_alias_entities;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Drupal\Core\Path\AliasManagerInterface;
+use Drupal\path_alias\AliasManagerInterface;
 use Drupal\Core\Url;
 
 /**
@@ -35,9 +35,9 @@ class PathAliasEntities {
   protected $requestStack;
 
   /**
-   * Drupal\Core\Path\AliasManagerInterface definition.
+   * Drupal\path_alias\AliasManagerInterface definition.
    *
-   * @var \Drupal\Core\Path\AliasManagerInterface
+   * @var \Drupal\path_alias\AliasManagerInterface
    */
   protected $pathAliasManager;
 

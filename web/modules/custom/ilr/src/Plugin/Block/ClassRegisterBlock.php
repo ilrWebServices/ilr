@@ -4,7 +4,8 @@ namespace Drupal\ilr\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -20,9 +21,9 @@ class ClassRegisterBlock extends BlockBase implements ContainerFactoryPluginInte
   /**
    * The entity manager.
    *
-   * @var Drupal\Core\Entity\EntityManagerInterface;
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
    * Constructs a new ClassRegisterBlock instance.
@@ -33,12 +34,12 @@ class ClassRegisterBlock extends BlockBase implements ContainerFactoryPluginInte
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param $entity_manager
+   * @param $entity_type_manager
    *   The entity manager object.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityManagerInterface $entity_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->entityManager = $entity_manager;
+    $this->entityTypeManager = $entity_type_manager;
   }
 
   /**
@@ -71,7 +72,7 @@ class ClassRegisterBlock extends BlockBase implements ContainerFactoryPluginInte
 
     $class_info = [];
     foreach ($classes as $class) {
-      $mapped_objects = $this->entityManager->getStorage('salesforce_mapped_object')
+      $mapped_objects = $this->entityTypeManager->getStorage('salesforce_mapped_object')
         ->loadByProperties([
           'drupal_entity__target_type' => 'node',
           'drupal_entity__target_id' => $class->id(),

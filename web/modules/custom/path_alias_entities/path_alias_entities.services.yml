@@ -5,4 +5,4 @@ services:
       - '@entity_type.manager'
       - '@entity_type.bundle.info'
       - '@request_stack'
-      - '@path.alias_manager'
+      - '@path_alias.manager'
