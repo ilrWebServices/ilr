@@ -81,7 +81,6 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
     return [
       CollectionEvents::COLLECTION_ENTITY_CREATE => 'collectionCreate',
       CollectionEvents::COLLECTION_ENTITY_UPDATE => 'collectionUpdate',
-      CollectionEvents::COLLECTION_ITEM_FORM_CREATE => 'collectionItemFormCreate',
       ConfigEvents::STORAGE_TRANSFORM_IMPORT => 'onImportTransform',
       KernelEvents::REQUEST => 'handleRedirects',
     ];
