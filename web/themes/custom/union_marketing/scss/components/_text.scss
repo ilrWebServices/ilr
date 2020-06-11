@@ -12,3 +12,16 @@ p.shout {
   margin-bottom: var(--cu-vr0);
   color: #333;
 }
+
+.node--page.node--level1 {
+  h1.cu-heading {
+    font-family: 'futura-pt';
+    font-size: 36px;
+    line-height: 1;
+    text-transform: uppercase;
+
+    @include breakpoint(md) {
+      font-size: 76px;
+    }
+  }
+}

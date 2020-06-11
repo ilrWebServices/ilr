@@ -24,6 +24,13 @@ function union_marketing_preprocess_html(&$variables) {
   if (isset($variables['node_type'])) {
     // Add node-TYPE class to the <body> element.
     $variables['attributes']['class'][] = 'node--' . $variables['node_type'];
+
+    // Add `level` class to body based on the path alias entities.
+    // @todo: discuss whether there is a better way to do this.
+    $path_alias_entities = \Drupal::service('path_alias.entities')->getPathAliasEntities();
+    if ($alias_depth = count($path_alias_entities)) {
+      $variables['attributes']['class'][] = 'node--level' . $alias_depth;
+    }
   }
 
   if (isset($variables['root_path']) && $variables['root_path'] === 'collection') {
