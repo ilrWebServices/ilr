@@ -1,0 +1,39 @@
+uuid: b3f91ac8-9c4e-480d-8aed-85d5b63877cb
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: ilr_content
+label: 'ILR content'
+description: ''
+matchers:
+  8259445a-064d-4f27-97ae-7aec9509379a:
+    uuid: 8259445a-064d-4f27-97ae-7aec9509379a
+    id: 'entity:collection'
+    weight: 0
+    settings:
+      metadata: ''
+      bundles:
+        blog: blog
+        publication_issue: publication_issue
+        subsite: subsite
+      group_by_bundle: false
+      substitution_type: canonical
+      limit: 100
+  ca987b4f-d223-4e5c-831e-5d90bc5cd333:
+    uuid: ca987b4f-d223-4e5c-831e-5d90bc5cd333
+    id: 'entity:node'
+    weight: 0
+    settings:
+      include_unpublished: true
+      metadata: ''
+      bundles:
+        certificate: certificate
+        course: course
+        page: page
+        post: post
+        story: story
+      group_by_bundle: true
+      substitution_type: canonical
+      limit: 100

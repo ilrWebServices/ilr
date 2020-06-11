@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - ilr
+    - linkit
     - media
     - token_filter
 name: 'Full html'
@@ -22,7 +23,7 @@ filters:
     status: false
     weight: -10
     settings:
-      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol type start> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid> <p class="shout"> <h1> <pre>'
+      allowed_html: '<em> <strong> <cite> <blockquote cite> <code> <ul type> <ol type start> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid> <p class="shout"> <h1> <pre> <a href hreflang data-entity-substitution data-entity-type data-entity-uuid title>'
       filter_html_help: true
       filter_html_nofollow: false
   token_filter:
@@ -47,3 +48,10 @@ filters:
       default_view_mode: default
       allowed_media_types: {  }
       allowed_view_modes: {  }
+  linkit:
+    id: linkit
+    provider: linkit
+    status: true
+    weight: 5
+    settings:
+      title: true
