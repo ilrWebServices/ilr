@@ -1,0 +1,12 @@
+
+services:
+  collection_sections_subscriber:
+    class: Drupal\collection_sections\EventSubscriber\CollectionSectionsSubscriber
+    arguments:
+      - '@entity_type.manager'
+      - '@messenger'
+      - '@string_translation'
+      - '@theme_handler'
+      - '@config.storage.active'
+    tags:
+      - { name: event_subscriber }
