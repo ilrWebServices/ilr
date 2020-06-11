@@ -35,11 +35,6 @@
   }
 }
 
-// Override the frame settings here.
-.cu-banner .framed--right >:first-child {
-  grid-template-columns: 1fr 100px;
-}
-
 // Note this override depends on the button as the last element in the frame.
 .cu-banner .framed .story__intro {
   max-width: 60%;
