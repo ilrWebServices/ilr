@@ -6,6 +6,7 @@
 
 .cu-banner--page {
   margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr2));
+  padding-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
 
   @include breakpoint(md) {
     margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
@@ -15,4 +16,56 @@
 // Override banner margin on course pages for register block/message.
 .node--course .cu-banner--page {
   margin-bottom: 0;
+}
+
+.cu-banner--page ul {
+  margin: var(--cu-vr2) 0;
+  padding: 0;
+  list-style: none;
+
+  @include breakpoint(sm) {
+    display: flex;
+    margin-bottom: 0;
+  }
+
+
+  li {
+    --cu-current-link-color: white;
+    --cu-header-accent-width: 40%;
+    --cu-header-accent-padding: 0.75em 0 0 0;
+    --cu-header-accent-border: 4px solid #{$cornell-red};
+
+    font-weight: 400;
+    margin-right: var(--cu-ps2);
+    line-height: 1;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    span::after {
+      content: '';
+      display: block;
+      width: var(--cu-header-accent-width);
+      max-width: 100%;
+      padding: var(--cu-header-accent-padding);
+      border-bottom: var(--cu-header-accent-border);
+      transition: width ease-in .25s;
+    }
+  }
+
+  ul {
+    flex-direction: column;
+    margin-top: var(--cu-vr1);
+
+    li {
+      font-size: var(--cu-ms-1);
+      font-weight: 300;
+      margin-bottom: var(--cu-vr-1);
+
+      a {
+        text-decoration-style: dotted;
+      }
+    }
+  }
 }
