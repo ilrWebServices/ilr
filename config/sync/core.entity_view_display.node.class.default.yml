@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.class.field_date_end
     - field.field.node.class.field_date_start
     - field.field.node.class.field_delivery_method
+    - field.field.node.class.field_message
     - field.field.node.class.field_price
     - node.type.class
   module:
@@ -35,7 +36,8 @@ content:
   field_address:
     weight: 108
     label: above
-    settings: {  }
+    settings:
+      field_settings: {  }
     third_party_settings: {  }
     type: address_default
     region: content
@@ -103,6 +105,13 @@ content:
     third_party_settings: {  }
     type: string
     region: content
+  field_message:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
   field_price:
     weight: 102
     label: above
@@ -116,8 +125,8 @@ content:
     region: content
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   search_api_excerpt: true

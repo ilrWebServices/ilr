@@ -21,10 +21,12 @@
       {{ drupal_field('field_class_date', 'node', class.entity.id, 'teaser') }}
       <p>All instruction will be completed between these dates.</p>
     {% else %}
+      <div class="class-sessions">
       {% for session in class.entity.sessions %}
         {# @see ClassSession::baseFieldDefinitions() session_date field setDisplayOptions() #}
         <div class="cu-class-session-date">{{ session.entity.session_date.value|date('D, F j, Y, ') }} {{ drupal_field('session_date', 'class_session', session.entity.id.value, 'default', NULL, FALSE) }}</div>
       {% endfor %}
+      </div>
     {% endif %}
 
     {% if cancelled or full %}
@@ -39,6 +41,10 @@
       <p class="touchscreen-only message">{{ message|raw }}</p>
     {% else %}
       <a href="{{ class_register_url }}" class="cu-button cu-button--alt">Register</a>
+    {% endif %}
+
+    {% if class.entity.field_message.value %}
+      <p class="class-message">{{ class.entity.field_message.value }}</p>
     {% endif %}
     </div>
 
