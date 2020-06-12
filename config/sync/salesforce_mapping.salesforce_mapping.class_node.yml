@@ -2,9 +2,26 @@ uuid: ecb4f238-6e81-4a95-b003-944f1a0b8cb6
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.field.node.class.field_address
+    - field.field.node.class.field_class_cancelled
+    - field.field.node.class.field_class_date
+    - field.field.node.class.field_class_full
+    - field.field.node.class.field_course
+    - field.field.node.class.field_date_end
+    - field.field.node.class.field_date_start
+    - field.field.node.class.field_delivery_method
+    - field.field.node.class.field_message
+    - field.field.node.class.field_price
+    - field.storage.node.field_address
+    - field.storage.node.field_class_date
+    - field.storage.node.field_course
+    - node.type.class
+    - node.type.course
   module:
+    - address
+    - datetime_range
     - salesforce_pull
-    - typed_data
 id: class_node
 label: 'Class Node'
 weight: 1
@@ -28,81 +45,103 @@ field_mappings:
     drupal_field_value: title
     salesforce_field: Name
     direction: sf_drupal
+    id: 17
   -
     drupal_field_type: properties
     drupal_field_value: field_date_start
     salesforce_field: Start__c
     direction: sf_drupal
+    id: 18
   -
     drupal_field_type: properties
     drupal_field_value: field_date_end
     salesforce_field: End__c
     direction: sf_drupal
+    id: 19
   -
     drupal_field_type: RelatedIDs
     drupal_field_value: field_course
     salesforce_field: Course__c
     direction: sf_drupal
+    id: 20
   -
     drupal_field_type: properties
     drupal_field_value: field_price
     salesforce_field: Event_Class_Fee__c
     direction: sf_drupal
+    id: 21
   -
     drupal_field_type: properties
     drupal_field_value: field_class_full
     salesforce_field: Is_Full__c
     direction: sf_drupal
+    id: 22
   -
     drupal_field_type: properties
     drupal_field_value: field_class_cancelled
     salesforce_field: Is_Cancelled__c
     direction: sf_drupal
+    id: 23
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_address.address_line1
     salesforce_field: Event_Location_Street__c
     direction: sf_drupal
+    id: 24
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_address.locality
     salesforce_field: Event_Location_City__c
     direction: sf_drupal
+    id: 25
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_address.administrative_area
     salesforce_field: Event_Location_State__c
     direction: sf_drupal
+    id: 26
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_address.postal_code
     salesforce_field: Event_Location_Zip_Postal_Code__c
     direction: sf_drupal
+    id: 27
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_address.country_code
     salesforce_field: Event_Location_Country__c
     direction: sf_drupal
+    id: 28
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_class_date.value
     salesforce_field: Start__c
     direction: sf_drupal
+    id: 29
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_class_date.end_value
     salesforce_field: End__c
     direction: sf_drupal
+    id: 30
   -
     drupal_field_type: properties
     drupal_field_value: status
     salesforce_field: Class_Show_on_Web__c
     direction: sf_drupal
+    id: 31
   -
     drupal_field_type: properties
     drupal_field_value: field_delivery_method
     salesforce_field: Delivery_Method__c
     direction: sf_drupal
+    id: 32
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_message
+    salesforce_field: Class_Selection_Header_on_Web__c
+    direction: sf_drupal
+    id: 33
 push_limit: 0
 push_retries: 3
 push_frequency: 0
