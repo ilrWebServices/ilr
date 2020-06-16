@@ -917,6 +917,10 @@ function ilr_form_collection_form_alter(&$form, FormStateInterface $form_state) 
     if (isset($form['body'])) {
       $form['body']['#group'] = 'ilr_meta';
     }
+
+    if (isset($form['field_section_path'])) {
+      $form['field_section_path']['#group'] = 'ilr_meta';
+    }
   }
 
 }

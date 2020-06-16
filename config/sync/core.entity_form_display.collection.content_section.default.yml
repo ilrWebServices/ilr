@@ -1,0 +1,87 @@
+uuid: 7ab6f5f8-3144-46e1-b915-4091525043c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.content_section
+    - field.field.collection.content_section.body
+    - field.field.collection.content_section.field_representative_image
+    - field.field.collection.content_section.field_sections
+  module:
+    - media_library
+    - paragraphs_previewer
+    - path
+    - text
+id: collection.content_section.default
+targetEntityType: collection
+bundle: content_section
+mode: default
+content:
+  body:
+    weight: 103
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
+  field_representative_image:
+    weight: 101
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    type: media_library_widget
+    region: content
+  field_sections:
+    weight: 1
+    settings:
+      title: content
+      title_plural: content
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: '2'
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: section
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: 0
+        add_above: 0
+    third_party_settings: {  }
+    type: paragraphs_previewer
+    region: content
+  name:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 100
+    region: content
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+hidden: {  }

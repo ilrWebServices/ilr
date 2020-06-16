@@ -96,40 +96,25 @@ function collection_sections_form_collection_new_node_form_submit($form, FormSta
       $entity->isDefaultRevision($node->isDefaultRevision());
       $entity->save();
     }
+    else {
+      $generate_custom_path = TRUE;
+    }
+
+    if ($generate_custom_path) {
+      if (\Drupal::moduleHandler()->moduleExists('pathauto')) {
+        $node->path->pathauto = \Drupal\pathauto\PathautoState::SKIP;
+        $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
+        $clean_title = $alias_cleaner->cleanString($node->label());
+      }
+      else {
+        $clean_title = strtolower(Html::cleanCssIdentifier($node->label()));
+      }
+
+      $collection = $form_state->get('collection');
+      $node->path->alias = $collection->toUrl()->toString() . '/' . $clean_title;
+    }
 
     // Save the node again to trigger path updates.
     $node->save();
-  }
-}
-
-/**
- * Implements hook_pathauto_alias_alter().
- *
- * Updates the alias when the entity uses the auto-generated alias and is in a publication issue collection.
- */
-function collection_sections_pathauto_alias_alter(&$alias, array &$context) {
-  if (isset($context['data']['node'])) {
-    $node = $context['data']['node'];
-    // Load all collection items that reference this node.
-    $entity_type_manager = \Drupal::service('entity_type.manager');
-    $collection_item_storage = $entity_type_manager->getStorage('collection_item');
-    $collection_item_ids = $collection_item_storage->getQuery()
-      ->condition('type', 'default')
-      ->condition('item__target_type', 'node')
-      ->condition('item__target_id', $node->id())
-      ->execute();
-
-    $collection_items = $collection_item_storage->loadMultiple($collection_item_ids);
-
-    if (!$collection_items) {
-      return;
-    }
-
-    $first_collection_item = reset($collection_items);
-    $section_path = $first_collection_item->collection->entity->field_section_path->value;
-
-    if (strpos($alias, $section_path) !== 0) {
-      $alias = $section_path . $alias;
-    }
   }
 }

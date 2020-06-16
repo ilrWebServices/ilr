@@ -1,0 +1,23 @@
+uuid: a074ec70-95b3-456a-b51a-df59ca67fc57
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - ctools
+id: content_sections
+label: 'Content sections'
+type: 'canonical_entities:collection'
+pattern: '[collection:name]'
+selection_criteria:
+  466ef15a-10ab-4f2e-bccb-d8586a7028b7:
+    id: 'entity_bundle:collection'
+    bundles:
+      content_section: content_section
+    negate: false
+    context_mapping:
+      collection: collection
+    uuid: 466ef15a-10ab-4f2e-bccb-d8586a7028b7
+selection_logic: and
+weight: 0
+relationships: {  }
