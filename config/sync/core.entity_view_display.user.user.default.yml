@@ -65,6 +65,18 @@ third_party_settings:
               context_mapping: {  }
             additional: {  }
             weight: 1
+          32d5e952-902e-4e32-9f59-98448f791998:
+            uuid: 32d5e952-902e-4e32-9f59-98448f791998
+            region: first
+            configuration:
+              id: user_collections_block
+              label: 'Content sections'
+              provider: collection
+              label_display: visible
+              collection_type: content_section
+              context_mapping: {  }
+            additional: {  }
+            weight: 1
         third_party_settings: {  }
 id: user.user.default
 targetEntityType: user
