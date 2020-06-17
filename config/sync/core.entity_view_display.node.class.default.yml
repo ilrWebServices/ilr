@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.class.field_date_end
     - field.field.node.class.field_date_start
     - field.field.node.class.field_delivery_method
+    - field.field.node.class.field_external_link
     - field.field.node.class.field_message
     - field.field.node.class.field_price
     - node.type.class
@@ -19,6 +20,7 @@ dependencies:
     - address
     - datetime
     - datetime_range
+    - link
     - text
     - user
 id: node.class.default
@@ -104,6 +106,18 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_external_link:
+    weight: 111
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
     region: content
   field_message:
     weight: 102
