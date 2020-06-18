@@ -1,7 +1,8 @@
 name: 'ILR Section Navigation'
 type: module
-description: 'Add the ability to create in-page links via section behaviors.'
+description: 'Add the ability to create in-page links via section behaviors and display them using an extra field plugin.'
 core: 8.x
 package: 'ILR'
 dependencies:
   - paragraphs
+  - extra_field
