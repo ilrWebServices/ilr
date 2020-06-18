@@ -3,6 +3,7 @@
 namespace Drupal\ilr_section_navigation\Plugin\paragraphs\Behavior;
 
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
@@ -26,7 +27,9 @@ class InPageNavigation extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
-    if (!$this->showBehaviorForm($paragraph)) {
+    $host_entity = $form_state->getBuildInfo()['callback_object']->getEntity();
+
+    if (!$this->showBehaviorForm($host_entity)) {
       return $form;
     }
 
@@ -42,13 +45,11 @@ class InPageNavigation extends ParagraphsBehaviorBase {
   }
 
   /**
-   * We currently only allow in page links on blog collections.
+   * Check the extra field config to see if the host entity has it enabled.
    */
-  protected function showBehaviorForm(Paragraph $paragraph) {
-    if ($parent_entity = $paragraph->getParentEntity()) {
-      return $parent_entity->getEntityTypeId() === 'collection' && $parent_entity->bundle() === 'blog';
-    }
-    return FALSE;
+  protected function showBehaviorForm(ContentEntityInterface $entity) {
+    $extra_field_defs = \Drupal::service('plugin.manager.extra_field_display')->fieldInfo();
+    return isset($extra_field_defs[$entity->getEntityTypeId()][$entity->bundle()]['display']['extra_field_ilr_section_navigation']);
   }
 
   /**

@@ -43,6 +43,7 @@ content:
     type: media_thumbnail
     region: content
 hidden:
+  extra_field_ilr_section_navigation: true
   field_sections: true
   field_sections_legacy: true
   layout_builder__layout: true

@@ -16,6 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   label = @Translation("In page navigation"),
  *   bundles = {
  *     "collection.blog",
+ *     "node.page",
  *   },
  *   visible = true
  * )
