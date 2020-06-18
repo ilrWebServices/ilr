@@ -7,6 +7,7 @@ use Drupal\Core\Session\AccountProxy;
 use Drupal\Core\Extension\ModuleHandler;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\ContentEntityDeleteForm;
 
 /**
  * A service to alter a content entity form.
@@ -69,6 +70,12 @@ class CollectionContentEntityFormAlter {
   public function embedCollectionItems(array &$form, FormStateInterface $form_state, EntityInterface $entity) {
     // Bail if the inline_entity_form module is not enabled.
     if ($this->moduleHandler->moduleExists('inline_entity_form') === FALSE) {
+      return;
+    }
+
+    // Ensure that this is an entity add/edit form, not a delete form.
+    $build_info = $form_state->getBuildInfo();
+    if ($build_info['callback_object'] instanceof ContentEntityDeleteForm) {
       return;
     }
 
