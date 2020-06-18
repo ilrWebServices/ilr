@@ -146,7 +146,7 @@ field_mappings:
   -
     drupal_field_type: properties
     drupal_field_value: field_external_link
-    salesforce_field: alternate_registration_url_c__c
+    salesforce_field: alternate_registration_url__c
     direction: sf_drupal
     id: 35
 push_limit: 0
