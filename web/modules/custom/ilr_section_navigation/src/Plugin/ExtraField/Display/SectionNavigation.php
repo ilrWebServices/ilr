@@ -30,8 +30,6 @@ class SectionNavigation extends ExtraFieldDisplayBase implements ContainerFactor
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = new static($configuration, $plugin_id, $plugin_definition);
-    $instance->collectionItemStorage = $container->get('entity_type.manager')->getStorage('collection_item');
-    $instance->pathAliasEntitiesManager = $container->get('path_alias.entities');
     return $instance;
   }
 
