@@ -7,7 +7,10 @@
   {% set cancelled = class.entity.field_class_cancelled.value == '1' %}
   {% set full = class.entity.field_class_full.value == '1' %}
   {% set disabled = null %}
-  {% set class_register_url = drupal_config('ilr_registration_system.settings', 'url') ~ class.salesforce_id %}
+  {% set class_register_url = (class.entity.field_external_link.value is not empty)
+    ? class.entity.field_external_link.uri
+    : drupal_config('ilr_registration_system.settings', 'url') ~ class.salesforce_id
+  %}
 
   {% set content %}
     <div class="details">

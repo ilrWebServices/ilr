@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.class.field_date_end
     - field.field.node.class.field_date_start
     - field.field.node.class.field_delivery_method
+    - field.field.node.class.field_external_link
     - field.field.node.class.field_message
     - field.field.node.class.field_price
     - field.storage.node.field_address
@@ -142,6 +143,12 @@ field_mappings:
     salesforce_field: Class_Selection_Header_on_Web__c
     direction: sf_drupal
     id: 33
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_external_link
+    salesforce_field: alternate_registration_url_c__c
+    direction: sf_drupal
+    id: 35
 push_limit: 0
 push_retries: 3
 push_frequency: 0
