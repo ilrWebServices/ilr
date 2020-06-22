@@ -45,23 +45,19 @@ function collection_sections_form_collection_new_node_form_alter(&$form, FormSta
     '#tree' => TRUE,
     '#attributes' => ['class' => ['menu-link-form']],
   ];
-  $form['collection_section_menu']['enabled'] = [
-    '#type' => 'checkbox',
-    '#title' => t('Provide a menu link'),
-  ];
   $form['collection_section_menu']['link'] = [
     '#type' => 'container',
     '#parents' => ['collection_section_menu'],
-    '#states' => [
-      'invisible' => [
-        'input[name="collection_section_menu[enabled]"]' => ['checked' => FALSE],
-      ],
-    ],
   ];
-
   $form['collection_section_menu']['link']['menu_parent'] = $parent_element;
   $form['collection_section_menu']['link']['menu_parent']['#title'] = t('Parent item');
+  $form['collection_section_menu']['link']['menu_parent']['#description'] = t('The parent item is used to create the path alias.');
   $form['collection_section_menu']['link']['menu_parent']['#attributes']['class'][] = 'menu-parent-select';
+  $form['collection_section_menu']['enabled'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Enable the menu link'),
+    '#default_value' => 1,
+  ];
 
   // Add an additional submit handler.
   $form['#submit'][] = 'collection_sections_form_collection_new_node_form_submit';
@@ -75,44 +71,19 @@ function collection_sections_form_collection_new_node_form_alter(&$form, FormSta
 function collection_sections_form_collection_new_node_form_submit($form, FormStateInterface $form_state) {
   if ($node = $form_state->get('node')) {
     $values = $form_state->getValue('collection_section_menu');
-    $generate_custom_path = FALSE;
+    list($menu_name, $parent) = explode(':', $values['menu_parent'], 2);
 
-    if ($values['enabled']) {
-      list($menu_name, $parent) = explode(':', $values['menu_parent'], 2);
-
-      if (!$parent) {
-        $generate_custom_path = TRUE;
-      }
-
-      // Create a new menu_link_content entity.
-      $entity = MenuLinkContent::create([
-        'link' => ['uri' => 'entity:node/' . $node->id()],
-        'langcode' => $node->language()->getId(),
-      ]);
-      $entity->enabled->value = 1;
-      $entity->title->value = $node->label();
-      $entity->menu_name->value = $menu_name;
-      $entity->parent->value = $parent;
-      $entity->isDefaultRevision($node->isDefaultRevision());
-      $entity->save();
-    }
-    else {
-      $generate_custom_path = TRUE;
-    }
-
-    if ($generate_custom_path) {
-      if (\Drupal::moduleHandler()->moduleExists('pathauto')) {
-        $node->path->pathauto = \Drupal\pathauto\PathautoState::SKIP;
-        $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
-        $clean_title = $alias_cleaner->cleanString($node->label());
-      }
-      else {
-        $clean_title = strtolower(Html::cleanCssIdentifier($node->label()));
-      }
-
-      $collection = $form_state->get('collection');
-      $node->path->alias = $collection->toUrl()->toString() . '/' . $clean_title;
-    }
+    // Create a new menu_link_content entity.
+    $entity = MenuLinkContent::create([
+      'link' => ['uri' => 'entity:node/' . $node->id()],
+      'langcode' => $node->language()->getId(),
+    ]);
+    $entity->enabled->value = $values['enabled'];
+    $entity->title->value = $node->label();
+    $entity->menu_name->value = $menu_name;
+    $entity->parent->value = $parent;
+    $entity->isDefaultRevision($node->isDefaultRevision());
+    $entity->save();
 
     // Save the node again to trigger path updates.
     $node->save();
