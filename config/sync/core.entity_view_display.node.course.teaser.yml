@@ -40,15 +40,16 @@ content:
     type: entity_reference_label
   ilr_course_page_links:
     weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   links:
     weight: 100
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  extra_field_class_register: true
   field_classes: true
   field_course_number: true
   field_delivery_method: true

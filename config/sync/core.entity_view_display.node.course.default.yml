@@ -166,15 +166,14 @@ third_party_settings:
           collapse_margins: 1
           extra_classes: ''
         components:
-          68763f21-13d0-4529-8188-8bc665c4e386:
-            uuid: 68763f21-13d0-4529-8188-8bc665c4e386
+          a92e4315-abad-4520-a7ba-fd4bd5ebad45:
+            uuid: a92e4315-abad-4520-a7ba-fd4bd5ebad45
             region: main
             configuration:
-              id: class_register_block
-              label: 'Class register'
-              provider: ilr
               label_display: '0'
-              context_mapping: {  }
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:node:course:extra_field_class_register'
             additional: {  }
             weight: 0
         third_party_settings: {  }
@@ -377,6 +376,11 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  extra_field_class_register:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: main
   field_course_number:
     weight: 6
     label: above
