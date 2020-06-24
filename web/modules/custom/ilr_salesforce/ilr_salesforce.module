@@ -39,12 +39,17 @@ function ilr_salesforce_form_node_form_alter(&$form, FormStateInterface $form_st
       '#bundle' => 'class_session',
       '#default_value' => $class_session->entity,
       '#form_mode' => 'mini',
-      // '#save_entity' => TRUE,
+      '#save_entity' => TRUE,
       '#op' => 'edit',
       // '#prefix' => $class_session->entity->uuid(),
       '#suffix' => '<hr/>',
       // '#disabled' => TRUE,
     ];
   }
+
+  // Set the bare minimum 'inline_entity_form' value to the form state. This is
+  // required to add the proper submit handlers to the node add/edit form. See
+  // inline_entity_form_form_alter() in inline_entity_form.module
+  $form_state->set(['inline_entity_form'], []);
 
 }
