@@ -1,0 +1,20 @@
+uuid: df58f2e1-eb71-412c-8a17-2fc9fea7b80d
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: curated_course_listing
+label: 'Curated course listing'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  list_styles:
+    enabled: true
+    list_styles:
+      grid: grid
+      grid-compact: 0
+      list-compact: 0
+      grid-featured: 0
+      banner: 0

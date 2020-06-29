@@ -1,0 +1,23 @@
+uuid: a8d949aa-3b39-4c51-8620-74bada229da2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.curated_course_listing.field_courses
+    - paragraphs.paragraphs_type.curated_course_listing
+id: paragraph.curated_course_listing.default
+targetEntityType: paragraph
+bundle: curated_course_listing
+mode: default
+content:
+  field_courses:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  search_api_excerpt: true
