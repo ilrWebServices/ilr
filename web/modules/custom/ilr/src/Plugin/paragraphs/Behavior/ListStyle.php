@@ -103,7 +103,7 @@ class ListStyle extends ParagraphsBehaviorBase {
       '#description' => '',
       '#options' => $style_options,
       '#required' => TRUE,
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style') ?? reset($style_options),
     ];
 
     return $form;
