@@ -1,0 +1,178 @@
+uuid: 4052e7e9-1cd8-4194-885d-3244a248128e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.blog_10_categories.field_body
+    - field.field.taxonomy_term.blog_10_categories.field_representative_image
+    - field.field.taxonomy_term.blog_10_categories.field_sections
+    - taxonomy.vocabulary.blog_10_categories
+  module:
+    - entity_reference_revisions
+    - layout_builder
+    - layout_discovery
+    - text
+    - union_organizer
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: 'Blog banner'
+        components:
+          66a1cf95-9660-4730-a652-61bfc633cde4:
+            uuid: 66a1cf95-9660-4730-a652-61bfc633cde4
+            region: content
+            configuration:
+              id: 'extra_field_block:taxonomy_term:blog_10_categories:blog_collection'
+              label: Blog
+              provider: layout_builder
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          48046f6f-e5b8-4086-b296-ee17c370b1b6:
+            uuid: 48046f6f-e5b8-4086-b296-ee17c370b1b6
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:blog_10_categories:field_body'
+              label: 'Intro text'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
+          59e97688-0698-4553-ab65-b6b1ab8eabec:
+            uuid: 59e97688-0698-4553-ab65-b6b1ab8eabec
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:blog_10_categories:name'
+              label: Name
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          b5f536f1-db4b-4309-b3b5-82997c9f5036:
+            uuid: b5f536f1-db4b-4309-b3b5-82997c9f5036
+            region: content
+            configuration:
+              id: 'field_block:taxonomy_term:blog_10_categories:field_sections'
+              label: 'Page content'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_revisions_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 5
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          464097be-2cc0-4e67-ba94-28c15cf79636:
+            uuid: 464097be-2cc0-4e67-ba94-28c15cf79636
+            region: main
+            configuration:
+              id: 'extra_field_block:taxonomy_term:blog_10_categories:collection_items_category_term'
+              label: 'Worker Institute Blog categories'
+              provider: layout_builder
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
+id: taxonomy_term.blog_10_categories.default
+targetEntityType: taxonomy_term
+bundle: blog_10_categories
+mode: default
+content:
+  blog_collection:
+    weight: -1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  collection_items_category_term:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_body:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_representative_image:
+    weight: 2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sections:
+    weight: 3
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+hidden:
+  search_api_excerpt: true
