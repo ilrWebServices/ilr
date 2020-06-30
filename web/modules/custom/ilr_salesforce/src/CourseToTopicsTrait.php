@@ -97,6 +97,9 @@ LD250	Leadership Development and Organizational Change
 HR420	Human Resources
 DV358	Diversity and Inclusion	Human Resources
 LD314	Leadership Development and Organizational Change
+EE500	Human Resources	Leadership Development and Organizational Change
+EE505	Human Resources	Leadership Development and Organizational Change
+EE510	Human Resources	Leadership Development and Organizational Change
 EOD;
 
 }
