@@ -6,6 +6,7 @@ dependencies:
     - field.storage.paragraph.field_components
     - paragraphs.paragraphs_type.collection_listing
     - paragraphs.paragraphs_type.collection_listing_publication
+    - paragraphs.paragraphs_type.curated_course_listing
     - paragraphs.paragraphs_type.curated_post_listing
     - paragraphs.paragraphs_type.deck
     - paragraphs.paragraphs_type.form
@@ -46,52 +47,56 @@ settings:
       simple_collection_listing: simple_collection_listing
       collection_listing_publication: collection_listing_publication
       curated_post_listing: curated_post_listing
+      curated_course_listing: curated_course_listing
       collection_listing: collection_listing
       picture_in_picture: picture_in_picture
     target_bundles_drag_drop:
-      rich_text:
-        enabled: true
-        weight: -25
-      image:
-        enabled: true
-        weight: -24
-      deck:
-        enabled: true
-        weight: -23
-      media_deck:
-        enabled: true
-        weight: -23
-      video:
-        enabled: true
-        weight: -22
-      form:
-        enabled: true
-        weight: -21
-      testimonial:
-        enabled: true
-        weight: -20
-      promo:
-        enabled: true
-        weight: -19
-      simple_collection_listing:
-        enabled: true
-        weight: -18
-      collection_listing_publication:
-        enabled: true
-        weight: -17
-      curated_post_listing:
-        enabled: true
-        weight: -17
       collection_listing:
         enabled: true
-        weight: -16
+        weight: -21
+      collection_listing_publication:
+        enabled: true
+        weight: -24
+      curated_course_listing:
+        enabled: true
+        weight: -22
+      curated_post_listing:
+        enabled: true
+        weight: -23
+      deck:
+        enabled: true
+        weight: -31
+      form:
+        enabled: true
+        weight: -28
+      image:
+        enabled: true
+        weight: -32
+      media_deck:
+        enabled: true
+        weight: -30
       person:
-        weight: -15
-        enabled: false
-      section:
-        weight: -14
+        weight: -20
         enabled: false
       picture_in_picture:
         enabled: true
-        weight: 16
+        weight: -18
+      promo:
+        enabled: true
+        weight: -26
+      rich_text:
+        enabled: true
+        weight: -33
+      section:
+        weight: -19
+        enabled: false
+      simple_collection_listing:
+        enabled: true
+        weight: -25
+      testimonial:
+        enabled: true
+        weight: -27
+      video:
+        enabled: true
+        weight: -29
 field_type: entity_reference_revisions

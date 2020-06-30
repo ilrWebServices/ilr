@@ -1,0 +1,25 @@
+uuid: fe7f9d1c-eb21-4cf8-87d1-bbb963511b2d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.curated_course_listing.field_courses
+    - paragraphs.paragraphs_type.curated_course_listing
+id: paragraph.curated_course_listing.default
+targetEntityType: paragraph
+bundle: curated_course_listing
+mode: default
+content:
+  field_courses:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden:
+  created: true
+  status: true

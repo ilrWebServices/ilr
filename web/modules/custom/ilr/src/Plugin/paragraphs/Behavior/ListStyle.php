@@ -103,7 +103,7 @@ class ListStyle extends ParagraphsBehaviorBase {
       '#description' => '',
       '#options' => $style_options,
       '#required' => TRUE,
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style') ?? reset($style_options),
     ];
 
     return $form;
@@ -180,7 +180,7 @@ class ListStyle extends ParagraphsBehaviorBase {
    * `collection` entity reference field.
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {
-    return in_array($paragraphs_type->id(), ['simple_collection_listing', 'curated_post_listing', 'collection_listing_publication']);
+    return in_array($paragraphs_type->id(), ['simple_collection_listing', 'curated_post_listing', 'collection_listing_publication', 'curated_course_listing']);
   }
 
   /**
