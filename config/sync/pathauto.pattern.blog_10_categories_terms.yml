@@ -1,0 +1,23 @@
+uuid: 8e6908f9-8450-45b2-ab5b-8d71c71ff6d5
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: blog_10_categories_terms
+label: 'Worker Institute Blog categories Terms'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/worker-institute/blog/[term:name]'
+selection_criteria:
+  a4e753e0-3af3-43f4-9109-0fd662151709:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      blog_10_categories: blog_10_categories
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: a4e753e0-3af3-43f4-9109-0fd662151709
+selection_logic: and
+weight: 0
+relationships: {  }
