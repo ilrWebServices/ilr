@@ -1,8 +1,26 @@
 domain_redirects:
   'execed:ilr:cornell:edu':
     -
-      sub_path: /capabilities/modern-chro-role/registration
+      sub_path: /navigating-covid-19
+      destination: www.ilr.cornell.edu/programs/professional-education/navigating-covid-19
+    -
+      sub_path: /capabilities/custom-programs
+      destination: www.ilr.cornell.edu/programs/professional-education/customized-programs
+    -
+      sub_path: /capabilities/modern-chro-role
       destination: www.ilr.cornell.edu/programs/professional-education/senior-leader-courses/modern-chro-role
+    -
+      sub_path: /capabilities/strategic-hr-business-partnering
+      destination: www.ilr.cornell.edu/programs/professional-education/senior-leader-courses/strategic-hr-business-partnering-program
+    -
+      sub_path: /hr-leadership
+      destination: www.ilr.cornell.edu/programs/professional-education/ee505/hr-leadership-organizational-excellence
+    -
+      sub_path: /people-analytics
+      destination: www.ilr.cornell.edu/programs/professional-education/ee500/people-analytics-leveraging-data-insights-and-action
+    -
+      sub_path: /supply-chain
+      destination: www.ilr.cornell.edu/programs/professional-education/ee510/new-solutions-labor-practices-global-supply-chains
     -
       sub_path: '/*'
       destination: www.ilr.cornell.edu/programs/professional-education/senior-leader-courses
