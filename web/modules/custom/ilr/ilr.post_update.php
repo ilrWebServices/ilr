@@ -371,3 +371,31 @@ function ilr_post_update_update_list_styles(&$sandbox) {
     $paragraph->save();
   }
 }
+
+/**
+ * Create social footer block.
+ */
+function ilr_post_update_create_social_footer_block(&$sandbox) {
+  $blockEntityManager = \Drupal::service('entity_type.manager')
+    ->getStorage('block_content');
+
+  $block = $blockEntityManager->create([
+    'type' => 'simple_text',
+    'uuid' => '48bd16f4-0fe8-4b1a-800b-089c03c0be23',
+    'label_display' => 0,
+  ]);
+
+  $block->info = "Social footer";
+  $content = '<div class="social-follow">
+    <ul class="social-follow__items">
+      <li class="social-follow__item"><a class="social-follow__link" href="https://www.linkedin.com/company/cornell-university-ilr-school"><svg class="cu-icon__image" width="1.8em" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><use href="/libraries/union/source/images/icons.svg#linkedin"></use></svg></a></li>
+      <li class="social-follow__item"><a class="social-follow__link" href="https://facebook.com/ilrschool"><svg class="cu-icon__image" width="1.4em" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><use href="/libraries/union/source/images/icons.svg#facebook"></use></svg></a></li>
+      <li class="social-follow__item"><a class="social-follow__link" href="https://twitter.com/CornellILR"><svg class="cu-icon__image" width="2em" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><title>Twitter</title><use href="/libraries/union/source/images/icons.svg#twitter"></use></svg></a></li>
+      <li class="social-follow__item"><a class="social-follow__link" href="https://instagram.com/cornellilr"><svg class="cu-icon__image" width="1em" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><title>Instagram</title><use href="/libraries/union/source/images/icons.svg#instagram"></use></svg></a></li>
+      <li class="social-follow__item"><a class="social-follow__link" href="https://www.youtube.com/user/CornellUniversityILR?sub_confirmation=1"><svg class="cu-icon__image" width="1.5em" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><title>Youtube</title><use href="/libraries/union/source/images/icons.svg#youtube"></use></svg></a></li>
+    </ul>
+  </div>';
+  $block->body->value = $content;
+  $block->body->format = 'full_html';
+  $block->save();
+}
