@@ -16,7 +16,10 @@ footer {
     justify-self: stretch;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    @include breakpoint(sm) {
+      grid-template-columns: 1fr 1fr;
+    }
 
     :first-child {
       grid-column: 1 / -1;
