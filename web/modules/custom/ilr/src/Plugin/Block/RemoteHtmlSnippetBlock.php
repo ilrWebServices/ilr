@@ -73,7 +73,9 @@ class RemoteHtmlSnippetBlock extends BlockBase {
       $html_content = $html_content_cache_item->data;
     }
     else {
-      $html_content = file_get_contents($this->configuration['url']);
+      // Add a random string to avoid the realpath cache. If this doesn't work,
+      // consider switching to curl.
+      $html_content = file_get_contents($this->configuration['url'] . '?' . mt_rand());
       \Drupal::cache()->set($cid, $html_content, Cache::PERMANENT);
     }
 
