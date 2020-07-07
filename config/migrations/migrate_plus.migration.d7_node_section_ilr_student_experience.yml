@@ -1,0 +1,116 @@
+uuid: 330aed97-7630-4dec-964a-97034b9f6e58
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_section_ilr_student_experience
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - Content
+migration_group: drupal_7
+label: 'Updates for Salesforce-imported instructor nodes'
+source:
+  constants:
+    slash: '/'
+    para_parent_type: 'paragraph'
+    para_parent_field_name: 'field_components'
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  track_changes: true
+  urls:
+    - ../migrate_info/data/test.json
+  item_selector: /
+  fields:
+    -
+      name: nid
+      selector: nid
+    -
+      name: title
+      selector: title
+    -
+      name: field_image_fid
+      selector: field_image_fid
+    -
+      name: status
+      selector: status
+    -
+      name: created
+      selector: created
+    -
+      name: changed
+      selector: changed
+    -
+      name: promote
+      selector: promote
+    -
+      name: sticky
+      selector: sticky
+    -
+      name: featured
+      selector: featured
+    -
+      name: alias
+      selector: alias
+    -
+      name: text_paragraph_values
+      selector: text_paragraph_values
+  ids:
+    nid:
+      type: integer
+process:
+  title: title
+  field_representative_image: field_image_fid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  featured: featured
+  path/alias:
+    plugin: concat
+    source:
+      - constants/slash
+      - alias
+  path/pathauto:
+    plugin: default_value
+    default_value: false
+  uid:
+    plugin: default_value
+    default_value: 0
+  # field_sections:
+  #   plugin: entity_generate
+  #   entity_type: paragraph
+  #   bundle: section
+  #   bundle_key: type
+  #   value_key: field_components
+  _text_paragraphs:
+    -
+      plugin: explode
+      source: text_paragraph_values
+      delimiter: '----------------------'
+    -
+      plugin: entity_generate
+      entity_type: paragraph
+      bundle: rich_text
+      bundle_key: type
+      value_key: field_body
+      values:
+        # parent_id: '@field_sections'
+        parent_type: constants/para_parent_type
+        parent_field_name: constants/para_parent_field_name
+        field_body/format:
+          plugin: default_value
+          default_value: basic_formatting
+  # _paragraphs:
+  #   plugin: merge
+  #   source:
+  #     - '@_text_paragraphs'
+  # field_sections:
+  #   plugin: ilr_section_paragraphs
+  #   source: '@_paragraphs'
+destination:
+  plugin: 'entity:node'
+  default_bundle: page
+migration_dependencies: null
