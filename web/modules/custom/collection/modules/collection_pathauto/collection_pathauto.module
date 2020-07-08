@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * Implements hook_pathauto_alias_alter().
+ *
+ * Checks for a canonical collection item and prepends the collection url to the
+ * path.
+ */
+function collection_pathauto_pathauto_alias_alter(&$alias, array &$context) {
+  if (!isset($context['data']['node'])) {
+    return;
+  }
+
+  // Get the canonical collection item for this node, if one exists.
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+  $collection_item_ids = $collection_item_storage->getQuery()
+    ->condition('item__target_type', 'node')
+    ->condition('item__target_id', $context['data']['node']->id())
+    ->condition('canonical', 1)
+    ->execute();
+
+  if (count($collection_item_ids) !== 1) {
+    return;
+  }
+
+  $collection_items = $collection_item_storage->loadMultiple($collection_item_ids);
+  $collection_item = reset($collection_items);
+  $collection_url = $collection_item->collection->entity->toUrl()->toString();
+
+  if (strpos($alias, $collection_url) !== 0) {
+    $alias = $collection_item->collection->entity->toUrl()->toString() . $alias;
+  }
+}
