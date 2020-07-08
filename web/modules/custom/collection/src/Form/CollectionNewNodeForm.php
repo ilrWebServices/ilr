@@ -124,6 +124,7 @@ class CollectionNewNodeForm extends FormBase {
       'type' => $form_state->get('collection_item_type'),
       'collection' => $collection,
       'item' => $node,
+      'canonical' => TRUE,
     ]);
     if ($collection_item->save()) {
       $form_state->set('collection_item', $collection_item);
