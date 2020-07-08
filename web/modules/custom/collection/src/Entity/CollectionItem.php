@@ -342,6 +342,16 @@ class CollectionItem extends ContentEntityBase implements CollectionItemInterfac
         'weight' => 10,
       ]);
 
+    $fields['canonical'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(t('Canonical'))
+      ->setDescription(t('A flag to indicate that this collection is the primary home.'))
+      ->setDefaultValue(FALSE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'settings' => ['display_label' => TRUE],
+        'weight' => 15,
+      ]);
+
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
       ->setDescription(t('The time that the collection item was created.'));

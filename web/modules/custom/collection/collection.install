@@ -20,3 +20,16 @@ function collection_update_8001() {
   \Drupal::entityDefinitionUpdateManager()
     ->installFieldStorageDefinition('weight', 'collection_item', 'collection_item', $field_storage_definition);
 }
+
+/**
+ * Add canonical field to collection items.
+ */
+function collection_update_8002() {
+  $field_storage_definition = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('Canonical'))
+    ->setInitialValue(TRUE)
+    ->setDefaultValue(FALSE);
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('canonical', 'collection_item', 'collection_item', $field_storage_definition);
+}
