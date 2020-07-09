@@ -4,9 +4,12 @@ namespace Drupal\collection\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\collection\Entity\CollectionInterface;
+use Drupal\collection\Event\CollectionEvents;
+use Drupal\collection\Event\CollectionItemFormSaveEvent;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -22,13 +25,21 @@ class CollectionNewNodeForm extends FormBase {
   protected $entityTypeManager;
 
   /**
+   * The event dispatcher service.
+   *
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+   */
+  protected $eventDispatcher;
+
+  /**
    * Constructs a new CollectionNewNodeForm.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EventDispatcherInterface $event_dispatcher) {
     $this->entityTypeManager = $entity_type_manager;
+    $this->eventDispatcher = $event_dispatcher;
   }
 
   /**
@@ -37,7 +48,8 @@ class CollectionNewNodeForm extends FormBase {
   public static function create(ContainerInterface $container) {
     // Instantiates this form class.
     return new static(
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('event_dispatcher')
     );
   }
 
@@ -126,8 +138,13 @@ class CollectionNewNodeForm extends FormBase {
       'item' => $node,
       'canonical' => TRUE,
     ]);
+
     if ($collection_item->save()) {
       $form_state->set('collection_item', $collection_item);
+
+      // Dispatch the CollectionItemFormSaveEvent.
+      $event = new CollectionItemFormSaveEvent($collection_item, SAVED_NEW);
+      $this->eventDispatcher->dispatch(CollectionEvents::COLLECTION_ITEM_FORM_SAVE, $event);
     }
   }
 
