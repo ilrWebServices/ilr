@@ -69,7 +69,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
     return [
       CollectionEvents::COLLECTION_ENTITY_CREATE => 'collectionCreate',
       CollectionEvents::COLLECTION_ENTITY_UPDATE => 'collectionUpdate',
-      CollectionEvents::COLLECTION_ITEM_FORM_CREATE => 'collectionItemFormCreate',
+      CollectionEvents::COLLECTION_ITEM_FORM_SAVE => 'collectionItemFormSave',
       ConfigEvents::STORAGE_TRANSFORM_IMPORT => 'onImportTransform',
     ];
   }
@@ -246,12 +246,16 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Process the COLLECTION_ITEM_FORM_CREATE event.
+   * Process the COLLECTION_ITEM_FORM_SAVE event.
    *
    * @param \Symfony\Component\EventDispatcher\Event $event
    *   The dispatched event.
    */
-  public function collectionItemFormCreate(Event $event) {
+  public function collectionItemFormSave(Event $event) {
+    if ($event->returnStatus !== SAVED_NEW) {
+      return;
+    }
+
     $collection_item = $event->collectionItem;
     $collection = $collection_item->collection->first()->entity;
     $collection_item_entity = $collection_item->item->first()->entity;

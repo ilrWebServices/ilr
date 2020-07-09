@@ -11,7 +11,7 @@ use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Drupal\collection\Event\CollectionEvents;
-use Drupal\collection\Event\CollectionItemFormCreateEvent;
+use Drupal\collection\Event\CollectionItemFormSaveEvent;
 
 /**
  * Form controller for Collection item edit forms.
@@ -82,8 +82,6 @@ class CollectionItemForm extends ContentEntityForm {
         $this->messenger()->addMessage($this->t('Created the %label Collection item.', [
           '%label' => $entity->label(),
         ]));
-        $event = new CollectionItemFormCreateEvent($entity);
-        $this->eventDispatcher->dispatch(CollectionEvents::COLLECTION_ITEM_FORM_CREATE, $event);
         break;
 
       default:
@@ -91,6 +89,9 @@ class CollectionItemForm extends ContentEntityForm {
           '%label' => $entity->label(),
         ]));
     }
+
+    $event = new CollectionItemFormSaveEvent($entity, $status);
+    $this->eventDispatcher->dispatch(CollectionEvents::COLLECTION_ITEM_FORM_SAVE, $event);
 
     $form_state->setRedirect('entity.collection_item.collection', ['collection' => $entity->collection->target_id]);
   }

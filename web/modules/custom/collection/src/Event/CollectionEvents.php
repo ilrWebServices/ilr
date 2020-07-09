@@ -32,5 +32,6 @@ final class CollectionEvents {
    * @see \Drupal\collection\Event\CollectionEvents
    * @var string
    */
-  const COLLECTION_ITEM_FORM_CREATE = 'collection_item.form.create';
+  const COLLECTION_ITEM_FORM_SAVE = 'collection_item.form.save';
+
 }

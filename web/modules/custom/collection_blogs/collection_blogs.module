@@ -281,38 +281,29 @@ function collection_blogs_form_collection_new_node_form_presubmit($form, FormSta
 }
 
 /**
- * Implements hook_pathauto_alias_alter().
+ * Implements hook_collection_pathauto_alias_alter().
  *
- * Updates the alias when the entity uses the auto-generated alias and is in a blog collection.
+ * Updates the alias for posts that are in a canonical collection.
  */
-function collection_blogs_pathauto_alias_alter(&$alias, array &$context) {
-  if (isset($context['data']['node'])) {
-    $node = $context['data']['node'];
-    // Load all collection items that reference this node.
-    $entity_type_manager = \Drupal::service('entity_type.manager');
-    $collection_item_storage = $entity_type_manager->getStorage('collection_item');
-    $collection_item_ids = $collection_item_storage->getQuery()
-      ->condition('type', 'blog')
-      ->condition('item__target_type', 'node')
-      ->condition('item__target_id', $node->id())
-      ->execute();
+function collection_blogs_collection_pathauto_alias_alter(&$alias, array &$context) {
+  if (isset($context['canonical_collection']) && isset($context['collection_item'])) {
+    // Ensure that this is a blog collection.
+    $collection_type = \Drupal::service('entity_type.manager')->getStorage('collection_type')->load($context['canonical_collection']->bundle());
+    $is_blog = (bool) $collection_type->getThirdPartySetting('collection_blogs', 'contains_blogs');
 
-    $collection_items = $collection_item_storage->loadMultiple($collection_item_ids);
-
-    if (!$collection_items) {
+    if ($is_blog === FALSE) {
       return;
     }
 
+    // Modify the alias, which changes depending on whether the post has a category.
     $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
-    $clean_title = $alias_cleaner->cleanString($node->label());
-    $first_collection_item = reset($collection_items);
+    $clean_title = $alias_cleaner->cleanString($context['data']['node']->label());
 
-    // Use the collection path if there is no category.
-    if ($first_collection_item->field_blog_categories->isEmpty()) {
-      $alias = $first_collection_item->collection->entity->toUrl()->toString() . '/' . $clean_title;
+    if ($context['collection_item']->hasField('field_blog_categories') && !$context['collection_item']->field_blog_categories->isEmpty()) {
+      $alias = $context['collection_item']->field_blog_categories->entity->toUrl()->toString() . '/' . $clean_title;
     }
-    else { // Use the category path.
-      $alias = $first_collection_item->field_blog_categories->entity->toUrl()->toString() . '/' . $clean_title;
+    else {
+      $alias = $context['canonical_collection']->toUrl()->toString() . '/' . $clean_title;
     }
   }
 }

@@ -1,0 +1,5 @@
+services:
+  collection_pathauto_subscriber:
+    class: Drupal\collection_pathauto\EventSubscriber\CollectionPathautoSubscriber
+    tags:
+      - { name: event_subscriber }

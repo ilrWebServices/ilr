@@ -1,0 +1,7 @@
+name: 'Collection Pathauto'
+type: module
+description: 'Allows canonical content in collections to prepend the collection path in pathauto patterns.'
+core: 8.x
+package: 'Collection'
+dependencies:
+  - pathauto:pathauto
