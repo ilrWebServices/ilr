@@ -5,6 +5,7 @@
  * Contains collection_subsites.module.
  */
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\collection\Entity\CollectionType;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
@@ -36,7 +37,7 @@ function collection_subsites_theme() {
 function collection_subsites_preprocess_html(&$variables) {
   $collection_subsites_resolver = \Drupal::service('collection_subsites.resolver');
   foreach (\Drupal::routeMatch()->getParameters() as $parameter) {
-    if ($parameter instanceof \Drupal\Core\Entity\EntityInterface) {
+    if ($parameter instanceof EntityInterface && $parameter->hasLinkTemplate('canonical')) {
       if ($subsite = $collection_subsites_resolver->getSubsite($parameter)) {
         $variables['attributes']['class'][] = 'subsite';
       }
