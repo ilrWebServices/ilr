@@ -57,9 +57,7 @@ use Drupal\Core\Cache\Cache;
  *   },
  *   bundle_entity_type = "collection_item_type",
  *   field_ui_base_route = "entity.collection_item_type.edit_form",
- *   constraints = {
- *     "UniqueItem" = {}
- *   }
+ *   constraints = {"UniqueItem" = {}, "SingleCanonicalItem" = {}}
  * )
  */
 class CollectionItem extends ContentEntityBase implements CollectionItemInterface {
