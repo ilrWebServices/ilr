@@ -12,6 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Drupal\collection\Event\CollectionEvents;
 use Drupal\collection\Event\CollectionItemFormCreateEvent;
+use Drupal\collection\Event\CollectionItemFormSaveEvent;
 
 /**
  * Form controller for Collection item edit forms.
@@ -91,6 +92,9 @@ class CollectionItemForm extends ContentEntityForm {
           '%label' => $entity->label(),
         ]));
     }
+
+    $event = new CollectionItemFormSaveEvent($entity, $status);
+    $this->eventDispatcher->dispatch(CollectionEvents::COLLECTION_ITEM_FORM_SAVE, $event);
 
     $form_state->setRedirect('entity.collection_item.collection', ['collection' => $entity->collection->target_id]);
   }

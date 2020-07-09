@@ -26,11 +26,21 @@ final class CollectionEvents {
   const COLLECTION_ENTITY_UPDATE = 'collection.entity.update';
 
   /**
-   * Name of the event fired after a collection item entity is saved via a form.
+   * Name of the event fired after a collection item entity is created via a form.
    *
    * @Event
    * @see \Drupal\collection\Event\CollectionEvents
    * @var string
    */
   const COLLECTION_ITEM_FORM_CREATE = 'collection_item.form.create';
+
+  /**
+   * Name of the event fired after a collection item entity is saved via a form.
+   *
+   * @Event
+   * @see \Drupal\collection\Event\CollectionEvents
+   * @var string
+   */
+  const COLLECTION_ITEM_FORM_SAVE = 'collection_item.form.save';
+
 }
