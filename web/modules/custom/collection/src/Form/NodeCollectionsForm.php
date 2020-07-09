@@ -9,7 +9,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
 use Drupal\collection\Event\CollectionEvents;
-use Drupal\collection\Event\CollectionItemFormCreateEvent;
 use Drupal\collection\Event\CollectionItemFormSaveEvent;
 use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -132,8 +131,6 @@ class NodeCollectionsForm extends FormBase {
           ]));
 
           // Dispatch new collection item form event.
-          $event = new CollectionItemFormCreateEvent($collection_item);
-          $this->eventDispatcher->dispatch(CollectionEvents::COLLECTION_ITEM_FORM_CREATE, $event);
           $event = new CollectionItemFormSaveEvent($collection_item, SAVED_NEW);
           $this->eventDispatcher->dispatch(CollectionEvents::COLLECTION_ITEM_FORM_SAVE, $event);
         }
