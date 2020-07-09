@@ -4,7 +4,8 @@
  * Implements hook_pathauto_alias_alter().
  *
  * Checks for a canonical collection item and prepends the collection url to the
- * path.
+ * path. It also implements an alter hook so that other modules can further
+ * modify the alias.
  */
 function collection_pathauto_pathauto_alias_alter(&$alias, array &$context) {
   if (!isset($context['data']['node'])) {
@@ -27,8 +28,15 @@ function collection_pathauto_pathauto_alias_alter(&$alias, array &$context) {
   $collection_items = $collection_item_storage->loadMultiple($collection_item_ids);
   $collection_item = reset($collection_items);
   $collection_url = $collection_item->collection->entity->toUrl()->toString();
+  $context['original_alias'] = $alias;
 
   if (strpos($alias, $collection_url) !== 0) {
     $alias = $collection_item->collection->entity->toUrl()->toString() . $alias;
   }
+
+  // Add relevant collection details to the context and allow other modules to
+  // alter the alias.
+  $context['collection_item'] = $collection_item;
+  $context['canonical_collection'] = $collection_item->collection->entity;
+  \Drupal::moduleHandler()->alter('collection_pathauto_alias', $alias, $context);
 }

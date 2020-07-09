@@ -113,32 +113,19 @@ function collection_publications_form_collection_new_node_form_presubmit($form, 
 }
 
 /**
- * Implements hook_pathauto_alias_alter().
+ * Implements hook_collection_pathauto_alias_alter().
  *
- * Updates the alias when the entity uses the auto-generated alias and is in a publication issue collection.
+ * Updates the alias for stories that are in a canonical publication issue.
  */
-function collection_publications_pathauto_alias_alter(&$alias, array &$context) {
-  if (isset($context['data']['node'])) {
-    $node = $context['data']['node'];
-    // Load all collection items that reference this node.
-    $entity_type_manager = \Drupal::service('entity_type.manager');
-    $collection_item_storage = $entity_type_manager->getStorage('collection_item');
-    $collection_item_ids = $collection_item_storage->getQuery()
-      ->condition('type', 'publication_issue')
-      ->condition('item__target_type', 'node')
-      ->condition('item__target_id', $node->id())
-      ->execute();
-
-    $collection_items = $collection_item_storage->loadMultiple($collection_item_ids);
-
-    if (!$collection_items) {
+function collection_publications_collection_pathauto_alias_alter(&$alias, array &$context) {
+  if (isset($context['canonical_collection']) && isset($context['collection_item'])) {
+    if ($context['canonical_collection']->bundle() !== 'publication_issue') {
       return;
     }
 
     $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
-    $clean_title = $alias_cleaner->cleanString($node->label());
-    $first_collection_item = reset($collection_items);
-    $alias = $first_collection_item->collection->entity->toUrl()->toString() . '/' . $clean_title;
+    $clean_title = $alias_cleaner->cleanString($context['data']['node']->label());
+    $alias = $context['canonical_collection']->toUrl()->toString() . '/' . $clean_title;
   }
 }
 
