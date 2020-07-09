@@ -52,7 +52,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Process the COLLECTION_ITEM_FORM_CREATE event.
+   * Process the COLLECTION_ENTITY_CREATE event.
    *
    * @param \Symfony\Component\EventDispatcher\Event $event
    *   The dispatched event.
