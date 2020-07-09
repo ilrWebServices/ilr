@@ -208,6 +208,10 @@ function collection_blogs_node_view(array &$build, EntityInterface $entity, Enti
       ->range(0, 1) // Limit to one; posts should only be in a single collection.
       ->execute();
 
+    if (empty($blog_post_collection_item_id)) {
+      return;
+    }
+
     $blog_post_collection_item = $collection_item_storage->load(reset($blog_post_collection_item_id));
 
     // If the collection item was found, display the blog tags field as a teaser.
