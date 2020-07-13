@@ -1,0 +1,73 @@
+uuid: 5de3d475-b6c3-4b8b-b8cc-e7a19e04248e
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.content_section
+    - field.storage.collection.field_sections
+    - paragraphs.paragraphs_type.section
+  module:
+    - entity_reference_revisions
+id: collection.content_section.field_sections
+field_name: field_sections
+entity_type: collection
+bundle: content_section
+label: Sections
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      section: section
+    target_bundles_drag_drop:
+      collection_listing:
+        weight: 16
+        enabled: false
+      collection_listing_publication:
+        weight: 17
+        enabled: false
+      curated_post_listing:
+        weight: 18
+        enabled: false
+      deck:
+        weight: 19
+        enabled: false
+      form:
+        weight: 20
+        enabled: false
+      image:
+        weight: 21
+        enabled: false
+      media_deck:
+        weight: 22
+        enabled: false
+      person:
+        weight: 23
+        enabled: false
+      picture_in_picture:
+        weight: 24
+        enabled: false
+      promo:
+        weight: 25
+        enabled: false
+      rich_text:
+        weight: 26
+        enabled: false
+      section:
+        enabled: true
+        weight: 27
+      simple_collection_listing:
+        weight: 28
+        enabled: false
+      testimonial:
+        weight: 29
+        enabled: false
+      video:
+        weight: 30
+        enabled: false
+field_type: entity_reference_revisions

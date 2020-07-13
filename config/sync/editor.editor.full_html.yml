@@ -41,6 +41,9 @@ settings:
   plugins:
     stylescombo:
       styles: p.shout|Shout
+    drupallink:
+      linkit_enabled: true
+      linkit_profile: ilr_content
     language:
       language_list: un
     tokenbrowser:

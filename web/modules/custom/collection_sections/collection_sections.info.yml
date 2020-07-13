@@ -1,0 +1,7 @@
+name: 'Collection Sections'
+type: module
+description: 'Sections allow editors to organize sections of the site.'
+core: 8.x
+package: 'ILR'
+dependencies:
+  - collection

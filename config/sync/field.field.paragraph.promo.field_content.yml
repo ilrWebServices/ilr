@@ -218,4 +218,7 @@ settings:
   crop_type:
     handler: 'default:crop_type'
     handler_settings: {  }
+  linkit_profile:
+    handler: 'default:linkit_profile'
+    handler_settings: {  }
 field_type: dynamic_entity_reference
