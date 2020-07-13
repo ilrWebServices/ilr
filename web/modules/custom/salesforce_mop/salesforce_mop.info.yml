@@ -2,6 +2,6 @@ name: 'Salesforce Mapped Object Protection'
 type: module
 description: 'A small custom module used to prevent editing of fields mapped to SalesForce'
 core: 8.x
-package: 'ilr'
+package: 'ILR'
 dependencies:
   - salesforce_mapping
