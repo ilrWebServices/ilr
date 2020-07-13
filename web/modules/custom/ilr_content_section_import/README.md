@@ -11,3 +11,11 @@ There are a few reasons this custom code is used instead of a Drupal migration:
 - It's way easier to grok what this small, custom module is doing than it is to debug migrations.
 
 A migration is still an option if this approach doesn't work.
+
+## Notes
+
+- Custom form at /admin/config/content/section_import
+  - File upload field for JSON
+  - Collection reference? Or just collection path so one will be created?
+- Form handler will process the uploaded file and start adding nodes and placing them in the collections.
+- A simple section_import_mapping will map the incoming nid to the new nid so we can revert if necessary.
