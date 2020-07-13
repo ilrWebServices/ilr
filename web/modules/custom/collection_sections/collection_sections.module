@@ -89,8 +89,5 @@ function collection_sections_form_collection_new_node_form_submit($form, FormSta
     $entity->parent->value = $parent;
     $entity->isDefaultRevision($node->isDefaultRevision());
     $entity->save();
-
-    // Save the node again to trigger path updates.
-    $node->save();
   }
 }
