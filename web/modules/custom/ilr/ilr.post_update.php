@@ -399,3 +399,23 @@ function ilr_post_update_create_social_footer_block(&$sandbox) {
   $block->body->format = 'full_html';
   $block->save();
 }
+
+/**
+ * Create copyright block.
+ */
+function ilr_post_update_create_copyright_block(&$sandbox) {
+  $blockEntityManager = \Drupal::service('entity_type.manager')
+    ->getStorage('block_content');
+
+  $block = $blockEntityManager->create([
+    'type' => 'simple_text',
+    'uuid' => 'e0fd4aad-b220-46f2-912c-18aec105a67d',
+    'label_display' => 0,
+  ]);
+
+  $block->info = "Copyright";
+  $content = '<div class="copyright"><p>&copy; [date:custom:Y] Cornell University | ILR School</p></div>';
+  $block->body->value = $content;
+  $block->body->format = 'full_html';
+  $block->save();
+}
