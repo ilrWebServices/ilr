@@ -100,9 +100,7 @@ class SectionImportBatch {
       foreach ($content_section->findItems('menu') as $collection_item_menu) {
         if ($collection_item_menu->getAttribute('section_collection_id') !== FALSE) {
           $section_menu = $collection_item_menu->item->entity;
-          // Create the menu link. Note that we temporarily store the parent id
-          // from the row, until we can update it after all links and mappings
-          // have been created.
+          // Create the menu link. The parent value will be updated later.
           $menu_link_content = $entity_type_manager->getStorage('menu_link_content')->create([
             'title' => $row->menu_link_title,
             'menu_name' => $section_menu->id(),
@@ -111,7 +109,6 @@ class SectionImportBatch {
             'langcode' => 'en',
             'enabled' => !$row->menu_link_hidden,
             'weight' => $row->menu_link_weight,
-            'parent' => $row->menu_link_parent_id, // To be used later in mapping lookup.
           ]);
           $menu_link_content->save();
 
