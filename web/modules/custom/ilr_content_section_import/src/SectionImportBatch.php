@@ -39,6 +39,11 @@ class SectionImportBatch {
       'status' => $row->status,
       'created' => $row->created,
       'changed' => $row->changed,
+      'body' => [
+        'summary' => $row->description,
+        'value' => '',
+      ],
+      'field_representative_image' => $row->field_image_fid,
     ]);
 
     // Set the path alias if there is one.
