@@ -28,6 +28,7 @@ class SectionImportBatch {
     $entity_type_manager = \Drupal::entityTypeManager();
     $node_storage = $entity_type_manager->getStorage('node');
     $paragraph_storage = $entity_type_manager->getStorage('paragraph');
+    $media_storage = $entity_type_manager->getStorage('media');
     $import_mapped_object_storage = $entity_type_manager->getStorage('section_import_mapped_object');
 
     // Check if this node has been imported before.
@@ -72,12 +73,25 @@ class SectionImportBatch {
     $text_paragraphs = explode('----------------------', $row->text_paragraph_values);
 
     foreach ($text_paragraphs as $text_content) {
+      $text_format = 'basic_formatting';
+
+      // Update any embedded media.
+      if (preg_match_all('/\[\[{"fid":"(\d+)".*\]\]/m', $text_content, $matches, PREG_SET_ORDER)) {
+        foreach($matches as $match) {
+          if ($media = $media_storage->load($match[1])) {
+            $text_content = str_replace($match[0], sprintf('<drupal-media data-align="center" data-entity-type="media" data-entity-uuid="%s"></drupal-media>', $media->uuid()), $text_content);
+            $text_format = 'basic_formatting_with_media';
+
+          }
+        }
+      }
+
       // TODO Updated nodes should re-use the existing text paragraph.
       $text_component = $paragraph_storage->create([
         'type' => 'rich_text',
         'field_body' => [
           'value' => trim($text_content),
-          'format' => 'basic_formatting',
+          'format' => $text_format,
         ],
       ]);
       $text_component->save();
