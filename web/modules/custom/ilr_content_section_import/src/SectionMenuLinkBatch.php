@@ -79,7 +79,7 @@ class SectionMenuLinkBatch {
     $messenger = \Drupal::messenger();
 
     if ($success) {
-      $messenger->addMessage(t('Import complete. Please verify that imported data is correct.'));
+      $messenger->addMessage(t('Menu link update complete.'));
 
       if (!empty($results['errors'])) {
         $logger = \Drupal::logger('ilr');
