@@ -2,7 +2,6 @@
 
 namespace Drupal\ilr_content_section_import;
 
-use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\collection\Entity\Collection;
 use Drupal\Core\Batch\BatchBuilder;
 
@@ -28,6 +27,7 @@ class SectionImportBatch {
     $content_section = $context['sandbox']['content_section'];
     $entity_type_manager = \Drupal::entityTypeManager();
     $node_storage = $entity_type_manager->getStorage('node');
+    $paragraph_storage = $entity_type_manager->getStorage('paragraph');
     $import_mapped_object_storage = $entity_type_manager->getStorage('section_import_mapped_object');
 
     // TODO If this node has been imported before, load it.
@@ -53,7 +53,7 @@ class SectionImportBatch {
     }
 
     // Create a section paragraph.
-    $section = Paragraph::create([
+    $section = $paragraph_storage->create([
       'type' => 'section',
     ]);
 
@@ -61,7 +61,7 @@ class SectionImportBatch {
     $text_paragraphs = explode('----------------------', $row->text_paragraph_values);
 
     foreach ($text_paragraphs as $text_content) {
-      $text_component = Paragraph::create([
+      $text_component = $paragraph_storage->create([
         'type' => 'rich_text',
         'field_body' => [
           'value' => trim($text_content),
