@@ -57,14 +57,14 @@ class SectionImportBatch {
       'type' => 'section',
     ]);
 
-    // TODO Parse the `text_paragraph_values`.
+    // Parse the `text_paragraph_values`.
     $text_paragraphs = explode('----------------------', $row->text_paragraph_values);
 
     foreach ($text_paragraphs as $text_content) {
       $text_component = Paragraph::create([
         'type' => 'rich_text',
         'field_body' => [
-          'value' => $text_content,
+          'value' => trim($text_content),
           'format' => 'basic_formatting',
         ],
       ]);
