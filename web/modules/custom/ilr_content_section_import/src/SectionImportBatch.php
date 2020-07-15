@@ -30,21 +30,32 @@ class SectionImportBatch {
     $paragraph_storage = $entity_type_manager->getStorage('paragraph');
     $import_mapped_object_storage = $entity_type_manager->getStorage('section_import_mapped_object');
 
-    // TODO If this node has been imported before, load it.
+    // Check if this node has been imported before.
+    $existing_mappings = $import_mapped_object_storage->loadByProperties([
+      'type' => 'node',
+      'sourceid' => $row->nid,
+    ]);
 
     // If this node has not been imported before, create a new node.
-    $node_imported = $node_storage->create([
-      'type' => 'page',
-      'title' => $row->title,
-      'status' => $row->status,
-      'created' => $row->created,
-      'changed' => $row->changed,
-      'body' => [
-        'summary' => $row->description,
-        'value' => '',
-      ],
-      'field_representative_image' => $row->field_image_fid,
-    ]);
+    if (empty($existing_mappings)) {
+      $node_imported = $node_storage->create([
+        'type' => 'page',
+        'title' => $row->title,
+        'status' => $row->status,
+        'created' => $row->created,
+        'changed' => $row->changed,
+        'body' => [
+          'summary' => $row->description,
+          'value' => '',
+        ],
+        'field_representative_image' => $row->field_image_fid,
+      ]);
+    }
+    // If this node has been imported before, load it for updating.
+    else {
+      $existing_mapping = reset($existing_mappings);
+      $node_imported = $node_storage->load($existing_mapping->destid->value);
+    }
 
     // Set the path alias if there is one.
     if ($row->alias) {
@@ -61,6 +72,7 @@ class SectionImportBatch {
     $text_paragraphs = explode('----------------------', $row->text_paragraph_values);
 
     foreach ($text_paragraphs as $text_content) {
+      // TODO Updated nodes should re-use the existing text paragraph.
       $text_component = $paragraph_storage->create([
         'type' => 'rich_text',
         'field_body' => [
@@ -74,6 +86,7 @@ class SectionImportBatch {
 
     $section->save();
     $node_imported->field_sections->appendItem($section);
+    $node_is_new = $node_imported->isNew();
 
     // Save the node.
     if ($node_imported->save()) {
@@ -86,14 +99,15 @@ class SectionImportBatch {
       $node_mapping->save();
 
       // Add the new node to the section collection.
-      $collection_item = $entity_type_manager->getStorage('collection_item')->create([
-        'collection' => $content_section->id(),
-        'type' => 'default',
-        'item' => $node_imported,
-        'canonical' => 1,
-      ]);
-
-      $collection_item->save();
+      if ($node_is_new) {
+        $collection_item = $entity_type_manager->getStorage('collection_item')->create([
+          'collection' => $content_section->id(),
+          'type' => 'default',
+          'item' => $node_imported,
+          'canonical' => 1,
+        ]);
+        $collection_item->save();
+      }
 
       // Add the new node to the Content Section menu.
       // Check if this collection has a section menu.
