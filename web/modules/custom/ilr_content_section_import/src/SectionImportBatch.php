@@ -80,8 +80,15 @@ class SectionImportBatch {
       ]);
       $node_mapping->save();
 
-      // Add the new node to a new/selected Content Section.
-      $content_section->addItem($node_imported);
+      // Add the new node to the section collection.
+      $collection_item = $entity_type_manager->getStorage('collection_item')->create([
+        'collection' => $content_section->id(),
+        'type' => 'default',
+        'item' => $node_imported,
+        'canonical' => 1,
+      ]);
+
+      $collection_item->save();
 
       // Add the new node to the Content Section menu.
       // Check if this collection has a section menu.
