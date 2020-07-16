@@ -1,0 +1,6 @@
+ilr_content_section.import:
+  title: 'Import Content Section'
+  route_name: ilr_content_section.import
+  parent: system.admin_config_content
+  description: 'Import content to a new section on the site'
+  weight: -5

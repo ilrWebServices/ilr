@@ -7,16 +7,16 @@ dependencies:
 id: page_nodes
 label: 'Page Nodes'
 type: 'canonical_entities:node'
-pattern: '[node:menu-link:parent:url:relative]/[node:title]'
+pattern: '[node:menu-link:parent:url:relative]/[node:menu-link:title]'
 selection_criteria:
-  ac08ab63-0eef-41f2-88d5-546f359063bd:
+  7bce30ad-e983-4e72-a962-d9cebf817fc3:
     id: node_type
     bundles:
       page: page
     negate: false
     context_mapping:
       node: node
-    uuid: ac08ab63-0eef-41f2-88d5-546f359063bd
+    uuid: 7bce30ad-e983-4e72-a962-d9cebf817fc3
 selection_logic: and
 weight: -5
 relationships: {  }
