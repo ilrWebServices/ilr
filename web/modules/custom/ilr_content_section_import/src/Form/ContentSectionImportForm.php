@@ -66,6 +66,14 @@ class ContentSectionImportForm extends FormBase {
       '#required' => TRUE,
     ];
 
+    // Todo: Consider validating this to ensure it starts with a `/` and ends
+    // with a character.
+    $form['legacy_path'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Prevous path'),
+      '#description' => 'If the path to this section is changing, add the new path here, starting with a slash ("/"). Leave blank if the path is the same.',
+    ];
+
     $form['json_data_file'] = array(
       '#type' => 'managed_file',
       '#name' => 'json_data_file',
@@ -101,6 +109,7 @@ class ContentSectionImportForm extends FormBase {
     $import_file_path = $this->fileSystem->realpath($import_file->getFileUri());
     $rows = json_decode(file_get_contents($import_file_path));
     $content_section = $this->entityTypeManager->getStorage('collection')->load($form_state->getValue('content_section'));
+    $legacy_path = $form_state->getValue('legacy_path');
 
     $batch_builder = (new BatchBuilder())
       ->setTitle(t('Importing content'))
@@ -110,7 +119,7 @@ class ContentSectionImportForm extends FormBase {
       ->setErrorMessage(t('Section content import has encountered an error'));
 
     foreach ($rows as $row) {
-      $batch_builder->addOperation([SectionImportBatch::class, 'process'], [$row, $content_section]);
+      $batch_builder->addOperation([SectionImportBatch::class, 'process'], [$row, $content_section, $legacy_path]);
       // $batch_builder->addOperation([SectionImportBatch::class, 'process'], [$this->entityTypeManager, $row]);
     }
 

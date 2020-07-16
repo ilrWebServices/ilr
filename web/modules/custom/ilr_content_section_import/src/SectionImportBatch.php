@@ -19,9 +19,10 @@ class SectionImportBatch {
    * @param array $context
    *   The batch context.
    */
-  public static function process($row, Collection $content_section, &$context) {
+  public static function process($row, Collection $content_section, $legacy_path = NULL, &$context) {
     if (!isset($context['sandbox']['content_section'])) {
       $context['sandbox']['content_section'] = $content_section;
+      $context['sandbox']['legacy_path'] = $legacy_path;
     }
 
     $content_section = $context['sandbox']['content_section'];
@@ -153,6 +154,13 @@ class SectionImportBatch {
           ]);
           $menu_link_mapping->save();
         }
+      }
+
+      // Update the alias if the path to the content section is different from the previous path.
+      if (!empty($context['sandbox']['legacy_path'])) {
+        $node_imported->path->alias = str_replace($context['sandbox']['legacy_path'], $content_section->toUrl()->toString(), $node_imported->path->alias);
+        $node_imported->path->pathauto = \Drupal\pathauto\PathautoState::SKIP;
+        $node_imported->save();
       }
     }
   }
