@@ -20,7 +20,7 @@
 
 .cu-banner--page ul {
   margin: var(--cu-vr2) 0;
-  padding: 0;
+  padding: 0 0 0.5rem;
   list-style: none;
 
   @include breakpoint(sm) {
