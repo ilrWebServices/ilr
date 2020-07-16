@@ -122,3 +122,41 @@ label[for="nav-trigger"] {
     flex-grow: 1;
   }
 }
+
+// Temporary styling for student-experience.
+#block-studentexperiencenavigation {
+  ul {
+    list-style-type: none;
+  }
+
+  a {
+    display: none;
+
+    &.is-active {
+      display: inline-block;
+
+      + ul {
+        a {
+          display: inline-block;
+        }
+
+        ul a {
+          display: none;
+        }
+      }
+    }
+  }
+
+  // `active` class is being temporarily added via js.
+  // @see union_marketing.js
+  ul.active > li > a {
+    display: inline-block;
+  }
+
+  // Show all the first level items on the collection.
+  .collection--content-section & {
+    > ul > li > a {
+      display: inline-block;
+    }
+  }
+}
