@@ -10,6 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Batch\BatchBuilder;
 use Drupal\ilr_content_section_import\SectionImportBatch;
 use Drupal\ilr_content_section_import\SectionMenuLinkBatch;
+use Drupal\ilr_content_section_import\SectionNidLinkBatch;
 
 class ContentSectionImportForm extends FormBase {
 
@@ -128,6 +129,20 @@ class ContentSectionImportForm extends FormBase {
     }
 
     batch_set($menu_link_batch_builder->toArray());
+
+    // Create a third batch to update any links to old nids in the content.
+    $nid_link_batch_builder = (new BatchBuilder())
+      ->setTitle(t('Updating content links'))
+      ->setFinishCallback([SectionNidLinkBatch::class, 'finish'])
+      ->setInitMessage(t('Starting update.'))
+      ->setProgressMessage(t('Processed node @current of @total.'))
+      ->setErrorMessage(t('Section content link updater has encountered an error'));
+
+    foreach ($rows as $row) {
+      $nid_link_batch_builder->addOperation([SectionNidLinkBatch::class, 'process'], [$row]);
+    }
+
+    batch_set($nid_link_batch_builder->toArray());
   }
 
 }
