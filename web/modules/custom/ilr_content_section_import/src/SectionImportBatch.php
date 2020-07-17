@@ -76,15 +76,16 @@ class SectionImportBatch {
     foreach ($text_paragraphs as $text_content) {
       $text_format = 'basic_formatting';
 
-      // Update any embedded media.
-      if (preg_match_all('/\[\[{"fid":"(\d+)".*\]\]/m', $text_content, $matches, PREG_SET_ORDER)) {
+      // Update any embedded media. See https://regex101.com/r/K5FMNj/2/ to test
+      // this regex.
+      if (preg_match_all('/\[\[{"fid":"(\d+)".*"link_text":"([^"]+)".*\]\]/m', $text_content, $matches, PREG_SET_ORDER)) {
         foreach($matches as $match) {
           if ($media = $media_storage->load($match[1])) {
             if ($media->bundle() === 'image') {
               $text_content = str_replace($match[0], sprintf('<drupal-media data-align="center" data-entity-type="media" data-entity-uuid="%s"></drupal-media>', $media->uuid()), $text_content);
             }
             elseif ($media->bundle() === 'file') {
-              $text_content = str_replace($match[0], sprintf('<a data-entity-substitution="file" data-entity-type="file" data-entity-uuid="%s" href="%s">%s</a>', $media->uuid(), $media->field_media_file->entity->createFileUrl(), $media->label()), $text_content);
+              $text_content = str_replace($match[0], sprintf('<a data-entity-substitution="file" data-entity-type="file" data-entity-uuid="%s" href="%s">%s</a>', $media->field_media_file->entity->uuid(), $media->field_media_file->entity->createFileUrl(), $match[2]), $text_content);
             }
 
             $text_format = 'basic_formatting_with_media';
