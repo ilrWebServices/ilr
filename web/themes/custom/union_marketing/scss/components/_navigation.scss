@@ -149,7 +149,8 @@ label[for="nav-trigger"] {
 
   // `active` class is being temporarily added via js.
   // @see union_marketing.js
-  ul.active > li > a {
+  ul.active > li > a,
+  li.active > a {
     display: inline-block;
   }
 

@@ -171,6 +171,7 @@
       }
 
       activeItem.closest('ul').classList.add("active");
+      activeItem.closest('ul').closest('li').classList.add("active");
     }
   };
 
