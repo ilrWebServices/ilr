@@ -221,4 +221,7 @@ settings:
   linkit_profile:
     handler: 'default:linkit_profile'
     handler_settings: {  }
+  section_import_mapped_object:
+    handler: 'default:section_import_mapped_object'
+    handler_settings: {  }
 field_type: dynamic_entity_reference
