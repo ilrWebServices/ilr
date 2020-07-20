@@ -151,7 +151,8 @@ class SectionImportBatch {
         }
       }
 
-      // Update the alias if the path to the content section is different from the previous path.
+      // Update the alias if the path to the content section is different from
+      // the previous path. This will create a redirect automatically.
       if (!empty($context['sandbox']['legacy_path'])) {
         $node_imported->path->alias = str_replace($context['sandbox']['legacy_path'], $content_section->toUrl()->toString(), $node_imported->path->alias);
         $node_imported->path->pathauto = \Drupal\pathauto\PathautoState::SKIP;
