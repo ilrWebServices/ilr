@@ -76,12 +76,13 @@ class SectionImportBatch {
     foreach ($text_paragraphs as $text_content) {
       $text_format = 'basic_formatting';
 
-      // Update any embedded media. See https://regex101.com/r/K5FMNj/2/ to test
+      // Update any embedded media. See https://regex101.com/r/K5FMNj/4 to test
       // this regex.
-      if (preg_match_all('/\[\[{"fid":"(\d+)".*"link_text":"([^"]+)".*\]\]/m', $text_content, $matches, PREG_SET_ORDER)) {
+      if (preg_match_all('/\[\[{"fid":"(\d+)".*"link_text":"?([^",]+)"?.*\]\]/m', $text_content, $matches, PREG_SET_ORDER)) {
         foreach($matches as $match) {
           if ($media = $media_storage->load($match[1])) {
-            $text_content = str_replace($match[0], sprintf('<drupal-media data-link-text="%s" data-entity-type="media" data-entity-uuid="%s"></drupal-media>', $match[2], $media->uuid()), $text_content);
+            $link_text = $match[2] !== 'null' ? $match[2] : '';
+            $text_content = str_replace($match[0], sprintf('<drupal-media data-link-text="%s" data-entity-type="media" data-entity-uuid="%s"></drupal-media>', $link_text, $media->uuid()), $text_content);
             $text_format = 'basic_formatting_with_media';
           }
         }
