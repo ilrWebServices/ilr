@@ -419,3 +419,35 @@ function ilr_post_update_create_copyright_block(&$sandbox) {
   $block->body->format = 'full_html';
   $block->save();
 }
+
+/**
+ * Fix imported image embeds in rich text paragraphs.
+ */
+function ilr_post_update_fix_imported_image_embeds(&$sandbox) {
+  $media_storage = \Drupal::service('entity_type.manager')->getStorage('media');
+  $paragraph_storage = \Drupal::service('entity_type.manager')->getStorage('paragraph');
+  $query = $paragraph_storage->getQuery();
+  $query->condition('type', 'rich_text',);
+  $query->condition('field_body', '%[[{"fid":%', 'LIKE');
+  $relevant_paragraph_ids = $query->execute();
+  $paragraphs = $paragraph_storage->loadMultiple($relevant_paragraph_ids);
+
+  foreach ($paragraphs as $paragraph) {
+    $text_content = $paragraph->field_body->value;
+    $text_format = 'basic_formatting';
+
+    // Update any embedded media. See https://regex101.com/r/K5FMNj/4 to test
+    // this regex.
+    if (preg_match_all('/\[\[{"fid":"(\d+)".*"link_text":"?([^",]+)"?.*\]\]/m', $text_content, $matches, PREG_SET_ORDER)) {
+      foreach($matches as $match) {
+        if ($media = $media_storage->load($match[1])) {
+          $link_text = $match[2] !== 'null' ? $match[2] : '';
+          $text_content = str_replace($match[0], sprintf('<drupal-media data-link-text="%s" data-entity-type="media" data-entity-uuid="%s"></drupal-media>', $link_text, $media->uuid()), $text_content);
+          $paragraph->field_body->value = $text_content;
+          $paragraph->field_body->format = 'basic_formatting_with_media';
+          $paragraph->save();
+        }
+      }
+    }
+  }
+}
