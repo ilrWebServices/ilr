@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   module:
-    - file
     - node
 id: ilr_content
 label: 'ILR content'
@@ -37,20 +36,4 @@ matchers:
         story: story
       group_by_bundle: true
       substitution_type: canonical
-      limit: 100
-  4124e65b-e1ea-4b5f-b23c-03553f14d0c8:
-    uuid: 4124e65b-e1ea-4b5f-b23c-03553f14d0c8
-    id: 'entity:file'
-    weight: 0
-    settings:
-      file_extensions: ''
-      file_status: 1
-      images:
-        show_dimensions: false
-        show_thumbnail: false
-        thumbnail_image_style: null
-      substitution_type: file
-      metadata: ''
-      bundles: null
-      group_by_bundle: null
       limit: 100

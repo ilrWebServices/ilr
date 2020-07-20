@@ -81,13 +81,7 @@ class SectionImportBatch {
       if (preg_match_all('/\[\[{"fid":"(\d+)".*"link_text":"([^"]+)".*\]\]/m', $text_content, $matches, PREG_SET_ORDER)) {
         foreach($matches as $match) {
           if ($media = $media_storage->load($match[1])) {
-            if ($media->bundle() === 'image') {
-              $text_content = str_replace($match[0], sprintf('<drupal-media data-align="center" data-entity-type="media" data-entity-uuid="%s"></drupal-media>', $media->uuid()), $text_content);
-            }
-            elseif ($media->bundle() === 'file') {
-              $text_content = str_replace($match[0], sprintf('<a data-entity-substitution="file" data-entity-type="file" data-entity-uuid="%s" href="%s">%s</a>', $media->field_media_file->entity->uuid(), $media->field_media_file->entity->createFileUrl(), $match[2]), $text_content);
-            }
-
+            $text_content = str_replace($match[0], sprintf('<drupal-media data-link-text="%s" data-entity-type="media" data-entity-uuid="%s"></drupal-media>', $match[2], $media->uuid()), $text_content);
             $text_format = 'basic_formatting_with_media';
           }
         }
