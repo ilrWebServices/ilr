@@ -1,0 +1,4 @@
+section_collection.menu_link:
+  class: Drupal\collection_sections\Plugin\Menu\SectionCollectionMenuLink
+  deriver: Drupal\collection_sections\Plugin\Derivative\SectionCollectionMenuLink
+  menu_name: main
