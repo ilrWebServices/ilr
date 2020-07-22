@@ -11,4 +11,16 @@
   align-self: flex-start;
 }
 
+#block-union-marketing-branding-75 {
+  max-width: 450px;
+  min-width: 300px;
 
+  svg {
+    margin-right: var(--cu-ps2);
+    min-width: 280px;
+
+    @include breakpoint(md) {
+      min-width: 300px;
+    }
+  }
+}
