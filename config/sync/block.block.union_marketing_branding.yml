@@ -1,6 +1,6 @@
 uuid: d76e61c3-4088-43ee-b569-2dfe0a8b6f11
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - block_visibility_groups.block_visibility_group.primary_branding
@@ -30,4 +30,9 @@ visibility:
     id: condition_group
     negate: false
     block_visibility_group: primary_branding
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /*
+    negate: true
     context_mapping: {  }
