@@ -1,0 +1,3 @@
+menu_graft.menu_link:
+  class: Drupal\menu_graft\Plugin\Menu\MenuGraftMenuLink
+  deriver: Drupal\menu_graft\Plugin\Derivative\MenuGraftMenuLink
