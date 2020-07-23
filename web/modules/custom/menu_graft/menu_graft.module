@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * @file
+ * Contains menu_graft.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\system\Entity\Menu;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function menu_graft_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (!in_array($form_id, ['menu_add_form', 'menu_edit_form'])) {
+    return;
+  }
+
+  $current_menu = $form_state->getFormObject()->getEntity();
+  $menu_graft_link_setting = $current_menu->getThirdPartySetting('menu_graft', 'menu_graft_link');
+
+  /** @var \Drupal\Core\Menu\MenuParentFormSelectorInterface $menu_parent_selector */
+  $menu_parent_selector = \Drupal::service('menu.parent_form_selector');
+  $default_menu_link = $menu_graft_link_setting ?? 'main:';
+  $parent_element = $menu_parent_selector->parentSelectElement($default_menu_link, '');
+
+  // Filter out unwanted parent_element options.
+  foreach ($parent_element['#options'] as $key => $value) {
+    // Remove menu graft menu links. This will help prevent recursion.
+    if (strpos($key, 'menu_graft.menu_link') !== FALSE) {
+      unset($parent_element['#options'][$key]);
+    }
+
+    // Remove menu items for the current menu.
+    if (strpos($key, $current_menu->id() . ':') === 0) {
+      unset($parent_element['#options'][$key]);
+    }
+  }
+
+  $form['menu_graft_enabled'] = [
+    '#type' => 'checkbox',
+    '#title' => 'Graft this menu onto another menu',
+    '#description' => 'TBD',
+    '#default_value' => (bool) $menu_graft_link_setting,
+  ];
+
+  $form['menu_graft_link'] = $parent_element;
+  $form['menu_graft_link']['#title'] = t('Graft menu link');
+  $form['menu_graft_link']['#description'] = t('The menu item to which to graft this menu.');
+  $form['menu_graft_link']['#attributes']['class'][] = 'menu-parent-select';
+  $form['menu_graft_link']['#weight'] = 1;
+  $form['menu_graft_link']['#states'] = [
+    'visible' => [
+      ':input[name="menu_graft_enabled"]' => ['checked' => TRUE],
+    ],
+  ];
+
+  if (isset($form['links'])) {
+    $form['links']['#weight'] = 2;
+  }
+
+  $form['#entity_builders'][] = 'menu_graft_menu_form_builder';
+}
+
+/**
+ * Entity builder for the menu configuration entity.
+ */
+function menu_graft_menu_form_builder($entity_type, Menu $menu, &$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('menu_graft_enabled') && $form_state->getValue('menu_graft_link')) {
+    $menu->setThirdPartySetting('menu_graft', 'menu_graft_link', $form_state->getValue('menu_graft_link'));
+    return;
+  }
+
+  $menu->unsetThirdPartySetting('menu_graft', 'menu_graft_link');
+}
