@@ -13,6 +13,11 @@ use Drupal\Core\Entity\EntityInterface;
  * Implements hook_form_alter().
  */
 function menu_graft_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (strpos($form_id, 'menu_link_content') === 0) {
+    $form['actions']['submit']['#submit'][] = 'menu_graft_menu_link_content_submit';
+    return;
+  }
+
   if (!in_array($form_id, ['menu_add_form', 'menu_edit_form'])) {
     return;
   }
@@ -79,13 +84,36 @@ function menu_graft_menu_form_builder($entity_type, Menu $menu, &$form, FormStat
 }
 
 /**
- * Custom submit handler that rebuilds the menu links.
+ * Custom submit handler that rebuilds the menu links if needed.
+ */
+function menu_graft_grafted_menu_submit(&$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('menu_graft_enabled') && $form_state->getValue('menu_graft_link')) {
+    menu_graft_rebuild_links();
+  }
+}
+
+/**
+ * Custom submit handler for menu link content forms.
+ */
+function menu_graft_menu_link_content_submit(&$form, FormStateInterface $form_state) {
+  $menu_name = $form_state->getFormObject()->getEntity()->getMenuName();
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  if ($menu = $entity_type_manager->getStorage('menu')->loadByProperties([
+    'id' => $menu_name,
+  ])) {
+    $menu = reset($menu);
+    if ($menu->getThirdPartySetting('menu_graft', 'menu_graft_link')) {
+      menu_graft_rebuild_links();
+    }
+  }
+}
+
+/**
+ * Custom function to rebuild the menu links.
  *
  * Note that this seems to invalidate the block cache as well so that menus
  * update immediately.
  */
-function menu_graft_grafted_menu_submit(&$form, FormStateInterface $form_state) {
-  if ($form_state->getValue('menu_graft_enabled') && $form_state->getValue('menu_graft_link')) {
-    \Drupal::service('plugin.manager.menu.link')->rebuild();
-  }
+function menu_graft_rebuild_links() {
+  \Drupal::service('plugin.manager.menu.link')->rebuild();
 }
