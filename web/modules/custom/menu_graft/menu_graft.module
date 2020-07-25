@@ -75,3 +75,30 @@ function menu_graft_menu_form_builder($entity_type, Menu $menu, &$form, FormStat
 
   $menu->unsetThirdPartySetting('menu_graft', 'menu_graft_link');
 }
+
+/**
+ * Implements hook_entity_insert().
+ *
+ * Check for menu link content insert.
+ */
+function menu_graft_menu_link_content_insert(EntityInterface $entity) {
+  \Drupal::service('menu_graft.helper')->addMenuGraftLinkItem($entity);
+}
+
+/**
+ * Implements hook_entity_delete().
+ *
+ * Check for menu link content deletion.
+ */
+function menu_graft_menu_link_content_delete(EntityInterface $entity) {
+  \Drupal::service('menu_graft.helper')->removeMenuGraftLinkItem($entity);
+}
+
+/**
+ * Implements hook_entity_update().
+ *
+ * Check for menu link content updates.
+ */
+function menu_graft_menu_link_content_update(EntityInterface $entity) {
+  \Drupal::service('menu_graft.helper')->updateMenuGraftLinkItem($entity);
+}

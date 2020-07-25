@@ -65,10 +65,35 @@ class MenuGraftMenuLink extends MenuLinkBase implements ContainerFactoryPluginIn
   /**
    * {@inheritdoc}
    */
+  public function isDeletable() {
+    return TRUE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function deleteLink() {
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function updateLink(array $new_definition_values, $persist) {
-    $this->messenger->addWarning($this->t('Changes to %title are ignored because it is part of a grafted menu.', [
-      '%title' => $this->getTitle(),
-    ]));
+    // Normally, we do not allow individual updates to MenuGraftMenuLinks. But
+    // when \Drupal\Core\Menu\MenuLinkManagerInterface::updateDefinition() is
+    // called in the helper service, we need a way to bypass that restriction.
+    // This is done with a special plugin definition value that is set in the
+    // helper.
+    if (isset($new_definition_values['menu_graft_cascade_update'])) {
+      unset($new_definition_values['menu_graft_cascade_update']);
+      $this->pluginDefinition = $new_definition_values + $this->pluginDefinition;
+    }
+    else {
+      $this->messenger->addWarning($this->t('Changes to %title are ignored because it is part of a grafted menu.', [
+        '%title' => $this->getTitle(),
+      ]));
+    }
+
     return $this->getPluginDefinition();
   }
 

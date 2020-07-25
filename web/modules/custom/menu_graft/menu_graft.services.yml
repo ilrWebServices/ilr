@@ -1,0 +1,4 @@
+services:
+  menu_graft.helper:
+    class: Drupal\menu_graft\MenuGraftHelper
+    arguments: ['@entity_type.manager', '@plugin.manager.menu.link']
