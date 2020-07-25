@@ -77,11 +77,13 @@ class MenuGraftMenuLink extends DeriverBase implements ContainerDeriverInterface
     if ($element->link instanceof MenuLinkContent) {
       $links[$element->link->getPluginId()] = [
         'title' => $element->link->getTitle(),
+        'description' => $element->link->getDescription(),
         'route_name' => $element->link->getRouteName(),
         'route_parameters' => $element->link->getRouteParameters(),
         'parent' => $parent,
         'weight' => $element->link->getWeight(),
         'enabled' => $element->link->isEnabled(),
+        'expanded' => $element->link->isExpanded(),
         'menu_name' => $root_menu_name,
       ] + $base_plugin_definition;
     }
