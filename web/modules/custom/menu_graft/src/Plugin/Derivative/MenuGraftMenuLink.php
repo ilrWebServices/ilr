@@ -63,7 +63,6 @@ class MenuGraftMenuLink extends DeriverBase implements ContainerDeriverInterface
       list($root_menu_name, $root_menu_graft_item) = explode(':', $menu_link_parent, 2);
 
       $menu_parameters = new MenuTreeParameters();
-      $menu_parameters->onlyEnabledLinks();
       $tree = $this->menuLinkTree->load($graft_menu->id(), $menu_parameters);
 
       foreach ($tree as $element) {
@@ -82,6 +81,7 @@ class MenuGraftMenuLink extends DeriverBase implements ContainerDeriverInterface
         'route_parameters' => $element->link->getRouteParameters(),
         'parent' => $parent,
         'weight' => $element->link->getWeight(),
+        'enabled' => $element->link->isEnabled(),
         'menu_name' => $root_menu_name,
       ] + $base_plugin_definition;
     }
