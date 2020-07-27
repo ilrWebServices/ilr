@@ -40,8 +40,8 @@ function menu_graft_form_alter(&$form, FormStateInterface $form_state, $form_id)
 
   $form['menu_graft_enabled'] = [
     '#type' => 'checkbox',
-    '#title' => 'Graft this menu onto another menu',
-    '#description' => 'TBD',
+    '#title' => t('Graft this menu onto another menu'),
+    '#description' => t('If checked, the items in this menu will appear as children of another menu item. They will stay in sync with changes to items in this menu.'),
     '#default_value' => (bool) $menu_graft_link_setting,
   ];
 
@@ -82,7 +82,7 @@ function menu_graft_menu_form_builder($entity_type, Menu $menu, &$form, FormStat
  * Check for menu link content insert.
  */
 function menu_graft_menu_link_content_insert(EntityInterface $entity) {
-  \Drupal::service('menu_graft.helper')->addMenuGraftLinkItem($entity);
+  \Drupal::service('menu_graft.helper')->upsertMenuGraftLinkItem($entity);
 }
 
 /**
@@ -100,5 +100,5 @@ function menu_graft_menu_link_content_delete(EntityInterface $entity) {
  * Check for menu link content updates.
  */
 function menu_graft_menu_link_content_update(EntityInterface $entity) {
-  \Drupal::service('menu_graft.helper')->updateMenuGraftLinkItem($entity);
+  \Drupal::service('menu_graft.helper')->upsertMenuGraftLinkItem($entity);
 }
