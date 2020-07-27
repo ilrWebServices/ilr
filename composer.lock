@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b562b78e4e6bb854b764dad0a4d9e184",
+    "content-hash": "bb97eab7a9b4e930fbacd85ce3a79a67",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3654,6 +3654,54 @@
             "homepage": "https://www.drupal.org/project/extra_field",
             "support": {
                 "source": "https://git.drupalcode.org/project/extra_field"
+            }
+        },
+        {
+            "name": "drupal/field_menu",
+            "version": "1.0.0-alpha4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/field_menu.git",
+                "reference": "8.x-1.0-alpha4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/field_menu-8.x-1.0-alpha4.zip",
+                "reference": "8.x-1.0-alpha4",
+                "shasum": "9bd3009ef98c72c4bc232f97d6942cd9a56963d8"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-alpha4",
+                    "datestamp": "1550776384",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "code-brighton",
+                    "homepage": "https://www.drupal.org/user/402548"
+                }
+            ],
+            "description": "Menu tree in a field",
+            "homepage": "https://www.drupal.org/project/field_menu",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/field_menu",
+                "issues": "https://www.drupal.org/project/issues/field_menu"
             }
         },
         {
@@ -13011,6 +13059,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/collection": 20,
+        "drupal/field_menu": 15,
         "drupal/inline_entity_form": 5,
         "drupal/union_organizer": 20,
         "drupal/entity_clone": 10,
