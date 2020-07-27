@@ -1,0 +1,23 @@
+uuid: 4cb50d20-c9ed-48fd-b519-3c36543c923b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.menu.field_menu
+    - paragraphs.paragraphs_type.menu
+  module:
+    - field_menu
+id: paragraph.menu.default
+targetEntityType: paragraph
+bundle: menu
+mode: default
+content:
+  field_menu:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: field_menu_tree_formatter
+    region: content
+hidden:
+  search_api_excerpt: true

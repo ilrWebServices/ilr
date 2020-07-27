@@ -1,0 +1,27 @@
+uuid: 7b262c1a-b1de-4a40-8b91-184e526451a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.menu.field_menu
+    - paragraphs.paragraphs_type.menu
+  module:
+    - field_menu
+id: paragraph.menu.default
+targetEntityType: paragraph
+bundle: menu
+mode: default
+content:
+  field_menu:
+    weight: 0
+    settings:
+      max_depth: 0
+      menu_item_key: ''
+      include_root: false
+      menu_title: ''
+    third_party_settings: {  }
+    type: field_menu_tree_widget
+    region: content
+hidden:
+  created: true
+  status: true

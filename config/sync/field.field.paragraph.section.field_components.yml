@@ -12,6 +12,7 @@ dependencies:
     - paragraphs.paragraphs_type.form
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.media_deck
+    - paragraphs.paragraphs_type.menu
     - paragraphs.paragraphs_type.picture_in_picture
     - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.rich_text
@@ -50,6 +51,7 @@ settings:
       curated_course_listing: curated_course_listing
       collection_listing: collection_listing
       picture_in_picture: picture_in_picture
+      menu: menu
     target_bundles_drag_drop:
       collection_listing:
         enabled: true
@@ -75,6 +77,9 @@ settings:
       media_deck:
         enabled: true
         weight: -30
+      menu:
+        enabled: true
+        weight: -20
       person:
         weight: -20
         enabled: false
