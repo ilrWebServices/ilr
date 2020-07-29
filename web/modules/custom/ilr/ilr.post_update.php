@@ -491,3 +491,27 @@ function ilr_post_update_create_75_logo_block(&$sandbox) {
   $block->body->format = 'inline_svg';
   $block->save();
 }
+
+/**
+ * Create 75th video block.
+ */
+function ilr_post_update_create_75_video_block(&$sandbox) {
+  $blockEntityManager = \Drupal::service('entity_type.manager')
+    ->getStorage('block_content');
+
+  $block = $blockEntityManager->create([
+    'type' => 'simple_text',
+    'uuid' => 'e2a92dd5-f370-492f-a1cc-669014e5e9cf',
+    'label_display' => 0,
+  ]);
+
+  $block->info = "75th video banner";
+  $content = '<div class="cu-banner--video cu-banner">
+  <div class="cu-banner__media">
+    <video autoplay="" class="cu-video" loop="" muted="" src="https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_75_202008_500.mp4">&nbsp;</video>
+  </div>
+</div>';
+  $block->body->value = $content;
+  $block->body->format = 'full_html';
+  $block->save();
+}

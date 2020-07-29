@@ -21,3 +21,11 @@
   width: 100%;
   border: 0;
 }
+
+#block-union-marketing-75thvideobanner {
+  @include full-width();
+
+  video {
+    width: 100%;
+  }
+}

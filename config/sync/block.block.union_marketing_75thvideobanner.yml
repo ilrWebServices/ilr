@@ -1,0 +1,31 @@
+uuid: 1f339c0a-15d4-4048-b4a4-4aa7b9a93d17
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:simple_text:e2a92dd5-f370-492f-a1cc-669014e5e9cf'
+  module:
+    - block_content
+    - system
+  theme:
+    - union_marketing
+id: union_marketing_75thvideobanner
+theme: union_marketing
+region: highlighted
+weight: -1
+provider: null
+plugin: 'block_content:e2a92dd5-f370-492f-a1cc-669014e5e9cf'
+settings:
+  id: 'block_content:e2a92dd5-f370-492f-a1cc-669014e5e9cf'
+  label: '75th video banner'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: /75
+    negate: false
+    context_mapping: {  }
