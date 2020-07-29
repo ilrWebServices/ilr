@@ -1,0 +1,37 @@
+uuid: 69acefc8-e233-4774-8d21-e83308d25684
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:simple_text:ae107194-9e53-436b-8821-5c0caf031770'
+  module:
+    - block_content
+    - block_visibility_groups
+    - system
+  theme:
+    - union_marketing
+id: union_marketing_75thlogo
+theme: union_marketing
+region: header
+weight: 0
+provider: null
+plugin: 'block_content:ae107194-9e53-436b-8821-5c0caf031770'
+settings:
+  id: 'block_content:ae107194-9e53-436b-8821-5c0caf031770'
+  label: '75th logo'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/75*'
+    negate: false
+    context_mapping: {  }

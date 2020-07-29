@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - ilr
+    - system
 id: cornell_alternate_branding
 label: 'Cornell Alternate Branding'
 logic: or
@@ -16,4 +17,10 @@ conditions:
     negate: 0
     context_mapping: {  }
     uuid: 1a95feb7-bae2-4f0c-a59e-bf61138b7d26
+  8f3106c1-e1f6-4316-988c-c1f32b2c961c:
+    id: request_path
+    pages: '/75*'
+    negate: false
+    context_mapping: {  }
+    uuid: 8f3106c1-e1f6-4316-988c-c1f32b2c961c
 allow_other_conditions: false
