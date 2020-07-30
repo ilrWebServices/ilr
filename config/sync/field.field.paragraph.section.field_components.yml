@@ -16,6 +16,7 @@ dependencies:
     - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.section
+    - paragraphs.paragraphs_type.section_navigation
     - paragraphs.paragraphs_type.simple_collection_listing
     - paragraphs.paragraphs_type.testimonial
     - paragraphs.paragraphs_type.video
@@ -50,6 +51,7 @@ settings:
       curated_course_listing: curated_course_listing
       collection_listing: collection_listing
       picture_in_picture: picture_in_picture
+      section_navigation: section_navigation
     target_bundles_drag_drop:
       collection_listing:
         enabled: true
@@ -90,6 +92,9 @@ settings:
       section:
         weight: -19
         enabled: false
+      section_navigation:
+        enabled: true
+        weight: 31
       simple_collection_listing:
         enabled: true
         weight: -25

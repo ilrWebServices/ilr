@@ -1,0 +1,14 @@
+uuid: c10d541d-06eb-4d9a-b1db-4a254499c88b
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: section_navigation
+label: 'Section navigation'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  collection_menu_grifter:
+    enabled: true

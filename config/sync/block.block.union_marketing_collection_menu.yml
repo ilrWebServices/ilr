@@ -1,29 +1,23 @@
-uuid: ef60953b-fbff-4da0-a9e9-38b3cffc9533
+uuid: f8502fc9-7c16-4f31-9639-3ea2919c5a56
 langcode: en
 status: true
 dependencies:
-  config:
-    - system.menu.section-11
   module:
     - block_visibility_groups
     - ilr
-    - system
   theme:
     - union_marketing
-id: currentstudentsnavigation
+id: union_marketing_collection_menu
 theme: union_marketing
 region: content
-weight: 2
+weight: 11
 provider: null
-plugin: 'system_menu_block:section-11'
+plugin: collection_menu_block
 settings:
-  id: 'system_menu_block:section-11'
-  label: 'Current Students navigation'
-  provider: system
+  id: collection_menu_block
+  label: 'In this Section'
+  provider: ilr
   label_display: visible
-  level: 1
-  depth: 0
-  expand_all_items: false
 visibility:
   condition_group:
     id: condition_group
@@ -33,10 +27,5 @@ visibility:
   root_path_entity_bundle:
     id: root_path_entity_bundle
     root_entity_bundles: {  }
-    negate: false
-    context_mapping: {  }
-  request_path:
-    id: request_path
-    pages: '/current-students*'
     negate: false
     context_mapping: {  }
