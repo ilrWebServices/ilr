@@ -1,0 +1,31 @@
+uuid: f8502fc9-7c16-4f31-9639-3ea2919c5a56
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - ilr
+  theme:
+    - union_marketing
+id: union_marketing_collection_menu
+theme: union_marketing
+region: content
+weight: 11
+provider: null
+plugin: collection_menu_block
+settings:
+  id: collection_menu_block
+  label: 'In this Section'
+  provider: ilr
+  label_display: visible
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false
+    context_mapping: {  }
