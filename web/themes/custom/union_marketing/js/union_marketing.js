@@ -156,23 +156,4 @@
     }
   };
 
-  // Temporary section navigation behavior.
-  // @todo: Remove this once the section navigation strategy has been decided.
-  Drupal.behaviors.union_marketing_section_navigation = {
-    attach: function (context, settings) {
-      const currentStudentNav = context.querySelector('#block-currentstudentsnavigation');
-      // The `is-active` class from core is also added via js. Since the
-      // querySelector wasn't working, we'll just use the pathname.
-      const currentPath = window.location.pathname;
-      let activeItem = currentStudentNav.querySelector('a[href="' + currentPath + '"');
-
-      if (!activeItem) {
-        return;
-      }
-
-      activeItem.closest('ul').classList.add("active");
-      activeItem.closest('ul').closest('li').classList.add("active");
-    }
-  };
-
 })(window, document, Drupal);
