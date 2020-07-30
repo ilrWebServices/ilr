@@ -1,0 +1,21 @@
+uuid: 0053d33b-245e-405e-96bf-1d08a96c3590
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.subsite
+    - field.storage.collection.layout_builder__layout
+  module:
+    - layout_builder
+id: collection.subsite.layout_builder__layout
+field_name: layout_builder__layout
+entity_type: collection
+bundle: subsite
+label: Layout
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: layout_section
