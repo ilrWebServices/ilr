@@ -123,7 +123,14 @@ class CollectionMenuBlock extends BlockBase implements ContainerFactoryPluginInt
       ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
     ];
     $tree = $this->menuTree->transform($tree, $manipulators);
-    return $this->menuTree->build($tree);
+    $build = $this->menuTree->build($tree);
+
+    // If there is only one item in the active trail, none of the items are active.
+    // @see Drupal\Core\Menu\MenuActiveTrail::doGetActiveTrailIds().
+    if (count($active_trail) === 1) {
+      $build['#attributes']['class'][] = 'collection-menu-block--no-active-trail';
+    }
+    return $build;
   }
 
   /**

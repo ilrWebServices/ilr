@@ -95,6 +95,9 @@ label[for="nav-trigger"] {
   list-style-type: none;
   margin: 0;
   padding: 1.5rem 0;
+}
+
+.cu-header .subsite-menu {
   border-top: 1px solid $gray-light;
 }
 
@@ -121,6 +124,70 @@ label[for="nav-trigger"] {
     flex-basis: 100%;
     flex-grow: 1;
   }
+}
+
+.section-menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.section-menu__link {
+  --cu-current-link-color: #{$black};
+  --cu-header-accent-width: 15%;
+  --cu-header-accent-padding: .25em 0 0 0;
+  --cu-header-accent-border: 4px solid var(--cu-color-brand, #{$cornell-red});
+  text-decoration: none;
+  display: none;
+  font-size: var(--cu-ms1);
+  font-weight: 400;
+  margin-bottom: var(--cu-vr1);
+
+  &::after {
+    content: '';
+    display: block;
+    width: var(--cu-header-accent-width);
+    max-width: 100%;
+    padding: var(--cu-header-accent-padding);
+    border-bottom: var(--cu-header-accent-border);
+    transition: width ease-in .25s;
+  }
+
+  &:hover::after {
+    width: var(--cu-header-accent-width-hover, calc(var(--cu-header-accent-width) * 2));
+  }
+}
+
+.collection-menu-block--no-active-trail > .section-menu,
+.section-menu__link.is-active + .section-submenu {
+  display: grid;
+  grid-column-gap: 100px;
+
+  @include breakpoint(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoint(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.collection-menu-block--no-active-trail > .section-menu > .section-menu__item > .section-menu__link {
+  display: block;
+}
+
+.section-menu__link.is-active + .section-submenu {
+  .section-menu__link {
+    display: inline-block;
+  }
+
+  .section-submenu .section-menu__link {
+    display: none;
+  }
+}
+
+// When the menu is grifted, hide the block title.
+.paragraph--type--section-navigation .cu-heading {
+  display: none;
 }
 
 // Temporary styling for current-students section.

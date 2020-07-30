@@ -30,13 +30,13 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul{{attributes.addClass('subsite-menu')}}>
+      <ul{{attributes.addClass('section-menu')}}>
     {% else %}
-      <ul>
+      <ul{{attributes.addClass('section-submenu')}}>
     {% endif %}
     {% for item in items %}
-      <li{{item.attributes.addClass('subsite-menu__item')}}>
-        {{ link(item.title, item.url, {class: 'subsite-menu__link'}) }}
+      <li{{item.attributes.addClass('section-menu__item')}}>
+        {{ link(item.title, item.url, {class: 'section-menu__link'}) }}
         {% if item.below %}
           {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
         {% endif %}
