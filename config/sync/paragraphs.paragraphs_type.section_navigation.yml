@@ -3,12 +3,13 @@ langcode: en
 status: true
 dependencies:
   module:
-    - ilr
+    - collection_menu_paragraph
 id: section_navigation
 label: 'Section navigation'
 icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
-  collection_menu_grifter:
+  collection_menu:
     enabled: true
+    navigation_level: children
