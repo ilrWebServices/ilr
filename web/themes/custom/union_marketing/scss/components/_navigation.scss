@@ -126,49 +126,16 @@ label[for="nav-trigger"] {
   }
 }
 
-// Hide the standalone section menu block.
-.block-collection-menu-block {
-  display: none;
-}
-// But display it when it's placed in a section navigation paragraph.
-.paragraph--type--section-navigation .block-collection-menu-block {
-  display: block;
+.paragraph--type--section-navigation {
+  background-color: #efefef;
+  padding: var(--cu-vr0) var(--cu-vr0) 0 var(--cu-vr0);
+
 }
 
 .section-menu {
   list-style-type: none;
-  padding: 0;
-}
-
-.section-menu__link {
-  --cu-current-link-color: #{$black};
-  --cu-header-accent-width: 15%;
-  --cu-header-accent-padding: .25em 0 0 0;
-  --cu-header-accent-border: 4px solid var(--cu-color-brand, #{$cornell-red});
-  text-decoration: none;
-  display: none;
-  font-size: var(--cu-ms1);
-  font-weight: 400;
-  margin-bottom: var(--cu-vr1);
-
-  &::after {
-    content: '';
-    display: block;
-    width: var(--cu-header-accent-width);
-    max-width: 100%;
-    padding: var(--cu-header-accent-padding);
-    border-bottom: var(--cu-header-accent-border);
-    transition: width ease-in .25s;
-  }
-
-  &:hover::after {
-    width: var(--cu-header-accent-width-hover, calc(var(--cu-header-accent-width) * 2));
-  }
-}
-
-.collection-menu-block--no-active-trail > .section-menu,
-.section-menu__link.is-active + .section-submenu {
   display: grid;
+  padding: 0;
   grid-column-gap: 100px;
 
   @include breakpoint(sm) {
@@ -180,21 +147,27 @@ label[for="nav-trigger"] {
   }
 }
 
-.collection-menu-block--no-active-trail > .section-menu > .section-menu__item > .section-menu__link {
+.section-menu__link {
+  --cu-current-link-color: #{$black};
+  --cu-header-accent-width: 15%;
+  --cu-header-accent-padding: .25em 0 0 0;
+  --cu-header-accent-border: 4px solid var(--cu-color-brand, #{$cornell-red});
+  text-decoration: none;
+  font-weight: 400;
   display: block;
-}
+  margin-bottom: var(--cu-vr0);
 
-.section-menu__link.is-active + .section-submenu {
-  .section-menu__link {
-    display: inline-block;
-  }
+  // &::after {
+  //   content: '';
+  //   display: block;
+  //   width: var(--cu-header-accent-width);
+  //   max-width: 100%;
+  //   padding: var(--cu-header-accent-padding);
+  //   border-bottom: var(--cu-header-accent-border);
+  //   transition: width ease-in .25s;
+  // }
 
-  .section-submenu .section-menu__link {
-    display: none;
-  }
-}
-
-// When the menu is grifted, hide the block title.
-.paragraph--type--section-navigation .cu-heading {
-  display: none;
+  // &:hover::after {
+  //   width: var(--cu-header-accent-width-hover, calc(var(--cu-header-accent-width) * 2));
+  // }
 }
