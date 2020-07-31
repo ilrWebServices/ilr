@@ -1,0 +1,22 @@
+uuid: d78c7d4c-74a6-48fe-ba6b-e467871ab3d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.section_navigation.field_heading
+    - paragraphs.paragraphs_type.section_navigation
+id: paragraph.section_navigation.default
+targetEntityType: paragraph
+bundle: section_navigation
+mode: default
+content:
+  field_heading:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  search_api_excerpt: true
