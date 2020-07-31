@@ -11,6 +11,7 @@ is_admin: false
 permissions:
   - 'access content'
   - 'view blog collection'
+  - 'view content_section collection'
   - 'view media'
   - 'view publication_issue collection'
   - 'view subsite collection'
