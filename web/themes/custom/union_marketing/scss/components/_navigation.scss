@@ -126,6 +126,15 @@ label[for="nav-trigger"] {
   }
 }
 
+// Hide the standalone section menu block.
+.block-collection-menu-block {
+  display: none;
+}
+// But display it when it's placed in a section navigation paragraph.
+.paragraph--type--section-navigation .block-collection-menu-block {
+  display: block;
+}
+
 .section-menu {
   list-style-type: none;
   padding: 0;
