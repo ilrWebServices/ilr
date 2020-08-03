@@ -17,6 +17,10 @@ use Drupal\Core\Cache\Cache;
 /**
  * Provides a 'CollectionMenuBlock' block.
  *
+ * @todo Remove this plugin or move the core functionality to a service that can
+ * be shared with
+ * \Drupal\collection_menu_paragraph\Plugin\paragraphs\Behavior\CollectionMenu
+ *
  * @see \Drupal\system\Plugin\Block\SystemMenuBlock for useful code.
  *
  * @Block(
