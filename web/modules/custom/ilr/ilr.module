@@ -216,6 +216,7 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
             'target_bundles' => [
               'post' => 'post',
               'media_mention' => 'media_mention',
+              'story' => 'story',
             ]
           ]
         ]);
@@ -868,6 +869,7 @@ function ilr_form_collection_new_node_form_alter(&$form, FormStateInterface $for
       'post' => 'Post',
       'media_mention' => 'Media mention',
       'page' => 'Page',
+      'story' => 'Story',
     ];
   }
 
