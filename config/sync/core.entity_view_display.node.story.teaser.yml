@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.story.body
+    - field.field.node.story.field_published_date
     - field.field.node.story.field_representative_image
     - field.field.node.story.field_representative_img_caption
     - field.field.node.story.field_sections
@@ -45,6 +46,7 @@ content:
     third_party_settings: {  }
 hidden:
   extra_field_previous_next_story: true
+  field_published_date: true
   field_representative_img_caption: true
   field_sections: true
   field_sections_secondary: true

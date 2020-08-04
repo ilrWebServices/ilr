@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.story.body
+    - field.field.node.story.field_published_date
     - field.field.node.story.field_representative_image
     - field.field.node.story.field_representative_img_caption
     - field.field.node.story.field_sections
@@ -11,6 +12,7 @@ dependencies:
     - field.field.node.story.layout_builder__layout
     - node.type.story
   module:
+    - datetime
     - media_library
     - paragraphs_previewer
     - path
@@ -45,6 +47,12 @@ content:
       show_summary: false
     third_party_settings: {  }
     type: text_textarea_with_summary
+    region: content
+  field_published_date:
+    weight: 51
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_representative_image:
     weight: 8
