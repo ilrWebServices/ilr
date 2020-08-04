@@ -35,7 +35,8 @@ class AtomFeed extends ControllerBase {
       ->condition('collection', $collection->id())
       ->condition('type', 'blog')
       ->condition('item.entity:node.status', 1)
-      ->condition('item.entity:node.type', 'post')
+      ->condition('item.entity:node.type', ['post', 'story'], 'IN')
+      ->condition('item.entity:node.field_published_date', NULL, 'IS NOT NULL')
       ->sort('item.entity:node.field_published_date', 'DESC')
       ->execute();
 
