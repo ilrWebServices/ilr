@@ -1,0 +1,4 @@
+services:
+  hide_entity_field.manager:
+    class: Drupal\hide_entity_field\HideEntityFieldManager
+    arguments: ['@entity_type.manager']

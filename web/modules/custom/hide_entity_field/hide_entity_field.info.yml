@@ -1,0 +1,7 @@
+name: 'Hide Entity Field'
+type: module
+description: 'Hide field output per entity and bundle.'
+core: 8.x
+package: 'ILR'
+dependencies:
+  - dynamic_entity_reference
