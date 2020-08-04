@@ -171,3 +171,12 @@ label[for="nav-trigger"] {
   //   width: var(--cu-header-accent-width-hover, calc(var(--cu-header-accent-width) * 2));
   // }
 }
+
+// Breadcrumb overrides here
+.node--story .cu-breadcrumb {
+  margin: var(--cu-vr0) 0;
+}
+
+.node--story .cu-breadcrumb__item {
+  --cu-current-link-color: #{$black};
+}
