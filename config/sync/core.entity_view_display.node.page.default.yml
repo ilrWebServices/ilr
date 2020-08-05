@@ -45,24 +45,7 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
-            weight: 1
-          1f5dd978-556e-4ccf-965f-bd9d16d4b332:
-            uuid: 1f5dd978-556e-4ccf-965f-bd9d16d4b332
-            region: banner
-            configuration:
-              id: 'field_block:node:page:body'
-              label: 'Intro Text Body'
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: text_default
-                settings: {  }
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-            additional: {  }
-            weight: 3
+            weight: 2
           26c5ec80-4c2a-486d-9206-45f4caf49eac:
             uuid: 26c5ec80-4c2a-486d-9206-45f4caf49eac
             region: banner
@@ -91,7 +74,7 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             additional: {  }
-            weight: 2
+            weight: 1
           0395edef-fdc2-4166-ba11-d770ba19aa3b:
             uuid: 0395edef-fdc2-4166-ba11-d770ba19aa3b
             region: banner
@@ -102,6 +85,23 @@ third_party_settings:
               id: 'extra_field_block:node:page:extra_field_ilr_section_navigation'
             additional: {  }
             weight: 4
+          1f5dd978-556e-4ccf-965f-bd9d16d4b332:
+            uuid: 1f5dd978-556e-4ccf-965f-bd9d16d4b332
+            region: banner
+            configuration:
+              id: 'field_block:node:page:body'
+              label: 'Intro Text Body'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 3
         third_party_settings: {  }
       -
         layout_id: layout_onecol
