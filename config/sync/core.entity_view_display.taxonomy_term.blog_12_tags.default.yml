@@ -1,0 +1,126 @@
+uuid: a2c63f67-25cf-4512-ba20-0d54a84228cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.blog_12_tags.field_body
+    - field.field.taxonomy_term.blog_12_tags.field_representative_image
+    - taxonomy.vocabulary.blog_12_tags
+  module:
+    - layout_builder
+    - layout_discovery
+    - text
+    - union_organizer
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          dc812882-a3f3-41ab-8e80-759921e767dd:
+            uuid: dc812882-a3f3-41ab-8e80-759921e767dd
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:taxonomy_term:blog_12_tags:blog_collection'
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          54fb6207-959c-4a03-b104-6b699bdb28bd:
+            uuid: 54fb6207-959c-4a03-b104-6b699bdb28bd
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:blog_12_tags:name'
+              label: Name
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
+          5b318864-308d-42d5-801c-31e158838923:
+            uuid: 5b318864-308d-42d5-801c-31e158838923
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:taxonomy_term:blog_12_tags:field_body'
+              formatter:
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+                type: text_default
+            additional: {  }
+            weight: 2
+          9802c76b-37a8-42c8-87cf-8f7fc43796af:
+            uuid: 9802c76b-37a8-42c8-87cf-8f7fc43796af
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:taxonomy_term:blog_12_tags:collection_items_tag_term'
+            additional: {  }
+            weight: 3
+        third_party_settings: {  }
+id: taxonomy_term.blog_12_tags.default
+targetEntityType: taxonomy_term
+bundle: blog_12_tags
+mode: default
+content:
+  blog_collection:
+    weight: -1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  collection_items_tag_term:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_body:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_representative_image:
+    weight: 2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden:
+  search_api_excerpt: true

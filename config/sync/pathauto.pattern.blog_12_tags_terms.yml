@@ -1,0 +1,23 @@
+uuid: 8b33babb-789d-4ba7-a7d2-3df9710e4ed2
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: blog_12_tags_terms
+label: '75 tags Terms'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/75/tags/[term:name]'
+selection_criteria:
+  acebee82-41c5-4556-833c-e7452a702747:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      blog_12_tags: blog_12_tags
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: acebee82-41c5-4556-833c-e7452a702747
+selection_logic: and
+weight: 0
+relationships: {  }
