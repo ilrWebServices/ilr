@@ -103,9 +103,21 @@ function union_marketing_library_info_alter(&$libraries, $extension) {
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * @todo - Revisit this in the future to see if we can better integrate subsite
+ * menus with section menus. The former appears in the header, while the latter
+ * in the content area.
  */
 function union_marketing_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
-  if (preg_match('/^(subsite|section)\-/', $variables['menu_name'])) {
+  if (!isset($variables['menu_name'])) {
+    return;
+  }
+
+  if (strpos($variables['menu_name'], 'subsite-') === 0) {
+    $suggestions[] = 'menu__type_subsite';
+  }
+
+  if (strpos($variables['menu_name'], 'section-') === 0) {
     $suggestions[] = 'menu__type_section';
   }
 }
