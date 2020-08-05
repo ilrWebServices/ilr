@@ -10,37 +10,33 @@
         text-align: left;
       }
 
-      .field-representative-image {
+      .block-field-block--node--post--field-representative-image {
         grid-row: 1/4;
         grid-column: 2;
       }
 
-      .field--field-components,
-      .field--field-blog-tags {
+      .block-field-block--node--post--field-components,
+      .block-field-block--node--post--field-blog-tags {
         display: block;
         grid-column: 1/-1;
       }
 
-      .field--field-published-date {
+      .block-field-block--node--post--field-published-date {
         grid-column: 1;
         margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
       }
 
-      .social-sharing-buttons {
+      .block-better-social-sharing-buttons {
         display: flex;
         grid-column: 2;
       }
     }
 
-    >* {
-      display: contents;
-    }
-
-    .field-representative-image {
+    .block-field-block--node--post--field-representative-image {
       margin-bottom: var(--cu-vr1);
     }
 
-    .field--field-subtitle {
+    .block-field-block--node--post--field-subtitle {
       grid-column: 1;
     }
   }
