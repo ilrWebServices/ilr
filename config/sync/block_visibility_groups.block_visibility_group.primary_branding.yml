@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - ilr
+    - system
 id: primary_branding
 label: 'Primary branding'
 logic: and
@@ -18,4 +19,10 @@ conditions:
     negate: 1
     context_mapping: {  }
     uuid: db35c9eb-a667-4937-91ef-433f856cd21a
+  8b78baf4-c32f-4060-a678-c29dca964202:
+    id: request_path
+    pages: '/75*'
+    negate: true
+    context_mapping: {  }
+    uuid: 8b78baf4-c32f-4060-a678-c29dca964202
 allow_other_conditions: true

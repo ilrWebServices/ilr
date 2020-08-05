@@ -40,3 +40,7 @@
   font-size: var(--cu-ms-1);
   color: #777;
 }
+
+.paragraph--type--rich-text iframe {
+  border: 0;
+}

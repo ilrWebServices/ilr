@@ -2,45 +2,42 @@
   .cu-section {
     @include breakpoint(md) {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: 3fr 2fr;
+      column-gap: var(--cu-vr1);
 
       .cu-section-heading {
-        display: grid;
-        grid-column: 1/4;
         margin: 0;
         text-align: left;
       }
 
-      .field-representative-image {
-        grid-row: 1/3;
-        grid-column: 4/-1;
+      .block-field-block--node--post--field-representative-image {
+        grid-row: 1/4;
+        grid-column: 2;
       }
 
-      .field--field-authors,
-      .field--field-components,
-      .field--field-blog-tags {
+      .block-field-block--node--post--field-components,
+      .block-field-block--node--post--field-blog-tags {
         display: block;
         grid-column: 1/-1;
       }
 
-      .field--field-published-date {
-        display: block;
-        grid-column: 1/3;
+      .block-field-block--node--post--field-published-date {
+        grid-column: 1;
         margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
       }
 
-      .social-sharing-buttons {
+      .block-better-social-sharing-buttons {
         display: flex;
-        grid-column: 5;
+        grid-column: 2;
       }
     }
 
-    >* {
-      display: contents;
+    .block-field-block--node--post--field-representative-image {
+      margin-bottom: var(--cu-vr1);
     }
 
-    .field-representative-image {
-      margin-bottom: var(--cu-vr1);
+    .block-field-block--node--post--field-subtitle {
+      grid-column: 1;
     }
   }
 
@@ -65,4 +62,8 @@
   content: '-';
   display: inline-block;
   padding: 0 .5em;
+}
+
+.content--evergreen .field--field-published-date {
+  display: none;
 }

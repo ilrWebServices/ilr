@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.post.field_components
     - field.field.node.post.field_published_date
     - field.field.node.post.field_representative_image
+    - field.field.node.post.field_subtitle
     - image.style.medium_3_2
     - node.type.post
   module:
@@ -57,4 +58,5 @@ hidden:
   blog_tags: true
   field_authors: true
   field_components: true
+  field_subtitle: true
   search_api_excerpt: true

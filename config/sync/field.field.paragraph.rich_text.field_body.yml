@@ -12,7 +12,8 @@ third_party_settings:
   allowed_formats:
     basic_formatting: basic_formatting
     basic_formatting_with_media: basic_formatting_with_media
-    full_html: '0'
+    full_html: full_html
+    inline_svg: '0'
     plain_text: '0'
 id: paragraph.rich_text.field_body
 field_name: field_body

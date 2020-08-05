@@ -1,0 +1,24 @@
+uuid: b686973e-f920-4755-a351-b5fb3a53b1df
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_published_date
+    - node.type.story
+  module:
+    - datetime
+id: node.story.field_published_date
+field_name: field_published_date
+entity_type: node
+bundle: story
+label: 'Published date'
+description: 'The published date does not display to the general audience, but it used by the feed generator.'
+required: false
+translatable: true
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

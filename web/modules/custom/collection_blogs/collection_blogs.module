@@ -275,7 +275,7 @@ function collection_blogs_form_collection_new_node_form_alter(&$form, FormStateI
  * @see collection_blogs_form_collection_new_node_form_alter()
  */
 function collection_blogs_form_collection_new_node_form_presubmit($form, FormStateInterface $form_state) {
-  if (in_array($form_state->getValue('bundle'), ['post', 'media_mention'])) {
+  if (in_array($form_state->getValue('bundle'), ['post', 'media_mention', 'story'])) {
     $form_state->set('collection_item_type', 'blog');
   }
 }

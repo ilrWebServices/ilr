@@ -4,16 +4,20 @@ status: true
 dependencies:
   config:
     - field.field.node.story.body
+    - field.field.node.story.field_published_date
     - field.field.node.story.field_representative_image
     - field.field.node.story.field_representative_img_caption
     - field.field.node.story.field_sections
     - field.field.node.story.field_sections_secondary
+    - field.field.node.story.layout_builder__layout
     - node.type.story
   module:
     - better_social_sharing_buttons
+    - datetime
     - entity_reference_revisions
     - layout_builder
     - layout_discovery
+    - system
     - union_organizer
     - user
 third_party_settings:
@@ -21,6 +25,23 @@ third_party_settings:
     allow_custom: true
     enabled: true
     sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          7e01cf0d-69ea-4b22-a9f9-dc5d2eb75eaf:
+            uuid: 7e01cf0d-69ea-4b22-a9f9-dc5d2eb75eaf
+            region: content
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              provider: system
+              label_display: '0'
+              context_mapping: {  }
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
       -
         layout_id: layout_cu_section
         layout_settings:
@@ -229,6 +250,7 @@ content:
     region: content
 hidden:
   body: true
+  field_published_date: true
   field_representative_image: true
   field_sections: true
   layout_builder__layout: true

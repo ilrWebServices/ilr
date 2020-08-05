@@ -1,0 +1,38 @@
+uuid: c6feaf94-61ac-4b14-8b19-95903d385abb
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - ilr
+    - mailchimp_signup
+    - system
+  theme:
+    - union_marketing
+id: union_marketing_mailchimp_75
+theme: union_marketing
+region: content
+weight: 3
+provider: null
+plugin: 'mailchimp_signup_subscribe_block:75th_anniversary_updates'
+settings:
+  id: 'mailchimp_signup_subscribe_block:75th_anniversary_updates'
+  label: 'Weekly Inbox Updates'
+  provider: mailchimp_signup
+  label_display: visible
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/75\r\n/75/*"
+    negate: false
+    context_mapping: {  }

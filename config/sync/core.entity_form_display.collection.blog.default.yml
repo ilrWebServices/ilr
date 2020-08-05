@@ -7,6 +7,7 @@ dependencies:
     - field.field.collection.blog.body
     - field.field.collection.blog.field_representative_image
     - field.field.collection.blog.field_sections
+    - field.field.collection.blog.field_suppress_date_display
     - field.field.collection.blog.layout_builder__layout
   module:
     - media_library
@@ -53,6 +54,13 @@ content:
         add_above: '0'
     third_party_settings: {  }
     type: paragraphs_previewer
+    region: content
+  field_suppress_date_display:
+    weight: 101
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   name:
     type: string_textfield

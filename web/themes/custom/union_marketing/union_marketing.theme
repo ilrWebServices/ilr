@@ -26,9 +26,23 @@ function union_marketing_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = 'node--' . $variables['node_type'];
   }
 
-  if (isset($variables['root_path']) && $variables['root_path'] === 'collection') {
-    if ($collection = \Drupal::routeMatch()->getParameter('collection')) {
-      $variables['attributes']['class'][] = 'collection--' . str_replace('_', '-', $collection->bundle());
+  if (isset($variables['root_path'])) {
+    $entity_type = $variables['root_path'];
+
+    if ($entity = \Drupal::routeMatch()->getParameter($entity_type)) {
+      $variables['attributes']['class'][] = $entity_type . '--' . str_replace('_', '-', $entity->bundle());
+
+      if ($entity->hasField('field_suppress_date_display') && $entity->field_suppress_date_display->value) {
+        $variables['attributes']['class'][] = 'content--evergreen';
+      }
+    }
+  }
+
+  if ($path_entities = \Drupal::service('path_alias.entities')->getPathAliasEntities()) {
+    $root_path_entity = reset($path_entities);
+
+    if ($root_path_entity->hasField('field_suppress_date_display') && $root_path_entity->field_suppress_date_display->value) {
+      $variables['attributes']['class'][] = 'content--evergreen';
     }
   }
 }

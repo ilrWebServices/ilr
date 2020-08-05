@@ -216,6 +216,7 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
             'target_bundles' => [
               'post' => 'post',
               'media_mention' => 'media_mention',
+              'story' => 'story',
             ]
           ]
         ]);
@@ -708,7 +709,7 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
       $form['body']['#group'] = 'ilr_meta';
     }
 
-    if (in_array($node->bundle(), ['post', 'media_mention'])) {
+    if (in_array($node->bundle(), ['post', 'media_mention', 'story'])) {
       $form['body']['#group'] = 'ilr_meta';
       $form['field_authors']['#group'] = 'ilr_meta';
       $form['field_experts']['#group'] = 'ilr_meta';
@@ -868,6 +869,7 @@ function ilr_form_collection_new_node_form_alter(&$form, FormStateInterface $for
       'post' => 'Post',
       'media_mention' => 'Media mention',
       'page' => 'Page',
+      'story' => 'Story',
     ];
   }
 
@@ -904,6 +906,10 @@ function ilr_form_collection_form_alter(&$form, FormStateInterface $form_state) 
 
     if (isset($form['field_representative_image'])) {
       $form['field_representative_image']['#group'] = 'ilr_meta';
+    }
+
+    if (isset($form['field_suppress_date_display'])) {
+      $form['field_suppress_date_display']['#group'] = 'ilr_meta';
     }
 
     if (!empty($form['field_download'])) {
