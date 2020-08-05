@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.post.field_components
     - field.field.node.post.field_published_date
     - field.field.node.post.field_representative_image
+    - field.field.node.post.field_subtitle
     - node.type.post
   module:
     - datetime
@@ -66,9 +67,9 @@ content:
       form_display_mode: default
       default_paragraph_type: rich_text
       features:
+        add_above: '0'
         collapse_edit_all: collapse_edit_all
         duplicate: '0'
-        add_above: '0'
     third_party_settings: {  }
     region: content
   field_published_date:
@@ -83,6 +84,14 @@ content:
       media_types: {  }
     third_party_settings: {  }
     type: media_library_widget
+    region: content
+  field_subtitle:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   path:
     type: path

@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.post.field_components
     - field.field.node.post.field_published_date
     - field.field.node.post.field_representative_image
+    - field.field.node.post.field_subtitle
     - image.style.large_21_9_1200x514_
     - node.type.post
   module:
@@ -168,6 +169,25 @@ third_party_settings:
               context_mapping: {  }
             additional: {  }
             weight: 5
+          c82aa010-7233-4177-9f6a-45036595c2a5:
+            uuid: c82aa010-7233-4177-9f6a-45036595c2a5
+            region: main
+            configuration:
+              id: 'field_block:node:post:field_subtitle'
+              label: Subtitle
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 2
         third_party_settings: {  }
 id: node.post.default
 targetEntityType: node
@@ -219,6 +239,14 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: media_thumbnail
+    region: content
+  field_subtitle:
+    weight: 101
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   links:
     weight: 0
