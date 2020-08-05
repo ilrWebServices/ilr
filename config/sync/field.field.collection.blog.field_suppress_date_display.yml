@@ -1,0 +1,23 @@
+uuid: f1ca0400-6118-4931-ae74-f8e8633eab1f
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.blog
+    - field.storage.collection.field_suppress_date_display
+id: collection.blog.field_suppress_date_display
+field_name: field_suppress_date_display
+entity_type: collection
+bundle: blog
+label: 'Suppress date display'
+description: 'Check this box to hide the display of dates on posts for this blog.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

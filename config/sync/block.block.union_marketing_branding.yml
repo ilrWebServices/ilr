@@ -33,6 +33,6 @@ visibility:
     context_mapping: {  }
   request_path:
     id: request_path
-    pages: /*
+    pages: '/*'
     negate: true
     context_mapping: {  }
