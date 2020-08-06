@@ -14,7 +14,6 @@ dependencies:
     - field.field.node.course.field_topics
     - node.type.course
     - views.view.instructors_for_course
-    - views.view.related_courses
     - views.view.topics_list
     - webform.webform.course_customization_request
     - webform.webform.course_notification
@@ -338,17 +337,14 @@ third_party_settings:
           collapse_margins: false
           extra_classes: ''
         components:
-          4ca4cead-f28b-4b08-9cb3-17493a985908:
-            uuid: 4ca4cead-f28b-4b08-9cb3-17493a985908
+          a938f7ac-395b-4eb5-b2cf-d8ef780ff1db:
+            uuid: a938f7ac-395b-4eb5-b2cf-d8ef780ff1db
             region: main
             configuration:
-              id: 'views_block:related_courses-block'
-              label: ''
-              provider: views
               label_display: '0'
-              views_label: ''
-              items_per_page: none
-              context_mapping: {  }
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:node:course:extra_field_related_courses'
             additional: {  }
             weight: 1
           dda27402-2fca-4c34-9ce0-67f1b7595610:
@@ -377,6 +373,11 @@ content:
     third_party_settings: {  }
     region: content
   extra_field_class_register:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: main
+  extra_field_related_courses:
     weight: 0
     settings: {  }
     third_party_settings: {  }
