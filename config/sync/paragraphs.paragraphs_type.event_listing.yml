@@ -1,0 +1,14 @@
+uuid: fcf7ba92-aa45-45da-a012-ae6a8986506c
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: event_listing
+label: 'Event listing'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  localist_events:
+    enabled: true
