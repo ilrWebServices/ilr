@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Contains localist_paragraph_behavior.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function localist_paragraph_behavior_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the localist_paragraph_behavior module.
+    case 'help.page.localist_paragraph_behavior':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Allows the attachment of Localist events to Paragraph entities') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function localist_paragraph_behavior_theme() {
+  return [
+    'localist_event' => [
+      'variables' => [
+        'event' => [],
+      ],
+    ],
+  ];
+}
