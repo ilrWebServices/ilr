@@ -1,0 +1,23 @@
+uuid: c1d7a246-7c67-49c0-97a9-df232410240a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.event_listing.field_heading
+    - paragraphs.paragraphs_type.event_listing
+id: paragraph.event_listing.default
+targetEntityType: paragraph
+bundle: event_listing
+mode: default
+content:
+  field_heading:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

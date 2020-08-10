@@ -20,10 +20,6 @@
  */
 #}
 {% if items or empty %}
-  {%- if title is not empty -%}
-    <h3>{{ title }}</h3>
-  {%- endif -%}
-
   {%- if items -%}
     <div{{ attributes }}>
       {%- for item in items -%}
