@@ -21,11 +21,9 @@
 #}
 {% if items or empty %}
   {%- if items -%}
-    <div{{ attributes }}>
-      {%- for item in items -%}
-        {{ item.value }}
-      {%- endfor -%}
-    </div>
+    {%- for item in items -%}
+      {{ item.value }}
+    {%- endfor -%}
   {%- else -%}
     {{- empty -}}
   {%- endif -%}
