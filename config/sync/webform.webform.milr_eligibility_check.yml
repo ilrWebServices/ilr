@@ -1,7 +1,9 @@
 uuid: daec9173-61cd-4f37-80cc-dacc02578771
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - webform_mailchimp
 open: null
 close: null
 weight: 0
@@ -182,6 +184,20 @@ access:
     users: {  }
     permissions: {  }
 handlers:
+  mailchimp_milr:
+    id: mailchimp
+    label: 'MailChimp MILR'
+    handler_id: mailchimp_milr
+    status: true
+    conditions: {  }
+    weight: 1
+    settings:
+      list: b244982c50
+      email: email
+      double_optin: false
+      mergevars: "FNAME: [webform_submission:values:first_name]\r\nLNAME: [webform_submission:values:last_name]\r\nPHONE: [webform_submission:values:phone]\r\nEXPERIENCE: [webform_submission:values:experience_years]\r\nEMPLOYER: [webform_submission:values:employer]\r\nBACHELORS: [webform_submission:values:bachelors_complete]\r\nGRADYEAR: [webform_submission:values:degree_year]\r\nSOURCE: [webform_submission:values:marketing_channel]"
+      interest_groups: {  }
+      control: ''
   email:
     id: email
     label: Email
