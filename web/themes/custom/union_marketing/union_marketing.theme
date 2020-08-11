@@ -31,9 +31,14 @@ function union_marketing_preprocess_html(&$variables) {
     $entity_type = $variables['root_path'];
 
     if ($entity = \Drupal::routeMatch()->getParameter($entity_type)) {
+
+      if (!$entity instanceof FieldableEntityInterface) {
+        return;
+      }
+
       $variables['attributes']['class'][] = $entity_type . '--' . str_replace('_', '-', $entity->bundle());
 
-      if ($entity instanceof FieldableEntityInterface && $entity->hasField('field_suppress_date_display') && $entity->field_suppress_date_display->value) {
+      if ($entity->hasField('field_suppress_date_display') && $entity->field_suppress_date_display->value) {
         $variables['attributes']['class'][] = 'content--evergreen';
       }
     }
