@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Link;
 use Drupal\entity_reference_layout\EntityReferenceLayoutRevisionsFieldItemList;
 use Drupal\crop\Entity\Crop;
@@ -32,7 +33,7 @@ function union_marketing_preprocess_html(&$variables) {
     if ($entity = \Drupal::routeMatch()->getParameter($entity_type)) {
       $variables['attributes']['class'][] = $entity_type . '--' . str_replace('_', '-', $entity->bundle());
 
-      if ($entity->hasField('field_suppress_date_display') && $entity->field_suppress_date_display->value) {
+      if ($entity instanceof FieldableEntityInterface && $entity->hasField('field_suppress_date_display') && $entity->field_suppress_date_display->value) {
         $variables['attributes']['class'][] = 'content--evergreen';
       }
     }
@@ -41,7 +42,7 @@ function union_marketing_preprocess_html(&$variables) {
   if ($path_entities = \Drupal::service('path_alias.entities')->getPathAliasEntities()) {
     $root_path_entity = reset($path_entities);
 
-    if ($root_path_entity->hasField('field_suppress_date_display') && $root_path_entity->field_suppress_date_display->value) {
+    if ($root_path_entity instanceof FieldableEntityInterface &&$root_path_entity->hasField('field_suppress_date_display') && $root_path_entity->field_suppress_date_display->value) {
       $variables['attributes']['class'][] = 'content--evergreen';
     }
   }
