@@ -1,0 +1,19 @@
+.cu-fieldset.radios--wrapper,
+.cu-fieldset.webform-type-checkboxes {
+  padding: 0;
+
+  .cu-legend {
+    margin: var(--cu-vr0) 0;
+  }
+}
+
+// Visually hide datelist elements but allow screen readers.
+.cu-input-list__item--datelist .container-inline .cu-label {
+  @include visually-hidden;
+}
+
+.cu-input-list__item--webform_document_file {
+  padding: var(--cu-vr0);
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
