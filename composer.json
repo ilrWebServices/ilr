@@ -73,6 +73,7 @@
     "drupal/twig_tweak": "^2.4",
     "drupal/union_organizer": "dev-master",
     "drupal/webform": "^5.4",
+    "drupal/webform_mailchimp": "^5.9",
     "drush/drush": "^10.0.0",
     "platformsh/config-reader": "^2.3",
     "vlucas/phpdotenv": "^4.0",
@@ -118,6 +119,9 @@
       },
       "drupal/paragraphs_previewer": {
         "Entities using layoutbuilder cannot get fields previewed": "https://gist.githubusercontent.com/a-fro/1c9b5fcf778edcc49eb39dab292cbc0c/raw/c2352a640270412d2d73232a1e5d3ca69a606726/paragraphs-preview-no-output-layout-builder.patch"
+      },
+      "drupal/webform_mailchimp": {
+        "Provide user selectable interest groups as Webform predefined options": "https://www.drupal.org/files/issues/2019-10-05/3036323-interest-groups-predefined-options-15.patch"
       }
     },
     "installer-paths": {

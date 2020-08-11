@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b562b78e4e6bb854b764dad0a4d9e184",
+    "content-hash": "abc9f49c2477ae5c803674313e1a23b1",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5538,6 +5538,84 @@
                 "issues": "https://www.drupal.org/project/issues/webform?version=8.x",
                 "docs": "https://www.drupal.org/docs/8/modules/webform",
                 "forum": "https://drupal.stackexchange.com/questions/tagged/webform"
+            }
+        },
+        {
+            "name": "drupal/webform_mailchimp",
+            "version": "5.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/webform_mailchimp.git",
+                "reference": "8.x-5.9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/webform_mailchimp-8.x-5.9.zip",
+                "reference": "8.x-5.9",
+                "shasum": "d39d231d6381306d7c92b3fa55c135e934740ea4"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/mailchimp": "*",
+                "drupal/webform": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-5.9",
+                    "datestamp": "1579957681",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "Todd Zebert",
+                    "homepage": "https://www.drupal.org/user/762250"
+                },
+                {
+                    "name": "blackdog",
+                    "homepage": "https://www.drupal.org/user/110169"
+                },
+                {
+                    "name": "das-peter",
+                    "homepage": "https://www.drupal.org/user/762870"
+                },
+                {
+                    "name": "grisendo",
+                    "homepage": "https://www.drupal.org/user/848238"
+                },
+                {
+                    "name": "hanoii",
+                    "homepage": "https://www.drupal.org/user/23157"
+                },
+                {
+                    "name": "levelos",
+                    "homepage": "https://www.drupal.org/user/54135"
+                },
+                {
+                    "name": "mbovan",
+                    "homepage": "https://www.drupal.org/user/3149657"
+                },
+                {
+                    "name": "miro_dietiker",
+                    "homepage": "https://www.drupal.org/user/227761"
+                }
+            ],
+            "description": "Allows to send Webform submissions to MailChimp lists.",
+            "homepage": "https://www.drupal.org/project/webform_mailchimp",
+            "support": {
+                "source": "https://git.drupalcode.org/project/webform_mailchimp"
             }
         },
         {
