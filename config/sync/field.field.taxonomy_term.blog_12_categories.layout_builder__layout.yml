@@ -1,0 +1,21 @@
+uuid: 1d7290f2-d077-4385-9fda-454439d95b24
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.layout_builder__layout
+    - taxonomy.vocabulary.blog_12_categories
+  module:
+    - layout_builder
+id: taxonomy_term.blog_12_categories.layout_builder__layout
+field_name: layout_builder__layout
+entity_type: taxonomy_term
+bundle: blog_12_categories
+label: Layout
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: layout_section
