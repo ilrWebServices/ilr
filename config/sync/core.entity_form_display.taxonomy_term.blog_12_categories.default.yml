@@ -6,10 +6,11 @@ dependencies:
     - field.field.taxonomy_term.blog_12_categories.field_body
     - field.field.taxonomy_term.blog_12_categories.field_representative_image
     - field.field.taxonomy_term.blog_12_categories.field_sections
+    - field.field.taxonomy_term.blog_12_categories.layout_builder__layout
     - taxonomy.vocabulary.blog_12_categories
   module:
-    - entity_reference_revisions
     - media_library
+    - paragraphs
     - path
     - text
 id: taxonomy_term.blog_12_categories.default
@@ -17,14 +18,6 @@ targetEntityType: taxonomy_term
 bundle: blog_12_categories
 mode: default
 content:
-  description:
-    type: text_textarea
-    weight: 0
-    region: content
-    settings:
-      placeholder: ''
-      rows: 5
-    third_party_settings: {  }
   field_body:
     weight: 102
     settings:
@@ -43,14 +36,22 @@ content:
     type: media_library_widget
     region: content
   field_sections:
-    weight: 103
+    weight: -1
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
     third_party_settings: {  }
-    type: entity_reference_revisions_autocomplete
+    type: paragraphs
     region: content
   name:
     type: string_textfield
@@ -73,4 +74,6 @@ content:
     weight: 100
     region: content
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  description: true
+  layout_builder__layout: true
