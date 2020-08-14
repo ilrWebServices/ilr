@@ -1,0 +1,25 @@
+.webform-submission-your-story-form {
+  background: #efefed;
+  padding: var(--cu-vr2) var(--cu-ps2);
+  margin: var(--cu-vr3) 0;
+
+  @include breakpoint(md) {
+    display: grid;
+    grid-gap: 50px;
+
+    .form-title {
+      grid-column: 1;
+    }
+  }
+
+  .form-fields {
+    grid-column: 2;
+  }
+
+  .form-title .cu-label {
+    --cu-current-heading-size: var(--cu-ps2);
+    --cu-current-line-height: var(--cu-heading-line-height, 1.2);
+    margin: 0 0 var(--cu-component-margin-bottom, var(--cu-vr0));
+    font-size: var(--cu-current-heading-size, inherit);
+  }
+}
