@@ -12,7 +12,7 @@ id: your_story
 title: 'Your Story'
 description: ''
 category: ''
-elements: "form_title:\n  '#type': item\n  '#title': 'Idea for a story?'\n  '#wrapper_attributes':\n    class:\n      - form-title\n  '#markup': 'Send us your story idea.'\ncontainer:\n  '#type': container\n  '#attributes':\n    class:\n      - form-fields\n  name:\n    '#type': textfield\n    '#title': Name\n    '#required': true\n  email:\n    '#type': email\n    '#title': 'Email address'\n    '#required': true\n  details:\n    '#type': textarea\n    '#title': 'Your story idea'\n    '#maxlength': 240\n    '#rows': 2\n    '#required': true\n  actions:\n    '#type': webform_actions\n    '#title': 'Submit button(s)'\n    '#submit__label': 'Share your story'"
+elements: "form_title:\n  '#type': item\n  '#title': 'Idea for a story?'\n  '#wrapper_attributes':\n    class:\n      - form-title\n  '#markup': |\n    Send us your story idea.<br />\n    <br />\n    These stories are part of an ongoing series.<br />\n    New stories are still coming in and we will share them throughout the academic year.<br />\n    <br />\n    &nbsp;\ncontainer:\n  '#type': container\n  '#attributes':\n    class:\n      - form-fields\n  name:\n    '#type': textfield\n    '#title': Name\n    '#required': true\n  email:\n    '#type': email\n    '#title': 'Email address'\n    '#required': true\n  details:\n    '#type': textarea\n    '#title': 'Your story idea'\n    '#maxlength': 240\n    '#rows': 2\n    '#required': true\n  actions:\n    '#type': webform_actions\n    '#title': 'Submit button(s)'\n    '#submit__label': 'Share your story'"
 css: ''
 javascript: ''
 settings:
