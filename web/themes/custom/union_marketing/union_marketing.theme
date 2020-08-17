@@ -30,7 +30,7 @@ function union_marketing_preprocess_html(&$variables) {
   if (isset($variables['root_path'])) {
     $entity_type = $variables['root_path'];
 
-    if ($entity = \Drupal::routeMatch()->getParameter($entity_type)) {
+    if ($entity_type && $entity = \Drupal::routeMatch()->getParameter($entity_type)) {
 
       if (!$entity instanceof FieldableEntityInterface) {
         return;
