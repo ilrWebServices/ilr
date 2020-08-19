@@ -15,8 +15,8 @@ behavior_plugins:
     enabled: true
     list_styles:
       grid: grid
-      grid-compact: grid-compact
-      list-compact: list-compact
+      grid-compact: 0
+      list-compact: 0
       grid-featured: 0
       banner: 0
   localist_events:
