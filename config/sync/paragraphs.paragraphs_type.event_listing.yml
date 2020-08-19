@@ -1,0 +1,25 @@
+uuid: fcf7ba92-aa45-45da-a012-ae6a8986506c
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+    - localist_paragraph_behavior
+id: event_listing
+label: 'Event listing'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  list_styles:
+    enabled: true
+    list_styles:
+      grid: grid
+      grid-compact: 0
+      list-compact: 0
+      grid-featured: 0
+      banner: 0
+  localist_events:
+    enabled: true
+    events_shown: 5
+    keywords: ILR

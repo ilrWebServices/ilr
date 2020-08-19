@@ -1,0 +1,19 @@
+uuid: e228e5b6-20d2-462c-8228-3b4c37e3476d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.event_listing
+id: paragraph.event_listing.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: event_listing
+label: Heading
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

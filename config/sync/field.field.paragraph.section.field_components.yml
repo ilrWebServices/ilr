@@ -9,6 +9,7 @@ dependencies:
     - paragraphs.paragraphs_type.curated_course_listing
     - paragraphs.paragraphs_type.curated_post_listing
     - paragraphs.paragraphs_type.deck
+    - paragraphs.paragraphs_type.event_listing
     - paragraphs.paragraphs_type.form
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.media_deck
@@ -51,6 +52,7 @@ settings:
       curated_course_listing: curated_course_listing
       collection_listing: collection_listing
       picture_in_picture: picture_in_picture
+      event_listing: event_listing
       section_navigation: section_navigation
     target_bundles_drag_drop:
       collection_listing:
@@ -68,6 +70,9 @@ settings:
       deck:
         enabled: true
         weight: -31
+      event_listing:
+        enabled: true
+        weight: 24
       form:
         enabled: true
         weight: -28
