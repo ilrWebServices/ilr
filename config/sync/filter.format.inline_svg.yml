@@ -15,7 +15,7 @@ filters:
     status: true
     weight: -10
     settings:
-      allowed_html: '<svg xmlns:svg xmlns viewBox id aria-labelledby> <defs> <style id type> <path class d transform> <line class x1 y1 x2 y2> <polyline id points> <polygon class points> <text class x y> <tspan class> <title id> <a href class> '
+      allowed_html: '<svg xmlns:svg xmlns viewBox id aria-labelledby> <defs> <style id type> <path class d transform> <line class x1 y1 x2 y2> <polyline id points class> <polygon class points> <text class x y> <tspan class> <title id> <a href class> '
       filter_html_help: true
       filter_html_nofollow: false
   token_filter:
