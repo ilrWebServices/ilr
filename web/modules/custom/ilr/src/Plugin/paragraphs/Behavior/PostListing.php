@@ -129,7 +129,10 @@ class PostListing extends ParagraphsBehaviorBase {
     $post_count = 0;
     foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
       $post_count++;
-      $posts[] = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($paragraph, $list_style, $post_count));
+      $rendered_entity = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($paragraph, $list_style, $post_count));
+      $rendered_entity['#collection_item'] = $collection_item;
+      $rendered_entity['#cache']['contexts'][] = 'url';
+      $posts[] = $rendered_entity;
     }
 
     $variables['content']['field_collection']['#printed'] = TRUE;
