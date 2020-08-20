@@ -1,0 +1,152 @@
+uuid: 196f358b-ab71-494d-ae49-ba52d5098f9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.blog_14_categories.field_body
+    - field.field.taxonomy_term.blog_14_categories.field_representative_image
+    - field.field.taxonomy_term.blog_14_categories.field_sections
+    - taxonomy.vocabulary.blog_14_categories
+  module:
+    - layout_builder
+    - layout_discovery
+    - text
+    - union_organizer
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          6f80da4f-5a5f-45bc-8d2d-602bd0a4c2e2:
+            uuid: 6f80da4f-5a5f-45bc-8d2d-602bd0a4c2e2
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:taxonomy_term:blog_14_categories:blog_collection'
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          cec2f67a-751b-44c4-b3bc-c36091520917:
+            uuid: cec2f67a-751b-44c4-b3bc-c36091520917
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:blog_14_categories:name'
+              label: Name
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 0
+          6ee62c22-c08f-4975-b83f-0a8916c9f5c5:
+            uuid: 6ee62c22-c08f-4975-b83f-0a8916c9f5c5
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:blog_14_categories:field_body'
+              label: 'Intro text'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: 'Page content'
+        components:
+          59f64c9d-cacf-4fbb-9b34-38a9d28c00fc:
+            uuid: 59f64c9d-cacf-4fbb-9b34-38a9d28c00fc
+            region: content
+            configuration:
+              id: 'field_block:taxonomy_term:blog_14_categories:field_sections'
+              label: 'Page content'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_revisions_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          c26fe3b6-1c90-483c-8012-fa90cf6b737f:
+            uuid: c26fe3b6-1c90-483c-8012-fa90cf6b737f
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:taxonomy_term:blog_14_categories:collection_items_category_term'
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
+id: taxonomy_term.blog_14_categories.default
+targetEntityType: taxonomy_term
+bundle: blog_14_categories
+mode: default
+content:
+  blog_collection:
+    weight: -1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  collection_items_category_term:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_body: true
+  field_representative_image: true
+  field_sections: true
+  search_api_excerpt: true
