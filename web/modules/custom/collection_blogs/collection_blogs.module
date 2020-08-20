@@ -184,6 +184,7 @@ function collection_blogs_node_view(array &$build, EntityInterface $entity, Enti
       ->condition('type', 'blog')
       ->condition('item__target_type', 'node')
       ->condition('item__target_id', $entity->id())
+      ->condition('canonical', 1)
       ->execute();
 
     foreach ($collection_item_storage->loadMultiple($blog_post_collection_items) as $collection_item) {
