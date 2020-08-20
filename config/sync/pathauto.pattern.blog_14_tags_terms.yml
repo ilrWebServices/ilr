@@ -1,0 +1,23 @@
+uuid: c05a8f3b-d507-4aa2-b7f1-dc102b812bff
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - taxonomy
+id: blog_14_tags_terms
+label: 'Scheinman Institute Blog tags Terms'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/scheinman-institute/blog/tags/[term:name]'
+selection_criteria:
+  5a5b5c83-4b62-47be-8aa2-b4ae73355096:
+    id: 'entity_bundle:taxonomy_term'
+    bundles:
+      blog_14_tags: blog_14_tags
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    uuid: 5a5b5c83-4b62-47be-8aa2-b4ae73355096
+selection_logic: and
+weight: 0
+relationships: {  }
