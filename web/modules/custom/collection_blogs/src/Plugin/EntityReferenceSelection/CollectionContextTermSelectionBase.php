@@ -51,32 +51,11 @@ class CollectionContextTermSelectionBase extends SelectionPluginBase implements 
    */
   public function getReferenceableEntities($match = NULL, $match_operator = 'CONTAINS', $limit = 0) {
     $options = [];
-    $collection = \Drupal::routeMatch()->getParameter('collection');
+    $collection_item = $this->getConfiguration()['entity'];
+    $collection = $collection_item->collection->entity;
 
     if (!$collection) {
-      $node = \Drupal::routeMatch()->getParameter('node');
-
-      if (!$node) {
-        return $options;
-      }
-
-      $collection_item_storage = $this->entityTypeManager->getStorage('collection_item');
-
-      $collection_item_ids = $collection_item_storage->getQuery()
-        ->condition('type', 'blog')
-        ->condition('item__target_type', 'node')
-        ->condition('item__target_id', $node->id())
-        ->execute();
-
-      $collection_items = $collection_item_storage->loadMultiple($collection_item_ids);
-
-      if ($collection_items) {
-        $collection_item = reset($collection_items);
-        $collection = $collection_item->collection->entity;
-      }
-      else {
-        return $options;
-      }
+      return $options;
     }
 
     $collection_items = $collection->findItems('taxonomy_vocabulary');
