@@ -91,7 +91,7 @@ class ClassSession extends ContentEntityBase implements ContentEntityInterface {
         'label' => 'hidden',
         'settings' => [
           'timezone_override' => '',
-          'date_format' => 'g:i a',
+          'date_format' => 'g:i a T',
           'separator' => '-',
         ],
       ]);
