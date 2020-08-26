@@ -537,7 +537,9 @@ function ilr_preprocess_node__course__teaser(&$variables) {
   foreach ($variables['node']->classes as $upcoming_class) {
     $class_is_in_person = strpos(strtolower($upcoming_class->entity->field_delivery_method->value), 'online') === FALSE;
 
-    // @todo Revisit hiding of upcoming in-person classes once conference center is open.
+    // @todo Revisit hiding of upcoming in-person classes once conference center
+    // is open. Also note that the "Online" label in the teaser template will
+    // need to be modified at the same time.
     if (!$class_is_in_person) {
       $variables['upcoming_classes'][] = $upcoming_class->entity;
     }

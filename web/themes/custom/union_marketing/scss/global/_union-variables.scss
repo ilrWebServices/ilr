@@ -57,3 +57,7 @@
   --cu-current-heading-size: var(--cu-ms2);
 }
 
+.cu-heading.cu-heading--label {
+  --cu-current-heading-size: var(--cu-ms1);
+  --cu-current-font-weight: 400;
+}
