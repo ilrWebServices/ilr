@@ -8,10 +8,6 @@
   line-height: 1;
 }
 
-.node--course.node--view-mode-teaser h3.cu-heading {
-  --cu-current-heading-size: var(--cu-text-xxxl);
-}
-
 .course-notification-course-ref {
   display: none !important; // This is filled in via JS.
 }

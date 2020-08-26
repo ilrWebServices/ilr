@@ -104,12 +104,12 @@
   }]) %}
   {% endif %}
 
-{% include '@union/_feature-list.twig' with {
-  items: feature_list_items,
-  content_attributes: { class: 'cu-grid' }
-} only %}
+  {% include '@union/_feature-list.twig' with {
+    items: feature_list_items,
+    content_attributes: { class: 'cu-grid' }
+  } only %}
 
-{% set register_link_text = 'Register <span class="visually-hidden"> for ' ~ node.label ~ '</span>'%}
+  {% set register_link_text = 'Register <span class="visually-hidden"> for ' ~ node.label ~ '</span>'%}
 {% else %}
   {# TODO Consider allowing this text to be editable.  #}
   <p><em>{{ "Dates for online sessions will be posted as soon as they are available."|t }}</em></p>
