@@ -25,7 +25,16 @@ class PeopleListing extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    $form['columns'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Number of columns'),
+      '#description' => $this->t('The number of columns to display on wider screens.'),
+      '#min' => 2,
+      '#max' => 4,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'columns') ?? 3,
+    ];
 
+    return $form;
   }
 
   /**
@@ -34,10 +43,14 @@ class PeopleListing extends ParagraphsBehaviorBase {
   public function preprocess(&$variables) {
     $paragraph = $variables['paragraph'];
     $list_style = $paragraph->getBehaviorSetting('list_styles', 'list_style') ?? 'grid';
-
+    $count = 1;
     foreach ($variables['content']['field_people']['#items'] as $key => $persona) {
-      $variables['content']['field_people'][$key]['#view_mode'] = $this->getViewModeForListStyle($list_style);
+      $variables['content']['field_people'][$key]['#view_mode'] = $this->getViewModeForListStyle($list_style, $count);
+      $count++;
     }
+
+    $columns = $paragraph->getBehaviorSetting('ilr_people_listing', 'columns') ?? 3;
+    $variables['attributes']['class'] = ['cu-grid--' . $columns . 'col'];
   }
 
   /**
@@ -71,11 +84,14 @@ class PeopleListing extends ParagraphsBehaviorBase {
    * @return string
    *   A node view mode.
    */
-  protected function getViewModeForListStyle($list_style) {
+  protected function getViewModeForListStyle($list_style, $item_position) {
     switch ($list_style) {
       case 'grid-compact':
+        return 'teaser_compact';
       case 'list-compact':
         return 'mini';
+      case 'grid-featured':
+        return $item_position === 1 ? 'promo' : 'teaser';
       default:
         return 'teaser';
     }

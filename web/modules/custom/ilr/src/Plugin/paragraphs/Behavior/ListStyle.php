@@ -116,7 +116,7 @@ class ListStyle extends ParagraphsBehaviorBase {
     $paragraph = $variables['paragraph'];
 
     if ($list_style = $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style')) {
-      $classes = $this->getListStyleClasses($paragraph);
+      $classes = $this->getListStyleClasses($paragraph, $variables['attributes']['class']);
       $variables['attributes']['class'] = $classes;
     }
   }
@@ -222,7 +222,7 @@ class ListStyle extends ParagraphsBehaviorBase {
    * @return array
    *   An array of class names for the element.
    */
-  public function getListStyleClasses(Paragraph $paragraph) {
+  public function getListStyleClasses(Paragraph $paragraph, $incoming_classes) {
     $classes = [];
 
     if ($list_style = $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style')) {
@@ -232,11 +232,16 @@ class ListStyle extends ParagraphsBehaviorBase {
         $classes[] = 'cu-grid cu-grid--featured';
       }
       elseif (strpos($list_style, 'grid') === 0) {
-        $classes[] = 'cu-grid cu-grid--3col';
+        $classes[] = 'cu-grid';
+
+        // Check to see if there is already a grid-column class incoming.
+        if (empty(preg_grep("/cu-grid--/", $incoming_classes))) {
+          $classes[] = 'cu-grid--3col';
+        }
       }
     }
 
-    return $classes;
+    return array_merge($incoming_classes, $classes);
   }
 
 }
