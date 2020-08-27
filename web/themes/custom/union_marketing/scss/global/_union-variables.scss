@@ -53,7 +53,11 @@
   }
 }
 
-.node--view-mode-teaser.cu-card .cu-heading {
-  --cu-current-heading-size: var(--cu-ms2);
+.node--course.node--view-mode-teaser h3.cu-heading {
+  --cu-current-heading-size: var(--cu-text-xxxl);
 }
 
+.cu-heading.cu-heading--label {
+  --cu-current-heading-size: var(--cu-ms1);
+  --cu-current-font-weight: 400;
+}

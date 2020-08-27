@@ -82,6 +82,7 @@
 <hr class="pad" />
 
 {% if upcoming_classes|length > 0 %}
+  <h4 class="cu-heading cu-heading--label">{{ 'Online'|t }}</h4>
   {% set feature_list_items = [
     {
       name: upcoming_classes.0.field_class_date|view('teaser'),
@@ -103,12 +104,12 @@
   }]) %}
   {% endif %}
 
-{% include '@union/_feature-list.twig' with {
-  items: feature_list_items,
-  content_attributes: { class: 'cu-grid' }
-} only %}
+  {% include '@union/_feature-list.twig' with {
+    items: feature_list_items,
+    content_attributes: { class: 'cu-grid' }
+  } only %}
 
-{% set register_link_text = 'Register <span class="visually-hidden"> for ' ~ node.label ~ '</span>'%}
+  {% set register_link_text = 'Register <span class="visually-hidden"> for ' ~ node.label ~ '</span>'%}
 {% else %}
   {# TODO Consider allowing this text to be editable.  #}
   <p><em>{{ "Dates for online sessions will be posted as soon as they are available."|t }}</em></p>
