@@ -40,3 +40,23 @@
 .paragraph--type--rich-text iframe {
   border: 0;
 }
+
+.cu-person--thumb .cu-person__image {
+  margin-bottom: var(--cu-vr1);
+}
+
+.cu-person__name,
+.cu-person__name .persona__name {
+  margin: 0;
+}
+
+.cu-person--thumb .cu-person__name {
+  // This still isn't exactly correct. We should probably factor out grid and
+  // use flexbox for thumbs.
+  grid-row: auto;
+}
+
+.cu-person__title {
+  --cu-current-font-size: var(--cu-ms-1);
+  --cu-current-line-height: 1.2;
+}
