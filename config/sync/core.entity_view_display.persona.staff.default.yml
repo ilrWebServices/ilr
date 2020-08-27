@@ -1,4 +1,4 @@
-uuid: c524ca25-a958-441b-8822-6cd9d2f0416c
+uuid: 79314981-208a-4ed4-8486-daa148dcde18
 langcode: en
 status: true
 dependencies:
@@ -8,11 +8,7 @@ dependencies:
     - field.field.persona.staff.field_last_name
     - field.field.persona.staff.field_photo
     - field.field.persona.staff.field_title
-    - image.style.media_library
     - person.persona_type.staff
-  module:
-    - media
-    - text
 id: persona.staff.default
 targetEntityType: persona
 bundle: staff
@@ -27,29 +23,30 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   field_bio:
+    type: text_summary_or_trimmed
     weight: 3
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
     region: content
-  field_photo:
-    type: media_thumbnail
-    weight: 1
     label: hidden
     settings:
-      image_style: media_library
-      image_link: ''
+      trim_length: 200
     third_party_settings: {  }
-    region: content
-  field_title:
+  field_photo:
+    type: media_thumbnail
     weight: 2
+    region: content
+    label: hidden
+    settings:
+      image_style: thumbnail_square
+      image_link: content
+    third_party_settings: {  }
+  field_title:
+    type: string
+    weight: 1
+    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
-    region: content
 hidden:
   field_first_name: true
   field_last_name: true
