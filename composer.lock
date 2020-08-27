@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "abc9f49c2477ae5c803674313e1a23b1",
+    "content-hash": "79baec32de5f67d3d44bd863191bc827",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5568,6 +5568,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Provide user selectable interest groups as Webform predefined options": "https://www.drupal.org/files/issues/2019-10-05/3036323-interest-groups-predefined-options-15.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",

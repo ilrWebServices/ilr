@@ -91,7 +91,11 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "preferred-install": {
+      "drupal/collection": "source",
+      "*": "dist"
+    }
   },
   "autoload": {
     "files": ["load.environment.php"]
