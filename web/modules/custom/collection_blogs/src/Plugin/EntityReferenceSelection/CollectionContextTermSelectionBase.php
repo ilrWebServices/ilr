@@ -9,6 +9,7 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\collection\Entity\CollectionItem;
 
 /**
  * Base class for CollectionContext Entity Reference Selection plugins.
@@ -51,13 +52,15 @@ class CollectionContextTermSelectionBase extends SelectionPluginBase implements 
    */
   public function getReferenceableEntities($match = NULL, $match_operator = 'CONTAINS', $limit = 0) {
     $options = [];
-    $collection_item = $this->getConfiguration()['entity'];
-    $collection = $collection_item->collection->entity;
+    $configuration = $this->getConfiguration();
 
-    if (!$collection) {
+    if (!($configuration['entity'] instanceof CollectionItem)) {
       return $options;
     }
 
+    // Because of the way we add new collection_items, the collection entity
+    // should always be referenced here.
+    $collection = $configuration['entity']->collection->entity;
     $collection_items = $collection->findItems('taxonomy_vocabulary');
     $term_manager = $this->entityTypeManager->getStorage('taxonomy_term');
 
