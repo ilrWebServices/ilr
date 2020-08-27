@@ -19,6 +19,9 @@ behavior_plugins:
       list-compact: 0
       grid-featured: 0
       banner: 0
+    columns_enabled: 0
+    columns_min: ''
+    columns_max: ''
   localist_events:
     enabled: true
     events_shown: 5

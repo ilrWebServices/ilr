@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   module:
-    - collection
     - ilr
 id: simple_collection_listing
 label: 'Post listing'
@@ -11,9 +10,6 @@ icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
-  collection_listing: {  }
-  post_listing:
-    enabled: true
   list_styles:
     enabled: true
     list_styles:
@@ -22,3 +18,8 @@ behavior_plugins:
       list-compact: list-compact
       grid-featured: grid-featured
       banner: 0
+    columns_enabled: 0
+    columns_min: ''
+    columns_max: ''
+  post_listing:
+    enabled: true

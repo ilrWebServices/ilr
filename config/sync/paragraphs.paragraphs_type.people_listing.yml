@@ -20,3 +20,6 @@ behavior_plugins:
       grid-featured: 0
       list-compact: list-compact
       banner: 0
+    columns_enabled: 1
+    columns_min: '2'
+    columns_max: '4'

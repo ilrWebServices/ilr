@@ -24,18 +24,7 @@ class PeopleListing extends ParagraphsBehaviorBase {
   /**
    * {@inheritdoc}
    */
-  public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
-    $form['columns'] = [
-      '#type' => 'number',
-      '#title' => $this->t('Number of columns'),
-      '#description' => $this->t('The number of columns to display on wider screens.'),
-      '#min' => 2,
-      '#max' => 4,
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'columns') ?? 3,
-    ];
-
-    return $form;
-  }
+  public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {}
 
   /**
    * {@inheritdoc}
@@ -48,9 +37,6 @@ class PeopleListing extends ParagraphsBehaviorBase {
       $variables['content']['field_people'][$key]['#view_mode'] = $this->getViewModeForListStyle($list_style, $count);
       $count++;
     }
-
-    $columns = $paragraph->getBehaviorSetting('ilr_people_listing', 'columns') ?? 3;
-    $variables['attributes']['class'] = ['cu-grid--' . $columns . 'col'];
   }
 
   /**
