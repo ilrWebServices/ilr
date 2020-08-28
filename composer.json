@@ -46,6 +46,7 @@
     "drupal/entity_browser": "^2.4",
     "drupal/entity_reference_layout": "^1.0",
     "drupal/extra_field": "^1.2",
+    "drupal/fmrest": "1.0.x-dev",
     "drupal/focal_point": "^1.4",
     "drupal/google_tag": "^1.2",
     "drupal/inline_entity_form": "^1.0@RC",
@@ -92,7 +93,11 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "preferred-install": {
+      "drupal/fmrest": "source",
+      "*": "dist"
+    }
   },
   "autoload": {
     "files": ["load.environment.php"]
