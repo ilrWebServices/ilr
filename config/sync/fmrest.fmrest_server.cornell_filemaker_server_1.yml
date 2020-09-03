@@ -4,5 +4,7 @@ status: true
 dependencies: {  }
 id: cornell_filemaker_server_1
 label: 'Cornell FileMaker Server 1'
-url: 'https://sf-il-fm-01.serverfarm.cornell.edu'
+url: 'https://il-fm-01.ilr.cornell.edu'
+db: explore_test
+version: vLatest
 key: cornell_filemaker_server_1
