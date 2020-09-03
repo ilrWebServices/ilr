@@ -1,4 +1,4 @@
-uuid: 1f7c6e33-0032-4144-9dc0-cec57c9fa6c2
+uuid: 0175a57c-3af1-41ef-a5df-a7cd612bda0a
 langcode: en
 status: true
 dependencies:
@@ -22,45 +22,25 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  field_bio:
-    weight: 5
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
+  field_photo:
+    type: media_thumbnail
+    weight: 2
     region: content
-  field_first_name:
+    label: hidden
+    settings:
+      image_style: thumbnail_square
+      image_link: content
+    third_party_settings: {  }
+  field_title:
     type: string
     weight: 1
     region: content
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  field_last_name:
-    type: string
-    weight: 2
-    region: content
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-  field_photo:
-    type: media_thumbnail
-    weight: 3
-    label: above
-    settings:
-      image_style: media_library
-      image_link: ''
-    third_party_settings: {  }
-    region: content
-  field_title:
-    weight: 4
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
 hidden:
+  field_bio: true
+  field_first_name: true
+  field_last_name: true
   search_api_excerpt: true

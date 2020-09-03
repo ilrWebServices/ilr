@@ -1,4 +1,4 @@
-uuid: f0648856-7f6b-43af-bae0-5c24ecdfa786
+uuid: 753ae0f9-c9a5-41b3-ab3a-ce59b0df8c7e
 langcode: en
 status: true
 dependencies:
@@ -8,11 +8,7 @@ dependencies:
     - field.field.persona.author.field_last_name
     - field.field.persona.author.field_photo
     - field.field.persona.author.field_title
-    - image.style.media_library
     - person.persona_type.author
-  module:
-    - media
-    - text
 id: persona.author.default
 targetEntityType: persona
 bundle: author
@@ -27,29 +23,30 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   field_bio:
+    type: text_summary_or_trimmed
     weight: 3
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
     region: content
+    label: hidden
+    settings:
+      trim_length: 200
+    third_party_settings: {  }
   field_photo:
     type: media_thumbnail
     weight: 2
+    region: content
     label: hidden
     settings:
-      image_style: media_library
-      image_link: ''
+      image_style: thumbnail_square
+      image_link: content
     third_party_settings: {  }
-    region: content
   field_title:
+    type: string
     weight: 1
+    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
-    region: content
 hidden:
   field_first_name: true
   field_last_name: true

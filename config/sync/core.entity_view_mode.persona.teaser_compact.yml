@@ -1,0 +1,10 @@
+uuid: aa98ecae-c604-4fd5-8289-5974aa346d4e
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.teaser_compact
+label: 'Compact teaser'
+targetEntityType: persona
+cache: true

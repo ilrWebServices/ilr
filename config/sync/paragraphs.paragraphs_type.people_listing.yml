@@ -1,25 +1,25 @@
-uuid: 52fe0bca-8852-4313-b118-918bf7b0bb24
+uuid: 01bf1f61-9007-42f3-aa8e-6e8190f2909f
 langcode: en
 status: true
 dependencies:
   module:
     - ilr
-id: simple_collection_listing
-label: 'Post listing'
+id: people_listing
+label: 'People listing'
 icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
+  ilr_people_listing:
+    enabled: true
   list_styles:
     enabled: true
     list_styles:
       grid: grid
       grid-compact: grid-compact
+      grid-featured: 0
       list-compact: list-compact
-      grid-featured: grid-featured
       banner: 0
-    columns_enabled: 0
-    columns_min: ''
-    columns_max: ''
-  post_listing:
-    enabled: true
+    columns_enabled: 1
+    columns_min: '2'
+    columns_max: '4'

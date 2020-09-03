@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   module:
-    - collection
     - ilr
 id: collection_listing_publication
 label: 'Story listing'
@@ -11,9 +10,6 @@ icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
-  collection_listing: {  }
-  story_listing:
-    enabled: true
   list_styles:
     enabled: true
     list_styles:
@@ -22,3 +18,8 @@ behavior_plugins:
       grid-compact: 0
       list-compact: 0
       grid-featured: 0
+    columns_enabled: 0
+    columns_min: ''
+    columns_max: ''
+  story_listing:
+    enabled: true

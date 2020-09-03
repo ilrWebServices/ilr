@@ -61,11 +61,48 @@ class ListStyle extends ParagraphsBehaviorBase {
 
     $config = $this->getConfiguration();
 
+    // There is no #parents key in $form, but this may be OK hardcoded.
+    $subform_prefix = 'behavior_plugins[list_styles][settings]';
+
     $form['list_styles'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Types to include:'),
       '#options' => $this->listStyles,
       '#default_value' => $config['list_styles'] ?? $this->listStyles,
+    ];
+
+    $form['columns']['enabled'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Allow editors to choose grid column count'),
+      '#default_value' => $config['columns_enabled'] ?? 0,
+    ];
+
+    $form['columns']['min'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Minimum'),
+      '#description' => $this->t('The minimum # of columns allowed.'),
+      '#min' => 1,
+      '#max' => 4,
+      '#states' => [
+        'visible' => [
+          ':input[name="' . $subform_prefix . '[columns][enabled]"]' => ['checked' => TRUE],
+        ],
+      ],
+      '#default_value' => $config['columns_min'] ?? '',
+    ];
+
+    $form['columns']['max'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Maxium'),
+      '#description' => $this->t('The maximum # of columns allowed.'),
+      '#min' => 2,
+      '#max' => 4,
+      '#states' => [
+        'visible' => [
+          ':input[name="' . $subform_prefix . '[columns][enabled]"]' => ['checked' => TRUE],
+        ],
+      ],
+      '#default_value' => $config['columns_max'] ?? '',
     ];
 
     return $form;
@@ -76,6 +113,10 @@ class ListStyle extends ParagraphsBehaviorBase {
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
     $this->configuration['list_styles'] = $form_state->getValue('list_styles');
+    $column_settings = $form_state->getValue('columns');
+    $this->configuration['columns_enabled'] = $column_settings['enabled'];
+    $this->configuration['columns_min'] = $column_settings['min'];
+    $this->configuration['columns_max'] = $column_settings['max'];
   }
 
   /**
@@ -84,6 +125,10 @@ class ListStyle extends ParagraphsBehaviorBase {
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
     $config = $this->getConfiguration();
     $style_options = [];
+
+    $parents = $form['#parents'];
+    $parents_input_name = array_shift($parents);
+    $parents_input_name .= '[' . implode('][', $parents) . ']';
 
     if (empty($config['list_styles'])){
       return;
@@ -105,6 +150,25 @@ class ListStyle extends ParagraphsBehaviorBase {
       '#required' => TRUE,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style') ?? reset($style_options),
     ];
+
+    if ($config['columns_enabled']) {
+      $form['columns'] = [
+        '#type' => 'number',
+        '#title' => $this->t('Columns'),
+        '#description' => $this->t('The # of columns to show at wide screens.'),
+        '#min' => $config['columns_min'],
+        '#max' => $config['columns_max'],
+        '#states' => [
+          'visible' => [
+            ':input[name="' . $parents_input_name . '[list_style]"]' => [
+              ['value' => 'grid'],
+              ['value' => 'grid-compact'],
+            ],
+          ],
+        ],
+        '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'columns') ?? 3,
+      ];
+    }
 
     return $form;
   }
@@ -180,7 +244,7 @@ class ListStyle extends ParagraphsBehaviorBase {
    * `collection` entity reference field.
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {
-    return in_array($paragraphs_type->id(), ['simple_collection_listing', 'curated_post_listing', 'collection_listing_publication', 'curated_course_listing', 'event_listing']);
+    return in_array($paragraphs_type->id(), ['simple_collection_listing', 'curated_post_listing', 'collection_listing_publication', 'curated_course_listing', 'event_listing','people_listing']);
   }
 
   /**
@@ -232,7 +296,10 @@ class ListStyle extends ParagraphsBehaviorBase {
         $classes[] = 'cu-grid cu-grid--featured';
       }
       elseif (strpos($list_style, 'grid') === 0) {
-        $classes[] = 'cu-grid cu-grid--3col';
+        $classes[] = 'cu-grid';
+
+        $columns = $paragraph->getBehaviorSetting($this->getPluginId(), 'columns') ?? 3;
+        $classes[] = 'cu-grid--'. $columns .'col';
       }
     }
 
