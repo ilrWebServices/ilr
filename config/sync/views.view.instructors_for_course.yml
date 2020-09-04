@@ -5,8 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.node.mini
     - core.entity_view_mode.node.teaser
+    - field.storage.node.field_class_cancelled
     - field.storage.node.field_date_end
     - field.storage.node.field_date_start
+    - field.storage.node.field_delivery_method
     - field.storage.node.field_last_name
     - node.type.course
     - node.type.participant
@@ -645,6 +647,134 @@ display:
           view_mode: teaser
           entity_type: node
           plugin_id: rendered_entity
+        field_delivery_method:
+          id: field_delivery_method
+          table: node__field_delivery_method
+          field: field_delivery_method
+          relationship: field_class
+          group_type: group
+          admin_label: ''
+          label: 'Delivery Method'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_class_cancelled:
+          id: field_class_cancelled
+          table: node__field_class_cancelled
+          field: field_class_cancelled
+          relationship: field_class
+          group_type: group
+          admin_label: ''
+          label: Cancelled
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: custom
+            format_custom_true: Cancelled
+            format_custom_false: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
       filters:
         status:
           id: status
@@ -728,6 +858,96 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
+        field_delivery_method_value:
+          id: field_delivery_method_value
+          table: node__field_delivery_method
+          field: field_delivery_method_value
+          relationship: field_class
+          group_type: group
+          admin_label: ''
+          operator: regular_expression
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_delivery_method_value_op
+            label: 'Delivery Method'
+            description: ''
+            use_operator: false
+            operator: field_delivery_method_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_delivery_method_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              content_administrator: '0'
+              course_admin: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: string
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: field_instructor
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: title_op
+            label: Title
+            description: ''
+            use_operator: false
+            operator: title_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: title
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              content_administrator: '0'
+              course_admin: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: title
+          plugin_id: string
       sorts: {  }
       title: 'Instructors for Course (Upcoming, Distinct)'
       header: {  }
@@ -822,11 +1042,30 @@ display:
         - 'config:core.entity_view_display.node.instructor.default'
         - 'config:core.entity_view_display.node.instructor.mini'
         - 'config:core.entity_view_display.node.instructor.teaser'
+        - 'config:core.entity_view_display.node.media_mention.default'
+        - 'config:core.entity_view_display.node.media_mention.featured'
+        - 'config:core.entity_view_display.node.media_mention.mini'
+        - 'config:core.entity_view_display.node.media_mention.promo'
+        - 'config:core.entity_view_display.node.media_mention.teaser'
+        - 'config:core.entity_view_display.node.media_mention.teaser_compact'
         - 'config:core.entity_view_display.node.page.default'
+        - 'config:core.entity_view_display.node.page.promo'
         - 'config:core.entity_view_display.node.page.teaser'
         - 'config:core.entity_view_display.node.participant.default'
         - 'config:core.entity_view_display.node.participant.teaser'
+        - 'config:core.entity_view_display.node.post.default'
+        - 'config:core.entity_view_display.node.post.featured'
+        - 'config:core.entity_view_display.node.post.mini'
+        - 'config:core.entity_view_display.node.post.promo'
+        - 'config:core.entity_view_display.node.post.teaser'
+        - 'config:core.entity_view_display.node.post.teaser_compact'
+        - 'config:core.entity_view_display.node.story.banner'
+        - 'config:core.entity_view_display.node.story.default'
+        - 'config:core.entity_view_display.node.story.promo'
+        - 'config:core.entity_view_display.node.story.teaser'
+        - 'config:field.storage.node.field_class_cancelled'
         - 'config:field.storage.node.field_date_start'
+        - 'config:field.storage.node.field_delivery_method'
   block_distinct:
     display_plugin: block
     id: block_distinct
@@ -1135,6 +1374,44 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
+        field_class_cancelled_value:
+          id: field_class_cancelled_value
+          table: node__field_class_cancelled
+          field: field_class_cancelled_value
+          relationship: field_class
+          group_type: group
+          admin_label: ''
+          operator: '!='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: boolean
       filter_groups:
         operator: AND
         groups:
@@ -1158,10 +1435,27 @@ display:
         - 'config:core.entity_view_display.node.instructor.default'
         - 'config:core.entity_view_display.node.instructor.mini'
         - 'config:core.entity_view_display.node.instructor.teaser'
+        - 'config:core.entity_view_display.node.media_mention.default'
+        - 'config:core.entity_view_display.node.media_mention.featured'
+        - 'config:core.entity_view_display.node.media_mention.mini'
+        - 'config:core.entity_view_display.node.media_mention.promo'
+        - 'config:core.entity_view_display.node.media_mention.teaser'
+        - 'config:core.entity_view_display.node.media_mention.teaser_compact'
         - 'config:core.entity_view_display.node.page.default'
+        - 'config:core.entity_view_display.node.page.promo'
         - 'config:core.entity_view_display.node.page.teaser'
         - 'config:core.entity_view_display.node.participant.default'
         - 'config:core.entity_view_display.node.participant.teaser'
+        - 'config:core.entity_view_display.node.post.default'
+        - 'config:core.entity_view_display.node.post.featured'
+        - 'config:core.entity_view_display.node.post.mini'
+        - 'config:core.entity_view_display.node.post.promo'
+        - 'config:core.entity_view_display.node.post.teaser'
+        - 'config:core.entity_view_display.node.post.teaser_compact'
+        - 'config:core.entity_view_display.node.story.banner'
+        - 'config:core.entity_view_display.node.story.default'
+        - 'config:core.entity_view_display.node.story.promo'
+        - 'config:core.entity_view_display.node.story.teaser'
         - 'config:field.storage.node.field_last_name'
   block_simple_list:
     display_plugin: block
@@ -1579,6 +1873,83 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: datetime
+        field_class_cancelled_value:
+          id: field_class_cancelled_value
+          table: node__field_class_cancelled
+          field: field_class_cancelled_value
+          relationship: field_class
+          group_type: group
+          admin_label: ''
+          operator: '!='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: boolean
+        field_delivery_method_value:
+          id: field_delivery_method_value
+          table: node__field_delivery_method
+          field: field_delivery_method_value
+          relationship: field_class
+          group_type: group
+          admin_label: ''
+          operator: regular_expression
+          value: '[Oo]nline'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: string
       filter_groups:
         operator: AND
         groups:
@@ -1602,10 +1973,27 @@ display:
         - 'config:core.entity_view_display.node.instructor.default'
         - 'config:core.entity_view_display.node.instructor.mini'
         - 'config:core.entity_view_display.node.instructor.teaser'
+        - 'config:core.entity_view_display.node.media_mention.default'
+        - 'config:core.entity_view_display.node.media_mention.featured'
+        - 'config:core.entity_view_display.node.media_mention.mini'
+        - 'config:core.entity_view_display.node.media_mention.promo'
+        - 'config:core.entity_view_display.node.media_mention.teaser'
+        - 'config:core.entity_view_display.node.media_mention.teaser_compact'
         - 'config:core.entity_view_display.node.page.default'
+        - 'config:core.entity_view_display.node.page.promo'
         - 'config:core.entity_view_display.node.page.teaser'
         - 'config:core.entity_view_display.node.participant.default'
         - 'config:core.entity_view_display.node.participant.teaser'
+        - 'config:core.entity_view_display.node.post.default'
+        - 'config:core.entity_view_display.node.post.featured'
+        - 'config:core.entity_view_display.node.post.mini'
+        - 'config:core.entity_view_display.node.post.promo'
+        - 'config:core.entity_view_display.node.post.teaser'
+        - 'config:core.entity_view_display.node.post.teaser_compact'
+        - 'config:core.entity_view_display.node.story.banner'
+        - 'config:core.entity_view_display.node.story.default'
+        - 'config:core.entity_view_display.node.story.promo'
+        - 'config:core.entity_view_display.node.story.teaser'
         - 'config:field.storage.node.field_date_end'
         - 'config:field.storage.node.field_last_name'
   embed_1:
@@ -1634,8 +2022,27 @@ display:
         - 'config:core.entity_view_display.node.instructor.default'
         - 'config:core.entity_view_display.node.instructor.mini'
         - 'config:core.entity_view_display.node.instructor.teaser'
+        - 'config:core.entity_view_display.node.media_mention.default'
+        - 'config:core.entity_view_display.node.media_mention.featured'
+        - 'config:core.entity_view_display.node.media_mention.mini'
+        - 'config:core.entity_view_display.node.media_mention.promo'
+        - 'config:core.entity_view_display.node.media_mention.teaser'
+        - 'config:core.entity_view_display.node.media_mention.teaser_compact'
         - 'config:core.entity_view_display.node.page.default'
+        - 'config:core.entity_view_display.node.page.promo'
         - 'config:core.entity_view_display.node.page.teaser'
         - 'config:core.entity_view_display.node.participant.default'
         - 'config:core.entity_view_display.node.participant.teaser'
+        - 'config:core.entity_view_display.node.post.default'
+        - 'config:core.entity_view_display.node.post.featured'
+        - 'config:core.entity_view_display.node.post.mini'
+        - 'config:core.entity_view_display.node.post.promo'
+        - 'config:core.entity_view_display.node.post.teaser'
+        - 'config:core.entity_view_display.node.post.teaser_compact'
+        - 'config:core.entity_view_display.node.story.banner'
+        - 'config:core.entity_view_display.node.story.default'
+        - 'config:core.entity_view_display.node.story.promo'
+        - 'config:core.entity_view_display.node.story.teaser'
+        - 'config:field.storage.node.field_class_cancelled'
         - 'config:field.storage.node.field_date_start'
+        - 'config:field.storage.node.field_delivery_method'
