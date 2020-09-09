@@ -1,0 +1,31 @@
+uuid: 82cebf10-b545-4547-b6b6-9d973bf876ec
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - ilr
+  theme:
+    - union_marketing
+id: union_marketing_search_trigger
+theme: union_marketing
+region: header
+weight: 4
+provider: null
+plugin: ilr_search_trigger_block
+settings:
+  id: ilr_search_trigger_block
+  label: 'ILR search trigger'
+  provider: ilr
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false
+    context_mapping: {  }
