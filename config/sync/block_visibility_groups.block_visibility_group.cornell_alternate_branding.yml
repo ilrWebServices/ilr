@@ -19,7 +19,7 @@ conditions:
     uuid: 1a95feb7-bae2-4f0c-a59e-bf61138b7d26
   8f3106c1-e1f6-4316-988c-c1f32b2c961c:
     id: request_path
-    pages: "/75*\r\n/scheinman-institute/blog*"
+    pages: "/75*\r\n/scheinman-institute*\r\n/worker-institute*"
     negate: false
     context_mapping: {  }
     uuid: 8f3106c1-e1f6-4316-988c-c1f32b2c961c
