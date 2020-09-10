@@ -136,8 +136,15 @@ label[for="nav-trigger"] {
   }
 }
 
+.nav-trigger:checked~.cu-menu__list--subsite {
+  position: fixed;
+  left: 1em;
+}
+
 // @todo: Note that this should move with the union main-menu header styles refactor.
 nav[id^="block-union-marketing-menu-subsite"] {
+  position: relative;
+
   @include breakpoint(sm) {
     flex-basis: 100%;
     flex-grow: 1;
@@ -145,17 +152,16 @@ nav[id^="block-union-marketing-menu-subsite"] {
   }
 
   label[for="nav-trigger"] {
-    top: calc(var(--minibar-height) + 32px);
+    top: -12px; // Half its height, for vertical centering.
     right: 0;
 
     @include breakpoint(xs) {
-      top: calc(var(--minibar-height) + 40px);
       right: var(--cu-vr1);
     }
 
     @include breakpoint(sm) {
       left: 0;
-      top: calc(var(--minibar-height) + 50px);
+      top: 0.5em;
     }
   }
 }
