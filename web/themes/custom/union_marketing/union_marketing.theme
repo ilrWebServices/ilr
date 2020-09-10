@@ -4,6 +4,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Link;
 use Drupal\entity_reference_layout\EntityReferenceLayoutRevisionsFieldItemList;
 use Drupal\crop\Entity\Crop;
+use Drupal\Component\Utility\Html;
 
 /**
  * @file Theme file for the union_marketing.theme.
@@ -49,6 +50,13 @@ function union_marketing_preprocess_html(&$variables) {
 
     if ($root_path_entity instanceof FieldableEntityInterface &&$root_path_entity->hasField('field_suppress_date_display') && $root_path_entity->field_suppress_date_display->value) {
       $variables['attributes']['class'][] = 'content--evergreen';
+    }
+  }
+
+  $group_info = \Drupal::service('block_visibility_groups_admin.lister');
+  if ($active_groups = $group_info->getActiveGroups()) {
+    foreach ($active_groups as $bvg) {
+      $variables['attributes']['class'][] = 'bvg--' . Html::cleanCssIdentifier($bvg->id());
     }
   }
 }

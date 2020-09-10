@@ -71,7 +71,8 @@
 // Override of Union ILR skin.
 label[for="nav-trigger"] {
   right: 1.5rem;
-  top: 35px;
+  top: 35%;
+  line-height: 1;
 }
 
 #block-union-register-footer-menu {
@@ -93,7 +94,7 @@ label[for="nav-trigger"] {
   --cu-current-link-color: #{$black};
   font-size: var(--cu-ms-1);
   list-style-type: none;
-  margin: 0;
+  margin: var(--cu-vr1) 0 0;
   padding: 1.5rem 0;
 }
 
@@ -117,9 +118,6 @@ label[for="nav-trigger"] {
 
 // @todo: Note that this should move with the union main-menu header styles refactor.
 .subsite .cu-header {
-  flex-wrap: wrap;
-  border: none;
-
   nav[id^="block-union-marketing-menu-subsite"] {
     flex-basis: 100%;
     flex-grow: 1;

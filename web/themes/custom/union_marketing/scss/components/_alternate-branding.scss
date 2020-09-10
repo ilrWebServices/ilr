@@ -1,3 +1,33 @@
+.bvg--cornell-alternate-branding .cu-header {
+  flex-wrap: wrap;
+  border: none;
+  padding-top: 0;
+
+  @include breakpoint(sm) {
+    padding-top: var(--cu-vr1);
+  }
+
+  // Position the logo at the start, which should be adjacent to the minibar.
+  .cornell-minibar + .block {
+    margin-right: auto;
+  }
+
+  #ilr_search_reveal_trigger {
+    position: absolute;
+    color: white;
+    top: 0.5em;
+    right: 1em;
+
+    @include breakpoint(sm) {
+      position: relative;
+      color: #222;
+      top: auto;
+      right: auto;
+      align-self: flex-start;
+    }
+  }
+}
+
 .cornell-seal .cu-image {
   width: 76px; // Per branding guidelines
 }
@@ -6,9 +36,14 @@
   min-width: 8vw;
 }
 
-#block-union-marketing-cornell-seal,
-#block-union-marketing-cornell-seal + #ilr_search_reveal_trigger {
-  align-self: flex-start;
+#block-union-marketing-cornell-seal {
+  display: none;
+
+
+  @include breakpoint(sm) {
+    display: block;
+    align-self: flex-start;
+  }
 }
 
 #block-union-marketing-branding-75,
