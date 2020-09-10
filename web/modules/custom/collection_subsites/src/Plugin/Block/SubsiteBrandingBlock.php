@@ -15,28 +15,24 @@ use Drupal\Core\Cache\Cache;
  *
  * @Block(
  *   id = "subsite_branding_block",
- *   admin_label = @Translation("Subsite branding"),
- *   context_definitions = {
- *     "node" = @ContextDefinition("entity:node", required = FALSE),
- *     "collection" = @ContextDefinition("entity:collection", required = FALSE)
- *   }
+ *   admin_label = @Translation("Subsite branding")
  * )
  */
 class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
-   * Drupal\collection_subsites\CollectionSubsitesResolver (interface?) definition.
+   * The entities represented by the current path.
    *
-   * @var \Drupal\collection_subsites\CollectionSubsitesResolver
+   * Array
    */
-  protected $collectionSubsitesResolver;
+  protected $pathEntities;
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = new static($configuration, $plugin_id, $plugin_definition);
-    $instance->collectionSubsitesResolver = $container->get('collection_subsites.resolver');
+    $instance->pathEntities = $container->get('path_alias.entities')->getPathAliasEntities();
     return $instance;
   }
 
@@ -44,7 +40,7 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
    * {@inheritdoc}
    */
   public function blockAccess(AccountInterface $account) {
-    if ($this->getSubsiteFromContext()) {
+    if ($this->getSubsiteFromPath()) {
       return AccessResult::allowed();
     }
 
@@ -55,7 +51,7 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
    * {@inheritdoc}
    */
   public function build() {
-    $subsite_collection = $this->getSubsiteFromContext();
+    $subsite_collection = $this->getSubsiteFromPath();
 
     $build = [];
     $build['#theme'] = 'subsite_branding_block';
@@ -68,6 +64,11 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
         '#uri' => $subsite_collection->logo->first()->entity->field_media_svg->entity->getFileUri(),
         '#style_name' => 'media_library',
         '#alt' => $this->t('@collection logo', ['@collection' => $subsite_collection->label()]),
+        '#cache' => [
+          'contexts' => [
+            'url.path',
+          ],
+        ],
       ];
     }
 
@@ -87,16 +88,14 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
   }
 
   /**
-   * Return an subsite collection entity from the current context.
+   * Return the first subsite found in the path entities.
    */
-  protected function getSubsiteFromContext() {
-    if ($collection = $this->getContextValue('collection')) {
-      return $this->collectionSubsitesResolver->getSubsite($collection);
+  protected function getSubsiteFromPath() {
+    foreach ($this->pathEntities as $entity) {
+      if ($entity instanceof CollectionInterface && $entity->bundle() == 'subsite') {
+        return $entity;
+      }
     }
-    elseif ($node = $this->getContextValue('node')) {
-      return $this->collectionSubsitesResolver->getSubsite($node);
-    }
-
     return FALSE;
   }
 
@@ -106,7 +105,7 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
   public function getCacheTags() {
     $cache_tags = parent::getCacheTags();
 
-    if ($subsite_collection = $this->getSubsiteFromContext()) {
+    if ($subsite_collection = $this->getSubsiteFromPath()) {
       $cache_tags = Cache::mergeTags($cache_tags, $subsite_collection->getCacheTags());
     }
 
