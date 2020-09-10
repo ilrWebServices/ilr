@@ -90,24 +90,38 @@ label[for="nav-trigger"] {
   }
 }
 
-.subsite-menu {
+.cu-menu__list--subsite {
   --cu-current-link-color: #{$black};
   font-size: var(--cu-ms-1);
   list-style-type: none;
   margin: var(--cu-vr1) 0 0;
   padding: 1.5rem 0;
-}
-
-.cu-header .subsite-menu {
   border-top: 1px solid $gray-light;
+  justify-content: flex-start;
+  top: 120px;
+  left: 0;
+
+  @include breakpoint(md) {
+    top: auto;
+  }
+
+  .cu-menu__list--subsite-submenu {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(md) {
+      display: none;
+    }
+  }
 }
 
-.subsite-menu__item {
+.cu-menu__list--subsite .cu-menu__item {
   display: inline-block;
   padding: 0.25rem 1rem;
 }
 
-.subsite-menu__link {
+.cu-menu__list--subsite .cu-menu__link {
   text-decoration: none;
 
   &.is-active {
@@ -117,10 +131,26 @@ label[for="nav-trigger"] {
 }
 
 // @todo: Note that this should move with the union main-menu header styles refactor.
-.subsite .cu-header {
-  nav[id^="block-union-marketing-menu-subsite"] {
+nav[id^="block-union-marketing-menu-subsite"] {
+  @include breakpoint(sm) {
     flex-basis: 100%;
     flex-grow: 1;
+    min-height: 50px;
+  }
+
+  label[for="nav-trigger"] {
+    top: calc(var(--minibar-height) + 2em);
+    right: 0;
+
+    @include breakpoint(xs) {
+      top: calc(var(--minibar-height) + 2.5em);
+      right: var(--cu-vr1);
+    }
+
+    @include breakpoint(sm) {
+      left: 0;
+      top: calc(var(--minibar-height) + 3em);
+    }
   }
 }
 

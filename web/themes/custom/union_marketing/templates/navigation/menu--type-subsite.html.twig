@@ -18,6 +18,12 @@
  *   - in_active_trail: TRUE if the link is in the active trail.
  */
 #}
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger"/>
+<label aria-expanded='false' for="nav-trigger">
+  <span class="cu-accessible">Toggle menu</span>
+</label>
+
 {% import _self as menus %}
 
 {#
@@ -30,13 +36,13 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul{{attributes.addClass('subsite-menu')}}>
+      <ul{{attributes.addClass('cu-menu__list cu-menu__list--subsite')}}>
       {% else %}
-        <ul{{attributes.addClass('subsite-submenu')}}>
+        <ul class="cu-menu__list--subsite-submenu">
         {% endif %}
         {% for item in items %}
-          <li{{item.attributes.addClass('subsite-menu__item')}}>
-            {{ link(item.title, item.url, {class: 'subsite-menu__link'}) }}
+          <li{{item.attributes.addClass('cu-menu__item')}}>
+            {{ link(item.title, item.url, {class: 'cu-menu__link'}) }}
             {% if item.below %}
               {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
             {% endif %}
