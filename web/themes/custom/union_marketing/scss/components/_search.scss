@@ -60,7 +60,12 @@
   background: #222;
   color: white;
   margin: 1.5em 1em 1.5em 0;
-  flex-grow: 1;
+  width: 60%;
+
+  @include breakpoint(xs) {
+    flex-grow: 1;
+    width: 100%;
+  }
 }
 
 #search-form-query::placeholder {
