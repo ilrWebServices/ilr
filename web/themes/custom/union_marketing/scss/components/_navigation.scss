@@ -95,7 +95,7 @@ label[for="nav-trigger"] {
   font-size: var(--cu-ms-1);
   list-style-type: none;
   margin: var(--cu-vr1) 0 0;
-  padding: 1.5rem 0;
+  padding: var(--cu-vr1) 0;
   border-top: 1px solid $gray-light;
   justify-content: flex-start;
   top: 120px;
@@ -103,6 +103,7 @@ label[for="nav-trigger"] {
 
   @include breakpoint(md) {
     top: auto;
+    padding-bottom: 0;
   }
 
   .cu-menu__list--subsite-submenu {
@@ -123,6 +124,11 @@ label[for="nav-trigger"] {
 
 .cu-menu__list--subsite .cu-menu__link {
   text-decoration: none;
+  padding: 0.5rem 0;
+
+  @include breakpoint(md) {
+    padding: 0;
+  }
 
   &.is-active {
     --cu-current-link-color: #{$cornell-red};
@@ -135,21 +141,21 @@ nav[id^="block-union-marketing-menu-subsite"] {
   @include breakpoint(sm) {
     flex-basis: 100%;
     flex-grow: 1;
-    min-height: 50px;
+    min-height: 40px;
   }
 
   label[for="nav-trigger"] {
-    top: calc(var(--minibar-height) + 2em);
+    top: calc(var(--minibar-height) + 32px);
     right: 0;
 
     @include breakpoint(xs) {
-      top: calc(var(--minibar-height) + 2.5em);
+      top: calc(var(--minibar-height) + 40px);
       right: var(--cu-vr1);
     }
 
     @include breakpoint(sm) {
       left: 0;
-      top: calc(var(--minibar-height) + 3em);
+      top: calc(var(--minibar-height) + 50px);
     }
   }
 }
