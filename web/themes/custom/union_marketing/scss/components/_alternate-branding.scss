@@ -47,17 +47,23 @@
 }
 
 #block-union-marketing-branding-75,
-#block-union-marketing-scheinman-institite-logo,
-#block-union-marketing-worker-institite-logo {
+.block-subsite-branding-block {
   max-width: 450px;
   min-width: 300px;
+  width: 100%;
 
-  svg {
+  svg, img {
     margin-right: var(--cu-ps2);
     min-width: 280px;
 
     @include breakpoint(md) {
       min-width: 300px;
+    }
+  }
+
+  @include breakpoint(sm) {
+    img {
+      width: 100%;
     }
   }
 }

@@ -239,12 +239,12 @@ function collection_subsites_entity_bundle_field_info(EntityTypeInterface $entit
     $fields[$custom_field_storage['logo']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['logo']);
 
     $fields[$custom_field_storage['logo']->getName()]
-      ->setLabel(t('Logo'))
+      ->setLabel(t('SVG Logo'))
       ->setSettings([
         'handler' => 'default:media',
         'handler_settings' => [
           'target_bundles' => [
-            'image' => 'image'
+            'svg' => 'svg'
           ]
         ],
       ])

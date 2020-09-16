@@ -1,6 +1,6 @@
 uuid: 59cdce0e-1079-4903-a2b7-2fd82db668f8
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - block_visibility_groups
@@ -19,9 +19,7 @@ settings:
   label: 'Subsite branding'
   provider: collection_subsites
   label_display: '0'
-  context_mapping:
-    node: '@node.node_route_context:node'
-    collection: '@collection.collection_route_context:collection'
+  context_mapping: {  }
 visibility:
   condition_group:
     id: condition_group
