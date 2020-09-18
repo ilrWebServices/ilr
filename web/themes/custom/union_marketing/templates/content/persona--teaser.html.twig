@@ -14,11 +14,17 @@
 {% set rendered_content %}
   {{ content.field_bio }}
 {% endset %}
+
+{% set title = [] %}
+{% for key, item in content.field_title if key|first != '#' %}
+  {% set title = title|merge([item]) %}
+{% endfor %}
+
 <div{{ attributes }}>
 {% include "@union/_person.twig" with {
   attributes: {class: ['cu-person--thumb']},
   name: content.display_name,
-  title: content.field_title.0,
+  title: title,
   content: rendered_content,
   img: content.field_photo
 } only %}
