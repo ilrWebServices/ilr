@@ -12,6 +12,8 @@ conditions:
   1a95feb7-bae2-4f0c-a59e-bf61138b7d26:
     id: root_path_entity_bundle
     root_entity_bundles:
+      collection:
+        subsite_blog: subsite_blog
       taxonomy_term:
         publication: publication
     negate: 0
