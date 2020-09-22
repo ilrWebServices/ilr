@@ -1,0 +1,28 @@
+uuid: 3d65caf2-3cb6-459c-99df-b9a817ed23ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.subsite_blog
+    - field.storage.collection.field_representative_image
+    - media.type.image
+id: collection.subsite_blog.field_representative_image
+field_name: field_representative_image
+entity_type: collection
+bundle: subsite_blog
+label: 'Representative Image'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,23 @@
+uuid: e19f8780-d4e3-43f2-b595-9c34909484c9
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - ctools
+id: subsite_blog_collections
+label: 'Subsite blog collections'
+type: 'canonical_entities:collection'
+pattern: '[collection:name]'
+selection_criteria:
+  2ec78cc0-909e-4d7b-b855-cf26cf92c80c:
+    id: 'entity_bundle:collection'
+    bundles:
+      subsite_blog: subsite_blog
+    negate: false
+    context_mapping:
+      collection: collection
+    uuid: 2ec78cc0-909e-4d7b-b855-cf26cf92c80c
+selection_logic: and
+weight: -5
+relationships: {  }
