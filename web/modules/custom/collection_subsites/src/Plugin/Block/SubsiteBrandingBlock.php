@@ -7,6 +7,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\collection\Entity\CollectionInterface;
 use Drupal\Core\Cache\Cache;
 
@@ -28,11 +29,19 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
   protected $pathEntities;
 
   /**
+   * Drupal\Core\Entity\EntityTypeManagerInterface definition.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = new static($configuration, $plugin_id, $plugin_definition);
     $instance->pathEntities = $container->get('path_alias.entities')->getPathAliasEntities();
+    $instance->entityTypeManager = $container->get('entity_type.manager');
     return $instance;
   }
 
@@ -92,8 +101,11 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
    */
   protected function getSubsiteFromPath() {
     foreach ($this->pathEntities as $entity) {
-      if ($entity instanceof CollectionInterface && $entity->bundle() == 'subsite') {
-        return $entity;
+      if ($entity instanceof CollectionInterface) {
+        $collection_type = $this->entityTypeManager->getStorage('collection_type')->load($entity->bundle());
+        if ((bool) $collection_type->getThirdPartySetting('collection_subsites', 'contains_subsites')) {
+          return $entity;
+        }
       }
     }
     return FALSE;
