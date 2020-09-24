@@ -1,0 +1,23 @@
+uuid: 28256c8b-996d-46bb-bd54-da0c83fb7b67
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.subsite_blog
+    - field.storage.collection.field_suppress_date_display
+id: collection.subsite_blog.field_suppress_date_display
+field_name: field_suppress_date_display
+entity_type: collection
+bundle: subsite_blog
+label: 'Suppress date display'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

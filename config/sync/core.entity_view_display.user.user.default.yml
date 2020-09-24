@@ -40,7 +40,7 @@ third_party_settings:
               context_mapping: {  }
               collection_type: subsite
             additional: {  }
-            weight: 0
+            weight: -10
           8270c894-ecf7-4aba-9d23-74337c7a4c52:
             uuid: 8270c894-ecf7-4aba-9d23-74337c7a4c52
             region: second
@@ -52,19 +52,7 @@ third_party_settings:
               collection_type: blog
               context_mapping: {  }
             additional: {  }
-            weight: 0
-          be01682a-06a9-4965-b5d2-dd024e402802:
-            uuid: be01682a-06a9-4965-b5d2-dd024e402802
-            region: second
-            configuration:
-              id: user_collections_block
-              label: 'Publication issues'
-              provider: collection
-              label_display: visible
-              collection_type: publication_issue
-              context_mapping: {  }
-            additional: {  }
-            weight: 1
+            weight: -9
           32d5e952-902e-4e32-9f59-98448f791998:
             uuid: 32d5e952-902e-4e32-9f59-98448f791998
             region: first
@@ -76,7 +64,31 @@ third_party_settings:
               collection_type: content_section
               context_mapping: {  }
             additional: {  }
-            weight: 1
+            weight: -8
+          3641e00e-40c5-46a0-a1b0-eb17ea4d29c8:
+            uuid: 3641e00e-40c5-46a0-a1b0-eb17ea4d29c8
+            region: second
+            configuration:
+              id: user_collections_block
+              label: 'Subsite Blogs'
+              provider: collection
+              label_display: visible
+              collection_type: subsite_blog
+              context_mapping: {  }
+            additional: {  }
+            weight: -8
+          be01682a-06a9-4965-b5d2-dd024e402802:
+            uuid: be01682a-06a9-4965-b5d2-dd024e402802
+            region: first
+            configuration:
+              id: user_collections_block
+              label: 'Publication issues'
+              provider: collection
+              label_display: visible
+              collection_type: publication_issue
+              context_mapping: {  }
+            additional: {  }
+            weight: -9
         third_party_settings: {  }
 id: user.user.default
 targetEntityType: user

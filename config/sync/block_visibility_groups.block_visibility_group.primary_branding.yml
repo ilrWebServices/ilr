@@ -14,6 +14,7 @@ conditions:
     root_entity_bundles:
       collection:
         subsite: subsite
+        subsite_blog: subsite_blog
       taxonomy_term:
         publication: publication
     negate: 1
