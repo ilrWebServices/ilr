@@ -6,6 +6,5 @@ id: blog
 label: Blog
 allowed_bundles:
   - node.media_mention
-  - node.page
   - node.post
   - node.story
