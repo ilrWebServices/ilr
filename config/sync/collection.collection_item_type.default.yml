@@ -6,3 +6,18 @@ _core:
   default_config_hash: U5VlGjd_SfV0Qm_EfnaynOfc549cNscFAx48JfYoMRI
 id: default
 label: Default
+allowed_bundles:
+  - collection.blog
+  - media.image
+  - media.remote_video
+  - node.certificate
+  - node.course
+  - node.media_mention
+  - node.page
+  - node.post
+  - node.story
+  - persona.author
+  - persona.expert
+  - persona.faculty
+  - persona.staff
+  - taxonomy_term.topics

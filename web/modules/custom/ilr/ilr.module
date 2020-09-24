@@ -154,93 +154,6 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
       ]);
   }
 
-  // Apply custom settings to different collection item types.
-  /** @todo Move this to dynamic settings in a new function collection_entity_bundle_field_info() */
-  if ($entity_type->id() === 'collection_item') {
-    // Update default collection_item to allow lots of entity types.
-    if ($bundle === 'default') {
-      $fields['item'] = BaseFieldOverride::createFromBaseFieldDefinition($base_field_definitions['item'], $bundle);
-      $entity_type_ids_setting = $fields['item']->getSetting('entity_type_ids');
-      $fields['item']
-        ->setSetting('entity_type_ids', $entity_type_ids_setting + [
-          'collection' => 'collection',
-          'media' => 'media',
-          'persona' => 'persona',
-          'taxonomy_term' => 'taxonomy_term',
-        ])
-        ->setSetting('media', [
-          'handler' => 'default:media',
-          'handler_settings' => [
-            'target_bundles' => [
-              'image' => 'image',
-              'remote_video' => 'remote_video',
-            ]
-          ]
-        ])
-        ->setSetting('node', [
-          'handler' => 'default:node',
-          'handler_settings' => [
-            'target_bundles' => [
-              'certificate' => 'certificate',
-              'course' => 'course',
-              'page' => 'page',
-              'post' => 'post',
-            ]
-          ]
-        ])
-        ->setSetting('persona', [
-          'handler' => 'default:persona',
-          'handler_settings' => [
-            'target_bundles' => [
-              'author' => 'author',
-              'faculty' => 'faculty',
-              'staff' => 'staff',
-            ]
-          ]
-        ])
-        ->setSetting('taxonomy_term', [
-          'handler' => 'default:taxonomy_term',
-          'handler_settings' => [
-            'target_bundles' => [
-              'topics' => 'topics',
-            ]
-          ]
-        ]);
-    }
-
-    // Update blog collection_item to allow only post and media_mention nodes.
-    if ($bundle === 'blog') {
-      $fields['item'] = BaseFieldOverride::createFromBaseFieldDefinition($base_field_definitions['item'], $bundle);
-      $fields['item']
-        ->setSetting('node', [
-          'handler' => 'default:node',
-          'handler_settings' => [
-            'target_bundles' => [
-              'post' => 'post',
-              'media_mention' => 'media_mention',
-              'story' => 'story',
-            ]
-          ]
-        ]);
-    }
-
-    // Update publication issues collection_item to allow only story and
-    // media_mention nodes.
-    if ($bundle === 'publication_issue') {
-      $fields['item'] = BaseFieldOverride::createFromBaseFieldDefinition($base_field_definitions['item'], $bundle);
-      $fields['item']
-        ->setSetting('node', [
-          'handler' => 'default:node',
-          'handler_settings' => [
-            'target_bundles' => [
-              'story' => 'story',
-              'media_mention' => 'media_mention',
-            ],
-          ],
-        ]);
-    }
-  }
-
   return $fields;
 }
 
@@ -859,9 +772,8 @@ function ilr_user_format_name_alter(&$name, $account) {
 /**
  * Implements hook_form_FORM_ID_alter().
  *
- * Modify the collection new node form to add a subsite menu option.
- *
- * @see CollectionNewNodeForm::buildForm()
+ * Modify the collection new node form based on type. For the most part, these
+ * are determined by the collection item type configuration.
  */
 function ilr_form_collection_new_node_form_alter(&$form, FormStateInterface $form_state) {
   /** @var \Drupal\collection\Entity\CollectionInterface $collection */
@@ -869,28 +781,26 @@ function ilr_form_collection_new_node_form_alter(&$form, FormStateInterface $for
 
   if ($collection->bundle() === 'blog') {
     $form['bundle']['#default_value'] = 'post';
-    $form['bundle']['#options'] = [
-      'post' => 'Post',
-      'media_mention' => 'Media mention',
-      'page' => 'Page',
-      'story' => 'Story',
-    ];
+    unset($form['bundle']['#options']['certificate']);
+    unset($form['bundle']['#options']['course']);
+  }
+
+  if ($collection->bundle() === 'subsite_blog') {
+    $form['bundle']['#default_value'] = 'post';
+    unset($form['bundle']['#options']['certificate']);
+    unset($form['bundle']['#options']['course']);
   }
 
   if ($collection->bundle() === 'content_section') {
     $form['bundle']['#default_value'] = 'page';
-    $form['bundle']['#options'] = [
-      'page' => 'Page',
-      'post' => 'Post',
-    ];
+    unset($form['bundle']['#options']['certificate']);
+    unset($form['bundle']['#options']['course']);
+    unset($form['bundle']['#options']['media_mention']);
+    unset($form['bundle']['#options']['story']);
   }
 
   if ($collection->bundle() === 'publication_issue') {
     $form['bundle']['#default_value'] = 'story';
-    $form['bundle']['#options'] = [
-      'story' => 'Story',
-      'media_mention' => 'Media mention',
-    ];
   }
 }
 
