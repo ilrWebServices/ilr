@@ -252,36 +252,6 @@ function collection_blogs_form_collection_form_builder($entity_type, CollectionT
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
- *
- * Modify the collection new node form to add a form submit handler for blogs.
- *
- * @see CollectionNewNodeForm::buildForm()
- */
-function collection_blogs_form_collection_new_node_form_alter(&$form, FormStateInterface $form_state) {
-  /** @var \Drupal\collection\Entity\CollectionInterface $collection */
-  $collection = $form_state->get('collection');
-
-  if (!$collection->type->entity->getThirdPartySetting('collection_blogs', 'contains_blogs')) {
-    return;
-  }
-
-  // Add a 'presubmit' handler to allow setting the collection item type to blog.
-  array_unshift($form['#submit'], 'collection_blogs_form_collection_new_node_form_presubmit');
-}
-
-/**
- * Form submission handler to set the collection_item_type.
- *
- * @see collection_blogs_form_collection_new_node_form_alter()
- */
-function collection_blogs_form_collection_new_node_form_presubmit($form, FormStateInterface $form_state) {
-  if (in_array($form_state->getValue('bundle'), ['post', 'media_mention', 'story'])) {
-    $form_state->set('collection_item_type', 'blog');
-  }
-}
-
-/**
  * Implements hook_collection_pathauto_alias_alter().
  *
  * Updates the alias for posts that are in a canonical collection.

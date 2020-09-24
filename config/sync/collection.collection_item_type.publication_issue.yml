@@ -6,3 +6,6 @@ _core:
   default_config_hash: SHLrMYXAQzwR335u-9jqfGGu7Jo4BrwkF35pvs01jXo
 id: publication_issue
 label: 'Publication issue'
+allowed_bundles:
+  - node.media_mention
+  - node.story
