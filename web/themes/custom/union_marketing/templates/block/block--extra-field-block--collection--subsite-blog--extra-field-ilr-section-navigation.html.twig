@@ -1,0 +1,10 @@
+{#
+/**
+ * This allows us to confirm that there is content for the block before
+   rendering it. This fixes the issue with the framed banner, which uses the
+   last element in the dom of the banner for the frame bottom.
+   */
+#}
+{% if content %}
+  {% include "block.html.twig" %}
+{% endif %}
