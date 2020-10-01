@@ -17,3 +17,10 @@ services:
     class: Drupal\ilr\Routing\RouteSubscriber
     tags:
       - { name: event_subscriber }
+  ilr_config_event_subscriber:
+    class: Drupal\ilr\EventSubscriber\ConfigEventSubscriber
+    arguments:
+      - '@config.storage'
+      - '@config.storage.sync'
+    tags:
+      - { name: event_subscriber }
