@@ -73,6 +73,11 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
         ],
       ]);
 
+      $settings = [
+        'post_listing' => [],
+        'list_styles' => ['list_style' => 'grid'],
+      ];
+      $listing->setAllBehaviorSettings($settings);
       $listing->save();
       $section->field_components->appendItem($listing);
       $section->save();
