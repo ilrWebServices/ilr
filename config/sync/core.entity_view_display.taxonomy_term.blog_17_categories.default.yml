@@ -1,0 +1,176 @@
+uuid: 877f03c0-a988-4478-94df-7ce9af4ce51f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.blog_17_categories.field_body
+    - field.field.taxonomy_term.blog_17_categories.field_representative_image
+    - field.field.taxonomy_term.blog_17_categories.field_sections
+    - taxonomy.vocabulary.blog_17_categories
+  module:
+    - entity_reference_revisions
+    - layout_builder
+    - layout_discovery
+    - text
+    - union_organizer
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: Banner
+        components:
+          d87f8f60-436d-4298-b842-efacaf7f96ef:
+            uuid: d87f8f60-436d-4298-b842-efacaf7f96ef
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:taxonomy_term:blog_17_categories:blog_collection'
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          3ed2484d-d482-4d47-beb5-0493e2d14eb4:
+            uuid: 3ed2484d-d482-4d47-beb5-0493e2d14eb4
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:blog_17_categories:field_body'
+              label: 'Intro text'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 2
+          da75459f-c408-4563-bf68-49e864b0798d:
+            uuid: da75459f-c408-4563-bf68-49e864b0798d
+            region: main
+            configuration:
+              id: 'field_block:taxonomy_term:blog_17_categories:name'
+              label: Name
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: Content
+        components:
+          30f70863-2321-4377-b913-506451cc79c5:
+            uuid: 30f70863-2321-4377-b913-506451cc79c5
+            region: content
+            configuration:
+              id: 'field_block:taxonomy_term:blog_17_categories:field_sections'
+              label: 'Page content'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_revisions_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          9e2d8c98-642f-4b89-a1f0-b83d65c1f278:
+            uuid: 9e2d8c98-642f-4b89-a1f0-b83d65c1f278
+            region: main
+            configuration:
+              id: 'extra_field_block:taxonomy_term:blog_17_categories:collection_items_category_term'
+              label: 'New York City categories'
+              provider: layout_builder
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
+id: taxonomy_term.blog_17_categories.default
+targetEntityType: taxonomy_term
+bundle: blog_17_categories
+mode: default
+content:
+  blog_collection:
+    weight: -1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  collection_items_category_term:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_body:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_representative_image:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sections:
+    weight: 2
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+hidden:
+  search_api_excerpt: true
