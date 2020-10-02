@@ -9,7 +9,7 @@ use Symfony\Component\EventDispatcher\Event;
 use Drupal\Core\Config\StorageTransformEvent;
 
 /**
- * Class CollectionSubsitesSubscriber.
+ * Class ConfigEventSubscriber.
  */
 class ConfigEventSubscriber implements EventSubscriberInterface {
 
@@ -33,16 +33,13 @@ class ConfigEventSubscriber implements EventSubscriberInterface {
    * @var array
    */
   protected $ignorePatterns = [
-    'block.block.union_marketing_menu_subsite_',
-    'block_visibility_groups.block_visibility_group.publication_issue_',
-    'block_visibility_groups.block_visibility_group.subsite_',
-    'core.entity_view_display.taxonomy_term.blog_',
-    'core.entity_form_display.taxonomy_term.blog_',
-    'field.field.taxonomy_term.blog_',
-    'pathauto.pattern.blog_',
-    'system.menu.subsite-',
-    'system.menu.section-',
-    'taxonomy.vocabulary.blog_',
+    '/^block_visibility_groups\.block_visibility_group\.(subsite|publication_issue)_(\d+)$/',
+    '/^block\.block\.union_marketing_menu_subsite_(\d+)$/',
+    '/^core\.entity_(form|view)_display\.taxonomy_term\.blog_(\d+)_(categories|tags)\.(default|teaser)$/',
+    '/^field\.field\.taxonomy_term\.blog_(\d+)_(categories|tags)\.[a-z_]+$/',
+    '/^pathauto\.pattern\.blog_(\d+)_(categories|tags)_terms$/',
+    '/^system\.menu\.(section|subsite)-(\d+)$/',
+    '/^taxonomy\.vocabulary\.blog_(\d+)_(categories|tags)$/',
   ];
 
   /**
@@ -66,67 +63,59 @@ class ConfigEventSubscriber implements EventSubscriberInterface {
   /**
    * The storage is transformed for exporting.
    *
+   * Remove ignored patterns from the export, unless they exist in the file
+   * storage.
+   *
    * @param \Drupal\Core\Config\StorageTransformEvent $event
    *   The config storage transform event.
    */
   public function onExportTransform(StorageTransformEvent $event) {
-    /** @var \Drupal\Core\Config\StorageInterface $sync_storage */
-    $sync_storage = $event->getStorage();
-    $ignore_patterns = $this->ignorePatterns;
+    /** @var \Drupal\Core\Config\StorageInterface $storage */
+    $storage = $event->getStorage();
 
-    // Filter active configuration for the ignored items.
-    $ignored_config = array_filter($this->activeStorage->listAll(), function($config_name) use ($ignore_patterns) {
-      foreach ($ignore_patterns as $pattern) {
-        // @todo Change to regex pattern if any name collisions occur.
-        if (strpos($config_name, $pattern) !== FALSE) {
-          return TRUE;
-        }
-      }
-      return FALSE;
-    });
-
-    foreach ($ignored_config as $config_name) {
-      // Only export the config if it already exists in the fileStorage.
-      if (!$this->fileStorage->exists($config_name)) {
-        $sync_storage->delete($config_name);
-      }
+    foreach ($this->getIgnoredActiveConfig() as $config_name) {
+      // Remove the outgoing config item, preventing it from being exported.
+      $storage->delete($config_name);
     }
   }
 
   /**
+   * The storage is transformed for exporting.
+   *
    * Remove ignored patterns from the import, unless they exist in the file
    * storage.
    *
    * This prevents deleting configuration during deployment and configuration
    * synchronization.
    *
-   * @param \Drupal\Core\Config\StorageTransformEvent $event The config storage
-   *   transform event.
+   * @param \Drupal\Core\Config\StorageTransformEvent $event
+   *   The config storage transform event.
    */
   public function onImportTransform(StorageTransformEvent $event) {
-    /** @var \Drupal\Core\Config\StorageInterface $sync_storage */
-    $sync_storage = $event->getStorage();
-    $ignore_patterns = $this->ignorePatterns;
+    /** @var \Drupal\Core\Config\StorageInterface $storage */
+    $storage = $event->getStorage();
 
-    // Filter active configuration for the ignored items.
-    $ignored_config = array_filter($this->activeStorage->listAll(), function($config_name) use ($ignore_patterns) {
-      foreach ($ignore_patterns as $pattern) {
-        // @todo Change to regex pattern if any name collisions occur.
-        if (strpos($config_name, $pattern) !== FALSE) {
+    foreach ($this->getIgnoredActiveConfig() as $config_name) {
+      // Set the incoming value to the active store value. This makes it
+      // appear to be identical, thus ignoring it.
+      $storage->write($config_name, $this->activeStorage->read($config_name));
+    }
+  }
+
+  /**
+   * Gets the active configuration items that match the ignored patterns.
+   *
+   * Skips config items in the sync store (e.g. config/sync).
+   */
+  protected function getIgnoredActiveConfig() {
+    return array_filter($this->activeStorage->listAll(), function($config_name) {
+      foreach ($this->ignorePatterns as $pattern) {
+        if (preg_match($pattern, $config_name) === 1 && $this->fileStorage->exists($config_name) === FALSE) {
           return TRUE;
         }
       }
       return FALSE;
     });
-
-    foreach ($ignored_config as $config_name) {
-      // Unless the config exists in the fileStorage, set the sync_storage to
-      // the active store values. This makes them appear to be identical ("There
-      // are no changes to import").
-      if (!$this->fileStorage->exists($config_name)) {
-        $sync_storage->write($config_name, $this->activeStorage->read($config_name));
-      }
-    }
   }
 
 }
