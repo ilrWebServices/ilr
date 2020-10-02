@@ -114,10 +114,11 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
         ]));
       }
 
-      // Load the vocabulary that was created with this collection.
+      // Load the categories vocabulary that was created with this collection.
       $collection_items = $collection->findItemsByAttribute('blog_taxonomy_categories', TRUE);
 
       if (empty($collection_items)) {
+        // TODO GOTO 'Load the tags vocabulary...'
         return;
       }
 
@@ -141,11 +142,44 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
       $category_view_display->save();
       $category_view_display->removeAllSections();
 
-      foreach ($this->getCategoryLayoutSections($category) as $section) {
+      foreach ($this->getLayoutSections($category, 'category') as $section) {
         $category_view_display->appendSection($section);
       }
 
       $category_view_display->save();
+
+      // Load the tags vocabulary that was created with this collection.
+      $collection_items = $collection->findItemsByAttribute('blog_taxonomy_tags', TRUE);
+
+      if (empty($collection_items)) {
+        return;
+      }
+
+      $collected_item = reset($collection_items);
+      $tags = $collected_item->item->entity;
+      $tags_form_display = $this->entityDisplayRepository->getFormDisplay('taxonomy_term', $tags->id());
+
+      // Configure the tags fields and form display.
+      foreach ($this->getFieldConfiguration($tags->id()) as $field_name => $field) {
+        $new_field_config = $this->entityTypeManager->getStorage('field_config')->create($field['field_config']);
+        $new_field_config->save();
+        $tags_form_display->setComponent($field_name, $field['form_display']);
+      }
+
+      $tags_form_display->removeComponent('description');
+      $tags_form_display->save();
+
+      // Configure the tags view display layout builder sections.
+      $tags_view_display = $this->entityDisplayRepository->getViewDisplay('taxonomy_term', $tags->id());
+      $tags_view_display->enableLayoutBuilder();
+      $tags_view_display->save();
+      $tags_view_display->removeAllSections();
+
+      foreach ($this->getLayoutSections($tags, 'tag') as $section) {
+        $tags_view_display->appendSection($section);
+      }
+
+      $tags_view_display->save();
     }
   }
 
@@ -259,19 +293,19 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Generate the "template" for layout builder sections for category pages.
+   * Generate the "template" for layout builder sections for category/tag pages.
    *
-   * @param TaxonomyVocabulary $category
+   * @param TaxonomyVocabulary $vocabulary
    *
    * @return array
    *   An array of layout builder sections
    */
-  protected function getCategoryLayoutSections($category) {
+  protected function getLayoutSections($vocabulary, $type) {
     $sections = [];
 
     $sections[] = new Section('layout_onecol', ['label' => 'Blog banner'], [
       new SectionComponent($this->uuid->generate(), 'content', [
-        'id' => 'extra_field_block:taxonomy_term:' . $category->id() . ':blog_collection',
+        'id' => 'extra_field_block:taxonomy_term:' . $vocabulary->id() . ':blog_collection',
         'label' => 'Blog',
         'provider' => 'layout_builder',
         'label_display' => 0,
@@ -283,7 +317,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
 
     $sections[] = new Section('layout_cu_section', ['label' => 'Content header'], [
       new SectionComponent($this->uuid->generate(), 'main', [
-        'id' => 'field_block:taxonomy_term:' . $category->id() . ':name',
+        'id' => 'field_block:taxonomy_term:' . $vocabulary->id() . ':name',
         'label' => 'Name',
         'provider' => 'layout_builder',
         'label_display' => 0,
@@ -303,7 +337,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
         ],
       ]),
       new SectionComponent($this->uuid->generate(), 'main', [
-        'id' => 'field_block:taxonomy_term:' . $category->id() . ':field_body',
+        'id' => 'field_block:taxonomy_term:' . $vocabulary->id() . ':field_body',
         'label' => 'Intro text',
         'provider' => 'layout_builder',
         'label_display' => 0,
@@ -324,7 +358,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
 
     $sections[] = new Section('layout_onecol', ['label' => 'Page content'], [
       new SectionComponent($this->uuid->generate(), 'content', [
-        'id' => 'field_block:taxonomy_term:' . $category->id() . ':field_sections',
+        'id' => 'field_block:taxonomy_term:' . $vocabulary->id() . ':field_sections',
         'label' => 'Page content',
         'provider' => 'layout_builder',
         'label_display' => 0,
@@ -347,8 +381,8 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
 
     $sections[] = new Section('layout_cu_section', ['label' => 'Items'], [
       new SectionComponent($this->uuid->generate(), 'main', [
-        'id' => 'extra_field_block:taxonomy_term:' . $category->id() . ':collection_items_category_term',
-        'label' => $category->label(),
+        'id' => 'extra_field_block:taxonomy_term:' . $vocabulary->id() . ':collection_items_' . $type . '_term',
+        'label' => $vocabulary->label(),
         'provider' => 'layout_builder',
         'label_display' => 0,
         'context_mapping' => [
