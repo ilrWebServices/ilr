@@ -1,7 +1,7 @@
 services:
   ilr_collection_event_subscriber:
     class: Drupal\ilr\EventSubscriber\CollectionEventSubscriber
-    arguments: ['@entity_type.manager', '@messenger', '@string_translation']
+    arguments: ['@entity_type.manager', '@messenger', '@string_translation', '@entity_display.repository', '@uuid']
     tags:
       - { name: event_subscriber }
   ilr_samlauth_event_subscriber:

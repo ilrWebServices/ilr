@@ -9,6 +9,8 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\collection\Event\CollectionEvents;
 use Symfony\Component\EventDispatcher\Event;
 use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Entity\EntityDisplayRepository;
+use Drupal\Component\Uuid\Php as Uuid;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\Core\Url;
 use Drupal\field\Entity\FieldStorageConfig;
@@ -38,12 +40,28 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
   protected $messenger;
 
   /**
-   * Constructs a new CollectionBlogsSubscriber object.
+   * The entity display repository service.
+   *
+   * @var \Drupal\Core\Entity\EntityDisplayRepository
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, TranslationInterface $string_translation) {
+  protected $entityDisplayRepository;
+
+  /**
+   * The UUID service.
+   *
+   * @var \Drupal\Component\Uuid\Php
+   */
+  protected $uuid;
+
+  /**
+   * Constructs a new CollectionEventSubscriber object.
+   */
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, TranslationInterface $string_translation, EntityDisplayRepository $entity_display_repository, Uuid $uuid) {
     $this->entityTypeManager = $entity_type_manager;
     $this->messenger = $messenger;
     $this->stringTranslation = $string_translation;
+    $this->entityDisplayRepository = $entity_display_repository;
+    $this->uuid = $uuid;
   }
 
   /**
@@ -63,6 +81,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
    */
   public function collectionCreate(Event $event) {
     $collection = $event->collection;
+
     if ($collection->bundle() == 'blog') {
       // Create a section paragraph with a collection listing nested inside it
       // and add it to the collection entity components field
@@ -95,13 +114,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
         ]));
       }
 
-      // Load the config for a typical blog category.
-      $category_storage = $this->entityTypeManager->getStorage('taxonomy_vocabulary');
-      $entity_field_manager = \Drupal::service('entity_field.manager');
-      $display_repository = \Drupal::service('entity_display.repository');
-      $field_instance_config = $this->entityTypeManager->getStorage('field_config');
-
-      // Load the vocabulary that was just created and added to this collection.
+      // Load the vocabulary that was created with this collection.
       $collection_items = $collection->findItemsByAttribute('blog_taxonomy_categories', TRUE);
 
       if (empty($collection_items)) {
@@ -109,30 +122,30 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
       }
 
       $collected_item = reset($collection_items);
-      $new_category = $collected_item->item->entity;
-      $new_category_form_display = $display_repository->getFormDisplay('taxonomy_term', $new_category->id());
+      $category = $collected_item->item->entity;
+      $category_form_display = $this->entityDisplayRepository->getFormDisplay('taxonomy_term', $category->id());
 
-      // Configure the fields and form display.
-      foreach ($this->getFieldConfiguration($new_category->id()) as $field_name => $field_config) {
-        $new_field_config = $field_instance_config->create($field_config['field_config']);
+      // Configure the category fields and form display.
+      foreach ($this->getFieldConfiguration($category->id()) as $field_name => $field) {
+        $new_field_config = $this->entityTypeManager->getStorage('field_config')->create($field['field_config']);
         $new_field_config->save();
-        $new_category_form_display->setComponent($field_name, $field_config['form_display']);
+        $category_form_display->setComponent($field_name, $field['form_display']);
       }
 
-      $new_category_form_display->removeComponent('description');
-      $new_category_form_display->save();
+      $category_form_display->removeComponent('description');
+      $category_form_display->save();
 
-      // Now configure the layout builder sections.
-      $new_category_view_display = $display_repository->getViewDisplay('taxonomy_term', $new_category->id());
-      $new_category_view_display->enableLayoutBuilder();
-      $new_category_view_display->save();
-      $new_category_view_display->removeAllSections();
+      // Configure the category view display layout builder sections.
+      $category_view_display = $this->entityDisplayRepository->getViewDisplay('taxonomy_term', $category->id());
+      $category_view_display->enableLayoutBuilder();
+      $category_view_display->save();
+      $category_view_display->removeAllSections();
 
-      foreach ($this->getCategoryLayoutSections($new_category) as $section) {
-        $new_category_view_display->appendSection($section);
+      foreach ($this->getCategoryLayoutSections($category) as $section) {
+        $category_view_display->appendSection($section);
       }
 
-      $new_category_view_display->save();
+      $category_view_display->save();
     }
   }
 
@@ -254,12 +267,10 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
    *   An array of layout builder sections
    */
   protected function getCategoryLayoutSections($category) {
-    $uuid_service = \Drupal::service('uuid');
-
     $sections = [];
 
     $sections[] = new Section('layout_onecol', ['label' => 'Blog banner'], [
-      new SectionComponent($uuid_service->generate(), 'content', [
+      new SectionComponent($this->uuid->generate(), 'content', [
         'id' => 'extra_field_block:taxonomy_term:' . $category->id() . ':blog_collection',
         'label' => 'Blog',
         'provider' => 'layout_builder',
@@ -271,7 +282,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
     ]);
 
     $sections[] = new Section('layout_cu_section', ['label' => 'Content header'], [
-      new SectionComponent($uuid_service->generate(), 'main', [
+      new SectionComponent($this->uuid->generate(), 'main', [
         'id' => 'field_block:taxonomy_term:' . $category->id() . ':name',
         'label' => 'Name',
         'provider' => 'layout_builder',
@@ -291,7 +302,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
           'view_mode' => 'view_mode',
         ],
       ]),
-      new SectionComponent($uuid_service->generate(), 'main', [
+      new SectionComponent($this->uuid->generate(), 'main', [
         'id' => 'field_block:taxonomy_term:' . $category->id() . ':field_body',
         'label' => 'Intro text',
         'provider' => 'layout_builder',
@@ -312,7 +323,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
     ]);
 
     $sections[] = new Section('layout_onecol', ['label' => 'Page content'], [
-      new SectionComponent($uuid_service->generate(), 'content', [
+      new SectionComponent($this->uuid->generate(), 'content', [
         'id' => 'field_block:taxonomy_term:' . $category->id() . ':field_sections',
         'label' => 'Page content',
         'provider' => 'layout_builder',
@@ -335,7 +346,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
     ]);
 
     $sections[] = new Section('layout_cu_section', ['label' => 'Items'], [
-      new SectionComponent($uuid_service->generate(), 'main', [
+      new SectionComponent($this->uuid->generate(), 'main', [
         'id' => 'extra_field_block:taxonomy_term:' . $category->id() . ':collection_items_category_term',
         'label' => $category->label(),
         'provider' => 'layout_builder',
