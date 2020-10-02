@@ -121,6 +121,48 @@ Review changes and restore any customizations to `.htaccess` or `robots.txt`. Co
 
 See https://www.drupal.org/node/2700999 for more information.
 
+## Configuration import and export
+
+As with many Drupal 8 sites, configuration is managed in version control by exporting it to the filesystem. This project is configured, via `$settings['config_sync_directory']` in `settings.php`, to store configuration in the `./config/sync/` directory.
+
+During development, configuration is exported via `drush cex`. For example, if a new content type were created on a local development site, the node type and field config would be exported, and the new config yml files would be committed to git.
+
+During deployment, modified configuration is synchronized via a script that runs `drush cim` on the production site. In general, this means that any configuration added or modified on production will be reverted or removed during deployment. For example, if a new content type were added on production, it would be remove during deployment.
+
+### Ignored configuration
+
+While most configuration is created during local development and then deployed to production, some configuration is generated automatically directly on the production site.
+
+Some examples:
+
+- The `collection_subsites` module generates a menu and a block visibility group when a new subsite collection is created.
+- The `collection_blogs` module generates category and tag taxonomy vocabularies when new blog collections are created.
+
+Since new subsites and blogs can be created by administrators on the production site, we don't want those menus, block visibility groups, and vocabularies accidentally deleted during a deployment.
+
+Additionally, we don't want this generated configuration exported to the `config/sync/` directory during local development.
+
+Therefore, some configuration is ignored using import and export config storage transform events: `config.transform.export` and `config.transform.import`. See the [configuration transform event change record][] for more information.
+
+The event subscribers can be found in `\Drupal\ilr\EventSubscriber\ConfigEventSubscriber`. The ignore patterns are, for now, manually maintained in that file in the `$ignoredPatterns` property.
+
+#### Forcing ignored configuration
+
+On occasion, ignored configuration needs to be updated via deployment. For example, the display view mode for a blog category taxonomy page may be need to be updated.
+
+For these cases, the transform event subscribers in `ConfigEventSubscriber` check for ignored configuration items in `config/sync/` and _don't ignore them if they are found_.
+
+Continuing the view mode example above, imagine that a developer updates the default view display for a blog category taxonomy vocabulary with the machine name `blog_2_categories`. This vocabulary display view mode was generated on production when the collection blog with the id `2` was created.
+
+Assuming that the developer is very clever and knows the exact name of the configuration item for that view mode, it can be exported, bypassing the ignore filters, with two commands:
+
+```
+$ touch config/sync/core.entity_view_display.taxonomy_term.blog_2_categories.default.yml
+$ drush cex
+```
+
+You can get a bit of help finding the names of configuration items by using the single item export utility at `/admin/config/development/configuration/single/export`.
+
 ## Salesforce Integration
 
 This site uses the Salesforce Suite module to synchronize some Salesforce objects to Drupal entities, mainly Professionional Programs courses, classes, and related items.
@@ -245,6 +287,7 @@ if (extension_loaded('redis')) {
 [ImageMagick extension]: https://www.php.net/manual/en/book.imagick.php
 [Drush launcher]: https://github.com/drush-ops/drush-launcher
 [git submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
+[configuration transform event change record]: https://www.drupal.org/node/3066005
 [OAuth JWT Bearer Token flow documentation]: https://www.drupal.org/docs/8/modules/salesforce-suite/create-a-oauth-jwt-bearer-token-flow-connected-app-4x
 [composer-patches]: https://github.com/cweagans/composer-patches
 [Union Component Library]: https://github.com/ilrWebServices/union
