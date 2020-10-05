@@ -81,8 +81,9 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
    */
   public function collectionCreate(Event $event) {
     $collection = $event->collection;
+    $is_blog = (bool) $collection->type->entity->getThirdPartySetting('collection_blogs', 'contains_blogs');
 
-    if ($collection->bundle() == 'blog') {
+    if ($is_blog) {
       // Create a section paragraph with a collection listing nested inside it
       // and add it to the collection entity components field
       $section = Paragraph::create([
