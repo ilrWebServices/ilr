@@ -10,9 +10,6 @@ use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\collection\Event\CollectionEvents;
 use Symfony\Component\EventDispatcher\Event;
 use Drupal\Core\Extension\ThemeHandlerInterface;
-use Drupal\Core\Config\ConfigEvents;
-use Drupal\Core\Config\DatabaseStorage;
-use Drupal\Core\Config\StorageTransformEvent;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
 
@@ -45,21 +42,13 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
   protected $themeHandler;
 
   /**
-   * The database (active) storage.
-   *
-   * @var \Drupal\Core\Config\DatabaseStorage
-   */
-  protected $activeStorage;
-
-  /**
    * Constructs a new MenuSubsitesSubscriber object.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, TranslationInterface $string_translation, ThemeHandlerInterface $theme_handler, DatabaseStorage $database_storage) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, TranslationInterface $string_translation, ThemeHandlerInterface $theme_handler) {
     $this->entityTypeManager = $entity_type_manager;
     $this->messenger = $messenger;
     $this->stringTranslation = $string_translation;
     $this->themeHandler = $theme_handler;
-    $this->activeStorage = $database_storage;
   }
 
   /**
@@ -70,7 +59,6 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
       CollectionEvents::COLLECTION_ENTITY_CREATE => 'collectionCreate',
       CollectionEvents::COLLECTION_ENTITY_UPDATE => 'collectionUpdate',
       CollectionEvents::COLLECTION_ITEM_FORM_SAVE => 'collectionItemFormSave',
-      ConfigEvents::STORAGE_TRANSFORM_IMPORT => 'onImportTransform',
     ];
   }
 
@@ -291,44 +279,6 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
 
         $this->messenger->addMessage(Link::fromTextAndUrl($text, $url));
       }
-    }
-  }
-
-  /**
-   * Ignore subsite-related config entities.
-   *
-   * This prevents deleting configuration during deployment and configuration
-   * synchronization.
-   *
-   * @param \Drupal\Core\Config\StorageTransformEvent $event The config storage
-   *   transform event.
-   */
-  public function onImportTransform(StorageTransformEvent $event) {
-    /** @var \Drupal\Core\Config\StorageInterface $sync_storage */
-    $sync_storage = $event->getStorage();
-    $default_theme = $this->themeHandler->getDefault();
-
-    // List the patterns that we don't want to mistakenly remove from the active store.
-    $collection_subsite_config_patterns = [
-      'block.block.' . $default_theme . '_menu_subsite_',
-      'system.menu.subsite-',
-      'block_visibility_groups.block_visibility_group.subsite_',
-    ];
-
-    // Filter active configuration for the ignored items.
-    $ignored_config = array_filter($this->activeStorage->listAll(), function($config_name) use ($collection_subsite_config_patterns) {
-      foreach ($collection_subsite_config_patterns as $pattern) {
-        if (strpos($config_name, $pattern) !== FALSE) {
-          return TRUE;
-        }
-      }
-      return FALSE;
-    });
-
-    // Set the sync_storage to the active store values. This makes them appear
-    // to be identical ("There are no changes to import").
-    foreach ($ignored_config as $config_name) {
-      $sync_storage->write($config_name, $this->activeStorage->read($config_name));
     }
   }
 }

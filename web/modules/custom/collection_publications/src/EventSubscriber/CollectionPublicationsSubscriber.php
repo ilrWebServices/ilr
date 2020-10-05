@@ -10,10 +10,6 @@ use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\collection\Event\CollectionEvents;
 use Symfony\Component\EventDispatcher\Event;
-use Drupal\Core\Extension\ThemeHandlerInterface;
-use Drupal\Core\Config\ConfigEvents;
-use Drupal\Core\Config\DatabaseStorage;
-use Drupal\Core\Config\StorageTransformEvent;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -42,20 +38,6 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
   protected $messenger;
 
   /**
-   * The theme handler.
-   *
-   * @var \Drupal\Core\Extension\ThemeHandlerInterface
-   */
-  protected $themeHandler;
-
-  /**
-   * The database (active) storage.
-   *
-   * @var \Drupal\Core\Config\DatabaseStorage
-   */
-  protected $activeStorage;
-
-  /**
    * The current user service.
    *
    * @var \Drupal\Core\Session\AccountProxyInterface
@@ -65,12 +47,10 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
   /**
    * Constructs a new MenuSubsitesSubscriber object.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, TranslationInterface $string_translation, ThemeHandlerInterface $theme_handler, DatabaseStorage $database_storage, AccountProxyInterface $current_user) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, TranslationInterface $string_translation, AccountProxyInterface $current_user) {
     $this->entityTypeManager = $entity_type_manager;
     $this->messenger = $messenger;
     $this->stringTranslation = $string_translation;
-    $this->themeHandler = $theme_handler;
-    $this->activeStorage = $database_storage;
     $this->currentUser = $current_user;
   }
 
@@ -81,7 +61,6 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
     return [
       CollectionEvents::COLLECTION_ENTITY_CREATE => 'collectionCreate',
       CollectionEvents::COLLECTION_ENTITY_UPDATE => 'collectionUpdate',
-      ConfigEvents::STORAGE_TRANSFORM_IMPORT => 'onImportTransform',
       KernelEvents::REQUEST => 'handleRedirects',
     ];
   }
@@ -178,42 +157,6 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
       $this->messenger->addMessage($this->t('Updated the path condition for %bvg_name block visibility group.', [
         '%bvg_name' => $bvg->label()
       ]));
-    }
-  }
-
-  /**
-   * Ignore publication-related config entities.
-   *
-   * This prevents deleting configuration during deployment and configuration
-   * synchronization.
-   *
-   * @param \Drupal\Core\Config\StorageTransformEvent $event The config storage
-   *   transform event.
-   */
-  public function onImportTransform(StorageTransformEvent $event) {
-    /** @var \Drupal\Core\Config\StorageInterface $sync_storage */
-    $sync_storage = $event->getStorage();
-    $default_theme = $this->themeHandler->getDefault();
-
-    // List the patterns that we don't want to mistakenly remove from the active store.
-    $collection_publication_config_patterns = [
-      'block_visibility_groups.block_visibility_group.publication_issue_',
-    ];
-
-    // Filter active configuration for the ignored items.
-    $ignored_config = array_filter($this->activeStorage->listAll(), function($config_name) use ($collection_publication_config_patterns) {
-      foreach ($collection_publication_config_patterns as $pattern) {
-        if (strpos($config_name, $pattern) !== FALSE) {
-          return TRUE;
-        }
-      }
-      return FALSE;
-    });
-
-    // Set the sync_storage to the active store values. This makes them appear
-    // to be identical ("There are no changes to import").
-    foreach ($ignored_config as $config_name) {
-      $sync_storage->write($config_name, $this->activeStorage->read($config_name));
     }
   }
 
