@@ -245,11 +245,11 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
     $external_link_host = parse_url($entity->field_external_link->uri, PHP_URL_HOST);
 
     // Derive a media outlet logo host and domain name (e.g. `nytimes.com`,
-    // `bloomberg.com`) from the link host. See https://regex101.com/r/XvagCu/5/
+    // `bloomberg.com`) from the link host. See https://regex101.com/r/XvagCu/7
     // to test this regex.
-    if (preg_match('/^(([^\.]+)\.)?(([^\.]+)\.[a-z]{2,4})$/', $external_link_host, $matches)) {
+    if (preg_match('/^(?:[^\.]+\.)*([^\.]+\.[a-z]{2,4})$/U', $external_link_host, $matches)) {
       $host = $matches[0];
-      $domain = $matches[3];
+      $domain = $matches[1];
 
       // Find logo media entities with a host or domain name that matches.
       $entity_type_manager = \Drupal::service('entity_type.manager');
