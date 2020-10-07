@@ -40,6 +40,7 @@ class ConfigEventSubscriber implements EventSubscriberInterface {
     '/^pathauto\.pattern\.blog_(\d+)_(categories|tags)_terms$/',
     '/^system\.menu\.(section|subsite)-(\d+)$/',
     '/^taxonomy\.vocabulary\.blog_(\d+)_(categories|tags)$/',
+    '/^webform\.webform\.[a-z_]+$/',
   ];
 
   /**
