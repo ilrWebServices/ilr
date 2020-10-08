@@ -1,0 +1,37 @@
+uuid: 8496b7c6-a301-409e-ac69-7b2edc252683
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.embedded
+    - field.field.media.file.field_media_file
+    - media.type.file
+  module:
+    - file_download_link
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: media.file.embedded
+targetEntityType: media
+bundle: file
+mode: embedded
+content:
+  field_media_file:
+    type: file_download_link
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_text: '[media:name]'
+      new_tab: true
+      force_download: true
+      custom_classes: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true
