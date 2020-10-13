@@ -77,6 +77,17 @@ function collection_item_path_menu_local_tasks_alter(&$data, $route_name) {
 }
 
 /**
+ * Implements hook_node_view_alter().
+ *
+ * Sets the collection_item_url for non-canonical collection items.
+ */
+function collection_item_path_node_view_alter(array &$build) {
+  if (isset($build['#collection_item']) && !$build['#collection_item']->isCanonical()) {
+    $build['#node']->collection_item_url = $build['#collection_item']->toUrl();
+  }
+}
+
+/**
  * Implements hook_taxonomy_term_view_alter().
  *
  * Sets the collection_item_url for extra fields rendered. Note that this looks
