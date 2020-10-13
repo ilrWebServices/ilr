@@ -1,0 +1,5 @@
+# Collection item entity edit
+entity.collection_item.item.entity:
+  route_name: collection_item_path.item.entity.edit
+  base_route: entity.collection_item.canonical
+  title: 'Edit content'

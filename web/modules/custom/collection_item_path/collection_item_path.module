@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * Contains collection_item_path.module.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_entity_base_field_info().
+ *
+ * Adds the `path` base field definition to collection items.
+ */
+function collection_item_path_entity_base_field_info(EntityTypeInterface $entity_type) {
+  if ($entity_type->id() === 'collection_item') {
+    $fields['path'] = BaseFieldDefinition::create('path')
+      ->setLabel(t('URL alias'))
+      ->setDescription(t('The collection item URL alias.'))
+      ->setTranslatable(TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'path',
+        'weight' => 12,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setComputed(TRUE);
+
+    return $fields;
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * Modifies the url for collection items. Since we "cross-post" items, this
+ * allows a content admin to visit the cross post itself. Eventually, we might
+ * add something like `$row['#entity'] = $entity` to the
+ * CollectionItemListBuilder to make this simpler.
+ */
+function collection_item_path_form_collection_item_list_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+
+  foreach ($form['entities'] as $key => &$row) {
+    if (!is_numeric($key) || !is_array($row)) {
+      continue;
+    }
+
+    if ($collection_item = $collection_item_storage->load($key)) {
+      $row['item'] = [
+        '#type' => 'link',
+        '#title' => $collection_item->item->entity->label(),
+        '#url' => $collection_item->toURL(),
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ *
+ * Update the tab title when viewing a collection item, to make it easier to
+ * distinguish between editing the content of the item, and editin the item
+ * itself. @see collection_item_path.links.task.yml
+ */
+
+function collection_item_path_menu_local_tasks_alter(&$data, $route_name) {
+  if ($route_name !== 'entity.collection_item.canonical') {
+    return;
+  }
+
+  if (isset($data['tabs'][0]['entity.collection_item.edit_form'])) {
+    $data['tabs'][0]['entity.collection_item.edit_form']['#link']['title'] = t('Edit item');
+  }
+}

@@ -1,0 +1,13 @@
+collection_item_path.item.entity.edit:
+  path: '/collection/{collection}/items/{collection_item}/item/edit'
+  defaults:
+    _controller: '\Drupal\collection_item_path\Controller\CollectionItemPathController::itemEntityEdit'
+  requirements:
+    _permission: 'edit own collections'
+  options:
+    _admin_route: TRUE
+    parameters:
+      collection:
+        type: entity:collection
+      collection_item:
+        type: entity:collection_item
