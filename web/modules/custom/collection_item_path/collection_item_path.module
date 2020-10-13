@@ -106,3 +106,12 @@ function collection_item_path_taxonomy_term_view_alter(array &$build) {
     }
   }
 }
+
+/**
+ * Link to the collection_item_url if it has been set.
+ */
+function collection_item_path_preprocess_node(&$variables) {
+  if ($collection_item_url = $variables['node']->collection_item_url) {
+    $variables['url'] = $collection_item_url;
+  }
+}
