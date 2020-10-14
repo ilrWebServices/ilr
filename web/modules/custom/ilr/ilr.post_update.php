@@ -575,3 +575,20 @@ function ilr_post_update_create_worker_logo_block(&$sandbox) {
   $block->body->format = 'inline_svg';
   $block->save();
 }
+
+/**
+ * Create the aliases for collection item paths.
+ */
+function ilr_post_update_create_collection_item_aliases(&$sandbox) {
+  $collection_items = [];
+  $pathauto_generator = \Drupal::service('pathauto.generator');
+  $result = \Drupal::entityQuery('collection_item')->execute();
+  $collection_item_storage = \Drupal::entityTypeManager()->getStorage('collection_item');
+  $collection_items = array_merge($collection_items, $collection_item_storage->loadMultiple($result));
+
+  foreach ($collection_items as $collection_item) {
+    if ($collection_item->item->entity instanceof \Drupal\Core\Entity\ContentEntityInterface ) {
+      $pathauto_generator->updateEntityAlias($collection_item, 'update');
+    }
+  }
+}
