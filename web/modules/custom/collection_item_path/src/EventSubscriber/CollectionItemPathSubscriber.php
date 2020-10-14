@@ -2,14 +2,8 @@
 
 namespace Drupal\collection_item_path\EventSubscriber;
 
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Messenger\MessengerInterface;
-use Drupal\Core\StringTranslation\TranslationInterface;
-use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Url;
-use Drupal\Core\Link;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -21,8 +15,6 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
  */
 class CollectionItemPathSubscriber implements EventSubscriberInterface {
 
-  use StringTranslationTrait;
-
   /**
    * Drupal\Core\Entity\EntityTypeManagerInterface definition.
    *
@@ -31,27 +23,10 @@ class CollectionItemPathSubscriber implements EventSubscriberInterface {
   protected $entityTypeManager;
 
   /**
-   * The Messenger service.
-   *
-   * @var \Drupal\Core\Messenger\MessengerInterface
-   */
-  protected $messenger;
-
-  /**
-   * The current user service.
-   *
-   * @var \Drupal\Core\Session\AccountProxyInterface
-   */
-  protected $currentUser;
-
-  /**
    * Constructs a new MenuSubsitesSubscriber object.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, TranslationInterface $string_translation, AccountProxyInterface $current_user) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
     $this->entityTypeManager = $entity_type_manager;
-    $this->messenger = $messenger;
-    $this->stringTranslation = $string_translation;
-    $this->currentUser = $current_user;
   }
 
   /**
@@ -76,24 +51,6 @@ class CollectionItemPathSubscriber implements EventSubscriberInterface {
       if ($collection_item->isCanonical()) {
         $this->redirectToCanonicalEntity($event, $collection_item->item->entity);
       }
-    }
-  }
-
-  /**
-   * Redirect canonical collection items to their item.
-   */
-  protected function redirectToCanonicalEntity(GetResponseEvent $event, ContentEntityInterface $entity) {
-    $url = $entity->toUrl();
-    $link = Link::fromTextAndUrl($entity->label(), $url);
-
-    if ($this->currentUser->hasPermission('administer collections')) {
-      $this->messenger->addWarning($this->t('This is the canonical collection item, so it redirects to %link for non-administrators.', [
-        '%link' => $link->toString()
-      ]));
-    }
-    else {
-      $response = new RedirectResponse($url->toString(), 308);
-      $event->setResponse($response);
     }
   }
 
