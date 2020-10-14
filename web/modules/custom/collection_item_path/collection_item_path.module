@@ -8,6 +8,7 @@
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\collection\Entity\CollectionItem;
 use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
@@ -29,6 +30,25 @@ function collection_item_path_entity_base_field_info(EntityTypeInterface $entity
       ->setComputed(TRUE);
 
     return $fields;
+  }
+}
+
+/**
+ * Implements hook_metatags_alter().
+ *
+ * Updates the canonical url if the metatags module is present.
+ *
+ * @todo Consider generalizing this if needed to work in cases where the
+ * metatags module is not present.
+ *
+ * @param array $metatags The special meta tags to be added to the page.
+ * @param array $context The context for the current meta tags being generated.
+ *   Will contain the following: 'entity' - The entity being processed; passed
+ *   by reference.
+ */
+function collection_item_path_metatags_alter(array &$metatags, array &$context) {
+  if (isset($context['entity']) && $context['entity'] instanceof CollectionItem) {
+    $metatags['canonical_url'] = $context['entity']->item->entity->toUrl('canonical', ['absolute' => TRUE])->toString();
   }
 }
 
