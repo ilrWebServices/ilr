@@ -8,6 +8,7 @@
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
  * Implements hook_entity_base_field_info().
@@ -49,6 +50,11 @@ function collection_item_path_form_collection_item_list_alter(&$form, FormStateI
     }
 
     if ($collection_item = $collection_item_storage->load($key)) {
+
+      if (!$collection_item->item->entity instanceof ContentEntityInterface) {
+        continue;
+      }
+
       $row['item'] = [
         '#type' => 'link',
         '#title' => $collection_item->item->entity->label(),
