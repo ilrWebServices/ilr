@@ -1,0 +1,23 @@
+uuid: 8afb88bf-e4e4-4b43-b39f-65080b35b732
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - ctools
+id: collection_items
+label: 'Collection items'
+type: 'canonical_entities:collection_item'
+pattern: '[collection_item:collection:entity:url]/[collection_item:field_blog_categories:entity:name]/[collection_item:item:entity]/i'
+selection_criteria:
+  f74c6eb8-6e21-4b76-b5ec-4e45c8d15d68:
+    id: 'entity_bundle:collection_item'
+    bundles:
+      blog: blog
+    negate: false
+    context_mapping:
+      collection_item: collection_item
+    uuid: f74c6eb8-6e21-4b76-b5ec-4e45c8d15d68
+selection_logic: and
+weight: 0
+relationships: {  }

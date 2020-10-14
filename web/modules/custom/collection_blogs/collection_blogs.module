@@ -138,7 +138,9 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
         ->execute();
 
       foreach ($collection_item_storage->loadMultiple($blog_post_collection_items) as $collection_item) {
-        $posts[] = $view_builder->view($collection_item->item->entity, 'teaser');
+        $rendered_content = $view_builder->view($collection_item->item->entity, 'teaser');
+        $rendered_content['#collection_item'] = $collection_item;
+        $posts[] = $rendered_content;
       }
 
       $build[$component_name] = [

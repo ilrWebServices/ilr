@@ -12,13 +12,6 @@ targetEntityType: collection_item
 bundle: blog
 mode: mini
 content:
-  canonical:
-    settings:
-      display_label: true
-    weight: 5
-    region: content
-    third_party_settings: {  }
-    type: boolean_checkbox
   field_blog_categories:
     weight: 6
     settings: {  }
@@ -33,8 +26,10 @@ content:
     third_party_settings: {  }
 hidden:
   attributes: true
+  canonical: true
   collection: true
   item: true
   name: true
+  path: true
   user_id: true
   weight: true

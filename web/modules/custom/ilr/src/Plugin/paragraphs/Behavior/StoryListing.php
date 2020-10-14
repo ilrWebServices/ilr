@@ -103,7 +103,10 @@ class StoryListing extends ParagraphsBehaviorBase {
 
     foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
       $story_count++;
-      $stories[] = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($paragraph, $list_style, $story_count));
+      $rendered_entity = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($paragraph, $list_style, $story_count));
+      $rendered_entity['#collection_item'] = $collection_item;
+      $rendered_entity['#cache']['contexts'][] = 'url';
+      $stories[] = $rendered_entity;
     }
 
     $variables['content']['field_collection']['#printed'] = TRUE;

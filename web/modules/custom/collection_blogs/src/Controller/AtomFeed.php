@@ -15,6 +15,7 @@ class AtomFeed extends ControllerBase {
     $entity_type_manager = \Drupal::service('entity_type.manager');
     $response = new Response();
     $xmlEncoder = new XmlEncoder();
+    $allow_cross_posts = \Drupal::moduleHandler()->moduleExists('collection_item_path');
     $recent_updated_date = '';
     $xml_array = [
       '@xmlns' => 'http://www.w3.org/2005/Atom',
@@ -49,12 +50,22 @@ class AtomFeed extends ControllerBase {
       $post_updated_date = DrupalDateTime::createFromTimestamp($post->changed->value);
       $post_updated_date_rfc_3339 = $post_updated_date->format(\DateTime::RFC3339);
       $authors = [];
+
+      if ($allow_cross_posts && !$blog_post_collection_item->isCanonical()) {
+        $uuid = $blog_post_collection_item->uuid->value;
+        $url = $blog_post_collection_item->toUrl('canonical', ['absolute' => TRUE])->toString();
+      }
+      else {
+        $uuid = $post->uuid->value;
+        $url = $post->toUrl('canonical', ['absolute' => TRUE])->toString();
+      }
+
       $entry = [
         'title' => $post->label(),
         'link' => [
-          '@href' => $post->toUrl('canonical', ['absolute' => TRUE])->toString(),
+          '@href' => $url,
         ],
-        'id' => 'urn:uuid:' . $post->uuid->value,
+        'id' => 'urn:uuid:' . $uuid,
         'published' => $post_pub_date_rfc_3339,
         'updated' => $post_updated_date_rfc_3339,
         'summary' => $post->body->summary,

@@ -82,7 +82,7 @@
 <article{{attributes.addClass(classes)|without('role')}}>
 
 	{{ title_prefix }}
-	{% if not page %}
+	{% if not page and view_mode != 'default' %}
 		<h2{{title_attributes}}>
 			<a href="{{ url }}" rel="bookmark">{{ label }}</a>
 		</h2>

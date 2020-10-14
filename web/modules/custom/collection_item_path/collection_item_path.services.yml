@@ -1,0 +1,7 @@
+services:
+  collection_item_path_subscriber:
+    class: Drupal\collection_item_path\EventSubscriber\CollectionItemPathSubscriber
+    arguments:
+      - '@entity_type.manager'
+    tags:
+      - { name: event_subscriber }
