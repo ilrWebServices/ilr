@@ -55,9 +55,9 @@ function collection_item_path_metatags_alter(array &$metatags, array &$context) 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
  *
- * Modifies the url for collection items. Since items now have a path, this
- * allows a content admin to visit the collection item itself. Eventually, we
- * might add something like `$row['#entity'] = $entity` to the
+ * Modifies the url for links to non-canonical collection items. Since items now
+ * have a path, this allows a content admin to visit the collection item itself.
+ * Eventually, we might add something like `$row['#entity'] = $entity` to the
  * CollectionItemListBuilder to make this simpler.
  */
 function collection_item_path_form_collection_item_list_alter(&$form, FormStateInterface $form_state, $form_id) {
@@ -71,7 +71,7 @@ function collection_item_path_form_collection_item_list_alter(&$form, FormStateI
 
     if ($collection_item = $collection_item_storage->load($key)) {
 
-      if (!$collection_item->item->entity instanceof ContentEntityInterface) {
+      if (!$collection_item->item->entity instanceof ContentEntityInterface || $collection_item->isCanonical()) {
         continue;
       }
 
