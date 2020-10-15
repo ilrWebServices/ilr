@@ -49,7 +49,8 @@ class CollectionItemPathSubscriber implements EventSubscriberInterface {
       $collection_item = $request->attributes->get('collection_item');
 
       if ($collection_item->isCanonical()) {
-        $this->redirectToCanonicalEntity($event, $collection_item->item->entity);
+        $response = new RedirectResponse($collection_item->item->entity->toUrl()->toString(), 308);
+        $event->setResponse($response);
       }
     }
   }
