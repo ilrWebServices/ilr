@@ -8,6 +8,8 @@ global:
     js/union_marketing_responsive_tables.js: {}
   dependencies:
     - core/drupal
+    - core/jquery
+    - core/drupal.dialog.ajax
 livereload:
   remote: https://github.com/mklabs/tiny-lr
   version: 1.1.1
