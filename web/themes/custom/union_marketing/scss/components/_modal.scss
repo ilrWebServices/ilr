@@ -1,0 +1,24 @@
+.cu-modal {
+  max-width: 800px;
+
+  a,
+  a:active,
+  a:focus {
+    outline: none;
+  }
+}
+
+.cu-modal .ui-dialog-titlebar {
+  background: none;
+  border: none;
+
+  .ui-dialog-title {
+    display: none;
+  }
+}
+
+.cu-modal .ui-dialog-titlebar-close {
+  border-radius: 50%;
+  right: -15px;
+  top: -5px;
+}

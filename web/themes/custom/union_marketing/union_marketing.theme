@@ -182,6 +182,7 @@ function union_marketing_preprocess_persona(&$variables) {
         'data-dialog-type' => 'modal',
         'data-dialog-options' => Json::encode([
           'width' => '90%',
+          'classes' => ['ui-dialog' => 'cu-modal'],
         ]),
       ]);
     }
@@ -224,6 +225,7 @@ function union_marketing_preprocess_links(&$variables) {
       'data-dialog-type' => 'modal',
       'data-dialog-options' => Json::encode([
         'width' => '90%',
+        'classes' => ['ui-dialog' => 'cu-modal'],
       ]),
     ]);
   }
