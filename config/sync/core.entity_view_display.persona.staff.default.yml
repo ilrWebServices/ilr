@@ -8,7 +8,11 @@ dependencies:
     - field.field.persona.staff.field_last_name
     - field.field.persona.staff.field_photo
     - field.field.persona.staff.field_title
+    - image.style.thumbnail_square
     - person.persona_type.staff
+  module:
+    - media
+    - text
 id: persona.staff.default
 targetEntityType: persona
 bundle: staff
@@ -23,16 +27,15 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   field_bio:
-    type: text_summary_or_trimmed
+    type: text_default
     weight: 3
     region: content
     label: hidden
-    settings:
-      trim_length: 200
+    settings: {  }
     third_party_settings: {  }
   field_photo:
     type: media_thumbnail
-    weight: 2
+    weight: -1
     region: content
     label: hidden
     settings:

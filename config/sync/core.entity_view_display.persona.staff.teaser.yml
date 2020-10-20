@@ -1,22 +1,28 @@
-uuid: a3865301-2cf0-4b2f-be72-3e8a2a0a5d1e
+uuid: f5184a72-4796-473c-9e9e-d6e4f9fb4aa5
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.persona.faculty.field_bio
-    - field.field.persona.faculty.field_first_name
-    - field.field.persona.faculty.field_last_name
-    - field.field.persona.faculty.field_photo
-    - field.field.persona.faculty.field_title
+    - core.entity_view_mode.persona.teaser
+    - field.field.persona.staff.field_bio
+    - field.field.persona.staff.field_first_name
+    - field.field.persona.staff.field_last_name
+    - field.field.persona.staff.field_photo
+    - field.field.persona.staff.field_title
     - image.style.thumbnail_square
-    - person.persona_type.faculty
+    - person.persona_type.staff
   module:
+    - layout_builder
     - media
-    - text
-id: persona.faculty.default
+    - smart_read_more_link
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: persona.staff.teaser
 targetEntityType: persona
-bundle: faculty
-mode: default
+bundle: staff
+mode: teaser
 content:
   display_name:
     label: hidden
@@ -24,18 +30,19 @@ content:
     weight: 0
     region: content
     settings:
-      link_to_entity: false
+      link_to_entity: true
     third_party_settings: {  }
   field_bio:
-    type: text_default
+    type: smart_read_more_link
     weight: 3
     region: content
     label: hidden
-    settings: {  }
+    settings:
+      trim_length: 200
     third_party_settings: {  }
   field_photo:
     type: media_thumbnail
-    weight: -1
+    weight: 2
     region: content
     label: hidden
     settings:
