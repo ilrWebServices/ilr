@@ -5,6 +5,8 @@ use Drupal\Core\Link;
 use Drupal\entity_reference_layout\EntityReferenceLayoutRevisionsFieldItemList;
 use Drupal\crop\Entity\Crop;
 use Drupal\Component\Utility\Html;
+use Drupal\Component\Render\FormattableMarkup;
+use Drupal\Component\Serialization\Json;
 
 /**
  * @file Theme file for the union_marketing.theme.
@@ -178,8 +180,54 @@ function union_marketing_preprocess_persona(&$variables) {
       $variables['content'][$field][0]['#url']->setOption('attributes', [
         'class' => ['use-ajax'],
         'data-dialog-type' => 'modal',
+        'data-dialog-options' => Json::encode([
+          'width' => '90%',
+          'classes' => ['ui-dialog' => 'cu-modal'],
+        ]),
       ]);
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_links().
+ *
+ * Update the read more links for personas.
+ */
+function union_marketing_preprocess_links(&$variables) {
+  if (isset($variables['links']['body-readmore'])) {
+    $link =& $variables['links']['body-readmore']['link'];
+    $route_parameters = $link['#url']->getRouteParameters();
+
+    // Only update persona links for now.
+    if (!isset($route_parameters['persona'])) {
+      return;
+    }
+
+    $persona_storage = \Drupal::entityTypeManager()->getStorage('persona');
+    $persona = $persona_storage->load($route_parameters['persona']);
+
+    if (empty($persona)) {
+      return;
+    }
+
+    $link['#title'] = new FormattableMarkup('@title <span class="sr-only">for @person_name</span>', [
+      '@title' => t('Read full bio'),
+      '@person_name' => $persona->getDisplayName(),
+    ]);
+
+    $link['#attached'] = [
+      'library' => ['core/drupal.dialogue.ajax']
+    ];
+
+    $link['#url']->setOption('attributes', [
+      'class' => ['use-ajax', 'cu-link--modal'],
+      'data-dialog-type' => 'modal',
+      'data-dialog-options' => Json::encode([
+        'width' => '90%',
+        'classes' => ['ui-dialog' => 'cu-modal'],
+      ]),
+    ]);
   }
 }
 
