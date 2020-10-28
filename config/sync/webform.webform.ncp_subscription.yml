@@ -1,7 +1,9 @@
 uuid: 42eadb71-d8b4-412e-ae73-cb81f36f7d8d
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - webform_mailchimp
 open: null
 close: null
 weight: 0
@@ -218,4 +220,18 @@ handlers:
       theme_name: ''
       parameters: {  }
       exclude_attachments: false
+  mailchimp:
+    id: mailchimp
+    label: MailChimp
+    handler_id: mailchimp
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      list: e4044a6343
+      email: email
+      double_optin: false
+      mergevars: "fname: '[webform_submission:values:first_name]'\r\nlname: '[webform_submission:values:last_name]'"
+      interest_groups: {  }
+      control: ''
 variants: {  }
