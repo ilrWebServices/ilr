@@ -1,4 +1,5 @@
-.webform-submission-your-story-form {
+.webform-submission-your-story-form,
+.ilr-webform-duo {
   background: #efefed;
   padding: var(--cu-vr2) var(--cu-ps2);
   margin: var(--cu-vr3) 0;
@@ -7,16 +8,19 @@
     display: grid;
     grid-gap: 50px;
 
-    .form-title {
+    .form-title,
+    .ilr-webform-duo__title {
       grid-column: 1;
     }
   }
 
-  .form-fields {
+  .form-fields,
+  .ilr-webform-duo__fields {
     grid-column: 2;
   }
 
-  .form-title .cu-label {
+  .form-title .cu-label,
+  .ilr-webform-duo__title .cu-label {
     --cu-current-heading-size: var(--cu-ps2);
     --cu-current-line-height: var(--cu-heading-line-height, 1.2);
     margin: 0 0 var(--cu-component-margin-bottom, var(--cu-vr0));
