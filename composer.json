@@ -128,10 +128,12 @@
           "Add support for media library": "https://www.drupal.org/files/issues/2019-05-06/svg_image_field-media-library-3053011.patch"
       },
       "drupal/mailchimp": {
-        "Install Mailchimp PHP API via Composer": "https://www.drupal.org/files/issues/2020-08-21/mailchimp-2845950-27.patch"
+        "Install Mailchimp PHP API via Composer": "https://www.drupal.org/files/issues/2020-08-21/mailchimp-2845950-27.patch",
+        "Add member tag support when subscribing": "./patches/mailchimp_tags.patch"
       },
       "drupal/webform_mailchimp": {
-        "Provide user selectable interest groups as Webform predefined options": "https://www.drupal.org/files/issues/2019-10-05/3036323-interest-groups-predefined-options-15.patch"
+        "Provide user selectable interest groups as Webform predefined options": "https://www.drupal.org/files/issues/2019-10-05/3036323-interest-groups-predefined-options-15.patch",
+        "Add member tag configuration to webform mailchimp handler": "./patches/webform_mailchimp_tags.patch"
       }
     },
     "installer-paths": {
