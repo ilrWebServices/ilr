@@ -231,7 +231,7 @@ handlers:
       list: e4044a6343
       email: email
       double_optin: false
-      mergevars: "fname: '[webform_submission:values:first_name]'\r\nlname: '[webform_submission:values:last_name]'"
+      mergevars: "FNAME: [webform_submission:values:first_name]\r\nLNAME: [webform_submission:values:last_name]"
       interest_groups: {  }
       control: ''
       tags: 'New Conversations Project'
