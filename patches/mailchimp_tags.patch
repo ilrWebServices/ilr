@@ -1,0 +1,49 @@
+diff --git a/mailchimp.module b/mailchimp.module
+index becfad1..6016451 100644
+--- a/mailchimp.module
++++ b/mailchimp.module
+@@ -409,7 +409,7 @@ function mailchimp_is_subscribed($list_id, $email, $reset = FALSE) {
+  *
+  * @see Mailchimp_Lists::subscribe()
+  */
+-function mailchimp_subscribe($list_id, $email, $merge_vars = NULL, $interests = [], $double_optin = FALSE, $format = 'html', $language = NULL, $gdpr_consent = FALSE) {
++function mailchimp_subscribe($list_id, $email, $merge_vars = NULL, $interests = [], $double_optin = FALSE, $format = 'html', $language = NULL, $gdpr_consent = FALSE, $member_tags = []) {
+   $config = \Drupal::config('mailchimp.settings');
+ 
+   if (empty($language)) {
+@@ -426,12 +426,13 @@ function mailchimp_subscribe($list_id, $email, $merge_vars = NULL, $interests =
+       'format' => $format,
+       'language' => $language,
+       'gdpr_consent' => $gdpr_consent,
++      'member_tags' => $member_tags,
+     ];
+ 
+     return mailchimp_addto_queue('mailchimp_subscribe_process', $args);
+   }
+ 
+-  return mailchimp_subscribe_process($list_id, $email, $merge_vars, $interests, $double_optin, $format, $language, $gdpr_consent);
++  return mailchimp_subscribe_process($list_id, $email, $merge_vars, $interests, $double_optin, $format, $language, $gdpr_consent, $member_tags);
+ }
+ 
+ /**
+@@ -439,7 +440,7 @@ function mailchimp_subscribe($list_id, $email, $merge_vars = NULL, $interests =
+  *
+  * @see Mailchimp_Lists::subscribe()
+  */
+-function mailchimp_subscribe_process($list_id, $email, $merge_vars = NULL, $interests = [], $double_optin = FALSE, $format = 'html', $language = NULL, $gdpr_consent = FALSE) {
++function mailchimp_subscribe_process($list_id, $email, $merge_vars = NULL, $interests = [], $double_optin = FALSE, $format = 'html', $language = NULL, $gdpr_consent = FALSE, $member_tags = []) {
+   $config = \Drupal::config('mailchimp.settings');
+   $result = FALSE;
+ 
+@@ -547,6 +548,11 @@ function mailchimp_subscribe_process($list_id, $email, $merge_vars = NULL, $inte
+                  );
+         }
+       }
++
++      // Add or update member tags.
++      if ($member_tags) {
++        $mc_lists->addTagsMember($list_id, $member_tags, $email);
++      }
+     }
+     else {
+       if (!$config->get('test_mode')) {

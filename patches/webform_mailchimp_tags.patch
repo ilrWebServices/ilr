@@ -1,0 +1,39 @@
+diff --git a/src/Plugin/WebformHandler/WebformMailChimpHandler.php b/src/Plugin/WebformHandler/WebformMailChimpHandler.php
+index 7e9b14f..937826d 100644
+--- a/src/Plugin/WebformHandler/WebformMailChimpHandler.php
++++ b/src/Plugin/WebformHandler/WebformMailChimpHandler.php
+@@ -88,6 +88,7 @@ class WebformMailChimpHandler extends WebformHandlerBase {
+       'email' => '',
+       'double_optin' => TRUE,
+       'mergevars' => '',
++      'tags' => '',
+       'interest_groups' => [],
+       'control' => '',
+     ];
+@@ -200,6 +201,13 @@ class WebformMailChimpHandler extends WebformHandlerBase {
+       }
+     }
+ 
++    $form['mailchimp']['tags'] = [
++      '#type' => 'textfield',
++      '#title' => $this->t('Member tags'),
++      '#default_value' => $this->configuration['tags'],
++      '#description' => $this->t('Optionally add one or more member tags. Separate multiple tags with a comma.'),
++    ];
++
+     $form['mailchimp']['double_optin'] = [
+       '#type' => 'checkbox',
+       '#title' => $this->t('Double opt-in'),
+@@ -320,7 +328,11 @@ class WebformMailChimpHandler extends WebformHandlerBase {
+         $double_optin = FALSE;
+       }
+ 
+-      mailchimp_subscribe($configuration['list'], $email, array_filter($mergevars, 'strlen'), $configuration['interest_groups'], $double_optin);
++      // Set member tags.
++      $member_tags = explode(',', $configuration['tags']);
++      $member_tags = array_map('trim', $member_tags);
++
++      mailchimp_subscribe($configuration['list'], $email, array_filter($mergevars, 'strlen'), $configuration['interest_groups'], $double_optin, 'html', NULL, FALSE, $member_tags);
+     }
+     else {
+       if (empty($configuration['list'])) {

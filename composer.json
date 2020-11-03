@@ -52,7 +52,7 @@
     "drupal/inline_entity_form": "^1.0@RC",
     "drupal/key_value_field": "^1.0",
     "drupal/linkit": "^5.0",
-    "drupal/mailchimp": "^1.11",
+    "drupal/mailchimp": "1.x-dev",
     "drupal/media_pdf_thumbnail": "^3.3",
     "drupal/menu_item_extras": "^2.8",
     "drupal/metatag": "^1.10",
@@ -79,6 +79,7 @@
     "drupal/webform_mailchimp": "^5.9",
     "drush/drush": "^10.0.0",
     "platformsh/config-reader": "^2.3",
+    "thinkshout/mailchimp-api-php": "dev-master as 2.0.0",
     "vlucas/phpdotenv": "^4.0",
     "zaporylie/composer-drupal-optimizations": "^1.0"
   },
@@ -126,8 +127,13 @@
       "drupal/svg_image_field": {
           "Add support for media library": "https://www.drupal.org/files/issues/2019-05-06/svg_image_field-media-library-3053011.patch"
       },
+      "drupal/mailchimp": {
+        "Install Mailchimp PHP API via Composer": "https://www.drupal.org/files/issues/2020-08-21/mailchimp-2845950-27.patch",
+        "Add member tag support when subscribing": "./patches/mailchimp_tags.patch"
+      },
       "drupal/webform_mailchimp": {
-        "Provide user selectable interest groups as Webform predefined options": "https://www.drupal.org/files/issues/2019-10-05/3036323-interest-groups-predefined-options-15.patch"
+        "Provide user selectable interest groups as Webform predefined options": "https://www.drupal.org/files/issues/2019-10-05/3036323-interest-groups-predefined-options-15.patch",
+        "Add member tag configuration to webform mailchimp handler": "./patches/webform_mailchimp_tags.patch"
       }
     },
     "installer-paths": {

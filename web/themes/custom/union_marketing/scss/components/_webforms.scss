@@ -27,3 +27,18 @@
     font-size: var(--cu-current-heading-size, inherit);
   }
 }
+
+.webform--with-content {
+  max-width: var(--cu-max-width-section, #{$max-width-section});
+  margin: var(--cu-vr2) auto var(--cu-vr2);
+
+  @include breakpoint(sm) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.webform--dark {
+  background: #efefed;
+  padding: var(--cu-vr1) var(--cu-ps3);
+}
