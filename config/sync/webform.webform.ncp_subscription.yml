@@ -101,9 +101,9 @@ settings:
   draft_loaded_message: ''
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
-  confirmation_type: page
+  confirmation_type: message
   confirmation_title: ''
-  confirmation_message: ''
+  confirmation_message: 'Thank you for subscribing to the New Conversations Project mailing list!'
   confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: true
