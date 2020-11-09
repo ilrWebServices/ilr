@@ -6,7 +6,7 @@
   max-width: var(--cu-max-width-section, #{$max-width-section});
 }
 
-.paragraph--type--image .media__caption {
+.cu-component--image .media__caption {
   padding-left: var(--cu-ps1);
 
   @include breakpoint(sm) {
@@ -73,7 +73,7 @@
   object-position: bottom;
 }
 
-.paragraph--type--media-deck {
+.cu-component.cu-component--media-deck {
   @include full-width();
   --cu-component-margin: var(--cu-vr1);
 
