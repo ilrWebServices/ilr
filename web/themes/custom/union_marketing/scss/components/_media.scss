@@ -32,14 +32,14 @@
 .cu-media.align-left {
   margin: 0 0 var(--cu-vr1) 0;
   width: 100%;
+  float: none;
 
   .cu-image {
     width: 100%;
   }
 
   @include breakpoint(sm) {
-    width: auto;
-    max-width: 50%;
+    width: 50%;
 
     .cu-image {
       width: auto;
