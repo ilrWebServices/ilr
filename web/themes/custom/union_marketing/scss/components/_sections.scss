@@ -28,7 +28,7 @@ figure.cu-media,
 }
 
 .cu-component--rich-text {
-  // overflow: hidden; // TODO deal with effects on inner block element margins (e.g. blockquote)
+  overflow: hidden; // TODO deal with effects on inner block element margins (e.g. blockquote)
 }
 
 // Clear floats from rich text media for adjacent components (e.g. paragraphs).
