@@ -56,6 +56,8 @@
   card_link_url: content.field_link[0]['#url'],
   card_link_alt: content.field_link[0]['#title'],
   attributes: attributes.addClass([
+    'cu-component',
+    'cu-component--' ~ paragraph.bundle|clean_class,
     'cu-card--promo',
     not paragraph.field_media.isEmpty() ? 'cu-card--promo-with-media',
     paragraph.cu_icon ? 'cu-card--pinned'

@@ -39,9 +39,10 @@
  * @ingroup themeable
  */
 #}
-
 {%
   set classes = [
+    'cu-component',
+    'cu-component--' ~ paragraph.bundle|clean_class,
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class
   ]

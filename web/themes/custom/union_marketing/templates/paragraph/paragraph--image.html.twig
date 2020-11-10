@@ -41,6 +41,8 @@
 #}
 {%
   set classes = [
+    'cu-component',
+    'cu-component--' ~ paragraph.bundle|clean_class,
     'media',
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,

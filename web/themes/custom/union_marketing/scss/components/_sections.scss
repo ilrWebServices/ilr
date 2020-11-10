@@ -11,9 +11,9 @@
   order: 3;
 }
 
-.paragraph--type--image,
 figure.cu-media,
-.paragraph--type--video {
+.cu-component--image,
+.cu-component--video {
   margin: var(--cu-component-margin-bottom, var(--cu-vr2)) 0;
 
   @include breakpoint(md) {
@@ -21,7 +21,17 @@ figure.cu-media,
   }
 }
 
-.cu-section--wide .paragraph--type--rich-text {
+.cu-section--wide .cu-component--rich-text {
   max-width: var(--cu-max-width-section, 1060px);
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cu-component--rich-text {
+  // overflow: hidden; // TODO deal with effects on inner block element margins (e.g. blockquote)
+}
+
+// Clear floats from rich text media for adjacent components (e.g. paragraphs).
+.cu-component--rich-text + .cu-component {
+  clear: both;
 }

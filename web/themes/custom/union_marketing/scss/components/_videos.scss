@@ -1,6 +1,6 @@
 // Constrain video widths in education section.
-.node--course .paragraph--type--video,
-.node--certificate .paragraph--type--video {
+.node--course .cu-component--video,
+.node--certificate .cu-component--video {
   @include breakpoint(md) {
     padding: 0 15%;
   }

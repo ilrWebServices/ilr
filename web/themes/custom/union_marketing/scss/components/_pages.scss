@@ -1,5 +1,5 @@
 // Only image paragraphs with the curtain-reveal effect should be full width on
 // page nodes.
-.node--page .paragraph--type--image.ilr-effect-image.curtain-reveal {
+.node--page .cu-component--image.ilr-effect-image.curtain-reveal {
   @include full-width(true);
 }

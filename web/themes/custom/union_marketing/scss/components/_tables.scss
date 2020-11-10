@@ -1,19 +1,19 @@
 // This is basic formatting for tables until we create a Union component.
 
-.paragraph--type--rich-text caption {
+.cu-component--rich-text caption {
   padding: var(--cu-vr-1) 0;
   font-size: larger;
 }
 
-.paragraph--type--rich-text table {
+.cu-component--rich-text table {
   --border-color: rgb(208, 208, 208);
   border-collapse: collapse;
   border: 2px solid var(--border-color);
   margin-bottom: var(--cu-vr2);
 }
 
-.paragraph--type--rich-text td,
-.paragraph--type--rich-text th {
+.cu-component--rich-text td,
+.cu-component--rich-text th {
   border: 1px solid var(--border-color);
   padding: var(--cu-vr-1) var(--cu-ps-1);
 }
@@ -24,37 +24,37 @@
 (min-device-width: 768px) and (max-device-width: 37.5rem) {
 
   /* Force table to not be like tables anymore */
-  .paragraph--type--rich-text table,
-  .paragraph--type--rich-text table caption,
-  .paragraph--type--rich-text thead,
-  .paragraph--type--rich-text tbody,
-  .paragraph--type--rich-text th,
-  .paragraph--type--rich-text td,
-  .paragraph--type--rich-text tr {
+  .cu-component--rich-text table,
+  .cu-component--rich-text table caption,
+  .cu-component--rich-text thead,
+  .cu-component--rich-text tbody,
+  .cu-component--rich-text th,
+  .cu-component--rich-text td,
+  .cu-component--rich-text tr {
     display: block;
   }
 
-  .paragraph--type--rich-text table {
+  .cu-component--rich-text table {
     border: none;
   }
 
-  .paragraph--type--rich-text table caption {
+  .cu-component--rich-text table caption {
     border-bottom: 1px solid var(--border-color);
   }
 
   /* Hide table headers (but not display: none;, for accessibility) */
-  .paragraph--type--rich-text thead tr {
+  .cu-component--rich-text thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
 
-  .paragraph--type--rich-text tr {
+  .cu-component--rich-text tr {
     padding: var(--cu-vr-2) 0;
     border-bottom: 2px solid var(--border-color);
   }
 
-  .paragraph--type--rich-text td {
+  .cu-component--rich-text td {
     padding-left: 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -62,7 +62,7 @@
     border: none;
   }
 
-  .paragraph--type--rich-text td:before {
+  .cu-component--rich-text td:before {
     content: attr(data-header);
   }
 }
