@@ -1,0 +1,43 @@
+uuid: a730dcda-f99a-408c-8785-942c2247f1ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.work_and_coronavirus_updates
+  module:
+    - block_visibility_groups
+    - ilr
+    - system
+    - webform
+  theme:
+    - union_marketing
+id: union_marketing_work_and_coronavirus_webform
+theme: union_marketing
+region: content
+weight: 3
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Work and Coronavirus updates'
+  provider: webform
+  label_display: '0'
+  webform_id: work_and_coronavirus_updates
+  default_data: ''
+  redirect: false
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/work-and-coronavirus\r\n/work-and-coronavirus/*"
+    negate: false
+    context_mapping: {  }

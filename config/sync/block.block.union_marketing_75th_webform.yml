@@ -1,25 +1,30 @@
-uuid: c6feaf94-61ac-4b14-8b19-95903d385abb
+uuid: e6b5f414-1a2d-4e6b-8116-acfe040740db
 langcode: en
 status: true
 dependencies:
+  config:
+    - webform.webform.75th_updates
   module:
     - block_visibility_groups
     - ilr
-    - mailchimp_signup
     - system
+    - webform
   theme:
     - union_marketing
-id: union_marketing_mailchimp_75
+id: union_marketing_75th_webform
 theme: union_marketing
 region: content
 weight: 3
 provider: null
-plugin: 'mailchimp_signup_subscribe_block:75th_anniversary_updates'
+plugin: webform_block
 settings:
-  id: 'mailchimp_signup_subscribe_block:75th_anniversary_updates'
-  label: 'Weekly Inbox Updates'
-  provider: mailchimp_signup
-  label_display: visible
+  id: webform_block
+  label: '75th updates'
+  provider: webform
+  label_display: '0'
+  webform_id: 75th_updates
+  default_data: ''
+  redirect: false
 visibility:
   condition_group:
     id: condition_group
