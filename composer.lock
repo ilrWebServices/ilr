@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26cc19e2830afff4e58775444e86e77b",
+    "content-hash": "8a1473d9efe9875812def27b56a336af",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5729,7 +5729,6 @@
                     }
                 },
                 "patches_applied": {
-                    "Provide user selectable interest groups as Webform predefined options": "https://www.drupal.org/files/issues/2019-10-05/3036323-interest-groups-predefined-options-15.patch",
                     "Add member tag configuration to webform mailchimp handler": "./patches/webform_mailchimp_tags.patch"
                 }
             },

@@ -1,3 +1,4 @@
+// TODO: clean up webform classes to improve reusability.
 .webform-submission-your-story-form,
 .ilr-webform-duo {
   background: #efefed;
@@ -20,7 +21,8 @@
   }
 
   .form-title .cu-label,
-  .ilr-webform-duo__title .cu-label {
+  .ilr-webform-duo__title .cu-label,
+  .cu-heading {
     --cu-current-heading-size: var(--cu-ps2);
     --cu-current-line-height: var(--cu-heading-line-height, 1.2);
     margin: 0 0 var(--cu-component-margin-bottom, var(--cu-vr0));
@@ -29,12 +31,15 @@
 }
 
 .webform--with-content {
-  max-width: var(--cu-max-width-section, #{$max-width-section});
   margin: var(--cu-vr2) auto var(--cu-vr2);
 
   @include breakpoint(sm) {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+
+  .cu-heading {
+    --cu-current-heading-size: var(--cu-ps2);
   }
 }
 
