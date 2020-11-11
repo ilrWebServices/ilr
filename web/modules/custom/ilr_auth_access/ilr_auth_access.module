@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Contains ilr_auth_access.module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_entity_view_alter().
+ *
+ * We alter the entity view rather than the access control system because we
+ * want visitors to be able to access the page (e.g. as a menu or content link),
+ * but require them to log in to view the content.
+ */
+function ilr_auth_access_entity_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  if ($build['#view_mode'] == 'full') {
+    // Check to see if the entity is protected.
+    $protected = $entity->hasField('auth_protected') && $entity->auth_protected->value;
+
+    if ($protected) {
+      // For now, we only allow NetID auths so we can just check if they're authenticated.
+      $authenticated = \Drupal::currentUser()->isAuthenticated();
+
+      if (!$authenticated) {
+        $current_url = \Drupal::request()->getRequestUri();
+        $login_url = Url::fromRoute('samlauth.saml_controller_login', [], ['query' => ['destination' => $current_url]]);
+
+        // Add a login message.
+        \Drupal::messenger()->addWarning(t('You must be <a href="@url">logged in</a> to view this content.', ['@url' => $login_url->toString()]));
+        $type = $entity->getEntityTypeId();
+        $minimal_render = [
+          '#entity_type' => $type,
+          '#' . $type => $build['#' . $type],
+        ];
+        $build = $minimal_render;
+      }
+    }
+  }
+}

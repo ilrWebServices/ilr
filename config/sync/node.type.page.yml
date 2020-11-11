@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - ilr_auth_access
     - menu_ui
 third_party_settings:
   menu_ui:
