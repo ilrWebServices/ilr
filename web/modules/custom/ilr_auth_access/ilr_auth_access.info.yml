@@ -1,7 +1,5 @@
-name: 'ILR Samlauth Access'
+name: 'ILR Auth Access'
 type: module
 description: 'Allows entities to be protected so that only logged in users can access the content.'
 core: 8.x
 package: 'ILR'
-dependencies:
-  - samlauth
