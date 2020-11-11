@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.promo
     - field.field.node.page.body
+    - field.field.node.page.auth_protected
     - field.field.node.page.field_representative_image
     - field.field.node.page.field_sections
     - field.field.node.page.field_sections_legacy
@@ -43,6 +44,7 @@ content:
     type: media_thumbnail
     region: content
 hidden:
+  auth_protected: true
   extra_field_ilr_section_navigation: true
   field_sections: true
   field_sections_legacy: true

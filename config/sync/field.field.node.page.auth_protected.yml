@@ -1,0 +1,23 @@
+uuid: 637634ed-ff47-461c-9ecc-32ff87af38ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.auth_protected
+    - node.type.page
+id: node.page.auth_protected
+field_name: auth_protected
+entity_type: node
+bundle: page
+label: Protected
+description: 'Require users to log in to access this content.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean
