@@ -1,15 +1,17 @@
 uuid: 3305019d-9b2d-4c45-a662-75a3f0650e5c
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - focal_point
 name: medium_2_3
 label: 'Medium 2:3 (700x1050)'
 effects:
-  f87510ad-6792-4450-aa08-2daa15b2803b:
-    uuid: f87510ad-6792-4450-aa08-2daa15b2803b
-    id: image_scale_and_crop
+  1a4ef418-cfc7-46fb-9969-0e2807a72fa3:
+    uuid: 1a4ef418-cfc7-46fb-9969-0e2807a72fa3
+    id: focal_point_scale_and_crop
     weight: 1
     data:
       width: 700
       height: 1050
-      anchor: center-center
+      crop_type: focal_point

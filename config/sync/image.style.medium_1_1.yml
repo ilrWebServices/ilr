@@ -1,15 +1,17 @@
 uuid: 8f16ad76-55e0-4aa1-b684-31d94db619a5
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - focal_point
 name: medium_1_1
 label: 'Medium 1:1 (600x600)'
 effects:
-  276208c2-987b-44d5-979d-32c4b05c3943:
-    uuid: 276208c2-987b-44d5-979d-32c4b05c3943
-    id: image_scale_and_crop
+  84df32ed-c276-4c4d-b03a-f7dd51d8ed26:
+    uuid: 84df32ed-c276-4c4d-b03a-f7dd51d8ed26
+    id: focal_point_scale_and_crop
     weight: 1
     data:
       width: 600
       height: 600
-      anchor: center-center
+      crop_type: focal_point

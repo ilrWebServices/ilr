@@ -1,15 +1,17 @@
 uuid: 9e799fcb-1197-4805-8482-e0095e5d3c76
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - focal_point
 name: small_4x5
-label: 'Small 4:5 (240x300)'
+label: 'Small 4:5 (480x600)'
 effects:
-  60998735-e1a7-4253-bae6-1f36fee06cab:
-    uuid: 60998735-e1a7-4253-bae6-1f36fee06cab
-    id: image_scale_and_crop
+  f3dd2e08-0635-4251-a6ae-f182cf939902:
+    uuid: f3dd2e08-0635-4251-a6ae-f182cf939902
+    id: focal_point_scale_and_crop
     weight: 1
     data:
       width: 480
       height: 600
-      anchor: center-center
+      crop_type: focal_point
