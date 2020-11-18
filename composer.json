@@ -133,6 +133,9 @@
       },
       "drupal/webform_mailchimp": {
         "Add member tag configuration to webform mailchimp handler": "./patches/webform_mailchimp_tags.patch"
+      },
+      "drupal/focal_point": {
+        "Preview link accidentally closes the media library": "https://www.drupal.org/files/issues/2020-10-11/preview_link_accidentally_closes_the_media_library-3162210-19.patch"
       }
     },
     "installer-paths": {

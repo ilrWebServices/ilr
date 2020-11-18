@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a1473d9efe9875812def27b56a336af",
+    "content-hash": "e8230ab9b9515af92ce931670b0dbe3f",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3733,6 +3733,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Preview link accidentally closes the media library": "https://www.drupal.org/files/issues/2020-10-11/preview_link_accidentally_closes_the_media_library-3162210-19.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
