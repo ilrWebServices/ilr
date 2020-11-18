@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.image
   module:
     - media_library
+    - media_library_edit
 id: paragraph.image.default
 targetEntityType: paragraph
 bundle: image
@@ -25,7 +26,9 @@ content:
     weight: 0
     settings:
       media_types: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
     type: media_library_widget
     region: content
 hidden:

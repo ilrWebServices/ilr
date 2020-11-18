@@ -15,6 +15,7 @@ dependencies:
     - entity_browser_entity_form
     - inline_entity_form
     - media_library
+    - media_library_edit
     - paragraphs_previewer
     - path
     - text
@@ -72,7 +73,9 @@ content:
     weight: 101
     settings:
       media_types: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
     type: media_library_widget
     region: content
   field_sections:
