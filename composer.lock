@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d43061f0ece6ec3625c8371b7c04f1cc",
+    "content-hash": "0c3fe6c6dc6e27a142e9ca7190f4678f",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3701,6 +3701,57 @@
             "homepage": "https://drupal.org/project/file_download_link",
             "support": {
                 "source": "https://git.drupalcode.org/project/file_download_link"
+            }
+        },
+        {
+            "name": "drupal/filehash",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/filehash.git",
+                "reference": "8.x-1.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/filehash-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "341e1d1da58dd05f8bbc11d317b54b70c3838d9b"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.4",
+                    "datestamp": "1578637687",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Burdett (mfb)",
+                    "homepage": "https://www.drupal.org/u/mfb",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "File Hash module generates and stores MD5, SHA-1 and/or SHA-256 hashes for each file uploaded to the site.",
+            "homepage": "https://www.drupal.org/project/filehash",
+            "support": {
+                "source": "https://git.drupalcode.org/project/filehash",
+                "issues": "https://www.drupal.org/project/issues/filehash"
             }
         },
         {
