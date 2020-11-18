@@ -15,6 +15,7 @@ dependencies:
     - entity_browser
     - link
     - media_library
+    - media_library_edit
     - text
 id: node.media_mention.default
 targetEntityType: node
@@ -69,7 +70,9 @@ content:
     weight: 9
     settings:
       media_types: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
     type: media_library_widget
     region: content
   promote:

@@ -15,6 +15,7 @@ dependencies:
     - datetime
     - entity_browser
     - media_library
+    - media_library_edit
     - paragraphs
     - path
     - text
@@ -82,7 +83,9 @@ content:
     weight: 9
     settings:
       media_types: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
     type: media_library_widget
     region: content
   field_subtitle:

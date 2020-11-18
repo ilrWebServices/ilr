@@ -10,6 +10,7 @@ dependencies:
     - paragraphs.paragraphs_type.testimonial
   module:
     - media_library
+    - media_library_edit
 id: paragraph.testimonial.default
 targetEntityType: paragraph
 bundle: testimonial
@@ -19,7 +20,9 @@ content:
     weight: 4
     settings:
       media_types: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
     type: media_library_widget
     region: content
   field_name:
