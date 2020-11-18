@@ -1,15 +1,17 @@
 uuid: 53ef5f00-c3d8-44cb-adda-a685288f3b4c
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - focal_point
 name: large_21_9_1200x514_
 label: 'Large 21:9 (1200x514)'
 effects:
-  782b99ac-4a83-4205-aa47-36fcce23f043:
-    uuid: 782b99ac-4a83-4205-aa47-36fcce23f043
-    id: image_scale_and_crop
+  1a11e4c4-ebd7-4b3f-9cb2-a9455cc16f7a:
+    uuid: 1a11e4c4-ebd7-4b3f-9cb2-a9455cc16f7a
+    id: focal_point_scale_and_crop
     weight: 1
     data:
       width: 1200
       height: 514
-      anchor: center-center
+      crop_type: focal_point

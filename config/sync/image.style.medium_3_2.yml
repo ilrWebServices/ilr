@@ -1,15 +1,17 @@
 uuid: 9f5a20ef-9572-4c98-a398-d214822879c2
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - focal_point
 name: medium_3_2
 label: 'Medium 3:2 (720x480)'
 effects:
-  9679dc6d-3af3-4f80-ac4a-97f553cba8c8:
-    uuid: 9679dc6d-3af3-4f80-ac4a-97f553cba8c8
-    id: image_scale_and_crop
+  e22718c8-f2f7-44c8-988c-c7f34e599f7d:
+    uuid: e22718c8-f2f7-44c8-988c-c7f34e599f7d
+    id: focal_point_scale_and_crop
     weight: 1
     data:
       width: 720
       height: 480
-      anchor: center-center
+      crop_type: focal_point

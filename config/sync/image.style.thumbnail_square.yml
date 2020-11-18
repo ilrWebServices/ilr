@@ -1,15 +1,17 @@
 uuid: 6e935c24-82fc-4aa0-928a-d24aa98a89c7
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - focal_point
 name: thumbnail_square
 label: 'Thumbnail Square (200x200)'
 effects:
-  f7748af4-8b2a-4e5a-b090-f192276d213b:
-    uuid: f7748af4-8b2a-4e5a-b090-f192276d213b
-    id: image_scale_and_crop
+  19bea1c7-d722-406e-a4ae-55ff400a1b47:
+    uuid: 19bea1c7-d722-406e-a4ae-55ff400a1b47
+    id: focal_point_scale_and_crop
     weight: 1
     data:
       width: 200
       height: 200
-      anchor: center-center
+      crop_type: focal_point
