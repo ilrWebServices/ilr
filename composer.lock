@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f46a72ac29df8ad2ae4bcb55f9e874e4",
+    "content-hash": "d43061f0ece6ec3625c8371b7c04f1cc",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4166,6 +4166,9 @@
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
                     }
+                },
+                "patches_applied": {
+                    "Open in modal": "https://www.drupal.org/files/issues/2020-11-18/open-in-modal-3034205-54.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
