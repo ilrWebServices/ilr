@@ -79,6 +79,9 @@ function collection_item_path_form_collection_item_list_alter(&$form, FormStateI
         '#type' => 'link',
         '#title' => $collection_item->item->entity->label(),
         '#url' => $collection_item->toURL(),
+        '#attributes' => [
+          'class' => ['collection-item-entity-label'],
+        ],
       ];
     }
   }
