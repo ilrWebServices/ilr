@@ -1,0 +1,43 @@
+uuid: e6025fce-3e8b-43ff-ae25-7ec4b9ec92f3
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:simple_text:944424d2-7b75-4a4a-97bd-0fdce68200f2'
+  module:
+    - block_content
+    - block_visibility_groups
+    - ilr
+    - system
+  theme:
+    - union_marketing
+id: union_marketing_collection_scheinman_vid_banner
+theme: union_marketing
+region: highlighted
+weight: -1
+provider: null
+plugin: 'block_content:944424d2-7b75-4a4a-97bd-0fdce68200f2'
+settings:
+  id: 'block_content:944424d2-7b75-4a4a-97bd-0fdce68200f2'
+  label: 'Scheinman video banner'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /scheinman-institute
+    negate: false
+    context_mapping: {  }

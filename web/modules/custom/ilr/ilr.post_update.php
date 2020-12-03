@@ -592,3 +592,47 @@ function ilr_post_update_create_collection_item_aliases(&$sandbox) {
     }
   }
 }
+
+/**
+ * Create Scheinman hero video block.
+ */
+function ilr_post_update_create_scheinman_hero_video_block(&$sandbox) {
+  $blockEntityManager = \Drupal::service('entity_type.manager')
+    ->getStorage('block_content');
+
+  $block = $blockEntityManager->create([
+    'type' => 'simple_text',
+    'uuid' => '944424d2-7b75-4a4a-97bd-0fdce68200f2',
+    'label_display' => 0,
+  ]);
+
+  $block->info = "Scheinman video banner";
+  $content = '<div class="cu-banner--video cu-banner">
+  <div class="cu-banner__media">
+    <div class="video-pause">
+      <div aria-pressed="false"
+        class="cu-icon--inline cu-icon cu-icon--play pause" role="button"><svg
+          class="cu-icon__image" viewBox="0 0 100 100" width="3em"
+          xmlns="http://www.w3.org/2000/svg">
+          <use href="/libraries/union/source/images/icons.svg#pause"></use>
+        </svg>
+        <div class="cu-icon__label sr-only">Pause Video</div>
+      </div>
+      <div aria-pressed="false"
+        class="cu-icon--inline cu-icon cu-icon--play play visually-hidden" role="button">
+        <svg class="cu-icon__image" viewBox="0 0 100 100" width="3em"
+          xmlns="http://www.w3.org/2000/svg">
+          <use href="/libraries/union/source/images/icons.svg#play"></use>
+        </svg>
+        <div class="cu-icon__label sr-only">Play Video</div>
+      </div>
+    </div>
+    <video autoplay="" class="cu-video" loop="" muted=""
+      src="https://ilr-images.s3.amazonaws.com/video/scheinman_hero_20201202_750.mp4
+      ">&nbsp;</video>
+  </div>
+</div>';
+  $block->body->value = $content;
+  $block->body->format = 'full_html';
+  $block->save();
+}

@@ -22,7 +22,8 @@
   border: 0;
 }
 
-#block-union-marketing-75thvideobanner {
+#block-union-marketing-75thvideobanner,
+#block-union-marketing-collection-scheinman-vid-banner {
   @include full-width();
 
   overflow: hidden;
@@ -31,4 +32,8 @@
     width: 100%;
     margin-bottom: -15%;
   }
+}
+
+#block-union-marketing-collection-scheinman-vid-banner {
+  margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr0));
 }
