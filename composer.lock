@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c3fe6c6dc6e27a142e9ca7190f4678f",
+    "content-hash": "a4b62b8ccbd86dbc64d61ecc49052afc",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2862,7 +2862,8 @@
                 },
                 "patches_applied": {
                     "Remove invalid iframe attributes from oembed field formatter": "https://www.drupal.org/files/issues/2019-07-31/remove-iframe-attributes-3071446-4.patch",
-                    "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch"
+                    "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch",
+                    "OEmbed throws fetched resource did not have a valid Content-Type header for text/html responses": "https://www.drupal.org/files/issues/2020-12-04/3186415-8.9.x-youtube-headers-html.patch"
                 }
             },
             "autoload": {
