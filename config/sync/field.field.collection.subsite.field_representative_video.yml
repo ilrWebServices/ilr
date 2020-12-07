@@ -1,0 +1,28 @@
+uuid: 01753bbf-3a37-4a68-9cf7-7702d210b132
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.subsite
+    - field.storage.collection.field_representative_video
+    - media.type.video
+id: collection.subsite.field_representative_video
+field_name: field_representative_video
+entity_type: collection
+bundle: subsite
+label: 'Representative Video'
+description: 'This video may be used as the banner background.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      video: video
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

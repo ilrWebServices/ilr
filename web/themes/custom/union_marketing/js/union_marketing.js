@@ -29,7 +29,7 @@
 
   Drupal.behaviors.union_marketing_banner_bg_fixup = {
     attach: function (context, settings) {
-      const banner_images = context.querySelectorAll('.cu-banner--page .field-representative-image');
+      const banner_images = context.querySelectorAll('.cu-banner--page .field--field-representative-video .field--field-media-video-file');
 
       for (const banner_image of banner_images) {
         let banner_media_elem = banner_image.closest('.cu-banner--page').querySelector('.cu-banner__media');

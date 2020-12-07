@@ -822,6 +822,10 @@ function ilr_form_collection_form_alter(&$form, FormStateInterface $form_state) 
       $form['field_representative_image']['#group'] = 'ilr_meta';
     }
 
+    if (isset($form['field_representative_video'])) {
+      $form['field_representative_video']['#group'] = 'ilr_meta';
+    }
+
     if (isset($form['field_suppress_date_display'])) {
       $form['field_suppress_date_display']['#group'] = 'ilr_meta';
     }

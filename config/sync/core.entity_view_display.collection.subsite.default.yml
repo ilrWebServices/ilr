@@ -6,6 +6,7 @@ dependencies:
     - collection.collection_type.subsite
     - field.field.collection.subsite.body
     - field.field.collection.subsite.field_representative_image
+    - field.field.collection.subsite.field_representative_video
     - field.field.collection.subsite.field_sections
     - field.field.collection.subsite.layout_builder__layout
     - image.style.large_21_9_1200x514_
@@ -77,6 +78,23 @@ third_party_settings:
                 third_party_settings: {  }
             additional: {  }
             weight: 0
+          50800168-9c22-482b-8476-4ae7765246e3:
+            uuid: 50800168-9c22-482b-8476-4ae7765246e3
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:collection:subsite:field_representative_video'
+              formatter:
+                type: entity_reference_entity_view
+                label: above
+                settings:
+                  view_mode: default
+                  link: false
+                third_party_settings: {  }
+            additional: {  }
+            weight: 3
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -122,6 +140,15 @@ content:
       image_link: ''
     third_party_settings: {  }
     region: content
+  field_representative_video:
+    type: entity_reference_entity_view
+    weight: 4
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: main
   field_sections:
     type: entity_reference_revisions_entity_view
     weight: 2

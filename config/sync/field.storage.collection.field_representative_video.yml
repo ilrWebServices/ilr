@@ -1,0 +1,20 @@
+uuid: eadef47a-4065-4469-9a32-32d987c4b5d3
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - media
+id: collection.field_representative_video
+field_name: field_representative_video
+entity_type: collection
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
