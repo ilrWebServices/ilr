@@ -2154,7 +2154,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/collection.git",
-                "reference": "5e3e15ce54dd9829020cfb2aa7d544f0e2f676db"
+                "reference": "8c52d494bd9efb73696f07d39ecf538af14b6017"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -2172,7 +2172,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1602623838",
+                    "datestamp": "1602624146",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -2205,7 +2205,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/collection"
             },
-            "time": "2020-10-13T21:22:00+00:00"
+            "time": "2020-12-08T21:36:23+00:00"
         },
         {
             "name": "drupal/config_filter",
