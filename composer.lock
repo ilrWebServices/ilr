@@ -4062,20 +4062,20 @@
         },
         {
             "name": "drupal/linkit",
-            "version": "5.0.0-beta10",
+            "version": "5.0.0-beta11",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/linkit.git",
-                "reference": "8.x-5.0-beta10"
+                "reference": "8.x-5.0-beta11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/linkit-8.x-5.0-beta10.zip",
-                "reference": "8.x-5.0-beta10",
-                "shasum": "9980707514ec63fd1bdc27eebd4af243efda97a6"
+                "url": "https://ftp.drupal.org/files/projects/linkit-8.x-5.0-beta11.zip",
+                "reference": "8.x-5.0-beta11",
+                "shasum": "9133a3e61deafdd6a9d5a8b31a1f42e16051ee97"
             },
             "require": {
-                "drupal/core": "~8.0"
+                "drupal/core": "^8.7.7 || ^9"
             },
             "require-dev": {
                 "drupal/imce": "*"
@@ -4083,8 +4083,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-5.0-beta10",
-                    "datestamp": "1573783085",
+                    "version": "8.x-5.0-beta11",
+                    "datestamp": "1591971693",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
