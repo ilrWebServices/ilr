@@ -3452,27 +3452,27 @@
         },
         {
             "name": "drupal/entity_reference_layout",
-            "version": "1.0.0-alpha6",
+            "version": "1.0.0-alpha7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/entity_reference_layout.git",
-                "reference": "8.x-1.0-alpha6"
+                "reference": "8.x-1.0-alpha7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_reference_layout-8.x-1.0-alpha6.zip",
-                "reference": "8.x-1.0-alpha6",
-                "shasum": "ca526967d80723c1ea06fb0097d2de1775c18025"
+                "url": "https://ftp.drupal.org/files/projects/entity_reference_layout-8.x-1.0-alpha7.zip",
+                "reference": "8.x-1.0-alpha7",
+                "shasum": "afc2e3e1983fc3bcdc3ad737b00eeaeeae4b3218"
             },
             "require": {
-                "drupal/core": "*",
+                "drupal/core": "^8.8 || ^9",
                 "drupal/paragraphs": "^1.6"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0-alpha6",
-                    "datestamp": "1589208965",
+                    "version": "8.x-1.0-alpha7",
+                    "datestamp": "1591726667",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
