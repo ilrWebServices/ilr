@@ -2090,29 +2090,26 @@
         },
         {
             "name": "drupal/block_visibility_groups",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/block_visibility_groups.git",
-                "reference": "8.x-1.3"
+                "reference": "8.x-1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/block_visibility_groups-8.x-1.3.zip",
-                "reference": "8.x-1.3",
-                "shasum": "3c42377fcf6b849e8509b4b993a750cbc1a90a9b"
+                "url": "https://ftp.drupal.org/files/projects/block_visibility_groups-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "2572fd5bd7fb3a0c3dbcdf262fbbc9646a3d12ed"
             },
             "require": {
-                "drupal/core": "*"
+                "drupal/core": "^8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.3",
-                    "datestamp": "1536509886",
+                    "version": "8.x-1.4",
+                    "datestamp": "1602107538",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2137,14 +2134,14 @@
                     "homepage": "https://www.drupal.org/user/240860"
                 }
             ],
-            "description": "My Awesome Module",
-            "homepage": "http://drupal.org/project/block_visibility_groups",
+            "description": "Block Visibility Groups",
+            "homepage": "https://www.drupal.org/project/block_visibility_groups",
             "keywords": [
                 "Drupal"
             ],
             "support": {
-                "source": "http://cgit.drupalcode.org/block_visibility_groups",
-                "issues": "http://drupal.org/project/issues/block_visibility_groups"
+                "source": "https://git.drupalcode.org/project/block_visibility_groups",
+                "issues": "https://www.drupal.org/project/issues/block_visibility_groups"
             }
         },
         {
