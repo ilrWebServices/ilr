@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b25aabb019073d9680b2257e3effb533",
+    "content-hash": "f04e24a764a2380244cb181be6010150",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5278,32 +5278,29 @@
         },
         {
             "name": "drupal/summary_word_limit",
-            "version": "1.0.0-beta1",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/summary_word_limit.git",
-                "reference": "8.x-1.0-beta1"
+                "reference": "2.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/summary_word_limit-8.x-1.0-beta1.zip",
-                "reference": "8.x-1.0-beta1",
-                "shasum": "0984d2a6f3969bf39774ac28752860b273663116"
+                "url": "https://ftp.drupal.org/files/projects/summary_word_limit-2.0.0.zip",
+                "reference": "2.0.0",
+                "shasum": "94e1dc01bee1bb3d6b7d99cf5a8a03a56e6afc9f"
             },
             "require": {
-                "drupal/core": "~8.0"
+                "drupal/core": "^8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.0-beta1",
-                    "datestamp": "1572045487",
+                    "version": "2.0.0",
+                    "datestamp": "1608068063",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -5312,6 +5309,10 @@
                 "GPL-2.0-or-later"
             ],
             "authors": [
+                {
+                    "name": "a-fro",
+                    "homepage": "https://www.drupal.org/user/2420892"
+                },
                 {
                     "name": "jeffam",
                     "homepage": "https://www.drupal.org/user/397127"
