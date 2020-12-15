@@ -187,6 +187,7 @@ handlers:
   email:
     id: email
     label: Email
+    notes: ''
     handler_id: email
     status: true
     conditions: {  }
@@ -223,6 +224,7 @@ handlers:
   mailchimp:
     id: mailchimp
     label: MailChimp
+    notes: ''
     handler_id: mailchimp
     status: true
     conditions: {  }
