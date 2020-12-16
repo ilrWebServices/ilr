@@ -50,6 +50,7 @@ filters:
     settings:
       default_view_mode: embedded
       allowed_media_types:
+        audio: audio
         file: file
         image: image
         remote_video: remote_video
