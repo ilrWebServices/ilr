@@ -132,7 +132,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
       $blog_post_collection_items = $collection_item_storage->getQuery()
         ->condition('type', 'blog')
         ->condition('item.entity:node.status', 1)
-        ->condition('item.entity:node.type', 'post') // @todo
+        ->condition('item.entity:node.type', ['post', 'media_mention'], 'IN')
         ->condition($term_reference_field_name, $entity->id())
         ->sort('item.entity:node.field_published_date', 'DESC')
         ->execute();
