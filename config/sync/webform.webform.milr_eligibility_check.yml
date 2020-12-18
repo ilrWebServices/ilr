@@ -187,6 +187,7 @@ handlers:
   mailchimp_milr:
     id: mailchimp
     label: 'MailChimp MILR'
+    notes: ''
     handler_id: mailchimp_milr
     status: true
     conditions: {  }
@@ -198,9 +199,11 @@ handlers:
       mergevars: "FNAME: [webform_submission:values:first_name]\r\nLNAME: [webform_submission:values:last_name]\r\nPHONE: [webform_submission:values:phone]\r\nEXPERIENCE: [webform_submission:values:experience_years]\r\nEMPLOYER: [webform_submission:values:employer]\r\nBACHELORS: [webform_submission:values:bachelors_complete]\r\nGRADYEAR: [webform_submission:values:degree_year]\r\nSOURCE: [webform_submission:values:marketing_channel]"
       interest_groups: {  }
       control: ''
+      tags: ''
   email:
     id: email
     label: Email
+    notes: ''
     handler_id: email
     status: true
     conditions: {  }
