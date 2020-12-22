@@ -28,7 +28,7 @@ interface PersonaInterface extends ContentEntityInterface, EntityChangedInterfac
    *
    * @param string $field_name
    *
-   * @return boolean
+   * @return bool
    *   TRUE if the value is overridden.
    */
   public function fieldIsOverridden($field_name);

@@ -50,7 +50,7 @@ class SectionNidLinkBatch {
         $text_content = $paragraph->entity->field_body->value;
 
         if (preg_match_all('/href="\/node\/(\d+)"/m', $text_content, $matches, PREG_SET_ORDER)) {
-          foreach($matches as $match) {
+          foreach ($matches as $match) {
             $new_node_mapping = $import_mapped_object_storage->loadByProperties([
               'type' => 'node',
               'sourceid' => $match[1],

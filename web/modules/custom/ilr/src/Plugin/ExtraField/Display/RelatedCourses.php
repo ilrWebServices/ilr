@@ -8,6 +8,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
+
 /**
  * Example Extra field Display.
  *
@@ -53,7 +54,6 @@ class RelatedCourses extends ExtraFieldDisplayBase implements ContainerFactoryPl
     $elements = [];
 
     // Add cache tags for course node lists.
-
     // Get the 'primary' topic term id for the current course node. The term
     // reference with the delta 0, e.g. the first one in the multivalue field,
     // is considered the primary.
@@ -62,9 +62,6 @@ class RelatedCourses extends ExtraFieldDisplayBase implements ContainerFactoryPl
     if (!$primary_tid) {
       return $elements;
     }
-
-    // dump($this->nodeStorage->getQuery());
-    // dump(\Drupal::entityQuery('node'));
 
     $related_node_ids = $this->nodeStorage->getQuery()
       ->condition('type', 'course')
@@ -76,12 +73,12 @@ class RelatedCourses extends ExtraFieldDisplayBase implements ContainerFactoryPl
     $related_nodes = $this->nodeStorage->loadMultiple(array_values($related_node_ids));
 
     // Filter out course nodes with no upcoming classes.
-    $related_nodes_upcoming = array_filter($related_nodes, function($node) {
+    $related_nodes_upcoming = array_filter($related_nodes, function ($node) {
       return (bool) $node->classes->count();
     });
 
     // Sort course nodes by first upcoming class date.
-    uasort($related_nodes_upcoming, function($a, $b) {
+    uasort($related_nodes_upcoming, function ($a, $b) {
       $class_a_start_date = new DrupalDateTime($a->classes->first()->entity->field_date_start->value);
       $class_b_start_date = new DrupalDateTime($b->classes->first()->entity->field_date_start->value);
       return $class_a_start_date->getPhpDateTime() > $class_b_start_date->getPhpDateTime() ? 1 : -1;
@@ -104,7 +101,7 @@ class RelatedCourses extends ExtraFieldDisplayBase implements ContainerFactoryPl
       '#attributes' => ['class' => 'related-courses'],
       '#context' => ['node' => $entity],
       '#cache' => [
-        'tags' => ['node_list:course', 'node_list:class']
+        'tags' => ['node_list:course', 'node_list:class'],
       ],
     ];
 

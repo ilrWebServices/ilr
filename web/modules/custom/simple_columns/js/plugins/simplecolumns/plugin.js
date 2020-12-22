@@ -7,7 +7,7 @@
 
 (function ($, Drupal, CKEDITOR) {
 
-  let hasColumnParent = function(element) {
+  let hasColumnParent = function (element) {
     if ((element instanceof CKEDITOR.dom.element) && element.hasClass('simple-columns')) {
       return element;
     } else {

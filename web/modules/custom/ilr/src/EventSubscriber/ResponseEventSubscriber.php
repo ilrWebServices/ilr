@@ -11,12 +11,18 @@ use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
  */
 class ResponseEventSubscriber implements EventSubscriberInterface {
 
+  /**
+   * Register subscribed events.
+   */
   public static function getSubscribedEvents() {
     return [
       KernelEvents::RESPONSE => 'onResponse',
     ];
   }
 
+  /**
+   * Prevent search engine indexing when hostname isn't whitelisted.
+   */
   public function onResponse(FilterResponseEvent $event) {
     $request = $event->getRequest();
 
@@ -25,4 +31,5 @@ class ResponseEventSubscriber implements EventSubscriberInterface {
       $response->headers->set('X-Robots-Tag', 'noindex, nofollow');
     }
   }
+
 }

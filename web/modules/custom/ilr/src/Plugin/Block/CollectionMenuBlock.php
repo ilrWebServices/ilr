@@ -9,7 +9,6 @@ use Drupal\Core\Menu\MenuActiveTrailInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\collection\Entity\CollectionInterface;
-use Drupal\path_alias_entities\PathAliasEntities;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\Cache;
@@ -107,7 +106,7 @@ class CollectionMenuBlock extends BlockBase implements ContainerFactoryPluginInt
    *
    * TODO Find (or create) a cache context that only considers the first part of
    * the url.path (e.g. only `foo` from `foo/bar/baz`). See
-   * PathParentCacheContext
+   * PathParentCacheContext.
    */
   public function getCacheContexts() {
     return Cache::mergeContexts(parent::getCacheContexts(), ['url.path']);

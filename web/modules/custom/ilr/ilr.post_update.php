@@ -5,6 +5,10 @@
  * Post update functions for the ILR module.
  */
 
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\node\Entity\Node;
+
 /**
  * Add alt attributes for instructor photos that don't have one.
  */
@@ -12,8 +16,8 @@ function ilr_post_update_instructor_photo_alt_attributes(&$sandbox) {
   $modified_media_count = 0;
 
   // Get all instructor nodes.
-  $instructor_nids = \Drupal::entityQuery('node')->condition('type','instructor')->execute();
-  $instructor_nodes = \Drupal\node\Entity\Node::loadMultiple($instructor_nids);
+  $instructor_nids = \Drupal::entityQuery('node')->condition('type', 'instructor')->execute();
+  $instructor_nodes = Node::loadMultiple($instructor_nids);
 
   foreach ($instructor_nodes as $instructor_node) {
     // Get the media entity for the instructor photo.
@@ -37,7 +41,7 @@ function ilr_post_update_instructor_photo_alt_attributes(&$sandbox) {
   }
 
   return t('%modified_media_count instructor photo media entities were updated with new alt attributes.', [
-    '%modified_media_count' => $modified_media_count
+    '%modified_media_count' => $modified_media_count,
   ]);
 }
 
@@ -95,7 +99,7 @@ function ilr_post_update_rich_text_headings(&$sandbox) {
   $query->condition('type', 'rich_text')->condition($group);
   $rich_text_paragraph_ids = $query->execute();
 
-  $rich_text_paragraphs = \Drupal\paragraphs\Entity\Paragraph::loadMultiple($rich_text_paragraph_ids);
+  $rich_text_paragraphs = Paragraph::loadMultiple($rich_text_paragraph_ids);
 
   // Prepend the headings to the body field as h2 and h3 elements.
   foreach ($rich_text_paragraphs as $rich_text_paragraph) {
@@ -158,7 +162,7 @@ function ilr_post_update_add_covid_blog_category_terms(&$sandbox) {
   $entity_type_manager = \Drupal::service('entity_type.manager');
   $collection = $entity_type_manager->getStorage('collection')->load(2);
 
-  // Load the covid vocabulary
+  // Load the covid vocabulary.
   $vocabulary = $entity_type_manager->getStorage('taxonomy_vocabulary')->load('blog_2_categories');
 
   if ($vocabulary) {
@@ -297,7 +301,7 @@ function ilr_post_update_update_post_listing_styles(&$sandbox) {
   $query = \Drupal::entityQuery('paragraph');
   $query->condition('type', 'simple_collection_listing');
   $post_listing_paragraph_ids = $query->execute();
-  $simple_post_listings = \Drupal\paragraphs\Entity\Paragraph::loadMultiple($post_listing_paragraph_ids);
+  $simple_post_listings = Paragraph::loadMultiple($post_listing_paragraph_ids);
 
   foreach ($simple_post_listings as $simple_post_listing) {
     $settings = $simple_post_listing->getAllBehaviorSettings();
@@ -352,7 +356,7 @@ function ilr_post_update_update_list_styles(&$sandbox) {
   $query = \Drupal::entityQuery('paragraph');
   $query->condition('type', ['simple_collection_listing', 'curated_post_listing', 'collection_listing_publication'], 'IN');
   $relevant_paragraph_ids = $query->execute();
-  $paragraphs = \Drupal\paragraphs\Entity\Paragraph::loadMultiple($relevant_paragraph_ids);
+  $paragraphs = Paragraph::loadMultiple($relevant_paragraph_ids);
 
   foreach ($paragraphs as $paragraph) {
     $settings = $paragraph->getAllBehaviorSettings();
@@ -439,7 +443,7 @@ function ilr_post_update_fix_imported_image_embeds(&$sandbox) {
     // Update any embedded media. See https://regex101.com/r/K5FMNj/4 to test
     // this regex.
     if (preg_match_all('/\[\[{"fid":"(\d+)".*"link_text":"?([^",]+)"?.*\]\]/m', $text_content, $matches, PREG_SET_ORDER)) {
-      foreach($matches as $match) {
+      foreach ($matches as $match) {
         if ($media = $media_storage->load($match[1])) {
           $link_text = $match[2] !== 'null' ? $match[2] : '';
           $text_content = str_replace($match[0], sprintf('<drupal-media data-link-text="%s" data-entity-type="media" data-entity-uuid="%s"></drupal-media>', $link_text, $media->uuid()), $text_content);
@@ -587,7 +591,7 @@ function ilr_post_update_create_collection_item_aliases(&$sandbox) {
   $collection_items = array_merge($collection_items, $collection_item_storage->loadMultiple($result));
 
   foreach ($collection_items as $collection_item) {
-    if ($collection_item->item->entity instanceof \Drupal\Core\Entity\ContentEntityInterface ) {
+    if ($collection_item->item->entity instanceof ContentEntityInterface) {
       $pathauto_generator->updateEntityAlias($collection_item, 'update');
     }
   }

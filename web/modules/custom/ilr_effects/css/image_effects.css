@@ -44,13 +44,11 @@
       min-height: 100vh;
     }
   }
-
   /* Ensure the caption has a white background. */
   .ilr-effect-image.curtain-reveal .media__caption {
     position: relative;
     z-index: 1;
   }
-
   .ilr-effect-image.curtain-reveal .media__caption::before {
     content: '';
     display: block;

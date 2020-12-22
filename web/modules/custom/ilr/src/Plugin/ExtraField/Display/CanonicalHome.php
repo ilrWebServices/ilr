@@ -54,6 +54,9 @@ class CanonicalHome extends ExtraFieldDisplayBase implements ContainerFactoryPlu
     return $build;
   }
 
+  /**
+   * Generate the canonical link if this item is non-canonical.
+   */
   protected function getCanonicalLink(ContentEntityInterface $collection_item) {
     $canonical_link = NULL;
 

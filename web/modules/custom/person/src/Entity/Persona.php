@@ -104,7 +104,8 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
           $this->$field_name = $this->person->entity->$field_name;
         }
       }
-    } // It's a persona for a non-existing person
+    }
+    // It's a persona for a non-existing person.
     else {
       if ($person = $this->createPerson()) {
         $this->person = $person->id();
@@ -147,9 +148,9 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
 
   /**
    * Create a person for this persona. Used when personas are created on the fly.
-    *
-    * @return int
-    */
+   *
+   * @return int
+   */
   protected function createPerson() {
     $person_values = [];
     $inherited_fields = $this->type->entity->getInheritedFieldNames();
@@ -210,25 +211,25 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
       ->setRequired(TRUE);
 
     $fields['display_name'] = BaseFieldDefinition::create('string')
-        ->setLabel(t('Display Name'))
-        ->setDescription(t('Generally, the full name of this Persona, suitable for display.'))
-        ->setSettings([
-          'default_value' => '',
-          'max_length' => 255,
-          'text_processing' => 0,
-        ])
-        ->setDisplayOptions('view', [
-          'label' => 'hidden',
-          'type' => 'string',
-          'weight' => 0,
-        ])
-        ->setDisplayOptions('form', [
-          'type' => 'string_textfield',
-          'weight' => 0,
-        ])
-        ->setDisplayConfigurable('form', TRUE)
-        ->setDisplayConfigurable('view', TRUE)
-        ->setRevisionable(TRUE);
+      ->setLabel(t('Display Name'))
+      ->setDescription(t('Generally, the full name of this Persona, suitable for display.'))
+      ->setSettings([
+        'default_value' => '',
+        'max_length' => 255,
+        'text_processing' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => 0,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => 0,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setRevisionable(TRUE);
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))

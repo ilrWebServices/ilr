@@ -126,12 +126,12 @@ class StoryListing extends ParagraphsBehaviorBase {
   /**
    * Get a node view mode for a given list style.
    *
-   * @param $paragraph Paragraph
+   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
    *
-   * @param $list_style string
+   * @param string $list_style
    *   One of the list style machine names from this::list_styles.
    *
-   * @param $post_number int
+   * @param int $post_number
    *   The order placement of the post in the listing.
    *
    * @return string

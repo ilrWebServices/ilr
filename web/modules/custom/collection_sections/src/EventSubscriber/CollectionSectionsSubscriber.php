@@ -86,12 +86,13 @@ class CollectionSectionsSubscriber implements EventSubscriberInterface {
 
     if ($menu) {
       $this->messenger->addMessage($this->t('Created new %menu_name section menu.', [
-        '%menu_name' => $menu->label()
+        '%menu_name' => $menu->label(),
       ]));
 
       // Add the menu to this new collection.
       $collection_item_menu = $collection_item_storage->create([
-        'type' => 'default', // @todo: Consider a dedicated type.
+      // @todo: Consider a dedicated type.
+        'type' => 'default',
         'collection' => $collection->id(),
       ]);
       $collection_item_menu->item = $menu;
@@ -161,4 +162,5 @@ class CollectionSectionsSubscriber implements EventSubscriberInterface {
       }
     }
   }
+
 }

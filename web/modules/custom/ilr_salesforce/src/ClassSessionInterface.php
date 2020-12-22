@@ -3,7 +3,6 @@
 namespace Drupal\ilr_salesforce\Entity;
 
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Provides an interface for defining Collection entities.

@@ -5,6 +5,9 @@ namespace Drupal\collection_item_path\Controller;
 use Drupal\Core\Entity\Controller\EntityController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+/**
+ * Returns responses for CollectionItem routes.
+ */
 class CollectionItemPathController extends EntityController {
 
   /**
@@ -22,4 +25,5 @@ class CollectionItemPathController extends EntityController {
     $return_destination = $collection_item->toUrl()->toString();
     return new RedirectResponse($collection_item->item->entity->toURL('edit-form', ['query' => ['destination' => $return_destination]])->toString());
   }
+
 }

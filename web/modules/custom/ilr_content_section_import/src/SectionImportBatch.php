@@ -2,8 +2,8 @@
 
 namespace Drupal\ilr_content_section_import;
 
+use Drupal\pathauto\PathautoState;
 use Drupal\collection\Entity\Collection;
-use Drupal\Core\Batch\BatchBuilder;
 
 /**
  * Methods for running the section importer in a batch.
@@ -11,6 +11,7 @@ use Drupal\Core\Batch\BatchBuilder;
  * @see \Drupal\ilr_content_section_import\Form\ContentSectionImportForm::submitForm()
  */
 class SectionImportBatch {
+
   /**
    * Processes the section import batch and persists the importer.
    *
@@ -62,7 +63,7 @@ class SectionImportBatch {
     // Set the path alias if there is one.
     if ($row->alias) {
       $node_imported->path = '/' . $row->alias;
-      $node_imported->path->pathauto = \Drupal\pathauto\PathautoState::SKIP;
+      $node_imported->path->pathauto = PathautoState::SKIP;
     }
 
     // Create a section paragraph.
@@ -79,7 +80,7 @@ class SectionImportBatch {
       // Update any embedded media. See https://regex101.com/r/K5FMNj/4 to test
       // this regex.
       if (preg_match_all('/\[\[{"fid":"(\d+)".*"link_text":"?([^",]+)"?.*\]\]/m', $text_content, $matches, PREG_SET_ORDER)) {
-        foreach($matches as $match) {
+        foreach ($matches as $match) {
           if ($media = $media_storage->load($match[1])) {
             $link_text = $match[2] !== 'null' ? $match[2] : '';
             $text_content = str_replace($match[0], sprintf('<drupal-media data-link-text="%s" data-entity-type="media" data-entity-uuid="%s"></drupal-media>', $link_text, $media->uuid()), $text_content);
@@ -156,7 +157,7 @@ class SectionImportBatch {
       // the previous path. This will create a redirect automatically.
       if (!empty($context['sandbox']['legacy_path'])) {
         $node_imported->path->alias = str_replace($context['sandbox']['legacy_path'], $content_section->toUrl()->toString(), $node_imported->path->alias);
-        $node_imported->path->pathauto = \Drupal\pathauto\PathautoState::SKIP;
+        $node_imported->path->pathauto = PathautoState::SKIP;
         $node_imported->save();
       }
     }

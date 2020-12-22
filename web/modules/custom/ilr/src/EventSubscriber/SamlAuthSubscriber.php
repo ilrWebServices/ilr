@@ -3,7 +3,6 @@
 namespace Drupal\ilr\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\EventDispatcher\Event;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\samlauth\Event\SamlauthUserSyncEvent;
 

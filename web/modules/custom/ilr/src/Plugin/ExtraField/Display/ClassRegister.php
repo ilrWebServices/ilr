@@ -47,7 +47,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
         ->loadByProperties([
           'drupal_entity__target_type' => 'node',
           'drupal_entity__target_id' => $class->id(),
-          'salesforce_mapping' => 'class_node'
+          'salesforce_mapping' => 'class_node',
         ]);
 
       $mapping = reset($mapped_objects);
@@ -63,13 +63,13 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
 
       $class_info[] = [
         'salesforce_id' => $mapping->salesforce_id->getString(),
-        'entity' => $class
+        'entity' => $class,
       ];
     }
 
     $build['ilr_class_register_block'] = [
       '#theme' => 'ilr_class_register_block',
-      '#classes' => $class_info
+      '#classes' => $class_info,
     ];
 
     return $build;
@@ -82,6 +82,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
    * the full class session from the display to avoid confusion.
    *
    * @param [Array] $classes
+   *
    * @return [Array] $classes
    */
   private function removeOverflowSessions($classes) {
@@ -91,7 +92,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
 
     $possible_duplicates = [];
 
-    // Loop through and check date/location for classes
+    // Loop through and check date/location for classes.
     foreach ($classes as $class) {
       $city = (!empty($class->field_address->locality))
         ? $class->field_address->locality
@@ -100,7 +101,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
       $class_info = [$time_and_place => $class];
 
       // If there is already a class with the same time_place
-      // turn that value into an array
+      // turn that value into an array.
       if (array_key_exists($time_and_place, $possible_duplicates)) {
         $first = $possible_duplicates[$time_and_place];
         $possible_duplicates[$time_and_place] = [$first, $class];
@@ -110,7 +111,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
       }
     }
 
-    // Remove the full class from the display
+    // Remove the full class from the display.
     foreach ($possible_duplicates as $classes_at_time_and_place) {
       if (is_array($classes_at_time_and_place)) {
         foreach ($classes_at_time_and_place as $class) {

@@ -130,7 +130,7 @@ class ListStyle extends ParagraphsBehaviorBase {
     $parents_input_name = array_shift($parents);
     $parents_input_name .= '[' . implode('][', $parents) . ']';
 
-    if (empty($config['list_styles'])){
+    if (empty($config['list_styles'])) {
       return;
     }
 
@@ -198,7 +198,7 @@ class ListStyle extends ParagraphsBehaviorBase {
 
     // Only update entity reference fields that are configured to display a
     // rendered entity.
-    $build_fields = array_keys(array_filter($build, function($v) {
+    $build_fields = array_keys(array_filter($build, function ($v) {
       return is_array($v) && isset($v['#theme']) && $v['#theme'] === 'field' && isset($v['#formatter']) && $v['#formatter'] === 'entity_reference_entity_view';
     }));
 
@@ -244,16 +244,16 @@ class ListStyle extends ParagraphsBehaviorBase {
    * `collection` entity reference field.
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {
-    return in_array($paragraphs_type->id(), ['simple_collection_listing', 'curated_post_listing', 'collection_listing_publication', 'curated_course_listing', 'event_listing','people_listing']);
+    return in_array($paragraphs_type->id(), ['simple_collection_listing', 'curated_post_listing', 'collection_listing_publication', 'curated_course_listing', 'event_listing', 'people_listing']);
   }
 
   /**
    * Get a node view mode for a given list style.
    *
-   * @param $list_style string
+   * @param string $list_style
    *   One of the list style machine names from this::list_styles.
    *
-   * @param $post_number int
+   * @param int $post_number
    *   The order placement of the post in the listing.
    *
    * @return string
@@ -281,7 +281,7 @@ class ListStyle extends ParagraphsBehaviorBase {
   /**
    * Get CSS classes for a given list style.
    *
-   * @param $paragraph Paragraph
+   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
    *
    * @return array
    *   An array of class names for the element.
@@ -299,7 +299,7 @@ class ListStyle extends ParagraphsBehaviorBase {
         $classes[] = 'cu-grid';
 
         $columns = $paragraph->getBehaviorSetting($this->getPluginId(), 'columns') ?? 3;
-        $classes[] = 'cu-grid--'. $columns .'col';
+        $classes[] = 'cu-grid--' . $columns . 'col';
       }
     }
 

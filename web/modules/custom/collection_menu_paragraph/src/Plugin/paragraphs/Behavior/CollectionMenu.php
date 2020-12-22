@@ -3,8 +3,6 @@
 namespace Drupal\collection_menu_paragraph\Plugin\paragraphs\Behavior;
 
 use Drupal\paragraphs\ParagraphsBehaviorBase;
-use Drupal\Core\Menu\MenuLinkTreeInterface;
-use Drupal\Core\Menu\MenuActiveTrailInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -27,7 +25,7 @@ use Drupal\collection\Entity\CollectionInterface;
 class CollectionMenu extends ParagraphsBehaviorBase {
 
   /**
-   * The frame position options
+   * The frame position options.
    */
   protected $navigation_levels = [
     'children' => 'Children',
@@ -78,7 +76,7 @@ class CollectionMenu extends ParagraphsBehaviorBase {
       '#title' => $this->t('Navigation to display'),
       '#options' => $this->navigation_levels,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'navigation_level'),
-      '#suffix' => $this->t(' of this page')
+      '#suffix' => $this->t(' of this page'),
     ];
 
     return $form;
@@ -107,7 +105,6 @@ class CollectionMenu extends ParagraphsBehaviorBase {
     }
 
     $parameters = new MenuTreeParameters();
-    // $parameters = $this->menuTree->getCurrentRouteMenuTreeParameters($menu_name);
 
     if ($paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'navigation_level') === 'children') {
       $parameters->setRoot($active_link->getPluginId());
@@ -117,7 +114,8 @@ class CollectionMenu extends ParagraphsBehaviorBase {
     }
 
     $parameters->setMaxDepth(1);
-    $parameters->excludeRoot(); // This could be a setting (e.g. 'Show parent').
+    // This could be a setting (e.g. 'Show parent').
+    $parameters->excludeRoot();
 
     $tree = $this->menuTree->load($menu_name, $parameters);
     $manipulators = [
@@ -164,4 +162,5 @@ class CollectionMenu extends ParagraphsBehaviorBase {
 
     return $menu ? $menu->id() : FALSE;
   }
+
 }

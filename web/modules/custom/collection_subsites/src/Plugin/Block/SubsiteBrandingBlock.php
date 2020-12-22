@@ -7,7 +7,6 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\collection\Entity\CollectionInterface;
 use Drupal\Core\Cache\Cache;
 
@@ -24,7 +23,7 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
   /**
    * The entities represented by the current path.
    *
-   * Array
+   * Array.
    */
   protected $pathEntities;
 

@@ -6,7 +6,6 @@ use Drupal\Core\Condition\ConditionPluginBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Entity\ContentEntityType;
-use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -182,4 +181,5 @@ class RootPathEntityBundle extends ConditionPluginBase implements ContainerFacto
     }
     return '';
   }
+
 }

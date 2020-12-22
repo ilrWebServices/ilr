@@ -58,7 +58,7 @@ class SectionMenuLinkBatch {
       'id' => $menu_link_mapping->destid->value,
     ]);
     $imported_menu_link = reset($imported_menu_link);
-    $imported_menu_link->parent  = $plid;
+    $imported_menu_link->parent = $plid;
     $imported_menu_link->save();
   }
 

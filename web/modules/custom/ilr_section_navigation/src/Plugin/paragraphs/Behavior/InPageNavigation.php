@@ -84,7 +84,7 @@ class InPageNavigation extends ParagraphsBehaviorBase {
     if ($title_value = $paragraph->getBehaviorSetting($this->getPluginId(), 'title')) {
       $summary[] = [
         'label' => 'Link title',
-        'value' =>  $title_value,
+        'value' => $title_value,
       ];
     }
 

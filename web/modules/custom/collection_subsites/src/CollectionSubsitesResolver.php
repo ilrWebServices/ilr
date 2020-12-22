@@ -5,8 +5,6 @@ namespace Drupal\collection_subsites;
 use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\collection\Entity\CollectionInterface;
-use Drupal\collection\Entity\CollectionItemInterface;
-use Drupal\node\NodeInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
@@ -47,7 +45,7 @@ class CollectionSubsitesResolver {
    * @param string $path
    *   An existing path to check. Used for recursion.
    *
-   * @return Drupal\collection\Entity\CollectionInterface||FALSE
+   * @return Drupal\collection\Entity\CollectionInterface||false
    *   A collection entity or FALSE if the entity is not in a subsite.
    */
   public function getSubsite(EntityInterface $entity, $path = NULL) {

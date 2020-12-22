@@ -152,12 +152,12 @@ class PostListing extends ParagraphsBehaviorBase {
   /**
    * Get a node view mode for a given list style.
    *
-   * @param $paragraph Paragraph
+   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
    *
-   * @param $list_style string
+   * @param string $list_style
    *   One of the list style machine names from this::list_styles.
    *
-   * @param $post_number int
+   * @param int $post_number
    *   The order placement of the post in the listing.
    *
    * @return string
@@ -195,12 +195,12 @@ class PostListing extends ParagraphsBehaviorBase {
 
     $summary[] = [
       'label' => 'Category',
-      'value' =>  $selected_category_id ? $selected_category->label() : 'All',
+      'value' => $selected_category_id ? $selected_category->label() : 'All',
     ];
 
     $summary[] = [
       'label' => 'Tags',
-      'value' =>  $tags_labels ? implode(', ', $tags_labels) : 'All',
+      'value' => $tags_labels ? implode(', ', $tags_labels) : 'All',
     ];
 
     $summary[] = [
@@ -224,7 +224,7 @@ class PostListing extends ParagraphsBehaviorBase {
   /**
    * Get category term options collection set on the paragraph.
    *
-   * @param Paragraph $paragraph
+   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
    *
    * @return array
    *   List of term labels keyed by tid.
@@ -255,7 +255,7 @@ class PostListing extends ParagraphsBehaviorBase {
   /**
    * Get tag term options collection set on the paragraph.
    *
-   * @param Paragraph $paragraph
+   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
    *
    * @return array
    *   List of term labels keyed by tid.

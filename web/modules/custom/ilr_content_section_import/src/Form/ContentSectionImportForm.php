@@ -4,23 +4,24 @@ namespace Drupal\ilr_content_section_import\Form;
 
 use Drupal\Core\Form\FormBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Entity\EntityTypeManager;
-use Drupal\Core\File\FileSystem;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Batch\BatchBuilder;
 use Drupal\ilr_content_section_import\SectionImportBatch;
 use Drupal\ilr_content_section_import\SectionMenuLinkBatch;
 use Drupal\ilr_content_section_import\SectionNidLinkBatch;
 
+/**
+ * Provides the content section import form.
+ */
 class ContentSectionImportForm extends FormBase {
 
   /**
-   * @var $entityTypeManager \Drupal\Core\Entity\EntityTypeManager
+   * @var entityTypeManager\Drupal\Core\Entity\EntityTypeManager
    */
   protected $entityTypeManager;
 
   /**
-   * @var $fileSystem \Drupal\Core\File\FileSystem
+   * @var fileSystem\Drupal\Core\File\FileSystem
    */
   protected $fileSystem;
 
@@ -74,7 +75,7 @@ class ContentSectionImportForm extends FormBase {
       '#description' => 'If the path to this section is changing, add the new path here, starting with a slash ("/"). Leave blank if the path is the same.',
     ];
 
-    $form['json_data_file'] = array(
+    $form['json_data_file'] = [
       '#type' => 'managed_file',
       '#name' => 'json_data_file',
       '#title' => t('Data file'),
@@ -84,14 +85,14 @@ class ContentSectionImportForm extends FormBase {
         'file_validate_extensions' => ['json'],
       ],
       '#upload_location' => 'public://json_import/',
-    );
+    ];
 
     $form['actions']['#type'] = 'actions';
-    $form['actions']['submit'] = array(
+    $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Upload'),
       '#button_type' => 'primary',
-    );
+    ];
 
     return $form;
   }
