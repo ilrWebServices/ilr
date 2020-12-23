@@ -39,7 +39,7 @@ function salesforce_mop_form_node_form_alter(&$form, FormStateInterface $form_st
     }
 
     // Check if the node is mapped to SalesForce.
-    $mapped_object_array = \Drupal::service('entity.manager')
+    $mapped_object_array = \Drupal::service('entity_type.manager')
       ->getStorage('salesforce_mapped_object')
       ->loadByDrupal('node', $node->id());
 
@@ -65,7 +65,7 @@ function salesforce_mop_inline_entity_form_entity_form_alter(&$entity_form, &$fo
   }
 
   // Check if the inline entity is mapped to SalesForce.
-  $mapped_object_array = \Drupal::service('entity.manager')
+  $mapped_object_array = \Drupal::service('entity_type.manager')
     ->getStorage('salesforce_mapped_object')
     ->loadByDrupal($entity_form['#entity_type'], $entity_form['#entity']->id());
 
