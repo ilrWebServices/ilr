@@ -55,7 +55,7 @@
     "drupal/key": "^1.14",
     "drupal/key_value_field": "^1.0",
     "drupal/linkit": "^5.0",
-    "drupal/mailchimp": "1.x-dev",
+    "drupal/mailchimp": "^2",
     "drupal/media_library_edit": "^2.0",
     "drupal/media_pdf_thumbnail": "^3.3",
     "drupal/menu_item_extras": "^2.8",
@@ -134,7 +134,6 @@
         "Entities using layoutbuilder cannot get fields previewed": "https://gist.githubusercontent.com/a-fro/1c9b5fcf778edcc49eb39dab292cbc0c/raw/c2352a640270412d2d73232a1e5d3ca69a606726/paragraphs-preview-no-output-layout-builder.patch"
       },
       "drupal/mailchimp": {
-        "Install Mailchimp PHP API via Composer": "https://www.drupal.org/files/issues/2020-08-21/mailchimp-2845950-27.patch",
         "Add member tag support when subscribing": "./patches/mailchimp_tags.patch"
       },
       "drupal/webform_mailchimp": {

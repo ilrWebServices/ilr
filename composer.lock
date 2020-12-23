@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8347769821586546e24f403c6ca7aca4",
+    "content-hash": "dddb75ef738e9a995f31985f2dd482bf",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4199,40 +4199,34 @@
         },
         {
             "name": "drupal/mailchimp",
-            "version": "dev-1.x",
+            "version": "2.0.0-rc1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/mailchimp.git",
-                "reference": "7cf12daa492a808c1947e5a36fe79b0a89d8649e"
+                "reference": "2.0.0-rc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/mailchimp-2.0.0-rc1.zip",
+                "reference": "2.0.0-rc1",
+                "shasum": "7465b5a54c8c76b2cba2b43d055326c6fdb96bf1"
             },
             "require": {
                 "drupal/core": "^8.7.7 || ^9",
-                "thinkshout/mailchimp-api-php": "2.0.0"
+                "thinkshout/mailchimp-api-php": "^2.0"
             },
             "require-dev": {
                 "drupal/mailchimp_lists": "*"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-1.11+27-dev",
-                    "datestamp": "1602878792",
+                    "version": "2.0.0-rc1",
+                    "datestamp": "1608597717",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "message": "RC releases are not covered by Drupal security advisories."
                     }
-                },
-                "patches_applied": {
-                    "Install Mailchimp PHP API via Composer": "https://www.drupal.org/files/issues/2020-08-21/mailchimp-2845950-27.patch",
-                    "Add member tag support when subscribing": "./patches/mailchimp_tags.patch"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Mailchimp": "src/"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4241,8 +4235,12 @@
             ],
             "authors": [
                 {
-                    "name": "amyvs",
-                    "homepage": "https://www.drupal.org/user/3181721"
+                    "name": "5adiyah",
+                    "homepage": "https://www.drupal.org/user/3622346"
+                },
+                {
+                    "name": "Pastenes",
+                    "homepage": "https://www.drupal.org/user/3640659"
                 },
                 {
                     "name": "aprice42",
@@ -4261,6 +4259,10 @@
                     "homepage": "https://www.drupal.org/user/1682976"
                 },
                 {
+                    "name": "itrebecca",
+                    "homepage": "https://www.drupal.org/user/1604434"
+                },
+                {
                     "name": "levelos",
                     "homepage": "https://www.drupal.org/user/54135"
                 },
@@ -4271,14 +4273,17 @@
                 {
                     "name": "tauno",
                     "homepage": "https://www.drupal.org/user/105595"
+                },
+                {
+                    "name": "wxactly",
+                    "homepage": "https://www.drupal.org/user/3181097"
                 }
             ],
             "description": "Mailchimp is an integration with the Mailchimp Mass email tool.",
             "homepage": "http://drupal.org/project/mailchimp",
             "support": {
                 "source": "https://git.drupalcode.org/project/mailchimp"
-            },
-            "time": "2020-10-16T22:42:47+00:00"
+            }
         },
         {
             "name": "drupal/media_library_edit",
@@ -14157,7 +14162,6 @@
     "stability-flags": {
         "drupal/collection": 15,
         "drupal/inline_entity_form": 5,
-        "drupal/mailchimp": 20,
         "drupal/typed_data": 15,
         "drupal/union_organizer": 20,
         "thinkshout/mailchimp-api-php": 20,
