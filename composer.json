@@ -105,8 +105,8 @@
     "files": ["load.environment.php"]
   },
   "scripts": {
-    "cs": "phpcs --standard=vendor/drupal/coder/coder_sniffer/Drupal web/modules/custom/",
-    "cbf": "phpcbf --standard=vendor/drupal/coder/coder_sniffer/Drupal web/modules/custom/",
+    "cs": "phpcs --standard=vendor/drupal/coder/coder_sniffer/Drupal --ignore='union_marketing/css/style.css' web/modules/custom/ web/themes/custom/",
+    "cbf": "phpcbf --standard=vendor/drupal/coder/coder_sniffer/Drupal web/modules/custom/ web/themes/custom/",
     "sync-prod": "drush sql:drop && drush sql:sync @ilr-web.master @self && ./post_sync_fix_triggers.php",
     "sync-prod-update": "drush updatedb --no-post-updates && drush config:import && drush updatedb",
     "sf-dev": "drush sfrvk ilr_marketing_jwt_oauth && drush sfrt ilr_marketing_jwt_oauth_dev && drush sflp"
