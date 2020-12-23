@@ -1,5 +1,5 @@
 name: 'Collection Menu Paragraph'
 type: module
 description: 'Adds a paragraphs behavior to display a collection menu in a paragraph.'
-core: 8.x
+core_version_requirement: ^8 || ^9
 package: 'ILR'

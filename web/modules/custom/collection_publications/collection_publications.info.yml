@@ -1,7 +1,7 @@
 name: 'Collection Publications'
 type: module
 description: 'Allows creation of custom collection-based publications with issues.'
-core: 8.x
+core_version_requirement: ^8 || ^9
 package: 'Collection'
 dependencies:
   - taxonomy
