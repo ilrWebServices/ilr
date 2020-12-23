@@ -7,7 +7,6 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\collection\Entity\CollectionInterface;
 use Drupal\Core\Cache\Cache;
 
@@ -24,7 +23,7 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
   /**
    * The entities represented by the current path.
    *
-   * Array
+   * @var array
    */
   protected $pathEntities;
 
@@ -90,7 +89,7 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
     // If the collection is configured to use the name, do so.
     // @todo Implement this field if we decide to use this technique.
     if ($subsite_collection->hasField('full_name') && !$subsite_collection->full_name->isEmpty()) {
-      $build['#subsite_name'] = $subsite_collection->full_name->value;;
+      $build['#subsite_name'] = $subsite_collection->full_name->value;
     }
 
     return $build;

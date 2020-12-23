@@ -2,6 +2,7 @@
 
 namespace Drupal\ilr\Plugin\ExtraField\Display;
 
+use Drupal\collection\Entity\CollectionInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -44,7 +45,7 @@ class PreviousNextStory extends ExtraFieldDisplayBase implements ContainerFactor
     // Check the path entities to see if this story is part of a
     // publication_issue collection.
     foreach ($this->pathAliasEntitiesManager->getPathAliasEntities() as $path_entity) {
-      if ($path_entity instanceof \Drupal\collection\Entity\CollectionInterface && $path_entity->bundle() === 'publication_issue') {
+      if ($path_entity instanceof CollectionInterface && $path_entity->bundle() === 'publication_issue') {
         $collection = $path_entity;
         break;
       }
@@ -70,7 +71,7 @@ class PreviousNextStory extends ExtraFieldDisplayBase implements ContainerFactor
 
     // Get the story items in this collection. $collection->getItems() will sort
     // the them by weight and then by changed date.
-    $story_items = array_filter($collection->getItems(), function($v) {
+    $story_items = array_filter($collection->getItems(), function ($v) {
       return $v->item->entity->bundle() === 'story';
     });
 
@@ -84,12 +85,12 @@ class PreviousNextStory extends ExtraFieldDisplayBase implements ContainerFactor
         '#title' => $this->t('Previous story'),
         '#url' => $story_items[$prev_story_id]->item->entity->toUrl(),
         '#attributes' => [
-          'class' => 'cu-button'
+          'class' => 'cu-button',
         ],
         '#attached' => [
           'library' => [
-            'union_organizer/button'
-          ]
+            'union_organizer/button',
+          ],
         ],
       ];
     }
@@ -101,12 +102,12 @@ class PreviousNextStory extends ExtraFieldDisplayBase implements ContainerFactor
         '#title' => $this->t('Next story'),
         '#url' => $story_items[$next_story_id]->item->entity->toUrl(),
         '#attributes' => [
-          'class' => 'cu-button'
+          'class' => 'cu-button',
         ],
         '#attached' => [
           'library' => [
-            'union_organizer/button'
-          ]
+            'union_organizer/button',
+          ],
         ],
       ];
     }

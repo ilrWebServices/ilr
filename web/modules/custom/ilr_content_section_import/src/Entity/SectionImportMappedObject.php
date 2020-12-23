@@ -22,6 +22,9 @@ use Drupal\Core\Field\BaseFieldDefinition;
  */
 class SectionImportMappedObject extends ContentEntityBase implements ContentEntityInterface {
 
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields['id'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('ID'))

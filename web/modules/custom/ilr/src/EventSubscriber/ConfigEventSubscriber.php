@@ -5,11 +5,10 @@ namespace Drupal\ilr\EventSubscriber;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\Core\Config\StorageInterface;
 use Drupal\Core\Config\ConfigEvents;
-use Symfony\Component\EventDispatcher\Event;
 use Drupal\Core\Config\StorageTransformEvent;
 
 /**
- * Class ConfigEventSubscriber.
+ * Subscriber for config importing and exporting.
  */
 class ConfigEventSubscriber implements EventSubscriberInterface {
 
@@ -109,7 +108,7 @@ class ConfigEventSubscriber implements EventSubscriberInterface {
    * Skips config items in the sync store (e.g. config/sync).
    */
   protected function getIgnoredActiveConfig() {
-    return array_filter($this->activeStorage->listAll(), function($config_name) {
+    return array_filter($this->activeStorage->listAll(), function ($config_name) {
       foreach ($this->ignorePatterns as $pattern) {
         if (preg_match($pattern, $config_name) === 1 && $this->fileStorage->exists($config_name) === FALSE) {
           return TRUE;

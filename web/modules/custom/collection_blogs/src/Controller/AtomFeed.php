@@ -9,8 +9,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Drupal\Core\Datetime\DrupalDateTime;
 
+/**
+ * Returns responses for Blog feed route.
+ */
 class AtomFeed extends ControllerBase {
 
+  /**
+   * The `content` route responds with the atom feed items.
+   */
   public function content(CollectionInterface $collection, Request $request) {
     $entity_type_manager = \Drupal::service('entity_type.manager');
     $response = new Response();
@@ -81,7 +87,7 @@ class AtomFeed extends ControllerBase {
 
       if ($blog_post_collection_item->field_blog_categories->isEmpty() === FALSE) {
         $entry['category'] = [
-          '@term' => $blog_post_collection_item->field_blog_categories->entity->label()
+          '@term' => $blog_post_collection_item->field_blog_categories->entity->label(),
         ];
       }
 
@@ -103,6 +109,6 @@ class AtomFeed extends ControllerBase {
     $response->setContent($xmlEncoder->encode($xml_array, 'xml', $context));
     $response->headers->set('Content-Type', 'application/atom+xml');
     return $response;
- }
+  }
 
 }

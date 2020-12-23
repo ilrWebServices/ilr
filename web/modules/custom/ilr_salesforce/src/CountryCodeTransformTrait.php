@@ -2,11 +2,19 @@
 
 namespace Drupal\ilr_salesforce;
 
+/**
+ * Trait definition to transform country codes to 2 letter version.
+ */
 trait CountryCodeTransformTrait {
 
-  // This data maps incoming country codes to 2 letter version.
-  // Mostly copied from http://country.io/iso3.json
-  private $country_code_map = [
+  /**
+   * The array map from 3 letter to 2 letter codes.
+   *
+   * This was mostly copied from http://country.io/iso3.json.
+   *
+   * @var array
+   */
+  private $countryCodeMap = [
     'BGD' => 'BD',
     'BEL' => 'BE',
     'BFA' => 'BF',
@@ -258,4 +266,5 @@ trait CountryCodeTransformTrait {
     'QAT' => 'QA',
     'MOZ' => 'MZ',
   ];
+
 }

@@ -2,8 +2,8 @@
 
 namespace Drupal\ilr_content_section_import;
 
+use Drupal\pathauto\PathautoState;
 use Drupal\collection\Entity\Collection;
-use Drupal\Core\Batch\BatchBuilder;
 
 /**
  * Methods for running the section importer in a batch.
@@ -11,15 +11,20 @@ use Drupal\Core\Batch\BatchBuilder;
  * @see \Drupal\ilr_content_section_import\Form\ContentSectionImportForm::submitForm()
  */
 class SectionImportBatch {
+
   /**
    * Processes the section import batch and persists the importer.
    *
    * @param array $row
    *   The a row of data to import as a node.
+   * @param \Drupal\collection\Entity\Collection $content_section
+   *   The content section collection.
+   * @param string $legacy_path
+   *   The legacy path of the content section.
    * @param array $context
    *   The batch context.
    */
-  public static function process($row, Collection $content_section, $legacy_path = NULL, &$context) {
+  public static function process(array $row, Collection $content_section, $legacy_path = NULL, array &$context = []) {
     if (!isset($context['sandbox']['content_section'])) {
       $context['sandbox']['content_section'] = $content_section;
       $context['sandbox']['legacy_path'] = $legacy_path;
@@ -62,7 +67,7 @@ class SectionImportBatch {
     // Set the path alias if there is one.
     if ($row->alias) {
       $node_imported->path = '/' . $row->alias;
-      $node_imported->path->pathauto = \Drupal\pathauto\PathautoState::SKIP;
+      $node_imported->path->pathauto = PathautoState::SKIP;
     }
 
     // Create a section paragraph.
@@ -79,7 +84,7 @@ class SectionImportBatch {
       // Update any embedded media. See https://regex101.com/r/K5FMNj/4 to test
       // this regex.
       if (preg_match_all('/\[\[{"fid":"(\d+)".*"link_text":"?([^",]+)"?.*\]\]/m', $text_content, $matches, PREG_SET_ORDER)) {
-        foreach($matches as $match) {
+        foreach ($matches as $match) {
           if ($media = $media_storage->load($match[1])) {
             $link_text = $match[2] !== 'null' ? $match[2] : '';
             $text_content = str_replace($match[0], sprintf('<drupal-media data-link-text="%s" data-entity-type="media" data-entity-uuid="%s"></drupal-media>', $link_text, $media->uuid()), $text_content);
@@ -88,7 +93,7 @@ class SectionImportBatch {
         }
       }
 
-      // TODO Updated nodes should re-use the existing text paragraph.
+      // @todo Updated nodes should re-use the existing text paragraph.
       $text_component = $paragraph_storage->create([
         'type' => 'rich_text',
         'field_body' => [
@@ -156,7 +161,7 @@ class SectionImportBatch {
       // the previous path. This will create a redirect automatically.
       if (!empty($context['sandbox']['legacy_path'])) {
         $node_imported->path->alias = str_replace($context['sandbox']['legacy_path'], $content_section->toUrl()->toString(), $node_imported->path->alias);
-        $node_imported->path->pathauto = \Drupal\pathauto\PathautoState::SKIP;
+        $node_imported->path->pathauto = PathautoState::SKIP;
         $node_imported->save();
       }
     }
@@ -175,7 +180,7 @@ class SectionImportBatch {
    * @param array $operations
    *   A list of the operations that had not been completed by the batch API.
    */
-  public static function finish($success, $results, $operations) {
+  public static function finish($success, array $results, array $operations) {
     $messenger = \Drupal::messenger();
 
     if ($success) {
@@ -194,7 +199,10 @@ class SectionImportBatch {
       // An error occurred.
       // $operations contains the operations that remained unprocessed.
       $error_operation = reset($operations);
-      $message = t('An error occurred while processing %error_operation with arguments: @arguments', ['%error_operation' => $error_operation[0], '@arguments' => print_r($error_operation[1], TRUE)]);
+      $message = t('An error occurred while processing %error_operation with arguments: @arguments', [
+        '%error_operation' => $error_operation[0],
+        '@arguments' => print_r($error_operation[1], TRUE),
+      ]);
       $messenger->addError($message);
     }
   }

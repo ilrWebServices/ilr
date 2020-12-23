@@ -14,7 +14,7 @@ use Drupal\Core\Url;
 use Drupal\Core\Link;
 
 /**
- * Class CollectionSubsitesSubscriber.
+ * Subscriber for events related to subsite collections.
  */
 class CollectionSubsitesSubscriber implements EventSubscriberInterface {
 
@@ -98,12 +98,13 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
 
     if ($menu) {
       $this->messenger->addMessage($this->t('Created new %menu_name subsite menu.', [
-        '%menu_name' => $menu->label()
+        '%menu_name' => $menu->label(),
       ]));
 
       // Add the menu to this new collection.
       $collection_item_menu = $collection_item_storage->create([
-        'type' => 'default', // @todo: Consider a dedicated type.
+      // @todo Consider a dedicated type.
+        'type' => 'default',
         'collection' => $collection->id(),
       ]);
       $collection_item_menu->item = $menu;
@@ -122,7 +123,8 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
     // Add the subsite collection path to the BVG as a condition.
     $bvg->addCondition([
       'id' => 'request_path',
-      'pages' => $collection->toUrl()->toString() . '*', // e.g. '/scheinman-institute*',
+    // e.g. '/scheinman-institute*',.
+      'pages' => $collection->toUrl()->toString() . '*',
       'negate' => FALSE,
       'context_mapping' => [],
     ]);
@@ -131,20 +133,20 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
 
     if ($bvg) {
       $this->messenger->addMessage($this->t('Created new %bvg_name subsite block visibility group.', [
-        '%bvg_name' => $bvg->label()
+        '%bvg_name' => $bvg->label(),
       ]));
 
       // Add the bvg to this new collection.
       $collection_item_bvg = $collection_item_storage->create([
-        'type' => 'default', // @todo: Consider a dedicated type.
+      // @todo Consider a dedicated type.
+        'type' => 'default',
         'collection' => $collection->id(),
       ]);
       $collection_item_bvg->item = $bvg;
       $collection_item_bvg->setAttribute('subsite_collection_id', $collection->id());
       $collection_item_bvg->save();
 
-      // @todo: Add a subsite branding block to the BVG.
-
+      // @todo Add a subsite branding block to the BVG.
       if ($menu) {
         // Add the new menu block to the header region of the new
         // block visibility group.
@@ -216,7 +218,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
 
       if ($path_changed && $bvg->save()) {
         $this->messenger->addMessage($this->t('Updated the path condition for %bvg_name block visibility group.', [
-          '%bvg_name' => $bvg->label()
+          '%bvg_name' => $bvg->label(),
         ]));
       }
     }
@@ -281,4 +283,5 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
       }
     }
   }
+
 }

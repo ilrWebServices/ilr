@@ -8,8 +8,6 @@ use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\ParagraphsBehaviorBase;
-use Drupal\Core\Cache\Cache;
-use Drupal\Core\Url;
 use Drupal\localist_paragraph_behavior\QueryString;
 
 /**
@@ -76,7 +74,7 @@ class LocalistEvents extends ParagraphsBehaviorBase {
       $data = $json_cache_item->data;
     }
     else {
-      $query_params = new QueryString;
+      $query_params = new QueryString();
       $query_params->add('days', 364);
       $query_params->add('pp', 100);
 
@@ -92,7 +90,7 @@ class LocalistEvents extends ParagraphsBehaviorBase {
       \Drupal::cache()->set($cid, $data, time() + (60 * 60 * 2));
     }
 
-    // @todo: consider using double underscore template suggestions here if
+    // @todo consider using double underscore template suggestions here if
     // different list styles need to be supported.
     foreach ($data['events'] as $item) {
       $items[] = [
@@ -111,15 +109,15 @@ class LocalistEvents extends ParagraphsBehaviorBase {
       '#items' => $items,
       '#attributes' => ['class' => 'localist-events'],
       '#empty' => $this->t('There are no events to display.'),
-      // '#cache' => [
-      //   'tags' => ['node_list:course', 'node_list:class']
-      // ],
       '#cache' => [
-        'max-age' => 0
+        'max-age' => 0,
       ],
     ];
   }
 
+  /**
+   * Split keywords on `,` and return them as an array.
+   */
   protected function getKeywords(Paragraph $paragraph) {
     if ($keywords = $paragraph->getBehaviorSetting($this->getPluginId(), 'keywords')) {
       // Remove empty keywords and trim any spaces around keywords.
@@ -163,4 +161,5 @@ class LocalistEvents extends ParagraphsBehaviorBase {
   public static function isApplicable(ParagraphsType $paragraphs_type) {
     return strpos($paragraphs_type->id(), 'event') !== FALSE;
   }
+
 }

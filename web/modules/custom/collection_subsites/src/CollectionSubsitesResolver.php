@@ -5,8 +5,6 @@ namespace Drupal\collection_subsites;
 use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\collection\Entity\CollectionInterface;
-use Drupal\collection\Entity\CollectionItemInterface;
-use Drupal\node\NodeInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
@@ -17,7 +15,7 @@ class CollectionSubsitesResolver {
   /**
    * The entity type manager.
    *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManager
    */
   protected $entityTypeManager;
 
@@ -31,7 +29,7 @@ class CollectionSubsitesResolver {
   /**
    * Construct a new `collection_subsites.resolver` service.
    *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   * @param \Drupal\Core\Entity\EntityTypeManager $entity_type_manager
    *   The entity type manager service.
    */
   public function __construct(EntityTypeManager $entity_type_manager) {
@@ -43,11 +41,10 @@ class CollectionSubsitesResolver {
    *
    * @param Drupal\Core\Entity\EntityInterface $entity
    *   A content or configuration entity.
-   *
    * @param string $path
    *   An existing path to check. Used for recursion.
    *
-   * @return Drupal\collection\Entity\CollectionInterface||FALSE
+   * @return Drupal\collection\Entity\CollectionInterface||false
    *   A collection entity or FALSE if the entity is not in a subsite.
    */
   public function getSubsite(EntityInterface $entity, $path = NULL) {
@@ -101,7 +98,7 @@ class CollectionSubsitesResolver {
   /**
    * Get collection items that refer to a given entity.
    *
-   * @param Drupal\Core\Entity\EntityInterface $entity
+   * @param Drupal\Core\Entity\ContentEntityInterface $entity
    *   A content or configuration entity.
    *
    * @return array

@@ -10,7 +10,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  * For convenience we extend from BaseFieldDefinition although this should not
  * implement FieldDefinitionInterface.
  *
- * Copied from core/modules/system/tests/modules/entity_test/src/FieldStorageDefinition.php
+ * @see core/modules/system/tests/modules/entity_test/src/FieldStorageDefinition.php
  *
  * @todo Provide and make use of a proper FieldStorageDefinition class instead:
  *   https://www.drupal.org/node/2280639.

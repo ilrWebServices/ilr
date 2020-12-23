@@ -31,8 +31,10 @@ class StoryListing extends ParagraphsBehaviorBase {
 
   /**
    * The list style options.
+   *
+   * @var array
    */
-  protected $list_styles = [
+  protected $listStyles = [
     'grid' => 'Grid',
     'banner' => 'Banner',
   ];
@@ -126,12 +128,11 @@ class StoryListing extends ParagraphsBehaviorBase {
   /**
    * Get a node view mode for a given list style.
    *
-   * @param $paragraph Paragraph
-   *
-   * @param $list_style string
-   *   One of the list style machine names from this::list_styles.
-   *
-   * @param $post_number int
+   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+   *   The paragraph entity.
+   * @param string $list_style
+   *   One of the list style machine names from this::listStyles.
+   * @param int $post_number
    *   The order placement of the post in the listing.
    *
    * @return string

@@ -24,6 +24,8 @@ class MediaDeck extends ParagraphsBehaviorBase {
 
   /**
    * The deck style options.
+   *
+   * @var array
    */
   protected $deckStyles = [
     'portrait_right' => 'Portrait right',
@@ -126,8 +128,8 @@ class MediaDeck extends ParagraphsBehaviorBase {
    *
    * @todo Consider using another settings form element to make this selectable.
    *
-   * @param $key int
-   *   The order placement of the media item in the deck
+   * @param int $key
+   *   The order placement of the media item in the deck.
    *
    * @return string
    *   An image style.
@@ -159,4 +161,5 @@ class MediaDeck extends ParagraphsBehaviorBase {
 
     return $classes;
   }
+
 }

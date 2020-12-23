@@ -4,9 +4,6 @@ namespace Drupal\collection_blogs\Plugin\EntityReferenceSelection;
 
 use Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
-use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\collection\Entity\CollectionItem;
@@ -16,6 +13,11 @@ use Drupal\collection\Entity\CollectionItem;
  */
 class CollectionContextTermSelectionBase extends SelectionPluginBase implements ContainerFactoryPluginInterface {
 
+  /**
+   * The identifier used as the attribute.
+   *
+   * @var string
+   */
   protected $identifier = '';
 
   /**

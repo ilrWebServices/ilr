@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 /**
- * Class CollectionPublicationsSubscriber.
+ * Subscriber for events related to publication collections.
  */
 class CollectionPublicationsSubscriber implements EventSubscriberInterface {
 
@@ -97,7 +97,8 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
     // Add the subsite collection path to the BVG as a condition.
     $bvg->addCondition([
       'id' => 'request_path',
-      'pages' => $collection->toUrl()->toString() . '*', // e.g. '/ilrie*',
+    // e.g. '/ilrie*',.
+      'pages' => $collection->toUrl()->toString() . '*',
       'negate' => FALSE,
       'context_mapping' => [],
     ]);
@@ -106,7 +107,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
 
     if ($bvg) {
       $this->messenger->addMessage($this->t('Created new %bvg_name publication issue block visibility group.', [
-        '%bvg_name' => $bvg->label()
+        '%bvg_name' => $bvg->label(),
       ]));
 
       // Add the bvg to this new collection.
@@ -155,7 +156,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
 
     if ($path_changed && $bvg->save()) {
       $this->messenger->addMessage($this->t('Updated the path condition for %bvg_name block visibility group.', [
-        '%bvg_name' => $bvg->label()
+        '%bvg_name' => $bvg->label(),
       ]));
     }
   }
@@ -163,7 +164,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
   /**
    * Handle redirects for various publication and issue paths.
    *
-   * - Publication term canonical routes
+   * - Publication term canonical routes.
    */
   public function handleRedirects(GetResponseEvent $event) {
     $request = $event->getRequest();
@@ -190,7 +191,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
 
     if ($this->currentUser->hasPermission('administer taxonomy')) {
       $this->messenger->addWarning($this->t('This page redirects to %link for non-administrators.', [
-        '%link' => $term->field_current_issue->entity->toLink()->toString()
+        '%link' => $term->field_current_issue->entity->toLink()->toString(),
       ]));
     }
     else {
@@ -212,7 +213,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
 
     // Check for stories in this issue. If there are any, don't redirect to the
     // PDF.
-    $story_items = array_filter($collection->getItems(), function($v) {
+    $story_items = array_filter($collection->getItems(), function ($v) {
       return $v->item->entity->bundle() === 'story';
     });
 
@@ -225,7 +226,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
 
     if ($this->currentUser->hasPermission('administer collections')) {
       $this->messenger->addWarning($this->t('This issue has no stories, so it redirects to the %link file for non-administrators.', [
-        '%link' => $link->toString()
+        '%link' => $link->toString(),
       ]));
     }
     else {

@@ -22,7 +22,9 @@ use Drupal\paragraphs\ParagraphsBehaviorBase;
 class UnionSectionSettings extends ParagraphsBehaviorBase {
 
   /**
-   * The frame position options
+   * The frame position options.
+   *
+   * @var array
    */
   protected $position = [
     'left' => 'Left',
@@ -77,7 +79,7 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
     if ($wide = $paragraph->getBehaviorSetting($this->getPluginId(), 'wide')) {
       $summary[] = [
         'label' => 'Wide',
-        'value' =>  '✓',
+        'value' => '✓',
       ];
     }
 
@@ -85,7 +87,7 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
     if ($position = $paragraph->getBehaviorSetting($this->getPluginId(), 'frame_position')) {
       $summary[] = [
         'label' => 'Frame',
-        'value' =>  $position,
+        'value' => $position,
       ];
     }
 
@@ -100,4 +102,5 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
   public static function isApplicable(ParagraphsType $paragraphs_type) {
     return $paragraphs_type->id() === 'section';
   }
+
 }

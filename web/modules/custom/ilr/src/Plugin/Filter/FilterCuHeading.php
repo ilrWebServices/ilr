@@ -6,6 +6,8 @@ use Drupal\filter\Plugin\FilterBase;
 use Drupal\filter\FilterProcessResult;
 
 /**
+ * Provides a filter to add the appropriate class to heading elements.
+ *
  * @Filter(
  *   id = "filter_cu_heading",
  *   title = @Translation("CU Heading Filter"),

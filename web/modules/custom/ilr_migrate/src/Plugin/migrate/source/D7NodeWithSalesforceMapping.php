@@ -3,7 +3,6 @@
 namespace Drupal\ilr_migrate\Plugin\migrate\source;
 
 use Drupal\node\Plugin\migrate\source\d7\Node as D7_node;
-use Drupal\Core\Database\Database;
 use Drupal\migrate\Row;
 
 /**
@@ -54,7 +53,7 @@ class D7NodeWithSalesforceMapping extends D7_node {
     $sf_mapped_object_storage = $this->entityManager->getStorage('salesforce_mapped_object');
     $d8_node_mapped_object_results = $sf_mapped_object_storage->loadByProperties([
       'drupal_entity__target_type' => 'node',
-      'salesforce_id' => $row->getSourceProperty('salesforce_id')
+      'salesforce_id' => $row->getSourceProperty('salesforce_id'),
     ]);
 
     if ($d8_node_mapped_object_results) {
@@ -63,8 +62,8 @@ class D7NodeWithSalesforceMapping extends D7_node {
       $row->setSourceProperty('d8_nid', $d8_node_mapped_object->getMappedEntity()->id());
     }
     else {
-      // skip this row if there is no D8 node for this Salesforce ID.
-      return false;
+      // Skip this row if there is no D8 node for this Salesforce ID.
+      return FALSE;
     }
 
     return parent::prepareRow($row);

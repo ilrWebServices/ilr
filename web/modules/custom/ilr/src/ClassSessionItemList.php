@@ -4,7 +4,6 @@ namespace Drupal\ilr;
 
 use Drupal\Core\Field\EntityReferenceFieldItemList;
 use Drupal\Core\TypedData\ComputedItemListTrait;
-use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Entity reference list for a computed field that displays class sessions.

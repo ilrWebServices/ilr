@@ -15,6 +15,9 @@ namespace Drupal\collection_blogs\Plugin\EntityReferenceSelection;
  */
 class CollectionContextCategoryTermSelection extends CollectionContextTermSelectionBase {
 
+  /**
+   * {@inheritdoc}
+   */
   protected $identifier = 'blog_taxonomy_categories';
 
 }

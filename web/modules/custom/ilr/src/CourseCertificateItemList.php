@@ -13,7 +13,7 @@ class CourseCertificateItemList extends EntityReferenceFieldItemList {
   use ComputedItemListTrait;
 
   /**
-   *
+   * Compute the certificates that reference this course.
    */
   protected function computeValue() {
     $course_entity = $this->getEntity();

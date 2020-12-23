@@ -6,7 +6,6 @@ use Drupal\Core\Condition\ConditionPluginBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Entity\ContentEntityType;
-use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -65,7 +64,7 @@ class RootPathEntityBundle extends ConditionPluginBase implements ContainerFacto
       $form['root_entity_bundles'][$definition->id()] = [
         '#type' => 'details',
         '#open' => !empty($this->configuration['root_entity_bundles'][$definition->id()]),
-        '#title' => $this->t($definition->getBundleLabel()),
+        '#title' => $definition->getBundleLabel(),
       ];
 
       $form['root_entity_bundles'][$definition->id()]['bundles'] = [
@@ -82,6 +81,7 @@ class RootPathEntityBundle extends ConditionPluginBase implements ContainerFacto
    * Get all content entity type names.
    *
    * @return array
+   *   The type definitions, keyed by bundle.
    */
   protected function getContentEntityTypes() {
     $content_entity_types = [];
@@ -100,8 +100,11 @@ class RootPathEntityBundle extends ConditionPluginBase implements ContainerFacto
    * Get bundles for a given entity type.
    *
    * @param string $entity_type_id
+   *   The entity type id, e.g. `node`.
    *
    * @return array
+   *   An array of bundles, with machine names for keys and label
+   *   for values.
    */
   protected function getBundlesForEntity($entity_type_id) {
     $bundles = [];
@@ -182,4 +185,5 @@ class RootPathEntityBundle extends ConditionPluginBase implements ContainerFacto
     }
     return '';
   }
+
 }

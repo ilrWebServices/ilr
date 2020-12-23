@@ -80,7 +80,7 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
         $collection_item_vocab->setAttribute('blog_taxonomy_' . $vocabulary_type, TRUE);
         $collection_item_vocab->save();
 
-        // Create a pattern for the new vocabulary
+        // Create a pattern for the new vocabulary.
         $collection_alias = $this->aliasManager->getAliasByPath($collection->toUrl()->toString());
 
         $pattern = $this->entityTypeManager->getStorage('pathauto_pattern')->create([

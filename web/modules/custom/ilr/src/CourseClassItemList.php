@@ -15,7 +15,7 @@ class CourseClassItemList extends EntityReferenceFieldItemList {
   use ComputedItemListTrait;
 
   /**
-   *
+   * Compute the list of all future classes for this course.
    */
   protected function computeValue() {
     $course_entity = $this->getEntity();

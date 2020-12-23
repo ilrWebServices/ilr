@@ -13,14 +13,14 @@
 
   document.addEventListener('DOMContentLoaded', (event) => {
     let imageTargets = document.querySelectorAll('.ilr-effect-image.zoom-out');
-    imageTargets.forEach(function(imageTarget) {
+    imageTargets.forEach(function (imageTarget) {
       onScreenObserver.observe(imageTarget);
       // Add a class so we can better target opacity in css.
       imageTarget.classList.add('js-observed');
     });
 
     let shoutTargets = document.querySelectorAll('.shout');
-    shoutTargets.forEach(function(shoutTarget) {
+    shoutTargets.forEach(function (shoutTarget) {
       onScreenObserver.observe(shoutTarget);
       // Add a class for progressive enhancement
       shoutTarget.classList.add('js-observed');

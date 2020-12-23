@@ -157,6 +157,7 @@ class PersonaType extends ConfigEntityBundleBase implements PersonaTypeInterface
    * Gets the entity field manager.
    *
    * @return \Drupal\Core\Entity\EntityFieldManager
+   *   The entity field manager service.
    */
   protected function entityFieldManager() {
     return \Drupal::service('entity_field.manager');

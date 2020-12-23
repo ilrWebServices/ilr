@@ -37,7 +37,7 @@ class SectionNavigation extends ExtraFieldDisplayBase implements ContainerFactor
   /**
    * {@inheritdoc}
    *
-   * @todo: Instead of hard-coding field name below, consider looping through
+   * @todo Instead of hard-coding field name below, consider looping through
    * fields and building the element based on the presence of the behavior
    * setting.
    */

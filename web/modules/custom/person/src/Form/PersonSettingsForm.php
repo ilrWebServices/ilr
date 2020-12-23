@@ -3,7 +3,6 @@
 namespace Drupal\person\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Configure user settings for this site.

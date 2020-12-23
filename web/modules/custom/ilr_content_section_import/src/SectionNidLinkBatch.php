@@ -17,7 +17,7 @@ class SectionNidLinkBatch {
    * @param array $context
    *   The batch context.
    */
-  public static function process($row, &$context) {
+  public static function process(array $row, array &$context) {
     $entity_type_manager = \Drupal::entityTypeManager();
     $node_storage = $entity_type_manager->getStorage('node');
     $import_mapped_object_storage = $entity_type_manager->getStorage('section_import_mapped_object');
@@ -50,7 +50,7 @@ class SectionNidLinkBatch {
         $text_content = $paragraph->entity->field_body->value;
 
         if (preg_match_all('/href="\/node\/(\d+)"/m', $text_content, $matches, PREG_SET_ORDER)) {
-          foreach($matches as $match) {
+          foreach ($matches as $match) {
             $new_node_mapping = $import_mapped_object_storage->loadByProperties([
               'type' => 'node',
               'sourceid' => $match[1],
@@ -90,7 +90,7 @@ class SectionNidLinkBatch {
    * @param array $operations
    *   A list of the operations that had not been completed by the batch API.
    */
-  public static function finish($success, $results, $operations) {
+  public static function finish($success, array $results, array $operations) {
     $messenger = \Drupal::messenger();
     if ($success) {
       $messenger->addMessage(t('Content link update complete.'));

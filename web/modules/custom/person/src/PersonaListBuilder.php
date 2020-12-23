@@ -4,7 +4,6 @@ namespace Drupal\person;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
-use Drupal\Core\Link;
 
 /**
  * Defines a class to build a listing of Persona entities.
@@ -26,7 +25,7 @@ class PersonaListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /* @var \Drupal\person\Entity\Persona $entity */
+    /** @var \Drupal\person\Entity\Persona $entity */
     $row['name']['data'] = [
       '#type' => 'link',
       '#title' => $entity->label(),

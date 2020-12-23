@@ -8,6 +8,9 @@ use Drupal\Core\Url;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Entity\EntityInterface;
 
+/**
+ * Returns responses for Persona routes.
+ */
 class PersonaController extends EntityController {
 
   /**
@@ -38,7 +41,7 @@ class PersonaController extends EntityController {
 
     foreach ($build['#bundles'] as $key => $bundle) {
       $persona_add_form_url = Url::fromRoute('entity.persona.add_form', [
-        'persona_type' => $key
+        'persona_type' => $key,
       ], $options);
 
       $build['#bundles'][$key]['add_link']->setUrl($persona_add_form_url);

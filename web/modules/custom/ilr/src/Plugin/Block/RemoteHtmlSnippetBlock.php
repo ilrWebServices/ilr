@@ -23,7 +23,7 @@ class RemoteHtmlSnippetBlock extends BlockBase {
   public function defaultConfiguration() {
     return [
       'url' => '',
-      'xpath' => ''
+      'xpath' => '',
     ] + parent::defaultConfiguration();
   }
 
@@ -81,9 +81,11 @@ class RemoteHtmlSnippetBlock extends BlockBase {
 
     // Pass the remote HTML into DOM.
     $document = new \DOMDocument('1.0', 'UTF-8');
-    $internalErrors = libxml_use_internal_errors(true); // Disable XML errors;
+    // Disable XML errors;.
+    $internalErrors = libxml_use_internal_errors(TRUE);
     $document->loadHTML($html_content);
-    libxml_use_internal_errors($internalErrors); // Restore XML error settings;
+    // Restore XML error settings;.
+    libxml_use_internal_errors($internalErrors);
 
     // Grab the snippet via xpath.
     $xpath = new \DOMXpath($document);

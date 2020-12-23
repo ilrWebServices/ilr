@@ -4,23 +4,28 @@ namespace Drupal\ilr_content_section_import\Form;
 
 use Drupal\Core\Form\FormBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Entity\EntityTypeManager;
-use Drupal\Core\File\FileSystem;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Batch\BatchBuilder;
 use Drupal\ilr_content_section_import\SectionImportBatch;
 use Drupal\ilr_content_section_import\SectionMenuLinkBatch;
 use Drupal\ilr_content_section_import\SectionNidLinkBatch;
 
+/**
+ * Provides the content section import form.
+ */
 class ContentSectionImportForm extends FormBase {
 
   /**
-   * @var $entityTypeManager \Drupal\Core\Entity\EntityTypeManager
+   * The entity type manager.
+   *
+   * @var entityTypeManager\Drupal\Core\Entity\EntityTypeManager
    */
   protected $entityTypeManager;
 
   /**
-   * @var $fileSystem \Drupal\Core\File\FileSystem
+   * The file system service.
+   *
+   * @var fileSystem\Drupal\Core\File\FileSystem
    */
   protected $fileSystem;
 
@@ -66,7 +71,7 @@ class ContentSectionImportForm extends FormBase {
       '#required' => TRUE,
     ];
 
-    // Todo: Consider validating this to ensure it starts with a `/` and ends
+    // @todo Consider validating this to ensure it starts with a `/` and ends
     // with a character.
     $form['legacy_path'] = [
       '#type' => 'textfield',
@@ -74,7 +79,7 @@ class ContentSectionImportForm extends FormBase {
       '#description' => 'If the path to this section is changing, add the new path here, starting with a slash ("/"). Leave blank if the path is the same.',
     ];
 
-    $form['json_data_file'] = array(
+    $form['json_data_file'] = [
       '#type' => 'managed_file',
       '#name' => 'json_data_file',
       '#title' => t('Data file'),
@@ -84,14 +89,14 @@ class ContentSectionImportForm extends FormBase {
         'file_validate_extensions' => ['json'],
       ],
       '#upload_location' => 'public://json_import/',
-    );
+    ];
 
     $form['actions']['#type'] = 'actions';
-    $form['actions']['submit'] = array(
+    $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Upload'),
       '#button_type' => 'primary',
-    );
+    ];
 
     return $form;
   }
@@ -119,8 +124,10 @@ class ContentSectionImportForm extends FormBase {
       ->setErrorMessage(t('Section content import has encountered an error'));
 
     foreach ($rows as $row) {
-      $batch_builder->addOperation([SectionImportBatch::class, 'process'], [$row, $content_section, $legacy_path]);
-      // $batch_builder->addOperation([SectionImportBatch::class, 'process'], [$this->entityTypeManager, $row]);
+      $batch_builder->addOperation(
+        [SectionImportBatch::class, 'process'],
+        [$row, $content_section, $legacy_path]
+      );
     }
 
     batch_set($batch_builder->toArray());
@@ -134,7 +141,10 @@ class ContentSectionImportForm extends FormBase {
       ->setErrorMessage(t('Section menu link content import has encountered an error'));
 
     foreach ($rows as $row) {
-      $menu_link_batch_builder->addOperation([SectionMenuLinkBatch::class, 'process'], [$row]);
+      $menu_link_batch_builder->addOperation(
+        [SectionMenuLinkBatch::class, 'process'],
+        [$row],
+      );
     }
 
     batch_set($menu_link_batch_builder->toArray());
@@ -148,7 +158,10 @@ class ContentSectionImportForm extends FormBase {
       ->setErrorMessage(t('Section content link updater has encountered an error'));
 
     foreach ($rows as $row) {
-      $nid_link_batch_builder->addOperation([SectionNidLinkBatch::class, 'process'], [$row]);
+      $nid_link_batch_builder->addOperation(
+        [SectionNidLinkBatch::class, 'process'],
+        [$row],
+      );
     }
 
     batch_set($nid_link_batch_builder->toArray());

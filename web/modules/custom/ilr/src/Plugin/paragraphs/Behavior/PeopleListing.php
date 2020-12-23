@@ -61,10 +61,9 @@ class PeopleListing extends ParagraphsBehaviorBase {
   /**
    * Get a node view mode for a given list style.
    *
-   * @param $list_style string
+   * @param string $list_style
    *   One of the list style machine names from this::list_styles.
-   *
-   * @param $post_number int
+   * @param int $item_position
    *   The order placement of the post in the listing.
    *
    * @return string
@@ -74,12 +73,16 @@ class PeopleListing extends ParagraphsBehaviorBase {
     switch ($list_style) {
       case 'grid-compact':
         return 'teaser_compact';
+
       case 'list-compact':
         return 'mini';
+
       case 'grid-featured':
         return $item_position === 1 ? 'promo' : 'teaser';
+
       default:
         return 'teaser';
     }
   }
+
 }

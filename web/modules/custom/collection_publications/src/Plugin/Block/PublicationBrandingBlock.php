@@ -20,16 +20,22 @@ class PublicationBrandingBlock extends BlockBase implements ContainerFactoryPlug
 
   /**
    * An array of entities in the current path.
+   *
+   * @var array
    */
   protected $pathAliasEntities;
 
   /**
    * The first entity in the path alias, if there is one.
+   *
+   * @var \Drupal\Core\Entity\ContentEntityInterface
    */
   protected $firstPathEntity;
 
   /**
    * The last entity in the path alias, if there is one.
+   *
+   * @var \Drupal\Core\Entity\ContentEntityInterface
    */
   protected $lastPathEntity;
 
