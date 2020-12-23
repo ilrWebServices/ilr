@@ -6,7 +6,7 @@
     attach: function (context) {
       let dupeMessages = $(context).find('.messages--error li:contains("This file has already been uploaded")');
 
-      dupeMessages.each(function(key, value) {
+      dupeMessages.each(function (key, value) {
         let helpText = $(value).text();
         let mediaName = helpText.match(/"(.*?)"/)[1];
         let message = $(this);
@@ -27,7 +27,7 @@
         $(mediaLibraryForm).find('.js-form-submit').click();
 
         // Be helpful and select the duplicate item.
-        setTimeout(function() {
+        setTimeout(function () {
           let firstDupe = $('.media-library-item').first();
 
           if (firstDupe) {

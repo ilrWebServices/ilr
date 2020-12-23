@@ -10,7 +10,7 @@
       // The search box is normally toggled via an invisible checkbox and some
       // CSS. This is here to trigger that checkbox from the close button within
       // the search form.
-      document.addEventListener('click', function(event) {
+      document.addEventListener('click', function (event) {
         if (event.target.matches('.closeSearch')) {
           document.getElementById('ilr_search_reveal').checked = false;
         }
@@ -18,7 +18,7 @@
 
       // For accessibility, always dismiss the search box when the escape key is
       // pressed.
-      document.addEventListener('keyup', function(event) {
+      document.addEventListener('keyup', function (event) {
         // The escape key maps to keycode `27`.
         if (event.keyCode == 27) {
           document.getElementById('ilr_search_reveal').checked = false;
@@ -53,7 +53,7 @@
         // Hide most of the form inputs by default.
         inputs.style.display = 'none';
 
-        course_notification_form.addEventListener('click', function(event) {
+        course_notification_form.addEventListener('click', function (event) {
           if (event.target.matches('.webform-button--submit' === false)) {
             return;
           }
@@ -76,7 +76,7 @@
       if (in_page_signup_jump) {
         in_page_signup_jump.classList.add('js')
 
-        in_page_signup_jump.addEventListener('click', function() {
+        in_page_signup_jump.addEventListener('click', function () {
           const course_notification_form = context.querySelector('.webform-submission-course-notification-form').closest('.block-webform');
 
           if (course_notification_form) {
@@ -87,7 +87,7 @@
 
         // If there are any `.js-modal`s on the page, disable them if the click
         // was outside of one.
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
           if (event.target.matches('.in-page-signup-jump') || event.target.closest('.js-modal')) {
             return;
           }
@@ -95,7 +95,7 @@
           document.querySelector('.js-modal').classList.remove('js-modal');
         });
 
-        document.onkeydown = function(event) {
+        document.onkeydown = function (event) {
           if ('key' in event && event.key.substring(0, 3) === 'Esc') {
             document.querySelector('.js-modal').classList.remove('js-modal');
           }
@@ -112,7 +112,7 @@
         return;
       }
 
-      context.addEventListener('change', function(event) {
+      context.addEventListener('change', function (event) {
         if (event.target.matches('.cu-checkbutton__input')) {
           let registerButton = event.target.closest('.cu-registration-form').querySelector('.cu-js-register-link');
 
