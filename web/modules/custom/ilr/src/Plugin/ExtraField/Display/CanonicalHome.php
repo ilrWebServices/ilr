@@ -47,7 +47,9 @@ class CanonicalHome extends ExtraFieldDisplayBase implements ContainerFactoryPlu
 
     if ($canonical_link = $this->getCanonicalLink($collection_item)) {
       $build['canonical_home'] = [
-        '#markup' => '<p>' . $this->t('Originally published in ') . $canonical_link->toString() . '</p>',
+        '#markup' => $this->t('Originally published in @link', ['@link' => $canonical_link->toString()]),
+        '#prefix' => '<p>',
+        '#suffix' => '</p>',
       ];
     }
 

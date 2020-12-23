@@ -17,10 +17,14 @@ class SectionImportBatch {
    *
    * @param array $row
    *   The a row of data to import as a node.
+   * @param \Drupal\collection\Entity\Collection $content_section
+   *   The content section collection.
+   * @param string $legacy_path
+   *   The legacy path of the content section.
    * @param array $context
    *   The batch context.
    */
-  public static function process($row, Collection $content_section, $legacy_path = NULL, &$context) {
+  public static function process(array $row, Collection $content_section, $legacy_path = NULL, array &$context = []) {
     if (!isset($context['sandbox']['content_section'])) {
       $context['sandbox']['content_section'] = $content_section;
       $context['sandbox']['legacy_path'] = $legacy_path;
@@ -89,7 +93,7 @@ class SectionImportBatch {
         }
       }
 
-      // TODO Updated nodes should re-use the existing text paragraph.
+      // @todo Updated nodes should re-use the existing text paragraph.
       $text_component = $paragraph_storage->create([
         'type' => 'rich_text',
         'field_body' => [
@@ -176,7 +180,7 @@ class SectionImportBatch {
    * @param array $operations
    *   A list of the operations that had not been completed by the batch API.
    */
-  public static function finish($success, $results, $operations) {
+  public static function finish($success, array $results, array $operations) {
     $messenger = \Drupal::messenger();
 
     if ($success) {
@@ -195,7 +199,10 @@ class SectionImportBatch {
       // An error occurred.
       // $operations contains the operations that remained unprocessed.
       $error_operation = reset($operations);
-      $message = t('An error occurred while processing %error_operation with arguments: @arguments', ['%error_operation' => $error_operation[0], '@arguments' => print_r($error_operation[1], TRUE)]);
+      $message = t('An error occurred while processing %error_operation with arguments: @arguments', [
+        '%error_operation' => $error_operation[0],
+        '@arguments' => print_r($error_operation[1], TRUE),
+      ]);
       $messenger->addError($message);
     }
   }

@@ -12,7 +12,7 @@ use Drupal\ilr_salesforce\CourseToTopicsTrait;
 use Drupal\ilr_salesforce\CountryCodeTransformTrait;
 
 /**
- * Class SalesforceEventSubscriber.
+ * Subscriber for SalesForce events.
  */
 class SalesforceEventSubscriber implements EventSubscriberInterface {
 
@@ -148,8 +148,8 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
    * Maps courses to their topics based on spreadsheet data.
    */
   private function getTopicsForCourseNumber($course_number) {
-    // `course_to_topics_tsv` is set in CourseToTopicsTrait.
-    $mapping_records = preg_split('/$\R?^/m', $this->course_to_topics_tsv);
+    // `courseToTopicsTsv` is set in CourseToTopicsTrait.
+    $mapping_records = preg_split('/$\R?^/m', $this->courseToTopicsTsv);
 
     foreach ($mapping_records as $mapping_record) {
       if (preg_match('/^' . $course_number . '\t([^\t]+)\t?([^\t]+)?/', $mapping_record, $matches)) {
@@ -170,7 +170,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
   private function pullPresaveClassNode(SalesforcePullEvent $event) {
     $class_node = $event->getEntity();
     $sf = $event->getMappedObject()->getSalesforceRecord();
-    // Check the country code, and convert incoming country codes to 2 letter version.
+    // Convert incoming country codes to 2 letter version.
     $address = $class_node->field_address->value;
     $class_node->field_address->country_code = $this->getTwoLetterCountryCode($sf->field('Event_Location_Country__c'));
   }
@@ -202,12 +202,15 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
   }
 
   /**
+   * Convert the incoming country code to it's 2 letter equivalent.
    *
+   * @todo Ensure that Canada is behaving as expected. It might not be coming
+   * from SF as the expected 3 letter code.
    */
   private function getTwoLetterCountryCode($incoming_country_code) {
-    // `country_code_map` is set in CountryCodeTransformTrait.
-    if (array_key_exists($incoming_country_code, $this->country_code_map)) {
-      return $this->country_code_map[$incoming_country_code];
+    // `countryCodeMap` is set in CountryCodeTransformTrait.
+    if (array_key_exists($incoming_country_code, $this->countryCodeMap)) {
+      return $this->countryCodeMap[$incoming_country_code];
     }
 
     return NULL;

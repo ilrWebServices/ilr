@@ -32,8 +32,10 @@ class EntityAutocompleteMatcherOverride extends EntityAutocompleteMatcher {
   /**
    * OriginalServiceOverride constructor.
    *
-   * @param \Drupal\custom_decorator_base\OriginalService $original_service
-   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   * @param \Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface $selection_manager
+   *   The entity reference selection handler plugin manager.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
    */
   public function __construct(SelectionPluginManagerInterface $selection_manager, EntityTypeManagerInterface $entity_type_manager) {
     $this->selectionManager = $selection_manager;
@@ -67,7 +69,7 @@ class EntityAutocompleteMatcherOverride extends EntityAutocompleteMatcher {
           $type = !empty($entity->type->entity) ? $entity->type->entity->label() : $entity->bundle();
 
           $key = $label . ' (' . $entity_id . ')';
-          // Strip things like starting/trailing white spaces, line breaks and tags.
+          // Strip things like white spaces, line breaks and tags.
           $key = preg_replace('/\s\s+/', ' ', str_replace("\n", '', trim(Html::decodeEntities(strip_tags($key)))));
           // Names containing commas or quotes must be wrapped in quotes.
           $key = Tags::encode($key);

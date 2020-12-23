@@ -147,9 +147,10 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
   }
 
   /**
-   * Create a person for this persona. Used when personas are created on the fly.
+   * Create a person for this persona. Used when creating personas on the fly.
    *
-   * @return int
+   * @return Person
+   *   The person, or FALSE.
    */
   protected function createPerson() {
     $person_values = [];

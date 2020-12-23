@@ -25,6 +25,8 @@ class PipSettings extends ParagraphsBehaviorBase {
 
   /**
    * The image effect options.
+   *
+   * @var array
    */
   protected $alignment = [
     'left' => 'Left',

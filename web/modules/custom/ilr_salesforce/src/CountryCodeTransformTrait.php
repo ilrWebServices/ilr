@@ -8,9 +8,13 @@ namespace Drupal\ilr_salesforce;
 trait CountryCodeTransformTrait {
 
   /**
-   * Mostly copied from http://country.io/iso3.json.
+   * The array map from 3 letter to 2 letter codes.
+   *
+   * This was mostly copied from http://country.io/iso3.json.
+   *
+   * @var array
    */
-  private $country_code_map = [
+  private $countryCodeMap = [
     'BGD' => 'BD',
     'BEL' => 'BE',
     'BFA' => 'BF',

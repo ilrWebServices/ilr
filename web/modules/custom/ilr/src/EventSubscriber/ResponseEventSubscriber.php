@@ -26,7 +26,10 @@ class ResponseEventSubscriber implements EventSubscriberInterface {
   public function onResponse(FilterResponseEvent $event) {
     $request = $event->getRequest();
 
-    if (!in_array($request->getHost(), ['ilr.cornell.edu', 'www.ilr.cornell.edu'])) {
+    if (!in_array($request->getHost(), [
+      'ilr.cornell.edu',
+      'www.ilr.cornell.edu',
+    ])) {
       $response = $event->getResponse();
       $response->headers->set('X-Robots-Tag', 'noindex, nofollow');
     }

@@ -23,6 +23,8 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
 
   /**
    * The frame position options.
+   *
+   * @var array
    */
   protected $position = [
     'left' => 'Left',

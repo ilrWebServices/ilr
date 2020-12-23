@@ -90,7 +90,7 @@ class LocalistEvents extends ParagraphsBehaviorBase {
       \Drupal::cache()->set($cid, $data, time() + (60 * 60 * 2));
     }
 
-    // @todo: consider using double underscore template suggestions here if
+    // @todo consider using double underscore template suggestions here if
     // different list styles need to be supported.
     foreach ($data['events'] as $item) {
       $items[] = [
@@ -109,9 +109,6 @@ class LocalistEvents extends ParagraphsBehaviorBase {
       '#items' => $items,
       '#attributes' => ['class' => 'localist-events'],
       '#empty' => $this->t('There are no events to display.'),
-      // '#cache' => [
-      //   'tags' => ['node_list:course', 'node_list:class']
-      // ],
       '#cache' => [
         'max-age' => 0,
       ],

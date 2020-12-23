@@ -153,10 +153,9 @@ class PostListing extends ParagraphsBehaviorBase {
    * Get a node view mode for a given list style.
    *
    * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
-   *
+   *   The paragraph entity.
    * @param string $list_style
    *   One of the list style machine names from this::list_styles.
-   *
    * @param int $post_number
    *   The order placement of the post in the listing.
    *
@@ -225,6 +224,7 @@ class PostListing extends ParagraphsBehaviorBase {
    * Get category term options collection set on the paragraph.
    *
    * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+   *   The paragraph entity.
    *
    * @return array
    *   List of term labels keyed by tid.
@@ -256,6 +256,7 @@ class PostListing extends ParagraphsBehaviorBase {
    * Get tag term options collection set on the paragraph.
    *
    * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+   *   The paragraph entity.
    *
    * @return array
    *   List of term labels keyed by tid.

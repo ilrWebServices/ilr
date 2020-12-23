@@ -24,6 +24,8 @@ class MediaDeck extends ParagraphsBehaviorBase {
 
   /**
    * The deck style options.
+   *
+   * @var array
    */
   protected $deckStyles = [
     'portrait_right' => 'Portrait right',

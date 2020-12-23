@@ -63,8 +63,7 @@ class PeopleListing extends ParagraphsBehaviorBase {
    *
    * @param string $list_style
    *   One of the list style machine names from this::list_styles.
-   *
-   * @param int $post_number
+   * @param int $item_position
    *   The order placement of the post in the listing.
    *
    * @return string

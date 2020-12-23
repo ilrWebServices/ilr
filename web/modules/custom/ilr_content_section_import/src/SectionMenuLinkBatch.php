@@ -17,7 +17,7 @@ class SectionMenuLinkBatch {
    * @param array $context
    *   The batch context.
    */
-  public static function process($row, &$context) {
+  public static function process(array $row, array &$context) {
     $entity_type_manager = \Drupal::entityTypeManager();
     $menu_link_storage = $entity_type_manager->getStorage('menu_link_content');
     $import_mapped_object_storage = $entity_type_manager->getStorage('section_import_mapped_object');
@@ -75,7 +75,7 @@ class SectionMenuLinkBatch {
    * @param array $operations
    *   A list of the operations that had not been completed by the batch API.
    */
-  public static function finish($success, $results, $operations) {
+  public static function finish($success, array $results, array $operations) {
     $messenger = \Drupal::messenger();
 
     if ($success) {
@@ -94,7 +94,10 @@ class SectionMenuLinkBatch {
       // An error occurred.
       // $operations contains the operations that remained unprocessed.
       $error_operation = reset($operations);
-      $message = t('An error occurred while processing %error_operation with arguments: @arguments', ['%error_operation' => $error_operation[0], '@arguments' => print_r($error_operation[1], TRUE)]);
+      $message = t('An error occurred while processing %error_operation with arguments: @arguments', [
+        '%error_operation' => $error_operation[0],
+        '@arguments' => print_r($error_operation[1], TRUE),
+      ]);
       $messenger->addError($message);
     }
   }

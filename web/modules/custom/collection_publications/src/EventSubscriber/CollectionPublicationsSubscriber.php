@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 /**
- * Class CollectionPublicationsSubscriber.
+ * Subscriber for events related to publication collections.
  */
 class CollectionPublicationsSubscriber implements EventSubscriberInterface {
 

@@ -31,6 +31,8 @@ class ListStyle extends ParagraphsBehaviorBase {
 
   /**
    * The list style options.
+   *
+   * @var array
    */
   protected $listStyles = [
     'grid' => 'Grid',
@@ -244,7 +246,14 @@ class ListStyle extends ParagraphsBehaviorBase {
    * `collection` entity reference field.
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {
-    return in_array($paragraphs_type->id(), ['simple_collection_listing', 'curated_post_listing', 'collection_listing_publication', 'curated_course_listing', 'event_listing', 'people_listing']);
+    return in_array($paragraphs_type->id(), [
+      'simple_collection_listing',
+      'curated_post_listing',
+      'collection_listing_publication',
+      'curated_course_listing',
+      'event_listing',
+      'people_listing',
+    ]);
   }
 
   /**
@@ -252,7 +261,6 @@ class ListStyle extends ParagraphsBehaviorBase {
    *
    * @param string $list_style
    *   One of the list style machine names from this::list_styles.
-   *
    * @param int $post_number
    *   The order placement of the post in the listing.
    *
@@ -282,6 +290,7 @@ class ListStyle extends ParagraphsBehaviorBase {
    * Get CSS classes for a given list style.
    *
    * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+   *   The paragraph entity.
    *
    * @return array
    *   An array of class names for the element.

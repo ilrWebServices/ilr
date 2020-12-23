@@ -8,7 +8,7 @@ use Drupal\Core\Config\ConfigEvents;
 use Drupal\Core\Config\StorageTransformEvent;
 
 /**
- * Class ConfigEventSubscriber.
+ * Subscriber for config importing and exporting.
  */
 class ConfigEventSubscriber implements EventSubscriberInterface {
 

@@ -76,16 +76,20 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
   }
 
   /**
+   * Removes the overflow sessions.
+   *
    * If a class session is full, there are times when additional
    * sessions at the same date/time are created to accommodate
    * more participants. In such cases, we should remove
    * the full class session from the display to avoid confusion.
    *
-   * @param [Array] $classes
+   * @param array $classes
+   *   The full list of class entities.
    *
-   * @return [Array] $classes
+   * @return array
+   *   The list of class entities with overflow sessions removed.
    */
-  private function removeOverflowSessions($classes) {
+  private function removeOverflowSessions(array $classes) {
     if (count($classes) == 1) {
       return $classes;
     }

@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 /**
- * Class CollectionItemPathSubscriber.
+ * Subscriber for events related to collection item paths.
  */
 class CollectionItemPathSubscriber implements EventSubscriberInterface {
 

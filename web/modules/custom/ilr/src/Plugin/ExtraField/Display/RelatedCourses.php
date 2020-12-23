@@ -28,11 +28,15 @@ class RelatedCourses extends ExtraFieldDisplayBase implements ContainerFactoryPl
   const RELATED_COURSE_LENGTH = 3;
 
   /**
+   * The node storage.
+   *
    * @var \Drupal\node\NodeStorage
    */
   protected $nodeStorage;
 
   /**
+   * The entity view builder.
+   *
    * @var \Drupal\Core\Entity\EntityViewBuilderInterface
    */
   protected $viewBuilder;

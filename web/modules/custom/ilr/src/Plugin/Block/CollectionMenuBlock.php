@@ -45,6 +45,8 @@ class CollectionMenuBlock extends BlockBase implements ContainerFactoryPluginInt
   protected $menuActiveTrail;
 
   /**
+   * The entities represented by the path elements.
+   *
    * @var array
    */
   protected $pathEntities;
@@ -65,7 +67,7 @@ class CollectionMenuBlock extends BlockBase implements ContainerFactoryPluginInt
    * @param array $path_entities
    *   An array of path alias entities.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, MenuLinkTreeInterface $menu_tree, MenuActiveTrailInterface $menu_active_trail, array $path_entities) {
+  public function __construct(array $configuration, $plugin_id, array $plugin_definition, MenuLinkTreeInterface $menu_tree, MenuActiveTrailInterface $menu_active_trail, array $path_entities) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->menuTree = $menu_tree;
     $this->menuActiveTrail = $menu_active_trail;
@@ -104,7 +106,7 @@ class CollectionMenuBlock extends BlockBase implements ContainerFactoryPluginInt
   /**
    * {@inheritdoc}
    *
-   * TODO Find (or create) a cache context that only considers the first part of
+   * @todo Find (or create) a cache context that only considers the first part of
    * the url.path (e.g. only `foo` from `foo/bar/baz`). See
    * PathParentCacheContext.
    */
@@ -128,8 +130,8 @@ class CollectionMenuBlock extends BlockBase implements ContainerFactoryPluginInt
     $tree = $this->menuTree->transform($tree, $manipulators);
     $build = $this->menuTree->build($tree);
 
-    // If there is only one item in the active trail, none of the items are active.
-    // @see Drupal\Core\Menu\MenuActiveTrail::doGetActiveTrailIds().
+    // If there is only one item in the active trail, none of the items are
+    // active. @see Drupal\Core\Menu\MenuActiveTrail::doGetActiveTrailIds().
     if (count($active_trail) === 1) {
       $build['#attributes']['class'][] = 'collection-menu-block--no-active-trail';
     }

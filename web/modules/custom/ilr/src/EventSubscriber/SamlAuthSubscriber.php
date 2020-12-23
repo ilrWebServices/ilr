@@ -7,7 +7,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\samlauth\Event\SamlauthUserSyncEvent;
 
 /**
- * Class SamlAuthSubscriber.
+ * Subscriber for samlauth events.
  */
 class SamlAuthSubscriber implements EventSubscriberInterface {
 

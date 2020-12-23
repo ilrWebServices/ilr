@@ -13,6 +13,11 @@ use Drupal\collection\Entity\CollectionItem;
  */
 class CollectionContextTermSelectionBase extends SelectionPluginBase implements ContainerFactoryPluginInterface {
 
+  /**
+   * The identifier used as the attribute.
+   *
+   * @var string
+   */
   protected $identifier = '';
 
   /**

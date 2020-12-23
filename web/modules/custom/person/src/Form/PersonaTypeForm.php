@@ -6,7 +6,7 @@ use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class PersonaTypeForm.
+ * Provides the form for managing persona types.
  */
 class PersonaTypeForm extends EntityForm {
 
@@ -22,7 +22,7 @@ class PersonaTypeForm extends EntityForm {
       '#title' => $this->t('Label'),
       '#maxlength' => 255,
       '#default_value' => $persona_type->label(),
-      '#description' => $this->t(" The human-readable name of this Persona type."),
+      '#description' => $this->t("The human-readable name of this Persona type."),
       '#required' => TRUE,
     ];
 

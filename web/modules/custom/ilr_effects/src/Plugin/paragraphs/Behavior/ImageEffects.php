@@ -24,6 +24,8 @@ class ImageEffects extends ParagraphsBehaviorBase {
 
   /**
    * The image effect options.
+   *
+   * @var array
    */
   protected $imageEffects = [
     'none' => 'None',

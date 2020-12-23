@@ -198,8 +198,9 @@ function ilr_post_update_add_covid_blog_category_terms(&$sandbox) {
 }
 
 /**
- * Change `blog_collection_id` attribute key to `blog_taxonomy_categories` with
- * a value of 1 for the vocabulary collection items for the covid and ILR in the
+ * Change `blog_collection_id` attribute key to `blog_taxonomy_categories`.
+ *
+ * We do this for the vocabulary collection items for the covid and ILR in the
  * News blogs.
  */
 function ilr_post_update_fix_blog_category_collection_item_attributes(&$sandbox) {
@@ -207,9 +208,9 @@ function ilr_post_update_fix_blog_category_collection_item_attributes(&$sandbox)
   $collection_item_storage = $entity_type_manager->getStorage('collection_item');
 
   // 17 and 23 are the collection_item ids for the blog vocabularies.
-  $blog_categories_collection_items = $collection_item_storage->loadMultiple([17, 23]);
+  $blog_cat_collection_items = $collection_item_storage->loadMultiple([17, 23]);
 
-  foreach ($blog_categories_collection_items as $collection_item) {
+  foreach ($blog_cat_collection_items as $collection_item) {
     $collection_item->setAttribute('blog_taxonomy_categories', TRUE);
     $collection_item->removeAttribute('blog_collection_id');
     $collection_item->save();
@@ -217,9 +218,7 @@ function ilr_post_update_fix_blog_category_collection_item_attributes(&$sandbox)
 }
 
 /**
- * Add the `blog_2_tags` and `blog_4_tags` vocabularies to their blog
- * collections with the `blog_taxonomy_tags` attribute set to 1 (TRUE). Also add
- * some default terms to `blog_2_tags`.
+ * Add the `blog_2_tags` and `blog_4_tags` vocabularies to their collections.
  */
 function ilr_post_update_add_blog_tag_terms(&$sandbox) {
   $entity_type_manager = \Drupal::service('entity_type.manager');
@@ -354,7 +353,11 @@ function ilr_post_update_update_ilrie_logo(&$sandbox) {
  */
 function ilr_post_update_update_list_styles(&$sandbox) {
   $query = \Drupal::entityQuery('paragraph');
-  $query->condition('type', ['simple_collection_listing', 'curated_post_listing', 'collection_listing_publication'], 'IN');
+  $query->condition('type', [
+    'simple_collection_listing',
+    'curated_post_listing',
+    'collection_listing_publication',
+  ], 'IN');
   $relevant_paragraph_ids = $query->execute();
   $paragraphs = Paragraph::loadMultiple($relevant_paragraph_ids);
 

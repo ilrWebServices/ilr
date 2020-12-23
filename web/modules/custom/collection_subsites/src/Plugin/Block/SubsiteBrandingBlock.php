@@ -23,7 +23,7 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
   /**
    * The entities represented by the current path.
    *
-   * Array.
+   * @var array
    */
   protected $pathEntities;
 
@@ -89,7 +89,7 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
     // If the collection is configured to use the name, do so.
     // @todo Implement this field if we decide to use this technique.
     if ($subsite_collection->hasField('full_name') && !$subsite_collection->full_name->isEmpty()) {
-      $build['#subsite_name'] = $subsite_collection->full_name->value;;
+      $build['#subsite_name'] = $subsite_collection->full_name->value;
     }
 
     return $build;

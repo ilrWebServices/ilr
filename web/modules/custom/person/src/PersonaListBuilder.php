@@ -25,7 +25,7 @@ class PersonaListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /* @var \Drupal\person\Entity\Persona $entity */
+    /** @var \Drupal\person\Entity\Persona $entity */
     $row['name']['data'] = [
       '#type' => 'link',
       '#title' => $entity->label(),

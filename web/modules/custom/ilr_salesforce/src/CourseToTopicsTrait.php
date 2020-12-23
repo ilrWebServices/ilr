@@ -7,12 +7,17 @@ namespace Drupal\ilr_salesforce;
  */
 trait CourseToTopicsTrait {
 
-  // This data is simply columns B, C, and D pasted from
-  // https://docs.google.com/spreadsheets/d/1ClG7pik5TZt3RwCbh7UkP5Hj40raol3M1LfKxSvFdX4/edit
   /**
+   * The data captured from the google doc.
+   *
+   * This data is simply columns B, C, and D pasted from
+   * https://docs.google.com/spreadsheets/d/1ClG7pik5TZt3RwCbh7UkP5Hj40raol3M1LfKxSvFdX4/edit.
+   *
    * Note that tabs and spaces are preserved here, and they matter.
+   *
+   * @var string
    */
-  private $course_to_topics_tsv = <<<'EOD'
+  private $courseToTopicsTsv = <<<'EOD'
 LR353	Labor Relations	Conflict Resolution
 LR354	Labor Relations	Human Resources
 LR356	Labor Relations	Conflict Resolution

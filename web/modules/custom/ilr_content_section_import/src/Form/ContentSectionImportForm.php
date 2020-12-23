@@ -16,11 +16,15 @@ use Drupal\ilr_content_section_import\SectionNidLinkBatch;
 class ContentSectionImportForm extends FormBase {
 
   /**
+   * The entity type manager.
+   *
    * @var entityTypeManager\Drupal\Core\Entity\EntityTypeManager
    */
   protected $entityTypeManager;
 
   /**
+   * The file system service.
+   *
    * @var fileSystem\Drupal\Core\File\FileSystem
    */
   protected $fileSystem;
@@ -67,7 +71,7 @@ class ContentSectionImportForm extends FormBase {
       '#required' => TRUE,
     ];
 
-    // Todo: Consider validating this to ensure it starts with a `/` and ends
+    // @todo Consider validating this to ensure it starts with a `/` and ends
     // with a character.
     $form['legacy_path'] = [
       '#type' => 'textfield',
@@ -120,8 +124,10 @@ class ContentSectionImportForm extends FormBase {
       ->setErrorMessage(t('Section content import has encountered an error'));
 
     foreach ($rows as $row) {
-      $batch_builder->addOperation([SectionImportBatch::class, 'process'], [$row, $content_section, $legacy_path]);
-      // $batch_builder->addOperation([SectionImportBatch::class, 'process'], [$this->entityTypeManager, $row]);
+      $batch_builder->addOperation(
+        [SectionImportBatch::class, 'process'],
+        [$row, $content_section, $legacy_path]
+      );
     }
 
     batch_set($batch_builder->toArray());
@@ -135,7 +141,10 @@ class ContentSectionImportForm extends FormBase {
       ->setErrorMessage(t('Section menu link content import has encountered an error'));
 
     foreach ($rows as $row) {
-      $menu_link_batch_builder->addOperation([SectionMenuLinkBatch::class, 'process'], [$row]);
+      $menu_link_batch_builder->addOperation(
+        [SectionMenuLinkBatch::class, 'process'],
+        [$row],
+      );
     }
 
     batch_set($menu_link_batch_builder->toArray());
@@ -149,7 +158,10 @@ class ContentSectionImportForm extends FormBase {
       ->setErrorMessage(t('Section content link updater has encountered an error'));
 
     foreach ($rows as $row) {
-      $nid_link_batch_builder->addOperation([SectionNidLinkBatch::class, 'process'], [$row]);
+      $nid_link_batch_builder->addOperation(
+        [SectionNidLinkBatch::class, 'process'],
+        [$row],
+      );
     }
 
     batch_set($nid_link_batch_builder->toArray());

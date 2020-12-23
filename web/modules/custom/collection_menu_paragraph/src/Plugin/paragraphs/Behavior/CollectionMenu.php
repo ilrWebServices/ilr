@@ -26,23 +26,31 @@ class CollectionMenu extends ParagraphsBehaviorBase {
 
   /**
    * The frame position options.
+   *
+   * @var array
    */
-  protected $navigation_levels = [
+  protected $navigationLevels = [
     'children' => 'Children',
     'siblings' => 'Siblings',
   ];
 
   /**
+   * The menu tree.
+   *
    * @var \Drupal\Core\Menu\MenuLinkTreeInterface
    */
   protected $menuTree;
 
   /**
+   * The menu active trail.
+   *
    * @var \Drupal\Core\Menu\MenuActiveTrailInterface
    */
   protected $menuActiveTrail;
 
   /**
+   * The entities represented by the path parts.
+   *
    * @var array
    */
   protected $pathEntities;
@@ -74,9 +82,9 @@ class CollectionMenu extends ParagraphsBehaviorBase {
     $form['navigation_level'] = [
       '#type' => 'select',
       '#title' => $this->t('Navigation to display'),
-      '#options' => $this->navigation_levels,
+      '#options' => $this->navigationLevels,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'navigation_level'),
-      '#suffix' => $this->t(' of this page'),
+      '#suffix' => ' ' . $this->t('of this page'),
     ];
 
     return $form;
@@ -130,7 +138,8 @@ class CollectionMenu extends ParagraphsBehaviorBase {
   /**
    * {@inheritdoc}
    *
-   * This behavior is only applicable to paragraphs that are of type 'section_navigation'.
+   * This behavior is only applicable to paragraphs that are of type
+   * 'section_navigation'.
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {
     return $paragraphs_type->id() === 'section_navigation';
@@ -140,7 +149,8 @@ class CollectionMenu extends ParagraphsBehaviorBase {
    * Get the menu name for the first path entity if it is a collection.
    *
    * @return string
-   *   The name of the menu for the first path entity or FALSE if no menu was found.
+   *   The name of the menu for the first path entity
+   *   or FALSE if no menu was found.
    */
   protected function getCollectionMenuName() {
     if (!(reset($this->pathEntities) instanceof CollectionInterface)) {

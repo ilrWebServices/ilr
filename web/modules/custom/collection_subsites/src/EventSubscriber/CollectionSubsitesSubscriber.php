@@ -14,7 +14,7 @@ use Drupal\Core\Url;
 use Drupal\Core\Link;
 
 /**
- * Class CollectionSubsitesSubscriber.
+ * Subscriber for events related to subsite collections.
  */
 class CollectionSubsitesSubscriber implements EventSubscriberInterface {
 
@@ -103,7 +103,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
 
       // Add the menu to this new collection.
       $collection_item_menu = $collection_item_storage->create([
-      // @todo: Consider a dedicated type.
+      // @todo Consider a dedicated type.
         'type' => 'default',
         'collection' => $collection->id(),
       ]);
@@ -138,7 +138,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
 
       // Add the bvg to this new collection.
       $collection_item_bvg = $collection_item_storage->create([
-      // @todo: Consider a dedicated type.
+      // @todo Consider a dedicated type.
         'type' => 'default',
         'collection' => $collection->id(),
       ]);
@@ -146,7 +146,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
       $collection_item_bvg->setAttribute('subsite_collection_id', $collection->id());
       $collection_item_bvg->save();
 
-      // @todo: Add a subsite branding block to the BVG.
+      // @todo Add a subsite branding block to the BVG.
       if ($menu) {
         // Add the new menu block to the header region of the new
         // block visibility group.

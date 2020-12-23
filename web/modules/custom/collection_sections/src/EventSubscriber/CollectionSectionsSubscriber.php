@@ -13,7 +13,7 @@ use Drupal\Core\Url;
 use Drupal\Core\Link;
 
 /**
- * Class CollectionSectionsSubscriber.
+ * Subscriber for events related to content section collections.
  */
 class CollectionSectionsSubscriber implements EventSubscriberInterface {
 
@@ -91,7 +91,7 @@ class CollectionSectionsSubscriber implements EventSubscriberInterface {
 
       // Add the menu to this new collection.
       $collection_item_menu = $collection_item_storage->create([
-      // @todo: Consider a dedicated type.
+      // @todo Consider a dedicated type.
         'type' => 'default',
         'collection' => $collection->id(),
       ]);

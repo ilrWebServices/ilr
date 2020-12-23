@@ -16,9 +16,10 @@ use Drupal\Core\Url;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\layout_builder\Section;
 use Drupal\layout_builder\SectionComponent;
+use Drupal\taxonomy\Entity\Vocabulary;
 
 /**
- * Class CollectionEventSubscriber.
+ * Subscriber for events related to collection entities.
  */
 class CollectionEventSubscriber implements EventSubscriberInterface {
 
@@ -118,7 +119,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
       $collection_items = $collection->findItemsByAttribute('blog_taxonomy_categories', TRUE);
 
       if (empty($collection_items)) {
-        // TODO GOTO 'Load the tags vocabulary...'.
+        // @todo GOTO 'Load the tags vocabulary...'.
         return;
       }
 
@@ -187,6 +188,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
    * Generate the "template" for field instance and form display config.
    *
    * @param int $category_id
+   *   The category id.
    *
    * @return array
    *   An array of field config arrays.
@@ -295,12 +297,15 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
   /**
    * Generate the "template" for layout builder sections for category/tag pages.
    *
-   * @param TaxonomyVocabulary $vocabulary
+   * @param \Drupal\taxonomy\Entity\Vocabulary $vocabulary
+   *   The taxonomy vocabulary entity.
+   * @param string $type
+   *   The $vocabulary type, e.g. 'category' or 'tag'.
    *
    * @return array
    *   An array of layout builder sections
    */
-  protected function getLayoutSections($vocabulary, $type) {
+  protected function getLayoutSections(Vocabulary $vocabulary, $type) {
     $sections = [];
 
     $sections[] = new Section('layout_onecol', ['label' => 'Blog banner'], [
