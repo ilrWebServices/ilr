@@ -33,5 +33,9 @@ domain_redirects:
     -
       sub_path: '/*'
       destination: www.ilr.cornell.edu/programs/professional-education/senior-leader-courses
+  'summerdebatecamp:cornell:edu':
+    -
+      sub_path: '/*'
+      destination: www.ilr.cornell.edu/cornell-debate/international-summer-debate-camp
 _core:
   default_config_hash: CgXLPQkHCGerCdDtMO8wK9Er4j6iy1iMOyalk8iRgrE
