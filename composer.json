@@ -139,6 +139,9 @@
       },
       "drupal/focal_point": {
         "Preview link accidentally closes the media library": "https://www.drupal.org/files/issues/2020-10-11/preview_link_accidentally_closes_the_media_library-3162210-19.patch"
+      },
+      "drupal/entity_browser": {
+        "Call to undefined method FileUploadForm::getEntity() in entity_browser_form_alter()": "https://www.drupal.org/files/issues/2020-04-09/3061842-3_0.patch"
       }
     },
     "installer-paths": {
