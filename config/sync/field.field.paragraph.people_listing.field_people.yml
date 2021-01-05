@@ -6,6 +6,7 @@ dependencies:
     - field.storage.paragraph.field_people
     - paragraphs.paragraphs_type.people_listing
     - person.persona_type.author
+    - person.persona_type.expert
     - person.persona_type.faculty
     - person.persona_type.staff
 id: paragraph.people_listing.field_people
@@ -23,6 +24,7 @@ settings:
   handler_settings:
     target_bundles:
       author: author
+      expert: expert
       faculty: faculty
       staff: staff
     sort:
