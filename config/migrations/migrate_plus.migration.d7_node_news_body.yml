@@ -10,13 +10,13 @@ migration_tags:
   - 'Drupal 7'
   - Content
   - status-done
-migration_group: migrate_drupal_7
+migration_group: drupal_7
 label: 'News Article Node Bodies'
 source:
   plugin: d7_node
   node_type: news_item
 process:
-  field_text:
+  field_body:
     plugin: sub_process
     source: body
     process:

@@ -9,15 +9,12 @@ cck_plugin_method: null
 migration_tags:
   - 'Drupal 7'
   - Content
-  - status-done
-migration_group: migrate_drupal_7
-label: 'News Article Nodes'
+migration_group: drupal_7
+label: 'News article nodes'
 source:
   plugin: d7_node
   node_type: news_item
 process:
-  nid: tnid
-  vid: vid
   langcode:
     plugin: default_value
     source: language
@@ -32,23 +29,23 @@ process:
   revision_uid: revision_uid
   revision_log: log
   revision_timestamp: timestamp
-  field_summary: field_description
-  field_external_url:
-    plugin: field_link
-    source: field_website_url
+  body/summary: field_description/0/value
+  body/value:
+    plugin: default_value
+    default_value: ''
   _news_body_paragraphs:
     plugin: migration_lookup
     migration: d7_node_news_body
     source: nid
     no_stub: true
-  field_component_content:
+  field_components:
     plugin: sub_process
     source:
       - '@_news_body_paragraphs'
     process:
       target_id: '0'
       target_revision_id: '1'
-  field_publication_date:
+  field_published_date:
     plugin: sub_process
     source: field_published_date
     process:
