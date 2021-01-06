@@ -19,6 +19,9 @@ process:
     plugin: default_value
     source: language
     default_value: en
+  type:
+    plugin: d7_news_bundle
+    default_value: post
   title: title
   uid: node_uid
   status: status
@@ -59,9 +62,12 @@ process:
     source: field_image
     process:
       target_id: fid
+  field_external_link:
+    plugin: field_link
+    uri_scheme: 'https://'
+    source: field_website_url
 destination:
   plugin: 'entity:node'
-  default_bundle: article
 migration_dependencies:
   required:
     - d7_node_news_body
