@@ -18,7 +18,6 @@ source:
     source_base_path: 'https://www.ilr.cornell.edu'
     file_destination: 'public://'
 process:
-  mid: fid
   uid: uid
   bundle: type
   name:
