@@ -42,7 +42,14 @@ class PersonaForm extends ContentEntityForm {
         if (isset($form[$field_name]) && (!$persona->fieldIsOverridden($field_name) || $persona->$field_name->isEmpty())) {
           $form['inherited'][$field_name] = $form[$field_name];
           $form['inherited'][$field_name]['widget'][0]['value']['#placeholder'] = isset($persona->person->entity) ? $persona->person->entity->$field_name->value : '';
-          unset($form[$field_name]);
+          // If the render element is at the root, we need to hide it. For all
+          // other field widgets, we need to unset the field.
+          if (empty($form[$field_name]['widget'][0])) {
+            $form[$field_name]['#access'] = FALSE;
+          }
+          else {
+            unset($form[$field_name]);
+          }
         }
       }
     }
