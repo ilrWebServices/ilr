@@ -114,7 +114,11 @@ process:
     plugin: sub_process
     source: field_image
     process:
-      target_id: fid
+      target_id:
+        plugin: migration_lookup
+        migration: d7_file_media
+        source: fid
+        no_stub: true
   field_external_link:
     plugin: field_link
     uri_scheme: 'https://'
