@@ -27,6 +27,7 @@ process:
     plugin: static_map
     source: node_uid
     map:
+      1: 1
       16: 5
       156: 75
       341: 4
@@ -77,6 +78,7 @@ process:
       36575: 31
       36624: 94
       34851: 68
+    default_value: 1
   status: status
   created: created
   changed: changed
