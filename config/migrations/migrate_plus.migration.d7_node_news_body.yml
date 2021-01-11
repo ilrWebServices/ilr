@@ -23,7 +23,7 @@ process:
       value: value
       format:
         plugin: default_value
-        default_value: basic_formatting
+        default_value: basic_formatting_with_media
 destination:
   plugin: 'entity_reference_revisions:paragraph'
   default_bundle: rich_text
