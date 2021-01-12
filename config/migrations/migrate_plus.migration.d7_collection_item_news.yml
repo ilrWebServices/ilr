@@ -1,0 +1,41 @@
+uuid: 54715deb-1e23-433c-bc56-b24a69e9aadd
+langcode: en
+status: true
+dependencies: {  }
+id: d7_collection_item_news
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: drupal_7
+label: 'News Post Blog Collection Items'
+source:
+  plugin: d7_node
+  node_type: news_item
+process:
+  user_id:
+    plugin: default_value
+    default_value: 1
+  item/target_id:
+    plugin: migration_lookup
+    migration: d7_node_news
+    source: nid
+    no_stub: true
+  item/target_type:
+    plugin: default_value
+    default_value: node
+  collection:
+    plugin: default_value
+    default_value: 26
+  canonical:
+    plugin: default_value
+    default_value: 1
+destination:
+  plugin: 'entity:collection_item'
+  default_bundle: blog
+migration_dependencies:
+  required:
+    - d7_node_news
+  optional: {  }
