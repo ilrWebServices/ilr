@@ -20,7 +20,9 @@ process:
     plugin: sub_process
     source: body
     process:
-      value: value
+      value:
+        plugin: media_embed
+        source: value
       format:
         plugin: default_value
         default_value: basic_formatting_with_media
