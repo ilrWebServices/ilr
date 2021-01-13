@@ -1,0 +1,6 @@
+services:
+  ilr_file_migrate_event_subscriber:
+    class: Drupal\ilr_migrate\EventSubscriber\FileMediaMigrateSubscriber
+    arguments: ['@entity_type.manager', '@focal_point.manager']
+    tags:
+      - { name: event_subscriber }
