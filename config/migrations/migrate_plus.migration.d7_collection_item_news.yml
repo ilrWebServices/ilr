@@ -18,6 +18,8 @@ process:
   user_id:
     plugin: default_value
     default_value: 1
+  created: created
+  changed: changed
   item/target_id:
     plugin: migration_lookup
     migration: d7_node_news
