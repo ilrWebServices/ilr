@@ -12,8 +12,9 @@ migration_tags:
 migration_group: drupal_7
 label: 'News article nodes'
 source:
-  plugin: d7_node
+  plugin: ilr_d7_node
   node_type: news_item
+  node_status: 1
 process:
   langcode:
     plugin: default_value

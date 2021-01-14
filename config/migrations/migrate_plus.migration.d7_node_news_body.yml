@@ -13,8 +13,9 @@ migration_tags:
 migration_group: drupal_7
 label: 'News Article Node Bodies'
 source:
-  plugin: d7_node
+  plugin: ilr_d7_node
   node_type: news_item
+  node_status: 1
 process:
   field_body:
     plugin: sub_process
