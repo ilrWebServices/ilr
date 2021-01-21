@@ -46,25 +46,30 @@
   }
 }
 
-#block-union-marketing-branding-75,
 .block-subsite-branding-block {
+  height: 40px;
+  max-width: 90%;
+
+  @include breakpoint(sm) {
+    height: 76px;
+  }
+
+  > a {
+    display: inline-block;
+    height: 100%;
+  }
+
+  img {
+    margin-right: var(--cu-ps2);
+    height: inherit;
+  }
+}
+
+#block-union-marketing-branding-75 {
   max-width: 450px;
-  min-width: 300px;
-  width: 100%;
 
   svg, img {
     margin-right: var(--cu-ps2);
-    min-width: 280px;
-
-    @include breakpoint(md) {
-      min-width: 300px;
-    }
-  }
-
-  @include breakpoint(sm) {
-    img {
-      width: 100%;
-    }
   }
 }
 
