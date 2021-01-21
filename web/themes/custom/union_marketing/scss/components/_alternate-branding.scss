@@ -67,8 +67,19 @@
 
 #block-union-marketing-branding-75 {
   max-width: 450px;
+  height: 60px;
 
-  svg, img {
+  @include breakpoint(sm) {
+    height: 89px; // Height accommodates the "75" descender.
+  }
+
+  .field__item,
+  a {
+    height: inherit;
+  }
+
+  svg {
+    height: inherit;
     margin-right: var(--cu-ps2);
   }
 }
