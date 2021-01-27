@@ -119,7 +119,8 @@
     "patches": {
       "drupal/core": {
         "Remove invalid iframe attributes from oembed field formatter": "https://www.drupal.org/files/issues/2019-07-31/remove-iframe-attributes-3071446-4.patch",
-        "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch"
+        "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch",
+        "Pass current route parameters to the confirmation form route": "https://www.drupal.org/files/issues/2020-02-25/2901412-13.patch"
       },
       "drupal/address": {
         "Configure visible address fields per field formatter": "https://www.drupal.org/files/issues/2019-05-23/address-visible_address_fields_per_field_formatter-2852800-23.patch"
