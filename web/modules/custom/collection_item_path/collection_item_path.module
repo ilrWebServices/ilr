@@ -10,6 +10,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\collection\Entity\CollectionItem;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_entity_base_field_info().
@@ -84,6 +85,38 @@ function collection_item_path_form_collection_item_list_alter(&$form, FormStateI
         ],
       ];
     }
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ *
+ * Prepare the row to be modified if the collection item is not canonical.
+ */
+function collection_item_path_views_pre_render(ViewExecutable $view) {
+  if (array_key_exists('collection_item', $view->getBaseTables())) {
+    foreach($view->result as $row) {
+      if ($row->_entity instanceof CollectionItem) {
+        $row->collection_item_link = !$row->_entity->isCanonical();
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view_field().
+ *
+ * Check for the collection_item_link value, and update the output of the
+ * item__target_id field so it points to the collection item if found.
+ * @see collection_item_path_views_pre_render().
+ */
+function collection_item_path_preprocess_views_view_field(&$variables) {
+  if (empty($variables['row']->collection_item_link)) {
+    return;
+  }
+
+  if ($variables['field']->realField === 'item__target_id') {
+    $variables['output'] = $variables['row']->_entity->toLink();
   }
 }
 
