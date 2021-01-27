@@ -45,6 +45,7 @@ class AtomFeed extends ControllerBase {
       ->condition('item.entity:node.type', ['post', 'story'], 'IN')
       ->condition('item.entity:node.field_published_date', NULL, 'IS NOT NULL')
       ->sort('item.entity:node.field_published_date', 'DESC')
+      ->range(0, 100)
       ->execute();
 
     $blog_post_collection_items = $entity_type_manager->getStorage('collection_item')->loadMultiple($blog_post_collection_item_ids);
