@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0425668fe84b2584cc872cc83fba04dd",
+    "content-hash": "56f84d936dfdf0025d2c07b7f1d63526",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2186,7 +2186,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/collection.git",
-                "reference": "a5710b3e06d09ac9a7136e597e861d408a80d057"
+                "reference": "75c415ff435f00cdcd7a351cf16140b19dbde392"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -2204,7 +2204,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1611771883",
+                    "datestamp": "1611772709",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
