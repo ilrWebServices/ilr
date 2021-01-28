@@ -56,7 +56,7 @@
         attributes: { class: 'cu-section-heading--framed cu-section-heading--framed-'~paragraph.field_heading.position },
         heading: paragraph.field_heading.value,
         subheading: not paragraph.field_subheading.isEmpty() ? paragraph.field_subheading.value,
-        link: not paragraph.field_subheading_link.isEmpty() ? { url: paragraph.field_subheading_link.uri, text: paragraph.field_subheading_link.title }
+        link: not paragraph.field_subheading_link.isEmpty() ? { url: paragraph.field_subheading_link.0.url, text: paragraph.field_subheading_link.title }
       }, with_context = false)
     }
   } %}
