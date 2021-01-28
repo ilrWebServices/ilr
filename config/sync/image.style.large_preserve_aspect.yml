@@ -1,0 +1,15 @@
+uuid: 4928b17f-3109-435a-b94b-a5ea1df04a02
+langcode: en
+status: true
+dependencies: {  }
+name: large_preserve_aspect
+label: 'Large preserve aspect ratio (1200x1200 max)'
+effects:
+  b078e2e2-c3d8-4da8-bc0d-d1b8da9378a2:
+    uuid: b078e2e2-c3d8-4da8-bc0d-d1b8da9378a2
+    id: image_scale
+    weight: 2
+    data:
+      width: 1200
+      height: 1200
+      upscale: false

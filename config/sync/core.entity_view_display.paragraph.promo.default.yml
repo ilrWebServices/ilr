@@ -10,10 +10,12 @@ dependencies:
     - field.field.paragraph.promo.field_media
     - field.field.paragraph.promo.field_subheading
     - field.field.paragraph.promo.field_suppress_media
+    - image.style.large_preserve_aspect
     - paragraphs.paragraphs_type.promo
   module:
     - dynamic_entity_reference
     - link
+    - media
     - text
 id: paragraph.promo.default
 targetEntityType: paragraph
@@ -107,10 +109,10 @@ content:
     weight: 4
     label: hidden
     settings:
-      link: true
-      view_mode: default
+      image_style: large_preserve_aspect
+      image_link: ''
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    type: media_thumbnail
     region: content
   field_subheading:
     weight: 1
