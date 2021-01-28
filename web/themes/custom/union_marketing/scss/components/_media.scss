@@ -157,3 +157,7 @@
 .ilr-effect-image.curtain-reveal::before {
   background-position: var(--image-focal-point);
 }
+
+.cu-card--promo-with-media .cu-card__media img {
+  object-position: var(--image-focal-point, '50% 50%');
+}
