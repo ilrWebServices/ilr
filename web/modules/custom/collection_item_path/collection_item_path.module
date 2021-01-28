@@ -96,7 +96,7 @@ function collection_item_path_form_collection_item_list_alter(&$form, FormStateI
 function collection_item_path_views_pre_render(ViewExecutable $view) {
   if (array_key_exists('collection_item', $view->getBaseTables())) {
     foreach($view->result as $row) {
-      if ($row->_entity instanceof CollectionItem) {
+      if ($row->_entity instanceof CollectionItem && $row->_entity instanceof ContentEntityInterface) {
         $row->collection_item_link = !$row->_entity->isCanonical();
       }
     }
