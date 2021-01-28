@@ -226,6 +226,29 @@ function union_marketing_preprocess_links(&$variables) {
 /**
  * Implements hook_preprocess_paragraph().
  */
+function union_marketing_preprocess_paragraph(&$variables) {
+  $para = $variables['paragraph'];
+
+  // For paragraphs that have an image media field, add an inline custom CSS
+  // property with the focal point settings for that image. This will be used
+  // for `background-position` and `object-position` settings in CSS.
+  if (in_array($para->bundle(), ['image', 'promo']) && $para->field_media->entity && $para->field_media->entity->bundle() === 'image') {
+    $image = $para->field_media->entity->field_media_image;
+    $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
+    $crop = Crop::findCrop($image->entity->getFileUri(), $crop_type);
+
+    if ($crop) {
+      $image_props = $image->first()->getValue();
+      $anchor = \Drupal::service('focal_point.manager')
+        ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
+      $variables['attributes']['style'][] = '--image-focal-point: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
 function union_marketing_preprocess_paragraph__deck(&$variables) {
   $grid_variant = ($variables['paragraph']->hasField('field_grid_variant')) ? $variables['paragraph']->field_grid_variant->value : 'two-up';
 
@@ -239,23 +262,6 @@ function union_marketing_preprocess_paragraph__rich_text(&$variables) {
   $variables['content']['field_body'][0]['#attached'] = [
     'library' => ['ilr_effects/ilr_effects'],
   ];
-}
-
-/**
- * Implements hook_preprocess_paragraph().
- */
-function union_marketing_preprocess_paragraph__image(&$variables) {
-  $image = $variables['paragraph']->field_media->entity->field_media_image;
-  $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
-  $crop = Crop::findCrop($image->entity->getFileUri(), $crop_type);
-
-  if ($crop) {
-    $image_props = $image->first()->getValue();
-    $anchor = \Drupal::service('focal_point.manager')
-      ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
-
-    $variables['attributes']['style'][] = '--image-focal-point: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;';
-  }
 }
 
 /**
