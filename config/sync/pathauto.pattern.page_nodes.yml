@@ -7,7 +7,7 @@ dependencies:
 id: page_nodes
 label: 'Page Nodes'
 type: 'canonical_entities:node'
-pattern: '[node:menu-link:parent:url:relative]/[node:menu-link:title]'
+pattern: '[node:title]'
 selection_criteria:
   7bce30ad-e983-4e72-a962-d9cebf817fc3:
     id: node_type

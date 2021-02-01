@@ -21,6 +21,7 @@ use Drupal\Core\Cache\Cache;
 use Drupal\webform\Plugin\WebformHandlerInterface;
 use Drupal\webform\WebformSubmissionInterface;
 use Drupal\file\FileInterface;
+use Drupal\pathauto\PathautoPatternInterface;
 
 /**
  * Implements hook_theme().
@@ -918,6 +919,23 @@ function ilr_pathauto_alias_alter(&$alias, array &$context) {
     }
   }
 }
+
+/**
+ * Implements hook_pathauto_pattern_alter().
+ */
+function ilr_pathauto_pattern_alter(PathautoPatternInterface $pattern, array $context) {
+  // Alter the pattern for page nodes that aren't in the menu.
+  if ($pattern->id() === 'page_nodes') {
+    $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
+    $links = $menu_link_manager->loadLinksByRoute('entity.node.canonical', ['node' => $context['data']['node']->id()]);
+
+    if ($links) {
+      // If this page node is in a menu, use a menu-parent based pattern.
+      $pattern->setPattern('[node:menu-link:parent:url:relative]/[node:menu-link:title]');
+    }
+  }
+}
+
 
 /**
  * Implements hook_file_validate().
