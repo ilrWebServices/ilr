@@ -113,23 +113,6 @@ function collection_publications_form_collection_new_node_form_presubmit($form, 
 }
 
 /**
- * Implements hook_collection_pathauto_alias_alter().
- *
- * Updates the alias for stories that are in a canonical publication issue.
- */
-function collection_publications_collection_pathauto_alias_alter(&$alias, array &$context) {
-  if (isset($context['canonical_collection']) && isset($context['collection_item'])) {
-    if ($context['canonical_collection']->bundle() !== 'publication_issue') {
-      return;
-    }
-
-    $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
-    $clean_title = $alias_cleaner->cleanString($context['data']['node']->label());
-    $alias = $context['canonical_collection']->toUrl()->toString() . '/' . $clean_title;
-  }
-}
-
-/**
  * Implements hook_ENTITY_TYPE_view().
  *
  */

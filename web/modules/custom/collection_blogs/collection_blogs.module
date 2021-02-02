@@ -269,14 +269,12 @@ function collection_blogs_collection_pathauto_alias_alter(&$alias, array &$conte
     }
 
     // Modify the alias, which changes depending on whether the post has a category.
-    $alias_cleaner = \Drupal::service('pathauto.alias_cleaner');
-    $clean_title = $alias_cleaner->cleanString($context['data']['node']->label());
-
     if ($context['collection_item']->hasField('field_blog_categories') && !$context['collection_item']->field_blog_categories->isEmpty()) {
-      $alias = $context['collection_item']->field_blog_categories->entity->toUrl()->toString() . '/' . $clean_title;
-    }
-    else {
-      $alias = $context['canonical_collection']->toUrl()->toString() . '/' . $clean_title;
+      $path_parts = explode('/', $alias);
+
+      // Use the alias of the category term followed by the last part of the
+      // original path, which is probably the node title or menu link title.
+      $alias = $context['collection_item']->field_blog_categories->entity->toUrl()->toString() . '/' . array_pop($path_parts);
     }
   }
 }

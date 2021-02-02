@@ -21,6 +21,7 @@ use Drupal\Core\Cache\Cache;
 use Drupal\webform\Plugin\WebformHandlerInterface;
 use Drupal\webform\WebformSubmissionInterface;
 use Drupal\file\FileInterface;
+use Drupal\pathauto\PathautoPatternInterface;
 
 /**
  * Implements hook_theme().
@@ -916,6 +917,35 @@ function ilr_pathauto_alias_alter(&$alias, array &$context) {
 
       $alias = str_replace($matches[0], $collection_alias . '/', $alias);
     }
+  }
+}
+
+/**
+ * Implements hook_pathauto_pattern_alter().
+ */
+function ilr_pathauto_pattern_alter(PathautoPatternInterface $pattern, array $context) {
+  // Alter the pattern for page nodes that aren't in the menu.
+  if ($pattern->id() === 'page_nodes') {
+    $menu_link_manager = \Drupal::service('plugin.manager.menu.link');
+    $links = $menu_link_manager->loadLinksByRoute('entity.node.canonical', ['node' => $context['data']['node']->id()]);
+
+    if ($links) {
+      // If this page node is in a menu, use a menu-parent based pattern.
+      $pattern->setPattern('[node:menu-link:parent:url:relative]/[node:menu-link:title]');
+    }
+  }
+}
+
+/**
+ * Implements hook_collection_pathauto_alias_alter().
+ *
+ * Updates the alias for nodes that are canonical items in a collection.
+ *
+ * @see collection_pathauto_pathauto_alias_alter().
+ */
+function ilr_collection_pathauto_alias_alter(&$alias, array &$context) {
+  if ($context['canonical_collection']->bundle() === 'publication_issue' && $context['data']['node']->bundle() === 'story') {
+    $alias = str_replace('/story/', '/', $alias);
   }
 }
 
