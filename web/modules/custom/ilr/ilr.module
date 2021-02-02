@@ -936,6 +936,18 @@ function ilr_pathauto_pattern_alter(PathautoPatternInterface $pattern, array $co
   }
 }
 
+/**
+ * Implements hook_collection_pathauto_alias_alter().
+ *
+ * Updates the alias for nodes that are canonical items in a collection.
+ *
+ * @see collection_pathauto_pathauto_alias_alter().
+ */
+function ilr_collection_pathauto_alias_alter(&$alias, array &$context) {
+  if ($context['canonical_collection']->bundle() === 'publication_issue' && $context['data']['node']->bundle() === 'story') {
+    $alias = str_replace('/story/', '/', $alias);
+  }
+}
 
 /**
  * Implements hook_file_validate().
