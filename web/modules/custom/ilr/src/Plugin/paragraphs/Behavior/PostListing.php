@@ -42,12 +42,30 @@ class PostListing extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    // There is no #parents key in $form, but this may be OK hardcoded.
+    $parents = $form['#parents'];
+    $parents_input_name = array_shift($parents);
+    $parents_input_name .= '[' . implode('][', $parents) . ']';
+
     $form['post_categories'] = [
       '#type' => 'select',
       '#title' => $this->t('Category'),
       '#description' => $this->t('Choose a category to filter the listing.'),
       '#options' => $this->getCategoryTermOptions($paragraph),
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories'),
+    ];
+
+    $form['negate_category'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('If a category is selected, negate it.'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'negate_category'),
+      '#states' => [
+        'invisible' => [
+          ':input[name="' . $parents_input_name . '[post_categories]"]' => [
+            ['value' => ''],
+          ],
+        ],
+      ],
     ];
 
     $form['post_tags'] = [
@@ -72,9 +90,21 @@ class PostListing extends ParagraphsBehaviorBase {
   /**
    * {@inheritdoc}
    */
+  public function submitBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    if (empty($form_state->getValue('post_categories'))) {
+      $form_state->setValue('negate_category', FALSE);
+    }
+
+    parent::submitBehaviorForm($paragraph, $form, $form_state);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function preprocess(&$variables) {
     $paragraph = $variables['paragraph'];
     $collection = $paragraph->field_collection->entity;
+    $category_operator = $paragraph->getBehaviorSetting($this->getPluginId(), 'negate_category') ? '<>' : '=';
 
     // If the collection was deleted, return nothing to prevent errors.
     if ($collection === NULL) {
@@ -100,7 +130,7 @@ class PostListing extends ParagraphsBehaviorBase {
 
     if ($category_term_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories')) {
       $category_group = $query->andConditionGroup();
-      $category_group->condition('field_blog_categories', $category_term_id);
+      $category_group->condition('field_blog_categories', $category_term_id, $category_operator);
       $query->condition($category_group);
     }
 
@@ -192,9 +222,12 @@ class PostListing extends ParagraphsBehaviorBase {
       }
     }
 
+    $negated = $paragraph->getBehaviorSetting($this->getPluginId(), 'negate_category');
+    $category_name = $selected_category_id ? $selected_category->label() : $this->t('All');
+
     $summary[] = [
       'label' => 'Category',
-      'value' => $selected_category_id ? $selected_category->label() : 'All',
+      'value' => ($negated ? $this->t('All except') . ' ' : '') . $category_name,
     ];
 
     $summary[] = [
