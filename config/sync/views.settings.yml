@@ -8,7 +8,7 @@ ui:
     display_embed: true
     preview_information: true
     sql_query:
-      where: null
+      where: above
       enabled: true
     performance_statistics: false
     additional_queries: false
