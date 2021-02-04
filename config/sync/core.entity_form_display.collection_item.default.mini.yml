@@ -10,6 +10,13 @@ targetEntityType: collection_item
 bundle: default
 mode: mini
 content:
+  canonical:
+    settings:
+      display_label: true
+    weight: 15
+    region: content
+    third_party_settings: {  }
+    type: boolean_checkbox
   weight:
     type: number
     weight: 10
@@ -21,5 +28,5 @@ hidden:
   attributes: true
   collection: true
   item: true
-  name: true
+  path: true
   user_id: true

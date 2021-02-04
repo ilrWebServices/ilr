@@ -11,6 +11,13 @@ targetEntityType: collection_item
 bundle: publication_issue
 mode: mini
 content:
+  canonical:
+    settings:
+      display_label: true
+    weight: 15
+    region: content
+    third_party_settings: {  }
+    type: boolean_checkbox
   field_item_type:
     type: options_select
     weight: 0
@@ -28,5 +35,5 @@ hidden:
   attributes: true
   collection: true
   item: true
-  name: true
+  path: true
   user_id: true
