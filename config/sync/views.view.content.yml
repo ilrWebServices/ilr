@@ -16,6 +16,7 @@ dependencies:
     - collection
     - node
     - user
+    - views_autocomplete_filters
 id: content
 label: Content
 module: node
@@ -496,6 +497,13 @@ display:
               content_administrator: '0'
               course_admin: '0'
             placeholder: ''
+            autocomplete_filter: 1
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_field: name_1
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
           is_grouped: false
           group_info:
             label: ''
