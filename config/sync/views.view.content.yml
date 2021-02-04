@@ -2,6 +2,16 @@ uuid: 666c2e1a-55a4-45b1-a062-de31871b621b
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.certificate
+    - node.type.class
+    - node.type.course
+    - node.type.instructor
+    - node.type.media_mention
+    - node.type.page
+    - node.type.participant
+    - node.type.post
+    - node.type.story
   module:
     - collection
     - node
@@ -509,7 +519,14 @@ display:
           group_type: group
           admin_label: ''
           operator: in
-          value: {  }
+          value:
+            certificate: certificate
+            course: course
+            instructor: instructor
+            media_mention: media_mention
+            page: page
+            post: post
+            story: story
           group: 1
           exposed: true
           expose:
@@ -518,6 +535,8 @@ display:
             description: ''
             use_operator: false
             operator: type_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: type
             required: false
             remember: false
@@ -526,9 +545,10 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-            reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
+              editor: '0'
+              content_administrator: '0'
+              course_admin: '0'
+            reduce: true
           is_grouped: false
           group_info:
             label: ''
@@ -604,6 +624,49 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+        type_1:
+          id: type_1
+          table: node_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: 'not in'
+          value:
+            class: class
+            participant: participant
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
       sorts: {  }
       title: Content
       empty:
