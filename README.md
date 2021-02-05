@@ -112,7 +112,7 @@ To add a patch to drupal module foobar insert the patches section in the extra s
 ## Updating Drupal core
 
 ```
-$ composer update drupal/core-recommended --with-dependencies
+$ composer update drupal/core 'drupal/core-*' --with-all-dependencies
 ```
 
 Then run `git diff` to determine if any of the scaffolding files have changed.
