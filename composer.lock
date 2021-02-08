@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "990db634aabe1ea8a23241870a78a227",
+    "content-hash": "26668daf935b884b964cbc9b6f251b40",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5269,6 +5269,74 @@
                 "source": "https://git.drupalcode.org/project/search_api",
                 "issues": "https://www.drupal.org/project/issues/search_api",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
+            }
+        },
+        {
+            "name": "drupal/sfweb2lead_webform",
+            "version": "5.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/sfweb2lead_webform.git",
+                "reference": "8.x-5.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/sfweb2lead_webform-8.x-5.2.zip",
+                "reference": "8.x-5.2",
+                "shasum": "5c94f1c2cd8388f864cccdc6ad86804107a596ba"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/webform": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-5.2",
+                    "datestamp": "1607525088",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "AaronBauman",
+                    "homepage": "https://www.drupal.org/user/384578"
+                },
+                {
+                    "name": "chriscalip",
+                    "homepage": "https://www.drupal.org/user/210499"
+                },
+                {
+                    "name": "dago.aceves",
+                    "homepage": "https://www.drupal.org/user/198090"
+                },
+                {
+                    "name": "jrb",
+                    "homepage": "https://www.drupal.org/user/352123"
+                },
+                {
+                    "name": "markdorison",
+                    "homepage": "https://www.drupal.org/user/346106"
+                },
+                {
+                    "name": "rklawson",
+                    "homepage": "https://www.drupal.org/user/386645"
+                },
+                {
+                    "name": "stony",
+                    "homepage": "https://www.drupal.org/user/513916"
+                }
+            ],
+            "homepage": "https://www.drupal.org/project/sfweb2lead_webform",
+            "support": {
+                "source": "https://git.drupalcode.org/project/sfweb2lead_webform"
             }
         },
         {
