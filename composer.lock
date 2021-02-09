@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26668daf935b884b964cbc9b6f251b40",
+    "content-hash": "20baf5f7538f6f330cd5631da355c4dc",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5337,6 +5337,57 @@
             "homepage": "https://www.drupal.org/project/sfweb2lead_webform",
             "support": {
                 "source": "https://git.drupalcode.org/project/sfweb2lead_webform"
+            }
+        },
+        {
+            "name": "drupal/simple_recaptcha",
+            "version": "1.0.0-beta4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/simple_recaptcha.git",
+                "reference": "8.x-1.0-beta4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/simple_recaptcha-8.x-1.0-beta4.zip",
+                "reference": "8.x-1.0-beta4",
+                "shasum": "394879f6b3b0af42d92561b98796bbfbedf51809"
+            },
+            "require": {
+                "drupal/core": "^8.7.7 || ^9"
+            },
+            "require-dev": {
+                "drupal/webform": "~6.0",
+                "drupal/webform_ui": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-beta4",
+                    "datestamp": "1611838555",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "sandboxpl",
+                    "homepage": "https://www.drupal.org/u/sandboxpl",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provides simple integration with Google reCaptcha, keeping forms and webforms secure.",
+            "homepage": "https://drupal.org/project/simple_recaptcha",
+            "support": {
+                "source": "https://git.drupalcode.org/project/simple_recaptcha",
+                "issues": "https://www.drupal.org/project/issues/simple_recaptcha",
+                "docs": "https://git.drupalcode.org/project/simple_recaptcha/-/blob/8.x-1.x/README.md"
             }
         },
         {
@@ -14176,6 +14227,7 @@
         "drupal/collection": 15,
         "drupal/inline_entity_form": 5,
         "drupal/mailchimp": 20,
+        "drupal/simple_recaptcha": 10,
         "drupal/typed_data": 15,
         "drupal/union_organizer": 20,
         "thinkshout/mailchimp-api-php": 20,
