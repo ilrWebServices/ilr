@@ -1,7 +1,10 @@
 uuid: 7f438683-ea36-4ab6-8c4c-43ea54d786cb
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - sfweb2lead_webform
+    - simple_recaptcha_webform
 open: null
 close: null
 weight: 0
@@ -213,4 +216,36 @@ handlers:
       theme_name: ''
       parameters: {  }
       exclude_attachments: false
+  salesforce_web_to_lead_post:
+    id: sfweb2lead_post
+    label: 'Salesforce Web-to-Lead post'
+    notes: ''
+    handler_id: salesforce_web_to_lead_post
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      type: x-www-form-urlencoded
+      salesforce_url: 'https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8'
+      salesforce_oid: 00DU0000000IGti
+      salesforce_mapping:
+        first_name: first_name
+        last_name: last_name
+        email: email
+        comments: description
+      excluded_data: {  }
+      custom_data: ''
+      debug: false
+  recaptcha:
+    id: simple_recaptcha
+    label: reCAPTCHA
+    notes: ''
+    handler_id: recaptcha
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      recaptcha_type: v2
+      v3_score: ''
+      v3_error_message: ''
 variants: {  }
