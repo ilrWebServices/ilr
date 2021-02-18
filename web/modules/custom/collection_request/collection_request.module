@@ -1,0 +1,119 @@
+<?php
+
+/**
+ * @file
+ * Contains collection_request.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\collection\Form\CollectionItemForm;
+use Drupal\collection\Form\CollectionItemDeleteForm;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_entity_operation_alter().
+ *
+ * Update the edit and delete operations titles for collection items.
+ */
+function collection_request_entity_operation_alter(array &$operations, EntityInterface $entity) {
+  if ($entity->getEntityTypeId() !== 'collection_item' || !$entity->getAttribute('collection-request-uid')) {
+    return;
+  }
+
+  if (isset($operations['edit'])) {
+    $operations['edit']['title'] = t('Approve request');
+    $operations['edit']['weight'] = -20;
+  }
+
+  if (isset($operations['delete'])) {
+    $operations['delete']['title'] = t('Deny request');
+    $operations['delete']['weight'] = -15;
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Update the collection item edit and delete forms.
+ *
+ * TODO
+ *   Consider replacing this with form mode alter hook in future.
+ *   @see https://www.drupal.org/node/3189884
+ */
+function collection_request_form_alter(&$form, FormStateInterface $form_state) {
+  $form_object = $form_state->getFormObject();
+
+  if (!$form_object instanceof CollectionItemForm && !$form_object instanceof CollectionItemDeleteForm) {
+    return;
+  }
+
+  $collection_item = $form_object->getEntity();
+
+  if ($collection_item->getAttribute('collection-request-uid')) {
+    if ($form_object->getOperation() === 'edit') {
+      foreach(['item', 'weight', 'canonical', 'path'] as $field_to_hide) {
+        $form[$field_to_hide]['#access'] = FALSE;
+      }
+      $form['actions']['submit']['#value'] = t('Approve');
+      $form['actions']['submit']['#submit'][] = 'collection_request_approve_submit';
+    }
+
+    if ($form_object->getOperation() === 'delete') {
+      $form['actions']['submit']['#value'] = t('Deny');
+      $form['actions']['submit']['#submit'][] = 'collection_request_deny_submit';
+    }
+  }
+}
+
+/**
+ * Submit handler for accepting collection requests.
+ */
+function collection_request_approve_submit(array &$form, FormStateInterface $form_state) {
+  $collection_item = $form_state->getFormObject()->getEntity();
+  $collection_item->removeAttribute('collection-request-uid');
+  $collection_item->save();
+
+  \Drupal::messenger()->addMessage(t('Collection request approved for %entity.', [
+    '%entity' => $collection_item->label(),
+  ]));
+}
+
+/**
+ * Submit handler for denying collection requests.
+ */
+function collection_request_deny_submit(array &$form, FormStateInterface $form_state) {
+  $collection_item = $form_state->getFormObject()->getEntity();
+
+  \Drupal::messenger()->addMessage(t('Collection request denied for %entity.', [
+    '%entity' => $collection_item->label(),
+  ]));
+}
+
+/**
+ * Implements hook_preprocess_container__CONTAINER_ID().
+ *
+ * Add the request form, and update the "Canonical" column to make more relevant
+ * for collection requests.
+ */
+function collection_request_preprocess_container__content_entity_collections(&$variables) {
+  $form = \Drupal::formBuilder()->getForm('Drupal\collection_request\Form\ContentEntityCollectionRequest', $variables['element']['#entity'], $variables['element']['#existing_collection_items']);
+  $variables['children']['request_form'] = $form;
+
+  if (isset($variables['children']['list']['table'])) {
+    $variables['children']['list']['table']['#header']['canonical'] = t('Status');
+
+    foreach ($variables['children']['list']['table']['#rows'] as $collection_item_id => $values) {
+      $collection_item = \Drupal::entityTypeManager()->getStorage('collection_item')->load($collection_item_id);
+
+      if ($collection_item->isCanonical()) {
+        $status = t('Canonical');
+      }
+      else {
+        $status = ($collection_item->getAttribute('collection-request-uid')) ? t('Pending') : t('Non-canonical');
+      }
+
+      $variables['children']['list']['table']['#rows'][$collection_item_id]['canonical'] = $status;
+    }
+  }
+}

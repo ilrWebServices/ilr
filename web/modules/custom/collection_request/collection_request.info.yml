@@ -1,0 +1,7 @@
+name: 'Collection Request'
+type: module
+description: 'Allows users to request that a content entity be added to a collection'
+core_version_requirement: ^8 || ^9
+package: 'Collection'
+dependencies:
+  - collection:collection
