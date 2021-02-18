@@ -48,7 +48,7 @@ function collection_item_path_entity_base_field_info(EntityTypeInterface $entity
  *   by reference.
  */
 function collection_item_path_metatags_alter(array &$metatags, array &$context) {
-  if (isset($context['entity']) && $context['entity'] instanceof CollectionItem) {
+  if (isset($context['entity']) && $context['entity'] instanceof CollectionItem && $context['entity']->item->entity instanceof ContentEntityInterface) {
     $metatags['canonical_url'] = $context['entity']->item->entity->toUrl('canonical', ['absolute' => TRUE])->toString();
   }
 }
