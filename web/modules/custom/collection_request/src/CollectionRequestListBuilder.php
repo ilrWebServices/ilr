@@ -41,6 +41,23 @@ class CollectionRequestListBuilder extends EntityListBuilder {
   /**
    * {@inheritdoc}
    */
+  public function getOperations(EntityInterface $entity) {
+    $operations = $this->getDefaultOperations($entity);
+    $operations += $this->moduleHandler()->invokeAll('entity_operation', [$entity]);
+    $this->moduleHandler->alter('entity_operation', $operations, $entity);
+
+    // Remove the edit_item added in collection_entity_operation().
+    if (isset($operations['edit_item'])) {
+      unset($operations['edit_item']);
+    }
+
+    uasort($operations, '\Drupal\Component\Utility\SortArray::sortByWeightElement');
+    return $operations;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function buildHeader() {
     $header['content'] = $this->t('Content');
     $header['collection'] = $this->t('Destination');
