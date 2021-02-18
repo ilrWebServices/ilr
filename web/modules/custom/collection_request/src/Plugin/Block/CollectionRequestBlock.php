@@ -67,7 +67,7 @@ class CollectionRequestBlock extends BlockBase implements ContainerFactoryPlugin
     $result = $query->execute();
 
     foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
-      if ($collection_item->access('update', $user)) {
+      if ($collection_item->access('update', $user) || $collection_item->getOwnerId() === $user->id()) {
         $pending_user_collection_items[$collection_item->id()] = $collection_item;
       }
     }
