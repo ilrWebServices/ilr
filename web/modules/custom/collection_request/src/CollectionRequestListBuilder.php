@@ -42,8 +42,8 @@ class CollectionRequestListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['item'] = $this->t('Item');
-    $header['collection'] = $this->t('Collection');
+    $header['content'] = $this->t('Content');
+    $header['collection'] = $this->t('Destination');
     $header['uid'] = $this->t('Requested by');
     return $header + parent::buildHeader();
   }
@@ -52,7 +52,7 @@ class CollectionRequestListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    $row['item'] = $entity->toLink();
+    $row['content'] = $entity->item->entity->toLink();
     $row['collection'] = $entity->collection->entity->toLink();
     $uid = $entity->getAttribute('collection-request-uid')->value;
 
