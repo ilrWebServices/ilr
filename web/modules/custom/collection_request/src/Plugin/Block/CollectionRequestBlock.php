@@ -13,8 +13,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Provides a 'CollectionRequestBlock' block.
  *
  * @Block(
- *  id = "collections_request_block",
- *  admin_label = @Translation("Collection request block"),
+ *   id = "collections_request_block",
+ *   admin_label = @Translation("Collection request block"),
  * )
  */
 class CollectionRequestBlock extends BlockBase implements ContainerFactoryPluginInterface {
@@ -34,12 +34,20 @@ class CollectionRequestBlock extends BlockBase implements ContainerFactoryPlugin
   protected $account;
 
   /**
+   * The current route match service.
+   *
+   * @var \Drupal\Core\Routing\CurrentRouteMatch
+   */
+  protected $routeMatch;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = new static($configuration, $plugin_id, $plugin_definition);
     $instance->entityTypeManager = $container->get('entity_type.manager');
     $instance->account = $container->get('current_user');
+    $instance->routeMatch = $container->get('current_route_match');
     return $instance;
   }
 
@@ -47,6 +55,9 @@ class CollectionRequestBlock extends BlockBase implements ContainerFactoryPlugin
    * {@inheritdoc}
    */
   public function build() {
+    if (!$user = $this->routeMatch->getParameter('user')) {
+      return [];
+    }
     $pending_user_collection_items = [];
     $build = [];
     $collection_item_storage = $this->entityTypeManager->getStorage('collection_item');
@@ -56,7 +67,7 @@ class CollectionRequestBlock extends BlockBase implements ContainerFactoryPlugin
     $result = $query->execute();
 
     foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
-      if ($collection_item->collection->entity->access('update')) {
+      if ($collection_item->access('update', $user)) {
         $pending_user_collection_items[$collection_item->id()] = $collection_item;
       }
     }
