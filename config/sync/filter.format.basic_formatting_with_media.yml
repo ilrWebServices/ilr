@@ -106,3 +106,9 @@ filters:
     weight: 0
     settings:
       title: true
+  filter_internal_links:
+    id: filter_internal_links
+    provider: ilr
+    status: true
+    weight: 0
+    settings: {  }
