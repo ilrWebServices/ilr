@@ -160,6 +160,18 @@ function ilr_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle,
 }
 
 /**
+ * Implements hook_entity_bundle_field_info_alter().
+ */
+function ilr_entity_bundle_field_info_alter(array &$fields, EntityTypeInterface $entity_type, $bundle ) {
+  foreach ($fields as $field_name => $field) {
+    if ($field->getType() === 'link') {
+      // Add a ProblemInternalLink constraint to link fields.
+      $fields[$field_name]->addConstraint('ProblemInternalLink');
+    }
+  }
+}
+
+/**
  * Implements hook_entity_extra_field_info().
  */
 function ilr_entity_extra_field_info() {
