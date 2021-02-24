@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\collection\Form\CollectionItemForm;
 use Drupal\collection\Form\CollectionItemDeleteForm;
 use Drupal\Core\Url;
+use Drupal\Component\Datetime\DateTimePlus;
 
 /**
  * Implements hook_entity_operation_alter().
@@ -72,6 +73,7 @@ function collection_request_form_alter(&$form, FormStateInterface $form_state) {
 function collection_request_approve_submit(array &$form, FormStateInterface $form_state) {
   $collection_item = $form_state->getFormObject()->getEntity();
   $collection_item->removeAttribute('collection-request-uid');
+  $collection_item->setAttribute('collection-request-approved-date', (new DateTimePlus('now'))->format('c'));
   $collection_item->save();
 
   \Drupal::messenger()->addMessage(t('Collection request approved for %entity.', [
