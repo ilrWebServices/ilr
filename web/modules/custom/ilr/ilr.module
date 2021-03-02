@@ -22,6 +22,8 @@ use Drupal\webform\Plugin\WebformHandlerInterface;
 use Drupal\webform\WebformSubmissionInterface;
 use Drupal\file\FileInterface;
 use Drupal\pathauto\PathautoPatternInterface;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Session\AccountInterface;
 
 /**
  * Implements hook_theme().
@@ -1031,5 +1033,20 @@ function ilr_preprocess_container__content_entity_collections(&$variables) {
         $variables['children']['list']['table']['#rows'][$collection_item_id]['canonical'] = $status;
       }
     }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_create_access() for entity type 'paragraph'.
+ */
+function ilr_paragraph_create_access(AccountInterface $account = NULL, array $context = array(), $entity_bundle = NULL) {
+  if ($entity_bundle === 'instagram_listing') {
+    // We use this restrictive permission to hide the instagram_listing
+    // paragraph from most content editors.
+    if ($account->hasPermission('administer paragraphs settings')) {
+      return AccessResult::allowed()->cachePerPermissions();
+    }
+
+    return AccessResult::forbidden()->cachePerPermissions();
   }
 }

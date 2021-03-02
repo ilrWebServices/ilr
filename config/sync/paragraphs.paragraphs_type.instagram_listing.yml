@@ -1,0 +1,14 @@
+uuid: 99da3ac0-9f08-4cf8-a262-76176ac00770
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr_instagram
+id: instagram_listing
+label: 'Instagram listing'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  instagram_listing:
+    enabled: true
