@@ -12,6 +12,7 @@ dependencies:
     - paragraphs.paragraphs_type.event_listing
     - paragraphs.paragraphs_type.form
     - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.instagram_listing
     - paragraphs.paragraphs_type.media_deck
     - paragraphs.paragraphs_type.people_listing
     - paragraphs.paragraphs_type.picture_in_picture
@@ -52,10 +53,11 @@ settings:
       curated_post_listing: curated_post_listing
       curated_course_listing: curated_course_listing
       collection_listing: collection_listing
+      people_listing: people_listing
       picture_in_picture: picture_in_picture
       event_listing: event_listing
+      instagram_listing: instagram_listing
       section_navigation: section_navigation
-      people_listing: people_listing
     target_bundles_drag_drop:
       collection_listing:
         enabled: true
@@ -81,6 +83,9 @@ settings:
       image:
         enabled: true
         weight: -32
+      instagram_listing:
+        enabled: true
+        weight: 29
       media_deck:
         enabled: true
         weight: -30
