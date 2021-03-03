@@ -1,0 +1,7 @@
+services:
+  logger.channel.irl_instagram:
+    parent: logger.channel_base
+    arguments: ['ilr instagram']
+  ilr_instagram.feed_processor:
+    class: Drupal\ilr_instagram\InstagramFeedProcessor
+    arguments: ['@http_client', '@cache.data', '@logger.channel.irl_instagram']
