@@ -37,5 +37,24 @@ domain_redirects:
     -
       sub_path: '/*'
       destination: www.ilr.cornell.edu/cornell-debate/international-summer-debate-camp
+  'forensics:cornell:edu':
+    -
+      sub_path: '/about*'
+      destination: www.ilr.cornell.edu/cornell-debate/about
+    -
+      sub_path: '/tournament-and-practice*'
+      destination: www.ilr.cornell.edu/cornell-debate/join-team
+    -
+      sub_path: '/outreach*'
+      destination: www.ilr.cornell.edu/cornell-debate/outreach
+    -
+      sub_path: '/category/newsupdates*'
+      destination: www.ilr.cornell.edu/cornell-debate/news-and-history
+    -
+      sub_path: '/support-the-csdu*'
+      destination: www.ilr.cornell.edu/cornell-debate/support-speech-and-debate
+    -
+      sub_path: '/csdu-student-members*'
+      destination: www.ilr.cornell.edu/cornell-debate/about
 _core:
   default_config_hash: CgXLPQkHCGerCdDtMO8wK9Er4j6iy1iMOyalk8iRgrE
