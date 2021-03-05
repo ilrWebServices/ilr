@@ -15,6 +15,7 @@ source:
   plugin: ilr_d7_node
   node_type: news_item
   node_status: 1
+  node_terms: field_tags
 process:
   user_id:
     plugin: default_value
@@ -35,6 +36,183 @@ process:
   canonical:
     plugin: default_value
     default_value: 1
+  field_blog_tags:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: node_terms
+    -
+      plugin: explode_map
+      delimiter: ','
+      remove: true
+      map:
+        lel: 'Labor and Employment Law'
+        'buff econ geo': Buffalo
+        buffalo: Buffalo
+        'cornell in buffalo news': Buffalo
+        'democracy buff': Buffalo
+        'visiting scholar buffalo': Buffalo
+        'buffalo economic geography update': Buffalo
+        'Buffalo high road': Buffalo
+        'Buffalo Co-Lab News': 'Buffalo Co-Lab'
+        'equity at work initiative': 'Equity at Work'
+        event: Events
+        Webinar: Events
+        webcast: Events
+        conference: Events
+        Workshop: Events
+        Healthcare: Healthcare
+        health: Healthcare
+        'Health-Care Summit': Healthcare
+        Heathcare: Healthcare
+        'Healthcare Summit': Healthcare
+        'healthcare delivery system': Healthcare
+        'Yale Healthcare Conference': Healthcare
+        'High Road News': 'High Road'
+        'high roads': 'High Road'
+        'High Road Fellowship': 'High Road'
+        impact: Impact
+        ics: 'Institute for Compensation Studies'
+        compensation: 'Institute for Compensation Studies'
+        pay: 'Institute for Compensation Studies'
+        iws: 'Institute for Workplace Studies'
+        'institute for workplace studies': 'Institute for Workplace Studies'
+        'IWS Colloquium Series': 'Institute for Workplace Studies'
+        international: International
+        'international programs': International
+        ilo: International
+        China: International
+        'Konvitz Lecture': 'Konvitz Lecture'
+        'Labor and Employment Law': 'Labor and Employment Law'
+        ldi: 'Labor Dynamics Institute'
+        ncrn: 'Labor Dynamics Institute'
+        'labor and environment': 'Labor Leading Climate'
+        LERA: LERA
+        'mobilizing against inequality': 'Mobilizing Against Inequality'
+        NYC: 'New York City'
+        ilr-in-nyc-institute-news: 'New York City'
+        'ilr in nyc': 'New York City'
+        ilr-in-nyc-news: 'New York City'
+        'Cornell in NYC': 'New York City'
+        ilr-in-nyc-news-1: 'New York City'
+        nysprojects: 'New York State'
+        NLLI: NLLI
+        'NLLI News': NLLI
+        'precarious workforce initiative': 'Precarious Workforce'
+        'Scheinman Institute': 'Scheinman Institute'
+        Scheinman: 'Scheinman Institute'
+        'NYC Scheinman Institute': 'Scheinman Institute'
+        'Smithers Institute': 'Smithers Institute'
+        smithers: 'Smithers Institute'
+        'Strategic Leadership Initiative': 'Strategic Leadership'
+        'Union Days': 'Union Days'
+        uli: 'Union Leadership Institute'
+        union: Unions
+        Unions: Unions
+        'union building': Unions
+        worker: 'Work and Jobs'
+        work: 'Work and Jobs'
+        'technology and employment': 'Work and Jobs'
+        jobs: 'Work and Jobs'
+        LaborPress: 'Work and Jobs'
+        'Migrant farm workers': 'Work and Jobs'
+        Workforce: 'Work and Jobs'
+        'Future of Work': 'Work and Jobs'
+        labor: 'Work and Jobs'
+        unemployment: 'Work and Jobs'
+        JORNALER@: 'Work and Jobs'
+        'worker institute': 'Worker Institute'
+        workerinstitute: 'Worker Institute'
+        'The Worker Institute': 'Worker Institute'
+        'worker top': 'Worker Institute'
+        yti: 'Yang Tan Institute'
+        edi: 'Yang Tan Institute'
+        Disability: 'Yang Tan Institute'
+        'disability and the workplace': 'Yang Tan Institute'
+        Disabilities: 'Yang Tan Institute'
+        'Yang Tan Institute': 'Yang Tan Institute'
+    -
+      plugin: entity_generate
+      value_key: name
+      bundle_key: vid
+      bundle: blog_26_tags
+      entity_type: taxonomy_term
+  field_blog_categories:
+    -
+      plugin: skip_on_empty
+      method: process
+      source: node_terms
+    -
+      plugin: explode
+      delimiter: ','
+    -
+      plugin: static_map
+      map:
+        alumni: Alumni
+        'alumni profile': Alumni
+        'Groat Award': Alumni
+        'Susan Bisom-Rapp ’83': Alumni
+        'advance magazine': Alumni
+        'international alumni': Alumni
+        reunion: Alumni
+        alimni: Alumni
+        gift: Alumni
+        diversity: 'Diversity and Inclusion'
+        'Gender Pay Gap': 'Diversity and Inclusion'
+        'gender gap': 'Diversity and Inclusion'
+        faculty: Faculty
+        'Faculty award': Faculty
+        'faculty research': Faculty
+        'Brian Lucas': Faculty
+        'Emerging Scholars': Faculty
+        dean: Faculty
+        'Lisa Nishii': Faculty
+        experts: Faculty
+        'ILR faculty news': Faculty
+        'Kate Griffith': Faculty
+        'Rosemary Batt': Faculty
+        'Alexander Colvin': Faculty
+        'alex colvin': Faculty
+        'new faculty': Faculty
+        'Harry Katz': Faculty
+        outreach: 'Public Impact'
+        'Public Engagement': 'Public Impact'
+        'Public Engagement Channel 2': 'Public Impact'
+        'Public Engagement Channel': 'Public Impact'
+        'Public Engagement Practical Stories': 'Public Impact'
+        'social impact': 'Public Impact'
+        research: Research
+        research-page-top: Research
+        research-notice: Research
+        'ILR Review': Research
+        'research associates': Research
+        report: Research
+        Student: Students
+        students: Students
+        'Student Experience': Students
+        'current students': Students
+        'Study Abroad': Students
+        'McPherson Awards': Students
+        Career: Students
+        'student research': Students
+        'prospective students': Students
+        'Global Learning': Students
+        debate: Students
+        'student organizations': Students
+        'unon days': Students
+        'service learning': Students
+        'student academic': Students
+        'Democracy Fellows': Students
+        'featured student': Students
+        'peer mentor': Students
+        'incoming students': Students
+      default_value: 'About ILR'
+    -
+      plugin: entity_generate
+      value_key: name
+      bundle_key: vid
+      bundle: blog_26_categories
+      entity_type: taxonomy_term
 destination:
   plugin: 'entity:collection_item'
   default_bundle: blog
