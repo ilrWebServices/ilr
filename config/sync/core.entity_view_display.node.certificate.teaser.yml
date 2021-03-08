@@ -11,8 +11,10 @@ dependencies:
     - field.field.node.certificate.field_outcomes
     - field.field.node.certificate.field_prerequisites
     - field.field.node.certificate.field_representative_image
+    - field.field.node.certificate.field_sections
     - field.field.node.certificate.field_topics
     - field.field.node.certificate.field_total_cost
+    - field.field.node.certificate.layout_builder__layout
     - node.type.certificate
   module:
     - user
@@ -34,6 +36,8 @@ hidden:
   field_outcomes: true
   field_prerequisites: true
   field_representative_image: true
+  field_sections: true
   field_topics: true
   field_total_cost: true
+  layout_builder__layout: true
   search_api_excerpt: true
