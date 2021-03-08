@@ -53,6 +53,11 @@ class IlrD7Node extends d7_node {
       $query->groupBy('nr.uid');
     }
 
+    if ($this->configuration['node_alias']) {
+      $query->leftJoin('url_alias', 'a', "a.source = CONCAT('node/', n.nid)");
+      $query->addField('a', 'alias', 'node_alias');
+    }
+
     return $query;
   }
 
