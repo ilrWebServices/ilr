@@ -31,7 +31,23 @@ process:
     plugin: default_value
     default_value: node
   collection:
-    plugin: default_value
+    plugin: term_collection
+    source: node_terms
+    map:
+      ldi: 26
+      ncrn: 26
+      'Scheinman Institute': 14
+      Scheinman: 14
+      'NYC Scheinman Institute': 14
+      'worker institute': 10
+      workerinstitute: 10
+      'The Worker Institute': 10
+      'worker top': 10
+      'Buffalo Co-Lab News': 26
+      'Labor and Employment Law': 26
+      ics: 24
+      compensation: 24
+      pay: 24
     default_value: 26
   canonical:
     plugin: default_value
