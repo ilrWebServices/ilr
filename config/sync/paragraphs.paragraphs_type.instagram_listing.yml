@@ -12,3 +12,5 @@ description: ''
 behavior_plugins:
   instagram_listing:
     enabled: true
+    feed_url: ''
+    item_limit: 0
