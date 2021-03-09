@@ -87,3 +87,34 @@
 #block-union-marketing-75thlogo {
   width: 225px;
 }
+
+// Until we have a better strategy for theming specific collections, this allows
+// us to overide the alternate branding design for a specific site. In this
+// case, the criminal records panel study.
+.bvg--cornell-alternate-branding.bvg--subsite-33 {
+  @include breakpoint(sm) {
+    .cu-header {
+      .block-subsite-branding-block {
+        order: 2;
+        margin: 0;
+      }
+    }
+
+    .block-cornell-seal-block {
+      order: 1;
+      margin-right: auto;
+    }
+
+    #ilr_search_reveal_trigger {
+      order: 3;
+    }
+
+    nav[id^="block-union-marketing-menu-subsite"] {
+      order: 4;
+
+      .cu-menu__list--subsite {
+        justify-content: flex-end;
+      }
+    }
+  }
+}
