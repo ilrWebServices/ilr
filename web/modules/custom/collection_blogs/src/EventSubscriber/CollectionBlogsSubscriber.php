@@ -78,7 +78,7 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
         ]);
 
         $collection_item_vocab->item = $vocab;
-        $collection_item_vocab->setAttribute('blog_taxonomy_' . $vocabulary_type, TRUE);
+        $collection_item_vocab->setAttribute('blog_taxonomy_' . $vocabulary_type, $vocab->id());
         $collection_item_vocab->save();
 
         // Create a pattern for the new vocabulary.
