@@ -74,6 +74,7 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
         $collection_item_vocab = $this->entityTypeManager->getStorage('collection_item')->create([
           'type' => 'default',
           'collection' => $collection->id(),
+          'canonical' => TRUE,
         ]);
 
         $collection_item_vocab->item = $vocab;
