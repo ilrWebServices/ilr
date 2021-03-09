@@ -6,6 +6,7 @@ use Drupal\pathauto\PathautoState;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Url;
+use Drupal\pathauto\PathautoPatternInterface;
 
 /**
  * @file
@@ -276,6 +277,23 @@ function collection_blogs_collection_pathauto_alias_alter(&$alias, array &$conte
       // Use the alias of the category term followed by the last part of the
       // original path, which is probably the node title or menu link title.
       $alias = $context['collection_item']->field_blog_categories->entity->toUrl()->toString() . '/' . array_pop($path_parts);
+    }
+  }
+}
+
+/**
+ * Implements hook_pathauto_pattern_alter().
+ *
+ * Update the path pattern for the auto-generated vocabularies.
+ * @see collection_pathauto_pathauto_alias_alter(), which alters the alias.
+ */
+function collection_blogs_pathauto_pattern_alter(PathautoPatternInterface $pattern, array $context) {
+  // Check if the pattern is for a term.
+  if (isset($context['module']) && $context['module'] === 'taxonomy') {
+    // See CollectionBlogsSubscriber::collectionCreate().
+    if (preg_match('/^blog_\d*_(tags|categories)$/', $context['bundle'], $matches)) {
+      $prefix = ($matches[1] === 'tags') ? 'tags/' : '';
+      $pattern->setPattern($prefix . '[term:name]');
     }
   }
 }
