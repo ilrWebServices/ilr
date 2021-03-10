@@ -599,3 +599,20 @@ function ilr_post_update_create_collection_item_aliases(&$sandbox) {
     }
   }
 }
+
+/**
+ * Remove all auto-generated term pathauto patterns.
+ */
+function ilr_post_update_remove_term_patterns(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $pathauto_pattern_storage = $entity_type_manager->getStorage('pathauto_pattern');
+  $term_storage = $entity_type_manager->getStorage('taxonomy_term');
+
+  foreach ($pathauto_pattern_storage->loadMultiple() as $pattern) {
+    if (strpos($pattern->id(), 'blog_') !== 0 || $pattern->getType() !== 'canonical_entities:taxonomy_term') {
+      continue;
+    }
+
+    $pattern->delete();
+  }
+}
