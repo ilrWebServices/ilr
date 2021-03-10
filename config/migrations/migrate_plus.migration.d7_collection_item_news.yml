@@ -54,6 +54,12 @@ process:
     default_value: 1
   field_blog_tags:
     -
+      plugin: skip_on_value
+      method: process
+      source: '@collection'
+      value: 26
+      not_equals: true
+    -
       plugin: skip_on_empty
       method: process
       source: node_terms
@@ -154,6 +160,12 @@ process:
       bundle: blog_26_tags
       entity_type: taxonomy_term
   field_blog_categories:
+    -
+      plugin: skip_on_value
+      method: process
+      source: '@collection'
+      value: 26
+      not_equals: true
     -
       plugin: skip_on_empty
       method: process
