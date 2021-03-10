@@ -297,3 +297,35 @@ function collection_blogs_pathauto_pattern_alter(PathautoPatternInterface $patte
     }
   }
 }
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ *
+ * Automatically add canonical vocabulary terms to the collection.
+ */
+function collection_blogs_taxonomy_term_insert(EntityInterface $term) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $collection_content_manager = \Drupal::service('collection.content_manager');
+  $vocab = $term->vid->entity;
+
+  foreach ($collection_content_manager->getCollectionItemsForEntity($vocab) as $collection_item) {
+    if ($collection_item->isCanonical()) {
+      $collection_type = $collection_item->collection->entity->type->entity;
+      $allowed_collection_item_types = $collection_type->getAllowedCollectionItemTypes('taxonomy_term', $term->bundle());
+
+      $type = ($allowed_collection_item_types)
+        ? reset($allowed_collection_item_types)
+        : 'default';
+
+      $collection_item_term = $entity_type_manager->getStorage('collection_item')->create([
+        'type' => $type,
+        'collection' => $collection_item->collection->entity->id(),
+        'canonical' => TRUE,
+      ]);
+
+      $collection_item_term->item = $term;
+      $collection_item_term->save();
+      return;
+    }
+  }
+}
