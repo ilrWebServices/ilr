@@ -44,7 +44,11 @@ process:
   status_code:
     plugin: default_value
     default_value: 301
-  redirect_source/path: node_alias
+  redirect_source/path:
+    -
+      plugin: skip_on_empty
+      method: row
+      source: node_alias
   redirect_redirect/uri:
     plugin: d7_path_redirect
     source:
