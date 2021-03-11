@@ -258,26 +258,13 @@ function collection_blogs_form_collection_form_builder($entity_type, CollectionT
 /**
  * Implements hook_collection_pathauto_alias_alter().
  *
- * Updates the alias for posts that are in a canonical collection.
+ * Updates the alias for content that is in a blog category.
  */
 function collection_blogs_collection_pathauto_alias_alter(&$alias, array &$context) {
-  if (isset($context['canonical_collection']) && isset($context['collection_item'])) {
-    // Ensure that this is a blog collection.
-    $collection_type = \Drupal::service('entity_type.manager')->getStorage('collection_type')->load($context['canonical_collection']->bundle());
-    $is_blog = (bool) $collection_type->getThirdPartySetting('collection_blogs', 'contains_blogs');
-
-    if ($is_blog === FALSE) {
-      return;
-    }
-
-    // Modify the alias, which changes depending on whether the post has a category.
-    if ($context['collection_item']->hasField('field_blog_categories') && !$context['collection_item']->field_blog_categories->isEmpty()) {
-      $path_parts = explode('/', $alias);
-
-      // Use the alias of the category term followed by the last part of the
-      // original path, which is probably the node title or menu link title.
-      $alias = $context['collection_item']->field_blog_categories->entity->toUrl()->toString() . '/' . array_pop($path_parts);
-    }
+  if ($context['collection_item']->hasField('field_blog_categories') && !$context['collection_item']->field_blog_categories->isEmpty()) {
+    // Prepend the category path to the original alias. In most cases, the
+    // category term path will include the collection path.
+    $alias = $context['collection_item']->field_blog_categories->entity->toUrl()->toString() . $context['original_alias'];
   }
 }
 
