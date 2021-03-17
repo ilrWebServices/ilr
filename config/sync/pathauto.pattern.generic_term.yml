@@ -7,7 +7,7 @@ dependencies:
 id: generic_term
 label: 'Generic term'
 type: 'canonical_entities:taxonomy_term'
-pattern: '/[term:vocabulary:name]/[term:name]'
+pattern: '[term:vocabulary:name]/[term:name]'
 selection_criteria: {  }
 selection_logic: and
 weight: 0
