@@ -62,7 +62,7 @@ function union_admin_form_taxonomy_term_form_alter(&$form, FormStateInterface $f
     '#type' => 'details',
     '#title' => t('Meta'),
     '#group' => 'advanced',
-    '#weight' => -10,
+    '#weight' => -100,
     '#optional' => TRUE,
     '#open' => TRUE,
   ];
