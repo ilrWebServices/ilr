@@ -1050,3 +1050,20 @@ function ilr_paragraph_create_access(AccountInterface $account = NULL, array $co
     return AccessResult::forbidden()->cachePerPermissions();
   }
 }
+
+/**
+ * Implements hook_entity_field_access_alter().
+ *
+ * Add grant access for content owners with 'publish own content` permission.
+ */
+function ilr_entity_field_access_alter(array &$grants, array $context) {
+  if ($context['field_definition']->getTargetEntityTypeId() === 'node' && $context['field_definition']->getName() === 'status' && $context['operation'] === 'edit') {
+    if ($context['account']->hasPermission('administer nodes')) {
+      return;
+    }
+
+    if ($context['items']->getEntity()->getOwnerId() === $context['account']->id()) {
+      $grants[':default'] = AccessResult::allowedIfHasPermission($context['account'], 'publish own content');
+    }
+  }
+}
