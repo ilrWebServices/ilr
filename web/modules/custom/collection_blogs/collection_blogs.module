@@ -272,6 +272,7 @@ function collection_blogs_collection_pathauto_alias_alter(&$alias, array &$conte
  * Implements hook_pathauto_pattern_alter().
  *
  * Update the path pattern for the auto-generated vocabularies.
+ *
  * @see collection_pathauto_pathauto_alias_alter(), which alters the alias.
  */
 function collection_blogs_pathauto_pattern_alter(PathautoPatternInterface $pattern, array $context) {

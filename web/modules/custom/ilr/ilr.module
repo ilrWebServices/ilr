@@ -931,7 +931,8 @@ function ilr_pathauto_pattern_alter(PathautoPatternInterface $pattern, array $co
 /**
  * Implements hook_collection_pathauto_alias_alter().
  *
- * Updates the alias for nodes that are canonical items in a collection.
+ * Updates the alias pattern for story nodes that in a publication_issue
+ * collection.
  *
  * @see collection_pathauto_pathauto_alias_alter().
  */
