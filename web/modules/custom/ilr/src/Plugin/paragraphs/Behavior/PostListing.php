@@ -270,7 +270,7 @@ class PostListing extends ParagraphsBehaviorBase {
     ];
 
     if ($collection) {
-      $collection_items = $collection->findItemsByAttribute('blog_taxonomy_categories', TRUE);
+      $collection_items = $collection->findItemsByAttribute('blog_taxonomy_categories', 'blog_' . $collection->id() . '_categories');
       $term_manager = $this->entityTypeManager->getStorage('taxonomy_term');
 
       foreach ($collection_items as $collection_item) {
@@ -300,7 +300,7 @@ class PostListing extends ParagraphsBehaviorBase {
     $options = [];
 
     if ($collection) {
-      $collection_items = $collection->findItemsByAttribute('blog_taxonomy_tags', TRUE);
+      $collection_items = $collection->findItemsByAttribute('blog_taxonomy_tags', 'blog_' . $collection->id() . '_tags');
       $term_manager = $this->entityTypeManager->getStorage('taxonomy_term');
 
       foreach ($collection_items as $collection_item) {

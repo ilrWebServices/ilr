@@ -116,7 +116,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
       }
 
       // Load the categories vocabulary that was created with this collection.
-      $collection_items = $collection->findItemsByAttribute('blog_taxonomy_categories', TRUE);
+      $collection_items = $collection->findItemsByAttribute('blog_taxonomy_categories', 'blog_' . $collection->id() . '_categories');
 
       if (empty($collection_items)) {
         // @todo GOTO 'Load the tags vocabulary...'.
@@ -150,7 +150,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
       $category_view_display->save();
 
       // Load the tags vocabulary that was created with this collection.
-      $collection_items = $collection->findItemsByAttribute('blog_taxonomy_tags', TRUE);
+      $collection_items = $collection->findItemsByAttribute('blog_taxonomy_tags', 'blog_' . $collection->id() . '_tags');
 
       if (empty($collection_items)) {
         return;
