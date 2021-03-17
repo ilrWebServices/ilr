@@ -283,6 +283,18 @@ function collection_blogs_pathauto_pattern_alter(PathautoPatternInterface $patte
       $pattern->setPattern($prefix . '[term:name]');
     }
   }
+
+  // Alter the pattern for all nodes that are canonically collected and categorized.
+  // @see collection_pathauto_pathauto_alias_alter().
+  if (isset($context['data']['node'])) {
+    $collection_content_manager = \Drupal::service('collection.content_manager');
+
+    foreach ($collection_content_manager->getCollectionItemsForEntity($context['data']['node']) as $collection_item) {
+      if ($collection_item->isCanonical() && $collection_item->hasField('field_blog_categories') && !$collection_item->field_blog_categories->isEmpty()) {
+        return $pattern->setPattern('[node:title]');
+      }
+    }
+  }
 }
 
 /**
