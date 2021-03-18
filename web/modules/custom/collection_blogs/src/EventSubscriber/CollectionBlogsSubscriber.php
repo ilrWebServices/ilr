@@ -74,33 +74,12 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
         $collection_item_vocab = $this->entityTypeManager->getStorage('collection_item')->create([
           'type' => 'default',
           'collection' => $collection->id(),
+          'canonical' => TRUE,
         ]);
 
         $collection_item_vocab->item = $vocab;
-        $collection_item_vocab->setAttribute('blog_taxonomy_' . $vocabulary_type, TRUE);
+        $collection_item_vocab->setAttribute('blog_taxonomy_' . $vocabulary_type, $vocab->id());
         $collection_item_vocab->save();
-
-        // Create a pattern for the new vocabulary.
-        $collection_alias = $this->aliasManager->getAliasByPath($collection->toUrl()->toString());
-
-        $pattern = $this->entityTypeManager->getStorage('pathauto_pattern')->create([
-          'id' => $vocab->id() . '_terms',
-          'label' => $vocab->label() . ' Terms',
-          'type' => 'canonical_entities:taxonomy_term',
-          'status' => TRUE,
-        ]);
-        // This prevents duplicate paths when both the categories and tags
-        // vocabularies have the same term. Categories are special in that their
-        // terms are also used in the post aliases.
-        $subpath = ($vocabulary_type !== 'categories') ? '/' . $vocabulary_type : '';
-        $pattern->setPattern($collection_alias . $subpath . '/[term:name]');
-        $pattern->addSelectionCondition([
-          'id' => 'entity_bundle:taxonomy_term',
-          'bundles' => [$vocab->id() => $vocab->id()],
-          'negate' => FALSE,
-          'context_mapping' => ['taxonomy_term' => 'taxonomy_term'],
-        ]);
-        $pattern->save();
       }
     }
   }

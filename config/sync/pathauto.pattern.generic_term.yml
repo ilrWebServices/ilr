@@ -1,0 +1,14 @@
+uuid: 65de05d7-563d-4762-8420-52d0e9f441ff
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: generic_term
+label: 'Generic term'
+type: 'canonical_entities:taxonomy_term'
+pattern: '[term:vocabulary:name]/[term:name]'
+selection_criteria: {  }
+selection_logic: and
+weight: 0
+relationships: {  }

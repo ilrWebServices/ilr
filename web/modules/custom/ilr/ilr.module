@@ -913,28 +913,6 @@ function ilr_webform_mailchimp_lists_mergevars_alter(&$mergevars, WebformSubmiss
 }
 
 /**
- * Implements hook_pathauto_alias_alter().
- *
- * For some reason, ilr_post_update_fix_collection_item_aliases() was using the
- * system path to the collection rather than its alias. This fixes the alias.
- *
- * @param string $alias The automatic alias after token replacement and strings
- *   cleaned.
- * @param array $context An associative array of additional options.
- *   @see pathauto.api.php
- */
-function ilr_pathauto_alias_alter(&$alias, array &$context) {
-  if(preg_match('/\/collection\/(\d+)\//', $alias, $matches)) {
-    if ($collection = \Drupal\collection\Entity\Collection::load($matches[1])) {
-      $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
-      $collection_alias = \Drupal::service('path.alias_manager')->getAliasByPath($collection->toUrl()->toString(), $langcode);
-
-      $alias = str_replace($matches[0], $collection_alias . '/', $alias);
-    }
-  }
-}
-
-/**
  * Implements hook_pathauto_pattern_alter().
  */
 function ilr_pathauto_pattern_alter(PathautoPatternInterface $pattern, array $context) {
@@ -945,7 +923,7 @@ function ilr_pathauto_pattern_alter(PathautoPatternInterface $pattern, array $co
 
     if ($links) {
       // If this page node is in a menu, use a menu-parent based pattern.
-      $pattern->setPattern('[node:menu-link:parent:url:relative]/[node:menu-link:title]');
+      return $pattern->setPattern('[node:menu-link:parent:url:relative]/[node:menu-link:title]');
     }
   }
 }
@@ -953,7 +931,8 @@ function ilr_pathauto_pattern_alter(PathautoPatternInterface $pattern, array $co
 /**
  * Implements hook_collection_pathauto_alias_alter().
  *
- * Updates the alias for nodes that are canonical items in a collection.
+ * Updates the alias pattern for story nodes that in a publication_issue
+ * collection.
  *
  * @see collection_pathauto_pathauto_alias_alter().
  */
