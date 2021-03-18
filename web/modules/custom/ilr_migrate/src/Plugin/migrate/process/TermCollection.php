@@ -7,16 +7,11 @@ use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
 
 /**
- * Determines a Collection based on finding a term in a list of terms.
+ * Determines a Collection based on a list of legacy terms.
  *
  * The expected input value should be a comma separated list of terms, such as
  * those included when setting the `node_terms` configuration on the
  * `ilr_d7_node` source plugin.
- *
- * Available configuration keys:
- * - map: An array (of 1 dimension) that defines the mapping between
- *   source values and destination values.
- * - default_value: The fallback value if there is no match in the map.
  *
  * Example:
  *
@@ -24,9 +19,6 @@ use Drupal\migrate\Row;
  * process:
  *   type:
  *     plugin: term_collection
- *     map:
- *       term_name: collection_id
- *     default_value: 26
  * @endcode
  *
  * @see \Drupal\migrate\Plugin\MigrateProcessInterface
@@ -43,13 +35,49 @@ class TermCollection extends ProcessPluginBase {
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $tags = explode(',', $value);
 
-    foreach ($tags as $tag) {
-      if (array_key_exists($tag, $this->configuration['map'])) {
-        return $this->configuration['map'][$tag];
-      }
+    if ($this->in_array_any(['Scheinman Institute', 'Scheinman', 'NYC. Scheinman Institute'], $tags)) {
+      // Scheinman blog.
+      return 14;
     }
 
-    return $this->configuration['default_value'];
+    if ($this->in_array_any(['ics'], $tags)) {
+      // Institute for Compensation Studies subsite blog.
+      return 24;
+    }
+
+    if ($this->in_array_any(['Buffalo Co-Lab News', 'High Road News', 'democracy buff', 'visiting scholar buffalo', 'buff econ geo'], $tags)) {
+      // Buffalo Co-Lab subsite blog.
+      return 35;
+    }
+
+    if ($this->in_array_any(['ldi'], $tags)) {
+      // Labor Dynamics Institute subsite blog.
+      return 36;
+    }
+
+    if ($this->in_array_any(['worker institute', 'workerinstitute', 'The Worker Institute', 'worker top'], $tags)) {
+      // Worker Institute Blog.
+      return 10;
+    }
+
+    // News blog.
+    return 26;
+  }
+
+  /**
+   * Checks if any values exist in an array.
+   *
+   * @param array $needles
+   *   The searched values.
+   *
+   * @param array $haystack
+   *   The array to search.
+   *
+   * @return bool
+   *   Returns true if any needles are found in the array, false otherwise.
+   */
+  protected function in_array_any($needles, $haystack) {
+    return !empty(array_intersect($needles, $haystack));
   }
 
 }
