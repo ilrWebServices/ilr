@@ -56,6 +56,10 @@ class FileMediaMigrateSubscriber implements EventSubscriberInterface {
    *   The migrate post row save event.
    */
   public function onPostRowSave(MigratePostRowSaveEvent $event) : void {
+    if ($event->getMigration()->getDestinationPlugin()->getPluginId() !== 'entity:media') {
+      return;
+    }
+
     $row = $event->getRow();
     $source = $row->getSource();
     $id = $event->getDestinationIdValues();
