@@ -22,6 +22,7 @@ function collection_blogs_post_update_fix_blog_vocabulary_collection_items(&$san
     foreach ($collection_item_storage->loadMultiple($vocabulary_collection_item_ids) as $collection_item) {
       $collection_item->setAttribute('blog_taxonomy_' . $vocabulary_type, $collection_item->item->entity->id());
       $collection_item->canonical = TRUE;
+      $collection_item->weight = 10;
       $collection_item->save();
     }
   }

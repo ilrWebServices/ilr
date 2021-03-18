@@ -75,6 +75,7 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
           'type' => 'default',
           'collection' => $collection->id(),
           'canonical' => TRUE,
+          'weight' => 10,
         ]);
 
         $collection_item_vocab->item = $vocab;
