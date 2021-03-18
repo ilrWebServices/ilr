@@ -112,6 +112,11 @@ class ContentEntityCollectionRequest extends FormBase {
         continue;
       }
 
+      // Don't offer to request addition to self.
+      if ($entity === $collection) {
+        continue;
+      }
+
       $options[$cid] = $collection->label();
     }
 
