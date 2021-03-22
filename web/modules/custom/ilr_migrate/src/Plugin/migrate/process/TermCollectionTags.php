@@ -106,74 +106,84 @@ class TermCollectionTags extends ProcessPluginBase implements ContainerFactoryPl
     if ($collection_id === 26) {
       // Big hash of old terms to new tags.
       $tag_hash = <<<EOT
-        lel: 'Labor and Employment Law'
+        'buffalo': 'Buffalo'
+        'buffalo economic geography update': 'Buffalo'
+        'China': 'International'
+        'compensation': 'Institute for Compensation Studies'
+        'conference': 'Events'
+        'cornell in buffalo news': 'Buffalo'
+        'Cornell in NYC': 'New York City'
+        'democracy buff': 'Buffalo'
+        'Disabilities': 'Yang Tan Institute'
+        'Disability': 'Yang Tan Institute'
+        'disability and the workplace': 'Yang Tan Institute'
+        'edi': 'Yang Tan Institute'
         'equity at work initiative': 'Equity at Work'
-        event: Events
-        Webinar: Events
-        webcast: Events
-        conference: Events
-        Workshop: Events
-        Healthcare: Healthcare
-        health: Healthcare
-        'Health-Care Summit': Healthcare
-        Heathcare: Healthcare
-        'Healthcare Summit': Healthcare
-        'healthcare delivery system': Healthcare
-        'Yale Healthcare Conference': Healthcare
+        'event': 'Events'
+        'Future of Work': 'Work and Jobs'
+        'hcd': 'Strategic Leadership'
+        'health': 'Healthcare'
+        'Health-Care Summit': 'Healthcare'
+        'Healthcare': 'Healthcare'
+        'healthcare delivery system': 'Healthcare'
+        'Healthcare Summit': 'Healthcare'
+        'Heathcare': 'Healthcare'
+        'High Road Fellowship': 'High Road'
         'High Road News': 'High Road'
         'high roads': 'High Road'
-        'High Road Fellowship': 'High Road'
-        impact: Impact
-        compensation: 'Institute for Compensation Studies'
-        pay: 'Institute for Compensation Studies'
-        iws: 'Institute for Workplace Studies'
-        'institute for workplace studies': 'Institute for Workplace Studies'
-        'IWS Colloquium Series': 'Institute for Workplace Studies'
-        international: International
-        'international programs': International
-        ilo: International
-        China: International
-        'Konvitz Lecture': 'Konvitz Lecture'
-        'Labor and Employment Law': 'Labor and Employment Law'
-        ncrn: 'Labor Dynamics Institute'
-        'labor and environment': 'Labor Leading Climate'
-        LERA: LERA
-        'mobilizing against inequality': 'Mobilizing Against Inequality'
-        NYC: 'New York City'
-        ilr-in-nyc-institute-news: 'New York City'
+        'ilo': 'International'
         'ilr in nyc': 'New York City'
-        ilr-in-nyc-news: 'New York City'
-        'Cornell in NYC': 'New York City'
-        ilr-in-nyc-news-1: 'New York City'
-        nysprojects: 'New York State'
-        NLLI: NLLI
-        'NLLI News': NLLI
-        'precarious workforce initiative': 'Precarious Workforce'
-        'Smithers Institute': 'Smithers Institute'
-        smithers: 'Smithers Institute'
-        'Strategic Leadership Initiative': 'Strategic Leadership'
-        'Union Days': 'Union Days'
-        uli: 'Union Leadership Institute'
-        union: Unions
-        Unions: Unions
-        'union building': Unions
-        worker: 'Work and Jobs'
-        work: 'Work and Jobs'
-        'technology and employment': 'Work and Jobs'
-        jobs: 'Work and Jobs'
-        LaborPress: 'Work and Jobs'
+        'ilr-in-nyc-institute-news': 'New York City'
+        'ilr-in-nyc-news': 'New York City'
+        'ilr-in-nyc-news-1': 'New York City'
+        'impact': 'Impact'
+        'institute for workplace studies': 'Institute for Workplace Studies'
+        'international': 'International'
+        'international programs': 'International'
+        'iws': 'Institute for Workplace Studies'
+        'IWS Colloquium Series': 'Institute for Workplace Studies'
+        'jobs': 'Work and Jobs'
+        'JORNALER@': 'Work and Jobs'
+        'Konvitz Lecture': 'Lectures'
+        'labor': 'Work and Jobs'
+        'Labor and Employment Law': 'Labor and Employment Law'
+        'labor and environment': 'Labor Leading Climate'
+        'LaborPress': 'Work and Jobs'
+        'ldi': 'Labor Dynamics Institute'
+        'leadership': 'Strategic Leadership'
+        'lecture': 'Lectures'
+        'lel': 'Labor and Employment Law'
+        'LERA': 'LERA'
         'Migrant farm workers': 'Work and Jobs'
-        Workforce: 'Work and Jobs'
-        'Future of Work': 'Work and Jobs'
-        labor: 'Work and Jobs'
-        unemployment: 'Work and Jobs'
-        JORNALER@: 'Work and Jobs'
-        yti: 'Yang Tan Institute'
-        edi: 'Yang Tan Institute'
-        Disability: 'Yang Tan Institute'
-        'disability and the workplace': 'Yang Tan Institute'
-        Disabilities: 'Yang Tan Institute'
+        'ncrn': 'Labor Dynamics Institute'
+        'NYC': 'New York City'
+        'NYC. Scheinman Institute': 'Scheinman Institute'
+        'pay': 'Institute for Compensation Studies'
+        'precarious workforce initiative': 'Precarious Workforce'
+        'Scheinman': 'Scheinman Institute'
+        'Scheinman Institute': 'Scheinman Institute'
+        'smithers': 'Smithers Institute'
+        'Smithers Institute': 'Smithers Institute'
+        'Strategic Leadership Initiative': 'Strategic Leadership'
+        'technology and employment': 'Work and Jobs'
+        'The Worker Institute': 'Worker Institute'
+        'unemployment': 'Work and Jobs'
+        'union': 'Unions'
+        'union building': 'Unions'
+        Union Days': 'Students'
+        'Unions': 'Unions'
+        'webcast': 'Events'
+        'Webinar': 'Events'
+        'work': 'Work and Jobs'
+        'worker': 'Work and Jobs'
+        'worker institute': 'Worker Institute'
+        'worker top': 'Worker Institute'
+        'workerinstitute': 'Worker Institute'
+        'Workforce': 'Work and Jobs'
+        'Workshop': 'Events'
+        'Yale Healthcare Conference': 'Healthcare'
         'Yang Tan Institute': 'Yang Tan Institute'
+        'yti': 'Yang Tan Institute'
         EOT;
 
       $map = Yaml::parse($tag_hash);

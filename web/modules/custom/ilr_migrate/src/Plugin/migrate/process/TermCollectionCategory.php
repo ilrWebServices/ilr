@@ -127,64 +127,64 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
 
       // Big hash of old terms to new category.
       $category_hash = <<<EOT
-        alumni: Alumni
-        'alumni profile': Alumni
-        'Groat Award': Alumni
-        'Susan Bisom-Rapp ’83': Alumni
-        'advance magazine': Alumni
-        'international alumni': Alumni
-        reunion: Alumni
-        alimni: Alumni
-        gift: Alumni
-        diversity: 'Diversity and Inclusion'
-        'Gender Pay Gap': 'Diversity and Inclusion'
+        'advance magazine': 'Alumni'
+        'alex colvin': 'Faculty'
+        'Alexander Colvin': 'Faculty'
+        'alimni': 'Alumni'
+        'alumni': 'Alumni'
+        'alumni profile': 'Alumni'
+        'Brian Lucas': 'Faculty'
+        'Career': 'Students'
+        'current students': 'Students'
+        'dean': 'Faculty'
+        'debate': 'Students'
+        'Democracy Fellows': 'Students'
+        'diversity': 'Diversity and Inclusion'
+        'Emerging Scholars': 'Faculty'
+        'experts': 'Faculty'
+        'faculty': 'Faculty'
+        'Faculty award': 'Faculty'
+        'faculty research': 'Faculty'
+        'featured student': 'Students'
         'gender gap': 'Diversity and Inclusion'
-        faculty: Faculty
-        'Faculty award': Faculty
-        'faculty research': Faculty
-        'Brian Lucas': Faculty
-        'Emerging Scholars': Faculty
-        dean: Faculty
-        'Lisa Nishii': Faculty
-        experts: Faculty
-        'ILR faculty news': Faculty
-        'Kate Griffith': Faculty
-        'Rosemary Batt': Faculty
-        'Alexander Colvin': Faculty
-        'alex colvin': Faculty
-        'new faculty': Faculty
-        'Harry Katz': Faculty
-        outreach: 'Public Impact'
+        'Gender Pay Gap': 'Diversity and Inclusion'
+        'gift': 'Alumni'
+        'Global Learning': 'Students'
+        'Groat Award': 'Alumni'
+        'Harry Katz': 'Faculty'
+        'ILR faculty news': 'Faculty'
+        'ILR Review': 'Research'
+        'incoming students': 'Students'
+        'international alumni': 'Alumni'
+        'Kate Griffith': 'Faculty'
+        'Lisa Nishii': 'Faculty'
+        'McPherson Awards': 'Students'
+        'new faculty': 'Faculty'
+        'outreach': 'Public Impact'
+        'peer mentor': 'Students'
+        'prospective students': 'Students'
         'Public Engagement': 'Public Impact'
-        'Public Engagement Channel 2': 'Public Impact'
         'Public Engagement Channel': 'Public Impact'
+        'Public Engagement Channel 2': 'Public Impact'
         'Public Engagement Practical Stories': 'Public Impact'
+        'report': 'Research'
+        'research': 'Research'
+        'research associates': 'Research'
+        'research-notice': 'Research'
+        'research-page-top': 'Research'
+        'reunion': 'Alumni'
+        'Rosemary Batt': 'Faculty'
+        'service learning': 'Students'
         'social impact': 'Public Impact'
-        research: Research
-        research-page-top: Research
-        research-notice: Research
-        'ILR Review': Research
-        'research associates': Research
-        report: Research
-        Student: Students
-        students: Students
-        'Student Experience': Students
-        'current students': Students
-        'Study Abroad': Students
-        'McPherson Awards': Students
-        Career: Students
-        'student research': Students
-        'prospective students': Students
-        'Global Learning': Students
-        debate: Students
-        'student organizations': Students
-        'unon days': Students
-        'service learning': Students
-        'student academic': Students
-        'Democracy Fellows': Students
-        'featured student': Students
-        'peer mentor': Students
-        'incoming students': Students
+        'Student': 'Students'
+        'student academic': 'Students'
+        'Student Experience': 'Students'
+        'student organizations': 'Students'
+        'student research': 'Students'
+        'students': 'Students'
+        'Study Abroad': 'Students'
+        'Susan Bisom-Rapp ’83': 'Alumni'
+        'unon days': 'Students'
         EOT;
 
       $map = Yaml::parse($category_hash);
