@@ -8,11 +8,36 @@ dependencies:
     - field.field.collection_item.blog.field_blog_tags
   module:
     - dynamic_entity_reference
+    - key_value_field
+    - path
 id: collection_item.blog.default
 targetEntityType: collection_item
 bundle: blog
 mode: default
 content:
+  attributes:
+    type: key_value_textfield
+    weight: 100
+    region: content
+    settings:
+      key_label: Key
+      key_size: 60
+      key_placeholder: ''
+      value_label: Value
+      size: 60
+      placeholder: ''
+      description_label: Description
+      description_placeholder: ''
+      description_rows: '5'
+      description_enabled: false
+    third_party_settings: {  }
+  canonical:
+    settings:
+      display_label: true
+    weight: 15
+    region: content
+    third_party_settings: {  }
+    type: boolean_checkbox
   field_blog_categories:
     weight: 6
     settings: {  }
@@ -35,8 +60,19 @@ content:
       placeholder: ''
       match_limit: 10
     third_party_settings: {  }
+  path:
+    type: path
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  weight:
+    type: number
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
 hidden:
-  attributes: true
   collection: true
-  name: true
   user_id: true
