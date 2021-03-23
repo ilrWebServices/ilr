@@ -76,6 +76,10 @@ class FileMediaMigrateSubscriber implements EventSubscriberInterface {
         return;
       }
 
+      if ($media_entity->field_media_image->isEmpty()) {
+        return;
+      }
+
       $image_properties = $media_entity->field_media_image->first()->getValue();
       $focal_point_crop = $this->focalPointManager->getCropEntity($media_entity->field_media_image->entity, 'focal_point');
       list($x, $y) = explode(',', $source['focal_point']);
