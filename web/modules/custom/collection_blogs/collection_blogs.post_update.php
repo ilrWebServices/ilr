@@ -59,7 +59,7 @@ function collection_blogs_post_update_collect_existing_terms(&$sandbox) {
       foreach ($term_storage->loadMultiple($term_results) as $term) {
         $collection_item_term = $collection_item_storage->create([
           'type' => $type,
-          'collection' => $collection_item->collection->entity->id(),
+          'collection' => $collection_item->collection->entity,
           'canonical' => TRUE,
           'changed' => $term->getChangedTime(),
         ]);
