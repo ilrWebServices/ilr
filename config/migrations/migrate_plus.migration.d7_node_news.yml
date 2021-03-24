@@ -130,5 +130,6 @@ destination:
   plugin: 'entity:node'
 migration_dependencies:
   required:
+    - d7_file_media
     - d7_node_news_body
   optional: {  }
