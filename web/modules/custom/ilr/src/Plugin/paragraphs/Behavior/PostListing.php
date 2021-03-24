@@ -119,12 +119,18 @@ class PostListing extends ParagraphsBehaviorBase {
     $posts = [];
     $dedupe_group = 'dedupe:collection_item.id:collection_' . $collection->id();
 
+    $pending_items = \Drupal::database()
+      ->select('collection_item__attributes', 'cia')
+      ->fields('cia', ['entity_id'])
+      ->condition('cia.bundle', 'blog')
+      ->condition('cia.attributes_key', 'collection-request-uid');
+
     $query = $collection_item_storage->getQuery();
+    $query->condition('id', $pending_items, 'NOT IN');
     $query->condition('collection', $collection->id());
     $query->condition('type', 'blog');
     $query->condition('item.entity:node.status', 1);
     $query->condition('item.entity:node.type', ['post', 'media_mention'], 'IN');
-    $query->condition('attributes.key', 'collection-request-uid', 'IS NULL');
     // Add a dedupe tag to remove duplicates in similar post_listings. See
     // ilr_query_alter().
     $query->addTag($dedupe_group);

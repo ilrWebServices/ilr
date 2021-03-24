@@ -130,12 +130,18 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
       $cache_tags[] = 'collection_item_list'; // 'collection_item_list:blog'; // 8.9 and above
       $posts = [];
 
+      $pending_items = \Drupal::database()
+        ->select('collection_item__attributes', 'cia')
+        ->fields('cia', ['entity_id'])
+        ->condition('cia.bundle', 'blog')
+        ->condition('cia.attributes_key', 'collection-request-uid');
+
       $blog_post_collection_items = $collection_item_storage->getQuery()
+        ->condition('id', $pending_items, 'NOT IN')
         ->condition('type', 'blog')
         ->condition('item.entity:node.status', 1)
         ->condition('item.entity:node.type', ['post', 'media_mention'], 'IN')
         ->condition($term_reference_field_name, $entity->id())
-        ->condition('attributes.key', 'collection-request-uid', 'IS NULL')
         ->sort('item.entity:node.field_published_date', 'DESC')
         ->execute();
 
