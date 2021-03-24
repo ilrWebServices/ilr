@@ -58,6 +58,10 @@ class IlrD7Node extends d7_node {
       $query->addField('a', 'alias', 'node_alias');
     }
 
+    if (isset($this->configuration['node_terms']) && $this->configuration['node_alias']) {
+      $query->groupBy('a.alias');
+    }
+
     return $query;
   }
 
