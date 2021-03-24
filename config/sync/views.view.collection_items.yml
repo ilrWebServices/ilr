@@ -5,6 +5,7 @@ dependencies:
   module:
     - collection
     - dynamic_entity_reference
+    - views_autocomplete_filters
 id: collection_items
 label: 'Collection items'
 module: views
@@ -678,6 +679,20 @@ display:
           entity_type: collection_item
           entity_field: changed
           plugin_id: date
+        name:
+          id: name
+          table: collection_item
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: collection_item
+          entity_field: name
+          plugin_id: standard
       title: ''
       header: {  }
       footer: {  }
