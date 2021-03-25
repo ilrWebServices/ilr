@@ -143,6 +143,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
         ->condition('item.entity:node.type', ['post', 'media_mention'], 'IN')
         ->condition($term_reference_field_name, $entity->id())
         ->sort('item.entity:node.field_published_date', 'DESC')
+        ->pager(30)
         ->execute();
 
       foreach ($collection_item_storage->loadMultiple($blog_post_collection_items) as $collection_item) {
@@ -151,7 +152,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
         $posts[] = $rendered_content;
       }
 
-      $build[$component_name] = [
+      $build[$component_name]['listing'] = [
         '#theme' => 'item_list__collection_listing',
         '#items' => $posts,
         '#attributes' => ['class' => 'collection-listing cu-grid--3col cu-grid'],
@@ -161,6 +162,10 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
         '#cache' => [
           'tags' => $cache_tags,
         ],
+      ];
+
+      $build[$component_name]['pager'] = [
+        '#type' => 'pager',
       ];
     }
   }

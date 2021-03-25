@@ -1,0 +1,51 @@
+/**
+ * @file
+ * Based on styles for Seven's Pagination.
+ */
+.pager__items {
+  --cu-current-link-color: #{$cornell-red};
+
+  margin: var(--cu-vr2) 0;
+  /* LTR */
+  padding: 0;
+  text-align: center;
+
+  @include breakpoint(sm) {
+    margin: var(--cu-vr3) 0;
+  }
+}
+
+.pager__item {
+  display: inline-block;
+  margin: 0;
+  padding: 0 0.4em;
+  color: var(--cu-current-link-color);
+}
+
+.pager__item a {
+  padding: 0 5px 2px;
+  transition: border-bottom-color 0.2s;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  -webkit-font-smoothing: antialiased;
+  color: var(--cu-current-link-color);
+}
+
+.pager__item.is-active a {
+  border-bottom-width: 3px;
+  border-bottom-color: var(--cu-current-link-color);
+}
+
+.pager__item a:hover,
+.pager__item a:focus {
+  color: var(--cu-current-link-color);
+  border-bottom-color: var(--cu-current-link-color);
+}
+
+.pager__item--next a,
+.pager__item--last a,
+.pager__item--first a,
+.pager__item--previous a {
+  color: var(--cu-current-link-color);
+  border-bottom-width: 0;
+}
