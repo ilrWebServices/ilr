@@ -13,7 +13,9 @@ migration_group: drupal_7
 label: 'News article nodes'
 source:
   plugin: ilr_d7_node
-  node_type: news_item
+  node_types:
+    - news_item
+    - post
   node_status: 1
 process:
   langcode:

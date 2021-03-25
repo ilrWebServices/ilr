@@ -13,7 +13,9 @@ migration_group: drupal_7
 label: 'News article node subsite paths as redirects'
 source:
   plugin: ilr_d7_node_subsite_redirects
-  node_type: news_item
+  node_types:
+    - news_item
+    - post
   node_status: 1
   node_alias: true
   node_terms: field_tags

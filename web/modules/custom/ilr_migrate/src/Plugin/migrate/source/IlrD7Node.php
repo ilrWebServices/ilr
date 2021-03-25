@@ -20,6 +20,10 @@ class IlrD7Node extends d7_node {
   public function query() {
     $query = parent::query();
 
+    if (isset($this->configuration['node_types'])) {
+      $query->condition('n.type', $this->configuration['node_types'], 'IN');
+    }
+
     if (isset($this->configuration['node_status'])) {
       $query->condition('n.status', $this->configuration['node_status']);
     }
