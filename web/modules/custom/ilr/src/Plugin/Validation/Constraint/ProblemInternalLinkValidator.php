@@ -46,7 +46,7 @@ class ProblemInternalLinkValidator extends ConstraintValidator {
       }
 
       // Internal, but not 'entity', links using /node/ID paths are not allowed.
-      if (isset($parts['scheme']) && $parts['scheme'] === 'internal' && preg_match('|^/node/\d+|', $parts['path'])) {
+      if (isset($parts['path']) && isset($parts['scheme']) && $parts['scheme'] === 'internal' && preg_match('|^/node/\d+|', $parts['path'])) {
         $this->context->addViolation($constraint->messageNodePath, [
           '@uri' => $value->uri,
           '%path' => $parts['path'],
