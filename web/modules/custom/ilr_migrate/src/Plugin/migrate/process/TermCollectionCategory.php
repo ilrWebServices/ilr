@@ -92,7 +92,7 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
     if ($collection_id === 35) {
       $category = 'Co-Lab News';
 
-      if (in_array('High Road News', $tags)) {
+      if ($this->in_array_any(['High Road News', 'high road'], $tags)) {
         $category = 'High Road';
       }
       elseif (in_array('democracy buff', $tags)) {

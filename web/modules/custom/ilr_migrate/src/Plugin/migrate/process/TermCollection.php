@@ -45,7 +45,7 @@ class TermCollection extends ProcessPluginBase {
       return 24;
     }
 
-    if ($this->in_array_any(['Buffalo Co-Lab News', 'High Road News', 'democracy buff', 'visiting scholar buffalo', 'buff econ geo'], $tags)) {
+    if ($this->in_array_any(['Buffalo Co-Lab News', 'High Road News', 'democracy buff', 'visiting scholar buffalo', 'buff econ geo', 'high road'], $tags)) {
       // Buffalo Co-Lab subsite blog.
       return 35;
     }
