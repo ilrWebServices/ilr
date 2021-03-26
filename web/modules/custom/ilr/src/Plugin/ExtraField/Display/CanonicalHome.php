@@ -9,7 +9,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Course Class Register Extra field Display.
+ * Canonical home field Display.
  *
  * @ExtraFieldDisplay(
  *   id = "canonical_home",
@@ -30,7 +30,6 @@ class CanonicalHome extends ExtraFieldDisplayBase implements ContainerFactoryPlu
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = new static($configuration, $plugin_id, $plugin_definition);
     $instance->entityTypeManager = $container->get('entity_type.manager');
-    $instance->pathAliasEntitiesManager = $container->get('path_alias.entities');
     return $instance;
   }
 
