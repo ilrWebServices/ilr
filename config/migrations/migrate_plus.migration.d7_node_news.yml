@@ -128,10 +128,16 @@ process:
     plugin: field_link
     uri_scheme: 'https://'
     source: field_website_url
+  field_authors/target_id:
+    plugin: migration_lookup
+    migration: d7_node_author
+    source: field_author_reference/0/target_id
+    no_stub: true
 destination:
   plugin: 'entity:node'
 migration_dependencies:
   required:
     - d7_file_media
+    - d7_node_author
     - d7_node_news_body
   optional: {  }
