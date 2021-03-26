@@ -693,3 +693,23 @@ function ilr_post_update_move_ilr_in_the_news(&$sandbox) {
   $term_in_the_news->path->pathauto = 1;
   $term_in_the_news->save();
 }
+
+/**
+ * Convert the MAI collection from blog to subsite_blog.
+ */
+function ilr_post_update_mai_subsite_blog(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $vocabulary_storage = $entity_type_manager->getStorage('taxonomy_vocabulary');
+  $collection_storage = $entity_type_manager->getStorage('collection');
+
+  $vocabulary_storage->load('blog_37_categories')->delete();
+  $vocabulary_storage->load('blog_37_tags')->delete();
+  $collection_storage->load(37)->delete();
+
+  $collection = $collection_storage->create([
+    'cid' => 37,
+    'type' => 'subsite_blog',
+    'name' => 'Mobilizing Against Inequality',
+  ]);
+  $collection->save();
+}
