@@ -81,10 +81,6 @@ class TermCollectionTags extends ProcessPluginBase implements ContainerFactoryPl
 
     // Worker Institute
     if ($collection_id === 10) {
-      if (in_array('mobilizing against inequality', $tags)) {
-        $terms['mobilizing against inequality'] = 0;
-      }
-
       if ($this->in_array_any(['NLLI News', 'NLLI'], $tags)) {
         $terms['NLLI'] = 0;
       }

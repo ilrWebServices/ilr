@@ -121,6 +121,47 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
       $category = 'News';
     }
 
+    // Mobilizing Against Inequality
+    if ($collection_id === 37) {
+      $category = 'News';
+
+      $category_hash = <<<EOT
+        'case study': 'Case Studies'
+        'france': 'Countries'
+        'germany': 'Countries'
+        'global labor relations': 'Immigrant Rights'
+        'guest worker rights': 'Immigrant Rights'
+        'immigrant rights': 'Immigrant Rights'
+        'immigrant worker rights': 'Immigrant Rights'
+        'immigrant workers': 'Immigrant Rights'
+        'immigration defense': 'Immigrant Rights'
+        'migrant worker rights': 'Immigrant Rights'
+        'Interview': 'Interviews'
+        'journalism': 'Literature Reviews'
+        'literature review': 'Literature Reviews'
+        'resource': 'Resources'
+        'justice in motion': 'Social Justice'
+        'social justice': 'Social Justice'
+        'Islamophobia': 'Social Justice'
+        'uk': 'Countries'
+        'union': 'Unions'
+        'Unions': 'Unions'
+        'usa': 'Countries'
+        EOT;
+
+      $map = Yaml::parse($category_hash);
+
+      // Map the new category strings to incoming tags.
+      $tags_mapped = str_replace(array_keys($map), array_values($map), $tags);
+
+      // Remove any tags that are not in the list of new categories.
+      $tags_mapped = array_intersect(array_values($tags_mapped), array_values($map));
+
+      if (!empty($tags_mapped)) {
+        $category = reset($tags_mapped);
+      }
+    }
+
     // News
     if ($collection_id === 26) {
       $category = 'About ILR';

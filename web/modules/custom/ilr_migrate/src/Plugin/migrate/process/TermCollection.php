@@ -60,6 +60,11 @@ class TermCollection extends ProcessPluginBase {
       return 10;
     }
 
+    if ($this->in_array_any(['mobilizing against inequality'], $tags)) {
+      // Mobilizing Against Inequality
+      return 37;
+    }
+
     // News blog.
     return 26;
   }
