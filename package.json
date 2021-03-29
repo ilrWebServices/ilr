@@ -4,7 +4,7 @@
   "description": "Composer-based Drupal 8 site for www.ilr.cornell.edu",
   "main": "gulpfile.js",
   "dependencies": {
-    "@cornell_ilr/union": "^0.8.6"
+    "@cornell_ilr/union": "^0.8.8"
   },
   "devDependencies": {
     "breakpoint-sass": "^2.7.1",
