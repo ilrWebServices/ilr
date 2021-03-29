@@ -27,7 +27,7 @@ class CardSettings extends ParagraphsBehaviorBase {
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
     $form['media_overlay_opacity'] = [
       '#type' => 'range',
-      '#min' => 0,
+      '#min' => 1,
       '#max' => 100,
       '#step' => 10,
       '#title' => $this->t('Media overlay opacity'),
