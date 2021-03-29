@@ -1,0 +1,143 @@
+{#
+/**
+ * @file
+ * Theme override to display the homepage banner block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ */
+#}
+{% set classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|replace({':': '--'})|clean_class,
+] %}
+
+{% set undergrad %}
+{% include '@union/_icon.twig' with {
+  title: 'Cornell University Tower',
+  label: 'Undergraduate\nAdmissions',
+  label_element: 'h2',
+  link: '/programs/undergraduate-degree-program/undergraduate-admissions',
+  icon: 'tower',
+  size: '2.5em',
+  attributes: { class: 'cu-icon--inline-centered' }
+} only %}
+<p class="cu-card__hover-content">Our flexible, interdisciplinary major lets students pursue a wide range of academic interests and careers.</p>
+{% endset %}
+
+{% set grad %}
+{% include '@union/_icon.twig' with {
+  title: 'Mortarboard',
+  label: 'Graduate\nPrograms',
+  label_element: 'h2',
+  link: '/programs/graduate-degree-programs',
+  icon: 'mortarboard',
+  size: '2.5em',
+  attributes: { class: 'cu-icon--inline-centered' }
+} only %}
+<p class="cu-card__hover-content">Study the workplace comprehensively with the world's highest concentration of workplace faculty.</p>
+{% endset %}
+
+{% set professional %}
+{% include '@union/_icon.twig' with {
+  title: 'Handshake',
+  label: 'Professional\nPrograms',
+  label_element: 'h2',
+  link: '/programs/professional-programs',
+  icon: 'handshake',
+  size: '2.5em',
+  attributes: { class: 'cu-icon--inline-centered' }
+} only %}
+<p class="cu-card__hover-content">Invest in your career by learning from instructors who blend world-leading research with business-tested practicality.</p>
+{% endset %}
+
+{% set icon_cards %}
+{% include '@union/_card.twig' with {
+  attributes: { class: 'cu-card--icon cu-card--hover-content-reveal' },
+  card_content: undergrad
+} only %}
+{% include '@union/_card.twig' with {
+  attributes: { class: 'cu-card--icon cu-card--hover-content-reveal' },
+  card_content: grad
+} only %}
+{% include '@union/_card.twig' with {
+  attributes: { class: 'cu-card--icon cu-card--hover-content-reveal' },
+  card_content: professional
+} only %}
+{% endset %}
+
+{% set card_grid %}
+{% include '@union/_grid.twig' with {
+  grid_content: icon_cards,
+  attributes: { class: 'cu-grid--3col cu-grid--align-end' }
+} %}
+{% endset %}
+
+{% set controls %}
+<div class="video-pause">
+  {% include "@union/_icon.twig" with {
+    title: 'Pause video',
+    icon: 'pause',
+    size: '3em',
+    label: '',
+    attributes: {
+      class: 'cu-icon--inline pause cu-icon--play',
+      role: 'button',
+      'aria-pressed': "false"
+    }
+  } only %}
+  {% include "@union/_icon.twig" with {
+    title: 'Play video',
+    icon: 'play',
+    size: '3em',
+    label: '',
+    attributes: {
+      class: 'cu-icon--inline play visually-hidden',
+      role: 'button',
+      'aria-pressed': "true"
+    }
+  } only %}
+</div>
+{% endset %}
+
+{% set banner_content %}
+  {{ controls }}
+  {{ card_grid }}
+{% endset %}
+
+{% set video_media %}
+{% include '@union/_video.twig' with {
+  src: 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_75_202008_500.mp4',
+  autoplay: TRUE,
+  loop: TRUE,
+  muted: TRUE
+} only %}
+{% endset %}
+
+<div{{attributes.addClass(classes)}}>
+  {% include '@union/_banner.twig' with {
+    attributes: { class: 'cu-banner--video' },
+    content_attributes: { class: 'cu-banner__content--align-bottom' },
+    media: video_media,
+    content: banner_content
+  } only %}
+</div>

@@ -732,3 +732,18 @@ function ilr_post_update_node_one_hostile_takeover(&$sandbox) {
   ]);
   $homenode->save();
 }
+
+/**
+ * Create the homepage banner block.
+ */
+function ilr_post_update_homepage_banner(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $block_content_storage = $entity_type_manager->getStorage('block_content');
+
+  $homeblock = $block_content_storage->create([
+    'uuid' => '1d1640f5-d922-4622-835f-fba08eb0a788',
+    'type' => 'simple_text',
+    'info' => 'Homepage Banner',
+  ]);
+  $homeblock->save();
+}
