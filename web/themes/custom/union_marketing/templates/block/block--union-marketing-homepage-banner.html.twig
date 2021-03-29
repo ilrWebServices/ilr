@@ -135,9 +135,11 @@
 
 <div{{attributes.addClass(classes)}}>
   {% include '@union/_banner.twig' with {
-    attributes: { class: 'cu-banner--video' },
+    attributes: { class: 'cu-banner--video pick cu-component--desktop' },
     content_attributes: { class: 'cu-banner__content--align-bottom' },
     media: video_media,
     content: banner_content
   } only %}
+  {# Be sure to place the mobile version after desktop, so that js can target the correct play button (union bug). #}
+  {% include "block--union-marketing-homepage-banner--mobile.html.twig" %}
 </div>
