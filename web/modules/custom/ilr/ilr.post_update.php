@@ -713,3 +713,22 @@ function ilr_post_update_mai_subsite_blog(&$sandbox) {
   ]);
   $collection->save();
 }
+
+/**
+ * Take over node/1 for the home page.
+ */
+function ilr_post_update_node_one_hostile_takeover(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $node_storage = $entity_type_manager->getStorage('node');
+
+  // Node one is an automatically created instructor from salesforce. It'll get
+  // re-created and we like our homepages at node/1!
+  $node_storage->load(1)->delete();
+
+  $homenode = $node_storage->create([
+    'nid' => 1,
+    'type' => 'page',
+    'title' => 'Home',
+  ]);
+  $homenode->save();
+}
