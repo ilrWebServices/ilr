@@ -22,6 +22,18 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 class CardSettings extends ParagraphsBehaviorBase {
 
   /**
+   * The list style options.
+   *
+   * @var array
+   */
+  protected $contentPlacementOptions = [
+    '' => 'Centered',
+    'pinned' => 'Pinned top and bottom',
+    'pinned-top' => 'Pinned top',
+    'pinned-bottom' => 'Pinned bottom',
+  ];
+
+  /**
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
@@ -33,6 +45,15 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#title' => $this->t('Media overlay opacity'),
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'media_overlay_opacity') ?? '50',
       '#description' => $this->t('Select a range from transparent to fully opaque.'),
+    ];
+
+    $form['content_placement'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Content placement'),
+      '#description' => $this->t('Where to place card content within the card, over the media if set. "Pinned top and bottom" will pin all content to the bottom with the exeption of the first item, which will be pinned to the top.'),
+      '#options' => $this->contentPlacementOptions,
+      '#required' => FALSE,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'content_placement') ?? reset($this->contentPlacementOptions),
     ];
 
     $form['use_media_aspect'] = [
@@ -51,6 +72,10 @@ class CardSettings extends ParagraphsBehaviorBase {
   public function preprocess(&$variables) {
     $overlay_opacity = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'media_overlay_opacity') ?? 50;
     $variables['attributes']['style'][] = '--cu-overlay-opacity: ' . $overlay_opacity / 100 . ';';
+
+    if ($content_placement = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'content_placement')) {
+      $variables['attributes']['class'][] = 'cu-card--' . $content_placement;
+    }
 
     if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'use_media_aspect')) {
       $variables['attributes']['class'][] = 'cu-card--use-aspect-ratio';
@@ -78,6 +103,13 @@ class CardSettings extends ParagraphsBehaviorBase {
       $summary[] = [
         'label' => $this->t('Aspect ratio'),
         'value' => 'preserved',
+      ];
+    }
+
+    if ($content_placement = $paragraph->getBehaviorSetting($this->getPluginId(), 'content_placement')) {
+      $summary[] = [
+        'label' => $this->t('Placement'),
+        'value' => $this->contentPlacementOptions[$content_placement],
       ];
     }
 
