@@ -606,7 +606,6 @@ function ilr_post_update_create_collection_item_aliases(&$sandbox) {
 function ilr_post_update_remove_term_patterns(&$sandbox) {
   $entity_type_manager = \Drupal::service('entity_type.manager');
   $pathauto_pattern_storage = $entity_type_manager->getStorage('pathauto_pattern');
-  $term_storage = $entity_type_manager->getStorage('taxonomy_term');
 
   foreach ($pathauto_pattern_storage->loadMultiple() as $pattern) {
     if (strpos($pattern->id(), 'blog_') !== 0 || $pattern->getType() !== 'canonical_entities:taxonomy_term') {
@@ -615,4 +614,102 @@ function ilr_post_update_remove_term_patterns(&$sandbox) {
 
     $pattern->delete();
   }
+}
+
+/**
+ * Move ILR in the News blog items to the News blog.
+ */
+function ilr_post_update_move_ilr_in_the_news(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $collection_storage = $entity_type_manager->getStorage('collection');
+  $term_storage = $entity_type_manager->getStorage('taxonomy_term');
+  $vocab_storage = $entity_type_manager->getStorage('taxonomy_vocabulary');
+
+  // Load the ILR in the News collection (id 4).
+  $collection_in_the_news = $collection_storage->load(4);
+
+  // Update the blog_26_categories term 'In the news' to 'ILR in the news'.
+  $term_in_the_news = $term_storage->load(112);
+  $term_in_the_news->name = 'ILR in the News';
+  $term_in_the_news->path->alias = '/news/ilr-news';
+  $term_in_the_news->save();
+
+  // Create a COVID-19 term for blog_26_tags (news) if missing.
+  $existing_covid19_terms = $term_storage->loadByProperties([
+    'vid' => 'blog_26_tags',
+    'name' => 'COVID-19',
+  ]);
+
+  if ($existing_covid19_terms) {
+    $covid19_term = reset($existing_covid19_terms);
+  }
+  else {
+    $covid19_term = $term_storage->create([
+      'vid' => 'blog_26_tags',
+      'name' => 'COVID-19',
+    ]);
+    $covid19_term->save();
+  }
+
+  // Get all the collection_items for collection 4 (ILR in the News).
+  $collection_items = $collection_in_the_news->getItems();
+
+  // For each collection 4 item, set it to collection 26 (news). Also set its
+  // category to 112 (ILR in the News) and tag it with the COVID-19 term.
+  foreach ($collection_items as $collection_item) {
+    // This mainly filters out the categories and tags vocabularies. For some
+    // unknown reason, the tags vocabulary collection item (23) is of the type
+    // `blog` rather than `default`, so it actually has the field
+    // `field_blog_categories`.
+    if (!$collection_item->hasField('field_blog_categories') || $collection_item->id() == 23) {
+      continue;
+    }
+
+    $collection_item->collection->target_id = 26;
+    $collection_item->field_blog_categories->target_id = 112;
+    $collection_item->field_blog_tags->target_id = $covid19_term->id();
+    $collection_item->save();
+  }
+
+  // Delete the old ilr in the news collection and its vocabularies.
+  foreach (['categories', 'tags'] as $type) {
+    if ($vocab = $vocab_storage->load('blog_4_' . $type)) {
+      $vocab->delete();
+    }
+  }
+  $collection_in_the_news->delete();
+
+  // Create a redirect from the old Covid-19 term to the new one.
+  $redirect = $entity_type_manager->getStorage('redirect')->create([
+    'status_code' => 301,
+    'uid' => 1,
+    'language' => 'en',
+  ]);
+  $redirect->setSource('news/ilr-news/covid-19');
+  $redirect->setRedirect('/taxonomy/term/' . $covid19_term->id());
+  $redirect->save();
+
+  // Set the pathauto state for the "In the News" category.
+  $term_in_the_news->path->pathauto = 1;
+  $term_in_the_news->save();
+}
+
+/**
+ * Convert the MAI collection from blog to subsite_blog.
+ */
+function ilr_post_update_mai_subsite_blog(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $vocabulary_storage = $entity_type_manager->getStorage('taxonomy_vocabulary');
+  $collection_storage = $entity_type_manager->getStorage('collection');
+
+  $vocabulary_storage->load('blog_37_categories')->delete();
+  $vocabulary_storage->load('blog_37_tags')->delete();
+  $collection_storage->load(37)->delete();
+
+  $collection = $collection_storage->create([
+    'cid' => 37,
+    'type' => 'subsite_blog',
+    'name' => 'Mobilizing Against Inequality',
+  ]);
+  $collection->save();
 }

@@ -131,6 +131,8 @@ class PostListing extends ParagraphsBehaviorBase {
     $query->condition('type', 'blog');
     $query->condition('item.entity:node.status', 1);
     $query->condition('item.entity:node.type', ['post', 'media_mention'], 'IN');
+    $query->range(0, 102); // @todo: Implement as a pager.
+
     // Add a dedupe tag to remove duplicates in similar post_listings. See
     // ilr_query_alter().
     $query->addTag($dedupe_group);

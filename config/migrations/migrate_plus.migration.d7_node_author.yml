@@ -1,0 +1,63 @@
+uuid: 1a68d913-00b0-4107-80aa-49b460b7fd53
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_author
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: drupal_7
+label: 'Author nodes'
+source:
+  plugin: d7_node
+  node_type: author
+  constants:
+    label_suffix: '- Author'
+process:
+  field_bio: body
+  field_first_name: field_first_name
+  field_last_name: field_last_name
+  _first_name:
+    plugin: extract
+    source: field_first_name
+    index:
+      - 0
+      - value
+  _last_name:
+    plugin: extract
+    source: field_last_name
+    index:
+      - 0
+      - value
+  display_name:
+    plugin: concat
+    source:
+      - '@_first_name'
+      - '@_last_name'
+    delimiter: ' '
+  admin_label:
+    plugin: concat
+    source:
+      - '@display_name'
+      - constants/label_suffix
+    delimiter: ' '
+  field_title: field_job_title
+  field_photo:
+    plugin: sub_process
+    source: field_image
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: d7_file_media
+        source: fid
+        no_stub: true
+destination:
+  plugin: 'entity:persona'
+  default_bundle: author
+migration_dependencies:
+  required:
+    - d7_file_media
+  optional: {  }

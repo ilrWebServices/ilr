@@ -1,0 +1,143 @@
+uuid: 27b3825a-ef76-4c5d-90b2-a3ee9ef71744
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_news
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: drupal_7
+label: 'News article nodes'
+source:
+  plugin: ilr_d7_node
+  node_types:
+    - news_item
+    - post
+  node_status: 1
+process:
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: en
+  type:
+    plugin: d7_news_bundle
+    default_value: post
+  title: title
+  uid:
+    plugin: static_map
+    source: node_uid
+    map:
+      1: 1
+      16: 5
+      156: 75
+      341: 4
+      361: 54
+      606: 92
+      651: 26
+      686: 37
+      811: 19
+      901: 67
+      971: 40
+      1056: 78
+      1196: 20
+      1206: 93
+      1231: 23
+      1326: 91
+      2141: 22
+      2171: 64
+      3356: 83
+      3701: 84
+      6686: 77
+      16071: 56
+      20221: 80
+      23961: 72
+      24971: 28
+      25176: 81
+      25736: 76
+      26596: 14
+      27301: 73
+      27366: 17
+      28176: 66
+      28206: 55
+      29336: 25
+      29636: 74
+      30261: 27
+      30826: 89
+      30916: 88
+      31291: 24
+      31446: 85
+      32236: 32
+      33026: 2
+      33931: 70
+      35686: 6
+      36248: 62
+      36462: 18
+      36499: 87
+      36524: 86
+      36536: 65
+      36575: 31
+      36624: 94
+      34851: 68
+    default_value: 1
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  body/summary: field_description/0/value
+  body/value:
+    plugin: default_value
+    default_value: ''
+  _news_body_paragraphs:
+    plugin: migration_lookup
+    migration: d7_node_news_body
+    source: nid
+    no_stub: true
+  field_components:
+    plugin: sub_process
+    source:
+      - '@_news_body_paragraphs'
+    process:
+      target_id: '0'
+      target_revision_id: '1'
+  field_published_date:
+    plugin: sub_process
+    source: field_published_date
+    process:
+      value:
+        plugin: substr
+        source: value
+        start: 0
+        length: 10
+  field_representative_image:
+    plugin: sub_process
+    source: field_image
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: d7_file_media
+        source: fid
+        no_stub: true
+  field_external_link:
+    plugin: field_link
+    uri_scheme: 'https://'
+    source: field_website_url
+  field_authors/target_id:
+    plugin: migration_lookup
+    migration: d7_node_author
+    source: field_author_reference/0/target_id
+    no_stub: true
+destination:
+  plugin: 'entity:node'
+migration_dependencies:
+  required:
+    - d7_file_media
+    - d7_node_author
+    - d7_node_news_body
+  optional: {  }

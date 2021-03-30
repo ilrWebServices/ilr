@@ -38,8 +38,13 @@ class IlrFile extends File {
 
     // Add the image alt value (from a field added via file_entity module) to
     // the source.
-    $query->leftJoin('field_data_field_file_image_alt_text', 'fia', 'f.fid = fia.entity_id AND fia.bundle = \'image\'');
+    $query->leftJoin('field_data_field_file_image_alt_text', 'fia', 'f.fid = fia.entity_id AND f.type = \'image\'');
     $query->addField('fia', 'field_file_image_alt_text_value', 'image_alt');
+
+    // Add the focal_point setting for image files. Left join ensures that this
+    // value will be null for other file types.
+    $query->leftJoin('focal_point', 'fp', 'f.fid = fp.fid AND f.type = \'image\'');
+    $query->addField('fp', 'focal_point');
 
     return $query;
   }
@@ -62,6 +67,15 @@ class IlrFile extends File {
       }
     }
     return parent::prepareRow($row);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getIds() {
+    $ids = parent::getIds();
+    $ids['fid']['alias'] = 'f';
+    return $ids;
   }
 
 }

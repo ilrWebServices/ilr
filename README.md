@@ -235,12 +235,25 @@ The `d7_file_media` migration can run especially long, since it must download me
 
 There are two things you must do to enable local files as the source of the media migration.
 
-- Get a copy of the D7 files with something like `rsync -av --progress dd2imk5jkez6q-master-7rqtwti--app@ssh.us-2.platform.sh:/app/docroot/sites/default/files/ /Users/YOUR_USERNAME/work/ilr/d7_files/sites/default/files/`. Be sure to
-- Configure the `MIGRATE_MEDIA_SOURCE_BASE_PATH_OVERRIDE` environment variable in `.env` to point to the local file source (e.g. the `rsync` destination from the above command). See `.env.example` for more info.
+#### 1. Get a copy of the D7 files
+
+From the D7 codebase:
+
+```
+rsync -azv --progress --iconv=utf-8-mac,utf-8 `platform ssh --pipe`:/app/web/sites/default/files/ /Users/YOUR_USERNAME/ILR/d7_files/sites/default/files/
+```
+
+Ensure that you are using `rsync` 3.x or above.
+
+#### 2. Configure the media migration source base path
+
+Enable and update the `MIGRATE_MEDIA_SOURCE_BASE_PATH_OVERRIDE` environment variable in `.env` to point to the local file source (e.g. the `rsync` destination from the above command). See `.env.example` for more info.
 
 Note that the migration source will be looking for files relative to the Drupal root, so if your local files are in `/Users/YOUR_USERNAME/work/ilr/d7_files/sites/default/files`, you'll set `MIGRATE_MEDIA_SOURCE_BASE_PATH_OVERRIDE` to `/Users/YOUR_USERNAME/work/ilr/d7_files`.
 
-A few words about how image and media migration is handled in this codebase: The `d7_file_media` migration transforms the D7 site files (including images) into D8 media entities. Importantly, the D7 file id (`fid`) is mapped to the D7 media id (`mid`), so that for any given file entity in D7, there is a corresponding media entity in D8 _with the same id_. We take advantage of this in other migrations to ensure that images and other files are attached to D8 entities as media references.
+The `d7_file_media` migration transforms the D7 site files (including images) into D8 media entities. Initially, the D7 file id (`fid`) was mapped to the D7 media id (`mid`), so that for any given file entity in D7, there is a corresponding media entity in D8 _with the same id_.
+
+As of Jan 2021, the media migration has been updated to create new `mid` values for imported media. This allows the migration to be run again when new D7 media is added, but now requires a migration lookup in other migrations.
 
 ## Theme Development
 
