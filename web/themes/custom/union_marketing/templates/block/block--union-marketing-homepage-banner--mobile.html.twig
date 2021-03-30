@@ -1,0 +1,96 @@
+{#
+/**
+ * @file
+ * Included mobile template for the homepage banner
+ *
+ * @see block--union-marketing-homepage-banner.html.twig
+ */
+#}
+{% set video_media %}
+{% include '@union/_video.twig' with {
+    src: 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_75_202008_500.mp4',
+    poster: 'https://www.ilr.cornell.edu/sites/default/files/poster-mobile.jpg'
+  } only %}
+{% endset %}
+{% set rendered_content %}
+<div class="framed framed--right">
+  <div>
+    <h2 class="cu-heading cu-heading--strong">It takes
+      <span>work</span>
+      to make an impact</h2>
+  </div>
+  <div class="play">
+    {% include "@union/_icon.twig" with {
+        title: 'Play video',
+        icon: 'play',
+        size: '4em',
+        label: 'Watch Video',
+        attributes: {
+          class: 'cu-icon--inline',
+          role: 'button',
+          'aria-pressed': "false"
+        }
+      } only %}
+  </div>
+</div>
+{% endset %}
+
+{% include '@union/_banner.twig' with {
+  attributes: { class: 'cu-banner--video cu-component--mobile' },
+  content: rendered_content,
+  media: video_media
+} only %}
+
+{% set card_data = {
+  'undergradudate': {
+    'heading': 'Undergraduate Programs',
+    'text': 'Our flexible, interdisciplinary major lets students pursue a wide range of academic interests and careers.',
+    'href': '/programs/undergraduate-degree-program/undergraduate-admissions',
+    'media_src': '//www.ilr.cornell.edu/sites/default/files/undergraduate.jpg',
+  },
+  'gradudate': {
+    'heading': 'Graduate Programs',
+    'text': 'Study the workplace comprehensively with the world\'s highest concentration of workplace faculty.',
+    'href': '/programs/graduate-degree-programs',
+    'media_src': '//www.ilr.cornell.edu/sites/default/files/graduate.jpg',
+  },
+  'professional': {
+    'heading': 'Professional Education',
+    'text': 'Invest in your career by learning from instructors who blend world-leading research with business-tested practicality.',
+    'href': '/programs/professional-education',
+    'media_src': '//www.ilr.cornell.edu/sites/default/files/professional.jpg',
+  }
+}%}
+
+{% set grid_content %}
+  {% for card in card_data %}
+    {% set card_content %}
+      <h2 class="cu-card__heading cu-heading--strong">{{ card.heading }}</h2>
+      <p>{{ card.text }}</p>
+      <div class="cu-card__button">
+        {% include '@union/_button.twig' with {
+          text: 'Explore',
+          attributes: {'class': 'cu-button--overlay'}
+        } only %}
+      </div>
+    {% endset %}
+    {% set card_media %}
+      {% include '@union/_image.twig' with {
+        img_src: card.media_src,
+        img_alt: 'Blurred background photo for ' ~ card.heading,
+        blurred: true,
+      } only %}
+    {% endset %}
+    {% include '@union/_card.twig' with {
+      card_content: card_content,
+      card_media: card_media,
+      card_link_url: card.href,
+      attributes: {'class': 'cu-card--with-aside'},
+    } only %}
+  {% endfor %}
+{% endset %}
+
+{% include '@union/_grid.twig' with {
+  grid_content: grid_content,
+  attributes: { class: 'cu-component--mobile' }
+} only %}

@@ -161,3 +161,7 @@
 .cu-card--promo-with-media .cu-card__media img {
   object-position: var(--image-focal-point, '50% 50%');
 }
+
+.cu-card--with-aside .cu-card__media .cu-image--blurred {
+  display: block; // Fix issues with display: contents declaration in union.
+}

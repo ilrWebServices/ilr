@@ -1,0 +1,43 @@
+uuid: e3897111-55a4-457f-b62f-992b3103f37d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:simple_text:1d1640f5-d922-4622-835f-fba08eb0a788'
+  module:
+    - block_content
+    - block_visibility_groups
+    - ilr
+    - system
+  theme:
+    - union_marketing
+id: union_marketing_homepage_banner
+theme: union_marketing
+region: highlighted
+weight: -10
+provider: null
+plugin: 'block_content:1d1640f5-d922-4622-835f-fba08eb0a788'
+settings:
+  id: 'block_content:1d1640f5-d922-4622-835f-fba08eb0a788'
+  label: 'Homepage Banner'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }
