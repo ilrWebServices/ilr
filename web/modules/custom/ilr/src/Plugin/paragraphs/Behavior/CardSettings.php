@@ -35,6 +35,13 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#description' => $this->t('Select a range from transparent to fully opaque.'),
     ];
 
+    $form['use_media_aspect'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Preserve media aspect ratio'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'use_media_aspect') ?? FALSE,
+      '#description' => $this->t('Generally, allowing the content of the card to determine its height is best. However, in some cases (such as a portait image), this setting allows the card to display the entire media element. Note, too, that this may impact the layout when set within a card deck.'),
+    ];
+
     return $form;
   }
 
@@ -44,6 +51,10 @@ class CardSettings extends ParagraphsBehaviorBase {
   public function preprocess(&$variables) {
     $overlay_opacity = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'media_overlay_opacity') ?? 50;
     $variables['attributes']['style'][] = '--cu-overlay-opacity: ' . $overlay_opacity / 100 . ';';
+
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'use_media_aspect')) {
+      $variables['attributes']['class'][] = 'cu-card--use-aspect-ratio';
+    }
   }
 
   /**
@@ -59,9 +70,16 @@ class CardSettings extends ParagraphsBehaviorBase {
 
     $summary = [];
     $summary[] = [
-      'label' => $this->t('Media overlay opacity'),
+      'label' => $this->t('Overlay'),
       'value' => $overlay_opacity . '%',
     ];
+
+    if ($paragraph->getBehaviorSetting($this->getPluginId(), 'use_media_aspect')) {
+      $summary[] = [
+        'label' => $this->t('Aspect ratio'),
+        'value' => 'preserved',
+      ];
+    }
 
     return $summary;
   }
