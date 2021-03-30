@@ -5,11 +5,12 @@ namespace Drupal\ilr\Plugin\ExtraField\Display;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\collection\CollectionContentManager;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Course Class Register Extra field Display.
+ * Canonical home field Display.
  *
  * @ExtraFieldDisplay(
  *   id = "canonical_home",
@@ -25,12 +26,18 @@ class CanonicalHome extends ExtraFieldDisplayBase implements ContainerFactoryPlu
   use StringTranslationTrait;
 
   /**
+   * The collection content manager service.
+   *
+   * @var \Drupal\collection\CollectionContentManager
+   */
+  protected $collectionContentManager;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = new static($configuration, $plugin_id, $plugin_definition);
-    $instance->entityTypeManager = $container->get('entity_type.manager');
-    $instance->pathAliasEntitiesManager = $container->get('path_alias.entities');
+    $instance->collectionContentManager = $container->get('collection.content_manager');
     return $instance;
   }
 
@@ -45,9 +52,11 @@ class CanonicalHome extends ExtraFieldDisplayBase implements ContainerFactoryPlu
       return $build;
     }
 
-    if ($canonical_link = $this->getCanonicalLink($collection_item)) {
-      $build['canonical_home'] = [
-        '#markup' => $this->t('Originally published in @link', ['@link' => $canonical_link->toString()]),
+    if ($canonical_collection_item = $this->getCanonicalCollectionItem($collection_item->item->entity)) {
+      $build['canonical_link'] = [
+        '#url' => $canonical_collection_item->item->entity->toUrl(),
+        '#title' => $this->t('Originally published in @collection.', ['@collection' => $canonical_collection_item->collection->entity->label()]),
+        '#type' => 'link',
         '#prefix' => '<p>',
         '#suffix' => '</p>',
       ];
@@ -57,23 +66,16 @@ class CanonicalHome extends ExtraFieldDisplayBase implements ContainerFactoryPlu
   }
 
   /**
-   * Generate the canonical link if this item is non-canonical.
+   * Get the canonical collection item for an entity.
    */
-  protected function getCanonicalLink(ContentEntityInterface $collection_item) {
-    $canonical_link = NULL;
-
-    $canonical_collection_item_ids = $this->entityTypeManager->getStorage('collection_item')->getQuery()
-      ->condition('item.entity:node.status', 1)
-      ->condition('canonical', 1)
-      ->condition('item.target_id', $collection_item->item->entity->id())->execute();
-
-    if (!empty($canonical_collection_item_ids)) {
-      $canonical_collection_item_id = reset($canonical_collection_item_ids);
-      $canonical_collection_item = $this->entityTypeManager->getStorage('collection_item')->load($canonical_collection_item_id);
-      $canonical_link = $canonical_collection_item->collection->entity->toLink();
+  protected function getCanonicalCollectionItem(ContentEntityInterface $collected_item) {
+    foreach ($this->collectionContentManager->getCollectionItemsForEntity($collected_item) as $collection_item) {
+      if ($collection_item->isCanonical()) {
+        return $collection_item;
+      }
     }
 
-    return $canonical_link;
+    return NULL;
   }
 
 }
