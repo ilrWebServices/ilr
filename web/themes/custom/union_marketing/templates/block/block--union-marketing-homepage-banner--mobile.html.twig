@@ -46,19 +46,22 @@
     'heading': 'Undergraduate Programs',
     'text': 'Our flexible, interdisciplinary major lets students pursue a wide range of academic interests and careers.',
     'href': '/programs/undergraduate-degree-program/undergraduate-admissions',
-    'media_src': '//www.ilr.cornell.edu/sites/default/files/undergraduate.jpg',
+    'media_backup_src': image_undergrad_url,
+    'media_id': 106034,
   },
   'gradudate': {
     'heading': 'Graduate Programs',
     'text': 'Study the workplace comprehensively with the world\'s highest concentration of workplace faculty.',
     'href': '/programs/graduate-degree-programs',
-    'media_src': '//www.ilr.cornell.edu/sites/default/files/graduate.jpg',
+    'media_backup_src': '//www.ilr.cornell.edu/sites/default/files/graduate.jpg',
+    'media_id': 106035,
   },
   'professional': {
     'heading': 'Professional Education',
     'text': 'Invest in your career by learning from instructors who blend world-leading research with business-tested practicality.',
     'href': '/programs/professional-education',
-    'media_src': '//www.ilr.cornell.edu/sites/default/files/professional.jpg',
+    'media_backup_src': '//www.ilr.cornell.edu/sites/default/files/professional.jpg',
+    'media_id': 106036,
   }
 }%}
 
@@ -74,9 +77,14 @@
         } only %}
       </div>
     {% endset %}
+
+    {% set media_entity = drupal_entity('media', card.media_id) %}
+    {% set image_uri = media_entity['#media'].field_media_image.entity.uri.value %}
+    {% set media_url = (image_uri) ? image_uri | image_style('medium_3_2') : card.media_backup_src %}
+
     {% set card_media %}
       {% include '@union/_image.twig' with {
-        img_src: card.media_src,
+        img_src: media_url,
         img_alt: 'Blurred background photo for ' ~ card.heading,
         blurred: true,
       } only %}
