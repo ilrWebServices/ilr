@@ -6,6 +6,7 @@ use Drupal\Component\Serialization\Json;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Psr\Log\LoggerInterface;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\RequestException;
 use Laminas\Feed\Reader\Reader;
 
 /**
@@ -57,7 +58,17 @@ class InstagramFeedProcessor {
       return $posts->data;
     }
 
-    $response = $this->httpClient->get($feed_url);
+    try {
+      $response = $this->httpClient->get($feed_url);
+    }
+    catch (RequestException $e) {
+      $this->logger->error('Request error for %url: @message', [
+        '%url' => $feed_url,
+        '@message' => $e->getMessage(),
+      ]);
+
+      return $posts;
+    }
 
     if ($response->getStatusCode() !== 200) {
       $this->logger->error('Error code %code returned for %url.', [
