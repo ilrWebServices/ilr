@@ -36,6 +36,12 @@
 #block-union-marketing-homepage-banner {
   @include full-width();
 
+  margin-bottom: var(--cu-vr1);
+
+  @include breakpoint(md) {
+    margin-bottom: var(--cu-vr2);
+  }
+
   .cu-grid {
     max-width: $max-width;
   }
