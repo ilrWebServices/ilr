@@ -19,7 +19,7 @@ source:
   node_status: 1
   node_terms: field_tags
   constants:
-    legacy_term_key: 'legacy-terms'
+    legacy_term_key: legacy-terms
 process:
   user_id:
     plugin: default_value
