@@ -586,9 +586,8 @@ display:
           validate_options: {  }
           plugin_id: datetime_year
       pager:
-        type: some
+        type: none
         options:
-          items_per_page: 15
           offset: 0
       css_class: news-archive__summary-links
     cache_metadata:
