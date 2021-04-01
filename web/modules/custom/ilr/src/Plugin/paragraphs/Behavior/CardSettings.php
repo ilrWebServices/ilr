@@ -63,6 +63,13 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#description' => $this->t('Generally, allowing the content of the card to determine its height is best. However, in some cases (such as a portait image), this setting allows the card to display the entire media element. Note, too, that this may impact the layout when set within a card deck.'),
     ];
 
+    $form['blur_media'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Blur the media element'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'blur_media') ?? FALSE,
+      '#description' => $this->t('Choosing to blur the media wil add a blur filter to the bottom third of the card. This can help with readability of text that displays on the lower portion of the card.'),
+    ];
+
     return $form;
   }
 
@@ -79,6 +86,10 @@ class CardSettings extends ParagraphsBehaviorBase {
 
     if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'use_media_aspect')) {
       $variables['attributes']['class'][] = 'cu-card--use-aspect-ratio';
+    }
+
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'blur_media') && !empty($variables['content']['field_media'])) {
+      $variables['content']['field_media'][0]['#item_attributes']['blurred'] = TRUE;
     }
   }
 

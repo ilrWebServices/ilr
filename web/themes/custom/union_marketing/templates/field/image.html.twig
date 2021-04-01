@@ -10,7 +10,16 @@
  * @see template_preprocess_image()
  */
 #}
+{% if attributes.blurred %}
+  {% set attributes = attributes.removeAttribute('blurred') %}
+  {% set blurred = true %}
+{% else %}
+  {% set blurred = false %}
+{% endif %}
+
 {% include '@union/_image.twig' with {
-  attributes: attributes,
+  attributes: attributes.removeAttribute('blurred'),
+  img_src: attributes.src,
+  blurred: blurred,
 } only %}
 
