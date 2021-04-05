@@ -1,0 +1,58 @@
+uuid: 37cb0890-9e40-41e0-9c49-88b501028503
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_experience_report_paragraphs
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: drupal_7
+label: 'Experience Report Node paragraphs'
+source:
+  plugin: ilr_d7_paragraphs_item
+  field_name: field_para_main_page_content
+  field_entity_type: node
+  field_entity_bundle: experience_report
+process:
+  type:
+    plugin: static_map
+    source: bundle
+    map:
+      just_text: rich_text
+      just_image: image
+    default_value: rich_text
+  field_body:
+    plugin: sub_process
+    source: field_text_paragraph
+    process:
+      value:
+        plugin: media_embed
+        source: value
+      format:
+        plugin: default_value
+        default_value: basic_formatting_with_media
+    ILR_NOTE: 'rich_text only'
+  field_heading:
+    plugin: get
+    source: field_header
+    ILR_NOTE: 'rich_text only'
+  field_media:
+    plugin: sub_process
+    source: field_image
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: d7_file_media
+        source: fid
+        no_stub: true
+    ILR_NOTE: 'image only'
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: rich_text
+migration_dependencies:
+  required:
+    - d7_file_media
+  optional: {  }

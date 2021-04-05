@@ -1,0 +1,142 @@
+uuid: bec3a9fd-02e4-4055-9045-eb97fb3f6acd
+langcode: en
+status: true
+dependencies: {  }
+id: d7_node_experience_report
+class: Drupal\migrate\Plugin\Migration
+field_plugin_method: alterFieldFormatterMigration
+cck_plugin_method: null
+migration_tags:
+  - 'Drupal 7'
+  - Content
+migration_group: drupal_7
+label: 'Experience Report nodes'
+source:
+  plugin: ilr_d7_node
+  node_type: experience_report
+  node_status: 1
+process:
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: en
+  title: title
+  uid:
+    plugin: static_map
+    source: node_uid
+    map:
+      1: 1
+      16: 5
+      156: 75
+      341: 4
+      361: 54
+      606: 92
+      651: 26
+      686: 37
+      811: 19
+      901: 67
+      971: 40
+      1056: 78
+      1196: 20
+      1206: 93
+      1231: 23
+      1326: 91
+      2141: 22
+      2171: 64
+      3356: 83
+      3701: 84
+      6686: 77
+      16071: 56
+      20221: 80
+      23961: 72
+      24971: 28
+      25176: 81
+      25736: 76
+      26596: 14
+      27301: 73
+      27366: 17
+      28176: 66
+      28206: 55
+      29336: 25
+      29636: 74
+      30261: 27
+      30826: 89
+      30916: 88
+      31291: 24
+      31446: 85
+      32236: 32
+      33026: 2
+      33931: 70
+      35686: 6
+      36248: 62
+      36462: 18
+      36499: 87
+      36524: 86
+      36536: 65
+      36575: 31
+      36624: 94
+      34851: 68
+    default_value: 1
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_degree_program_grad_year: field_year_as_text
+  field_program: field_program
+  field_location: field_country
+  body/summary: field_teaser/0/value
+  body/value:
+    plugin: default_value
+    default_value: ''
+  body/format:
+    plugin: default_value
+    default_value: basic_formatting
+  field_published_date:
+    plugin: format_date
+    source: created
+    from_format: U
+    to_format: Y-m-d
+  field_representative_image:
+    plugin: sub_process
+    source: field_image
+    process:
+      target_id:
+        plugin: migration_lookup
+        migration: d7_file_media
+        source: fid
+        no_stub: true
+  field_components:
+    plugin: sub_process
+    source: field_para_main_page_content
+    process:
+      target_id:
+        -
+          plugin: migration_lookup
+          migration: d7_node_experience_report_paragraphs
+          source: value
+        -
+          plugin: extract
+          index:
+            - 0
+      target_revision_id:
+        -
+          plugin: migration_lookup
+          migration: d7_node_experience_report_paragraphs
+          source: value
+        -
+          plugin: extract
+          index:
+            - 1
+destination:
+  plugin: 'entity:node'
+  default_bundle: post_experience_report
+migration_dependencies:
+  required:
+    - d7_file_media
+    - d7_node_author
+    - d7_node_experience_report_paragraphs
+  optional: {  }
