@@ -1,0 +1,19 @@
+uuid: 9a77910b-2f38-4c1b-8c15-597561941f7f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_degree_program_grad_year
+    - node.type.post_experience_report
+id: node.post_experience_report.field_degree_program_grad_year
+field_name: field_degree_program_grad_year
+entity_type: node
+bundle: post_experience_report
+label: 'Degree program and graduation year'
+description: "<strong>Examples:</strong><br>\r\nBSILR, '15<br>\r\nMILR, '16<br>\r\nMS/Ph.D. '18"
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

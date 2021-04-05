@@ -1,0 +1,18 @@
+uuid: aed5516e-e1e4-4f8c-b883-39e24642ea17
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.post_experience_report
+id: node.post_experience_report.title
+field_name: title
+entity_type: node
+bundle: post_experience_report
+label: 'Student''s name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

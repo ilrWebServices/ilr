@@ -1,0 +1,19 @@
+uuid: 100bd4b5-a231-47e5-ad37-43b61e5187df
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_subtitle
+    - node.type.post_experience_report
+id: node.post_experience_report.field_subtitle
+field_name: field_subtitle
+entity_type: node
+bundle: post_experience_report
+label: Subtitle
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

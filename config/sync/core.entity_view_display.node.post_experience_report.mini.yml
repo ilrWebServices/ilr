@@ -1,0 +1,58 @@
+uuid: e0626fc5-0485-41b5-828a-5dfe3c3e560b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.mini
+    - field.field.node.post_experience_report.body
+    - field.field.node.post_experience_report.field_authors
+    - field.field.node.post_experience_report.field_components
+    - field.field.node.post_experience_report.field_degree_program_grad_year
+    - field.field.node.post_experience_report.field_location
+    - field.field.node.post_experience_report.field_program
+    - field.field.node.post_experience_report.field_published_date
+    - field.field.node.post_experience_report.field_representative_image
+    - field.field.node.post_experience_report.field_subtitle
+    - node.type.post_experience_report
+  module:
+    - datetime
+    - layout_builder
+    - person
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: node.post_experience_report.mini
+targetEntityType: node
+bundle: post_experience_report
+mode: mini
+content:
+  field_authors:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: persona_name_list
+    region: content
+  field_published_date:
+    weight: 3
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: ilr_date
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+hidden:
+  blog_collection: true
+  blog_tags: true
+  body: true
+  field_components: true
+  field_degree_program_grad_year: true
+  field_location: true
+  field_program: true
+  field_representative_image: true
+  field_subtitle: true
+  links: true
+  search_api_excerpt: true
