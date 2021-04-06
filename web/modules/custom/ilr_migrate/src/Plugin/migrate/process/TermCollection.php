@@ -3,6 +3,7 @@
 namespace Drupal\ilr_migrate\Plugin\migrate\process;
 
 use Drupal\migrate\ProcessPluginBase;
+use Drupal\ilr_migrate\InArrayMulti;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
 
@@ -28,6 +29,8 @@ use Drupal\migrate\Row;
  * )
  */
 class TermCollection extends ProcessPluginBase {
+
+  use InArrayMulti;
 
   /**
    * {@inheritdoc}
@@ -67,22 +70,6 @@ class TermCollection extends ProcessPluginBase {
 
     // News blog.
     return 26;
-  }
-
-  /**
-   * Checks if any values exist in an array.
-   *
-   * @param array $needles
-   *   The searched values.
-   *
-   * @param array $haystack
-   *   The array to search.
-   *
-   * @return bool
-   *   Returns true if any needles are found in the array, false otherwise.
-   */
-  protected function in_array_any($needles, $haystack) {
-    return !empty(array_intersect($needles, $haystack));
   }
 
 }

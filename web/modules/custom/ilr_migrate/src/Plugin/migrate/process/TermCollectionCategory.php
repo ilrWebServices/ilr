@@ -4,6 +4,7 @@ namespace Drupal\ilr_migrate\Plugin\migrate\process;
 
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\ilr_migrate\InArrayMulti;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\MigrateExecutableInterface;
@@ -33,6 +34,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class TermCollectionCategory extends ProcessPluginBase implements ContainerFactoryPluginInterface {
+
+  use InArrayMulti;
 
   /**
    * Term storage.
@@ -259,22 +262,6 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
     ]);
     $term->save();
     return $term->id();
-  }
-
-  /**
-   * Checks if any values exist in an array.
-   *
-   * @param array $needles
-   *   The searched values.
-   *
-   * @param array $haystack
-   *   The array to search.
-   *
-   * @return bool
-   *   Returns true if any needles are found in the array, false otherwise.
-   */
-  protected function in_array_any($needles, $haystack) {
-    return !empty(array_intersect($needles, $haystack));
   }
 
 }
