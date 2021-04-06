@@ -140,7 +140,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
         ->condition('id', $pending_items, 'NOT IN')
         ->condition('type', 'blog')
         ->condition('item.entity:node.status', 1)
-        ->condition('item.entity:node.type', ['post', 'media_mention'], 'IN')
+        ->condition('item.entity:node.type', ['post', 'media_mention', 'post_experience_report'], 'IN')
         ->condition($term_reference_field_name, $entity->id())
         ->sort('item.entity:node.field_published_date', 'DESC')
         ->pager(30)
