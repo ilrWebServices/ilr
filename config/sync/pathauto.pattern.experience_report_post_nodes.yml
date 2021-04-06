@@ -1,0 +1,22 @@
+uuid: 78a3ec72-1750-45c5-95d1-2bb2d988c1da
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: experience_report_post_nodes
+label: 'Experience Report post nodes'
+type: 'canonical_entities:node'
+pattern: 'experience-report/[node:title]'
+selection_criteria:
+  4d5501ae-98c0-4576-9294-f3176c778e8e:
+    id: node_type
+    bundles:
+      post_experience_report: post_experience_report
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 4d5501ae-98c0-4576-9294-f3176c778e8e
+selection_logic: and
+weight: -5
+relationships: {  }
