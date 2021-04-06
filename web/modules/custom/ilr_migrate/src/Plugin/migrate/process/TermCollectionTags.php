@@ -79,6 +79,7 @@ class TermCollectionTags extends ProcessPluginBase implements ContainerFactoryPl
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $tags = explode(',', $value);
     $collection_id = $row->getDestinationProperty('collection');
+    $type = $row->getSourceProperty('type');
     $vid = 'blog_' . $collection_id . '_tags';
     $terms = [];
 
@@ -98,6 +99,22 @@ class TermCollectionTags extends ProcessPluginBase implements ContainerFactoryPl
 
       if ($this->in_array_all(['worker institute', 'students'], $tags)) {
         $terms['Students'] = 0;
+      }
+    }
+
+    // ILR Student Blog
+    if ($collection_id === 18) {
+      if ($this->in_array_any(['dublin'], $tags)) {
+        $terms['Dublin'] = 0;
+      }
+    }
+
+    // Buffalo Co-Lab
+    if ($collection_id === 35 && $type === 'experience_report') {
+      foreach (range(2009, 2020) as $year) {
+        if ($this->in_array_all(['high road', $year], $tags)) {
+          $terms[$year] = 0;
+        }
       }
     }
 

@@ -79,11 +79,39 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $tags = explode(',', $value);
     $collection_id = $row->getDestinationProperty('collection');
+    $type = $row->getSourceProperty('type');
     $vid = 'blog_' . $collection_id . '_categories';
 
     // Scheinman blog
     if ($collection_id === 14) {
       $category = 'About Scheinman';
+    }
+
+    // ILR Student blog
+    if ($collection_id === 18) {
+      $category = 'Uncategorized';
+
+      if ($this->in_array_any(['ambassador', 'student ambassador'], $tags)) {
+        $category = 'Student Ambassadors';
+      }
+      elseif ($this->in_array_any(['dublin', 'credit internship'], $tags)) {
+        $category = 'Credit Internships Archived';
+      }
+      elseif ($this->in_array_any(['international programs', 'ILR International Programs', 'internatonal programs'], $tags)) {
+        $category = 'International Programs Archived';
+      }
+    }
+
+    // Graduate Programs Blog
+    if ($collection_id === 38) {
+      $category = 'Uncategorized';
+
+      if (in_array('emhrm', $tags)) {
+        $category = 'EMHRM';
+      }
+      elseif ($this->in_array_all(['graduate programs', 'MILR'], $tags)) {
+        $category = 'MILR';
+      }
     }
 
     // ICS
@@ -96,7 +124,7 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
       $category = 'Co-Lab News';
 
       if ($this->in_array_any(['High Road News', 'high road'], $tags)) {
-        $category = 'High Road';
+        $category = $type === 'experience_report' ? 'High Road Fellows' : 'High Road';
       }
       elseif (in_array('democracy buff', $tags)) {
         $category = 'Careers in Public Service';

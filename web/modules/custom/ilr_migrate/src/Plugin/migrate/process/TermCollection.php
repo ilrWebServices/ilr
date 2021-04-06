@@ -37,6 +37,29 @@ class TermCollection extends ProcessPluginBase {
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $tags = explode(',', $value);
+    $type = $row->getSourceProperty('type');
+
+    if ($type === 'experience_report') {
+      if ($this->in_array_any(['ambassador', 'student ambassador', 'dublin', 'credit internship', 'international programs', 'ILR International Programs', 'internatonal programs'], $tags)) {
+        // ILR Student Blog.
+        return 18;
+      }
+
+      if (in_array('emhrm', $tags)) {
+        // Graduate Programs Blog.
+        return 38;
+      }
+
+      if ($this->in_array_all(['graduate programs', 'MILR'], $tags)) {
+        // Graduate Programs Blog.
+        return 38;
+      }
+
+      if (in_array('high road', $tags)) {
+        // Buffalo Co-Lab.
+        return 35;
+      }
+    }
 
     if ($this->in_array_any(['Scheinman Institute', 'Scheinman', 'NYC. Scheinman Institute'], $tags)) {
       // Scheinman blog.
