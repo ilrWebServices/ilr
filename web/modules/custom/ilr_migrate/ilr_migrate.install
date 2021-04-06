@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the ilr_migrate module.
+ */
+
+/**
+ * Rename the migrate tables for node path redirects.
+ */
+function ilr_migrate_update_8001(&$sandbox = NULL) {
+  $database = \Drupal::database();
+  $database->schema()->renameTable('migrate_map_d7_node_news_path', 'migrate_map_d7_node_path_redirect');
+  $database->schema()->renameTable('migrate_message_d7_node_news_path', 'migrate_message_d7_node_path_redirect');
+}
