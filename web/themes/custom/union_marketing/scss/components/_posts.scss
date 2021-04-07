@@ -1,4 +1,5 @@
-.article--post {
+.article--post,
+.article--post-experience-report {
   .cu-section {
     @include breakpoint(md) {
       display: grid;

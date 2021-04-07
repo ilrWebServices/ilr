@@ -50,148 +50,6 @@ third_party_settings:
                 entity: layout_builder.entity
             additional: {  }
             weight: 0
-          7846cd72-05b2-402b-b1ad-5becdbb028a1:
-            uuid: 7846cd72-05b2-402b-b1ad-5becdbb028a1
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'extra_field_block:node:post_experience_report:links'
-            additional: {  }
-            weight: 1
-          a9b92f92-a4e3-4859-9b43-04ea4329a691:
-            uuid: a9b92f92-a4e3-4859-9b43-04ea4329a691
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:post_experience_report:field_representative_image'
-              formatter:
-                label: hidden
-                settings:
-                  image_style: large_21_9_1200x514_
-                  image_link: ''
-                third_party_settings: {  }
-                type: media_thumbnail
-            additional: {  }
-            weight: 2
-          78b0a48c-7336-41e7-ba0c-a2b5f0d60a49:
-            uuid: 78b0a48c-7336-41e7-ba0c-a2b5f0d60a49
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:post_experience_report:field_authors'
-              formatter:
-                label: hidden
-                settings:
-                  view_mode: teaser
-                  link: false
-                third_party_settings: {  }
-                type: entity_reference_entity_view
-            additional: {  }
-            weight: 3
-          287e3a49-2855-448f-9c51-9bb68ba5cf9f:
-            uuid: 287e3a49-2855-448f-9c51-9bb68ba5cf9f
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:post_experience_report:field_published_date'
-              formatter:
-                label: hidden
-                settings:
-                  timezone_override: ''
-                  format_type: medium
-                third_party_settings: {  }
-                type: datetime_default
-            additional: {  }
-            weight: 4
-          a01c218a-e69d-4872-a87d-f5df58b9fcee:
-            uuid: a01c218a-e69d-4872-a87d-f5df58b9fcee
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:post_experience_report:field_components'
-              formatter:
-                type: entity_reference_revisions_entity_view
-                label: hidden
-                settings:
-                  view_mode: default
-                  link: ''
-                third_party_settings: {  }
-            additional: {  }
-            weight: 5
-          82405a04-a8fa-4ef9-9585-c20d6a3517f7:
-            uuid: 82405a04-a8fa-4ef9-9585-c20d6a3517f7
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:post_experience_report:field_subtitle'
-              formatter:
-                label: above
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-                type: string
-            additional: {  }
-            weight: 6
-          19ebe8bc-bbfb-4af8-8ee0-aaf638999a9e:
-            uuid: 19ebe8bc-bbfb-4af8-8ee0-aaf638999a9e
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:post_experience_report:field_degree_program_grad_year'
-              formatter:
-                label: above
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-                type: string
-            additional: {  }
-            weight: 7
-          7c9b525c-a408-418a-aca5-531f59275fc7:
-            uuid: 7c9b525c-a408-418a-aca5-531f59275fc7
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:post_experience_report:field_program'
-              formatter:
-                label: above
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-                type: string
-            additional: {  }
-            weight: 8
-          29245d73-b408-4e77-b549-4721168a90e8:
-            uuid: 29245d73-b408-4e77-b549-4721168a90e8
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:node:post_experience_report:field_location'
-              formatter:
-                label: above
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-                type: string
-            additional: {  }
-            weight: 9
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
@@ -219,7 +77,7 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
             additional: {  }
-            weight: 6
+            weight: -1
           301f6365-4495-4b60-ba04-257d5b77f364:
             uuid: 301f6365-4495-4b60-ba04-257d5b77f364
             region: main
@@ -239,7 +97,7 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
             additional: {  }
-            weight: 4
+            weight: -6
           e42e92b8-a6e5-46cd-bebe-94c0855336a4:
             uuid: e42e92b8-a6e5-46cd-bebe-94c0855336a4
             region: main
@@ -258,7 +116,7 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
             additional: {  }
-            weight: 1
+            weight: -10
           9aa98971-c066-4115-a79c-a8fb131f8fa8:
             uuid: 9aa98971-c066-4115-a79c-a8fb131f8fa8
             region: main
@@ -278,7 +136,7 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
             additional: {  }
-            weight: 2
+            weight: -9
           60f385c1-c640-4c06-a2ff-089c0757bff4:
             uuid: 60f385c1-c640-4c06-a2ff-089c0757bff4
             region: main
@@ -297,7 +155,7 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
             additional: {  }
-            weight: 3
+            weight: -7
           2dac7178-d331-467a-b42d-3fc863cf898e:
             uuid: 2dac7178-d331-467a-b42d-3fc863cf898e
             region: main
@@ -307,7 +165,7 @@ third_party_settings:
                 entity: layout_builder.entity
               id: 'extra_field_block:node:post:blog_tags'
             additional: {  }
-            weight: 7
+            weight: 0
           38c13e19-f09e-46a3-bf24-495dc81eb0cf:
             uuid: 38c13e19-f09e-46a3-bf24-495dc81eb0cf
             region: main
@@ -339,7 +197,7 @@ third_party_settings:
               radius: 100%
               context_mapping: {  }
             additional: {  }
-            weight: 5
+            weight: -2
           c82aa010-7233-4177-9f6a-45036595c2a5:
             uuid: c82aa010-7233-4177-9f6a-45036595c2a5
             region: main
@@ -358,7 +216,64 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
             additional: {  }
-            weight: 2
+            weight: -8
+          a6990c4b-d479-4ac7-b19a-724b189ed828:
+            uuid: a6990c4b-d479-4ac7-b19a-724b189ed828
+            region: main
+            configuration:
+              id: 'field_block:node:post_experience_report:field_location'
+              label: 'Location or country'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -4
+          50046e94-5e9b-48d2-8cc4-d0ddfa6f26c5:
+            uuid: 50046e94-5e9b-48d2-8cc4-d0ddfa6f26c5
+            region: main
+            configuration:
+              id: 'field_block:node:post_experience_report:field_program'
+              label: Program
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -3
+          7e0c8479-fdc8-455f-98d2-3074edb388c3:
+            uuid: 7e0c8479-fdc8-455f-98d2-3074edb388c3
+            region: main
+            configuration:
+              id: 'field_block:node:post_experience_report:field_degree_program_grad_year'
+              label: 'Degree program and graduation year'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -5
         third_party_settings: {  }
 id: node.post_experience_report.default
 targetEntityType: node
