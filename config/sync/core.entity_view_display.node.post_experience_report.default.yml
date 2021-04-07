@@ -1,0 +1,368 @@
+uuid: 006270f4-4a94-4e92-ad3e-6408574ce5a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.post.field_authors
+    - field.field.node.post.field_components
+    - field.field.node.post.field_published_date
+    - field.field.node.post.field_representative_image
+    - field.field.node.post.field_subtitle
+    - field.field.node.post_experience_report.body
+    - field.field.node.post_experience_report.field_authors
+    - field.field.node.post_experience_report.field_components
+    - field.field.node.post_experience_report.field_degree_program_grad_year
+    - field.field.node.post_experience_report.field_location
+    - field.field.node.post_experience_report.field_program
+    - field.field.node.post_experience_report.field_published_date
+    - field.field.node.post_experience_report.field_representative_image
+    - field.field.node.post_experience_report.field_subtitle
+    - image.style.large_21_9_1200x514_
+    - node.type.post_experience_report
+  module:
+    - better_social_sharing_buttons
+    - datetime
+    - entity_reference_revisions
+    - layout_builder
+    - layout_discovery
+    - media
+    - union_organizer
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: 'Blog banner'
+        components:
+          c8da760c-059f-4df9-8665-4c471adc203f:
+            uuid: c8da760c-059f-4df9-8665-4c471adc203f
+            region: content
+            configuration:
+              id: 'extra_field_block:node:post:blog_collection'
+              label: Blog
+              provider: layout_builder
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          c5ce143a-eb40-4f7c-9a56-dc1e648214b5:
+            uuid: c5ce143a-eb40-4f7c-9a56-dc1e648214b5
+            region: main
+            configuration:
+              id: 'field_block:node:post:field_components'
+              label: 'Post content'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_revisions_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -1
+          301f6365-4495-4b60-ba04-257d5b77f364:
+            uuid: 301f6365-4495-4b60-ba04-257d5b77f364
+            region: main
+            configuration:
+              id: 'field_block:node:post:field_published_date'
+              label: 'Published Date'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: datetime_default
+                settings:
+                  timezone_override: ''
+                  format_type: ilr_date
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -6
+          e42e92b8-a6e5-46cd-bebe-94c0855336a4:
+            uuid: e42e92b8-a6e5-46cd-bebe-94c0855336a4
+            region: main
+            configuration:
+              id: 'field_block:node:post:title'
+              label: Title
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -10
+          9aa98971-c066-4115-a79c-a8fb131f8fa8:
+            uuid: 9aa98971-c066-4115-a79c-a8fb131f8fa8
+            region: main
+            configuration:
+              id: 'field_block:node:post:field_representative_image'
+              label: 'Representative Image'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: media_thumbnail
+                settings:
+                  image_style: medium_3_2
+                  image_link: ''
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -9
+          60f385c1-c640-4c06-a2ff-089c0757bff4:
+            uuid: 60f385c1-c640-4c06-a2ff-089c0757bff4
+            region: main
+            configuration:
+              id: 'field_block:node:post:field_authors'
+              label: 'Authored by'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: mini
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -7
+          2dac7178-d331-467a-b42d-3fc863cf898e:
+            uuid: 2dac7178-d331-467a-b42d-3fc863cf898e
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:node:post:blog_tags'
+            additional: {  }
+            weight: 0
+          38c13e19-f09e-46a3-bf24-495dc81eb0cf:
+            uuid: 38c13e19-f09e-46a3-bf24-495dc81eb0cf
+            region: main
+            configuration:
+              id: social_sharing_buttons_block
+              label: 'Better Social Sharing Buttons'
+              provider: better_social_sharing_buttons
+              label_display: '0'
+              services:
+                facebook: facebook
+                twitter: twitter
+                email: email
+                linkedin: linkedin
+                whatsapp: 0
+                facebook_messenger: 0
+                pinterest: 0
+                digg: 0
+                stumbleupon: 0
+                slashdot: 0
+                tumblr: 0
+                reddit: 0
+                evernote: 0
+                print: 0
+                copy: 0
+              iconset: social-icons--no-color
+              facebook_app_id: ''
+              print_css: ''
+              width: 35px
+              radius: 100%
+              context_mapping: {  }
+            additional: {  }
+            weight: -2
+          c82aa010-7233-4177-9f6a-45036595c2a5:
+            uuid: c82aa010-7233-4177-9f6a-45036595c2a5
+            region: main
+            configuration:
+              id: 'field_block:node:post:field_subtitle'
+              label: Subtitle
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -8
+          a6990c4b-d479-4ac7-b19a-724b189ed828:
+            uuid: a6990c4b-d479-4ac7-b19a-724b189ed828
+            region: main
+            configuration:
+              id: 'field_block:node:post_experience_report:field_location'
+              label: 'Location or country'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -4
+          50046e94-5e9b-48d2-8cc4-d0ddfa6f26c5:
+            uuid: 50046e94-5e9b-48d2-8cc4-d0ddfa6f26c5
+            region: main
+            configuration:
+              id: 'field_block:node:post_experience_report:field_program'
+              label: Program
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -3
+          7e0c8479-fdc8-455f-98d2-3074edb388c3:
+            uuid: 7e0c8479-fdc8-455f-98d2-3074edb388c3
+            region: main
+            configuration:
+              id: 'field_block:node:post_experience_report:field_degree_program_grad_year'
+              label: 'Degree program and graduation year'
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: string
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -5
+        third_party_settings: {  }
+id: node.post_experience_report.default
+targetEntityType: node
+bundle: post_experience_report
+mode: default
+content:
+  blog_collection:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: banner
+  blog_tags:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_authors:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_components:
+    type: entity_reference_revisions_entity_view
+    weight: 4
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  field_degree_program_grad_year:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_location:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_program:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_published_date:
+    weight: 3
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_representative_image:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: large_21_9_1200x514_
+      image_link: ''
+    third_party_settings: {  }
+    type: media_thumbnail
+    region: content
+  field_subtitle:
+    weight: 101
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  search_api_excerpt: true

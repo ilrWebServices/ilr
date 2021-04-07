@@ -1,0 +1,28 @@
+uuid: ddea1332-073c-4140-a1f7-d9919677f19a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_authors
+    - node.type.post_experience_report
+    - person.persona_type.author
+id: node.post_experience_report.field_authors
+field_name: field_authors
+entity_type: node
+bundle: post_experience_report
+label: Author(s)
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:persona'
+  handler_settings:
+    target_bundles:
+      author: author
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

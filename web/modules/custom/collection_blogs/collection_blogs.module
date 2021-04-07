@@ -94,18 +94,24 @@ function collection_blogs_entity_extra_field_info() {
     }
   }
 
-  $extra['node']['post']['display']['blog_collection'] = [
-    'label' => t('Blog'),
-    'description' => t('This is a computed reference.'),
-    'weight' => -1,
-    'visible' => TRUE,
-  ];
+  $node_types = \Drupal::service('entity_type.bundle.info')->getBundleInfo('node');
 
-  $extra['node']['post']['display']['blog_tags'] = [
-    'label' => t('Blog tags'),
-    'weight' => 100,
-    'visible' => TRUE,
-  ];
+  foreach (array_keys($node_types) as $node_type) {
+    if (strpos($node_type, 'post') === 0) {
+      $extra['node'][$node_type]['display']['blog_collection'] = [
+        'label' => t('Blog'),
+        'description' => t('This is a computed reference.'),
+        'weight' => -1,
+        'visible' => TRUE,
+      ];
+
+      $extra['node'][$node_type]['display']['blog_tags'] = [
+        'label' => t('Blog tags'),
+        'weight' => 100,
+        'visible' => TRUE,
+      ];
+    }
+  }
 
   return $extra;
 }
@@ -140,7 +146,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
         ->condition('id', $pending_items, 'NOT IN')
         ->condition('type', 'blog')
         ->condition('item.entity:node.status', 1)
-        ->condition('item.entity:node.type', ['post', 'media_mention'], 'IN')
+        ->condition('item.entity:node.type', ['post', 'media_mention', 'post_experience_report'], 'IN')
         ->condition($term_reference_field_name, $entity->id())
         ->sort('item.entity:node.field_published_date', 'DESC')
         ->pager(30)

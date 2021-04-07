@@ -3,6 +3,7 @@
 namespace Drupal\ilr_migrate\Plugin\migrate\process;
 
 use Drupal\migrate\ProcessPluginBase;
+use Drupal\ilr_migrate\InArrayMulti;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
 
@@ -29,11 +30,40 @@ use Drupal\migrate\Row;
  */
 class TermCollection extends ProcessPluginBase {
 
+  use InArrayMulti;
+
   /**
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $tags = explode(',', $value);
+    $type = $row->getSourceProperty('type');
+
+    if ($type === 'experience_report') {
+      if ($this->in_array_any(['ambassador', 'student ambassador', 'dublin', 'credit internship', 'international programs', 'ILR International Programs', 'internatonal programs'], $tags)) {
+        // ILR Student Blog.
+        return 18;
+      }
+
+      if (in_array('emhrm', $tags)) {
+        // Graduate Programs Blog.
+        return 38;
+      }
+
+      if ($this->in_array_all(['graduate programs', 'MILR'], $tags)) {
+        // Graduate Programs Blog.
+        return 38;
+      }
+
+      if (in_array('high road', $tags)) {
+        // Buffalo Co-Lab.
+        return 35;
+      }
+
+      // ILR Student Blog fallback for any experience report not tagged with the
+      // above.
+      return 18;
+    }
 
     if ($this->in_array_any(['Scheinman Institute', 'Scheinman', 'NYC. Scheinman Institute'], $tags)) {
       // Scheinman blog.
@@ -67,22 +97,6 @@ class TermCollection extends ProcessPluginBase {
 
     // News blog.
     return 26;
-  }
-
-  /**
-   * Checks if any values exist in an array.
-   *
-   * @param array $needles
-   *   The searched values.
-   *
-   * @param array $haystack
-   *   The array to search.
-   *
-   * @return bool
-   *   Returns true if any needles are found in the array, false otherwise.
-   */
-  protected function in_array_any($needles, $haystack) {
-    return !empty(array_intersect($needles, $haystack));
   }
 
 }

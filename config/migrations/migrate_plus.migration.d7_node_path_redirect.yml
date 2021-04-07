@@ -2,7 +2,7 @@ uuid: d08f59a9-52eb-41a1-a62b-3c7f8cb12ed8
 langcode: en
 status: true
 dependencies: {  }
-id: d7_node_news_path
+id: d7_node_path_redirect
 class: null
 field_plugin_method: null
 cck_plugin_method: null
@@ -10,10 +10,11 @@ migration_tags:
   - 'Drupal 7'
   - Content
 migration_group: drupal_7
-label: 'News article node paths as redirects'
+label: 'Node paths as redirects'
 source:
   plugin: ilr_d7_node
   node_types:
+    - experience_report
     - news_item
     - post
   node_status: 1
@@ -25,7 +26,9 @@ process:
     -
       plugin: migration_lookup
       source: nid
-      migration: d7_node_news
+      migration:
+        - d7_node_news
+        - d7_node_experience_report
       no_stub: true
     -
       plugin: skip_on_empty
@@ -60,4 +63,5 @@ destination:
 migration_dependencies:
   required:
     - d7_node_news
+    - d7_node_experience_report
   optional: {  }

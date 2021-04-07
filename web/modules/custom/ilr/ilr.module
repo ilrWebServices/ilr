@@ -642,7 +642,9 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
       $form['body']['#group'] = 'ilr_meta';
     }
 
-    if (in_array($node->bundle(), ['post', 'media_mention', 'story'])) {
+    // Friendly reminder to future me: strpos() return value of 0 means 'starts
+    // with'.
+    if (strpos($node->bundle(), 'post') === 0 || in_array($node->bundle(), ['media_mention', 'story'])) {
       $form['body']['#group'] = 'ilr_meta';
       $form['field_authors']['#group'] = 'ilr_meta';
       $form['field_experts']['#group'] = 'ilr_meta';

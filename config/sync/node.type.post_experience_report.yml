@@ -1,0 +1,17 @@
+uuid: d90d45b6-ef1f-46f1-9328-a9d5e19b6754
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Experience Report'
+type: post_experience_report
+description: 'Use <em>Experience Report posts</em> for an International Programs student experience reports.'
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false

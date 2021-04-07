@@ -4,6 +4,7 @@ namespace Drupal\ilr_migrate\Plugin\migrate\process;
 
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\ilr_migrate\InArrayMulti;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\MigrateExecutableInterface;
@@ -33,6 +34,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class TermCollectionTags extends ProcessPluginBase implements ContainerFactoryPluginInterface {
+
+  use InArrayMulti;
 
   /**
    * Term storage.
@@ -76,6 +79,7 @@ class TermCollectionTags extends ProcessPluginBase implements ContainerFactoryPl
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $tags = explode(',', $value);
     $collection_id = $row->getDestinationProperty('collection');
+    $type = $row->getSourceProperty('type');
     $vid = 'blog_' . $collection_id . '_tags';
     $terms = [];
 
@@ -95,6 +99,22 @@ class TermCollectionTags extends ProcessPluginBase implements ContainerFactoryPl
 
       if ($this->in_array_all(['worker institute', 'students'], $tags)) {
         $terms['Students'] = 0;
+      }
+    }
+
+    // ILR Student Blog
+    if ($collection_id === 18) {
+      if ($this->in_array_any(['dublin'], $tags)) {
+        $terms['Dublin'] = 0;
+      }
+    }
+
+    // Buffalo Co-Lab
+    if ($collection_id === 35 && $type === 'experience_report') {
+      foreach (range(2009, 2020) as $year) {
+        if ($this->in_array_all(['high road', $year], $tags)) {
+          $terms[$year] = 0;
+        }
       }
     }
 
@@ -217,37 +237,5 @@ class TermCollectionTags extends ProcessPluginBase implements ContainerFactoryPl
 
     return array_values($terms);
   }
-
-  /**
-   * Checks if any values exist in an array.
-   *
-   * @param array $needles
-   *   The searched values.
-   *
-   * @param array $haystack
-   *   The array to search.
-   *
-   * @return bool
-   *   Returns true if any needles are found in the array, false otherwise.
-   */
-  protected function in_array_any($needles, $haystack) {
-    return !empty(array_intersect($needles, $haystack));
-  }
-
-  /**
-   * Checks if all values exist in an array.
-   *
-   * @param array $needles
-   *   The searched values.
-   *
-   * @param array $haystack
-   *   The array to search.
-   *
-   * @return bool
-   *   Returns true if all needles are found in the array, false otherwise.
-   */
-  protected function in_array_all($needles, $haystack) {
-    return empty(array_diff($needles, $haystack));
- }
 
 }

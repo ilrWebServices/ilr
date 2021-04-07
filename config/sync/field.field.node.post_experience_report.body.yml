@@ -1,0 +1,33 @@
+uuid: 8ef99793-e0cf-4ef7-a36f-b45f0fd56ac4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.post_experience_report
+  module:
+    - allowed_formats
+    - summary_word_limit
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_formatting: basic_formatting
+    basic_formatting_with_media: '0'
+    full_html: '0'
+    plain_text: '0'
+  summary_word_limit:
+    summary_word_limit_count: '50'
+id: node.post_experience_report.body
+field_name: body
+entity_type: node
+bundle: post_experience_report
+label: 'Intro Text'
+description: 'Summaries added here are used in smaller components, such as cards. The summary will also be used when sharing this page via social media.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: true
+field_type: text_with_summary
