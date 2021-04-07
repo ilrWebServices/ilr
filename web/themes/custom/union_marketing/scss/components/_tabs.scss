@@ -28,7 +28,7 @@
 }
 
 #block-union-marketing-local-tasks {
-  ul {
+  > ul {
     @extend %tabs;
   }
 }
