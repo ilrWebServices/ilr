@@ -89,7 +89,7 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
 
     // ILR Student blog
     if ($collection_id === 18) {
-      $category = 'Uncategorized';
+      $category = 'Archived';
 
       if ($this->in_array_any(['ambassador', 'student ambassador'], $tags)) {
         $category = 'Student Ambassadors';

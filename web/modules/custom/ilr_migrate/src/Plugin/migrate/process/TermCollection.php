@@ -59,6 +59,10 @@ class TermCollection extends ProcessPluginBase {
         // Buffalo Co-Lab.
         return 35;
       }
+
+      // ILR Student Blog fallback for any experience report not tagged with the
+      // above.
+      return 18;
     }
 
     if ($this->in_array_any(['Scheinman Institute', 'Scheinman', 'NYC. Scheinman Institute'], $tags)) {
