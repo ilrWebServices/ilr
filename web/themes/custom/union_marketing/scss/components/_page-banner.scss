@@ -11,6 +11,10 @@
   @include breakpoint(md) {
     margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
   }
+
+  .framed > :last-child {
+    min-height: 175px;
+  }
 }
 
 // Override banner margin on course pages for register block/message.
