@@ -7,6 +7,7 @@ dependencies:
     - linkit
     - media
     - token_filter
+    - union_organizer
 name: 'Full html'
 format: full_html
 weight: 0
@@ -55,3 +56,9 @@ filters:
     weight: 5
     settings:
       title: true
+  filter_union_components:
+    id: filter_union_components
+    provider: union_organizer
+    status: true
+    weight: 0
+    settings: {  }

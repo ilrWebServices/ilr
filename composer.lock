@@ -5728,14 +5728,15 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union_organizer.git",
-                "reference": "dbb8fcd68e31ac3f491f4bebaed60efd057be43c"
+                "reference": "ba44675a0618c773cfbb1bba789c989521dfb010"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/dbb8fcd68e31ac3f491f4bebaed60efd057be43c",
-                "reference": "dbb8fcd68e31ac3f491f4bebaed60efd057be43c",
+                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/ba44675a0618c773cfbb1bba789c989521dfb010",
+                "reference": "ba44675a0618c773cfbb1bba789c989521dfb010",
                 "shasum": ""
             },
+            "default-branch": true,
             "type": "drupal-module",
             "license": [
                 "GPL-2.0+"
@@ -5749,7 +5750,7 @@
                 "issues": "https://github.com/ilrWebServices/union_organizer/issues",
                 "source": "https://github.com/ilrWebServices/union_organizer.git"
             },
-            "time": "2020-12-15T22:30:43+00:00"
+            "time": "2021-04-08T21:30:12+00:00"
         },
         {
             "name": "drupal/views_autocomplete_filters",
