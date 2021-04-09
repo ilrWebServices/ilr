@@ -57,7 +57,12 @@ class RelatedCourses extends ExtraFieldDisplayBase implements ContainerFactoryPl
   public function view(ContentEntityInterface $entity) {
     $elements = [];
 
-    // Add cache tags for course node lists.
+    // Topics is a required field, but sometimes courses created via salesforce
+    // are missing one.
+    if ($entity->field_topics->isEmpty()) {
+      return $elements;
+    }
+
     // Get the 'primary' topic term id for the current course node. The term
     // reference with the delta 0, e.g. the first one in the multivalue field,
     // is considered the primary.
