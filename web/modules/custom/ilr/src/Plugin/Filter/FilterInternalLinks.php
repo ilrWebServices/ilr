@@ -41,7 +41,7 @@ class FilterInternalLinks extends FilterBase {
       // Test the href for problems. URLs with internal (or editor-only) hosts
       // need cleanup. As do internal links using /node/ID paths.
       $is_internal_host = isset($parts['host']) && in_array($parts['host'], $this->internalHosts);
-      $is_node_path = empty($parts['host']) && preg_match('|^/node/\d+$|', $parts['path']);
+      $is_node_path = empty($parts['host']) && !empty($parts['path']) && preg_match('|^/node/\d+$|', $parts['path']);
 
       // If this href is problematic, clean it up. This is done by passing the
       // URL parts into the Url::fromUri() method. This method helpfully
