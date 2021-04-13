@@ -11,6 +11,10 @@
         text-align: left;
       }
 
+      > * {
+        grid-column: 1;
+      }
+
       .block-field-block--node--post--field-representative-image {
         grid-row: 1/4;
         grid-column: 2;
@@ -20,25 +24,18 @@
       .block-field-block--node--post--field-blog-tags {
         display: block;
         grid-column: 1/-1;
+        margin-top: var(--cu-component-margin-bottom, var(--cu-vr2));
       }
 
       .block-field-block--node--post--field-published-date {
-        grid-column: 1;
-        margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
+        margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr2));
       }
 
       .block-better-social-sharing-buttons {
         display: flex;
+        grid-row: 4/6;
         grid-column: 2;
       }
-    }
-
-    .block-field-block--node--post--field-representative-image {
-      margin-bottom: var(--cu-vr1);
-    }
-
-    .block-field-block--node--post--field-subtitle {
-      grid-column: 1;
     }
   }
 
