@@ -1,7 +1,7 @@
 .article--post,
 .article--post-experience-report {
   .cu-section {
-    @include breakpoint(md) {
+    @include breakpoint(sm) {
       display: grid;
       grid-template-columns: 3fr 2fr;
       column-gap: var(--cu-vr1);
