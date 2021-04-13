@@ -1,0 +1,36 @@
+uuid: e7318fbe-1746-4432-b03f-22a7ed3bbc5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.blog
+    - core.entity_view_mode.collection_item.teaser
+    - field.field.collection_item.blog.field_blog_categories
+    - field.field.collection_item.blog.field_blog_tags
+  module:
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: collection_item.blog.teaser
+targetEntityType: collection_item
+bundle: blog
+mode: teaser
+content:
+  field_blog_tags:
+    weight: 3
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden:
+  collection: true
+  extra_field_canonical_home: true
+  field_blog_categories: true
+  item: true
+  name: true
+  search_api_excerpt: true
+  user_id: true

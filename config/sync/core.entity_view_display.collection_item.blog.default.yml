@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - collection.collection_item_type.blog
+    - core.base_field_override.collection_item.blog.item
     - field.field.collection_item.blog.field_blog_categories
     - field.field.collection_item.blog.field_blog_tags
   module:
