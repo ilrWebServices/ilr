@@ -9,6 +9,7 @@ use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\ParagraphsBehaviorBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Database\Query\PagerSelectExtender;
 
 /**
  * Provides a Post Listing plugin.
@@ -78,10 +79,19 @@ class PostListing extends ParagraphsBehaviorBase {
 
     $form['count'] = [
       '#type' => 'number',
+      '#required' => TRUE,
       '#title' => $this->t('Number of posts'),
-      '#description' => $this->t('Leave blank for all posts.'),
+      '#description' => $this->t('If using a pager, this is the number of posts per page.'),
       '#min' => 1,
+      '#max' => 102,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'count'),
+    ];
+
+    $form['use_pager'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Use pager'),
+      '#description' => $this->t('If the total number of posts exceeds the value above, a pager will appear below the listing.'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'use_pager'),
     ];
 
     return $form;
@@ -131,7 +141,7 @@ class PostListing extends ParagraphsBehaviorBase {
     $query->condition('type', 'blog');
     $query->condition('item.entity:node.status', 1);
     $query->condition('item.entity:node.type', ['post', 'media_mention', 'post_experience_report'], 'IN');
-    $query->range(0, 102); // @todo: Implement as a pager.
+    $query->sort('item.entity:node.field_published_date', 'DESC');
 
     // Add a dedupe tag to remove duplicates in similar post_listings. See
     // ilr_query_alter().
@@ -159,10 +169,14 @@ class PostListing extends ParagraphsBehaviorBase {
     }
 
     if ($limit = $paragraph->getBehaviorSetting($this->getPluginId(), 'count')) {
-      $query->range(0, $limit);
+      if ($paragraph->getBehaviorSetting($this->getPluginId(), 'use_pager')) {
+        $query->pager($limit);
+      }
+      else {
+        $query->range(0, $limit);
+      }
     }
 
-    $query->sort('item.entity:node.field_published_date', 'DESC');
     $result = $query->execute();
 
     $post_count = 0;
@@ -181,6 +195,21 @@ class PostListing extends ParagraphsBehaviorBase {
         'tags' => $cache_tags,
       ],
     ];
+
+    // QueryBase::pager(), used above, sets the pager element and _then_
+    // increments PagerSelectExtender::$maxElement. So we subtract one from
+    // PagerSelectExtender::$maxElement to get the last used pager element
+    // number.
+    if ($paragraph->getBehaviorSetting($this->getPluginId(), 'use_pager')) {
+      $variables['content']['pager'] = [
+        '#type' => 'pager',
+        '#element' => PagerSelectExtender::$maxElement - 1,
+        '#parameters' => ['post_listing' => PagerSelectExtender::$maxElement - 1],
+        '#attached' => [
+          'library' => ['ilr/ilr_pager'],
+        ],
+      ];
+    }
   }
 
   /**

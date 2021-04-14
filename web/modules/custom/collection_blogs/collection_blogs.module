@@ -7,6 +7,9 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Url;
 use Drupal\pathauto\PathautoPatternInterface;
+use Drupal\Core\Database\Query\PagerSelectExtender;
+use Drupal\ilr\IlrLayoutEntityHelper;
+use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
 
 /**
  * @file
@@ -123,6 +126,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
   $entity_type_manager = \Drupal::service('entity_type.manager');
   $collection_item_storage = $entity_type_manager->getStorage('collection_item');
   $view_builder = $entity_type_manager->getViewBuilder('node');
+  $ilr_layout_entity_helper = new IlrLayoutEntityHelper();
 
   $mapping = [
     'collection_items_category_term' => 'field_blog_categories',
@@ -130,7 +134,23 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
   ];
 
   foreach ($mapping as $component_name => $term_reference_field_name) {
-    if ($display->getComponent($component_name) && $view_mode === 'full') {
+    $component_used = FALSE;
+
+    if ($display instanceof LayoutBuilderEntityViewDisplay) {
+      foreach ($ilr_layout_entity_helper->getEntitySections($entity) as $section) {
+        foreach ($section->getComponents() as $component) {
+          if (strpos($component->getPluginId(), $component_name)) {
+            $component_used = TRUE;
+            break 2;
+          }
+        }
+      }
+    }
+    else {
+      $component_used = $display->getComponent($component_name);
+    }
+
+    if ($component_used && $view_mode === 'full') {
       $cache_tags = $entity->getCacheTags();
       $cache_tags[] = 'node_list'; // 'node_list:post'; // 8.9 and above
       $cache_tags[] = 'collection_item_list'; // 'collection_item_list:blog'; // 8.9 and above
@@ -170,8 +190,17 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
         ],
       ];
 
+      // QueryBase::pager(), used above, sets the pager element and _then_
+      // increments PagerSelectExtender::$maxElement. So we subtract one from
+      // PagerSelectExtender::$maxElement to get the last used pager element
+      // number.
       $build[$component_name]['pager'] = [
         '#type' => 'pager',
+        '#element' => PagerSelectExtender::$maxElement - 1,
+        '#parameters' => ['post_listing' => PagerSelectExtender::$maxElement - 1],
+        '#attached' => [
+          'library' => ['ilr/ilr_pager'],
+        ],
       ];
     }
   }

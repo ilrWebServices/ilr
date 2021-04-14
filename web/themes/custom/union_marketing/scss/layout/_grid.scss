@@ -8,3 +8,11 @@
     }
   }
 }
+
+.cu-grid .pager {
+  grid-column: 1/-1;
+}
+
+.cu-grid .pager__items {
+  margin: 0;
+}

@@ -453,6 +453,11 @@ function ilr_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
   $clone = clone $query;
   $clone->addTag('dedupe_clone');
 
+  // Pager queries have no fields, so we can't call fetchAllKeyed().
+  if (empty($clone->getFields())) {
+    return;
+  }
+
   // Execute the clone and append the record ids from this query to the cache.
   $cached_ids = array_merge($cached_ids, $clone->execute()->fetchAllKeyed());
 }
