@@ -4,179 +4,34 @@ status: true
 dependencies:
   config:
     - collection.collection_item_type.blog
-    - core.base_field_override.collection_item.blog.item
     - field.field.collection_item.blog.field_blog_categories
     - field.field.collection_item.blog.field_blog_tags
   module:
     - dynamic_entity_reference
     - layout_builder
-    - layout_discovery
-    - union_organizer
 third_party_settings:
   layout_builder:
     allow_custom: false
-    enabled: true
-    sections:
-      -
-        layout_id: layout_onecol
-        layout_settings:
-          label: ''
-        components:
-          9d1f3908-9d39-4aac-94b6-60462d57e2e7:
-            uuid: 9d1f3908-9d39-4aac-94b6-60462d57e2e7
-            region: content
-            configuration:
-              id: 'field_block:collection_item:blog:collection'
-              label: Collection
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: entity_reference_entity_view
-                settings:
-                  view_mode: banner
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: 0
-        third_party_settings: {  }
-      -
-        layout_id: layout_cu_section
-        layout_settings:
-          label: ''
-          full_width: 0
-          collapse_margins: 0
-          extra_classes: ''
-        components:
-          ca41814c-c6a2-494e-8b4a-702c0c60ca73:
-            uuid: ca41814c-c6a2-494e-8b4a-702c0c60ca73
-            region: main
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'extra_field_block:collection_item:blog:extra_field_canonical_home'
-            additional: {  }
-            weight: 1
-        third_party_settings: {  }
-      -
-        layout_id: layout_onecol
-        layout_settings:
-          label: ''
-        components:
-          7ce436fd-d7b3-4a68-8a7c-4fb3742c1587:
-            uuid: 7ce436fd-d7b3-4a68-8a7c-4fb3742c1587
-            region: content
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:collection_item:blog:item'
-              formatter:
-                label: hidden
-                type: dynamic_entity_reference_entity_view
-                settings:
-                  class_session:
-                    view_mode: default
-                    link: false
-                  collection:
-                    view_mode: default
-                    link: false
-                  collection_item:
-                    view_mode: default
-                    link: false
-                  node:
-                    view_mode: default
-                    link: false
-                  crop:
-                    view_mode: default
-                    link: false
-                  block_content:
-                    view_mode: default
-                    link: false
-                  menu_link_content:
-                    view_mode: default
-                    link: false
-                  file:
-                    view_mode: default
-                    link: false
-                  media:
-                    view_mode: default
-                    link: false
-                  paragraph:
-                    view_mode: default
-                    link: false
-                  person:
-                    view_mode: default
-                    link: false
-                  persona:
-                    view_mode: default
-                    link: false
-                  redirect:
-                    view_mode: default
-                    link: false
-                  salesforce_mapped_object:
-                    view_mode: default
-                    link: false
-                  search_api_task:
-                    view_mode: default
-                    link: false
-                  section_import_mapped_object:
-                    view_mode: default
-                    link: false
-                  taxonomy_term:
-                    view_mode: default
-                    link: false
-                  path_alias:
-                    view_mode: default
-                    link: false
-                  user:
-                    view_mode: default
-                    link: false
-                  webform_submission:
-                    view_mode: default
-                    link: false
-                third_party_settings: {  }
-            additional: {  }
-            weight: 0
-        third_party_settings: {  }
-      -
-        layout_id: layout_cu_section
-        layout_settings:
-          label: ''
-          full_width: 0
-          collapse_margins: 0
-          extra_classes: ''
-        components:
-          c8785e15-03cf-4c20-8dab-e4a3c2ff258b:
-            uuid: c8785e15-03cf-4c20-8dab-e4a3c2ff258b
-            region: main
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'field_block:collection_item:blog:field_blog_tags'
-              formatter:
-                label: inline
-                settings:
-                  link: true
-                third_party_settings: {  }
-                type: entity_reference_label
-            additional: {  }
-            weight: 1
-        third_party_settings: {  }
+    enabled: false
 id: collection_item.blog.default
 targetEntityType: collection_item
 bundle: blog
 mode: default
 content:
-  extra_field_canonical_home:
+  collection:
+    type: entity_reference_entity_view
     weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: banner
+      link: false
+    third_party_settings: {  }
+  extra_field_canonical_home:
+    weight: 1
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_blog_tags:
     weight: 3
     label: inline
@@ -186,8 +41,10 @@ content:
     type: entity_reference_label
     region: content
   item:
-    label: hidden
     type: dynamic_entity_reference_entity_view
+    weight: 2
+    region: content
+    label: hidden
     settings:
       class_session:
         view_mode: default
@@ -249,11 +106,8 @@ content:
       webform_submission:
         view_mode: default
         link: false
-    region: content
-    weight: 1
     third_party_settings: {  }
 hidden:
-  collection: true
   field_blog_categories: true
   name: true
   search_api_excerpt: true

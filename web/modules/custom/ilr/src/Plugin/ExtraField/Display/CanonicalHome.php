@@ -57,8 +57,8 @@ class CanonicalHome extends ExtraFieldDisplayBase implements ContainerFactoryPlu
         '#url' => $canonical_collection_item->item->entity->toUrl(),
         '#title' => $this->t('Originally published in @collection.', ['@collection' => $canonical_collection_item->collection->entity->label()]),
         '#type' => 'link',
-        '#prefix' => '<p>',
-        '#suffix' => '</p>',
+        '#prefix' => '<section class="cu-section">',
+        '#suffix' => '</section>',
       ];
     }
 
