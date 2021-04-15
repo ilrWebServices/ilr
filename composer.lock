@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7825785c9803ba6f24a90339f77897e5",
+    "content-hash": "ed7b72953c16107895c1b7665c215590",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -6629,6 +6629,50 @@
                 "source": "https://github.com/guzzle/psr7/tree/1.6.1"
             },
             "time": "2019-07-01T23:21:34+00:00"
+        },
+        {
+            "name": "joachim-n/composer-manifest",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joachim-n/composer-manifest.git",
+                "reference": "34d75eaef6792fbbdf8f2bd59ee030034725bc99"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joachim-n/composer-manifest/zipball/34d75eaef6792fbbdf8f2bd59ee030034725bc99",
+                "reference": "34d75eaef6792fbbdf8f2bd59ee030034725bc99",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0 || ^2.0",
+                "symfony/yaml": "^3.4 || ^4.2"
+            },
+            "require-dev": {
+                "composer/composer": "^1.0 || ^2.0",
+                "symfony/var-dumper": "^4.2"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "ComposerManifest\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "ComposerManifest\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Joachim Noreiko",
+                    "email": "joachim@107701.no-reply.drupal.org"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/joachim-n/composer-manifest/issues",
+                "source": "https://github.com/joachim-n/composer-manifest/tree/1.1.2"
+            },
+            "time": "2020-11-06T17:21:48+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",
