@@ -90,7 +90,7 @@ class PostListing extends ParagraphsBehaviorBase {
       '#title' => $this->t('Number of posts'),
       '#description' => $this->t('If using a pager, this is the number of posts per page.'),
       '#min' => 1,
-      '#max' => 102,
+      '#max' => 150,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'count') ?? 3,
     ];
 
