@@ -31,6 +31,13 @@ class PostListing extends ParagraphsBehaviorBase {
   protected $entityTypeManager;
 
   /**
+   * Count threshold before a pager is required.
+   *
+   * @var integer
+   */
+  protected $pagerThreshold = 51;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
@@ -95,6 +102,17 @@ class PostListing extends ParagraphsBehaviorBase {
     ];
 
     return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    if (!$form_state->getValue('use_pager') && $form_state->getValue('count') > $this->pagerThreshold) {
+      $form_state->setError($form['use_pager'], $this->t('A pager is required when number of posts is greater than %threshold.', [
+        '%threshold' => $this->pagerThreshold,
+      ]));
+    }
   }
 
   /**
