@@ -81,7 +81,7 @@ class StoryListing extends ParagraphsBehaviorBase {
     $cache_tags[] = 'node_list';
     // $cache_tags[] = 'node_list:story'; // 8.9 and above
     $stories = [];
-    $dedupe_group = 'dedupe:collection_item.id:collection_' . $collection->id();
+    $dedupe_group = 'dedupe:collection_item_field_data.id:collection_' . $collection->id();
 
     $query = $collection_item_storage->getQuery();
     $query->condition('collection', $collection->id());

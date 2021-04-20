@@ -122,7 +122,7 @@ function collection_publications_collection_view(array &$build, EntityInterface 
   }
 
   $entity_type_manager = \Drupal::service('entity_type.manager');
-  $dedupe_group = 'dedupe:collection_item.id:collection_' . $collection->id();
+  $dedupe_group = 'dedupe:collection_item_field_data.id:collection_' . $collection->id();
   $collection_item_storage = $entity_type_manager->getStorage('collection_item');
   $query = $collection_item_storage->getQuery();
   $query->condition('collection', $collection->id());
