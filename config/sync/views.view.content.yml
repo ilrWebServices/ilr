@@ -708,7 +708,7 @@ display:
           plugin_id: standard
         collection:
           id: collection
-          table: collection_item
+          table: collection_item_field_data
           field: collection
           relationship: canonical_collection_item
           group_type: group
