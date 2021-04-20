@@ -98,7 +98,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
       ]);
 
       $settings = [
-        'post_listing' => [],
+        'post_listing' => ['count' => 12, 'use_pager' => 1],
         'list_styles' => ['list_style' => 'grid'],
       ];
       $listing->setAllBehaviorSettings($settings);
