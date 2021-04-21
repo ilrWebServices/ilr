@@ -81,7 +81,7 @@ class PostListing extends ParagraphsBehaviorBase {
       '#title' => $this->t('Tag(s)'),
       '#description' => $this->t('Optionally choose one or more tags to filter the listing.'),
       '#options' => $this->getTagTermOptions($paragraph),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'post_tags'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'post_tags') ?? [],
     ];
 
     $form['count'] = [
@@ -145,7 +145,7 @@ class PostListing extends ParagraphsBehaviorBase {
     $cache_tags[] = 'node_list';
     // $cache_tags[] = 'node_list:post'; // 8.9 and above
     $posts = [];
-    $dedupe_group = 'dedupe:collection_item.id:collection_' . $collection->id();
+    $dedupe_group = 'dedupe:collection_item_field_data.id:collection_' . $collection->id();
 
     $pending_items = \Drupal::database()
       ->select('collection_item__attributes', 'cia')
