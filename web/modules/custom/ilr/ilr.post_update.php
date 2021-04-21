@@ -747,3 +747,23 @@ function ilr_post_update_homepage_banner(&$sandbox) {
   ]);
   $homeblock->save();
 }
+
+/**
+ * Set a default count on post listings with no count.
+ */
+function ilr_post_update_update_post_listing_count(&$sandbox) {
+  $query = \Drupal::entityQuery('paragraph');
+  $query->condition('type', 'simple_collection_listing');
+  $post_listing_paragraph_ids = $query->execute();
+  $simple_post_listings = Paragraph::loadMultiple($post_listing_paragraph_ids);
+
+  foreach ($simple_post_listings as $simple_post_listing) {
+    $settings = $simple_post_listing->getAllBehaviorSettings();
+
+    if (!$settings['post_listing']['count']) {
+      $settings['post_listing']['count'] = 51;
+      $simple_post_listing->setAllBehaviorSettings($settings);
+      $simple_post_listing->save();
+    }
+  }
+}
