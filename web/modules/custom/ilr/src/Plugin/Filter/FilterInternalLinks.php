@@ -60,6 +60,10 @@ class FilterInternalLinks extends FilterBase {
           $options['query'] = $query_opts;
         }
 
+        if (empty($parts['path'])) {
+          $parts['path'] = '/';
+        }
+
         $url = Url::fromUri('internal:' . $parts['path'], $options);
         $node->setAttribute('href', $url->toString());
       }
