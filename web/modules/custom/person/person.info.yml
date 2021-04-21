@@ -1,5 +1,5 @@
 name: 'Person'
 type: module
 description: 'Allows creation and management non-user people and their personas.'
-core: 8.x
+core_version_requirement: ^8 || ^9
 package: 'Person'

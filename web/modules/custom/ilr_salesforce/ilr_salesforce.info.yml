@@ -1,7 +1,7 @@
 name: 'ILR SalesForce'
 type: module
 description: 'Custom code related to the ILR''s connection to SalesForce'
-core: 8.x
+core_version_requirement: ^8 || ^9
 package: 'ILR'
 dependencies:
   - datetime_range

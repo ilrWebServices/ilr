@@ -221,7 +221,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
       return;
     }
 
-    $url = Url::fromUri($collection->field_download->entity->field_media_file->entity->url());
+    $url = Url::fromUri($collection->field_download->entity->field_media_file->entity->createFileUrl(FALSE));
     $link = Link::fromTextAndUrl($collection->label(), $url);
 
     if ($this->currentUser->hasPermission('administer collections')) {

@@ -2,7 +2,7 @@ name: Union Admin
 type: theme
 description: 'A custom admin theme based on Seven (for now)'
 package: Union
-core: 8.x
+core_version_requirement: ^8 || ^9
 libraries:
   - union_admin/global
 base theme: seven

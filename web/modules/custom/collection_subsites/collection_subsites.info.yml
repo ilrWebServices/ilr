@@ -1,7 +1,7 @@
 name: 'Collection Subsites'
 type: module
 description: 'Allows creation of custom collection-based subsites.'
-core: 8.x
+core_version_requirement: ^8 || ^9
 package: 'Collection'
 dependencies:
   - collection

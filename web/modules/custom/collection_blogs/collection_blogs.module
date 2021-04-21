@@ -208,7 +208,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
   if ($display->getComponent('blog_collection')) {
     $vocabulary_collection_items = $collection_item_storage->getQuery()
       ->condition('item__target_type', 'taxonomy_vocabulary')
-      ->condition('item__target_id', $entity->getVocabularyId())
+      ->condition('item__target_id', $entity->bundle())
       ->execute();
 
     if ($vocabulary_collection_items) {
