@@ -12,6 +12,7 @@ class ProblemInternalLinkValidator extends ConstraintValidator {
 
   // See also FilterInternalLinks::internalHosts.
   protected $internalHosts = [
+    'ilr.cornell.edu',
     'www.ilr.cornell.edu',
     'd8-edit.ilr.cornell.edu',
     'edit.ilr.cornell.edu',
