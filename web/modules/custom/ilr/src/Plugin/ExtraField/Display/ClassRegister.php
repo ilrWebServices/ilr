@@ -56,11 +56,6 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
         continue;
       }
 
-      // @todo Revisit hiding of in-person classes once conference center is open.
-      if (strpos(strtolower($class->field_delivery_method->value), 'online') === FALSE) {
-        continue;
-      }
-
       $class_info[] = [
         'salesforce_id' => $mapping->salesforce_id->getString(),
         'entity' => $class,
