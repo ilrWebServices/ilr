@@ -82,7 +82,6 @@
 <hr class="pad" />
 
 {% if upcoming_classes|length > 0 %}
-  <h4 class="cu-heading cu-heading--label">{{ 'Online'|t }}</h4>
   {% set feature_list_items = [
     {
       name: upcoming_classes.0.field_class_date|view('teaser'),
@@ -112,15 +111,15 @@
   {% set register_link_text = 'Register <span class="visually-hidden"> for ' ~ node.label ~ '</span>'%}
 {% else %}
   {# TODO Consider allowing this text to be editable.  #}
-  <p><em>{{ "Dates for online sessions will be posted as soon as they are available."|t }}</em></p>
+  <p><em>{{ "Dates for sessions will be posted as soon as they are available."|t }}</em></p>
   {% set register_link_text = 'Learn more <span class="visually-hidden"> about ' ~ node.label ~ '</span>'%}
 {% endif %}
 
 <hr class="pad" />
 
-{# {% if upcoming_classes|length > 1 %}
+{% if upcoming_classes|length > 1 %}
 <p class="cu-style cu-style--link">{{ 'See more dates and locations'|t }}</p><hr class="pad" />
-{% endif %} #}
+{% endif %}
 </div>
 
 <p class="cu-button">{{ register_link_text|raw }}</p>
