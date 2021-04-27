@@ -62,6 +62,7 @@ class CollectionRequestListBuilder extends EntityListBuilder {
     $header['content'] = $this->t('Content');
     $header['collection'] = $this->t('Destination');
     $header['uid'] = $this->t('Requested by');
+    $header['note'] = $this->t('Request note');
     return $header + parent::buildHeader();
   }
 
@@ -80,6 +81,7 @@ class CollectionRequestListBuilder extends EntityListBuilder {
     $user_storage = \Drupal::entityTypeManager()->getStorage('user');
     $requester = $user_storage->load($uid);
     $row['uid'] = $requester->label();
+    $row['note'] = ($entity->getAttribute('collection-request-note')) ? $entity->getAttribute('collection-request-note')->value : '';
     return $row + parent::buildRow($entity);
   }
 

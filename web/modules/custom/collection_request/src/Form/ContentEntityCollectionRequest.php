@@ -135,6 +135,14 @@ class ContentEntityCollectionRequest extends FormBase {
       '#js_select' => FALSE,
     ];
 
+    $form['note'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Note to owner'),
+      '#maxlength' => 255,
+      '#default_value' => '',
+      '#placeholder' => $this->t('Optionally add a reason or suggest a category'),
+    ];
+
     $form['request'] = [
       '#type' => 'submit',
       '#value' => t('Request'),
@@ -162,15 +170,25 @@ class ContentEntityCollectionRequest extends FormBase {
       $collection_item_type = reset($allowed_types);
     }
 
+    $attributes[] = [
+      'key' => 'collection-request-uid',
+      'value' => $this->account->id(),
+    ];
+
+    // Check if the requester included a note.
+    if ($note = $form_state->getValue('note')) {
+      $attributes[] = [
+        'key' => 'collection-request-note',
+        'value' => $note,
+      ];
+    }
+
     $collection_item = $collection_item_storage->create([
       'type' => $collection_item_type,
       'collection' => $collection,
       'item' => $entity,
       'canonical' => FALSE,
-      'attributes' => [
-        'key' => 'collection-request-uid',
-        'value' => $this->account->id(),
-      ],
+      'attributes' => $attributes,
     ]);
 
     if ($collection_item->save()) {
