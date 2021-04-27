@@ -3,15 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.page.body
     - field.field.node.page.auth_protected
+    - field.field.node.page.body
     - field.field.node.page.field_representative_image
     - field.field.node.page.field_sections
-    - field.field.node.page.field_sections_legacy
     - field.field.node.page.layout_builder__layout
     - node.type.page
   module:
-    - entity_reference_layout
     - entity_reference_revisions
     - ilr
     - layout_builder
@@ -128,25 +126,6 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 0
-          933a3a4f-3d9e-458a-afb6-24498fbf04fb:
-            uuid: 933a3a4f-3d9e-458a-afb6-24498fbf04fb
-            region: content
-            configuration:
-              id: 'field_block:node:page:field_sections_legacy'
-              label: 'Sections (Legacy)'
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: entity_reference_layout
-                settings:
-                  view_mode: default
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: 0
         third_party_settings: {  }
 id: node.page.default
 targetEntityType: node
@@ -181,15 +160,6 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    region: banner
-  field_sections_legacy:
-    weight: 105
-    label: above
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    type: entity_reference_layout
     region: banner
   links:
     weight: 100
