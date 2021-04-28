@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "009e9b2f9c78a24979d80bcdb37c1d91",
+    "content-hash": "19004c8a76422a9efbe60e345454bd6a",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3480,59 +3480,6 @@
                 "source": "https://git.drupalcode.org/project/entity_browser",
                 "issues": "https://www.drupal.org/project/issues/entity_browser",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            }
-        },
-        {
-            "name": "drupal/entity_reference_layout",
-            "version": "1.0.0-alpha7",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/entity_reference_layout.git",
-                "reference": "8.x-1.0-alpha7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_reference_layout-8.x-1.0-alpha7.zip",
-                "reference": "8.x-1.0-alpha7",
-                "shasum": "afc2e3e1983fc3bcdc3ad737b00eeaeeae4b3218"
-            },
-            "require": {
-                "drupal/core": "^8.8 || ^9",
-                "drupal/paragraphs": "^1.6"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.0-alpha7",
-                    "datestamp": "1591726667",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "itamair",
-                    "homepage": "https://www.drupal.org/user/1179076"
-                },
-                {
-                    "name": "justin2pin",
-                    "homepage": "https://www.drupal.org/user/278450"
-                }
-            ],
-            "description": "Entity reference field with layouts",
-            "homepage": "https://www.drupal.org/project/entity_reference_layout",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/entity_reference_layout",
-                "issues": "https://www.drupal.org/project/issues/entity_reference_layout"
             }
         },
         {
