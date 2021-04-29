@@ -1,0 +1,13 @@
+services:
+  collection_request_subscriber:
+    class: Drupal\collection_request\EventSubscriber\CollectionRequestSubscriber
+    arguments:
+      - '@entity_type.manager'
+      - '@collection.content_manager'
+      - '@plugin.manager.mail'
+      - '@messenger'
+      - '@string_translation'
+      - '@current_user'
+      - '@request_stack'
+    tags:
+      - { name: event_subscriber }

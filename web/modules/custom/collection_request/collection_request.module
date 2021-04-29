@@ -14,6 +14,18 @@ use Drupal\Core\Url;
 use Drupal\Component\Datetime\DateTimePlus;
 
 /**
+ * Implements hook_mail().
+ */
+function collection_request_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'notification':
+      $message['subject'] = $params['subject'];
+      $message['body'] = $params['body'];
+      break;
+  }
+}
+
+/**
  * Implements hook_form_BASE_FORM_ID_alter().
  *
  * - Add a 'Send notifications' setting to collection_types.
