@@ -6,11 +6,43 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\collection\Entity\CollectionType;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\collection\Form\CollectionItemForm;
 use Drupal\collection\Form\CollectionItemDeleteForm;
 use Drupal\Core\Url;
 use Drupal\Component\Datetime\DateTimePlus;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * - Add a 'Send notifications' setting to collection_types.
+ */
+function collection_request_form_collection_type_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $collection_type = $form_state->getFormObject()->getEntity();
+
+  $form['send_notifications'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Send request notifications'),
+    '#description' => t('If enabled, owners of this type will be notified when collection requests are submitted.'),
+    '#default_value' => $collection_type->getThirdPartySetting('collection_request', 'send_notifications'),
+    '#weight' => 1
+  ];
+
+  $form['#entity_builders'][] = 'collection_request_form_collection_form_builder';
+}
+
+/**
+ * Entity builder for the collection type configuration entity.
+ */
+function collection_request_form_collection_form_builder($entity_type, CollectionType $collection_type, &$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('send_notifications')) {
+    $collection_type->setThirdPartySetting('collection_request', 'send_notifications', $form_state->getValue('contains_blogs'));
+    return;
+  }
+
+  $collection_type->unsetThirdPartySetting('collection_request', 'send_notifications');
+}
 
 /**
  * Implements hook_entity_operation_alter().
