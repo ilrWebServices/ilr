@@ -941,6 +941,22 @@ function ilr_collection_pathauto_alias_alter(&$alias, array &$context) {
   if ($context['canonical_collection']->bundle() === 'publication_issue' && $context['data']['node']->bundle() === 'story') {
     $alias = str_replace('/story/', '/', $alias);
   }
+
+  // Page nodes have their path patterns altered if they are in a menu (see
+  // ilr_pathauto_pattern_alter()). Under certain conditions, like when the menu
+  // parent has the collection prefix in it, this can result in a duplicated
+  // collection path prefix. We remove that here.
+  if ($context['pattern']->id() === 'page_nodes') {
+    // Remove the original_alias from the end of the current alias. Whatever is
+    // left is the collection path that was prepended in
+    // collection_pathauto_pathauto_alias_alter().
+    $collection_path = preg_replace("|{$context['original_alias']}$|", '', $alias);
+
+    // Reduce the collection paths to a single value if the current alias starts
+    // with two collection paths.
+    $deduped_alias = preg_replace("|^{$collection_path}{$collection_path}|", $collection_path, $alias);
+    $alias = $deduped_alias;
+  }
 }
 
 /**
