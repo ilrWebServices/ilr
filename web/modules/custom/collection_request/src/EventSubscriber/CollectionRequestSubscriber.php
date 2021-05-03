@@ -163,12 +163,15 @@ class CollectionRequestSubscriber implements EventSubscriberInterface {
           '%canonical_collection' => $canonical_collection->label(),
           '%collection' => $collection_item->collection->entity->label(),
         ]),
-        ($collection_item->getAttribute('collection-request-note')) ? 'Included message: ' . $collection_item->getAttribute('collection-request-note')->value : '',
         $this->t('Please log into your account at %login_url to approve or deny the request.', [
           '%login_url' => $this->requestStack->getCurrentRequest()->getSchemeAndHttpHost() . '/user',
         ]),
       ],
     ];
+
+    if ($note = $collection_item->getAttribute('collection-request-note')) {
+      $params['body'][] = $this->t('Included note') . ":\r\n" . $note->value;
+    }
 
     $message = $this->mailManager->mail('collection_request', $params['id'], implode($recipient_array, ', '), $params['langcode'], $params, $params['reply-to']);
     return (bool) $message['result'];
