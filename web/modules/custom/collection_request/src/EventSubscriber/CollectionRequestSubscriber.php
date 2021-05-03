@@ -140,8 +140,8 @@ class CollectionRequestSubscriber implements EventSubscriberInterface {
       return;
     }
 
-    foreach ($new_collection->user_id as $user_reference) {
-      $recipient_array[] = $user_reference->entity->getEmail();
+    foreach ($new_collection->user_id as $user) {
+      $recipient_array[] = $user->entity->label() . ' <' . $user->entity->getEmail() . '>';
     }
 
     $params = [
@@ -170,7 +170,7 @@ class CollectionRequestSubscriber implements EventSubscriberInterface {
       ],
     ];
 
-    $message = $this->mailManager->mail('collection_request', $params['id'], implode($recipient_array, ','), $params['langcode'], $params, $params['reply-to']);
+    $message = $this->mailManager->mail('collection_request', $params['id'], implode($recipient_array, ', '), $params['langcode'], $params, $params['reply-to']);
     return (bool) $message['result'];
   }
 
