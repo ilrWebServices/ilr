@@ -100,6 +100,21 @@ function collection_request_form_alter(&$form, FormStateInterface $form_state) {
       foreach(['item', 'weight', 'canonical', 'path'] as $field_to_hide) {
         $form[$field_to_hide]['#access'] = FALSE;
       }
+
+      if ($note = $collection_item->getAttribute('collection-request-note')) {
+        $form['note'] = [
+          '#markup' => '<p><strong>' . t('Note included with request') . ':</strong><br>' .  $note->value . '</p>',
+          '#weight' => -10,
+        ];
+      }
+
+      $form['request_status'] = [
+        '#markup' => '<p><strong>' . t('Status') . ':</strong> ' . t('Requested by %user and pending approval.', [
+          '%user' => $collection_item->getOwner()->getDisplayName(),
+        ]) . '</p>',
+        '#weight' => -11,
+      ];
+
       $form['actions']['submit']['#value'] = t('Approve');
       $form['actions']['submit']['#submit'][] = 'collection_request_approve_submit';
     }
@@ -108,6 +123,20 @@ function collection_request_form_alter(&$form, FormStateInterface $form_state) {
       $form['actions']['submit']['#value'] = t('Deny');
       $form['actions']['submit']['#submit'][] = 'collection_request_deny_submit';
     }
+  }
+
+  if ($date = $collection_item->getAttribute('collection-request-approved-date')) {
+    try {
+      $date_object = new \DateTime($date->value);
+
+      $form['request_status'] = [
+        '#markup' => '<p><strong>' . t('Status') . ':</strong> ' . t('Requested by %user and approved on %date', [
+          '%user' => $collection_item->getOwner()->getDisplayName(),
+          '%date' => $date_object->format('Y-m-d @ g:ia.'),
+        ]) . '</p>',
+        '#weight' => -10,
+      ];
+    } catch (Exception $e) { }
   }
 }
 
