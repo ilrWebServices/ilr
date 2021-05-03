@@ -157,14 +157,14 @@ class CollectionRequestSubscriber implements EventSubscriberInterface {
       ]),
       'langcode' => $this->currentUser->getPreferredLangcode(),
       'body' => [
-        $this->t('%user_name has requested that %title, a post in %canonical_collection, be cross posted to %collection. Please log into the site to accept or deny this request.', [
+        $this->t('%user_name has requested that %title, a post in %canonical_collection, be cross posted to %collection.', [
           '%user_name' => $collection_item->getOwner()->getDisplayName(),
           '%title' => $collection_item->item->entity->label(),
           '%canonical_collection' => $canonical_collection->label(),
           '%collection' => $collection_item->collection->entity->label(),
         ]),
-        $this->t('Please log into your account at %login_url to approve or deny the request.', [
-          '%login_url' => $this->requestStack->getCurrentRequest()->getSchemeAndHttpHost() . '/user',
+        $this->t('Please approve or deny the request at @url', [
+          '@url' => $collection_item->toUrl('edit-form', ['absolute' => TRUE])->toString(),
         ]),
       ],
     ];
