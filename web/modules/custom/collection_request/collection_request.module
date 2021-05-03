@@ -38,7 +38,7 @@ function collection_request_form_collection_type_form_alter(&$form, FormStateInt
     '#title' => t('Send request notifications'),
     '#description' => t('If enabled, owners of this type will be notified when collection requests are submitted.'),
     '#default_value' => $collection_type->getThirdPartySetting('collection_request', 'send_notifications'),
-    '#weight' => 1
+    '#weight' => 10
   ];
 
   $form['#entity_builders'][] = 'collection_request_form_collection_form_builder';
