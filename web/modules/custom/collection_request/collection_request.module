@@ -6,11 +6,55 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\collection\Entity\CollectionType;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\collection\Form\CollectionItemForm;
 use Drupal\collection\Form\CollectionItemDeleteForm;
 use Drupal\Core\Url;
 use Drupal\Component\Datetime\DateTimePlus;
+
+/**
+ * Implements hook_mail().
+ */
+function collection_request_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'notification':
+      $message['subject'] = $params['subject'];
+      $message['body'] = $params['body'];
+      break;
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * - Add a 'Send notifications' setting to collection_types.
+ */
+function collection_request_form_collection_type_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $collection_type = $form_state->getFormObject()->getEntity();
+
+  $form['send_notifications'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Send request notifications'),
+    '#description' => t('If enabled, owners of this type will be notified when collection requests are submitted.'),
+    '#default_value' => $collection_type->getThirdPartySetting('collection_request', 'send_notifications'),
+    '#weight' => 10
+  ];
+
+  $form['#entity_builders'][] = 'collection_request_form_collection_form_builder';
+}
+
+/**
+ * Entity builder for the collection type configuration entity.
+ */
+function collection_request_form_collection_form_builder($entity_type, CollectionType $collection_type, &$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('send_notifications')) {
+    $collection_type->setThirdPartySetting('collection_request', 'send_notifications', $form_state->getValue('contains_blogs'));
+    return;
+  }
+
+  $collection_type->unsetThirdPartySetting('collection_request', 'send_notifications');
+}
 
 /**
  * Implements hook_entity_operation_alter().
@@ -56,6 +100,21 @@ function collection_request_form_alter(&$form, FormStateInterface $form_state) {
       foreach(['item', 'weight', 'canonical', 'path'] as $field_to_hide) {
         $form[$field_to_hide]['#access'] = FALSE;
       }
+
+      if ($note = $collection_item->getAttribute('collection-request-note')) {
+        $form['note'] = [
+          '#markup' => '<p><strong>' . t('Note included with request') . ':</strong><br>' .  $note->value . '</p>',
+          '#weight' => -10,
+        ];
+      }
+
+      $form['request_status'] = [
+        '#markup' => '<p><strong>' . t('Status') . ':</strong> ' . t('Requested by %user and pending approval.', [
+          '%user' => $collection_item->getOwner()->getDisplayName(),
+        ]) . '</p>',
+        '#weight' => -11,
+      ];
+
       $form['actions']['submit']['#value'] = t('Approve');
       $form['actions']['submit']['#submit'][] = 'collection_request_approve_submit';
     }
@@ -64,6 +123,20 @@ function collection_request_form_alter(&$form, FormStateInterface $form_state) {
       $form['actions']['submit']['#value'] = t('Deny');
       $form['actions']['submit']['#submit'][] = 'collection_request_deny_submit';
     }
+  }
+
+  if ($date = $collection_item->getAttribute('collection-request-approved-date')) {
+    try {
+      $date_object = new \DateTime($date->value);
+
+      $form['request_status'] = [
+        '#markup' => '<p><strong>' . t('Status') . ':</strong> ' . t('Requested by %user and approved on %date', [
+          '%user' => $collection_item->getOwner()->getDisplayName(),
+          '%date' => $date_object->format('Y-m-d @ g:ia.'),
+        ]) . '</p>',
+        '#weight' => -10,
+      ];
+    } catch (Exception $e) { }
   }
 }
 

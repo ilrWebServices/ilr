@@ -4,9 +4,12 @@ status: true
 dependencies:
   module:
     - collection_blogs
+    - collection_request
 third_party_settings:
   collection_blogs:
     contains_blogs: 1
+  collection_request:
+    send_notifications: 1
 id: blog
 label: Blog
 allowed_collection_item_types:
