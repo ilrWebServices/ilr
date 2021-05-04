@@ -47,14 +47,9 @@
       margin: 0;
     }
 
-    span::after {
-      content: '';
-      display: block;
-      width: var(--cu-header-accent-width);
-      max-width: 100%;
-      padding: var(--cu-header-accent-padding);
-      border-bottom: var(--cu-header-accent-border);
-      transition: width ease-in .25s;
+    h4.cu-heading {
+      --cu-current-heading-size: var(--cu-text-med);
+      --cu-current-font-weight: 400;
     }
   }
 
