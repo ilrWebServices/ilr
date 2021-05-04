@@ -145,10 +145,6 @@ class CollectionRequestSubscriber implements EventSubscriberInterface {
     }
 
     $params = [
-      'headers' => [
-        'Content-Type' => 'text/plain; charset=UTF-8;',
-        'Content-Transfer-Encoding' => '8Bit',
-      ],
       'id' => 'notification',
       'from' => '',
       'reply-to' => NULL,
