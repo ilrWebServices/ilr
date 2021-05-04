@@ -148,16 +148,16 @@ class CollectionRequestSubscriber implements EventSubscriberInterface {
       'id' => 'notification',
       'from' => '',
       'reply-to' => NULL,
-      'subject' => $this->t('New request to cross-post content to %collection', [
-        '%collection' => $new_collection->label(),
+      'subject' => $this->t('New request to add content to @collection', [
+        '@collection' => $new_collection->label(),
       ]),
       'langcode' => $this->currentUser->getPreferredLangcode(),
       'body' => [
-        $this->t('%user_name has requested that %title, a post in %canonical_collection, be cross posted to %collection.', [
-          '%user_name' => $collection_item->getOwner()->getDisplayName(),
-          '%title' => $collection_item->item->entity->label(),
-          '%canonical_collection' => $canonical_collection->label(),
-          '%collection' => $collection_item->collection->entity->label(),
+        $this->t('@user_name has requested that "@title", content from @canonical_collection, be added to @collection.', [
+          '@user_name' => $collection_item->getOwner()->getDisplayName(),
+          '@title' => $collection_item->item->entity->label(),
+          '@canonical_collection' => $canonical_collection->label(),
+          '@collection' => $collection_item->collection->entity->label(),
         ]),
         $this->t('Please approve or deny the request at @url', [
           '@url' => $collection_item->toUrl('edit-form', ['absolute' => TRUE])->toString(),
