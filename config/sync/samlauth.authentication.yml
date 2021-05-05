@@ -21,7 +21,7 @@ idp_cert_type: single
 idp_x509_certificate: MIIDXDCCAkSgAwIBAgIVAMKCR8IGXIOzO/yLt6e4sd7OMLgEMA0GCSqGSIb3DQEBBQUAMCcxJTAjBgNVBAMTHHNoaWJpZHAtdGVzdC5jaXQuY29ybmVsbC5lZHUwHhcNMTIwNjA3MTg0NjIyWhcNMzIwNjA3MTg0NjIyWjAnMSUwIwYDVQQDExxzaGliaWRwLXRlc3QuY2l0LmNvcm5lbGwuZWR1MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkhlf9EP399mqnBtGmPG9Vqu79Af2NZhhsT+LTMA1uhPZYv4RX/E4VD+Iqce/EUP1ndPkGEwBnhrRT2ZegDpCmgo+EcED8cAh9AbwFTTitmBjxvErtJnS0ZBfMCLDcgOV1zM6bT5fF9SAIm0ZVSaeyQbNDwVDdwsBQHjAdg5vLd5VeYH9MI6enzdgBtPNSrEt3qZtCWl7ev8YQlWF3vZ+EoyDrWPZSOWzgR31QBs7mz13ABSveIri68FgNth9ylgFS7VNUlAp6xx6BRnMgL1QzVMZ5F4PbSRDp3UBoS6PMHd+WFenJWPPh6ShMyrInrJ4QAPfKC77tJW+GUXl4T4DqQIDAQABo38wfTBcBgNVHREEVTBTghxzaGliaWRwLXRlc3QuY2l0LmNvcm5lbGwuZWR1hjNodHRwczovL3NoaWJpZHAtdGVzdC5jaXQuY29ybmVsbC5lZHUvaWRwL3NoaWJib2xldGgwHQYDVR0OBBYEFF9RADnmBsO50hD8T+MUFqIgWAOxMA0GCSqGSIb3DQEBBQUAA4IBAQBqYpfdK4XAYE56sYmq/vUKOSBcbO2Uy3R7oTGrDKxrZI7xC1jchaaTW6BXtg6wzTSn8Jo2M0gvQrWyxZgQDrXGaL2TaPf5WjOWt/SsuJ+IShofS6ZWLkPCnrR0Ag9PwU58szw2jjUE4eJyv/dLDzhDHJ0EGastgSzRh1r3v2w8BYz1RHvjwESPB2HTgV1iuHwaIjaJxN39XyS6ZQzBj6sZ6Lem1R39zXmEvtVfCk9qgSKnbYulrrkIBzxllB34TUTKFs+Nz1j/sg2gj6Q5u9uW6mSm66mqn2E53r2CNHPTzWGwom5Mi9Z/DtOb2L/5jjxhFvCKxnEbIWm7XIe8qtqo
 idp_x509_certificate_multi: ''
 unique_id_attribute: 'urn:oid:0.9.2342.19200300.100.1.1'
-map_users: true
+map_users: false
 create_users: true
 sync_name: false
 sync_mail: false
@@ -30,3 +30,34 @@ user_mail_attribute: 'urn:oid:0.9.2342.19200300.100.1.3'
 security_lowercase_url_encoding: false
 security_request_authn_context: false
 security_signature_algorithm: 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256'
+logout_different_user: false
+local_login_saml_error: true
+drupal_login_roles:
+  authenticated: '0'
+  administrator: '0'
+  editor: '0'
+  content_administrator: '0'
+  course_admin: '0'
+error_redirect_url: ''
+error_throw: false
+metadata_cache_http: true
+map_users_name: true
+map_users_mail: true
+map_users_roles:
+  administrator: administrator
+  editor: editor
+  content_administrator: content_administrator
+  course_admin: '0'
+security_logout_requests_sign: false
+security_logout_responses_sign: false
+security_assertions_encrypt: false
+request_set_name_id_policy: true
+security_want_name_id: true
+security_logout_reuse_sigs: false
+use_proxy_headers: false
+use_base_url: false
+debug_display_error_details: false
+debug_log_saml_out: false
+debug_log_saml_in: false
+debug_log_in: false
+debug_phpsaml: false
