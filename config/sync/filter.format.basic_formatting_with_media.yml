@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.media.embedded
   module:
     - editor
+    - footnotes
     - ilr
     - linkit
     - media
@@ -20,7 +21,7 @@ filters:
     status: true
     weight: -50
     settings:
-      allowed_html: '<a href hreflang id name data-entity-substitution data-entity-type data-entity-uuid title class> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol type start> <li> <dl> <dt> <dd> <h2 id class="cu-heading simple-columns--column-break"> <h3 id class="cu-heading simple-columns--column-break"> <h4 id class="cu-heading simple-columns--column-break"> <br> <div id class="simple-columns visually_hidden"> <p class="simple-columns--column-break shout"> <table visually-hidden> <caption> <tbody> <thead> <tfoot> <th colspan rowspan scope> <td colspan rowspan> <tr> <colgroup span> <col span class> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption data-link-text alt title>'
+      allowed_html: '<a href hreflang id name data-entity-substitution data-entity-type data-entity-uuid title class> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol type start> <li> <dl> <dt> <dd> <h2 id class="cu-heading simple-columns--column-break"> <h3 id class="cu-heading simple-columns--column-break"> <h4 id class="cu-heading simple-columns--column-break"> <br> <div id class="simple-columns visually_hidden"> <p class="simple-columns--column-break shout"> <table visually-hidden> <caption> <tbody> <thead> <tfoot> <th colspan rowspan scope> <td colspan rowspan> <tr> <colgroup span> <col span class> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption data-link-text alt title><fn value>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_htmlcorrector:
@@ -112,3 +113,11 @@ filters:
     status: true
     weight: 0
     settings: {  }
+  filter_footnotes:
+    id: filter_footnotes
+    provider: footnotes
+    status: true
+    weight: 0
+    settings:
+      footnotes_collapse: '0'
+      footnotes_html: '1'
