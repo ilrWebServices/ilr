@@ -40,6 +40,10 @@ use Drupal\field\Entity\FieldConfig;
  *     "edit-form" = "/admin/structure/persona/{persona_type}",
  *     "delete-form" = "/admin/structure/persona/{persona_type}/delete",
  *     "collection" = "/admin/structure/persona"
+ *   },
+ *   config_export = {
+ *     "id" = "id",
+ *     "label" = "label"
  *   }
  * )
  */
