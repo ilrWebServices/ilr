@@ -120,6 +120,14 @@ class CollectionRequestSubscriber implements EventSubscriberInterface {
       return;
     }
 
+    // Prevent sending notifications if the requester is also an owner. The UI
+    // for requests is a handy way of adding content to a collection. Therefore,
+    // assume that the 'requester' is simply creating a non-canonical collection
+    // item if they are also an owner of the target collection.
+    if (in_array($this->currentUser->id(), $event->collectionItem->collection->entity->getOwnerIds())) {
+      return;
+    }
+
     if ($success = $this->sendNotifications($event->collectionItem)) {
       $this->messenger->addMessage($this->t('Your request has been sent to the owner(s) of this collection.'));
     }
