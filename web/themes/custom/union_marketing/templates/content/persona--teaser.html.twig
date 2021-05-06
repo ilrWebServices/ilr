@@ -15,6 +15,10 @@
   {{ content.field_bio }}
 {% endset %}
 
+{% set additional_info %}
+  {{ content|without('display_name', 'field_titles', 'field_photo', 'field_bio') }}
+{% endset %}
+
 {% set title = [] %}
 {% for key, item in content.field_title if key|first != '#' %}
   {% set title = title|merge([item]) %}
@@ -25,6 +29,7 @@
   attributes: {class: ['cu-person--thumb']},
   name: content.display_name,
   title: title,
+  additional_info: additional_info,
   content: rendered_content,
   img: content.field_photo
 } only %}

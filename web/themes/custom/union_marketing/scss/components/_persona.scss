@@ -22,6 +22,11 @@
     margin-bottom: var(--cu-vr-1);
   }
 
+  .field--field-phone {
+    font-size: var(--cu-ms-1);
+    margin-bottom: var(--cu-vr0);
+  }
+
   @include breakpoint(sm) {
     display: grid;
     grid-column-gap: var(--cu-ps1);

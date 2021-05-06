@@ -1,18 +1,18 @@
-uuid: f5184a72-4796-473c-9e9e-d6e4f9fb4aa5
+uuid: bc770293-505f-4dff-be41-2dbd94dcae8b
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.persona.teaser
-    - field.field.persona.staff.field_bio
-    - field.field.persona.staff.field_email
-    - field.field.persona.staff.field_first_name
-    - field.field.persona.staff.field_last_name
-    - field.field.persona.staff.field_phone
-    - field.field.persona.staff.field_photo
-    - field.field.persona.staff.field_title
+    - field.field.persona.expert.field_bio
+    - field.field.persona.expert.field_email
+    - field.field.persona.expert.field_first_name
+    - field.field.persona.expert.field_last_name
+    - field.field.persona.expert.field_phone
+    - field.field.persona.expert.field_photo
+    - field.field.persona.expert.field_title
     - image.style.thumbnail_square
-    - person.persona_type.staff
+    - person.persona_type.expert
   module:
     - layout_builder
     - media
@@ -22,9 +22,9 @@ third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
-id: persona.staff.teaser
+id: persona.expert.teaser
 targetEntityType: persona
-bundle: staff
+bundle: expert
 mode: teaser
 content:
   display_name:
@@ -41,7 +41,7 @@ content:
     region: content
     label: hidden
     settings:
-      trim_length: 200
+      trim_length: '200'
     third_party_settings: {  }
   field_email:
     type: email_mailto

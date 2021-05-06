@@ -1,18 +1,18 @@
-uuid: f5184a72-4796-473c-9e9e-d6e4f9fb4aa5
+uuid: c30b7eaf-18cd-48f5-a58e-9a97f12f1ac1
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.persona.teaser
-    - field.field.persona.staff.field_bio
-    - field.field.persona.staff.field_email
-    - field.field.persona.staff.field_first_name
-    - field.field.persona.staff.field_last_name
-    - field.field.persona.staff.field_phone
-    - field.field.persona.staff.field_photo
-    - field.field.persona.staff.field_title
+    - field.field.persona.author.field_bio
+    - field.field.persona.author.field_email
+    - field.field.persona.author.field_first_name
+    - field.field.persona.author.field_last_name
+    - field.field.persona.author.field_phone
+    - field.field.persona.author.field_photo
+    - field.field.persona.author.field_title
     - image.style.thumbnail_square
-    - person.persona_type.staff
+    - person.persona_type.author
   module:
     - layout_builder
     - media
@@ -22,9 +22,9 @@ third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
-id: persona.staff.teaser
+id: persona.author.teaser
 targetEntityType: persona
-bundle: staff
+bundle: author
 mode: teaser
 content:
   display_name:

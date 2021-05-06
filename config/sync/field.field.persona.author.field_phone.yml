@@ -1,0 +1,21 @@
+uuid: 45b30952-6934-48f1-873f-509fe48cc783
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_phone
+    - person.persona_type.author
+  module:
+    - telephone
+id: persona.author.field_phone
+field_name: field_phone
+entity_type: persona
+bundle: author
+label: Phone
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

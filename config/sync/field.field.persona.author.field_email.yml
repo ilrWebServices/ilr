@@ -1,0 +1,19 @@
+uuid: 24e593fc-ac6f-4cc6-a51a-65862c893c9b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_email
+    - person.persona_type.author
+id: persona.author.field_email
+field_name: field_email
+entity_type: persona
+bundle: author
+label: Email
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

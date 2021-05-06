@@ -4,14 +4,17 @@ status: true
 dependencies:
   config:
     - field.field.persona.staff.field_bio
+    - field.field.persona.staff.field_email
     - field.field.persona.staff.field_first_name
     - field.field.persona.staff.field_last_name
+    - field.field.persona.staff.field_phone
     - field.field.persona.staff.field_photo
     - field.field.persona.staff.field_title
     - image.style.thumbnail_square
     - person.persona_type.staff
   module:
     - media
+    - telephone
     - text
 id: persona.staff.default
 targetEntityType: persona
@@ -28,14 +31,29 @@ content:
     third_party_settings: {  }
   field_bio:
     type: text_default
-    weight: 3
+    weight: 5
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
+  field_email:
+    type: email_mailto
+    weight: 2
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_phone:
+    type: telephone_link
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
   field_photo:
     type: media_thumbnail
-    weight: -1
+    weight: 4
     region: content
     label: hidden
     settings:

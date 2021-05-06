@@ -1,0 +1,21 @@
+uuid: 40195ced-e446-4a13-9112-197836fcbce7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_phone
+    - person.persona_type.expert
+  module:
+    - telephone
+id: persona.expert.field_phone
+field_name: field_phone
+entity_type: persona
+bundle: expert
+label: Phone
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone
