@@ -6,13 +6,21 @@ dependencies:
     - field.storage.node.field_message
     - node.type.course
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    basic_formatting: '0'
+    basic_formatting_with_media: '0'
+    full_html: '0'
+    inline_svg: '0'
+    plain_text: '0'
 id: node.course.field_message
 field_name: field_message
 entity_type: node
 bundle: course
 label: Message
-description: 'Leave blank to use the <a href="/block/2">default message</a>.'
+description: 'Leave blank to use the <a href="/block/2">default message</a> if there are any in-person classes.'
 required: false
 translatable: false
 default_value: {  }
