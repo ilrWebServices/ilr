@@ -12,6 +12,14 @@
       editor.on('afterPasteFromWord', function(evt) {
         let dom = new DOMParser().parseFromString(evt.data.dataValue, 'text/html');
 
+        // Remove spans. Note that the HTMLCollection returned by
+        // getElementsByTagName() is converted into an array. This is so it can
+        // be reversed and nested spans removed from the inside out.
+        Array.from(dom.getElementsByTagName('span')).reverse().forEach((span) => {
+          // See https://stackoverflow.com/a/48573634/14288730
+          span.replaceWith(...span.childNodes);
+        })
+
         // Remove paragraphs with no text.
         for (let paragraph of dom.getElementsByTagName('p')) {
           if (!paragraph.innerText) {
