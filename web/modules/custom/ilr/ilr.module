@@ -332,9 +332,17 @@ function ilr_entity_prepare_view($entity_type_id, array $entities, array $displa
   if ($entity_type_id === 'node') {
     foreach ($entities as $node) {
       if ($node->bundle() === 'course' && $node->field_message->isEmpty()) {
+        $has_classroom_class = FALSE;
+
+        foreach ($node->classes->referencedEntities() as $class) {
+          if ($class->field_delivery_method->value === 'Classroom') {
+            $has_classroom_class = TRUE;
+          }
+        }
+
         $default_message_block = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', '280c1d2d-0456-45eb-84dc-d114c5e7b2fa');
 
-        if ($default_message_block) {
+        if ($has_classroom_class && $default_message_block) {
           $node->field_message->value = $default_message_block->body->value;
           $node->field_message->format = $default_message_block->body->format;
         }

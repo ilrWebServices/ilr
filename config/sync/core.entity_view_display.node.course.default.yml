@@ -174,7 +174,25 @@ third_party_settings:
                 entity: layout_builder.entity
               id: 'extra_field_block:node:course:extra_field_class_register'
             additional: {  }
-            weight: 0
+            weight: -10
+          da807372-1c06-4d93-af81-64f3bf11f08a:
+            uuid: da807372-1c06-4d93-af81-64f3bf11f08a
+            region: main
+            configuration:
+              id: 'field_block:node:course:field_message'
+              label: Message
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: text_default
+                settings: {  }
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: -9
         third_party_settings: {  }
       -
         layout_id: layout_cu_section

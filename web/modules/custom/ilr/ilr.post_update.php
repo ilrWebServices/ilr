@@ -767,3 +767,18 @@ function ilr_post_update_update_post_listing_count(&$sandbox) {
     }
   }
 }
+
+/**
+ * Update dismissible and course message block content.
+ */
+function ilr_post_update_message_blocks(&$sandbox) {
+  $entity_repository_service = \Drupal::service('entity.repository');
+  $course_message_block = $entity_repository_service->loadEntityByUuid('block_content', '280c1d2d-0456-45eb-84dc-d114c5e7b2fa');
+  $dismissible_block = $entity_repository_service->loadEntityByUuid('block_content', '8865eaf6-39b6-4672-bbce-4064fb057fca');
+
+  $course_message_block->body->value = '<h2>Return to in-person instruction</h2><p>The ILR School will follow all required safety protocols in place at the time of each scheduled in-person session. If we are unable to deliver an in-person session due to safety concerns, we will offer a virtual alternative or reschedule the session for a later date. Our standard participant cancellation/refund policy will apply.</p>';
+  $course_message_block->save();
+
+  $dismissible_block->body->value = '<h2>Return to in-person instruction</h2><p>The ILR School will follow all required safety protocols in place at the time of each scheduled in-person session. If we are unable to deliver an in-person session due to safety concerns, we will offer a virtual alternative or reschedule the session for a later date. Our standard participant cancellation/refund policy will apply.</p>';
+  $dismissible_block->save();
+}
