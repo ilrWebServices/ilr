@@ -11,7 +11,9 @@ icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
-  union_section_settings:
+  admin_section_label:
     enabled: true
   in_page_nav:
+    enabled: true
+  union_section_settings:
     enabled: true
