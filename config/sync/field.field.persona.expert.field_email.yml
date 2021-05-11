@@ -1,0 +1,19 @@
+uuid: 595fb9e4-2390-4620-ae65-f3e4b01848a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_email
+    - person.persona_type.expert
+id: persona.expert.field_email
+field_name: field_email
+entity_type: persona
+bundle: expert
+label: Email
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

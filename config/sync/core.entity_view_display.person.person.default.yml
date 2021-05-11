@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.person.person.field_bio
+    - field.field.person.person.field_email
     - field.field.person.person.field_first_name
     - field.field.person.person.field_last_name
+    - field.field.person.person.field_phone
     - field.field.person.person.field_photo
     - field.field.person.person.field_title
     - image.style.media_library
@@ -35,6 +37,13 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
+  field_email:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
   field_first_name:
     type: string
     weight: 1
@@ -51,6 +60,13 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+  field_phone:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
   field_photo:
     type: media_thumbnail
     weight: 3

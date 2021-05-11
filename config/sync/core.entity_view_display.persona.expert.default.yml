@@ -4,11 +4,18 @@ status: true
 dependencies:
   config:
     - field.field.persona.expert.field_bio
+    - field.field.persona.expert.field_email
     - field.field.persona.expert.field_first_name
     - field.field.persona.expert.field_last_name
+    - field.field.persona.expert.field_phone
     - field.field.persona.expert.field_photo
     - field.field.persona.expert.field_title
+    - image.style.thumbnail_square
     - person.persona_type.expert
+  module:
+    - media
+    - telephone
+    - text
 id: persona.expert.default
 targetEntityType: persona
 bundle: expert
@@ -22,9 +29,31 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+  field_bio:
+    type: text_default
+    weight: 5
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_email:
+    type: email_mailto
+    weight: 2
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_phone:
+    type: telephone_link
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
   field_photo:
     type: media_thumbnail
-    weight: 2
+    weight: 4
     region: content
     label: hidden
     settings:
@@ -40,7 +69,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
 hidden:
-  field_bio: true
   field_first_name: true
   field_last_name: true
   search_api_excerpt: true

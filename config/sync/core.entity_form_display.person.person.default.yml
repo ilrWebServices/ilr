@@ -4,13 +4,16 @@ status: true
 dependencies:
   config:
     - field.field.person.person.field_bio
+    - field.field.person.person.field_email
     - field.field.person.person.field_first_name
     - field.field.person.person.field_last_name
+    - field.field.person.person.field_phone
     - field.field.person.person.field_photo
     - field.field.person.person.field_title
   module:
     - media_library
     - person
+    - telephone
     - text
 _core:
   default_config_hash: CHYhfLljyPv414lZPX5PJ8pEhGAdRS-dk0BHidtTOFg
@@ -28,7 +31,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_bio:
-    weight: 28
+    weight: 7
     settings:
       rows: 9
       summary_rows: 3
@@ -36,6 +39,14 @@ content:
       show_summary: false
     third_party_settings: {  }
     type: text_textarea_with_summary
+    region: content
+  field_email:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
     region: content
   field_first_name:
     type: string_textfield
@@ -53,15 +64,22 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_phone:
+    weight: 4
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: telephone_default
+    region: content
   field_photo:
     type: media_library_widget
-    weight: 26
+    weight: 5
     settings:
       media_types: {  }
     third_party_settings: {  }
     region: content
   field_title:
-    weight: 27
+    weight: 6
     settings:
       size: 60
       placeholder: ''

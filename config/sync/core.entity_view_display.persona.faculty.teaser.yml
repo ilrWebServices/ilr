@@ -5,8 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.persona.teaser
     - field.field.persona.faculty.field_bio
+    - field.field.persona.faculty.field_email
     - field.field.persona.faculty.field_first_name
     - field.field.persona.faculty.field_last_name
+    - field.field.persona.faculty.field_phone
     - field.field.persona.faculty.field_photo
     - field.field.persona.faculty.field_title
     - image.style.thumbnail_square
@@ -15,6 +17,7 @@ dependencies:
     - layout_builder
     - media
     - smart_read_more_link
+    - telephone
 third_party_settings:
   layout_builder:
     allow_custom: false
@@ -34,15 +37,30 @@ content:
     third_party_settings: {  }
   field_bio:
     type: smart_read_more_link
-    weight: 3
+    weight: 5
     region: content
     label: hidden
     settings:
       trim_length: 200
     third_party_settings: {  }
+  field_email:
+    type: email_mailto
+    weight: 2
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_phone:
+    type: telephone_link
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
   field_photo:
     type: media_thumbnail
-    weight: 2
+    weight: 4
     region: content
     label: hidden
     settings:

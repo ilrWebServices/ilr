@@ -1,0 +1,19 @@
+uuid: 1d572341-3344-4e29-9960-7ea5e67ad073
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_email
+    - person.persona_type.staff
+id: persona.staff.field_email
+field_name: field_email
+entity_type: persona
+bundle: staff
+label: Email
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email
