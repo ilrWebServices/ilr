@@ -2,14 +2,14 @@ uuid: 41e0567e-6583-4d53-9fbd-826dc4e8c827
 langcode: en
 status: true
 dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.professional_education
   content:
     - 'block_content:simple_text:8865eaf6-39b6-4672-bbce-4064fb057fca'
   module:
     - block_content
     - block_visibility_groups
-    - ctools
     - ilr
-    - system
   theme:
     - union_marketing
 id: dismissible
@@ -30,20 +30,9 @@ visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: ''
+    block_visibility_group: professional_education
     context_mapping: {  }
   root_path_entity_bundle:
     id: root_path_entity_bundle
     root_entity_bundles: {  }
     negate: false
-  request_path:
-    id: request_path
-    pages: "/programs/professional-education\r\n/programs/professional-education/*"
-    negate: false
-  'entity_bundle:node':
-    id: 'entity_bundle:node'
-    bundles:
-      course: course
-    negate: true
-    context_mapping:
-      node: '@node.node_route_context:node'

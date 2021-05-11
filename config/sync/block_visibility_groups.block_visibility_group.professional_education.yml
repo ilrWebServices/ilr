@@ -1,0 +1,17 @@
+uuid: c4718ef3-c736-4d40-b9c0-41df5c812996
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+id: professional_education
+label: 'Professional Education'
+logic: and
+conditions:
+  6d89ba18-7a17-4dba-bdd4-d917670fbe27:
+    id: request_path
+    pages: '/programs/professional-education*'
+    negate: false
+    context_mapping: {  }
+    uuid: 6d89ba18-7a17-4dba-bdd4-d917670fbe27
+allow_other_conditions: true
