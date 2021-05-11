@@ -10,6 +10,12 @@
     init: function(editor) {
       // Paste from clipboard:
       editor.on('afterPasteFromWord', function(evt) {
+        // Replace non-breaking spaces with regular spaces.
+        evt.data.dataValue = evt.data.dataValue.replace(/&nbsp;/ig, ' ');
+
+        // Replace multiple spaces with a single space.
+        evt.data.dataValue = evt.data.dataValue.replace(/[ ]{2,}/g, ' ');
+
         let dom = new DOMParser().parseFromString(evt.data.dataValue, 'text/html');
 
         // Remove spans. Note that the HTMLCollection returned by
@@ -24,6 +30,13 @@
         for (let paragraph of dom.getElementsByTagName('p')) {
           if (!paragraph.innerText) {
             paragraph.parentElement.removeChild(paragraph);
+          }
+        }
+
+        // Remove anchors with no inner content, but retain any whitespace.
+        for (let a of dom.getElementsByTagName('a')) {
+          if (!a.innerText.trim()) {
+            a.replaceWith(a.innerText);
           }
         }
 
