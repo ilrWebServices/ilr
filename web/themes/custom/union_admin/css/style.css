@@ -23,3 +23,7 @@ paragraph type labels on the Sections field. */
   font-style: normal;
   color: initial;
 }
+
+.paragraph-type--section .paragraph-type-label--admin-label {
+  color: #888;
+}

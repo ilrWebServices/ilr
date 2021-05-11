@@ -15,7 +15,7 @@ use Drupal\paragraphs\ParagraphsBehaviorBase;
  * @ParagraphsBehavior(
  *   id = "union_section_settings",
  *   label = @Translation("Union section settings"),
- *   description = @Translation("Settions related to Union sections"),
+ *   description = @Translation("Settings related to Union sections"),
  *   weight = 1
  * )
  */
@@ -48,6 +48,8 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#options' => $this->position,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'frame_position') ?? 'left',
     ];
+
+    $form['#weight'] = -1;
 
     return $form;
   }

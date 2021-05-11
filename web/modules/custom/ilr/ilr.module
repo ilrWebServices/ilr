@@ -720,8 +720,15 @@ function ilr_field_widget_paragraphs_form_alter(&$element, FormStateInterface &$
 
   // Section paragraph types should show the heading as the label if the heading
   // has a value.
-  if ($paragraphs_entity && $paragraphs_entity->bundle() === 'section' && $heading = $paragraphs_entity->field_heading->value) {
-    $element['top']['type']['label']['#markup'] = '<span class="paragraph-type-label">' . $heading . '</span>';
+  if ($paragraphs_entity && $paragraphs_entity->bundle() === 'section') {
+    if ($heading = $paragraphs_entity->field_heading->value) {
+      $element['top']['type']['label']['#markup'] = '<span class="paragraph-type-label">' . $heading . '</span>';
+    }
+    else {
+      $admin_label = $paragraphs_entity->getBehaviorSetting('admin_section_label', 'label') ?? t('Section');
+      $element['top']['type']['label']['#markup'] = '<span class="paragraph-type-label paragraph-type-label--admin-label">' . $admin_label . '</span>';
+    }
+
   }
 
   // Hide the subheading and subheading link on section paragraphs until the
