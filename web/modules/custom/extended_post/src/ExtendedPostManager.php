@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
@@ -30,6 +31,13 @@ class ExtendedPostManager {
   protected $entityDisplayRepository;
 
   /**
+   * Module handler.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
    * The node bundle.
    *
    * @var string
@@ -49,6 +57,7 @@ class ExtendedPostManager {
   public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityDisplayRepositoryInterface $entity_display_repository, ModuleHandlerInterface $module_handler) {
     $this->entityTypeManager = $entity_type_manager;
     $this->entityDisplayRepository = $entity_display_repository;
+    $this->moduleHandler = $module_handler;
   }
 
   /**
@@ -63,6 +72,15 @@ class ExtendedPostManager {
     foreach (['body', 'field_components', 'field_published_date', 'field_representative_image'] as $field_name) {
       $this->addOrUpdateField($field_name);
       $this->configureFormDisplayComponent($field_name);
+    }
+
+    if ($this->moduleHandler->moduleExists('collection_blogs')) {
+      // Load the blog collection item so we can enable this bundle too.
+      $blog_item = $this->entityTypeManager->getStorage('collection_item_type')->load('blog');
+      $allowed_bundles = $blog_item->getAllowedBundles();
+      $allowed_bundles[] = 'node.' . $bundle;
+      $blog_item->set('allowed_bundles', $allowed_bundles);
+      $blog_item->save();
     }
   }
 
@@ -162,6 +180,24 @@ class ExtendedPostManager {
     ];
 
     return $field_config[$field_name];
+  }
+
+  /**
+   * Get a list of node types that are post-like.
+   *
+   * @return array
+   *   An array of node types that are considered posts.
+   */
+  public function getPostTypes() {
+    $post_types = [];
+
+    foreach ($this->entityTypeManager->getStorage('node_type')->loadMultiple() as $bundle_name => $type) {
+      if ($type->getThirdPartySetting('extended_post', 'extends_posts')) {
+        $post_types[] = $bundle_name;
+      }
+    }
+
+    return $post_types;
   }
 
 }

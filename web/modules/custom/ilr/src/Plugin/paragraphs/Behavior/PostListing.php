@@ -8,6 +8,9 @@ use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\ParagraphsBehaviorBase;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\extended_post\ExtendedPostManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Database\Query\PagerSelectExtender;
 
@@ -31,6 +34,13 @@ class PostListing extends ParagraphsBehaviorBase {
   protected $entityTypeManager;
 
   /**
+   * The extended post manager.
+   *
+   * @var \Drupal\extended_post\ExtendedPostManager
+   */
+  protected $extendedPostManager;
+
+  /**
    * Count threshold before a pager is required.
    *
    * @var integer
@@ -38,12 +48,39 @@ class PostListing extends ParagraphsBehaviorBase {
   protected $pagerThreshold = 51;
 
   /**
+   * Creates a new PostListing behavior.
+   *
+   * @param array $configuration
+   *   The configuration array.
+   * @param string $plugin_id
+   *   This plugin id.
+   * @param mixed $plugin_definition
+   *   Plugin definition.
+   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
+   *   Entity field manager service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager service.
+   * @param \Drupal\extended_post\ExtendedPostManager $extended_post_manager
+   *   The extended post manager service.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityFieldManagerInterface $entity_field_manager, EntityTypeManagerInterface $entity_type_manager, ExtendedPostManager $extended_post_manager) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_field_manager);
+    $this->entityTypeManager = $entity_type_manager;
+    $this->extendedPostManager = $extended_post_manager;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    $instance = new static($configuration, $plugin_id, $plugin_definition, $container->get('entity_field.manager'));
-    $instance->entityTypeManager = $container->get('entity_type.manager');
-    return $instance;
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('entity_field.manager'),
+      $container->get('entity_type.manager'),
+      $container->get('extended_post.manager')
+    );
   }
 
   /**
@@ -133,9 +170,14 @@ class PostListing extends ParagraphsBehaviorBase {
     $paragraph = $variables['paragraph'];
     $collection = $paragraph->field_collection->entity;
     $category_operator = $paragraph->getBehaviorSetting($this->getPluginId(), 'negate_category') ? '<>' : '=';
+    $post_types = $this->extendedPostManager->getPostTypes();
 
     // If the collection was deleted, return nothing to prevent errors.
     if ($collection === NULL) {
+      return;
+    }
+
+    if (empty($post_types)) {
       return;
     }
 
@@ -158,7 +200,7 @@ class PostListing extends ParagraphsBehaviorBase {
     $query->condition('collection', $collection->id());
     $query->condition('type', 'blog');
     $query->condition('item.entity:node.status', 1);
-    $query->condition('item.entity:node.type', ['post', 'media_mention', 'post_experience_report', 'post_document'], 'IN');
+    $query->condition('item.entity:node.type', $post_types, 'IN');
     $query->sort('item.entity:node.field_published_date', 'DESC');
 
     // Add a dedupe tag to remove duplicates in similar post_listings. See

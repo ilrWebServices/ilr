@@ -4,3 +4,4 @@ services:
     arguments:
       - '@entity_type.manager'
       - '@entity_display.repository'
+      - '@module_handler'
