@@ -9,7 +9,9 @@ dependencies:
     - field.field.node.post_document.field_representative_image
     - node.type.post_document
   module:
+    - allowed_formats
     - datetime
+    - ilr
     - media_library
     - path
     - text
@@ -23,10 +25,16 @@ content:
     weight: 121
     settings:
       rows: 9
-      summary_rows: 3
       placeholder: ''
-      show_summary: false
-    third_party_settings: {  }
+      summary_rows: 3
+      show_summary: true
+    third_party_settings:
+      allowed_formats:
+        hide_help: '1'
+        hide_guidelines: '1'
+      ilr:
+        hide_value: '1'
+        hide_summary_description: '1'
     region: content
   created:
     type: datetime_timestamp
