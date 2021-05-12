@@ -1,0 +1,17 @@
+uuid: fbf66890-92a8-45ed-8210-78439950a177
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Document Post'
+type: post_document
+description: 'Use <em>Document Posts</em> for PDFs.'
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false

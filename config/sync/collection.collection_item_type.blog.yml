@@ -7,6 +7,7 @@ label: Blog
 allowed_bundles:
   - node.media_mention
   - node.post
+  - node.post_document
   - node.post_experience_report
   - node.story
 attributes_access: administrators

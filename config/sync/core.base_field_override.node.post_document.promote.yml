@@ -1,0 +1,22 @@
+uuid: 170ca597-2d04-48d0-aa6f-84108be381c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.post_document
+id: node.post_document.promote
+field_name: promote
+entity_type: node
+bundle: post_document
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

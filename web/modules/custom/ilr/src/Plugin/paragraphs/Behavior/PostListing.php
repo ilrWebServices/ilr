@@ -158,7 +158,7 @@ class PostListing extends ParagraphsBehaviorBase {
     $query->condition('collection', $collection->id());
     $query->condition('type', 'blog');
     $query->condition('item.entity:node.status', 1);
-    $query->condition('item.entity:node.type', ['post', 'media_mention', 'post_experience_report'], 'IN');
+    $query->condition('item.entity:node.type', ['post', 'media_mention', 'post_experience_report', 'post_document'], 'IN');
     $query->sort('item.entity:node.field_published_date', 'DESC');
 
     // Add a dedupe tag to remove duplicates in similar post_listings. See
