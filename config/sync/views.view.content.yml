@@ -11,6 +11,7 @@ dependencies:
     - node.type.page
     - node.type.participant
     - node.type.post
+    - node.type.post_document
     - node.type.post_experience_report
     - node.type.story
   module:
@@ -531,6 +532,7 @@ display:
           value:
             certificate: certificate
             course: course
+            post_document: post_document
             post_experience_report: post_experience_report
             instructor: instructor
             media_mention: media_mention
