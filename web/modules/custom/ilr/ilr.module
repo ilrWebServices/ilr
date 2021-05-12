@@ -24,6 +24,8 @@ use Drupal\file\FileInterface;
 use Drupal\pathauto\PathautoPatternInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Field\WidgetInterface;
+use Drupal\Core\Field\FieldDefinitionInterface;
 
 /**
  * Implements hook_theme().
@@ -799,28 +801,62 @@ function ilr_field_widget_paragraphs_previewer_form_alter(&$element, FormStateIn
 }
 
 /**
+ * Implements hook_field_widget_third_party_settings_form().
+ */
+function ilr_field_widget_third_party_settings_form(WidgetInterface $plugin, FieldDefinitionInterface $field_definition, $form_mode, $form, FormStateInterface $form_state) {
+  if ($field_definition->getType() === 'text_with_summary') {
+    $element = [];
+
+    $element['hide_value'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Hide the main text input field'),
+      '#description' => t('Only useful when the summary field is displayed.'),
+      '#default_value' => $plugin->getThirdPartySetting('ilr', 'hide_value'),
+    ];
+
+    // The summary description only appears if the summary is not required.
+    if (!$field_definition->getSetting('required_summary')) {
+      $element['hide_summary_description'] = [
+        '#type' => 'checkbox',
+        '#title' => t('Hide the summary description'),
+        '#default_value' => $plugin->getThirdPartySetting('ilr', 'hide_summary_description'),
+      ];
+    }
+
+    return $element;
+  }
+}
+
+/**
  * Implements hook_field_widget_WIDGET_TYPE_form_alter().
  */
 function ilr_field_widget_text_textarea_with_summary_form_alter(&$element, FormStateInterface $form_state, $context) {
-  $field_definition = $context['items']->getFieldDefinition();
+  $widget = $context['widget'];
 
-  // Base fields are not configurable.
-  if (!$field_definition instanceof Drupal\field\Entity\FieldConfig) {
+  // We can't use the protected isDefaultValueWidget() method.
+  if ((bool) $form_state->get('default_value_widget')) {
     return;
   }
 
-  // We can't use the protected isDefaultValueWidget() method.
-  $is_default_value_widget = (bool) $form_state->get('default_value_widget');
-  $entity_type_and_bundle = $field_definition->get('entity_type') . ':' . $field_definition->get('bundle');
-
-  if (!$is_default_value_widget) {
-    if (in_array($entity_type_and_bundle, ['node:post', 'node:media_mention'])) {
-      unset($element['summary']['#description']);
-    }
-
-    // Always show the summary field.
-    unset($element['summary']['#attached']);
+  if ($widget->getThirdPartySetting('ilr', 'hide_summary_description')) {
+    unset($element['summary']['#description']);
   }
+
+  if ($widget->getThirdPartySetting('ilr', 'hide_value')) {
+    $element['#ilr_hide_value'] = TRUE;
+    $element['#after_build'][] = '_ilr_disable_textarea_value';
+  }
+}
+
+/**
+ * The #after_build callback for text_with_summary widgets.
+ */
+function _ilr_disable_textarea_value($form_element, FormStateInterface $form_state) {
+  if ($form_element['#ilr_hide_value']) {
+    $form_element['value']['#access'] = FALSE;
+  }
+
+  return $form_element;
 }
 
 /**
