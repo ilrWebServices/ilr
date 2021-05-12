@@ -18,7 +18,7 @@
     {% if class.entity.field_delivery_method.value and 'online' in class.entity.field_delivery_method.value|lower %}
       <div class="cu-class-delivery-method">Online</div>
     {% else %}
-      <div class="cu-class-delivery-method">In Person - {{ drupal_field('field_address', 'node', class.entity.id, 'teaser') }}</div>
+      <div class="cu-class-delivery-method">{{ drupal_field('field_address', 'node', class.entity.id, 'teaser') }}</div>
     {% endif %}
 
     {% if course.field_course_number.value|upper starts with 'OLLB' or course.field_course_number.value|upper starts with 'LS' %}
