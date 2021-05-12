@@ -15,8 +15,10 @@ dependencies:
     - field.field.node.post_experience_report.field_subtitle
     - node.type.post_experience_report
   module:
+    - allowed_formats
     - datetime
     - entity_browser
+    - ilr
     - media_library
     - media_library_edit
     - paragraphs
@@ -31,10 +33,15 @@ content:
     weight: 16
     settings:
       rows: 9
-      summary_rows: 3
       placeholder: ''
-      show_summary: false
-    third_party_settings: {  }
+      summary_rows: 3
+      show_summary: true
+    third_party_settings:
+      allowed_formats:
+        hide_help: '1'
+        hide_guidelines: '1'
+      ilr:
+        hide_value: '1'
     type: text_textarea_with_summary
     region: content
   created:

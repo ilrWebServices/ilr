@@ -2,18 +2,6 @@
   max-width: 50px;
 }
 
-.page-node-type-post .field--name-body .form-item-body-0-value,
-.page-node-type-post .field--name-body .filter-wrapper,
-.page-node-type-post-document .field--name-body .form-item-body-0-value,
-.page-node-type-post-document .field--name-body .filter-wrapper,
-.page-node-type-post-document .form-item-body-0-summary .description,
-.page-node-type-post-experience-report .field--name-body .form-item-body-0-value,
-.page-node-type-post-experience-report .field--name-body .filter-wrapper,
-.page-node-type-media-mention .field--name-body .form-item-body-0-value,
-.page-node-type-media-mention .field--name-body .filter-wrapper {
-  display: none;
-}
-
 /* This is a fix for paragraph previewer widget Edit All button location. */
 .js .field--widget-paragraphs-previewer th .paragraphs-actions {
   float: right;
