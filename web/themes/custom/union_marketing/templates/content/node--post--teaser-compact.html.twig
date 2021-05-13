@@ -80,6 +80,7 @@
 {% include '@union/_card.twig' with {
   card_content: rendered_content,
   card_link_url: url,
+  link_attributes: url_attributes,
   attributes: attributes.addClass([
     'node--' ~ node.bundle|clean_class,
     not node.isPublished() ? 'node--unpublished',
