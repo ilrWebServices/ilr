@@ -74,6 +74,10 @@ function union_marketing_preprocess_node(&$variables) {
     $variables['url'] = $variables['node']->field_document->entity->field_media_file->entity->createFileUrl();
     $variables['url_attributes']->setAttribute('target', '_blank');
   }
+
+  if ($variables['node']->bundle() === 'media_mention') {
+    $variables['url'] = $variables['node']->field_external_link->first()->getUrl()->toString();
+  }
 }
 
 /**
