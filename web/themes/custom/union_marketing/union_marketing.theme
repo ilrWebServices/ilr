@@ -64,6 +64,15 @@ function union_marketing_preprocess_html(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_node().
+ */
+function union_marketing_preprocess_node(&$variables) {
+  if ($variables['node']->bundle() === 'post_document') {
+    $variables['url'] = $variables['node']->field_document->entity->field_media_file->entity->createFileUrl();
+  }
+}
+
+/**
  * Implements template_preporcess_views_view__VIEW_ID().
  *
  * Sets the row content for the view template.
