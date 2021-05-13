@@ -40,6 +40,11 @@ function extended_post_entity_bundle_create($entity_type_id, $bundle) {
     return;
   }
 
+  // Don't create fields during config import.
+  if (\Drupal::service('config.installer')->isSyncing()) {
+    return;
+  }
+
   // Call the post manager service to add the post fields.
   \Drupal::service('extended_post.manager')->configureExtendedPostType($bundle);
 }
