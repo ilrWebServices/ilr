@@ -44,6 +44,11 @@
   }
 }
 
+.node--video-post.node--view-mode-teaser .ajax-progress-throbber {
+  position: absolute;
+  z-index: 1;
+}
+
 #block-union-marketing-75thvideobanner {
   @include full-width();
 
