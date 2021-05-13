@@ -22,6 +22,28 @@
   border: 0;
 }
 
+.node--video-post .cu-card__media {
+  $width: 56px;
+  position: relative;
+
+  .play {
+    position: absolute;
+    top: calc(50% - #{$width} * .5 + 1px);
+    left: calc(50% - #{$width} * .5 + 1px);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: calc(50% - #{$width} * .5);
+    left: calc(50% - #{$width} * .5);
+    background-color: rgba(0, 0, 0, .4);
+    width: $width;
+    height: $width;
+    border-radius: $width  * .5;
+  }
+}
+
 #block-union-marketing-75thvideobanner {
   @include full-width();
 

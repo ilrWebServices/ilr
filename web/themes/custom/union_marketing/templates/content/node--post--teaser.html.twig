@@ -79,8 +79,25 @@
 {% endset %}
 
 {% set media_content %}
-  {% if node.bundle == 'video_post' and node.field_representative_image.isEmpty() %}
-  {{ content.field_video }}
+  {% if node.bundle == 'video_post' %}
+    <div class="play">
+    {% include "@union/_icon.twig" with {
+        title: '',
+        icon: 'play',
+        size: '3em',
+        label: '',
+        attributes: {
+          class: 'cu-icon',
+          role: 'button',
+          'aria-pressed': "false"
+        }
+      } only %}
+    </div>
+    {% if node.field_representative_image.isEmpty() %}
+      {{ content.field_video }}
+    {% else %}
+      {{ content.field_representative_image }}
+    {% endif %}
   {% else %}
   {{ content.field_representative_image }}
   {% endif %}
