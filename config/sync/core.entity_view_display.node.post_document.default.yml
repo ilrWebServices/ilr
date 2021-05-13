@@ -10,6 +10,7 @@ dependencies:
     - image.style.medium_3_2
     - node.type.post_document
   module:
+    - datetime
     - media
     - text
     - user
@@ -33,6 +34,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  field_published_date:
+    type: datetime_default
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: ilr_date
+    third_party_settings: {  }
   field_representative_image:
     weight: 0
     label: hidden
@@ -50,5 +60,4 @@ content:
 hidden:
   blog_collection: true
   blog_tags: true
-  field_published_date: true
   search_api_excerpt: true

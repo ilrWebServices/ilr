@@ -3,11 +3,14 @@ langcode: en
 status: true
 dependencies:
   module:
+    - extended_post
     - menu_ui
 third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
+  extended_post:
+    extends_posts: 1
 name: 'Document Post'
 type: post_document
 description: 'Use <em>Document Posts</em> for PDFs.'

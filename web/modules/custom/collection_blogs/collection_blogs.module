@@ -127,6 +127,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
   $collection_item_storage = $entity_type_manager->getStorage('collection_item');
   $view_builder = $entity_type_manager->getViewBuilder('node');
   $ilr_layout_entity_helper = new IlrLayoutEntityHelper();
+  $post_types = \Drupal::service('extended_post.manager')->getPostTypes();
 
   $mapping = [
     'collection_items_category_term' => 'field_blog_categories',
@@ -150,7 +151,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
       $component_used = $display->getComponent($component_name);
     }
 
-    if ($component_used && $view_mode === 'full') {
+    if ($component_used && $view_mode === 'full' && !empty($post_types)) {
       $cache_tags = $entity->getCacheTags();
       $cache_tags[] = 'node_list'; // 'node_list:post'; // 8.9 and above
       $cache_tags[] = 'collection_item_list'; // 'collection_item_list:blog'; // 8.9 and above
@@ -166,7 +167,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
         ->condition('id', $pending_items, 'NOT IN')
         ->condition('type', 'blog')
         ->condition('item.entity:node.status', 1)
-        ->condition('item.entity:node.type', ['post', 'media_mention', 'post_experience_report', 'post_document'], 'IN')
+        ->condition('item.entity:node.type', $post_types, 'IN')
         ->condition($term_reference_field_name, $entity->id())
         ->sort('item.entity:node.field_published_date', 'DESC')
         ->pager(30)

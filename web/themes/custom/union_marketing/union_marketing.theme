@@ -7,6 +7,7 @@ use Drupal\crop\Entity\Crop;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Serialization\Json;
+use Drupal\Core\Template\Attribute;
 
 /**
  * @file Theme file for the union_marketing.theme.
@@ -60,6 +61,22 @@ function union_marketing_preprocess_html(&$variables) {
     foreach ($active_groups as $bvg) {
       $variables['attributes']['class'][] = 'bvg--' . Html::cleanCssIdentifier($bvg->id());
     }
+  }
+}
+
+/**
+ * Implements template_preprocess_node().
+ */
+function union_marketing_preprocess_node(&$variables) {
+  $variables['url_attributes'] = new Attribute();
+
+  if ($variables['node']->bundle() === 'post_document') {
+    $variables['url'] = $variables['node']->field_document->entity->field_media_file->entity->createFileUrl();
+    $variables['url_attributes']->setAttribute('target', '_blank');
+  }
+
+  if ($variables['node']->bundle() === 'media_mention') {
+    $variables['url'] = $variables['node']->field_external_link->first()->getUrl()->toString();
   }
 }
 
@@ -139,7 +156,9 @@ function union_marketing_library_info_alter(&$libraries, $extension) {
  * @see node_theme_suggestions_node().
  */
 function union_marketing_theme_suggestions_node_alter(array &$suggestions, array $variables) {
-  if (strpos($variables['elements']['#node']->getType(), 'post_') === 0) {
+  $bundle = $variables['elements']['#node']->type->entity;
+
+  if ($bundle->getThirdPartySetting('extended_post', 'extends_posts')) {
     $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
 
     // Prepend these suggestions to the stack so that they end up with _lower_

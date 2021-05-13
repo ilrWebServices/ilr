@@ -1,0 +1,7 @@
+services:
+  extended_post.manager:
+    class: Drupal\extended_post\ExtendedPostManager
+    arguments:
+      - '@entity_type.manager'
+      - '@entity_display.repository'
+      - '@module_handler'

@@ -73,12 +73,15 @@
 <div {{ attributes.addClass([
     'node--' ~ node.bundle|clean_class,
     not node.isPublished() ? 'node--unpublished',
-    view_mode ? 'node--view-mode-' ~ view_mode|clean_class
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'node--postalicious',
+    node.bundle == 'media_mention' ? 'media-mention media-mention--mini'
   ]) }}>
   {{ title_suffix }}
   <div class="post__info">
+    {% if node.bundle == 'media_mention' %}{{ content.media_outlet_name }}{% endif %}
     {{ content.field_published_date }}
     {{ content.field_authors }}
   </div>
-  <a href="{{ url }}" class="media-mention__link">{{ label }}</a>
+  <a{{ url_attributes }} href="{{ url }}" class="media-mention__link">{{ label }}</a>
 </div>

@@ -73,6 +73,7 @@
 {% set rendered_content %}
   <h3 class="cu-heading">{{ label }}</h3>
   {{ title_suffix }}
+  {% if node.bundle == 'media_mention' %}{{ content.media_outlet_logo }}{% endif %}
   {{ content.body }}
   {{ content.field_published_date }}
 {% endset %}
@@ -80,10 +81,13 @@
 {% include '@union/_card.twig' with {
   card_content: rendered_content,
   card_link_url: url,
+  card_link_alt: label,
+  link_attributes: url_attributes,
   attributes: attributes.addClass([
     'node--' ~ node.bundle|clean_class,
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'node--postalicious',
     'cu-card--' ~ view_mode|clean_class
   ])
 } only %}

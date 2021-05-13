@@ -3,11 +3,14 @@ langcode: en
 status: true
 dependencies:
   module:
+    - extended_post
     - menu_ui
 third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
+  extended_post:
+    extends_posts: 1
 name: 'Media Mention'
 type: media_mention
 description: 'Use <em>Media Mentions</em> to add links to external media content.'

@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * @file
+ * Contains extended_post.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\NodeTypeInterface;
+use Drupal\node\Entity\NodeType;
+
+/**
+ * Implements hook_help().
+ */
+function extended_post_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the extended_post module.
+    case 'help.page.extended_post':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Extends `post` node bundles to include a core set of fields and configuration&quot;') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_bundle_create().
+ */
+function extended_post_entity_bundle_create($entity_type_id, $bundle) {
+  if ($entity_type_id !== 'node') {
+    return;
+  }
+
+  $node_type = NodeType::load($bundle);
+
+  if (!$node_type->getThirdPartySetting('extended_post', 'extends_posts')) {
+    return;
+  }
+
+  // Call the post manager service to add the post fields.
+  \Drupal::service('extended_post.manager')->configureExtendedPostType($bundle);
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * - Add a 'Use as post type' setting to node bundles.
+ */
+function extended_post_form_node_type_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $node_type = $form_state->getFormObject()->getEntity();
+
+  $form['extends_posts'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Is a post type'),
+    '#description' => t('If enabled, content of this type will show in post listings.'),
+    '#default_value' => $node_type->getThirdPartySetting('extended_post', 'extends_posts'),
+    '#weight' => 1
+  ];
+
+  $form['#entity_builders'][] = 'extended_post_form_node_form_builder';
+}
+
+/**
+ * Entity builder for the node type configuration entity.
+ */
+function extended_post_form_node_form_builder($entity_type, NodeTypeInterface $node_type, &$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('extends_posts')) {
+    $node_type->setThirdPartySetting('extended_post', 'extends_posts', $form_state->getValue('extends_posts'));
+    return;
+  }
+
+  $node_type->unsetThirdPartySetting('extended_post', 'extends_posts');
+}
