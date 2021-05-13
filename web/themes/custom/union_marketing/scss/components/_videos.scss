@@ -23,24 +23,29 @@
 }
 
 .node--video-post .cu-card__media {
-  $width: 56px;
+  $width: 4em;
   position: relative;
 
-  .play {
-    position: absolute;
-    top: calc(50% - #{$width} * .5 + 1px);
-    left: calc(50% - #{$width} * .5 + 1px);
-  }
-
-  &::before {
-    content: '';
+  .cu-icon--play {
     position: absolute;
     top: calc(50% - #{$width} * .5);
     left: calc(50% - #{$width} * .5);
-    background-color: rgba(0, 0, 0, .4);
-    width: $width;
-    height: $width;
-    border-radius: $width  * .5;
+
+    .cu-icon__image {
+      margin: 0;
+      z-index: 1;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: calc(50% - #{$width} * .5);
+      left: calc(50% - #{$width} * .5);
+      background-color: rgba(0, 0, 0, .4);
+      width: $width;
+      height: $width;
+      border-radius: $width  * .5;
+    }
   }
 }
 
