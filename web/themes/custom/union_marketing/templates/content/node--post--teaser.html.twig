@@ -78,9 +78,31 @@
   {{ content.field_published_date }}
 {% endset %}
 
+{% set media_content %}
+  {% if node.bundle == 'video_post' %}
+    {% include "@union/_icon.twig" with {
+      title: '',
+      icon: 'play',
+      size: '4em',
+      label: '',
+      attributes: {
+        class: 'cu-icon',
+        role: 'button',
+        'aria-pressed': "false"
+      }
+    } only %}
+  {% endif %}
+
+  {% if node.bundle == 'video_post' and node.field_representative_image.isEmpty() %}
+  {{ content.field_video }}
+  {% else %}
+  {{ content.field_representative_image }}
+  {% endif %}
+{% endset %}
+
 {% include '@union/_card.twig' with {
   card_content: rendered_content,
-  card_media: content.field_representative_image,
+  card_media: media_content,
   card_link_url: url,
   card_link_alt: label,
   link_attributes: url_attributes,

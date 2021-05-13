@@ -1,0 +1,32 @@
+uuid: 3cd801e1-1785-4c25-8625-464edec3f83e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.video_post.body
+    - field.field.node.video_post.field_published_date
+    - field.field.node.video_post.field_representative_image
+    - field.field.node.video_post.field_video
+    - node.type.video_post
+  module:
+    - user
+id: node.video_post.default
+targetEntityType: node
+bundle: video_post
+mode: default
+content:
+  field_video:
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  field_published_date: true
+  field_representative_image: true
+  links: true
+  search_api_excerpt: true

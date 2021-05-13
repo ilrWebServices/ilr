@@ -22,6 +22,38 @@
   border: 0;
 }
 
+.node--video-post .cu-card__media {
+  $width: 4em;
+  position: relative;
+
+  .cu-icon--play {
+    position: absolute;
+    top: calc(50% - #{$width} * .5);
+    left: calc(50% - #{$width} * .5);
+
+    .cu-icon__image {
+      margin: 0;
+      z-index: 1;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: calc(50% - #{$width} * .5);
+      left: calc(50% - #{$width} * .5);
+      background-color: rgba(0, 0, 0, .4);
+      width: $width;
+      height: $width;
+      border-radius: $width  * .5;
+    }
+  }
+}
+
+.node--video-post.node--view-mode-teaser .ajax-progress-throbber {
+  position: absolute;
+  z-index: 1;
+}
+
 #block-union-marketing-75thvideobanner {
   @include full-width();
 
