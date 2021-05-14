@@ -83,7 +83,7 @@ function union_marketing_preprocess_node(&$variables) {
     $variables['url_attributes']->setAttribute('class', ['use-ajax', 'cu-link--modal']);
     $variables['url_attributes']->setAttribute('data-dialog-type', 'modal');
     $variables['url_attributes']->setAttribute('data-dialog-options', Json::encode([
-      'width' => '90%',
+      'width' => 700,
       'classes' => ['ui-dialog' => 'cu-modal'],
     ]));
   }
