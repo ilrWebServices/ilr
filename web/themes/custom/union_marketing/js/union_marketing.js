@@ -156,4 +156,22 @@
     }
   };
 
+  Drupal.behaviors.union_marketing_dialog_closer = {
+    attach: function (context, settings) {
+      if (context !== document) {
+        return;
+      }
+
+      document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('ui-widget-overlay')) {
+          const dialogs = context.querySelectorAll('.ui-dialog');
+
+          for (let dialog of dialogs) {
+            dialog.querySelector('.ui-dialog-titlebar-close').click();
+          }
+        }
+      });
+    }
+  };
+
 })(window, document, Drupal);
