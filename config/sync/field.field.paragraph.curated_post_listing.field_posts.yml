@@ -6,6 +6,9 @@ dependencies:
     - field.storage.paragraph.field_posts
     - node.type.media_mention
     - node.type.post
+    - node.type.post_document
+    - node.type.post_experience_report
+    - node.type.video_post
     - paragraphs.paragraphs_type.curated_post_listing
 id: paragraph.curated_post_listing.field_posts
 field_name: field_posts
@@ -21,10 +24,14 @@ settings:
   handler: 'default:node'
   handler_settings:
     target_bundles:
+      post_document: post_document
+      post_experience_report: post_experience_report
       media_mention: media_mention
       post: post
+      video_post: video_post
     sort:
       field: _none
+      direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: post
 field_type: entity_reference
