@@ -225,7 +225,10 @@ class PostListing extends ParagraphsBehaviorBase {
 
     // Two of the grid list styles require the posts to have images.
     if (in_array($list_style, ['grid', 'grid-featured'])) {
-      $query->condition('item.entity:node.field_representative_image', '', '<>');
+      $has_image_group = $query->orConditionGroup();
+      $has_image_group->condition('item.entity:node.field_representative_image', '', '<>');
+      $has_image_group->condition('item.entity:node.field_video', '', '<>');
+      $query->condition($has_image_group);
     }
 
     if ($limit = $paragraph->getBehaviorSetting($this->getPluginId(), 'count')) {
