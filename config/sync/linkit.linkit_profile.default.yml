@@ -21,3 +21,13 @@ matchers:
       include_unpublished: false
       substitution_type: canonical
       limit: 100
+  dc23e9b4-cd4e-4083-bf3f-05b3d89550a3:
+    uuid: dc23e9b4-cd4e-4083-bf3f-05b3d89550a3
+    id: 'entity:media'
+    weight: 0
+    settings:
+      metadata: ''
+      bundles: {  }
+      group_by_bundle: false
+      substitution_type: canonical
+      limit: 100
