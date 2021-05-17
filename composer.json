@@ -129,9 +129,6 @@
       "drupal/address": {
         "Configure visible address fields per field formatter": "https://www.drupal.org/files/issues/2019-05-23/address-visible_address_fields_per_field_formatter-2852800-23.patch"
       },
-      "drupal/dynamic_entity_reference": {
-        "entityQuery reference JOINs don't specify target_type": "https://www.drupal.org/files/issues/2020-03-19/3120952-2.patch"
-      },
       "drupal/paragraphs_previewer": {
         "Entities using layoutbuilder cannot get fields previewed": "https://gist.githubusercontent.com/a-fro/1c9b5fcf778edcc49eb39dab292cbc0c/raw/c2352a640270412d2d73232a1e5d3ca69a606726/paragraphs-preview-no-output-layout-builder.patch"
       },
