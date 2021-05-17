@@ -2072,17 +2072,17 @@
         },
         {
             "name": "drupal/better_social_sharing_buttons",
-            "version": "3.1.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/better_social_sharing_buttons.git",
-                "reference": "8.x-3.1"
+                "reference": "8.x-3.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/better_social_sharing_buttons-8.x-3.1.zip",
-                "reference": "8.x-3.1",
-                "shasum": "b314c2a7a8c0fc33a6384e9d9cabfb29b8f1c8b4"
+                "url": "https://ftp.drupal.org/files/projects/better_social_sharing_buttons-8.x-3.2.zip",
+                "reference": "8.x-3.2",
+                "shasum": "9e6ec10d1bb8c149d32fb86b31b56780ae07157e"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -2091,8 +2091,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.1",
-                    "datestamp": "1598328728",
+                    "version": "8.x-3.2",
+                    "datestamp": "1621006602",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
