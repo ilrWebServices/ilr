@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42bac16e82700dcdac289ddfb9b3324d",
+    "content-hash": "d525440354619df234683d4780612086",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3637,17 +3637,17 @@
         },
         {
             "name": "drupal/extra_field",
-            "version": "1.3.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/extra_field.git",
-                "reference": "8.x-1.3"
+                "reference": "8.x-2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/extra_field-8.x-1.3.zip",
-                "reference": "8.x-1.3",
-                "shasum": "4de68012a11c052fce8e2aa54241af6cd94ad617"
+                "url": "https://ftp.drupal.org/files/projects/extra_field-8.x-2.1.zip",
+                "reference": "8.x-2.1",
+                "shasum": "c1acf24feff92efb5537003fabc66c4738cc1481"
             },
             "require": {
                 "drupal/core": "^8 || ^9"
@@ -3655,8 +3655,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.3",
-                    "datestamp": "1605362681",
+                    "version": "8.x-2.1",
+                    "datestamp": "1619442008",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
