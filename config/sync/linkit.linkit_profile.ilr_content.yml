@@ -37,3 +37,14 @@ matchers:
       group_by_bundle: true
       substitution_type: canonical
       limit: 100
+  c74538e7-7ce4-4ab0-be78-87ac2d58118a:
+    uuid: c74538e7-7ce4-4ab0-be78-87ac2d58118a
+    id: 'entity:media'
+    weight: 0
+    settings:
+      metadata: ''
+      bundles:
+        file: file
+      group_by_bundle: false
+      substitution_type: canonical
+      limit: 50
