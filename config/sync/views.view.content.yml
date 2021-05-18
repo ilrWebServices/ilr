@@ -14,6 +14,7 @@ dependencies:
     - node.type.post_document
     - node.type.post_experience_report
     - node.type.story
+    - node.type.video_post
   module:
     - collection
     - node
@@ -539,6 +540,7 @@ display:
             page: page
             post: post
             story: story
+            video_post: video_post
           group: 1
           exposed: true
           expose:
