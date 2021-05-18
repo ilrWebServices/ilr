@@ -172,8 +172,8 @@ function union_marketing_theme_suggestions_node_alter(array &$suggestions, array
 
     // Prepend these suggestions to the stack so that they end up with _lower_
     // priority than the more specific content type ones.
-    array_unshift($suggestions, 'node__post');
     array_unshift($suggestions, 'node__post__' . $sanitized_view_mode);
+    array_unshift($suggestions, 'node__post');
   }
 }
 
