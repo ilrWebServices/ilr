@@ -6,6 +6,9 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityDisplayRepositoryInterface;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\Component\Uuid\Php as Uuid;
+use Drupal\layout_builder\Section;
+use Drupal\layout_builder\SectionComponent;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
@@ -38,6 +41,13 @@ class ExtendedPostManager {
   protected $moduleHandler;
 
   /**
+   * The UUID service.
+   *
+   * @var \Drupal\Component\Uuid\Php
+   */
+  protected $uuid;
+
+  /**
    * The node bundle.
    *
    * @var string
@@ -53,11 +63,14 @@ class ExtendedPostManager {
    *   The entity display repository service.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
+   * @param \Drupal\Component\Uuid\Php $uuid
+   *   The uuid service.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityDisplayRepositoryInterface $entity_display_repository, ModuleHandlerInterface $module_handler) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, EntityDisplayRepositoryInterface $entity_display_repository, ModuleHandlerInterface $module_handler, Uuid $uuid) {
     $this->entityTypeManager = $entity_type_manager;
     $this->entityDisplayRepository = $entity_display_repository;
     $this->moduleHandler = $module_handler;
+    $this->uuid = $uuid;
   }
 
   /**
@@ -73,6 +86,18 @@ class ExtendedPostManager {
       $this->addOrUpdateField($field_name);
       $this->configureFormDisplayComponent($field_name);
     }
+
+    // Configure the category view display layout builder sections.
+    $new_view_display = $this->entityDisplayRepository->getViewDisplay('node', $this->bundle);
+    $new_view_display->enableLayoutBuilder();
+    $new_view_display->save();
+    $new_view_display->removeAllSections();
+
+    foreach ($this->getLayoutSections() as $section) {
+      $new_view_display->appendSection($section);
+    }
+
+    $new_view_display->save();
 
     if ($this->moduleHandler->moduleExists('collection_blogs')) {
       // Load the blog collection item so we can enable this bundle too.
@@ -180,6 +205,150 @@ class ExtendedPostManager {
     ];
 
     return $field_config[$field_name];
+  }
+
+  /**
+   * Generate the "template" for layout builder sections for the new "post" type.
+   *
+   * @return array
+   *   An array of layout builder sections
+   */
+  protected function getLayoutSections() {
+    $sections = [];
+
+    $sections[] = new Section('layout_onecol', ['label' => 'Blog banner'], [
+      new SectionComponent($this->uuid->generate(), 'content', [
+        'id' => 'extra_field_block:node:' . $this->bundle . ':blog_collection',
+        'label' => 'Blog',
+        'provider' => 'layout_builder',
+        'label_display' => 0,
+        'context_mapping' => [
+          'entity' => 'layout_builder.entity',
+        ],
+      ]),
+    ]);
+
+    $sections[] = new Section('layout_cu_section', ['label' => 'Content'], [
+      (new SectionComponent($this->uuid->generate(), 'main', [
+        'id' => 'field_block:node:' . $this->bundle . ':field_components',
+        'label' => 'Post content',
+        'provider' => 'layout_builder',
+        'label_display' => 0,
+        'context_mapping' => [
+          'entity' => 'layout_builder.entity',
+        ],
+        'formatter' => [
+          'label' => 'hidden',
+          'type' => 'string',
+          'settings' => [
+            'link_to_entity' => FALSE,
+          ],
+        ],
+        'context_mapping' => [
+          'entity' => 'layout_builder.entity',
+          'view_mode' => 'view_mode',
+        ],
+      ]))->setWeight(6),
+      (new SectionComponent($this->uuid->generate(), 'main', [
+        'id' => 'field_block:node:' . $this->bundle . ':field_published_date',
+        'label' => 'Published date',
+        'provider' => 'layout_builder',
+        'label_display' => 0,
+        'context_mapping' => [
+          'entity' => 'layout_builder.entity',
+        ],
+        'formatter' => [
+          'label' => 'hidden',
+          'type' => 'datetime_default',
+          'settings' => [
+            'timezone_override' => '',
+            'format_type' => 'ilr_date',
+          ],
+        ],
+        'context_mapping' => [
+          'entity' => 'layout_builder.entity',
+          'view_mode' => 'view_mode',
+        ],
+      ]))->setWeight(4),
+      (new SectionComponent($this->uuid->generate(), 'main', [
+        'id' => 'field_block:node:' . $this->bundle . ':title',
+        'label' => 'Title',
+        'provider' => 'layout_builder',
+        'label_display' => 0,
+        'context_mapping' => [
+          'entity' => 'layout_builder.entity',
+        ],
+        'formatter' => [
+          'label' => 'hidden',
+          'type' => 'string',
+        ],
+        'context_mapping' => [
+          'entity' => 'layout_builder.entity',
+          'view_mode' => 'view_mode',
+        ],
+      ]))->setWeight(1),
+      (new SectionComponent($this->uuid->generate(), 'main', [
+        'id' => 'field_block:node:' . $this->bundle . ':field_representative_image',
+        'label' => 'Representative image',
+        'provider' => 'layout_builder',
+        'label_display' => 0,
+        'context_mapping' => [
+          'entity' => 'layout_builder.entity',
+        ],
+        'formatter' => [
+          'label' => 'hidden',
+          'type' => 'media_thumbnail',
+          'settings' => [
+            'image_style' => 'medium_3_2',
+            'image_link' => '',
+          ],
+        ],
+        'context_mapping' => [
+          'entity' => 'layout_builder.entity',
+          'view_mode' => 'view_mode',
+        ],
+      ]))->setWeight(2),
+      (new SectionComponent($this->uuid->generate(), 'main', [
+        'id' => 'extra_field_block:node:' . $this->bundle . ':blog_tags',
+        'label' => 'Blog tags',
+        'provider' => 'layout_builder',
+        'label_display' => 0,
+        'context_mapping' => [
+          'entity' => 'layout_builder.entity',
+        ],
+      ]))->setWeight(7),
+      (new SectionComponent($this->uuid->generate(), 'main', [
+        'id' => 'social_sharing_buttons_block',
+        'label' => 'Better Social Sharing buttons',
+        'provider' => 'better_social_sharing_buttons',
+        'label_display' => 0,
+        'services' => [
+          'facebook' => 'facebook',
+          'twitter' => 'twitter',
+          'email' => 'email',
+          'linkedin' => 'linkedin',
+          'whatsapp' => '0',
+          'facebook_messenger' => 0,
+          'pinterest' => 0,
+          'digg' => 0,
+          'stumbleupon' => 0,
+          'slashdot' => 0,
+          'tumblr' => 0,
+          'reddit' => 0,
+          'evernote' => 0,
+          'print' => 0,
+          'copy' => 0,
+        ],
+        'iconset' => 'social-icons--no-color',
+        'facebook_app_id' => '',
+        'print_css' => '',
+        'width' => '35px',
+        'radius' => '100%',
+        'context_mapping' => [],
+      ]))->setWeight(5),
+    ]);
+
+    return $sections;
   }
 
   /**
