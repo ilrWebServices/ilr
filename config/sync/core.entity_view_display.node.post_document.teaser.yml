@@ -1,15 +1,15 @@
-uuid: d6ecfc65-9da3-4656-85e1-45c39eb4f4fb
+uuid: 444f4ece-a438-40d9-a304-2c8f0a351568
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.video_post.body
-    - field.field.node.video_post.field_published_date
-    - field.field.node.video_post.field_representative_image
-    - field.field.node.video_post.field_video
+    - field.field.node.post_document.body
+    - field.field.node.post_document.field_document
+    - field.field.node.post_document.field_published_date
+    - field.field.node.post_document.field_representative_image
     - image.style.medium_3_2
-    - node.type.video_post
+    - node.type.post_document
   module:
     - datetime
     - layout_builder
@@ -20,22 +20,22 @@ third_party_settings:
   layout_builder:
     allow_custom: false
     enabled: false
-id: node.video_post.teaser
+id: node.post_document.teaser
 targetEntityType: node
-bundle: video_post
+bundle: post_document
 mode: teaser
 content:
   body:
-    type: text_summary_or_trimmed
-    weight: 3
-    region: content
     label: hidden
+    type: text_summary_or_trimmed
+    weight: 2
     settings:
       trim_length: 600
     third_party_settings: {  }
+    region: content
   field_published_date:
     type: datetime_default
-    weight: 2
+    weight: 1
     region: content
     label: hidden
     settings:
@@ -43,29 +43,21 @@ content:
       format_type: ilr_date
     third_party_settings: {  }
   field_representative_image:
-    type: media_thumbnail
     weight: 0
-    region: content
     label: hidden
     settings:
       image_style: medium_3_2
       image_link: ''
     third_party_settings: {  }
-  field_video:
     type: media_thumbnail
-    weight: 1
-    label: hidden
-    settings:
-      image_style: medium_3_2
-      image_link: ''
-    third_party_settings: {  }
     region: content
   links:
-    weight: 100
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
   blog_collection: true
   blog_tags: true
+  field_document: true
   search_api_excerpt: true
