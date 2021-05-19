@@ -3,6 +3,8 @@ langcode: en
 status: true
 dependencies:
   module:
+    - footnotes
+    - media
     - token_filter
 _core:
   default_config_hash: NIKBt6kw_uPhNI0qtR2DnRf7mSOgAQdx7Q94SKMjXbQ
@@ -36,3 +38,20 @@ filters:
     weight: 0
     settings:
       replace_empty: '1'
+  filter_footnotes:
+    id: filter_footnotes
+    provider: footnotes
+    status: false
+    weight: 0
+    settings:
+      footnotes_collapse: '0'
+      footnotes_html: '0'
+  media_embed:
+    id: media_embed
+    provider: media
+    status: false
+    weight: 100
+    settings:
+      default_view_mode: default
+      allowed_media_types: {  }
+      allowed_view_modes: {  }

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - footnotes
     - ilr
     - linkit
     - media
@@ -61,3 +62,11 @@ filters:
     status: true
     weight: 0
     settings: {  }
+  filter_footnotes:
+    id: filter_footnotes
+    provider: footnotes
+    status: false
+    weight: 0
+    settings:
+      footnotes_collapse: '0'
+      footnotes_html: '0'
