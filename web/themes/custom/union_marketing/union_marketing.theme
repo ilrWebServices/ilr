@@ -172,8 +172,8 @@ function union_marketing_theme_suggestions_node_alter(array &$suggestions, array
 
     // Prepend these suggestions to the stack so that they end up with _lower_
     // priority than the more specific content type ones.
-    array_unshift($suggestions, 'node__post');
     array_unshift($suggestions, 'node__post__' . $sanitized_view_mode);
+    array_unshift($suggestions, 'node__post');
   }
 }
 
@@ -209,6 +209,28 @@ function union_marketing_theme_suggestions_block_alter(array &$suggestions, arra
   if ($element['#base_plugin_id'] === 'field_block' && (strpos($element['#derivative_plugin_id'], 'categories:name') > 0 || strpos($element['#derivative_plugin_id'], 'tags:name') > 0)) {
     $suggestions[] = 'block__field_block__taxonomy_term__blog_term__name';
   }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Add some post theme suggestions to fields on post-like bundles.
+ */
+function union_marketing_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+  $entity = $variables['element']['#object'];
+
+  if (!$entity || $entity->getEntityTypeId() !== 'node') {
+    return;
+  }
+
+  if (!in_array($entity->bundle(), \Drupal::service('extended_post.manager')->getPostTypes())) {
+    return;
+  }
+
+  // Insert the suggestion after the field name (e.g. `field__node__title`), but
+  // before the bundle name (e.g. `field__node__title__video_post`).
+  // @see layout_builder_theme_suggestions_field_alter().
+  array_splice($suggestions, -2, 0, ['field__node__' . $variables['element']['#field_name'] . '__post']);
 }
 
 /**

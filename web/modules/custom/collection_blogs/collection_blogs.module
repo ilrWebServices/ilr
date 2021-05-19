@@ -97,23 +97,19 @@ function collection_blogs_entity_extra_field_info() {
     }
   }
 
-  $node_types = \Drupal::service('entity_type.bundle.info')->getBundleInfo('node');
+  foreach (\Drupal::service('extended_post.manager')->getPostTypes() as $post_type) {
+    $extra['node'][$post_type]['display']['blog_collection'] = [
+      'label' => t('Blog'),
+      'description' => t('This is a computed reference.'),
+      'weight' => -1,
+      'visible' => TRUE,
+    ];
 
-  foreach (array_keys($node_types) as $node_type) {
-    if (strpos($node_type, 'post') === 0) {
-      $extra['node'][$node_type]['display']['blog_collection'] = [
-        'label' => t('Blog'),
-        'description' => t('This is a computed reference.'),
-        'weight' => -1,
-        'visible' => TRUE,
-      ];
-
-      $extra['node'][$node_type]['display']['blog_tags'] = [
-        'label' => t('Blog tags'),
-        'weight' => 100,
-        'visible' => TRUE,
-      ];
-    }
+    $extra['node'][$post_type]['display']['blog_tags'] = [
+      'label' => t('Blog tags'),
+      'weight' => 100,
+      'visible' => TRUE,
+    ];
   }
 
   return $extra;

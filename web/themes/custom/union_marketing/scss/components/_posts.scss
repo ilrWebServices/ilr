@@ -1,5 +1,4 @@
-.article--post,
-.article--post-experience-report {
+.article--postalicious {
   .cu-section {
     @include breakpoint(sm) {
       display: grid;
@@ -15,19 +14,19 @@
         grid-column: 1;
       }
 
-      .block-field-block--node--post--field-representative-image {
+      div[class$='field-representative-image'] {
         grid-row: 1/4;
         grid-column: 2;
       }
 
-      .block-field-block--node--post--field-components,
+      div[class$='field-components'],
       .block-field-block--node--post--field-blog-tags {
         display: block;
         grid-column: 1/-1;
         margin-top: var(--cu-component-margin-bottom, var(--cu-vr2));
       }
 
-      .block-field-block--node--post--field-published-date {
+      div[class$='field-published-date'] {
         margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr2));
       }
 
@@ -41,6 +40,23 @@
 
   .persona__name {
     margin-bottom: 0;
+  }
+}
+
+// Posts in modals
+.cu-modal .article--postalicious {
+  .cu-section {
+    display: block;
+    margin: 0;
+  }
+
+  .cu-banner--page,
+  .field--field-blog-tags {
+    display: none;
+  }
+
+  .collection > div {
+    margin: 0;
   }
 }
 
