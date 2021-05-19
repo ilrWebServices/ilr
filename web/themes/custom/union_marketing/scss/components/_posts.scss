@@ -43,6 +43,23 @@
   }
 }
 
+// Posts in modals
+.cu-modal .article--postalicious {
+  .cu-section {
+    display: block;
+    margin: 0;
+  }
+
+  .cu-banner--page,
+  .field--field-blog-tags {
+    display: none;
+  }
+
+  .collection > div {
+    margin: 0;
+  }
+}
+
 .collection-listing .field-type--entity-reference {
   display: contents;
 }

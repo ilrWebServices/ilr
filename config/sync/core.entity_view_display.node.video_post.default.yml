@@ -9,12 +9,82 @@ dependencies:
     - field.field.node.video_post.field_video
     - node.type.video_post
   module:
+    - layout_builder
+    - layout_discovery
+    - union_organizer
     - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: 'Blog banner'
+        components:
+          a380457b-c9d4-4aee-bb7e-9d37fd9d8fcf:
+            uuid: a380457b-c9d4-4aee-bb7e-9d37fd9d8fcf
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:node:video_post:blog_collection'
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+        components:
+          87325710-ea25-4ecb-8549-8178f044b30d:
+            uuid: 87325710-ea25-4ecb-8549-8178f044b30d
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'field_block:node:video_post:field_video'
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                  link: false
+                third_party_settings: {  }
+            additional: {  }
+            weight: 0
+          3dea3c17-17e1-4c6d-a254-1998b6fb9324:
+            uuid: 3dea3c17-17e1-4c6d-a254-1998b6fb9324
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:node:video_post:blog_tags'
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
 id: node.video_post.default
 targetEntityType: node
 bundle: video_post
 mode: default
 content:
+  blog_collection:
+    weight: -1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  blog_tags:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   field_video:
     type: entity_reference_entity_view
     weight: 0
