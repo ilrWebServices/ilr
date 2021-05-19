@@ -127,6 +127,11 @@ function collection_subsites_form_collection_new_node_form_alter(&$form, FormSta
     '#open' => TRUE,
     '#tree' => TRUE,
     '#attributes' => ['class' => ['menu-link-form']],
+    '#states' => [
+      'visible' => [
+        'input[name="bundle"]' => ['value' => 'page'],
+      ],
+    ],
   ];
   $form['collection_subsite_menu']['enabled'] = [
     '#type' => 'checkbox',
