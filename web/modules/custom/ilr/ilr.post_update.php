@@ -782,3 +782,21 @@ function ilr_post_update_message_blocks(&$sandbox) {
   $dismissible_block->body->value = '<h2>Return to in-person instruction</h2><p>The ILR School will follow all required safety protocols in place at the time of each scheduled in-person session. If we are unable to deliver an in-person session due to safety concerns, we will offer a virtual alternative or reschedule the session for a later date. Our standard participant cancellation/refund policy will apply.</p>';
   $dismissible_block->save();
 }
+
+/**
+ * Switch rich_text body field formatter from basic_formatting to
+ * basic_formatting_with_media.
+ */
+function ilr_post_update_fix_rich_text_format(&$sandbox) {
+  $paragraph_storage = \Drupal::service('entity_type.manager')->getStorage('paragraph');
+  $query = $paragraph_storage->getQuery();
+  $query->condition('type', 'rich_text',);
+  $query->condition('field_body.format', 'basic_formatting');
+  $relevant_paragraph_ids = $query->execute();
+  $paragraphs = $paragraph_storage->loadMultiple($relevant_paragraph_ids);
+
+  foreach ($paragraphs as $paragraph) {
+    $paragraph->field_body->format = 'basic_formatting_with_media';
+    $paragraph->save();
+  }
+}
