@@ -1112,3 +1112,26 @@ function ilr_entity_field_access_alter(array &$grants, array $context) {
     }
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function ilr_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'editor_link_dialog' && isset($form['attributes']['media_library'])) {
+    $form['attributes']['media_library']['#value'] = t('Document Library');
+  }
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function ilr_module_implements_alter(&$implementations, $hook) {
+  // Run ilr_form_editor_link_dialog_alter() after
+  // linkit_media_library_form_editor_link_dialog_alter() so we can alter the
+  // 'Media Library' button.
+  if ($hook === 'form_alter') {
+    $group = $implementations['ilr'];
+    unset($implementations['ilr']);
+    $implementations['ilr'] = $group;
+  }
+}
