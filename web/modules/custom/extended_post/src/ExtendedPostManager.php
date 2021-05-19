@@ -87,17 +87,7 @@ class ExtendedPostManager {
       $this->configureFormDisplayComponent($field_name);
     }
 
-    // Configure the category view display layout builder sections.
-    $new_view_display = $this->entityDisplayRepository->getViewDisplay('node', $this->bundle);
-    $new_view_display->enableLayoutBuilder();
-    $new_view_display->save();
-    $new_view_display->removeAllSections();
-
-    foreach ($this->getLayoutSections() as $section) {
-      $new_view_display->appendSection($section);
-    }
-
-    $new_view_display->save();
+    $this->configureViewDisplays();
 
     if ($this->moduleHandler->moduleExists('collection_blogs')) {
       // Load the blog collection item so we can enable this bundle too.
@@ -205,6 +195,36 @@ class ExtendedPostManager {
     ];
 
     return $field_config[$field_name];
+  }
+
+  /**
+   * Configure default and teaser view displays for the new bundle, based
+   * largely on how posts are configured.
+   */
+  protected function configureViewDisplays() {
+    /** @var \Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay $default_view_display */
+    $default_view_display = $this->entityDisplayRepository->getViewDisplay('node', $this->bundle);
+    $default_view_display->enableLayoutBuilder();
+    $default_view_display->save();
+    $default_view_display->removeAllSections();
+
+    foreach ($this->getLayoutSections() as $section) {
+      $default_view_display->appendSection($section);
+    }
+
+    $default_view_display->save();
+
+    // Configure the teaser view display based on the current state of posts.
+    $post_teaser_display = $this->entityDisplayRepository->getViewDisplay('node', 'post', 'teaser');
+    $new_teaser_display = $this->entityDisplayRepository->getViewDisplay('node', $this->bundle, 'teaser');
+    $new_teaser_display->set('content', $post_teaser_display->get('content'));
+    $new_teaser_display->set('hidden', [
+      'blog_collection' => TRUE,
+      'blog_tags' => TRUE,
+      'field_components' => TRUE,
+      'search_api_excerpt' => TRUE,
+    ]);
+    $new_teaser_display->save();
   }
 
   /**
