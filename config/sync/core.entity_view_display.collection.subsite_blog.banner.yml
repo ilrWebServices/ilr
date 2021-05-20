@@ -90,16 +90,6 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 3
-          a0d4d37d-d161-4936-8445-ea699f4cdbf2:
-            uuid: a0d4d37d-d161-4936-8445-ea699f4cdbf2
-            region: banner
-            configuration:
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              id: 'extra_field_block:collection:subsite_blog:extra_field_ilr_section_navigation'
-            additional: {  }
-            weight: 4
         third_party_settings: {  }
 id: collection.subsite_blog.banner
 targetEntityType: collection
