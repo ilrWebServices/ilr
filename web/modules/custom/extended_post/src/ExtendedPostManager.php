@@ -97,6 +97,13 @@ class ExtendedPostManager {
       $blog_item->set('allowed_bundles', $allowed_bundles);
       $blog_item->save();
     }
+
+    // Add permissions to Editor role.
+    user_role_grant_permissions('editor', [
+      "create $bundle content",
+      "delete own $bundle content",
+      "edit own $bundle content",
+    ]);
   }
 
   /**
