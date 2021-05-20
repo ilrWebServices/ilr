@@ -70,12 +70,12 @@ function union_marketing_preprocess_html(&$variables) {
 function union_marketing_preprocess_node(&$variables) {
   $variables['url_attributes'] = new Attribute();
 
-  if ($variables['node']->bundle() === 'post_document') {
+  if ($variables['node']->bundle() === 'post_document' && !$variables['node']->field_document->isEmpty()) {
     $variables['url'] = $variables['node']->field_document->entity->field_media_file->entity->createFileUrl();
     $variables['url_attributes']->setAttribute('target', '_blank');
   }
 
-  if ($variables['node']->bundle() === 'media_mention') {
+  if ($variables['node']->bundle() === 'media_mention' && !$variables['node']->field_external_link->isEmpty()) {
     $variables['url'] = $variables['node']->field_external_link->first()->getUrl()->toString();
   }
 
