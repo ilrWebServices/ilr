@@ -94,7 +94,7 @@ function collection_item_path_form_collection_item_list_alter(&$form, FormStateI
  * Prepare the row to be modified if the collection item is not canonical.
  */
 function collection_item_path_views_pre_render(ViewExecutable $view) {
-  if (array_key_exists('collection_item', $view->getBaseTables())) {
+  if (array_key_exists('collection_item_field_data', $view->getBaseTables())) {
     foreach($view->result as $row) {
       if ($row->_entity instanceof CollectionItem && $row->_entity->item->entity instanceof ContentEntityInterface) {
         $row->collection_item_link = !$row->_entity->isCanonical();
