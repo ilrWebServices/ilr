@@ -7,6 +7,7 @@
 
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\ilr\FieldStorageDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
@@ -1115,6 +1116,26 @@ function ilr_entity_field_access_alter(array &$grants, array $context) {
     if ($context['items']->getEntity()->getOwnerId() === $context['account']->id()) {
       $grants[':default'] = AccessResult::allowedIfHasPermission($context['account'], 'publish own content');
     }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_access().
+ *
+ * Prevent users from deleting config entities in collections. These are always
+ * added programmatically, so they should also be removed programmatically. Also
+ * check permissions for editing collected config entities.
+ */
+function ilr_collection_item_access(EntityInterface $entity, $op, AccountInterface $account) {
+  if ($entity->item->entity instanceof ContentEntityInterface) {
+    return AccessResult::neutral();
+  }
+
+  if ($op === 'update') {
+    return AccessResult::forbiddenIf(!$account->hasPermission('administer collections'))->cachePerPermissions();
+  }
+  elseif ($op === 'delete') {
+    return AccessResult::forbidden();
   }
 }
 
