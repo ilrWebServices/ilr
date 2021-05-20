@@ -1,0 +1,7 @@
+name: 'Collection Content Permissions'
+type: module
+description: 'Adds permissions that bridge content entities with the collection module ecosystem'
+core_version_requirement: ^8 || ^9
+package: 'Collection'
+dependencies:
+  - collection
