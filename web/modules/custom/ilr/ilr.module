@@ -1121,19 +1121,20 @@ function ilr_entity_field_access_alter(array &$grants, array $context) {
 
 /**
  * Implements hook_ENTITY_TYPE_access().
- *
- * Prevent users from deleting config entities in collections. These are always
- * added programmatically, so they should also be removed programmatically. Also
- * check permissions for editing collected config entities.
  */
 function ilr_collection_item_access(EntityInterface $entity, $op, AccountInterface $account) {
   if ($entity->item->entity instanceof ContentEntityInterface) {
     return AccessResult::neutral();
   }
 
+  // Prevent editing of collection items that collect config entities unless the
+  // user can administer collections.
   if ($op === 'update') {
     return AccessResult::forbiddenIf(!$account->hasPermission('administer collections'))->cachePerPermissions();
   }
+  // Prevent all users from deleting collection items that collect config
+  // entities. These are always added programmatically, so they should also be
+  // removed programmatically.
   elseif ($op === 'delete') {
     return AccessResult::forbidden();
   }
