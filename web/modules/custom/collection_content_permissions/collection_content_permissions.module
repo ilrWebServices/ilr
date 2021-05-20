@@ -1,0 +1,76 @@
+<?php
+
+use Drupal\Core\Config\Entity\ConfigEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\collection_content_permissions\CollectionOwnerHelper;
+
+/**
+ * @file
+ * Contains collection_content_permissions.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function collection_content_permissions_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the collection_content_permissions module.
+    case 'help.page.collection_content_permissions':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Adds permissions that bridge content entities with the collection module ecosystem') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_field_access_alter().
+ *
+ * Add grant access for content owners with 'publish own content` permission.
+ */
+function collection_content_permissions_entity_field_access_alter(array &$grants, array $context) {
+  if ($context['field_definition']->getTargetEntityTypeId() === 'node' && $context['field_definition']->getName() === 'status' && $context['operation'] === 'edit') {
+    if ($context['account']->hasPermission('administer nodes')) {
+      return;
+    }
+
+    $collection_items = \Drupal::service('collection.content_manager')->getCollectionItemsForEntity($context['items']->getEntity(), FALSE);
+    $owner_helper = new CollectionOwnerHelper();
+
+    foreach ($collection_items as $collection_item) {
+      if ($collection_item->isCanonical() && $owner_helper->isOwner($collection_item->collection->entity, $context['account'])) {
+        $grants[':default'] = AccessResult::allowedIfHasPermission($context['account'], 'override status for canonical content in own collections');
+        return;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_access().
+ *
+ * Check whether there is an editable canonical collection item for this content
+ * entity. If one is found, then check the custom permission.
+ */
+function collection_content_permissions_entity_access(EntityInterface $entity, $op, AccountInterface $account) {
+  if ($op !== 'update' || $entity instanceof ConfigEntityInterface) {
+    return;
+  }
+
+  $collection_items = \Drupal::service('collection.content_manager')->getCollectionItemsForEntity($entity, FALSE);
+  $owner_helper = new CollectionOwnerHelper();
+
+  foreach ($collection_items as $collection_item) {
+    if ($collection_item->isCanonical() && $owner_helper->isOwner($collection_item->collection->entity, $account)) {
+      return AccessResult::allowedIfHasPermission($account, 'edit any canonical content in own collections');
+    }
+  }
+
+  return AccessResult::neutral();
+}
