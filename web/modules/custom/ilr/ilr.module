@@ -572,6 +572,11 @@ function ilr_taxonomy_term_presave(EntityInterface $entity) {
       ],
     ]);
   }
+
+  // Automatically create a new revision since there is no UI.
+  // @see https://www.drupal.org/project/drupal/issues/2936995
+  $entity->setNewRevision(TRUE);
+  $entity->setRevisionUserId(\Drupal::currentUser()->id());
 }
 
 /**
