@@ -6,6 +6,8 @@ dependencies:
     - field.storage.node.field_components
     - node.type.post
     - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.media_deck
+    - paragraphs.paragraphs_type.picture_in_picture
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.video
   module:
@@ -25,32 +27,70 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      image: image
       rich_text: rich_text
+      image: image
       video: video
+      media_deck: media_deck
+      picture_in_picture: picture_in_picture
     target_bundles_drag_drop:
+      collection_listing:
+        weight: 0
+        enabled: false
+      collection_listing_publication:
+        weight: 0
+        enabled: false
+      curated_course_listing:
+        weight: 0
+        enabled: false
+      curated_post_listing:
+        weight: 0
+        enabled: false
+      deck:
+        weight: 0
+        enabled: false
+      event_listing:
+        weight: 0
+        enabled: false
       form:
-        weight: 8
+        weight: 0
         enabled: false
       image:
         enabled: true
-        weight: 9
-      person:
-        weight: 9
+        weight: -9
+      instagram_listing:
+        weight: 0
         enabled: false
+      media_deck:
+        enabled: true
+        weight: -7
+      people_listing:
+        weight: 0
+        enabled: false
+      person:
+        weight: 0
+        enabled: false
+      picture_in_picture:
+        enabled: true
+        weight: -6
       promo:
-        weight: 10
+        weight: 0
         enabled: false
       rich_text:
         enabled: true
-        weight: 11
+        weight: -10
       section:
-        weight: 12
+        weight: 0
+        enabled: false
+      section_navigation:
+        weight: 0
+        enabled: false
+      simple_collection_listing:
+        weight: 0
         enabled: false
       testimonial:
-        weight: 13
+        weight: 0
         enabled: false
       video:
         enabled: true
-        weight: 14
+        weight: -8
 field_type: entity_reference_revisions
