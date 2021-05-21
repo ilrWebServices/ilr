@@ -4,6 +4,7 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\collection_content_permissions\CollectionOwnerHelper;
 
 /**
@@ -54,21 +55,35 @@ function collection_content_permissions_entity_field_access_alter(array &$grants
 
 /**
  * Implements hook_entity_access().
- *
- * Check whether there is an editable canonical collection item for this content
- * entity. If one is found, then check the custom permission.
  */
 function collection_content_permissions_entity_access(EntityInterface $entity, $op, AccountInterface $account) {
-  if ($op !== 'update' || $entity instanceof ConfigEntityInterface) {
+  if ($entity instanceof ConfigEntityInterface) {
+    return;
+  }
+
+  if (!in_array($op, ['view', 'update'])) {
     return;
   }
 
   $collection_items = \Drupal::service('collection.content_manager')->getCollectionItemsForEntity($entity, FALSE);
   $owner_helper = new CollectionOwnerHelper();
 
-  foreach ($collection_items as $collection_item) {
-    if ($collection_item->isCanonical() && $owner_helper->isOwner($collection_item->collection->entity, $account)) {
-      return AccessResult::allowedIfHasPermission($account, 'edit any canonical content in own collections');
+  // Allow view access to unpublished content collected canonically in
+  // collections this account owns (if the account has permission).
+  if ($op === 'view' && $entity instanceof EntityPublishedInterface && !$entity->isPublished()) {
+    foreach ($collection_items as $collection_item) {
+      if ($collection_item->isCanonical() && $owner_helper->isOwner($collection_item->collection->entity, $account)) {
+        return AccessResult::allowedIfHasPermission($account, 'view any unpublished canonical content in own collections');
+      }
+    }
+  }
+  // Allow edit access to content collected canonically in collections this
+  // account owns (if the account has permission).
+  elseif ($op === 'update') {
+    foreach ($collection_items as $collection_item) {
+      if ($collection_item->isCanonical() && $owner_helper->isOwner($collection_item->collection->entity, $account)) {
+        return AccessResult::allowedIfHasPermission($account, 'edit any canonical content in own collections');
+      }
     }
   }
 
