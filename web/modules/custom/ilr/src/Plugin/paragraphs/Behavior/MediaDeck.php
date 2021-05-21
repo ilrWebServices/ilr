@@ -156,7 +156,7 @@ class MediaDeck extends ParagraphsBehaviorBase {
     $deck_style = $paragraph->getBehaviorSetting($this->getPluginId(), 'deck_style') ?? $this->defaultConfiguration()['deck_style'];
 
     if ($deck_style === 'portrait_left') {
-      $classes = 'paragraph--type--media-deck--portrait-left';
+      $classes = 'cu-component--media-deck--portrait-left';
     }
 
     return $classes;
