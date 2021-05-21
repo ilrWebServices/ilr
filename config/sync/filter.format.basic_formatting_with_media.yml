@@ -11,6 +11,7 @@ dependencies:
     - linkit
     - media
     - token_filter
+    - union_organizer
 name: 'Basic Formatting with Media'
 format: basic_formatting_with_media
 weight: 0
@@ -120,3 +121,9 @@ filters:
     settings:
       footnotes_collapse: '0'
       footnotes_html: '1'
+  filter_union_components:
+    id: filter_union_components
+    provider: union_organizer
+    status: true
+    weight: 0
+    settings: {  }
