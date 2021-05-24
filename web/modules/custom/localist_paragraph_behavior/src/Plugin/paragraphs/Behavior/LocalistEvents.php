@@ -93,6 +93,16 @@ class LocalistEvents extends ParagraphsBehaviorBase {
     // @todo consider using double underscore template suggestions here if
     // different list styles need to be supported.
     foreach ($data['events'] as $item) {
+      // If there is an image for this event, run it through an image style.
+      if (!empty($item['event']['photo_url'])) {
+        $item['event']['ilr_image'] = [
+          '#theme' => 'imagecache_external__localist_event',
+          '#uri' => $item['event']['photo_url'],
+          '#style_name' => 'medium_3_2',
+          '#alt' => 'Localist event image for ' . $item['event']['title'],
+        ];
+      }
+
       $items[] = [
         '#theme' => 'localist_event',
         '#event' => $item['event'],

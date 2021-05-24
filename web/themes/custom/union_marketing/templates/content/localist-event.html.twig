@@ -27,15 +27,8 @@
   </div>
 {% endset %}
 
-{% set rendered_media %}
-  {% include '@union/_image.twig' with {
-    img_src: event.photo_url,
-    img_alt: "Photo for " ~ event.title,
-  } only %}
-{% endset %}
-
 {% include '@union/_card.twig' with {
   card_content: rendered_content,
-  card_media: rendered_media,
+  card_media: event.ilr_image,
   card_link_url: event.localist_url
 } only %}
