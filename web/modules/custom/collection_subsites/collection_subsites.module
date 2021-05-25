@@ -271,6 +271,10 @@ function collection_subsites_form_node_form_alter(&$form, FormStateInterface $fo
   $form_object = $form_state->getFormObject();
   $node = $form_object->getEntity();
 
+  if ($node->bundle() !== 'page') {
+    return;
+  }
+
   // Update the menu settings for nodes in collections with menus. This allows
   // the menu settings to appear even if the menu ThirdPartySettings have not
   // been configured for this bundle.
