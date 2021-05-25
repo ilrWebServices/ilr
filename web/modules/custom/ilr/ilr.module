@@ -666,43 +666,6 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
       $form['uid']['widget'][0]['target_id']['#title'] = t('Created by');
       $form['created']['widget'][0]['value']['#title'] = t('Created on');
     }
-
-    // Update the menu settings for nodes in collections with menus. This allows
-    // the menu settings to appear even if the menu ThirdPartySettings have not
-    // been configured for this bundle.
-    $collections = [];
-    $collections = \Drupal::service('collection.content_manager')->getCollectionsForEntity($node);
-
-    if (empty($collections)) {
-      return;
-    }
-
-    foreach ($collections as $collection) {
-      $collection_menus = [];
-
-      // Check to see if the collection has one or more menus in it.
-      foreach ($collection->findItems('menu') as $collection_item_menu) {
-        $collection_menu = $collection_item_menu->item->entity;
-        $collection_menus[$collection_menu->id()] = $collection_menu;
-      }
-
-      if (empty($collection_menus)) {
-        return;
-      }
-
-      foreach ($collection_menus as $collection_menu_id => $collection_menu) {
-        // Load the entity type config for the node.
-        $type = $form_object->getEntity()->type->entity;
-        $available_menus = $type->getThirdPartySetting('menu_ui', 'available_menus');
-
-        // Check if the type can be added to the main menu, but not the
-        // collection menu. Override it if so.
-        if (in_array('main', $available_menus) && !in_array($collection_menu->id(), $available_menus)) {
-          $available_menus[] = $collection_menu->id();
-          $type->setThirdPartySetting('menu_ui', 'available_menus', $available_menus);
-        }
-      }
-    }
   }
 }
 
