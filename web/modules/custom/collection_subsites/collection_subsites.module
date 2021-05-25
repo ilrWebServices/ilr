@@ -309,7 +309,7 @@ function collection_subsites_form_node_form_alter(&$form, FormStateInterface $fo
       // Check if the type can be added to the main menu, but not the
       // collection menu. Override it if so.
       if (in_array('main', $available_menus) && !in_array($collection_menu->id(), $available_menus)) {
-        $available_menus[] = $collection_menu->id();
+        $available_menus = [$collection_menu->id()];
         $type->setThirdPartySetting('menu_ui', 'available_menus', $available_menus);
       }
     }
