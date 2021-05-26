@@ -211,6 +211,15 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
         }
 
         $condition_config = $condition->getConfiguration();
+
+        // Leave negate conditions alone. They're used, for example if a subsite
+        // has a blog collection in it as well, such as the Worker Institute.
+        // @todo - Update collection module event to include the original value
+        // for comparison.
+        if ($condition_config['negate'] === TRUE) {
+          return;
+        }
+
         $path_changed = $condition_config['pages'] !== $collection->toUrl()->toString() . '*';
         $condition_config['pages'] = $collection->toUrl()->toString() . '*';
         $condition->setConfiguration($condition_config);
