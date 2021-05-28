@@ -7,8 +7,9 @@
  */
 #}
 {% set video_media %}
+{# commencement_override is passed in from the desktop version. #}
 {% include '@union/_video.twig' with {
-    src: 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_75_202008_500.mp4',
+    src: commencement_override ? 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_75_congrats_202105_500.mp4' : 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_75_202008_500.mp4',
     poster: 'https://www.ilr.cornell.edu/sites/default/files/poster-mobile.jpg'
   } only %}
 {% endset %}
