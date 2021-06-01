@@ -6,7 +6,6 @@
 
 .cu-banner--page {
   margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr2));
-  padding-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
 
   @include breakpoint(md) {
     margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
