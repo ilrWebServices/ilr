@@ -61,7 +61,6 @@ class SectionNavigation extends ExtraFieldDisplayBase implements ContainerFactor
     if ($links) {
       $elements['ilr_section_navigation'] = [
         '#theme' => 'item_list__section_navigation',
-        '#title' => $this->t('Explore'),
         '#items' => $links,
         '#attributes' => ['class' => 'section-navigation'],
         '#context' => ['collection' => $entity],
