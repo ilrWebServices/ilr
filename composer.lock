@@ -5338,43 +5338,52 @@
         },
         {
             "name": "drupal/salesforce",
-            "version": "4.1.0",
+            "version": "4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/salesforce.git",
-                "reference": "8.x-4.1"
+                "reference": "8.x-4.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/salesforce-8.x-4.1.zip",
-                "reference": "8.x-4.1",
-                "shasum": "498e359586e196402e5c74fe3da4f2ce19aba732"
+                "url": "https://ftp.drupal.org/files/projects/salesforce-8.x-4.2.zip",
+                "reference": "8.x-4.2",
+                "shasum": "93e8094e9d4c57a0ea9afd9e6bfb2ef18c47d09b"
             },
             "require": {
-                "consolidation/output-formatters": "^3.2.0",
+                "consolidation/output-formatters": "^3.2.0 || ^4.1",
                 "drupal/core": "^8.7.7 || ^9",
                 "ext-json": "*",
                 "lusitanian/oauth": "^0.8.11"
             },
             "require-dev": {
-                "drupal/dynamic_entity_reference": "^2.0.0-alpha10",
+                "drupal/address": "^1.8",
+                "drupal/dynamic_entity_reference": "^1.9 || ^2.0",
                 "drupal/key": "^1.14",
                 "drupal/salesforce_mapping": "*",
                 "drupal/salesforce_push": "*",
-                "drupal/typed_data": "^1.0.0-alpha5",
-                "drupal/webform": "^5.9.0-beta1"
+                "drupal/typed_data": "^1.0-alpha5",
+                "drupal/webform": "^5.9.0-beta1",
+                "ext-soap": "*",
+                "firebase/php-jwt": "^5.0",
+                "lusitanian/oauth": "^0.8.11",
+                "messageagency/force.com-toolkit-for-php": "^1.0.1"
             },
             "suggest": {
+                "consolidation/output-formatters": "Required for drush 10 commands.",
+                "drupal/address": "Required for salesforce_address",
                 "drupal/dynamic_entity_reference": "Required for salesforce_mapping.",
                 "drupal/key": "Required to use salesforce_jwt, recommended auth provider.",
                 "drupal/typed_data": "Required for salesforce_mapping.",
-                "firebase/php-jwt": "Required for salesforce_jwt, recommended auth provider."
+                "firebase/php-jwt": "Required for salesforce_jwt, recommended auth provider.",
+                "lusitanian/oauth": "Required for salesforce_jwt, recommended auth provider.",
+                "messageagency/force.com-toolkit-for-php": "Required for salesforce_soap."
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-4.1",
-                    "datestamp": "1591805945",
+                    "version": "8.x-4.2",
+                    "datestamp": "1616088748",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
