@@ -915,6 +915,8 @@ function ilr_form_collection_form_alter(&$form, FormStateInterface $form_state) 
     }
   }
 
+  // Enable new revisions by default.
+  $form['revision']['#default_value'] = TRUE;
 }
 
 /**
