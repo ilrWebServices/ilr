@@ -269,32 +269,6 @@ Union Components are integrated into the theme using the [Union Organizer][] mod
 
 If you set `LIVERELOAD=1` in your `.env` file and reload your browser while `npm start` is running, changes to stylesheets will reload automatically in your browser.
 
-### Redis Caching
-
-As of December 2019, the `redis` module is included but not activated. It may be enabled on the production host at some point.
-
-To test on local development sites, ensure that the `phpredis` PHP extension is installed. If using PHP from homebrew, that can be done like so:
-
-```
-$ pecl install redis
-$ vi /usr/local/etc/php/7.2/php.ini  # Remove the line added to the top of the file.
-$ echo -e "[redis]\nextension=\"redis.so\"" > /usr/local/etc/php/7.2/conf.d/ext-redis.ini
-$ brew services restart php@7.2
-```
-
-Then enable the module (`drush en redis`) and add the following to `settings.local.php`:
-
-```
-// Redis for caching.
-if (extension_loaded('redis')) {
-  $settings['cache_prefix']['default'] = 'ilr';
-  $settings['redis.connection']['interface'] = 'PhpRedis';
-  $settings['redis.connection']['host'] = 'localhost';
-  $settings['cache']['default'] = 'cache.backend.redis';
-  // $settings['container_yamls'][] = 'modules/contrib/redis/example.services.yml';
-}
-```
-
 
 [Composer template for Drupal projects]: https://github.com/drupal-composer/drupal-project
 [ImageMagick extension]: https://www.php.net/manual/en/book.imagick.php
