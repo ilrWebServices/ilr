@@ -48,11 +48,21 @@ function union_marketing_preprocess_html(&$variables) {
     }
   }
 
+  // Loop over the path entities and check whether the nearest path entity is set to suppress dates.
   if ($path_entities = \Drupal::service('path_alias.entities')->getPathAliasEntities()) {
-    $root_path_entity = reset($path_entities);
-
-    if ($root_path_entity instanceof FieldableEntityInterface &&$root_path_entity->hasField('field_suppress_date_display') && $root_path_entity->field_suppress_date_display->value) {
-      $variables['attributes']['class'][] = 'content--evergreen';
+    foreach ($path_entities as $entity) {
+      if ($entity instanceof FieldableEntityInterface && $entity->hasField('field_suppress_date_display')) {
+        if ($entity->field_suppress_date_display->value) {
+          $variables['attributes']['class'][] = 'content--evergreen';
+        }
+        // If there is another collection nested more deeply that has date
+        // displayed, we have to remove the evergreen class.
+        else {
+          if (($key = array_search('content--evergreen', $variables['attributes']['class'])) !== false) {
+            unset($variables['attributes']['class'][$key]);
+          }
+        }
+      }
     }
   }
 
