@@ -35,35 +35,20 @@ function union_marketing_preprocess_html(&$variables) {
     $entity_type = $variables['root_path'];
 
     if ($entity_type && $entity = \Drupal::routeMatch()->getParameter($entity_type)) {
-
-      if (!$entity instanceof FieldableEntityInterface) {
-        return;
-      }
-
       $variables['attributes']['class'][] = $entity_type . '--' . str_replace('_', '-', $entity->bundle());
-
-      if ($entity->hasField('field_suppress_date_display') && $entity->field_suppress_date_display->value) {
-        $variables['attributes']['class'][] = 'content--evergreen';
-      }
     }
   }
 
-  // Loop over the path entities and check whether the nearest path entity is set to suppress dates.
-  if ($path_entities = \Drupal::service('path_alias.entities')->getPathAliasEntities()) {
-    foreach ($path_entities as $entity) {
-      if ($entity instanceof FieldableEntityInterface && $entity->hasField('field_suppress_date_display')) {
-        if ($entity->field_suppress_date_display->value) {
-          $variables['attributes']['class'][] = 'content--evergreen';
-        }
-        // If there is another collection nested more deeply that has date
-        // displayed, we have to remove the evergreen class.
-        else {
-          if (($key = array_search('content--evergreen', $variables['attributes']['class'])) !== false) {
-            unset($variables['attributes']['class'][$key]);
-          }
-        }
-      }
+  // Check whether the nearest path entity is set to suppress dates and add a body class if so.
+  $evergreenable_entity = FALSE;
+  foreach (\Drupal::service('path_alias.entities')->getPathAliasEntities() as $path_entity) {
+    if ($path_entity instanceof FieldableEntityInterface && $path_entity->hasField('field_suppress_date_display')) {
+      $evergreenable_entity = $path_entity;
     }
+  }
+
+  if ($evergreenable_entity && $evergreenable_entity->field_suppress_date_display->value) {
+    $variables['attributes']['class'][] = 'content--evergreen';
   }
 
   $group_info = \Drupal::service('block_visibility_groups_admin.lister');
