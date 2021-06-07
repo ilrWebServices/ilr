@@ -474,6 +474,34 @@ function ilr_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
 }
 
 /**
+ * Implements hook_entity_type_alter().
+ */
+function ilr_entity_type_alter(array &$entity_types) {
+  // Unset the edit-form link template for vocabularies and replace with a uri
+  // callback. This is necessary for the uri callbacks to
+  // work. See ConfigEntityBase::toUrl().
+  $entity_types['taxonomy_vocabulary']->setUriCallback('ilr_vocabulary_uri');
+  $links = $entity_types['taxonomy_vocabulary']->get('links');
+  unset($links['edit-form']);
+  $entity_types['taxonomy_vocabulary']->set('links', $links);
+
+  // Use our custom vocabulary route provider to add back the edit-form route.
+  $providers = $entity_types['taxonomy_vocabulary']->getRouteProviderClasses() ?: [];
+
+  if (isset($providers['html'])) {
+    $providers['html'] = 'Drupal\ilr\VocabularyRouteProvider';
+    $entity_types['taxonomy_vocabulary']->setHandlerClass('route_provider', $providers);
+  }
+}
+
+/**
+ * uri_callback function for vocabularies.
+ */
+function ilr_vocabulary_uri($taxonomy_vocabulary) {
+  return new Url('entity.taxonomy_vocabulary.overview_form', ['taxonomy_vocabulary' => $taxonomy_vocabulary->id()]);
+}
+
+/**
  * Implements template_preprocess_node().
  */
 function ilr_preprocess_node__course__teaser(&$variables) {
