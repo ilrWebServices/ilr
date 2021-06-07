@@ -27,6 +27,7 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Field\WidgetInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\collection_content_permissions\CollectionOwnerHelper;
 
 /**
  * Implements hook_theme().
@@ -499,6 +500,25 @@ function ilr_entity_type_alter(array &$entity_types) {
  */
 function ilr_vocabulary_uri($taxonomy_vocabulary) {
   return new Url('entity.taxonomy_vocabulary.overview_form', ['taxonomy_vocabulary' => $taxonomy_vocabulary->id()]);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_create_access().
+ */
+function ilr_taxonomy_term_create_access(AccountInterface $account, array $context, $entity_bundle) {
+  $vocabulary_entity = \Drupal::service('entity_type.manager')->getStorage('taxonomy_vocabulary')->load($entity_bundle);
+
+  // See if the vocabulary is in a collection owned by this user.
+  $collection_items = \Drupal::service('collection.content_manager')->getCollectionItemsForEntity($vocabulary_entity, FALSE);
+  $owner_helper = new CollectionOwnerHelper();
+
+  foreach ($collection_items as $collection_item) {
+    if ($owner_helper->isOwner($collection_item->collection->entity, $account)) {
+      return AccessResult::allowed($account);
+    }
+  }
+
+  return AccessResult::neutral();
 }
 
 /**
