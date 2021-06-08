@@ -1074,6 +1074,23 @@ function ilr_preprocess_container__content_entity_collections(&$variables) {
 }
 
 /**
+ * Implements hook_entity_operation().
+ */
+function ilr_entity_operation(EntityInterface $entity) {
+  if ($entity->getEntityTypeId() == 'collection_item' && $entity->item->entity instanceof VocabularyInterface) {
+    $operations = [];
+    $operations['add_term'] = [
+      'title' => t('Add new'),
+      'url' => Url::fromRoute('entity.taxonomy_term.add_form', [
+        'taxonomy_vocabulary' =>  $entity->item->entity->id(),
+      ]),
+      'weight' => 0,
+    ];
+    return $operations;
+  }
+}
+
+/**
  * Implements hook_preprocess_views_view_field().
  */
 function ilr_preprocess_views_view_field(&$variables) {
