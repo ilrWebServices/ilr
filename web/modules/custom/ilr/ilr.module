@@ -29,6 +29,7 @@ use Drupal\Core\Field\WidgetInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\collection_content_permissions\CollectionOwnerHelper;
 use Drupal\taxonomy\VocabularyInterface;
+use Drupal\collection\Entity\CollectionItemInterface;
 
 /**
  * Implements hook_theme().
@@ -1094,13 +1095,16 @@ function ilr_entity_operation(EntityInterface $entity) {
  * Implements hook_preprocess_views_view_field().
  */
 function ilr_preprocess_views_view_field(&$variables) {
-  $is_collection_item_view = array_key_exists('collection_item_field_data', $variables['view']->getBaseTables());
+  if (isset($variables['row']->_entity) && !$variables['row']->_entity instanceof CollectionItemInterface) {
+    return;
+  }
+
   $is_collected_vocabulary = $variables['row']->_entity->item->entity instanceof VocabularyInterface;
   $is_collected_item_field = $variables['field']->realField === 'item__target_id';
 
   // Link collected vocabularies in collection item listings to the term listing
   // rather than the edit form.
-  if ($is_collection_item_view && $is_collected_vocabulary && $is_collected_item_field) {
+  if ($is_collected_vocabulary && $is_collected_item_field) {
     $variables['output'] = $variables['row']->_entity->item->entity->toLink(null, 'overview-form');
   }
 }
