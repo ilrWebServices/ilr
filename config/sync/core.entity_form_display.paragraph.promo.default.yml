@@ -13,7 +13,7 @@ dependencies:
     - paragraphs.paragraphs_type.promo
   module:
     - dynamic_entity_reference
-    - link
+    - linkit
     - media_library
     - media_library_edit
     - text
@@ -53,8 +53,10 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      linkit_profile: ilr_content
+      linkit_auto_link_text: true
     third_party_settings: {  }
-    type: link_default
+    type: linkit
     region: content
   field_media:
     weight: 4
