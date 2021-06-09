@@ -9,7 +9,7 @@ dependencies:
     - field.field.paragraph.section.field_subheading_link
     - paragraphs.paragraphs_type.section
   module:
-    - link
+    - linkit
     - paragraphs
 id: paragraph.section.default
 targetEntityType: paragraph
@@ -30,9 +30,9 @@ content:
       form_display_mode: default
       default_paragraph_type: _none
       features:
+        add_above: '0'
         collapse_edit_all: collapse_edit_all
         duplicate: '0'
-        add_above: '0'
     third_party_settings: {  }
     region: content
   field_heading:
@@ -56,8 +56,10 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      linkit_profile: ilr_content
+      linkit_auto_link_text: true
     third_party_settings: {  }
-    type: link_default
+    type: linkit
     region: content
 hidden:
   created: true
