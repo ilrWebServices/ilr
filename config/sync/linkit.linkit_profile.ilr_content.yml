@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - node
+    - taxonomy
 id: ilr_content
 label: 'ILR content'
 description: ''
@@ -33,7 +34,10 @@ matchers:
         course: course
         page: page
         post: post
+        post_document: post_document
+        post_experience_report: post_experience_report
         story: story
+        video_post: video_post
       group_by_bundle: true
       substitution_type: canonical
       limit: 100
@@ -48,3 +52,13 @@ matchers:
       group_by_bundle: false
       substitution_type: canonical
       limit: 50
+  4bbd41df-c199-4b47-bac2-6946bbc300b0:
+    uuid: 4bbd41df-c199-4b47-bac2-6946bbc300b0
+    id: 'entity:taxonomy_term'
+    weight: 0
+    settings:
+      metadata: ''
+      bundles: {  }
+      group_by_bundle: true
+      substitution_type: canonical
+      limit: 100
