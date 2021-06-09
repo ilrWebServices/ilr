@@ -148,6 +148,9 @@
       },
       "drupal/entity_browser": {
         "Call to undefined method FileUploadForm::getEntity() in entity_browser_form_alter()": "https://www.drupal.org/files/issues/2020-04-09/3061842-3_0.patch"
+      },
+      "drupal/linkit": {
+        "Linkit for Link field": "https://www.drupal.org/files/issues/2021-04-07/linkit-for-link-field-2712951-216.patch"
       }
     },
     "installer-paths": {
