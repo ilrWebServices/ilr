@@ -31,6 +31,8 @@ class CardSettings extends ParagraphsBehaviorBase {
     'pinned' => 'Pinned top and bottom',
     'pinned-top' => 'Pinned top',
     'pinned-bottom' => 'Pinned bottom',
+    'popout-right' => 'Popout right',
+    'popout-left' => 'Popout left',
   ];
 
   /**
@@ -56,6 +58,7 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'content_placement') ?? reset($this->contentPlacementOptions),
     ];
 
+    // @todo: disable if the chosen content placement is a popout.
     $form['use_media_aspect'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Preserve media aspect ratio'),
@@ -69,16 +72,44 @@ class CardSettings extends ParagraphsBehaviorBase {
   /**
    * {@inheritdoc}
    */
+  public function validateBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    if (strpos($form_state->getValue('content_placement'), 'popout') !== FALSE && $parent = $paragraph->getParentEntity()) {
+      if ($parent->bundle() === 'deck') {
+        $form_state->setError($form['content_placement'], $this->t('Sorry, but popouts cannot be used in card decks. Please choose a different content placement option.'));
+      }
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function preprocess(&$variables) {
     $overlay_opacity = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'media_overlay_opacity') ?? 50;
+    $content_placement = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'content_placement');
+    $has_media = !$variables['paragraph']->field_media->isEmpty();
     $variables['attributes']['style'][] = '--cu-overlay-opacity: ' . $overlay_opacity / 100 . ';';
 
-    if ($content_placement = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'content_placement')) {
+    if ($content_placement) {
       $variables['attributes']['class'][] = 'cu-card--' . $content_placement;
-    }
 
-    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'use_media_aspect')) {
-      $variables['attributes']['class'][] = 'cu-card--use-aspect-ratio';
+      if (strpos($content_placement, 'popout') === 0) {
+        $variables['attributes']['class'][] = 'cu-card--popout';
+
+        if ($has_media) {
+          $variables['content']['field_media'][0]['#image_style'] = 'large_8_5';
+        }
+      }
+    }
+    else {
+      $variables['attributes']['class'][] = 'cu-card--promo';
+
+      if ($has_media) {
+        $variables['attributes']['class'][] = 'cu-card--promo-with-media';
+
+        if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'use_media_aspect')) {
+          $variables['attributes']['class'][] = 'cu-card--use-aspect-ratio';
+        }
+      }
     }
   }
 

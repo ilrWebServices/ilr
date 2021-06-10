@@ -62,3 +62,11 @@
   --cu-current-heading-size: var(--cu-ms1);
   --cu-current-font-weight: 400;
 }
+
+.cu-card--popout .cu-card__content {
+  --cu-current-font-size: var(--cu-text-xl);
+
+  .cu-heading {
+    --cu-current-heading-size: var(--cu-text-xxxl);
+  }
+}
