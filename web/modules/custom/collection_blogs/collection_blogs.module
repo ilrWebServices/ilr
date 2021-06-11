@@ -172,6 +172,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
       foreach ($collection_item_storage->loadMultiple($blog_post_collection_items) as $collection_item) {
         $rendered_content = $view_builder->view($collection_item->item->entity, 'teaser');
         $rendered_content['#collection_item'] = $collection_item;
+        $rendered_content['#cache']['contexts'][] = 'url';
         $posts[] = $rendered_content;
       }
 
