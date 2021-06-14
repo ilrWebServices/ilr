@@ -125,11 +125,13 @@
 {% endset %}
 
 {# Temporary update for 2021 Commencement image #}
-{% set commencement_override = (date('now') > date('2021-05-27') and date('now') < date('2021-06-15')) %}
+{% set commencement_override = (date('now') > date('2021-05-27') and date('now') < date('2021-06-14')) %}
+
+{{ commencement_override}}
 
 {% set video_media %}
 {% include '@union/_video.twig' with {
-  src: commencement_override ? 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_75_congrats_202105_500.mp4' : 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_75_202008_500.mp4',
+  src: commencement_override ? 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_75_congrats_202105_500.mp4' : 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_202106_500.mp4',
   autoplay: TRUE,
   loop: TRUE,
   muted: TRUE
