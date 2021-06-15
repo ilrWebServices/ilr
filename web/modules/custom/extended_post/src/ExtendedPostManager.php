@@ -104,6 +104,16 @@ class ExtendedPostManager {
       "delete own $bundle content",
       "edit own $bundle content",
     ]);
+
+    // Add this bundle to the ilr_content Linkit profile.
+    if ($this->moduleHandler->moduleExists('linkit')) {
+      $linkit_profile = $this->entityTypeManager->getStorage('linkit_profile')->load('ilr_content');
+      $node_matcher = $linkit_profile->getMatcherByEntityType('node');
+      $configuration = $node_matcher->getConfiguration();
+      $configuration['settings']['bundles'][$bundle] = $bundle;
+      $linkit_profile->setMatcherConfig($node_matcher->getUuid(), $configuration);
+      $linkit_profile->save();
+    }
   }
 
   /**
