@@ -64,7 +64,13 @@ class EntityAutocompleteMatcherOverride extends EntityAutocompleteMatcher {
       foreach ($entity_labels as $values) {
         foreach ($values as $entity_id => $label) {
           $entity = $this->entityTypeManager->getStorage($target_type)->load($entity_id);
-          $type = !empty($entity->type->entity) ? $entity->type->entity->label() : $entity->bundle();
+
+          if ($entity->getEntityTypeId() === 'collection_item') {
+            $label .= ' [' . $entity->collection->entity->label() . ($entity->isCanonical() ? '*' : '') . ']';
+          }
+          else {
+            $label .= ' (' . $entity_id . ') [' . $entity->bundle() . ']';
+          }
 
           $key = "$label ($entity_id)";
           // Strip things like starting/trailing white spaces, line breaks and
@@ -72,7 +78,6 @@ class EntityAutocompleteMatcherOverride extends EntityAutocompleteMatcher {
           $key = preg_replace('/\s\s+/', ' ', str_replace("\n", '', trim(Html::decodeEntities(strip_tags($key)))));
           // Names containing commas or quotes must be wrapped in quotes.
           $key = Tags::encode($key);
-          $label = $label . ' (' . $entity_id . ') [' . $type . ']';
           $matches[] = ['value' => $key, 'label' => $label];
         }
       }
