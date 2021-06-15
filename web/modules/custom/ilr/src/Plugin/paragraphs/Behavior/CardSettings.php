@@ -88,11 +88,13 @@ class CardSettings extends ParagraphsBehaviorBase {
     $content_placement = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'content_placement');
     $has_media = !$variables['paragraph']->field_media->isEmpty();
     $variables['attributes']['style'][] = '--cu-overlay-opacity: ' . $overlay_opacity / 100 . ';';
+    $is_promo = TRUE;
 
     if ($content_placement) {
       $variables['attributes']['class'][] = 'cu-card--' . $content_placement;
 
       if (strpos($content_placement, 'popout') === 0) {
+        $is_promo = FALSE;
         $variables['attributes']['class'][] = 'cu-card--popout';
 
         if ($has_media) {
@@ -100,7 +102,8 @@ class CardSettings extends ParagraphsBehaviorBase {
         }
       }
     }
-    else {
+
+    if ($is_promo) {
       $variables['attributes']['class'][] = 'cu-card--promo';
 
       if ($has_media) {
