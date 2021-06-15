@@ -3,13 +3,25 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.curated_post_listing.field_items
     - field.field.paragraph.curated_post_listing.field_posts
     - paragraphs.paragraphs_type.curated_post_listing
+  module:
+    - ilr
 id: paragraph.curated_post_listing.default
 targetEntityType: paragraph
 bundle: curated_post_listing
 mode: default
 content:
+  field_items:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: collected_item_entity_formatter
+    region: content
   field_posts:
     weight: 0
     label: hidden

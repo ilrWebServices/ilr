@@ -1,0 +1,29 @@
+uuid: fc07ef80-1805-4e58-86fc-e2330bbfbd16
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.blog
+    - field.storage.paragraph.field_items
+    - paragraphs.paragraphs_type.curated_post_listing
+id: paragraph.curated_post_listing.field_items
+field_name: field_items
+entity_type: paragraph
+bundle: curated_post_listing
+label: Items
+description: 'These are collection items instead of nodes. Cross-posts and apparent duplicates abound!'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:collection_item'
+  handler_settings:
+    target_bundles:
+      blog: blog
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
