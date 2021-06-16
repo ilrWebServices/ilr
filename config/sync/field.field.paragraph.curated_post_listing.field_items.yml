@@ -11,7 +11,7 @@ field_name: field_items
 entity_type: paragraph
 bundle: curated_post_listing
 label: Items
-description: 'These are collection items instead of nodes. Cross-posts and apparent duplicates abound!'
+description: '* denotes the canonical collection for an item. Note that since cross-posts are included in the autocomplete, there may appear to be duplicates. '
 required: true
 translatable: false
 default_value: {  }
