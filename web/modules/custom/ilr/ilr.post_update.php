@@ -800,3 +800,47 @@ function ilr_post_update_fix_rich_text_format(&$sandbox) {
     $paragraph->save();
   }
 }
+
+/**
+ * Move all the node references to collection_item references in curated post listings.
+ */
+function ilr_post_update_curated_post_listing_references(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+  $paragraph_storage = $entity_type_manager->getStorage('paragraph');
+  $relevant_paragraph_ids = $paragraph_storage->getQuery()
+    ->condition('type', 'curated_post_listing')
+    ->execute();
+
+  foreach ($paragraph_storage->loadMultiple($relevant_paragraph_ids) as $paragraph) {
+    $remaining_posts = [];
+
+    // For each post, get the canonical collection item.
+    foreach ($paragraph->field_posts as $post) {
+      $collection_item_ids = $collection_item_storage->getQuery()
+        ->condition('canonical', 1)
+        ->condition('item__target_type', 'node')
+        ->condition('item__target_id', $post->target_id)
+        ->execute();
+
+      if ($collection_item_ids) {
+        // Add this canonical collection item to field_items.
+        $collection_item_id = reset($collection_item_ids);
+        $paragraph->field_items[] = ['target_id' => $collection_item_id];
+      }
+      else {
+        // If a canonical collection item is missing, the post is missing or
+        // removed from a collection. Record the post nid here to leave in
+        // field_posts.
+        $remaining_posts[] = ['target_id' => $post->target_id];
+      }
+    }
+
+    // Reset field_posts to only contain the posts that had no canonical
+    // collection items.
+    $paragraph->field_posts = $remaining_posts;
+
+    // Save the paragraph.
+    $paragraph->save();
+  }
+}

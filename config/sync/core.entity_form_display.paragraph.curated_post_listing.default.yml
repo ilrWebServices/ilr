@@ -12,16 +12,6 @@ bundle: curated_post_listing
 mode: default
 content:
   field_items:
-    weight: 1
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
-  field_posts:
     weight: 0
     settings:
       match_operator: CONTAINS
@@ -33,4 +23,5 @@ content:
     region: content
 hidden:
   created: true
+  field_posts: true
   status: true

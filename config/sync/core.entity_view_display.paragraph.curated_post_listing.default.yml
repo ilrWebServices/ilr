@@ -14,22 +14,14 @@ bundle: curated_post_listing
 mode: default
 content:
   field_items:
-    weight: 1
-    label: hidden
-    settings:
-      view_mode: teaser
-      link: false
-    third_party_settings: {  }
     type: collected_item_entity_formatter
-    region: content
-  field_posts:
     weight: 0
+    region: content
     label: hidden
     settings:
       view_mode: teaser
       link: false
     third_party_settings: {  }
-    type: entity_reference_entity_view
-    region: content
 hidden:
+  field_posts: true
   search_api_excerpt: true
