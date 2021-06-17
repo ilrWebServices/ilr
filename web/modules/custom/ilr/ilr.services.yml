@@ -24,3 +24,7 @@ services:
       - '@config.storage.sync'
     tags:
       - { name: event_subscriber }
+  ilr_paragraphs_host_entity:
+    class: \Drupal\ilr\Commands\ParagraphsHostEntity
+    tags:
+      - { name: drush.command }
