@@ -508,6 +508,16 @@ function ilr_preprocess_node__course__teaser(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_paragraph().
+ *
+ * Add the paragraphs id as a data attribute.
+ * @see ParagraphsHostEntity::host drush command.
+ */
+function ilr_preprocess_paragraph(&$variables) {
+  $variables['attributes']['data-pid'][] = $variables['paragraph']->id();
+}
+
+/**
  * Implements hook_token_info().
  */
 function ilr_token_info() {
