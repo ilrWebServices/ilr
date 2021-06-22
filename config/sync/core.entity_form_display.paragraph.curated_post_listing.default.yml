@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.curated_post_listing.field_items
     - field.field.paragraph.curated_post_listing.field_posts
     - paragraphs.paragraphs_type.curated_post_listing
 id: paragraph.curated_post_listing.default
@@ -10,7 +11,7 @@ targetEntityType: paragraph
 bundle: curated_post_listing
 mode: default
 content:
-  field_posts:
+  field_items:
     weight: 0
     settings:
       match_operator: CONTAINS
@@ -22,4 +23,5 @@ content:
     region: content
 hidden:
   created: true
+  field_posts: true
   status: true
