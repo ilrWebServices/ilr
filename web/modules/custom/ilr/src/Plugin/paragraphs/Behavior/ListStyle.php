@@ -201,14 +201,24 @@ class ListStyle extends ParagraphsBehaviorBase {
     // Only update entity reference fields that are configured to display a
     // rendered entity.
     $build_fields = array_keys(array_filter($build, function ($v) {
-      return is_array($v) && isset($v['#theme']) && $v['#theme'] === 'field' && isset($v['#formatter']) && $v['#formatter'] === 'entity_reference_entity_view';
+      return is_array($v) && isset($v['#theme']) && $v['#theme'] === 'field' && isset($v['#formatter']) && in_array($v['#formatter'], ['entity_reference_entity_view', 'collected_item_entity_formatter']);
     }));
 
     foreach ($build_fields as $field) {
       $element = &$build[$field];
 
       foreach (array_keys(iterator_to_array($element['#items'])) as $key) {
-        $element[$key]['#view_mode'] = $this->getViewModeForListStyle($list_style, $key + 1);
+        $original_view_mode = $element[$key]['#view_mode'];
+        $view_mode_for_liststyle = $this->getViewModeForListStyle($list_style, $key + 1);
+        $cache_key_view_mode_key = array_search($original_view_mode, $element[$key]['#cache']['keys']);
+
+        if ($original_view_mode !== $view_mode_for_liststyle) {
+          $element[$key]['#view_mode'] = $view_mode_for_liststyle;
+
+          if ($cache_key_view_mode_key) {
+            $element[$key]['#cache']['keys'][$cache_key_view_mode_key] = $view_mode_for_liststyle;
+          }
+        }
 
         // Merge the paragraph cache tags with the entity cache tags. This
         // will invalidate the entities when the paragraph list style is
