@@ -549,6 +549,13 @@ function ilr_tokens($type, $tokens, array $data, array $options, BubbleableMetad
 }
 
 /**
+ * Implements hook_entity_type_alter().
+ */
+function ilr_entity_type_alter(array &$entity_types) {
+  $entity_types['node']->addConstraint('NodeMenuLevel');
+}
+
+/**
  * Implements hook_ENTITY_TYPE_presave().
  */
 function ilr_node_presave(EntityInterface $entity) {
