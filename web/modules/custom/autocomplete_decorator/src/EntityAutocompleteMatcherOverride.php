@@ -3,10 +3,13 @@
 namespace Drupal\autocomplete_decorator;
 
 use Drupal\Core\Entity\EntityAutocompleteMatcher;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Tags;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Class EntityAutocompleteMatcherOverride.
@@ -14,6 +17,8 @@ use Drupal\Component\Utility\Tags;
  * Decorates matches returned by the autocomplete service.
  */
 class EntityAutocompleteMatcherOverride extends EntityAutocompleteMatcher {
+
+  use StringTranslationTrait;
 
   /**
    * The entity reference selection handler plugin manager.
@@ -30,16 +35,26 @@ class EntityAutocompleteMatcherOverride extends EntityAutocompleteMatcher {
   protected $entityTypeManager;
 
   /**
+   * Drupal\Core\Entity\EntityTypeBundleInfoInterface definition.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface
+   */
+  protected $entityTypeBundleInfo;
+
+  /**
    * OriginalServiceOverride constructor.
    *
    * @param \Drupal\Core\Entity\EntityReferenceSelection\SelectionPluginManagerInterface $selection_manager
    *   The entity reference selection handler plugin manager.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entity_type_bundle_info
+   *   The entity type bundle info service.
    */
-  public function __construct(SelectionPluginManagerInterface $selection_manager, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(SelectionPluginManagerInterface $selection_manager, EntityTypeManagerInterface $entity_type_manager, EntityTypeBundleInfoInterface $entity_type_bundle_info) {
     $this->selectionManager = $selection_manager;
     $this->entityTypeManager = $entity_type_manager;
+    $this->entityTypeBundleInfo = $entity_type_bundle_info;
   }
 
   /**
@@ -66,10 +81,10 @@ class EntityAutocompleteMatcherOverride extends EntityAutocompleteMatcher {
           $entity = $this->entityTypeManager->getStorage($target_type)->load($entity_id);
 
           if ($entity->getEntityTypeId() === 'collection_item') {
-            $label .= ' [' . $entity->collection->entity->label() . ($entity->isCanonical() ? '*' : '') . ']';
+            $label .= ' [' . $this->getBundleLabel($entity->item->entity) . ' ' . $this->t('in') . ' ' . $entity->collection->entity->label() . ($entity->isCanonical() ? '*' : '') . ']';
           }
           else {
-            $label .= ' (' . $entity_id . ') [' . $entity->bundle() . ']';
+            $label .= ' (' . $entity_id . ') [' . $this->getBundleLabel($entity) . ']';
           }
 
           $key = "$label ($entity_id)";
@@ -84,6 +99,22 @@ class EntityAutocompleteMatcherOverride extends EntityAutocompleteMatcher {
     }
 
     return $matches;
+  }
+
+  /**
+   * Return a human readable bundle label, if possible, for an entity.
+   *
+   * @param EntityInterface $entity
+   *
+   * @return string
+   *   The human readable bundle label or the machine name.
+   */
+  protected function getBundleLabel(EntityInterface $entity) {
+    if ($bundle_info = $this->entityTypeBundleInfo->getBundleInfo($entity->getEntityTypeId())) {
+      return $bundle_info[$entity->bundle()]['label'];
+    }
+
+    return $entity->bundle();
   }
 
 }
