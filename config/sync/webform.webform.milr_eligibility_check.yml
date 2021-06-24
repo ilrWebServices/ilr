@@ -1,9 +1,7 @@
 uuid: daec9173-61cd-4f37-80cc-dacc02578771
 langcode: en
 status: open
-dependencies:
-  module:
-    - webform_mailchimp
+dependencies: {  }
 open: null
 close: null
 weight: 0
@@ -14,7 +12,7 @@ id: milr_eligibility_check
 title: 'MILR Eligibility Check'
 description: ''
 category: 'graduate programs'
-elements: "email:\n  '#type': email\n  '#title': Email\n  '#required': true\n  '#default_value': '[current-user:mail]'\nfirst_name:\n  '#type': textfield\n  '#title': 'First name'\nlast_name:\n  '#type': textfield\n  '#title': 'Last name'\nphone:\n  '#type': tel\n  '#title': Phone\nexperience_years:\n  '#type': select\n  '#title': 'Years of work experience'\n  '#options':\n    '<1': 'Less than 1 year'\n    1-4: '1 to 4 years'\n    5-9: '5 to 8 years'\n    9+: '9 or more years'\n  '#required': true\n  '#required_error': 'Please confirm your work experience.'\nemployer:\n  '#type': textfield\n  '#title': 'Current employer (if applicable)'\nbachelors_complete:\n  '#type': radios\n  '#title': 'Do you currently hold a Bachelor''s degree?'\n  '#options':\n    1: 'Yes'\n    0: 'No'\ndegree_year:\n  '#type': datelist\n  '#title': 'When did you receive your Bachelor''s degree?'\n  '#required': true\n  '#required_error': 'Please let us know when you received (or plan to receive) your bachelor''s degree.'\n  '#date_part_order':\n    - year\n  '#date_year_range': '-50:+2'\n  '#date_year_range_reverse': true\nresume:\n  '#type': webform_document_file\n  '#title': Resume\n  '#file_extensions': 'txt rtf pdf doc docx'\n  '#sanitize': true\nmarketing_channel:\n  '#type': checkboxes\n  '#title': 'How did you hear about the ILR School MILR Program?'\n  '#options': webform_mailchimp_groups_b244982c50_ce580434b2\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': 'Check my eligibility'"
+elements: "first_name:\n  '#type': textfield\n  '#title': 'First name'\nlast_name:\n  '#type': textfield\n  '#title': 'Last name'\nemail:\n  '#type': email\n  '#title': Email\n  '#required': true\n  '#default_value': '[current-user:mail]'\naddress:\n  '#type': address\n  '#title': Citizenship\n  '#title_display': before\n  '#required': true\n  '#field_overrides':\n    givenName: hidden\n    additionalName: hidden\n    familyName: hidden\n    organization: hidden\n    addressLine1: hidden\n    addressLine2: hidden\n    postalCode: hidden\n    sortingCode: hidden\n    dependentLocality: hidden\n    locality: required\n    administrativeArea: required\nphone:\n  '#type': tel\n  '#title': Phone\nexperience_years:\n  '#type': select\n  '#title': 'Years of work experience'\n  '#options':\n    'Less than 1 year': 'Less than 1 year'\n    '1 - 4 years': '1 - 4 years'\n    '5 - 8 years': '5 - 8 years'\n    '9 or more years': '9 or more years'\n  '#required': true\n  '#required_error': 'Please confirm your work experience.'\nemployer:\n  '#type': textfield\n  '#title': 'Current employer (if applicable)'\nbachelors_complete:\n  '#type': radios\n  '#title': 'Do you currently hold a Bachelor''s degree?'\n  '#options':\n    1: 'Yes'\n    0: 'No'\n  '#required': true\ndegree_year:\n  '#type': datelist\n  '#title': 'When did you receive your Bachelor''s degree?'\n  '#required': true\n  '#required_error': 'Please let us know when you received (or plan to receive) your bachelor''s degree.'\n  '#date_part_order':\n    - year\n  '#date_year_range': '-50:+2'\n  '#date_year_range_reverse': true\nmarketing_channel:\n  '#type': webform_checkboxes_other\n  '#title': 'How did you hear about the ILR School MILR Program?'\n  '#options': marketing_channels\n  '#other__option_label': Other\n  '#other__placeholder': ''\n  '#required': true\nresume:\n  '#type': webform_document_file\n  '#title': Resume\n  '#file_extensions': 'txt rtf pdf doc docx'\n  '#sanitize': true\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': 'Check my eligibility'"
 css: ''
 javascript: ''
 settings:
@@ -193,58 +191,5 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers:
-  mailchimp_milr:
-    id: mailchimp
-    label: 'MailChimp MILR'
-    notes: ''
-    handler_id: mailchimp_milr
-    status: true
-    conditions: {  }
-    weight: 1
-    settings:
-      list: b244982c50
-      email: email
-      double_optin: false
-      mergevars: "FNAME: [webform_submission:values:first_name]\r\nLNAME: [webform_submission:values:last_name]\r\nPHONE: [webform_submission:values:phone]\r\nEXPERIENCE: [webform_submission:values:experience_years]\r\nEMPLOYER: [webform_submission:values:employer]\r\nBACHELORS: [webform_submission:values:bachelors_complete]\r\nGRADYEAR: [webform_submission:values:degree_year]\r\nSOURCE: [webform_submission:values:marketing_channel]"
-      interest_groups: {  }
-      control: ''
-      tags: ''
-  email:
-    id: email
-    label: Email
-    notes: ''
-    handler_id: email
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      states:
-        - completed
-      to_mail: ilrgradapplicant@cornell.edu
-      to_options: {  }
-      cc_mail: day4@cornell.edu
-      cc_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      from_mail: _default
-      from_options: {  }
-      from_name: _default
-      subject: '[webform_submission:webform] for [webform_submission:values:first_name] [webform_submission:values:last_name]'
-      body: _default
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      exclude_attachments: false
-      html: true
-      attachments: false
-      twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-      theme_name: ''
-      parameters: {  }
+handlers: {  }
 variants: {  }

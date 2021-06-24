@@ -1,0 +1,9 @@
+uuid: a0e98817-9076-452a-be95-22483ffd8917
+langcode: en
+status: true
+dependencies: {  }
+id: marketing_channels
+label: 'Marketing Channels'
+category: ILR
+likert: false
+options: "'Google ad': 'Google ad'\r\n'Google search': 'Google search'\r\n'LinkedIn ad': 'LinkedIn ad'\r\n'LinkedIn InMail': 'LinkedIn InMail'\r\n'SHRM.org ad ': 'SHRM.org ad '\r\nTwitter: Twitter\r\nYouTube: YouTube\r\nEmail: Email\r\nWebsite: Website\r\nReferral: Referral\r\n"
