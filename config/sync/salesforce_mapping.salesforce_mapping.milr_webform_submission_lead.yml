@@ -115,7 +115,7 @@ field_mappings:
     id: 11
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:degree_year:value:Y]'
+    drupal_field_value: '[webform_submission:values:degree_year:Y]'
     salesforce_field: Year_Received_Bachelor_s_Degree__c
     direction: drupal_sf
     description: ''
