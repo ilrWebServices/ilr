@@ -1052,6 +1052,10 @@ function ilr_file_validate(FileInterface $file) {
         $file = \Drupal::entityTypeManager()->getStorage('file')->load($fid);
         $duplicate_media_entities = \Drupal::service('file.usage')->listUsage($file);
 
+        if (empty($duplicate_media_entities)) {
+          return;
+        }
+
         foreach ($duplicate_media_entities['file']['media'] as $media_id => $usage_count) {
           if ($media = \Drupal::entityTypeManager()->getStorage('media')->load($media_id)) {
             $error = t('This file has already been uploaded to the media library with the name "%media_name".', [
