@@ -154,7 +154,8 @@ access:
   view_any:
     roles: {  }
     users: {  }
-    permissions: {  }
+    permissions:
+      - 'view milr eligibility webform submissions'
   update_any:
     roles: {  }
     users: {  }
