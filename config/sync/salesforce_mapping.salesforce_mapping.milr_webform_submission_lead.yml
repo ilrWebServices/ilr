@@ -30,8 +30,8 @@ drupal_entity_type: webform_submission
 drupal_bundle: milr_eligibility_check
 field_mappings:
   -
-    drupal_field_type: Constant
-    drupal_field_value: 0121F000003MoUEQA0
+    drupal_field_type: record_type
+    drupal_field_value: MILR
     salesforce_field: RecordTypeId
     direction: drupal_sf
     description: ''
