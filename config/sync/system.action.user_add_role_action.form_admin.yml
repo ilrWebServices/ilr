@@ -1,0 +1,14 @@
+uuid: 8004811a-4810-4c49-9444-c819fb54b03f
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.form_admin
+  module:
+    - user
+id: user_add_role_action.form_admin
+label: 'Add the Form Admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: form_admin

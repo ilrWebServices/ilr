@@ -1,0 +1,14 @@
+uuid: 18cf4962-fdfb-4794-9eb2-48c6bea94c1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.form_admin
+  module:
+    - user
+id: user_remove_role_action.form_admin
+label: 'Remove the Form Admin role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: form_admin
