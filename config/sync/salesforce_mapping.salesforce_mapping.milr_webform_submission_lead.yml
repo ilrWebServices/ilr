@@ -94,7 +94,7 @@ field_mappings:
     id: 8
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:experience_years:value]'
+    drupal_field_value: '[webform_submission:values:experience_years:raw]'
     salesforce_field: Years_of_Experience__c
     direction: drupal_sf
     description: ''
