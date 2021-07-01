@@ -13,7 +13,7 @@ label: 'MILR Webform Submission Lead'
 weight: 0
 type: salesforce_mapping
 key: ''
-async: false
+async: true
 push_standalone: false
 pull_standalone: false
 pull_trigger_date: LastModifiedDate
