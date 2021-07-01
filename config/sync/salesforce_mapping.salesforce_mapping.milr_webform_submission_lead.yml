@@ -1,0 +1,141 @@
+uuid: 2b2792fc-0020-4ee1-b7fd-5d072143c413
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.milr_eligibility_check
+  module:
+    - salesforce_pull
+    - salesforce_push
+    - token
+id: milr_webform_submission_lead
+label: 'MILR Webform Submission Lead'
+weight: 0
+type: salesforce_mapping
+key: ''
+async: false
+push_standalone: false
+pull_standalone: false
+pull_trigger_date: LastModifiedDate
+pull_where_clause: ''
+sync_triggers:
+  push_create: true
+  push_update: false
+  push_delete: false
+  pull_create: false
+  pull_update: false
+  pull_delete: true
+salesforce_object_type: Lead
+drupal_entity_type: webform_submission
+drupal_bundle: milr_eligibility_check
+field_mappings:
+  -
+    drupal_field_type: record_type
+    drupal_field_value: MILR
+    salesforce_field: RecordTypeId
+    direction: drupal_sf
+    description: ''
+    id: 0
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:first_name:value]'
+    salesforce_field: FirstName
+    direction: drupal_sf
+    description: ''
+    id: 1
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:last_name:value]'
+    salesforce_field: LastName
+    direction: drupal_sf
+    description: ''
+    id: 2
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:email:value]'
+    salesforce_field: Email
+    direction: drupal_sf
+    description: ''
+    id: 3
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:company:value]'
+    salesforce_field: Company
+    direction: drupal_sf
+    description: ''
+    id: 4
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:address:locality:value]'
+    salesforce_field: City
+    direction: drupal_sf
+    description: ''
+    id: 5
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:address:administrative_area:value]'
+    salesforce_field: State
+    direction: drupal_sf
+    description: ''
+    id: 6
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:address:country_code:value]'
+    salesforce_field: Country
+    direction: drupal_sf
+    description: ''
+    id: 7
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:phone:value]'
+    salesforce_field: Phone
+    direction: drupal_sf
+    description: ''
+    id: 8
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:experience_years:value]'
+    salesforce_field: Years_of_Experience__c
+    direction: drupal_sf
+    description: ''
+    id: 9
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:employer:value]'
+    salesforce_field: Company
+    direction: drupal_sf
+    description: ''
+    id: 10
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:bachelors_complete:value]'
+    salesforce_field: Hold_Bachelor_s_Degree__c
+    direction: drupal_sf
+    description: ''
+    id: 11
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:degree_year:Y]'
+    salesforce_field: Year_Received_Bachelors_Degree__c
+    direction: drupal_sf
+    description: ''
+    id: 12
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:marketing_channel:value]'
+    salesforce_field: LeadSource
+    direction: drupal_sf
+    description: ''
+    id: 13
+  -
+    drupal_field_type: Token
+    drupal_field_value: 'Drupal webform submission: [webform_submission:url]; CV: [webform_submission:values:resume:entity:url]'
+    salesforce_field: Lead_Source_Notes__c
+    direction: drupal_sf
+    description: ''
+    id: 14
+push_limit: 0
+push_retries: 3
+push_frequency: 0
+pull_frequency: 0
+always_upsert: false
