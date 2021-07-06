@@ -48,6 +48,9 @@ $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/local_development.service
 // Show all error messages, with backtrace information.
 $config['system.logging']['error_level'] = 'verbose';
 
+// Show more cron logging info, including in `drush cron`.
+$config['system.cron']['logging'] = TRUE;
+
 // Disable CSS and JS aggregation.
 $config['system.performance']['css']['preprocess'] = FALSE;
 $config['system.performance']['js']['preprocess'] = FALSE;
