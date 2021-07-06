@@ -59,7 +59,7 @@ field_mappings:
     id: 3
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:company:value]'
+    drupal_field_value: '[webform_submission:values:employer:value]'
     salesforce_field: Company
     direction: drupal_sf
     description: ''
@@ -101,39 +101,32 @@ field_mappings:
     id: 9
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:employer:value]'
-    salesforce_field: Company
-    direction: drupal_sf
-    description: ''
-    id: 10
-  -
-    drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:bachelors_complete:value]'
     salesforce_field: Hold_Bachelor_s_Degree__c
     direction: drupal_sf
     description: ''
-    id: 11
+    id: 10
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:degree_year:Y]'
     salesforce_field: Year_Received_Bachelors_Degree__c
     direction: drupal_sf
     description: ''
-    id: 12
+    id: 11
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:marketing_channel:value]'
     salesforce_field: LeadSource
     direction: drupal_sf
     description: ''
-    id: 13
+    id: 12
   -
     drupal_field_type: Token
     drupal_field_value: 'Drupal webform submission: [webform_submission:url]; CV: [webform_submission:values:resume:entity:url]'
     salesforce_field: Lead_Source_Notes__c
     direction: drupal_sf
     description: ''
-    id: 14
+    id: 13
 push_limit: 0
 push_retries: 3
 push_frequency: 0
