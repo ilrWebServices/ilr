@@ -153,7 +153,8 @@
         "Linkit for Link field": "https://www.drupal.org/files/issues/2021-04-07/linkit-for-link-field-2712951-216.patch"
       },
       "drupal/salesforce": {
-        "Salesforce link appears in \"Operations\" links on views for anonymous users": "https://git.drupalcode.org/project/salesforce/-/merge_requests/20.diff"
+        "Salesforce link appears in \"Operations\" links on views for anonymous users": "https://git.drupalcode.org/project/salesforce/-/merge_requests/20.diff",
+        "Issue #3221747: Improve performance of asynchronous salesforce push": "https://git.drupalcode.org/project/salesforce/-/merge_requests/21.diff"
       }
     },
     "installer-paths": {
