@@ -59,7 +59,7 @@ field_mappings:
     id: 3
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:employer:raw]'
+    drupal_field_value: '[webform_submission:values:company:raw]'
     salesforce_field: Company
     direction: drupal_sf
     description: ''
