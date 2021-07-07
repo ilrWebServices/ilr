@@ -129,11 +129,18 @@ field_mappings:
     id: 13
   -
     drupal_field_type: Token
+    drupal_field_value: '[webform_submission:url]'
+    salesforce_field: Web_Form_Submission_URL__c
+    direction: drupal_sf
+    description: ''
+    id: 14
+  -
+    drupal_field_type: Token
     drupal_field_value: '[webform_submission:created:custom:Y-m-d G:i:s]'
     salesforce_field: Legacy_Created_Date__c
     direction: drupal_sf
     description: ''
-    id: 14
+    id: 15
 push_limit: 0
 push_retries: 3
 push_frequency: 0
