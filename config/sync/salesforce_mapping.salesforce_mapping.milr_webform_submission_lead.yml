@@ -88,7 +88,7 @@ field_mappings:
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:phone:value]'
-    salesforce_field: Phone
+    salesforce_field: MobilePhone
     direction: drupal_sf
     description: ''
     id: 8
@@ -127,6 +127,13 @@ field_mappings:
     direction: drupal_sf
     description: ''
     id: 13
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:created:custom:Y-m-d G:i:s]'
+    salesforce_field: Legacy_Created_Date__c
+    direction: drupal_sf
+    description: ''
+    id: 14
 push_limit: 0
 push_retries: 3
 push_frequency: 0
