@@ -1,0 +1,43 @@
+uuid: a06d7075-a569-45b1-9a9b-1dd804f65a63
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.news_updates
+  module:
+    - block_visibility_groups
+    - ilr
+    - system
+    - webform
+  theme:
+    - union_marketing
+id: union_marketing_news_webform
+theme: union_marketing
+region: content
+weight: 3
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'News updates'
+  provider: webform
+  label_display: '0'
+  webform_id: news_updates
+  default_data: ''
+  redirect: false
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/news\r\n/news/*"
+    negate: false
+    context_mapping: {  }
