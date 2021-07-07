@@ -122,8 +122,8 @@ field_mappings:
     id: 12
   -
     drupal_field_type: Token
-    drupal_field_value: 'Drupal webform submission: [webform_submission:url]; CV: [webform_submission:values:resume:entity:url]'
-    salesforce_field: Lead_Source_Notes__c
+    drupal_field_value: '[webform_submission:values:resume:entity:url]'
+    salesforce_field: Resume__c
     direction: drupal_sf
     description: ''
     id: 13
