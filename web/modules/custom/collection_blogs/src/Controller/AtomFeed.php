@@ -23,6 +23,12 @@ class AtomFeed extends ControllerBase {
     $xmlEncoder = new XmlEncoder();
     $allow_cross_posts = \Drupal::moduleHandler()->moduleExists('collection_item_path');
     $recent_updated_date = '';
+    $post_types = \Drupal::service('extended_post.manager')->getPostTypes();
+
+    if (empty($post_types)) {
+      return $response;
+    }
+
     $xml_array = [
       '@xmlns' => 'http://www.w3.org/2005/Atom',
       'title' => $collection->label(),
@@ -42,7 +48,7 @@ class AtomFeed extends ControllerBase {
       ->condition('collection', $collection->id())
       ->condition('type', 'blog')
       ->condition('item.entity:node.status', 1)
-      ->condition('item.entity:node.type', ['post', 'story'], 'IN')
+      ->condition('item.entity:node.type', $post_types, 'IN')
       ->condition('item.entity:node.field_published_date', NULL, 'IS NOT NULL')
       ->sort('item.entity:node.field_published_date', 'DESC')
       ->range(0, 100)
