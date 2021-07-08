@@ -101,7 +101,7 @@ field_mappings:
     id: 9
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:bachelors_complete:value]'
+    drupal_field_value: '[webform_submission:values:bachelors_complete:raw]'
     salesforce_field: Hold_Bachelor_s_Degree__c
     direction: drupal_sf
     description: ''
