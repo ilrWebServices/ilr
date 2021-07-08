@@ -22,6 +22,7 @@ services:
     arguments:
       - '@config.storage'
       - '@config.storage.sync'
+      - '@state'
     tags:
       - { name: event_subscriber }
   ilr_paragraphs_host_entity:

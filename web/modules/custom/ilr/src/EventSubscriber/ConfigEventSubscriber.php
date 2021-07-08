@@ -4,6 +4,7 @@ namespace Drupal\ilr\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\Core\Config\StorageInterface;
+use Drupal\Core\State\StateInterface;
 use Drupal\Core\Config\ConfigEvents;
 use Drupal\Core\Config\StorageTransformEvent;
 
@@ -27,6 +28,13 @@ class ConfigEventSubscriber implements EventSubscriberInterface {
   protected $fileStorage;
 
   /**
+   * The state service.
+   *
+   * @var \Drupal\Core\State\StateInterface
+   */
+  protected $state;
+
+  /**
    * Patterns to exclude from import and export.
    *
    * @var array
@@ -45,9 +53,10 @@ class ConfigEventSubscriber implements EventSubscriberInterface {
   /**
    * Constructs a new ConfigEventSubscriber object.
    */
-  public function __construct(StorageInterface $database_storage, StorageInterface $file_storage) {
+  public function __construct(StorageInterface $database_storage, StorageInterface $file_storage, StateInterface $state) {
     $this->activeStorage = $database_storage;
     $this->fileStorage = $file_storage;
+    $this->state = $state;
   }
 
   /**
@@ -72,11 +81,15 @@ class ConfigEventSubscriber implements EventSubscriberInterface {
   public function onExportTransform(StorageTransformEvent $event) {
     /** @var \Drupal\Core\Config\StorageInterface $storage */
     $storage = $event->getStorage();
+    $ignored_config = [];
 
     foreach ($this->getIgnoredActiveConfig() as $config_name) {
       // Remove the outgoing config item, preventing it from being exported.
       $storage->delete($config_name);
+      $ignored_config[] = $config_name;
     }
+
+    $this->state->set('config_ignored_export', implode(PHP_EOL, $ignored_config));
   }
 
   /**
@@ -94,12 +107,16 @@ class ConfigEventSubscriber implements EventSubscriberInterface {
   public function onImportTransform(StorageTransformEvent $event) {
     /** @var \Drupal\Core\Config\StorageInterface $storage */
     $storage = $event->getStorage();
+    $ignored_config = [];
 
     foreach ($this->getIgnoredActiveConfig() as $config_name) {
       // Set the incoming value to the active store value. This makes it
       // appear to be identical, thus ignoring it.
       $storage->write($config_name, $this->activeStorage->read($config_name));
+      $ignored_config[] = $config_name;
     }
+
+    $this->state->set('config_ignored_import', implode(PHP_EOL, $ignored_config));
   }
 
   /**
