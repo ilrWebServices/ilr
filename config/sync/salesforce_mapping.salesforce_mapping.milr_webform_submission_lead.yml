@@ -116,7 +116,7 @@ field_mappings:
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:marketing_channel:value]'
-    salesforce_field: LeadSource
+    salesforce_field: Pre_assessment_Source__c
     direction: drupal_sf
     description: ''
     id: 12
