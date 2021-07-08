@@ -59,7 +59,7 @@ field_mappings:
     id: 3
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:employer:raw]'
+    drupal_field_value: '[webform_submission:values:company:raw]'
     salesforce_field: Company
     direction: drupal_sf
     description: ''
@@ -88,7 +88,7 @@ field_mappings:
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:phone:value]'
-    salesforce_field: Phone
+    salesforce_field: MobilePhone
     direction: drupal_sf
     description: ''
     id: 8
@@ -116,17 +116,31 @@ field_mappings:
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:marketing_channel:value]'
-    salesforce_field: LeadSource
+    salesforce_field: Pre_assessment_Source__c
     direction: drupal_sf
     description: ''
     id: 12
   -
     drupal_field_type: Token
-    drupal_field_value: 'Drupal webform submission: [webform_submission:url]; CV: [webform_submission:values:resume:entity:url]'
-    salesforce_field: Lead_Source_Notes__c
+    drupal_field_value: '[webform_submission:values:resume:entity:url]'
+    salesforce_field: Resume__c
     direction: drupal_sf
     description: ''
     id: 13
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:url]'
+    salesforce_field: Web_Form_Submission_URL__c
+    direction: drupal_sf
+    description: ''
+    id: 14
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:created:custom:Y-m-d G:i:s]'
+    salesforce_field: Legacy_Created_Date__c
+    direction: drupal_sf
+    description: ''
+    id: 15
 push_limit: 0
 push_retries: 3
 push_frequency: 0
