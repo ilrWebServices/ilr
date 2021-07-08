@@ -1,9 +1,9 @@
-uuid: e6b5f414-1a2d-4e6b-8116-acfe040740db
+uuid: a06d7075-a569-45b1-9a9b-1dd804f65a63
 langcode: en
 status: true
 dependencies:
   config:
-    - webform.webform.75th_updates
+    - webform.webform.news_updates
   module:
     - block_visibility_groups
     - ilr
@@ -11,7 +11,7 @@ dependencies:
     - webform
   theme:
     - union_marketing
-id: union_marketing_75th_webform
+id: union_marketing_news_webform
 theme: union_marketing
 region: content
 weight: 3
@@ -19,10 +19,10 @@ provider: null
 plugin: webform_block
 settings:
   id: webform_block
-  label: '75th updates'
+  label: 'News updates'
   provider: webform
   label_display: '0'
-  webform_id: 75th_updates
+  webform_id: news_updates
   default_data: ''
   redirect: false
 visibility:
@@ -38,6 +38,6 @@ visibility:
     context_mapping: {  }
   request_path:
     id: request_path
-    pages: "/75\r\n/75/*"
+    pages: "/news\r\n/news/*"
     negate: false
     context_mapping: {  }
