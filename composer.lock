@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "78178be72293fe92948262a6e3803356",
+    "content-hash": "0c85023fb361ce9c45df14e36ab69722",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4070,6 +4070,68 @@
             "homepage": "https://www.drupal.org/project/google_tag",
             "support": {
                 "source": "https://git.drupalcode.org/project/google_tag"
+            }
+        },
+        {
+            "name": "drupal/honeypot",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/honeypot.git",
+                "reference": "2.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/honeypot-2.0.1.zip",
+                "reference": "2.0.1",
+                "shasum": "c29d248c0fdcdf733a31b9214355acfa73716632"
+            },
+            "require": {
+                "drupal/core": "^8.0 || ^9.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.1",
+                    "datestamp": "1597855128",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jeff Geerling",
+                    "homepage": "https://www.drupal.org/user/213194",
+                    "email": "geerlingguy@mac.com"
+                },
+                {
+                    "name": "geerlingguy",
+                    "homepage": "https://www.drupal.org/user/389011"
+                },
+                {
+                    "name": "vijaycs85",
+                    "homepage": "https://www.drupal.org/user/93488"
+                }
+            ],
+            "description": "Mitigates spam form submissions using the honeypot method.",
+            "homepage": "https://www.drupal.org/project/honeypot",
+            "keywords": [
+                "deterrent",
+                "form",
+                "honeypot",
+                "honeytrap",
+                "php",
+                "spam"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/honeypot",
+                "issues": "https://www.drupal.org/project/issues/honeypot"
             }
         },
         {

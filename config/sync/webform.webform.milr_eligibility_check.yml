@@ -1,7 +1,13 @@
 uuid: daec9173-61cd-4f37-80cc-dacc02578771
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - honeypot
+third_party_settings:
+  honeypot:
+    honeypot: true
+    time_restriction: true
 open: null
 close: null
 weight: 0

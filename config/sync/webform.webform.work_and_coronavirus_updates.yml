@@ -3,7 +3,11 @@ langcode: en
 status: open
 dependencies:
   module:
+    - honeypot
     - webform_mailchimp
+third_party_settings:
+  honeypot:
+    honeypot: true
 open: null
 close: null
 weight: 0

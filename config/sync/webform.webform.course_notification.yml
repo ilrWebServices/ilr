@@ -1,7 +1,12 @@
 uuid: f8234602-67f6-4ee5-b2b5-1b9c9fa7e9a4
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - honeypot
+third_party_settings:
+  honeypot:
+    honeypot: true
 open: null
 close: null
 weight: 0
