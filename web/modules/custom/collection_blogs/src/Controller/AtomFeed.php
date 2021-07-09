@@ -3,6 +3,9 @@
 namespace Drupal\collection_blogs\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\extended_post\ExtendedPostManager;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\collection\Entity\CollectionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,19 +18,66 @@ use Drupal\Core\Datetime\DrupalDateTime;
 class AtomFeed extends ControllerBase {
 
   /**
+   * The module handler service.
+   *
+   * @var Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
+   * The extended post manager service.
+   *
+   * @var \Drupal\extended_post\ExtendedPostManager
+   */
+  protected $extendedPostManager;
+
+  /**
+   * The serializer xml encoder service.
+   *
+   * @var \Symfony\Component\Serializer\Encoder\XmlEncoder
+   */
+  protected $xmlEncoder;
+
+  /**
+   * Constructs this AtomFeed controller.
+   *
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   *   The module handler service.
+   * @param \Drupal\extended_post\ExtendedPostManager $extended_post_manager
+   *   The extended post manager service.
+   * @param \Symfony\Component\Serializer\Encoder\XmlEncoder $xml_encoder
+   *   The Symfony XML encoder.
+   */
+  public function __construct(ModuleHandlerInterface $module_handler, ExtendedPostManager $extended_post_manager, XmlEncoder $xml_encoder) {
+    $this->moduleHandler = $module_handler;
+    $this->extendedPostManager = $extended_post_manager;
+    $this->xmlEncoder = $xml_encoder;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('module_handler'),
+      $container->get('extended_post.manager'),
+      new XmlEncoder()
+    );
+  }
+
+  /**
    * The `content` route responds with the atom feed items.
    */
   public function content(CollectionInterface $collection, Request $request) {
-    $entity_type_manager = \Drupal::service('entity_type.manager');
     $response = new Response();
-    $xmlEncoder = new XmlEncoder();
-    $allow_cross_posts = \Drupal::moduleHandler()->moduleExists('collection_item_path');
-    $recent_updated_date = '';
-    $post_types = \Drupal::service('extended_post.manager')->getPostTypes();
 
-    if (empty($post_types)) {
+    if (!($post_types = $this->extendedPostManager->getPostTypes())) {
       return $response;
     }
+
+    $allow_cross_posts = $this->moduleHandler->moduleExists('collection_item_path');
+    $recent_updated_date = '';
+    $collection_item_storage = $this->entityTypeManager()->getStorage('collection_item');
 
     $xml_array = [
       '@xmlns' => 'http://www.w3.org/2005/Atom',
@@ -44,7 +94,7 @@ class AtomFeed extends ControllerBase {
       'entry' => [],
     ];
 
-    $blog_post_collection_item_ids = \Drupal::entityQuery('collection_item')
+    $blog_post_collection_item_ids = $collection_item_storage->getQuery()
       ->condition('collection', $collection->id())
       ->condition('type', 'blog')
       ->condition('item.entity:node.status', 1)
@@ -54,7 +104,7 @@ class AtomFeed extends ControllerBase {
       ->range(0, 100)
       ->execute();
 
-    $blog_post_collection_items = $entity_type_manager->getStorage('collection_item')->loadMultiple($blog_post_collection_item_ids);
+    $blog_post_collection_items = $collection_item_storage->loadMultiple($blog_post_collection_item_ids);
 
     foreach ($blog_post_collection_items as $blog_post_collection_item) {
       $post = $blog_post_collection_item->item->entity;
@@ -113,7 +163,7 @@ class AtomFeed extends ControllerBase {
       'xml_root_node_name' => 'feed',
     ];
 
-    $response->setContent($xmlEncoder->encode($xml_array, 'xml', $context));
+    $response->setContent($this->xmlEncoder->encode($xml_array, 'xml', $context));
     $response->headers->set('Content-Type', 'application/atom+xml');
     return $response;
   }
