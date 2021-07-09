@@ -134,12 +134,14 @@ class AtomFeed extends ControllerBase {
         'summary' => $post->body->summary,
       ];
 
-      foreach ($post->field_authors as $author) {
-        $authors[] = ['name' => $author->entity->getDisplayName()];
-      }
+      if ($post->hasField('field_authors')) {
+        foreach ($post->field_authors as $author) {
+          $authors[] = ['name' => $author->entity->getDisplayName()];
+        }
 
-      if ($authors) {
-        $entry['author'] = $authors;
+        if ($authors) {
+          $entry['author'] = $authors;
+        }
       }
 
       if ($blog_post_collection_item->field_blog_categories->isEmpty() === FALSE) {
