@@ -9,3 +9,16 @@ blog.feed:
     parameters:
       collection:
         type: entity:collection
+blog.term.feed:
+  path: 'blog/{collection}/{taxonomy_term}/feed'
+  defaults:
+    _title: 'Atom Feed by Term'
+    _controller: '\Drupal\collection_blogs\Controller\AtomFeed::content'
+  requirements:
+    _permission: 'view blog collection'
+  options:
+    parameters:
+      collection:
+        type: entity:collection
+      taxonomy_term:
+        type: entity:taxonomy_term

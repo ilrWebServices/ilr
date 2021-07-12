@@ -7,6 +7,7 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\extended_post\ExtendedPostManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\collection\Entity\CollectionInterface;
+use Drupal\taxonomy\TermInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -68,7 +69,7 @@ class AtomFeed extends ControllerBase {
   /**
    * The `content` route responds with the atom feed items.
    */
-  public function content(CollectionInterface $collection, Request $request) {
+  public function content(CollectionInterface $collection, TermInterface $taxonomy_term = NULL, Request $request) {
     $response = new Response();
 
     if (!($post_types = $this->extendedPostManager->getPostTypes())) {
@@ -78,11 +79,12 @@ class AtomFeed extends ControllerBase {
     $allow_cross_posts = $this->moduleHandler->moduleExists('collection_item_path');
     $recent_updated_date = '';
     $collection_item_storage = $this->entityTypeManager()->getStorage('collection_item');
+    $id = $taxonomy_term ? $taxonomy_term->uuid->value : $collection->uuid->value;
 
     $xml_array = [
       '@xmlns' => 'http://www.w3.org/2005/Atom',
-      'title' => $collection->label(),
-      'id' => 'urn:uuid:' . $collection->uuid->value,
+      'title' => $collection->label() . ($taxonomy_term ? ': ' . $taxonomy_term->label() : ''),
+      'id' => 'urn:uuid:' . $id,
       'updated' => &$recent_updated_date,
       'author' => [
         'name' => $collection->label(),
@@ -94,15 +96,27 @@ class AtomFeed extends ControllerBase {
       'entry' => [],
     ];
 
-    $blog_post_collection_item_ids = $collection_item_storage->getQuery()
+    $blog_post_collection_item_query = $collection_item_storage->getQuery()
       ->condition('collection', $collection->id())
       ->condition('type', 'blog')
       ->condition('item.entity:node.status', 1)
       ->condition('item.entity:node.type', $post_types, 'IN')
       ->condition('item.entity:node.field_published_date', NULL, 'IS NOT NULL')
       ->sort('item.entity:node.field_published_date', 'DESC')
-      ->range(0, 100)
-      ->execute();
+      ->range(0, 100);
+
+    if ($taxonomy_term) {
+      $term_group = $blog_post_collection_item_query->orConditionGroup();
+      $term_group->condition('field_blog_categories', $taxonomy_term->id());
+      $term_group->condition('field_blog_tags', $taxonomy_term->id());
+      $blog_post_collection_item_query->condition($term_group);
+    }
+
+    $blog_post_collection_item_ids = $blog_post_collection_item_query->execute();
+
+    if (empty($blog_post_collection_item_ids)) {
+      return $response;
+    }
 
     $blog_post_collection_items = $collection_item_storage->loadMultiple($blog_post_collection_item_ids);
 
