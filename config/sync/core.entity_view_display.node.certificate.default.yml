@@ -37,6 +37,7 @@ third_party_settings:
           full_width: 1
           collapse_margins: 1
           extra_classes: ''
+          context_mapping: {  }
         components:
           c3773e2e-dcd4-45c0-88cf-7086817257db:
             uuid: c3773e2e-dcd4-45c0-88cf-7086817257db
@@ -56,6 +57,7 @@ third_party_settings:
         layout_id: banner
         layout_settings:
           label: ''
+          context_mapping: {  }
         components:
           afbfeda1-bea9-41d8-8649-031588ca42c3:
             uuid: afbfeda1-bea9-41d8-8649-031588ca42c3
@@ -255,6 +257,7 @@ third_party_settings:
           full_width: 1
           collapse_margins: 1
           extra_classes: ''
+          context_mapping: {  }
         components:
           40574358-ea53-4784-9f8a-7acc9e9e95c8:
             uuid: 40574358-ea53-4784-9f8a-7acc9e9e95c8
@@ -275,6 +278,7 @@ third_party_settings:
           full_width: 0
           collapse_margins: false
           extra_classes: ''
+          context_mapping: {  }
         components:
           a898965b-ed9e-430e-aa0f-8469aa931719:
             uuid: a898965b-ed9e-430e-aa0f-8469aa931719
@@ -337,6 +341,7 @@ third_party_settings:
           full_width: 1
           collapse_margins: false
           extra_classes: ''
+          context_mapping: {  }
         components:
           14ac907d-c792-4f48-ac1c-586ed2fff093:
             uuid: 14ac907d-c792-4f48-ac1c-586ed2fff093

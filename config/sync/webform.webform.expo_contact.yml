@@ -15,7 +15,26 @@ id: expo_contact
 title: 'ExPO Contact'
 description: 'Email contact webform for the ExPO subsite.'
 category: ''
-elements: "name:\n  '#title': Name\n  '#type': textfield\n  '#required': true\n  '#default_value': '[current-user:display-name]'\nemail:\n  '#title': Email\n  '#type': email\n  '#required': true\n  '#default_value': '[current-user:mail]'\nmessage:\n  '#title': Message\n  '#type': textarea\n  '#required': true\n  '#test': 'Questions and comments'\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': Submit"
+elements: |-
+  name:
+    '#title': Name
+    '#type': textfield
+    '#required': true
+    '#default_value': '[current-user:display-name]'
+  email:
+    '#title': Email
+    '#type': email
+    '#required': true
+    '#default_value': '[current-user:mail]'
+  message:
+    '#title': Message
+    '#type': textarea
+    '#required': true
+    '#test': 'Questions and comments'
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Submit
 css: ''
 javascript: ''
 settings:

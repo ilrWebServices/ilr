@@ -1,6 +1,6 @@
 <?php
 
-// @codingStandardsIgnoreFile
+// phpcs:ignoreFile
 
 /**
  * @file
@@ -247,6 +247,20 @@ $databases['drupal7']['default'] = [
  *     'database' => '/path/to/databasefilename',
  *   ];
  * @endcode
+ *
+ * Sample Database configuration format for a driver in a contributed module:
+ * @code
+ *   $databases['default']['default'] = [
+ *     'driver' => 'my_driver',
+ *     'namespace' => 'Drupal\my_module\Driver\Database\my_driver',
+ *     'autoload' => 'modules/my_module/src/Driver/Database/my_driver/',
+ *     'database' => 'databasename',
+ *     'username' => 'sqlusername',
+ *     'password' => 'sqlpassword',
+ *     'host' => 'localhost',
+ *     'prefix' => '',
+ *   ];
+ * @endcode
  */
 
 /**
@@ -315,16 +329,18 @@ $settings['hash_salt'] = 'Ph9pVgUc_9ApY5oOoxc9-TZerO-Mo7PbesxRsUmfBIpftYydh_KO4X
 $settings['update_free_access'] = FALSE;
 
 /**
- * Fallback to HTTP for Update Manager.
+ * Fallback to HTTP for Update Manager and for fetching security advisories.
  *
- * If your Drupal site fails to connect to updates.drupal.org using HTTPS to
- * fetch Drupal core, module and theme update status, you may uncomment this
- * setting and set it to TRUE to allow an insecure fallback to HTTP. Note that
- * doing so will open your site up to a potential man-in-the-middle attack. You
- * should instead attempt to resolve the issues before enabling this option.
+ * If your site fails to connect to updates.drupal.org over HTTPS (either when
+ * fetching data on available updates, or when fetching the feed of critical
+ * security announcements), you may uncomment this setting and set it to TRUE to
+ * allow an insecure fallback to HTTP. Note that doing so will open your site up
+ * to a potential man-in-the-middle attack. You should instead attempt to
+ * resolve the issues before enabling this option.
  * @see https://www.drupal.org/docs/system-requirements/php-requirements#openssl
  * @see https://en.wikipedia.org/wiki/Man-in-the-middle_attack
  * @see \Drupal\update\UpdateFetcher
+ * @see \Drupal\system\SecurityAdvisories\SecurityAdvisoriesFetcher
  */
 # $settings['update_fetch_with_http_fallback'] = TRUE;
 
@@ -392,17 +408,20 @@ $settings['update_free_access'] = FALSE;
  * Sets which headers to trust from your reverse proxy.
  *
  * Common values are:
- * - \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL
+ * - \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR
+ * - \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST
+ * - \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT
+ * - \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO
  * - \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED
  *
  * Note the default value of
  * @code
- * \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL | \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED
+ * \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO | \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED
  * @endcode
  * is not secure by default. The value should be set to only the specific
  * headers the reverse proxy uses. For example:
  * @code
- * \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL
+ * \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO
  * @endcode
  * This would trust the following headers:
  * - X_FORWARDED_FOR
@@ -410,11 +429,14 @@ $settings['update_free_access'] = FALSE;
  * - X_FORWARDED_PROTO
  * - X_FORWARDED_PORT
  *
- * @see \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL
+ * @see \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR
+ * @see \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST
+ * @see \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT
+ * @see \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO
  * @see \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED
  * @see \Symfony\Component\HttpFoundation\Request::setTrustedProxies
  */
-# $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_ALL | \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED;
+# $settings['reverse_proxy_trusted_headers'] = \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_FOR | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_HOST | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PORT | \Symfony\Component\HttpFoundation\Request::HEADER_X_FORWARDED_PROTO | \Symfony\Component\HttpFoundation\Request::HEADER_FORWARDED;
 
 /**
  * Enable reverse proxy configuration when one is detected. Trust all but the
@@ -621,6 +643,21 @@ $settings['file_private_path'] = '../private';
 # ini_set('pcre.recursion_limit', 200000);
 
 /**
+ * Add Permissions-Policy header to disable Google FLoC.
+ *
+ * By default, Drupal sends the 'Permissions-Policy: interest-cohort=()' header
+ * to disable Google's Federated Learning of Cohorts feature, introduced in
+ * Chrome 89.
+ *
+ * See https://en.wikipedia.org/wiki/Federated_Learning_of_Cohorts for more
+ * information about FLoC.
+ *
+ * If you don't wish to disable FLoC in Chrome, you can set this value
+ * to FALSE.
+ */
+# $settings['block_interest_cohort'] = TRUE;
+
+/**
  * Configuration overrides.
  *
  * To globally override specific configuration values for this site,
@@ -765,6 +802,19 @@ $settings['entity_update_batch_size'] = 50;
  * retained after a successful entity update process.
  */
 $settings['entity_update_backup'] = TRUE;
+
+/**
+ * Node migration type.
+ *
+ * This is used to force the migration system to use the classic node migrations
+ * instead of the default complete node migrations. The migration system will
+ * use the classic node migration only if there are existing migrate_map tables
+ * for the classic node migrations and they contain data. These tables may not
+ * exist if you are developing custom migrations and do not want to use the
+ * complete node migrations. Set this to TRUE to force the use of the classic
+ * node migrations.
+ */
+$settings['migrate_node_migrate_type_classic'] = FALSE;
 
 // Automatic Platform.sh settings.
 if (file_exists($app_root . '/' . $site_path . '/settings.platformsh.php')) {

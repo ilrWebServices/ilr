@@ -17,7 +17,51 @@ id: course_notification
 title: 'Course Notification'
 description: 'Allows users to sign up for notifications of new classes for a given course.'
 category: 'professional programs'
-elements: "intro:\n  '#type': webform_markup\n  '#markup': '<p>Sign up for notification of new workshop dates.</p>'\ninfo_container:\n  '#type': container\n  '#attributes':\n    class:\n      - info-fields\n  name:\n    '#type': textfield\n    '#title': 'Your Name'\n    '#required': true\n    '#default_value': '[current-user:display-name]'\n  email:\n    '#type': email\n    '#title': 'Your Email'\n    '#required': true\n    '#default_value': '[current-user:mail]'\n  organization:\n    '#type': textfield\n    '#title': Organization\n    '#required': true\n  zip_code:\n    '#type': textfield\n    '#title': 'Zip Code'\n    '#required': true\ncourse:\n  '#type': entity_autocomplete\n  '#title': Course\n  '#prepopulate': true\n  '#required': true\n  '#default_value': '[current-page:url:unaliased:args:value:1]'\n  '#wrapper_attributes':\n    class:\n      - course-notification-course-ref\n  '#target_type': node\n  '#selection_handler': 'default:node'\n  '#selection_settings':\n    target_bundles:\n      course: course\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': 'Sign Up'"
+elements: |-
+  intro:
+    '#type': webform_markup
+    '#markup': '<p>Sign up for notification of new workshop dates.</p>'
+  info_container:
+    '#type': container
+    '#attributes':
+      class:
+        - info-fields
+    name:
+      '#type': textfield
+      '#title': 'Your Name'
+      '#required': true
+      '#default_value': '[current-user:display-name]'
+    email:
+      '#type': email
+      '#title': 'Your Email'
+      '#required': true
+      '#default_value': '[current-user:mail]'
+    organization:
+      '#type': textfield
+      '#title': Organization
+      '#required': true
+    zip_code:
+      '#type': textfield
+      '#title': 'Zip Code'
+      '#required': true
+  course:
+    '#type': entity_autocomplete
+    '#title': Course
+    '#prepopulate': true
+    '#required': true
+    '#default_value': '[current-page:url:unaliased:args:value:1]'
+    '#wrapper_attributes':
+      class:
+        - course-notification-course-ref
+    '#target_type': node
+    '#selection_handler': 'default:node'
+    '#selection_settings':
+      target_bundles:
+        course: course
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': 'Sign Up'
 css: ''
 javascript: ''
 settings:

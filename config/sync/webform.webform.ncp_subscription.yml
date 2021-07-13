@@ -14,7 +14,43 @@ id: ncp_subscription
 title: 'New Conversations Project Subscription'
 description: ''
 category: ''
-elements: "'#attributes':\n  class:\n    - 'webform--with-content webform--dark'\ncontent_container:\n  '#type': container\n  '#attributes':\n    class:\n      - form-title\n  '#markup': |\n    <h2 class=\"cu-heading\">\n      Stay Connected\n    </h2>\n    \n    <p>Join the New Conversations Project mailing list.</p>\n  title: null\nelement_container:\n  '#type': container\n  '#attributes':\n    class:\n      - form-fields\n  first_name:\n    '#type': textfield\n    '#title': 'First name'\n    '#required': true\n  last_name:\n    '#type': textfield\n    '#title': 'Last name'\n    '#required': true\n  email:\n    '#type': email\n    '#title': 'Email address'\n    '#required': true\n  actions:\n    '#type': webform_actions\n    '#title': 'Submit button(s)'\n    '#submit__label': Subscribe"
+elements: |-
+  '#attributes':
+    class:
+      - 'webform--with-content webform--dark'
+  content_container:
+    '#type': container
+    '#attributes':
+      class:
+        - form-title
+    '#markup': |
+      <h2 class="cu-heading">
+        Stay Connected
+      </h2>
+      
+      <p>Join the New Conversations Project mailing list.</p>
+    title: null
+  element_container:
+    '#type': container
+    '#attributes':
+      class:
+        - form-fields
+    first_name:
+      '#type': textfield
+      '#title': 'First name'
+      '#required': true
+    last_name:
+      '#type': textfield
+      '#title': 'Last name'
+      '#required': true
+    email:
+      '#type': email
+      '#title': 'Email address'
+      '#required': true
+    actions:
+      '#type': webform_actions
+      '#title': 'Submit button(s)'
+      '#submit__label': Subscribe
 css: ''
 javascript: ''
 settings:

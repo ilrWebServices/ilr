@@ -24,6 +24,7 @@ third_party_settings:
         layout_id: banner
         layout_settings:
           label: ''
+          context_mapping: {  }
         components:
           d8d55e50-aef7-413e-bac5-ed328c861a6e:
             uuid: d8d55e50-aef7-413e-bac5-ed328c861a6e
@@ -98,6 +99,7 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings:
           label: ''
+          context_mapping: {  }
         components:
           1d8338f8-4d1c-4d2d-b402-88bfbaa1893f:
             uuid: 1d8338f8-4d1c-4d2d-b402-88bfbaa1893f

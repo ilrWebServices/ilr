@@ -18,7 +18,95 @@ id: milr_eligibility_check
 title: 'MILR Eligibility Check'
 description: ''
 category: 'graduate programs'
-elements: "first_name:\n  '#type': textfield\n  '#title': 'First name'\n  '#required': true\nlast_name:\n  '#type': textfield\n  '#title': 'Last name'\n  '#required': true\nemail:\n  '#type': email\n  '#title': Email\n  '#required': true\n  '#default_value': '[current-user:mail]'\naddress:\n  '#type': address\n  '#title': Citizenship\n  '#title_display': before\n  '#required': true\n  '#default_value':\n    country_code: US\n  '#field_overrides':\n    givenName: hidden\n    additionalName: hidden\n    familyName: hidden\n    organization: hidden\n    addressLine1: hidden\n    addressLine2: hidden\n    postalCode: hidden\n    sortingCode: hidden\n    dependentLocality: hidden\n    locality: required\n    administrativeArea: required\nphone:\n  '#type': tel\n  '#title': 'Cell phone number'\nexperience_years:\n  '#type': select\n  '#title': 'Years of work experience'\n  '#options':\n    'Less than 1 year': 'Less than 1 year'\n    '1 - 4 years': '1 - 4 years'\n    '5 - 8 years': '5 - 8 years'\n    '9 or more years': '9 or more years'\nemployer:\n  '#type': textfield\n  '#title': 'Current employer (if applicable)'\n  '#pattern': '[^<>]*'\n  '#pattern_error': 'Please check your employer value.'\nbachelors_complete:\n  '#type': radios\n  '#title': 'Do you currently hold a Bachelor''s degree?'\n  '#options':\n    1: 'Yes'\n    0: 'No'\ndegree_year:\n  '#type': datelist\n  '#title': 'When did you receive your Bachelor''s degree?'\n  '#states':\n    visible:\n      ':input[name=\"bachelors_complete\"]':\n        value: '1'\n  '#states_clear': false\n  '#date_part_order':\n    - year\n  '#date_year_range': '-50:+2'\n  '#date_year_range_reverse': true\nmarketing_channel:\n  '#type': webform_checkboxes_other\n  '#title': 'How did you hear about the ILR School MILR Program?'\n  '#options': marketing_channels\n  '#other__option_label': Other\n  '#other__placeholder': ''\n  '#format_items': semicolon\nresume:\n  '#type': webform_document_file\n  '#title': Resume\n  '#file_extensions': 'txt rtf pdf doc docx'\n  '#sanitize': true\ncompany:\n  '#type': webform_computed_twig\n  '#title': Company\n  '#display_on': view\n  '#mode': text\n  '#template': '{{ data.employer ? data.employer|raw : ''NONE PROVIDED'' }}'\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': 'Check my eligibility'"
+elements: |-
+  first_name:
+    '#type': textfield
+    '#title': 'First name'
+    '#required': true
+  last_name:
+    '#type': textfield
+    '#title': 'Last name'
+    '#required': true
+  email:
+    '#type': email
+    '#title': Email
+    '#required': true
+    '#default_value': '[current-user:mail]'
+  address:
+    '#type': address
+    '#title': Citizenship
+    '#title_display': before
+    '#required': true
+    '#default_value':
+      country_code: US
+    '#field_overrides':
+      givenName: hidden
+      additionalName: hidden
+      familyName: hidden
+      organization: hidden
+      addressLine1: hidden
+      addressLine2: hidden
+      postalCode: hidden
+      sortingCode: hidden
+      dependentLocality: hidden
+      locality: required
+      administrativeArea: required
+  phone:
+    '#type': tel
+    '#title': 'Cell phone number'
+  experience_years:
+    '#type': select
+    '#title': 'Years of work experience'
+    '#options':
+      'Less than 1 year': 'Less than 1 year'
+      '1 - 4 years': '1 - 4 years'
+      '5 - 8 years': '5 - 8 years'
+      '9 or more years': '9 or more years'
+  employer:
+    '#type': textfield
+    '#title': 'Current employer (if applicable)'
+    '#pattern': '[^<>]*'
+    '#pattern_error': 'Please check your employer value.'
+  bachelors_complete:
+    '#type': radios
+    '#title': 'Do you currently hold a Bachelor''s degree?'
+    '#options':
+      1: 'Yes'
+      0: 'No'
+  degree_year:
+    '#type': datelist
+    '#title': 'When did you receive your Bachelor''s degree?'
+    '#states':
+      visible:
+        ':input[name="bachelors_complete"]':
+          value: '1'
+    '#states_clear': false
+    '#date_part_order':
+      - year
+    '#date_year_range': '-50:+2'
+    '#date_year_range_reverse': true
+  marketing_channel:
+    '#type': webform_checkboxes_other
+    '#title': 'How did you hear about the ILR School MILR Program?'
+    '#options': marketing_channels
+    '#other__option_label': Other
+    '#other__placeholder': ''
+    '#format_items': semicolon
+  resume:
+    '#type': webform_document_file
+    '#title': Resume
+    '#file_extensions': 'txt rtf pdf doc docx'
+    '#sanitize': true
+  company:
+    '#type': webform_computed_twig
+    '#title': Company
+    '#display_on': view
+    '#mode': text
+    '#template': '{{ data.employer ? data.employer|raw : ''NONE PROVIDED'' }}'
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': 'Check my eligibility'
 css: ''
 javascript: ''
 settings:

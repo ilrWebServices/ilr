@@ -3,7 +3,6 @@ skip_cache: false
 sql_signature: false
 ui:
   show:
-    master_display: false
     advanced_column: false
     display_embed: true
     preview_information: true
@@ -12,6 +11,7 @@ ui:
       enabled: true
     performance_statistics: false
     additional_queries: false
+    default_display: false
   exposed_filter_any_label: old_any
   always_live_preview: false
 field_rewrite_elements:
