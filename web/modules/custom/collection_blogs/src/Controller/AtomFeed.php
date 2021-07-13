@@ -127,6 +127,7 @@ class AtomFeed extends ControllerBase {
       $post_updated_date = DrupalDateTime::createFromTimestamp($post->changed->value);
       $post_updated_date_rfc_3339 = $post_updated_date->format(\DateTime::RFC3339);
       $authors = [];
+      $categories = [];
 
       if ($allow_cross_posts && !$blog_post_collection_item->isCanonical()) {
         $uuid = $blog_post_collection_item->uuid->value;
@@ -159,9 +160,24 @@ class AtomFeed extends ControllerBase {
       }
 
       if ($blog_post_collection_item->field_blog_categories->isEmpty() === FALSE) {
-        $entry['category'] = [
-          '@term' => $blog_post_collection_item->field_blog_categories->entity->label(),
+        $categories[] = [
+          '@term' => $blog_post_collection_item->field_blog_categories->entity->id(),
+          '@label' => $blog_post_collection_item->field_blog_categories->entity->label(),
+          '@scheme' => 'https://ilr.test/taxonomy/term/'
         ];
+      }
+
+      if ($blog_post_collection_item->field_blog_tags->isEmpty() === FALSE) {
+        foreach ($blog_post_collection_item->field_blog_tags as $tag) {
+          $categories[] = [
+            '@term' => $tag->entity->id(),
+            '@label' => $tag->entity->label(),
+            '@scheme' => 'https://ilr.test/taxonomy/term/'];
+        }
+      }
+
+      if ($categories) {
+        $entry['category'] = $categories;
       }
 
       $xml_array['entry'][] = $entry;
