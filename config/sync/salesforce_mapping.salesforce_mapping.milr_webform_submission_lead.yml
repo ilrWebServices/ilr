@@ -38,14 +38,14 @@ field_mappings:
     id: 0
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:first_name:value]'
+    drupal_field_value: '[webform_submission:values:first_name:raw]'
     salesforce_field: FirstName
     direction: drupal_sf
     description: ''
     id: 1
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:last_name:value]'
+    drupal_field_value: '[webform_submission:values:last_name:raw]'
     salesforce_field: LastName
     direction: drupal_sf
     description: ''
@@ -101,7 +101,7 @@ field_mappings:
     id: 9
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:bachelors_complete:raw]'
+    drupal_field_value: '[webform_submission:values:bachelors_complete:value]'
     salesforce_field: Hold_Bachelor_s_Degree__c
     direction: drupal_sf
     description: ''
@@ -115,7 +115,7 @@ field_mappings:
     id: 11
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:marketing_channel:value]'
+    drupal_field_value: '[webform_submission:values:marketing_channel:raw]'
     salesforce_field: Pre_assessment_Source__c
     direction: drupal_sf
     description: ''
@@ -141,6 +141,13 @@ field_mappings:
     direction: drupal_sf
     description: ''
     id: 15
+  -
+    drupal_field_type: Constant
+    drupal_field_value: '1'
+    salesforce_field: Is_Pre_assessment__c
+    direction: drupal_sf
+    description: ''
+    id: 16
 push_limit: 0
 push_retries: 3
 push_frequency: 0
