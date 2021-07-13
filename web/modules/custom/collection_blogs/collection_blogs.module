@@ -214,6 +214,18 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
       $build['blog_collection'] = $entity_type_manager->getViewBuilder('collection')->view($vocabulary_collection_item->collection->entity, 'banner');
     }
   }
+
+  if (preg_match('/^blog_(\d+)_(categories|tags)$/', $entity->bundle(), $matches) && $view_mode === 'full') {
+    $url = Url::fromRoute('blog.term.feed', ['collection' => $matches[1], 'taxonomy_term' => $entity->id()], ['absolute' => TRUE]);
+
+    // Attach a link to the Atom feed, which is an alternate representation.
+    $build['#attached']['html_head_link'][][] = [
+      'rel' => 'alternate',
+      'type' => 'application/atom+xml',
+      'title' => $entity->label(),
+      'href' => $url->toString(),
+    ];
+  }
 }
 
 /**
