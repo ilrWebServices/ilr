@@ -10,7 +10,7 @@ id: user.user.field_common_name
 field_name: field_common_name
 entity_type: user
 bundle: user
-label: Name
+label: 'Common name'
 description: 'This field is auto-populated when logging in via NetID.'
 required: false
 translatable: false

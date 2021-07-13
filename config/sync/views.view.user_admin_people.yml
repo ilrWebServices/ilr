@@ -2,6 +2,8 @@ uuid: fea60f1d-200e-4637-99f3-b1a3882c0dfe
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.storage.user.field_common_name
   module:
     - user
     - views_autocomplete_filters
@@ -576,6 +578,69 @@ display:
           plugin_id: field
           entity_type: user
           entity_field: mail
+        field_common_name:
+          id: field_common_name
+          table: user__field_common_name
+          field: field_common_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Common name'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
       filters:
         combine:
           id: combine
@@ -594,6 +659,8 @@ display:
             description: ''
             use_operator: false
             operator: combine_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: user
             required: false
             remember: false
@@ -602,8 +669,17 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-            operator_limit_selection: false
-            operator_list: {  }
+              editor: '0'
+              content_administrator: '0'
+              course_admin: '0'
+              form_admin: '0'
+            placeholder: ''
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
           is_grouped: false
           group_info:
             label: ''
@@ -619,6 +695,7 @@ display:
           fields:
             name: name
             mail: mail
+            field_common_name: field_common_name
           plugin_id: combine
         status:
           id: status
@@ -847,7 +924,8 @@ display:
         - url.query_args
         - user.permissions
       max-age: 0
-      tags: {  }
+      tags:
+        - 'config:field.storage.user.field_common_name'
   page_1:
     display_plugin: page
     id: page_1
@@ -880,4 +958,5 @@ display:
         - url.query_args
         - user.permissions
       max-age: 0
-      tags: {  }
+      tags:
+        - 'config:field.storage.user.field_common_name'
