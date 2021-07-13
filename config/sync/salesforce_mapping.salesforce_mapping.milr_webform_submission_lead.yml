@@ -38,14 +38,14 @@ field_mappings:
     id: 0
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:first_name:value]'
+    drupal_field_value: '[webform_submission:values:first_name:raw]'
     salesforce_field: FirstName
     direction: drupal_sf
     description: ''
     id: 1
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:last_name:value]'
+    drupal_field_value: '[webform_submission:values:last_name:raw]'
     salesforce_field: LastName
     direction: drupal_sf
     description: ''
