@@ -141,6 +141,13 @@ field_mappings:
     direction: drupal_sf
     description: ''
     id: 15
+  -
+    drupal_field_type: Constant
+    drupal_field_value: '1'
+    salesforce_field: Is_Pre_assessment__c
+    direction: drupal_sf
+    description: ''
+    id: 16
 push_limit: 0
 push_retries: 3
 push_frequency: 0
