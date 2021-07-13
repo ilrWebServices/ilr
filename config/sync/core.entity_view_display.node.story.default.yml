@@ -13,7 +13,6 @@ dependencies:
     - node.type.story
   module:
     - better_social_sharing_buttons
-    - datetime
     - entity_reference_revisions
     - layout_builder
     - layout_discovery
@@ -29,6 +28,7 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings:
           label: ''
+          context_mapping: {  }
         components:
           7e01cf0d-69ea-4b22-a9f9-dc5d2eb75eaf:
             uuid: 7e01cf0d-69ea-4b22-a9f9-dc5d2eb75eaf
@@ -49,6 +49,7 @@ third_party_settings:
           full_width: 1
           collapse_margins: 0
           extra_classes: ''
+          context_mapping: {  }
         components:
           63678ee9-efac-4db2-b9a9-336a76b7b206:
             uuid: 63678ee9-efac-4db2-b9a9-336a76b7b206
@@ -96,6 +97,7 @@ third_party_settings:
           full_width: 0
           collapse_margins: 0
           extra_classes: ''
+          context_mapping: {  }
         components:
           86504365-c91b-4d83-90bd-f7d63322f449:
             uuid: 86504365-c91b-4d83-90bd-f7d63322f449
@@ -139,6 +141,7 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings:
           label: Content
+          context_mapping: {  }
         components:
           9e99fa6b-55ae-4467-94cc-7488bfea3e42:
             uuid: 9e99fa6b-55ae-4467-94cc-7488bfea3e42
@@ -167,6 +170,7 @@ third_party_settings:
           full_width: 0
           collapse_margins: 0
           extra_classes: ''
+          context_mapping: {  }
         components:
           66d33e1d-fdac-467f-9c8d-1b5676fbf962:
             uuid: 66d33e1d-fdac-467f-9c8d-1b5676fbf962
@@ -217,6 +221,7 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings:
           label: ''
+          context_mapping: {  }
         components:
           dabf7fcc-9800-4cb6-80eb-0ead779578dd:
             uuid: dabf7fcc-9800-4cb6-80eb-0ead779578dd

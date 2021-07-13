@@ -17,7 +17,51 @@ id: program_inquiry_form
 title: 'Program Inquiry Form'
 description: 'An inquiry/eligibility form for some programs'
 category: 'professional programs'
-elements: "name:\n  '#type': textfield\n  '#title': Name\n  '#required': true\n  '#default_value': '[current-user:display-name]'\nemail:\n  '#type': email\n  '#title': Email\n  '#required': true\n  '#default_value': '[current-user:mail]'\nphone:\n  '#type': tel\n  '#title': Phone\n  '#required': true\ntitle:\n  '#type': textfield\n  '#title': Title\n  '#required': true\ncompany:\n  '#type': textfield\n  '#title': Company\n  '#required': true\nmessage:\n  '#title': Message\n  '#type': textarea\n  '#test': 'Please ignore this email.'\npage:\n  '#type': entity_autocomplete\n  '#title': Page\n  '#prepopulate': true\n  '#required': true\n  '#default_value': '[current-page:url:unaliased:args:value:1]'\n  '#wrapper_attributes':\n    class:\n      - program-inquiry-page-ref\n  '#target_type': node\n  '#selection_handler': 'default:node'\n  '#selection_settings':\n    target_bundles:\n      page: page\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': 'Send message'"
+elements: |-
+  name:
+    '#type': textfield
+    '#title': Name
+    '#required': true
+    '#default_value': '[current-user:display-name]'
+  email:
+    '#type': email
+    '#title': Email
+    '#required': true
+    '#default_value': '[current-user:mail]'
+  phone:
+    '#type': tel
+    '#title': Phone
+    '#required': true
+  title:
+    '#type': textfield
+    '#title': Title
+    '#required': true
+  company:
+    '#type': textfield
+    '#title': Company
+    '#required': true
+  message:
+    '#title': Message
+    '#type': textarea
+    '#test': 'Please ignore this email.'
+  page:
+    '#type': entity_autocomplete
+    '#title': Page
+    '#prepopulate': true
+    '#required': true
+    '#default_value': '[current-page:url:unaliased:args:value:1]'
+    '#wrapper_attributes':
+      class:
+        - program-inquiry-page-ref
+    '#target_type': node
+    '#selection_handler': 'default:node'
+    '#selection_settings':
+      target_bundles:
+        page: page
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': 'Send message'
 css: ".program-inquiry-page-ref {\r\n  display: none !important;\r\n}"
 javascript: ''
 settings:

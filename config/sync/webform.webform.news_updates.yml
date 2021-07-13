@@ -18,7 +18,34 @@ id: news_updates
 title: 'News Updates'
 description: ''
 category: ''
-elements: "'#attributes':\n  class:\n    - 'webform--with-content webform--dark'\ncontent_container:\n  '#type': container\n  '#attributes':\n    class:\n      - form-title\n  '#markup': |\n    <h2 class=\"cu-heading\">\n      Weekly Inbox Updates\n    </h2>\n    \n  title: null\nelement_container:\n  '#type': container\n  '#attributes':\n    class:\n      - form-fields\n  email:\n    '#type': email\n    '#title': 'Email address'\n    '#required': true\n  actions:\n    '#type': webform_actions\n    '#title': 'Submit button(s)'\n    '#submit__label': 'Notify me of new content'"
+elements: |-
+  '#attributes':
+    class:
+      - 'webform--with-content webform--dark'
+  content_container:
+    '#type': container
+    '#attributes':
+      class:
+        - form-title
+    '#markup': |
+      <h2 class="cu-heading">
+        Weekly Inbox Updates
+      </h2>
+      
+    title: null
+  element_container:
+    '#type': container
+    '#attributes':
+      class:
+        - form-fields
+    email:
+      '#type': email
+      '#title': 'Email address'
+      '#required': true
+    actions:
+      '#type': webform_actions
+      '#title': 'Submit button(s)'
+      '#submit__label': 'Notify me of new content'
 css: ''
 javascript: ''
 settings:

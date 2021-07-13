@@ -30,9 +30,11 @@ third_party_settings:
       -
         layout_id: layout_cu_section
         layout_settings:
+          label: ''
           full_width: 1
           collapse_margins: 1
           extra_classes: ''
+          context_mapping: {  }
         components:
           16c02e63-81cf-4bdf-b395-8a067860a641:
             uuid: 16c02e63-81cf-4bdf-b395-8a067860a641
@@ -50,7 +52,9 @@ third_party_settings:
         third_party_settings: {  }
       -
         layout_id: banner
-        layout_settings: {  }
+        layout_settings:
+          label: ''
+          context_mapping: {  }
         components:
           189e896f-6453-46c6-821e-9ff0f95d8f20:
             uuid: 189e896f-6453-46c6-821e-9ff0f95d8f20
@@ -143,8 +147,11 @@ third_party_settings:
       -
         layout_id: layout_cu_section
         layout_settings:
-          extra_classes: ''
+          label: ''
           full_width: 0
+          collapse_margins: false
+          extra_classes: ''
+          context_mapping: {  }
         components:
           08152c1c-fa89-4fc1-b1f2-ef2697267b7f:
             uuid: 08152c1c-fa89-4fc1-b1f2-ef2697267b7f
@@ -202,8 +209,11 @@ third_party_settings:
       -
         layout_id: layout_cu_section
         layout_settings:
+          label: ''
           full_width: 1
+          collapse_margins: false
           extra_classes: ''
+          context_mapping: {  }
         components:
           9dcdc8d3-8062-4ef0-aec9-cdc512534d02:
             uuid: 9dcdc8d3-8062-4ef0-aec9-cdc512534d02
@@ -221,7 +231,12 @@ third_party_settings:
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
-        layout_settings: {  }
+        layout_settings:
+          label: ''
+          full_width: false
+          collapse_margins: false
+          extra_classes: ''
+          context_mapping: {  }
         components:
           858b98d4-f3a0-43a6-8fe4-a3253b7f987f:
             uuid: 858b98d4-f3a0-43a6-8fe4-a3253b7f987f
@@ -258,8 +273,11 @@ third_party_settings:
       -
         layout_id: layout_cu_section
         layout_settings:
-          extra_classes: ''
+          label: ''
           full_width: 1
+          collapse_margins: false
+          extra_classes: ''
+          context_mapping: {  }
         components:
           b0d2e8ee-5ec0-4013-bccc-b54b620eaa41:
             uuid: b0d2e8ee-5ec0-4013-bccc-b54b620eaa41

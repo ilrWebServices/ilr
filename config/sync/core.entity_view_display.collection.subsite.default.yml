@@ -28,6 +28,7 @@ third_party_settings:
           full_width: 0
           collapse_margins: 0
           extra_classes: ''
+          context_mapping: {  }
         components:
           d4e7264e-73bb-41a7-9e55-7f247f6e705e:
             uuid: d4e7264e-73bb-41a7-9e55-7f247f6e705e
@@ -77,11 +78,22 @@ third_party_settings:
                 third_party_settings: {  }
             additional: {  }
             weight: 0
+          fad2ab73-cee6-4c61-b0f2-e5e94c1d42b2:
+            uuid: fad2ab73-cee6-4c61-b0f2-e5e94c1d42b2
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:collection:subsite:extra_field_ilr_section_navigation'
+            additional: {  }
+            weight: 3
         third_party_settings: {  }
       -
         layout_id: layout_onecol
         layout_settings:
           label: Sections
+          context_mapping: {  }
         components:
           dab61be4-7ac6-4fc9-bd98-f043333b1539:
             uuid: dab61be4-7ac6-4fc9-bd98-f043333b1539
@@ -112,6 +124,11 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: main
+  extra_field_ilr_section_navigation:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
     region: main
   field_representative_image:
     type: media_thumbnail

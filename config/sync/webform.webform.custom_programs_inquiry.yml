@@ -17,7 +17,32 @@ id: custom_programs_inquiry
 title: 'Custom Programs Inquiry'
 description: ''
 category: 'professional programs'
-elements: "info_container:\n  '#type': container\n  '#attributes':\n    class:\n      - info-fields\n  first_name:\n    '#type': textfield\n    '#title': 'First Name'\n    '#required': true\n  last_name:\n    '#type': textfield\n    '#title': 'Last Name'\n    '#required': true\n  email:\n    '#type': email\n    '#title': 'Your Email'\n    '#required': true\n    '#default_value': '[current-user:mail]'\n  comments:\n    '#type': textarea\n    '#title': 'Tell us what you''re looking for'\nactions:\n  '#type': webform_actions\n  '#title': 'Submit button(s)'\n  '#submit__label': Submit"
+elements: |-
+  info_container:
+    '#type': container
+    '#attributes':
+      class:
+        - info-fields
+    first_name:
+      '#type': textfield
+      '#title': 'First Name'
+      '#required': true
+    last_name:
+      '#type': textfield
+      '#title': 'Last Name'
+      '#required': true
+    email:
+      '#type': email
+      '#title': 'Your Email'
+      '#required': true
+      '#default_value': '[current-user:mail]'
+    comments:
+      '#type': textarea
+      '#title': 'Tell us what you''re looking for'
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Submit
 css: ''
 javascript: ''
 settings:

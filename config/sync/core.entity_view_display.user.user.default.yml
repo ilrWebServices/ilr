@@ -20,6 +20,7 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings:
           label: ''
+          context_mapping: {  }
         components: {  }
         third_party_settings: {  }
       -
@@ -29,6 +30,7 @@ third_party_settings:
           full_width: 0
           collapse_margins: 0
           extra_classes: ''
+          context_mapping: {  }
         components:
           e5c819a4-8640-4e02-98c4-7900da480c3e:
             uuid: e5c819a4-8640-4e02-98c4-7900da480c3e
@@ -49,6 +51,7 @@ third_party_settings:
           full_width: 0
           collapse_margins: 0
           extra_classes: ''
+          context_mapping: {  }
         components:
           99228495-11b4-4178-a753-669b1cdfc030:
             uuid: 99228495-11b4-4178-a753-669b1cdfc030

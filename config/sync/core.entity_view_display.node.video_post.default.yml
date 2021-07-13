@@ -22,6 +22,7 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings:
           label: 'Blog banner'
+          context_mapping: {  }
         components:
           a380457b-c9d4-4aee-bb7e-9d37fd9d8fcf:
             uuid: a380457b-c9d4-4aee-bb7e-9d37fd9d8fcf
@@ -41,6 +42,7 @@ third_party_settings:
           full_width: 0
           collapse_margins: 0
           extra_classes: ''
+          context_mapping: {  }
         components:
           87325710-ea25-4ecb-8549-8178f044b30d:
             uuid: 87325710-ea25-4ecb-8549-8178f044b30d
