@@ -1116,7 +1116,7 @@ function ilr_entity_operation(EntityInterface $entity) {
  * Implements hook_preprocess_views_view_field().
  */
 function ilr_preprocess_views_view_field(&$variables) {
-  if (isset($variables['row']->_entity) && !$variables['row']->_entity instanceof CollectionItemInterface) {
+  if (empty($variables['row']->_entity) || !$variables['row']->_entity instanceof CollectionItemInterface) {
     return;
   }
 
