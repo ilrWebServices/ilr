@@ -8,6 +8,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\Template\Attribute;
+use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
  * @file Theme file for the union_marketing.theme.
@@ -35,7 +36,9 @@ function union_marketing_preprocess_html(&$variables) {
     $entity_type = $variables['root_path'];
 
     if ($entity_type && $entity = \Drupal::routeMatch()->getParameter($entity_type)) {
-      $variables['attributes']['class'][] = $entity_type . '--' . str_replace('_', '-', $entity->bundle());
+      if ($entity instanceof ContentEntityInterface) {
+        $variables['attributes']['class'][] = $entity_type . '--' . str_replace('_', '-', $entity->bundle());
+      }
     }
   }
 
