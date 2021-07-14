@@ -3161,17 +3161,17 @@
         },
         {
             "name": "drupal/ctools",
-            "version": "3.6.0",
+            "version": "3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ctools.git",
-                "reference": "8.x-3.6"
+                "reference": "8.x-3.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.6.zip",
-                "reference": "8.x-3.6",
-                "shasum": "9a849bb6ac9f4d02603d04b3265b35b7329e1ef5"
+                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.7.zip",
+                "reference": "8.x-3.7",
+                "shasum": "b11c0981a1d2ab3cc9e8e614a337d8e2a2a70c0e"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9"
@@ -3179,8 +3179,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.6",
-                    "datestamp": "1620838181",
+                    "version": "8.x-3.7",
+                    "datestamp": "1623860918",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3437,17 +3437,17 @@
         },
         {
             "name": "drupal/entity_browser",
-            "version": "2.5.0",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/entity_browser.git",
-                "reference": "8.x-2.5"
+                "reference": "8.x-2.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_browser-8.x-2.5.zip",
-                "reference": "8.x-2.5",
-                "shasum": "29456b961f0f90ff064601ab8a382446a8143774"
+                "url": "https://ftp.drupal.org/files/projects/entity_browser-8.x-2.6.zip",
+                "reference": "8.x-2.6",
+                "shasum": "95cad4ce9620ccb4f02afa0e8b8bbf7c73fc5aac"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9"
@@ -3464,8 +3464,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.5",
-                    "datestamp": "1588015429",
+                    "version": "8.x-2.6",
+                    "datestamp": "1624401306",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3654,17 +3654,17 @@
         },
         {
             "name": "drupal/externalauth",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/externalauth.git",
-                "reference": "8.x-1.3"
+                "reference": "8.x-1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/externalauth-8.x-1.3.zip",
-                "reference": "8.x-1.3",
-                "shasum": "b1b38e6718fe66bd38fc894dab1f9d7a7d60f10b"
+                "url": "https://ftp.drupal.org/files/projects/externalauth-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "caea7d2d5a890adad9e6b5beaa2cf139727266d6"
             },
             "require": {
                 "drupal/core": "^8 || ^9"
@@ -3672,8 +3672,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.3",
-                    "datestamp": "1587629529",
+                    "version": "8.x-1.4",
+                    "datestamp": "1624457459",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5436,17 +5436,17 @@
         },
         {
             "name": "drupal/samlauth",
-            "version": "3.2.0",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/samlauth.git",
-                "reference": "8.x-3.2"
+                "reference": "8.x-3.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/samlauth-8.x-3.2.zip",
-                "reference": "8.x-3.2",
-                "shasum": "b2f53c15811265bb94f504c83a32736244a297f4"
+                "url": "https://ftp.drupal.org/files/projects/samlauth-8.x-3.3.zip",
+                "reference": "8.x-3.3",
+                "shasum": "743d1d4f8ee79eaeb941fe025d2b0c69eae416b7"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -5456,8 +5456,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.2",
-                    "datestamp": "1621516376",
+                    "version": "8.x-3.3",
+                    "datestamp": "1624398207",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5871,17 +5871,17 @@
         },
         {
             "name": "drupal/twig_tweak",
-            "version": "3.1.1",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/twig_tweak.git",
-                "reference": "3.1.1"
+                "reference": "3.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/twig_tweak-3.1.1.zip",
-                "reference": "3.1.1",
-                "shasum": "818cc2aaa248d4bbf11d13e4d53653d2ced9e8f0"
+                "url": "https://ftp.drupal.org/files/projects/twig_tweak-3.1.2.zip",
+                "reference": "3.1.2",
+                "shasum": "b0482fd5414a51d6f93b1c4fc181cdb28ec42677"
             },
             "require": {
                 "drupal/core": "^9.0",
@@ -5896,8 +5896,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.1.1",
-                    "datestamp": "1619981432",
+                    "version": "3.1.2",
+                    "datestamp": "1625377167",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6063,17 +6063,17 @@
         },
         {
             "name": "drupal/webform",
-            "version": "6.0.3",
+            "version": "6.0.4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/webform.git",
-                "reference": "6.0.3"
+                "reference": "6.0.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform-6.0.3.zip",
-                "reference": "6.0.3",
-                "shasum": "b75f79e26b5d58f4a9e047131f63c482bdaa5593"
+                "url": "https://ftp.drupal.org/files/projects/webform-6.0.4.zip",
+                "reference": "6.0.4",
+                "shasum": "8b87ffb19f980e9d77957dfb2d784a1a68619d57"
             },
             "require": {
                 "drupal/core": "^8.8 || ^9"
@@ -6121,8 +6121,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "6.0.3",
-                    "datestamp": "1620250254",
+                    "version": "6.0.4",
+                    "datestamp": "1624461046",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6130,7 +6130,7 @@
                 },
                 "drush": {
                     "services": {
-                        "drush.services.yml": "^9"
+                        "drush.services.yml": "^9 || ^10"
                     }
                 }
             },
