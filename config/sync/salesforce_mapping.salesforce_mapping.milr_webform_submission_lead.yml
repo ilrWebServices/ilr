@@ -122,14 +122,14 @@ field_mappings:
     id: 12
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:resume_url]'
+    drupal_field_value: '[webform_submission:values:resume_url:value]'
     salesforce_field: Resume__c
     direction: drupal_sf
     description: ''
     id: 13
   -
     drupal_field_type: Token
-    drupal_field_value: '[webform_submission:submission_url]'
+    drupal_field_value: '[webform_submission:values:submission_url:value]'
     salesforce_field: Web_Form_Submission_URL__c
     direction: drupal_sf
     description: ''
