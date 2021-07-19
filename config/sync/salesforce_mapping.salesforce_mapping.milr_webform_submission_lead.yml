@@ -148,6 +148,13 @@ field_mappings:
     direction: drupal_sf
     description: ''
     id: 16
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:address:country_code:value]'
+    salesforce_field: Country_of_Citizenship__c
+    direction: drupal_sf
+    description: ''
+    id: 17
 push_limit: 0
 push_retries: 3
 push_frequency: 0
