@@ -103,6 +103,18 @@ elements: |-
     '#display_on': view
     '#mode': text
     '#template': '{{ data.employer ? data.employer|raw : ''NONE PROVIDED'' }}'
+  resume_url:
+    '#type': webform_computed_twig
+    '#title': 'Resume URL'
+    '#display_on': view
+    '#mode': text
+    '#template': '{{ webform_token(''[webform_submission:values:resume:entity:url]'', webform_submission)|replace({''www.ilr.cornell.edu'': ''d8-edit.ilr.cornell.edu''}) }}'
+  submission_url:
+    '#type': webform_computed_twig
+    '#title': 'Submission URL'
+    '#display_on': view
+    '#mode': text
+    '#template': '{{ webform_token(''[webform_submission:url]'', webform_submission)|replace({''www.ilr.cornell.edu'': ''d8-edit.ilr.cornell.edu''}) }}'
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
