@@ -208,6 +208,11 @@ class ListStyle extends ParagraphsBehaviorBase {
       $element = &$build[$field];
 
       foreach (array_keys(iterator_to_array($element['#items'])) as $key) {
+        // Ensure that the item is in the render array.
+        if (empty($element[$key])) {
+          continue;
+        }
+
         $original_view_mode = $element[$key]['#view_mode'];
         $view_mode_for_liststyle = $this->getViewModeForListStyle($list_style, $key + 1);
         $cache_key_view_mode_key = array_search($original_view_mode, $element[$key]['#cache']['keys']);
