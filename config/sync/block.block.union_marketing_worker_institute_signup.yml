@@ -1,0 +1,37 @@
+uuid: b841046c-3b90-4e08-a0ea-043e4f4c2419
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.subsite_9
+  content:
+    - 'block_content:simple_text:e7aec8a3-dea7-4a03-a519-804313ed219a'
+  module:
+    - block_content
+    - block_visibility_groups
+    - ilr
+  theme:
+    - union_marketing
+id: union_marketing_worker_institute_signup
+theme: union_marketing
+region: content
+weight: 3
+provider: null
+plugin: 'block_content:e7aec8a3-dea7-4a03-a519-804313ed219a'
+settings:
+  id: 'block_content:e7aec8a3-dea7-4a03-a519-804313ed219a'
+  label: 'Worker Institute Signup'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: subsite_9
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false
