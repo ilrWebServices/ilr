@@ -323,7 +323,7 @@ handlers:
       from_mail: _default
       from_options: {  }
       from_name: _default
-      subject: _default
+      subject: 'MILR: Check Your Eligibility submitted - [webform_submission:values:first_name:raw] [webform_submission:values:last_name:raw]'
       body: "A new MILR Eligibility form has been submitted.&nbsp; A lead will be created in Salesforce momentarily.<br />\r\n<br />\r\nThe submission included the following information:<br />\r\n<br />\r\n[webform_submission:values]<br />\r\n<br />\r\n&nbsp;"
       excluded_elements: {  }
       ignore_access: false
