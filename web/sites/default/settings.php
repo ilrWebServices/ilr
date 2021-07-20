@@ -868,6 +868,17 @@ if (!empty(getenv('MAILCHIMP_WEBHOOK_HASH'))) {
 $config['samlauth.authentication']['sp_entity_id'] = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/saml/metadata';
 
 /**
+ * Configure sftp servers.
+ */
+$settings['sftp'] = [
+  'collegenet' => [
+    'server' => 'sftp.applyweb.com',
+    'username' => getenv('COLLEGENET_SFTP_USER'),
+    'password' => getenv('COLLEGENET_SFTP_PASSWORD'),
+  ],
+];
+
+/**
  * Load local development override configuration, if available.
  *
  * Create a settings.local.php file to override variables on secondary (staging,

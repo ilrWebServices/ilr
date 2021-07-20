@@ -1,0 +1,18 @@
+mapping:
+  XACT_ID: XACT_ID__c
+  NAME_FIRST: FirstName
+  NAME_LAST: LastName
+  EMAIL: Email
+  CORNELLG-CELL_PHONE: MobilePhone
+  CREATE_DATE: Legacy_Created_Date__c
+  SOURCE: Source__c
+  PRE-ASSESSMENT_SOURCE: Pre_assessment_Source__c
+  CORNELLG-APP_TERM_DISPLAY: Admit_Term_Requested__c
+  APPLICANT_STATUS: Field_Admission_Decision__c
+  MJR_PROGRAM_NAME: Admit_Program_Requested__c
+  OFFER_PROGRAM: Admit_Program_Offered__c
+  APPLICATION_STATUS: Application_Status__c
+  CORNELLG-GENDER: Sex__c
+  CORNELLG-ETHNIC: Racial_Identity__c
+  CORNELLG-HISPANIC_YN: Hispanic__c
+  DECISION_RESPONSE: Accepting_Offer__c

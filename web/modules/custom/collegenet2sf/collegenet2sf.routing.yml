@@ -1,0 +1,8 @@
+collegenet2sf.milr_endpoint:
+  path: 'collegenet2sf/milr/{key}'
+  defaults:
+    _controller: '\Drupal\collegenet2sf\Controller\CollegeNetDataFetcher::milrEndpoint'
+  options:
+    no_cache: TRUE
+  requirements:
+    _access_system_cron: 'TRUE'

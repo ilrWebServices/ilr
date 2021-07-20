@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains collegenet2sf.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function collegenet2sf_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the collegenet2sf module.
+    case 'help.page.collegenet2sf':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Transfers CollegeNET prospect data to Salesforce as Leads') . '</p>';
+      return $output;
+
+    default:
+  }
+}
