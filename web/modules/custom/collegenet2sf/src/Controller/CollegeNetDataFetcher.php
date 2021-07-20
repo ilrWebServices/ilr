@@ -3,7 +3,10 @@
 namespace Drupal\collegenet2sf\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\sftp_client\SftpClientInterface;
+use Drupal\sftp_client\Exception\SftpException;
+use Drupal\sftp_client\Exception\SftpLoginException;
 use League\Csv\Reader;
 use League\Csv\Statement;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -13,6 +16,8 @@ use Symfony\Component\HttpFoundation\Response;
  * Fetches remote CollegeNET data and passes it to a queue.
  */
 class CollegeNetDataFetcher extends ControllerBase {
+
+  use LoggerChannelTrait;
 
   /**
    * Name of the sftp.client connection.
@@ -39,6 +44,18 @@ class CollegeNetDataFetcher extends ControllerBase {
   const REPORT_DIRECTORY = '/ILR_CRM_Reports';
 
   /**
+   * User defined exception to prevent items from being added to the queue.
+   */
+  const INTERNAL_EXCEPTION = 1;
+
+  /**
+   * A logger instance.
+   *
+   * @var \Psr\Log\LoggerInterface
+   */
+  protected $logger;
+
+  /**
    * Constructs this SftpCsvProcessor controller.
    *
    * @param \Drupal\sftp_client\SftpClientInterface $sftp_client
@@ -46,6 +63,7 @@ class CollegeNetDataFetcher extends ControllerBase {
    */
   public function __construct(SftpClientInterface $sftp_client) {
     $this->sftpClient = $sftp_client;
+    $this->logger = $this->getLogger('collegenet lead');
   }
 
   /**
@@ -64,25 +82,52 @@ class CollegeNetDataFetcher extends ControllerBase {
    * runs.
    */
   public function milrEndpoint() {
-    $csv_data = $this->loadData();
+    try {
+      $csv_data = $this->loadData();
+    }
+    catch (\Exception $e) {
+      if ($e->getCode() === self::INTERNAL_EXCEPTION) {
+        $this->logger->info('CollegeNet file not processed: @message', [
+          '@message' => $e->getMessage(),
+        ]);
+      }
+      else {
+        $this->logger->error('CollegeNet data load error: @message', [
+          '@message' => $e->getMessage(),
+        ]);
+      }
+      return new Response('', 204);
+    }
 
-    $reader = Reader::createFromString($csv_data);
-    $reader->setHeaderOffset(0);
+    try {
+      $reader = Reader::createFromString($csv_data);
+      $reader->setHeaderOffset(0);
 
-    // @todo Should we also skip rejects?
-    $records = Statement::create()
-      ->where(fn(array $record) => strpos($record['MJR_PROGRAM_NAME'], 'M.I.L.R.') !== FALSE)
-      ->where(fn(array $record) => !empty($record['XACT_ID']))
-      ->process($reader);
+      // @todo Should we also skip rejects?
+      $records = Statement::create()
+        ->where(fn(array $record) => strpos($record['MJR_PROGRAM_NAME'], 'M.I.L.R.') !== FALSE)
+        ->where(fn(array $record) => !empty($record['XACT_ID']))
+        ->process($reader);
+    }
+    catch (\Exception $e) {
+      $this->logger->error('CollegeNet data CSV read error: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+
+      return new Response('', 204);
+    }
 
     $queue = \Drupal::queue('collegenet_lead_queue');
+
+    if ($records->count() === 0) {
+      $this->logger->info('CollegeNet record count is zero after filtering.');
+    }
 
     foreach ($records->getRecords() as $data) {
       // Store the data in a QueueWorker for processing on the next cron run.
       $queue->createItem($data);
     }
 
-    // @todo Log this data file fetch.
     // HTTP 204 is 'No content'.
     return new Response('', 204);
   }
@@ -94,15 +139,28 @@ class CollegeNetDataFetcher extends ControllerBase {
    *   Unparsed CSV data from the remote file.
    */
   protected function loadData() {
-    // Return file_get_contents('/Users/jeff/ILR/Webteam/collegenet import/3004_Graduate_Application___Prospect_20210720070227.csv');
+    // return file_get_contents('/Users/jeff/ILR/Webteam/collegenet import/3004_Graduate_Application___Prospect_20210720070227.csv');
     $this->sftpClient->setSettings(self::SFTP_CONNECTION_NAME);
 
-    // @todo try/catch this
     $files = $this->sftpClient->listFiles(self::REPORT_DIRECTORY);
 
-    $most_recent_export_file = $this->getMostRecent($this->filter($files));
+    if ($most_recent_export_file = $this->getMostRecent($this->filter($files))) {
+      // Log this data file fetch.
+      $this->logger->info('CollegeNet data fetch successful for %filename.', [
+        '%filename' => $most_recent_export_file->getFilename(),
+      ]);
 
-    return $this->sftpClient->readFile(self::REPORT_DIRECTORY . '/' . $most_recent_export_file->getFilename());
+      $data = $this->sftpClient->readFile(self::REPORT_DIRECTORY . '/' . $most_recent_export_file->getFilename());
+
+      if (empty($data)) {
+        throw new \Exception('Empty file retrieved from CollegeNet: ' . $most_recent_export_file->getFilename(), self::INTERNAL_EXCEPTION);
+      }
+
+      return $data;
+    }
+    else {
+      throw new \Exception('Unable to retrieve most recent file from CollegeNet.', self::INTERNAL_EXCEPTION);
+    }
   }
 
   /**

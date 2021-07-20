@@ -6,6 +6,7 @@ use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\salesforce\Rest\RestClientInterface;
+use Drupal\salesforce\Rest\RestException;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\salesforce\SelectQuery;
 use Drupal\Core\Queue\SuspendQueueException;
@@ -110,7 +111,7 @@ class CollegeNetLead extends QueueWorkerBase implements ContainerFactoryPluginIn
 
     // @todo Remove when dev server has these fields properly configured.
     unset($mapping['OFFER_PROGRAM']);
-    unset($mapping['MJR_PROGRAM_NAME']);
+    // unset($mapping['MJR_PROGRAM_NAME']);
     unset($mapping['DECISION_RESPONSE']);
 
     // Check for MILR (record type) Lead with same email and missing CollegeNET
@@ -138,16 +139,24 @@ class CollegeNetLead extends QueueWorkerBase implements ContainerFactoryPluginIn
       // If this was a connection error, throw a SuspendQueueException exception
       // so that will be suspended.
       // @todo See if this is logged. If not, log it ourselves.
-      if ($response === NULL) {
+      if ($e->getResponse() === NULL) {
         throw new SuspendQueueException($e->getMessage());
+      }
+      else {
+        // This will be logged. I think.
+        throw new \Exception($e->getMessage());
       }
     }
 
     // If a Lead for this email exists and has no XACT_ID, add the XACT_ID and
     // save it.
-    // @todo Try/catch this update and log errors.
     if (!empty($existing_lead)) {
-      $response = $this->sfapi->apiCall("sobjects/Lead/{$existing_lead['Id']}", ['XACT_ID__c' => $data['XACT_ID']], 'PATCH');
+      try {
+        $response = $this->sfapi->apiCall("sobjects/Lead/{$existing_lead['Id']}", ['XACT_ID__c' => $data['XACT_ID']], 'PATCH');
+      }
+      catch (RestException $e) {
+        throw new \Exception($e->getMessage());
+      }
     }
 
     // Initialize data for this SF object. Constants can be added here.
@@ -165,8 +174,12 @@ class CollegeNetLead extends QueueWorkerBase implements ContainerFactoryPluginIn
     }
 
     // Upsert the Lead records, using the XACT_ID as the upsert id.
-    // @todo Try/catch this upsert and log errors.
-    $sfid = $this->sfapi->objectUpsert('Lead', 'XACT_ID__c', $data['XACT_ID'], $lead_data);
+    try {
+      $sfid = $this->sfapi->objectUpsert('Lead', 'XACT_ID__c', $data['XACT_ID'], $lead_data);
+    }
+    catch (RestException $e) {
+      throw new \Exception($e->getMessage());
+    }
   }
 
 }
