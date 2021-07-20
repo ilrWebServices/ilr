@@ -54,6 +54,7 @@ elements: |-
   phone:
     '#type': tel
     '#title': 'Cell phone number'
+    '#required': true
   experience_years:
     '#type': select
     '#title': 'Years of work experience'
@@ -62,6 +63,7 @@ elements: |-
       '1 - 4 years': '1 - 4 years'
       '5 - 8 years': '5 - 8 years'
       '9 or more years': '9 or more years'
+    '#required': true
   employer:
     '#type': textfield
     '#title': 'Current employer (if applicable)'
@@ -73,6 +75,7 @@ elements: |-
     '#options':
       1: 'Yes'
       0: 'No'
+    '#required': true
   degree_year:
     '#type': datelist
     '#title': 'When did you receive your Bachelor''s degree?'
@@ -92,6 +95,7 @@ elements: |-
     '#other__option_label': Other
     '#other__placeholder': ''
     '#format_items': semicolon
+    '#required': true
   resume:
     '#type': webform_document_file
     '#title': Resume
