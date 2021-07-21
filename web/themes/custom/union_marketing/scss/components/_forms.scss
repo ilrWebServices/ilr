@@ -1,5 +1,4 @@
-.cu-fieldset.radios--wrapper,
-.cu-fieldset.webform-type-checkboxes {
+.cu-fieldset {
   padding: 0;
 
   .cu-legend {
@@ -14,6 +13,7 @@
 
 .cu-input-list__item--webform_document_file {
   padding: var(--cu-vr0);
+  margin-bottom: var(--cu-vr1);
   border: 1px solid #ccc;
   border-radius: 3px;
 }
