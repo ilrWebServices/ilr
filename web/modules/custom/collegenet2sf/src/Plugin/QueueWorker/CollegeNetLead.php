@@ -8,7 +8,7 @@ use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\salesforce\Rest\RestClientInterface;
 use Drupal\salesforce\Rest\RestException;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\salesforce\SelectQuery;
+use Drupal\salesforce\SelectQuery as SalesforceSelectQuery;
 use Drupal\Core\Queue\SuspendQueueException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -112,7 +112,7 @@ class CollegeNetLead extends QueueWorkerBase implements ContainerFactoryPluginIn
     // Check for MILR (record type) Lead with same email and missing CollegeNET
     // XACT_ID.
     try {
-      $query = new SelectQuery('Lead');
+      $query = new SalesforceSelectQuery('Lead');
       $query->fields = ['Id'];
       $query->addCondition('Email', "'{$data['EMAIL']}'");
       $query->addCondition('RecordType.Name', "'MILR'");
