@@ -5,8 +5,6 @@ namespace Drupal\collegenet2sf\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\sftp_client\SftpClientInterface;
-use Drupal\sftp_client\Exception\SftpException;
-use Drupal\sftp_client\Exception\SftpLoginException;
 use League\Csv\Reader;
 use League\Csv\Statement;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -49,6 +47,20 @@ class CollegeNetDataFetcher extends ControllerBase {
   const INTERNAL_EXCEPTION = 1;
 
   /**
+   * The sftp_client service.
+   *
+   * @var \Drupal\sftp_client\SftpClientInterface
+   */
+  protected $sftpClient;
+
+  /**
+   * The collegenet_lead_queue.
+   *
+   * @var \Drupal\Core\Queue\QueueInterface
+   */
+  protected $queue;
+
+  /**
    * A logger instance.
    *
    * @var \Psr\Log\LoggerInterface
@@ -61,8 +73,9 @@ class CollegeNetDataFetcher extends ControllerBase {
    * @param \Drupal\sftp_client\SftpClientInterface $sftp_client
    *   The sftp_client service.
    */
-  public function __construct(SftpClientInterface $sftp_client) {
+  public function __construct(SftpClientInterface $sftp_client, $queue_factory) {
     $this->sftpClient = $sftp_client;
+    $this->queue = $queue_factory->get('collegenet_lead_queue');
     $this->logger = $this->getLogger('collegenet lead');
   }
 
@@ -71,15 +84,13 @@ class CollegeNetDataFetcher extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('sftp_client')
+      $container->get('sftp_client'),
+      $container->get('queue')
     );
   }
 
   /**
    * Callback for /collegenet2sf/milr/{key}.
-   *
-   * @todo Throttle this or store processed filenames and prevent duplicate
-   * runs.
    */
   public function milrEndpoint() {
     try {
@@ -96,14 +107,13 @@ class CollegeNetDataFetcher extends ControllerBase {
           '@message' => $e->getMessage(),
         ]);
       }
+
       return new Response('', 204);
     }
 
     try {
       $reader = Reader::createFromString($csv_data);
       $reader->setHeaderOffset(0);
-
-      // @todo Should we also skip rejects?
       $records = Statement::create()
         ->where(fn(array $record) => !empty($record['XACT_ID']))
         ->process($reader);
@@ -116,15 +126,13 @@ class CollegeNetDataFetcher extends ControllerBase {
       return new Response('', 204);
     }
 
-    $queue = \Drupal::queue('collegenet_lead_queue');
-
     if ($records->count() === 0) {
       $this->logger->info('CollegeNet record count is zero after filtering.');
     }
 
     foreach ($records->getRecords() as $data) {
       // Store the data in a QueueWorker for processing on the next cron run.
-      $queue->createItem($data);
+      $this->queue->createItem($data);
     }
 
     // HTTP 204 is 'No content'.
@@ -138,7 +146,6 @@ class CollegeNetDataFetcher extends ControllerBase {
    *   Unparsed CSV data from the remote file.
    */
   protected function loadData() {
-    // return file_get_contents('/Users/jeff/ILR/Webteam/collegenet import/3004_Graduate_Application___Prospect_20210720070227.csv');
     $this->sftpClient->setSettings(self::SFTP_CONNECTION_NAME);
 
     $files = $this->sftpClient->listFiles(self::REPORT_DIRECTORY);
