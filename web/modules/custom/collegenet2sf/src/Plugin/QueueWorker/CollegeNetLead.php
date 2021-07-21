@@ -109,11 +109,6 @@ class CollegeNetLead extends QueueWorkerBase implements ContainerFactoryPluginIn
     // Get the CollegeNET to Lead field mapping.
     $mapping = $this->configFactory->get('collegenet2sf.settings')->get('mapping');
 
-    // @todo Remove when dev server has these fields properly configured.
-    unset($mapping['OFFER_PROGRAM']);
-    // unset($mapping['MJR_PROGRAM_NAME']);
-    unset($mapping['DECISION_RESPONSE']);
-
     // Check for MILR (record type) Lead with same email and missing CollegeNET
     // XACT_ID.
     try {
