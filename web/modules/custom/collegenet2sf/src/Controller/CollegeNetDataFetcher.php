@@ -105,7 +105,6 @@ class CollegeNetDataFetcher extends ControllerBase {
 
       // @todo Should we also skip rejects?
       $records = Statement::create()
-        ->where(fn(array $record) => strpos($record['MJR_PROGRAM_NAME'], 'M.I.L.R.') !== FALSE)
         ->where(fn(array $record) => !empty($record['XACT_ID']))
         ->process($reader);
     }
