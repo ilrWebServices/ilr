@@ -7,6 +7,11 @@ use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\sftp_client\SftpClientInterface;
 use League\Csv\Reader;
 use League\Csv\Statement;
+use League\Csv\Writer;
+use Drupal\salesforce\Rest\RestClientInterface;
+use Drupal\salesforce\Rest\RestException;
+use Drupal\salesforce\SelectQuery as SalesforceSelectQuery;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -54,6 +59,13 @@ class CollegeNetDataFetcher extends ControllerBase {
   protected $sftpClient;
 
   /**
+   * Salesforce client.
+   *
+   * @var \Drupal\salesforce\Rest\RestClientInterface
+   */
+  protected $sfapi;
+
+  /**
    * The collegenet_lead_queue.
    *
    * @var \Drupal\Core\Queue\QueueInterface
@@ -68,14 +80,36 @@ class CollegeNetDataFetcher extends ControllerBase {
   protected $logger;
 
   /**
+   * A list of unlinked MILR Leads missing an external ID. Items are SOQL query
+   * result records.
+   *
+   * @var array
+   */
+  private $unlinkedLeads = [];
+
+  /**
+   * A list of unlinked MILR Leads to link before the batch runs. Keys are
+   * Salesforce IDs and values are external IDs (CollegeNET CRM ID).
+   *
+   * @var array
+   */
+  private $leadsToLink = [];
+
+  /**
    * Constructs this SftpCsvProcessor controller.
    *
    * @param \Drupal\sftp_client\SftpClientInterface $sftp_client
    *   The sftp_client service.
+   * @param \Drupal\salesforce\Rest\RestClientInterface $sfapi
+   *   Salesforce service.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory to load the configuration including overrides from.
    */
-  public function __construct(SftpClientInterface $sftp_client, $queue_factory) {
+  public function __construct(SftpClientInterface $sftp_client, RestClientInterface $sfapi, ConfigFactoryInterface $config_factory, $queue_factory) {
     $this->sftpClient = $sftp_client;
-    $this->queue = $queue_factory->get('collegenet_lead_queue');
+    $this->sfapi = $sfapi;
+    $this->configFactory = $config_factory;
+    $this->queue = $queue_factory->get('collegenet_bulk_job');
     $this->logger = $this->getLogger('collegenet lead');
   }
 
@@ -85,6 +119,8 @@ class CollegeNetDataFetcher extends ControllerBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('sftp_client'),
+      $container->get('salesforce.client.enhanced'),
+      $container->get('config.factory'),
       $container->get('queue')
     );
   }
@@ -93,7 +129,11 @@ class CollegeNetDataFetcher extends ControllerBase {
    * Callback for /collegenet2sf/milr/{key}.
    */
   public function milrEndpoint() {
+    // Get the CollegeNET to Lead field mapping.
+    $mapping = $this->configFactory->get('collegenet2sf.settings')->get('mapping');
+
     try {
+      // Load the remote CSV file data.
       $csv_data = $this->loadData();
     }
     catch (\Exception $e) {
@@ -112,11 +152,9 @@ class CollegeNetDataFetcher extends ControllerBase {
     }
 
     try {
+      // Parse the CSV data.
       $reader = Reader::createFromString($csv_data);
       $reader->setHeaderOffset(0);
-      $records = Statement::create()
-        ->where(fn(array $record) => !empty($record['XACT_ID']))
-        ->process($reader);
     }
     catch (\Exception $e) {
       $this->logger->error('CollegeNet data CSV read error: @message', [
@@ -126,14 +164,118 @@ class CollegeNetDataFetcher extends ControllerBase {
       return new Response('', 204);
     }
 
-    if ($records->count() === 0) {
-      $this->logger->info('CollegeNet record count is zero after filtering.');
+    // No records in the export? Nothing further to do.
+    if ($reader->count() === 0) {
+      $this->logger->info('CollegeNet record count is zero.');
+      return new Response('', 204);
     }
 
-    foreach ($records->getRecords() as $data) {
-      // Store the data in a QueueWorker for processing on the next cron run.
-      $this->queue->createItem($data);
+    try {
+      // Get records with a value for XACT_ID. We assume that these are
+      // applications.
+      $applications = $this->filterApplications($reader);
     }
+    catch (\Exception $e) {
+      $this->logger->error('CollegeNet data CSV application filter error: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+
+      return new Response('', 204);
+    }
+
+    try {
+      // Get all MILR Leads from Salesforce that do not have a value for the
+      // CollegeNET ID.
+      $this->fetchUnlinkedLeads();
+    }
+    catch (\Exception $e) {
+      $this->logger->error('CollegeNet Salesforce duplicate Lead check error: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+
+      return new Response('', 204);
+    }
+
+    try {
+      // Prepare the bulk upsert application data.
+      $writer = Writer::createFromString();
+
+      // Set the header column names, adding two required columns.
+      $writer->insertOne(array_merge(array_values($mapping), ['Company', 'RecordType.Name']));
+
+      foreach ($applications->getRecords() as $rownum => $record) {
+        $new_record = [];
+
+        // Creating a new record in the order of the mapping will ensure that
+        // the columns and fields match, even if the source file changes the
+        // order of the columns.
+        foreach ($mapping as $collegenet_key => $salesforce_fieldname) {
+          $new_record[$salesforce_fieldname] = $record[$collegenet_key] ?? '';
+        }
+
+        // Add the record to the new CSV file, adding default values for the new
+        // required columns.
+        $writer->insertOne($new_record + ['NONE PROVIDED', 'MILR']);
+
+        // Check if an unlinked Lead for this email exists. If so, we'll need to
+        // link the Lead before running the batch.
+        if ($unlinkedSfid = $this->getUnlinkedLeadByEmail($new_record['Email'])) {
+          $this->leadsToLink[$unlinkedSfid] = $new_record['XACT_ID__c'];
+        }
+      }
+    }
+    catch (\Exception $e) {
+      $this->logger->error('CollegeNet data CSV write error: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+
+      return new Response('', 204);
+    }
+
+    // Link any unlinked Leads to ensure that they have external IDs for the
+    // later batch upsert.
+    try {
+      foreach ($this->leadsToLink as $sfid_to_update => $external_id) {
+        $this->sfapi->apiCall("sobjects/Lead/" . $sfid_to_update, ['XACT_ID__c' => $external_id], 'PATCH');
+      }
+    }
+    catch (\Exception $e) {
+      $this->logger->error('CollegeNet Lead link error: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+
+      return new Response('', 204);
+    }
+
+    try {
+      // Create the Bulk API job.
+      $job_create_response = $this->sfapi->apiCall('jobs/ingest', [
+        'object' => 'Lead',
+        'externalIdFieldName' => 'XACT_ID__c',
+        'contentType' => 'CSV',
+        'operation' => 'upsert',
+      ], 'POST', TRUE);
+
+      $job_id = $job_create_response->data['id'];
+
+      // Upload the json data
+      $this->sfapi->apiCall("jobs/ingest/$job_id/batches", $writer->toString(), 'PUT', TRUE, 'text/csv');
+
+      // Close the job.
+      $this->sfapi->apiCall('jobs/ingest/' . $job_id, [
+        'state' => 'UploadComplete',
+      ], 'PATCH', TRUE);
+    }
+    catch (\Exception $e) {
+      $this->logger->error('CollegeNet Salesforce Bulk API error: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+
+      return new Response('', 204);
+    }
+
+    // Add the job id to the `collegenet_bulk_job` queue.
+    $this->queue->createItem($job_id);
 
     // HTTP 204 is 'No content'.
     return new Response('', 204);
@@ -167,6 +309,61 @@ class CollegeNetDataFetcher extends ControllerBase {
     else {
       throw new \Exception('Unable to retrieve most recent file from CollegeNet.', self::INTERNAL_EXCEPTION);
     }
+  }
+
+  /**
+   * Filter CSV Reader records and remove any without an external id.
+   *
+   * @param Reader $reader
+   * @return Statement An iterable Statement with the filtered records.
+   */
+  protected function filterApplications(Reader $reader) {
+    return Statement::create()
+      ->where(fn(array $record) => !empty($record['XACT_ID']))
+      ->process($reader);
+  }
+
+  /**
+   * Fetch all Leads that don't have an external ID.
+   *
+   * @return bool TRUE if the records were fetched and stored. FALSE if not.
+   */
+  protected function fetchUnlinkedLeads() {
+    $query = new SalesforceSelectQuery('Lead');
+    $query->fields = ['Id', 'Email'];
+    $query->addCondition('RecordType.Name', "'MILR'");
+    $query->addCondition('XACT_ID__c', "''");
+    $query->order['LastModifiedDate'] = 'DESC';
+
+    $response = $this->sfapi->apiCall('query?q=' . (string) $query, [], 'GET', TRUE);
+
+    if (empty($response->data['totalSize'])) {
+      return FALSE;
+    }
+
+    $this->unlinkedLeads = $response->data['records'];
+    return TRUE;
+  }
+
+  /**
+   * Get a Salesforce ID for an unlinked Lead for a given email.
+   *
+   * @param string $email
+   *   An email address.
+   *
+   * @return string|FALSE
+   *   The Salesforce ID for the unlinked Lead.
+   */
+  protected function getUnlinkedLeadByEmail($email) {
+    // Since $this->unlinkedLeads is sorted by LastModifiedDate descending, the
+    // first result will be the most recently modified.
+    $first_match_key = array_search($email, array_column($this->unlinkedLeads, 'Email'));
+
+    if ($first_match_key) {
+      return $this->unlinkedLeads[$first_match_key]['Id'];
+    }
+
+    return FALSE;
   }
 
   /**

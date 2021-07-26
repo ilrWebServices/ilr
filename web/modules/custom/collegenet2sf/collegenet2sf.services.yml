@@ -1,0 +1,4 @@
+services:
+  salesforce.client.enhanced:
+    class: Drupal\collegenet2sf\RestClientEnhanced
+    arguments: ['@http_client', '@config.factory', '@state', '@cache.default', '@serialization.json', '@datetime.time', '@plugin.manager.salesforce.auth_providers']
