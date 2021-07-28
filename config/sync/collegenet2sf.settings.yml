@@ -3,7 +3,9 @@ mapping:
   NAME_FIRST: FirstName
   NAME_LAST: LastName
   EMAIL: Email
-  CORNELLG-CELL_PHONE: MobilePhone
+  CORNELLG-CELL_PHONE_FULL: MobilePhone
+  CORNELLG-CELL_PHONE: Mobile2__c
+  PHONE: Phone
   CREATE_DATE: Legacy_Created_Date__c
   SOURCE: Source__c
   PRE-ASSESSMENT_SOURCE: Pre_assessment_Source__c
@@ -15,6 +17,7 @@ mapping:
   CORNELLG-GENDER: Sex__c
   CORNELLG-ETHNIC: Racial_Identity__c
   CORNELLG-HISPANIC_YN: Hispanic__c
+  CORN_CITIZEN_COUNTRY: Country_of_Citizenship__c
   DECISION_RESPONSE: Accepting_Offer__c
 _core:
   default_config_hash: 9lWBG35eHKGLWFl5YILC3LiEKmvXvoIjPxDalW4k8zU
