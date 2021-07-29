@@ -171,8 +171,9 @@ class CollegeNetDataFetcher extends ControllerBase {
     }
 
     try {
-      // Get records with a value for XACT_ID. We assume that these are
+      // Get records with a value for CRM_ID. We assume that these are
       // applications.
+      // @todo Remove this since the report already ensures that all records have a CRM_ID?
       $applications = $this->filterApplications($reader);
     }
     catch (\Exception $e) {
@@ -220,7 +221,7 @@ class CollegeNetDataFetcher extends ControllerBase {
         // Check if an unlinked Lead for this email exists. If so, we'll need to
         // link the Lead before running the batch.
         if ($unlinkedSfid = $this->getUnlinkedLeadByEmail($new_record['Email'])) {
-          $this->leadsToLink[$unlinkedSfid] = $new_record['XACT_ID__c'];
+          $this->leadsToLink[$unlinkedSfid] = $new_record['CollegeNET_CRM_ID__c'];
         }
       }
     }
@@ -235,23 +236,36 @@ class CollegeNetDataFetcher extends ControllerBase {
     // Link any unlinked Leads to ensure that they have external IDs for the
     // later batch upsert.
     try {
+      $leads_linked = 0;
+
       foreach ($this->leadsToLink as $sfid_to_update => $external_id) {
-        $this->sfapi->apiCall("sobjects/Lead/" . $sfid_to_update, ['XACT_ID__c' => $external_id], 'PATCH');
+        $link_response = $this->sfapi->apiCall("sobjects/Lead/" . $sfid_to_update, ['CollegeNET_CRM_ID__c' => $external_id], 'PATCH', TRUE);
+
+        // The 204 status code seems to come back from a PATCH request, but any
+        // 200 code is fine.
+        if ($link_response->getStatusCode() >= 200 && $link_response->getStatusCode() < 300) {
+          $leads_linked++;
+        }
       }
     }
     catch (\Exception $e) {
+      // Log but do not stop processing.
       $this->logger->error('CollegeNet Lead link error: @message', [
         '@message' => $e->getMessage(),
       ]);
+    }
 
-      return new Response('', 204);
+    if ($leads_linked) {
+      $this->logger->info('%count CollegeNet Lead(s) linked.', [
+        '%count' => $leads_linked,
+      ]);
     }
 
     try {
       // Create the Bulk API job.
       $job_create_response = $this->sfapi->apiCall('jobs/ingest', [
         'object' => 'Lead',
-        'externalIdFieldName' => 'XACT_ID__c',
+        'externalIdFieldName' => 'CollegeNET_CRM_ID__c',
         'contentType' => 'CSV',
         'operation' => 'upsert',
       ], 'POST', TRUE);
@@ -319,7 +333,7 @@ class CollegeNetDataFetcher extends ControllerBase {
    */
   protected function filterApplications(Reader $reader) {
     return Statement::create()
-      ->where(fn(array $record) => !empty($record['XACT_ID']))
+      ->where(fn(array $record) => !empty($record['CRM_ID']))
       ->process($reader);
   }
 
@@ -332,7 +346,7 @@ class CollegeNetDataFetcher extends ControllerBase {
     $query = new SalesforceSelectQuery('Lead');
     $query->fields = ['Id', 'Email'];
     $query->addCondition('RecordType.Name', "'MILR'");
-    $query->addCondition('XACT_ID__c', "''");
+    $query->addCondition('CollegeNET_CRM_ID__c', 'null');
     $query->order['LastModifiedDate'] = 'DESC';
 
     $response = $this->sfapi->apiCall('query?q=' . (string) $query, [], 'GET', TRUE);
