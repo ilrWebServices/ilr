@@ -1,5 +1,16 @@
-{% set completion_time = node.fields.field_completion_time.value %}
-{% set course_count = node.fields.field_course.value|length %}
+{#
+/**
+ * @file
+ * Default template for ilr_certificate_basics_block.
+ *
+ * Available variables:
+ * - node: The certificate node.
+ * - completion_time: The time, in months, to complete the certificate.
+ * - course_count: The number of courses required to complete the certificate.
+ *
+ * @see template_preprocess_ilr_certificate_basics_block()
+ */
+#}
 {% set basics = [
   {
     name: 'Required Courses'|t,

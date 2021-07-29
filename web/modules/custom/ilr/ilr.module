@@ -1072,6 +1072,25 @@ function ilr_file_validate(FileInterface $file) {
 }
 
 /**
+ * Prepares variables for the ilr_certificate_basics_block template.
+ *
+ * Default template: ilr-certificate-basics-block.html.twig.
+ */
+function template_preprocess_ilr_certificate_basics_block(&$variables) {
+  $variables['completion_time'] = $variables['node']->field_completion_time->value;
+
+  $course_count = 0;
+
+  foreach ($variables['node']->field_course->referencedEntities() as $course_node) {
+    if ($course_node->isPublished()) {
+      $course_count++;
+    }
+  }
+
+  $variables['course_count'] = $course_count;
+}
+
+/**
  * Implements hook_preprocess_container__CONTAINER_ID().
  *
  * Update the collection request forms to make more relevant to ILR.
