@@ -71,14 +71,14 @@ elements: |-
     '#pattern_error': 'Please check your employer value.'
   bachelors_complete:
     '#type': radios
-    '#title': 'Do you currently hold a Bachelor''s degree?'
+    '#title': 'Do you hold, or are you in the process of obtaining, a Bachelor’s degree?'
     '#options':
       1: 'Yes'
       0: 'No'
     '#required': true
   degree_year:
     '#type': datelist
-    '#title': 'When did you receive your Bachelor''s degree?'
+    '#title': 'When did, or will, you receive your Bachelor’s degree?'
     '#states':
       visible:
         ':input[name="bachelors_complete"]':
