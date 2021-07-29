@@ -14,12 +14,12 @@
 {% set basics = [
   {
     name: 'Required Courses'|t,
-    description: '<span class="strong block">' ~ course_count ~ ' Focused Workshops</span>Register for individual workshops to fit your schedule',
+    description: '<span class="strong block">@course_count Focused Workshops</span>Register for individual workshops to fit your schedule'|t({ '@course_count': course_count }),
     icon: 'check-circle'
   },
   {
-    name: 'Time to Complete',
-    description: '<span class="strong block">' ~ completion_time ~ ' months</span>Time participants have to complete the entire certificate program',
+    name: 'Time to Complete'|t,
+    description: '<span class="strong block">@completion_time months</span>Time participants have to complete the entire certificate program'|t({ '@completion_time': completion_time }),
     icon: 'check-circle'
   }
 ]%}
@@ -32,7 +32,7 @@
 
 {% set box_content %}
 <div class="certificate-basics">
-  <h2 class="cu-heading">Certificate Basics</h2>
+  <h2 class="cu-heading">{% trans %}Certificate Basics{% endtrans %}</h2>
   {{ basics_grid }}
 </div>
 {% endset %}
