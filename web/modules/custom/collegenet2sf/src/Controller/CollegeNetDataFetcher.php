@@ -9,9 +9,9 @@ use League\Csv\Reader;
 use League\Csv\Statement;
 use League\Csv\Writer;
 use Drupal\salesforce\Rest\RestClientInterface;
-use Drupal\salesforce\Rest\RestException;
 use Drupal\salesforce\SelectQuery as SalesforceSelectQuery;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Queue\QueueFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -80,16 +80,18 @@ class CollegeNetDataFetcher extends ControllerBase {
   protected $logger;
 
   /**
-   * A list of unlinked Grad Leads missing an external ID. Items are SOQL query
-   * result records.
+   * A list of unlinked Grad Leads missing an external ID.
+   *
+   * Items are SOQL query result records.
    *
    * @var array
    */
   private $unlinkedLeads = [];
 
   /**
-   * A list of unlinked Grad Leads to link before the batch runs. Keys are
-   * Salesforce IDs and values are external IDs (CollegeNET CRM ID).
+   * A list of unlinked Grad Leads to link before the batch runs.
+   *
+   * Keys are Salesforce IDs and values are external IDs (CollegeNET CRM ID).
    *
    * @var array
    */
@@ -103,9 +105,11 @@ class CollegeNetDataFetcher extends ControllerBase {
    * @param \Drupal\salesforce\Rest\RestClientInterface $sfapi
    *   Salesforce service.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The config factory to load the configuration including overrides from.
+   *   The config factory.
+   * @param \Drupal\Core\Queue\QueueFactory $queue_factory
+   *   The queue factory.
    */
-  public function __construct(SftpClientInterface $sftp_client, RestClientInterface $sfapi, ConfigFactoryInterface $config_factory, $queue_factory) {
+  public function __construct(SftpClientInterface $sftp_client, RestClientInterface $sfapi, ConfigFactoryInterface $config_factory, QueueFactory $queue_factory) {
     $this->sftpClient = $sftp_client;
     $this->sfapi = $sfapi;
     $this->configFactory = $config_factory;
@@ -328,8 +332,11 @@ class CollegeNetDataFetcher extends ControllerBase {
   /**
    * Filter CSV Reader records and remove any without an external id.
    *
-   * @param Reader $reader
-   * @return Statement An iterable Statement with the filtered records.
+   * @param \League\Csv\Reader $reader
+   *   A CSV Reader object with parsed data.
+   *
+   * @return \League\Csv\Statement
+   *   An iterable \League\Csv\Statement with the filtered records.
    */
   protected function filterApplications(Reader $reader) {
     return Statement::create()
@@ -340,7 +347,8 @@ class CollegeNetDataFetcher extends ControllerBase {
   /**
    * Fetch all Leads that don't have an external ID.
    *
-   * @return bool TRUE if the records were fetched and stored. FALSE if not.
+   * @return bool
+   *   TRUE if the records were fetched and stored. FALSE if not.
    */
   protected function fetchUnlinkedLeads() {
     $query = new SalesforceSelectQuery('Lead');
@@ -365,7 +373,7 @@ class CollegeNetDataFetcher extends ControllerBase {
    * @param string $email
    *   An email address.
    *
-   * @return string|FALSE
+   * @return string|false
    *   The Salesforce ID for the unlinked Lead.
    */
   protected function getUnlinkedLeadByEmail($email) {
