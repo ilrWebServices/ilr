@@ -262,7 +262,7 @@ class CollegeNetDataFetcher extends ControllerBase {
     }
 
     try {
-      // Create the Bulk API job.
+      // Create the Bulk API 2.0 job.
       $job_create_response = $this->sfapi->apiCall('jobs/ingest', [
         'object' => 'Lead',
         'externalIdFieldName' => 'CollegeNET_CRM_ID__c',
@@ -272,7 +272,7 @@ class CollegeNetDataFetcher extends ControllerBase {
 
       $job_id = $job_create_response->data['id'];
 
-      // Upload the json data
+      // Upload the json data.
       $this->sfapi->apiCall("jobs/ingest/$job_id/batches", $writer->toString(), 'PUT', TRUE, 'text/csv');
 
       // Close the job.

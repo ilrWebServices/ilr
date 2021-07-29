@@ -94,7 +94,7 @@ class CollegeNetBulkJob extends QueueWorkerBase implements ContainerFactoryPlugi
     }
 
     // Try again later if this job hasn't completed, yet.
-    if ($job_info_response->data['state' !== 'JobComplete']) {
+    if ($job_info_response->data['state'] !== 'JobComplete') {
       throw new RequeueException();
     }
 
