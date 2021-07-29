@@ -80,7 +80,7 @@ class CollegeNetDataFetcher extends ControllerBase {
   protected $logger;
 
   /**
-   * A list of unlinked MILR Leads missing an external ID. Items are SOQL query
+   * A list of unlinked Grad Leads missing an external ID. Items are SOQL query
    * result records.
    *
    * @var array
@@ -88,7 +88,7 @@ class CollegeNetDataFetcher extends ControllerBase {
   private $unlinkedLeads = [];
 
   /**
-   * A list of unlinked MILR Leads to link before the batch runs. Keys are
+   * A list of unlinked Grad Leads to link before the batch runs. Keys are
    * Salesforce IDs and values are external IDs (CollegeNET CRM ID).
    *
    * @var array
@@ -185,7 +185,7 @@ class CollegeNetDataFetcher extends ControllerBase {
     }
 
     try {
-      // Get all MILR Leads from Salesforce that do not have a value for the
+      // Get all Grad Leads from Salesforce that do not have a value for the
       // CollegeNET ID.
       $this->fetchUnlinkedLeads();
     }
@@ -216,7 +216,7 @@ class CollegeNetDataFetcher extends ControllerBase {
 
         // Add the record to the new CSV file, adding default values for the new
         // required columns.
-        $writer->insertOne($new_record + ['NONE PROVIDED', 'MILR']);
+        $writer->insertOne($new_record + ['NONE PROVIDED', 'Grad']);
 
         // Check if an unlinked Lead for this email exists. If so, we'll need to
         // link the Lead before running the batch.
@@ -345,7 +345,7 @@ class CollegeNetDataFetcher extends ControllerBase {
   protected function fetchUnlinkedLeads() {
     $query = new SalesforceSelectQuery('Lead');
     $query->fields = ['Id', 'Email'];
-    $query->addCondition('RecordType.Name', "'MILR'");
+    $query->addCondition('RecordType.Name', "'Grad'");
     $query->addCondition('CollegeNET_CRM_ID__c', 'null');
     $query->order['LastModifiedDate'] = 'DESC';
 
