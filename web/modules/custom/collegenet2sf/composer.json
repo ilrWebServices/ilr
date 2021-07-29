@@ -1,0 +1,12 @@
+{
+  "name": "drupal/collegenet2sf",
+  "type": "drupal-module",
+  "description": "Transfers CollegeNET prospects to Salesforce as Leads.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "require": {
+    "drupal/salesforce": "^4.0",
+    "league/csv": "^9.0"
+  }
+}

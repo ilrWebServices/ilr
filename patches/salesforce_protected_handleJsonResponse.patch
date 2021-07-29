@@ -1,0 +1,13 @@
+diff --git a/src/Rest/RestResponse.php b/src/Rest/RestResponse.php
+index 0b9ed3d4..5c48072d 100644
+--- a/src/Rest/RestResponse.php
++++ b/src/Rest/RestResponse.php
+@@ -70,7 +70,7 @@ class RestResponse extends Response {
+    *
+    * @throws \Drupal\salesforce\Rest\RestException
+    */
+-  private function handleJsonResponse() {
++  protected function handleJsonResponse() {
+     $this->data = '';
+     $response_body = $this->getBody()->getContents();
+     if (empty($response_body)) {
