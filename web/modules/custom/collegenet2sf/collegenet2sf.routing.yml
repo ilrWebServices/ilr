@@ -1,7 +1,7 @@
-collegenet2sf.milr_endpoint:
-  path: 'collegenet2sf/milr/{key}'
+collegenet2sf.endpoint:
+  path: 'collegenet2sf/endpoint/{key}'
   defaults:
-    _controller: '\Drupal\collegenet2sf\Controller\CollegeNetDataFetcher::milrEndpoint'
+    _controller: '\Drupal\collegenet2sf\Controller\CollegeNetDataFetcher::endpoint'
   options:
     no_cache: TRUE
   requirements:

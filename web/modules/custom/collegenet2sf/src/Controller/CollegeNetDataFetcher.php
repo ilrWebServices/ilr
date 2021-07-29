@@ -126,9 +126,9 @@ class CollegeNetDataFetcher extends ControllerBase {
   }
 
   /**
-   * Callback for /collegenet2sf/milr/{key}.
+   * Callback for /collegenet2sf/endpoint/{key}.
    */
-  public function milrEndpoint() {
+  public function endpoint() {
     // Get the CollegeNET to Lead field mapping.
     $mapping = $this->configFactory->get('collegenet2sf.settings')->get('mapping');
 
