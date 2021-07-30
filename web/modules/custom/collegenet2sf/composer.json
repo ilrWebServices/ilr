@@ -8,5 +8,12 @@
   "require": {
     "drupal/salesforce": "^4.0",
     "league/csv": "^9.0"
+  },
+  "extra": {
+    "drush": {
+      "services": {
+        "drush.services.yml": "^10"
+      }
+    }
   }
 }
