@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Requirements functions for the collegenet2sf module.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function collegenet2sf_requirements($phase) {
+  $requirements = [];
+
+  if ($phase !== 'runtime') {
+    return $requirements;
+  }
+
+  $requirements['collegenet2sf_link'] = [
+    'severity' => REQUIREMENT_OK,
+    'title' => 'CollegeNET to Salesforce Lead',
+    'value' => t('The endpoint URL is <a href="@endpoint_url">@endpoint_url</a>.', [
+      '@endpoint_url' => '/collegenet2sf/endpoint/' . \Drupal::state()->get('system.cron_key'),
+    ]),
+  ];
+
+  return $requirements;
+}

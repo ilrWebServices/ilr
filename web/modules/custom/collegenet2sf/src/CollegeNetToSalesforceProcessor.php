@@ -1,9 +1,7 @@
 <?php
 
-namespace Drupal\collegenet2sf\Controller;
+namespace Drupal\collegenet2sf;
 
-use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\sftp_client\SftpClientInterface;
 use League\Csv\Reader;
 use League\Csv\Statement;
@@ -12,15 +10,12 @@ use Drupal\salesforce\Rest\RestClientInterface;
 use Drupal\salesforce\SelectQuery as SalesforceSelectQuery;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Queue\QueueFactory;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Response;
+use Psr\Log\LoggerInterface;
 
 /**
- * Fetches remote CollegeNET data and passes it to a queue.
+ * Fetches remote CollegeNET data and bulk upserts it to Salesforce.
  */
-class CollegeNetDataFetcher extends ControllerBase {
-
-  use LoggerChannelTrait;
+class CollegeNetToSalesforceProcessor {
 
   /**
    * Name of the sftp.client connection.
@@ -98,7 +93,7 @@ class CollegeNetDataFetcher extends ControllerBase {
   private $leadsToLink = [];
 
   /**
-   * Constructs this SftpCsvProcessor controller.
+   * Constructs this CollegeNetToSalesforceProcessor controller.
    *
    * @param \Drupal\sftp_client\SftpClientInterface $sftp_client
    *   The sftp_client service.
@@ -108,31 +103,24 @@ class CollegeNetDataFetcher extends ControllerBase {
    *   The config factory.
    * @param \Drupal\Core\Queue\QueueFactory $queue_factory
    *   The queue factory.
+   * @param \Psr\Log\LoggerInterface $logger
+   *   A logger instance.
    */
-  public function __construct(SftpClientInterface $sftp_client, RestClientInterface $sfapi, ConfigFactoryInterface $config_factory, QueueFactory $queue_factory) {
+  public function __construct(SftpClientInterface $sftp_client, RestClientInterface $sfapi, ConfigFactoryInterface $config_factory, QueueFactory $queue_factory, LoggerInterface $logger) {
     $this->sftpClient = $sftp_client;
     $this->sfapi = $sfapi;
     $this->configFactory = $config_factory;
     $this->queue = $queue_factory->get('collegenet_bulk_job');
-    $this->logger = $this->getLogger('collegenet lead');
+    $this->logger = $logger;
   }
 
   /**
-   * {@inheritdoc}
+   * Executes a CollegeNET data fetch and bulk upload to Salesforce.
+   *
+   * @return bool
+   *   TRUE upon success, FALSE otherwise.
    */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('sftp_client'),
-      $container->get('salesforce.client.enhanced'),
-      $container->get('config.factory'),
-      $container->get('queue')
-    );
-  }
-
-  /**
-   * Callback for /collegenet2sf/endpoint/{key}.
-   */
-  public function endpoint() {
+  public function run() {
     // Get the CollegeNET to Lead field mapping.
     $mapping = $this->configFactory->get('collegenet2sf.settings')->get('mapping');
 
@@ -152,7 +140,7 @@ class CollegeNetDataFetcher extends ControllerBase {
         ]);
       }
 
-      return new Response('', 204);
+      return FALSE;
     }
 
     try {
@@ -165,13 +153,13 @@ class CollegeNetDataFetcher extends ControllerBase {
         '@message' => $e->getMessage(),
       ]);
 
-      return new Response('', 204);
+      return FALSE;
     }
 
     // No records in the export? Nothing further to do.
     if ($reader->count() === 0) {
       $this->logger->info('CollegeNet record count is zero.');
-      return new Response('', 204);
+      return FALSE;
     }
 
     try {
@@ -185,7 +173,7 @@ class CollegeNetDataFetcher extends ControllerBase {
         '@message' => $e->getMessage(),
       ]);
 
-      return new Response('', 204);
+      return FALSE;
     }
 
     try {
@@ -198,7 +186,7 @@ class CollegeNetDataFetcher extends ControllerBase {
         '@message' => $e->getMessage(),
       ]);
 
-      return new Response('', 204);
+      return FALSE;
     }
 
     try {
@@ -234,7 +222,7 @@ class CollegeNetDataFetcher extends ControllerBase {
         '@message' => $e->getMessage(),
       ]);
 
-      return new Response('', 204);
+      return FALSE;
     }
 
     // Link any unlinked Leads to ensure that they have external IDs for the
@@ -289,14 +277,13 @@ class CollegeNetDataFetcher extends ControllerBase {
         '@message' => $e->getMessage(),
       ]);
 
-      return new Response('', 204);
+      return FALSE;
     }
 
     // Add the job id to the `collegenet_bulk_job` queue.
     $this->queue->createItem($job_id);
 
-    // HTTP 204 is 'No content'.
-    return new Response('', 204);
+    return TRUE;
   }
 
   /**
