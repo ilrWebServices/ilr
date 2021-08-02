@@ -98,6 +98,14 @@ class CollegeNetBulkJob extends QueueWorkerBase implements ContainerFactoryPlugi
       throw new RequeueException();
     }
 
+    // Log informational message.
+    $this->logger->info('Bulk API 2.0 job @job_id was completed at @datetime. @processed record(s) processed, and @failures failed.', [
+      '@job_id' => $data,
+      '@datetime' => $job_info_response->data['systemModstamp'],
+      '@processed' => $job_info_response->data['numberRecordsProcessed'],
+      '@failures' => $job_info_response->data['numberRecordsFailed'],
+    ]);
+
     // Get any failures and log them.
     try {
       $job_failure_response = $this->sfapi->apiCall("jobs/ingest/$data/failedResults", [], 'GET', TRUE);
