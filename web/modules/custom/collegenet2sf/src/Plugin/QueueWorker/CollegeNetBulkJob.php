@@ -108,9 +108,9 @@ class CollegeNetBulkJob extends QueueWorkerBase implements ContainerFactoryPlugi
     }
 
     foreach ($job_failure_response->data->getRecords() as $record) {
-      $this->logger->error('Error on job @job_id for XACT_ID @xact_id: @message', [
+      $this->logger->error('Error on job @job_id for CRM_ID @crm_id: @message', [
         '@job_id' => $data,
-        '@xact_id' => isset($record['XACT_ID__c']) ? $record['XACT_ID__c'] : 'Unknown',
+        '@crm_id' => $record['CollegeNET_CRM_ID__c'],
         '@message' => $record['sf__Error'],
       ]);
     }
