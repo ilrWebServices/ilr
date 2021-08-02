@@ -53,7 +53,7 @@ class CollegeNetBulkJob extends QueueWorkerBase implements ContainerFactoryPlugi
   public function __construct(array $configuration, $plugin_id, $plugin_definition, RestClientInterface $sfapi) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->sfapi = $sfapi;
-    $this->logger = $this->getLogger('collegenet lead');
+    $this->logger = $this->getLogger('collegenet to salesforce');
   }
 
   /**
