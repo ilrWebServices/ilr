@@ -18,30 +18,6 @@ use Psr\Log\LoggerInterface;
 class CollegeNetToSalesforceProcessor {
 
   /**
-   * Name of the sftp.client connection.
-   *
-   * @see settings.php
-   */
-  const SFTP_CONNECTION_NAME = 'collegenet';
-
-  /**
-   * Rexex pattern for matching CollegeNET CSV export file names.
-   *
-   * @see https://regex101.com/r/Rdt87u/1
-   */
-  const FILENAME_PATTERN = '/^3004_Graduate_Application___Prospect_\d+\.csv$/';
-
-  /**
-   * Max age of files to consider, in case the number of files grows too large.
-   */
-  const FILE_MAX_AGE_DAYS = 365;
-
-  /**
-   * Remote directory where reports are stored.
-   */
-  const REPORT_DIRECTORY = '/ILR_CRM_Reports';
-
-  /**
    * User defined exception to prevent items from being added to the queue.
    */
   const INTERNAL_EXCEPTION = 1;
@@ -75,6 +51,34 @@ class CollegeNetToSalesforceProcessor {
   protected $logger;
 
   /**
+   * Field mappings from the CollegeNET to Salesforce field names.
+   *
+   * @var array
+   */
+  protected $mapping = [];
+
+  /**
+   * SFTP settings.
+   *
+   * @var array
+   */
+  protected $sftpSettings = [];
+
+  /**
+   * Default fields to add to Leads.
+   *
+   * @var array
+   */
+  protected $defaultFields = [];
+
+  /**
+   * The name of the Salesforce field to use as an external ID for CRM_ID.
+   *
+   * @var string
+   */
+  protected $externalId = '';
+
+  /**
    * A list of unlinked Grad Leads missing an external ID.
    *
    * Items are SOQL query result records.
@@ -87,6 +91,8 @@ class CollegeNetToSalesforceProcessor {
    * A list of unlinked Grad Leads to link before the batch runs.
    *
    * Keys are Salesforce IDs and values are external IDs (CollegeNET CRM ID).
+   *
+   * @todo Confirm usage is OK if service is used multiple times in a request.
    *
    * @var array
    */
@@ -109,9 +115,29 @@ class CollegeNetToSalesforceProcessor {
   public function __construct(SftpClientInterface $sftp_client, RestClientInterface $sfapi, ConfigFactoryInterface $config_factory, QueueFactory $queue_factory, LoggerInterface $logger) {
     $this->sftpClient = $sftp_client;
     $this->sfapi = $sfapi;
-    $this->configFactory = $config_factory;
     $this->queue = $queue_factory->get('collegenet_bulk_job');
     $this->logger = $logger;
+
+    // Load and set settings with default values.
+    $settings = $config_factory->get('collegenet2sf.settings');
+    $sftp_settings = $settings->get('sftp') ?? [];
+    $default_fields = $settings->get('default_fields') ?? [];
+    $this->mapping = $settings->get('mapping') ?? [];
+    $this->sftpSettings = $sftp_settings + [
+      'connection_name' => 'collegenet',
+      'filename_pattern' => '/.*\.csv$/',
+      'file_max_age_days' => 365,
+      'report_directory' => '/',
+    ];
+
+    // We do this because Drupal config YAML does not allow '.' (dot) characters
+    // in keys.
+    $this->defaultFields = array_combine(
+      array_column($default_fields, 'key'),
+      array_column($default_fields, 'value')
+    );
+
+    $this->externalId = $this->mapping['CRM_ID'] ?? '';
   }
 
   /**
@@ -121,8 +147,10 @@ class CollegeNetToSalesforceProcessor {
    *   TRUE upon success, FALSE otherwise.
    */
   public function run() {
-    // Get the CollegeNET to Lead field mapping.
-    $mapping = $this->configFactory->get('collegenet2sf.settings')->get('mapping');
+    if (empty($this->externalId)) {
+      $this->logger->error('No mapping set for CRM_ID. This is required for the external Salesforce ID used for upserts.');
+      return FALSE;
+    }
 
     try {
       // Load the remote CSV file data.
@@ -193,8 +221,11 @@ class CollegeNetToSalesforceProcessor {
       // Prepare the bulk upsert application data.
       $writer = Writer::createFromString();
 
-      // Set the header column names, adding two required columns.
-      $writer->insertOne(array_merge(array_values($mapping), ['Company', 'RecordType.Name']));
+      $default_field_columns = array_keys($this->defaultFields);
+      $default_field_values = array_values($this->defaultFields);
+
+      // Set the header column names, adding any default columns.
+      $writer->insertOne(array_merge(array_values($this->mapping), $default_field_columns));
 
       foreach ($applications->getRecords() as $rownum => $record) {
         $new_record = [];
@@ -202,18 +233,17 @@ class CollegeNetToSalesforceProcessor {
         // Creating a new record in the order of the mapping will ensure that
         // the columns and fields match, even if the source file changes the
         // order of the columns.
-        foreach ($mapping as $collegenet_key => $salesforce_fieldname) {
+        foreach ($this->mapping as $collegenet_key => $salesforce_fieldname) {
           $new_record[$salesforce_fieldname] = $record[$collegenet_key] ?? '';
         }
 
-        // Add the record to the new CSV file, adding default values for the new
-        // required columns.
-        $writer->insertOne($new_record + ['NONE PROVIDED', 'Grad']);
+        // Add the record to the new CSV file, adding any values default fields.
+        $writer->insertOne($new_record + $default_field_values);
 
         // Check if an unlinked Lead for this email exists. If so, we'll need to
         // link the Lead before running the batch.
         if ($unlinkedSfid = $this->getUnlinkedLeadByEmail($new_record['Email'])) {
-          $this->leadsToLink[$unlinkedSfid] = $new_record['CollegeNET_CRM_ID__c'];
+          $this->leadsToLink[$unlinkedSfid] = $new_record[$this->externalId];
         }
       }
     }
@@ -231,7 +261,7 @@ class CollegeNetToSalesforceProcessor {
       $leads_linked = 0;
 
       foreach ($this->leadsToLink as $sfid_to_update => $external_id) {
-        $link_response = $this->sfapi->apiCall("sobjects/Lead/" . $sfid_to_update, ['CollegeNET_CRM_ID__c' => $external_id], 'PATCH', TRUE);
+        $link_response = $this->sfapi->apiCall("sobjects/Lead/" . $sfid_to_update, [$this->externalId => $external_id], 'PATCH', TRUE);
 
         // The 204 status code seems to come back from a PATCH request, but any
         // 200 code is fine.
@@ -257,7 +287,7 @@ class CollegeNetToSalesforceProcessor {
       // Create the Bulk API 2.0 job.
       $job_create_response = $this->sfapi->apiCall('jobs/ingest', [
         'object' => 'Lead',
-        'externalIdFieldName' => 'CollegeNET_CRM_ID__c',
+        'externalIdFieldName' => $this->externalId,
         'contentType' => 'CSV',
         'operation' => 'upsert',
       ], 'POST', TRUE);
@@ -293,9 +323,9 @@ class CollegeNetToSalesforceProcessor {
    *   Unparsed CSV data from the remote file.
    */
   protected function loadData() {
-    $this->sftpClient->setSettings(self::SFTP_CONNECTION_NAME);
+    $this->sftpClient->setSettings($this->sftpSettings['connection_name']);
 
-    $files = $this->sftpClient->listFiles(self::REPORT_DIRECTORY);
+    $files = $this->sftpClient->listFiles($this->sftpSettings['report_directory']);
 
     if ($most_recent_export_file = $this->getMostRecent($this->filter($files))) {
       // Log this data file fetch.
@@ -303,7 +333,7 @@ class CollegeNetToSalesforceProcessor {
         '%filename' => $most_recent_export_file->getFilename(),
       ]);
 
-      $data = $this->sftpClient->readFile(self::REPORT_DIRECTORY . '/' . $most_recent_export_file->getFilename());
+      $data = $this->sftpClient->readFile($this->sftpSettings['report_directory'] . '/' . $most_recent_export_file->getFilename());
 
       if (empty($data)) {
         throw new \Exception('Empty file retrieved from CollegeNet: ' . $most_recent_export_file->getFilename(), self::INTERNAL_EXCEPTION);
@@ -341,7 +371,7 @@ class CollegeNetToSalesforceProcessor {
     $query = new SalesforceSelectQuery('Lead');
     $query->fields = ['Id', 'Email'];
     $query->addCondition('RecordType.Name', "'Grad'");
-    $query->addCondition('CollegeNET_CRM_ID__c', 'null');
+    $query->addCondition($this->externalId, 'null');
     $query->order['LastModifiedDate'] = 'DESC';
 
     $response = $this->sfapi->apiCall('query?q=' . (string) $query, [], 'GET', TRUE);
@@ -386,10 +416,10 @@ class CollegeNetToSalesforceProcessor {
    */
   protected function filter(\Traversable $files) {
     foreach ($files as $path => $resource) {
-      if ($resource->isFile() && preg_match(self::FILENAME_PATTERN, $resource->getFilename())) {
+      if ($resource->isFile() && preg_match($this->sftpSettings['filename_pattern'], $resource->getFilename())) {
         $age_days = (time() - $resource->getModificationTime()) / 60 / 60 / 24;
 
-        if ($age_days < self::FILE_MAX_AGE_DAYS) {
+        if ($age_days < $this->sftpSettings['file_max_age_days']) {
           yield $path => $resource;
         }
       }

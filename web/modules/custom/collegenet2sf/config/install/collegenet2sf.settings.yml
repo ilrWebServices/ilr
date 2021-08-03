@@ -1,21 +1,18 @@
+sftp:
+  connection_name: 'collegenet'
+  filename_pattern: '/^.*\.csv$/'
+  file_max_age_days: 365
+  report_directory: '/reports'
 mapping:
   CRM_ID: CollegeNET_CRM_ID__c
   NAME_FIRST: FirstName
   NAME_LAST: LastName
   EMAIL: Email
-  CORNELLG-CELL_PHONE_FULL: MobilePhone
-  CORNELLG-CELL_PHONE: Mobile2__c
   PHONE: Phone
-  CREATE_DATE: Legacy_Created_Date__c
-  SOURCE: Source__c
-  PRE-ASSESSMENT_SOURCE: Pre_assessment_Source__c
-  CORNELLG-APP_TERM_DISPLAY: Admit_Term_Requested__c
-  APPLICANT_STATUS: Field_Admission_Decision__c
-  MJR_PROGRAM_NAME: Admit_Program_Requested__c
-  OFFER_PROGRAM: Admit_Program_Offered__c
-  APPLICATION_STATUS: Application_Status__c
-  CORNELLG-GENDER: Sex__c
-  CORNELLG-ETHNIC: Racial_Identity__c
-  CORNELLG-HISPANIC_YN: Hispanic__c
-  CORN_CITIZEN_COUNTRY: Country_of_Citizenship__c
-  DECISION_RESPONSE: Accepting_Offer__c
+default_fields:
+  -
+    key: 'RecordType.Name'
+    value: 'Grad'
+  -
+    key: 'Company'
+    value: 'NONE PROVIDED'

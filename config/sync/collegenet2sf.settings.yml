@@ -1,3 +1,8 @@
+sftp:
+  connection_name: collegenet
+  filename_pattern: /^3004_Graduate_Application___Prospect_\d+\.csv$/
+  file_max_age_days: 365
+  report_directory: /ILR_CRM_Reports
 mapping:
   CRM_ID: CollegeNET_CRM_ID__c
   NAME_FIRST: FirstName
@@ -19,5 +24,12 @@ mapping:
   CORNELLG-HISPANIC_YN: Hispanic__c
   CORN_CITIZEN_COUNTRY: Country_of_Citizenship__c
   DECISION_RESPONSE: Accepting_Offer__c
+default_fields:
+  -
+    key: RecordType.Name
+    value: Grad
+  -
+    key: Company
+    value: 'NONE PROVIDED'
 _core:
   default_config_hash: 9lWBG35eHKGLWFl5YILC3LiEKmvXvoIjPxDalW4k8zU
