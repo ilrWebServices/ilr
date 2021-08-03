@@ -9,6 +9,7 @@ use Drupal\salesforce\Rest\RestClientInterface;
 use Drupal\salesforce\Rest\RestException;
 use Drupal\Core\Queue\SuspendQueueException;
 use Drupal\Core\Queue\RequeueException;
+use League\Csv\Reader;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -64,7 +65,7 @@ class CollegeNetBulkJob extends QueueWorkerBase implements ContainerFactoryPlugi
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('salesforce.client.enhanced')
+      $container->get('salesforce.client')
     );
   }
 
@@ -109,16 +110,22 @@ class CollegeNetBulkJob extends QueueWorkerBase implements ContainerFactoryPlugi
     // Get any failures and log them.
     try {
       $job_failure_response = $this->sfapi->apiCall("jobs/ingest/$data/failedResults", [], 'GET', TRUE);
-      $job_failure_response->data->setHeaderOffset(0);
     }
     catch (RestException $e) {
       throw new \Exception($e->getMessage());
     }
 
-    foreach ($job_failure_response->data->getRecords() as $record) {
-      $this->logger->error('Error on job @job_id for CRM_ID @crm_id: @message', [
+    // Parse the response CSV data. If this throws an error, the item will be
+    // re-queued.
+    $reader = Reader::createFromString($job_failure_response->data);
+    $reader->setHeaderOffset(0);
+
+    foreach ($reader->getRecords() as $record) {
+      $external_id_field = $job_info_response->data['externalIdFieldName'];
+
+      $this->logger->error('Error on job @job_id for @external_id: @message', [
         '@job_id' => $data,
-        '@crm_id' => $record['CollegeNET_CRM_ID__c'],
+        '@external_id' => $record[$external_id_field],
         '@message' => $record['sf__Error'],
       ]);
     }

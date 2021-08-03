@@ -158,7 +158,7 @@
       "drupal/salesforce": {
         "Salesforce link appears in \"Operations\" links on views for anonymous users": "https://git.drupalcode.org/project/salesforce/-/merge_requests/20.diff",
         "Issue #3221747: Improve performance of asynchronous salesforce push": "https://git.drupalcode.org/project/salesforce/-/merge_requests/21.diff",
-        "Make RestResponse::handleJsonResponse() method protected": "./patches/salesforce_protected_handleJsonResponse.patch"
+        "Allow RestClient to handle non-JSON data": "https://git.drupalcode.org/project/salesforce/-/merge_requests/23.diff"
       }
     },
     "installer-paths": {
