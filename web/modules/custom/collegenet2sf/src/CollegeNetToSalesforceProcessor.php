@@ -295,7 +295,7 @@ class CollegeNetToSalesforceProcessor {
       $job_id = $job_create_response->data['id'];
 
       // Upload the json data.
-      $this->sfapi->apiCall("jobs/ingest/$job_id/batches", $writer->toString(), 'PUT', TRUE, 'text/csv');
+      $this->sfapi->apiCall("jobs/ingest/$job_id/batches", $writer->toString(), 'PUT', TRUE, ['Content-type' => 'text/csv']);
 
       // Close the job.
       $this->sfapi->apiCall('jobs/ingest/' . $job_id, [
