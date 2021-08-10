@@ -503,6 +503,19 @@ function ilr_preprocess_node__course__teaser(&$variables) {
 
   foreach ($variables['node']->classes as $upcoming_class) {
     $class_is_in_person = strpos(strtolower($upcoming_class->entity->field_delivery_method->value), 'online') === FALSE;
+
+    switch($upcoming_class->entity->field_delivery_method->value) {
+      case 'Classroom':
+        $computed_delivery_method = t('In-Person');
+        break;
+      case 'On Demand/Self Paced':
+        $computed_delivery_method = t('Self-Paced Online');
+        break;
+      default:
+        $computed_delivery_method = t('Live Online');
+    }
+
+    $upcoming_class->entity->computed_delivery_method = $computed_delivery_method;
     $variables['upcoming_classes'][] = $upcoming_class->entity;
   }
 }
