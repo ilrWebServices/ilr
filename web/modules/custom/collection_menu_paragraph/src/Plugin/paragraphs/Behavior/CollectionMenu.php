@@ -30,8 +30,9 @@ class CollectionMenu extends ParagraphsBehaviorBase {
    * @var array
    */
   protected $navigationLevels = [
-    'children' => 'Children',
-    'siblings' => 'Siblings',
+    'children' => 'Children of this content',
+    'siblings' => 'Siblings of this content',
+    'root' => 'Top level of this menu',
   ];
 
   /**
@@ -84,7 +85,6 @@ class CollectionMenu extends ParagraphsBehaviorBase {
       '#title' => $this->t('Navigation to display'),
       '#options' => $this->navigationLevels,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'navigation_level'),
-      '#suffix' => ' ' . $this->t('of this page'),
     ];
 
     return $form;
@@ -103,24 +103,26 @@ class CollectionMenu extends ParagraphsBehaviorBase {
     $menu_name = $this->getCollectionMenuName();
 
     if (!$menu_name) {
+      $build['#printed'] = TRUE;
       return;
     }
 
+    $level = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'navigation_level');
     $active_link = $this->menuActiveTrail->getActiveLink($menu_name);
 
-    if (!$active_link) {
+    if ($level === 'root') {
+      $root = '';
+    }
+    elseif ($active_link) {
+      $root = ($level === 'children') ? $active_link->getPluginId() : $active_link->getParent();
+    }
+    else {
+      $build['#printed'] = TRUE;
       return;
     }
 
     $parameters = new MenuTreeParameters();
-
-    if ($paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'navigation_level') === 'children') {
-      $parameters->setRoot($active_link->getPluginId());
-    }
-    else {
-      $parameters->setRoot($active_link->getParent());
-    }
-
+    $parameters->setRoot($root);
     $parameters->setMaxDepth(1);
     // This could be a setting (e.g. 'Show parent').
     $parameters->excludeRoot();
@@ -149,15 +151,20 @@ class CollectionMenu extends ParagraphsBehaviorBase {
    * Get the menu name for the first path entity if it is a collection.
    *
    * @return string
-   *   The name of the menu for the first path entity
+   *   The name of the menu for the active collection.
    *   or FALSE if no menu was found.
    */
   protected function getCollectionMenuName() {
-    if (!(reset($this->pathEntities) instanceof CollectionInterface)) {
+    foreach ($this->pathEntities as $entity) {
+      if ($entity instanceof CollectionInterface) {
+        $collection = $entity;
+      }
+    }
+
+    if (empty($collection)) {
       return FALSE;
     }
 
-    $collection = reset($this->pathEntities);
     $menu = FALSE;
 
     if ($menu_collection_items = $collection->findItems('menu')) {
