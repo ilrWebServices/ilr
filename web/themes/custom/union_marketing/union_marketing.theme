@@ -73,10 +73,6 @@ function union_marketing_preprocess_node(&$variables) {
     $variables['url_attributes']->setAttribute('target', '_blank');
   }
 
-  if ($variables['node']->bundle() === 'media_mention' && !$variables['node']->field_external_link->isEmpty()) {
-    $variables['url'] = $variables['node']->field_external_link->first()->getUrl()->toString();
-  }
-
   if ($variables['node']->bundle() === 'video_post') {
     $variables['url_attributes']->setAttribute('class', ['use-ajax', 'cu-link--modal']);
     $variables['url_attributes']->setAttribute('data-dialog-type', 'modal');

@@ -29,3 +29,7 @@ services:
     class: \Drupal\ilr\Commands\ParagraphsHostEntity
     tags:
       - { name: drush.command }
+  ilr.path_processor:
+    class: Drupal\ilr\PathProcessor
+    tags:
+      - { name: path_processor_outbound, priority: 200 }
