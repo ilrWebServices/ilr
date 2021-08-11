@@ -149,15 +149,20 @@ class CollectionMenu extends ParagraphsBehaviorBase {
    * Get the menu name for the first path entity if it is a collection.
    *
    * @return string
-   *   The name of the menu for the first path entity
+   *   The name of the menu for the active collection.
    *   or FALSE if no menu was found.
    */
   protected function getCollectionMenuName() {
-    if (!(reset($this->pathEntities) instanceof CollectionInterface)) {
+    foreach ($this->pathEntities as $entity) {
+      if ($entity instanceof CollectionInterface) {
+        $collection = $entity;
+      }
+    }
+
+    if (empty($collection)) {
       return FALSE;
     }
 
-    $collection = reset($this->pathEntities);
     $menu = FALSE;
 
     if ($menu_collection_items = $collection->findItems('menu')) {
