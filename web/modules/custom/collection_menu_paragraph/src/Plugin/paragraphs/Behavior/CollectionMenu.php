@@ -30,9 +30,9 @@ class CollectionMenu extends ParagraphsBehaviorBase {
    * @var array
    */
   protected $navigationLevels = [
-    'children' => 'Children',
-    'siblings' => 'Siblings',
-    'root' => 'Top level',
+    'children' => 'Children of this content',
+    'siblings' => 'Siblings of this content',
+    'root' => 'Top level of this menu',
   ];
 
   /**
@@ -85,7 +85,6 @@ class CollectionMenu extends ParagraphsBehaviorBase {
       '#title' => $this->t('Navigation to display'),
       '#options' => $this->navigationLevels,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'navigation_level'),
-      '#suffix' => ' ' . $this->t('of this page'),
     ];
 
     return $form;
