@@ -5,7 +5,7 @@ namespace Drupal\collection_item_path\EventSubscriber;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Routing\TrustedRedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 /**
@@ -47,7 +47,7 @@ class CollectionItemPathSubscriber implements EventSubscriberInterface {
       $collection_item = $request->attributes->get('collection_item');
 
       if ($collection_item->isCanonical()) {
-        $response = new RedirectResponse($collection_item->item->entity->toUrl()->toString(), 308);
+        $response = new TrustedRedirectResponse($collection_item->item->entity->toUrl()->toString(), 308);
         $event->setResponse($response);
       }
     }
