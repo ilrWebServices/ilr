@@ -7,4 +7,6 @@ label: 'Form Admin'
 weight: 6
 is_admin: null
 permissions:
+  - 'access webform overview'
+  - 'view any webform submission'
   - 'view milr eligibility webform submissions'
