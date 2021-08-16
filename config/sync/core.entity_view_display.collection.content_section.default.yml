@@ -119,7 +119,17 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
             additional: {  }
-            weight: 5
+            weight: -9
+          c22a8267-0116-4c72-82c1-c0a81522360f:
+            uuid: c22a8267-0116-4c72-82c1-c0a81522360f
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:collection:content_section:content_moderation_control'
+            additional: {  }
+            weight: -10
         third_party_settings: {  }
 id: collection.content_section.default
 targetEntityType: collection
@@ -133,6 +143,11 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: banner
   field_representative_image:
     weight: 3
     label: above

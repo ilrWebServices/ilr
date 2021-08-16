@@ -126,7 +126,17 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
             additional: {  }
-            weight: 5
+            weight: -9
+          64228d2d-1e5e-4a67-ac5e-34cb22891b16:
+            uuid: 64228d2d-1e5e-4a67-ac5e-34cb22891b16
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:collection:subsite_blog:content_moderation_control'
+            additional: {  }
+            weight: -10
         third_party_settings: {  }
 id: collection.subsite_blog.default
 targetEntityType: collection
@@ -140,6 +150,11 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: banner
   extra_field_ilr_section_navigation:
     weight: 0
     settings: {  }

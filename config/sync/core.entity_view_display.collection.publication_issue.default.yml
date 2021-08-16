@@ -10,12 +10,9 @@ dependencies:
     - field.field.collection.publication_issue.field_publication_date
     - field.field.collection.publication_issue.field_representative_image
     - field.field.collection.publication_issue.field_sections
-    - image.style.small_4x5
   module:
     - entity_reference_revisions
     - layout_builder
-    - media
-    - text
 third_party_settings:
   layout_builder:
     allow_custom: false
@@ -25,22 +22,10 @@ targetEntityType: collection
 bundle: publication_issue
 mode: default
 content:
-  body:
-    type: text_summary_or_trimmed
-    weight: 0
+  content_moderation_control:
+    weight: -20
     region: content
-    label: hidden
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
-  field_download:
-    type: media_thumbnail
-    weight: 0
-    region: content
-    label: hidden
-    settings:
-      image_style: small_4x5
-      image_link: ''
+    settings: {  }
     third_party_settings: {  }
   field_sections:
     weight: 3
@@ -51,17 +36,12 @@ content:
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
     region: content
-  name:
-    label: hidden
-    type: string
-    weight: -4
-    region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
 hidden:
+  body: true
+  field_download: true
   field_publication: true
   field_publication_date: true
   field_representative_image: true
+  name: true
   search_api_excerpt: true
   user_id: true

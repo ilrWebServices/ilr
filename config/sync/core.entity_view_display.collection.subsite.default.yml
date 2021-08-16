@@ -111,7 +111,17 @@ third_party_settings:
                   link: ''
                 third_party_settings: {  }
             additional: {  }
-            weight: 2
+            weight: -9
+          32b5e9a0-bcec-4426-ae69-4f077a966a9b:
+            uuid: 32b5e9a0-bcec-4426-ae69-4f077a966a9b
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:collection:subsite:content_moderation_control'
+            additional: {  }
+            weight: -10
         third_party_settings: {  }
 id: collection.subsite.default
 targetEntityType: collection
@@ -124,6 +134,11 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: main
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
     region: main
   extra_field_ilr_section_navigation:
     weight: 0

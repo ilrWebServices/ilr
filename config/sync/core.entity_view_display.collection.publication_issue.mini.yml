@@ -43,6 +43,7 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
+  content_moderation_control: true
   field_publication: true
   field_publication_date: true
   field_representative_image: true

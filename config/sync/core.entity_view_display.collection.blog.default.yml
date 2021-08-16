@@ -128,13 +128,28 @@ third_party_settings:
                 third_party_settings: {  }
                 type: entity_reference_revisions_entity_view
             additional: {  }
-            weight: 2
+            weight: -9
+          4d2ebca4-3215-43ff-88bc-75448af6c125:
+            uuid: 4d2ebca4-3215-43ff-88bc-75448af6c125
+            region: content
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:collection:blog:content_moderation_control'
+            additional: {  }
+            weight: -10
         third_party_settings: {  }
 id: collection.blog.default
 targetEntityType: collection
 bundle: blog
 mode: default
 content:
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: banner
   extra_field_ilr_section_navigation:
     weight: 0
     settings: {  }
