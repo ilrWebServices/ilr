@@ -25,16 +25,11 @@ targetEntityType: node
 bundle: media_mention
 mode: mini
 content:
-  blog_collection:
-    weight: 0
-    settings: {  }
-    third_party_settings: {  }
-    region: banner
   blog_tags:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_experts:
     type: persona_name_list
     weight: 4
@@ -69,7 +64,9 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  blog_collection: true
   body: true
+  content_moderation_control: true
   field_representative_image: true
   links: true
   media_outlet_logo: true

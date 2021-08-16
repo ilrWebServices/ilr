@@ -127,6 +127,16 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 3
+          e16ef1c5-804b-4d99-9a0d-9bcd5e303afa:
+            uuid: e16ef1c5-804b-4d99-9a0d-9bcd5e303afa
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:node:post_document:content_moderation_control'
+            additional: {  }
+            weight: 10
         third_party_settings: {  }
 id: node.post_document.default
 targetEntityType: node
@@ -139,6 +149,11 @@ content:
     weight: 2
     settings:
       trim_length: 600
+    third_party_settings: {  }
+    region: content
+  content_moderation_control:
+    weight: -20
+    settings: {  }
     third_party_settings: {  }
     region: content
   field_document:

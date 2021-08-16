@@ -211,6 +211,16 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 2
+          abe1de59-6124-4e5a-a955-ea38e9f12f11:
+            uuid: abe1de59-6124-4e5a-a955-ea38e9f12f11
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:node:post:content_moderation_control'
+            additional: {  }
+            weight: 10
         third_party_settings: {  }
 id: node.post.default
 targetEntityType: node
@@ -224,6 +234,11 @@ content:
     region: banner
   blog_tags:
     weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  content_moderation_control:
+    weight: -20
     settings: {  }
     third_party_settings: {  }
     region: content

@@ -71,6 +71,16 @@ third_party_settings:
               id: 'extra_field_block:node:video_post:blog_tags'
             additional: {  }
             weight: 1
+          883adedb-6ffe-4161-b1c4-5deb760791f4:
+            uuid: 883adedb-6ffe-4161-b1c4-5deb760791f4
+            region: main
+            configuration:
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              id: 'extra_field_block:node:video_post:content_moderation_control'
+            additional: {  }
+            weight: 10
         third_party_settings: {  }
 id: node.video_post.default
 targetEntityType: node
@@ -84,6 +94,11 @@ content:
     region: content
   blog_tags:
     weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  content_moderation_control:
+    weight: -20
     settings: {  }
     third_party_settings: {  }
     region: content
