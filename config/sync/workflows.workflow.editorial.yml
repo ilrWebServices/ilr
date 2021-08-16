@@ -1,0 +1,86 @@
+uuid: 4e68b91b-4f2c-4514-9c9a-4bf4f4ea6651
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.blog
+    - collection.collection_type.content_section
+    - collection.collection_type.publication_issue
+    - collection.collection_type.subsite
+    - collection.collection_type.subsite_blog
+    - node.type.media_mention
+    - node.type.page
+    - node.type.post
+    - node.type.post_document
+    - node.type.post_experience_report
+    - node.type.video_post
+  module:
+    - content_moderation
+id: editorial
+label: Editorial
+type: content_moderation
+type_settings:
+  states:
+    archived:
+      published: false
+      default_revision: true
+      label: Archived
+      weight: 2
+    draft:
+      label: Draft
+      published: false
+      default_revision: false
+      weight: 0
+    published:
+      label: Published
+      published: true
+      default_revision: true
+      weight: 1
+  transitions:
+    archive:
+      label: Archive
+      from:
+        - published
+      to: archived
+      weight: 2
+    create_new_draft:
+      label: 'Create New Draft'
+      to: draft
+      weight: 0
+      from:
+        - draft
+        - published
+    publish:
+      label: Publish
+      to: published
+      weight: 1
+      from:
+        - draft
+        - published
+    restore:
+      label: Restore
+      from:
+        - archived
+      to: published
+      weight: 4
+    restore_to_draft:
+      label: 'Restore to Draft'
+      from:
+        - archived
+      to: draft
+      weight: 3
+  entity_types:
+    collection:
+      - blog
+      - content_section
+      - publication_issue
+      - subsite
+      - subsite_blog
+    node:
+      - media_mention
+      - page
+      - post
+      - post_document
+      - post_experience_report
+      - video_post
+  default_moderation_state: draft
