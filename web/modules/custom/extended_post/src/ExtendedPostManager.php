@@ -114,6 +114,20 @@ class ExtendedPostManager {
       $linkit_profile->setMatcherConfig($node_matcher->getUuid(), $configuration);
       $linkit_profile->save();
     }
+
+    // Add this bundle to the Editorial Content Moderation workflow.
+    if ($this->moduleHandler->moduleExists('content_moderation')) {
+      $editorial_workflow = $this->entityTypeManager->getStorage('workflow')->load('editorial');
+      $workflow_type = $editorial_workflow->getTypePlugin();
+      $configuration = $workflow_type->getConfiguration();
+
+      if (isset($configuration['entity_types']['node'])) {
+        $configuration['entity_types']['node'][] = $bundle;
+        sort($configuration['entity_types']['node']);
+        $workflow_type->setConfiguration($configuration);
+        $editorial_workflow->save();
+      }
+    }
   }
 
   /**
