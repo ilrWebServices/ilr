@@ -1,0 +1,14 @@
+uuid: b5a542fb-29d9-402b-bcc8-86a4dc6d7f43
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.advanced_editor
+  module:
+    - user
+id: user_remove_role_action.advanced_editor
+label: 'Remove the Advanced editor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: advanced_editor
