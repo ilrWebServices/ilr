@@ -137,12 +137,6 @@ class AtomFeed extends ControllerBase {
         $url = $post->toUrl('canonical', ['absolute' => TRUE])->toString();
       }
 
-      // Override urls for nodes with external link fields, since the node is
-      // not meant to be viewed.
-      if ($post->hasField('field_external_link') && !$post->field_external_link->isEmpty()) {
-        $url = $post->field_external_link->first()->getUrl()->toString();
-      }
-
       $entry = [
         'title' => $post->label(),
         'link' => [
