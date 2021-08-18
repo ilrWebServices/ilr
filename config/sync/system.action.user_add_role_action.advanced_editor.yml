@@ -1,0 +1,14 @@
+uuid: 95af65f9-6318-4345-91cb-cd8a7b697200
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.advanced_editor
+  module:
+    - user
+id: user_add_role_action.advanced_editor
+label: 'Add the Advanced editor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: advanced_editor

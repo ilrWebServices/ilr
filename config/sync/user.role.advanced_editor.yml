@@ -1,10 +1,10 @@
-uuid: 0f4a0236-70bb-4ef6-80bf-972c3593fc60
+uuid: a192ffe1-84a0-42d0-a7d5-da52d9005277
 langcode: en
 status: true
 dependencies: {  }
-id: editor
-label: Editor
-weight: 3
+id: advanced_editor
+label: 'Advanced editor'
+weight: 7
 is_admin: null
 permissions:
   - 'access administration pages'
@@ -38,6 +38,8 @@ permissions:
   - 'edit any remote_video media'
   - 'edit any video media'
   - 'edit behavior plugin settings'
+  - 'edit blog collection'
+  - 'edit content_section collection'
   - 'edit entity reference layout plugin config'
   - 'edit own media_mention content'
   - 'edit own page content'
@@ -46,6 +48,9 @@ permissions:
   - 'edit own post_experience_report content'
   - 'edit own story content'
   - 'edit own video_post content'
+  - 'edit publication_issue collection'
+  - 'edit subsite collection'
+  - 'edit subsite_blog collection'
   - 'override status for canonical content in editable collections'
   - 'publish own content'
   - 'view any paragraphs previewer'
