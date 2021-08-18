@@ -1,6 +1,0 @@
-services:
-  collegenet2sf.commands:
-    class: \Drupal\collegenet2sf\Commands\Collegenet2sfCommands
-    arguments: ['@collegenet2sf.processor']
-    tags:
-      - { name: drush.command }

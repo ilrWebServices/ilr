@@ -1,7 +1,0 @@
-services:
-  logger.channel.collegenet2sf:
-    parent: logger.channel_base
-    arguments: ['collegenet to salesforce']
-  collegenet2sf.processor:
-    class: Drupal\collegenet2sf\CollegeNetToSalesforceProcessor
-    arguments: ['@sftp_client', '@salesforce.client', '@config.factory', '@queue', '@logger.channel.collegenet2sf']

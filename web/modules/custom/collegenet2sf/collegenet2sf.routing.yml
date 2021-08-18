@@ -1,8 +1,0 @@
-collegenet2sf.endpoint:
-  path: 'collegenet2sf/endpoint/{key}'
-  defaults:
-    _controller: '\Drupal\collegenet2sf\Controller\CollegeNetToSalesforceController::endpoint'
-  options:
-    no_cache: TRUE
-  requirements:
-    _access_system_cron: 'TRUE'
