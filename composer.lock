@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2879597bb0d5ec5ab7e22c108a610be7",
+    "content-hash": "f216f93dfa3fa1f8c54973284e6fd58d",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2177,17 +2177,17 @@
         },
         {
             "name": "drupal/collection",
-            "version": "2.4.3-beta3",
+            "version": "2.4.3-beta5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/collection.git",
-                "reference": "2.4.3-beta3"
+                "reference": "2.4.3-beta5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/collection-2.4.3-beta3.zip",
-                "reference": "2.4.3-beta3",
-                "shasum": "777542d3cb403ba2adf648d5458f2811d98215a3"
+                "url": "https://ftp.drupal.org/files/projects/collection-2.4.3-beta5.zip",
+                "reference": "2.4.3-beta5",
+                "shasum": "6c4896758e215261d87f56f2c6829b5f457204ac"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -2201,8 +2201,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.4.3-beta3",
-                    "datestamp": "1620162307",
+                    "version": "2.4.3-beta5",
+                    "datestamp": "1629297677",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
