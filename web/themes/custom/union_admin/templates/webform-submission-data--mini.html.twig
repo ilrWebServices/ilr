@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Custom mini theme implementation for webform submission data.
+ *   This can be used when rendering a submission in a view.
+ */
+#}
+{%
+  set classes = [
+    'webform-submission-data',
+    'webform-submission-data--webform-' ~ webform.id()|clean_class,
+    view_mode ? 'webform-submission-data--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+{{ elements.data.first_name }}
+{{ elements.data.last_name }}
+{{ elements.data.email }}
+</div>
