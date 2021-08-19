@@ -27,7 +27,6 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Field\WidgetInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
-use Drupal\collection_content_permissions\CollectionOwnerHelper;
 use Drupal\taxonomy\VocabularyInterface;
 use Drupal\collection\Entity\CollectionItemInterface;
 
@@ -484,11 +483,10 @@ function ilr_taxonomy_term_create_access(AccountInterface $account, array $conte
 
   // See if the vocabulary is in a collection owned by this user.
   $collection_items = \Drupal::service('collection.content_manager')->getCollectionItemsForEntity($vocabulary_entity, FALSE);
-  $owner_helper = new CollectionOwnerHelper();
 
   foreach ($collection_items as $collection_item) {
-    if ($owner_helper->isOwner($collection_item->collection->entity, $account)) {
-      return AccessResult::allowed($account);
+    if ($collection_item->access('update', $account)) {
+      return AccessResult::allowed();
     }
   }
 
