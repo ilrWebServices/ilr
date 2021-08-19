@@ -176,7 +176,8 @@
       "drupal/salesforce": {
         "Salesforce link appears in \"Operations\" links on views for anonymous users": "https://git.drupalcode.org/project/salesforce/-/merge_requests/20.diff",
         "Issue #3221747: Improve performance of asynchronous salesforce push": "https://git.drupalcode.org/project/salesforce/-/merge_requests/21.diff",
-        "Allow RestClient to handle non-JSON data": "https://git.drupalcode.org/project/salesforce/-/merge_requests/23.diff"
+        "Allow RestClient to handle non-JSON data": "https://git.drupalcode.org/project/salesforce/-/merge_requests/23.diff",
+        "Issue #3120102: Store identity during drush sfrt": "https://git.drupalcode.org/project/salesforce/-/commit/8daad1c82b69090a2a0dd518636085eda5953588.diff"
       }
     },
     "installer-paths": {
