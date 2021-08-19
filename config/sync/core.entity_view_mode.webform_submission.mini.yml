@@ -1,0 +1,10 @@
+uuid: 34feeb76-c0b3-428b-8022-53e7b309a054
+langcode: en
+status: true
+dependencies:
+  module:
+    - webform
+id: webform_submission.mini
+label: Mini
+targetEntityType: webform_submission
+cache: true
