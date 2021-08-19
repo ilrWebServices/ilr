@@ -827,6 +827,14 @@ if (file_exists($app_root . '/' . $site_path . '/settings.platformsh.php')) {
 $config['ilr_registration_system.settings']['url'] = getenv('REGISTRATION_SYSTEM_URL');
 
 /**
+ * Salesforce consumer key for sandbox/dev auth provider. This is an env var
+ * because the app consumer key changes every time the sandbox is refreshed.
+ */
+if (!empty(getenv('SALESFORCE_CONSUMER_KEY_DEV'))) {
+  $config['salesforce.salesforce_auth.ilr_marketing_jwt_oauth_dev']['provider_settings']['consumer_key'] = getenv('SALESFORCE_CONSUMER_KEY_DEV');
+}
+
+/**
  * Migration data sources.
  *
  * The source of some migrations, like files, can be overridden via an
