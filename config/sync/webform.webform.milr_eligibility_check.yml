@@ -171,7 +171,12 @@ settings:
   share_page_body_attributes: {  }
   submission_label: ''
   submission_log: false
-  submission_views: {  }
+  submission_views:
+    salesforce-mappings:
+      view: 'webform_submissions:embed_salesforce'
+      title: 'Salesforce mappings'
+      webform_routes:
+        - entity.webform.results_submissions
   submission_views_replace: {  }
   submission_user_columns: {  }
   submission_user_duplicate: false
