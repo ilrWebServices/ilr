@@ -33,6 +33,13 @@ class PathProcessor implements OutboundPathProcessorInterface {
         $options['base_url'] = $entity->field_external_link->first()->getUrl()->toString();
         $path = '';
       }
+
+      // Transform links to view salesforce mapped objects so that they point to
+      // the salesforce url.
+      if ($options['route']->getPath() === '/admin/content/salesforce/{salesforce_mapped_object}') {
+        $options['base_url'] = $entity->getSalesforceUrl();
+        $path = '';
+      }
     }
 
     return $path;
