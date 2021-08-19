@@ -127,7 +127,11 @@
       "drush updatedb -y",
       "@sf-dev"
     ],
-    "sf-dev": "drush sfrvk ilr_marketing_jwt_oauth && drush sfrt ilr_marketing_jwt_oauth_dev && drush sflp"
+    "sf-dev": [
+      "drush sfrvk ilr_marketing_jwt_oauth",
+      "drush sfrt ilr_marketing_jwt_oauth_dev",
+      "drush sflp"
+    ]
   },
   "extra": {
     "composer-exit-on-patch-failure": true,
