@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f216f93dfa3fa1f8c54973284e6fd58d",
+    "content-hash": "3d89c59219c6fd6552585e2c180e6e5b",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2059,6 +2059,10 @@
                 {
                     "name": "floretan",
                     "homepage": "https://www.drupal.org/user/66163"
+                },
+                {
+                    "name": "nord102",
+                    "homepage": "https://www.drupal.org/user/3471419"
                 }
             ],
             "description": "Limit which text formats are available for each field instance.",
@@ -2235,6 +2239,47 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/collection"
             }
+        },
+        {
+            "name": "drupal/collegenet2sf",
+            "version": "1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ilrWebServices/collegenet2sf.git",
+                "reference": "58ed3fcdc0a567dc8201ad74450276871d6691dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ilrWebServices/collegenet2sf/zipball/58ed3fcdc0a567dc8201ad74450276871d6691dc",
+                "reference": "58ed3fcdc0a567dc8201ad74450276871d6691dc",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/salesforce": "^4.0",
+                "drupal/sftp_client": "1.0.x-dev",
+                "league/csv": "^9.0"
+            },
+            "default-branch": true,
+            "type": "drupal-module",
+            "extra": {
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^10"
+                    }
+                }
+            },
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Transfers CollegeNET prospects to Salesforce as Leads.",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "https://github.com/ilrWebServices/collegenet2sf/tree/1.x",
+                "issues": "https://github.com/ilrWebServices/collegenet2sf/issues"
+            },
+            "time": "2021-08-18T21:39:32+00:00"
         },
         {
             "name": "drupal/config_filter",
@@ -4310,7 +4355,7 @@
                     "homepage": "https://www.drupal.org/user/658076"
                 },
                 {
-                    "name": "CrashTest_",
+                    "name": "crashtest_",
                     "homepage": "https://www.drupal.org/user/261457"
                 },
                 {
@@ -4979,6 +5024,10 @@
                     "name": "Lucas Hedding",
                     "homepage": "https://www.drupal.org/u/heddn",
                     "role": "Maintainer"
+                },
+                {
+                    "name": "mikeryan",
+                    "homepage": "https://www.drupal.org/user/4420"
                 }
             ],
             "description": "Tools to assist in developing and running migrations.",
@@ -11449,7 +11498,7 @@
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/guzzle": "^6.2.1",
+                "guzzlehttp/guzzle": "^6.2.1|^7.0.0",
                 "php": ">=5.4.0"
             },
             "require-dev": {
@@ -11472,7 +11521,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thinkshout/mailchimp-api-php/issues",
-                "source": "https://github.com/thinkshout/mailchimp-api-php/tree/master"
+                "source": "https://github.com/thinkshout/mailchimp-api-php/tree/v2.1.1"
             },
             "time": "2019-11-20T20:38:19+00:00"
         },
@@ -13212,7 +13261,7 @@
             "extra": {
                 "drupal": {
                     "version": "8.x-1.1",
-                    "datestamp": "1601040732",
+                    "datestamp": "1601040759",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
