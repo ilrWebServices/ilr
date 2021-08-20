@@ -5,7 +5,6 @@ dependencies:
   config:
     - webform.webform.milr_eligibility_check
   module:
-    - salesforce_pull
     - salesforce_push
     - token
 id: milr_webform_submission_lead
@@ -24,7 +23,7 @@ sync_triggers:
   push_delete: false
   pull_create: false
   pull_update: false
-  pull_delete: true
+  pull_delete: false
 salesforce_object_type: Lead
 drupal_entity_type: webform_submission
 drupal_bundle: milr_eligibility_check
