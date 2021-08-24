@@ -188,14 +188,12 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
         ],
       ];
 
-      // QueryBase::pager(), used above, sets the pager element and _then_
-      // increments PagerSelectExtender::$maxElement. So we subtract one from
-      // PagerSelectExtender::$maxElement to get the last used pager element
-      // number.
+      $element_id = \Drupal::service('pager.manager')->getMaxPagerElementId();
+
       $build[$component_name]['pager'] = [
         '#type' => 'pager',
-        '#element' => PagerSelectExtender::$maxElement - 1,
-        '#parameters' => ['post_listing' => PagerSelectExtender::$maxElement - 1],
+        '#element' => $element_id,
+        '#parameters' => ['post_listing' => $element_id],
         '#attached' => [
           'library' => ['ilr/ilr_pager'],
         ],
