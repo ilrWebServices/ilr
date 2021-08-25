@@ -11,8 +11,8 @@ use Drupal\paragraphs\ParagraphsBehaviorBase;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\extended_post\ExtendedPostManager;
+use Drupal\Core\Pager\PagerManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Database\Query\PagerSelectExtender;
 
 /**
  * Provides a Post Listing plugin.
@@ -41,6 +41,13 @@ class PostListing extends ParagraphsBehaviorBase {
   protected $extendedPostManager;
 
   /**
+   * The pager manager.
+   *
+   * @var \Drupal\Core\Pager\PagerManagerInterface
+   */
+  protected $pagerManager;
+
+  /**
    * Count threshold before a pager is required.
    *
    * @var integer
@@ -62,11 +69,14 @@ class PostListing extends ParagraphsBehaviorBase {
    *   The entity type manager service.
    * @param \Drupal\extended_post\ExtendedPostManager $extended_post_manager
    *   The extended post manager service.
+   * @param \Drupal\Core\Pager\PagerManagerInterface $pager_manager
+   *   The pager manager service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityFieldManagerInterface $entity_field_manager, EntityTypeManagerInterface $entity_type_manager, ExtendedPostManager $extended_post_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityFieldManagerInterface $entity_field_manager, EntityTypeManagerInterface $entity_type_manager, ExtendedPostManager $extended_post_manager, PagerManagerInterface $pager_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_field_manager);
     $this->entityTypeManager = $entity_type_manager;
     $this->extendedPostManager = $extended_post_manager;
+    $this->pagerManager = $pager_manager;
   }
 
   /**
@@ -79,7 +89,8 @@ class PostListing extends ParagraphsBehaviorBase {
       $plugin_definition,
       $container->get('entity_field.manager'),
       $container->get('entity_type.manager'),
-      $container->get('extended_post.manager')
+      $container->get('extended_post.manager'),
+      $container->get('pager.manager')
     );
   }
 
@@ -259,15 +270,14 @@ class PostListing extends ParagraphsBehaviorBase {
       ],
     ];
 
-    // QueryBase::pager(), used above, sets the pager element and _then_
-    // increments PagerSelectExtender::$maxElement. So we subtract one from
-    // PagerSelectExtender::$maxElement to get the last used pager element
-    // number.
+    // QueryBase::pager(), used above, sets the pager element. The pager manager
+    // can now get that element value.
     if ($paragraph->getBehaviorSetting($this->getPluginId(), 'use_pager')) {
+      $element_id = $this->pagerManager->getMaxPagerElementId();
       $variables['content']['pager'] = [
         '#type' => 'pager',
-        '#element' => PagerSelectExtender::$maxElement - 1,
-        '#parameters' => ['post_listing' => PagerSelectExtender::$maxElement - 1],
+        '#element' => $element_id,
+        '#parameters' => ['post_listing' => $element_id],
         '#attached' => [
           'library' => ['ilr/ilr_pager'],
         ],
