@@ -79,7 +79,8 @@ class PostListing extends ParagraphsBehaviorBase {
     $this->pagerManager = $pager_manager;
   }
 
-  /** * {@inheritdoc}
+  /**
+   * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
@@ -269,10 +270,8 @@ class PostListing extends ParagraphsBehaviorBase {
       ],
     ];
 
-    // QueryBase::pager(), used above, sets the pager element and _then_
-    // increments PagerSelectExtender::$maxElement. So we subtract one from
-    // PagerSelectExtender::$maxElement to get the last used pager element
-    // number.
+    // QueryBase::pager(), used above, sets the pager element. The pager manager
+    // can now get that element value.
     if ($paragraph->getBehaviorSetting($this->getPluginId(), 'use_pager')) {
       $element_id = $this->pagerManager->getMaxPagerElementId();
       $variables['content']['pager'] = [
