@@ -63,16 +63,6 @@
   }
 }
 
-.cu-card__media .media--position-top .cu-image,
-.cu-banner__media .media--position-top .cu-image {
-  object-position: top;
-}
-
-.cu-card__media .media--position-bottom .cu-image,
-.cu-banner__media .media--position-bottom .cu-image {
-  object-position: bottom;
-}
-
 .cu-component.cu-component--media-deck {
   @include full-width();
   --cu-component-margin: var(--cu-vr1);
@@ -158,7 +148,8 @@
   background-position: var(--image-focal-point);
 }
 
-.cu-card--promo-with-media .cu-card__media img {
+.cu-card--promo-with-media .cu-card__media img,
+.field-representative-image .cu-image {
   object-position: var(--image-focal-point, '50% 50%');
 }
 

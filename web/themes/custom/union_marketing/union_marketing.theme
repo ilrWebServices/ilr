@@ -390,13 +390,7 @@ function union_marketing_preprocess_field__field_representative_image(&$variable
       $image_props = $image->first()->getValue();
       $anchor = \Drupal::service('focal_point.manager')
         ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
-
-      if ($anchor['y'] <= 33) {
-        $variables['attributes']['class'][] = 'media--position-top';
-      }
-      elseif ($anchor['y'] >= 66) {
-        $variables['attributes']['class'][] = 'media--position-bottom';
-      }
+      $variables['attributes']['style'][] = '--image-focal-point: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;';
     }
   }
 }
