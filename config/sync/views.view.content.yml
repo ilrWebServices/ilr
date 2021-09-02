@@ -21,6 +21,7 @@ dependencies:
   module:
     - collection
     - content_moderation
+    - ilr
     - node
     - user
     - views_autocomplete_filters
@@ -403,14 +404,14 @@ display:
           entity_type: node
           entity_field: revision_uid
           plugin_id: field
-        item_latest_version_link:
-          id: item_latest_version_link
-          table: collection_item
-          field: item_latest_version_link
-          relationship: canonical_collection_item
+        content_latest_version_link:
+          id: content_latest_version_link
+          table: node
+          field: content_latest_version_link
+          relationship: nid
           group_type: group
           admin_label: ''
-          label: 'Item latest version link'
+          label: 'Content latest version link'
           exclude: true
           alter:
             alter_text: false
@@ -453,8 +454,8 @@ display:
           hide_alter_empty: true
           text: 'Latest version'
           output_url_as_text: 1
-          entity_type: collection_item
-          plugin_id: collection_item_collected_item_latest_version_link
+          entity_type: node
+          plugin_id: content_latest_version_link
         moderation_state:
           id: moderation_state
           table: node_field_revision
@@ -468,7 +469,7 @@ display:
             alter_text: false
             text: ''
             make_link: true
-            path: '{{ item_latest_version_link }}'
+            path: '{{ content_latest_version_link }}'
             absolute: false
             external: false
             replace_spaces: false
