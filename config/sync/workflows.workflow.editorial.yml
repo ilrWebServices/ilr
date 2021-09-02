@@ -21,28 +21,22 @@ label: Editorial
 type: content_moderation
 type_settings:
   states:
-    archived:
-      published: false
-      default_revision: true
-      label: Archived
-      weight: 2
     draft:
       label: Draft
       published: false
       default_revision: false
-      weight: 0
+      weight: -1
     published:
       label: Published
       published: true
       default_revision: true
+      weight: 0
+    unpublished:
+      published: false
+      default_revision: true
+      label: Unpublished
       weight: 1
   transitions:
-    archive:
-      label: Archive
-      from:
-        - published
-      to: archived
-      weight: 2
     create_new_draft:
       label: 'Create New Draft'
       to: draft
@@ -60,15 +54,16 @@ type_settings:
     restore:
       label: Restore
       from:
-        - archived
+        - unpublished
       to: published
       weight: 4
-    restore_to_draft:
-      label: 'Restore to Draft'
+    unpublish:
+      label: Unpublish
       from:
-        - archived
-      to: draft
-      weight: 3
+        - unpublished
+        - published
+      to: unpublished
+      weight: 2
   entity_types:
     collection:
       - blog
@@ -83,4 +78,4 @@ type_settings:
       - post_document
       - post_experience_report
       - video_post
-  default_moderation_state: draft
+  default_moderation_state: unpublished
