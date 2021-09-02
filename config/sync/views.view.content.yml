@@ -931,7 +931,7 @@ display:
           relationship: canonical_collection_item
           group_type: group
           admin_label: Collection
-          required: true
+          required: false
           entity_type: collection_item
           entity_field: collection
           plugin_id: standard
