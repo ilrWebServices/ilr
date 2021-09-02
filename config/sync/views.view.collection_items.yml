@@ -123,6 +123,58 @@ display:
           selected_actions: {  }
           entity_type: collection_item
           plugin_id: bulk_form
+        item_latest_version_link:
+          id: item_latest_version_link
+          table: collection_item
+          field: item_latest_version_link
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: ''
+          output_url_as_text: 1
+          entity_type: collection_item
+          plugin_id: collection_item_collected_item_latest_version_link
         name:
           id: name
           table: collection_item_field_data
@@ -201,7 +253,7 @@ display:
             alter_text: false
             text: ''
             make_link: false
-            path: ''
+            path: '{{ item_latest_version_link }}'
             absolute: false
             external: false
             replace_spaces: false
@@ -303,56 +355,6 @@ display:
           hide_alter_empty: true
           entity_type: collection_item
           plugin_id: collection_item_collected_item_entity_type_label
-        status:
-          id: status
-          table: collection_item
-          field: status
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Published
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          entity_type: collection_item
-          plugin_id: collection_item_collected_item_status
         state:
           id: state
           table: collection_item
@@ -360,13 +362,13 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Moderation state'
+          label: State
           exclude: false
           alter:
             alter_text: false
             text: ''
-            make_link: false
-            path: ''
+            make_link: true
+            path: '{{ item_latest_version_link }}'
             absolute: false
             external: false
             replace_spaces: false
