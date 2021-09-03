@@ -564,6 +564,38 @@ function ilr_tokens($type, $tokens, array $data, array $options, BubbleableMetad
  */
 function ilr_entity_type_alter(array &$entity_types) {
   $entity_types['node']->addConstraint('NodeMenuLevel');
+  $entity_types['taxonomy_term']->set('show_revision_ui', 'TRUE');
+}
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ *
+ * {@inheritdoc}
+ */
+function ilr_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+  // Display the revision_log_message field as it's intentionally hidden in
+  // the taxonomy core module.
+  if ($entity_type->id() == 'taxonomy_term' && isset($fields['revision_log_message'])) {
+    // Definition pulled from RevisionLogEntityTrait.
+    $fields['revision_log_message']
+      ->setLabel(t('Revision log message'))
+      ->setDescription(t('Briefly describe the changes you have made.'))
+      ->setRevisionable(TRUE)
+      ->setDefaultValue('')
+      ->setDisplayOptions('form', [
+        'type' => 'string_textarea',
+        'weight' => 25,
+        'settings' => ['rows' => 4],
+      ]);
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function ilr_form_taxonomy_term_form_alter(&$form, FormStateInterface $form_state) {
+  // Enable new revisions by default.
+  $form['revision']['#default_value'] = TRUE;
 }
 
 /**
