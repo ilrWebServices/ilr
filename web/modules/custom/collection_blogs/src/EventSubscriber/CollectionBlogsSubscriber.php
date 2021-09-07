@@ -81,6 +81,15 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
         $collection_item_vocab->item = $vocab;
         $collection_item_vocab->setAttribute('blog_taxonomy_' . $vocabulary_type, $vocab->id());
         $collection_item_vocab->save();
+
+        // Add this to the editorial workflow.
+        if ($editorial_workflow = $this->entityTypeManager->getStorage('workflow')->load('editorial')) {
+          $editorial_config = $editorial_workflow->getTypePlugin()->getConfiguration();
+          $editorial_config['entity_types']['taxonomy_term'][] = $vocab->id();
+          sort($editorial_config['entity_types']['taxonomy_term']);
+          $editorial_workflow->getTypePlugin()->setConfiguration($editorial_config);
+          $editorial_workflow->save();
+        }
       }
     }
   }

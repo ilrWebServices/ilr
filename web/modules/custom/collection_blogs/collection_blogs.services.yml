@@ -6,3 +6,10 @@ services:
       - '@path_alias.manager'
     tags:
       - { name: event_subscriber }
+  collection_blogs_config_subscriber:
+    class: Drupal\collection_blogs\EventSubscriber\ConfigEventSubscriber
+    arguments:
+      - '@entity_type.manager'
+      - '@messenger'
+    tags:
+      - { name: event_subscriber }
