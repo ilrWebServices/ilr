@@ -14,6 +14,7 @@ dependencies:
     - node.type.post_document
     - node.type.post_experience_report
     - node.type.video_post
+    - taxonomy.vocabulary.topics
   module:
     - content_moderation
 id: editorial
@@ -137,4 +138,5 @@ type_settings:
       - blog_40_tags
       - blog_42_categories
       - blog_42_tags
+      - topics
   default_moderation_state: unpublished
