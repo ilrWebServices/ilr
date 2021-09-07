@@ -14,6 +14,64 @@ dependencies:
     - node.type.post_document
     - node.type.post_experience_report
     - node.type.video_post
+    - taxonomy.vocabulary.blog_10_categories
+    - taxonomy.vocabulary.blog_10_tags
+    - taxonomy.vocabulary.blog_12_categories
+    - taxonomy.vocabulary.blog_12_tags
+    - taxonomy.vocabulary.blog_13_categories
+    - taxonomy.vocabulary.blog_13_tags
+    - taxonomy.vocabulary.blog_14_categories
+    - taxonomy.vocabulary.blog_14_tags
+    - taxonomy.vocabulary.blog_15_categories
+    - taxonomy.vocabulary.blog_15_tags
+    - taxonomy.vocabulary.blog_17_categories
+    - taxonomy.vocabulary.blog_17_tags
+    - taxonomy.vocabulary.blog_18_categories
+    - taxonomy.vocabulary.blog_18_tags
+    - taxonomy.vocabulary.blog_19_categories
+    - taxonomy.vocabulary.blog_19_tags
+    - taxonomy.vocabulary.blog_22_categories
+    - taxonomy.vocabulary.blog_22_tags
+    - taxonomy.vocabulary.blog_23_categories
+    - taxonomy.vocabulary.blog_23_tags
+    - taxonomy.vocabulary.blog_24_categories
+    - taxonomy.vocabulary.blog_24_tags
+    - taxonomy.vocabulary.blog_25_categories
+    - taxonomy.vocabulary.blog_25_tags
+    - taxonomy.vocabulary.blog_26_categories
+    - taxonomy.vocabulary.blog_26_tags
+    - taxonomy.vocabulary.blog_27_categories
+    - taxonomy.vocabulary.blog_27_tags
+    - taxonomy.vocabulary.blog_28_categories
+    - taxonomy.vocabulary.blog_28_tags
+    - taxonomy.vocabulary.blog_29_categories
+    - taxonomy.vocabulary.blog_29_tags
+    - taxonomy.vocabulary.blog_2_categories
+    - taxonomy.vocabulary.blog_2_tags
+    - taxonomy.vocabulary.blog_30_categories
+    - taxonomy.vocabulary.blog_30_tags
+    - taxonomy.vocabulary.blog_31_categories
+    - taxonomy.vocabulary.blog_31_tags
+    - taxonomy.vocabulary.blog_32_categories
+    - taxonomy.vocabulary.blog_32_tags
+    - taxonomy.vocabulary.blog_33_categories
+    - taxonomy.vocabulary.blog_33_tags
+    - taxonomy.vocabulary.blog_34_categories
+    - taxonomy.vocabulary.blog_34_tags
+    - taxonomy.vocabulary.blog_35_categories
+    - taxonomy.vocabulary.blog_35_tags
+    - taxonomy.vocabulary.blog_36_categories
+    - taxonomy.vocabulary.blog_36_tags
+    - taxonomy.vocabulary.blog_37_categories
+    - taxonomy.vocabulary.blog_37_tags
+    - taxonomy.vocabulary.blog_38_categories
+    - taxonomy.vocabulary.blog_38_tags
+    - taxonomy.vocabulary.blog_39_categories
+    - taxonomy.vocabulary.blog_39_tags
+    - taxonomy.vocabulary.blog_40_categories
+    - taxonomy.vocabulary.blog_40_tags
+    - taxonomy.vocabulary.blog_42_categories
+    - taxonomy.vocabulary.blog_42_tags
     - taxonomy.vocabulary.topics
   module:
     - content_moderation
