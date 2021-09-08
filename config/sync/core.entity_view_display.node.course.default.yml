@@ -17,6 +17,7 @@ dependencies:
     - views.view.topics_list
     - webform.webform.course_customization_request
     - webform.webform.course_notification
+    - webform.webform.professional_education_interests
   content:
     - 'block_content:simple_text:d300d9db-a8e3-4082-84f4-fea3ae4f21ae'
   module:
@@ -352,6 +353,30 @@ third_party_settings:
                 third_party_settings: {  }
               context_mapping:
                 entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+          context_mapping: {  }
+        components:
+          3b7daa15-3e4d-46fd-b191-2fa64ed750cf:
+            uuid: 3b7daa15-3e4d-46fd-b191-2fa64ed750cf
+            region: main
+            configuration:
+              id: webform_block
+              label: 'Professional education interests form'
+              provider: webform
+              label_display: '0'
+              webform_id: professional_education_interests
+              default_data: ''
+              redirect: false
+              context_mapping: {  }
             additional: {  }
             weight: 0
         third_party_settings: {  }

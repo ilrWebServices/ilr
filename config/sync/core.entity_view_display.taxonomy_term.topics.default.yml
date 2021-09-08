@@ -13,6 +13,7 @@ dependencies:
     - views.view.topic_certificates
     - views.view.topic_courses
     - views.view.topics_list
+    - webform.webform.professional_education_interests
   module:
     - entity_reference_revisions
     - ilr
@@ -22,6 +23,7 @@ dependencies:
     - text
     - union_organizer
     - views
+    - webform
 third_party_settings:
   layout_builder:
     allow_custom: false
@@ -269,6 +271,30 @@ third_party_settings:
               context_mapping: {  }
             additional: {  }
             weight: 0
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          full_width: 0
+          collapse_margins: 0
+          extra_classes: ''
+          context_mapping: {  }
+        components:
+          504b7dab-ec84-4e8f-a1ab-6e09515358b5:
+            uuid: 504b7dab-ec84-4e8f-a1ab-6e09515358b5
+            region: main
+            configuration:
+              id: webform_block
+              label: 'Professional education interests form'
+              provider: webform
+              label_display: '0'
+              webform_id: professional_education_interests
+              default_data: ''
+              redirect: false
+              context_mapping: {  }
+            additional: {  }
+            weight: 1
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
