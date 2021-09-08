@@ -1,0 +1,25 @@
+uuid: 16d5b273-1a08-498d-b3fe-ae3d0f71e128
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - webform
+_core:
+  default_config_hash: pZJnuQkh9afNML5IcMuKTUC__vmHMFn66Qr5IWtedZ4
+id: topics
+label: 'Professional Education Topics'
+category: ILR
+likert: false
+options: |
+  'Conflict Resolution': 'Conflict Resolution'
+  'Disability and Employment': 'Disability and Employment'
+  'Diversity and Inclusion': 'Diversity and Inclusion'
+  'Employee Relations': 'Employee Relations'
+  'Employment Law': 'Employment Law'
+  'Human Resources': 'Human Resources'
+  'Labor Relations': 'Labor Relations'
+  'Leadership Development and Organizational Change': 'Leadership Development and Organizational Change'
+  'Senior Leader Programs': 'Senior Leader Programs'
+  'Union Leadership': 'Union Leadership'
+  'Workplace Health and Safety': 'Workplace Health and Safety'

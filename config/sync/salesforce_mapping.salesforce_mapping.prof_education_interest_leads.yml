@@ -1,0 +1,85 @@
+uuid: e64a8539-df57-4901-ad68-997be6e33a9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - webform.webform.professional_education_interests
+  module:
+    - salesforce_pull
+    - salesforce_push
+    - salesforce_webform
+id: prof_education_interest_leads
+label: 'Professional Education Interest Leads'
+weight: 0
+type: salesforce_mapping
+key: ''
+async: true
+push_standalone: false
+pull_standalone: false
+pull_trigger_date: LastModifiedDate
+pull_where_clause: ''
+sync_triggers:
+  push_create: true
+  push_update: false
+  push_delete: false
+  pull_create: false
+  pull_update: false
+  pull_delete: true
+salesforce_object_type: Lead
+drupal_entity_type: webform_submission
+drupal_bundle: professional_education_interests
+field_mappings:
+  -
+    drupal_field_type: WebformElements
+    drupal_field_value: first_name
+    salesforce_field: FirstName
+    direction: drupal_sf
+    description: ''
+    id: 0
+  -
+    drupal_field_type: WebformElements
+    drupal_field_value: last_name
+    salesforce_field: LastName
+    direction: drupal_sf
+    description: ''
+    id: 1
+  -
+    drupal_field_type: WebformElements
+    drupal_field_value: email
+    salesforce_field: Email
+    direction: drupal_sf
+    description: ''
+    id: 2
+  -
+    drupal_field_type: WebformElements
+    drupal_field_value: areas_of_interest
+    salesforce_field: Area_of_Interest__c
+    direction: drupal_sf
+    description: ''
+    id: 3
+  -
+    drupal_field_type: Constant
+    drupal_field_value: 'Site Inquiry Form'
+    salesforce_field: LeadSource
+    direction: drupal_sf
+    description: ''
+    id: 4
+  -
+    drupal_field_type: record_type
+    drupal_field_value: Outreach
+    salesforce_field: RecordTypeId
+    direction: drupal_sf
+    description: ''
+    id: 5
+  -
+    drupal_field_type: Constant
+    drupal_field_value: 'NONE PROVIDED'
+    salesforce_field: Company
+    direction: drupal_sf
+    description: ''
+    id: 6
+push_limit: 0
+push_retries: 3
+push_frequency: 0
+pull_frequency: 0
+always_upsert: false
