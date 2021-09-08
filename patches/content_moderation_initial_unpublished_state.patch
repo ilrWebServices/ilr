@@ -1,0 +1,22 @@
+diff --git a/core/modules/content_moderation/src/Plugin/WorkflowType/ContentModeration.php b/core/modules/content_moderation/src/Plugin/WorkflowType/ContentModeration.php
+index b585961d2d..c37678bc04 100644
+--- a/core/modules/content_moderation/src/Plugin/WorkflowType/ContentModeration.php
++++ b/core/modules/content_moderation/src/Plugin/WorkflowType/ContentModeration.php
+@@ -308,11 +308,15 @@ public function getInitialState($entity = NULL) {
+     if (!($entity instanceof ContentEntityInterface)) {
+       throw new \InvalidArgumentException('A content entity object must be supplied.');
+     }
++
++    $default_moderation_state = isset($this->configuration['states'][$this->configuration['default_moderation_state']]) ? $this->configuration['default_moderation_state'] : 'draft';
++
+     if ($entity instanceof EntityPublishedInterface && !$entity->isNew()) {
+-      return $this->getState($entity->isPublished() ? 'published' : 'draft');
++      $initial_unpublished_state = $this->configuration['states'][$default_moderation_state]['published'] === FALSE ? $default_moderation_state : 'draft';
++      return $this->getState($entity->isPublished() ? 'published' : $initial_unpublished_state);
+     }
+ 
+-    return $this->getState(!empty($this->configuration['default_moderation_state']) ? $this->configuration['default_moderation_state'] : 'draft');
++    return $this->getState($default_moderation_state);
+   }
+ 
+ }
