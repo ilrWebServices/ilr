@@ -46,5 +46,9 @@
 
 .webform--dark {
   background: #efefed;
-  padding: var(--cu-vr1) var(--cu-ps3);
+  padding: var(--cu-vr1) var(--cu-ps1);
+
+  @include breakpoint(sm) {
+    padding: var(--cu-vr1) var(--cu-ps3);
+  }
 }
