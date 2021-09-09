@@ -20,10 +20,9 @@ elements: |-
     '#type': container
     '#markup': |-
       <h2 class="cu-heading">
-        Professional Education Interests
+        Stay Connected
       </h2>
-  element_container:
-    '#type': container
+      <p>Receive updates to follow your interests.</p>
     first_name:
       '#type': textfield
       '#title': 'First name'
@@ -37,6 +36,8 @@ elements: |-
       '#title': Email
       '#required': true
       '#default_value': '[current-user:mail]'
+  element_container:
+    '#type': container
     areas_of_interest:
       '#type': checkboxes
       '#title': 'Areas of Interest'
