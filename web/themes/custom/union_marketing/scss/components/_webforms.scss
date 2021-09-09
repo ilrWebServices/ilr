@@ -35,6 +35,7 @@
 
   @include breakpoint(sm) {
     display: grid;
+    column-gap: var(--cu-grid-column-gap);
     grid-template-columns: 1fr 1fr;
   }
 
@@ -45,5 +46,9 @@
 
 .webform--dark {
   background: #efefed;
-  padding: var(--cu-vr1) var(--cu-ps3);
+  padding: var(--cu-vr1) var(--cu-ps1);
+
+  @include breakpoint(sm) {
+    padding: var(--cu-vr1) var(--cu-ps3);
+  }
 }
