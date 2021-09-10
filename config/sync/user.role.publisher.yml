@@ -1,0 +1,15 @@
+uuid: 78b5b47e-4308-4b36-abe9-4d344791b82d
+langcode: en
+status: true
+dependencies: {  }
+id: publisher
+label: Publisher
+weight: 8
+is_admin: null
+permissions:
+  - 'use editorial transition archive'
+  - 'use editorial transition publish'
+  - 'use editorial transition restore'
+  - 'use editorial transition unpublish'
+  - 'view any unpublished content'
+  - 'view latest version'

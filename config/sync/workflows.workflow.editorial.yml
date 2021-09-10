@@ -96,6 +96,12 @@ type_settings:
       label: Unpublished
       weight: 1
   transitions:
+    archive:
+      label: Archive
+      from:
+        - published
+      to: unpublished
+      weight: 5
     create_new_draft:
       label: 'Create New Draft'
       to: draft
@@ -117,10 +123,9 @@ type_settings:
       to: published
       weight: 4
     unpublish:
-      label: Unpublish
+      label: 'Keep Unpublished'
       from:
         - unpublished
-        - published
       to: unpublished
       weight: 2
   entity_types:
