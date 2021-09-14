@@ -1,0 +1,14 @@
+uuid: 4056a31b-1c93-4596-9b6a-482c503fca78
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: table_of_contents
+label: 'Table of Contents'
+icon_uuid: null
+icon_default: null
+description: 'This component enhances data-rich pages with a styled table of contents.'
+behavior_plugins:
+  table_of_contents:
+    enabled: true
