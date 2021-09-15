@@ -156,3 +156,23 @@
 .cu-card--with-aside .cu-card__media .cu-image--blurred {
   display: block; // Fix issues with display: contents declaration in union.
 }
+
+.figure-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cu-vr2);
+  justify-content: center;
+
+  .cu-media {
+    margin: 0;
+  }
+
+  .cu-image {
+    max-height: 125px;
+    width: auto;
+  }
+
+  .media__caption {
+    text-align: center;
+  }
+}
