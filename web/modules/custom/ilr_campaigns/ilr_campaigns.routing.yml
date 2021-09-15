@@ -1,0 +1,7 @@
+ilr.class.email:
+  path: '/class/{node}/email'
+  defaults:
+    _controller: '\Drupal\ilr_campaigns\Controller\ClassHTMLEmailController::view'
+  requirements:
+    _permission: 'access content'
+    node: \d+

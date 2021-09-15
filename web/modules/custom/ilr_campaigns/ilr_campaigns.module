@@ -22,3 +22,12 @@ function ilr_campaigns_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+/**
+ *  Implements hook_theme_suggestions_html_alter().
+ */
+function ilr_campaigns_theme_suggestions_html_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $suggestions[] = 'html__' . $node->bundle() . '__' . $node->view_mode;
+  }
+}
