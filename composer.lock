@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26485a4c752dfc6ac2e682bad0c9654d",
+    "content-hash": "e85e7ef921b8d8062c89ab5dcd726b36",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3719,7 +3719,7 @@
             "extra": {
                 "drupal": {
                     "version": "8.x-1.4",
-                    "datestamp": "1624457459",
+                    "datestamp": "1624457496",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4471,6 +4471,10 @@
                     "homepage": "https://stjerneman.com",
                     "email": "emil@stjerneman.com",
                     "role": "Maintainer"
+                },
+                {
+                    "name": "johnwebdev",
+                    "homepage": "https://www.drupal.org/user/3331569"
                 }
             ],
             "description": "Linkit - Enriched linking experience",
