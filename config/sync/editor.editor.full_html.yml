@@ -20,6 +20,11 @@ settings:
             - Format
             - Styles
         -
+          name: Layout
+          items:
+            - SimpleColumns
+            - SimpleColumnBreak
+        -
           name: Links
           items:
             - DrupalLink
