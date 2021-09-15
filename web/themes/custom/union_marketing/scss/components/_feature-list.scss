@@ -12,3 +12,31 @@
 .node--course.node--view-mode-teaser .cu-feature-list__name {
   --cu-current-heading-size: var(--cu-ms0);
 }
+
+ol.accentuated {
+  padding: 0;
+  list-style: none;
+  counter-reset: fancy-item;
+
+  li {
+    counter-increment: fancy-item; /* Increment the counter by 1 */
+    margin-bottom: 1em;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  li::marker {
+    content: '';
+  }
+
+  li::before {
+    min-width: 30px;
+    border-radius: 15px;
+    margin-right: 1em;
+    display: inline-block;
+    color: white;
+    background: $cornell-red;
+    text-align: center;
+    content: counter(fancy-item); /* Use the counter as content */
+  }
+}
