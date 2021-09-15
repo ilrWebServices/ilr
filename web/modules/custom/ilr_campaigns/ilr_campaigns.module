@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains ilr_campaigns.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function ilr_campaigns_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the ilr_campaigns module.
+    case 'help.page.ilr_campaigns':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Manage subscribers and campaigns over the CampaignMonitor API') . '</p>';
+      return $output;
+
+    default:
+  }
+}
