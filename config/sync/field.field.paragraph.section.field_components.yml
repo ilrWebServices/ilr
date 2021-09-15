@@ -21,6 +21,7 @@ dependencies:
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.section_navigation
     - paragraphs.paragraphs_type.simple_collection_listing
+    - paragraphs.paragraphs_type.table_of_contents
     - paragraphs.paragraphs_type.testimonial
     - paragraphs.paragraphs_type.video
   module:
@@ -58,6 +59,7 @@ settings:
       event_listing: event_listing
       instagram_listing: instagram_listing
       section_navigation: section_navigation
+      table_of_contents: table_of_contents
     target_bundles_drag_drop:
       collection_listing:
         enabled: true
@@ -113,6 +115,9 @@ settings:
       simple_collection_listing:
         enabled: true
         weight: -25
+      table_of_contents:
+        enabled: true
+        weight: 40
       testimonial:
         enabled: true
         weight: -27

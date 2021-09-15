@@ -1,0 +1,78 @@
+.cu-component--table-of-contents {
+  h2.cu-heading {
+    text-align: center;
+    margin-bottom: var(--cu-vr2);
+  }
+
+  .cu-page-nav {
+    padding: 0 10%;
+  }
+
+  .cu-page-nav__list {
+    --cu-header-accent-width: 10%;
+    counter-reset: li;
+
+    @include breakpoint(md) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--cu-vr2);
+    }
+  }
+
+  .cu-page-nav__item {
+    padding: 0 0 var(--cu-vr1) var(--cu-ps3);
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: counter(li); /* Use the counter as content */
+      counter-increment: li; /* Increment the counter by 1 */
+      width:2em;
+      color: $cornell-red;
+      font-weight:bold;
+      font-size: var(--cu-text-xxl);
+      text-align:center;
+    }
+  }
+
+  .cu-page-nav__link {
+    --cu-current-link-color: #222;
+
+    .cu-heading {
+      font-weight: 400;
+      margin: 0;
+    }
+  }
+}
+
+.layout__region--content {
+  counter-reset: linked-heading;
+}
+
+.cu-section-heading--toc {
+  position: relative;
+
+  .cu-heading {
+    --cu-current-heading-size: var(--cu-ms6);
+    --cu-current-font-weight: 400;
+    display: flex;
+    width: 120%;
+    margin-left: -10%;
+    padding: 15px 0 15px var(--cu-vr3);
+    border-top: 6px solid;
+    border-bottom: 6px solid;
+
+    &::before {
+      content: counter(linked-heading); /* Use the counter as content */
+      counter-increment: linked-heading; /* Increment the counter by 1 */
+      border-right: 1px solid #ccc;
+      margin-right: var(--cu-vr1);
+      width: 2em;
+      color: $cornell-red; /* $cornell-red */
+      font-weight:bold;
+      font-size: var(--cu-text-xxl);
+      text-align:center;
+    }
+  }
+}

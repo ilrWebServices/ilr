@@ -20,6 +20,11 @@ settings:
             - Format
             - Styles
         -
+          name: Layout
+          items:
+            - SimpleColumns
+            - SimpleColumnBreak
+        -
           name: Links
           items:
             - DrupalLink
@@ -41,7 +46,7 @@ settings:
             - Source
   plugins:
     stylescombo:
-      styles: p.shout|Shout
+      styles: "h3.cu-heading--strong|Alternate heading\r\np.shout|Shout\r\nol.accentuated|Accentuated\r\n"
     drupallink:
       linkit_enabled: true
       linkit_profile: ilr_content

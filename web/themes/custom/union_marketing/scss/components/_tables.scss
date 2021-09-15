@@ -8,14 +8,28 @@
 .cu-component--rich-text table {
   --border-color: rgb(208, 208, 208);
   border-collapse: collapse;
-  border: 2px solid var(--border-color);
   margin-bottom: var(--cu-vr2);
+  width: 100%;
 }
 
 .cu-component--rich-text td,
 .cu-component--rich-text th {
-  border: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   padding: var(--cu-vr-1) var(--cu-ps-1);
+  text-align: left;
+
+  &[rowspan] {
+    border-left: 1px solid var(--border-color);
+  }
+
+  &[rowspan]:first-child {
+    border-left: none;
+    border-right: 1px solid var(--border-color);
+  }
+}
+
+.cu-component--rich-text th[colspan] {
+  text-align: center;
 }
 
 // Resonsive table implementation. @see union_marketing_responsive_tables.js

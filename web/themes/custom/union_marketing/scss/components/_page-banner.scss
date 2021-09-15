@@ -67,3 +67,32 @@
     }
   }
 }
+
+.cu-page-nav--factoids {
+  .cu-heading {
+    font-size: var(--cu-ms6);
+  }
+  .cu-page-nav__list .cu-page-nav__item {
+    --cu-header-accent-width: 20%;
+    --cu-header-accent-padding: 0.5em 0 0 0;
+  }
+}
+
+/* Usage example:
+<div class="cu-page-nav cu-page-nav--factoids">
+    <ul class="cu-page-nav__list">
+      <li class="cu-page-nav__item">
+        <h4 class="cu-heading">98%</h4>
+        <p class="cu-text">Employed after graduation</p>
+      </li>
+      <li class="cu-page-nav__item">
+        <h4 class="cu-heading">$85K</h4>
+        <p class="cu-text">Average starting salary</p>
+      </li>
+      <li class="cu-page-nav__item">
+        <h4 class="cu-heading">$10K</h4>
+        <p class="cu-text">Average sign-on bonus</p>
+      </li>
+    </ul>
+</div>
+*/
