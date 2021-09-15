@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e01bab1f80248aa8e0ab056aa0d19750",
+    "content-hash": "209c511541fdf0ee3af63896e516c4c0",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -6918,6 +6918,44 @@
                 "source": "https://github.com/guzzle/psr7/tree/1.8.2"
             },
             "time": "2021-04-26T09:17:50+00:00"
+        },
+        {
+            "name": "ilrwebservices/campaignmonitor-api-php",
+            "version": "dev-initial",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ilrWebServices/campaignmonitor-api-php.git",
+                "reference": "e2541383b479244cb8bd3b2d07bc9a3007013019"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ilrWebServices/campaignmonitor-api-php/zipball/e2541383b479244cb8bd3b2d07bc9a3007013019",
+                "reference": "e2541383b479244cb8bd3b2d07bc9a3007013019",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": ">=6.0",
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CampaignMonitor\\": "src/",
+                    "CampaignMonitor\\http\\": "src/http/"
+                }
+            },
+            "description": "PHP library for the CampaignMonitor 'createsend' API",
+            "homepage": "https://github.com/ilrWebServices/campaignmonitor-api-php",
+            "keywords": [
+                "campaignmonitor",
+                "mail"
+            ],
+            "support": {
+                "source": "https://github.com/ilrWebServices/campaignmonitor-api-php/tree/initial",
+                "issues": "https://github.com/ilrWebServices/campaignmonitor-api-php/issues"
+            },
+            "time": "2021-09-16T15:47:47+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",
@@ -16107,6 +16145,7 @@
         "drupal/sftp_client": 20,
         "drupal/typed_data": 15,
         "drupal/union_organizer": 20,
+        "ilrwebservices/campaignmonitor-api-php": 20,
         "thinkshout/mailchimp-api-php": 20,
         "drupal/entity_clone": 10,
         "drupal/stage_file_proxy": 5
