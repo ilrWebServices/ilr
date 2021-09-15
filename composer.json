@@ -27,6 +27,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/ilrWebServices/drupal_collegenet2sf.git"
+    },
+    {
+        "type": "vcs",
+        "url": "https://github.com/ilrWebServices/campaignmonitor-api-php.git"
     }
   ],
   "require": {
@@ -94,6 +98,7 @@
     "drupal/webform_mailchimp": "^5.9",
     "drush/drush": "^10.0.0",
     "firebase/php-jwt": "^5.2",
+    "ilrwebservices/campaignmonitor-api-php": "dev-initial",
     "league/csv": "^9.0",
     "platformsh/config-reader": "^2.3",
     "thinkshout/mailchimp-api-php": "dev-master as 2.0.0",
