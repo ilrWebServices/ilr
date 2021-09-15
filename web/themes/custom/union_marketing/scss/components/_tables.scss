@@ -28,6 +28,10 @@
   }
 }
 
+.cu-component--rich-text th[colspan] {
+  text-align: center;
+}
+
 // Resonsive table implementation. @see union_marketing_responsive_tables.js
 // Instead of mobile first, we are mobile-only with the following styles.
 @media only screen and (max-width: 760px),
