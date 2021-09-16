@@ -6920,6 +6920,44 @@
             "time": "2021-04-26T09:17:50+00:00"
         },
         {
+            "name": "ilrwebservices/campaignmonitor-api-php",
+            "version": "dev-initial",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ilrWebServices/campaignmonitor-api-php.git",
+                "reference": "e2541383b479244cb8bd3b2d07bc9a3007013019"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ilrWebServices/campaignmonitor-api-php/zipball/e2541383b479244cb8bd3b2d07bc9a3007013019",
+                "reference": "e2541383b479244cb8bd3b2d07bc9a3007013019",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": ">=6.0",
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CampaignMonitor\\": "src/",
+                    "CampaignMonitor\\http\\": "src/http/"
+                }
+            },
+            "description": "PHP library for the CampaignMonitor 'createsend' API",
+            "homepage": "https://github.com/ilrWebServices/campaignmonitor-api-php",
+            "keywords": [
+                "campaignmonitor",
+                "mail"
+            ],
+            "support": {
+                "source": "https://github.com/ilrWebServices/campaignmonitor-api-php/tree/initial",
+                "issues": "https://github.com/ilrWebServices/campaignmonitor-api-php/issues"
+            },
+            "time": "2021-09-16T15:47:47+00:00"
+        },
+        {
             "name": "laminas/laminas-diactoros",
             "version": "2.6.0",
             "source": {
