@@ -5,7 +5,7 @@ campaign_monitor_rest_test.content:
     _title: 'Campaign Monitor Rest Test'
   requirements:
     _permission: 'access content'
-campaign_monitor_rest_client.admin_settings_form:
+campaign_monitor_rest_client.config:
   path: '/admin/config/services/campaign_monitor_rest_client'
   defaults:
     _form: '\Drupal\campaign_monitor_rest_client\Form\CampaignMonitorRestClientSettingsForm'

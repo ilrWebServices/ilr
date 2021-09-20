@@ -11,10 +11,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class CampaignMontitorRestTest extends ControllerBase {
 
-  private $campaignMonitorRestClient;
+  private $client;
 
   public function __construct(CampaignMonitorRestClient $campaign_monitor_rest_client) {
-    $this->campaignMonitorRestClient = $campaign_monitor_rest_client;
+    $this->client = $campaign_monitor_rest_client;
   }
 
   public static function create(ContainerInterface $container) {
@@ -28,7 +28,7 @@ class CampaignMontitorRestTest extends ControllerBase {
    */
   public function content() {
     try {
-      $res = $this->campaignMonitorRestClient->get('clients.json');
+      $res = $this->client->get('clients.json');
     }
     catch (\Exception $e) {
       return [];
@@ -40,6 +40,9 @@ class CampaignMontitorRestTest extends ControllerBase {
       $client_id = $data[0]['ClientID'] ?? FALSE;
       dump($client_id);
     }
+
+    $res = $this->client->get("clients/$client_id/lists.json");
+    dump($res->getData());
 
     $build = [
       '#markup' => $this->t('Hello World!'),

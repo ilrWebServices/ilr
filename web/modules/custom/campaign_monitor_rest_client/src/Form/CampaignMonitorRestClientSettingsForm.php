@@ -6,7 +6,7 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Implements a Campaign Monitor Rest Client Settings Config Form.
+ * Implements a Campaign Monitor Rest Client settings form.
  */
 class CampaignMonitorRestClientSettingsForm extends ConfigFormBase {
 
