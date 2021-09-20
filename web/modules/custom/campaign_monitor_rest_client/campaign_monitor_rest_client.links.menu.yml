@@ -1,0 +1,6 @@
+campaign_monitor_rest_client.config:
+  title: 'Campaign Monitor REST Client'
+  parent: system.admin_config_services
+  route_name: campaign_monitor_rest_client.config
+  description: 'Settings for the Campaign Monitor REST Client service.'
+  weight: 10
