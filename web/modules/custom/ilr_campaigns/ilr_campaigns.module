@@ -50,4 +50,7 @@ function ilr_campaigns_cron() {
   // @todo Maybe don't run this EVERY cron.
   $course_notifications_helper = \Drupal::service('ilr_campaigns.course_notifications');
   $course_notifications_helper->addCustomFieldOptions();
+
+  // Add Course Notification submissions to the email list.
+  $course_notifications_helper->queueSubscribers();
 }

@@ -204,4 +204,55 @@ class CourseNotificationHelper {
     }
   }
 
+  /**
+   * Undocumented function
+   *
+   * @return void
+   *
+   * @see ilr_campaigns_cron().
+   */
+  public function queueSubscribers() {
+    // Inject the queueworker.
+    $queue = \Drupal::queue('course_notification_subscriber');
+
+    // Inject me!
+    $state = \Drupal::service('state');
+
+    $last_queued_serial_id = $state->get('ilr_campgaigns.course_notifier_subscriber_last_serial', 0);
+
+    $submission_storage = $this->entityTypeManager->getStorage('webform_submission');
+
+    $submission_ids = $submission_storage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('webform_id', 'course_notification')
+      ->condition('serial', $last_queued_serial_id, '>')
+      ->sort('serial')
+      ->execute();
+
+    foreach ($submission_storage->loadMultiple($submission_ids) as $submission) {
+      if ($queue->createItem($submission->getData())) {
+        $last_queued_serial_id = $submission->serial->value;
+      }
+    }
+
+    $state->set('ilr_campgaigns.course_notifier_subscriber_last_serial', $last_queued_serial_id);
+  }
+
+  /**
+   * Undocumented function
+   *
+   * @return ???
+   *
+   * @throws Exception||Drupal\Core\Queue\RequeueException||Drupal\Core\Queue\SuspendQueueException
+   *
+   * @see CourseNotificationSubscriber::processItem().
+   */
+  public function processSubscriber($data) {
+    // Look up email and store any existing values from the 'Course Notifications' field.
+
+    // Merge existing and new course values.
+
+    // Use the API to add a new subscriber, which appears to actually be an upsert.
+  }
+
 }
