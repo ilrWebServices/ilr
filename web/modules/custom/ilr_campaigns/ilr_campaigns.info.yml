@@ -5,3 +5,4 @@ core_version_requirement: ^8 || ^9
 package: 'ILR'
 dependencies:
   - webform
+  - campaign_monitor_rest_client

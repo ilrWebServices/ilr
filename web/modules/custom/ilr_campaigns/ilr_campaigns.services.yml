@@ -1,0 +1,4 @@
+services:
+  ilr_campaigns.course_notifications:
+    class: Drupal\ilr_campaigns\CourseNotificationHelper
+    arguments: ['@campaign_monitor_rest_client', '@entity_type.manager']

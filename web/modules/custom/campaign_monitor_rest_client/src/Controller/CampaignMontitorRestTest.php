@@ -43,6 +43,45 @@ class CampaignMontitorRestTest extends ControllerBase {
 
     $res = $this->client->get("clients/$client_id/lists.json");
     dump($res->getData());
+    $list_id = $res->getData()[0]['ListID'];
+
+    $segment_call = $this->client->get("lists/$list_id/segments.json");
+    $segments = $segment_call->getData();
+    dump($segments);
+
+    $data = [
+      'json' => [
+        'Name' => 'Course notification for ' . 'test 3',
+        'Subject' => 'New date announced for ' . 'test',
+        'FromName' => 'ILR Customer Service',
+        'FromEmail' => 'ilrcustomerservice@cornell.edu',
+        'ReplyTo' => 'ilrcustomerservice@cornell.edu',
+        'HtmlUrl' => 'http://example.com/',
+        'SegmentIDs' => [$segments[0]['SegmentID']],
+      ],
+    ];
+
+    dump($data);
+    dump($client_id);
+
+    // dump($send_date->format('Y-m-d H:i'));
+
+    $response = $this->client->post("campaigns/$client_id.json", $data);
+    $campaign_id = $response->getData();
+
+    dump($campaign_id);
+
+    $send_date = new \DateTime('tomorrow');
+    $send_date->setTime(9, 01);
+
+    $data = [
+      'json' => [
+        'ConfirmationEmail' => 'ilrweb@cornell.edu',
+        'SendDate' => $send_date->format('Y-m-d H:i'),
+      ],
+    ];
+
+    $this->client->post("campaigns/$campaign_id/send.json", $data);
 
     $build = [
       '#markup' => $this->t('Hello World!'),
