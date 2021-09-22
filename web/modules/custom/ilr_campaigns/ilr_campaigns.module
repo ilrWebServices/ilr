@@ -22,3 +22,12 @@ function ilr_campaigns_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+/**
+ * Implements hook_cron().
+ */
+function ilr_campaigns_cron() {
+  // @todo Maybe don't run this EVERY cron.
+  $course_notifications_helper = \Drupal::service('ilr_campaigns.course_notifications');
+  $course_notifications_helper->addCustomFieldOptions();
+}
