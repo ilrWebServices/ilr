@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Entity\ContentEntityInterface;
+use GuzzleHttp\Exception\ClientException;
 
 /**
  * The Course Notification helper service.
@@ -257,7 +258,12 @@ class CourseNotificationHelper {
       ->execute();
 
     foreach ($submission_storage->loadMultiple($submission_ids) as $submission) {
-      if ($subscriber_queue->createItem($submission->getData())) {
+      $source_entity = $submission->getSourceEntity();
+      if (!$source_entity || $source_entity->getEntityTypeId() !== 'node' || $source_entity->bundle() !== 'course') {
+        continue;
+      }
+
+      if ($subscriber_queue->createItem($submission)) {
         $last_queued_serial_id = $submission->serial->value;
       }
     }
@@ -266,20 +272,71 @@ class CourseNotificationHelper {
   }
 
   /**
-   * Undocumented function
-   *
-   * @return ???
+   * Add or update the subscriber based on the queue item.
    *
    * @throws Exception||Drupal\Core\Queue\RequeueException||Drupal\Core\Queue\SuspendQueueException
    *
    * @see CourseNotificationSubscriber::processItem().
    */
-  public function processSubscriber($data) {
+  public function processSubscriber($submission) {
+    $list_id = 'ed2b66a59957f2c0942c0a70511e9c82';
+    $submission_data = $submission->getData();
+    $email = $submission_data['email'];
+
     // Look up email and store any existing values from the 'Course Notifications' field.
+    try {
+      $response = $this->client->get("subscribers/$list_id.json?email=$email");
+      // Create an array of existing interests for merging.
+      $subscriber_data = $response->getData();
+      $subscriber_data['Resubscribe'] = TRUE;
+      $subscriber_data['ConsentToTrack'] = 'Unchanged';
+      $subscriber_data['Name'] = $submission_data['name'];
+    }
+    catch (ClientException $e) {
+      $response = $e->getResponse();
+      $response_data = $response->getData();
 
-    // Merge existing and new course values.
+      // New subscriber, so add them to the list.
+      if ($response->getStatusCode() === 400 && $response_data['Code'] === 203) {
+        $subscriber_data = [
+          'EmailAddress' => $email,
+          'Name' => $submission_data['name'],
+          'CustomFields' => [],
+          'ConsentToTrack' => 'Yes',
+        ];
+      }
+      else {
+        // throw an error if the response code was 1.
+        // Stop the queue if the API is down. How would we know?
+        throw new \Exception('There was an issue with the API or email address.');
+      }
+    }
 
-    // Use the API to add a new subscriber, which appears to actually be an upsert.
+    $requested_course = $submission->getSourceEntity();
+
+    // Add the requested course to the custom field.
+    $course_option_name = strtr('!course_name (!course_number)', [
+      '!course_name' => $requested_course->label(),
+      '!course_number' => $requested_course->field_course_number->value,
+    ]);
+
+    $subscriber_data['CustomFields'][] = [
+      'Key' => 'CourseNotifications',
+      'Value' => $course_option_name,
+    ];
+
+    $post_data = [
+      'json' => $subscriber_data,
+    ];
+
+    try {
+      // Use the API to add or update the subscriber, which appears to actually be an upsert.
+      $response = $this->client->post("subscribers/$list_id.json", $post_data);
+    }
+    catch (ClientException $e) {
+      // @todo throw a SuspendQueueException if the API is down, throttled, or something else?
+      throw new \Exception($e->getMessage());
+    }
   }
 
 }
