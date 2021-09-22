@@ -1,0 +1,7 @@
+entity.node.ilr_campaigns_email:
+  path: '/node/{node}/email'
+  defaults:
+    _controller: '\Drupal\ilr_campaigns\Controller\NodeHTMLEmailController::view'
+  requirements:
+    _permission: 'access content'
+    node: \d+
