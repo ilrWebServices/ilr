@@ -72,6 +72,10 @@ class CampaignMonitorRestClientFactory {
       ],
     ];
 
+    if (!$this->settings->get('status')) {
+      throw new \Exception('Campaign Monitor REST Client is disabled.');
+    }
+
     // Add the api_key to the config.
     $config['api_key'] = $this->settings->get('api_key');
 
