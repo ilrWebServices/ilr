@@ -58,8 +58,7 @@ class CourseNotificationSubscriber extends QueueWorkerBase implements ContainerF
    * {@inheritdoc}
    */
   public function processItem($data) {
-    // @todo Inject?
-    \Drupal::service('ilr_campaigns.course_notifications')->processSubscriber($data);
+    $this->courseNotificationHelper->processSubscriber($data);
   }
 
 }
