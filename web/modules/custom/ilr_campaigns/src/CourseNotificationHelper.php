@@ -64,6 +64,8 @@ class CourseNotificationHelper {
    * @param \Drupal\Core\Entity\ContentEntityInterface $class
    *   A new class node for which to trigger a notification email.
    *
+   * @todo Deal with overflow classes if necessary.
+   *
    * @return void
    */
   public function processNewClass(ContentEntityInterface $class) {
@@ -84,7 +86,7 @@ class CourseNotificationHelper {
     try {
       // Get the first client_id for this API key. If there are more clients, I
       // guess we'll need to do something else here.
-      $response = $client->get('clients.json');
+      $response = $this->client->get('clients.json');
       $data = $response->getData();
       $client_id = $data[0]['ClientID'] ?? FALSE;
 
@@ -128,14 +130,13 @@ class CourseNotificationHelper {
                 'Rules' => [
                   [
                     'RuleType' => '[CourseNotifications]',
-                    'Clause' => $course_option_name,
+                    'Clause' => 'EQUALS ' . $course_option_name,
                   ],
                 ],
               ],
             ],
           ],
         ];
-
 
         $response = $this->client->post("segments/$list_id.json", $data);
         $segment_id = $response->getData();
@@ -150,7 +151,7 @@ class CourseNotificationHelper {
           'FromName' => 'ILR Customer Service',
           'FromEmail' => 'ilrcustomerservice@cornell.edu',
           'ReplyTo' => 'ilrcustomerservice@cornell.edu',
-          'HtmlUrl' => 'http://example.com/',
+          'HtmlUrl' => $class->toUrl('ilr_campaigns_email', ['absolute' => TRUE])->toString(),
           'SegmentIDs' => [$segment_id],
         ],
       ];
@@ -175,6 +176,7 @@ class CourseNotificationHelper {
     }
     catch (\Exception $e) {
       // @todo Log and continue. No WSOD for us!
+      throw new \Exception($e->getMessage());
     }
   }
 
