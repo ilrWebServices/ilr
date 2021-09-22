@@ -32,6 +32,13 @@ class CampaignMonitorRestClientSettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('campaign_monitor_rest_client.settings');
 
+    $form['status'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enabled'),
+      '#description' => $this->t('Enable or disable the Campaign Monitor REST Client. You may wish to disable it on non-production servers.'),
+      '#default_value' => $config->get('status'),
+    ];
+
     $form['api_key'] = [
       '#type' => 'textarea',
       '#title' => $this->t('API Key'),
@@ -48,6 +55,7 @@ class CampaignMonitorRestClientSettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('campaign_monitor_rest_client.settings');
     $config->set('api_key', $form_state->getValue('api_key'))->save();
+    $config->set('status', $form_state->getValue('status'))->save();
   }
 
 }
