@@ -3,6 +3,9 @@
 namespace Drupal\ilr_campaigns;
 
 use CampaignMonitor\CampaignMonitorRestClient;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\State\StateInterface;
+use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Entity\ContentEntityInterface;
 
 /**
@@ -17,14 +20,41 @@ class CourseNotificationHelper {
    */
   protected $client;
 
+  /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
   protected $entityTypeManager;
 
   /**
-   * Constructs a new Course Notification Service object
+   * The state service.
+   *
+   * @var \Drupal\Core\State\StateInterface
    */
-  public function __construct(CampaignMonitorRestClient $campaign_monitor_rest_client, $entity_type_manager) {
+  protected $state;
+
+  /**
+   * The queue factory service.
+   *
+   * @var \Drupal\Core\Queue\QueueFactory
+   */
+  protected $queueFactory;
+
+  /**
+   * Constructs a new Course Notification Service object
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   * @param \Drupal\Core\State\StateInterface $state
+   *   The state service.
+   * @param \Drupal\Core\Queue\QueueFactory $queue_factory
+   *   The queue factory
+   */
+  public function __construct(CampaignMonitorRestClient $campaign_monitor_rest_client, EntityTypeManagerInterface $entity_type_manager, StateInterface $state, QueueFactory $queue_factory) {
     $this->client = $campaign_monitor_rest_client;
     $this->entityTypeManager = $entity_type_manager;
+    $this->state = $state;
+    $this->queueFactory = $queue_factory;
   }
 
   /**
@@ -213,12 +243,9 @@ class CourseNotificationHelper {
    */
   public function queueSubscribers() {
     // Inject the queueworker.
-    $queue = \Drupal::queue('course_notification_subscriber');
+    $subscriber_queue = $this->queueFactory->get('course_notification_subscriber');
 
-    // Inject me!
-    $state = \Drupal::service('state');
-
-    $last_queued_serial_id = $state->get('ilr_campgaigns.course_notifier_subscriber_last_serial', 0);
+    $last_queued_serial_id = $this->state->get('ilr_campaigns.course_notifier_subscriber_last_serial', 0);
 
     $submission_storage = $this->entityTypeManager->getStorage('webform_submission');
 
@@ -230,12 +257,12 @@ class CourseNotificationHelper {
       ->execute();
 
     foreach ($submission_storage->loadMultiple($submission_ids) as $submission) {
-      if ($queue->createItem($submission->getData())) {
+      if ($subscriber_queue->createItem($submission->getData())) {
         $last_queued_serial_id = $submission->serial->value;
       }
     }
 
-    $state->set('ilr_campgaigns.course_notifier_subscriber_last_serial', $last_queued_serial_id);
+    $this->state->set('ilr_campaigns.course_notifier_subscriber_last_serial', $last_queued_serial_id);
   }
 
   /**
