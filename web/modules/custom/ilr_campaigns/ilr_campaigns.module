@@ -38,8 +38,7 @@ function ilr_campaigns_entity_type_alter(array &$entity_types) {
  */
 function ilr_campaigns_node_insert(ContentEntityInterface $node) {
   if ($node->bundle() === 'class') {
-    $course_notifications_helper = \Drupal::service('ilr_campaigns.course_notifications');
-    $course_notifications_helper->processNewClass($node);
+    \Drupal::queue('new_class_processor')->createItem($node);
   }
 }
 
