@@ -86,12 +86,7 @@ class CourseNotificationHelper {
       return;
     }
 
-    $course_option_name = strtr('!course_name (!course_number)', [
-      '!course_name' => $course->label(),
-      '!course_number' => $course->field_course_number->value,
-    ]);
-
-    $segment_title = $course_option_name . ' Segment';
+    $course_option_name = $this->getCourseOptionName($course);
 
     // Silently handle exceptions for all REST client API calls.
     try {
@@ -106,7 +101,7 @@ class CourseNotificationHelper {
       // has the related course number in the name.
       $response = $this->client->get("lists/$list_id/segments.json");
       $segments = $response->getData();
-      $segment_array_key = array_search($segment_title, array_column($segments, 'Title'));
+      $segment_array_key = array_search($course_option_name, array_column($segments, 'Title'));
 
       if ($segment_array_key !== FALSE) {
         $segment_id = $segments[$segment_array_key]['SegmentID'];
@@ -119,7 +114,7 @@ class CourseNotificationHelper {
       else {
         $data = [
           'json' => [
-            'Title' => $segment_title,
+            'Title' => $course_option_name,
             'RuleGroups' => [
               [
                 'Rules' => [
@@ -208,10 +203,7 @@ class CourseNotificationHelper {
 
     // Create options for each course and number.
     foreach ($courses as $course) {
-      $options[] = strtr('!course_name (!course_number)', [
-        '!course_name' => $course->title->value,
-        '!course_number' => $course->field_course_number->value,
-      ]);
+      $options[] = $this->getCourseOptionName($course);
     }
 
     if (empty($options)) {
@@ -318,15 +310,14 @@ class CourseNotificationHelper {
 
     $requested_course = $submission->getSourceEntity();
 
-    // Add the requested course to the custom field.
-    $course_option_name = strtr('!course_name (!course_number)', [
-      '!course_name' => $requested_course->label(),
-      '!course_number' => $requested_course->field_course_number->value,
-    ]);
+    if (!$requested_course) {
+      throw new \Exception('Source entity (course) not found for this submission.');
+    }
 
+    // Add the requested course to the custom field.
     $subscriber_data['CustomFields'][] = [
       'Key' => 'CourseNotifications',
-      'Value' => $course_option_name,
+      'Value' => $this->getCourseOptionName($requested_course),
     ];
 
     $post_data = [
@@ -341,6 +332,23 @@ class CourseNotificationHelper {
       // @todo throw a SuspendQueueException if the API is down, throttled, or something else?
       throw new \Exception($e->getMessage());
     }
+  }
+
+  /**
+   * Generate a user-friendly string that represents this course.
+   *
+   * This will be output to the end-user in the preference center.
+   *
+   * @param ContentEntityInterface $course
+   *   The course node.
+   *
+   * @return string
+   */
+  private function getCourseOptionName(ContentEntityInterface $course) {
+    return strtr('!course_name (!course_number)', [
+      '!course_name' => $course->label(),
+      '!course_number' => $course->field_course_number->value,
+    ]);
   }
 
 }
