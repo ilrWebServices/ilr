@@ -11,7 +11,7 @@ use Drupal\Core\Form\FormStateInterface;
 class CampaignMonitorRestClientSettingsForm extends ConfigFormBase {
 
   /**
-   * @return string
+   * {@inheritdoc}
    */
   public function getFormId() {
     return 'campaign_monitor_rest_client_settings';
