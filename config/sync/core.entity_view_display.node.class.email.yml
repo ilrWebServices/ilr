@@ -63,6 +63,15 @@ content:
       separator: '-'
       date_format: 'Y-m-d\TH:i:s'
     third_party_settings: {  }
+  field_course:
+    type: entity_reference_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: mini
+      link: false
+    third_party_settings: {  }
   field_date_end:
     type: datetime_default
     weight: 3
@@ -96,7 +105,6 @@ hidden:
   body: true
   field_class_cancelled: true
   field_class_full: true
-  field_course: true
   field_delivery_method: true
   field_external_link: true
   field_message: true
