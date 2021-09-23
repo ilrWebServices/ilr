@@ -9,6 +9,7 @@ use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use GuzzleHttp\Exception\ClientException;
+use Psr\Log\LoggerInterface;
 
 /**
  * The Course Notification helper service.
@@ -51,6 +52,13 @@ class CourseNotificationHelper {
   protected $settings;
 
   /**
+   * A logger instance.
+   *
+   * @var \Psr\Log\LoggerInterface
+   */
+  protected $logger;
+
+  /**
    * Constructs a new Course Notification Service object.
    *
    * @param \CampaignMonitor\CampaignMonitorRestClient $campaign_monitor_rest_client
@@ -63,13 +71,16 @@ class CourseNotificationHelper {
    *   The queue factory.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
+   * @param \Psr\Log\LoggerInterface $logger
+   *   A logger instance.
    */
-  public function __construct(CampaignMonitorRestClient $campaign_monitor_rest_client, EntityTypeManagerInterface $entity_type_manager, StateInterface $state, QueueFactory $queue_factory, ConfigFactoryInterface $config_factory) {
+  public function __construct(CampaignMonitorRestClient $campaign_monitor_rest_client, EntityTypeManagerInterface $entity_type_manager, StateInterface $state, QueueFactory $queue_factory, ConfigFactoryInterface $config_factory, LoggerInterface $logger) {
     $this->client = $campaign_monitor_rest_client;
     $this->entityTypeManager = $entity_type_manager;
     $this->state = $state;
     $this->queueFactory = $queue_factory;
     $this->settings = $config_factory->get('ilr_campaigns.settings');
+    $this->logger = $logger;
   }
 
   /**
@@ -131,7 +142,7 @@ class CourseNotificationHelper {
 
       // Create a new campaign for this Course and Class, using the class html
       // page.
-      $data = [
+      $campaign_data = [
         'json' => [
           'Name' => 'Course notification for ' . $course_option_name . ' [Class:' . $class->id() . ']',
           'Subject' => 'New date announced for ' . $course_option_name,
@@ -143,7 +154,7 @@ class CourseNotificationHelper {
         ],
       ];
 
-      $response = $this->client->post("campaigns/$client_id.json", $data);
+      $response = $this->client->post("campaigns/$client_id.json", $campaign_data);
       $campaign_id = $response->getData();
 
       // Set to send at 9am next day.
@@ -159,7 +170,19 @@ class CourseNotificationHelper {
 
       $response = $this->client->post("campaigns/$campaign_id/send.json", $data);
 
-      // Log the details of the new campaign with much detail.
+      // Get the details of the scheduled campaign.
+      $response = $this->client->get("campaigns/$campaign_id/summary.json");
+      $campaign_summary = $response->getData();
+      $campaign_data['summary'] = [
+        'preview' => $campaign_summary['WebVersionURL'],
+        'recipients' => $campaign_summary['Recipients'],
+      ];
+
+      // Log the details of the new campaign.
+      $this->logger->info('Campaign @campaign created and scheduled: @data', [
+        '@campaign' => $campaign_id,
+        '@data' => print_r($campaign_data, TRUE),
+      ]);
     }
     catch (\Exception $e) {
       // @todo Log and continue. No WSOD for us!
