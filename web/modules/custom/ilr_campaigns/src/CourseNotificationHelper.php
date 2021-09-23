@@ -136,8 +136,8 @@ class CourseNotificationHelper {
       // page.
       $data = [
         'json' => [
-          'Name' => 'Course notification for ' . $course->field_course_number->value,
-          'Subject' => 'New date announced for ' . $course->label(),
+          'Name' => 'Course notification for ' . $course_option_name . ' [Class:' . $class->id() . ']',
+          'Subject' => 'New date announced for ' . $course_option_name,
           'FromName' => 'ILR Customer Service',
           'FromEmail' => 'ilrcustomerservice@cornell.edu',
           'ReplyTo' => 'ilrcustomerservice@cornell.edu',
