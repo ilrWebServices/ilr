@@ -6,6 +6,7 @@ use CampaignMonitor\CampaignMonitorRestClient;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\Queue\QueueFactory;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use GuzzleHttp\Exception\ClientException;
 
@@ -43,6 +44,13 @@ class CourseNotificationHelper {
   protected $queueFactory;
 
   /**
+   * The ILR campaigns configuration.
+   *
+   * @var \Drupal\Core\Config\ImmutableConfig
+   */
+  protected $settings;
+
+  /**
    * Constructs a new Course Notification Service object
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
@@ -50,12 +58,15 @@ class CourseNotificationHelper {
    *   The state service.
    * @param \Drupal\Core\Queue\QueueFactory $queue_factory
    *   The queue factory
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The factory for configuration objects.
    */
-  public function __construct(CampaignMonitorRestClient $campaign_monitor_rest_client, EntityTypeManagerInterface $entity_type_manager, StateInterface $state, QueueFactory $queue_factory) {
+  public function __construct(CampaignMonitorRestClient $campaign_monitor_rest_client, EntityTypeManagerInterface $entity_type_manager, StateInterface $state, QueueFactory $queue_factory, ConfigFactoryInterface $config_factory) {
     $this->client = $campaign_monitor_rest_client;
     $this->entityTypeManager = $entity_type_manager;
     $this->state = $state;
     $this->queueFactory = $queue_factory;
+    $this->settings = $config_factory->get('ilr_campaigns.settings');
   }
 
   /**
@@ -84,26 +95,10 @@ class CourseNotificationHelper {
 
     // Silently handle exceptions for all REST client API calls.
     try {
-      // Get the first client_id for this API key. If there are more clients, I
-      // guess we'll need to do something else here.
-      $response = $this->client->get('clients.json');
-      $data = $response->getData();
-      $client_id = $data[0]['ClientID'] ?? FALSE;
+      $client_id = $this->settings->get('course_notification_client_id');
+      $list_id = $this->settings->get('course_notification_list_id');
 
-      if (empty($client_id)) {
-        return;
-      }
-
-      // Look for a 'Course Notifications' list. Bail if there isn't one.
-      $response = $this->client->get("clients/$client_id/lists.json");
-      $data = $response->getData();
-      $list_array_key = array_search('Course Notifications', array_column($data, 'Name'));
-
-      if ($list_array_key !== FALSE) {
-        $list_id = $data[$list_array_key]['ListID'];
-      }
-      else {
-        // @todo Log missing list.
+      if (empty($client_id) || empty($list_id)) {
         return;
       }
 
@@ -190,7 +185,12 @@ class CourseNotificationHelper {
    *  @return void
    */
   public function addCustomFieldOptions() {
-    // Load all Courses.
+    $list_id = $this->settings->get('course_notification_list_id');
+
+    if (empty($list_id)) {
+      return;
+    }
+
     $node_storage = $this->entityTypeManager->getStorage('node');
 
     // Load courses.
@@ -227,8 +227,6 @@ class CourseNotificationHelper {
           'Options' => $options,
         ],
       ];
-
-      $list_id = 'ed2b66a59957f2c0942c0a70511e9c82';
 
       $response = $this->client->put("lists/$list_id/customfields/[CourseNotifications]/options.json", $data);
     }
@@ -280,7 +278,12 @@ class CourseNotificationHelper {
    * @see CourseNotificationSubscriber::processItem().
    */
   public function processSubscriber($submission) {
-    $list_id = 'ed2b66a59957f2c0942c0a70511e9c82';
+    $list_id = $this->settings->get('course_notification_list_id');
+
+    if (empty($list_id)) {
+      return;
+    }
+
     $submission_data = $submission->getData();
     $email = $submission_data['email'];
 
