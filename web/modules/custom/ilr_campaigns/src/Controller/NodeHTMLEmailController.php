@@ -16,4 +16,5 @@ class NodeHTMLEmailController extends EntityViewController {
   public function view(EntityInterface $node, $view_mode = 'email', $langcode = NULL) {
     return parent::view($node, $view_mode);
   }
+
 }

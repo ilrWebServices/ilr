@@ -21,11 +21,12 @@ class IlrCampaignsSettingsForm extends ConfigFormBase {
   protected $client;
 
   /**
-   * Constructs a \Drupal\ilr_campaigns\IlrCampaignsSettingsForm object.
+   * Constructs a settings form object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
-   * @param \CampaignMonitor\CampaignMonitorRestClient $client
+   * @param \CampaignMonitor\CampaignMonitorRestClient $campaign_monitor_rest_client
+   *   The rest client.
    */
   public function __construct(ConfigFactoryInterface $config_factory, CampaignMonitorRestClient $campaign_monitor_rest_client) {
     parent::__construct($config_factory);
@@ -43,7 +44,7 @@ class IlrCampaignsSettingsForm extends ConfigFormBase {
   }
 
   /**
-   * @return string
+   * {@inheritdoc}
    */
   public function getFormId() {
     return 'ilr_campaigns_settings';

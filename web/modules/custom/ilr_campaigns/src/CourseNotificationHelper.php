@@ -51,13 +51,16 @@ class CourseNotificationHelper {
   protected $settings;
 
   /**
-   * Constructs a new Course Notification Service object
+   * Constructs a new Course Notification Service object.
+   *
+   * @param \CampaignMonitor\CampaignMonitorRestClient $campaign_monitor_rest_client
+   *   The Campaign Monitor rest client.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    * @param \Drupal\Core\State\StateInterface $state
    *   The state service.
    * @param \Drupal\Core\Queue\QueueFactory $queue_factory
-   *   The queue factory
+   *   The queue factory.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
    */
@@ -76,8 +79,6 @@ class CourseNotificationHelper {
    *   A new class node for which to trigger a notification email.
    *
    * @todo Deal with overflow classes if necessary.
-   *
-   * @return void
    */
   public function processNewClass(ContentEntityInterface $class) {
     $course = $class->field_course->entity;
@@ -106,11 +107,7 @@ class CourseNotificationHelper {
       if ($segment_array_key !== FALSE) {
         $segment_id = $segments[$segment_array_key]['SegmentID'];
       }
-      // If there is no segment, create one for this course called 'COURSE_NAME
-      // (COURSE_NUMBER) Segment', e.g. Advanced Collective Bargaining (LS252)
-      // Segment.
-      //   - Single rule is 'Course notifications' matches exactly COURSE_NAME
-      //     (COURSE_NUMBER)
+      // If there is no segment, create one for this course.
       else {
         $data = [
           'json' => [
@@ -176,8 +173,6 @@ class CourseNotificationHelper {
    * @todo Consider NOT removing/replacing renamed options, since that will remove users from segments.
    *
    * @todo Watch for removed options. If any, move users to the new option.
-   *
-   *  @return void
    */
   public function addCustomFieldOptions() {
     $list_id = $this->settings->get('course_notification_list_id');
@@ -220,7 +215,7 @@ class CourseNotificationHelper {
         ],
       ];
 
-      $response = $this->client->put("lists/$list_id/customfields/[CourseNotifications]/options.json", $data);
+      $this->client->put("lists/$list_id/customfields/[CourseNotifications]/options.json", $data);
     }
     catch (\Exception $e) {
       // @todo Log and continue. No WSOD for us!
@@ -228,17 +223,13 @@ class CourseNotificationHelper {
   }
 
   /**
-   * Add new course notification webform submissions to a queue mailing list subscription.
+   * Add new course notification webform submissions to a queue.
    *
-   * @return void
-   *
-   * @see ilr_campaigns_cron().
+   * @see ilr_campaigns_cron()
    */
   public function queueSubscribers() {
     $subscriber_queue = $this->queueFactory->get('course_notification_submission_processor');
-
     $last_queued_serial_id = $this->state->get('ilr_campaigns.course_notifier_subscriber_last_serial', 0);
-
     $submission_storage = $this->entityTypeManager->getStorage('webform_submission');
 
     $submission_ids = $submission_storage->getQuery()
@@ -265,9 +256,9 @@ class CourseNotificationHelper {
   /**
    * Add or update the subscriber based on the queue item.
    *
-   * @throws Exception||Drupal\Core\Queue\RequeueException||Drupal\Core\Queue\SuspendQueueException
+   * @throws \Exception
    *
-   * @see CourseNotificationSubscriber::processItem().
+   * @see CourseNotificationSubscriber::processItem()
    */
   public function processSubscriber($submission) {
     $list_id = $this->settings->get('course_notification_list_id');
@@ -279,7 +270,8 @@ class CourseNotificationHelper {
     $submission_data = $submission->getData();
     $email = $submission_data['email'];
 
-    // Look up email and store any existing values from the 'Course Notifications' field.
+    // Look up email and store any existing values from the 'Course
+    // Notifications' field.
     try {
       $response = $this->client->get("subscribers/$list_id.json?email=$email");
       // Create an array of existing interests for merging.
@@ -302,7 +294,7 @@ class CourseNotificationHelper {
         ];
       }
       else {
-        // throw an error if the response code was 1.
+        // Throw an error if the response code was 1.
         // Stop the queue if the API is down. How would we know?
         throw new \Exception('There was an issue with the API or email address.');
       }
@@ -325,7 +317,8 @@ class CourseNotificationHelper {
     ];
 
     try {
-      // Use the API to add or update the subscriber, which appears to actually be an upsert.
+      // Use the API to add or update the subscriber, which appears to actually
+      // be an upsert.
       $response = $this->client->post("subscribers/$list_id.json", $post_data);
     }
     catch (ClientException $e) {
@@ -339,10 +332,11 @@ class CourseNotificationHelper {
    *
    * This will be output to the end-user in the preference center.
    *
-   * @param ContentEntityInterface $course
+   * @param \Drupal\Core\Entity\ContentEntityInterface $course
    *   The course node.
    *
    * @return string
+   *   The course name with its number in parens.
    */
   private function getCourseOptionName(ContentEntityInterface $course) {
     return strtr('!course_name (!course_number)', [
