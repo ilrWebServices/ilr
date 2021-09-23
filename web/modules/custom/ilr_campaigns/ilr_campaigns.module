@@ -40,6 +40,10 @@ function ilr_campaigns_node_insert(ContentEntityInterface $node) {
   if ($node->bundle() === 'class') {
     \Drupal::queue('new_class_processor')->createItem($node);
   }
+
+  if ($node->bundle() === 'course') {
+    \Drupal::state()->set('ilr_campaigns.custom_field_update', 0);
+  }
 }
 
 /**

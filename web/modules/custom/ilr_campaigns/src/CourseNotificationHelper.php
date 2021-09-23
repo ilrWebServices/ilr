@@ -181,6 +181,13 @@ class CourseNotificationHelper {
       return;
     }
 
+    // Only run every 24 hours.
+    $last_field_update = $this->state->get('ilr_campaigns.custom_field_update', 0);
+
+    if ((REQUEST_TIME - $last_field_update) < 60 * 60 * 24) {
+      return;
+    }
+
     $node_storage = $this->entityTypeManager->getStorage('node');
 
     // Load courses.
@@ -220,6 +227,8 @@ class CourseNotificationHelper {
     catch (\Exception $e) {
       // @todo Log and continue. No WSOD for us!
     }
+
+    $this->state->set('ilr_campaigns.custom_field_update', REQUEST_TIME);
   }
 
   /**
