@@ -10,13 +10,7 @@
     "issues": "https://www.drupal.org/project/issues/campaign_monitor_rest_client",
     "source": "http://cgit.drupalcode.org/campaign_monitor_rest_client"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/ilrWebServices/campaignmonitor-api-php.git"
-    }
-  ],
   "require": {
-    "ilrwebservices/campaignmonitor-api-php": "dev-initial"
+    "ilrwebservices/campaign-monitor-rest-api-client": "^1.0.0"
   }
 }

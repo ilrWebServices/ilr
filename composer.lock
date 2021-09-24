@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "209c511541fdf0ee3af63896e516c4c0",
+    "content-hash": "741c6e1a7a05b7da75cbaabbe0b81be0",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -6920,17 +6920,17 @@
             "time": "2021-04-26T09:17:50+00:00"
         },
         {
-            "name": "ilrwebservices/campaignmonitor-api-php",
-            "version": "dev-initial",
+            "name": "ilrwebservices/campaign-monitor-rest-api-client",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ilrWebServices/campaignmonitor-api-php.git",
-                "reference": "e2541383b479244cb8bd3b2d07bc9a3007013019"
+                "url": "https://github.com/ilrWebServices/campaign-monitor-rest-api-client.git",
+                "reference": "8602d5768a009614e5402a78895fc95715482c9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/campaignmonitor-api-php/zipball/e2541383b479244cb8bd3b2d07bc9a3007013019",
-                "reference": "e2541383b479244cb8bd3b2d07bc9a3007013019",
+                "url": "https://api.github.com/repos/ilrWebServices/campaign-monitor-rest-api-client/zipball/8602d5768a009614e5402a78895fc95715482c9b",
+                "reference": "8602d5768a009614e5402a78895fc95715482c9b",
                 "shasum": ""
             },
             "require": {
@@ -6945,6 +6945,9 @@
                     "CampaignMonitor\\http\\": "src/http/"
                 }
             },
+            "license": [
+                "MIT"
+            ],
             "description": "PHP library for the CampaignMonitor 'createsend' API",
             "homepage": "https://github.com/ilrWebServices/campaignmonitor-api-php",
             "keywords": [
@@ -6952,10 +6955,10 @@
                 "mail"
             ],
             "support": {
-                "source": "https://github.com/ilrWebServices/campaignmonitor-api-php/tree/initial",
-                "issues": "https://github.com/ilrWebServices/campaignmonitor-api-php/issues"
+                "source": "https://github.com/ilrWebServices/campaign-monitor-rest-api-client/tree/1.0.1",
+                "issues": "https://github.com/ilrWebServices/campaign-monitor-rest-api-client/issues"
             },
-            "time": "2021-09-16T15:47:47+00:00"
+            "time": "2021-09-24T19:10:38+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",
@@ -16145,7 +16148,6 @@
         "drupal/sftp_client": 20,
         "drupal/typed_data": 15,
         "drupal/union_organizer": 20,
-        "ilrwebservices/campaignmonitor-api-php": 20,
         "thinkshout/mailchimp-api-php": 20,
         "drupal/entity_clone": 10,
         "drupal/stage_file_proxy": 5
