@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.course.field_media_section
     - field.field.node.course.field_message
     - field.field.node.course.field_representative_image
+    - field.field.node.course.field_sections
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
     - node.type.course
@@ -38,6 +39,11 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+  extra_field_related_courses:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   ilr_course_page_links:
     weight: 0
     region: content
@@ -57,6 +63,7 @@ hidden:
   field_media_section: true
   field_message: true
   field_representative_image: true
+  field_sections: true
   field_sponsor: true
   field_topics: true
   ilr_certificates: true

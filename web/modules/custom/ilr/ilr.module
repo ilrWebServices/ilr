@@ -716,6 +716,13 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
       $form['uid']['widget'][0]['target_id']['#title'] = t('Created by');
       $form['created']['widget'][0]['value']['#title'] = t('Created on');
     }
+
+    if ($node->bundle() === 'course') {
+      $form['field_message']['#group'] = 'ilr_meta';
+      $form['field_delivery_method']['#group'] = 'ilr_meta';
+      $form['field_sponsor']['#group'] = 'ilr_meta';
+      $form['field_topics']['#group'] = 'ilr_meta';
+    }
   }
 }
 

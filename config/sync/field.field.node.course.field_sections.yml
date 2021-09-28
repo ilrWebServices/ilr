@@ -1,0 +1,91 @@
+uuid: 1ccf5844-7603-4d98-b0fe-5298c5b8a172
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sections
+    - node.type.course
+    - paragraphs.paragraphs_type.section
+  module:
+    - entity_reference_revisions
+id: node.course.field_sections
+field_name: field_sections
+entity_type: node
+bundle: course
+label: Sections
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      section: section
+    target_bundles_drag_drop:
+      collection_listing:
+        weight: 22
+        enabled: false
+      collection_listing_publication:
+        weight: 23
+        enabled: false
+      curated_course_listing:
+        weight: 24
+        enabled: false
+      curated_post_listing:
+        weight: 25
+        enabled: false
+      deck:
+        weight: 26
+        enabled: false
+      event_listing:
+        weight: 27
+        enabled: false
+      form:
+        weight: 28
+        enabled: false
+      image:
+        weight: 29
+        enabled: false
+      instagram_listing:
+        weight: 30
+        enabled: false
+      media_deck:
+        weight: 31
+        enabled: false
+      people_listing:
+        weight: 32
+        enabled: false
+      person:
+        weight: 33
+        enabled: false
+      picture_in_picture:
+        weight: 34
+        enabled: false
+      promo:
+        weight: 35
+        enabled: false
+      rich_text:
+        weight: 36
+        enabled: false
+      section:
+        enabled: true
+        weight: 37
+      section_navigation:
+        weight: 38
+        enabled: false
+      simple_collection_listing:
+        weight: 39
+        enabled: false
+      table_of_contents:
+        weight: 40
+        enabled: false
+      testimonial:
+        weight: 41
+        enabled: false
+      video:
+        weight: 42
+        enabled: false
+field_type: entity_reference_revisions

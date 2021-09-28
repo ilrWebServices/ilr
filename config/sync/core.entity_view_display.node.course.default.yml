@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.course.field_media_section
     - field.field.node.course.field_message
     - field.field.node.course.field_representative_image
+    - field.field.node.course.field_sections
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
     - node.type.course
@@ -22,8 +23,10 @@ dependencies:
     - 'block_content:simple_text:d300d9db-a8e3-4082-84f4-fea3ae4f21ae'
   module:
     - block_content
+    - entity_reference_revisions
     - ilr
     - layout_builder
+    - layout_discovery
     - system
     - text
     - union_organizer
@@ -267,6 +270,32 @@ third_party_settings:
             weight: 2
         third_party_settings: {  }
       -
+        layout_id: layout_onecol
+        layout_settings:
+          label: 'Sections field'
+          context_mapping: {  }
+        components:
+          360d85aa-88e3-47c3-88c3-8a20abda78f4:
+            uuid: 360d85aa-88e3-47c3-88c3-8a20abda78f4
+            region: content
+            configuration:
+              id: 'field_block:node:course:field_sections'
+              label: Sections
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_revisions_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
+            weight: 1
+        third_party_settings: {  }
+      -
         layout_id: layout_cu_twocol
         layout_settings:
           label: ''
@@ -464,6 +493,15 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: main
+  field_sections:
+    weight: 9
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
     region: main
   field_sponsor:
     weight: 3
