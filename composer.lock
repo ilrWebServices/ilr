@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "741c6e1a7a05b7da75cbaabbe0b81be0",
+    "content-hash": "abf379986c50f9899d7cf2c4cbee9b5c",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2178,6 +2178,56 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/block_visibility_groups",
                 "issues": "https://www.drupal.org/project/issues/block_visibility_groups"
+            }
+        },
+        {
+            "name": "drupal/campaign_monitor_rest_client",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/campaign_monitor_rest_client.git",
+                "reference": "1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/campaign_monitor_rest_client-1.0.0.zip",
+                "reference": "1.0.0",
+                "shasum": "24dfbdb82fdcafe7a290084668ebedc61583e018"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "ilrwebservices/campaign-monitor-rest-api-client": "^1.0.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0",
+                    "datestamp": "1633456120",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "a-fro",
+                    "homepage": "https://www.drupal.org/user/2420892"
+                },
+                {
+                    "name": "jeffam",
+                    "homepage": "https://www.drupal.org/user/397127"
+                }
+            ],
+            "description": "Basic settings and service for a Campaign Monitor rest client service.",
+            "homepage": "https://www.drupal.org/project/campaign_monitor_rest_client",
+            "support": {
+                "source": "http://cgit.drupalcode.org/campaign_monitor_rest_client",
+                "issues": "https://www.drupal.org/project/issues/campaign_monitor_rest_client"
             }
         },
         {

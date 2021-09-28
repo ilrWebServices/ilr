@@ -1,7 +1,0 @@
-services:
-  campaign_monitor_rest_client:
-    class: CampaignMonitor\CampaignMonitorRestClient
-    factory: ['@campaign_monitor_rest_client_factory', 'fromOptions']
-  campaign_monitor_rest_client_factory:
-    class: Drupal\campaign_monitor_rest_client\Http\CampaignMonitorRestClientFactory
-    arguments: ['@http_handler_stack', '@config.factory']
