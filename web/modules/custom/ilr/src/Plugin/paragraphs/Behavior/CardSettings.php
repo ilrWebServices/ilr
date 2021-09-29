@@ -36,6 +36,19 @@ class CardSettings extends ParagraphsBehaviorBase {
   ];
 
   /**
+   * The background variants.
+   *
+   * @var array
+   */
+  protected $bgOptions = [
+    '' => 'Default (light)',
+    'dark' => 'Dark',
+    'vibrant' => 'Vibrant',
+  ];
+
+
+
+  /**
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
@@ -57,6 +70,16 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#required' => FALSE,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'content_placement') ?? reset($this->contentPlacementOptions),
     ];
+
+    $form['bg_color'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Background'),
+      '#description' => $this->t('The background color for this card. This is only visible on cards without images or with transparent images.'),
+      '#options' => $this->bgOptions,
+      '#required' => FALSE,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'bg_color') ?? reset($this->bgOptions),
+    ];
+
 
     // @todo: disable if the chosen content placement is a popout.
     $form['use_media_aspect'] = [
@@ -86,6 +109,7 @@ class CardSettings extends ParagraphsBehaviorBase {
   public function preprocess(&$variables) {
     $overlay_opacity = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'media_overlay_opacity') ?? 50;
     $content_placement = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'content_placement');
+    $bg_color = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'bg_color');
     $has_media = !$variables['paragraph']->field_media->isEmpty();
     $variables['attributes']['style'][] = '--cu-overlay-opacity: ' . $overlay_opacity / 100 . ';';
     $is_promo = TRUE;
@@ -113,6 +137,10 @@ class CardSettings extends ParagraphsBehaviorBase {
           $variables['attributes']['class'][] = 'cu-card--use-aspect-ratio';
         }
       }
+    }
+
+    if ($bg_color) {
+      $variables['attributes']['class'][] = 'cu-card--' . $bg_color;
     }
   }
 

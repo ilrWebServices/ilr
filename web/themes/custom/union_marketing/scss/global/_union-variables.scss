@@ -74,3 +74,21 @@
 .cu-component .cu-heading--strong {
   font-size: var(--cu-ms3);
 }
+
+.cu-card--promo.cu-card--vibrant {
+  --cu-card-background: #{$cornell-red};
+
+  .cu-card__content,
+  .cu-card__content a {
+    color: white;
+  }
+}
+
+.cu-card--promo.cu-card--dark {
+  --cu-card-background: #{$gray-dark};
+
+  .cu-card__content,
+  .cu-card__content a {
+    color: white;
+  }
+}
