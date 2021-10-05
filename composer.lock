@@ -4704,8 +4704,8 @@
                     "version": "8.x-2.0",
                     "datestamp": "1607795681",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -6995,6 +6995,7 @@
                     "CampaignMonitor\\http\\": "src/http/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -7005,8 +7006,8 @@
                 "mail"
             ],
             "support": {
-                "source": "https://github.com/ilrWebServices/campaign-monitor-rest-api-client/tree/1.0.1",
-                "issues": "https://github.com/ilrWebServices/campaign-monitor-rest-api-client/issues"
+                "issues": "https://github.com/ilrWebServices/campaign-monitor-rest-api-client/issues",
+                "source": "https://github.com/ilrWebServices/campaign-monitor-rest-api-client/tree/1.0.1"
             },
             "time": "2021-09-24T19:10:38+00:00"
         },
