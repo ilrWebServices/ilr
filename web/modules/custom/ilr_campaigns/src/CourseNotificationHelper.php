@@ -371,7 +371,7 @@ class CourseNotificationHelper {
    *   The course name with its number in parens.
    */
   private function getCourseOptionName(ContentEntityInterface $course) {
-    return strtr('!course_name (!course_number)', [
+    return strtr('!course_name [!course_number]', [
       '!course_name' => $course->label(),
       '!course_number' => $course->field_course_number->value,
     ]);
