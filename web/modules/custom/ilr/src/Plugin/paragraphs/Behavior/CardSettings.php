@@ -74,7 +74,7 @@ class CardSettings extends ParagraphsBehaviorBase {
     $form['bg_color'] = [
       '#type' => 'select',
       '#title' => $this->t('Background'),
-      '#description' => $this->t('The background color for this card. This is only visible on cards without images or with transparent images.'),
+      '#description' => $this->t('The background color for this card. This is only visible cards without images, with transparent images, or with the "popout" content placement setting.'),
       '#options' => $this->bgOptions,
       '#required' => FALSE,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'bg_color') ?? reset($this->bgOptions),
