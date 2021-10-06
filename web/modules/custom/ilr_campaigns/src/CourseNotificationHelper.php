@@ -91,13 +91,8 @@ class CourseNotificationHelper {
    *
    * @todo Deal with overflow classes if necessary.
    */
-  public function processNewClass(ContentEntityInterface $class) {
+  public function createClassNotification(ContentEntityInterface $class) {
     $course = $class->field_course->entity;
-    // Bail if this Class and the related Course are not published.
-    if (!$class->isPublished() || !$course->isPublished()) {
-      return;
-    }
-
     $course_option_name = $this->getCourseOptionName($course);
 
     // Silently handle exceptions for all REST client API calls.

@@ -58,7 +58,24 @@ class NewClassProcessor extends QueueWorkerBase implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function processItem($data) {
-    $this->courseNotificationHelper->processNewClass($data);
+    // @todo Consider confirming that the data is a node:class entity.
+    $class = $data;
+    $course = $class->field_course->entity;
+
+    // Check if this Class or the related Course are unpublished.
+    if (!$class->isPublished() || !$course->isPublished()) {
+      // If class node create date is older than 28 days, allow the item to be
+      // removed from the queue.
+      if (time() - $class->created->value() > 60 * 60 * 24 * 28) {
+        return;
+      }
+
+      // Re-queue this class in case it or the class is eventually published in
+      // the near future.
+      throw new \Exception('Course or class is unpublished. Class nid ' . $class->id());
+    }
+
+    $this->courseNotificationHelper->createClassNotification($class);
   }
 
 }
