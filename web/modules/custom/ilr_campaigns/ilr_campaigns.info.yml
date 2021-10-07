@@ -6,3 +6,4 @@ package: 'ILR'
 dependencies:
   - webform
   - campaign_monitor_rest_client
+configure: ilr_campaigns.config
