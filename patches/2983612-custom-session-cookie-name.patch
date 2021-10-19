@@ -1,0 +1,13 @@
+diff --git a/core/lib/Drupal/Core/Session/SessionConfiguration.php b/core/lib/Drupal/Core/Session/SessionConfiguration.php
+index cecc0a350f..1c1fb21ee9 100644
+--- a/core/lib/Drupal/Core/Session/SessionConfiguration.php
++++ b/core/lib/Drupal/Core/Session/SessionConfiguration.php
+@@ -73,7 +73,7 @@ protected function getName(Request $request) {
+     // we must use different session identifiers for HTTPS and HTTP to prevent a
+     // cookie collision.
+     $prefix = $request->isSecure() ? 'SSESS' : 'SESS';
+-    return $prefix . $this->getUnprefixedName($request);
++    return $prefix . ($this->options['name'] ?? $this->getUnprefixedName($request));
+   }
+ 
+   /**

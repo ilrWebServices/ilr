@@ -1,0 +1,9 @@
+parameters:
+  session.storage.options:
+    name: 'ILRWEB'
+    gc_probability: 1
+    gc_divisor: 100
+    gc_maxlifetime: 200000
+    cookie_lifetime: 2000000
+    sid_length: 48
+    sid_bits_per_character: 6

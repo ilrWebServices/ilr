@@ -145,7 +145,8 @@
         "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch",
         "Pass current route parameters to the confirmation form route": "https://www.drupal.org/files/issues/2020-05-04/2901412-18.patch",
         "Remove generic node and term link relationships": "https://www.drupal.org/files/issues/2021-09-08/2922570-90.9.2.5.patch",
-        "Redirect to term view page from term edit page": "https://www.drupal.org/files/issues/2021-06-07/taxonomy-redirect_to_view_from_edit-2826592-26.patch"
+        "Redirect to term view page from term edit page": "https://www.drupal.org/files/issues/2021-06-07/taxonomy-redirect_to_view_from_edit-2826592-26.patch",
+        "Allow custom session cookie name": "./patches/2983612-custom-session-cookie-name.patch"
       },
       "drupal/address": {
         "Configure visible address fields per field formatter": "https://www.drupal.org/files/issues/2019-05-23/address-visible_address_fields_per_field_formatter-2852800-23.patch"
