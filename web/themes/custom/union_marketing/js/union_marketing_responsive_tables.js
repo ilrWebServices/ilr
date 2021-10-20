@@ -5,7 +5,7 @@
       context.querySelectorAll('.paragraph--type--rich-text table').forEach(table => {
         let headers = [];
 
-        table.querySelectorAll('thead th').forEach(cellHeader => {
+        table.querySelectorAll('tr:first-of-type th').forEach(cellHeader => {
           headers.push(cellHeader.textContent);
         });
 
