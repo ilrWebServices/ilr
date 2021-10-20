@@ -869,6 +869,19 @@ if (!empty(getenv('MAILCHIMP_WEBHOOK_HASH'))) {
 }
 
 /**
+ * Campaign Monitor API settings.
+ *
+ * A bogus value for the api key is stored in config. The real value should be
+ * added to the environment.
+ */
+if (!empty(getenv('CAMPAIGN_MONITOR_API_KEY'))) {
+  $config['campaign_monitor_rest_client.settings']['api_key'] = getenv('CAMPAIGN_MONITOR_API_KEY');
+}
+if (!empty(getenv('CAMPAIGN_MONITOR_STATUS'))) {
+  $config['campaign_monitor_rest_client.settings']['status'] = getenv('CAMPAIGN_MONITOR_STATUS');
+}
+
+/**
  * SAML Auth service provider entity id.
  *
  * This is automatically configured for the current host.

@@ -1,0 +1,112 @@
+uuid: 797941b0-bbf3-472f-b4ca-0439366e22ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.email
+    - field.field.node.class.body
+    - field.field.node.class.field_address
+    - field.field.node.class.field_class_cancelled
+    - field.field.node.class.field_class_date
+    - field.field.node.class.field_class_full
+    - field.field.node.class.field_course
+    - field.field.node.class.field_date_end
+    - field.field.node.class.field_date_start
+    - field.field.node.class.field_delivery_method
+    - field.field.node.class.field_external_link
+    - field.field.node.class.field_message
+    - field.field.node.class.field_price
+    - node.type.class
+  module:
+    - address
+    - date_range_formatter
+    - datetime
+    - user
+id: node.class.email
+targetEntityType: node
+bundle: class
+mode: email
+content:
+  field_address:
+    type: address_default
+    weight: 5
+    region: content
+    label: hidden
+    settings:
+      field_settings:
+        locality: locality
+        administrativeArea: administrativeArea
+        givenName: 0
+        additionalName: 0
+        familyName: 0
+        organization: 0
+        addressLine1: 0
+        addressLine2: 0
+        postalCode: 0
+        sortingCode: 0
+        dependentLocality: 0
+        country: 0
+    third_party_settings: {  }
+  field_class_date:
+    type: date_range_without_time
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      timezone_override: ''
+      single: 'M j, Y'
+      single_all_day: 'M j, Y'
+      one_day: 'M j, Y'
+      one_month: 'M j - {j}, Y'
+      several_months: 'M j - {M} {j}, Y'
+      several_years: 'M j, Y - {M} {j}, {Y}'
+      separator: '-'
+      date_format: 'Y-m-d\TH:i:s'
+    third_party_settings: {  }
+  field_course:
+    type: entity_reference_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: mini
+      link: false
+    third_party_settings: {  }
+  field_date_end:
+    type: datetime_default
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: ilr_time
+    third_party_settings: {  }
+  field_date_start:
+    type: datetime_default
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: ilr_time
+    third_party_settings: {  }
+  field_price:
+    type: number_decimal
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 0
+      prefix_suffix: true
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_class_cancelled: true
+  field_class_full: true
+  field_delivery_method: true
+  field_external_link: true
+  field_message: true
+  links: true
+  search_api_excerpt: true

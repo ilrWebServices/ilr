@@ -1,0 +1,16 @@
+entity.node.ilr_campaigns_email:
+  path: '/node/{node}/email'
+  defaults:
+    _controller: '\Drupal\ilr_campaigns\Controller\NodeHTMLEmailController::view'
+  requirements:
+    _permission: 'access content'
+    node: \d+
+ilr_campaigns.config:
+  path: '/admin/config/services/ilr_campaigns'
+  defaults:
+    _form: '\Drupal\ilr_campaigns\Form\IlrCampaignsSettingsForm'
+    _title: 'ILR Campaign Settings'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE

@@ -1,0 +1,6 @@
+ilr_campaigns.config:
+  title: 'ILR Campaign Settings'
+  parent: system.admin_config_services
+  route_name: ilr_campaigns.config
+  description: 'Client and List ID settings used for ILR Campaigns.'
+  weight: 10

@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Contains ilr_campaigns.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
+
+/**
+ * Implements hook_help().
+ */
+function ilr_campaigns_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the ilr_campaigns module.
+    case 'help.page.ilr_campaigns':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Manage subscribers and campaigns over the CampaignMonitor API') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function ilr_campaigns_entity_type_alter(array &$entity_types) {
+  $links = $entity_types['node']->get('links');
+  $links['ilr_campaigns_email'] = '/node/{node}/email';
+  $entity_types['node']->set('links', $links);
+}
+
+/**
+ * Implements hook_ENTITY_insert().
+ */
+function ilr_campaigns_node_insert(ContentEntityInterface $node) {
+  if ($node->bundle() === 'class') {
+    \Drupal::queue('new_class_processor')->createItem($node);
+  }
+
+  if ($node->bundle() === 'course') {
+    \Drupal::state()->set('ilr_campaigns.custom_field_update', 0);
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function ilr_campaigns_cron() {
+  // @todo Maybe don't run this EVERY cron.
+  $course_notifications_helper = \Drupal::service('ilr_campaigns.course_notifications');
+  $course_notifications_helper->addCustomFieldOptions();
+
+  // Add Course Notification submissions to the email list.
+  $course_notifications_helper->queueSubscribers();
+}

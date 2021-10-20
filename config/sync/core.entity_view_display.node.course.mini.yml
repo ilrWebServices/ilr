@@ -1,0 +1,53 @@
+uuid: e0986345-2d79-431a-af0f-854e4511f7f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.mini
+    - field.field.node.course.body
+    - field.field.node.course.field_course_number
+    - field.field.node.course.field_delivery_method
+    - field.field.node.course.field_media_secondary
+    - field.field.node.course.field_media_section
+    - field.field.node.course.field_message
+    - field.field.node.course.field_representative_image
+    - field.field.node.course.field_sponsor
+    - field.field.node.course.field_topics
+    - node.type.course
+  module:
+    - layout_builder
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    allow_custom: false
+    enabled: false
+id: node.course.mini
+targetEntityType: node
+bundle: course
+mode: mini
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 1
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+hidden:
+  classes: true
+  extra_field_class_register: true
+  extra_field_related_courses: true
+  field_course_number: true
+  field_delivery_method: true
+  field_media_secondary: true
+  field_media_section: true
+  field_message: true
+  field_representative_image: true
+  field_sponsor: true
+  field_topics: true
+  ilr_certificates: true
+  ilr_course_page_links: true
+  links: true
+  search_api_excerpt: true
