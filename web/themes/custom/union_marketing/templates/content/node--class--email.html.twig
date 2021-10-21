@@ -73,7 +73,7 @@
 <div>
   <p>[if:firstname]Hello [firstname], a[else]A[endif] new session is available for:</p>
   <h2{{title_attributes}}>
-    <a href="{{ url('entity.node.canonical', { 'node': node.field_course.entity.id }) }}">{{ label }}</a>
+    <a href="https://www.ilr.cornell.edu{{ path('entity.node.canonical', { 'node': node.field_course.entity.id }) }}">{{ label }}</a>
   </h2>
   {{ content }}
   <br>
@@ -84,7 +84,7 @@
           <table role="presentation" border="0" cellpadding="0" cellspacing="0">
             <tbody>
               <tr>
-                <td> <a href="{{ url('entity.node.canonical', { 'node': node.field_course.entity.id }) }}" target="_blank">Learn more</a> </td>
+                <td> <a href="https://www.ilr.cornell.edu{{ path('entity.node.canonical', { 'node': node.field_course.entity.id }) }}" target="_blank">Learn more</a> </td>
               </tr>
             </tbody>
           </table>
