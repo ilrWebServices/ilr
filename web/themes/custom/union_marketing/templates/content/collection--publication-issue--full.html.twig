@@ -24,7 +24,14 @@ fixed: https://www.drupal.org/project/drupal/issues/2907810 #}
 
 {% set editorial_node = content.editor_letter['#entity'] %}
 
-<div{{ attributes.addClass('collection collection--publication-issue') }}>
+{%
+  set classes = [
+    'collection',
+    'collection--publication-issue',
+    not collection.isPublished() ? 'collection--unpublished',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
   <div class="cu-section">
     <div class="publication__feature">
       {% if editorial_node %}
