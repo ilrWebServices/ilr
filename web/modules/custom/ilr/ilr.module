@@ -410,6 +410,18 @@ function ilr_entity_prepare_view($entity_type_id, array $entities, array $displa
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_access().
+ *
+ * Prevent access to paragraphs that reference unpublished content.
+ */
+function ilr_paragraph_access(EntityInterface $entity, $operation, AccountInterface $account) {
+  if ($operation === 'view' && $entity->hasField('field_content') && !$entity->field_content->isEmpty()) {
+    return AccessResult::forbiddenIf(!$entity->field_content->entity->access('view', $account));
+  }
+  return AccessResult::neutral();
+}
+
+/**
  * Implements hook_query_alter().
  *
  * De-dupe grouped queries during the same request.

@@ -1,0 +1,25 @@
+{#
+/**
+ * @file collection.html.twig
+ * Theme override for Collection entity.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_collection()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'collection',
+    not collection.isPublished() ? 'collection--unpublished',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

@@ -345,6 +345,19 @@ function union_marketing_preprocess_paragraph__curated_post_listing(&$variables)
 }
 
 /**
+ * Implements hook_preprocess_paragraph().
+ */
+function union_marketing_preprocess_paragraph__promo(&$variables) {
+  if (!$variables['paragraph']->hasField('field_content') || $variables['paragraph']->field_content->isEmpty()) {
+    return;
+  }
+
+  if (!$variables['paragraph']->field_content->entity->isPublished()) {
+    $variables['attributes']['class'][] = 'cu-card--promo--unpublished-content';
+  }
+}
+
+/**
  * Implements hook_preprocess_field().
  */
 function union_marketing_preprocess_field__paragraph__field_heading__promo(&$variables) {

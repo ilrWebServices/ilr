@@ -28,3 +28,32 @@
     margin-bottom: 1rem; // needed?
   }
 }
+
+.node--unpublished,
+.term--unpublished,
+.collection--unpublished,
+.cu-card--promo--unpublished-content {
+  &::after {
+    content: 'Unpublished';
+    display: block;
+    position: fixed;
+    background: rgba(255,0,0,.5);
+    color: white;
+    font-weight: bold;
+    font-size: 2.5rem;
+    bottom: 10%;
+    left: 2%;
+    z-index: 1000;
+    padding: 1em 3em;
+    transform: rotate(-5deg);
+    text-shadow: 0 0 2px black;
+    pointer-events: none;
+  }
+}
+
+.cu-card--promo--unpublished-content {
+  &::after {
+    position: absolute;
+    font-size: 1.5rem;
+  }
+}
