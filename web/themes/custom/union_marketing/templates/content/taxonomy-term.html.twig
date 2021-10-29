@@ -28,6 +28,7 @@
 {%
   set classes = [
     not term.isPublished() ? 'term--unpublished',
+    view_mode ? 'term--view-mode-' ~ view_mode|clean_class
   ]
 %}
 <div{{ attributes.addClass(classes) }}>

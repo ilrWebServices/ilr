@@ -36,14 +36,14 @@
   &::after {
     content: 'Unpublished';
     display: block;
-    position: fixed;
+    position: absolute;
     background: rgba(255,0,0,.5);
     color: white;
     font-weight: bold;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     bottom: 10%;
     left: 2%;
-    z-index: 1000;
+    z-index: 10;
     padding: 1em 3em;
     transform: rotate(-5deg);
     text-shadow: 0 0 2px black;
@@ -51,9 +51,11 @@
   }
 }
 
-.cu-card--promo--unpublished-content {
+.node--view-mode-full.node--unpublished,
+.term--view-mode-full.term--unpublished {
   &::after {
-    position: absolute;
-    font-size: 1.5rem;
+    position: fixed;
+    font-size: 2.5rem;
+    z-index: 1000;
   }
 }
