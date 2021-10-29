@@ -31,7 +31,8 @@
 
 .node--unpublished,
 .term--unpublished,
-.collection--unpublished {
+.collection--unpublished,
+.cu-card--promo--unpublished-content {
   &::after {
     content: 'Unpublished';
     display: block;
@@ -47,5 +48,12 @@
     transform: rotate(-5deg);
     text-shadow: 0 0 2px black;
     pointer-events: none;
+  }
+}
+
+.cu-card--promo--unpublished-content {
+  &::after {
+    position: absolute;
+    font-size: 1.5rem;
   }
 }
