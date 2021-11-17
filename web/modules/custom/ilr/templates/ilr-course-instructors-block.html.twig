@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme template for course instructor list.
+ *
+ * Available variables:
+ * - label
+ * - instructors
+ */
+#}
+{% set box_content %}
+<h2 class="cu-heading">{{ label }}</h2>
+
+<div class="cu-grid--people">
+  {{ instructors }}
+</div>
+{% endset %}
+{% include '@union/_highlight-box.twig' with {
+  content: box_content,
+  attributes: attributes.setAttribute('id', 'instructors')
+} only %}
