@@ -95,7 +95,7 @@ class CourseInstructors extends ExtraFieldDisplayBase implements ContainerFactor
 
     $build['ilr_course_instructors'] = [
       '#theme' => 'ilr_course_instructors_block',
-      '#label' => $this->t('Instructors'),
+      '#label' => $this->formatPlural(count($instructors), 'Instructor', 'Instructors'),
       '#instructors' => $instructors,
       '#cache' => [
         'tags' => ['node_list:participant', 'node_list:class'],
