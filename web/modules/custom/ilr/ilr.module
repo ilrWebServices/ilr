@@ -45,6 +45,12 @@ function ilr_theme($existing, $type, $theme, $path) {
         'classes' => [],
       ],
     ],
+    'ilr_course_instructors_block' => [
+      'variables' => [
+        'label' => '',
+        'instructors' => [],
+      ],
+    ],
     'ilr_course_certificates_block' => [
       'variables' => [
         'node' => [],
