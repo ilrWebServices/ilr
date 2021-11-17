@@ -512,6 +512,13 @@ function ilr_taxonomy_term_create_access(AccountInterface $account, array $conte
 }
 
 /**
+ * Implements hook_ENTITY_access().
+ */
+function ilr_menu_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, AccountInterface $account) {
+  return AccessResult::allowed();
+}
+
+/**
  * Implements template_preprocess_node().
  */
 function ilr_preprocess_node__course__teaser(&$variables) {
@@ -718,6 +725,11 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
 
   if (!empty($form['field_representative_img_caption'])) {
     $form['field_representative_img_caption']['#group'] = 'ilr_meta';
+  }
+
+  if ($form['menu']) {
+    // $form['menu']['#access'] = \Drupal::currentUser()->hasPermission('administer menu');
+    $form['menu']['#access'] = TRUE;
   }
 
   /** @var \Drupal\node\NodeForm $form_object */
