@@ -1,0 +1,9 @@
+// Prevent breadcrumbs from breaking with long titles on mobile, e.g. Labor and
+// Employment Law Program
+.cu-breadcrumb .cu-breadcrumb__item {
+  white-space: initial;
+
+  @include breakpoint(sm) {
+    white-space: no-wrap;
+  }
+}
