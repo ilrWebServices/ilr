@@ -19,6 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *     "collection.subsite",
  *     "collection.subsite_blog",
  *     "node.page",
+ *     "taxonomy_term.*",
  *   },
  *   visible = true
  * )

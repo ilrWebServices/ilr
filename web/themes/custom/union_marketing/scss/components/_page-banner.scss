@@ -96,3 +96,17 @@
     </ul>
 </div>
 */
+
+.layout__region--content .cu-page-nav {
+  margin: 0 auto;
+  max-width: var(--cu-max-width-section, 1060px);
+}
+
+.layout__region--content .cu-page-nav__link {
+  --cu-current-link-color: $black;
+
+  .cu-heading {
+    --cu-current-heading-size: var(--cu-text-lg);
+    font-weight: 400;
+  }
+}
