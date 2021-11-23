@@ -64,6 +64,7 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
     $build = [];
     $build['#theme'] = 'subsite_branding_block';
     $build['#subsite_path'] = $subsite_collection->toUrl();
+    $build['#cache']['contexts'] = ['url.path'];
 
     // If the collection has a logo, use it.
     if ($subsite_collection->hasField('logo') && !$subsite_collection->logo->isEmpty()) {
@@ -72,11 +73,6 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
         '#uri' => $subsite_collection->logo->first()->entity->field_media_svg->entity->getFileUri(),
         '#style_name' => 'media_library',
         '#alt' => $this->t('@collection logo', ['@collection' => $subsite_collection->label()]),
-        '#cache' => [
-          'contexts' => [
-            'url.path',
-          ],
-        ],
       ];
     }
 
