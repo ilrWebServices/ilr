@@ -348,6 +348,12 @@ function union_marketing_preprocess_paragraph__curated_post_listing(&$variables)
  * Implements hook_preprocess_paragraph().
  */
 function union_marketing_preprocess_paragraph__promo(&$variables) {
+  // If there is no title on the link, then don't render the button. The entire
+  // promo card is already a link.
+  if (empty($variables['paragraph']->field_link->title)) {
+    unset($variables['paragraph']->field_link);
+  }
+
   if (!$variables['paragraph']->hasField('field_content') || $variables['paragraph']->field_content->isEmpty()) {
     return;
   }
