@@ -11,13 +11,13 @@ id: paragraph.promo.field_link
 field_name: field_link
 entity_type: paragraph
 bundle: promo
-label: Button
-description: ''
+label: Link
+description: 'If set, the entire card will become a link. <em>Link text</em> is optional and will be shown as a button.'
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
   link_type: 17
-  title: 2
+  title: 1
 field_type: link
