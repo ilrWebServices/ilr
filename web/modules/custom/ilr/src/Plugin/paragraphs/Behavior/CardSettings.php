@@ -8,6 +8,8 @@ use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\Component\Serialization\Json;
 
 /**
  * Provides a Card paragraph behavior plugin.
@@ -89,6 +91,13 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#description' => $this->t('Generally, allowing the content of the card to determine its height is best. However, in some cases (such as a portait image), this setting allows the card to display the entire media element. Note, too, that this may impact the layout when set within a card deck.'),
     ];
 
+    $form['use_modal'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Open in modal'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'use_modal') ?? FALSE,
+      '#description' => $this->t('This opens the Button url (above) in a modal window. This can be used, for example, to open a youtube video (e.g. /media/108776 for the "About ILR" video).'),
+    ];
+
     return $form;
   }
 
@@ -111,6 +120,7 @@ class CardSettings extends ParagraphsBehaviorBase {
     $content_placement = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'content_placement');
     $bg_color = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'bg_color');
     $has_media = !$variables['paragraph']->field_media->isEmpty();
+    $use_modal = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'use_modal');
     $variables['attributes']['style'][] = '--cu-overlay-opacity: ' . $overlay_opacity / 100 . ';';
     $is_promo = TRUE;
 
@@ -141,6 +151,16 @@ class CardSettings extends ParagraphsBehaviorBase {
 
     if ($bg_color) {
       $variables['attributes']['class'][] = 'cu-card--' . $bg_color;
+    }
+
+    if ($use_modal) {
+      $variables['url_attributes'] = new Attribute();
+      $variables['url_attributes']->setAttribute('class', ['use-ajax']);
+      $variables['url_attributes']->setAttribute('data-dialog-type', 'modal');
+      $variables['url_attributes']->setAttribute('data-dialog-options', Json::encode([
+        'width' => '90%',
+        'classes' => ['ui-dialog', 'cu-modal'],
+      ]));
     }
   }
 
