@@ -39,6 +39,7 @@
  */
 #}
 {{ attach_library('union_organizer/button') }}
+{{ attach_library('union_organizer/icon') }}
 
 {% set rendered_content %}
   {% if paragraph.cu_icon %}
@@ -59,5 +60,6 @@
     'cu-component',
     'cu-component--' ~ paragraph.bundle|clean_class,
     paragraph.cu_icon ? 'cu-card--pinned'
-  ])
+  ]),
+  link_attributes: url_attributes
 } only %}
