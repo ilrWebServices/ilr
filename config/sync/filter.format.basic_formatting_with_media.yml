@@ -14,7 +14,7 @@ dependencies:
     - union_organizer
 name: 'Basic Formatting with Media'
 format: basic_formatting_with_media
-weight: 0
+weight: -1
 filters:
   filter_html:
     id: filter_html
