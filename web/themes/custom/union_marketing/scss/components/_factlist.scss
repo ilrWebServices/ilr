@@ -1,0 +1,32 @@
+// This is incubating here for eventual inclusion into Union.
+ul.cu-factlist {
+  list-style-type: none;
+  padding: 0;
+
+  @include breakpoint(md) {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+}
+
+ul.cu-factlist > li {
+  padding: var(--cu-vr0);
+  border-bottom: 2px solid rgba($white, 0.2);
+
+  &:last-child {
+    border: none;
+  }
+
+  @include breakpoint(md) {
+    border-bottom: none;
+    border-right: 2px solid rgba($white, 0.2);
+    padding: 0 var(--cu-vr2);
+  }
+
+  &::first-line {
+    font-size: var(--cu-text-xl);
+    font-weight: 400;
+    display: block;
+  }
+}
