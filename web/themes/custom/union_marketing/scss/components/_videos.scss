@@ -56,7 +56,8 @@
   }
 }
 
-.node--video-post.node--view-mode-teaser .ajax-progress-throbber {
+.node--video-post.node--view-mode-teaser .ajax-progress-throbber,
+.cu-card--promo .ajax-progress-throbber {
   position: absolute;
   z-index: 1;
 }

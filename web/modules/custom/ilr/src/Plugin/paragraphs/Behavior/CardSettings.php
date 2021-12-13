@@ -48,8 +48,6 @@ class CardSettings extends ParagraphsBehaviorBase {
     'vibrant' => 'Vibrant',
   ];
 
-
-
   /**
    * {@inheritdoc}
    */
@@ -82,7 +80,6 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'bg_color') ?? reset($this->bgOptions),
     ];
 
-
     // @todo: disable if the chosen content placement is a popout.
     $form['use_media_aspect'] = [
       '#type' => 'checkbox',
@@ -91,11 +88,12 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#description' => $this->t('Generally, allowing the content of the card to determine its height is best. However, in some cases (such as a portait image), this setting allows the card to display the entire media element. Note, too, that this may impact the layout when set within a card deck.'),
     ];
 
-    $form['use_modal'] = [
+    $form['use_modal_link'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Open in modal'),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'use_modal') ?? FALSE,
-      '#description' => $this->t('This opens the Button url (above) in a modal window. This can be used, for example, to open a youtube video (e.g. /media/108776 for the "About ILR" video).'),
+      '#title' => $this->t('Open link in modal'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'use_modal_link') ?? FALSE,
+      '#description' => $this->t('This opens the Link URL in a modal window if it is an internal URL (i.e. another page on this site).'),
+      '#access' => $paragraph->hasField('field_link'),
     ];
 
     return $form;
@@ -120,7 +118,7 @@ class CardSettings extends ParagraphsBehaviorBase {
     $content_placement = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'content_placement');
     $bg_color = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'bg_color');
     $has_media = !$variables['paragraph']->field_media->isEmpty();
-    $use_modal = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'use_modal');
+    $use_modal_link = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'use_modal_link') && !$variables['paragraph']->field_link->isEmpty() && $variables['paragraph']->field_link->first()->getUrl()->isRouted();
     $variables['attributes']['style'][] = '--cu-overlay-opacity: ' . $overlay_opacity / 100 . ';';
     $is_promo = TRUE;
 
@@ -153,13 +151,13 @@ class CardSettings extends ParagraphsBehaviorBase {
       $variables['attributes']['class'][] = 'cu-card--' . $bg_color;
     }
 
-    if ($use_modal) {
+    if ($use_modal_link) {
       $variables['url_attributes'] = new Attribute();
-      $variables['url_attributes']->setAttribute('class', ['use-ajax']);
+      $variables['url_attributes']->setAttribute('class', ['use-ajax', 'cu-link--modal']);
       $variables['url_attributes']->setAttribute('data-dialog-type', 'modal');
       $variables['url_attributes']->setAttribute('data-dialog-options', Json::encode([
-        'width' => '90%',
-        'classes' => ['ui-dialog', 'cu-modal'],
+        'width' => 800,
+        'classes' => ['ui-dialog' => 'cu-modal'],
       ]));
     }
   }
