@@ -8,16 +8,16 @@ dependencies:
 id: collection_items
 label: 'Collection items'
 type: 'canonical_entities:collection_item'
-pattern: '[collection_item:collection:entity:url]/[collection_item:field_blog_categories:entity:name]/[collection_item:item:entity]/i'
+pattern: '[collection_item:collection:entity:url:path]/[collection_item:field_blog_categories:entity:name]/[collection_item:item:entity]/i'
 selection_criteria:
-  f74c6eb8-6e21-4b76-b5ec-4e45c8d15d68:
+  ee2e30f1-3d3d-465b-b83b-7aeb6d81e81d:
     id: 'entity_bundle:collection_item'
     bundles:
       blog: blog
     negate: false
     context_mapping:
       collection_item: collection_item
-    uuid: f74c6eb8-6e21-4b76-b5ec-4e45c8d15d68
+    uuid: ee2e30f1-3d3d-465b-b83b-7aeb6d81e81d
 selection_logic: and
 weight: 0
 relationships: {  }
