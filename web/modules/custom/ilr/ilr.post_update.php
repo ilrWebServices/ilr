@@ -8,10 +8,6 @@
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\node\Entity\Node;
-use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\layout_builder\Section;
-use Drupal\layout_builder\SectionComponent;
-use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\node\NodeInterface;
 use Drupal\ilr\EventSubscriber\CollectionEventSubscriber;
 
