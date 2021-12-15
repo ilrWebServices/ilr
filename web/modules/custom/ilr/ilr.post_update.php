@@ -906,12 +906,12 @@ function ilr_post_update_add_post_support_to_about_ilr(&$sandbox) {
 
         $category_view_display->save();
 
-        // Add the "Our Stories" category.
-        $our_stories_category = $entity_type_manager->getStorage('taxonomy_term')->create([
+        // Add the "ILR Stories" category.
+        $ilr_stories_category = $entity_type_manager->getStorage('taxonomy_term')->create([
           'vid' => $vocab->id(),
-          'name' => 'Our Stories',
+          'name' => 'ILR Stories',
         ]);
-        $our_stories_category->save();
+        $ilr_stories_category->save();
 
         $canonical_collection_items = $collection_item_storage->loadByProperties([
           'canonical' => 1,
@@ -928,7 +928,7 @@ function ilr_post_update_add_post_support_to_about_ilr(&$sandbox) {
             'collection' => 41,
             'item' => $collection_item->item->entity,
             'canonical' => FALSE,
-            'field_blog_categories' => ['target_id' => $our_stories_category->id()],
+            'field_blog_categories' => ['target_id' => $ilr_stories_category->id()],
           ]);
           $cross_post->save();
         }
