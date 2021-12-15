@@ -35,6 +35,10 @@ function union_marketing_preprocess_html(&$variables) {
   if (isset($variables['root_path'])) {
     $entity_type = $variables['root_path'];
 
+    if ($entity_type === 'collection' && \Drupal::routeMatch()->getParameter('collection_item')) {
+      $entity_type = 'collection_item';
+    }
+
     if ($entity_type && $entity = \Drupal::routeMatch()->getParameter($entity_type)) {
       if ($entity instanceof ContentEntityInterface) {
         $variables['attributes']['class'][] = $entity_type . '--' . str_replace('_', '-', $entity->bundle());
