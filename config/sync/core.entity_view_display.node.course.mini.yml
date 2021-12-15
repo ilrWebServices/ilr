@@ -35,6 +35,11 @@ content:
       trim_length: 600
     third_party_settings: {  }
     region: content
+  extra_field_course_instructors:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
 hidden:
   classes: true
   extra_field_class_register: true

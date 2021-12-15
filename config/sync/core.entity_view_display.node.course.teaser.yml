@@ -39,6 +39,11 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+  extra_field_course_instructors:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   extra_field_related_courses:
     weight: 0
     settings: {  }
