@@ -2232,17 +2232,17 @@
         },
         {
             "name": "drupal/collection",
-            "version": "2.4.3-beta8",
+            "version": "2.4.3-beta9",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/collection.git",
-                "reference": "2.4.3-beta8"
+                "reference": "2.4.3-beta9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/collection-2.4.3-beta8.zip",
-                "reference": "2.4.3-beta8",
-                "shasum": "0b49007146159930b86b3fe94bfb0c91ac91a4fd"
+                "url": "https://ftp.drupal.org/files/projects/collection-2.4.3-beta9.zip",
+                "reference": "2.4.3-beta9",
+                "shasum": "a9a50a876500f6a122b1c1aeca0e2fc84691ce3a"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -2256,8 +2256,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.4.3-beta8",
-                    "datestamp": "1631296314",
+                    "version": "2.4.3-beta9",
+                    "datestamp": "1639584733",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
