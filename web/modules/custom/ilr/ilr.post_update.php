@@ -915,8 +915,6 @@ function ilr_post_update_add_post_support_to_about_ilr(&$sandbox) {
           'vid' => $vocab->id(),
           'name' => 'Our Stories',
         ]);
-        $our_stories_category->path->pathauto = 0;
-        $our_stories_category->path->alias = '/about-ilr/stories';
         $our_stories_category->save();
 
         $canonical_collection_items = $collection_item_storage->loadByProperties([
