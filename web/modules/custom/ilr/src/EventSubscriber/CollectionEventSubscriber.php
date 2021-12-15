@@ -10,7 +10,6 @@ use Drupal\collection\Event\CollectionEvents;
 use Symfony\Component\EventDispatcher\Event;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Entity\EntityDisplayRepository;
-use Drupal\Component\Uuid\Php as Uuid;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\Core\Url;
 use Drupal\field\Entity\FieldStorageConfig;
@@ -47,21 +46,13 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
   protected $entityDisplayRepository;
 
   /**
-   * The UUID service.
-   *
-   * @var \Drupal\Component\Uuid\Php
-   */
-  protected $uuid;
-
-  /**
    * Constructs a new CollectionEventSubscriber object.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, TranslationInterface $string_translation, EntityDisplayRepository $entity_display_repository, Uuid $uuid) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger, TranslationInterface $string_translation, EntityDisplayRepository $entity_display_repository) {
     $this->entityTypeManager = $entity_type_manager;
     $this->messenger = $messenger;
     $this->stringTranslation = $string_translation;
     $this->entityDisplayRepository = $entity_display_repository;
-    $this->uuid = $uuid;
   }
 
   /**
@@ -76,8 +67,11 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
   /**
    * Process the COLLECTION_ENTITY_CREATE event.
    *
-   * @param \Symfony\Component\EventDispatcher\Event $event
-   *   The dispatched event.
+   * @param \Symfony\Component\EventDispatcher\Event $event The dispatched
+   *   event.
+   *
+   * @todo Consider refactoring in the future to make the vocabulary
+   * configuration a callable service.
    */
   public function collectionCreate(Event $event) {
     $collection = $event->collection;
@@ -128,7 +122,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
       $category_form_display = $this->entityDisplayRepository->getFormDisplay('taxonomy_term', $category->id());
 
       // Configure the category fields and form display.
-      foreach ($this->getFieldConfiguration($category->id()) as $field_name => $field) {
+      foreach (self::getFieldConfiguration($category->id()) as $field_name => $field) {
         $new_field_config = $this->entityTypeManager->getStorage('field_config')->create($field['field_config']);
         $new_field_config->save();
         $category_form_display->setComponent($field_name, $field['form_display']);
@@ -143,7 +137,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
       $category_view_display->save();
       $category_view_display->removeAllSections();
 
-      foreach ($this->getLayoutSections($category, 'category') as $section) {
+      foreach (self::getLayoutSections($category, 'category') as $section) {
         $category_view_display->appendSection($section);
       }
 
@@ -161,7 +155,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
       $tags_form_display = $this->entityDisplayRepository->getFormDisplay('taxonomy_term', $tags->id());
 
       // Configure the tags fields and form display.
-      foreach ($this->getFieldConfiguration($tags->id()) as $field_name => $field) {
+      foreach (self::getFieldConfiguration($tags->id()) as $field_name => $field) {
         $new_field_config = $this->entityTypeManager->getStorage('field_config')->create($field['field_config']);
         $new_field_config->save();
         $tags_form_display->setComponent($field_name, $field['form_display']);
@@ -176,7 +170,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
       $tags_view_display->save();
       $tags_view_display->removeAllSections();
 
-      foreach ($this->getLayoutSections($tags, 'tag') as $section) {
+      foreach (self::getLayoutSections($tags, 'tag') as $section) {
         $tags_view_display->appendSection($section);
       }
 
@@ -193,7 +187,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
    * @return array
    *   An array of field config arrays.
    */
-  protected function getFieldConfiguration($category_id) {
+  public static function getFieldConfiguration($category_id) {
     return [
       'field_body' => [
         'field_config' => [
@@ -305,11 +299,12 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
    * @return array
    *   An array of layout builder sections
    */
-  protected function getLayoutSections(Vocabulary $vocabulary, $type) {
+  public static function getLayoutSections(Vocabulary $vocabulary, $type) {
     $sections = [];
+    $uuid_service = \Drupal::service('uuid');
 
     $sections[] = new Section('layout_onecol', ['label' => 'Blog banner'], [
-      new SectionComponent($this->uuid->generate(), 'content', [
+      new SectionComponent($uuid_service->generate(), 'content', [
         'id' => 'extra_field_block:taxonomy_term:' . $vocabulary->id() . ':blog_collection',
         'label' => 'Blog',
         'provider' => 'layout_builder',
@@ -321,7 +316,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
     ]);
 
     $sections[] = new Section('layout_cu_section', ['label' => 'Content header'], [
-      new SectionComponent($this->uuid->generate(), 'main', [
+      new SectionComponent($uuid_service->generate(), 'main', [
         'id' => 'field_block:taxonomy_term:' . $vocabulary->id() . ':name',
         'label' => 'Name',
         'provider' => 'layout_builder',
@@ -341,7 +336,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
           'view_mode' => 'view_mode',
         ],
       ]),
-      new SectionComponent($this->uuid->generate(), 'main', [
+      new SectionComponent($uuid_service->generate(), 'main', [
         'id' => 'field_block:taxonomy_term:' . $vocabulary->id() . ':field_body',
         'label' => 'Intro text',
         'provider' => 'layout_builder',
@@ -362,7 +357,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
     ]);
 
     $sections[] = new Section('layout_onecol', ['label' => 'Page content'], [
-      new SectionComponent($this->uuid->generate(), 'content', [
+      new SectionComponent($uuid_service->generate(), 'content', [
         'id' => 'field_block:taxonomy_term:' . $vocabulary->id() . ':field_sections',
         'label' => 'Page content',
         'provider' => 'layout_builder',
@@ -385,7 +380,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
     ]);
 
     $sections[] = new Section('layout_cu_section', ['label' => 'Items'], [
-      new SectionComponent($this->uuid->generate(), 'main', [
+      new SectionComponent($uuid_service->generate(), 'main', [
         'id' => 'extra_field_block:taxonomy_term:' . $vocabulary->id() . ':collection_items_' . $type . '_term',
         'label' => $vocabulary->label(),
         'provider' => 'layout_builder',

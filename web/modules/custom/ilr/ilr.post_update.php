@@ -12,6 +12,7 @@ use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\layout_builder\Section;
 use Drupal\layout_builder\SectionComponent;
 use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\ilr\EventSubscriber\CollectionEventSubscriber;
 
 /**
  * Add alt attributes for instructor photos that don't have one.
@@ -887,7 +888,7 @@ function ilr_post_update_add_post_support_to_about_ilr(&$sandbox) {
         $category_form_display = $entity_display_repository->getFormDisplay('taxonomy_term', $vocab->id());
 
         // Configure the category fields and form display.
-        foreach (_get_field_configuration($vocab->id()) as $field_name => $field) {
+        foreach (CollectionEventSubscriber::getFieldConfiguration($vocab->id()) as $field_name => $field) {
           $new_field_config = $entity_type_manager->getStorage('field_config')->create($field['field_config']);
           $new_field_config->save();
           $category_form_display->setComponent($field_name, $field['form_display']);
@@ -902,7 +903,7 @@ function ilr_post_update_add_post_support_to_about_ilr(&$sandbox) {
         $category_view_display->save();
         $category_view_display->removeAllSections();
 
-        foreach (_get_layout_sections($vocab, 'category') as $section) {
+        foreach (CollectionEventSubscriber::getLayoutSections($vocab, 'category') as $section) {
           $category_view_display->appendSection($section);
         }
 
@@ -941,7 +942,7 @@ function ilr_post_update_add_post_support_to_about_ilr(&$sandbox) {
         $tags_form_display = $entity_display_repository->getFormDisplay('taxonomy_term', $vocab->id());
 
         // Configure the tags fields and form display.
-        foreach (_get_field_configuration($vocab->id()) as $field_name => $field) {
+        foreach (CollectionEventSubscriber::getFieldConfiguration($vocab->id()) as $field_name => $field) {
           $new_field_config = $entity_type_manager->getStorage('field_config')->create($field['field_config']);
           $new_field_config->save();
           $tags_form_display->setComponent($field_name, $field['form_display']);
@@ -956,7 +957,7 @@ function ilr_post_update_add_post_support_to_about_ilr(&$sandbox) {
         $tags_view_display->save();
         $tags_view_display->removeAllSections();
 
-        foreach (_get_layout_sections($vocab, 'tag') as $section) {
+        foreach (CollectionEventSubscriber::getLayoutSections($vocab, 'tag') as $section) {
           $tags_view_display->appendSection($section);
         }
 
@@ -964,206 +965,4 @@ function ilr_post_update_add_post_support_to_about_ilr(&$sandbox) {
       }
     }
   }
-}
-
-/**
- * Helper function for layout configuration.
- */
-function _get_field_configuration($category_id) {
-  return [
-    'field_body' => [
-      'field_config' => [
-        'field_storage' => FieldStorageConfig::loadByName('taxonomy_term', 'field_body'),
-        'third_party_settings' => [
-          'allowed_formats' => [
-            'basic_formatting' => 'basic_formatting',
-            'basic_formatting_with_media' => '0',
-            'full_html' => '0',
-            'inline_svg' => '0',
-            'plain_text' => '0',
-          ],
-          'summary_word_limit' => [
-            'summary_word_limit_count' => '50',
-          ],
-        ],
-        'bundle' => $category_id,
-        'label' => 'Intro text',
-        'description' => 'If there is intro text, it is added to the banner section of the page and can be used in social media posts. Summaries added here are also used in smaller components, such as cards. The summary will also be used when sharing this page via social media.',
-        'settings' => [
-          'display_summary' => TRUE,
-          'required_summary' => TRUE,
-        ],
-      ],
-      'form_display' => [
-        'weight' => 1,
-        'settings' => [
-          'rows' => 9,
-          'summary_rows' => 3,
-          'placeholder' => '',
-          'show_summary' => FALSE,
-        ],
-        'type' => 'text_textarea_with_summary',
-      ],
-    ],
-    'field_sections' => [
-      'field_config' => [
-        'field_storage' => FieldStorageConfig::loadByName('taxonomy_term', 'field_sections'),
-        'bundle' => $category_id,
-        'label' => 'Page content',
-        'settings' => [
-          'handler' => 'default:paragraph',
-          'handler_settings' => [
-            'negate' => 0,
-            'target_bundles' => ['section' => 'section'],
-            'target_bundles_drag_drop' => [
-              'section' => ['enabled' => TRUE],
-            ],
-          ],
-        ],
-        'field_type' => 'entity_reference_revisions',
-      ],
-      'form_display' => [
-        'weight' => 2,
-        'settings' => [
-          'title' => 'section',
-          'title_plural' => 'sections',
-          'edit_mode' => 'closed',
-          'closed_mode' => 'summary',
-          'autocollapse' => 'all',
-          'closed_mode_threshold' => 2,
-          'add_mode' => 'dropdown',
-          'form_display_mode' => 'default',
-          'default_paragraph_type' => 'section',
-          'features' => [
-            'collapse_edit_all' => 'collapse_edit_all',
-            'duplicate' => 0,
-            'add_above' => 0,
-          ],
-        ],
-        'type' => 'paragraphs_previewer',
-        'region' => 'content',
-      ],
-    ],
-    'field_representative_image' => [
-      'field_config' => [
-        'field_storage' => FieldStorageConfig::loadByName('taxonomy_term', 'field_representative_image'),
-        'bundle' => $category_id,
-        'label' => 'Representative image',
-        'description' => 'This image may be used: As the banner background; when sharing this content on social media; or when representing it a smaller component, such as a teaser.',
-        'settings' => [
-          'handler' => 'default:media',
-          'handler_settings' => [
-            'target_bundles' => ['image' => 'image'],
-            'sort' => ['field' => '_none'],
-            'auto_create' => FALSE,
-            'auto_create_bundle' => '',
-          ],
-        ],
-        'field_type' => 'entity_reference',
-      ],
-      'form_display' => [
-        'weight' => 3,
-        'type' => 'media_library_widget',
-        'region' => 'content',
-      ],
-    ],
-  ];
-}
-
-/**
- * Helper function for layout configuration.
- */
-function _get_layout_sections(Vocabulary $vocabulary, $type) {
-  $sections = [];
-  $uuid = \Drupal::service('uuid');
-
-  $sections[] = new Section('layout_onecol', ['label' => 'Blog banner'], [
-    new SectionComponent($uuid->generate(), 'content', [
-      'id' => 'extra_field_block:taxonomy_term:' . $vocabulary->id() . ':blog_collection',
-      'label' => 'Blog',
-      'provider' => 'layout_builder',
-      'label_display' => 0,
-      'context_mapping' => [
-        'entity' => 'layout_builder.entity',
-      ],
-    ]),
-  ]);
-
-  $sections[] = new Section('layout_cu_section', ['label' => 'Content header'], [
-    new SectionComponent($uuid->generate(), 'main', [
-      'id' => 'field_block:taxonomy_term:' . $vocabulary->id() . ':name',
-      'label' => 'Name',
-      'provider' => 'layout_builder',
-      'label_display' => 0,
-      'context_mapping' => [
-        'entity' => 'layout_builder.entity',
-      ],
-      'formatter' => [
-        'label' => 'hidden',
-        'type' => 'string',
-        'settings' => [
-          'link_to_entity' => FALSE,
-        ],
-      ],
-      'context_mapping' => [
-        'entity' => 'layout_builder.entity',
-        'view_mode' => 'view_mode',
-      ],
-    ]),
-    new SectionComponent($uuid->generate(), 'main', [
-      'id' => 'field_block:taxonomy_term:' . $vocabulary->id() . ':field_body',
-      'label' => 'Intro text',
-      'provider' => 'layout_builder',
-      'label_display' => 0,
-      'context_mapping' => [
-        'entity' => 'layout_builder.entity',
-      ],
-      'formatter' => [
-        'label' => 'hidden',
-        'type' => 'text_default',
-      ],
-      'context_mapping' => [
-        'entity' => 'layout_builder.entity',
-        'view_mode' => 'view_mode',
-      ],
-      'weight' => 1,
-    ]),
-  ]);
-
-  $sections[] = new Section('layout_onecol', ['label' => 'Page content'], [
-    new SectionComponent($uuid->generate(), 'content', [
-      'id' => 'field_block:taxonomy_term:' . $vocabulary->id() . ':field_sections',
-      'label' => 'Page content',
-      'provider' => 'layout_builder',
-      'label_display' => 0,
-      'context_mapping' => [
-        'entity' => 'layout_builder.entity',
-      ],
-      'formatter' => [
-        'label' => 'hidden',
-        'type' => 'entity_reference_revisions_entity_view',
-        'settings' => [
-          'view_mode' => 'default',
-        ],
-      ],
-      'context_mapping' => [
-        'entity' => 'layout_builder.entity',
-        'view_mode' => 'view_mode',
-      ],
-    ]),
-  ]);
-
-  $sections[] = new Section('layout_cu_section', ['label' => 'Items'], [
-    new SectionComponent($uuid->generate(), 'main', [
-      'id' => 'extra_field_block:taxonomy_term:' . $vocabulary->id() . ':collection_items_' . $type . '_term',
-      'label' => $vocabulary->label(),
-      'provider' => 'layout_builder',
-      'label_display' => 0,
-      'context_mapping' => [
-        'entity' => 'layout_builder.entity',
-      ],
-    ]),
-  ]);
-
-  return $sections;
 }
