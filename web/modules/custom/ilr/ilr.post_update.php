@@ -12,6 +12,7 @@ use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\layout_builder\Section;
 use Drupal\layout_builder\SectionComponent;
 use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\node\NodeInterface;
 use Drupal\ilr\EventSubscriber\CollectionEventSubscriber;
 
 /**
@@ -924,7 +925,7 @@ function ilr_post_update_add_post_support_to_about_ilr(&$sandbox) {
         ]);
 
         foreach ($canonical_collection_items as $collection_item) {
-          if (!$collection_item->item->entity instanceof ContentEntityInterface) {
+          if (!$collection_item->item->entity instanceof NodeInterface) {
             continue;
           }
 
