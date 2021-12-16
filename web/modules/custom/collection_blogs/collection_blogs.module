@@ -286,7 +286,7 @@ function collection_blogs_node_view(array &$build, EntityInterface $entity, Enti
  * Add a head link to the feed for a given blog.
  */
 function collection_blogs_collection_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
-  if ($entity->bundle() === 'blog' && $view_mode === 'full') {
+  if ($entity->type->entity->getThirdPartySetting('collection_blogs', 'contains_blogs') && $view_mode === 'full') {
     // Attach a link to the Atom feed, which is an alternate representation.
     $build['#attached']['html_head_link'][][] = [
       'rel' => 'alternate',
