@@ -42,6 +42,14 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'wide'),
     ];
 
+    $form['gapless'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Gapless'),
+      '#description' => $this->t('Gappless sections remove the margin between components.'),
+      '#min' => 1,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'gapless'),
+    ];
+
     $form['frame_position'] = [
       '#type' => 'radios',
       '#title' => $this->t('Frame position'),
@@ -63,6 +71,11 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       $variables['attributes']['class'] = ['cu-section--wide'];
     }
 
+    // Check the behavior settings and set the class modifier if gapless.
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'gapless')) {
+      $variables['attributes']['class'] = ['cu-section--gapless'];
+    }
+
     $variables['paragraph']->field_heading->position = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'frame_position') ?? 'left';
   }
 
@@ -81,6 +94,14 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
     if ($wide = $paragraph->getBehaviorSetting($this->getPluginId(), 'wide')) {
       $summary[] = [
         'label' => 'Wide',
+        'value' => '✓',
+      ];
+    }
+
+    // If it's a wide section, display the summary.
+    if ($wide = $paragraph->getBehaviorSetting($this->getPluginId(), 'gapless')) {
+      $summary[] = [
+        'label' => 'Gapless',
         'value' => '✓',
       ];
     }

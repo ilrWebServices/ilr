@@ -35,3 +35,7 @@ figure.cu-media,
 .cu-component--rich-text + .cu-component {
   clear: both;
 }
+
+.cu-section--gapless .cu-component {
+  margin: 0;
+}
