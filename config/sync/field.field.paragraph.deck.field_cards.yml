@@ -6,6 +6,7 @@ dependencies:
     - field.storage.paragraph.field_cards
     - paragraphs.paragraphs_type.deck
     - paragraphs.paragraphs_type.promo
+    - paragraphs.paragraphs_type.video
   module:
     - entity_reference_revisions
 id: paragraph.deck.field_cards
@@ -24,12 +25,25 @@ settings:
     negate: 0
     target_bundles:
       promo: promo
+      video: video
     target_bundles_drag_drop:
+      collection_listing:
+        weight: 12
+        enabled: false
+      collection_listing_publication:
+        weight: 23
+        enabled: false
+      curated_course_listing:
+        weight: 24
+        enabled: false
+      curated_post_listing:
+        weight: 25
+        enabled: false
       deck:
         weight: 11
         enabled: false
-      collection_listing:
-        weight: 12
+      event_listing:
+        weight: 27
         enabled: false
       form:
         weight: 13
@@ -37,8 +51,20 @@ settings:
       image:
         weight: 14
         enabled: false
+      instagram_listing:
+        weight: 30
+        enabled: false
+      media_deck:
+        weight: 31
+        enabled: false
+      people_listing:
+        weight: 32
+        enabled: false
       person:
         weight: 15
+        enabled: false
+      picture_in_picture:
+        weight: 34
         enabled: false
       promo:
         enabled: true
@@ -49,13 +75,19 @@ settings:
       section:
         weight: 18
         enabled: false
-      testimonial:
-        weight: 19
-        enabled: false
-      video:
-        weight: 20
+      section_navigation:
+        weight: 38
         enabled: false
       simple_collection_listing:
         weight: 22
         enabled: false
+      table_of_contents:
+        weight: 40
+        enabled: false
+      testimonial:
+        weight: 19
+        enabled: false
+      video:
+        enabled: true
+        weight: 20
 field_type: entity_reference_revisions
