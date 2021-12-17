@@ -961,3 +961,19 @@ function ilr_post_update_add_post_support_to_about_ilr(&$sandbox) {
     }
   }
 }
+
+/**
+ * Un-stick all posts and media mentions.
+ */
+function ilr_post_update_unstick_posts(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $sticky_post_nodes = $entity_type_manager->getStorage('node')->loadByProperties([
+    'type' => ['post', 'media_mention'],
+    'sticky' => 1,
+  ]);
+
+  foreach ($sticky_post_nodes as $node) {
+    $node->sticky = 0;
+    $node->save();
+  }
+}

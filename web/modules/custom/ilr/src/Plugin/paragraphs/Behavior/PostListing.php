@@ -212,6 +212,7 @@ class PostListing extends ParagraphsBehaviorBase {
     $query->condition('type', 'blog');
     $query->condition('item.entity:node.status', 1);
     $query->condition('item.entity:node.type', $post_types, 'IN');
+    $query->sort('item.entity:node.sticky', 'DESC');
     $query->sort('item.entity:node.field_published_date', 'DESC');
 
     // Add a dedupe tag to remove duplicates in similar post_listings. See
