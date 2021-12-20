@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - collection.collection_type.blog
+    - collection.collection_type.content_section
     - collection.collection_type.subsite_blog
     - field.storage.paragraph.field_collection
     - paragraphs.paragraphs_type.simple_collection_listing
@@ -22,9 +23,11 @@ settings:
   handler_settings:
     target_bundles:
       blog: blog
+      content_section: content_section
       subsite_blog: subsite_blog
     sort:
       field: _none
+      direction: ASC
     auto_create: false
     auto_create_bundle: blog
 field_type: entity_reference
