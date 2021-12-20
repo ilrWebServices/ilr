@@ -149,6 +149,13 @@ class PostListing extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'use_pager'),
     ];
 
+    $form['ignore_sticky'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Ignore sticky sorting'),
+      '#description' => $this->t('If any posts in the listing are marked "Sticky at the top of lists", ignore that and sort by published date as usual.'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'ignore_sticky'),
+    ];
+
     return $form;
   }
 
@@ -212,7 +219,11 @@ class PostListing extends ParagraphsBehaviorBase {
     $query->condition('type', 'blog');
     $query->condition('item.entity:node.status', 1);
     $query->condition('item.entity:node.type', $post_types, 'IN');
-    $query->sort('sticky', 'DESC');
+
+    if (!$paragraph->getBehaviorSetting($this->getPluginId(), 'ignore_sticky')) {
+      $query->sort('sticky', 'DESC');
+    }
+
     $query->sort('item.entity:node.field_published_date', 'DESC');
 
     // Add a dedupe tag to remove duplicates in similar post_listings. See
@@ -351,6 +362,13 @@ class PostListing extends ParagraphsBehaviorBase {
       'label' => 'Show',
       'value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'count') ?? 'All',
     ];
+
+    if ($paragraph->getBehaviorSetting($this->getPluginId(), 'ignore_sticky')) {
+      $summary[] = [
+        'label' => 'Ignore sticky sort',
+        'value' => '✓',
+      ];
+    }
 
     return $summary;
   }
