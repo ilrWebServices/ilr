@@ -5,6 +5,8 @@
  * Installation and uninstallation functions.
  */
 
+use Drupal\Core\Field\BaseFieldDefinition;
+
 /**
  * Update classes computed field definition.
  */
@@ -36,4 +38,17 @@ function ilr_update_8003(&$sandbox) {
   foreach (['node__field_sections', 'node_revision__field_sections'] as $table) {
     $query = $connection->query("CREATE TABLE {$table}_tmp AS SELECT * FROM {$table}");
   }
+}
+
+/**
+ * Add the new `sticky` base field to collection_item entities.
+ */
+function ilr_update_8004() {
+  $field_storage_definition = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('Sticky at top of lists'))
+    ->setInitialValue(FALSE)
+    ->setDefaultValue(FALSE);
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('sticky', 'collection_item', 'collection_item', $field_storage_definition);
 }
