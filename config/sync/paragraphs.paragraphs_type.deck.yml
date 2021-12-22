@@ -1,9 +1,14 @@
 uuid: bf869009-4a50-4d13-9b40-b4c3a901feb5
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
 id: deck
 label: 'Card deck'
 icon_uuid: null
+icon_default: null
 description: 'Decks are used to prominently display 2 or 3 cards. They can be comprised of standalone promo cards, or card displays of content that exists elsewhere on the site.'
-behavior_plugins: {  }
+behavior_plugins:
+  component_settings:
+    enabled: true

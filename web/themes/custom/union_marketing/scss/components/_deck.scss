@@ -2,3 +2,7 @@
 .cu-grid > .field-type--dynamic-entity-reference > .field {
   display: contents;
 }
+
+.cu-component.cu-component--no-bottom-margin {
+  margin-bottom: 0;
+}
