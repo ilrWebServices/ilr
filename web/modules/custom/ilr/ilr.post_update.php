@@ -10,6 +10,7 @@ use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\ilr\EventSubscriber\CollectionEventSubscriber;
+use Drupal\Core\Url;
 
 /**
  * Add alt attributes for instructor photos that don't have one.
@@ -975,5 +976,28 @@ function ilr_post_update_unstick_posts(&$sandbox) {
   foreach ($sticky_post_nodes as $node) {
     $node->sticky = 0;
     $node->save();
+  }
+}
+
+/**
+ * Fix aliases and redirects for nodes saved after removing the sticky bit.
+ */
+function ilr_post_update_fix_unstickied_node_aliases(&$sandbox) {
+  $pathauto_generator = \Drupal::service('pathauto.generator');
+  $alias_storage = \Drupal::entityTypeManager()->getStorage('path_alias');
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $nodes = [];
+
+  $query = $alias_storage->getQuery();
+  $result = $query->condition('alias', '/taxonomy/term/%', 'LIKE')
+    ->condition('path', '/node/%', 'LIKE')
+    ->execute();
+
+  foreach ($alias_storage->loadMultiple($result) as $alias) {
+    $nodes[] = Url::fromUri("internal:" . $alias->path->value)->getRouteParameters()['node'];
+  }
+
+  foreach ($node_storage->loadMultiple($nodes) as $node) {
+    $result = $pathauto_generator->updateEntityAlias($node, 'update');
   }
 }
