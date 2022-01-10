@@ -319,7 +319,7 @@ function collection_blogs_collection_pathauto_alias_alter(&$alias, array &$conte
   if ($context['collection_item']->hasField('field_blog_categories') && !$context['collection_item']->field_blog_categories->isEmpty()) {
     // Prepend the category path to the original alias. In most cases, the
     // category term path will include the collection path.
-    $alias = $context['collection_item']->field_blog_categories->entity->toUrl()->toString() . $context['original_alias'];
+    $alias = \Drupal::service('path_alias.manager')->getAliasByPath('/taxonomy/term/' . $context['collection_item']->field_blog_categories->entity->id()) . $context['original_alias'];
   }
 }
 
