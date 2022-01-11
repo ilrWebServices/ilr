@@ -7,8 +7,10 @@ dependencies:
     - field.field.node.instructor.field_job_title
     - field.field.node.instructor.field_last_name
     - field.field.node.instructor.field_representative_image
+    - image.style.medium_preserve_aspect
     - node.type.instructor
   module:
+    - media
     - text
     - user
 id: node.instructor.default
@@ -35,10 +37,10 @@ content:
     weight: 100
     label: hidden
     settings:
-      view_mode: media_library
-      link: false
+      image_style: medium_preserve_aspect
+      image_link: ''
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    type: media_thumbnail
     region: content
   links:
     weight: 103

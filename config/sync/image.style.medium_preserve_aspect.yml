@@ -1,0 +1,15 @@
+uuid: f2198a8e-53ec-411b-8636-91736b6d8ac5
+langcode: en
+status: true
+dependencies: {  }
+name: medium_preserve_aspect
+label: 'Medium preserve aspect ratio (400x400 max)'
+effects:
+  b078e2e2-c3d8-4da8-bc0d-d1b8da9378a2:
+    uuid: b078e2e2-c3d8-4da8-bc0d-d1b8da9378a2
+    id: image_scale
+    weight: 2
+    data:
+      width: 1200
+      height: 1200
+      upscale: false
