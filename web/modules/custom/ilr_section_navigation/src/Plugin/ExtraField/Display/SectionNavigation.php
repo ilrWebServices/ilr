@@ -47,6 +47,10 @@ class SectionNavigation extends ExtraFieldDisplayBase implements ContainerFactor
     $elements = [];
     $links = [];
 
+    if (!$entity->hasField('field_sections')) {
+      return $elements;
+    }
+
     foreach ($entity->field_sections as $section) {
       if ($section_link = $section->entity->getBehaviorSetting('in_page_nav', 'title')) {
         $behavior = $section->entity->type->entity->getBehaviorPlugin('in_page_nav');
