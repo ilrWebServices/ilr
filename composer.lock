@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "508216afcf763b074fc1926aefdc7af1",
+    "content-hash": "943e102af26d00055f41f27d5ae8eac2",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4036,17 +4036,17 @@
         },
         {
             "name": "drupal/footnotes",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/footnotes.git",
-                "reference": "3.0.0"
+                "reference": "3.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/footnotes-3.0.0.zip",
-                "reference": "3.0.0",
-                "shasum": "4ababee3072955e078a9e06b5df8439282a9c55c"
+                "url": "https://ftp.drupal.org/files/projects/footnotes-3.0.1.zip",
+                "reference": "3.0.1",
+                "shasum": "2b85c7e7a8c318af2b7d15248a5c58027e5b9ba4"
             },
             "require": {
                 "drupal/core": ">=8.6",
@@ -4058,8 +4058,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.0.0",
-                    "datestamp": "1615725197",
+                    "version": "3.0.1",
+                    "datestamp": "1637009668",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
