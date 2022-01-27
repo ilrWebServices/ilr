@@ -20,29 +20,29 @@ filters:
     id: filter_html
     provider: filter
     status: true
-    weight: -50
+    weight: -49
     settings:
-      allowed_html: '<em> <strong> <cite> <blockquote cite> <code> <ul type class="cu-factlist"> <ol type start class="accentuated"> <li> <dl> <dt> <dd> <h2 id class="cu-heading simple-columns--column-break"> <h3 id class="cu-heading cu-heading--strong simple-columns--column-break"> <h4 id class="cu-heading simple-columns--column-break"> <br> <div id class="simple-columns visually_hidden figure-grid"> <p class="simple-columns--column-break shout"> <table visually-hidden> <caption> <tbody> <thead> <tfoot> <th colspan rowspan scope> <td colspan rowspan> <tr> <colgroup span> <col span class=""> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption data-link-text alt title> <span class=""> <fn value> <a href hreflang id name data-entity-substitution data-entity-type data-entity-uuid title target class="">'
+      allowed_html: '<em> <strong> <cite> <blockquote cite> <code> <ul type class="cu-factlist footnotes"> <ol type start class="accentuated"> <li class=""> <dl> <dt> <dd> <h2 id class="cu-heading simple-columns--column-break"> <h3 id class="cu-heading cu-heading--strong simple-columns--column-break"> <h4 id class="cu-heading simple-columns--column-break"> <br> <div id class="simple-columns visually_hidden figure-grid"> <p class="simple-columns--column-break shout"> <table visually-hidden> <caption> <tbody> <thead> <tfoot> <th colspan rowspan scope> <td colspan rowspan> <tr> <colgroup span> <col span class=""> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption data-link-text alt title> <span class=""> <fn value> <a href hreflang id name data-entity-substitution data-entity-type data-entity-uuid title target class=" cu-button see-footnote footnote-label">'
       filter_html_help: true
       filter_html_nofollow: false
   filter_htmlcorrector:
     id: filter_htmlcorrector
     provider: filter
     status: true
-    weight: 10
+    weight: -41
     settings: {  }
   token_filter:
     id: token_filter
     provider: token_filter
     status: false
-    weight: -40
+    weight: -36
     settings:
       replace_empty: '0'
   filter_cu_heading:
     id: filter_cu_heading
     provider: ilr
     status: true
-    weight: -49
+    weight: -48
     settings: {  }
   media_embed:
     id: media_embed
@@ -61,26 +61,26 @@ filters:
     id: editor_file_reference
     provider: editor
     status: false
-    weight: -43
+    weight: -39
     settings: {  }
   filter_html_image_secure:
     id: filter_html_image_secure
     provider: filter
     status: false
-    weight: -39
+    weight: -35
     settings: {  }
   filter_url:
     id: filter_url
     provider: filter
     status: false
-    weight: -41
+    weight: -37
     settings:
       filter_url_length: 72
   filter_autop:
     id: filter_autop
     provider: filter
     status: false
-    weight: -42
+    weight: -38
     settings: {  }
   filter_align:
     id: filter_align
@@ -98,26 +98,26 @@ filters:
     id: filter_html_escape
     provider: filter
     status: false
-    weight: -44
+    weight: -40
     settings: {  }
   linkit:
     id: linkit
     provider: linkit
     status: true
-    weight: 0
+    weight: -43
     settings:
       title: true
   filter_internal_links:
     id: filter_internal_links
     provider: ilr
     status: true
-    weight: 0
+    weight: -44
     settings: {  }
   filter_footnotes:
     id: filter_footnotes
     provider: footnotes
     status: true
-    weight: 0
+    weight: -50
     settings:
       footnotes_collapse: '0'
       footnotes_html: '1'
@@ -125,5 +125,5 @@ filters:
     id: filter_union_components
     provider: union_organizer
     status: true
-    weight: 0
+    weight: -42
     settings: {  }
