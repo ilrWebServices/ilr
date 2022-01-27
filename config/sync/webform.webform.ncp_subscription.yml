@@ -15,9 +15,6 @@ title: 'New Conversations Project Subscription'
 description: ''
 category: ''
 elements: |-
-  '#attributes':
-    class:
-      - 'webform--with-content webform--dark'
   content_container:
     '#type': container
     '#attributes':
@@ -27,7 +24,7 @@ elements: |-
       <h2 class="cu-heading">
         Stay Connected
       </h2>
-      
+
       <p>Join the New Conversations Project mailing list.</p>
     title: null
   element_container:
@@ -92,6 +89,11 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_attributes:
+    class:
+      - 'webform--with-content webform--dark'
+  form_method: ''
+  form_action: ''
   share: false
   share_node: false
   share_theme_name: ''
