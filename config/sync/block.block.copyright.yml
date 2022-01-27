@@ -19,8 +19,8 @@ plugin: 'block_content:e0fd4aad-b220-46f2-912c-18aec105a67d'
 settings:
   id: 'block_content:e0fd4aad-b220-46f2-912c-18aec105a67d'
   label: Copyright
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
@@ -28,8 +28,8 @@ visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: ''
     context_mapping: {  }
+    block_visibility_group: ''
   root_path_entity_bundle:
     id: root_path_entity_bundle
     root_entity_bundles: {  }

@@ -18,8 +18,8 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: node.post.teaser_compact
 targetEntityType: node
 bundle: post
@@ -27,20 +27,20 @@ mode: teaser_compact
 content:
   body:
     type: text_summary_or_trimmed
-    weight: 2
-    region: content
     label: hidden
     settings:
       trim_length: 600
     third_party_settings: {  }
+    weight: 2
+    region: content
   field_published_date:
-    weight: 1
+    type: datetime_default
     label: hidden
     settings:
       timezone_override: ''
       format_type: ilr_date
     third_party_settings: {  }
-    type: datetime_default
+    weight: 1
     region: content
 hidden:
   blog_collection: true

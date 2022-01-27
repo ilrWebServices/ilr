@@ -8,9 +8,9 @@ third_party_settings:
   honeypot:
     honeypot: true
     time_restriction: true
+weight: 0
 open: null
 close: null
-weight: 0
 uid: 1
 template: false
 archive: false
@@ -137,9 +137,9 @@ settings:
   page_theme_name: ''
   form_title: both
   form_submit_once: false
-  form_exception_message: ''
   form_open_message: ''
   form_close_message: ''
+  form_exception_message: ''
   form_previous_submissions: true
   form_confidential: false
   form_confidential_message: ''
@@ -149,16 +149,16 @@ settings:
   form_prepopulate_source_entity: false
   form_prepopulate_source_entity_required: false
   form_prepopulate_source_entity_type: ''
-  form_reset: false
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
   form_disable_autocomplete: false
   form_novalidate: false
   form_disable_inline_errors: false
   form_required: false
-  form_unsaved: false
-  form_disable_back: false
-  form_submit_back: false
   form_autofocus: false
   form_details_toggle: false
+  form_reset: false
   form_access_denied: default
   form_access_denied_title: ''
   form_access_denied_message: ''
@@ -170,11 +170,16 @@ settings:
   share_title: true
   share_page_body_attributes: {  }
   submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
   submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
   submission_views:
     salesforce-mappings:
-      view: 'webform_submissions:embed_salesforce'
       title: 'Salesforce mappings'
+      view: 'webform_submissions:embed_salesforce'
       webform_routes:
         - entity.webform.results_submissions
   submission_views_replace: {  }
@@ -184,11 +189,6 @@ settings:
   submission_access_denied_title: ''
   submission_access_denied_message: ''
   submission_access_denied_attributes: {  }
-  submission_exception_message: ''
-  submission_locked_message: ''
-  submission_excluded_elements: {  }
-  submission_exclude_empty: false
-  submission_exclude_empty_checkbox: false
   previous_submission_message: ''
   previous_submissions_message: ''
   autofill: false
@@ -199,13 +199,13 @@ settings:
   wizard_progress_percentage: false
   wizard_progress_link: false
   wizard_progress_states: false
-  wizard_auto_forward: true
-  wizard_auto_forward_hide_next_button: false
-  wizard_keyboard: true
   wizard_start_label: ''
   wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
   wizard_track: ''
   wizard_prev_button_label: ''
   wizard_next_button_label: ''
@@ -228,9 +228,9 @@ settings:
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
   confirmation_type: inline
+  confirmation_url: ''
   confirmation_title: ''
   confirmation_message: 'Thank you for your interest in the MILR program. We will be in touch soon about your eligibility and next steps.'
-  confirmation_url: ''
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -310,9 +310,9 @@ access:
 handlers:
   email:
     id: email
+    handler_id: email
     label: Email
     notes: ''
-    handler_id: email
     status: true
     conditions: {  }
     weight: 0
@@ -321,13 +321,17 @@ handlers:
         - completed
       to_mail: ilrgradapplicant@cornell.edu
       to_options: {  }
-      cc_mail: ''
-      cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
       from_mail: _default
       from_options: {  }
       from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
       subject: 'MILR: Check Your Eligibility submitted - [webform_submission:values:first_name:raw] [webform_submission:values:last_name:raw]'
       body: "A new MILR Eligibility form has been submitted.&nbsp; A lead will be created in Salesforce momentarily.<br />\r\n<br />\r\nThe submission included the following information:<br />\r\n<br />\r\n[webform_submission:values]<br />\r\n<br />\r\n&nbsp;"
       excluded_elements: {  }
@@ -338,11 +342,7 @@ handlers:
       html: true
       attachments: false
       twig: false
-      debug: false
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
       theme_name: ''
       parameters: {  }
+      debug: false
 variants: {  }

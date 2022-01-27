@@ -1,7 +1,11 @@
 uuid: dd7cf10f-fdf2-4c63-9f8d-fc048fbc80db
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - collection
+    - media
+    - system
 _core:
   default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
 id: anonymous

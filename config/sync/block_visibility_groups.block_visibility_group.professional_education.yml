@@ -10,8 +10,8 @@ logic: and
 conditions:
   6d89ba18-7a17-4dba-bdd4-d917670fbe27:
     id: request_path
-    pages: '/programs/professional-education*'
     negate: false
-    context_mapping: {  }
     uuid: 6d89ba18-7a17-4dba-bdd4-d917670fbe27
+    context_mapping: {  }
+    pages: '/programs/professional-education*'
 allow_other_conditions: true

@@ -29,13 +29,13 @@ content:
   body:
     type: text_textarea_with_summary
     weight: 121
+    region: content
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
-    region: content
   created:
     type: datetime_timestamp
     weight: 10
@@ -43,24 +43,25 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_course_number:
+    type: string_textfield
     weight: 1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_delivery_method:
+    type: string_textfield
     weight: 124
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_media_secondary:
     type: entity_reference_paragraphs
     weight: 127
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -69,10 +70,10 @@ content:
       form_display_mode: default
       default_paragraph_type: ''
     third_party_settings: {  }
-    region: content
   field_media_section:
     type: entity_reference_paragraphs
     weight: 126
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -81,7 +82,6 @@ content:
       form_display_mode: default
       default_paragraph_type: ''
     third_party_settings: {  }
-    region: content
   field_message:
     type: text_textarea
     weight: 150
@@ -91,16 +91,18 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_representative_image:
+    type: media_library_widget
     weight: 0
+    region: content
     settings:
       media_types: {  }
     third_party_settings:
       media_library_edit:
         show_edit: '1'
-    type: media_library_widget
-    region: content
   field_sections:
+    type: paragraphs_previewer
     weight: 122
+    region: content
     settings:
       title: Component
       title_plural: Components
@@ -116,28 +118,26 @@ content:
         duplicate: 0
         add_above: 0
     third_party_settings: {  }
-    type: paragraphs_previewer
-    region: content
   field_sponsor:
+    type: entity_reference_autocomplete
     weight: 123
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_topics:
+    type: entity_reference_autocomplete
     weight: 122
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   path:
     type: path
     weight: 30
@@ -146,24 +146,24 @@ content:
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 15
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 120
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 16
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -176,12 +176,12 @@ content:
   uid:
     type: entity_reference_autocomplete
     weight: 5
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
-    region: content
     third_party_settings: {  }
   url_redirects:
     weight: 50

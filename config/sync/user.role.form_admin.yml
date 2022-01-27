@@ -1,7 +1,10 @@
 uuid: b67f535b-9633-4cca-b8b0-de5d7400f42c
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
+    - webform
 id: form_admin
 label: 'Form Admin'
 weight: 6

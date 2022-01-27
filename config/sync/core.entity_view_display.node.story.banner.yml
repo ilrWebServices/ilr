@@ -18,8 +18,8 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: true
+    allow_custom: false
     sections:
       -
         layout_id: banner
@@ -33,69 +33,69 @@ third_party_settings:
             configuration:
               id: 'field_block:node:story:title'
               label: Title
-              provider: layout_builder
               label_display: '0'
-              formatter:
-                label: hidden
-                type: string
-                settings:
-                  link_to_entity: true
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: true
+                third_party_settings: {  }
             weight: 0
+            additional: {  }
           4573aac1-ac79-4784-a220-5f8881d39d6f:
             uuid: 4573aac1-ac79-4784-a220-5f8881d39d6f
             region: banner
             configuration:
               id: 'field_block:node:story:field_representative_image'
               label: 'Representative Image'
-              provider: layout_builder
               label_display: '0'
-              formatter:
-                label: visually_hidden
-                type: media_thumbnail
-                settings:
-                  image_style: large_2_1
-                  image_link: ''
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
+              formatter:
+                type: media_thumbnail
+                label: visually_hidden
+                settings:
+                  image_link: ''
+                  image_style: large_2_1
+                third_party_settings: {  }
             weight: 1
+            additional: {  }
           04abf703-ad2b-4d28-9abb-9f91c0cfd75a:
             uuid: 04abf703-ad2b-4d28-9abb-9f91c0cfd75a
             region: banner
             configuration:
               id: 'field_block:node:story:body'
               label: 'Intro Text'
-              provider: layout_builder
               label_display: '0'
-              formatter:
-                label: hidden
-                type: text_default
-                settings: {  }
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
             weight: 2
+            additional: {  }
           df8f0c88-cdb3-4975-a1db-f64c329be835:
             uuid: df8f0c88-cdb3-4975-a1db-f64c329be835
             region: banner
             configuration:
               id: 'extra_field_block:node:story:links'
               label: Links
-              provider: layout_builder
               label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-            additional: {  }
             weight: 3
+            additional: {  }
         third_party_settings: {  }
 id: node.story.banner
 targetEntityType: node
@@ -103,16 +103,16 @@ bundle: story
 mode: banner
 content:
   field_representative_img_caption:
-    weight: 101
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 101
     region: main
   links:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
 hidden:
   body: true

@@ -11,12 +11,12 @@ pattern: 'programs/professional-education/certificates/[node:title]'
 selection_criteria:
   12c42900-05e2-4010-9999-a748f97f9314:
     id: node_type
-    bundles:
-      certificate: certificate
     negate: false
+    uuid: 12c42900-05e2-4010-9999-a748f97f9314
     context_mapping:
       node: node
-    uuid: 12c42900-05e2-4010-9999-a748f97f9314
+    bundles:
+      certificate: certificate
 selection_logic: and
 weight: -5
 relationships: {  }

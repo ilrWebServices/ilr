@@ -16,29 +16,29 @@ mode: default
 content:
   field_media_file:
     type: file_default
-    weight: -1
-    region: content
     label: hidden
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
+    weight: -1
+    region: content
   name:
     type: string
-    weight: -5
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: -5
+    region: content
   thumbnail:
     type: image
-    weight: -2
-    region: content
     label: hidden
     settings:
-      image_style: thumbnail_square
       image_link: ''
+      image_style: thumbnail_square
     third_party_settings: {  }
+    weight: -2
+    region: content
 hidden:
   created: true
   search_api_excerpt: true

@@ -22,14 +22,11 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       rich_text: rich_text
       video: video
+    negate: 0
     target_bundles_drag_drop:
-      picture_in_picture:
-        weight: 16
-        enabled: false
       collection_listing:
         weight: 17
         enabled: false
@@ -54,12 +51,15 @@ settings:
       person:
         weight: 24
         enabled: false
+      picture_in_picture:
+        weight: 16
+        enabled: false
       promo:
         weight: 25
         enabled: false
       rich_text:
-        enabled: true
         weight: 26
+        enabled: true
       section:
         weight: 27
         enabled: false
@@ -70,6 +70,6 @@ settings:
         weight: 29
         enabled: false
       video:
-        enabled: true
         weight: 30
+        enabled: true
 field_type: entity_reference_revisions

@@ -20,8 +20,8 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: node.story.promo
 targetEntityType: node
 bundle: story
@@ -29,20 +29,20 @@ mode: promo
 content:
   body:
     type: text_summary_or_trimmed
-    weight: 1
-    region: content
     label: hidden
     settings:
       trim_length: 600
     third_party_settings: {  }
+    weight: 1
+    region: content
   field_representative_image:
-    weight: 0
+    type: media_thumbnail
     label: hidden
     settings:
-      image_style: large_21_9_1200x514_
       image_link: ''
+      image_style: large_21_9_1200x514_
     third_party_settings: {  }
-    type: media_thumbnail
+    weight: 0
     region: content
 hidden:
   extra_field_previous_next_story: true

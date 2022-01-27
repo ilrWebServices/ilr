@@ -21,11 +21,13 @@ bundle: video_post
 mode: default
 content:
   body:
+    type: text_textarea_with_summary
     weight: 28
+    region: content
     settings:
       rows: 9
-      placeholder: ''
       summary_rows: 3
+      placeholder: ''
       show_summary: true
     third_party_settings:
       allowed_formats:
@@ -33,8 +35,6 @@ content:
         hide_guidelines: '1'
       ilr:
         hide_value: '1'
-    type: text_textarea_with_summary
-    region: content
   created:
     type: datetime_timestamp
     weight: 10
@@ -42,27 +42,27 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_published_date:
+    type: datetime_default
     weight: 10
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_representative_image:
+    type: media_library_widget
     weight: 9
+    region: content
     settings:
       media_types: {  }
     third_party_settings:
       media_library_edit:
         show_edit: '1'
-    type: media_library_widget
-    region: content
   field_video:
     type: media_library_widget
     weight: 121
+    region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
-    region: content
   path:
     type: path
     weight: 30
@@ -71,24 +71,24 @@ content:
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 15
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 120
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 16
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -101,16 +101,16 @@ content:
   uid:
     type: entity_reference_autocomplete
     weight: 5
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
-    region: content
     third_party_settings: {  }
   url_redirects:
     weight: 50
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden: {  }

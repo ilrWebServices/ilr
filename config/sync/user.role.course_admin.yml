@@ -1,7 +1,16 @@
 uuid: f119cb1a-5b0e-4b9f-ac1f-6a7c993171ec
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - node.type.certificate
+    - node.type.course
+    - node.type.instructor
+  module:
+    - contextual
+    - media
+    - node
+    - system
 id: course_admin
 label: 'Course Admin'
 weight: 5

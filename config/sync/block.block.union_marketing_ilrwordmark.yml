@@ -15,6 +15,6 @@ plugin: ilrwordmark_block
 settings:
   id: ilrwordmark_block
   label: 'ILR Wordmark'
-  provider: ilr
   label_display: '0'
+  provider: ilr
 visibility: {  }

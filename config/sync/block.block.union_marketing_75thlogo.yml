@@ -19,8 +19,8 @@ plugin: 'block_content:ae107194-9e53-436b-8821-5c0caf031770'
 settings:
   id: 'block_content:ae107194-9e53-436b-8821-5c0caf031770'
   label: '75th logo'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
@@ -28,10 +28,10 @@ visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: ''
     context_mapping: {  }
+    block_visibility_group: ''
   request_path:
     id: request_path
-    pages: '/75*'
     negate: false
     context_mapping: {  }
+    pages: '/75*'

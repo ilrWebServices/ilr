@@ -22,17 +22,11 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       testimonial: testimonial
       video: video
+    negate: 0
     target_bundles_drag_drop:
-      testimonial:
-        enabled: true
-        weight: 4
-      video:
-        enabled: true
-        weight: 6
       promo:
         weight: 7
         enabled: false
@@ -42,4 +36,10 @@ settings:
       section:
         weight: 9
         enabled: false
+      testimonial:
+        weight: 4
+        enabled: true
+      video:
+        weight: 6
+        enabled: true
 field_type: entity_reference_revisions

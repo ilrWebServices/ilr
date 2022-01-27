@@ -29,17 +29,17 @@ dependencies:
     - webform
 third_party_settings:
   layout_builder:
-    allow_custom: true
     enabled: true
+    allow_custom: true
     sections:
       -
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 1
           collapse_margins: 1
           extra_classes: ''
-          context_mapping: {  }
         components:
           c3773e2e-dcd4-45c0-88cf-7086817257db:
             uuid: c3773e2e-dcd4-45c0-88cf-7086817257db
@@ -47,13 +47,13 @@ third_party_settings:
             configuration:
               id: 'views_block:topics_list-course_finder'
               label: ''
-              provider: views
               label_display: '0'
+              provider: views
+              context_mapping: {  }
               views_label: ''
               items_per_page: none
-              context_mapping: {  }
-            additional: {  }
             weight: 0
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: banner
@@ -67,131 +67,131 @@ third_party_settings:
             configuration:
               id: system_breadcrumb_block
               label: Breadcrumbs
-              provider: system
               label_display: '0'
+              provider: system
               context_mapping: {  }
-            additional: {  }
             weight: 0
+            additional: {  }
           38a16e29-ff59-4498-9723-ef44e5deca4d:
             uuid: 38a16e29-ff59-4498-9723-ef44e5deca4d
             region: banner
             configuration:
               id: 'field_block:node:certificate:title'
               label: Title
-              provider: layout_builder
               label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
               formatter:
-                label: hidden
                 type: string
+                label: hidden
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-            additional: {  }
             weight: 1
+            additional: {  }
           5a395ad3-64f5-4529-bf91-e734770cd74b:
             uuid: 5a395ad3-64f5-4529-bf91-e734770cd74b
             region: banner
             configuration:
               id: 'field_block:node:certificate:field_outcomes'
               label: Outcomes
-              provider: layout_builder
               label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
               formatter:
-                label: hidden
                 type: string
+                label: hidden
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-            additional: {  }
             weight: 3
+            additional: {  }
           b0e922ef-4160-4605-b9ac-c4170e446dad:
             uuid: b0e922ef-4160-4605-b9ac-c4170e446dad
             region: content
             configuration:
+              id: 'extra_field_block:node:certificate:links'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'extra_field_block:node:certificate:links'
-            additional: {  }
             weight: 0
+            additional: {  }
           7b7e298c-433c-4407-9b17-01903f84a4a5:
             uuid: 7b7e298c-433c-4407-9b17-01903f84a4a5
             region: content
             configuration:
+              id: 'field_block:node:certificate:field_course'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:node:certificate:field_course'
               formatter:
+                type: entity_reference_label
                 label: above
                 settings:
                   link: true
                 third_party_settings: {  }
-                type: entity_reference_label
-            additional: {  }
             weight: 1
+            additional: {  }
           b3552817-bd16-4023-9780-cd13ff1671c7:
             uuid: b3552817-bd16-4023-9780-cd13ff1671c7
             region: content
             configuration:
+              id: 'field_block:node:certificate:field_outcomes'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:node:certificate:field_outcomes'
               formatter:
+                type: string
                 label: above
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-                type: string
-            additional: {  }
             weight: 2
+            additional: {  }
           46337029-ea83-47dd-a3cb-fee2fc451864:
             uuid: 46337029-ea83-47dd-a3cb-fee2fc451864
             region: content
             configuration:
+              id: 'field_block:node:certificate:field_completion_time'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:node:certificate:field_completion_time'
               formatter:
+                type: number_integer
                 label: above
                 settings:
                   thousand_separator: ''
                   prefix_suffix: true
                 third_party_settings: {  }
-                type: number_integer
-            additional: {  }
             weight: 3
+            additional: {  }
           5134ce50-d3e6-4272-af28-52acd3bfb82e:
             uuid: 5134ce50-d3e6-4272-af28-52acd3bfb82e
             region: content
             configuration:
+              id: 'field_block:node:certificate:field_total_cost'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:node:certificate:field_total_cost'
               formatter:
+                type: number_integer
                 label: above
                 settings:
                   thousand_separator: ''
                   prefix_suffix: true
                 third_party_settings: {  }
-                type: number_integer
-            additional: {  }
             weight: 4
+            additional: {  }
           5d0625cb-b51e-4dbf-a753-02b8ed98a66f:
             uuid: 5d0625cb-b51e-4dbf-a753-02b8ed98a66f
             region: content
             configuration:
+              id: 'field_block:node:certificate:field_media_section'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:node:certificate:field_media_section'
               formatter:
                 type: entity_reference_revisions_entity_view
                 label: above
@@ -199,16 +199,16 @@ third_party_settings:
                   view_mode: default
                   link: ''
                 third_party_settings: {  }
-            additional: {  }
             weight: 5
+            additional: {  }
           e68ccd75-71ae-4190-b4ff-4111f8e3c7e2:
             uuid: e68ccd75-71ae-4190-b4ff-4111f8e3c7e2
             region: content
             configuration:
+              id: 'field_block:node:certificate:field_representative_image'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:node:certificate:field_representative_image'
               formatter:
                 type: entity_reference_entity_view
                 label: above
@@ -216,50 +216,50 @@ third_party_settings:
                   view_mode: default
                   link: false
                 third_party_settings: {  }
-            additional: {  }
             weight: 6
+            additional: {  }
           096221ef-6027-4816-b250-d7366c1e2aba:
             uuid: 096221ef-6027-4816-b250-d7366c1e2aba
             region: content
             configuration:
+              id: 'field_block:node:certificate:field_prerequisites'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:node:certificate:field_prerequisites'
               formatter:
+                type: text_default
                 label: above
                 settings: {  }
                 third_party_settings: {  }
-                type: text_default
-            additional: {  }
             weight: 7
+            additional: {  }
           b3ba24ab-19a2-416f-8ecb-cd31e3ac9b5f:
             uuid: b3ba24ab-19a2-416f-8ecb-cd31e3ac9b5f
             region: banner
             configuration:
               id: 'field_block:node:certificate:field_representative_image'
               label: 'Representative Image'
-              provider: layout_builder
               label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
               formatter:
-                label: hidden
                 type: entity_reference_entity_view
+                label: hidden
                 settings:
                   view_mode: default
                 third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-            additional: {  }
             weight: 2
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 1
           collapse_margins: 1
           extra_classes: ''
-          context_mapping: {  }
         components:
           40574358-ea53-4784-9f8a-7acc9e9e95c8:
             uuid: 40574358-ea53-4784-9f8a-7acc9e9e95c8
@@ -267,20 +267,20 @@ third_party_settings:
             configuration:
               id: certificate_basics_block
               label: 'Certificate basics'
-              provider: ilr
               label_display: '0'
+              provider: ilr
               context_mapping: {  }
-            additional: {  }
             weight: 0
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 0
           collapse_margins: false
           extra_classes: ''
-          context_mapping: {  }
         components:
           a898965b-ed9e-430e-aa0f-8469aa931719:
             uuid: a898965b-ed9e-430e-aa0f-8469aa931719
@@ -288,62 +288,62 @@ third_party_settings:
             configuration:
               id: 'field_block:node:certificate:body'
               label: Body
-              provider: layout_builder
               label_display: '0'
-              formatter:
-                label: hidden
-                type: text_default
-                settings: {  }
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-            additional: {  }
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
             weight: 0
+            additional: {  }
           03885a70-5792-45a5-ba6c-4e1906f6584a:
             uuid: 03885a70-5792-45a5-ba6c-4e1906f6584a
             region: main
             configuration:
               id: 'field_block:node:certificate:field_course'
               label: Courses
-              provider: layout_builder
               label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
               formatter:
-                label: hidden
                 type: entity_reference_entity_view
+                label: hidden
                 settings:
                   view_mode: teaser
                 third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-            additional: {  }
             weight: 2
+            additional: {  }
           e9f44bac-c8b6-424a-a5bc-793e3d8a97b2:
             uuid: e9f44bac-c8b6-424a-a5bc-793e3d8a97b2
             region: main
             configuration:
               id: 'field_block:node:certificate:field_prerequisites'
               label: Prerequisites
-              provider: layout_builder
               label_display: visible
-              formatter:
-                label: hidden
-                type: text_default
-                settings: {  }
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
             weight: 1
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 0
           collapse_margins: 0
           extra_classes: ''
-          context_mapping: {  }
         components:
           951e19ad-3cd8-48ec-86c9-67841d6ac98a:
             uuid: 951e19ad-3cd8-48ec-86c9-67841d6ac98a
@@ -351,23 +351,23 @@ third_party_settings:
             configuration:
               id: webform_block
               label: 'Professional education interests form'
-              provider: webform
               label_display: '0'
+              provider: webform
+              context_mapping: {  }
               webform_id: professional_education_interests
               default_data: ''
               redirect: false
-              context_mapping: {  }
-            additional: {  }
             weight: 3
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 1
           collapse_margins: false
           extra_classes: ''
-          context_mapping: {  }
         components:
           14ac907d-c792-4f48-ac1c-586ed2fff093:
             uuid: 14ac907d-c792-4f48-ac1c-586ed2fff093
@@ -375,37 +375,37 @@ third_party_settings:
             configuration:
               id: 'field_block:node:certificate:field_media_section'
               label: 'Media Section'
-              provider: layout_builder
               label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
               formatter:
-                label: hidden
                 type: entity_reference_revisions_entity_view
+                label: hidden
                 settings:
                   view_mode: default
                 third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-            additional: {  }
             weight: -10
+            additional: {  }
           4e23eaf6-7a09-4da3-87db-cd43f35870cc:
             uuid: 4e23eaf6-7a09-4da3-87db-cd43f35870cc
             region: main
             configuration:
               id: 'field_block:node:certificate:field_sections'
               label: Sections
-              provider: layout_builder
               label_display: '0'
-              formatter:
-                label: hidden
-                type: entity_reference_revisions_entity_view
-                settings:
-                  view_mode: default
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
             weight: -9
+            additional: {  }
         third_party_settings: {  }
 id: node.certificate.default
 targetEntityType: node
@@ -413,92 +413,92 @@ bundle: certificate
 mode: default
 content:
   body:
-    weight: 108
+    type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 108
     region: banner
   field_completion_time:
-    weight: 103
+    type: number_integer
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    type: number_integer
+    weight: 103
     region: content
   field_course:
-    weight: 101
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 101
     region: content
   field_media_section:
     type: entity_reference_revisions_entity_view
-    weight: 105
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    weight: 105
     region: content
   field_outcomes:
-    weight: 102
+    type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 102
     region: content
   field_prerequisites:
-    weight: 107
+    type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 107
     region: main
   field_representative_image:
     type: entity_reference_entity_view
-    weight: 106
     label: above
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
+    weight: 106
     region: content
   field_sections:
-    weight: 110
+    type: entity_reference_revisions_entity_view
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
+    weight: 110
     region: main
   field_topics:
-    weight: 109
+    type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 109
     region: main
   field_total_cost:
-    weight: 104
+    type: number_integer
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    type: number_integer
+    weight: 104
     region: content
   links:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
 hidden:
   layout_builder__layout: true

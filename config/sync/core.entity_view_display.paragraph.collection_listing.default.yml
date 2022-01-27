@@ -11,11 +11,11 @@ bundle: collection_listing
 mode: default
 content:
   field_collection:
-    weight: 0
+    type: entity_reference_entity_id
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: entity_reference_entity_id
+    weight: 0
     region: content
 hidden:
   search_api_excerpt: true

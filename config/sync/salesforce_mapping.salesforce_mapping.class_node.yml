@@ -1,5 +1,135 @@
-uuid: ecb4f238-6e81-4a95-b003-944f1a0b8cb6
 langcode: en
+id: class_node
+label: 'Class Node'
+weight: 1
+type: salesforce_mapping
+key: ''
+always_upsert: false
+async: false
+push_standalone: false
+pull_standalone: false
+pull_trigger_date: LastModifiedDate
+pull_frequency: 0
+push_frequency: 0
+push_limit: 0
+push_retries: 3
+pull_where_clause: 'Synchronized_with_Web__c = TRUE'
+sync_triggers:
+  pull_create: true
+  pull_update: true
+  pull_delete: true
+salesforce_object_type: EXECED_Event_Class__c
+drupal_entity_type: node
+drupal_bundle: class
+field_mappings:
+  -
+    drupal_field_type: properties
+    drupal_field_value: title
+    direction: sf_drupal
+    salesforce_field: Name
+    id: 0
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_date_start
+    direction: sf_drupal
+    salesforce_field: Start__c
+    id: 1
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_date_end
+    direction: sf_drupal
+    salesforce_field: End__c
+    id: 2
+  -
+    drupal_field_type: RelatedIDs
+    drupal_field_value: field_course
+    direction: sf_drupal
+    salesforce_field: Course__c
+    id: 3
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_price
+    direction: sf_drupal
+    salesforce_field: Event_Class_Fee__c
+    id: 4
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_class_full
+    direction: sf_drupal
+    salesforce_field: Is_Full__c
+    id: 5
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_class_cancelled
+    direction: sf_drupal
+    salesforce_field: Is_Cancelled__c
+    id: 6
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_address.address_line1
+    direction: sf_drupal
+    salesforce_field: Event_Location_Street__c
+    id: 7
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_address.locality
+    direction: sf_drupal
+    salesforce_field: Event_Location_City__c
+    id: 8
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_address.administrative_area
+    direction: sf_drupal
+    salesforce_field: Event_Location_State__c
+    id: 9
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_address.postal_code
+    direction: sf_drupal
+    salesforce_field: Event_Location_Zip_Postal_Code__c
+    id: 10
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_address.country_code
+    direction: sf_drupal
+    salesforce_field: Event_Location_Country__c
+    id: 11
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_class_date.value
+    direction: sf_drupal
+    salesforce_field: Start__c
+    id: 12
+  -
+    drupal_field_type: properties_extended
+    drupal_field_value: field_class_date.end_value
+    direction: sf_drupal
+    salesforce_field: End__c
+    id: 13
+  -
+    drupal_field_type: properties
+    drupal_field_value: status
+    direction: sf_drupal
+    salesforce_field: Class_Show_on_Web__c
+    id: 14
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_delivery_method
+    direction: sf_drupal
+    salesforce_field: Delivery_Method__c
+    id: 15
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_message
+    direction: sf_drupal
+    salesforce_field: Class_Selection_Header_on_Web__c
+    id: 16
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_external_link
+    direction: sf_drupal
+    salesforce_field: alternate_registration_url__c
+    id: 17
 status: true
 dependencies:
   config:
@@ -23,134 +153,4 @@ dependencies:
     - address
     - datetime_range
     - salesforce_pull
-id: class_node
-label: 'Class Node'
-weight: 1
-type: salesforce_mapping
-key: ''
-async: false
-push_standalone: false
-pull_standalone: false
-pull_trigger_date: LastModifiedDate
-pull_where_clause: 'Synchronized_with_Web__c = TRUE'
-sync_triggers:
-  pull_create: true
-  pull_update: true
-  pull_delete: true
-salesforce_object_type: EXECED_Event_Class__c
-drupal_entity_type: node
-drupal_bundle: class
-field_mappings:
-  -
-    drupal_field_type: properties
-    drupal_field_value: title
-    salesforce_field: Name
-    direction: sf_drupal
-    id: 0
-  -
-    drupal_field_type: properties
-    drupal_field_value: field_date_start
-    salesforce_field: Start__c
-    direction: sf_drupal
-    id: 1
-  -
-    drupal_field_type: properties
-    drupal_field_value: field_date_end
-    salesforce_field: End__c
-    direction: sf_drupal
-    id: 2
-  -
-    drupal_field_type: RelatedIDs
-    drupal_field_value: field_course
-    salesforce_field: Course__c
-    direction: sf_drupal
-    id: 3
-  -
-    drupal_field_type: properties
-    drupal_field_value: field_price
-    salesforce_field: Event_Class_Fee__c
-    direction: sf_drupal
-    id: 4
-  -
-    drupal_field_type: properties
-    drupal_field_value: field_class_full
-    salesforce_field: Is_Full__c
-    direction: sf_drupal
-    id: 5
-  -
-    drupal_field_type: properties
-    drupal_field_value: field_class_cancelled
-    salesforce_field: Is_Cancelled__c
-    direction: sf_drupal
-    id: 6
-  -
-    drupal_field_type: properties_extended
-    drupal_field_value: field_address.address_line1
-    salesforce_field: Event_Location_Street__c
-    direction: sf_drupal
-    id: 7
-  -
-    drupal_field_type: properties_extended
-    drupal_field_value: field_address.locality
-    salesforce_field: Event_Location_City__c
-    direction: sf_drupal
-    id: 8
-  -
-    drupal_field_type: properties_extended
-    drupal_field_value: field_address.administrative_area
-    salesforce_field: Event_Location_State__c
-    direction: sf_drupal
-    id: 9
-  -
-    drupal_field_type: properties_extended
-    drupal_field_value: field_address.postal_code
-    salesforce_field: Event_Location_Zip_Postal_Code__c
-    direction: sf_drupal
-    id: 10
-  -
-    drupal_field_type: properties_extended
-    drupal_field_value: field_address.country_code
-    salesforce_field: Event_Location_Country__c
-    direction: sf_drupal
-    id: 11
-  -
-    drupal_field_type: properties_extended
-    drupal_field_value: field_class_date.value
-    salesforce_field: Start__c
-    direction: sf_drupal
-    id: 12
-  -
-    drupal_field_type: properties_extended
-    drupal_field_value: field_class_date.end_value
-    salesforce_field: End__c
-    direction: sf_drupal
-    id: 13
-  -
-    drupal_field_type: properties
-    drupal_field_value: status
-    salesforce_field: Class_Show_on_Web__c
-    direction: sf_drupal
-    id: 14
-  -
-    drupal_field_type: properties
-    drupal_field_value: field_delivery_method
-    salesforce_field: Delivery_Method__c
-    direction: sf_drupal
-    id: 15
-  -
-    drupal_field_type: properties
-    drupal_field_value: field_message
-    salesforce_field: Class_Selection_Header_on_Web__c
-    direction: sf_drupal
-    id: 16
-  -
-    drupal_field_type: properties
-    drupal_field_value: field_external_link
-    salesforce_field: alternate_registration_url__c
-    direction: sf_drupal
-    id: 17
-push_limit: 0
-push_retries: 3
-push_frequency: 0
-pull_frequency: 0
-always_upsert: false
+uuid: ecb4f238-6e81-4a95-b003-944f1a0b8cb6

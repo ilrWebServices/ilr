@@ -29,8 +29,6 @@ mode: email
 content:
   field_address:
     type: address_default
-    weight: 5
-    region: content
     label: hidden
     settings:
       field_settings:
@@ -47,53 +45,53 @@ content:
         dependentLocality: 0
         country: 0
     third_party_settings: {  }
+    weight: 5
+    region: content
   field_class_date:
     type: date_range_without_time
-    weight: 1
-    region: content
     label: hidden
     settings:
       timezone_override: ''
+      date_format: 'Y-m-d\TH:i:s'
+      separator: '-'
       single: 'M j, Y'
       single_all_day: 'M j, Y'
       one_day: 'M j, Y'
       one_month: 'M j - {j}, Y'
       several_months: 'M j - {M} {j}, Y'
       several_years: 'M j, Y - {M} {j}, {Y}'
-      separator: '-'
-      date_format: 'Y-m-d\TH:i:s'
     third_party_settings: {  }
+    weight: 1
+    region: content
   field_course:
     type: entity_reference_entity_view
-    weight: 0
-    region: content
     label: hidden
     settings:
       view_mode: mini
       link: false
     third_party_settings: {  }
+    weight: 0
+    region: content
   field_date_end:
     type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: ilr_time
+    third_party_settings: {  }
     weight: 3
     region: content
-    label: hidden
-    settings:
-      timezone_override: ''
-      format_type: ilr_time
-    third_party_settings: {  }
   field_date_start:
     type: datetime_default
-    weight: 2
-    region: content
     label: hidden
     settings:
       timezone_override: ''
       format_type: ilr_time
     third_party_settings: {  }
+    weight: 2
+    region: content
   field_price:
     type: number_decimal
-    weight: 4
-    region: content
     label: hidden
     settings:
       thousand_separator: ''
@@ -101,6 +99,8 @@ content:
       scale: 0
       prefix_suffix: true
     third_party_settings: {  }
+    weight: 4
+    region: content
 hidden:
   body: true
   field_class_cancelled: true

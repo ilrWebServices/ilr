@@ -12,12 +12,12 @@ pattern: 'programs/professional-education/topic/[term:name]'
 selection_criteria:
   89c37094-7a00-463a-8868-8ccede03e008:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      topics: topics
     negate: false
+    uuid: 89c37094-7a00-463a-8868-8ccede03e008
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 89c37094-7a00-463a-8868-8ccede03e008
+    bundles:
+      topics: topics
 selection_logic: and
 weight: -5
 relationships: {  }

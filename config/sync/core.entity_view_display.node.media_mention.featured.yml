@@ -19,54 +19,54 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: node.media_mention.featured
 targetEntityType: node
 bundle: media_mention
 mode: featured
 content:
   blog_collection:
-    weight: 0
     settings: {  }
     third_party_settings: {  }
+    weight: 0
     region: banner
   blog_tags:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
   body:
     type: text_summary_or_trimmed
-    weight: 0
-    region: content
     label: hidden
     settings:
       trim_length: 600
     third_party_settings: {  }
+    weight: 0
+    region: content
   field_published_date:
-    weight: 2
+    type: datetime_default
     label: hidden
     settings:
       timezone_override: ''
       format_type: ilr_date
     third_party_settings: {  }
-    type: datetime_default
+    weight: 2
     region: content
   field_representative_image:
-    weight: 1
+    type: media_thumbnail
     label: hidden
     settings:
-      image_style: medium_1_1
       image_link: ''
+      image_style: medium_1_1
     third_party_settings: {  }
-    type: media_thumbnail
+    weight: 1
     region: content
   media_outlet_logo:
-    weight: 0
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   field_experts: true
   field_external_link: true

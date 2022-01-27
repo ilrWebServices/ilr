@@ -17,8 +17,8 @@ dependencies:
     - text
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: collection.blog.teaser
 targetEntityType: collection
 bundle: blog
@@ -26,28 +26,28 @@ mode: teaser
 content:
   body:
     type: text_default
-    weight: 2
-    region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 2
+    region: content
   field_representative_image:
-    weight: 1
+    type: media_thumbnail
     label: hidden
     settings:
-      image_style: large_21_9_1200x514_
       image_link: ''
+      image_style: large_21_9_1200x514_
     third_party_settings: {  }
-    type: media_thumbnail
+    weight: 1
     region: content
   name:
-    label: hidden
     type: string
-    weight: 0
-    region: content
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   extra_field_ilr_section_navigation: true
   field_sections: true

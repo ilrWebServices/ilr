@@ -20,25 +20,25 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: node.course.mini
 targetEntityType: node
 bundle: course
 mode: mini
 content:
   body:
-    label: hidden
     type: text_summary_or_trimmed
-    weight: 1
+    label: hidden
     settings:
       trim_length: 600
     third_party_settings: {  }
+    weight: 1
     region: content
   extra_field_course_instructors:
-    weight: 0
     settings: {  }
     third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
   classes: true

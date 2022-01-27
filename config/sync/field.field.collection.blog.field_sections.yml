@@ -21,9 +21,9 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       section: section
+    negate: 0
     target_bundles_drag_drop:
       collection_listing:
         weight: 13
@@ -50,8 +50,8 @@ settings:
         weight: 20
         enabled: false
       section:
-        enabled: true
         weight: 21
+        enabled: true
       simple_collection_listing:
         weight: 22
         enabled: false

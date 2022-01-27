@@ -22,52 +22,52 @@ bundle: faculty
 mode: default
 content:
   display_name:
-    label: hidden
     type: string
-    weight: 0
-    region: content
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 0
+    region: content
   field_bio:
     type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
     weight: 5
     region: content
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
   field_email:
     type: email_mailto
-    weight: 2
-    region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 2
+    region: content
   field_phone:
     type: telephone_link
-    weight: 3
-    region: content
     label: hidden
     settings:
       title: ''
     third_party_settings: {  }
+    weight: 3
+    region: content
   field_photo:
     type: media_thumbnail
-    weight: 4
-    region: content
     label: hidden
     settings:
-      image_style: thumbnail_square
       image_link: content
+      image_style: thumbnail_square
     third_party_settings: {  }
+    weight: 4
+    region: content
   field_title:
     type: string
-    weight: 1
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 1
+    region: content
 hidden:
   field_first_name: true
   field_last_name: true

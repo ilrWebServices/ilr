@@ -18,11 +18,11 @@ plugin: cornell_seal_block
 settings:
   id: cornell_seal_block
   label: 'Cornell Seal'
-  provider: ilr
   label_display: '0'
+  provider: ilr
 visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: cornell_alternate_branding
     context_mapping: {  }
+    block_visibility_group: cornell_alternate_branding

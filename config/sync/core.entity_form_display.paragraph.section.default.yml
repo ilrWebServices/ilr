@@ -19,6 +19,7 @@ content:
   field_components:
     type: paragraphs
     weight: 0
+    region: content
     settings:
       title: component
       title_plural: components
@@ -34,33 +35,32 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: '0'
     third_party_settings: {  }
-    region: content
   field_heading:
+    type: string_textfield
     weight: -2
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_subheading:
+    type: string_textfield
     weight: -1
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_subheading_link:
+    type: linkit
     weight: -1
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
       linkit_profile: ilr_content
       linkit_auto_link_text: true
     third_party_settings: {  }
-    type: linkit
-    region: content
 hidden:
   created: true
   status: true

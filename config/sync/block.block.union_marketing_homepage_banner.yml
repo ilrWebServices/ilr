@@ -20,8 +20,8 @@ plugin: 'block_content:1d1640f5-d922-4622-835f-fba08eb0a788'
 settings:
   id: 'block_content:1d1640f5-d922-4622-835f-fba08eb0a788'
   label: 'Homepage Banner'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
@@ -29,8 +29,8 @@ visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: ''
     context_mapping: {  }
+    block_visibility_group: ''
   root_path_entity_bundle:
     id: root_path_entity_bundle
     root_entity_bundles: {  }
@@ -38,6 +38,6 @@ visibility:
     context_mapping: {  }
   request_path:
     id: request_path
-    pages: '<front>'
     negate: false
     context_mapping: {  }
+    pages: '<front>'

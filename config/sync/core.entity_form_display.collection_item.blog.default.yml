@@ -20,45 +20,45 @@ content:
     weight: 100
     region: content
     settings:
-      key_label: Key
-      key_size: 60
-      key_placeholder: ''
-      value_label: Value
       size: 60
       placeholder: ''
-      description_label: Description
-      description_placeholder: ''
-      description_rows: '5'
+      key_size: 60
+      key_placeholder: ''
       description_enabled: false
+      description_placeholder: ''
+      key_label: Key
+      value_label: Value
+      description_label: Description
+      description_rows: '5'
     third_party_settings: {  }
   canonical:
-    settings:
-      display_label: true
+    type: boolean_checkbox
     weight: 15
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
-    type: boolean_checkbox
   field_blog_categories:
-    weight: 6
-    settings: {  }
-    third_party_settings: {  }
     type: options_select
+    weight: 6
     region: content
-  field_blog_tags:
-    weight: 7
     settings: {  }
     third_party_settings: {  }
+  field_blog_tags:
     type: options_buttons
+    weight: 7
     region: content
+    settings: {  }
+    third_party_settings: {  }
   item:
     type: dynamic_entity_reference_default
     weight: 5
     region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 40
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
   path:
     type: path

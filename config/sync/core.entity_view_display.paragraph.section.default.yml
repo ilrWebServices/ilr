@@ -18,31 +18,31 @@ mode: default
 content:
   field_components:
     type: entity_reference_revisions_entity_view
-    weight: 3
     label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    weight: 3
     region: content
   field_heading:
-    weight: 1
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 1
     region: content
   field_subheading:
-    weight: 2
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 2
     region: content
   field_subheading_link:
-    weight: 4
+    type: link_separate
     label: above
     settings:
       trim_length: 80
@@ -51,7 +51,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link_separate
+    weight: 4
     region: content
 hidden:
   search_api_excerpt: true

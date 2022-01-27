@@ -10,20 +10,20 @@ dependencies:
     - layout_builder
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: paragraph.form.preview
 targetEntityType: paragraph
 bundle: form
 mode: preview
 content:
   field_webform:
-    weight: 0
+    type: entity_reference_label
     label: hidden
     settings:
       link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 0
     region: content
 hidden:
   search_api_excerpt: true

@@ -18,8 +18,8 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: node.video_post.teaser
 targetEntityType: node
 bundle: video_post
@@ -27,44 +27,44 @@ mode: teaser
 content:
   body:
     type: text_summary_or_trimmed
-    weight: 3
-    region: content
     label: hidden
     settings:
       trim_length: 600
     third_party_settings: {  }
+    weight: 3
+    region: content
   field_published_date:
     type: datetime_default
-    weight: 2
-    region: content
     label: hidden
     settings:
       timezone_override: ''
       format_type: ilr_date
     third_party_settings: {  }
+    weight: 2
+    region: content
   field_representative_image:
     type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium_3_2
+    third_party_settings: {  }
     weight: 0
     region: content
-    label: hidden
-    settings:
-      image_style: medium_3_2
-      image_link: ''
-    third_party_settings: {  }
   field_video:
     type: media_thumbnail
-    weight: 1
     label: hidden
     settings:
-      image_style: medium_3_2
       image_link: ''
+      image_style: medium_3_2
     third_party_settings: {  }
+    weight: 1
     region: content
   links:
-    weight: 100
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   blog_collection: true
   blog_tags: true

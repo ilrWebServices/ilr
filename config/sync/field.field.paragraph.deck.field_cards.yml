@@ -21,15 +21,15 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       promo: promo
+    negate: 0
     target_bundles_drag_drop:
-      deck:
-        weight: 11
-        enabled: false
       collection_listing:
         weight: 12
+        enabled: false
+      deck:
+        weight: 11
         enabled: false
       form:
         weight: 13
@@ -41,21 +41,21 @@ settings:
         weight: 15
         enabled: false
       promo:
-        enabled: true
         weight: 16
+        enabled: true
       rich_text:
         weight: 17
         enabled: false
       section:
         weight: 18
         enabled: false
+      simple_collection_listing:
+        weight: 22
+        enabled: false
       testimonial:
         weight: 19
         enabled: false
       video:
         weight: 20
-        enabled: false
-      simple_collection_listing:
-        weight: 22
         enabled: false
 field_type: entity_reference_revisions

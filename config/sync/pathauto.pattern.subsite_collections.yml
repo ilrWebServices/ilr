@@ -12,12 +12,12 @@ pattern: '[collection:name]'
 selection_criteria:
   cabe6dc8-ba79-431e-95b0-e1473f6c4e16:
     id: 'entity_bundle:collection'
-    bundles:
-      subsite: subsite
     negate: false
+    uuid: cabe6dc8-ba79-431e-95b0-e1473f6c4e16
     context_mapping:
       collection: collection
-    uuid: cabe6dc8-ba79-431e-95b0-e1473f6c4e16
+    bundles:
+      subsite: subsite
 selection_logic: and
 weight: -5
 relationships: {  }

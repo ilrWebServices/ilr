@@ -18,76 +18,76 @@ dependencies:
     - union_organizer
 third_party_settings:
   layout_builder:
-    allow_custom: true
     enabled: true
+    allow_custom: true
     sections:
       -
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 0
           collapse_margins: 0
           extra_classes: ''
-          context_mapping: {  }
         components:
           d4e7264e-73bb-41a7-9e55-7f247f6e705e:
             uuid: d4e7264e-73bb-41a7-9e55-7f247f6e705e
             region: main
             configuration:
+              id: 'field_block:collection:subsite:name'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:collection:subsite:name'
               formatter:
-                label: hidden
                 type: string
+                label: hidden
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            additional: {  }
             weight: 1
+            additional: {  }
           e080098d-163f-4507-8239-8fd91bc1862f:
             uuid: e080098d-163f-4507-8239-8fd91bc1862f
             region: main
             configuration:
+              id: 'field_block:collection:subsite:body'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:collection:subsite:body'
               formatter:
+                type: text_default
                 label: above
                 settings: {  }
                 third_party_settings: {  }
-                type: text_default
-            additional: {  }
             weight: 2
+            additional: {  }
           88d7f79e-72d4-47a3-89c2-2cd94d44b029:
             uuid: 88d7f79e-72d4-47a3-89c2-2cd94d44b029
             region: main
             configuration:
+              id: 'field_block:collection:subsite:field_representative_image'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:collection:subsite:field_representative_image'
               formatter:
                 type: media_thumbnail
                 label: hidden
                 settings:
-                  image_style: large_21_9_1200x514_
                   image_link: ''
+                  image_style: large_21_9_1200x514_
                 third_party_settings: {  }
-            additional: {  }
             weight: 0
+            additional: {  }
           fad2ab73-cee6-4c61-b0f2-e5e94c1d42b2:
             uuid: fad2ab73-cee6-4c61-b0f2-e5e94c1d42b2
             region: main
             configuration:
+              id: 'extra_field_block:collection:subsite:extra_field_ilr_section_navigation'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'extra_field_block:collection:subsite:extra_field_ilr_section_navigation'
-            additional: {  }
             weight: 3
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -99,10 +99,10 @@ third_party_settings:
             uuid: dab61be4-7ac6-4fc9-bd98-f043333b1539
             region: content
             configuration:
+              id: 'field_block:collection:subsite:field_sections'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:collection:subsite:field_sections'
               formatter:
                 type: entity_reference_revisions_entity_view
                 label: hidden
@@ -110,8 +110,8 @@ third_party_settings:
                   view_mode: default
                   link: ''
                 third_party_settings: {  }
-            additional: {  }
             weight: 2
+            additional: {  }
         third_party_settings: {  }
 id: collection.subsite.default
 targetEntityType: collection
@@ -119,43 +119,43 @@ bundle: subsite
 mode: default
 content:
   body:
-    weight: 3
+    type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 3
     region: main
   extra_field_ilr_section_navigation:
-    weight: 0
     settings: {  }
     third_party_settings: {  }
+    weight: 0
     region: main
   field_representative_image:
     type: media_thumbnail
-    weight: 1
     label: hidden
     settings:
-      image_style: large_21_9_1200x514_
       image_link: ''
+      image_style: large_21_9_1200x514_
     third_party_settings: {  }
+    weight: 1
     region: content
   field_sections:
     type: entity_reference_revisions_entity_view
-    weight: 2
     label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    weight: 2
     region: content
   name:
-    label: hidden
     type: string
-    weight: 0
-    region: content
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   layout_builder__layout: true
   search_api_excerpt: true

@@ -18,56 +18,56 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: node.media_mention.mini
 targetEntityType: node
 bundle: media_mention
 mode: mini
 content:
   blog_collection:
-    weight: 0
     settings: {  }
     third_party_settings: {  }
+    weight: 0
     region: banner
   blog_tags:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
   field_experts:
     type: persona_name_list
-    weight: 4
-    region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 4
+    region: content
   field_external_link:
     type: link
-    weight: 3
-    region: content
     label: hidden
     settings:
       trim_length: 80
       url_only: true
-      target: _blank
       url_plain: false
       rel: '0'
+      target: _blank
     third_party_settings: {  }
+    weight: 3
+    region: content
   field_published_date:
-    weight: 2
+    type: datetime_default
     label: hidden
     settings:
       timezone_override: ''
       format_type: ilr_date
     third_party_settings: {  }
-    type: datetime_default
+    weight: 2
     region: content
   media_outlet_name:
-    weight: 0
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   body: true
   field_representative_image: true

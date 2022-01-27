@@ -1,18 +1,18 @@
-uuid: a9e25ed1-3d16-4ba9-9efe-9633d612a261
 langcode: en
-status: true
-dependencies:
-  module:
-    - salesforce_pull
 id: course_node
 label: 'Course Node'
 weight: 0
 type: salesforce_mapping
 key: ''
+always_upsert: false
 async: false
 push_standalone: false
 pull_standalone: false
 pull_trigger_date: LastModifiedDate
+pull_frequency: 0
+push_frequency: 0
+push_limit: 0
+push_retries: 3
 pull_where_clause: 'Synchronized_with_Web__c = TRUE AND Program_Type__c = ''Open Enrollment'''
 sync_triggers:
   pull_create: true
@@ -25,25 +25,25 @@ field_mappings:
   -
     drupal_field_type: properties
     drupal_field_value: title
-    salesforce_field: Published_Course_Title__c
     direction: sf_drupal
+    salesforce_field: Published_Course_Title__c
   -
     drupal_field_type: properties
     drupal_field_value: status
-    salesforce_field: Show_on_Web__c
     direction: sf_drupal
+    salesforce_field: Show_on_Web__c
   -
     drupal_field_type: properties
     drupal_field_value: field_course_number
-    salesforce_field: Course_Number__c
     direction: sf_drupal
+    salesforce_field: Course_Number__c
   -
     drupal_field_type: properties
     drupal_field_value: field_delivery_method
-    salesforce_field: Delivery_Method__c
     direction: sf_drupal
-push_limit: 0
-push_retries: 3
-push_frequency: 0
-pull_frequency: 0
-always_upsert: false
+    salesforce_field: Delivery_Method__c
+status: true
+dependencies:
+  module:
+    - salesforce_pull
+uuid: a9e25ed1-3d16-4ba9-9efe-9633d612a261

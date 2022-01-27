@@ -39,7 +39,6 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       rich_text: rich_text
       image: image
@@ -60,68 +59,69 @@ settings:
       instagram_listing: instagram_listing
       section_navigation: section_navigation
       table_of_contents: table_of_contents
+    negate: 0
     target_bundles_drag_drop:
       collection_listing:
-        enabled: true
         weight: -21
+        enabled: true
       collection_listing_publication:
-        enabled: true
         weight: -24
+        enabled: true
       curated_course_listing:
-        enabled: true
         weight: -22
+        enabled: true
       curated_post_listing:
-        enabled: true
         weight: -23
+        enabled: true
       deck:
-        enabled: true
         weight: -31
+        enabled: true
       event_listing:
-        enabled: true
         weight: 24
+        enabled: true
       form:
-        enabled: true
         weight: -28
+        enabled: true
       image:
-        enabled: true
         weight: -32
+        enabled: true
       instagram_listing:
-        enabled: true
         weight: 29
+        enabled: true
       media_deck:
-        enabled: true
         weight: -30
-      people_listing:
         enabled: true
+      people_listing:
         weight: -21
+        enabled: true
       person:
         weight: -20
         enabled: false
       picture_in_picture:
-        enabled: true
         weight: -18
+        enabled: true
       promo:
-        enabled: true
         weight: -26
-      rich_text:
         enabled: true
+      rich_text:
         weight: -33
+        enabled: true
       section:
         weight: -19
         enabled: false
       section_navigation:
-        enabled: true
         weight: 31
+        enabled: true
       simple_collection_listing:
-        enabled: true
         weight: -25
+        enabled: true
       table_of_contents:
-        enabled: true
         weight: 40
+        enabled: true
       testimonial:
-        enabled: true
         weight: -27
-      video:
         enabled: true
+      video:
         weight: -29
+        enabled: true
 field_type: entity_reference_revisions

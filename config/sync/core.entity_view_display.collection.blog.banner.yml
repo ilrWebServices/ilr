@@ -19,8 +19,8 @@ dependencies:
     - text
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: true
+    allow_custom: false
     sections:
       -
         layout_id: banner
@@ -34,63 +34,63 @@ third_party_settings:
             configuration:
               id: 'field_block:collection:blog:body'
               label: 'Intro Text'
-              provider: layout_builder
               label_display: '0'
-              formatter:
-                label: hidden
-                type: text_summary_or_trimmed
-                settings:
-                  trim_length: 600
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
+              formatter:
+                type: text_summary_or_trimmed
+                label: hidden
+                settings:
+                  trim_length: 600
+                third_party_settings: {  }
             weight: 3
+            additional: {  }
           fa06bcce-dd00-4958-a723-ca0de5469edf:
             uuid: fa06bcce-dd00-4958-a723-ca0de5469edf
             region: banner
             configuration:
+              id: 'field_block:collection:blog:field_representative_image'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:collection:blog:field_representative_image'
               formatter:
+                type: media_thumbnail
                 label: hidden
                 settings:
-                  image_style: large_21_9_1200x514_
                   image_link: ''
+                  image_style: large_21_9_1200x514_
                 third_party_settings: {  }
-                type: media_thumbnail
-            additional: {  }
             weight: 2
+            additional: {  }
           ec06566f-36d8-426d-8c3d-34f6986f0970:
             uuid: ec06566f-36d8-426d-8c3d-34f6986f0970
             region: banner
             configuration:
+              id: 'field_block:collection:blog:name'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'field_block:collection:blog:name'
               formatter:
-                label: hidden
                 type: string
+                label: hidden
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            additional: {  }
             weight: 1
+            additional: {  }
           fd858844-537d-405e-a5f2-01184ad76b81:
             uuid: fd858844-537d-405e-a5f2-01184ad76b81
             region: banner
             configuration:
               id: system_breadcrumb_block
               label: Breadcrumbs
-              provider: system
               label_display: '0'
+              provider: system
               context_mapping: {  }
-            additional: {  }
             weight: 0
+            additional: {  }
         third_party_settings: {  }
 id: collection.blog.banner
 targetEntityType: collection
@@ -99,28 +99,28 @@ mode: banner
 content:
   body:
     type: text_default
-    weight: 0
-    region: content
     label: above
     settings: {  }
     third_party_settings: {  }
-  field_representative_image:
     weight: 0
+    region: content
+  field_representative_image:
+    type: media_thumbnail
     label: hidden
     settings:
-      image_style: large_21_9_1200x514_
       image_link: ''
+      image_style: large_21_9_1200x514_
     third_party_settings: {  }
-    type: media_thumbnail
+    weight: 0
     region: content
   name:
-    label: hidden
     type: string
-    weight: -4
-    region: content
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: -4
+    region: content
 hidden:
   extra_field_ilr_section_navigation: true
   field_sections: true

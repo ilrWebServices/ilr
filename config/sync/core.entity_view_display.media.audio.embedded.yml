@@ -11,8 +11,8 @@ dependencies:
     - layout_builder
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: media.audio.embedded
 targetEntityType: media
 bundle: audio
@@ -20,15 +20,15 @@ mode: embedded
 content:
   field_media_audio_file:
     type: file_audio
-    weight: -1
-    region: content
     label: hidden
     settings:
       controls: true
-      multiple_file_display_type: tags
       autoplay: false
       loop: false
+      multiple_file_display_type: tags
     third_party_settings: {  }
+    weight: -1
+    region: content
 hidden:
   created: true
   name: true

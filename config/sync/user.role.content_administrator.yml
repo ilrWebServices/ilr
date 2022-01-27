@@ -1,7 +1,23 @@
 uuid: 1fc4031c-7072-4946-8781-455468aaab47
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - collection
+    - contextual
+    - entity_browser
+    - file
+    - media
+    - node
+    - paragraphs
+    - paragraphs_previewer
+    - path
+    - person
+    - redirect
+    - system
+    - taxonomy
+    - toolbar
+    - webform
 id: content_administrator
 label: 'Content Administrator'
 weight: 4
@@ -33,7 +49,6 @@ permissions:
   - 'edit behavior plugin settings'
   - 'edit blog collection'
   - 'edit content_section collection'
-  - 'edit entity reference layout plugin config'
   - 'edit publication_issue collection'
   - 'edit subsite collection'
   - 'edit subsite_blog collection'

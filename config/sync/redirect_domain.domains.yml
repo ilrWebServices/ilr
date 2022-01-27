@@ -1,3 +1,5 @@
+_core:
+  default_config_hash: CgXLPQkHCGerCdDtMO8wK9Er4j6iy1iMOyalk8iRgrE
 domain_redirects:
   'execed:ilr:cornell:edu':
     -
@@ -59,5 +61,3 @@ domain_redirects:
     -
       sub_path: '/*'
       destination: www.ilr.cornell.edu/cornell-debate/about
-_core:
-  default_config_hash: CgXLPQkHCGerCdDtMO8wK9Er4j6iy1iMOyalk8iRgrE

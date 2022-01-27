@@ -24,41 +24,41 @@ bundle: course
 mode: teaser
 content:
   body:
-    label: hidden
     type: text_summary_or_trimmed
-    weight: 101
+    label: hidden
     settings:
       trim_length: 600
     third_party_settings: {  }
+    weight: 101
     region: content
   classes:
+    type: entity_reference_label
     label: hidden
-    weight: -5
-    region: content
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: -5
+    region: content
   extra_field_course_instructors:
-    weight: 0
     settings: {  }
     third_party_settings: {  }
+    weight: 0
     region: content
   extra_field_related_courses:
-    weight: 0
     settings: {  }
     third_party_settings: {  }
+    weight: 0
     region: content
   ilr_course_page_links:
+    settings: {  }
+    third_party_settings: {  }
     weight: 0
     region: content
+  links:
     settings: {  }
     third_party_settings: {  }
-  links:
     weight: 100
     region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
   extra_field_class_register: true
   field_classes: true

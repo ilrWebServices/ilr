@@ -1,18 +1,18 @@
-uuid: 10d87e48-6093-4f77-ab6f-b49cf349749d
 langcode: en
-status: true
-dependencies:
-  module:
-    - salesforce_pull
 id: participant_node
 label: 'Participant Node'
 weight: 2
 type: salesforce_mapping
 key: ''
+always_upsert: false
 async: false
 push_standalone: false
 pull_standalone: false
 pull_trigger_date: LastModifiedDate
+pull_frequency: 0
+push_frequency: 0
+push_limit: 0
+push_retries: 3
 pull_where_clause: 'Role__c = ''Instructor'''
 sync_triggers:
   pull_create: true
@@ -25,20 +25,20 @@ field_mappings:
   -
     drupal_field_type: RelatedIDs
     drupal_field_value: field_instructor
-    salesforce_field: Contact__c
     direction: sf_drupal
+    salesforce_field: Contact__c
   -
     drupal_field_type: RelatedIDs
     drupal_field_value: field_class
-    salesforce_field: Event__c
     direction: sf_drupal
+    salesforce_field: Event__c
   -
     drupal_field_type: properties
     drupal_field_value: title
-    salesforce_field: Id
     direction: sf_drupal
-push_limit: 0
-push_retries: 3
-push_frequency: 0
-pull_frequency: 0
-always_upsert: false
+    salesforce_field: Id
+status: true
+dependencies:
+  module:
+    - salesforce_pull
+uuid: 10d87e48-6093-4f77-ab6f-b49cf349749d

@@ -16,6 +16,7 @@ content:
   field_cards:
     type: paragraphs_previewer
     weight: 0
+    region: content
     settings:
       title: card
       title_plural: cards
@@ -31,13 +32,12 @@ content:
         duplicate: '0'
         add_above: '0'
     third_party_settings: {  }
-    region: content
   field_grid_variant:
+    type: options_select
     weight: -1
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
 hidden:
   created: true
   status: true

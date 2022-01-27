@@ -22,34 +22,35 @@ bundle: topics
 mode: default
 content:
   field_body:
+    type: text_textarea_with_summary
     weight: 4
+    region: content
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
-    type: text_textarea_with_summary
-    region: content
   field_body_heading:
+    type: string_textfield
     weight: 2
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_body_subheading:
+    type: string_textfield
     weight: 3
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_media_section:
     type: entity_reference_paragraphs
     weight: 6
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -58,22 +59,21 @@ content:
       form_display_mode: default
       default_paragraph_type: ''
     third_party_settings: {  }
-    region: content
   field_page_links:
+    type: link_default
     weight: 5
+    region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-    type: link_default
-    region: content
   field_representative_image:
     type: media_library_widget
     weight: 7
+    region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
-    region: content
   name:
     type: string_textfield
     weight: 0
@@ -90,10 +90,10 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 100
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
 hidden:
   description: true

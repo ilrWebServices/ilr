@@ -21,8 +21,8 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: true
     enabled: true
+    allow_custom: true
     sections:
       -
         layout_id: layout_onecol
@@ -36,20 +36,20 @@ third_party_settings:
             configuration:
               id: system_breadcrumb_block
               label: Breadcrumbs
-              provider: system
               label_display: '0'
+              provider: system
               context_mapping: {  }
-            additional: {  }
             weight: 0
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 1
           collapse_margins: 0
           extra_classes: ''
-          context_mapping: {  }
         components:
           63678ee9-efac-4db2-b9a9-336a76b7b206:
             uuid: 63678ee9-efac-4db2-b9a9-336a76b7b206
@@ -57,47 +57,47 @@ third_party_settings:
             configuration:
               id: 'field_block:node:story:field_representative_image'
               label: 'Representative Image'
-              provider: layout_builder
               label_display: '0'
-              formatter:
-                label: hidden
-                type: media_thumbnail
-                settings:
-                  image_style: large_8_5
-                  image_link: ''
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
+              formatter:
+                type: media_thumbnail
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: large_8_5
+                third_party_settings: {  }
             weight: 0
+            additional: {  }
           98c71c46-241f-42f6-b221-8078a7c80e31:
             uuid: 98c71c46-241f-42f6-b221-8078a7c80e31
             region: main
             configuration:
               id: 'field_block:node:story:field_representative_img_caption'
               label: 'Representative Image Caption'
-              provider: layout_builder
               label_display: '0'
-              formatter:
-                label: hidden
-                type: basic_string
-                settings: {  }
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
+              formatter:
+                type: basic_string
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
             weight: 1
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 0
           collapse_margins: 0
           extra_classes: ''
-          context_mapping: {  }
         components:
           86504365-c91b-4d83-90bd-f7d63322f449:
             uuid: 86504365-c91b-4d83-90bd-f7d63322f449
@@ -105,37 +105,37 @@ third_party_settings:
             configuration:
               id: 'field_block:node:story:title'
               label: Title
-              provider: layout_builder
               label_display: '0'
-              formatter:
-                label: hidden
-                type: string
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
             weight: 0
+            additional: {  }
           5bda71b7-0211-49c2-83bb-3e00609f62c9:
             uuid: 5bda71b7-0211-49c2-83bb-3e00609f62c9
             region: main
             configuration:
               id: 'field_block:node:story:body'
               label: 'Intro Text'
-              provider: layout_builder
               label_display: '0'
-              formatter:
-                label: hidden
-                type: text_default
-                settings: {  }
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
             weight: 1
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -149,28 +149,28 @@ third_party_settings:
             configuration:
               id: 'field_block:node:story:field_sections'
               label: Sections
-              provider: layout_builder
               label_display: '0'
-              formatter:
-                label: hidden
-                type: entity_reference_revisions_entity_view
-                settings:
-                  view_mode: default
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
             weight: 1
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 0
           collapse_margins: 0
           extra_classes: ''
-          context_mapping: {  }
         components:
           66d33e1d-fdac-467f-9c8d-1b5676fbf962:
             uuid: 66d33e1d-fdac-467f-9c8d-1b5676fbf962
@@ -178,8 +178,9 @@ third_party_settings:
             configuration:
               id: social_sharing_buttons_block
               label: 'Better Social Sharing Buttons'
-              provider: better_social_sharing_buttons
               label_display: '0'
+              provider: better_social_sharing_buttons
+              context_mapping: {  }
               services:
                 facebook: facebook
                 twitter: twitter
@@ -201,21 +202,20 @@ third_party_settings:
               print_css: ''
               width: 35px
               radius: 100%
-              context_mapping: {  }
-            additional: {  }
             weight: 1
+            additional: {  }
           51645e02-f3d2-4f8f-b596-103427a09897:
             uuid: 51645e02-f3d2-4f8f-b596-103427a09897
             region: main
             configuration:
               id: 'extra_field_block:node:story:extra_field_previous_next_story'
               label: 'Previous and next story'
-              provider: layout_builder
               label_display: '0'
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-            additional: {  }
             weight: 2
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -229,19 +229,19 @@ third_party_settings:
             configuration:
               id: 'field_block:node:story:field_sections_secondary'
               label: 'Secondary content'
-              provider: layout_builder
               label_display: '0'
-              formatter:
-                label: hidden
-                type: entity_reference_revisions_entity_view
-                settings:
-                  view_mode: default
-                third_party_settings: {  }
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
             weight: 0
+            additional: {  }
         third_party_settings: {  }
 id: node.story.default
 targetEntityType: node
@@ -249,30 +249,30 @@ bundle: story
 mode: default
 content:
   extra_field_previous_next_story:
-    weight: 0
     settings: {  }
     third_party_settings: {  }
+    weight: 0
     region: main
   field_representative_img_caption:
-    weight: 101
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 101
     region: main
   field_sections_secondary:
     type: entity_reference_revisions_entity_view
-    weight: 102
     label: above
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    weight: 102
     region: main
   links:
-    weight: 100
     settings: {  }
     third_party_settings: {  }
+    weight: 100
     region: content
 hidden:
   body: true

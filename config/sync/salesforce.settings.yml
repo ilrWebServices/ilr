@@ -1,13 +1,13 @@
+_core:
+  default_config_hash: EjFTlHhnxj9PlzBk2nJ7rVdK1MdUy67s4U9n84FuMho
+global_push_limit: 100000
+pull_max_queue_size: 100000
+standalone: false
+show_all_objects: false
+use_latest: false
+limit_mapped_object_revisions: 10
+salesforce_auth_provider: ilr_marketing_jwt_oauth_dev
 rest_api_version:
   label: 'Summer ''21'
   url: /services/data/v52.0
   version: '52.0'
-use_latest: false
-global_push_limit: 100000
-pull_max_queue_size: 100000
-show_all_objects: false
-standalone: false
-limit_mapped_object_revisions: 10
-salesforce_auth_provider: ilr_marketing_jwt_oauth_dev
-_core:
-  default_config_hash: EjFTlHhnxj9PlzBk2nJ7rVdK1MdUy67s4U9n84FuMho

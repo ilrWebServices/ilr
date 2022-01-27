@@ -12,12 +12,12 @@ pattern: '[collection:name]'
 selection_criteria:
   49c45741-c5bd-4b36-93ca-d246ebf82787:
     id: 'entity_bundle:collection'
-    bundles:
-      blog: blog
     negate: false
+    uuid: 49c45741-c5bd-4b36-93ca-d246ebf82787
     context_mapping:
       collection: collection
-    uuid: 49c45741-c5bd-4b36-93ca-d246ebf82787
+    bundles:
+      blog: blog
 selection_logic: and
 weight: -5
 relationships: {  }

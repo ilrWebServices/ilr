@@ -12,12 +12,12 @@ pattern: '[term:name]'
 selection_criteria:
   5a11f71a-9f6a-4876-82fd-7a768140ff48:
     id: 'entity_bundle:taxonomy_term'
-    bundles:
-      publication: publication
     negate: false
+    uuid: 5a11f71a-9f6a-4876-82fd-7a768140ff48
     context_mapping:
       taxonomy_term: taxonomy_term
-    uuid: 5a11f71a-9f6a-4876-82fd-7a768140ff48
+    bundles:
+      publication: publication
 selection_logic: and
 weight: -5
 relationships: {  }

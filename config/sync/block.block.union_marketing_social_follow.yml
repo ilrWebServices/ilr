@@ -19,8 +19,8 @@ plugin: 'block_content:48bd16f4-0fe8-4b1a-800b-089c03c0be23'
 settings:
   id: 'block_content:48bd16f4-0fe8-4b1a-800b-089c03c0be23'
   label: 'Social footer'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
@@ -28,8 +28,8 @@ visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: ''
     context_mapping: {  }
+    block_visibility_group: ''
   root_path_entity_bundle:
     id: root_path_entity_bundle
     root_entity_bundles: {  }

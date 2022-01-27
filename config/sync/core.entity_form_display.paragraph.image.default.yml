@@ -15,22 +15,22 @@ bundle: image
 mode: default
 content:
   field_caption:
+    type: string_textarea
     weight: 1
+    region: content
     settings:
       rows: 3
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
-    region: content
   field_media:
+    type: media_library_widget
     weight: 0
+    region: content
     settings:
       media_types: {  }
     third_party_settings:
       media_library_edit:
         show_edit: '1'
-    type: media_library_widget
-    region: content
 hidden:
   created: true
   status: true

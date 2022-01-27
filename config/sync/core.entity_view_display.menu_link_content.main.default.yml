@@ -10,8 +10,8 @@ dependencies:
     - layout_discovery
 third_party_settings:
   layout_builder:
-    allow_custom: true
     enabled: true
+    allow_custom: true
     sections:
       -
         layout_id: layout_onecol
@@ -23,12 +23,12 @@ third_party_settings:
             uuid: 2097c217-0675-4e90-bfac-fc785e031f94
             region: content
             configuration:
+              id: 'extra_field_block:menu_link_content:main:children'
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-              id: 'extra_field_block:menu_link_content:main:children'
-            additional: {  }
             weight: 0
+            additional: {  }
         third_party_settings: {  }
 id: menu_link_content.main.default
 targetEntityType: menu_link_content
@@ -36,9 +36,9 @@ bundle: main
 mode: default
 content:
   children:
-    weight: 1
     settings: {  }
     third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   layout_builder__layout: true

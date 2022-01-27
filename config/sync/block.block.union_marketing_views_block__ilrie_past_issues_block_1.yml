@@ -19,20 +19,20 @@ plugin: 'views_block:ilrie_past_issues-block_1'
 settings:
   id: 'views_block:ilrie_past_issues-block_1'
   label: ''
-  provider: views
   label_display: visible
+  provider: views
   views_label: ''
   items_per_page: none
 visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: ''
     context_mapping: {  }
+    block_visibility_group: ''
   'entity_bundle:collection':
     id: 'entity_bundle:collection'
-    bundles:
-      publication_issue: publication_issue
     negate: false
     context_mapping:
       collection: '@collection.collection_route_context:collection'
+    bundles:
+      publication_issue: publication_issue

@@ -1,7 +1,17 @@
 uuid: 244bd90b-9b36-4b9c-b665-07edd4f83959
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.basic_formatting
+    - filter.format.basic_formatting_with_media
+    - filter.format.inline_svg
+  module:
+    - collection
+    - filter
+    - media
+    - system
+    - toolbar
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
 id: authenticated

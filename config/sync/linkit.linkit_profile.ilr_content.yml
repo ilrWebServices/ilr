@@ -5,14 +5,13 @@ dependencies:
   module:
     - node
     - taxonomy
-id: ilr_content
 label: 'ILR content'
+id: ilr_content
 description: ''
 matchers:
   8259445a-064d-4f27-97ae-7aec9509379a:
-    uuid: 8259445a-064d-4f27-97ae-7aec9509379a
     id: 'entity:collection'
-    weight: 0
+    uuid: 8259445a-064d-4f27-97ae-7aec9509379a
     settings:
       metadata: ''
       bundles:
@@ -22,12 +21,11 @@ matchers:
       group_by_bundle: false
       substitution_type: canonical
       limit: 100
-  ca987b4f-d223-4e5c-831e-5d90bc5cd333:
-    uuid: ca987b4f-d223-4e5c-831e-5d90bc5cd333
-    id: 'entity:node'
     weight: 0
+  ca987b4f-d223-4e5c-831e-5d90bc5cd333:
+    id: 'entity:node'
+    uuid: ca987b4f-d223-4e5c-831e-5d90bc5cd333
     settings:
-      include_unpublished: true
       metadata: ''
       bundles:
         certificate: certificate
@@ -41,10 +39,11 @@ matchers:
       group_by_bundle: true
       substitution_type: canonical
       limit: 100
-  c74538e7-7ce4-4ab0-be78-87ac2d58118a:
-    uuid: c74538e7-7ce4-4ab0-be78-87ac2d58118a
-    id: 'entity:media'
+      include_unpublished: true
     weight: 0
+  c74538e7-7ce4-4ab0-be78-87ac2d58118a:
+    id: 'entity:media'
+    uuid: c74538e7-7ce4-4ab0-be78-87ac2d58118a
     settings:
       metadata: ''
       bundles:
@@ -52,13 +51,14 @@ matchers:
       group_by_bundle: false
       substitution_type: canonical
       limit: 50
-  4bbd41df-c199-4b47-bac2-6946bbc300b0:
-    uuid: 4bbd41df-c199-4b47-bac2-6946bbc300b0
-    id: 'entity:taxonomy_term'
     weight: 0
+  4bbd41df-c199-4b47-bac2-6946bbc300b0:
+    id: 'entity:taxonomy_term'
+    uuid: 4bbd41df-c199-4b47-bac2-6946bbc300b0
     settings:
       metadata: ''
       bundles: {  }
       group_by_bundle: true
       substitution_type: canonical
       limit: 100
+    weight: 0

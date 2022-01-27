@@ -12,12 +12,12 @@ pattern: '[collection:name]'
 selection_criteria:
   466ef15a-10ab-4f2e-bccb-d8586a7028b7:
     id: 'entity_bundle:collection'
-    bundles:
-      content_section: content_section
     negate: false
+    uuid: 466ef15a-10ab-4f2e-bccb-d8586a7028b7
     context_mapping:
       collection: collection
-    uuid: 466ef15a-10ab-4f2e-bccb-d8586a7028b7
+    bundles:
+      content_section: content_section
 selection_logic: and
 weight: 0
 relationships: {  }

@@ -18,14 +18,14 @@ plugin: 'block_content:e2a92dd5-f370-492f-a1cc-669014e5e9cf'
 settings:
   id: 'block_content:e2a92dd5-f370-492f-a1cc-669014e5e9cf'
   label: '75th video banner'
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
 visibility:
   request_path:
     id: request_path
-    pages: /75
     negate: false
     context_mapping: {  }
+    pages: /75

@@ -15,8 +15,8 @@ plugin: remote_html_snippet_block
 settings:
   id: remote_html_snippet_block
   label: 'Remote html snippet block'
-  provider: ilr
   label_display: '0'
+  provider: ilr
   url: 'https://d7.ilr.cornell.edu/'
   xpath: '//*[@id="search-form"]'
 visibility: {  }

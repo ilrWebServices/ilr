@@ -19,10 +19,10 @@ content:
     type: image
     label: hidden
     settings:
-      image_style: media_library
       image_link: ''
-    weight: 0
+      image_style: media_library
     third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
   created: true

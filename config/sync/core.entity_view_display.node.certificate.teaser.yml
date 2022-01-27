@@ -24,10 +24,10 @@ bundle: certificate
 mode: teaser
 content:
   links:
-    weight: 100
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   body: true
   field_completion_time: true

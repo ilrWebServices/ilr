@@ -17,15 +17,15 @@ plugin: publication_branding_block
 settings:
   id: publication_branding_block
   label: 'Publication branding'
-  provider: collection_publications
   label_display: '0'
+  provider: collection_publications
   context_mapping: {  }
 visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: ''
     context_mapping: {  }
+    block_visibility_group: ''
   root_path_entity_bundle:
     id: root_path_entity_bundle
     root_entity_bundles: {  }

@@ -21,8 +21,8 @@ plugin: 'block_content:8865eaf6-39b6-4672-bbce-4064fb057fca'
 settings:
   id: 'block_content:8865eaf6-39b6-4672-bbce-4064fb057fca'
   label: Dismissible
-  provider: block_content
   label_display: '0'
+  provider: block_content
   status: true
   info: ''
   view_mode: full
@@ -30,8 +30,8 @@ visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: professional_education
     context_mapping: {  }
+    block_visibility_group: professional_education
   root_path_entity_bundle:
     id: root_path_entity_bundle
     root_entity_bundles: {  }

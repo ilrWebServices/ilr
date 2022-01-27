@@ -15,20 +15,20 @@ bundle: media_deck
 mode: default
 content:
   field_caption:
-    weight: 1
+    type: basic_string
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 1
     region: content
   field_media_deck_items:
     type: media_thumbnail
-    weight: 0
     label: hidden
     settings:
-      image_style: full
       image_link: ''
+      image_style: full
     third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
   search_api_excerpt: true

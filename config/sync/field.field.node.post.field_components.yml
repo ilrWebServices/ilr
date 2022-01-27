@@ -25,13 +25,13 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       rich_text: rich_text
       image: image
       video: video
       media_deck: media_deck
       picture_in_picture: picture_in_picture
+    negate: 0
     target_bundles_drag_drop:
       collection_listing:
         weight: 0
@@ -55,14 +55,14 @@ settings:
         weight: 0
         enabled: false
       image:
-        enabled: true
         weight: -9
+        enabled: true
       instagram_listing:
         weight: 0
         enabled: false
       media_deck:
-        enabled: true
         weight: -7
+        enabled: true
       people_listing:
         weight: 0
         enabled: false
@@ -70,14 +70,14 @@ settings:
         weight: 0
         enabled: false
       picture_in_picture:
-        enabled: true
         weight: -6
+        enabled: true
       promo:
         weight: 0
         enabled: false
       rich_text:
-        enabled: true
         weight: -10
+        enabled: true
       section:
         weight: 0
         enabled: false
@@ -91,6 +91,6 @@ settings:
         weight: 0
         enabled: false
       video:
-        enabled: true
         weight: -8
+        enabled: true
 field_type: entity_reference_revisions

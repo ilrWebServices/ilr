@@ -15,20 +15,20 @@ bundle: image
 mode: default
 content:
   field_caption:
-    weight: 1
+    type: basic_string
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 1
     region: content
   field_media:
-    weight: 0
+    type: media_thumbnail
     label: hidden
     settings:
-      image_style: full
       image_link: ''
+      image_style: full
     third_party_settings: {  }
-    type: media_thumbnail
+    weight: 0
     region: content
 hidden:
   search_api_excerpt: true

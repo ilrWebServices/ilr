@@ -19,34 +19,34 @@ bundle: instructor
 mode: default
 content:
   body:
-    label: hidden
     type: text_default
-    weight: 102
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 102
     region: content
   field_job_title:
-    weight: 101
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 101
     region: content
   field_representative_image:
-    weight: 100
+    type: media_thumbnail
     label: hidden
     settings:
-      image_style: medium_preserve_aspect
       image_link: ''
+      image_style: medium_preserve_aspect
     third_party_settings: {  }
-    type: media_thumbnail
+    weight: 100
     region: content
   links:
-    weight: 103
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 103
+    region: content
 hidden:
   field_last_name: true
   search_api_excerpt: true

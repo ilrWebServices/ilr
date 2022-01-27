@@ -11,12 +11,12 @@ pattern: 'programs/professional-education/[node:field_course_number]/[node:title
 selection_criteria:
   3cd80cb0-bc6b-4cfa-ab0c-5ff551ecb238:
     id: node_type
-    bundles:
-      course: course
     negate: false
+    uuid: 3cd80cb0-bc6b-4cfa-ab0c-5ff551ecb238
     context_mapping:
       node: node
-    uuid: 3cd80cb0-bc6b-4cfa-ab0c-5ff551ecb238
+    bundles:
+      course: course
 selection_logic: and
 weight: -5
 relationships: {  }

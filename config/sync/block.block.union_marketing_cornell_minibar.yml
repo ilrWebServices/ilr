@@ -18,14 +18,14 @@ plugin: ilr_cornell_minibar_block
 settings:
   id: ilr_cornell_minibar_block
   label: 'Cornell minibar'
-  provider: ilr
   label_display: '0'
+  provider: ilr
 visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: cornell_alternate_branding
     context_mapping: {  }
+    block_visibility_group: cornell_alternate_branding
   root_path_entity_bundle:
     id: root_path_entity_bundle
     root_entity_bundles: {  }

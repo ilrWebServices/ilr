@@ -23,25 +23,25 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       rich_text: rich_text
       testimonial: testimonial
       video: video
+    negate: 0
     target_bundles_drag_drop:
-      rich_text:
-        enabled: true
-        weight: 4
-      testimonial:
-        enabled: true
-        weight: 4
-      video:
-        enabled: true
-        weight: 6
       promo:
         weight: 7
         enabled: false
+      rich_text:
+        weight: 4
+        enabled: true
       section:
         weight: 9
         enabled: false
+      testimonial:
+        weight: 4
+        enabled: true
+      video:
+        weight: 6
+        enabled: true
 field_type: entity_reference_revisions

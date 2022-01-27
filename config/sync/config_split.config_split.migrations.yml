@@ -5,6 +5,7 @@ dependencies: {  }
 id: migrations
 label: Migrations
 description: 'This is a place to store exported migrate plus configuration.'
+weight: 0
 folder: ../config/migrations
 module: {  }
 theme: {  }
@@ -13,4 +14,3 @@ blacklist:
 graylist: {  }
 graylist_dependents: true
 graylist_skip_equal: true
-weight: 0

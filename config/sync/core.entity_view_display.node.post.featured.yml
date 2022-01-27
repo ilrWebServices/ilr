@@ -20,8 +20,8 @@ dependencies:
     - user
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: node.post.featured
 targetEntityType: node
 bundle: post
@@ -29,35 +29,35 @@ mode: featured
 content:
   body:
     type: text_summary_or_trimmed
-    weight: 3
-    region: content
     label: hidden
     settings:
       trim_length: 600
     third_party_settings: {  }
+    weight: 3
+    region: content
   field_published_date:
-    weight: 1
+    type: datetime_default
     label: hidden
     settings:
       timezone_override: ''
       format_type: ilr_date
     third_party_settings: {  }
-    type: datetime_default
+    weight: 1
     region: content
   field_representative_image:
-    weight: 0
+    type: media_thumbnail
     label: hidden
     settings:
-      image_style: medium_1_1
       image_link: ''
+      image_style: medium_1_1
     third_party_settings: {  }
-    type: media_thumbnail
+    weight: 0
     region: content
   links:
-    weight: 4
-    region: content
     settings: {  }
     third_party_settings: {  }
+    weight: 4
+    region: content
 hidden:
   blog_collection: true
   blog_tags: true

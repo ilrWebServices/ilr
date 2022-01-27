@@ -16,7 +16,9 @@ bundle: picture_in_picture
 mode: default
 content:
   field_components:
+    type: paragraphs_previewer
     weight: 1
+    region: content
     settings:
       title: content
       title_plural: content
@@ -32,17 +34,15 @@ content:
         duplicate: 0
         add_above: 0
     third_party_settings: {  }
-    type: paragraphs_previewer
-    region: content
   field_media:
+    type: media_library_widget
     weight: 0
+    region: content
     settings:
       media_types: {  }
     third_party_settings:
       media_library_edit:
         show_edit: '1'
-    type: media_library_widget
-    region: content
 hidden:
   created: true
   status: true

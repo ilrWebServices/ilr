@@ -17,8 +17,8 @@ dependencies:
     - media
 third_party_settings:
   layout_builder:
-    allow_custom: false
     enabled: false
+    allow_custom: false
 id: collection.publication_issue.mini
 targetEntityType: collection
 bundle: publication_issue
@@ -26,21 +26,21 @@ mode: mini
 content:
   field_download:
     type: media_thumbnail
-    weight: 0
-    region: content
     label: hidden
     settings:
-      image_style: small_4x5
       image_link: content
+      image_style: small_4x5
     third_party_settings: {  }
-  name:
-    label: hidden
-    type: string
-    weight: 1
+    weight: 0
     region: content
+  name:
+    type: string
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 1
+    region: content
 hidden:
   body: true
   field_publication: true

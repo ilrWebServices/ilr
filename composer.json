@@ -151,9 +151,8 @@
       "drupal/core": {
         "Remove invalid iframe attributes from oembed field formatter": "https://www.drupal.org/files/issues/2019-07-31/remove-iframe-attributes-3071446-4.patch",
         "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch",
-        "Pass current route parameters to the confirmation form route": "https://www.drupal.org/files/issues/2020-05-04/2901412-18.patch",
-        "Remove generic node and term link relationships": "https://www.drupal.org/files/issues/2021-09-08/2922570-90.9.2.5.patch",
-        "Redirect to term view page from term edit page": "https://www.drupal.org/files/issues/2021-06-07/taxonomy-redirect_to_view_from_edit-2826592-26.patch",
+        "Pass current route parameters to the confirmation form route": "https://git.drupalcode.org/project/drupal/-/commit/1d0084d56d914ccdb41631ee68e01497f79e1e53.diff",
+        "Redirect to term view page from term edit page": "https://www.drupal.org/files/issues/2022-01-27/taxonomy-redirect_to_view_from_edit-2826592-33.patch",
         "Allow custom session cookie name": "./patches/2983612-custom-session-cookie-name.patch"
       },
       "drupal/address": {
