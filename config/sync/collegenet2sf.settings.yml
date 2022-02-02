@@ -24,6 +24,7 @@ mapping:
   CORNELLG-HISPANIC_YN: Hispanic__c
   CORN_CITIZEN_COUNTRY: Country_of_Citizenship__c
   DECISION_RESPONSE: Accepting_Offer__c
+  STATUS: Prospect_Status__c
 default_fields:
   -
     key: RecordType.Name
