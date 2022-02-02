@@ -13,9 +13,6 @@ title: 'Professional Education Interests'
 description: ''
 category: 'professional programs'
 elements: |-
-  '#attributes':
-    class:
-      - 'webform--with-content webform--dark'
   content_container:
     '#type': container
     '#markup': |-
@@ -89,6 +86,11 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_attributes:
+    class:
+      - 'webform--with-content webform--dark'
+  form_method: ''
+  form_action: ''
   share: false
   share_node: false
   share_theme_name: ''

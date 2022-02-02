@@ -15,9 +15,6 @@ title: '75th Updates'
 description: ''
 category: ''
 elements: |-
-  '#attributes':
-    class:
-      - 'webform--with-content webform--dark'
   content_container:
     '#type': container
     '#attributes':
@@ -27,7 +24,6 @@ elements: |-
       <h2 class="cu-heading">
         Weekly Inbox Updates
       </h2>
-      
     title: null
   element_container:
     '#type': container
@@ -83,6 +79,11 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_attributes:
+    class:
+      - 'webform--with-content webform--dark'
+  form_method: ''
+  form_action: ''
   share: false
   share_node: false
   share_theme_name: ''

@@ -49,7 +49,7 @@
     "drupal/core-recommended": "^9.0.0",
     "drupal/date_range_formatter": "^9",
     "drupal/dynamic_entity_reference": "^2.0",
-    "drupal/easy_breadcrumb": "^1.12",
+    "drupal/easy_breadcrumb": "^2.0.0",
     "drupal/entity_browser": "^2.4",
     "drupal/entity_usage": "^2.0@beta",
     "drupal/extra_field": "^2.0.0",
@@ -161,9 +161,6 @@
       "drupal/paragraphs_previewer": {
         "Entities using layoutbuilder cannot get fields previewed": "https://gist.githubusercontent.com/a-fro/1c9b5fcf778edcc49eb39dab292cbc0c/raw/c2352a640270412d2d73232a1e5d3ca69a606726/paragraphs-preview-no-output-layout-builder.patch"
       },
-      "drupal/webform": {
-        "Token array to string conversion error with certain field combinations": "https://www.drupal.org/files/issues/2021-08-12/3227883-5.patch"
-      },
       "drupal/mailchimp": {
         "Add member tag support when subscribing": "./patches/mailchimp_tags.patch"
       },
@@ -171,7 +168,7 @@
         "Add member tag configuration to webform mailchimp handler": "./patches/webform_mailchimp_tags.patch"
       },
       "drupal/footnotes": {
-        "Add tags support to footnotes editor plugin": "https://git.drupalcode.org/issue/footnotes-3204959/-/commit/10ec82e3d6352f5a5d5ed5f12c29a0182eaedb0e.diff"
+        "Add tags support to footnotes editor plugin": "https://www.drupal.org/files/issues/2021-11-16/footnotes-basic-styles-for-footnote-text-field-3204959-4.patch"
       },
       "drupal/focal_point": {
         "Preview link accidentally closes the media library": "https://www.drupal.org/files/issues/2020-10-11/preview_link_accidentally_closes_the_media_library-3162210-19.patch"
