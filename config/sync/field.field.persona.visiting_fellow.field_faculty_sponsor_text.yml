@@ -1,0 +1,19 @@
+uuid: c4f05d63-837b-446b-ab87-8e525b9b4f35
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_faculty_sponsor_text
+    - person.persona_type.visiting_fellow
+id: persona.visiting_fellow.field_faculty_sponsor_text
+field_name: field_faculty_sponsor_text
+entity_type: persona
+bundle: visiting_fellow
+label: 'Faculty sponsor'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
