@@ -17,6 +17,13 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 16
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   weight:
     type: number
     weight: 10

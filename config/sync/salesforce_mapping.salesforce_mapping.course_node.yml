@@ -27,21 +27,25 @@ field_mappings:
     drupal_field_value: title
     direction: sf_drupal
     salesforce_field: Published_Course_Title__c
+    id: 0
   -
     drupal_field_type: properties
     drupal_field_value: status
     direction: sf_drupal
     salesforce_field: Show_on_Web__c
+    id: 1
   -
     drupal_field_type: properties
     drupal_field_value: field_course_number
     direction: sf_drupal
     salesforce_field: Course_Number__c
+    id: 2
   -
     drupal_field_type: properties
     drupal_field_value: field_delivery_method
     direction: sf_drupal
     salesforce_field: Delivery_Method__c
+    id: 3
 status: true
 dependencies:
   module:

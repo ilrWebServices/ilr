@@ -27,16 +27,19 @@ field_mappings:
     drupal_field_value: field_instructor
     direction: sf_drupal
     salesforce_field: Contact__c
+    id: 0
   -
     drupal_field_type: RelatedIDs
     drupal_field_value: field_class
     direction: sf_drupal
     salesforce_field: Event__c
+    id: 1
   -
     drupal_field_type: properties
     drupal_field_value: title
     direction: sf_drupal
     salesforce_field: Id
+    id: 2
 status: true
 dependencies:
   module:

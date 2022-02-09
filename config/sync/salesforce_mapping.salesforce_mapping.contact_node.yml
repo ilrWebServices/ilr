@@ -27,16 +27,19 @@ field_mappings:
     drupal_field_value: title
     direction: sf_drupal
     salesforce_field: Name
+    id: 0
   -
     drupal_field_type: properties
     drupal_field_value: field_job_title
     direction: sf_drupal
     salesforce_field: Title
+    id: 1
   -
     drupal_field_type: properties
     drupal_field_value: field_last_name
     direction: sf_drupal
     salesforce_field: LastName
+    id: 2
 status: true
 dependencies:
   module:

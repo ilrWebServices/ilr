@@ -21,6 +21,11 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  extra_field_ilr_section_navigation:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_current_issue:
     type: entity_reference_label
     label: above

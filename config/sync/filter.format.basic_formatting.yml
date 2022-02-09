@@ -6,7 +6,6 @@ dependencies:
     - footnotes
     - ilr
     - linkit
-    - media
     - token_filter
 name: 'Basic Formatting'
 format: basic_formatting
@@ -40,15 +39,6 @@ filters:
     status: true
     weight: 0
     settings: {  }
-  media_embed:
-    id: media_embed
-    provider: media
-    status: false
-    weight: 100
-    settings:
-      default_view_mode: default
-      allowed_view_modes: {  }
-      allowed_media_types: {  }
   linkit:
     id: linkit
     provider: linkit

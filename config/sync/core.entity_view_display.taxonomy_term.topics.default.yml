@@ -51,6 +51,16 @@ third_party_settings:
               items_per_page: none
             weight: 0
             additional: {  }
+          535dd5b8-9b6f-4e91-a3d0-a462860ef913:
+            uuid: 535dd5b8-9b6f-4e91-a3d0-a462860ef913
+            region: main
+            configuration:
+              id: 'extra_field_block:taxonomy_term:topics:extra_field_ilr_section_navigation'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 1
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: banner
@@ -336,6 +346,11 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  extra_field_ilr_section_navigation:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: main
   field_body:
     type: text_default
     label: above

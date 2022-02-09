@@ -4,7 +4,6 @@ status: true
 dependencies:
   module:
     - footnotes
-    - media
     - token_filter
 name: 'Inline SVG'
 format: inline_svg
@@ -26,15 +25,6 @@ filters:
     weight: 0
     settings:
       replace_empty: '0'
-  media_embed:
-    id: media_embed
-    provider: media
-    status: false
-    weight: 100
-    settings:
-      default_view_mode: default
-      allowed_view_modes: {  }
-      allowed_media_types: {  }
   filter_footnotes:
     id: filter_footnotes
     provider: footnotes
