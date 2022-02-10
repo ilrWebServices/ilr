@@ -119,6 +119,8 @@ elements: |-
     '#display_on': view
     '#mode': text
     '#template': '{{ webform_token(''[webform_submission:url]'', webform_submission)|replace({''www.ilr.cornell.edu'': ''d8-edit.ilr.cornell.edu''}) }}'
+  utm_values:
+    '#type': utm_values
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'

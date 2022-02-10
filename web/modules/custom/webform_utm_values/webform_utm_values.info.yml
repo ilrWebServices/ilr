@@ -1,0 +1,8 @@
+name: 'Webform UTM Values Field'
+type: module
+description: 'Adds a composite field for UTM tracking from persistent cookies on webform submissions.'
+core_version_requirement: ^9
+package: 'Custom'
+dependencies:
+  - webform:webform
+  - persistent_visitor_parameters:persistent_visitor_parameters

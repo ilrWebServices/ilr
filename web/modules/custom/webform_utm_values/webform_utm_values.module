@@ -1,0 +1,37 @@
+<?php
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\webform_utm_values\Plugin\WebformElement\UtmValues;
+
+/**
+ * hook_ENTITY_TYPE_presave().
+ */
+function webform_utm_values_webform_submission_presave(EntityInterface $entity) {
+  /** @var \Drupal\webform\Entity\WebformSubmission $entity */
+
+  $pvps = \Drupal::service('persistent_visitor_parameters.cookie_manager')->getCookie();
+
+  if (empty($pvps)) {
+    return;
+  }
+
+  foreach ($entity->getWebform()->getElementsDecodedAndFlattened() as $element_name => $element_info) {
+    if ($element_info['#type'] === 'utm_values') {
+      $utm_values_element = $element_name;
+    }
+  }
+
+  if (empty($utm_values_element)) {
+    return;
+  }
+
+  $composite_values = [];
+
+  foreach (UtmValues::$utmFields as $subfield) {
+    if (array_key_exists($subfield, $pvps)) {
+      $composite_values[$subfield] = $pvps[$subfield];
+    }
+  }
+
+  $entity->setElementData($utm_values_element, $composite_values);
+}
