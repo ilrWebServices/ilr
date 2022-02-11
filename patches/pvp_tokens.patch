@@ -1,0 +1,59 @@
+diff --git a/persistent_visitor_parameters.tokens.inc b/persistent_visitor_parameters.tokens.inc
+new file mode 100644
+index 0000000..7b4eb22
+--- /dev/null
++++ b/persistent_visitor_parameters.tokens.inc
+@@ -0,0 +1,53 @@
++<?php
++
++use Drupal\Core\Render\BubbleableMetadata;
++
++/**
++ * Implements hook_token_info().
++ *
++ * [persistent_visitor_parameters:parameter:?]
++ */
++function persistent_visitor_parameters_token_info() {
++  $info = [];
++
++  $info['types']['persistent_visitor_parameters'] = [
++    'name' => t('Persistent Visitor Parameter Tokens'),
++    'description' => t('Tokens related to stored parameters.'),
++  ];
++
++  $info['tokens']['persistent_visitor_parameters']['parameter'] = [
++    'name' => t('Stored parameter value'),
++    'description' => t('The value of a specific stored parameter.'),
++    'dynamic' => TRUE,
++  ];
++
++  return $info;
++}
++
++/**
++ * Impelements hook_tokens().
++ */
++function persistent_visitor_parameters_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
++  if ($type !== 'persistent_visitor_parameters') {
++    return [];
++  }
++
++  $persistent_values = \Drupal::service('persistent_visitor_parameters.cookie_manager')->getCookie();
++  $replacements = [];
++
++  foreach ($tokens as $name => $original) {
++    $persistent_name = substr($name, 10);
++
++    if (!empty($persistent_values) && array_key_exists($persistent_name, $persistent_values)) {
++      $replacements[$original] = $persistent_values[$persistent_name];
++    }
++    // Remove tokens with no replacement value.
++    else {
++      $replacements[$original] = '';
++    }
++  }
++
++  $bubbleable_metadata->addCacheContexts(['cookies:pvp_stored_variables']);
++
++  return $replacements;
++}

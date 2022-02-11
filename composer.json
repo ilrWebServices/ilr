@@ -189,7 +189,8 @@
         "Mapping UI not using SalesforceMappingLocalTask Derivative": "https://git.drupalcode.org/project/salesforce/-/commit/432994274e2e0ac458a5284ddfd48be61ac942c8.diff"
       },
       "drupal/persistent_visitor_parameters": {
-        "Allow cookie name and domain to be changed": "https://git.drupalcode.org/project/persistent_visitor_parameters/-/commit/6269974586dccbbd62d08585261f8cbb6e1590f1.diff"
+        "Allow cookie name and domain to be changed": "https://git.drupalcode.org/project/persistent_visitor_parameters/-/commit/6269974586dccbbd62d08585261f8cbb6e1590f1.diff",
+        "Add persistent visitor parameters tokens": "./patches/pvp_tokens.patch"
       }
     },
     "installer-paths": {
