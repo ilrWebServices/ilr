@@ -547,7 +547,7 @@ $settings['file_private_path'] = '../private';
  *
  * @see \Drupal\Component\FileSystem\FileSystem::getOsTemporaryDirectory()
  */
-# $settings['file_temp_path'] = '/tmp';
+$settings['file_temp_path'] = '/tmp';
 
 /**
  * Session write interval:
@@ -787,6 +787,15 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 if (file_exists($app_root . '/' . $site_path . '/settings.platformsh.php')) {
   include $app_root . '/' . $site_path . '/settings.platformsh.php';
 }
+
+// Sqlite cache database connection. This is added down here because it uses the
+// file_temp_path setting.
+$databases['sqlite_cache']['default'] = [
+  'database' => $settings['file_temp_path'] . '/cache.sqlite',
+  'driver' => 'sqlite',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\sqlite',
+  'prefix' => '',
+];
 
 /**
  * Registration URL setting.

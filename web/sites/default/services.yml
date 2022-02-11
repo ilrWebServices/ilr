@@ -9,3 +9,13 @@ parameters:
     sid_bits_per_character: 6
   persistent_visitor_parameters.options:
     cookie_domain: .ilr.cornell.edu
+services:
+  cache.backend.database:
+    class: Drupal\Core\Cache\DatabaseBackendFactory
+    arguments: ['@database.sqlite_cache', '@cache_tags.invalidator.checksum', '@settings']
+    tags:
+      - { name: backend_overridable }
+  database.sqlite_cache:
+    class: Drupal\Core\Database\Connection
+    factory: Drupal\Core\Database\Database::getConnection
+    arguments: [default, sqlite_cache]
