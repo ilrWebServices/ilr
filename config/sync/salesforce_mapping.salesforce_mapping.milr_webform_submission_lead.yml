@@ -151,6 +151,41 @@ field_mappings:
     salesforce_field: Country_of_Citizenship__c
     id: 17
     description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:utm_values:utm_campaign:raw]'
+    direction: drupal_sf
+    salesforce_field: UTM_Campaign__c
+    id: 18
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:utm_values:utm_medium:raw]'
+    direction: drupal_sf
+    salesforce_field: UTM_Medium__c
+    id: 19
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:utm_values:utm_source:raw]'
+    direction: drupal_sf
+    salesforce_field: UTM_Source__c
+    id: 20
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:utm_values:utm_content:raw]'
+    direction: drupal_sf
+    salesforce_field: UTM_Content__c
+    id: 21
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:utm_values:utm_term:raw]'
+    direction: drupal_sf
+    salesforce_field: UTM_Keyword__c
+    id: 22
+    description: ''
 status: true
 dependencies:
   config:
