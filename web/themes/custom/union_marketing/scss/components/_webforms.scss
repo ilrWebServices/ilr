@@ -35,13 +35,31 @@
 
   @include breakpoint(sm) {
     display: grid;
-    column-gap: var(--cu-grid-column-gap);
+    column-gap: var(--cu-vr2);
     grid-template-columns: 1fr 1fr;
   }
 
   .cu-heading {
     --cu-current-heading-size: var(--cu-ps2);
   }
+
+  .webform-address--wrapper {
+    margin: 0;
+
+    .cu-legend {
+      margin: 0;
+    }
+  }
+
+  .colspan {
+    grid-column: 1/-1;
+
+    .cu-input-list__item--checkbox {
+      margin-bottom: var(--cu-vr1);
+    }
+  }
+
+
 }
 
 .webform--dark {
