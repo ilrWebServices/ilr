@@ -5,6 +5,7 @@
  * Contains ilr.module.
  */
 
+use Drupal\address\Plugin\Field\FieldWidget\AddressDefaultWidget;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -769,6 +770,15 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
       $form['field_sponsor']['#group'] = 'ilr_meta';
       $form['field_topics']['#group'] = 'ilr_meta';
     }
+  }
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function ilr_field_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
+  if (isset($context['widget']) && $context['widget'] instanceof AddressDefaultWidget) {
+    $element['#type'] = 'container';
   }
 }
 
