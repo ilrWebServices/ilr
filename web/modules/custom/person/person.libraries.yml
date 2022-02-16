@@ -1,0 +1,7 @@
+persona-form:
+  version: VERSION
+  css:
+    layout:
+      css/persona-form.module.css: {}
+  dependencies:
+    - core/drupal.entity-form

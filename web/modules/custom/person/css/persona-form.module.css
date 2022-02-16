@@ -1,0 +1,9 @@
+.layout-persona-form {
+  display: grid;
+  grid-template-columns: 1fr 35%;
+  gap: 2em;
+}
+
+.layout-region-persona-secondary input[type="text"] {
+  width: 100%;
+}

@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Theme template for a persona edit form.
+ *
+ * Two column template for the persona add/edit form.
+ *
+ * This template will be used when a persona edit form specifies
+ * 'persona_edit_form' as its #theme callback. Otherwise, by default, persona
+ * add/edit forms will be themed by form.html.twig.
+ *
+ * Available variables:
+ * - form: The persona add/edit form.
+ *
+ * @see person_form_persona_form_alter()
+ */
+#}
+<div class="layout-persona-form clearfix">
+  <div class="layout-region layout-region-persona-main">
+    {{ form|without('advanced', 'footer', 'actions') }}
+  </div>
+  <div class="layout-region layout-region-persona-secondary">
+    {{ form.advanced }}
+  </div>
+  <div class="layout-region layout-region-persona-footer">
+    <div class="layout-region-persona-footer__content">
+      {{ form.footer }}
+      {{ form.actions }}
+    </div>
+  </div>
+</div>

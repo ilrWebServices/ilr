@@ -31,10 +31,13 @@ function person_help($route_name, RouteMatchInterface $route_match) {
  */
 function person_theme($existing, $type, $theme, $path) {
   $theme = [
-     'persona' => [
+    'persona' => [
       'path' => $path . '/templates',
       'template'  => 'persona',
       'render element' => 'elements',
+    ],
+    'persona_edit_form' => [
+      'render element' => 'form',
     ],
   ];
 
