@@ -41,6 +41,7 @@ function union_marketing_preprocess_html(&$variables) {
 
     if ($entity_type && $entity = \Drupal::routeMatch()->getParameter($entity_type)) {
       if ($entity instanceof ContentEntityInterface) {
+        $variables['attributes']['class'][] = $entity_type;
         $variables['attributes']['class'][] = $entity_type . '--' . str_replace('_', '-', $entity->bundle());
       }
     }

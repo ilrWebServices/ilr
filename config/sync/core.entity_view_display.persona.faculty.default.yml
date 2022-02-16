@@ -21,14 +21,6 @@ targetEntityType: persona
 bundle: faculty
 mode: default
 content:
-  display_name:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 0
-    region: content
   field_bio:
     type: text_default
     label: hidden
@@ -69,6 +61,7 @@ content:
     weight: 1
     region: content
 hidden:
+  display_name: true
   field_first_name: true
   field_last_name: true
   search_api_excerpt: true
