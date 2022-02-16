@@ -1,6 +1,18 @@
+.field--label-inline {
+  display: flex;
+  gap: .5em;
+}
+
 .field--label-inline .field__label {
-  display: inline-block;
-  margin-right: 0.5em;
+  font-weight: 400;
+
+  &::after {
+    content: ':'
+  }
+}
+
+.field--label-inline p.address {
+  margin: 0;
 }
 
 .node--course.node--view-mode-teaser .field {

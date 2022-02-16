@@ -26,6 +26,14 @@
     'field',
     'field--' ~ field_name|clean_class,
     'field-type--' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+    label_display == 'inline' ? 'clearfix',
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
   ]
 %}
 
@@ -41,7 +49,7 @@
       <div{{attributes.addClass(classes,'field__item')}}>{{ item.content }}</div>
     {% endfor %}
   {% endif %}
-  {% else %}
+{% else %}
   <div{{attributes.addClass(classes)}}>
     <div{{title_attributes.addClass(title_classes)}}>{{ label }}</div>
     {% if multiple %}
@@ -55,4 +63,3 @@
     {% endif %}
   </div>
 {% endif %}
-
