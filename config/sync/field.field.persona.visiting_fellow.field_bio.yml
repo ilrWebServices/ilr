@@ -1,0 +1,23 @@
+uuid: f5f90cb5-d6e0-487f-9fc6-c8457e34ce8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_bio
+    - person.persona_type.visiting_fellow
+  module:
+    - text
+id: persona.visiting_fellow.field_bio
+field_name: field_bio
+entity_type: persona
+bundle: visiting_fellow
+label: Bio
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

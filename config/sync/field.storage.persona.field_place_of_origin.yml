@@ -1,0 +1,19 @@
+uuid: 782353d7-b8a9-4609-a67a-b2837bcf9c37
+langcode: en
+status: true
+dependencies:
+  module:
+    - address
+    - person
+id: persona.field_place_of_origin
+field_name: field_place_of_origin
+entity_type: persona
+type: address
+settings: {  }
+module: address
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

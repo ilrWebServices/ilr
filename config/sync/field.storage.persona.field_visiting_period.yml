@@ -1,0 +1,20 @@
+uuid: ba24709b-8b84-4207-91fe-73c4f33ba009
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime_range
+    - person
+id: persona.field_visiting_period
+field_name: field_visiting_period
+entity_type: persona
+type: daterange
+settings:
+  datetime_type: date
+module: datetime_range
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

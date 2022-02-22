@@ -1,0 +1,19 @@
+uuid: 43e7d114-90a2-4e1b-bad0-e243c6104267
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_last_name
+    - person.persona_type.visiting_fellow
+id: persona.visiting_fellow.field_last_name
+field_name: field_last_name
+entity_type: persona
+bundle: visiting_fellow
+label: 'Last name'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,3 +1,7 @@
+body.persona .cu-header {
+  margin-bottom: var(--cu-vr1);
+}
+
 .persona--full {
   display: flex;
   flex-direction: column;
@@ -11,9 +15,8 @@
     }
   }
 
-  .persona__name {
+  h1.cu-heading {
     @include framed(right);
-    font-size: var(--cu-text-xxl);
   }
 
   .field--field-title {
@@ -31,23 +34,26 @@
     display: grid;
     grid-column-gap: var(--cu-ps1);
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: repeat(5, auto);
 
     .field.field--field-photo {
       grid-column: 1;
-      grid-row: 1/-1;
+      grid-row: 1/20;
     }
 
-    .persona__name {
-      grid-column: 2/-1;
+    .cu-heading {
+      grid-column: 2;
     }
 
     >.field {
-      grid-column: 2/-1;
+      grid-column: 2;
     }
 
     .field--field-bio {
       margin-right: var(--cu-ps1);
+    }
+
+    .field--field-bio > h2:first-of-type {
+      margin-top: var(--cu-vr1);
     }
   }
 }

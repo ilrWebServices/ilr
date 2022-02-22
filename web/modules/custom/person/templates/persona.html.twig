@@ -24,6 +24,10 @@
 %}
 
 <div{{attributes.addClass(classes)}}>
+  {% if view_mode == 'full' %}
+  <h1 class="cu-heading">{{ label }}</h1>
+  {% endif %}
+
   {% if content %}
     {{- content -}}
   {% endif %}

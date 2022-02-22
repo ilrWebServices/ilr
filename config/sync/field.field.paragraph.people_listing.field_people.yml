@@ -9,6 +9,7 @@ dependencies:
     - person.persona_type.expert
     - person.persona_type.faculty
     - person.persona_type.staff
+    - person.persona_type.visiting_fellow
 id: paragraph.people_listing.field_people
 field_name: field_people
 entity_type: paragraph
@@ -27,8 +28,10 @@ settings:
       expert: expert
       faculty: faculty
       staff: staff
+      visiting_fellow: visiting_fellow
     sort:
       field: _none
+      direction: ASC
     auto_create: false
     auto_create_bundle: faculty
 field_type: entity_reference

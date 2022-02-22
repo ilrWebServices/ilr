@@ -1,0 +1,21 @@
+uuid: fe8349a6-cb71-4d5d-82bc-290a0c6300bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_visiting_period
+    - person.persona_type.visiting_fellow
+  module:
+    - datetime_range
+id: persona.visiting_fellow.field_visiting_period
+field_name: field_visiting_period
+entity_type: persona
+bundle: visiting_fellow
+label: 'Visiting period'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange
