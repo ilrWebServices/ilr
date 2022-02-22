@@ -1,0 +1,22 @@
+uuid: fe9d7ab5-d5b5-4324-af8e-7566b5dae563
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: visiting_fellow_personas
+label: 'Visiting Fellow Personas'
+type: 'canonical_entities:persona'
+pattern: 'people/visiting-fellows/[persona:display_name]'
+selection_criteria:
+  4e90d68b-4f65-4772-a99c-f09ec1900b28:
+    id: 'entity_bundle:persona'
+    negate: false
+    uuid: 4e90d68b-4f65-4772-a99c-f09ec1900b28
+    context_mapping:
+      persona: persona
+    bundles:
+      visiting_fellow: visiting_fellow
+selection_logic: and
+weight: -5
+relationships: {  }
