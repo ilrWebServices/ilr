@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed387f930371d22978931c1cecf9dc5d",
+    "content-hash": "011818cdeadd74c1f3b04fa81c504ded",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1949,17 +1949,17 @@
         },
         {
             "name": "drupal/campaign_monitor_rest_client",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/campaign_monitor_rest_client.git",
-                "reference": "1.0.0"
+                "reference": "1.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/campaign_monitor_rest_client-1.0.0.zip",
-                "reference": "1.0.0",
-                "shasum": "24dfbdb82fdcafe7a290084668ebedc61583e018"
+                "url": "https://ftp.drupal.org/files/projects/campaign_monitor_rest_client-1.0.1.zip",
+                "reference": "1.0.1",
+                "shasum": "21fea7cca62b03399af212f5d2e8590a3ffecf04"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -1968,8 +1968,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.0",
-                    "datestamp": "1633456120",
+                    "version": "1.0.1",
+                    "datestamp": "1645741828",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
