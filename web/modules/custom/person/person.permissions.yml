@@ -1,3 +1,9 @@
 administer persons:
   title: 'Administer persons and personas'
   restrict access: true
+  description: 'Perform all content tasks across all persona types.'
+
+administer person fields and persona types:
+  title: 'Administer person fields and persona types'
+  restrict access: true
+  description: 'Maintain the types of personas available and the fields that are associated with both persons and persona types.'
