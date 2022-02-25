@@ -10,11 +10,8 @@ dependencies:
     - text
 third_party_settings:
   allowed_formats:
-    inline_svg: inline_svg
-    basic_formatting: '0'
-    basic_formatting_with_media: '0'
-    full_html: '0'
-    plain_text: '0'
+    allowed_formats:
+      - inline_svg
 id: taxonomy_term.publication.field_inline_svg_logo
 field_name: field_inline_svg_logo
 entity_type: taxonomy_term

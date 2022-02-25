@@ -10,11 +10,9 @@ dependencies:
     - text
 third_party_settings:
   allowed_formats:
-    basic_formatting_with_media: basic_formatting_with_media
-    full_html: full_html
-    basic_formatting: '0'
-    inline_svg: '0'
-    plain_text: '0'
+    allowed_formats:
+      - basic_formatting_with_media
+      - full_html
 id: paragraph.rich_text.field_body
 field_name: field_body
 entity_type: paragraph

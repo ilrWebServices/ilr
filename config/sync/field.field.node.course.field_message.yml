@@ -10,11 +10,7 @@ dependencies:
     - text
 third_party_settings:
   allowed_formats:
-    basic_formatting: '0'
-    basic_formatting_with_media: '0'
-    full_html: '0'
-    inline_svg: '0'
-    plain_text: '0'
+    allowed_formats: {  }
 id: node.course.field_message
 field_name: field_message
 entity_type: node
