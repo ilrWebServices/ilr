@@ -16,6 +16,8 @@ dependencies:
     - address
     - datetime_range
     - media_library
+    - media_library_edit
+    - path
     - text
 id: persona.visiting_fellow.default
 targetEntityType: persona
@@ -86,7 +88,9 @@ content:
     region: content
     settings:
       media_types: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
   field_place_of_origin:
     type: address_default
     weight: 9
@@ -96,6 +100,12 @@ content:
   field_visiting_period:
     type: daterange_default
     weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }
