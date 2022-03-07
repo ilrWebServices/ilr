@@ -7,5 +7,3 @@ parameters:
     cookie_lifetime: 2000000
     sid_length: 48
     sid_bits_per_character: 6
-  persistent_visitor_parameters.options:
-    cookie_domain: .ilr.cornell.edu

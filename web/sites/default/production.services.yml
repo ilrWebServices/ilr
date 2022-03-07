@@ -1,0 +1,4 @@
+# Loaded only on the production site. See settings.platformsh.php.
+parameters:
+  persistent_visitor_parameters.options:
+    cookie_domain: .ilr.cornell.edu
