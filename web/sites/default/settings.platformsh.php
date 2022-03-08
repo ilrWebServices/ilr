@@ -22,18 +22,6 @@ if ($platformsh->hasRelationship('database')) {
   ];
 }
 
-// Configure the legacy d7 database.
-$creds = $platformsh->credentials('drupal7');
-$databases['drupal7']['default'] = [
-  'driver' => $creds['scheme'],
-  'database' => $creds['path'],
-  'username' => $creds['username'],
-  'password' => $creds['password'],
-  'host' => $creds['host'],
-  'port' => $creds['port'],
-  'pdo' => [PDO::MYSQL_ATTR_COMPRESS => !empty($creds['query']['compression'])]
-];
-
 // Enable verbose error messages on development branches, but not on the production branch.
 // You may add more debug-centric settings here if desired to have them automatically enable
 // on development but not production.
@@ -171,6 +159,22 @@ foreach ($platformsh->variables() as $name => $value) {
       }
       break;
   }
+}
+
+// Custom configuration.
+
+if ($platformsh->hasRelationship('drupal7')) {
+  // Configure the legacy d7 database.
+  $creds = $platformsh->credentials('drupal7');
+  $databases['drupal7']['default'] = [
+    'driver' => $creds['scheme'],
+    'database' => $creds['path'],
+    'username' => $creds['username'],
+    'password' => $creds['password'],
+    'host' => $creds['host'],
+    'port' => $creds['port'],
+    'pdo' => [PDO::MYSQL_ATTR_COMPRESS => !empty($creds['query']['compression'])]
+  ];
 }
 
 if ($platformsh->onProduction()) {
