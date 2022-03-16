@@ -14,5 +14,15 @@ expire: 300
 form_settings:
   user_register_form: false
   user_pass: false
-  feedback_contact_message_form: false
-  _contact_message_form: false
+  node_certificate_form: false
+  node_class_form: false
+  node_course_form: false
+  node_instructor_form: false
+  node_media_mention_form: false
+  node_page_form: false
+  node_participant_form: false
+  node_post_form: false
+  node_post_document_form: false
+  node_post_experience_report_form: false
+  node_story_form: false
+  node_video_post_form: false
