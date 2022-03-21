@@ -1,0 +1,27 @@
+# This is the equivalent to a Dockerfile.
+
+# Platform.sh runs on Debian containers. Their 8.1 image appears to be Debian 10
+# (codename Buster).
+FROM docker.io/library/php:8.1.4-fpm-buster
+
+# Alpine builds are much smaller, but might be missing tools like sqlite and
+# other CLI stuff.
+# FROM docker.io/library/php:8.1.4-fpm-alpine
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+COPY php-fpm.conf /usr/local/etc/php-fpm.d/zz-docker.conf
+
+# Caddy is built and downloaded via a download link generated at
+# https://caddyserver.com/download.
+RUN curl --silent --output /usr/bin/caddy \
+      "https://caddyserver.com/api/download?os=linux&arch=amd64&p=github.com%2Fbaldinof%2Fcaddy-supervisor&idempotency=46106547623252" \
+    && chmod 0755 /usr/bin/caddy \
+    && /usr/bin/caddy version \
+    mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+WORKDIR /app
+
+EXPOSE 80
+
+CMD ["caddy", "run", "--watch", "--config", "/app/dev/Caddyfile"]

@@ -1,0 +1,17 @@
+{
+	supervisor {
+		php-fpm {
+			restart_policy always
+		}
+	}
+}
+
+localhost:80 {
+	root * /app/web
+	file_server
+	php_fastcgi unix//var/run/php-fpm.sock
+}
+
+# rewrite {
+#     to {path} /index.php?{query}
+# }
