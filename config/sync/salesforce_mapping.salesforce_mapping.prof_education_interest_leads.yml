@@ -20,7 +20,7 @@ sync_triggers:
   push_delete: false
   pull_create: false
   pull_update: false
-  pull_delete: true
+  pull_delete: false
 salesforce_object_type: Lead
 drupal_entity_type: webform_submission
 drupal_bundle: professional_education_interests
@@ -114,7 +114,6 @@ dependencies:
   config:
     - webform.webform.professional_education_interests
   module:
-    - salesforce_pull
     - salesforce_push
     - salesforce_webform
     - token
