@@ -60,6 +60,13 @@ class NewClassProcessor extends QueueWorkerBase implements ContainerFactoryPlugi
   public function processItem($data) {
     // @todo Consider confirming that the data is a node:class entity.
     $class = $data;
+
+    if ($class->field_course->isEmpty()) {
+      // Throw an exception to log the missing course. This will re-queue it,
+      // but shouldn't hold up the rest of the queue.
+      throw new \Exception('Class is missing a course. Class nid ' . $class->id());
+    }
+
     $course = $class->field_course->entity;
 
     // Check if this Class or the related Course are unpublished.
