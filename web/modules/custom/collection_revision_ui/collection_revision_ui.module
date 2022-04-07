@@ -1,0 +1,82 @@
+<?php
+
+/**
+ * @file
+ * Collection Revision UI hooks.
+ */
+
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Form\RevisionRevertForm;
+use Drupal\Core\Entity\Routing\RevisionHtmlRouteProvider;
+use Drupal\Core\Session\AccountInterface;
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function collection_revision_ui_entity_type_alter(array &$entity_types) {
+  /** @var \Drupal\Core\Entity\ContentEntityType $collection_definition */
+  $collection_definition = $entity_types['collection'];
+
+  // Route Providers.
+  $handlers = $collection_definition->getHandlerClasses();
+  $route_providers = isset($handlers['route_provider']) ? $handlers['route_provider'] : [];
+
+  // Class is from https://www.drupal.org/project/drupal/issues/2350939.
+  $class = RevisionHtmlRouteProvider::class;
+  if (!in_array($class, $route_providers)) {
+    $route_providers[] = $class;
+    $collection_definition->setHandlerClass('route_provider', $route_providers);
+  }
+
+  // Link templates.
+  if (FALSE === $collection_definition->getLinkTemplate('revision')) {
+    $collection_definition->setLinkTemplate('revision', '/collection/{collection}/revision/{collection_revision}/view');
+  }
+  if (FALSE === $collection_definition->getLinkTemplate('version-history')) {
+    $collection_definition->setLinkTemplate('version-history', '/collection/{collection}/revisions');
+  }
+  if (FALSE === $collection_definition->getLinkTemplate('revision-revert-form')) {
+    $collection_definition->setLinkTemplate('revision-revert-form', '/collection/{collection}/revision/{collection_revision}/revert');
+  }
+  // @todo Also need to implement revision-delete-form per #2350939-96.
+  if (NULL === $collection_definition->getFormClass('revision-revert')) {
+    // Class is from https://www.drupal.org/project/drupal/issues/2350939.
+    $collection_definition->setFormClass('revision-revert', RevisionRevertForm::class);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_access().
+ */
+function collection_revision_ui_collection_access(EntityInterface $entity, string $operation, AccountInterface $account): AccessResultInterface {
+  $bundle = $entity->bundle();
+  switch ($operation) {
+    case 'view all revisions':
+      return AccessResult::allowedIfHasPermissions($account, [
+        'view any collection history',
+        'view collection ' . $bundle . ' history'
+      ], 'OR');
+
+    case 'view revision':
+      return AccessResult::allowedIfHasPermissions($account, [
+        'view any collection revisions',
+        'view collection ' . $bundle . ' revisions',
+      ], 'OR');
+
+    case 'revert':
+      return AccessResult::allowedIfHasPermissions($account, [
+        'revert any collection revisions',
+        'revert collection ' . $bundle . ' revisions',
+      ], 'OR');
+
+    case 'delete revision':
+      return AccessResult::allowedIfHasPermissions($account, [
+        'delete any collection revisions',
+        'delete collection ' . $bundle . ' revisions',
+      ], 'OR');
+  }
+
+  return AccessResult::neutral();
+}

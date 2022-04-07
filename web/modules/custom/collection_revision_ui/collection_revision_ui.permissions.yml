@@ -1,0 +1,14 @@
+view any collection history:
+  title: 'View any collection history pages'
+
+view any collection revisions:
+  title: 'View any collection revision pages'
+
+revert any collection revisions:
+  title: 'Revert any collection revision'
+
+delete any collection revisions:
+  title: 'Delete any collection revision'
+
+permission_callbacks:
+  - Drupal\collection_revision_ui\CollectionRevisionUiPermissions::permissions
