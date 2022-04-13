@@ -372,7 +372,6 @@ function union_marketing_preprocess_paragraph__promo(&$variables) {
  * Implements hook_preprocess_field().
  */
 function union_marketing_preprocess_field__paragraph__field_heading__promo(&$variables) {
-  $variables['attributes']['class'][] = 'cu-heading';
   $variables['attributes']['class'][] = 'cu-text--xxxl';
 }
 

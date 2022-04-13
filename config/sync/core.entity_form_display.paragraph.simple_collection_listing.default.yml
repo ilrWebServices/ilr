@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.simple_collection_listing.field_collection
+    - field.field.paragraph.simple_collection_listing.field_heading
     - paragraphs.paragraphs_type.simple_collection_listing
 id: paragraph.simple_collection_listing.default
 targetEntityType: paragraph
@@ -15,6 +16,14 @@ content:
     weight: 0
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
 hidden:
   created: true

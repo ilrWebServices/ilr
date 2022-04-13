@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.curated_post_listing.field_heading
     - field.field.paragraph.curated_post_listing.field_items
     - field.field.paragraph.curated_post_listing.field_posts
     - paragraphs.paragraphs_type.curated_post_listing
@@ -13,6 +14,14 @@ targetEntityType: paragraph
 bundle: curated_post_listing
 mode: default
 content:
+  field_heading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_items:
     type: collected_item_entity_formatter
     label: hidden
@@ -20,7 +29,7 @@ content:
       view_mode: teaser
       link: false
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
 hidden:
   field_posts: true

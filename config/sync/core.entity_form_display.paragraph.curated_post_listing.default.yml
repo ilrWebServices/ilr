@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.curated_post_listing.field_heading
     - field.field.paragraph.curated_post_listing.field_items
     - field.field.paragraph.curated_post_listing.field_posts
     - paragraphs.paragraphs_type.curated_post_listing
@@ -11,6 +12,14 @@ targetEntityType: paragraph
 bundle: curated_post_listing
 mode: default
 content:
+  field_heading:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_items:
     type: entity_reference_autocomplete
     weight: 0
