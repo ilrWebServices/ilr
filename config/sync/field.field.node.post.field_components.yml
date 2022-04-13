@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.storage.node.field_components
     - node.type.post
+    - paragraphs.paragraphs_type.curated_post_listing
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.media_deck
     - paragraphs.paragraphs_type.picture_in_picture
     - paragraphs.paragraphs_type.rich_text
+    - paragraphs.paragraphs_type.simple_collection_listing
     - paragraphs.paragraphs_type.video
   module:
     - entity_reference_revisions
@@ -29,6 +31,8 @@ settings:
       rich_text: rich_text
       image: image
       video: video
+      simple_collection_listing: simple_collection_listing
+      curated_post_listing: curated_post_listing
       media_deck: media_deck
       picture_in_picture: picture_in_picture
     negate: 0
@@ -43,8 +47,8 @@ settings:
         weight: 0
         enabled: false
       curated_post_listing:
-        weight: 0
-        enabled: false
+        weight: -6
+        enabled: true
       deck:
         weight: 0
         enabled: false
@@ -61,7 +65,7 @@ settings:
         weight: 0
         enabled: false
       media_deck:
-        weight: -7
+        weight: -5
         enabled: true
       people_listing:
         weight: 0
@@ -70,7 +74,7 @@ settings:
         weight: 0
         enabled: false
       picture_in_picture:
-        weight: -6
+        weight: -4
         enabled: true
       promo:
         weight: 0
@@ -85,7 +89,10 @@ settings:
         weight: 0
         enabled: false
       simple_collection_listing:
-        weight: 0
+        weight: -7
+        enabled: true
+      table_of_contents:
+        weight: 40
         enabled: false
       testimonial:
         weight: 0
