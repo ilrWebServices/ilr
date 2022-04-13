@@ -49,9 +49,9 @@
     not paragraph.isPublished() ? 'paragraph--unpublished'
   ]
 %}
-
+{% if not paragraph.field_heading.isEmpty() %}{{ content.field_heading }}{% endif %}
 <div{{attributes.addClass(classes)}}>
   {% block content %}
-    {{ content }}
+    {{ content|without('field_heading') }}
   {% endblock %}
 </div>

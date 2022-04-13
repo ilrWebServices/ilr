@@ -38,6 +38,7 @@
  * @ingroup themeable
  */
 #}
+{% if not paragraph.field_heading.isEmpty() %}{{ content.field_heading }}{% endif %}
 {% include '@union/_grid.twig' with {
   grid_content: content.field_items,
   attributes: attributes.addClass([
