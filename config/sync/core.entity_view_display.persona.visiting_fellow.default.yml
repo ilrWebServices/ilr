@@ -55,10 +55,9 @@ content:
     weight: 0
     region: content
   field_place_of_origin:
-    type: address_default
+    type: address_plain
     label: inline
-    settings:
-      field_settings: {  }
+    settings: {  }
     third_party_settings: {  }
     weight: 1
     region: content
