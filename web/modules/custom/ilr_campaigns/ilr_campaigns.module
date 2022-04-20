@@ -56,4 +56,11 @@ function ilr_campaigns_cron() {
 
   // Add Course Notification submissions to the email list.
   $course_notifications_helper->queueSubscribers();
+
+  /** @var \Drupal\ilr_campaigns\BlogSubscriptionHelper $blog_subscription_helper */
+  $blog_subscription_helper = \Drupal::service('ilr_campaigns.blog_subscriptions');
+  $blog_subscription_helper->addSubscriberInterestOptions();
+
+  // Queue the subscribers.
+  $blog_subscription_helper->queueSubscribers('blog_updates');
 }
