@@ -188,6 +188,10 @@ class CourseNotificationHelper {
   /**
    * Add course options to the 'Course Notifications' custom field.
    *
+   * @return bool|null
+   *   TRUE if field was successfully updated, FALSE if it was not. NULL if
+   *   there was nothing to do.
+   *
    * @todo Consider NOT removing/replacing renamed options, since that will remove users from segments.
    *
    * @todo Watch for removed options. If any, move users to the new option.
@@ -196,13 +200,6 @@ class CourseNotificationHelper {
     $list_id = $this->settings->get('course_notification_list_id');
 
     if (empty($list_id)) {
-      return;
-    }
-
-    // Only run every 24 hours.
-    $last_field_update = $this->state->get('ilr_campaigns.custom_field_update', 0);
-
-    if ((REQUEST_TIME - $last_field_update) < 60 * 60 * 24) {
       return;
     }
 
@@ -244,9 +241,10 @@ class CourseNotificationHelper {
     }
     catch (\Exception $e) {
       // @todo Log and continue. No WSOD for us!
+      return FALSE;
     }
 
-    $this->state->set('ilr_campaigns.custom_field_update', REQUEST_TIME);
+    return TRUE;
   }
 
   /**

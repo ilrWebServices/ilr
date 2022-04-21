@@ -50,9 +50,14 @@ function ilr_campaigns_node_insert(ContentEntityInterface $node) {
  * Implements hook_cron().
  */
 function ilr_campaigns_cron() {
-  // @todo Maybe don't run this EVERY cron.
   $course_notifications_helper = \Drupal::service('ilr_campaigns.course_notifications');
-  $course_notifications_helper->addCustomFieldOptions();
+  $last_field_update = \Drupal::state()->get('ilr_campaigns.custom_field_update', 0);
+
+  if ((\Drupal::time()->getRequestTime() - $last_field_update) > 60 * 60 * 24) {
+    if ($course_notifications_helper->addCustomFieldOptions()) {
+      \Drupal::state()->set('ilr_campaigns.custom_field_update', \Drupal::time()->getRequestTime());
+    }
+  }
 
   // Add Course Notification submissions to the email list.
   $course_notifications_helper->queueSubscribers();
