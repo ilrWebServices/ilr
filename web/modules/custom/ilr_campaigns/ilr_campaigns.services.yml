@@ -2,9 +2,12 @@ services:
   logger.channel.course_notifications:
     parent: logger.channel_base
     arguments: ['course notifications']
+  logger.channel.blog_subscriptions:
+    parent: logger.channel_base
+    arguments: ['blog subscriptions']
   ilr_campaigns.course_notifications:
     class: Drupal\ilr_campaigns\CourseNotificationHelper
     arguments: ['@campaign_monitor_rest_client', '@entity_type.manager', '@state', '@queue', '@config.factory', '@logger.channel.course_notifications']
   ilr_campaigns.blog_subscriptions:
     class: Drupal\ilr_campaigns\BlogSubscriptionHelper
-    arguments: ['@campaign_monitor_rest_client', '@entity_type.manager', '@state', '@queue', '@config.factory', '@collection.content_manager', '@logger.channel.course_notifications']
+    arguments: ['@campaign_monitor_rest_client', '@entity_type.manager', '@state', '@queue', '@config.factory', '@logger.channel.blog_subscriptions', '@collection.content_manager']
