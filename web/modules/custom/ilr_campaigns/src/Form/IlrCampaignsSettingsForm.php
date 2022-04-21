@@ -100,9 +100,16 @@ class IlrCampaignsSettingsForm extends ConfigFormBase {
         if (count($options) > 1) {
           $form['course_notification_list_id'] = [
             '#type' => 'select',
-            '#title' => $this->t('List'),
+            '#title' => $this->t('Course notifications list'),
             '#description' => $this->t('Select the list to use for Course Notifications.'),
             '#default_value' => $config->get('course_notification_list_id'),
+            '#options' => $options,
+          ];
+          $form['blog_updates_list_id'] = [
+            '#type' => 'select',
+            '#title' => $this->t('Blog subscriptions list'),
+            '#description' => $this->t('Select the list to use for Blog Subscriptions.'),
+            '#default_value' => $config->get('blog_updates_list_id'),
             '#options' => $options,
           ];
         }
@@ -129,6 +136,7 @@ class IlrCampaignsSettingsForm extends ConfigFormBase {
     $config = $this->config('ilr_campaigns.settings');
     $config->set('course_notification_client_id', $form_state->getValue('course_notification_client_id'))->save();
     $config->set('course_notification_list_id', $form_state->getValue('course_notification_list_id'))->save();
+    $config->set('blog_updates_list_id', $form_state->getValue('blog_updates_list_id'))->save();
     $this->messenger()->addMessage($this->t('Configuration saved.'));
   }
 
