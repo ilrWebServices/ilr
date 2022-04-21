@@ -51,21 +51,29 @@ function ilr_campaigns_node_insert(ContentEntityInterface $node) {
  */
 function ilr_campaigns_cron() {
   $course_notifications_helper = \Drupal::service('ilr_campaigns.course_notifications');
-  $last_field_update = \Drupal::state()->get('ilr_campaigns.custom_field_update', 0);
+  $last_field_update_course_notifications = \Drupal::state()->get('ilr_campaigns.custom_field_update_course_notifications', 0);
 
-  if ((\Drupal::time()->getRequestTime() - $last_field_update) > 60 * 60 * 24) {
+  if ((\Drupal::time()->getRequestTime() - $last_field_update_course_notifications) > 60 * 60 * 24) {
     if ($course_notifications_helper->addCustomFieldOptions()) {
-      \Drupal::state()->set('ilr_campaigns.custom_field_update', \Drupal::time()->getRequestTime());
+      \Drupal::state()->set('ilr_campaigns.custom_field_update_course_notifications', \Drupal::time()->getRequestTime());
     }
   }
 
   // Add Course Notification submissions to the email list.
   $course_notifications_helper->queueSubscribers();
 
+  // Also process blog subscribers.
   /** @var \Drupal\ilr_campaigns\BlogSubscriptionHelper $blog_subscription_helper */
   $blog_subscription_helper = \Drupal::service('ilr_campaigns.blog_subscriptions');
-  $blog_subscription_helper->addSubscriberInterestOptions();
+
+  $last_field_update_blog_subscriptions = \Drupal::state()->get('ilr_campaigns.custom_field_update_blog_subscriptions', 0);
+
+  if ((\Drupal::time()->getRequestTime() - $last_field_update_blog_subscriptions) > 60 * 60 * 24) {
+    if ($blog_subscription_helper->addCustomFieldOptions()) {
+      \Drupal::state()->set('ilr_campaigns.custom_field_update_blog_subscriptions', \Drupal::time()->getRequestTime());
+    }
+  }
 
   // Queue the subscribers.
-  $blog_subscription_helper->queueSubscribers('blog_updates');
+  $blog_subscription_helper->queueSubscribers();
 }
