@@ -179,7 +179,7 @@ class ListManagerBase {
         '@submission' => $submission->id(),
       ]);
 
-      if ($subscriber_queue->createItem($submission)) {
+      if ($submission->getSourceEntity() && $subscriber_queue->createItem($submission)) {
         $last_queued_serial_id = $submission->serial->value;
       }
     }
