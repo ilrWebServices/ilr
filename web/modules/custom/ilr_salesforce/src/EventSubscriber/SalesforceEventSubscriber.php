@@ -9,7 +9,6 @@ use Drupal\salesforce_mapping\Event\SalesforceQueryEvent;
 use Drupal\salesforce_mapping\Event\SalesforcePullEvent;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\ilr_salesforce\CourseToTopicsTrait;
-use Drupal\ilr_salesforce\CountryCodeTransformTrait;
 
 /**
  * Subscriber for SalesForce events.
@@ -17,7 +16,6 @@ use Drupal\ilr_salesforce\CountryCodeTransformTrait;
 class SalesforceEventSubscriber implements EventSubscriberInterface {
 
   use CourseToTopicsTrait;
-  use CountryCodeTransformTrait;
 
   /**
    * Drupal\Core\Entity\EntityTypeManager definition.
@@ -75,10 +73,6 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
   public function pullPresave(SalesforcePullEvent $event) {
     if ($event->getMapping()->id() === 'course_node') {
       $this->pullPresaveCourseNode($event);
-    }
-
-    if ($event->getMapping()->id() === 'class_node') {
-      $this->pullPresaveClassNode($event);
     }
 
     if ($event->getMapping()->id() === 'class_session') {
@@ -162,20 +156,6 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Pull presave event callback for class nodes.
-   *
-   * @param \Drupal\salesforce_mapping\Event\SalesforcePullEvent $event
-   *   The event.
-   */
-  private function pullPresaveClassNode(SalesforcePullEvent $event) {
-    $class_node = $event->getEntity();
-    $sf = $event->getMappedObject()->getSalesforceRecord();
-    // Convert incoming country codes to 2 letter version.
-    $address = $class_node->field_address->value;
-    $class_node->field_address->country_code = $this->getTwoLetterCountryCode($sf->field('Event_Location_Country__c'));
-  }
-
-  /**
    * Pull presave event callback for class sessions.
    *
    * @param \Drupal\salesforce_mapping\Event\SalesforcePullEvent $event
@@ -199,21 +179,6 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     $end_datetime = new DrupalDateTime("$session_date $end_time", 'America/New_York');
     $end_datetime->setTimezone(new \DateTimeZone('UTC'));
     $class_session->session_date->end_value = $end_datetime->format('Y-m-d\TH:i:s');
-  }
-
-  /**
-   * Convert the incoming country code to it's 2 letter equivalent.
-   *
-   * @todo Ensure that Canada is behaving as expected. It might not be coming
-   * from SF as the expected 3 letter code.
-   */
-  private function getTwoLetterCountryCode($incoming_country_code) {
-    // `countryCodeMap` is set in CountryCodeTransformTrait.
-    if (array_key_exists($incoming_country_code, $this->countryCodeMap)) {
-      return $this->countryCodeMap[$incoming_country_code];
-    }
-
-    return NULL;
   }
 
 }
