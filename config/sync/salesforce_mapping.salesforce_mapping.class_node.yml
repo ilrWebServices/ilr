@@ -28,108 +28,126 @@ field_mappings:
     direction: sf_drupal
     salesforce_field: Name
     id: 0
+    description: ''
   -
     drupal_field_type: properties
-    drupal_field_value: field_date_start
+    drupal_field_value: field_date_start.value
     direction: sf_drupal
     salesforce_field: Start__c
     id: 1
+    description: ''
   -
     drupal_field_type: properties
-    drupal_field_value: field_date_end
+    drupal_field_value: field_date_end.value
     direction: sf_drupal
     salesforce_field: End__c
     id: 2
+    description: ''
   -
     drupal_field_type: RelatedIDs
     drupal_field_value: field_course
     direction: sf_drupal
     salesforce_field: Course__c
     id: 3
+    description: ''
   -
     drupal_field_type: properties
     drupal_field_value: field_price
     direction: sf_drupal
     salesforce_field: Event_Class_Fee__c
     id: 4
+    description: ''
   -
     drupal_field_type: properties
     drupal_field_value: field_class_full
     direction: sf_drupal
     salesforce_field: Is_Full__c
     id: 5
+    description: ''
   -
     drupal_field_type: properties
     drupal_field_value: field_class_cancelled
     direction: sf_drupal
     salesforce_field: Is_Cancelled__c
     id: 6
+    description: ''
   -
-    drupal_field_type: properties_extended
+    drupal_field_type: properties
     drupal_field_value: field_address.address_line1
     direction: sf_drupal
     salesforce_field: Event_Location_Street__c
     id: 7
+    description: ''
   -
-    drupal_field_type: properties_extended
+    drupal_field_type: properties
     drupal_field_value: field_address.locality
     direction: sf_drupal
     salesforce_field: Event_Location_City__c
     id: 8
+    description: ''
   -
-    drupal_field_type: properties_extended
+    drupal_field_type: properties
     drupal_field_value: field_address.administrative_area
     direction: sf_drupal
     salesforce_field: Event_Location_State__c
     id: 9
+    description: ''
   -
-    drupal_field_type: properties_extended
+    drupal_field_type: properties
     drupal_field_value: field_address.postal_code
     direction: sf_drupal
     salesforce_field: Event_Location_Zip_Postal_Code__c
     id: 10
+    description: ''
   -
-    drupal_field_type: properties_extended
+    drupal_field_type: properties
     drupal_field_value: field_address.country_code
     direction: sf_drupal
     salesforce_field: Event_Location_Country__c
     id: 11
+    description: ''
   -
-    drupal_field_type: properties_extended
+    drupal_field_type: properties
     drupal_field_value: field_class_date.value
     direction: sf_drupal
     salesforce_field: Start__c
     id: 12
+    description: ''
   -
-    drupal_field_type: properties_extended
+    drupal_field_type: properties
     drupal_field_value: field_class_date.end_value
     direction: sf_drupal
     salesforce_field: End__c
     id: 13
+    description: ''
   -
     drupal_field_type: properties
     drupal_field_value: status
     direction: sf_drupal
     salesforce_field: Class_Show_on_Web__c
     id: 14
+    description: ''
   -
     drupal_field_type: properties
     drupal_field_value: field_delivery_method
     direction: sf_drupal
     salesforce_field: Delivery_Method__c
     id: 15
+    description: ''
   -
     drupal_field_type: properties
-    drupal_field_value: field_message
+    drupal_field_value: field_message.value
     direction: sf_drupal
     salesforce_field: Class_Selection_Header_on_Web__c
     id: 16
+    description: ''
   -
     drupal_field_type: properties
-    drupal_field_value: field_external_link
+    drupal_field_value: field_external_link.uri
     direction: sf_drupal
     salesforce_field: alternate_registration_url__c
     id: 17
+    description: ''
 status: true
 dependencies:
   config:
