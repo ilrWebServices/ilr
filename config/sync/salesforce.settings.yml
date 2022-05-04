@@ -8,6 +8,6 @@ use_latest: false
 limit_mapped_object_revisions: 10
 salesforce_auth_provider: ilr_marketing_jwt_oauth_dev
 rest_api_version:
-  label: 'Summer ''21'
-  url: /services/data/v52.0
-  version: '52.0'
+  label: 'Spring ''22'
+  url: /services/data/v54.0
+  version: '54.0'
