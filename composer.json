@@ -182,9 +182,9 @@
         "Linkit for Link field": "https://www.drupal.org/files/issues/2021-04-07/linkit-for-link-field-2712951-216.patch"
       },
       "drupal/salesforce": {
-        "Salesforce link appears in \"Operations\" links on views for anonymous users": "https://git.drupalcode.org/issue/salesforce-3210809/-/commit/e770f23fd303be476229d7ab89a42427a7ed9bbd.diff",
+        "Issue #3210809: Salesforce link appears in \"Operations\" links on views for anonymous users": "https://git.drupalcode.org/issue/salesforce-3210809/-/commit/e770f23fd303be476229d7ab89a42427a7ed9bbd.diff",
         "Issue #3221747: Improve performance of asynchronous salesforce push": "https://git.drupalcode.org/issue/salesforce-3221747/-/commit/03a3308d7d1796f007dfb8d0f5648d31ec373f03.diff",
-        "Allow RestClient to handle non-JSON data": "https://git.drupalcode.org/project/salesforce/-/merge_requests/23.diff",
+        "Issue #3226511: Allow RestClient to handle non-JSON data": "./patches/salesforce-3226511_non-json_mr-24.patch",
         "Issue #3120102: Store identity during drush sfrt": "https://git.drupalcode.org/project/salesforce/-/commit/8daad1c82b69090a2a0dd518636085eda5953588.diff"
       },
       "drupal/persistent_visitor_parameters": {
