@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1a538c29b3855a38caf8d1f2d93ee21",
+    "content-hash": "ea6f558463eaae31cf1d5689188f6ff0",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2071,24 +2071,23 @@
         },
         {
             "name": "drupal/collegenet2sf",
-            "version": "1.x-dev",
+            "version": "2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/collegenet2sf.git",
-                "reference": "58ed3fcdc0a567dc8201ad74450276871d6691dc"
+                "reference": "697a2d1329f644a0f23141e15b1de756765551c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/collegenet2sf/zipball/58ed3fcdc0a567dc8201ad74450276871d6691dc",
-                "reference": "58ed3fcdc0a567dc8201ad74450276871d6691dc",
+                "url": "https://api.github.com/repos/ilrWebServices/collegenet2sf/zipball/697a2d1329f644a0f23141e15b1de756765551c7",
+                "reference": "697a2d1329f644a0f23141e15b1de756765551c7",
                 "shasum": ""
             },
             "require": {
-                "drupal/salesforce": "^4.0",
+                "drupal/salesforce": "^5.0",
                 "drupal/sftp_client": "1.0.x-dev",
                 "league/csv": "^9.0"
             },
-            "default-branch": true,
             "type": "drupal-module",
             "extra": {
                 "drush": {
@@ -2105,10 +2104,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://github.com/ilrWebServices/collegenet2sf/tree/1.x",
+                "source": "https://github.com/ilrWebServices/collegenet2sf/tree/2.x",
                 "issues": "https://github.com/ilrWebServices/collegenet2sf/issues"
             },
-            "time": "2021-08-18T21:39:32+00:00"
+            "time": "2022-05-04T18:20:29+00:00"
         },
         {
             "name": "drupal/config_filter",
@@ -5297,21 +5296,21 @@
         },
         {
             "name": "drupal/salesforce",
-            "version": "4.2.0",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/salesforce.git",
-                "reference": "8.x-4.2"
+                "reference": "5.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/salesforce-8.x-4.2.zip",
-                "reference": "8.x-4.2",
-                "shasum": "93e8094e9d4c57a0ea9afd9e6bfb2ef18c47d09b"
+                "url": "https://ftp.drupal.org/files/projects/salesforce-5.0.0.zip",
+                "reference": "5.0.0",
+                "shasum": "06f63aae2e5e206e4e8abe58e37b0443e4267eec"
             },
             "require": {
                 "consolidation/output-formatters": "^3.2.0 || ^4.1",
-                "drupal/core": "^8.7.7 || ^9",
+                "drupal/core": "^9.1",
                 "ext-json": "*",
                 "lusitanian/oauth": "^0.8.11"
             },
@@ -5341,8 +5340,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-4.2",
-                    "datestamp": "1616088748",
+                    "version": "5.0.0",
+                    "datestamp": "1635946398",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"

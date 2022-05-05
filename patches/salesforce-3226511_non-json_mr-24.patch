@@ -1,0 +1,249 @@
+diff --git a/src/Rest/RestClient.php b/src/Rest/RestClient.php
+index 4dfc69fa16a9d4be41a2868a66082df9ea024b45..256885f0bb1f648b1531a8767ed30b1af84de77f 100644
+--- a/src/Rest/RestClient.php
++++ b/src/Rest/RestClient.php
+@@ -117,6 +117,13 @@ class RestClient implements RestClientInterface {
+    */
+   protected $httpClientOptions;
+
++  /**
++   * Default HTTP headers.
++   *
++   * @var array
++   */
++  protected $defaultHeaders;
++
+   const CACHE_LIFETIME = 300;
+   const LONGTERM_CACHE_LIFETIME = 86400;
+
+@@ -151,6 +158,9 @@ class RestClient implements RestClientInterface {
+     $this->authProvider = $authManager->getProvider();
+     $this->authConfig = $authManager->getConfig();
+     $this->authToken = $authManager->getToken();
++    $this->defaultHeaders = [
++      'Content-type' => 'application/json',
++    ];
+     return $this;
+   }
+
+@@ -180,7 +190,7 @@ class RestClient implements RestClientInterface {
+   /**
+    * {@inheritdoc}
+    */
+-  public function apiCall($path, array $params = [], $method = 'GET', $returnObject = FALSE) {
++  public function apiCall($path, $params = [], $method = 'GET', $returnObject = FALSE, array $headers = []) {
+     if (!$this->isInit()) {
+       throw new RestException(NULL, $this->t('RestClient is not initialized.'));
+     }
+@@ -193,7 +203,7 @@ class RestClient implements RestClientInterface {
+     }
+
+     try {
+-      $this->response = new RestResponse($this->apiHttpRequest($url, $params, $method));
++      $this->response = new RestResponse($this->apiHttpRequest($url, $params, $method, $headers));
+     }
+     catch (RequestException $e) {
+       // RequestException gets thrown for any response status but 2XX.
+@@ -211,7 +221,7 @@ class RestClient implements RestClientInterface {
+       // throws anything but a RequestException, let it bubble up.
+       $this->authToken = $this->authManager->refreshToken();
+       try {
+-        $this->response = new RestResponse($this->apiHttpRequest($url, $params, $method));
++        $this->response = new RestResponse($this->apiHttpRequest($url, $params, $method, $headers));
+       }
+       catch (RequestException $e) {
+         $this->response = $e->getResponse();
+@@ -247,6 +257,8 @@ class RestClient implements RestClientInterface {
+    *   Parameters to provide.
+    * @param string $method
+    *   Method to initiate the call, such as GET or POST.  Defaults to GET.
++   * @param array $headers
++   *   The http headers to merge into the request.
+    *
+    * @return \GuzzleHttp\Psr7\Response
+    *   Response object.
+@@ -254,18 +266,17 @@ class RestClient implements RestClientInterface {
+    * @throws \Exception
+    * @throws \GuzzleHttp\Exception\RequestException
+    */
+-  protected function apiHttpRequest($url, array $params, $method) {
++  protected function apiHttpRequest($url, $params, $method, array $headers = []) {
+     if (!$this->authToken) {
+       throw new \Exception($this->t('Missing OAuth Token'));
+     }
+
+-    $headers = [
+-      'Authorization' => 'OAuth ' . $this->authToken->getAccessToken(),
+-      'Content-type' => 'application/json',
+-    ];
++    $headers['Authorization'] = 'OAuth ' . $this->authToken->getAccessToken();
++    $headers = array_merge($this->defaultHeaders, $headers);
++
+     $data = NULL;
+     if (!empty($params)) {
+-      $data = $this->json->encode($params);
++      $data = is_array($params) ? $this->json->encode($params) : $params;
+     }
+     return $this->httpRequest($url, $data, $headers, $method);
+   }
+diff --git a/src/Rest/RestClientInterface.php b/src/Rest/RestClientInterface.php
+index e5746221c8f70ffae3ba5973ddfcb17d26cafd81..0dd0d253ded0b0b9406dcb16544b82353868a426 100644
+--- a/src/Rest/RestClientInterface.php
++++ b/src/Rest/RestClientInterface.php
+@@ -33,7 +33,7 @@ interface RestClientInterface {
+    *   example, to issue an API call to a custom Apex Rest endpoint.
+    *   If $path does not begin with a slash, the resource will be considered
+    *   relative and the Rest API Endpoint will be pre-pended.
+-   * @param array $params
++   * @param array|string $params
+    *   Parameters to provide.
+    * @param string $method
+    *   Method to initiate the call, such as GET or POST.  Defaults to GET.
+@@ -41,13 +41,15 @@ interface RestClientInterface {
+    *   If true, return a Drupal\salesforce\Rest\RestResponse;
+    *   Otherwise, return json-decoded response body only.
+    *   Defaults to FALSE for backwards compatibility.
++   * @param array $headers
++   *   The http headers to merge into the request.
+    *
+    * @return mixed
+    *   Response object or response data.
+    *
+    * @throws \GuzzleHttp\Exception\RequestException
+    */
+-  public function apiCall($path, array $params = [], $method = 'GET', $returnObject = FALSE);
++  public function apiCall($path, $params = [], $method = 'GET', $returnObject = FALSE, array $headers = []);
+
+   /**
+    * Return raw response content from given URL.
+diff --git a/src/Rest/RestResponse.php b/src/Rest/RestResponse.php
+index 0b9ed3d4390ef3e99683966ed29460b65f068f11..5ecdf270d1803808218b5b26bdea90e03aebd163 100644
+--- a/src/Rest/RestResponse.php
++++ b/src/Rest/RestResponse.php
+@@ -41,7 +41,13 @@ class RestResponse extends Response {
+   public function __construct(ResponseInterface $response) {
+     $this->response = $response;
+     parent::__construct($response->getStatusCode(), $response->getHeaders(), $response->getBody(), $response->getProtocolVersion(), $response->getReasonPhrase());
+-    $this->handleJsonResponse();
++
++    if (strpos($response->getHeaderLine('Content-Type'), 'application/json') === 0) {
++      $this->handleJsonResponse();
++    }
++    else {
++      $this->handleRawResponse();
++    }
+   }
+
+   /**
+@@ -70,7 +76,7 @@ class RestResponse extends Response {
+    *
+    * @throws \Drupal\salesforce\Rest\RestException
+    */
+-  private function handleJsonResponse() {
++  protected function handleJsonResponse() {
+     $this->data = '';
+     $response_body = $this->getBody()->getContents();
+     if (empty($response_body)) {
+@@ -108,4 +114,16 @@ class RestResponse extends Response {
+     return $this;
+   }
+
++  /**
++   * Helper function to set data to the raw response.
++   *
++   * @return $this
++   *
++   * @throws \Drupal\salesforce\Rest\RestException
++   */
++  protected function handleRawResponse() {
++    $this->data = $this->getBody()->getContents();
++    return $this;
++  }
++
+ }
+diff --git a/src/Tests/TestRestClient.php b/src/Tests/TestRestClient.php
+index 3856b1ae7e09072f2beb30fc296fec184cea7d92..94ece12fbff70079d0e16f719c677df296a0e123 100644
+--- a/src/Tests/TestRestClient.php
++++ b/src/Tests/TestRestClient.php
+@@ -47,7 +47,7 @@ class TestRestClient extends RestClient {
+   /**
+    * Short-circuit api calls.
+    */
+-  public function apiCall($path, array $params = [], $method = 'GET', $returnObject = FALSE) {
++  public function apiCall($path, $params = [], $method = 'GET', $returnObject = FALSE, array $headers = []) {
+   }
+
+   /**
+diff --git a/tests/src/Unit/RestClientTest.php b/tests/src/Unit/RestClientTest.php
+index f843a7a0d86135bc69a6669e277cc3c318220a96..606e028154d624fca9b43b51a702439d76b65741 100644
+--- a/tests/src/Unit/RestClientTest.php
++++ b/tests/src/Unit/RestClientTest.php
+@@ -133,7 +133,31 @@ class RestClientTest extends UnitTestCase {
+
+     // Test that an apiCall returns a json-decoded value.
+     $body = ['foo' => 'bar'];
+-    $response = new GuzzleResponse(200, [], json_encode($body));
++    $response = new GuzzleResponse(200, ['Content-Type' => 'application/json'], json_encode($body));
++
++    $this->client->expects($this->any())
++      ->method('httpRequest')
++      ->willReturn($response);
++
++    $result = $this->client->apiCall('');
++    $this->assertEquals($result, $body);
++  }
++
++  /**
++   * @covers ::apiCall
++   */
++  public function testNonJsonApiCall() {
++    $this->initClient();
++
++    // Test that an apiCall returns a CSV string value.
++    $body = <<<EOT
++    "Id","Name"
++    "005R0000000UyrWIAS","Johnny B. Goode"
++    "005R0000000GiwjIAC","Prince Rogers Nelson"
++    "005R0000000GiwoIAC","Robert Allen Zimmerman"
++    EOT;
++
++    $response = new GuzzleResponse(200, ['Content-Type' => 'text/csv'], $body);
+
+     $this->client->expects($this->any())
+       ->method('httpRequest')
+@@ -256,7 +280,7 @@ class RestClientTest extends UnitTestCase {
+     $name = $this->randomMachineName();
+     // @TODO this is fugly, do we need a refactor on RestResponse?
+     $restResponse = new RestResponse(
+-      new GuzzleResponse('200', [], json_encode([
++      new GuzzleResponse('200', ['Content-Type' => 'application/json'], json_encode([
+         'name' => $name,
+         'fields' => [
+           [
+@@ -309,7 +333,7 @@ class RestClientTest extends UnitTestCase {
+   public function testObjectCreate() {
+     $this->initClient(array_merge($this->methods, ['apiCall']));
+     $restResponse = new RestResponse(
+-      new GuzzleResponse('200', [], json_encode([
++      new GuzzleResponse('200', ['Content-Type' => 'application/json'], json_encode([
+         'id' => $this->salesforce_id,
+       ]))
+       );
+@@ -333,7 +357,7 @@ class RestClientTest extends UnitTestCase {
+       'objectReadbyExternalId',
+     ]));
+     $createResponse = new RestResponse(
+-      new GuzzleResponse('200', [], json_encode([
++      new GuzzleResponse('200', ['Content-Type' => 'application/json'], json_encode([
+         'id' => $this->salesforce_id,
+       ])));
+
+@@ -451,7 +475,7 @@ class RestClientTest extends UnitTestCase {
+     $this->initClient(array_merge($this->methods, [
+       'apiCall',
+     ]));
+-    $restResponse = new RestResponse(new GuzzleResponse('204', [], json_encode([
++    $restResponse = new RestResponse(new GuzzleResponse('204', ['Content-Type' => 'application/json'], json_encode([
+       'foo' => 'bar',
+       'zee' => 'bang',
+     ])));
