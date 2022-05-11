@@ -1,0 +1,31 @@
+id: html_media_mentions
+label: HTML Media Mentions from paragraphs
+migration_group: drupal_7
+migration_tags:
+  - Custom
+source:
+  plugin: rich_text_paragraph_media_mentions
+  paragraph_ids:
+    - 9300
+    - 9152
+    - 8988
+    - 8797
+    - 8699
+    - 8582
+    - 8584
+    - 5903
+  key: default
+  target: default
+process:
+  uid:
+    plugin: default_value
+    default_value: 6
+  title: title
+  field_external_link: url
+  field_published_date: date
+destination:
+  plugin: 'entity:node'
+  default_bundle: media_mention
+migration_dependencies:
+  required: {  }
+  optional: {  }
