@@ -62,19 +62,105 @@ class HtmlMediaMentionsParagraphs extends SqlBase {
   }
 
   /**
+   * Parse media mentions from some HTML markup.
+   *
+   * @param string $html
+   *   Markup with <h3> elements for Month-Year sections and links for media
+   *   mentions.
+   *
+   * @return array
+   *   An array of media mention items.
+   */
+  protected function parseMarkup($html) {
+    $result = [];
+    $year = '';
+    $dom = new \DOMDocument();
+    $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html);
+
+    /** @var \DOMElement $element */
+    $element = $dom->getElementsByTagName('h3')->item(0);
+
+    while ($element) {
+      // Skip #text nodes.
+      if ($element->nodeType !== XML_ELEMENT_NODE) {
+        $element = $element->nextSibling;
+        continue;
+      }
+
+      if ( $element->nodeName === 'h3') {
+        $year = preg_match('/(?<year>\d{4})/mU', $element->nodeValue, $matches) ? $matches['year'] : '';
+      }
+      else {
+        /** @var \DOMNodeList $links */
+        $links = $element->getElementsByTagName('a');
+
+        foreach ($links as $link) {
+          $url = $link->getAttribute('href');
+          $title = $link->nodeValue;
+          $date = '';
+          $expert = '';
+          $prev_text = '';
+          $prev_sibling = $link->previousSibling;
+          $prev_sibling_count = 0;
+
+          // Skip malformed hrefs.
+          if (strpos($url, 'http') !== 0) {
+            continue;
+          }
+
+          while ($prev_sibling && $prev_sibling_count < 10) {
+            if ($prev_sibling->previousSibling && $prev_sibling->previousSibling->nodeName === 'a') {
+              break;
+            }
+
+            // Combine the trimmed node text.
+            $prev_text .= preg_replace('/^\s+|\s+$/u', '', $prev_sibling->nodeValue);
+            $prev_sibling = $prev_sibling->previousSibling;
+            $prev_sibling_count++;
+          }
+
+          // (?<date>[JFMASOND][a-z]+\s*\d{1,2})[^-–]+[-–]\s*(?<expert>[\w\s]*)
+          // (?<date>[JFMASOND][a-z]+\s*\d{1,2})\s*[-–]\s*(?<expert>[^<]*)
+          if (preg_match('/(?<date>[JFMASOND][a-z]+\s*\d{1,2})[^-–]+[-–]\s*(?<expert>[\w\s]*)/', $prev_text, $matches)) {
+            $date = date_create($matches['date'] . ' ' . $year);
+            $expert = $matches['expert'];
+          }
+          else {
+            // var_dump($url);
+            // var_dump($prev_text);
+          }
+
+          $result[] = [
+            // 'debug' => $matches,
+            'id' => sha1($url . $prev_text),
+            'source' => $prev_text,
+            'date' => $date ? $date->format('Y-m-d') : '',
+            'date_unix' => $date ? $date->format('U') : '',
+            'expert' => $expert ?? '',
+            'url' => $url,
+            'title' => $title,
+          ];
+        }
+      }
+
+      $element = $element->nextSibling;
+    }
+
+    // print_r($result);
+
+    return $result;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function count($refresh = FALSE) {
     $count = 0;
 
     foreach ($this->query()->execute() as $row) {
-      // preg_match_all($this->itemRegex, $this->cleanText($row['field_body_value']), $matches, PREG_SET_ORDER);
-      preg_match_all('~https?://[^"]+~', $this->cleanText($row['field_body_value']), $matches, PREG_SET_ORDER);
-      $count += count($matches);
-      print_r($matches);
+      $count += count($this->parseMarkup($row['field_body_value']));
     }
 
-    print_r($count);
     return $count;
   }
 
@@ -83,59 +169,14 @@ class HtmlMediaMentionsParagraphs extends SqlBase {
    */
   protected function initializeIterator() {
     $this->prepareQuery();
-
-    $all_matches = [];
+    $all_items = [];
 
     foreach ($this->query->execute() as $row) {
-      // Split each body field into chunks via the <h3>MONTH YEAR</h3> string.
-      $month_chunks = preg_split($this->monthSplitRegex, $this->cleanText($row['field_body_value']), 0, PREG_SPLIT_NO_EMPTY|PREG_SPLIT_DELIM_CAPTURE);
-      $year = '';
-
-      foreach ($month_chunks as $month_chunk) {
-        // Sometimes month is just a four digit year, because of the
-        // PREG_SPLIT_DELIM_CAPTURE flag and the <year> named group on
-        // preg_split() above. That'll be the year for this chunk of mentions.
-        if (preg_match('/^\d{4}$/', $month_chunk)) {
-          $year = $month_chunk;
-          continue;
-        }
-
-        preg_match_all($this->itemRegex, $month_chunk, $matches, PREG_SET_ORDER);
-
-        foreach ($matches as $key => $match) {
-          // Remove the numeric keys from each match and overwrite it.
-          $matches[$key] = array_filter($match, 'is_string', ARRAY_FILTER_USE_KEY);
-
-          // Append the year to the date field. Otherwise, the date would just
-          // be a month and day. Also, clean up the date of any html entities
-          // like &nbsp;. Note that &nbsp; is decoded to a non-breaking space
-          // which is not recognized by trim(), so preg_replace() is used
-          // instead.
-          // $date = date_create(preg_replace('/^\s+|\s+$/u', '', $matches[$key]['date']) .' ' . $year);
-          $date = date_create($matches[$key]['date'] .' ' . $year);
-
-          if (empty($date)) {
-            var_dump($matches[$key]['date']);
-            var_dump(preg_replace('/^\s+|\s+$/u', '', $matches[$key]['date']));
-            var_dump(trim(html_entity_decode($matches[$key]['date'])) .' ' . $year);
-            var_dump($year);
-            print_r($match); die();
-          }
-
-          $matches[$key]['date'] = $date->format('Y-m-d');
-          $matches[$key]['date_unix'] = $date->format('U');
-
-          // Add a unique id so that migrate can create a mapping.
-          $matches[$key]['id'] = sha1(serialize($match));
-        }
-
-        $all_matches = array_merge($all_matches, $matches);
-      }
+      $all_items = array_merge($all_items, $this->parseMarkup($row['field_body_value']));
     }
 
-    // print_r($all_matches); die();
-
-    return new \ArrayIterator($all_matches);
+    // print_r($all_items); die();
+    return new \ArrayIterator($all_items);
   }
 
   /**
