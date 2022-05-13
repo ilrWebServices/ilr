@@ -23,6 +23,7 @@ process:
   title: title
   field_external_link: url
   field_published_date: date
+  changed: date_unix
 destination:
   plugin: 'entity:node'
   default_bundle: media_mention
