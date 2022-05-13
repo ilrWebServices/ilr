@@ -18,7 +18,7 @@ use Drupal\migrate\Plugin\migrate\source\SqlBase;
 class HtmlMediaMentionsParagraphs extends SqlBase {
 
   // https://regex101.com/r/HF9dxl/1
-  protected $itemRegex = '/(?<source>.*)\s+[-–]\s+(?<date>.*)\s+(?:(?:[-–]\s+)|(?:[-–]&nbsp;))(?<expert>.*)<.*\n.*(?<url>https?:\/\/.*)".*>(?<title>.*)</mU';
+  protected $itemRegex = '/(?<source>.*)\s+[-–]\s+(?<date>.*)\s+(?:(?:[-–]\s+)|(?:[-–]&nbsp;))(?<expert>.*)<.*\n.*(?<url>https?:\/\/.*)".*>(?<title>.*)</mUu';
 
   // https://regex101.com/r/qu8ym0/1
   protected $monthSplitRegex = '/<h\d>(?:.|\n)*\s+(?<year>\d{4})<\/h\d>/mU';
@@ -43,18 +43,39 @@ class HtmlMediaMentionsParagraphs extends SqlBase {
   }
 
   /**
+   * Perform basic text cleanup that the regexes just can't handle easily.
+   *
+   * - Decodes HTML entities, especially `&nbsp;`.
+   * - Replaces some confusing entries that don't follow the established
+   *   pattern, like 'MSN - Money, October 21 - Art Wheaton'.
+   */
+  protected function cleanText($text) {
+    $text = html_entity_decode($text);
+
+    return str_replace([
+      'MSN - Money,',
+      'Money - MSN.com,'
+    ], [
+      'MSN Money -',
+      'MSN Money -'
+    ], $text);
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function count($refresh = FALSE) {
     $count = 0;
 
     foreach ($this->query()->execute() as $row) {
-      preg_match_all($this->itemRegex, $row['field_body_value'], $matches, PREG_SET_ORDER);
+      // preg_match_all($this->itemRegex, $this->cleanText($row['field_body_value']), $matches, PREG_SET_ORDER);
+      preg_match_all('~https?://[^"]+~', $this->cleanText($row['field_body_value']), $matches, PREG_SET_ORDER);
       $count += count($matches);
+      print_r($matches);
     }
 
+    print_r($count);
     return $count;
-    // return (int) $this->query()->countQuery()->execute()->fetchField();
   }
 
   /**
@@ -67,10 +88,8 @@ class HtmlMediaMentionsParagraphs extends SqlBase {
 
     foreach ($this->query->execute() as $row) {
       // Split each body field into chunks via the <h3>MONTH YEAR</h3> string.
-      $month_chunks = preg_split($this->monthSplitRegex, $row['field_body_value'], 0, PREG_SPLIT_NO_EMPTY|PREG_SPLIT_DELIM_CAPTURE);
+      $month_chunks = preg_split($this->monthSplitRegex, $this->cleanText($row['field_body_value']), 0, PREG_SPLIT_NO_EMPTY|PREG_SPLIT_DELIM_CAPTURE);
       $year = '';
-
-      // print_r($month_chunks);
 
       foreach ($month_chunks as $month_chunk) {
         // Sometimes month is just a four digit year, because of the
@@ -78,6 +97,7 @@ class HtmlMediaMentionsParagraphs extends SqlBase {
         // preg_split() above. That'll be the year for this chunk of mentions.
         if (preg_match('/^\d{4}$/', $month_chunk)) {
           $year = $month_chunk;
+          continue;
         }
 
         preg_match_all($this->itemRegex, $month_chunk, $matches, PREG_SET_ORDER);
@@ -87,8 +107,23 @@ class HtmlMediaMentionsParagraphs extends SqlBase {
           $matches[$key] = array_filter($match, 'is_string', ARRAY_FILTER_USE_KEY);
 
           // Append the year to the date field. Otherwise, the date would just
-          // be a month and day.
-          $matches[$key]['date'] .= ' ' . $year;
+          // be a month and day. Also, clean up the date of any html entities
+          // like &nbsp;. Note that &nbsp; is decoded to a non-breaking space
+          // which is not recognized by trim(), so preg_replace() is used
+          // instead.
+          // $date = date_create(preg_replace('/^\s+|\s+$/u', '', $matches[$key]['date']) .' ' . $year);
+          $date = date_create($matches[$key]['date'] .' ' . $year);
+
+          if (empty($date)) {
+            var_dump($matches[$key]['date']);
+            var_dump(preg_replace('/^\s+|\s+$/u', '', $matches[$key]['date']));
+            var_dump(trim(html_entity_decode($matches[$key]['date'])) .' ' . $year);
+            var_dump($year);
+            print_r($match); die();
+          }
+
+          $matches[$key]['date'] = $date->format('Y-m-d');
+          $matches[$key]['date_unix'] = $date->format('U');
 
           // Add a unique id so that migrate can create a mapping.
           $matches[$key]['id'] = sha1(serialize($match));
@@ -98,12 +133,9 @@ class HtmlMediaMentionsParagraphs extends SqlBase {
       }
     }
 
-    print_r($all_matches); die();
+    // print_r($all_matches); die();
 
     return new \ArrayIterator($all_matches);
-    // $statement = $this->query->execute();
-    // $statement->setFetchMode(\PDO::FETCH_ASSOC);
-    // return new \IteratorIterator($statement);
   }
 
   /**
@@ -114,6 +146,7 @@ class HtmlMediaMentionsParagraphs extends SqlBase {
       'id' => $this->t('ID'),
       'source' => $this->t('Media source'),
       'date' => $this->t('Publication date'),
+      'date_unix' => $this->t('Publication date (unix time)'),
       'expert' => $this->t('Name of expert'),
       'url' => $this->t('URL'),
       'title' => $this->t('Title'),
