@@ -72,6 +72,7 @@ class HtmlMediaMentionsParagraphs extends SqlBase {
    *   An array of media mention items.
    */
   protected function parseMarkup($html) {
+    $html = strip_tags($html, '<a><p><h3><br>');
     $result = [];
     $year = '';
     $dom = new \DOMDocument();
@@ -126,13 +127,12 @@ class HtmlMediaMentionsParagraphs extends SqlBase {
             $expert = $matches['expert'];
           }
           else {
-            // var_dump($url);
-            // var_dump($prev_text);
+            continue;
           }
 
           $result[] = [
             // 'debug' => $matches,
-            'id' => sha1($url . $prev_text),
+            'id' => sha1($url . $prev_text . $title),
             'source' => $prev_text,
             'date' => $date ? $date->format('Y-m-d') : '',
             'date_unix' => $date ? $date->format('U') : '',
@@ -146,9 +146,8 @@ class HtmlMediaMentionsParagraphs extends SqlBase {
       $element = $element->nextSibling;
     }
 
-    // print_r($result);
-
-    return $result;
+    // array_unique is here to remove any duplicates.
+    return array_unique($result, SORT_REGULAR);
   }
 
   /**
