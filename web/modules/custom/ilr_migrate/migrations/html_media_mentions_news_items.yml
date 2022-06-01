@@ -22,10 +22,14 @@ process:
     default_value: 6
   changed: date_unix
   item/target_id:
-    plugin: migration_lookup
-    migration: html_media_mentions
-    source: id
-    no_stub: true
+    -
+      plugin: migration_lookup
+      source: id
+      migration: html_media_mentions
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
   item/target_type:
     plugin: default_value
     default_value: node

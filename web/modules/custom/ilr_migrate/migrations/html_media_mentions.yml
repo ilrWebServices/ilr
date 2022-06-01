@@ -27,6 +27,7 @@ process:
 destination:
   plugin: 'entity:node'
   default_bundle: media_mention
+  validate: true
 migration_dependencies:
   required: {  }
   optional: {  }
