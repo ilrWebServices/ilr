@@ -34,11 +34,11 @@ class PostListing extends ParagraphsBehaviorBase {
   protected $entityTypeManager;
 
   /**
-   * The extended post manager.
+   * Post types from the extended post manager.
    *
-   * @var \Drupal\extended_post\ExtendedPostManager
+   * @var array
    */
-  protected $extendedPostManager;
+  protected $postTypes = [];
 
   /**
    * The pager manager.
@@ -75,7 +75,7 @@ class PostListing extends ParagraphsBehaviorBase {
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityFieldManagerInterface $entity_field_manager, EntityTypeManagerInterface $entity_type_manager, ExtendedPostManager $extended_post_manager, PagerManagerInterface $pager_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_field_manager);
     $this->entityTypeManager = $entity_type_manager;
-    $this->extendedPostManager = $extended_post_manager;
+    $this->postTypes = $extended_post_manager->getPostTypesWithLabels();
     $this->pagerManager = $pager_manager;
   }
 
@@ -102,6 +102,13 @@ class PostListing extends ParagraphsBehaviorBase {
     $parents = $form['#parents'];
     $parents_input_name = array_shift($parents);
     $parents_input_name .= '[' . implode('][', $parents) . ']';
+
+    $form['post_types'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Post type(s)'),
+      '#options' => $this->postTypes,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'post_types') ?? array_keys($this->postTypes),
+    ];
 
     $form['post_categories'] = [
       '#type' => 'select',
@@ -168,6 +175,10 @@ class PostListing extends ParagraphsBehaviorBase {
         '%threshold' => $this->pagerThreshold,
       ]));
     }
+    // Ensure that there is at least one post type selected.
+    if (empty(array_filter($form_state->getValue('post_types')))) {
+      $form_state->setError($form['post_types'], $this->t('Please choose at least one post type to display.'));
+    }
   }
 
   /**
@@ -188,7 +199,7 @@ class PostListing extends ParagraphsBehaviorBase {
     $paragraph = $variables['paragraph'];
     $collection = $paragraph->field_collection->entity;
     $category_operator = $paragraph->getBehaviorSetting($this->getPluginId(), 'negate_category') ? '<>' : '=';
-    $post_types = $this->extendedPostManager->getPostTypes();
+    $post_types = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_types') ?? $this->postTypes;
 
     // If the collection was deleted, return nothing to prevent errors.
     if ($collection === NULL) {
@@ -330,8 +341,21 @@ class PostListing extends ParagraphsBehaviorBase {
    */
   public function settingsSummary(Paragraph $paragraph) {
     $summary = [];
-    $category_labels = [];
     $tags_labels = [];
+    $post_types = ['All'];
+
+    // Ensure that the post listing has a post_type behavior setting.
+    if ($selected_post_types = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_types')) {
+      $selected_post_types = array_filter($selected_post_types);
+
+      if (array_keys($selected_post_types) !== array_keys($this->postTypes)) {
+        $post_types = [];
+
+        foreach ($selected_post_types as $machine_name) {
+          $post_types[] = $this->postTypes[$machine_name] ?? $machine_name;
+        }
+      }
+    }
 
     if ($selected_category_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories')) {
       $selected_category = $this->entityTypeManager->getStorage('taxonomy_term')->load($selected_category_id);
@@ -347,6 +371,11 @@ class PostListing extends ParagraphsBehaviorBase {
 
     $negated = $paragraph->getBehaviorSetting($this->getPluginId(), 'negate_category');
     $category_name = $selected_category_id ? $selected_category->label() : $this->t('All');
+
+    $summary[] = [
+      'label' => 'Types',
+      'value' => implode(', ', $post_types),
+    ];
 
     $summary[] = [
       'label' => 'Category',
