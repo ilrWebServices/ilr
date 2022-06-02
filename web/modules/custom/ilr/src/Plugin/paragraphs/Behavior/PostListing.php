@@ -265,6 +265,14 @@ class PostListing extends ParagraphsBehaviorBase {
       $query->condition($has_image_group);
     }
 
+    // Non-list styles require posts to have body text and/or summaries.
+    if (!preg_match('/^list-/', $list_style)) {
+      $has_summary_group = $query->orConditionGroup();
+      $has_summary_group->condition('item.entity:node.body', '', '<>');
+      $has_summary_group->condition('item.entity:node.body.summary', '', '<>');
+      $query->condition($has_summary_group);
+    }
+
     if ($limit = $paragraph->getBehaviorSetting($this->getPluginId(), 'count')) {
       if ($paragraph->getBehaviorSetting($this->getPluginId(), 'use_pager')) {
         $query->pager($limit);
