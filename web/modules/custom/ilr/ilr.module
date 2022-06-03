@@ -932,7 +932,7 @@ function ilr_field_widget_text_textarea_with_summary_form_alter(&$element, FormS
  * The #after_build callback for text_with_summary widgets.
  */
 function _ilr_disable_textarea_value($form_element, FormStateInterface $form_state) {
-  if ($form_element['#ilr_hide_value']) {
+  if ($form_element['#ilr_hide_value'] && isset($form_element['value'])) {
     $form_element['value']['#access'] = FALSE;
   }
 
