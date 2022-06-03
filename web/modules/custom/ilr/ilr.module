@@ -206,6 +206,13 @@ function ilr_entity_bundle_field_info_alter(array &$fields, EntityTypeInterface 
       $fields[$field_name]->addConstraint('ProblemInternalLink');
     }
   }
+
+  // Add the UniqueMediaMentionExternalLink constraint to the media mention link field.
+  if (($entity_type->id() === 'node') && ($bundle === 'media_mention')) {
+    if (isset($fields['field_external_link'])) {
+      $fields['field_external_link']->addConstraint('UniqueMediaMentionExternalLink');
+    }
+  }
 }
 
 /**

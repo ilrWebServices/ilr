@@ -1,0 +1,52 @@
+id: html_media_mentions_news_items
+label: HTML Media Mentions News collection items from paragraphs
+migration_group: drupal_7
+migration_tags:
+  - Custom
+source:
+  plugin: rich_text_paragraph_media_mentions
+  paragraph_ids:
+    - 9300
+    - 9152
+    - 8988
+    - 8797
+    - 8699
+    - 8582
+    - 8584
+    - 5903
+  key: default
+  target: default
+process:
+  user_id:
+    plugin: default_value
+    default_value: 6
+  changed: date_unix
+  item/target_id:
+    -
+      plugin: migration_lookup
+      source: id
+      migration: html_media_mentions
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  item/target_type:
+    plugin: default_value
+    default_value: node
+  collection:
+    plugin: default_value
+    default_value: 26
+  canonical:
+    plugin: default_value
+    default_value: 1
+  attributes/key:
+    plugin: default_value
+    default_value: 'legacy_mention_expert'
+  attributes/value: expert
+destination:
+  plugin: 'entity:collection_item'
+  default_bundle: blog
+migration_dependencies:
+  required:
+    - html_media_mentions
+  optional: {  }

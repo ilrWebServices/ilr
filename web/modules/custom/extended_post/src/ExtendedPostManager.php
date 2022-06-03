@@ -406,4 +406,23 @@ class ExtendedPostManager {
     return $post_types;
   }
 
+  /**
+   * Get a list of node types that are post-like.
+   *
+   * @return array
+   *   An array of node types that are considered posts. Keys are node bundle
+   *   machine names and values are node bundle labels.
+   */
+  public function getPostTypesWithLabels() {
+    $post_types = [];
+
+    foreach ($this->entityTypeManager->getStorage('node_type')->loadMultiple() as $bundle_name => $type) {
+      if ($type->getThirdPartySetting('extended_post', 'extends_posts')) {
+        $post_types[$bundle_name] = $type->label();
+      }
+    }
+
+    return $post_types;
+  }
+
 }
