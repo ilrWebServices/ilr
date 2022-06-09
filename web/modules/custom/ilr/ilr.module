@@ -965,38 +965,45 @@ function ilr_user_format_name_alter(&$name, $account) {
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Implements hook_preprocess_HOOK() for `entity_add_list`.
  *
- * Modify the collection new node form based on type. For the most part, these
- * are determined by the collection item type configuration.
+ * Hide some bundles from the 'Add new content' page for blog collections.
+ *
+ * @see CollectionNew::content().
  */
-function ilr_form_collection_new_node_form_alter(&$form, FormStateInterface $form_state) {
-  /** @var \Drupal\collection\Entity\CollectionInterface $collection */
-  $collection = $form_state->get('collection');
+function ilr_preprocess_entity_add_list__collection_blog_new_node(&$variables) {
+  unset($variables['bundles']['certificate']);
+  unset($variables['bundles']['course']);
+  unset($variables['bundles']['story']);
+}
 
-  if ($collection->bundle() === 'blog') {
-    $form['bundle']['#default_value'] = 'post';
-    unset($form['bundle']['#options']['certificate']);
-    unset($form['bundle']['#options']['course']);
-  }
+/**
+ * Implements hook_preprocess_HOOK() for `entity_add_list`.
+ *
+ * Hide some bundles from the 'Add new content' page for subsite_blog
+ * collections.
+ *
+ * @see CollectionNew::content().
+ */
+function ilr_preprocess_entity_add_list__collection_subsite_blog_new_node(&$variables) {
+  unset($variables['bundles']['certificate']);
+  unset($variables['bundles']['course']);
+  unset($variables['bundles']['story']);
+}
 
-  if ($collection->bundle() === 'subsite_blog') {
-    $form['bundle']['#default_value'] = 'post';
-    unset($form['bundle']['#options']['certificate']);
-    unset($form['bundle']['#options']['course']);
-  }
-
-  if ($collection->bundle() === 'content_section') {
-    $form['bundle']['#default_value'] = 'page';
-    unset($form['bundle']['#options']['certificate']);
-    unset($form['bundle']['#options']['course']);
-    unset($form['bundle']['#options']['media_mention']);
-    unset($form['bundle']['#options']['story']);
-  }
-
-  if ($collection->bundle() === 'publication_issue') {
-    $form['bundle']['#default_value'] = 'story';
-  }
+/**
+ * Implements hook_preprocess_HOOK() for `entity_add_list`.
+ *
+ * Hide some bundles from the 'Add new content' page for content_section
+ * collections.
+ *
+ * @see CollectionNew::content().
+ */
+function ilr_preprocess_entity_add_list__collection_content_section_new_node(&$variables) {
+  unset($variables['bundles']['certificate']);
+  unset($variables['bundles']['course']);
+  unset($variables['bundles']['media_mention']);
+  unset($variables['bundles']['story']);
 }
 
 /**
