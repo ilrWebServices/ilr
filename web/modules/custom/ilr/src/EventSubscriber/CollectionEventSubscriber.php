@@ -102,7 +102,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
       $collection->field_sections->appendItem($section);
 
       if ($collection->save()) {
-        $collection_item_add_url = Url::fromRoute('collection_item.new.node', ['collection' => $collection->id()]);
+        $collection_item_add_url = Url::fromRoute('collection_item.new', ['collection' => $collection->id()]);
         $this->messenger->addMessage($this->t('%collection_name created. <a href="@collection_add_url">Add content</a> to your blog.', [
           '%collection_name' => $collection->label(),
           '@collection_add_url' => $collection_item_add_url->toString(),
