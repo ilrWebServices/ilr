@@ -747,6 +747,9 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
   // Move the representative image and page body fields into the new section.
   $form['field_representative_image']['#group'] = 'ilr_meta';
 
+  // Put inline collection item forms in the 'sidebar' on node add/edit forms.
+  $form['ief_collection_items']['#group'] = 'advanced';
+
   if (!empty($form['field_representative_img_caption'])) {
     $form['field_representative_img_caption']['#group'] = 'ilr_meta';
   }
