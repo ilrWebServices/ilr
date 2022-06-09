@@ -130,6 +130,11 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  ief_collection_items:
+    weight: -10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   path:
     type: path
     weight: 10

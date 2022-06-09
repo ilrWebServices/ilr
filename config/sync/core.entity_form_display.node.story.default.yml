@@ -110,6 +110,11 @@ content:
         duplicate: 0
         add_above: 0
     third_party_settings: {  }
+  ief_collection_items:
+    weight: -10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   path:
     type: path
     weight: 5

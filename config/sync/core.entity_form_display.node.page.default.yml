@@ -81,6 +81,11 @@ content:
         duplicate: '0'
         add_above: '0'
     third_party_settings: {  }
+  ief_collection_items:
+    weight: -10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   layout_builder__layout:
     type: null
     weight: 51
