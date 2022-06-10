@@ -30,6 +30,7 @@ use Drupal\Core\Field\WidgetInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\taxonomy\VocabularyInterface;
 use Drupal\collection\Entity\CollectionItemInterface;
+use Drupal\Core\Database\Query\AlterableInterface;
 
 /**
  * Implements hook_theme().
@@ -480,7 +481,7 @@ function ilr_paragraph_access(EntityInterface $entity, $operation, AccountInterf
  * There is a contrib module that allows the altering of EntityQuery:
  * https://www.drupal.org/project/entity_query_alter.
  */
-function ilr_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
+function ilr_query_alter(AlterableInterface $query) {
   if ($query->hasTag('dedupe_clone') || empty($query->alterTags)) {
     return;
   }
@@ -522,6 +523,15 @@ function ilr_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
 
   // Execute the clone and append the record ids from this query to the cache.
   $cached_ids = array_merge($cached_ids, $clone->execute()->fetchAllKeyed());
+}
+
+/**
+ * Implements hook_query_TAG_alter().
+ */
+function ilr_query_collection_items_for_entity_alter(AlterableInterface $query) {
+  // Sort collection items for entities, as listed on the Collections tab for a
+  // content entity, and in the inline collection item forms.
+  $query->orderBy('canonical', 'desc');
 }
 
 /**
