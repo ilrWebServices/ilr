@@ -4479,17 +4479,17 @@
         },
         {
             "name": "drupal/media_library_edit",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/media_library_edit.git",
-                "reference": "8.x-2.2"
+                "reference": "8.x-2.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_library_edit-8.x-2.2.zip",
-                "reference": "8.x-2.2",
-                "shasum": "ae844a174ce24082988a8990a595b8f2398fa402"
+                "url": "https://ftp.drupal.org/files/projects/media_library_edit-8.x-2.3.zip",
+                "reference": "8.x-2.3",
+                "shasum": "7cff8281ef0132a2ecb047449d6210d80f1a9e0d"
             },
             "require": {
                 "drupal/core": "^8 || ^9"
@@ -4497,8 +4497,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.2",
-                    "datestamp": "1638192802",
+                    "version": "8.x-2.3",
+                    "datestamp": "1653483531",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
