@@ -236,6 +236,7 @@ class PostListing extends ParagraphsBehaviorBase {
     }
 
     $query->sort('item.entity:node.field_published_date', 'DESC');
+    $query->sort('item.entity:node.created', 'DESC');
 
     // Add a dedupe tag to remove duplicates in similar post_listings. See
     // ilr_query_alter().
