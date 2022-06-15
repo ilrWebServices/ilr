@@ -444,7 +444,9 @@ class PostListing extends ParagraphsBehaviorBase {
         $category_terms = $term_manager->loadTree($vocab->id(), 0, NULL, TRUE);
 
         foreach ($category_terms as $term) {
-          $options[$term->id()] = $term->label();
+          if ($term->isPublished()) {
+            $options[$term->id()] = $term->label();
+          }
         }
       }
     }
@@ -474,7 +476,9 @@ class PostListing extends ParagraphsBehaviorBase {
         $category_terms = $term_manager->loadTree($vocab->id(), 0, NULL, TRUE);
 
         foreach ($category_terms as $term) {
-          $options[$term->id()] = $term->label();
+          if ($term->isPublished()) {
+            $options[$term->id()] = $term->label();
+          }
         }
       }
     }
