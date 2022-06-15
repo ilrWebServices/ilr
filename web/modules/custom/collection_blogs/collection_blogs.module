@@ -167,6 +167,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
         ->condition($term_reference_field_name, $entity->id())
         ->sort('sticky', 'DESC')
         ->sort('item.entity:node.field_published_date', 'DESC')
+        ->sort('item.entity:node.created', 'DESC')
         ->pager(30)
         ->execute();
 
