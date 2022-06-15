@@ -1141,6 +1141,7 @@ function ilr_file_validate(FileInterface $file) {
   $errors = [];
 
   // We only run the dedupe check on initial file creation.
+  // @todo Update for filehash 2.x.
   if (!$file->id()) {
     foreach (filehash_algos() as $algo) {
       $query = \Drupal::database()->select('filehash');

@@ -4,4 +4,5 @@ algos:
   md5: '0'
   sha1: '0'
   sha256: sha256
-dedupe: false
+dedupe: 0
+rehash: true
