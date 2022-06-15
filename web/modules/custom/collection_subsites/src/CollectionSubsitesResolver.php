@@ -3,6 +3,7 @@
 namespace Drupal\collection_subsites;
 
 use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\collection\CollectionContentManager;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\collection\Entity\CollectionInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -20,6 +21,13 @@ class CollectionSubsitesResolver {
   protected $entityTypeManager;
 
   /**
+   * The collection content manager.
+   *
+   * @var \Drupal\collection\CollectionContentManager
+   */
+  protected $collectionContentManager;
+
+  /**
    * Static cache of subsite entities, keyed by item entity ID.
    *
    * @var array
@@ -31,9 +39,12 @@ class CollectionSubsitesResolver {
    *
    * @param \Drupal\Core\Entity\EntityTypeManager $entity_type_manager
    *   The entity type manager service.
+   * @param \Drupal\collection\CollectionContentManager $collection_content_manager
+   *   The collection content manager service.
    */
-  public function __construct(EntityTypeManager $entity_type_manager) {
+  public function __construct(EntityTypeManager $entity_type_manager, CollectionContentManager $collection_content_manager) {
     $this->entityTypeManager = $entity_type_manager;
+    $this->collectionContentManager = $collection_content_manager;
   }
 
   /**
@@ -63,7 +74,7 @@ class CollectionSubsitesResolver {
     }
     elseif ($entity instanceof ContentEntityInterface) {
       $entity_path = $path ?? $entity->toUrl()->toString();
-      $collection_items = $this->getCollectionItemsForEntity($entity);
+      $collection_items = $this->collectionContentManager->getCollectionItemsForEntity($entity);
 
       foreach ($collection_items as $item) {
         $collection = $item->collection->entity;
@@ -93,24 +104,6 @@ class CollectionSubsitesResolver {
   protected function isSubsite(CollectionInterface $collection) {
     $collection_type = $this->entityTypeManager->getStorage('collection_type')->load($collection->bundle());
     return (bool) $collection_type->getThirdPartySetting('collection_subsites', 'contains_subsites');
-  }
-
-  /**
-   * Get collection items that refer to a given entity.
-   *
-   * @param Drupal\Core\Entity\ContentEntityInterface $entity
-   *   A content or configuration entity.
-   *
-   * @return array
-   *   A bunch of collection items or an empty array.
-   */
-  protected function getCollectionItemsForEntity(ContentEntityInterface $entity) {
-    $collection_item_storage = $this->entityTypeManager->getStorage('collection_item');
-    $query = $collection_item_storage->getQuery();
-    $query->condition('item__target_id', $entity->id());
-    $query->condition('item__target_type', $entity->getEntityTypeId());
-    $results = $query->execute();
-    return $collection_item_storage->loadMultiple($results);
   }
 
 }

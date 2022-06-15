@@ -30,6 +30,7 @@ use Drupal\Core\Field\WidgetInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\taxonomy\VocabularyInterface;
 use Drupal\collection\Entity\CollectionItemInterface;
+use Drupal\Core\Database\Query\AlterableInterface;
 
 /**
  * Implements hook_theme().
@@ -480,7 +481,7 @@ function ilr_paragraph_access(EntityInterface $entity, $operation, AccountInterf
  * There is a contrib module that allows the altering of EntityQuery:
  * https://www.drupal.org/project/entity_query_alter.
  */
-function ilr_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
+function ilr_query_alter(AlterableInterface $query) {
   if ($query->hasTag('dedupe_clone') || empty($query->alterTags)) {
     return;
   }
@@ -522,6 +523,15 @@ function ilr_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
 
   // Execute the clone and append the record ids from this query to the cache.
   $cached_ids = array_merge($cached_ids, $clone->execute()->fetchAllKeyed());
+}
+
+/**
+ * Implements hook_query_TAG_alter().
+ */
+function ilr_query_collection_items_for_entity_alter(AlterableInterface $query) {
+  // Sort collection items for entities, as listed on the Collections tab for a
+  // content entity, and in the inline collection item forms.
+  $query->orderBy('canonical', 'desc');
 }
 
 /**
@@ -747,6 +757,9 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
   // Move the representative image and page body fields into the new section.
   $form['field_representative_image']['#group'] = 'ilr_meta';
 
+  // Put inline collection item forms in the 'sidebar' on node add/edit forms.
+  $form['ief_collection_items']['#group'] = 'advanced';
+
   if (!empty($form['field_representative_img_caption'])) {
     $form['field_representative_img_caption']['#group'] = 'ilr_meta';
   }
@@ -962,38 +975,45 @@ function ilr_user_format_name_alter(&$name, $account) {
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Implements hook_preprocess_HOOK() for `entity_add_list`.
  *
- * Modify the collection new node form based on type. For the most part, these
- * are determined by the collection item type configuration.
+ * Hide some bundles from the 'Add new content' page for blog collections.
+ *
+ * @see CollectionNew::content().
  */
-function ilr_form_collection_new_node_form_alter(&$form, FormStateInterface $form_state) {
-  /** @var \Drupal\collection\Entity\CollectionInterface $collection */
-  $collection = $form_state->get('collection');
+function ilr_preprocess_entity_add_list__collection_blog_new_node(&$variables) {
+  unset($variables['bundles']['certificate']);
+  unset($variables['bundles']['course']);
+  unset($variables['bundles']['story']);
+}
 
-  if ($collection->bundle() === 'blog') {
-    $form['bundle']['#default_value'] = 'post';
-    unset($form['bundle']['#options']['certificate']);
-    unset($form['bundle']['#options']['course']);
-  }
+/**
+ * Implements hook_preprocess_HOOK() for `entity_add_list`.
+ *
+ * Hide some bundles from the 'Add new content' page for subsite_blog
+ * collections.
+ *
+ * @see CollectionNew::content().
+ */
+function ilr_preprocess_entity_add_list__collection_subsite_blog_new_node(&$variables) {
+  unset($variables['bundles']['certificate']);
+  unset($variables['bundles']['course']);
+  unset($variables['bundles']['story']);
+}
 
-  if ($collection->bundle() === 'subsite_blog') {
-    $form['bundle']['#default_value'] = 'post';
-    unset($form['bundle']['#options']['certificate']);
-    unset($form['bundle']['#options']['course']);
-  }
-
-  if ($collection->bundle() === 'content_section') {
-    $form['bundle']['#default_value'] = 'page';
-    unset($form['bundle']['#options']['certificate']);
-    unset($form['bundle']['#options']['course']);
-    unset($form['bundle']['#options']['media_mention']);
-    unset($form['bundle']['#options']['story']);
-  }
-
-  if ($collection->bundle() === 'publication_issue') {
-    $form['bundle']['#default_value'] = 'story';
-  }
+/**
+ * Implements hook_preprocess_HOOK() for `entity_add_list`.
+ *
+ * Hide some bundles from the 'Add new content' page for content_section
+ * collections.
+ *
+ * @see CollectionNew::content().
+ */
+function ilr_preprocess_entity_add_list__collection_content_section_new_node(&$variables) {
+  unset($variables['bundles']['certificate']);
+  unset($variables['bundles']['course']);
+  unset($variables['bundles']['media_mention']);
+  unset($variables['bundles']['story']);
 }
 
 /**

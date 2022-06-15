@@ -83,6 +83,11 @@ content:
     third_party_settings:
       media_library_edit:
         show_edit: '1'
+  ief_collection_items:
+    weight: -10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   promote:
     type: boolean_checkbox
     weight: 3

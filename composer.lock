@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "67c14f47b7a42394eb85cebe5bc0df03",
+    "content-hash": "1a802e2f9587488711368979f909612d",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2013,16 +2013,17 @@
         },
         {
             "name": "drupal/collection",
-            "version": "dev-2.x",
+            "version": "dev-3.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/collection.git",
-                "reference": "6f8eb98d8cdb2019d44db552d87743a633e7c6bd"
+                "reference": "3b994076ebf55f1a3268376ba2f5a4130701b5a6"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
                 "drupal/dynamic_entity_reference": "^2.0",
-                "drupal/key_value_field": "*"
+                "drupal/inline_entity_form": "^1.0@RC",
+                "drupal/key_value_field": "^1.0"
             },
             "require-dev": {
                 "drupal/paragraphs": "*",
@@ -2031,11 +2032,11 @@
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-2.x": "2.x-dev"
+                    "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "2.x-dev",
-                    "datestamp": "1650381916",
+                    "version": "3.x-dev",
+                    "datestamp": "1655304900",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -16503,5 +16504,5 @@
         "php": ">=5.6"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

@@ -8,16 +8,9 @@ id: default
 label: Default
 allowed_bundles:
   - collection.blog
-  - media.image
-  - media.remote_video
   - node.certificate
   - node.course
   - node.media_mention
   - node.page
   - node.story
-  - persona.author
-  - persona.expert
-  - persona.faculty
-  - persona.staff
-  - taxonomy_term.topics
 attributes_access: administrators

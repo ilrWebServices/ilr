@@ -61,6 +61,11 @@ content:
     settings:
       media_types: {  }
     third_party_settings: {  }
+  ief_collection_items:
+    weight: -10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   promote:
     type: boolean_checkbox
     weight: 15
