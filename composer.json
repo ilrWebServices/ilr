@@ -190,9 +190,6 @@
       "drupal/persistent_visitor_parameters": {
         "Allow cookie name and domain to be changed": "https://git.drupalcode.org/project/persistent_visitor_parameters/-/commit/6269974586dccbbd62d08585261f8cbb6e1590f1.diff",
         "Fix settings form permission": "https://git.drupalcode.org/issue/persistent_visitor_parameters-3266421/-/commit/3d5c811d7757d36b665c79abf607147988eb2c6f.diff"
-      },
-      "drupal/allowed_formats": {
-        "#3261891: Post update hook fails when config is already updated": "https://www.drupal.org/files/issues/2022-02-01/3261891-2.patch"
       }
     },
     "installer-paths": {
