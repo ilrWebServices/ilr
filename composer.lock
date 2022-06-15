@@ -5387,17 +5387,17 @@
         },
         {
             "name": "drupal/samlauth",
-            "version": "3.4.0",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/samlauth.git",
-                "reference": "8.x-3.4"
+                "reference": "8.x-3.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/samlauth-8.x-3.4.zip",
-                "reference": "8.x-3.4",
-                "shasum": "9549c562e219569d31e245e2d095c8f382e03099"
+                "url": "https://ftp.drupal.org/files/projects/samlauth-8.x-3.6.zip",
+                "reference": "8.x-3.6",
+                "shasum": "840897477829bc1f2706870dd9852176195cd560"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -5407,8 +5407,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.4",
-                    "datestamp": "1641333384",
+                    "version": "8.x-3.6",
+                    "datestamp": "1654792729",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
