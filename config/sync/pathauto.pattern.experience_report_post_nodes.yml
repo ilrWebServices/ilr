@@ -10,7 +10,7 @@ type: 'canonical_entities:node'
 pattern: 'experience-report/[node:title]'
 selection_criteria:
   4d5501ae-98c0-4576-9294-f3176c778e8e:
-    id: node_type
+    id: 'entity_bundle:node'
     negate: false
     uuid: 4d5501ae-98c0-4576-9294-f3176c778e8e
     context_mapping:

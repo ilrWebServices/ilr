@@ -10,7 +10,7 @@ type: 'canonical_entities:node'
 pattern: 'programs/professional-education/[node:field_course_number]/[node:title]'
 selection_criteria:
   3cd80cb0-bc6b-4cfa-ab0c-5ff551ecb238:
-    id: node_type
+    id: 'entity_bundle:node'
     negate: false
     uuid: 3cd80cb0-bc6b-4cfa-ab0c-5ff551ecb238
     context_mapping:

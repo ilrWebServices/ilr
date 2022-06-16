@@ -19,6 +19,8 @@ content:
     settings:
       image_link: ''
       image_style: large_21_9_1200x514_
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 0
     region: content

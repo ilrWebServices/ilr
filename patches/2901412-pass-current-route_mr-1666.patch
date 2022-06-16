@@ -1,0 +1,450 @@
+diff --git a/core/modules/comment/tests/src/Unit/Plugin/views/field/CommentBulkFormTest.php b/core/modules/comment/tests/src/Unit/Plugin/views/field/CommentBulkFormTest.php
+index d342bda45e8d7c5931a172868280153ca21d5e08..6806b84fda884212a6b0f873b466ee959c5b402f 100644
+--- a/core/modules/comment/tests/src/Unit/Plugin/views/field/CommentBulkFormTest.php
++++ b/core/modules/comment/tests/src/Unit/Plugin/views/field/CommentBulkFormTest.php
+@@ -6,6 +6,7 @@
+ use Drupal\comment\Plugin\views\field\CommentBulkForm;
+ use Drupal\Core\Entity\EntityRepositoryInterface;
+ use Drupal\Core\Entity\EntityTypeManagerInterface;
++use Drupal\Core\Routing\ResettableStackedRouteMatchInterface;
+ use Drupal\Tests\UnitTestCase;
+ 
+ /**
+@@ -60,6 +61,8 @@ public function testConstructor() {
+ 
+     $messenger = $this->createMock('Drupal\Core\Messenger\MessengerInterface');
+ 
++    $route_match = $this->createMock(ResettableStackedRouteMatchInterface::class);
++
+     $views_data = $this->getMockBuilder('Drupal\views\ViewsData')
+       ->disableOriginalConstructor()
+       ->getMock();
+@@ -90,7 +93,7 @@ public function testConstructor() {
+     $definition['title'] = '';
+     $options = [];
+ 
+-    $comment_bulk_form = new CommentBulkForm([], 'comment_bulk_form', $definition, $entity_type_manager, $language_manager, $messenger, $entity_repository);
++    $comment_bulk_form = new CommentBulkForm([], 'comment_bulk_form', $definition, $entity_type_manager, $language_manager, $messenger, $entity_repository, $route_match);
+     $comment_bulk_form->init($executable, $display, $options);
+ 
+     $reflected_actions = (new \ReflectionObject($comment_bulk_form))->getProperty('actions');
+diff --git a/core/modules/node/tests/src/Unit/Plugin/views/field/NodeBulkFormTest.php b/core/modules/node/tests/src/Unit/Plugin/views/field/NodeBulkFormTest.php
+index cd421f167e26011de588032a19c01b5bb7d42fbc..118f46dfbecd37a4474e8c71641b4705108b6bf3 100644
+--- a/core/modules/node/tests/src/Unit/Plugin/views/field/NodeBulkFormTest.php
++++ b/core/modules/node/tests/src/Unit/Plugin/views/field/NodeBulkFormTest.php
+@@ -5,6 +5,7 @@
+ use Drupal\Core\DependencyInjection\ContainerBuilder;
+ use Drupal\Core\Entity\EntityRepositoryInterface;
+ use Drupal\Core\Entity\EntityTypeManagerInterface;
++use Drupal\Core\Routing\ResettableStackedRouteMatchInterface;
+ use Drupal\node\Plugin\views\field\NodeBulkForm;
+ use Drupal\Tests\UnitTestCase;
+ 
+@@ -60,6 +61,8 @@ public function testConstructor() {
+ 
+     $messenger = $this->createMock('Drupal\Core\Messenger\MessengerInterface');
+ 
++    $route_match = $this->createMock(ResettableStackedRouteMatchInterface::class);
++
+     $views_data = $this->getMockBuilder('Drupal\views\ViewsData')
+       ->disableOriginalConstructor()
+       ->getMock();
+@@ -90,7 +93,7 @@ public function testConstructor() {
+     $definition['title'] = '';
+     $options = [];
+ 
+-    $node_bulk_form = new NodeBulkForm([], 'node_bulk_form', $definition, $entity_type_manager, $language_manager, $messenger, $entity_repository);
++    $node_bulk_form = new NodeBulkForm([], 'node_bulk_form', $definition, $entity_type_manager, $language_manager, $messenger, $entity_repository, $route_match);
+     $node_bulk_form->init($executable, $display, $options);
+ 
+     $reflected_actions = (new \ReflectionObject($node_bulk_form))->getProperty('actions');
+diff --git a/core/modules/user/tests/src/Unit/Plugin/views/field/UserBulkFormTest.php b/core/modules/user/tests/src/Unit/Plugin/views/field/UserBulkFormTest.php
+index cdd6ec685b684e143f00d50df486b8c9310445c4..5040102c0dc806f76c8bdd94ede6af462a88106e 100644
+--- a/core/modules/user/tests/src/Unit/Plugin/views/field/UserBulkFormTest.php
++++ b/core/modules/user/tests/src/Unit/Plugin/views/field/UserBulkFormTest.php
+@@ -5,6 +5,7 @@
+ use Drupal\Core\DependencyInjection\ContainerBuilder;
+ use Drupal\Core\Entity\EntityRepositoryInterface;
+ use Drupal\Core\Entity\EntityTypeManagerInterface;
++use Drupal\Core\Routing\ResettableStackedRouteMatchInterface;
+ use Drupal\Tests\UnitTestCase;
+ use Drupal\user\Plugin\views\field\UserBulkForm;
+ 
+@@ -60,6 +61,8 @@ public function testConstructor() {
+ 
+     $messenger = $this->createMock('Drupal\Core\Messenger\MessengerInterface');
+ 
++    $route_match = $this->createMock(ResettableStackedRouteMatchInterface::class);
++
+     $views_data = $this->getMockBuilder('Drupal\views\ViewsData')
+       ->disableOriginalConstructor()
+       ->getMock();
+@@ -90,7 +93,7 @@ public function testConstructor() {
+     $definition['title'] = '';
+     $options = [];
+ 
+-    $user_bulk_form = new UserBulkForm([], 'user_bulk_form', $definition, $entity_type_manager, $language_manager, $messenger, $entity_repository);
++    $user_bulk_form = new UserBulkForm([], 'user_bulk_form', $definition, $entity_type_manager, $language_manager, $messenger, $entity_repository, $route_match);
+     $user_bulk_form->init($executable, $display, $options);
+ 
+     $reflected_actions = (new \ReflectionObject($user_bulk_form))->getProperty('actions');
+diff --git a/core/modules/views/src/Plugin/views/field/BulkForm.php b/core/modules/views/src/Plugin/views/field/BulkForm.php
+index 04c58e46acf04c36fbb4734f1d20541ba1145ee3..19fefce7b9afaf96def1ff9b9a86b34b9a46efeb 100644
+--- a/core/modules/views/src/Plugin/views/field/BulkForm.php
++++ b/core/modules/views/src/Plugin/views/field/BulkForm.php
+@@ -11,6 +11,7 @@
+ use Drupal\Core\Language\LanguageManagerInterface;
+ use Drupal\Core\Messenger\MessengerInterface;
+ use Drupal\Core\Routing\RedirectDestinationTrait;
++use Drupal\Core\Routing\ResettableStackedRouteMatchInterface;
+ use Drupal\Core\TypedData\TranslatableInterface;
+ use Drupal\views\Entity\Render\EntityTranslationRenderTrait;
+ use Drupal\views\Plugin\views\display\DisplayPluginBase;
+@@ -72,6 +73,13 @@ class BulkForm extends FieldPluginBase implements CacheableDependencyInterface {
+    */
+   protected $messenger;
+ 
++  /**
++   * The current route match service.
++   *
++   * @var \Drupal\Core\Routing\ResettableStackedRouteMatchInterface
++   */
++  protected $routeMatch;
++
+   /**
+    * Constructs a new BulkForm object.
+    *
+@@ -89,10 +97,13 @@ class BulkForm extends FieldPluginBase implements CacheableDependencyInterface {
+    *   The messenger.
+    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+    *   The entity repository.
++   * @param \Drupal\Core\Routing\ResettableStackedRouteMatchInterface $route_match
++   *   The current route match service.
+    *
+    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
++   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+    */
+-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, MessengerInterface $messenger, EntityRepositoryInterface $entity_repository) {
++  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, MessengerInterface $messenger, EntityRepositoryInterface $entity_repository, ResettableStackedRouteMatchInterface $route_match = NULL) {
+     parent::__construct($configuration, $plugin_id, $plugin_definition);
+ 
+     $this->entityTypeManager = $entity_type_manager;
+@@ -100,6 +111,11 @@ public function __construct(array $configuration, $plugin_id, $plugin_definition
+     $this->languageManager = $language_manager;
+     $this->messenger = $messenger;
+     $this->entityRepository = $entity_repository;
++    if (!$route_match) {
++      @trigger_error('Calling BulkForm::__construct() without the $route_match argument is deprecated in drupal:8.9.0 and the $route_match argument will be required in drupal:10.0.0. See https://www.drupal.org/node/3115868', E_USER_DEPRECATED);
++      $route_match = \Drupal::routeMatch();
++    }
++    $this->routeMatch = $route_match;
+   }
+ 
+   /**
+@@ -113,7 +129,8 @@ public static function create(ContainerInterface $container, array $configuratio
+       $container->get('entity_type.manager'),
+       $container->get('language_manager'),
+       $container->get('messenger'),
+-      $container->get('entity.repository')
++      $container->get('entity.repository'),
++      $container->get('current_route_match')
+     );
+   }
+ 
+@@ -419,7 +436,8 @@ public function viewsFormSubmit(&$form, FormStateInterface $form_state) {
+         $options = [
+           'query' => $this->getDestinationArray(),
+         ];
+-        $form_state->setRedirect($operation_definition['confirm_form_route_name'], [], $options);
++        $route_parameters = $this->routeMatch->getRawParameters()->all();
++        $form_state->setRedirect($operation_definition['confirm_form_route_name'], $route_parameters, $options);
+       }
+       else {
+         // Don't display the message unless there are some elements affected and
+diff --git a/core/modules/views/tests/modules/action_bulk_test/action_bulk_test.routing.yml b/core/modules/views/tests/modules/action_bulk_test/action_bulk_test.routing.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..43cab18ec54c8c17c261d18bd7eba058c5384a27
+--- /dev/null
++++ b/core/modules/views/tests/modules/action_bulk_test/action_bulk_test.routing.yml
+@@ -0,0 +1,10 @@
++action_bulk_test.action.confirm:
++  path: '/node/{node}/confirm'
++  defaults:
++    _form: Drupal\action_bulk_test\Form\TestActionConfirmForm
++  requirements:
++    _access: 'TRUE'
++  options:
++    parameters:
++      node:
++        type: entity:node
+diff --git a/core/modules/views/tests/modules/action_bulk_test/config/install/system.action.test_action.yml b/core/modules/views/tests/modules/action_bulk_test/config/install/system.action.test_action.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..555531cc8e2c818329dda0732cfe39a284679e63
+--- /dev/null
++++ b/core/modules/views/tests/modules/action_bulk_test/config/install/system.action.test_action.yml
+@@ -0,0 +1,10 @@
++langcode: en
++status: true
++dependencies:
++  module:
++    - action_bulk_test
++id: test_action
++label: 'Test action'
++type: node
++plugin: test_action
++configuration: {  }
+diff --git a/core/modules/views/tests/modules/action_bulk_test/config/install/views.view.test_bulk_form.yml b/core/modules/views/tests/modules/action_bulk_test/config/install/views.view.test_bulk_form.yml
+index 292863128427709da93f60103b8467bf0171dd21..6446dc86c8c1b1f477179c9a4b7ca60980e1fbd4 100644
+--- a/core/modules/views/tests/modules/action_bulk_test/config/install/views.view.test_bulk_form.yml
++++ b/core/modules/views/tests/modules/action_bulk_test/config/install/views.view.test_bulk_form.yml
+@@ -120,6 +120,8 @@ display:
+           group: 1
+           expose:
+             operator: ''
++            operator_limit_selection: false
++            operator_list: {  }
+       style:
+         type: table
+         options:
+@@ -151,6 +153,17 @@ display:
+         type: fields
+       query:
+         type: views_query
++      display_extenders: {  }
++      arguments: {  }
++    cache_metadata:
++      max-age: 0
++      contexts:
++        - 'languages:language_content'
++        - 'languages:language_interface'
++        - url.query_args
++        - 'user.node_grants:view'
++        - user.permissions
++      tags: {  }
+   page_1:
+     id: page_1
+     display_title: Page
+@@ -158,6 +171,16 @@ display:
+     position: null
+     display_options:
+       path: test_bulk_form
++      display_extenders: {  }
++    cache_metadata:
++      max-age: 0
++      contexts:
++        - 'languages:language_content'
++        - 'languages:language_interface'
++        - url.query_args
++        - 'user.node_grants:view'
++        - user.permissions
++      tags: {  }
+   page_2:
+     id: page_2
+     display_title: Page
+@@ -205,3 +228,66 @@ display:
+         row: false
+       display_extenders: { }
+       path: display-without-fields
++  page_4:
++    id: page_4
++    display_title: 'Page 4'
++    display_plugin: page
++    position: 4
++    display_options:
++      arguments:
++        nid:
++          id: nid
++          table: node_field_data
++          field: nid
++          relationship: none
++          group_type: group
++          admin_label: ''
++          default_action: ignore
++          exception:
++            value: all
++            title_enable: false
++            title: All
++          title_enable: false
++          title: ''
++          default_argument_type: fixed
++          default_argument_options:
++            argument: ''
++          default_argument_skip_url: false
++          summary_options:
++            base_path: ''
++            count: true
++            items_per_page: 25
++            override: false
++          summary:
++            sort_order: asc
++            number_of_records: 0
++            format: default_summary
++          specify_validation: true
++          validate:
++            type: 'entity:node'
++            fail: 'not found'
++          validate_options:
++            operation: view
++            multiple: 0
++            bundles: {  }
++            access: false
++          break_phrase: false
++          not: false
++          entity_type: node
++          entity_field: nid
++          plugin_id: node_nid
++      defaults:
++        arguments: false
++      display_description: ''
++      display_extenders: {  }
++      path: node/%node/test_bulk_form
++    cache_metadata:
++      max-age: 0
++      contexts:
++        - 'languages:language_content'
++        - 'languages:language_interface'
++        - url
++        - url.query_args
++        - 'user.node_grants:view'
++        - user.permissions
++      tags: {  }
+diff --git a/core/modules/views/tests/modules/action_bulk_test/config/schema/action_bulk_test.schema.yml b/core/modules/views/tests/modules/action_bulk_test/config/schema/action_bulk_test.schema.yml
+new file mode 100644
+index 0000000000000000000000000000000000000000..8627f6abef07856f5e95d54b5df88f7b63ce5334
+--- /dev/null
++++ b/core/modules/views/tests/modules/action_bulk_test/config/schema/action_bulk_test.schema.yml
+@@ -0,0 +1,2 @@
++action.configuration.test_action:
++  type: mapping
+diff --git a/core/modules/views/tests/modules/action_bulk_test/src/Form/TestActionConfirmForm.php b/core/modules/views/tests/modules/action_bulk_test/src/Form/TestActionConfirmForm.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..18f3c8667fb75e9cf6eb8fdba2a9d9d3ed23b296
+--- /dev/null
++++ b/core/modules/views/tests/modules/action_bulk_test/src/Form/TestActionConfirmForm.php
+@@ -0,0 +1,40 @@
++<?php
++
++namespace Drupal\action_bulk_test\Form;
++
++use Drupal\Core\Form\ConfirmFormBase;
++use Drupal\Core\Form\FormStateInterface;
++use Drupal\Core\Url;
++
++/**
++ * Confirmation form for 'test_action' action.
++ */
++class TestActionConfirmForm extends ConfirmFormBase {
++
++  /**
++   * {@inheritdoc}
++   */
++  public function getFormId() {
++    return 'test_action_confirm_form';
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function getCancelUrl() {
++    return Url::fromRoute('<front>');
++  }
++
++  /**
++   * @inheritdoc
++   */
++  public function getQuestion() {
++    return $this->t('Do you agree?');
++  }
++
++  /**
++   * @inheritdoc
++   */
++  public function submitForm(array &$form, FormStateInterface $form_state) {}
++
++}
+diff --git a/core/modules/views/tests/modules/action_bulk_test/src/Plugin/Action/TestAction.php b/core/modules/views/tests/modules/action_bulk_test/src/Plugin/Action/TestAction.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..9056ecdbae725d75241bb5e20afc83c4070d7029
+--- /dev/null
++++ b/core/modules/views/tests/modules/action_bulk_test/src/Plugin/Action/TestAction.php
+@@ -0,0 +1,31 @@
++<?php
++
++namespace Drupal\action_bulk_test\Plugin\Action;
++
++use Drupal\Core\Access\AccessResult;
++use Drupal\Core\Action\ActionBase;
++use Drupal\Core\Session\AccountInterface;
++
++/**
++ * @Action(
++ *   id = "test_action",
++ *   label = @Translation("Test action"),
++ *   type = "node",
++ *   confirm_form_route_name = "action_bulk_test.action.confirm",
++ * )
++ */
++class TestAction extends ActionBase {
++
++  /**
++   * @inheritdoc
++   */
++  public function access($object, AccountInterface $account = NULL, $return_as_object = FALSE) {
++    return $return_as_object ? AccessResult::allowed() : TRUE;
++  }
++
++  /**
++   * @inheritdoc
++   */
++  public function execute() {}
++
++}
+diff --git a/core/modules/views/tests/src/Functional/BulkFormTest.php b/core/modules/views/tests/src/Functional/BulkFormTest.php
+index 4e515c6aa6022cf2ce26845dbb0cd22a990e8816..29aac7ca61fdfed4a65e02b4dca700d92e50db90 100644
+--- a/core/modules/views/tests/src/Functional/BulkFormTest.php
++++ b/core/modules/views/tests/src/Functional/BulkFormTest.php
+@@ -4,6 +4,7 @@
+ 
+ use Drupal\Component\Render\FormattableMarkup;
+ use Drupal\Tests\BrowserTestBase;
++use Drupal\Tests\node\Traits\NodeCreationTrait;
+ use Drupal\views\Views;
+ 
+ /**
+@@ -14,6 +15,8 @@
+  */
+ class BulkFormTest extends BrowserTestBase {
+ 
++  use NodeCreationTrait;
++
+   /**
+    * Modules to install.
+    *
+@@ -209,4 +212,27 @@ public function testBulkForm() {
+     $this->assertSession()->pageTextContains('No content selected.');
+   }
+ 
++  /**
++   * Tests that route parameters are passed to the confirmation form route.
++   */
++  public function testConfirmRouteWithParameters() {
++    $session = $this->getSession();
++    $page = $session->getPage();
++    $assert = $this->assertSession();
++
++    $node = $this->createNode();
++    // Access the view page.
++    $this->drupalGet('/node/' . $node->id() . '/test_bulk_form');
++
++    // Select a node and perform the 'Test action'.
++    $page->checkField('node_bulk_form[0]');
++    $page->selectFieldOption('Action', 'Test action');
++    $page->pressButton('Apply to selected items');
++
++    // Check that we've been landed on the confirmation form.
++    $assert->pageTextContains('Do you agree?');
++    // Check that route parameters were passed to the confirmation from route.
++    $assert->addressEquals('/node/' . $node->id() . '/confirm');
++  }
++
+ }

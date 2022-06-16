@@ -53,7 +53,6 @@
     "drupal/entity_browser": "^2.4",
     "drupal/entity_usage": "^2.0@beta",
     "drupal/extra_field": "^2.0.0",
-    "drupal/file_download_link": "^1.0",
     "drupal/filehash": "^1.4",
     "drupal/focal_point": "^1.4",
     "drupal/footnotes": "^3.0",
@@ -67,12 +66,12 @@
     "drupal/linkit_media_library": "^1.0",
     "drupal/mailchimp": "^2",
     "drupal/media_library_edit": "^2.0",
-    "drupal/media_pdf_thumbnail": "^3.3",
+    "drupal/media_pdf_thumbnail": "^5",
     "drupal/menu_item_extras": "^2.8",
     "drupal/metatag": "^1.10",
     "drupal/migrate_file": "^2.0",
-    "drupal/migrate_plus": "^5.0",
-    "drupal/migrate_tools": "^5.0.0",
+    "drupal/migrate_plus": "^6.0",
+    "drupal/migrate_tools": "^6.0",
     "drupal/paragraphs": "^1.9",
     "drupal/paragraphs_previewer": "^1.4",
     "drupal/pathauto": "^1.4",
@@ -86,7 +85,7 @@
     "drupal/sftp_client": "1.0.x-dev",
     "drupal/smart_read_more_link": "^1.7",
     "drupal/summary_word_limit": "^2.0",
-    "drupal/svg_image_field": "^2.0.0",
+    "drupal/svg_image_field": "^2.1",
     "drupal/token_filter": "^1.1",
     "drupal/twig_tweak": "^3.0.0",
     "drupal/typed_data": "^1.0@alpha",
@@ -153,7 +152,7 @@
       "drupal/core": {
         "Remove invalid iframe attributes from oembed field formatter": "https://www.drupal.org/files/issues/2019-07-31/remove-iframe-attributes-3071446-4.patch",
         "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch",
-        "Pass current route parameters to the confirmation form route": "https://git.drupalcode.org/project/drupal/-/commit/1d0084d56d914ccdb41631ee68e01497f79e1e53.diff",
+        "Pass current route parameters to the confirmation form route": "./patches/2901412-pass-current-route_mr-1666.patch",
         "Redirect to term view page from term edit page": "https://www.drupal.org/files/issues/2022-01-27/taxonomy-redirect_to_view_from_edit-2826592-33.patch",
         "Allow custom session cookie name": "./patches/2983612-custom-session-cookie-name.patch"
       },
@@ -190,9 +189,6 @@
       "drupal/persistent_visitor_parameters": {
         "Allow cookie name and domain to be changed": "https://git.drupalcode.org/project/persistent_visitor_parameters/-/commit/6269974586dccbbd62d08585261f8cbb6e1590f1.diff",
         "Fix settings form permission": "https://git.drupalcode.org/issue/persistent_visitor_parameters-3266421/-/commit/3d5c811d7757d36b665c79abf607147988eb2c6f.diff"
-      },
-      "drupal/allowed_formats": {
-        "#3261891: Post update hook fails when config is already updated": "https://www.drupal.org/files/issues/2022-02-01/3261891-2.patch"
       }
     },
     "installer-paths": {
