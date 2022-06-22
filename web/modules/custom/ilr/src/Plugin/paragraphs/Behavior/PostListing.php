@@ -199,7 +199,7 @@ class PostListing extends ParagraphsBehaviorBase {
     $paragraph = $variables['paragraph'];
     $collection = $paragraph->field_collection->entity;
     $category_operator = $paragraph->getBehaviorSetting($this->getPluginId(), 'negate_category') ? '<>' : '=';
-    $post_types = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_types') ?? $this->postTypes;
+    $post_types = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_types') ?? array_keys($this->postTypes);
 
     // If the collection was deleted, return nothing to prevent errors.
     if ($collection === NULL) {
