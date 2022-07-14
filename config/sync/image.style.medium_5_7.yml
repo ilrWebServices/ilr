@@ -1,0 +1,17 @@
+uuid: 2fe93f85-569e-4e94-98ab-aa4fa1c04400
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: medium_5_7
+label: 'Medium 5:7 (600x840)'
+effects:
+  bb955ea8-8aa2-465c-9029-bd92b8ecd1c5:
+    uuid: bb955ea8-8aa2-465c-9029-bd92b8ecd1c5
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 600
+      height: 840
+      crop_type: focal_point
