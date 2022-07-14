@@ -1,0 +1,36 @@
+uuid: c90099b9-8ba8-4916-b7dc-5771d1258c48
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.testimonial_deck.field_components
+    - paragraphs.paragraphs_type.testimonial_deck
+  module:
+    - paragraphs_previewer
+id: paragraph.testimonial_deck.default
+targetEntityType: paragraph
+bundle: testimonial_deck
+mode: default
+content:
+  field_components:
+    type: paragraphs_previewer
+    weight: 0
+    region: content
+    settings:
+      title: Testimonial
+      title_plural: Testimonials
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: '0'
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: testimonial
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+        add_above: 0
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

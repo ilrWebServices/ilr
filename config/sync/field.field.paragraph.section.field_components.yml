@@ -23,6 +23,7 @@ dependencies:
     - paragraphs.paragraphs_type.simple_collection_listing
     - paragraphs.paragraphs_type.table_of_contents
     - paragraphs.paragraphs_type.testimonial
+    - paragraphs.paragraphs_type.testimonial_deck
     - paragraphs.paragraphs_type.video
   module:
     - entity_reference_revisions
@@ -52,9 +53,10 @@ settings:
       collection_listing_publication: collection_listing_publication
       curated_post_listing: curated_post_listing
       curated_course_listing: curated_course_listing
-      collection_listing: collection_listing
       people_listing: people_listing
+      collection_listing: collection_listing
       picture_in_picture: picture_in_picture
+      testimonial_deck: testimonial_deck
       event_listing: event_listing
       instagram_listing: instagram_listing
       section_navigation: section_navigation
@@ -120,6 +122,9 @@ settings:
         enabled: true
       testimonial:
         weight: -27
+        enabled: true
+      testimonial_deck:
+        weight: 23
         enabled: true
       video:
         weight: -29

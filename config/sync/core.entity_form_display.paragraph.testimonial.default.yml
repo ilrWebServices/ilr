@@ -7,6 +7,7 @@ dependencies:
     - field.field.paragraph.testimonial.field_name
     - field.field.paragraph.testimonial.field_quote
     - field.field.paragraph.testimonial.field_remark
+    - field.field.paragraph.testimonial.field_subheading
     - paragraphs.paragraphs_type.testimonial
   module:
     - media_library
@@ -47,6 +48,14 @@ content:
     region: content
     settings:
       rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_subheading:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
       placeholder: ''
     third_party_settings: {  }
 hidden:
