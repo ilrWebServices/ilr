@@ -26,7 +26,7 @@ content:
       image_loading:
         attribute: lazy
     third_party_settings: {  }
-    weight: 4
+    weight: 3
     region: content
   field_name:
     type: string
@@ -34,7 +34,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   field_quote:
     type: basic_string
@@ -43,20 +43,14 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_remark:
-    type: basic_string
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 1
-    region: content
   field_subheading:
     type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
 hidden:
+  field_remark: true
   search_api_excerpt: true
