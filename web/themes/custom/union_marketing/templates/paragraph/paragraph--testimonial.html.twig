@@ -1,25 +1,10 @@
-{% set rendered_media %}
-  {{ content.field_media }}
-{% endset %}
-
-{% set rendered_content %}
-  {% include "@union/_icon.twig" with {
-    title: 'Testimonial',
-    icon: 'student',
-    label: 'Testimonial',
-    attributes: { class: 'cu-icon--color-light' }
-  } only %}
-  {{ content|without('field_media') }}
-{% endset %}
-
-
-{% include '@union/_card.twig' with {
-  card_content: rendered_content,
-  content_attributes: { class: 'cu-card__content--narrow' },
-  card_media: rendered_media,
+{% include '@union/_testimonial.twig' with {
+  quote: paragraph.field_quote.value,
+  name: paragraph.field_name.value,
+  title: paragraph.field_subheading.value,
+  media: content.field_media,
   attributes: attributes.addClass([
     'cu-component',
-    'cu-component--' ~ paragraph.bundle|clean_class,
-    'cu-card--promo cu-card--landscape cu-card--promo-with-media cu-card__content--narrow'
+    'cu-component--' ~ paragraph.bundle|clean_class
   ])
 } only %}

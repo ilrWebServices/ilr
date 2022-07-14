@@ -1,0 +1,94 @@
+uuid: 472e610a-07f1-4071-a1d7-850f7c06f788
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_components
+    - paragraphs.paragraphs_type.testimonial
+    - paragraphs.paragraphs_type.testimonial_deck
+  module:
+    - entity_reference_revisions
+id: paragraph.testimonial_deck.field_components
+field_name: field_components
+entity_type: paragraph
+bundle: testimonial_deck
+label: Testimonials
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      testimonial: testimonial
+    negate: 0
+    target_bundles_drag_drop:
+      collection_listing:
+        weight: 24
+        enabled: false
+      collection_listing_publication:
+        weight: 25
+        enabled: false
+      curated_course_listing:
+        weight: 26
+        enabled: false
+      curated_post_listing:
+        weight: 27
+        enabled: false
+      deck:
+        weight: 28
+        enabled: false
+      event_listing:
+        weight: 29
+        enabled: false
+      form:
+        weight: 30
+        enabled: false
+      image:
+        weight: 31
+        enabled: false
+      instagram_listing:
+        weight: 32
+        enabled: false
+      media_deck:
+        weight: 33
+        enabled: false
+      people_listing:
+        weight: 34
+        enabled: false
+      person:
+        weight: 35
+        enabled: false
+      picture_in_picture:
+        weight: 36
+        enabled: false
+      promo:
+        weight: 37
+        enabled: false
+      rich_text:
+        weight: 38
+        enabled: false
+      section:
+        weight: 39
+        enabled: false
+      section_navigation:
+        weight: 40
+        enabled: false
+      simple_collection_listing:
+        weight: 41
+        enabled: false
+      table_of_contents:
+        weight: 42
+        enabled: false
+      testimonial:
+        weight: 43
+        enabled: true
+      testimonial_deck:
+        weight: 23
+        enabled: false
+      video:
+        weight: 44
+        enabled: false
+field_type: entity_reference_revisions
