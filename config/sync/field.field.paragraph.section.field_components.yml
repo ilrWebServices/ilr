@@ -24,6 +24,7 @@ dependencies:
     - paragraphs.paragraphs_type.table_of_contents
     - paragraphs.paragraphs_type.testimonial
     - paragraphs.paragraphs_type.testimonial_deck
+    - paragraphs.paragraphs_type.topic_list
     - paragraphs.paragraphs_type.video
   module:
     - entity_reference_revisions
@@ -58,6 +59,7 @@ settings:
       people_listing: people_listing
       picture_in_picture: picture_in_picture
       event_listing: event_listing
+      topic_list: topic_list
       instagram_listing: instagram_listing
       section_navigation: section_navigation
       table_of_contents: table_of_contents
@@ -125,6 +127,9 @@ settings:
         enabled: true
       testimonial_deck:
         weight: -35
+        enabled: true
+      topic_list:
+        weight: 24
         enabled: true
       video:
         weight: -38
