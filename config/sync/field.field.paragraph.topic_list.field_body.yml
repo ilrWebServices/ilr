@@ -1,0 +1,26 @@
+uuid: ef81087d-e096-47b7-8935-84bccc742e7f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - paragraphs.paragraphs_type.topic_list
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - basic_formatting
+id: paragraph.topic_list.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: topic_list
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
