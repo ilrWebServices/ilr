@@ -7,7 +7,7 @@ dependencies:
 id: visiting_fellow_personas
 label: 'Visiting Fellow Personas'
 type: 'canonical_entities:persona'
-pattern: 'people/visiting-fellows/[persona:display_name]'
+pattern: 'faculty-and-research/visiting-fellows/[persona:display_name]'
 selection_criteria:
   4e90d68b-4f65-4772-a99c-f09ec1900b28:
     id: 'entity_bundle:persona'
