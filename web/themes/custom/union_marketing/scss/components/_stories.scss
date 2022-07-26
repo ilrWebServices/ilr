@@ -48,12 +48,6 @@
   }
 }
 
-@include breakpoint(xs) {
-  .cu-banner .cu-button {
-    margin-right: 30vw;
-  }
-}
-
 .node--story .collection-listing .field--field-published-date {
   display: none;
 }

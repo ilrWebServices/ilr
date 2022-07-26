@@ -63,34 +63,7 @@
   --cu-current-font-weight: 400;
 }
 
-.cu-card--popout .cu-card__content {
-  --cu-current-font-size: var(--cu-text-xl);
-
-  .cu-heading {
-    --cu-current-heading-size: var(--cu-text-xxxl);
-  }
-}
-
 .cu-component .cu-heading--strong {
   font-size: var(--cu-ms3);
 }
 
-.cu-component--promo.cu-card--vibrant {
-  --cu-card-background: #{$cornell-red};
-
-  .cu-card__content,
-  .cu-card__content a {
-    color: white;
-    background: var(--cu-card-background);
-  }
-}
-
-.cu-componenet--promo.cu-card--dark {
-  --cu-card-background: #{$gray-dark};
-
-  .cu-card__content,
-  .cu-card__content a {
-    color: white;
-    background: var(--cu-card-background);
-  }
-}
