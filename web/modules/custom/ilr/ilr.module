@@ -853,15 +853,17 @@ function ilr_field_widget_paragraphs_form_alter(&$element, FormStateInterface &$
     $element['subform']['field_subheading_link']['widget'][0]['#type'] = 'details';
   }
 
-  // Move non-section paragraph behaviors below the content fields subform.
-  if ($paragraphs_entity && $paragraphs_entity->bundle() !== 'section' && isset($element['behavior_plugins'])) {
-    unset($element['behavior_plugins']['#weight']);
-  }
+  // Remove the weight value from the behavior_plugins element to help detect if
+  // it's empty.
+  unset($element['behavior_plugins']['#weight']);
 
   // Wrap behavior settings elements in a details container.
   if (!empty($element['behavior_plugins'])) {
     $element['behavior_plugins']['#type'] = 'details';
-    $element['behavior_plugins']['#title'] = t('Settings');
+    $element['behavior_plugins']['#title'] = t('@type Settings', [
+      '@type' => $paragraphs_entity->type->entity->label(),
+    ]);
+    $element['behavior_plugins']['#weight'] = -99;
   }
 
   // Add a class to closed paragraphs.
