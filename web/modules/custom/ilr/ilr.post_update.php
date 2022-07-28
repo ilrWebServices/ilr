@@ -1001,3 +1001,20 @@ function ilr_post_update_fix_unstickied_node_aliases(&$sandbox) {
     $result = $pathauto_generator->updateEntityAlias($node, 'update');
   }
 }
+
+/**
+ * Update hard-coded icons in rich text paragraphs.
+ */
+function ilr_post_update_fix_rich_text_icons(&$sandbox) {
+  $paragraph_storage = \Drupal::service('entity_type.manager')->getStorage('paragraph');
+  $query = $paragraph_storage->getQuery();
+  $query->condition('type', 'promo');
+  $query->condition('field_body', '%/libraries/union/source/images/%', 'LIKE');
+  $relevant_paragraph_ids = $query->execute();
+  $paragraphs = $paragraph_storage->loadMultiple($relevant_paragraph_ids);
+
+  foreach ($paragraphs as $paragraph) {
+    $paragraph->field_body->value = str_replace('/libraries/union/source/images/', '/sites/default/files-d8/union/images/', $paragraph->field_body->value);
+    $paragraph->save();
+  }
+}
