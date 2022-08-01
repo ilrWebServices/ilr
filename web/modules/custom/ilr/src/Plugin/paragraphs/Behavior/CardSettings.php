@@ -226,7 +226,7 @@ class CardSettings extends ParagraphsBehaviorBase {
     }
 
     if ($parent->bundle() === 'deck' && (strpos($form_state->getValue('content_placement'), 'popout') !== FALSE || $form_state->getValue('layout') !== 'promo' )) {
-      $form_state->setError($form['content_placement'], $this->t('Sorry, but the selected layout cannot be used in card decks. Please choose a different option.'));
+      $form_state->setError($form['layout'], $this->t('Sorry, but the selected layout cannot be used in card decks. Please choose a different option.'));
     }
   }
 
