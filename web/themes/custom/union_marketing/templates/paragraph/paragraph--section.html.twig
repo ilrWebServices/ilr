@@ -44,6 +44,7 @@
     attributes: heading_attributes,
     heading: paragraph.field_heading.value,
     subheading: not paragraph.field_subheading.isEmpty() ? paragraph.field_subheading.value,
+    icon_data: paragraph.cu_icon ? paragraph.cu_icon : NULL,
     link: not paragraph.field_subheading_link.isEmpty() ? { url: paragraph.field_subheading_link.0.url, text: paragraph.field_subheading_link.title }
   } only %}
   {% endif %}
