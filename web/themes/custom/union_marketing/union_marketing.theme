@@ -369,6 +369,21 @@ function union_marketing_preprocess_paragraph__promo(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_paragraph().
+ */
+function union_marketing_preprocess_paragraph__testimonial_deck(&$variables) {
+  $variables['testimonials'] = [];
+  foreach ($variables['paragraph']->field_components->referencedEntities() as $testimonial_paragraph) {
+    $variables['testimonials'][] = [
+      'quote' => $testimonial_paragraph->field_quote->view('teaser'),
+      'name' => $testimonial_paragraph->field_name->view('teaser'),
+      'title' => $testimonial_paragraph->field_subheading->view('teaser'),
+      'media' => $testimonial_paragraph->field_media->view('thumbnail'),
+    ];
+  }
+}
+
+/**
  * Implements hook_preprocess_field().
  */
 function union_marketing_preprocess_field__paragraph__field_heading__promo(&$variables) {

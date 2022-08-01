@@ -32,29 +32,14 @@
  *   current user is a logged-in member.
  * - is_admin: Flag for admin user status. Will be true when the current user
  *   is an administrator.
+ * - testimonials: A list of testimonial data.
  *
  * @see template_preprocess_paragraph()
+ * @see union_marketing_preprocess_paragraph__testimonial_deck()
  *
  * @ingroup themeable
  */
 #}
-
-{{ attach_library('union_organizer/testimonial-deck') }}
-
-{% set testimonials = [] %}
-{% for item in content.field_components['#items'] %}
-  {% set rendered_media %}
-    {{ drupal_field('field_media', 'paragraph', item.target_id) }}
-  {% endset %}
-  {% set testimonial = {
-    quote: item.entity.field_quote.value,
-    name: item.entity.field_name.value,
-    title: item.entity.field_subheading.value,
-    media: rendered_media,
-  } %}
-  {% set testimonials = testimonials|merge([testimonial]) %}
-{% endfor %}
-
 {% include '@union/_testimonial-deck.twig' with {
   testimonials: testimonials,
   attributes: attributes.addClass([
@@ -62,4 +47,3 @@
     'cu-component--' ~ paragraph.bundle|clean_class
   ])
 } only %}
-
