@@ -38,24 +38,23 @@
  * @ingroup themeable
  */
 #}
-{{ attach_library('union_organizer/button') }}
-{{ attach_library('union_organizer/icon') }}
-
-{% set rendered_content %}
-  {% if paragraph.cu_icon %}
-    {% include '@union/_icon.twig' with paragraph.cu_icon only %}
-  {% endif %}
-  {{ content|without('field_media', 'field_link', 'field_content') }}
-  {% if not paragraph.field_link.isEmpty() and paragraph.include_button %}
-  <div class="cu-button cu-button--overlay">{{ content.field_link[0]['#title'] }}</div>
-  {% endif %}
-{% endset %}
+{# These remain to support legacy cards where buttons and/or icons are included
+in the text body. #}
+{# {{ attach_library('union_organizer/button') }}
+{{ attach_library('union_organizer/icon') }} #}
 
 {% include '@union/_card.twig' with {
-  card_content: rendered_content,
+  heading: paragraph.field_heading.isEmpty() ? '' : content.field_heading.0,
+  eyebrow_heading: paragraph.field_subheading.isEmpty() ? '' : content.field_subheading.0,
+  card_content: content|without('field_media', 'field_link', 'field_content', 'field_heading', 'field_subheading'),
   card_media: paragraph.field_media.isEmpty() ? '' : content.field_media,
   card_link_url: content.field_link[0]['#url'],
   card_link_alt: content.field_link[0]['#title'],
+  button_data: not paragraph.field_link.isEmpty() and paragraph.include_button ? {
+    text: content.field_link[0]['#title'],
+    attributes: { class: 'cu-button--overlay' }
+   } : NULL,
+  icon_data: paragraph.cu_icon ? paragraph.cu_icon : NULL,
   attributes: attributes.addClass([
     'cu-component',
     'cu-component--' ~ paragraph.bundle|clean_class,
