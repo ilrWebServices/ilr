@@ -38,54 +38,19 @@
  * @ingroup themeable
  */
 #}
-{% if not paragraph.field_heading.isEmpty() %}
-  {# Render the paragraph heading fields as a cu-section-heading component and
-  pass that along to the content/layout.
-
-  This only works because a) this section paragraph type is defined as a layout
-  using Entity Reference Layout module and 2) we display a special
-  'ilr_hidden_header' item in our custom layouts.
-
-  Entity Reference Layout collects any paragraphs in this section/layout and
-  adds them to `content._entity_reference_layout.LAYOUT_REGION`. Here, we define
-  and append a markup render array called 'ilr_hidden_header'. This special
-  render array is displayed in our custom layouts. #}
-  {% set ilr_header = {
-    'ilr_hidden_header': {
-      '#markup': include('@union/_section-heading.twig', {
-        attributes: { class: 'cu-section-heading--framed cu-section-heading--framed-'~paragraph.field_heading.position },
-        heading: paragraph.field_heading.value,
-        subheading: not paragraph.field_subheading.isEmpty() ? paragraph.field_subheading.value,
-        link: not paragraph.field_subheading_link.isEmpty() ? { url: paragraph.field_subheading_link.0.url, text: paragraph.field_subheading_link.title }
-      }, with_context = false)
-    }
-  } %}
-
-  {# Make sure there is content in the section #}
-  {% if content._entity_reference_layout %}
-    {% set render_section = true %}
-    {# Egad! See https://www.drupal.org/project/components/issues/3081314 for a
-    possible future improvement to this syntax. #}
-    {% set content = content|merge({
-      '_entity_reference_layout': content._entity_reference_layout|merge({
-        'content': content._entity_reference_layout.content|merge(ilr_header)
-      })
-    }) %}
-  {% else %}
-    {% set content = content|merge(ilr_header) %}
-  {% endif %}
-{% endif %}
-
 {% set rendered_content %}
+  {% if not paragraph.field_heading.isEmpty() %}
+  {% include '@union/_section-heading.twig' with {
+    attributes: { class: 'cu-section-heading--framed cu-section-heading--framed-'~paragraph.field_heading.position },
+    heading: paragraph.field_heading.value,
+    subheading: not paragraph.field_subheading.isEmpty() ? paragraph.field_subheading.value,
+    link: not paragraph.field_subheading_link.isEmpty() ? { url: paragraph.field_subheading_link.0.url, text: paragraph.field_subheading_link.title }
+  } only %}
+  {% endif %}
   {{ content|without('field_heading', 'field_subheading', 'field_subheading_link') }}
 {% endset %}
 
-{% if paragraph.parent_field_name.value == 'field_sections_legacy' %}
-  {{ rendered_content }}
-{% else %}
-  {% include '@union/_cu-section.twig' with {
-    content: rendered_content,
-    attributes: attributes,
-  } only %}
-{% endif %}
-
+{% include '@union/_cu-section.twig' with {
+  content: rendered_content,
+  attributes: attributes,
+} only %}
