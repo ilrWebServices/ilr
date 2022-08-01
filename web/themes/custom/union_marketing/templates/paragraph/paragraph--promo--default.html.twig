@@ -52,7 +52,7 @@ in the text body. #}
   card_link_alt: content.field_link[0]['#title'],
   button_data: not paragraph.field_link.isEmpty() and paragraph.include_button ? {
     text: content.field_link[0]['#title'],
-    attributes: { class: 'cu-button--overlay' }
+    attributes: button_attributes,
    } : NULL,
   icon_data: paragraph.cu_icon ? paragraph.cu_icon : NULL,
   attributes: attributes.addClass([
