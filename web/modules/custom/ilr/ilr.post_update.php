@@ -1045,3 +1045,20 @@ function ilr_post_update_update_social_footer_block_icons(&$sandbox) {
   </div>';
   $block->save();
 }
+
+/**
+ * Set layout for all legacy promo cards.
+ */
+function ilr_post_update_set_promo_layouts(&$sandbox) {
+  $query = \Drupal::entityQuery('paragraph');
+  $query->condition('type', 'promo');
+  $promo_paragraph_ids = $query->execute();
+  $promo_paragraphs = Paragraph::loadMultiple($promo_paragraph_ids);
+
+  foreach ($promo_paragraphs as $promo_paragraph) {
+    $settings = $promo_paragraph->getAllBehaviorSettings();
+    $settings['ilr_card']['layout'] = 'promo';
+    $promo_paragraph->setAllBehaviorSettings($settings);
+    $promo_paragraph->save();
+  }
+}
