@@ -29,6 +29,7 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
   protected $position = [
     'left' => 'Left',
     'right' => 'Right',
+    '' => 'None',
   ];
 
   /**
@@ -63,7 +64,14 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       $variables['attributes']['class'] = ['cu-section--wide'];
     }
 
-    $variables['paragraph']->field_heading->position = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'frame_position') ?? 'left';
+    $variables['heading_attributes'] = [];
+
+    if ($frame_position = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'frame_position')) {
+      $variables['heading_attributes']['class'] = [
+        'cu-section-heading--framed',
+        'cu-section-heading--framed-' . $frame_position,
+      ];
+    }
   }
 
   /**
