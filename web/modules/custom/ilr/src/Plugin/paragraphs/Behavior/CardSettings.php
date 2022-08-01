@@ -125,7 +125,7 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#title' => $this->t('Background'),
       '#description' => $this->t('The background color for this card. This is only visible in cards where the text does not cover the media.'),
       '#options' => $this->bgOptions,
-      '#required' => TRUE,
+      '#required' => FALSE,
       '#empty_option' => $this->t('- Default (generally transparent) -'),
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'bg_color') ?? '',
     ];
