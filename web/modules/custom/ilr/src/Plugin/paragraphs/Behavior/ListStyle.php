@@ -184,6 +184,10 @@ class ListStyle extends ParagraphsBehaviorBase {
     if ($list_style = $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style')) {
       $classes = $this->getListStyleClasses($paragraph);
       $variables['attributes']['class'] = $classes;
+
+      if (strpos($list_style, 'grid') === 0) {
+        $variables['#attached']['library'][] = 'union_organizer/grid';
+      }
     }
   }
 
