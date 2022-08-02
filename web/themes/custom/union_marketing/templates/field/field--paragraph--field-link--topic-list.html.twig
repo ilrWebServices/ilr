@@ -1,0 +1,5 @@
+{% set classes = ['cu-button'] %}
+
+{% for item in items %}
+  {{ item.content|merge({'#options': {'attributes': {'class': classes}}}) }}
+{% endfor %}
