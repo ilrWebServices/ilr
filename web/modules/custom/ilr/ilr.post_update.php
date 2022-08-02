@@ -1001,3 +1001,64 @@ function ilr_post_update_fix_unstickied_node_aliases(&$sandbox) {
     $result = $pathauto_generator->updateEntityAlias($node, 'update');
   }
 }
+
+/**
+ * Update hard-coded icons in rich text paragraphs.
+ */
+function ilr_post_update_fix_rich_text_icons(&$sandbox) {
+  $paragraph_storage = \Drupal::service('entity_type.manager')->getStorage('paragraph');
+  $query = $paragraph_storage->getQuery();
+  $query->condition('type', 'promo');
+  $query->condition('field_body', '%/libraries/union/source/images/%', 'LIKE');
+  $relevant_paragraph_ids = $query->execute();
+  $paragraphs = $paragraph_storage->loadMultiple($relevant_paragraph_ids);
+
+  foreach ($paragraphs as $paragraph) {
+    $paragraph->field_body->value = str_replace('/libraries/union/source/images/', '/sites/default/files-d8/union/images/', $paragraph->field_body->value);
+    $paragraph->save();
+  }
+}
+
+/**
+ * Update social footer block.
+ */
+function ilr_post_update_update_social_footer_block_icons(&$sandbox) {
+  $block = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', '48bd16f4-0fe8-4b1a-800b-089c03c0be23');
+  $block->body->value = '<div class="social-follow">
+    <ul class="social-follow__items">
+      <li class="social-follow__item"><a class="social-follow__link" href="https://www.linkedin.com/company/cornell-university-ilr-school"><svg class="cu-icon__image" viewbox="0 0 100 100" width="1.8em" xmlns="http://www.w3.org/2000/svg">
+      <title></title>
+      <use href="/sites/default/files-d8/union/images/icons.svg#linkedin"></use></svg></a></li>
+      <li class="social-follow__item"><a class="social-follow__link" href="https://facebook.com/ilrschool"><svg class="cu-icon__image" viewbox="0 0 100 100" width="1.4em" xmlns="http://www.w3.org/2000/svg">
+      <title></title>
+      <use href="/sites/default/files-d8/union/images/icons.svg#facebook"></use></svg></a></li>
+      <li class="social-follow__item"><a class="social-follow__link" href="https://twitter.com/CornellILR"><svg class="cu-icon__image" viewbox="0 0 100 100" width="2em" xmlns="http://www.w3.org/2000/svg">
+      <title></title>
+      <use href="/sites/default/files-d8/union/images/icons.svg#twitter"></use></svg></a></li>
+      <li class="social-follow__item"><a class="social-follow__link" href="https://instagram.com/cornellilr"><svg class="cu-icon__image" viewbox="0 0 100 100" width="1em" xmlns="http://www.w3.org/2000/svg">
+      <title></title>
+      <use href="/sites/default/files-d8/union/images/icons.svg#instagram"></use></svg></a></li>
+      <li class="social-follow__item"><a class="social-follow__link" href="https://www.youtube.com/user/CornellUniversityILR?sub_confirmation=1"><svg class="cu-icon__image" viewbox="0 0 100 100" width="1.5em" xmlns="http://www.w3.org/2000/svg">
+      <title></title>
+      <use href="/sites/default/files-d8/union/images/icons.svg#youtube"></use></svg></a></li>
+    </ul>
+  </div>';
+  $block->save();
+}
+
+/**
+ * Set layout for all legacy promo cards.
+ */
+function ilr_post_update_set_promo_layouts(&$sandbox) {
+  $query = \Drupal::entityQuery('paragraph');
+  $query->condition('type', 'promo');
+  $promo_paragraph_ids = $query->execute();
+  $promo_paragraphs = Paragraph::loadMultiple($promo_paragraph_ids);
+
+  foreach ($promo_paragraphs as $promo_paragraph) {
+    $settings = $promo_paragraph->getAllBehaviorSettings();
+    $settings['ilr_card']['layout'] = 'promo';
+    $promo_paragraph->setAllBehaviorSettings($settings);
+    $promo_paragraph->save();
+  }
+}

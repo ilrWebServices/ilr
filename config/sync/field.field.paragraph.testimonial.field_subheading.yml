@@ -1,15 +1,15 @@
-uuid: 2ede81ac-3026-4c5f-9f0f-a8a910db024a
+uuid: 0e91bdeb-cce3-4317-96c6-612f607927e2
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_subheading
-    - paragraphs.paragraphs_type.promo
-id: paragraph.promo.field_subheading
+    - paragraphs.paragraphs_type.testimonial
+id: paragraph.testimonial.field_subheading
 field_name: field_subheading
 entity_type: paragraph
-bundle: promo
-label: 'Eyebrow heading'
+bundle: testimonial
+label: Title(s)
 description: ''
 required: false
 translatable: true

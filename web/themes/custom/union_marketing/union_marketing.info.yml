@@ -7,7 +7,7 @@ ckeditor_stylesheets:
   - editor-css/editor.css
 libraries:
   - union_marketing/global
-  - union_organizer/ilr
+  - union_organizer/ilr-base
 base theme: stable
 regions:
     header: Header

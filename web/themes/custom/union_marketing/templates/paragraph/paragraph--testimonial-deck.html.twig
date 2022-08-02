@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display a promo.
+ * Theme override to display a curated post listing.
  *
  * Available variables:
  * - paragraph: Full paragraph entity.
@@ -32,33 +32,18 @@
  *   current user is a logged-in member.
  * - is_admin: Flag for admin user status. Will be true when the current user
  *   is an administrator.
+ * - testimonials: A list of testimonial data.
  *
  * @see template_preprocess_paragraph()
+ * @see union_marketing_preprocess_paragraph__testimonial_deck()
  *
  * @ingroup themeable
  */
 #}
-{# These remain to support legacy cards where buttons and/or icons are included
-in the text body. #}
-{# {{ attach_library('union_organizer/button') }}
-{{ attach_library('union_organizer/icon') }} #}
-
-{% include '@union/_card.twig' with {
-  heading: paragraph.field_heading.isEmpty() ? '' : content.field_heading.0,
-  eyebrow_heading: paragraph.field_subheading.isEmpty() ? '' : content.field_subheading.0,
-  card_content: content|without('field_media', 'field_link', 'field_content', 'field_heading', 'field_subheading'),
-  card_media: paragraph.field_media.isEmpty() ? '' : content.field_media,
-  card_link_url: content.field_link[0]['#url'],
-  card_link_alt: content.field_link[0]['#title'],
-  button_data: not paragraph.field_link.isEmpty() and paragraph.include_button ? {
-    text: content.field_link[0]['#title'],
-    attributes: button_attributes,
-   } : NULL,
-  icon_data: paragraph.cu_icon ? paragraph.cu_icon : NULL,
+{% include '@union/_testimonial-deck.twig' with {
+  testimonials: testimonials,
   attributes: attributes.addClass([
     'cu-component',
-    'cu-component--' ~ paragraph.bundle|clean_class,
-    paragraph.cu_icon ? 'cu-card--pinned'
-  ]),
-  link_attributes: url_attributes
+    'cu-component--' ~ paragraph.bundle|clean_class
+  ])
 } only %}

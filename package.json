@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Composer-based Drupal 8 site for www.ilr.cornell.edu",
   "main": "gulpfile.js",
-  "dependencies": {
-    "@cornell_ilr/union": "^0.13.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "breakpoint-sass": "^2.7.1",
     "gulp": "^4.0.2",
@@ -14,8 +12,7 @@
   },
   "scripts": {
     "start": "gulp",
-    "build": "gulp sass",
-    "postinstall": "if [ -L \"./web/libraries/union\" ]; then echo \"./web/libraries/union is a symlink; skipping copy from ./node_modules\"; else rsync -av --delete ./node_modules/@cornell_ilr/union ./web/libraries/; fi"
+    "build": "gulp sass"
   },
   "repository": {
     "type": "git",
