@@ -55,7 +55,8 @@
   subheading: paragraph.field_subheading.value,
   description: content.field_body,
   items: items,
-  link: content.field_link,
+  link_url: content.field_link[0]['#url'],
+  link_text: content.field_link[0]['#title'],
   media: content.field_media,
   attributes: attributes.addClass([
     'cu-component',
