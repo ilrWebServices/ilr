@@ -38,18 +38,6 @@
  * @ingroup themeable
  */
 #}
-
-{{ attach_library('union_organizer/topic-list') }}
-
-{% set items = [] %}
-{% for item in content.field_links['#items'] %}
-  {% set item = {
-    text: item.title,
-    url: item.url.external ? item.uri : path(item.url.routeName, item.url.routeParameters, [])
-  } %}
-  {% set items = items|merge([item]) %}
-{% endfor %}
-
 {% include '@union/_topic-list.twig' with {
   heading: paragraph.field_heading.value,
   subheading: paragraph.field_subheading.value,
