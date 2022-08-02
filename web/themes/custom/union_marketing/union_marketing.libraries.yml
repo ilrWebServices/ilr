@@ -10,6 +10,11 @@ global:
     - core/drupal
     - core/jquery
     - core/drupal.dialog.ajax
+banner_nav:
+  version: 1.x
+  js:
+    js/banner_nav.js: {}
+
 livereload:
   remote: https://github.com/mklabs/tiny-lr
   version: 1.1.1

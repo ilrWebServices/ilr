@@ -399,6 +399,13 @@ function union_marketing_preprocess_paragraph__topic_list(&$variables) {
 }
 
 /**
+ * {@inheritdoc}
+ */
+function union_marketing_preprocess_paragraph__section_navigation(&$variables) {
+  $variables['#attached']['library'][] = 'union_marketing/banner_nav';
+}
+
+/**
  * Implements hook_preprocess_field().
  */
 function union_marketing_preprocess_field__paragraph__field_heading__promo(&$variables) {
