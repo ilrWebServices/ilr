@@ -19,6 +19,9 @@
  * @see template_preprocess_item_list()
  */
 #}
+
+{{ attach_library('union_organizer/grid') }}
+
 {% if items or empty %}
   {%- if title is not empty -%}
     <h3>{{ title }}</h3>
