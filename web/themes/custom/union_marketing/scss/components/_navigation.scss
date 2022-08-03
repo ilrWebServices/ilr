@@ -220,3 +220,39 @@ nav[id^="block-union-marketing-menu-subsite"] {
 .node--story .cu-breadcrumb__item {
   --cu-current-link-color: #{$black};
 }
+
+// Nav moved into Banner via js
+.include-banner-nav  .cu-component--section-navigation {
+  margin: 0;
+
+  .section-menu {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 var(--cu-ps1);
+
+    @include breakpoint(md) {
+      flex-direction: row;
+    }
+
+    .section-menu__link {
+      font-size: var(--cu-ms-2);
+      text-transform: uppercase;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 46px;
+        max-width: 100%;
+        padding-bottom: var(--cu-vr0);
+        border-bottom: var(--cu-header-accent-border);
+        transition: width ease-in .25s;
+      }
+
+      &:hover::after {
+        width: 46px * 1.5;
+      }
+    }
+  }
+}
