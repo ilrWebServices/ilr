@@ -1,0 +1,70 @@
+/*----------  New two-column rich text  ----------*/
+/* Example markup to hard-code in rich text area
+<div class="cu-text--two-column">
+  <div class="meta">
+    <div class="cu-icon cu-icon--tower"><svg class="cu-icon__image" viewbox="0 0 100 100" width="2em" xmlns="http://www.w3.org/2000/svg">
+      <title></title>
+      <use href="/sites/default/files-d8/union/images/icons.svg#tower"></use> </svg>
+    </div>
+    <h2 class="main-heading">Endless Possibilities</h2>
+    <h3 class="eyebrow-heading">One Major</h3>
+    <p><a class="cu-button cu-button--alt" href="#">Apply</a></p>
+    <p><a class="cu-button" href="#">Visit</a></p>
+  </div>
+  <div class="content">
+    <p>Our flexible, interdisciplinary major enables students to pursue a wide range of academic interests. The ILR major focuses on the study of people and policies in the workplace. Our program explores the most pressing issues that affect society, organizations, the economy and international affairs.</p>
+    <p>Our Bachelor of Science degree uses the social sciences to examine the full range of workplace issues that affect businesses, society, the economy and international affairs. The classes throughout our six departments explore topics critical to every organization, from leadership, teamwork and negotiations, to globalization, the impact of technology on work, labor relations and rights around the world.</p>
+    <p>Through our interdisciplinary, flexible curriculum, students take foundation classes in law, management, history, organizational psychology, economics and statistics. They then combine electives from ILR and the other schools at Cornell to tailor the program to their specific academic or career interests.</p>
+  </div>
+</div> */
+
+@include breakpoint(md) {
+  .cu-text--two-column {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    gap: var(--cu-ps1);
+  }
+}
+
+.cu-text--two-column {
+  .meta {
+    display: flex;
+    flex-direction: column;
+
+    .cu-button {
+      justify-self: stretch;
+      text-align: center;
+      width: 100%;
+
+      @include breakpoint(sm) {
+        width: auto;
+      }
+    }
+  }
+
+  .cu-icon {
+    order: -3;
+    align-items: flex-start;
+  }
+
+  /*----------  Eyebrow  ----------*/
+  .eyebrow-heading {
+    --cu-current-heading-size: 12px;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--cu-vr0);
+    order: -2;
+  }
+
+  .main-heading {
+    &::after {
+      content: '';
+      margin-top: var(--cu-vr1);
+      width: 25%;
+      border-top: 8px solid var(--cu-color-brand, #{$cornell-red});
+      padding-bottom: var(--cu-vr1);
+    }
+  }
+}
+
