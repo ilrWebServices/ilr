@@ -26,6 +26,8 @@
         let comment = document.createComment('This menu was moved here via banner_nav.js');
         banner_region.appendChild(comment);
         banner_region.appendChild(section_navigation);
+
+        document.body.classList.add('include-banner-nav');
       }
     }
   };
