@@ -11,6 +11,16 @@ mapping:
   CORNELLG-CELL_PHONE_FULL: MobilePhone
   CORNELLG-CELL_PHONE: Mobile2__c
   PHONE: Phone
+  CITY: City
+  STATE: State
+  ZIP: PostalCode
+  CORN_COUNTRY: Country
+  COLLEGE_MAJOR_1: College_Major_1__c
+  COLLEGE_MAJOR_2: College_Major_2__c
+  COLLEGE_MAJOR_3: College_Major_3__c
+  COLLEGE_NAME_1: Undergraduate_School_1__c
+  COLLEGE_NAME_2: Undergraduate_School_2__c
+  COLLEGE_NAME_3: Undergraduate_School_3__c
   CREATE_DATE: Legacy_Created_Date__c
   SOURCE: Source__c
   PRE-ASSESSMENT_SOURCE: Pre_assessment_Source__c
