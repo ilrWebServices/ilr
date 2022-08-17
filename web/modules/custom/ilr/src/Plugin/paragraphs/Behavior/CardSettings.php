@@ -256,7 +256,10 @@ class CardSettings extends ParagraphsBehaviorBase {
 
       // Set the button class attribute for legacy promos.
       $variables['button_attributes'] = new Attribute();
-      $variables['button_attributes']->setAttribute('class', ['cu-button--overlay']);
+
+      if ($has_media || $bg_color === 'vibrant') {
+        $variables['button_attributes']->setAttribute('class', ['cu-button--overlay']);
+      }
 
       if ($has_media) {
         $variables['attributes']['class'][] = 'cu-card--promo-with-media';
