@@ -169,7 +169,7 @@ class CardSettings extends ParagraphsBehaviorBase {
     $form['icon_placement'] = [
       '#type' => 'select',
       '#title' => t('Icon placement'),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'icon_placement') ?? array_key_first($this->iconPlacementOptions),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'icon_placement') ?? '',
       '#options' => $this->iconPlacementOptions,
       '#empty_option' => $this->t('Centered (default)'),
       // '#description' => t('Optional. This text will appear below or next to the icon.'),
