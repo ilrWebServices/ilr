@@ -1,3 +1,4 @@
+uuid: 3be212ea-0626-474b-a220-3c2838cf6845
 langcode: en
 status: open
 dependencies:
@@ -58,8 +59,8 @@ elements: |-
     '#type': select
     '#title': 'For which semester will you be applying to the ILR School?'
     '#options':
-      fall: Fall
-      spring: Spring
+      fall_2023: 'Fall 2023'
+      spring_2023: 'Spring 2023'
   1st_choice_visit_arrival:
     '#type': datetime
     '#title': '1st choice visit arrival'
@@ -90,17 +91,6 @@ elements: |-
   years_of_work_experience:
     '#type': textarea
     '#title': 'How many years of work experience do you have?'
-  resume:
-    '#type': webform_document_file
-    '#title': Resume
-    '#file_extensions': 'txt rtf pdf doc docx'
-    '#sanitize': true
-  resume_url:
-    '#type': webform_computed_twig
-    '#title': 'Resume URL'
-    '#display_on': view
-    '#mode': text
-    '#template': '{{ webform_token(''[webform_submission:values:resume:entity:url]'', webform_submission)|replace({''www.ilr.cornell.edu'': ''d8-edit.ilr.cornell.edu''}) }}'
   concentrations_interested:
     '#type': select
     '#title': 'In which MILR concentrations are you interested?'
