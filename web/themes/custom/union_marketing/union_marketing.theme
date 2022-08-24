@@ -391,9 +391,28 @@ function union_marketing_preprocess_paragraph__topic_list(&$variables) {
 
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link */
   foreach ($variables['paragraph']->field_links as $link) {
+    $url = $link->getUrl();
+    $content = $link->title;
+
+    if ($url->isRouted() && $url->getRouteName() === 'entity.node.canonical') {
+      $route_params = $url->getRouteParameters();
+      $nid = $route_params['node'] ?? 0;
+
+      if ($nid) {
+        $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
+
+        $post_types = \Drupal::service('extended_post.manager')->getPostTypes();
+
+        if ($node && in_array($node->bundle(), $post_types)) {
+          $url = NULL;
+          $content = \Drupal::entityTypeManager()->getViewBuilder('node')->view($node, 'inline');
+        }
+      }
+    }
+
     $variables['items'][] = [
-      'url' => $link->getUrl(),
-      'content' => $link->title,
+      'url' => $url,
+      'content' => $content,
     ];
   }
 }
