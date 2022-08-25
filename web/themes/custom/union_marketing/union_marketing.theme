@@ -374,11 +374,30 @@ function union_marketing_preprocess_paragraph__promo(&$variables) {
 function union_marketing_preprocess_paragraph__testimonial_deck(&$variables) {
   $variables['testimonials'] = [];
   foreach ($variables['paragraph']->field_components->referencedEntities() as $testimonial_paragraph) {
+    $image = $testimonial_paragraph->field_media->entity->field_media_image;
+    $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
+    $crop = Crop::findCrop($image->entity->getFileUri(), $crop_type);
+
+    if ($crop) {
+      $image_props = $image->first()->getValue();
+      $anchor = \Drupal::service('focal_point.manager')
+        ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
+    }
+    else {
+      $anchor = [
+        'x' => 50,
+        'y' => 0
+      ];
+    }
+
     $variables['testimonials'][] = [
       'quote' => $testimonial_paragraph->field_quote->view('teaser'),
       'name' => $testimonial_paragraph->field_name->view('teaser'),
       'title' => $testimonial_paragraph->field_subheading->view('teaser'),
       'media' => $testimonial_paragraph->field_media->view('thumbnail'),
+      'attributes' => new Attribute([
+        'style' => '--cu-image-position: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;',
+      ]),
     ];
   }
 }
