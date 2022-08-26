@@ -1,0 +1,11 @@
+uuid: 3cb8a5ca-e8c3-4cb5-bf4a-11d92af19ae6
+langcode: en
+status: true
+dependencies:
+  module:
+    - content_lock
+id: persona_break_lock_action
+label: 'Break lock persona'
+type: persona
+plugin: 'entity:break_lock:persona'
+configuration: {  }
