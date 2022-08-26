@@ -33,6 +33,9 @@ elements: |-
       '#title': Email
       '#required': true
       '#default_value': '[current-user:mail]'
+    phone:
+      '#type': tel
+      '#title': Phone
   element_container:
     '#type': container
     areas_of_interest:
