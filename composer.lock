@@ -2113,12 +2113,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/collegenet2sf.git",
-                "reference": "8b7c97c46dda7b187f60206ab66df050636a860b"
+                "reference": "08c60d3890048c64577c2465244a82f1800bb52d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/collegenet2sf/zipball/8b7c97c46dda7b187f60206ab66df050636a860b",
-                "reference": "8b7c97c46dda7b187f60206ab66df050636a860b",
+                "url": "https://api.github.com/repos/ilrWebServices/collegenet2sf/zipball/08c60d3890048c64577c2465244a82f1800bb52d",
+                "reference": "08c60d3890048c64577c2465244a82f1800bb52d",
                 "shasum": ""
             },
             "require": {
@@ -2145,7 +2145,7 @@
                 "source": "https://github.com/ilrWebServices/collegenet2sf/tree/2.x",
                 "issues": "https://github.com/ilrWebServices/collegenet2sf/issues"
             },
-            "time": "2022-08-22T20:22:16+00:00"
+            "time": "2022-08-26T14:34:33+00:00"
         },
         {
             "name": "drupal/config_filter",
@@ -7555,12 +7555,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "League\\Csv\\": "src"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "League\\Csv\\": "src"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
