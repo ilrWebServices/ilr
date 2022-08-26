@@ -109,6 +109,13 @@ field_mappings:
     salesforce_field: UTM_Keyword__c
     id: 11
     description: ''
+  -
+    drupal_field_type: WebformElements
+    drupal_field_value: phone
+    direction: drupal_sf
+    salesforce_field: Phone
+    id: 12
+    description: ''
 status: true
 dependencies:
   config:
