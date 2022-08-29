@@ -50,6 +50,7 @@ class CardSettings extends ParagraphsBehaviorBase {
     'panel' => 'Panel right (content right / image left)',
     'cinematic-reversed' => 'Cinematic top (content top / image bottom)',
     'cinematic' => 'Cinematic bottom (content bottom / image top)',
+    'inset' => 'Content inset',
     'popout' => 'Popout right',
     'popout-left' => 'Popout left',
     'promo' => 'Text over image (legacy)',
@@ -213,10 +214,6 @@ class CardSettings extends ParagraphsBehaviorBase {
 
   /**
    * {@inheritdoc}
-   *
-   * @todo Figure out whether we need to prevent someone from choosing both
-   * content placement and layout (e.g. Content placement options can only go
-   * with the `legacy` layout)
    */
   public function validateBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
     $parent = $paragraph->getParentEntity();
@@ -225,7 +222,8 @@ class CardSettings extends ParagraphsBehaviorBase {
       return;
     }
 
-    if ($parent->bundle() === 'deck' && (strpos($form_state->getValue('content_placement'), 'popout') !== FALSE || $form_state->getValue('layout') !== 'promo' )) {
+    // Prevent someone from choosing inappropriate card layouts inside decks.
+    if ($parent->bundle() === 'deck' && !in_array($form_state->getValue('layout'), ['promo', 'inset'])) {
       $form_state->setError($form['layout'], $this->t('Sorry, but the selected layout cannot be used in card decks. Please choose a different option.'));
     }
   }
@@ -247,7 +245,7 @@ class CardSettings extends ParagraphsBehaviorBase {
       $variables['attributes']['class'][] = 'cu-card--' . $layout_type;
       $variables['attributes']['class'][] = 'cu-card--' . $layout;
 
-      if ($has_media) {
+      if ($has_media && $layout !== 'inset') {
         $variables['content']['field_media'][0]['#image_style'] = 'large_8_5';
       }
     }
