@@ -134,7 +134,12 @@
   "scripts": {
     "cs": "phpcs --standard=vendor/drupal/coder/coder_sniffer/Drupal --ignore='union_marketing/css/style.css' web/modules/custom/ web/themes/custom/",
     "cbf": "phpcbf --standard=vendor/drupal/coder/coder_sniffer/Drupal web/modules/custom/ web/themes/custom/",
-    "sync-prod": "drush sql:drop -y && drush sql:sync @ilr-web.master @self -y && ./post_sync_fix_triggers.php",
+    "sync-prod": [
+      "Composer\\Config::disableProcessTimeout",
+      "drush sql:drop -y",
+      "drush sql:sync @ilr-web.master @self -y",
+      "./post_sync_fix_triggers.php"
+    ],
     "sync-prod-update": [
       "drush cr",
       "drush updatedb --no-post-updates -y",
