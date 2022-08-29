@@ -87,7 +87,7 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#type' => 'radios',
       '#title' => $this->t('Frame position'),
       '#options' => $this->position,
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'frame_position') ?? 'left',
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'frame_position') ?? '',
     ];
 
     $form['icon'] = [
