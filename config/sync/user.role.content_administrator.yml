@@ -2,11 +2,14 @@ uuid: 1fc4031c-7072-4946-8781-455468aaab47
 langcode: en
 status: true
 dependencies:
+  config:
+    - filter.format.full_html
   module:
     - collection
     - contextual
     - entity_browser
     - file
+    - filter
     - media
     - node
     - paragraphs
@@ -53,6 +56,7 @@ permissions:
   - 'edit subsite collection'
   - 'edit subsite_blog collection'
   - 'update any media'
+  - 'use text format full_html'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view any paragraphs previewer'
