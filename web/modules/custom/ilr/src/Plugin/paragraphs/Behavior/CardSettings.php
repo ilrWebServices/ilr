@@ -139,6 +139,13 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#required' => FALSE,
       '#empty_option' => $this->t('- Centered -'),
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'content_placement') ?? '',
+      '#states' => [
+        'visible' => [
+          ':input[name="' . $parents_input_name . '[layout]"]' => [
+            ['value' => 'promo'],
+          ],
+        ],
+      ],
     ];
 
     $form['icon'] = [
@@ -191,6 +198,13 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#title' => $this->t('Media overlay opacity'),
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'media_overlay_opacity') ?? '50',
       '#description' => $this->t('Select a range from transparent to fully opaque.'),
+      '#states' => [
+        'visible' => [
+          ':input[name="' . $parents_input_name . '[layout]"]' => [
+            ['value' => 'promo'],
+          ],
+        ],
+      ],
     ];
 
     // @todo: disable if the chosen content placement is a popout.
@@ -199,6 +213,13 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#title' => $this->t('Preserve media aspect ratio'),
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'use_media_aspect') ?? FALSE,
       '#description' => $this->t('Generally, allowing the content of the card to determine its height is best. However, in some cases (such as a portait image), this setting allows the card to display the entire media element. Note, too, that this may impact the layout when set within a card deck.'),
+      '#states' => [
+        'visible' => [
+          ':input[name="' . $parents_input_name . '[layout]"]' => [
+            ['value' => 'promo'],
+          ],
+        ],
+      ],
     ];
 
     $form['use_modal_link'] = [
@@ -244,10 +265,6 @@ class CardSettings extends ParagraphsBehaviorBase {
       $layout_type = substr($layout, 0, strpos($layout, '-'));
       $variables['attributes']['class'][] = 'cu-card--' . $layout_type;
       $variables['attributes']['class'][] = 'cu-card--' . $layout;
-
-      if ($has_media && $layout !== 'inset') {
-        $variables['content']['field_media'][0]['#image_style'] = 'large_8_5';
-      }
     }
     else {
       $variables['attributes']['class'][] = 'cu-card--promo';
@@ -266,6 +283,10 @@ class CardSettings extends ParagraphsBehaviorBase {
           $variables['attributes']['class'][] = 'cu-card--use-aspect-ratio';
         }
       }
+    }
+
+    if ($has_media && in_array($layout, ['promo', 'inset'])) {
+      $variables['content']['field_media'][0]['#image_style'] = 'large_preserve_aspect';
     }
 
     if ($content_placement) {
