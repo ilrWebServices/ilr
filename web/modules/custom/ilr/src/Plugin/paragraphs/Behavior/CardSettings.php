@@ -131,6 +131,13 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'bg_color') ?? '',
     ];
 
+    $form['use_media_aspect'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Preserve media aspect ratio'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'use_media_aspect') ?? FALSE,
+      '#description' => $this->t('Generally, allowing the selected layout to determine its height is best. However, in some cases, this setting allows the card to display the entire media element.'),
+    ];
+
     $form['content_placement'] = [
       '#type' => 'select',
       '#title' => $this->t('Content placement'),
@@ -207,21 +214,6 @@ class CardSettings extends ParagraphsBehaviorBase {
       ],
     ];
 
-    // @todo: disable if the chosen content placement is a popout.
-    $form['use_media_aspect'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Preserve media aspect ratio'),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'use_media_aspect') ?? FALSE,
-      '#description' => $this->t('Generally, allowing the content of the card to determine its height is best. However, in some cases (such as a portait image), this setting allows the card to display the entire media element. Note, too, that this may impact the layout when set within a card deck.'),
-      '#states' => [
-        'visible' => [
-          ':input[name="' . $parents_input_name . '[layout]"]' => [
-            ['value' => 'promo'],
-          ],
-        ],
-      ],
-    ];
-
     $form['use_modal_link'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Open link in modal'),
@@ -278,15 +270,35 @@ class CardSettings extends ParagraphsBehaviorBase {
 
       if ($has_media) {
         $variables['attributes']['class'][] = 'cu-card--promo-with-media';
-
-        if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'use_media_aspect')) {
-          $variables['attributes']['class'][] = 'cu-card--use-aspect-ratio';
-        }
       }
     }
 
-    if ($has_media && in_array($layout, ['promo', 'inset'])) {
-      $variables['content']['field_media'][0]['#image_style'] = 'large_preserve_aspect';
+    if ($has_media) {
+      switch ($layout) {
+        case 'panel':
+        case 'panel-left':
+          $image_style = 'large_6_5';
+          break;
+        case 'cinematic':
+        case 'cinematic-reversed':
+          $image_style = 'large_21_9_1200x514_';
+          break;
+        case 'popout':
+        case 'popout-left':
+          $image_style = 'large_2_1';
+          break;
+        case 'promo':
+        case 'inset':
+        default:
+          $image_style = 'large_preserve_aspect';
+      }
+
+      if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'use_media_aspect')) {
+        $variables['attributes']['class'][] = 'cu-card--use-aspect-ratio';
+        $image_style = 'large_preserve_aspect';
+      }
+
+      $variables['content']['field_media'][0]['#image_style'] = $image_style;
     }
 
     if ($content_placement) {
