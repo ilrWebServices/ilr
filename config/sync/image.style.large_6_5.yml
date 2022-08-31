@@ -1,0 +1,17 @@
+uuid: a191624d-f0c3-4064-9dac-2c5b7c9c6687
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: large_6_5
+label: 'Large 6:5 (900x750)'
+effects:
+  1f262e3c-3ac9-4a64-967b-9ca97d73f182:
+    uuid: 1f262e3c-3ac9-4a64-967b-9ca97d73f182
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 900
+      height: 750
+      crop_type: focal_point
