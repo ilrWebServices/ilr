@@ -1,10 +1,14 @@
 uuid: 31b35e75-f266-41fa-86ce-f6fd80d77a29
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
 id: topic_list
 label: 'Topical listing'
 icon_uuid: null
 icon_default: null
 description: ''
-behavior_plugins: {  }
+behavior_plugins:
+  ilr_topic_list:
+    enabled: true
