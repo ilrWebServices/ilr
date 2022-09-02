@@ -421,6 +421,7 @@ function union_marketing_preprocess_paragraph__topic_list(&$variables) {
         $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
 
         $post_types = \Drupal::service('extended_post.manager')->getPostTypes();
+        $post_types[] = 'page';
 
         if ($node && in_array($node->bundle(), $post_types)) {
           $url = NULL;

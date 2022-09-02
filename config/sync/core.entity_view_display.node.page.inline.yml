@@ -1,0 +1,45 @@
+uuid: 53894afa-f553-486d-a0d9-15c10bb5922b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.inline
+    - field.field.node.page.auth_protected
+    - field.field.node.page.body
+    - field.field.node.page.field_representative_image
+    - field.field.node.page.field_sections
+    - field.field.node.page.layout_builder__layout
+    - image.style.thumbnail_square
+    - node.type.page
+  module:
+    - layout_builder
+    - media
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.page.inline
+targetEntityType: node
+bundle: page
+mode: inline
+content:
+  field_representative_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail_square
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  auth_protected: true
+  body: true
+  extra_field_ilr_section_navigation: true
+  field_sections: true
+  layout_builder__layout: true
+  links: true
+  search_api_excerpt: true

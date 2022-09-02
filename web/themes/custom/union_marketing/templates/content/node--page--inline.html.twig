@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display an `inline` post node.
+ * Theme override to display an `inline` page node.
  *
  * Available variables:
  * - node: The node entity with limited access to object properties and methods.
@@ -66,18 +66,10 @@
  * @see template_preprocess_node()
  */
 #}
-{% set media_content %}
-  {% if node.bundle == 'video_post' and node.field_representative_image.isEmpty() %}
-  {{ content.field_video }}
-  {% else %}
-  {{ content.field_representative_image }}
-  {% endif %}
-{% endset %}
 {% include '@union/_card.twig' with {
   card_content: title_suffix,
-  card_media: media_content,
+  card_media: content.field_representative_image,
   heading: label,
-  eyebrow_heading: content.field_published_date,
   card_link_url: url,
   card_link_alt: label,
   link_attributes: url_attributes,
@@ -85,7 +77,6 @@
     'node--' ~ node.bundle|clean_class,
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-    'node--postalicious',
     'cu-card--' ~ view_mode|clean_class
   ])
 } only %}
