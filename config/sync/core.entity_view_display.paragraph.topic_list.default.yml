@@ -9,7 +9,7 @@ dependencies:
     - field.field.paragraph.topic_list.field_links
     - field.field.paragraph.topic_list.field_media
     - field.field.paragraph.topic_list.field_subheading
-    - image.style.large_preserve_aspect
+    - image.style.medium_5_7
     - paragraphs.paragraphs_type.topic_list
   module:
     - link
@@ -64,7 +64,7 @@ content:
     label: hidden
     settings:
       image_link: ''
-      image_style: large_preserve_aspect
+      image_style: medium_5_7
       image_loading:
         attribute: lazy
     third_party_settings: {  }
