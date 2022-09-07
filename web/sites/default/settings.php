@@ -119,10 +119,6 @@ $databases['sqlite_logs']['default'] = [
   'prefix' => '',
 ];
 
-// Backup log database is our default content database.
-// @see \Drupal\dblog\Logger\DbLog::DEDICATED_DBLOG_CONNECTION_TARGET
-$databases['sqlite_logs']['dedicated_dblog'] = $databases['default']['default'];
-
 /**
  * Customizing database settings.
  *
@@ -801,6 +797,16 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 if (file_exists($app_root . '/' . $site_path . '/settings.platformsh.php')) {
   include $app_root . '/' . $site_path . '/settings.platformsh.php';
 }
+
+/**
+ * Backup log database is our default content database.
+ *
+ * @see \Drupal\dblog\Logger\DbLog::DEDICATED_DBLOG_CONNECTION_TARGET
+ *
+ * This is placed down here because $databases['default']['default'] is
+ * overwritten in settings.platform.php on our hosting site.
+ */
+$databases['sqlite_logs']['dedicated_dblog'] = $databases['default']['default'];
 
 /**
  * Registration URL setting.
