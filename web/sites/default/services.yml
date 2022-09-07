@@ -7,3 +7,14 @@ parameters:
     cookie_lifetime: 2000000
     sid_length: 48
     sid_bits_per_character: 6
+services:
+  logger.dblog:
+    class: Drupal\dblog\Logger\DbLog
+    arguments: ['@database.dblog', '@logger.log_message_parser']
+    tags:
+      - { name: logger }
+      - { name: backend_overridable }
+  database.dblog:
+    class: Drupal\Core\Database\Connection
+    factory: Drupal\Core\Database\Database::getConnection
+    arguments: [default, sqlite_logs]
