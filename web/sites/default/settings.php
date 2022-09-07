@@ -111,6 +111,18 @@ $databases['drupal7']['default'] = [
   'username' => getenv('MYSQL_MIGRATE_USER'),
 ];
 
+// Sqlite logs database connection.
+$databases['sqlite_logs']['default'] = [
+  'database' => '../data/dblog.sqlite',
+  'driver' => 'sqlite',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\sqlite',
+  'prefix' => '',
+];
+
+// Backup log database is our default content database.
+// @see \Drupal\dblog\Logger\DbLog::DEDICATED_DBLOG_CONNECTION_TARGET
+$databases['sqlite_logs']['dedicated_dblog'] = $databases['default']['default'];
+
 /**
  * Customizing database settings.
  *
