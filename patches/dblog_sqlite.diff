@@ -1,0 +1,28 @@
+--- a/core/modules/dblog/src/Controller/DbLogController.php
++++ b/core/modules/dblog/src/Controller/DbLogController.php
+@@ -53,7 +53,7 @@
+    */
+   public static function create(ContainerInterface $container) {
+     return new static(
+-      $container->get('database'),
++      $container->get('database.dblog'),
+       $container->get('module_handler'),
+       $container->get('date.formatter'),
+       $container->get('form_builder')
+@@ -165,7 +165,6 @@
+       'variables',
+       'link',
+     ]);
+-    $query->leftJoin('users_field_data', 'ufd', '[w].[uid] = [ufd].[uid]');
+
+     if (!empty($filter['where'])) {
+       $query->where($filter['where'], $filter['args']);
+@@ -240,7 +239,7 @@
+    *   If no event found for the given ID.
+    */
+   public function eventDetails($event_id) {
+-    $dblog = $this->database->query('SELECT [w].*, [u].[uid] FROM {watchdog} [w] LEFT JOIN {users} [u] ON [u].[uid] = [w].[uid] WHERE [w].[wid] = :id', [':id' => $event_id])->fetchObject();
++    $dblog = $this->database->query('SELECT [w].* FROM {watchdog} [w] WHERE [w].[wid] = :id', [':id' => $event_id])->fetchObject();
+
+     if (empty($dblog)) {
+       throw new NotFoundHttpException();
