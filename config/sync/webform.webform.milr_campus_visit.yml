@@ -116,7 +116,10 @@ elements: |-
     '#description': 'Please note that we will make our best effort to arrange a meeting between you and faculty members, but due to their schedules, it is not always possible.'
     '#placeholder': 'Enter faculty name'
     '#multiple__item_label': name
-    '#multiple__add_more_button_label': 'Add faculty name'
+    '#multiple__sorting': false
+    '#multiple__add': false
+    '#multiple__add_more_input': false
+    '#multiple__add_more_button_label': 'Add faculty member name'
     '#multiple__add_more_input_label': 'more faculty names'
   profile_link:
     '#type': webform_link
