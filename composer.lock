@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6086d5d2e9d5149a851ff90b24827025",
+    "content-hash": "4f721664b144f8d5e576bf0fb750e35e",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1075,12 +1075,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union.git",
-                "reference": "2edc2c99687219d0280c3075f3b1083ba3a1f39c"
+                "reference": "cdff581ff97eda80b04898e9be44cb558e2ac5b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/2edc2c99687219d0280c3075f3b1083ba3a1f39c",
-                "reference": "2edc2c99687219d0280c3075f3b1083ba3a1f39c",
+                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/cdff581ff97eda80b04898e9be44cb558e2ac5b4",
+                "reference": "cdff581ff97eda80b04898e9be44cb558e2ac5b4",
                 "shasum": ""
             },
             "require": {
@@ -1113,7 +1113,7 @@
                 "source": "https://github.com/ilrWebServices/union/tree/union_ng",
                 "issues": "https://github.com/ilrWebServices/union/issues"
             },
-            "time": "2022-08-30T17:11:38+00:00"
+            "time": "2022-09-08T16:11:22+00:00"
         },
         {
             "name": "cweagans/composer-patches",
