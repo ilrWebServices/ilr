@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5230193e9037cc0c6514d63be3d109d6",
+    "content-hash": "e02b0202292d1d57e901ec63ceac19a1",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5525,26 +5525,26 @@
         },
         {
             "name": "drupal/smart_read_more_link",
-            "version": "1.7.0",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/smart_read_more_link.git",
-                "reference": "8.x-1.7"
+                "reference": "2.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/smart_read_more_link-8.x-1.7.zip",
-                "reference": "8.x-1.7",
-                "shasum": "a0fd94317ac2972b8e52e1867398ae986f744556"
+                "url": "https://ftp.drupal.org/files/projects/smart_read_more_link-2.0.2.zip",
+                "reference": "2.0.2",
+                "shasum": "54eb6c98501fea4f8ca2bf3d016d90360ef7b00a"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.7",
-                    "datestamp": "1568963283",
+                    "version": "2.0.2",
+                    "datestamp": "1662780257",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5557,8 +5557,8 @@
             ],
             "authors": [
                 {
-                    "name": "Ilcho Vuchkov (vuchkov)",
-                    "homepage": "https://www.drupal.org/u/ilchovuchkov",
+                    "name": "Ilcho Vuchkov (vuil)",
+                    "homepage": "https://www.drupal.org/u/vuil",
                     "role": "Maintainer"
                 },
                 {
