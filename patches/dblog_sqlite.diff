@@ -1,6 +1,31 @@
+diff --git a/core/modules/dblog/dblog.module b/core/modules/dblog/dblog.module
+index aa3f910f9f..2f77c208c3 100644
+--- a/core/modules/dblog/dblog.module
++++ b/core/modules/dblog/dblog.module
+@@ -69,7 +69,7 @@ function dblog_cron() {
+   // Counting the most recent n rows avoids issues with wid number sequences,
+   // e.g. auto_increment value > 1 or rows deleted directly from the table.
+   if ($row_limit > 0) {
+-    $connection = \Drupal::database();
++    $connection = \Drupal\Core\Database\Database::getConnection('default', 'sqlite_logs');
+     $min_row = $connection->select('watchdog', 'w')
+       ->fields('w', ['wid'])
+       ->orderBy('wid', 'DESC')
+@@ -92,7 +92,8 @@ function dblog_cron() {
+  *   List of uniquely defined database log message types.
+  */
+ function _dblog_get_message_types() {
+-  return \Drupal::database()->query('SELECT DISTINCT([type]) FROM {watchdog} ORDER BY [type]')
++  $connection = \Drupal\Core\Database\Database::getConnection('default', 'sqlite_logs');
++  return $connection->query('SELECT DISTINCT([type]) FROM {watchdog} ORDER BY [type]')
+     ->fetchAllKeyed(0, 0);
+ }
+ 
+diff --git a/core/modules/dblog/src/Controller/DbLogController.php b/core/modules/dblog/src/Controller/DbLogController.php
+index b52ed5015a..6c661ec35d 100644
 --- a/core/modules/dblog/src/Controller/DbLogController.php
 +++ b/core/modules/dblog/src/Controller/DbLogController.php
-@@ -53,7 +53,7 @@
+@@ -53,7 +53,7 @@ class DbLogController extends ControllerBase {
     */
    public static function create(ContainerInterface $container) {
      return new static(
@@ -9,20 +34,20 @@
        $container->get('module_handler'),
        $container->get('date.formatter'),
        $container->get('form_builder')
-@@ -165,7 +165,6 @@
+@@ -165,7 +165,6 @@ public function overview(Request $request) {
        'variables',
        'link',
      ]);
 -    $query->leftJoin('users_field_data', 'ufd', '[w].[uid] = [ufd].[uid]');
-
+ 
      if (!empty($filter['where'])) {
        $query->where($filter['where'], $filter['args']);
-@@ -240,7 +239,7 @@
+@@ -240,7 +239,7 @@ public function overview(Request $request) {
     *   If no event found for the given ID.
     */
    public function eventDetails($event_id) {
 -    $dblog = $this->database->query('SELECT [w].*, [u].[uid] FROM {watchdog} [w] LEFT JOIN {users} [u] ON [u].[uid] = [w].[uid] WHERE [w].[wid] = :id', [':id' => $event_id])->fetchObject();
 +    $dblog = $this->database->query('SELECT [w].* FROM {watchdog} [w] WHERE [w].[wid] = :id', [':id' => $event_id])->fetchObject();
-
+ 
      if (empty($dblog)) {
        throw new NotFoundHttpException();
