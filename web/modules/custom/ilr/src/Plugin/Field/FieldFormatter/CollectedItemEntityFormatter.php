@@ -124,8 +124,9 @@ class CollectedItemEntityFormatter extends EntityReferenceEntityFormatter {
 
       // Add the host entity cache tags to invalidate this entity when the field
       // is changed.
-      $host_entity = $this->getNonParagraphParentReferencingEntity($items->getEntity());
-      $elements[$delta]['#cache']['tags'] = Cache::mergeTags($elements[$delta]['#cache']['tags'], $host_entity->getCacheTags());
+      if ($host_entity = $this->getNonParagraphParentReferencingEntity($items->getEntity())) {
+        $elements[$delta]['#cache']['tags'] = Cache::mergeTags($elements[$delta]['#cache']['tags'], $host_entity->getCacheTags());
+      }
 
       // Add a resource attribute to set the mapping property's value to the
       // entity's url. Since we don't know what the markup of the entity will
@@ -144,7 +145,7 @@ class CollectedItemEntityFormatter extends EntityReferenceEntityFormatter {
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity that might be a paragraph.
    *
-   * @return Drupal\Core\Entity\EntityInterface $entity
+   * @return Drupal\Core\Entity\EntityInterface $entity|NULL
    *   The entity, or the root parent entity of nested paragraphs.
    */
   protected function getNonParagraphParentReferencingEntity(EntityInterface $entity) {
