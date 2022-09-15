@@ -289,8 +289,11 @@ class CardSettings extends ParagraphsBehaviorBase {
           break;
         case 'promo':
         case 'inset':
-        default:
           $image_style = 'large_preserve_aspect';
+          break;
+        default:
+          // Use what is in the display configuration.
+          $image_style = $variables['content']['field_media'][0]['#image_style'];
       }
 
       if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'use_media_aspect')) {
