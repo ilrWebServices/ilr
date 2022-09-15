@@ -145,12 +145,7 @@
 }
 
 .ilr-effect-image.curtain-reveal::before {
-  background-position: var(--image-focal-point);
-}
-
-.cu-card--promo-with-media .cu-card__media img,
-.field-representative-image .cu-image {
-  object-position: var(--image-focal-point, '50% 50%');
+  background-position: var(--cu-image-position);
 }
 
 .cu-card--with-aside .cu-card__media .cu-image--blurred {

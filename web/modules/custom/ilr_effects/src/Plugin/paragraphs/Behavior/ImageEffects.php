@@ -9,6 +9,7 @@ use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\crop\Entity\Crop;
 
 /**
  * Provides an Image effects plugin.
@@ -56,9 +57,21 @@ class ImageEffects extends ParagraphsBehaviorBase {
       $variables['attributes']['class'][] = $effect;
 
       if ($effect === 'curtain-reveal') {
-        $image_style = $variables['elements']['field_media'][0]['#image_style'];
-        $image_style_url = ImageStyle::load($image_style)->buildUrl($variables['paragraph']->field_media->entity->field_media_image->entity->getFileUri());
+        $image_formatter = $variables['elements']['field_media'][0];
+        /** @var \Drupal\image\Plugin\Field\FieldType\ImageItem $image */
+        $image = $image_formatter['#item'];
+        $image_style = $image_formatter['#image_style'];
+        $image_style_url = ImageStyle::load($image_style)->buildUrl($image->entity->getFileUri());
         $variables['attributes']['style'][] = '--ilr-effects-img: url(' . $image_style_url . ');';
+        $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
+        $crop = Crop::findCrop($image->entity->getFileUri(), $crop_type);
+
+        if ($crop) {
+          $image_props = $image->getValue();
+          $anchor = \Drupal::service('focal_point.manager')
+            ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
+          $variables['attributes']['style'][] = '--cu-image-position: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;';
+        }
       }
     }
   }

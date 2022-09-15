@@ -293,29 +293,6 @@ function union_marketing_preprocess_links(&$variables) {
 /**
  * Implements hook_preprocess_paragraph().
  */
-function union_marketing_preprocess_paragraph(&$variables) {
-  $para = $variables['paragraph'];
-
-  // For paragraphs that have an image media field, add an inline custom CSS
-  // property with the focal point settings for that image. This will be used
-  // for `background-position` and `object-position` settings in CSS.
-  if (in_array($para->bundle(), ['image', 'promo']) && $para->field_media->entity && $para->field_media->entity->bundle() === 'image') {
-    $image = $para->field_media->entity->field_media_image;
-    $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
-    $crop = Crop::findCrop($image->entity->getFileUri(), $crop_type);
-
-    if ($crop) {
-      $image_props = $image->first()->getValue();
-      $anchor = \Drupal::service('focal_point.manager')
-        ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
-      $variables['attributes']['style'][] = '--image-focal-point: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;';
-    }
-  }
-}
-
-/**
- * Implements hook_preprocess_paragraph().
- */
 function union_marketing_preprocess_paragraph__deck(&$variables) {
   $grid_variant = ($variables['paragraph']->hasField('field_grid_variant')) ? $variables['paragraph']->field_grid_variant->value : 'two-up';
 
@@ -373,31 +350,13 @@ function union_marketing_preprocess_paragraph__promo(&$variables) {
  */
 function union_marketing_preprocess_paragraph__testimonial_deck(&$variables) {
   $variables['testimonials'] = [];
+
   foreach ($variables['paragraph']->field_components->referencedEntities() as $testimonial_paragraph) {
-    $image = $testimonial_paragraph->field_media->entity->field_media_image;
-    $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
-    $crop = Crop::findCrop($image->entity->getFileUri(), $crop_type);
-
-    if ($crop) {
-      $image_props = $image->first()->getValue();
-      $anchor = \Drupal::service('focal_point.manager')
-        ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
-    }
-    else {
-      $anchor = [
-        'x' => 50,
-        'y' => 0
-      ];
-    }
-
     $variables['testimonials'][] = [
       'quote' => $testimonial_paragraph->field_quote->view('teaser'),
       'name' => $testimonial_paragraph->field_name->view('teaser'),
       'title' => $testimonial_paragraph->field_subheading->view('teaser'),
       'media' => $testimonial_paragraph->field_media->view('thumbnail'),
-      'attributes' => new Attribute([
-        'style' => '--cu-image-position: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;',
-      ]),
     ];
   }
 }
@@ -444,19 +403,6 @@ function union_marketing_preprocess_field__field_representative_image(&$variable
 
   if ($entity->hasField('field_representative_img_caption') && !$entity->field_representative_img_caption->isEmpty()) {
     $variables['attributes']['aria-labelledby'][] = 'media__caption-' . $entity->id();
-  }
-
-  if (!$entity->field_representative_image->isEmpty()) {
-    $image = $entity->field_representative_image->entity->field_media_image;
-    $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
-    $crop = Crop::findCrop($image->entity->getFileUri(), $crop_type);
-
-    if ($crop) {
-      $image_props = $image->first()->getValue();
-      $anchor = \Drupal::service('focal_point.manager')
-        ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
-      $variables['attributes']['style'][] = '--image-focal-point: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;';
-    }
   }
 }
 
@@ -507,5 +453,24 @@ function union_marketing_preprocess_imagecache_external__instagram_post(&$variab
   // template_preprocess_imagecache_external();
   if ($variables['uri'] = imagecache_external_generate_path($variables['uri'])) {
     template_preprocess_image_style($variables);
+  }
+}
+
+/**
+ * Implements hook_preprocess_image_formatter().
+ *
+ * Set the --cu-image-position CSS property for images with a focal point crop.
+ */
+function union_marketing_preprocess_image_formatter(&$variables) {
+  /** @var \Drupal\image\Plugin\Field\FieldType\ImageItem $image */
+  $image = $variables['item'];
+  $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
+  $crop = Crop::findCrop($image->entity->getFileUri(), $crop_type);
+
+  if ($crop) {
+    $image_props = $image->getValue();
+    $anchor = \Drupal::service('focal_point.manager')
+      ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
+    $variables['image']['#attributes']['style'][] = '--cu-image-position: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;';
   }
 }

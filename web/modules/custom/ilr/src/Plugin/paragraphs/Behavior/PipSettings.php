@@ -68,7 +68,7 @@ class PipSettings extends ParagraphsBehaviorBase {
       $anchor = \Drupal::service('focal_point.manager')
         ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
 
-      $variables['attributes']['style'][] = '--image-focal-point: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;';
+      $variables['attributes']['style'][] = '--cu-image-position: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;';
     }
   }
 

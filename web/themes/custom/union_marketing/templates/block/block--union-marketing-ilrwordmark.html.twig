@@ -1,10 +1,7 @@
-{% set logo_attributes = {
-  src: '/themes/custom/union_marketing/images/ILR-wordmark.svg',
-  alt: 'The ILR School home'
-}%}
-
 {% include '@union/_logo.twig' with {
   logo_link: path('<front>'),
-  attributes: logo_attributes,
-  wrapper_attributes: { class: 'cu-logo--ilr-wordmark'}
+  logo_src: '/themes/custom/union_marketing/images/ILR-wordmark.svg',
+  logo_alt: 'The ILR School home',
+  logo_width: 800,
+  attributes: { class: 'cu-logo--ilr-wordmark'}
 } only %}
