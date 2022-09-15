@@ -177,7 +177,7 @@ class CollectionRequestSubscriber implements EventSubscriberInterface {
       $params['body'][] = $this->t('Included note') . ":\r\n" . $note->value;
     }
 
-    $message = $this->mailManager->mail('collection_request', $params['id'], implode($recipient_array, ', '), $params['langcode'], $params, $params['reply-to']);
+    $message = $this->mailManager->mail('collection_request', $params['id'], implode(', ', $recipient_array), $params['langcode'], $params, $params['reply-to']);
     return (bool) $message['result'];
   }
 
