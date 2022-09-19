@@ -1,0 +1,119 @@
+langcode: en
+id: scheinman_newsletter_lead
+label: 'Scheinman newsletter lead'
+weight: 0
+type: salesforce_mapping
+key: ''
+always_upsert: false
+async: true
+push_standalone: false
+pull_standalone: false
+pull_trigger_date: LastModifiedDate
+pull_frequency: 0
+push_frequency: 0
+push_limit: 0
+push_retries: 3
+pull_where_clause: ''
+sync_triggers:
+  push_create: true
+  push_update: false
+  push_delete: false
+  pull_create: false
+  pull_update: false
+  pull_delete: false
+salesforce_object_type: Lead
+drupal_entity_type: webform_submission
+drupal_bundle: scheinman_newsletter_signup
+field_mappings:
+  -
+    drupal_field_type: record_type
+    drupal_field_value: Outreach
+    direction: drupal_sf
+    salesforce_field: RecordTypeId
+    id: 0
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:first_name:raw]'
+    direction: drupal_sf
+    salesforce_field: FirstName
+    id: 1
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:last_name:raw]'
+    direction: drupal_sf
+    salesforce_field: LastName
+    id: 2
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:email:value]'
+    direction: drupal_sf
+    salesforce_field: Email
+    id: 3
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:created:custom:Y-m-d G:i:s]'
+    direction: drupal_sf
+    salesforce_field: Legacy_Created_Date__c
+    id: 4
+    description: ''
+  -
+    drupal_field_type: Constant
+    drupal_field_value: 'Scheinman Newsletter'
+    direction: drupal_sf
+    salesforce_field: Email_Marketing_Personas__c
+    id: 5
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:utm_values:utm_campaign:raw]'
+    direction: drupal_sf
+    salesforce_field: UTM_Campaign__c
+    id: 6
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:utm_values:utm_medium:raw]'
+    direction: drupal_sf
+    salesforce_field: UTM_Medium__c
+    id: 7
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:utm_values:utm_source:raw]'
+    direction: drupal_sf
+    salesforce_field: UTM_Source__c
+    id: 8
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:utm_values:utm_content:raw]'
+    direction: drupal_sf
+    salesforce_field: UTM_Content__c
+    id: 9
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:utm_values:utm_term:raw]'
+    direction: drupal_sf
+    salesforce_field: UTM_Keyword__c
+    id: 10
+    description: ''
+  -
+    drupal_field_type: Constant
+    drupal_field_value: 'NONE PROVIDED'
+    direction: drupal_sf
+    salesforce_field: Company
+    id: 11
+    description: ''
+status: true
+dependencies:
+  config:
+    - webform.webform.scheinman_newsletter_signup
+  module:
+    - salesforce_push
+    - token
+uuid: efbfea35-666c-4b7e-8a3a-bd99cf226d42
