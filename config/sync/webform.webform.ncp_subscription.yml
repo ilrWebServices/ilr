@@ -11,7 +11,7 @@ uid: 1
 template: false
 archive: false
 id: ncp_subscription
-title: 'New Conversations Project Subscription'
+title: 'Global Labor Institute Subscription'
 description: ''
 category: ''
 elements: |-
@@ -20,13 +20,12 @@ elements: |-
     '#attributes':
       class:
         - form-title
-    '#markup': |
+    '#markup': |-
       <h2 class="cu-heading">
         Stay Connected
       </h2>
 
-      <p>Join the New Conversations Project mailing list.</p>
-    title: null
+      <p>Join the Global Labor Institute mailing list.</p>
   element_container:
     '#type': container
     '#attributes':
@@ -155,7 +154,7 @@ settings:
   confirmation_type: message
   confirmation_url: ''
   confirmation_title: ''
-  confirmation_message: 'Thank you for subscribing to the New Conversations Project mailing list!'
+  confirmation_message: 'Thank you for subscribing to the Global Labor Institute mailing list!'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
