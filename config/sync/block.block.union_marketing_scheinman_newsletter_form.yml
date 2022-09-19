@@ -1,0 +1,36 @@
+uuid: 13ef4dfa-e640-4502-9242-7a0ceefb30bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.subsite_1
+    - webform.webform.scheinman_newsletter_signup
+  module:
+    - block_visibility_groups
+    - ilr
+    - webform
+  theme:
+    - union_marketing
+id: union_marketing_scheinman_newsletter_form
+theme: union_marketing
+region: content
+weight: 3
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Scheinman Newsletter Signup Form'
+  label_display: '0'
+  provider: webform
+  webform_id: scheinman_newsletter_signup
+  default_data: ''
+  redirect: false
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: subsite_1
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false
