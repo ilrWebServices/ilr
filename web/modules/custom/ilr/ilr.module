@@ -1116,7 +1116,7 @@ function ilr_collection_pathauto_alias_alter(&$alias, array &$context) {
 
     // Reduce the collection paths to a single value if the current alias starts
     // with two collection paths.
-    $deduped_alias = preg_replace("|^{$collection_path}{$collection_path}|", $collection_path, $alias);
+    $deduped_alias = preg_replace("|^{$collection_path}{$collection_path}/|", $collection_path . '/', $alias);
     $alias = $deduped_alias;
   }
 }
