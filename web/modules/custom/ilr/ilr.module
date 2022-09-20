@@ -1319,28 +1319,9 @@ function ilr_form_alter(&$form, FormStateInterface $form_state, $form_id) {
  */
 function ilr_form_media_confirm_form_alter(&$form, FormStateInterface $form_state) {
   if (isset($form['entity_usage_delete_warning'])) {
-    // Disable the "Delete" button.
+    // Disable the "Delete" button. The entity_usage warning message text is
+    // altered in $settings['locale_custom_strings_en'] in settings.php.
     $form['actions']['submit']['#disabled'] = TRUE;
-
-    // Override the warning message from entity_usage.
-    // @see entity_usage_form_alter().
-    $media_entity = $form_state->getFormObject()->getEntity();
-
-    $form['entity_usage_delete_warning'] = [
-      '#theme' => 'status_messages',
-      '#message_list' => [
-        'warning' => [
-          t('This item is being <a href="@usage_url" target="_blank">used in one or more places</a>. You must first remove those usages before you can delete it.', [
-            '@usage_url' => Url::fromRoute('entity_usage.usage_list', [
-              'entity_type' => $media_entity->getEntityTypeId(),
-              'entity_id' => $media_entity->id(),
-            ])->toString(),
-          ])
-        ],
-      ],
-      '#status_headings' => ['warning' => t('Warning message')],
-      '#weight' => -201,
-    ];
   }
 }
 

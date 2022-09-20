@@ -604,6 +604,9 @@ $settings['file_private_path'] = '../private';
 #   'forum'      => 'Discussion board',
 #   '@count min' => '@count minutes',
 # ];
+$settings['locale_custom_strings_en'][''] = [
+  'There are <a href="@usage_url">recorded usages</a> of this entity.' => 'This item is being <a href="@usage_url">used in one or more places</a>. You must first remove those usages before you can delete it.',
+];
 
 /**
  * A custom theme for the offline page:
