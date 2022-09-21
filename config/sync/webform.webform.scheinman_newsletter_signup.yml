@@ -24,11 +24,13 @@ elements: |-
     '#attributes':
       class:
         - form-title
-    '#markup': |
+    '#markup': |-
       <h2 class="cu-heading">
-        Scheinman Institute Newsletter Signup
+        Scheinman Institute <br>Newsletter Signup
       </h2>
-    title: null
+      <p>
+        Keep up with the latest information and news about the Institute's research, education, student engagement, and outreach.
+      </p>
   element_container:
     '#type': container
     '#attributes':
