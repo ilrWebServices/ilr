@@ -83,30 +83,7 @@
   display: none;
 }
 
-.cu-topic-list__item .cu-card {
-  .cu-heading {
-    --cu-current-heading-size: 1em;
-    margin-bottom: 0;
-  }
-
-  .cu-card__eyebrow-heading {
-    font-weight: 400;
-    font-size: 10px;
-  }
-
-  .cu-card__media {
-    margin-bottom: 0;
-    line-height: 1;
-  }
-
-  .field--field-published-date {
-    margin-top: 0;
-  }
-
-  margin: 1em 0;
-  background: transparent;
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  gap: var(--cu-ps0);
-  align-items: start;
+.cu-topic-list__item .cu-card .field--field-published-date {
+  margin: 0;
+  font-size: 12px;
 }

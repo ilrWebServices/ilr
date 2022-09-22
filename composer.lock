@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e02b0202292d1d57e901ec63ceac19a1",
+    "content-hash": "6b6dc1406d3ff0be447570757916aaa8",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1076,12 +1076,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union.git",
-                "reference": "e732217c4c52685c5f5eacadfb252bf2a502bbd3"
+                "reference": "b19e15a795c61a961ce28fdffc125aaf951e7925"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/e732217c4c52685c5f5eacadfb252bf2a502bbd3",
-                "reference": "e732217c4c52685c5f5eacadfb252bf2a502bbd3",
+                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/b19e15a795c61a961ce28fdffc125aaf951e7925",
+                "reference": "b19e15a795c61a961ce28fdffc125aaf951e7925",
                 "shasum": ""
             },
             "require": {
@@ -1111,10 +1111,10 @@
             ],
             "description": "A component-based design system",
             "support": {
-                "source": "https://github.com/ilrWebServices/union/tree/union_ng",
+                "source": "https://github.com/ilrWebServices/union/tree/topic_list_updates",
                 "issues": "https://github.com/ilrWebServices/union/issues"
             },
-            "time": "2022-09-16T17:37:29+00:00"
+            "time": "2022-09-23T20:54:22+00:00"
         },
         {
             "name": "cweagans/composer-patches",
