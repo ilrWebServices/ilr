@@ -460,17 +460,25 @@ function union_marketing_preprocess_imagecache_external__instagram_post(&$variab
  * Implements hook_preprocess_image_formatter().
  *
  * Set the --cu-image-position CSS property for images with a focal point crop.
+ *
+ * Note that we use the image factory service to get the image dimensions
+ * directly from the file system. We do this because occasionally media
+ * thumbnail dimensions are inaccurate, and would therefore incorrectly
+ * calculate the focal point position.
+ *
+ * @see https://www.drupal.org/project/drupal/issues/3064097
  */
 function union_marketing_preprocess_image_formatter(&$variables) {
-  /** @var \Drupal\image\Plugin\Field\FieldType\ImageItem $image */
-  $image = $variables['item'];
+  /** @var \Drupal\image\Plugin\Field\FieldType\ImageItem $item */
+  $item = $variables['item'];
+  $uri = $item->entity->getFileUri();
   $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
-  $crop = Crop::findCrop($image->entity->getFileUri(), $crop_type);
+  $crop = Crop::findCrop($uri, $crop_type);
 
   if ($crop) {
-    $image_props = $image->getValue();
+    $image = \Drupal::service('image.factory')->get($uri);
     $anchor = \Drupal::service('focal_point.manager')
-      ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
+      ->absoluteToRelative($crop->x->value, $crop->y->value, $image->getWidth(), $image->getHeight());
     $variables['image']['#attributes']['style'][] = '--cu-image-position: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;';
   }
 }
