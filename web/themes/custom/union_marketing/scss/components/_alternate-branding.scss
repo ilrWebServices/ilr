@@ -1,35 +1,56 @@
 .bvg--cornell-alternate-branding .cu-header {
-  flex-wrap: wrap;
+  display: grid;
+  justify-content: stretch;
+  grid-template-columns: auto 25px;
+  grid-template-rows: auto auto;
   border: none;
-  padding-top: 0;
+  gap: var(--cu-vr0) 0;
+  padding: 0 0 var(--cu-vr1);
 
   @include breakpoint(sm) {
     padding-top: var(--cu-vr1);
+    grid-template-columns: auto 76px 25px;
+    gap: 0 var(--cu-ps1);
+    // justify-content: start;
   }
 
-  // Position the logo at the start, which should be adjacent to the minibar.
-  .cornell-minibar + .block {
-    margin-right: auto;
+  .cornell-minibar {
+    margin: 0;
+  }
+
+  .ilr-search-reveal {
+    background-color: $cornell-red;
+    align-self: stretch; // For the red background
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+
+    @include breakpoint(sm) {
+      grid-column: 3;
+      background-color: transparent;
+    }
   }
 
   #ilr_search_reveal_trigger {
-    position: absolute;
     color: white;
-    top: 0.5em;
-    right: 1em;
+    align-self: center;
 
     @include breakpoint(sm) {
-      position: relative;
       color: #222;
-      top: auto;
-      right: auto;
-      align-self: flex-start;
+      margin: 0;
     }
   }
-}
 
-.cornell-seal .cu-image {
-  width: 76px; // Per branding guidelines
+  nav[id^="block-union-marketing-menu-subsite"] {
+    label[for="nav-trigger"] {
+      position: unset;
+    }
+
+    @include breakpoint(sm) {
+      grid-column: 1/-1;
+    }
+  }
 }
 
 .collection--publication-issue .cornell-seal .cu-image {
@@ -47,21 +68,15 @@
 }
 
 .block-subsite-branding-block {
-  height: 40px;
-  max-width: 90%;
-
-  @include breakpoint(sm) {
-    height: 76px;
-  }
-
-  > a {
-    display: inline-block;
-    height: 100%;
-  }
+  grid-column: 1;
 
   img {
     margin-right: var(--cu-ps2);
     height: inherit;
+
+    @include breakpoint(md) {
+      height: 76px;
+    }
   }
 }
 
@@ -86,35 +101,4 @@
 
 #block-union-marketing-75thlogo {
   width: 225px;
-}
-
-// Until we have a better strategy for theming specific collections, this allows
-// us to overide the alternate branding design for a specific site. In this
-// case, the criminal records panel study.
-.bvg--cornell-alternate-branding.bvg--subsite-33 {
-  @include breakpoint(sm) {
-    .cu-header {
-      .block-subsite-branding-block {
-        order: 2;
-        margin: 0;
-      }
-    }
-
-    .block-cornell-seal-block {
-      order: 1;
-      margin-right: auto;
-    }
-
-    #ilr_search_reveal_trigger {
-      order: 3;
-    }
-
-    nav[id^="block-union-marketing-menu-subsite"] {
-      order: 4;
-
-      .cu-menu__list--subsite {
-        justify-content: flex-end;
-      }
-    }
-  }
 }
