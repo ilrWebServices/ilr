@@ -1,5 +1,7 @@
-.simple-columns {
-  columns: 2;
+@media (min-width: 61rem) {
+  .simple-columns {
+    columns: 2;
+  }
 }
 
 .simple-columns--column-break {
