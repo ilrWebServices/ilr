@@ -28,6 +28,8 @@
 }
 
 #block-union-marketing-local-tasks {
+  --cu-font-size: var(--cu-ms-1);
+
   > ul {
     @extend %tabs;
   }

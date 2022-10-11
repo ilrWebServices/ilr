@@ -12,7 +12,7 @@ ul.cu-factlist {
 
 ul.cu-factlist > li {
   padding: var(--cu-vr0);
-  border-bottom: 1px solid var(--cu-current-text-color, #{$black});
+  border-bottom: 1px solid var(--cu-text-color, #{$black});
 
   &:last-child {
     border: none;
@@ -20,15 +20,14 @@ ul.cu-factlist > li {
 
   @include breakpoint(md) {
     border-bottom: none;
-    border-right: 1px solid var(--cu-current-text-color, #{$black});
+    border-right: 1px solid var(--cu-text-color, #{$black});
     padding: 0 var(--cu-vr2);
   }
 
   &::first-line {
-    font-family: 'futura-pt';
-    font-size: var(--cu-text-xl);
-    font-size: var(--cu-ms7);
-    font-weight: 400;
+    --cu-font-family: 'futura-pt';
+    --cu-font-size: var(--cu-ms7);
+    --cu-font-weight: 400;
     display: block;
   }
 }

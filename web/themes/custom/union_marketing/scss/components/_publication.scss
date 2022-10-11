@@ -12,7 +12,7 @@
 
 .publication-logo {
   width: 45vw;
-  line-height: 1;
+  --cu-line-height: 1;
   text-decoration: none;
 
   @include breakpoint(sm) {
@@ -67,8 +67,6 @@
 
 .publication__feature {
   .cu-heading {
-    --cu-current-heading-size: var(--cu-ms5);
-    --cu-current-link-color: #222;
     margin-top: var(--cu-vr0);
 
     a {
@@ -85,7 +83,7 @@
     grid-template-rows: repeat(2, auto);
 
     .cu-heading {
-      --cu-current-heading-size: var(--cu-ms8);
+      --cu-font-size: var(--cu-ms7);
     }
   }
 

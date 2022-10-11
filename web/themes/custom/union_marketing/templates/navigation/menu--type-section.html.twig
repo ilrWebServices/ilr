@@ -36,7 +36,7 @@
     {% endif %}
     {% for item in items %}
       <li{{item.attributes.addClass('section-menu__item')}}>
-        {{ link(item.title, item.url, {class: 'section-menu__link'}) }}
+        {{ link(item.title, item.url, {class: 'section-menu__link cu--accented'}) }}
         {% if item.below %}
           {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
         {% endif %}

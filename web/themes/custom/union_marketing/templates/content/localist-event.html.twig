@@ -23,7 +23,7 @@
 {% set rendered_content %}
   <div class="localistEvent" itemscope itemtype="http://schema.org/Event">
     <h3 class="cu-heading" itemprop="name">{{ event.title }}</h3>
-    <p><time datetime="{{ first_instance.start }}" class="localistEvent__startDate" itemprop="startDate" content="{{ first_instance.start }}">{{ first_instance.start | date(date_format) }}</time></p>
+    <p class="cu-x-text"><time datetime="{{ first_instance.start }}" class="localistEvent__startDate" itemprop="startDate" content="{{ first_instance.start }}">{{ first_instance.start | date(date_format) }}</time></p>
   </div>
 {% endset %}
 

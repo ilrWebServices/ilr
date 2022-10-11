@@ -3,8 +3,7 @@
   padding: var(--cu-vr1) var(--cu-ps1);
 
   &__active-price {
-    --cu-current-font-size: var(--cu-text-xxl);
-    --cu-current-font-weight: var(--cu-heading-font-weight);
+    --cu-font-size: var(--cu-ms2);
     margin: 0 auto var(--cu-vr1);
     max-width: var(--cu-max-width-section, #{$max-width-section});
   }
@@ -19,6 +18,7 @@
       padding-right: 0;
 
       .price {
+        --cu-font-size: var(--cu-ms2);
         flex-grow: 1;
         align-self: flex-end;
         text-align: right;
@@ -29,7 +29,7 @@
       }
 
       .class-message {
-        font-size: var(--cu-ms-1);
+        --cu-font-size: var(--cu-ms-1);
         margin-bottom: var(--cu-vr2); // Leave space for the price to be on a new line.
       }
     }
@@ -93,7 +93,7 @@
 .in-page-signup-jump {
   display: none;
   color: white;
-  font-weight: 400;
+  --cu-font-weight: 400;
   cursor: pointer;
 }
 

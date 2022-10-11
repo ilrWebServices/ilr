@@ -1,40 +1,33 @@
-.cu-heading--strong {
-  line-height: 1;
-}
-
-.field--field-subheading {
-  --cu-current-heading-size: var(--cu-text-xl);
-}
-
-p.shout {
+p.shout,
+p.cu-x-shout {
   clear: both;
-  font-size: var(--cu-text-xxxl);
+  --cu-font-size: var(--cu-ms4);
   margin-bottom: var(--cu-vr0);
   color: #333;
 }
 
 span.mega {
-  font-size: 600%;
-  font-weight: bold;
+  --cu-font-size: 600%;
+  --cu-font-weight: bold;
 }
 
 span.mina {
-  font-size: 50%;
+  --cu-font-size: 50%;
 }
 
 .collection--content-section {
   h1.cu-heading {
-    font-family: 'futura-pt';
-    font-size: 36px;
-    line-height: 1;
+    --cu-font-family: 'futura-pt';
+    --cu-font-size: 36px;
+    --cu-line-height: 1;
     text-transform: uppercase;
 
     @include breakpoint(md) {
-      font-size: 76px;
+      --cu-font-size: 76px;
     }
   }
 }
 
 .cu-text--small {
-  --font-size: var(--cu-ms-1);
+  --cu-font-size: var(--cu-ms-1);
 }

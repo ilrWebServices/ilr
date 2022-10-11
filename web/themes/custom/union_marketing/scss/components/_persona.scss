@@ -20,13 +20,13 @@ body.persona .cu-header {
   }
 
   .field--field-title {
-    font-family: var(--cu-heading-font-family);
-    font-size: var(--cu-text-lg);
+    --cu-font-size: var(--cu-ms1);
+    --cu-font-weight: 400;
     margin-bottom: var(--cu-vr-1);
   }
 
   .field--field-phone {
-    font-size: var(--cu-ms-1);
+    --cu-font-size: var(--cu-ms-1);
     margin-bottom: var(--cu-vr0);
   }
 

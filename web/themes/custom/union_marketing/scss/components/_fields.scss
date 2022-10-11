@@ -41,13 +41,12 @@
 
 // Red links in the page banner are no good.
 .cu-banner--page .field--body {
-  --cu-current-link-color: white;
+  --cu-text-color: white;
 }
 
 .cu-card .field--field-published-date {
   margin: var(--cu-vr-1) 0;
-  font-size: var(--cu-ms-1);
-  color: #777;
+  --cu-text-color: #777;
 }
 
 .cu-component--rich-text iframe {
@@ -59,7 +58,7 @@
   margin: 0;
 
   a {
-    --cu-current-link-color: $black;
+    --cu-text-color: #{$black};
     text-decoration: none;
   }
 }
@@ -87,8 +86,7 @@
 }
 
 .cu-person__title {
-  --cu-current-font-size: var(--cu-ms-1);
-  --cu-current-line-height: 1.2;
+  --cu-font-size: var(--cu-ms-2);
 }
 
 .cu-testimonial__name .field {

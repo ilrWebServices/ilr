@@ -1076,12 +1076,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union.git",
-                "reference": "b19e15a795c61a961ce28fdffc125aaf951e7925"
+                "reference": "3c94e392001997eaae884fcfa3a5fdf1a8366f9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/b19e15a795c61a961ce28fdffc125aaf951e7925",
-                "reference": "b19e15a795c61a961ce28fdffc125aaf951e7925",
+                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/3c94e392001997eaae884fcfa3a5fdf1a8366f9a",
+                "reference": "3c94e392001997eaae884fcfa3a5fdf1a8366f9a",
                 "shasum": ""
             },
             "require": {
@@ -1111,10 +1111,10 @@
             ],
             "description": "A component-based design system",
             "support": {
-                "source": "https://github.com/ilrWebServices/union/tree/topic_list_updates",
+                "source": "https://github.com/ilrWebServices/union/tree/union_ng",
                 "issues": "https://github.com/ilrWebServices/union/issues"
             },
-            "time": "2022-09-23T20:54:22+00:00"
+            "time": "2022-10-11T19:51:03+00:00"
         },
         {
             "name": "cweagans/composer-patches",

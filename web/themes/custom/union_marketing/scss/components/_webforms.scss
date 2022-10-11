@@ -23,10 +23,9 @@
   .form-title .cu-label,
   .ilr-webform-duo__title .cu-label,
   .cu-heading {
-    --cu-current-heading-size: var(--cu-ps2);
-    --cu-current-line-height: var(--cu-heading-line-height, 1.2);
+    --cu-font-size: var(--cu-ms2);
+    --cu-line-height: 1.2;
     margin: 0 0 var(--cu-component-margin-bottom, var(--cu-vr0));
-    font-size: var(--cu-current-heading-size, inherit);
   }
 }
 
@@ -40,7 +39,7 @@
   }
 
   .cu-heading {
-    --cu-current-heading-size: var(--cu-ps2);
+    --cu-font-size: var(--cu-ms6);
   }
 
   .webform-address--wrapper {

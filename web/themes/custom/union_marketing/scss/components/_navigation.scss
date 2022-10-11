@@ -16,10 +16,11 @@
 
 .menu_link_content a {
   text-decoration: none;
+  --cu-font-size: var(--cu-ms-2);
 }
 
 .menu_link_content h2 {
-  font-size: var(--cu-text-lg);
+  font-size: var(--cu-ms1);
   font-weight: 300;
 }
 
@@ -28,6 +29,8 @@
 .cu-menu__link {
   padding: 0;
   text-align: left;
+  --cu-font-size: var(--cu-ms-2);
+  --cu-text-color: #222;
 
   @include breakpoint(md) {
     text-align: center;
@@ -55,6 +58,8 @@
 .bean-mega-menu > .content {
   display: flex;
   justify-content: space-around;
+  line-height: 1.2;
+  margin-top: 1em;
 }
 
 .bean-mega-menu > .content > .field {
@@ -91,7 +96,7 @@ label[for="nav-trigger"] {
 }
 
 .cu-menu__list--subsite {
-  --cu-current-link-color: #{$black};
+  --cu-text-color: #{$black};
   font-size: var(--cu-ms-1);
   list-style-type: none;
   margin: var(--cu-vr1) 0 0;
@@ -131,7 +136,7 @@ label[for="nav-trigger"] {
   }
 
   &.is-active {
-    --cu-current-link-color: #{$cornell-red};
+    --cu-text-color: #{$cornell-red};
     font-weight: bold;
   }
 }
@@ -188,28 +193,12 @@ nav[id^="block-union-marketing-menu-subsite"] {
 }
 
 .section-menu__link {
-  --cu-current-link-color: #{$black};
-  --cu-header-accent-width: 15%;
-  --cu-header-accent-padding: .25em 0 0 0;
-  --cu-header-accent-border: 4px solid var(--cu-color-brand, #{$cornell-red});
+  --cu-text-color: #{$black};
+  --cu-accent-width: 15%;
   text-decoration: none;
   font-weight: 400;
   display: block;
   margin-bottom: var(--cu-vr0);
-
-  // &::after {
-  //   content: '';
-  //   display: block;
-  //   width: var(--cu-header-accent-width);
-  //   max-width: 100%;
-  //   padding: var(--cu-header-accent-padding);
-  //   border-bottom: var(--cu-header-accent-border);
-  //   transition: width ease-in .25s;
-  // }
-
-  // &:hover::after {
-  //   width: var(--cu-header-accent-width-hover, calc(var(--cu-header-accent-width) * 2));
-  // }
 }
 
 // Breadcrumb overrides here
@@ -218,7 +207,7 @@ nav[id^="block-union-marketing-menu-subsite"] {
 }
 
 .node--story .cu-breadcrumb__item {
-  --cu-current-link-color: #{$black};
+  --cu-text-color: #{$black};
 }
 
 // Nav moved into Banner via js.
@@ -240,22 +229,13 @@ nav[id^="block-union-marketing-menu-subsite"] {
     }
 
     .section-menu__link {
-      font-size: var(--cu-ms-2);
+      --cu-font-size: var(--cu-ms-3);
+      --cu-font-weight: 400;
+      --cu-accent-width: 46px;
+      --cu-accent-width-hover: 60px;
+      --cu-accent-margin: 1.5em 0 0 0;
       text-transform: uppercase;
 
-      &::after {
-        content: '';
-        display: block;
-        width: 46px;
-        max-width: 100%;
-        padding-bottom: var(--cu-vr0);
-        border-bottom: var(--cu-header-accent-border);
-        transition: width ease-in .25s;
-      }
-
-      &:hover::after {
-        width: 46px * 1.5;
-      }
     }
   }
 }

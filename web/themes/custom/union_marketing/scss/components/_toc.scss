@@ -9,7 +9,7 @@
   }
 
   .cu-page-nav__list {
-    --cu-header-accent-width: 10%;
+    --cu-accent-width: 10%;
     counter-reset: li;
 
     @include breakpoint(md) {
@@ -28,19 +28,19 @@
     &::before {
       content: counter(li); /* Use the counter as content */
       counter-increment: li; /* Increment the counter by 1 */
-      width:2em;
-      color: $cornell-red;
-      font-weight:bold;
-      font-size: var(--cu-text-xxl);
-      text-align:center;
+      width: 2em;
+      color: #{$cornell-red};
+      font-weight: bold;
+      font-size: var(--cu-ms5);
+      text-align: center;
     }
   }
 
   .cu-page-nav__link {
-    --cu-current-link-color: #222;
+    --cu-text-color: #{$black};
 
     .cu-heading {
-      font-weight: 400;
+      --cu-font-weight: 400;
       margin: 0;
     }
   }
@@ -54,8 +54,8 @@
   position: relative;
 
   .cu-heading {
-    --cu-current-heading-size: var(--cu-ms6);
-    --cu-current-font-weight: 400;
+    --cu-font-size: var(--cu-ms5);
+    --cu-font-weight: 400;
     display: flex;
     width: 120%;
     margin-left: -10%;
@@ -70,9 +70,9 @@
       margin-right: var(--cu-vr1);
       width: 2em;
       color: $cornell-red; /* $cornell-red */
-      font-weight:bold;
-      font-size: var(--cu-text-xxl);
-      text-align:center;
+      font-weight: bold;
+      font-size: var(--cu-ms5);
+      text-align: center;
     }
   }
 }

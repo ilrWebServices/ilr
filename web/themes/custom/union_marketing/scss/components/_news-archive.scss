@@ -1,5 +1,5 @@
-.news-archive a {
-  color: var(--cu-current-link-color, #{$cornell-red});
+.news-archive .node--post a {
+  --cu-text-color: #{$cornell-red};
 }
 
 .news-archive__summary-links ul {
