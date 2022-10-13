@@ -1,22 +1,20 @@
 .article--postalicious {
   .cu-section {
+    display: grid;
+    row-gap: var(--cu-vr0);
+
     @include breakpoint(sm) {
       display: grid;
       grid-template-columns: 3fr 2fr;
-      column-gap: var(--cu-vr1);
-
-      .cu-section-heading {
-        margin: 0;
-        text-align: left;
-        align-items: flex-start;
-      }
+      grid-auto-flow: dense;
+      align-items: start;
+      column-gap: var(--cu-ps1);
 
       > * {
         grid-column: 1;
       }
 
       div[class$='field-representative-image'] {
-        grid-row: 1/4;
         grid-column: 2;
       }
 
@@ -27,15 +25,23 @@
         margin-top: var(--cu-component-margin-bottom, var(--cu-vr2));
       }
 
-      div[class$='field-published-date'] {
-        margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr2));
+      div[class$='field-components']:first-child {
+        margin-top: 0;
       }
 
       .block-better-social-sharing-buttons {
         display: flex;
-        grid-row: 4/6;
         grid-column: 2;
       }
+    }
+
+    .cu-section-heading {
+      margin: 0;
+      align-items: flex-start;
+    }
+
+    .social-sharing-buttons {
+      margin: 0;
     }
   }
 
