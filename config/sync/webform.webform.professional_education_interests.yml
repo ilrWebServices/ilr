@@ -36,6 +36,7 @@ elements: |-
     phone:
       '#type': tel
       '#title': Phone
+      '#required': true
   element_container:
     '#type': container
     areas_of_interest:
