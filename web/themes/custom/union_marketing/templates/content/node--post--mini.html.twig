@@ -75,7 +75,8 @@
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
     'node--postalicious',
-    node.bundle == 'media_mention' ? 'media-mention media-mention--mini'
+    node.bundle == 'media_mention' ? 'media-mention media-mention--mini',
+    'cu-text'
   ]) }}>
   {{ title_suffix }}
   <div class="post__info">
