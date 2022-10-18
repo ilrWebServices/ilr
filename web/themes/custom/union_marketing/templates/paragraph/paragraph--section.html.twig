@@ -38,6 +38,14 @@
  * @ingroup themeable
  */
 #}
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
 {% set rendered_content %}
   {% if not paragraph.field_heading.isEmpty() %}
   {% include '@union/_section-heading.twig' with {
@@ -53,5 +61,5 @@
 
 {% include '@union/_cu-section.twig' with {
   content: rendered_content,
-  attributes: attributes,
+  attributes: attributes.addClass(classes),
 } only %}

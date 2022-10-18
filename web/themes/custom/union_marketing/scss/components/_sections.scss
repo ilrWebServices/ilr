@@ -35,3 +35,11 @@ figure.cu-media,
 .cu-component--rich-text + .cu-component {
   clear: both;
 }
+
+.cu-section.paragraph--unpublished {
+  display: none;
+}
+
+.paragraphs-previewer-html .cu-section.paragraph--unpublished {
+  display: unset;
+}
