@@ -30,13 +30,13 @@ elements: |-
     '#type': tel
     '#title': Phone
     '#required': true
-  company:
-    '#type': textfield
-    '#title': Organization
-    '#required': true
   title:
     '#type': textfield
     '#title': Title
+    '#required': true
+  company:
+    '#type': textfield
+    '#title': Organization
     '#required': true
   message:
     '#title': Message
