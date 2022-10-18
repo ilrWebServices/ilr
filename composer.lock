@@ -1076,12 +1076,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union.git",
-                "reference": "3c94e392001997eaae884fcfa3a5fdf1a8366f9a"
+                "reference": "01bfa86cc5ed07e619c84d27addb541c1787d9ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/3c94e392001997eaae884fcfa3a5fdf1a8366f9a",
-                "reference": "3c94e392001997eaae884fcfa3a5fdf1a8366f9a",
+                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/01bfa86cc5ed07e619c84d27addb541c1787d9ad",
+                "reference": "01bfa86cc5ed07e619c84d27addb541c1787d9ad",
                 "shasum": ""
             },
             "require": {
@@ -1114,7 +1114,7 @@
                 "source": "https://github.com/ilrWebServices/union/tree/union_ng",
                 "issues": "https://github.com/ilrWebServices/union/issues"
             },
-            "time": "2022-10-11T19:51:03+00:00"
+            "time": "2022-10-18T14:40:22+00:00"
         },
         {
             "name": "cweagans/composer-patches",
@@ -5942,12 +5942,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union_organizer.git",
-                "reference": "7f731981ec1fd3b37719cf8b8e91d816250b0211"
+                "reference": "221024dd381174559d0557474bca65818a015303"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/7f731981ec1fd3b37719cf8b8e91d816250b0211",
-                "reference": "7f731981ec1fd3b37719cf8b8e91d816250b0211",
+                "url": "https://api.github.com/repos/ilrWebServices/union_organizer/zipball/221024dd381174559d0557474bca65818a015303",
+                "reference": "221024dd381174559d0557474bca65818a015303",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -5963,7 +5963,7 @@
                 "issues": "https://github.com/ilrWebServices/union_organizer/issues",
                 "source": "https://github.com/ilrWebServices/union_organizer.git"
             },
-            "time": "2022-10-03T11:47:18+00:00"
+            "time": "2022-10-18T14:41:39+00:00"
         },
         {
             "name": "drupal/views_autocomplete_filters",
