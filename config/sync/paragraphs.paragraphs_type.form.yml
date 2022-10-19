@@ -1,9 +1,15 @@
 uuid: d27d78a5-286b-4cf5-b35c-9b9f221be136
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
 id: form
 label: Form
 icon_uuid: null
+icon_default: null
 description: 'Use <em>Forms</em> to embed existing web forms.'
 behavior_plugins: {  }

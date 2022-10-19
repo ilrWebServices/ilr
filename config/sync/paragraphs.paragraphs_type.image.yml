@@ -4,6 +4,10 @@ status: true
 dependencies:
   module:
     - ilr_effects
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
 id: image
 label: Image
 icon_uuid: null

@@ -5,6 +5,10 @@ dependencies:
   module:
     - ilr
     - ilr_section_navigation
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
 id: section
 label: Section
 icon_uuid: null

@@ -11,6 +11,7 @@ dependencies:
     - paragraphs.paragraphs_type.deck
     - paragraphs.paragraphs_type.event_listing
     - paragraphs.paragraphs_type.form
+    - paragraphs.paragraphs_type.from_library
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.instagram_listing
     - paragraphs.paragraphs_type.media_deck
@@ -59,10 +60,11 @@ settings:
       people_listing: people_listing
       picture_in_picture: picture_in_picture
       event_listing: event_listing
-      topic_list: topic_list
       instagram_listing: instagram_listing
       section_navigation: section_navigation
       table_of_contents: table_of_contents
+      topic_list: topic_list
+      from_library: from_library
     negate: 0
     target_bundles_drag_drop:
       collection_listing:
@@ -85,6 +87,9 @@ settings:
         enabled: true
       form:
         weight: -37
+        enabled: true
+      from_library:
+        weight: 32
         enabled: true
       image:
         weight: -39

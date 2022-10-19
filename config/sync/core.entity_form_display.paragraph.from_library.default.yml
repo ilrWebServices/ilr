@@ -1,0 +1,36 @@
+uuid: 97090e9a-3044-41bf-94b1-6f9d94ed9ef5
+langcode: en
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.paragraphs_library_items
+    - field.field.paragraph.from_library.field_reusable_paragraph
+    - paragraphs.paragraphs_type.from_library
+  module:
+    - entity_browser
+_core:
+  default_config_hash: Bea-FFbHlBuiYLW8Et0hLK6VNECewxpIchDbOtC7IDo
+id: paragraph.from_library.default
+targetEntityType: paragraph
+bundle: from_library
+mode: default
+content:
+  field_reusable_paragraph:
+    type: entity_browser_entity_reference
+    weight: 1
+    region: content
+    settings:
+      entity_browser: paragraphs_library_items
+      field_widget_display: rendered_entity
+      field_widget_edit: true
+      field_widget_remove: false
+      field_widget_replace: true
+      open: true
+      field_widget_display_settings:
+        view_mode: summary
+      selection_mode: selection_append
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

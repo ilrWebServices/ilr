@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_sections
     - node.type.page
+    - paragraphs.paragraphs_type.from_library
     - paragraphs.paragraphs_type.section
   module:
     - entity_reference_revisions
@@ -23,28 +24,53 @@ settings:
   handler_settings:
     target_bundles:
       section: section
+      from_library: from_library
     negate: 0
     target_bundles_drag_drop:
       collection_listing:
         weight: 13
         enabled: false
+      collection_listing_publication:
+        weight: 26
+        enabled: false
+      curated_course_listing:
+        weight: 27
+        enabled: false
+      curated_post_listing:
+        weight: 28
+        enabled: false
       deck:
         weight: 14
+        enabled: false
+      event_listing:
+        weight: 30
         enabled: false
       form:
         weight: 15
         enabled: false
+      from_library:
+        weight: 32
+        enabled: true
       image:
         weight: 16
+        enabled: false
+      instagram_listing:
+        weight: 34
+        enabled: false
+      media_deck:
+        weight: 35
+        enabled: false
+      people_listing:
+        weight: 36
         enabled: false
       person:
         weight: 17
         enabled: false
+      picture_in_picture:
+        weight: 38
+        enabled: false
       promo:
         weight: 18
-        enabled: false
-      referenced_entity:
-        weight: 19
         enabled: false
       rich_text:
         weight: 20
@@ -52,11 +78,23 @@ settings:
       section:
         weight: 21
         enabled: true
+      section_navigation:
+        weight: 42
+        enabled: false
       simple_collection_listing:
         weight: 22
         enabled: false
+      table_of_contents:
+        weight: 44
+        enabled: false
       testimonial:
         weight: 23
+        enabled: false
+      testimonial_deck:
+        weight: 46
+        enabled: false
+      topic_list:
+        weight: 47
         enabled: false
       video:
         weight: 24
