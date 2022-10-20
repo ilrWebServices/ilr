@@ -1101,5 +1101,6 @@ function ilr_post_update_inquiry_form_name_updates(&$sandbox) {
 
     $submission->setData($data);
     $submission->save();
+    salesforce_push_entity_crud($submission, 'push_create');
   }
 }
