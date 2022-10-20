@@ -1,21 +1,16 @@
-uuid: fd60221f-f49d-4faa-9875-2555b3c38b37
+uuid: 7637d18f-91d8-4d5b-a0e4-a68cdaeb523d
 langcode: en
 status: open
-dependencies:
-  module:
-    - honeypot
-third_party_settings:
-  honeypot:
-    honeypot: true
+dependencies: {  }
 weight: 0
 open: null
 close: null
-uid: 1
+uid: 5
 template: false
 archive: false
-id: program_inquiry_form
-title: 'Program Inquiry Form'
-description: 'An inquiry/eligibility form for some programs'
+id: program_inquiry_form_hr_leadersh
+title: 'Program Inquiry Form - HR Leadership for Organizational Excellence'
+description: 'An inquiry/eligibility form for the HR Leadership for Organizational Excellence program'
 category: 'professional programs'
 elements: |-
   name:
@@ -271,9 +266,9 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: ep386@cornell.edu
+      to_mail: kts47@cornell.edu
       to_options: {  }
-      bcc_mail: al2269@cornell.edu
+      bcc_mail: epira@cornell.edu
       bcc_options: {  }
       cc_mail: ''
       cc_options: {  }
