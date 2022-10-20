@@ -22,7 +22,15 @@ elements: |-
     '#type': textfield
     '#title': Name
     '#required': true
-    '#default_value': '[current-user:display-name]'
+    '#access': false
+  firstname:
+    '#type': textfield
+    '#title': 'First name'
+    '#required': true
+  lastname:
+    '#type': textfield
+    '#title': 'Last name'
+    '#required': true
   email:
     '#type': email
     '#title': Email

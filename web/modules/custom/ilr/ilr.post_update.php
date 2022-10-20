@@ -1062,3 +1062,44 @@ function ilr_post_update_set_promo_layouts(&$sandbox) {
     $promo_paragraph->save();
   }
 }
+
+/**
+ * Split single name field in to first and last for inquiry forms.
+ */
+function ilr_post_update_inquiry_form_name_updates(&$sandbox) {
+  $submission_storage = \Drupal::entityTypeManager()->getStorage('webform_submission');
+  $submission_ids = \Drupal::entityQuery('webform_submission')
+    ->accessCheck(FALSE)
+    ->condition('webform_id', ['program_inquiry_form_hr_leadersh', 'program_inquiry_form_cdo_program', 'program_inquiry_form'], 'IN')
+    ->sort('sid')
+    ->execute();
+
+  $submissions = $submission_storage->loadMultiple($submission_ids);
+
+  /** @var \Drupal\webform\Entity\WebformSubmission $submission */
+  foreach ($submissions as $submission) {
+    $data = $submission->getData();
+
+    if (empty($data['name'])) {
+      continue;
+    }
+
+    $name_arr = explode(' ', trim(str_replace(['Dr.', 'PhD', ','], '', $data['name'])));
+
+    if (count($name_arr) > 5) {
+      continue;
+    }
+
+    if (count($name_arr) === 1) {
+      $name_arr[] = 'NOT PROVIDED';
+    }
+
+    $data += [
+      'firstname' => reset($name_arr),
+      'lastname' => end($name_arr),
+    ];
+
+    $submission->setData($data);
+    $submission->save();
+  }
+}
