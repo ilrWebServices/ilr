@@ -1,6 +1,6 @@
 langcode: en
-id: ladp_submission_lead
-label: 'Arbitrators Development Program Webform Leads'
+id: cdo_submission_lead
+label: 'CDO Program Webform Leads'
 weight: 0
 type: salesforce_mapping
 key: ''
@@ -23,7 +23,7 @@ sync_triggers:
   pull_delete: false
 salesforce_object_type: Lead
 drupal_entity_type: webform_submission
-drupal_bundle: program_inquiry_form_ladp
+drupal_bundle: program_inquiry_form_cdo_program
 field_mappings:
   -
     drupal_field_type: WebformElements
@@ -125,31 +125,31 @@ field_mappings:
     description: ''
   -
     drupal_field_type: Constant
-    drupal_field_value: Institute
+    drupal_field_value: 'CAHRS and Other'
     direction: drupal_sf
     salesforce_field: Lead_Type__c
     id: 14
-    description: ''
-  -
-    drupal_field_type: Constant
-    drupal_field_value: 'Arbitrators Development Program'
-    direction: drupal_sf
-    salesforce_field: Email_Marketing_Personas__c
-    id: 15
     description: ''
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:submission_url:value]'
     direction: drupal_sf
     salesforce_field: Web_Form_Submission_URL__c
+    id: 15
+    description: ''
+  -
+    drupal_field_type: Constant
+    drupal_field_value: 'senior leader programs;Modern Chief Diversity Officer'
+    direction: drupal_sf
+    salesforce_field: Area_of_Interest__c
     id: 16
     description: ''
 status: true
 dependencies:
   config:
-    - webform.webform.program_inquiry_form_ladp
+    - webform.webform.program_inquiry_form_cdo_program
   module:
     - salesforce_push
     - salesforce_webform
     - token
-uuid: b8298184-e998-4b48-ad1a-a970be683369
+uuid: f5bd50f5-78d6-49c9-85d3-589487fb3b9b
