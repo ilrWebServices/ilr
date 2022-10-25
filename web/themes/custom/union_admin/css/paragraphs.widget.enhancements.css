@@ -26,3 +26,7 @@
 .paragraphs-subform .field--name-status {
   float: right;
 }
+
+.js .field--widget-paragraphs .paragraphs-dropbutton-wrapper .dropbutton-widget {
+  position: relative;
+}
