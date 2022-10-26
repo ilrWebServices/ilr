@@ -1,4 +1,3 @@
-{% extends "block.html.twig" %}
 {#
 /**
  * @file
@@ -13,10 +12,12 @@
  * - site_slogan: Slogan for site as defined in Site information settings.
  */
 #}
-{% block content %}
-  {% include '@union/_ilr-lockup.twig' with {
-    logo_alt: 'The ILR School home'
-  } only %}
-
-  {# @todo Place site-specific branding here, like a logo or some text, and set the lockup link above to www.ilr.cornell.edu. #}
-{% endblock %}
+{% include '@union/_ilr-lockup.twig' with {
+  logo_alt: 'The ILR School home',
+  attributes: attributes.addClass([
+    'cu-x-block',
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|replace({':': '--'})|clean_class,
+  ])
+} only %}
