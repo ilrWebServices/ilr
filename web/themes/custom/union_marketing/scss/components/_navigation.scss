@@ -173,15 +173,26 @@ nav[id^="block-union-marketing-menu-subsite"] {
 
 .cu-component--section-navigation {
   background-color: #efefef;
-  padding: var(--cu-vr0) var(--cu-vr0) 0 var(--cu-vr0);
-
 }
 
 .section-menu {
   list-style-type: none;
   display: grid;
-  padding: 0;
-  grid-column-gap: 100px;
+  padding: var(--cu-vr1) var(--cu-ps1);
+  margin: 0;
+  column-gap: 5em;
+
+  &--short {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+
+    @include breakpoint(sm) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
 
   @include breakpoint(sm) {
     grid-template-columns: repeat(2, 1fr);
@@ -218,24 +229,17 @@ nav[id^="block-union-marketing-menu-subsite"] {
   }
 
   .section-menu {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 var(--cu-ps1);
-
-    @include breakpoint(md) {
-      flex-direction: row;
-    }
+    max-width: var(--cu-max-section-width, 1060px);
+    margin-left: auto;
+    margin-right: auto;
 
     .section-menu__link {
       --cu-font-size: var(--cu-ms-3);
       --cu-font-weight: 400;
       --cu-accent-width: 46px;
       --cu-accent-width-hover: 60px;
-      --cu-accent-margin: 1.5em 0 0 0;
+      --cu-accent-margin: 0.5em 0 0 0;
       text-transform: uppercase;
-
     }
   }
 }
