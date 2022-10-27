@@ -2,16 +2,17 @@
   display: grid;
   justify-content: stretch;
   grid-template-columns: auto 25px;
-  grid-template-rows: auto auto;
+  grid-template-rows: var(--minibar-height);
   border: none;
-  gap: var(--cu-vr0) 0;
+  gap: var(--cu-vr1) var(--cu-ps0);
   padding: 0 0 var(--cu-vr1);
+  background: transparent;
 
   @include breakpoint(sm) {
     padding-top: var(--cu-vr1);
-    grid-template-columns: auto 76px 25px;
-    gap: 0 var(--cu-ps1);
-    // justify-content: start;
+    grid-template-columns: auto 74px 25px;
+    // The top row is the seal and logo when the minibar is hidden. See _minibar.scss.
+    grid-template-rows: 74px;
   }
 
   .cornell-minibar {
@@ -71,12 +72,8 @@
   grid-column: 1;
 
   img {
-    margin-right: var(--cu-ps2);
-    height: inherit;
-
-    @include breakpoint(md) {
-      height: 76px;
-    }
+    height: 100%;
+    max-height: 74px;
   }
 }
 

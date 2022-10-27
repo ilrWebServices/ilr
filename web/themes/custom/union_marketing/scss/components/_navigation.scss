@@ -47,7 +47,7 @@
 }
 
 .cu-menu--main {
-  align-self: center;
+  text-align: right;
 }
 
 .cu-header .cu-logo {
@@ -75,8 +75,6 @@
 
 // Override of Union ILR skin.
 label[for="nav-trigger"] {
-  right: 1.5rem;
-  top: 35%;
   line-height: 1;
 }
 
@@ -99,15 +97,11 @@ label[for="nav-trigger"] {
   --cu-text-color: #{$black};
   font-size: var(--cu-ms-1);
   list-style-type: none;
-  margin: var(--cu-vr1) 0 0;
   padding: var(--cu-vr1) 0;
   border-top: 1px solid $gray-light;
   justify-content: flex-start;
-  top: 120px;
-  left: 0;
 
   @include breakpoint(md) {
-    top: auto;
     padding-bottom: 0;
   }
 
@@ -141,15 +135,8 @@ label[for="nav-trigger"] {
   }
 }
 
-.nav-trigger:checked~.cu-menu__list--subsite {
-  position: fixed;
-  left: 1em;
-}
-
 // @todo: Note that this should move with the union main-menu header styles refactor.
 nav[id^="block-union-marketing-menu-subsite"] {
-  position: relative;
-
   @include breakpoint(sm) {
     flex-basis: 100%;
     flex-grow: 1;

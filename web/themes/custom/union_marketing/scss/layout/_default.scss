@@ -49,16 +49,10 @@ body {
 header {
   grid-row: header;
   grid-column: content;
-
-  // Position the logo at the start
-  > :first-child {
-    margin-right: auto;
-  }
 }
 
 header.cu-header {
   justify-content: flex-end;
-  align-items: flex-start;
 }
 
 main {
