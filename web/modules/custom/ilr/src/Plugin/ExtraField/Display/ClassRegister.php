@@ -31,6 +31,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
     $instance = new static($configuration, $plugin_id, $plugin_definition);
     $instance->entityTypeManager = $container->get('entity_type.manager');
     $instance->pathAliasEntitiesManager = $container->get('path_alias.entities');
+    $instance->config = $container->get('config.factory');
     return $instance;
   }
 
@@ -43,6 +44,12 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
     $class_info = [];
 
     foreach ($classes as $class) {
+      $info = [
+        'entity' => $class,
+        'course' => $class->field_course->entity,
+        'register_url' => '',
+      ];
+
       $mapped_objects = $this->entityTypeManager->getStorage('salesforce_mapped_object')
         ->loadByProperties([
           'drupal_entity__target_type' => 'node',
@@ -52,14 +59,15 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
 
       $mapping = reset($mapped_objects);
 
-      if (empty($mapping)) {
-        continue;
+      if ($mapping) {
+        $info['register_url'] = $this->config->get('ilr_registration_system.settings')->get('url') . $mapping->salesforce_id->getString();
       }
 
-      $class_info[] = [
-        'salesforce_id' => $mapping->salesforce_id->getString(),
-        'entity' => $class,
-      ];
+      if (!$class->field_external_link->isEmpty()) {
+        $info['register_url'] = $class->field_external_link->uri;
+      }
+
+      $class_info[] = $info;
     }
 
     $build['ilr_class_register_block'] = [

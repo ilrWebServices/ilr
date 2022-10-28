@@ -3,15 +3,10 @@
 
 {% set form_elements = [] %}
 {% for class in classes %}
-  {% set course_nid = class.entity.field_course.value[0].target_id %}
-  {% set course = drupal_entity('node', course_nid)['#node'] %}
+  {% set course = class.course %}
   {% set cancelled = class.entity.field_class_cancelled.value == '1' %}
   {% set full = class.entity.field_class_full.value == '1' %}
   {% set disabled = null %}
-  {% set class_register_url = (class.entity.field_external_link.value is not empty)
-    ? class.entity.field_external_link.uri
-    : drupal_config('ilr_registration_system.settings', 'url') ~ class.salesforce_id
-  %}
 
   {% set content %}
     <div class="details">
@@ -48,7 +43,7 @@
     {% endif %}
 
     {% if class.entity.field_message.value %}
-      <p class="class-message">{{ class.entity.field_message.value }}</p>
+      <div class="class-message">{{ drupal_field('field_message', 'node', class.entity.id) }}</div>
     {% endif %}
     </div>
 
@@ -57,11 +52,12 @@
     </div>
   {% endset %}
 
+  {# @todo Figure out why we use a different value for id and name. #}
   {% set input = {
     'id': 'event-checkbutton-'~class.entity.id,
     'type': 'radio',
-    'name': 'event-checkbutton-'~course_nid,
-    'value': class_register_url,
+    'name': 'event-checkbutton-'~course.id,
+    'value': class.register_url,
     'data-price': '$'~class.entity.field_price.value|round,
     'disabled': disabled
   } %}
