@@ -16,16 +16,19 @@
       <div class="cu-class-delivery-method">{{ drupal_field('field_address', 'node', class.entity.id, 'teaser') }}</div>
     {% endif %}
 
-    {% if course.field_course_number.value|upper starts with 'OLLB' or course.field_course_number.value|upper starts with 'LS' %}
-      {{ drupal_field('field_class_date', 'node', class.entity.id, 'teaser') }}
-      <p>All instruction will be completed between these dates.</p>
-    {% else %}
+    {% if class.entity.sessions|length %}
       <div class="class-sessions">
       {% for session in class.entity.sessions %}
         {# @see ClassSession::baseFieldDefinitions() session_date field setDisplayOptions() #}
         <div class="cu-class-session-date">{{ session.entity.session_date.value|date('D, F j, Y, ') }} {{ drupal_field('session_date', 'class_session', session.entity.id.value, 'default', NULL, FALSE) }}</div>
       {% endfor %}
       </div>
+    {% else %}
+      {{ drupal_field('field_class_date', 'node', class.entity.id, 'teaser') }}
+    {% endif %}
+
+    {% if course.field_course_number.value|upper starts with 'OLLB' or course.field_course_number.value|upper starts with 'LS' %}
+      <p>All instruction will be completed between these dates.</p>
     {% endif %}
 
     {% if cancelled or full %}
