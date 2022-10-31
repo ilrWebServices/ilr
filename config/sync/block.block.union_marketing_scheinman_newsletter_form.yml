@@ -8,6 +8,7 @@ dependencies:
   module:
     - block_visibility_groups
     - ilr
+    - system
     - webform
   theme:
     - union_marketing
@@ -34,3 +35,7 @@ visibility:
     id: root_path_entity_bundle
     root_entity_bundles: {  }
     negate: false
+  request_path:
+    id: request_path
+    negate: true
+    pages: /scheinman-institute/labor-arbitrator-development-program
