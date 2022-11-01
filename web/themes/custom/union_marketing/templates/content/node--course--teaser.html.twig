@@ -92,13 +92,16 @@
       name: upcoming_classes.0.computed_delivery_method,
       icon: 'check-circle',
       icon_size: '1em'
-    },
-    {
-      name: upcoming_classes.0.field_price|view('teaser'),
-      icon: 'check-circle',
-      icon_size: '1em'
     }
   ] %}
+
+  {% if not upcoming_classes.0.field_price.isEmpty() %}
+  {% set feature_list_items = feature_list_items|merge([{
+    name: upcoming_classes.0.field_price|view('teaser'),
+    icon: 'check-circle',
+    icon_size: '1em'
+  }]) %}
+  {% endif %}
 
   {% if not upcoming_classes.0.field_address.isEmpty() %}
   {% set feature_list_items = feature_list_items|merge([{

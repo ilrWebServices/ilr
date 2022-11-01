@@ -3,15 +3,10 @@
 
 {% set form_elements = [] %}
 {% for class in classes %}
-  {% set course_nid = class.entity.field_course.value[0].target_id %}
-  {% set course = drupal_entity('node', course_nid)['#node'] %}
+  {% set course = class.course %}
   {% set cancelled = class.entity.field_class_cancelled.value == '1' %}
   {% set full = class.entity.field_class_full.value == '1' %}
   {% set disabled = null %}
-  {% set class_register_url = (class.entity.field_external_link.value is not empty)
-    ? class.entity.field_external_link.uri
-    : drupal_config('ilr_registration_system.settings', 'url') ~ class.salesforce_id
-  %}
 
   {% set content %}
     <div class="details">
@@ -21,16 +16,19 @@
       <div class="cu-class-delivery-method">{{ drupal_field('field_address', 'node', class.entity.id, 'teaser') }}</div>
     {% endif %}
 
-    {% if course.field_course_number.value|upper starts with 'OLLB' or course.field_course_number.value|upper starts with 'LS' %}
-      {{ drupal_field('field_class_date', 'node', class.entity.id, 'teaser') }}
-      <p>All instruction will be completed between these dates.</p>
-    {% else %}
+    {% if class.entity.sessions|length %}
       <div class="class-sessions">
       {% for session in class.entity.sessions %}
         {# @see ClassSession::baseFieldDefinitions() session_date field setDisplayOptions() #}
         <div class="cu-class-session-date">{{ session.entity.session_date.value|date('D, F j, Y, ') }} {{ drupal_field('session_date', 'class_session', session.entity.id.value, 'default', NULL, FALSE) }}</div>
       {% endfor %}
       </div>
+    {% else %}
+      {{ drupal_field('field_class_date', 'node', class.entity.id, 'teaser') }}
+    {% endif %}
+
+    {% if course.field_course_number.value|upper starts with 'OLLB' or course.field_course_number.value|upper starts with 'LS' %}
+      <p>All instruction will be completed between these dates.</p>
     {% endif %}
 
     {% if cancelled or full %}
@@ -48,20 +46,22 @@
     {% endif %}
 
     {% if class.entity.field_message.value %}
-      <p class="class-message">{{ class.entity.field_message.value }}</p>
+      <div class="class-message">{{ drupal_field('field_message', 'node', class.entity.id) }}</div>
     {% endif %}
     </div>
 
+    {% if class.entity.field_price.value %}
     <div class="price">
       <p class="cu-checkbutton__price cu-heading">${{ class.entity.field_price.value }}</p>
     </div>
+    {% endif %}
   {% endset %}
 
   {% set input = {
     'id': 'event-checkbutton-'~class.entity.id,
     'type': 'radio',
-    'name': 'event-checkbutton-'~course_nid,
-    'value': class_register_url,
+    'name': 'event-checkbutton-'~course.id,
+    'value': class.register_url,
     'data-price': '$'~class.entity.field_price.value|round,
     'disabled': disabled
   } %}

@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.paragraph.field_content
     - node.type.certificate
+    - node.type.course
     - node.type.page
     - node.type.post
     - paragraphs.paragraphs_type.promo
@@ -28,10 +29,12 @@ settings:
     handler_settings:
       target_bundles:
         certificate: certificate
+        course: course
         page: page
         post: post
       sort:
         field: _none
+        direction: ASC
       auto_create: false
       auto_create_bundle: certificate
   persona:
@@ -42,6 +45,7 @@ settings:
         staff: staff
       sort:
         field: _none
+        direction: ASC
       auto_create: false
       auto_create_bundle: faculty
   block:
@@ -71,6 +75,12 @@ settings:
   config_split:
     handler: 'default:config_split'
     handler_settings: {  }
+  crop:
+    handler: 'default:crop'
+    handler_settings: {  }
+  crop_type:
+    handler: 'default:crop_type'
+    handler_settings: {  }
   editor:
     handler: 'default:editor'
     handler_settings: {  }
@@ -89,14 +99,32 @@ settings:
   filter_format:
     handler: 'default:filter_format'
     handler_settings: {  }
+  section_import_mapped_object:
+    handler: 'default:section_import_mapped_object'
+    handler_settings: {  }
+  class_session:
+    handler: 'default:class_session'
+    handler_settings: {  }
   image_style:
     handler: 'default:image_style'
+    handler_settings: {  }
+  key:
+    handler: 'default:key'
+    handler_settings: {  }
+  key_config_override:
+    handler: 'default:key_config_override'
+    handler_settings: {  }
+  linkit_profile:
+    handler: 'default:linkit_profile'
     handler_settings: {  }
   media_type:
     handler: 'default:media_type'
     handler_settings: {  }
   media:
     handler: 'default:media'
+    handler_settings: {  }
+  pdf_image_entity:
+    handler: 'default:pdf_image_entity'
     handler_settings: {  }
   metatag_defaults:
     handler: 'default:metatag_defaults'
@@ -199,32 +227,5 @@ settings:
     handler_settings: {  }
   base_field_override:
     handler: 'default:base_field_override'
-    handler_settings: {  }
-  class_session:
-    handler: 'default:class_session'
-    handler_settings: {  }
-  key:
-    handler: 'default:key'
-    handler_settings: {  }
-  key_config_override:
-    handler: 'default:key_config_override'
-    handler_settings: {  }
-  mailchimp_signup:
-    handler: 'default:mailchimp_signup'
-    handler_settings: {  }
-  crop:
-    handler: 'default:crop'
-    handler_settings: {  }
-  crop_type:
-    handler: 'default:crop_type'
-    handler_settings: {  }
-  linkit_profile:
-    handler: 'default:linkit_profile'
-    handler_settings: {  }
-  section_import_mapped_object:
-    handler: 'default:section_import_mapped_object'
-    handler_settings: {  }
-  google_tag_container:
-    handler: 'default:google_tag_container'
     handler_settings: {  }
 field_type: dynamic_entity_reference
