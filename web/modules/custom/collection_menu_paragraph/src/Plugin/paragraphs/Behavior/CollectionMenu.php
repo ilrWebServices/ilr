@@ -134,6 +134,7 @@ class CollectionMenu extends ParagraphsBehaviorBase {
     ];
     $tree = $this->menuTree->transform($tree, $manipulators);
     $build['collection_menu'] = $this->menuTree->build($tree);
+    $build['collection_menu']['#theme'] .=  '_collection_menu_paragraph';
     $build['#cache']['contexts'][] = 'url.path';
   }
 
