@@ -9,7 +9,8 @@
   'use strict';
 
   /**
-   * Move the section navigation into the banner region, if present.
+   * Move the section navigation into the banner region, if it is the first
+   * component.
    */
   Drupal.behaviors.ilrSectionNavigation = {
     attach: function (context) {
@@ -19,16 +20,16 @@
         return;
       }
 
-      let section_navigation = context.querySelector('.cu-component--section-navigation');
       let banner_region = context.querySelector('.layout-banner');
+      let components = context.querySelectorAll('.cu-component');
 
-      if (section_navigation && banner_region) {
+      if (banner_region && components.length && components[0].classList.contains('cu-component--section-navigation')) {
         let comment = document.createComment('This menu was moved here via banner_nav.js');
         banner_region.appendChild(comment);
-        banner_region.appendChild(section_navigation);
-
+        banner_region.appendChild(components[0]);
         document.body.classList.add('include-banner-nav');
       }
+
     }
   };
 

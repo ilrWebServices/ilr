@@ -178,21 +178,26 @@ function union_marketing_theme_suggestions_node_alter(array &$suggestions, array
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
- *
- * @todo - Revisit this in the future to see if we can better integrate subsite
- * menus with section menus. The former appears in the header, while the latter
- * in the content area.
  */
 function union_marketing_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
   if (!isset($variables['menu_name'])) {
     return;
   }
 
-  if (strpos($variables['menu_name'], 'subsite-') === 0) {
+  $is_subsite = strpos($variables['menu_name'], 'subsite-') === 0;
+  $is_section = strpos($variables['menu_name'], 'section-') === 0;
+
+  // @see \Drupal\collection_menu_paragraph\Plugin\paragraphs\Behavior\CollectionMenu::view().
+  $is_collection_menu_paragraph = preg_match('/subsite_\d+_collection_menu_paragraph/', $variables['theme_hook_original']);
+
+  if ($is_subsite) {
     $suggestions[] = 'menu__type_subsite';
   }
 
-  if (strpos($variables['menu_name'], 'section-') === 0) {
+  // Even subsite menus should appear as section menus when placed via the
+  // collection menu paragraph. Placing this suggestion last means that it will
+  // be used first, since later suggestions are considered more specific.
+  if ($is_section || $is_collection_menu_paragraph) {
     $suggestions[] = 'menu__type_section';
   }
 }

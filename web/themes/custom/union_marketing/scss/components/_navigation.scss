@@ -160,33 +160,33 @@ nav[id^="block-union-marketing-menu-subsite"] {
 
 .cu-component--section-navigation {
   background-color: #efefef;
+  padding: var(--cu-vr1) var(--cu-ps1);
+
+  .cu-heading {
+    margin-bottom: var(--cu-vr1);
+    text-align: center;
+  }
 }
 
 .section-menu {
   list-style-type: none;
   display: grid;
-  padding: var(--cu-vr1) var(--cu-ps1);
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+  padding: 0;
   margin: 0;
-  column-gap: 5em;
+  column-gap: 4em;
+  row-gap: 2em;
 
   &--short {
     display: flex;
+    column-gap: 5em;
     flex-direction: column;
-    padding-bottom: 0;
 
     @include breakpoint(sm) {
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
     }
-  }
-
-  @include breakpoint(sm) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include breakpoint(md) {
-    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -196,7 +196,6 @@ nav[id^="block-union-marketing-menu-subsite"] {
   text-decoration: none;
   font-weight: 400;
   display: block;
-  margin-bottom: var(--cu-vr0);
 }
 
 // Breadcrumb overrides here
@@ -216,9 +215,11 @@ nav[id^="block-union-marketing-menu-subsite"] {
   }
 
   .section-menu {
-    max-width: var(--cu-max-section-width, 1060px);
-    margin-left: auto;
-    margin-right: auto;
+    @include breakpoint(md) {
+      max-width: var(--cu-max-section-width, 1060px);
+      margin-left: auto;
+      margin-right: auto;
+    }
 
     .section-menu__link {
       --cu-font-size: var(--cu-ms-3);
