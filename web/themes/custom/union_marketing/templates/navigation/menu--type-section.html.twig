@@ -30,7 +30,7 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul{{attributes.addClass(['section-menu', items|length < 5 ? 'section-menu--short'])}}>
+      <ul{{attributes.addClass(['section-menu', items|length < 4 ? 'section-menu--short'])}}>
     {% else %}
       <ul{{attributes.addClass('section-submenu')}}>
     {% endif %}
