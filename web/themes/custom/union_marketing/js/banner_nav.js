@@ -21,7 +21,7 @@
       }
 
       let banner_region = context.querySelector('.layout-banner');
-      let components = context.querySelectorAll('.cu-component');
+      let components = context.querySelectorAll('.paragraph:not(.paragraph--type--section)');
 
       if (banner_region && components.length && components[0].classList.contains('cu-component--section-navigation')) {
         let comment = document.createComment('This menu was moved here via banner_nav.js');
