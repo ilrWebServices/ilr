@@ -1,0 +1,8 @@
+name: 'ILR Outreach Registration'
+type: module
+description: 'Webform and other integration with Salesforce events'
+core_version_requirement: ^9
+package: 'ILR'
+dependencies:
+  - webform
+  - salesforce
