@@ -31,6 +31,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/ilrWebServices/drupal_collegenet2sf.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/ilrWebServices/ilr_outreach_order_submitter.git"
     }
   ],
   "require": {
@@ -63,6 +67,7 @@
     "drupal/footnotes": "^3.0",
     "drupal/google_tag": "^1.2",
     "drupal/honeypot": "^2.0",
+    "drupal/ilr_outreach_order_submitter": "1.x-dev",
     "drupal/imagecache_external": "^3.0",
     "drupal/inline_entity_form": "^1.0@RC",
     "drupal/key": "^1.14",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6b6dc1406d3ff0be447570757916aaa8",
+    "content-hash": "92d0180c432891cc4c5b7e75aeb4900e",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3974,6 +3974,32 @@
                 "source": "https://git.drupalcode.org/project/honeypot",
                 "issues": "https://www.drupal.org/project/issues/honeypot"
             }
+        },
+        {
+            "name": "drupal/ilr_outreach_order_submitter",
+            "version": "1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ilrWebServices/ilr_outreach_order_submitter.git",
+                "reference": "3d20cfd3445e91f12d04cd9098b3202cdee5b4bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ilrWebServices/ilr_outreach_order_submitter/zipball/3d20cfd3445e91f12d04cd9098b3202cdee5b4bc",
+                "reference": "3d20cfd3445e91f12d04cd9098b3202cdee5b4bc",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/salesforce": "~5.0"
+            },
+            "default-branch": true,
+            "type": "drupal-module",
+            "description": "Custom Drupal module that submits orders to Salesforce",
+            "support": {
+                "source": "https://github.com/ilrWebServices/ilr_outreach_order_submitter/tree/1.x",
+                "issues": "https://github.com/ilrWebServices/ilr_outreach_order_submitter/issues"
+            },
+            "time": "2022-11-08T21:29:06+00:00"
         },
         {
             "name": "drupal/imagecache_external",
@@ -16514,6 +16540,7 @@
         "cornell/union": 20,
         "drupal/collection": 20,
         "drupal/entity_usage": 10,
+        "drupal/ilr_outreach_order_submitter": 20,
         "drupal/inline_entity_form": 5,
         "drupal/persistent_visitor_parameters": 20,
         "drupal/sftp_client": 20,
