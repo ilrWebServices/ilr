@@ -1,6 +1,8 @@
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - ilr_outreach_registration
 weight: 0
 open: null
 close: null
@@ -231,5 +233,14 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  ilr_outreach_registration_order_submitter:
+    id: outreach_registration_submitter
+    handler_id: ilr_outreach_registration_order_submitter
+    label: 'ILR Outreach registration order submitter'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings: {  }
 variants: {  }
