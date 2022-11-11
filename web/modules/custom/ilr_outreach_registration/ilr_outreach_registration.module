@@ -1,0 +1,106 @@
+<?php
+
+/**
+ * Implements hook_webform_options_alter().
+ *
+ * @todo This could become a custom webform element instead.
+ *
+ * @deprecated This has been replaced with a hidden text field, but left for
+ * allowed values reference.
+ */
+function ilr_outreach_registration_webform_options_alter(array &$options, array &$element, $options_id = NULL) {
+  if (empty($element['#webform_key'])) {
+    return;
+  }
+
+  $request = \Drupal::request();
+  /** @var \Drupal\Core\Http\InputBag $query */
+  $query = $request->query;
+
+  if ($element['#webform_key'] === 'outreach_areas_of_interest') {
+    $url_values = $query->get('interests') ?? [];
+    $allowed_values = [
+      'Conflict Resolution',
+      'Customized Program',
+      'Disability and Employment',
+      'Diversity and Inclusion',
+      'Employee Relations',
+      'Employment Law',
+      'HR Leadership for Organizational Excellence',
+      'Human Resources',
+      'Labor Relations',
+      'Leadership Development and Organizational Change',
+      'Modern Chief Diversity Officer',
+      'Modern CHRO Role Program',
+      'Senior Leader Programs',
+      'Strategic HR Business Partnering Program',
+      'Union Leadership',
+      'Workplace Health and Safety',
+    ];
+  }
+  elseif ($element['#webform_key'] === 'outreach_marketing_personas') {
+    $url_values = $query->get('personas') ?? [];
+    $allowed_values = [
+      'ADRHUB',
+      'Advisory Council',
+      'Alumni',
+      'Arbitrators Development Program',
+      'Board Member',
+      'BSILR',
+      'Buffalo Co-Lab',
+      'CAHRS hrSpectrum eNews',
+      'CAHRS Quarterly',
+      'CAHRS Top 10 News',
+      'CJI',
+      'CJI Media List',
+      'CJI Summit Attendee',
+      'CJI Summit Registrant',
+      'eCornell',
+      'EMHRM',
+      'Environmental Organization',
+      'Equity in Focus 2022',
+      'Faculty',
+      'Funder',
+      'ICS Research Fellows',
+      'ILR News Updates',
+      'Institute for Compensation Studies',
+      'Ithaca Co-Lab',
+      'Labor and Employment Law Program',
+      'Labor Leaders',
+      'LDI-CRRESS',
+      'Media',
+      'MILR',
+      'MPSNYC',
+      'New Conversations Project',
+      'Newsletter',
+      'NLLI',
+      'Pay Transparency Event',
+      'Policymaker',
+      'Scheinman Board Member',
+      'Scheinman Institute',
+      'Scheinman Institute Member',
+      'Scheinman Newsletter',
+      'Staff',
+      'Student',
+      'Transatlantic Social Dialogue',
+      'ULI',
+      'Union',
+      'Webinar Attendee',
+      'WI Mailing List',
+      'Work and Coronavirus Updates',
+      'Worker Institute',
+    ];
+  }
+  else {
+    return;
+  }
+
+  $available_options = array_intersect($url_values, $allowed_values);
+
+  if (empty($available_options)) {
+    // @todo Only hide this on embedded forms.
+    return;
+  }
+
+  $options = array_combine($available_options, $available_options);
+}

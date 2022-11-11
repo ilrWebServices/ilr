@@ -1,0 +1,13 @@
+ilr_outreach_registration.salesforce_pingback_webform_webhook_v1:
+  path: '/hooks/v1/salesforce-pingback/webform/{webform}'
+  defaults:
+    _controller: '\Drupal\ilr_outreach_registration\Controller\SalesforcePingbackWebformWebhook::v1'
+    _title: 'Salesforce Pingback Webform Webhook v1'
+  methods: [POST]
+  requirements:
+    _content_type_format: json
+    _permission: 'access content'
+  options:
+    parameters:
+      webform:
+        type: 'entity:webform'
