@@ -14,6 +14,11 @@ title: 'Generic Event Registration'
 description: ''
 category: ''
 elements: |-
+  variant:
+    '#type': webform_variant
+    '#title': Variant
+    '#variant': override
+    '#display_on': view
   company:
     '#type': textfield
     '#title': Organization
@@ -240,4 +245,17 @@ handlers:
     conditions: {  }
     weight: 0
     settings: {  }
-variants: {  }
+variants:
+  worker_institute_opt_in:
+    id: override
+    variant_id: worker_institute_opt_in
+    element_key: variant
+    label: 'Worker Institute opt-in'
+    notes: ''
+    status: true
+    weight: 0
+    settings:
+      debug: false
+      settings: {  }
+      elements: "opt_in:\r\n  '#title': Opt-in for updates from The Worker Institute"
+      handlers: {  }
