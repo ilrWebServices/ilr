@@ -2,12 +2,7 @@
 
 namespace Drupal\ilr_outreach_registration\Plugin\WebformHandler;
 
-use Drupal\Component\Utility\Xss;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Logger\LoggerChannelTrait;
-use Drupal\Core\Render\Markup;
 use Drupal\webform\Plugin\WebformHandlerBase;
-use Drupal\webform\WebformInterface;
 use Drupal\webform\WebformSubmissionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -15,9 +10,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Webform handler to submit registration submissions to Salesforce webhook.
  *
  * @WebformHandler(
- *   id = 'outreach_registration_submitter',
- *   label = @Translation('ILR Outreach registration order submitter'),
- *   description = @Translation('Submits registration form submissions as orders to Salesforce.'),
+ *   id = "outreach_registration_submitter",
+ *   label = @Translation("ILR Outreach registration order submitter"),
+ *   description = @Translation("Submits registration form submissions as orders to Salesforce."),
  *   cardinality = \Drupal\webform\Plugin\WebformHandlerInterface::CARDINALITY_SINGLE,
  *   results = \Drupal\webform\Plugin\WebformHandlerInterface::RESULTS_IGNORED,
  *   submission = \Drupal\webform\Plugin\WebformHandlerInterface::SUBMISSION_REQUIRED,
