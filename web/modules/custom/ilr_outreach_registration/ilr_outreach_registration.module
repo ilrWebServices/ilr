@@ -4,6 +4,9 @@
  * Implements hook_webform_options_alter().
  *
  * @todo This could become a custom webform element instead.
+ *
+ * @deprecated This has been replaced with a hidden text field, but left for
+ * allowed values reference.
  */
 function ilr_outreach_registration_webform_options_alter(array &$options, array &$element, $options_id = NULL) {
   if (empty($element['#webform_key'])) {

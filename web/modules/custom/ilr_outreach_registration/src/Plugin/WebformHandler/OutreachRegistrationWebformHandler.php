@@ -75,6 +75,11 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
       return;
     }
 
+    // Only submit new form submissions to SF, not edits to existing ones.
+    if ($update) {
+      return;
+    }
+
     // Add some submission data to the serialized order.
     $serialized_order = [
       'point_of_sale' => $this->request->getHost() . ' : ' . $webform_submission->webform_id->target_id . ' webform',
