@@ -36,16 +36,13 @@ elements: |-
     '#title': Email
     '#required': true
     '#default_value': '[current-user:mail]'
-  outreach_areas_of_interest:
-    '#type': checkboxes
-    '#title': 'I would like more information about:'
-    '#options':
-      n/a: n/a
+  opt_in:
+    '#type': checkbox
+    '#title': Opt-in
   outreach_marketing_personas:
-    '#type': checkboxes
-    '#title': 'Personas:'
-    '#options':
-      n/a: n/a
+    '#type': hidden
+    '#title': outreach_marketing_personas
+    '#prepopulate': true
   utm_values:
     '#type': utm_values
   eventid:

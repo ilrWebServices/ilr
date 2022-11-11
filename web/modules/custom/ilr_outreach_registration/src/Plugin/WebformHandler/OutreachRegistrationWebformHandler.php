@@ -98,16 +98,7 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
         'state' => '',
         'zip' => '',
         'country_code' => '',
-        'additional_fields' => [
-          [
-            'name' => 'Area_of_Interest__c',
-            'value' => implode(';', $data['outreach_areas_of_interest'] ?? []),
-          ],
-          [
-            'name' => 'Email_Marketing_Personas__c',
-            'value' => implode(';', $data['outreach_marketing_personas'] ?? []),
-          ],
-        ],
+        'additional_fields' => [],
       ],
       'order_total' => 0,
       'order_items' => [
@@ -145,7 +136,12 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
                 'dietary_restrictions' => $data['dietary_restrictions'] ?? NULL,
                 'accessible_accommodation' => $data['accessible_accommodation'] ?? NULL,
                 'is_cornell_employee' => $data['is_cornell_employee'] ?? FALSE,
-                'additional_fields' => [],
+                'additional_fields' => [
+                  [
+                    'name' => 'Legacy_Notes__c',
+                    'value' => empty($data['opt_in']) ? '' : 'Opt-in to "' . ($data['outreach_marketing_personas'] . '"' ?? 'nothing'),
+                  ],
+                ],
               ]
             ],
           ],
