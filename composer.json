@@ -205,6 +205,10 @@
       "drupal/persistent_visitor_parameters": {
         "Allow cookie name and domain to be changed": "https://git.drupalcode.org/project/persistent_visitor_parameters/-/commit/6269974586dccbbd62d08585261f8cbb6e1590f1.diff",
         "Fix settings form permission": "https://git.drupalcode.org/issue/persistent_visitor_parameters-3266421/-/commit/3d5c811d7757d36b665c79abf607147988eb2c6f.diff"
+      },
+      "drupal/webform": {
+        "Issue 3321630: share.js incorrectly caches webforms with specific prepopulate fields": "https://git.drupalcode.org/project/webform/-/commit/e03f117d63f8e9559973ed5605cd64f65fc9a13c.diff",
+        "Issue #3321649: Shared webforms return HTTP 403 when there is no dedicated URL": "https://git.drupalcode.org/project/webform/-/commit/8e372de6b1aa57036ccf87ddb74ed7ea1ed0eb2f.diff"
       }
     },
     "installer-paths": {
