@@ -47,6 +47,10 @@ elements: |-
       freshman: Freshman
       sophomore: Sophomore
       junior: Junior
+  major_college:
+    '#type': textarea
+    '#title': 'List your Major, College'
+    '#rows': 2
   program_interest:
     '#type': textarea
     '#title': 'Briefly describe your interest in a High Road Summer Fellowship. How would it contribute to your education or career plans?'
@@ -65,13 +69,13 @@ elements: |-
     '#required': true
   transcript:
     '#type': webform_document_file
-    '#title': 'Please attach a copy of your transcript (complete through Fall 2021)'
+    '#title': 'Please attach a copy of your transcript (complete through Fall 2022)'
     '#file_extensions': 'txt rtf pdf doc docx'
     '#sanitize': true
     '#required': true
   resume:
     '#type': webform_document_file
-    '#title': 'Please attach a copy of your resume (complete through Fall 2021)'
+    '#title': 'Please attach a copy of your resume (complete through Fall 2022)'
     '#file_extensions': 'txt rtf pdf doc docx'
     '#sanitize': true
     '#required': true
@@ -88,7 +92,7 @@ elements: |-
       '#required': true
     housing:
       '#type': radios
-      '#title': 'Would you need housing accommodations in Buffalo if the fellowship is not remote?'
+      '#title': 'Would you need housing accommodations in Buffalo?'
       '#options':
         1: 'Yes'
         0: 'No'
