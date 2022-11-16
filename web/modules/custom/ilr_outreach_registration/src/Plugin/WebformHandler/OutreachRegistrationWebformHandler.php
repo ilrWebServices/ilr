@@ -77,7 +77,7 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
 
     // Add some submission data to the serialized order.
     $serialized_order = [
-      'point_of_sale' => $this->request->getHost() . ' : ' . $webform_submission->webform_id->target_id . ' webform',
+      'point_of_sale' => $this->request->getHost() . ' : ' . $webform_submission->webform_id->target_id . ' webform : ILR Drupal quick signup',
       'response_webhook_url' => $this->request->getSchemeAndHttpHost() . '/hooks/v1/salesforce-pingback/webform/' . $webform_submission->webform_id->target_id,
       'order_id' => $webform_submission->id(),
       'payments' => [],
