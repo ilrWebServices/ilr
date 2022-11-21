@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Theme implementation of an iframe used to share a webform.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the iframe element.
+ * - javascript: Flag to include JavaScript.
+ * - option: JavaScript options.
+ *
+ * @see template_preprocess_webform_share_iframe()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'webform-share-iframe',
+  ]
+%}
+<iframe{{ attributes.addClass(classes) }}></iframe>
+{% if javascript %}
+<script src="{{ script }}"></script>
+<script>iFrameResize({{ options }}, '.webform-share-iframe');</script>
+<script>
+(function (document, window) {
+  if (!window.location.search || !('URLSearchParams' in window)) {
+    return;
+  }
+
+  const url_params = new URLSearchParams(window.location.search);
+  const iframe_element = document.querySelector('.webform-share-iframe');
+  const iframe_url = new URL(iframe_element.getAttribute('src'), window.location.protocol + 'example.com');
+
+  for (const [k, v] of url_params) {
+    if (k.indexOf('utm_') === 0) {
+      iframe_url.searchParams.append(k, v);
+    }
+  }
+
+  iframe_element.setAttribute('src', iframe_url.toString());
+})(document, window);
+</script>
+{% endif %}
