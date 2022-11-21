@@ -1,11 +1,11 @@
 uuid: 41e0567e-6583-4d53-9fbd-826dc4e8c827
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - block_visibility_groups.block_visibility_group.professional_education
   content:
-    - 'block_content:simple_text:8865eaf6-39b6-4672-bbce-4064fb057fca'
+    - 'block_content:simple_text:ac0e6d2c-79ce-4513-800e-1aae2f627b15'
   module:
     - block_content
     - block_visibility_groups
@@ -17,9 +17,9 @@ theme: union_marketing
 region: highlighted
 weight: -5
 provider: null
-plugin: 'block_content:8865eaf6-39b6-4672-bbce-4064fb057fca'
+plugin: 'block_content:ac0e6d2c-79ce-4513-800e-1aae2f627b15'
 settings:
-  id: 'block_content:8865eaf6-39b6-4672-bbce-4064fb057fca'
+  id: 'block_content:ac0e6d2c-79ce-4513-800e-1aae2f627b15'
   label: Dismissible
   label_display: '0'
   provider: block_content
