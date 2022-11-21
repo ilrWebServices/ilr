@@ -1,5 +1,9 @@
-.cu-dismissible {
+.cu-dismissible__content {
   margin-bottom: var(--cu-vr1);
+}
+
+.cu-dismissible__input:checked + .cu-dismissible__close + .cu-dismissible__content {
+  margin-bottom: 0;
 }
 
 .bvg--professional-education .cu-dismissible .union-marketing-card--dark {
