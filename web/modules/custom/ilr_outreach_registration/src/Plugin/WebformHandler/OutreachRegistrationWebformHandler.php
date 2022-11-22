@@ -133,8 +133,8 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
                 'is_cornell_employee' => $data['is_cornell_employee'] ?? FALSE,
                 'additional_fields' => [
                   [
-                    'name' => 'Legacy_Notes__c',
-                    'value' => empty($data['opt_in']) ? '' : 'Opt-in to "' . ($data['outreach_marketing_personas'] . '"' ?? 'nothing'),
+                    'name' => 'Pass_Additional_Data__c',
+                    'value' => ($data['opt_in'] && $data['outreach_marketing_personas']) ? 'persona:' . $data['outreach_marketing_personas'] : '',
                   ],
                 ],
               ]
