@@ -1,15 +1,5 @@
-{{ attach_library('union_organizer/dismissible') }}
-{{ attach_library('union_organizer/button') }}
-
-{% set content %}
-  {% include '@union/_card.twig' with {
-    card_content: content,
-    attributes: attributes.addClass([
-      'cu-card--padded union-marketing-card--dark',
-    ])
-  } only %}
-{% endset %}
-
+{# `content` is rendered because it must be a string in the dismissible for sha1 #}
+{% set rendered_content %}{{ content }}{% endset %}
 {% include '@union/_dismissible.twig' with {
-  content: content
+  content: rendered_content
 } only %}

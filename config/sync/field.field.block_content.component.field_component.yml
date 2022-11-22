@@ -1,0 +1,97 @@
+uuid: c971c2c8-ca83-45f3-ba0f-b73a49a6278d
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.component
+    - field.storage.block_content.field_component
+    - paragraphs.paragraphs_type.promo
+  module:
+    - entity_reference_revisions
+id: block_content.component.field_component
+field_name: field_component
+entity_type: block_content
+bundle: component
+label: Content
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      promo: promo
+    negate: 0
+    target_bundles_drag_drop:
+      collection_listing:
+        weight: 24
+        enabled: false
+      collection_listing_publication:
+        weight: 25
+        enabled: false
+      curated_course_listing:
+        weight: 26
+        enabled: false
+      curated_post_listing:
+        weight: 27
+        enabled: false
+      deck:
+        weight: 28
+        enabled: false
+      event_listing:
+        weight: 29
+        enabled: false
+      form:
+        weight: 30
+        enabled: false
+      image:
+        weight: 31
+        enabled: false
+      instagram_listing:
+        weight: 32
+        enabled: false
+      media_deck:
+        weight: 33
+        enabled: false
+      people_listing:
+        weight: 34
+        enabled: false
+      person:
+        weight: 35
+        enabled: false
+      picture_in_picture:
+        weight: 36
+        enabled: false
+      promo:
+        weight: 37
+        enabled: true
+      rich_text:
+        weight: 38
+        enabled: false
+      section:
+        weight: 39
+        enabled: false
+      section_navigation:
+        weight: 40
+        enabled: false
+      simple_collection_listing:
+        weight: 41
+        enabled: false
+      table_of_contents:
+        weight: 42
+        enabled: false
+      testimonial:
+        weight: 43
+        enabled: false
+      testimonial_deck:
+        weight: 44
+        enabled: false
+      topic_list:
+        weight: 45
+        enabled: false
+      video:
+        weight: 46
+        enabled: false
+field_type: entity_reference_revisions

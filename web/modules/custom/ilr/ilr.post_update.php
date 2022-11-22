@@ -1104,3 +1104,19 @@ function ilr_post_update_inquiry_form_name_updates(&$sandbox) {
     salesforce_push_entity_crud($submission, 'push_create');
   }
 }
+
+/**
+ * Add a placeholder card for the cyber monday block.
+ */
+function ilr_post_update_add_cyber_monday_placeholder(&$sandbox) {
+  $blockEntityManager = \Drupal::service('entity_type.manager')->getStorage('block_content');
+
+  $block = $blockEntityManager->create([
+    'type' => 'component',
+    'uuid' => 'ac0e6d2c-79ce-4513-800e-1aae2f627b15',
+    'info' => 'CyberMonday Discount',
+    'label_display' => 0,
+  ]);
+
+  $block->save();
+}
