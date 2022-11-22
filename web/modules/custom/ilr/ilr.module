@@ -46,6 +46,7 @@ function ilr_theme($existing, $type, $theme, $path) {
     'ilr_class_register_block' => [
       'variables' => [
         'classes' => [],
+        'discount_percent' => 0,
       ],
     ],
     'ilr_course_instructors_block' => [

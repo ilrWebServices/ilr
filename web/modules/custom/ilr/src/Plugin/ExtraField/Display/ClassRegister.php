@@ -2,6 +2,7 @@
 
 namespace Drupal\ilr\Plugin\ExtraField\Display;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -74,6 +75,14 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
       '#theme' => 'ilr_class_register_block',
       '#classes' => $class_info,
     ];
+
+    // @todo Remove this someday when discount is over.
+    $current_date = new DrupalDateTime('now');
+    $discount_expire_date = new DrupalDateTime('2022-12-03');
+
+    if ($current_date < $discount_expire_date) {
+      $build['ilr_class_register_block']['#discount_percent'] = 0.8;
+    }
 
     return $build;
   }
