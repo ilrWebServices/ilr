@@ -54,7 +54,7 @@
 
     {% if price %}
     <div class="price">
-      {% if discount_percent %}
+      {% if discount_percent and price > 0 %}
       <p class="cu-checkbutton__price cu-heading"><span class="original-price">${{ price|number_format(2) }}</span>${{ (price * discount_percent)|number_format(2) }}</p>
       {% else %}
       <p class="cu-checkbutton__price cu-heading">${{ price|number_format(2) }}</p>
