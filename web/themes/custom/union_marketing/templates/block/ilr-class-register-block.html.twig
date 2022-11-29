@@ -8,7 +8,6 @@
   {% set cancelled = class.entity.field_class_cancelled.value == '1' %}
   {% set full = class.entity.field_class_full.value == '1' %}
   {% set disabled = null %}
-  {% set price = class.entity.field_price.value %}
 
   {% set content %}
     <div class="details">
@@ -52,12 +51,12 @@
     {% endif %}
     </div>
 
-    {% if price %}
+    {% if class.price %}
     <div class="price">
-      {% if discount_percent and price > 0 %}
-      <p class="cu-checkbutton__price cu-heading"><span class="original-price">${{ price|number_format(2) }}</span>${{ (price * discount_percent)|number_format(2) }}</p>
+      {% if class.discount_price < class.price %}
+      <p class="cu-checkbutton__price cu-heading"><span class="original-price">${{ class.price|number_format(2) }}</span>${{ class.discount_price|number_format(2) }}</p>
       {% else %}
-      <p class="cu-checkbutton__price cu-heading">${{ price|number_format(2) }}</p>
+      <p class="cu-checkbutton__price cu-heading">${{ class.price|number_format(2) }}</p>
       {% endif %}
     </div>
     {% endif %}

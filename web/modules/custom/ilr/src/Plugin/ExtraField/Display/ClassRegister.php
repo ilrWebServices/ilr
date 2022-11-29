@@ -2,7 +2,6 @@
 
 namespace Drupal\ilr\Plugin\ExtraField\Display;
 
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -33,6 +32,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
     $instance->entityTypeManager = $container->get('entity_type.manager');
     $instance->pathAliasEntitiesManager = $container->get('path_alias.entities');
     $instance->config = $container->get('config.factory');
+    $instance->discountManager = $container->get('ilr_outreach_discount_manager');
     return $instance;
   }
 
@@ -49,6 +49,8 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
         'entity' => $class,
         'course' => $class->field_course->entity,
         'register_url' => '',
+        'price' => $class->field_price->value,
+        'discount_price' => $class->field_price->value,
       ];
 
       $mapped_objects = $this->entityTypeManager->getStorage('salesforce_mapped_object')
@@ -62,6 +64,23 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
 
       if ($mapping) {
         $info['register_url'] = $this->config->get('ilr_registration_system.settings')->get('url') . $mapping->salesforce_id->getString();
+
+        if (($env_disount_codes = getenv('ILR_DISCOUNT_CODES')) && !$class->field_price->isEmpty()) {
+          $env_disount_codes = explode(';', $env_disount_codes);
+
+          try {
+            // @todo Revisit if/when multiple discount codes are allowed.
+            $eligible_discount = $this->discountManager->getEligibleDiscount($env_disount_codes[0], $mapping->salesforce_id->getString());
+
+            if ($eligible_discount && $eligible_discount->type === 'percentage') {
+              $discount_amt = $class->field_price->value * $eligible_discount->value;
+              $info['discount_price'] = $class->field_price->value + $discount_amt;
+            }
+          }
+          catch (\Exception $e) {
+            // @todo Maybe log this instead of doing nothing?
+          }
+        }
       }
 
       if (!$class->field_external_link->isEmpty()) {
@@ -71,18 +90,14 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
       $class_info[] = $info;
     }
 
-    $build['ilr_class_register_block'] = [
+    $build = [
       '#theme' => 'ilr_class_register_block',
       '#classes' => $class_info,
+      '#cache' => [
+        // @todo Figure out why this doesn't actually cache when testing locally.
+        'max-age' => 300,
+      ],
     ];
-
-    // @todo Remove this someday when discount is over.
-    $current_date = new DrupalDateTime('now');
-    $discount_expire_date = new DrupalDateTime('2022-12-03');
-
-    if ($current_date < $discount_expire_date) {
-      $build['ilr_class_register_block']['#discount_percent'] = 0.8;
-    }
 
     return $build;
   }
