@@ -260,3 +260,16 @@ variants:
       settings: {  }
       elements: "opt_in:\r\n  '#title': Opt-in for updates from The Worker Institute"
       handlers: {  }
+  cji_opt_in:
+    id: override
+    variant_id: cji_opt_in
+    element_key: variant
+    label: 'CJI opt-in'
+    notes: ''
+    status: true
+    weight: 0
+    settings:
+      debug: false
+      settings: {  }
+      elements: "opt_in:\r\n  '#title': Opt-in for updates from The Climate Jobs Institute"
+      handlers: {  }
