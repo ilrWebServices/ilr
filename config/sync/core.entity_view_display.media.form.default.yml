@@ -1,0 +1,28 @@
+uuid: 6e62355c-35af-4fa8-9181-253c1c6df66a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.form.field_media_webform_media
+    - media.type.form
+  module:
+    - webform
+id: media.form.default
+targetEntityType: media
+bundle: form
+mode: default
+content:
+  field_media_webform_media:
+    type: webform_entity_reference_entity_view
+    label: visually_hidden
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

@@ -1,0 +1,15 @@
+uuid: 7e7a225e-088c-4fdd-a280-7c2000505b18
+langcode: en
+status: true
+dependencies:
+  module:
+    - webform_media
+id: form
+label: Form
+description: ''
+source: webform_media
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_webform_media
+field_map: {  }

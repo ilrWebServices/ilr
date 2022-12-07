@@ -1,0 +1,36 @@
+uuid: 8ca43a6c-dfa7-4f7c-a86c-789b8b26c565
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.form.field_media_webform_media
+    - media.type.form
+  module:
+    - webform
+id: media.form.media_library
+targetEntityType: media
+bundle: form
+mode: media_library
+content:
+  field_media_webform_media:
+    type: webform_entity_reference_select
+    weight: 1
+    region: content
+    settings:
+      default_data: true
+      webforms: {  }
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  status: true
+  uid: true

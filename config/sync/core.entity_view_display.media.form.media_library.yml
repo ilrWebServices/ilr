@@ -1,0 +1,33 @@
+uuid: 4be41aaa-d75e-40c4-9788-704295a9339e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.media_library
+    - field.field.media.form.field_media_webform_media
+    - image.style.media_library
+    - media.type.form
+  module:
+    - image
+id: media.form.media_library
+targetEntityType: media
+bundle: form
+mode: media_library
+content:
+  thumbnail:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: media_library
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  field_media_webform_media: true
+  name: true
+  search_api_excerpt: true
+  uid: true

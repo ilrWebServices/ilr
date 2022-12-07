@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Theme override to display a form media item.
+ *
+ * Available variables:
+ * - name: Name of the media.
+ * - content: Media content.
+ *
+ * @see template_preprocess_media()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'cu-media',
+    'media--embedded',
+    'media--form',
+  ]
+%}
+<div{{ attributes.addClass(classes)}}>
+{% if content %}
+  {{ content }}
+{% endif %}
+</div>
