@@ -1120,3 +1120,17 @@ function ilr_post_update_add_cyber_monday_placeholder(&$sandbox) {
 
   $block->save();
 }
+
+/**
+ * Update webform paragraphs to new field type.
+ */
+function ilr_post_update_webform_component_type(&$sandbox) {
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+  $webform_paragraphs = $paragraph_storage->loadByProperties(['type' => 'form']);
+
+  foreach ($webform_paragraphs as $paragraph) {
+    $paragraph->field_web_form->target_id = $paragraph->field_webform->target_id;
+    $paragraph->field_web_form->status = 'open';
+    $paragraph->save();
+  }
+}

@@ -4,10 +4,12 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
+    - field.field.paragraph.form.field_web_form
     - field.field.paragraph.form.field_webform
     - paragraphs.paragraphs_type.form
   module:
     - layout_builder
+    - webform
 third_party_settings:
   layout_builder:
     enabled: false
@@ -17,13 +19,14 @@ targetEntityType: paragraph
 bundle: form
 mode: preview
 content:
-  field_webform:
-    type: entity_reference_label
+  field_web_form:
+    type: webform_entity_reference_entity_view
     label: hidden
     settings:
-      link: false
+      source_entity: true
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
 hidden:
+  field_webform: true
   search_api_excerpt: true

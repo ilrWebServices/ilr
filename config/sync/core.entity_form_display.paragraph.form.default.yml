@@ -3,19 +3,25 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.form.field_web_form
     - field.field.paragraph.form.field_webform
     - paragraphs.paragraphs_type.form
+  module:
+    - webform
 id: paragraph.form.default
 targetEntityType: paragraph
 bundle: form
 mode: default
 content:
-  field_webform:
-    type: options_select
-    weight: 0
+  field_web_form:
+    type: webform_entity_reference_select
+    weight: 1
     region: content
-    settings: {  }
+    settings:
+      default_data: true
+      webforms: {  }
     third_party_settings: {  }
 hidden:
   created: true
+  field_webform: true
   status: true
