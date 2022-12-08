@@ -83,6 +83,13 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'wide'),
     ];
 
+    $form['heading_left'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Place heading on left'),
+      '#min' => 1,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'heading_left'),
+    ];
+
     $form['frame_position'] = [
       '#type' => 'radios',
       '#title' => $this->t('Frame position'),
@@ -144,6 +151,9 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       $variables['attributes']['class'][] = 'cu-section--wide';
     }
 
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'heading_left')) {
+      $variables['attributes']['class'][] = 'cu-section--left';
+    }
 
     if ($frame_position = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'frame_position')) {
       $variables['attributes']['class'][] = 'cu-section--framed';
