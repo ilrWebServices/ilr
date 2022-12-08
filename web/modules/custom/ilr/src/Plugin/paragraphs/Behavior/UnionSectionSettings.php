@@ -90,6 +90,13 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'heading_left'),
     ];
 
+    $form['rich_text_to_blurb'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Place the first Rich Text component in the heading'),
+      '#min' => 1,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'rich_text_to_blurb'),
+    ];
+
     $form['frame_position'] = [
       '#type' => 'radios',
       '#title' => $this->t('Frame position'),
@@ -173,6 +180,21 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       if ($label = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'icon_label')) {
         $variables['paragraph']->cu_icon['label'] = $label;
         $variables['paragraph']->cu_icon['title'] = $label;
+      }
+    }
+
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'rich_text_to_blurb')) {
+      foreach ($variables['paragraph']->field_components->referencedEntities() as $id => $component_paragraph) {
+        if ($component_paragraph->bundle() === 'rich_text') {
+          $variables['blurb'] = [
+            '#type' => 'processed_text',
+            '#text' => $component_paragraph->field_body->value,
+            '#format' => $component_paragraph->field_body->format,
+          ];
+
+          $variables['content']['field_components'][$id]['#access'] = FALSE;
+          break;
+        }
       }
     }
   }
