@@ -141,16 +141,13 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
   public function preprocess(&$variables) {
     // Check the behavior settings and set the class modifier if full width.
     if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'wide')) {
-      $variables['attributes']['class'] = ['cu-section--wide'];
+      $variables['attributes']['class'][] = 'cu-section--wide';
     }
 
-    $variables['heading_attributes'] = [];
 
     if ($frame_position = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'frame_position')) {
-      $variables['heading_attributes']['class'] = [
-        'cu-section-heading--framed',
-        'cu-section-heading--framed-' . $frame_position,
-      ];
+      $variables['attributes']['class'][] = 'cu-section--framed';
+      $variables['attributes']['class'][] = 'cu-section--framed-' . $frame_position;
     }
 
     if ($icon = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'icon')) {
