@@ -1134,3 +1134,21 @@ function ilr_post_update_webform_component_type(&$sandbox) {
     $paragraph->save();
   }
 }
+
+/**
+ * Update section paragraphs to set frame to none if heading is empty.
+ */
+function ilr_post_update_section_frame_setting(&$sandbox) {
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+  $section_paragraphs = $paragraph_storage->loadByProperties(['type' => 'section']);
+
+  /** @var \Drupal\paragraphs\ParagraphInterface */
+  foreach ($section_paragraphs as $paragraph) {
+    if ($paragraph->field_heading->isEmpty()) {
+      $behavior_settings = $paragraph->getAllBehaviorSettings();
+      unset($behavior_settings['union_section_settings']['frame_position']);
+      $paragraph->setAllBehaviorSettings($behavior_settings);
+      $paragraph->save();
+    }
+  }
+}
