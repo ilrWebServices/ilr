@@ -10,13 +10,9 @@
   order: 3;
 }
 
-.field--field-sections {
-  display: flex;
-  flex-direction: column;
-  gap: var(--cu-vr3);
-}
-
-figure.cu-media {
+figure.cu-media,
+.cu-component--image,
+.cu-component--video {
   margin: var(--cu-component-margin-bottom, var(--cu-vr2)) 0;
 
   @include breakpoint(md) {
