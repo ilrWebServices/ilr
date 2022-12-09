@@ -29,6 +29,12 @@
         margin-top: 0;
       }
 
+      .field--field-components {
+        display: flex !important;
+        flex-direction: column;
+        gap: var(--cu-vr3);
+      }
+
       .block-better-social-sharing-buttons {
         display: flex;
         grid-column: 2;

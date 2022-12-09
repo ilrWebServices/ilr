@@ -73,6 +73,7 @@ aside.layout-sidebar-first {
 footer {
   grid-row: footer;
   grid-column: content;
+  margin-top: var(--cu-vr3);
 }
 
 hr.pad {
@@ -86,14 +87,6 @@ hr.pad {
   // Remove the bottom margin on course nodes.
   .node--course & {
     margin-bottom: 0;
-  }
-}
-
-.cu-component {
-  margin: var(--cu-component-margin-bottom, var(--cu-vr2)) 0;
-
-  @include breakpoint(md) {
-    margin: 0 0 var(--cu-component-margin-bottom, var(--cu-vr3));
   }
 }
 
