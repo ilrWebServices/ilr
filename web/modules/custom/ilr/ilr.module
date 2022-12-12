@@ -372,6 +372,23 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
 }
 
 /**
+ * Implements hook_condition_info_alter();
+ *
+ * Use the plugin class from the Context Path module for all request_path
+ * conditions.
+ *
+ * This allows all Request Path conditions to contain individual exclusions.
+ *
+ * @see https://medium.com/@djphenaproxima/how-to-bend-drupal-8-plugins-to-your-nefarious-will-94da0c31f095
+ */
+function ilr_condition_info_alter(array &$definitions) {
+  if (array_key_exists('request_path', $definitions) && array_key_exists('request_path_inclexcl', $definitions)) {
+    $definitions['request_path']['class'] = $definitions['request_path_inclexcl']['class'];
+    unset($definitions['request_path_inclexcl']);
+  }
+}
+
+/**
  * Implements hook_entity_prepare_view().
  */
 function ilr_entity_prepare_view($entity_type_id, array $entities, array $displays, $view_mode) {
