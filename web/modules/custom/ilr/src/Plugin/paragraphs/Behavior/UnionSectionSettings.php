@@ -90,11 +90,12 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'heading_left'),
     ];
 
-    $form['rich_text_to_blurb'] = [
+    $form['first_component_to_blurb'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Place the first Rich Text component in the heading'),
+      '#title' => $this->t('Place the first component in the heading'),
+      '#description' => $this->t('Use the first Rich text, Form, or Image component in the heading body/blurb area.'),
       '#min' => 1,
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'rich_text_to_blurb'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'first_component_to_blurb'),
     ];
 
     $form['frame_position'] = [
@@ -183,15 +184,10 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       }
     }
 
-    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'rich_text_to_blurb')) {
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'first_component_to_blurb')) {
       foreach ($variables['paragraph']->field_components->referencedEntities() as $id => $component_paragraph) {
-        if ($component_paragraph->bundle() === 'rich_text') {
-          $variables['blurb'] = [
-            '#type' => 'processed_text',
-            '#text' => $component_paragraph->field_body->value,
-            '#format' => $component_paragraph->field_body->format,
-          ];
-
+        if (in_array($component_paragraph->bundle(), ['rich_text', 'form', 'image'])) {
+          $variables['blurb'] = $variables['content']['field_components'][$id];
           $variables['content']['field_components'][$id]['#access'] = FALSE;
           break;
         }
