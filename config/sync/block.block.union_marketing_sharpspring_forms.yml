@@ -1,0 +1,45 @@
+uuid: 4d3063c4-953f-42ba-8f5b-97d1983aadc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.tracked_professional_education_forms
+  content:
+    - 'block_content:simple_text:6b0e39b6-af42-4710-b20b-7833cdb4e945'
+  module:
+    - block_content
+    - block_visibility_groups
+    - ilr
+    - user
+  theme:
+    - union_marketing
+id: union_marketing_sharpspring_forms
+theme: union_marketing
+region: footer
+weight: 6
+provider: null
+plugin: 'block_content:6b0e39b6-af42-4710-b20b-7833cdb4e945'
+settings:
+  id: 'block_content:6b0e39b6-af42-4710-b20b-7833cdb4e945'
+  label: 'Sharp Spring tracking for forms'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: tracked_professional_education_forms
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      anonymous: anonymous

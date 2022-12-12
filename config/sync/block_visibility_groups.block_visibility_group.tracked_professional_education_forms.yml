@@ -1,0 +1,26 @@
+uuid: 0f5a1bfb-d55d-4b3e-afaa-bb9467d0b395
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - system
+id: tracked_professional_education_forms
+label: 'Tracked Professional Education Forms'
+logic: or
+conditions:
+  0aba6df5-0fe9-405b-941f-6bf00ac87067:
+    id: request_path
+    negate: false
+    uuid: 0aba6df5-0fe9-405b-941f-6bf00ac87067
+    context_mapping: {  }
+    pages: "/programs/professional-education*\r\n!/programs/professional-education/senior-leader-programs*"
+  056d1ba3-2e25-4274-ae6d-b4f82108d53b:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 056d1ba3-2e25-4274-ae6d-b4f82108d53b
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      course: course
+allow_other_conditions: true

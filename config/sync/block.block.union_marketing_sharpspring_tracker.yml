@@ -1,0 +1,43 @@
+uuid: 0e98843c-5469-4a37-baf3-5d261eff431e
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:simple_text:e08e0f4c-7cbf-4941-96b4-95e8d9044181'
+  module:
+    - block_content
+    - block_visibility_groups
+    - ilr
+    - user
+  theme:
+    - union_marketing
+id: union_marketing_sharpspring_tracker
+theme: union_marketing
+region: footer
+weight: 5
+provider: null
+plugin: 'block_content:e08e0f4c-7cbf-4941-96b4-95e8d9044181'
+settings:
+  id: 'block_content:e08e0f4c-7cbf-4941-96b4-95e8d9044181'
+  label: 'Sharp Spring tracker'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false
+  user_role:
+    id: user_role
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      anonymous: anonymous
