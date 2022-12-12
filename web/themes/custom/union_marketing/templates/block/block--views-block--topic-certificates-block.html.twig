@@ -40,7 +40,7 @@
 {% set tid = content['#view'].args|first %}
 
 {# Add the wrapper #}
-<div{{attributes}}>
+<div{{ attributes.addClass('cu-component') }}>
   {{ title_suffix }}
 
   {# Only if on a term page #}
