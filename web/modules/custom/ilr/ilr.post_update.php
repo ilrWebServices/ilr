@@ -1152,3 +1152,52 @@ function ilr_post_update_section_frame_setting(&$sandbox) {
     }
   }
 }
+
+/**
+ * Update content block with sharp spring tracking code.
+ */
+function ilr_post_update_sharp_spring_block(&$sandbox) {
+  $block = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', 'e08e0f4c-7cbf-4941-96b4-95e8d9044181');
+
+  if ($block) {
+    $block->info = 'Sharp Spring tracker';
+    $block->body->value = <<<EOT
+    <script type="text/javascript">
+        var _ss = _ss || [];
+        _ss.push(['_setDomain', 'https://koi-3QS88UKVPW.marketingautomation.services/net']);
+        _ss.push(['_setAccount', 'KOI-4M212EIGMA']);
+        _ss.push(['_trackPageView']);
+        window._pa = window._pa || {};
+    (function() {
+        var ss = document.createElement('script');
+        ss.type = 'text/javascript'; ss.async = true;
+        ss.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'koi-3QS88UKVPW.marketingautomation.services/client/ss.js?ver=2.4.0';
+        var scr = document.getElementsByTagName('script')[0];
+        scr.parentNode.insertBefore(ss, scr);
+    })();
+    </script>
+    EOT;
+    $block->body->format = 'full_html';
+    $block->save();
+  }
+}
+
+/**
+ * Update content block with sharp spring forms code.
+ */
+function ilr_post_update_sharp_spring_forms_block(&$sandbox) {
+  $block = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', '6b0e39b6-af42-4710-b20b-7833cdb4e945');
+
+  if ($block) {
+    $block->info = 'Sharp Spring tracking for forms';
+    $block->body->value = <<<EOT
+    <script type="text/javascript">
+      var __ss_noform = __ss_noform || [];
+      __ss_noform.push(['baseURI', 'https://app-3QS88UKVPW.marketingautomation.services/webforms/receivePostback/MzawMDc3sTQ0AgA/']);
+      __ss_noform.push(['endpoint', '203707bd-7fff-4b4e-a7c1-753baa540e2c']);
+    </script><script type="text/javascript" src=https://koi-3QS88UKVPW.marketingautomation.services/client/noform.js?ver=1.24 ></script>
+    EOT;
+    $block->body->format = 'full_html';
+    $block->save();
+  }
+}
