@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
-    - ctools
+    - node
   theme:
     - union_marketing
 id: union_marketing_page_title

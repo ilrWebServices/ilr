@@ -6,7 +6,7 @@ dependencies:
     - views.view.ilrie_past_issues
   module:
     - block_visibility_groups
-    - ctools
+    - collection
     - views
   theme:
     - union_marketing

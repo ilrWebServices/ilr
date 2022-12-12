@@ -5,7 +5,7 @@ dependencies:
   config:
     - block_visibility_groups.block_visibility_group.professional_education
   content:
-    - 'block_content:simple_text:ac0e6d2c-79ce-4513-800e-1aae2f627b15'
+    - 'block_content:component:ac0e6d2c-79ce-4513-800e-1aae2f627b15'
   module:
     - block_content
     - block_visibility_groups
