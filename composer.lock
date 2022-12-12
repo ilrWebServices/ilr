@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b9a2b9294d60bd3447f9a0cd5d271dad",
+    "content-hash": "c313f243adaeaa3ddc7cfa2c639067e3",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2188,6 +2188,58 @@
                 "issues": "https://github.com/ilrWebServices/collegenet2sf/issues"
             },
             "time": "2022-09-06T19:35:23+00:00"
+        },
+        {
+            "name": "drupal/condition_path",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/condition_path.git",
+                "reference": "2.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/condition_path-2.0.0.zip",
+                "reference": "2.0.0",
+                "shasum": "d544a6e6f1c8a6fc5271c5ed789d7f3a96abc086"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10",
+                "ext-mbstring": "*",
+                "php": "^7.1 || ^8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0",
+                    "datestamp": "1661421547",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Lennart Van Vaerenbergh",
+                    "homepage": "https://www.drupal.org/u/fernly",
+                    "email": "lennart@vaerenbergh.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Adds condition plugin based on path, supporting included and excluded paths simultaneously.",
+            "homepage": "https://www.drupal.org/project/condition_path",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/condition_path",
+                "issues": "https://www.drupal.org/project/issues/condition_path"
+            }
         },
         {
             "name": "drupal/config_filter",
