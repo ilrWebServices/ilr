@@ -90,7 +90,7 @@ hr.pad {
 }
 
 .cu-component {
-  margin: var(--cu-component-margin-bottom, var(--cu-vr2)) 0;
+  margin: 0 0 var(--cu-component-margin-bottom, var(--cu-vr2)) 0;
 
   @include breakpoint(md) {
     margin: 0 0 var(--cu-component-margin-bottom, var(--cu-vr3));
