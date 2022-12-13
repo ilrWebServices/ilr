@@ -97,6 +97,10 @@ hr.pad {
   }
 }
 
+.cu-section__content .cu-component:last-child {
+  margin-bottom: 0;
+}
+
 .cu-component .cu-component,
 .cu-layout--twocol .cu-component {
   margin: 0;
