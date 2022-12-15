@@ -5,6 +5,7 @@
  * Post update functions for the ILR module.
  */
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\node\Entity\Node;
@@ -1199,5 +1200,25 @@ function ilr_post_update_sharp_spring_forms_block(&$sandbox) {
     EOT;
     $block->body->format = 'full_html';
     $block->save();
+  }
+}
+
+/**
+ * Update section paragraphs to set id fragment from in-page title.
+ */
+function ilr_post_update_section_in_page_fragment_setting(&$sandbox) {
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+  $section_paragraphs = $paragraph_storage->loadByProperties(['type' => 'section']);
+
+  /** @var \Drupal\paragraphs\ParagraphInterface */
+  foreach ($section_paragraphs as $paragraph) {
+    $behavior_settings = $paragraph->getAllBehaviorSettings();
+
+    if ($title_value = $behavior_settings['in_page_nav']['title'] ?? FALSE) {
+      $css_cleaned_fragment = Html::cleanCssIdentifier(strtolower($title_value));
+      $behavior_settings['in_page_nav']['fragment'] = $css_cleaned_fragment;
+      $paragraph->setAllBehaviorSettings($behavior_settings);
+      $paragraph->save();
+    }
   }
 }

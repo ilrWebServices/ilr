@@ -3,7 +3,6 @@
 namespace Drupal\ilr_section_navigation\Plugin\paragraphs\Behavior;
 
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
@@ -28,45 +27,65 @@ class InPageNavigation extends ParagraphsBehaviorBase {
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
     $host_entity = $form_state->getBuildInfo()['callback_object']->getEntity();
+    $extra_field_defs = \Drupal::service('plugin.manager.extra_field_display')->fieldInfo();
 
-    if (!$this->showBehaviorForm($host_entity)) {
-      return $form;
-    }
+    // There is no #parents key in $form, but this may be OK hardcoded.
+    $parents = $form['#parents'];
+    $parents_input_name = array_shift($parents);
+    $parents_input_name .= '[' . implode('][', $parents) . ']';
 
+    $form['fragment'] = [
+      '#type' => 'textfield',
+      '#title' => t('Link fragment'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'fragment'),
+      '#maxlength' => '50',
+      '#description' => $this->t('Optional. This will become the <code>id</code> attribute for this section, which will allow it to be used as an in-page anchor, e.g. <code>/this/page#fragment</code>. Only lowercase letters, numbers, dashes, and underscores are valid.'),
+    ];
+
+    // The title value is only displayed if the host entity has the
+    // `ilr_section_navigation` extra field enabled.
     $form['title'] = [
       '#type' => 'textfield',
       '#title' => t('Link title'),
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'title'),
       '#maxlength' => '50',
-      '#description' => t('Optional. Adding a title here will create in-page navigation to this content.'),
+      '#description' => $this->t('Optional. This title will be displayed on the page as an in-page link to this section, using the link fragment above.'),
+      '#access' => isset($extra_field_defs[$host_entity->getEntityTypeId()][$host_entity->bundle()]['display']['extra_field_ilr_section_navigation']),
+      '#states' => [
+        'invisible' => [
+          ':input[name="' . $parents_input_name . '[fragment]"]' => [
+            ['value' => ''],
+          ],
+        ],
+      ],
     ];
 
     return $form;
   }
 
   /**
-   * Check the extra field config to see if the host entity has it enabled.
-   */
-  protected function showBehaviorForm(ContentEntityInterface $entity) {
-    $extra_field_defs = \Drupal::service('plugin.manager.extra_field_display')->fieldInfo();
-    return isset($extra_field_defs[$entity->getEntityTypeId()][$entity->bundle()]['display']['extra_field_ilr_section_navigation']);
-  }
-
-  /**
    * {@inheritdoc}
    */
-  public function preprocess(&$variables) {
-    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'title')) {
-      $variables['attributes']['id'] = [$this->getFragment($variables['paragraph'])];
+  public function validateBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    $entered_fragment = $form_state->getValue('fragment');
+    $css_cleaned_fragment = Html::cleanCssIdentifier($entered_fragment);
+
+    if ($entered_fragment !== $css_cleaned_fragment) {
+      $form_state->setError($form['fragment'], $this->t('Link fragment should only contain lowercase letters, numbers, dashes, and underscores, and should not start with a number or dash. Spaces aren\'t allowed, either. Try <strong><code>@example</code></strong> instead.', [
+        '@example' => $css_cleaned_fragment,
+      ]));
     }
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getFragment(Paragraph $paragraph) {
-    if ($title_value = $paragraph->getBehaviorSetting($this->getPluginId(), 'title')) {
-      return Html::cleanCssIdentifier(strtolower($title_value));
+  public function preprocess(&$variables) {
+    if ($fragment = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'fragment')) {
+      $variables['attributes']['id'] = [$fragment];
+    }
+    else {
+      $variables['attributes']['id'] = ['section-' . $variables['paragraph']->id()];
     }
   }
 
@@ -85,6 +104,13 @@ class InPageNavigation extends ParagraphsBehaviorBase {
       $summary[] = [
         'label' => 'Link title',
         'value' => $title_value,
+      ];
+    }
+
+    if ($fragment_value = $paragraph->getBehaviorSetting($this->getPluginId(), 'fragment')) {
+      $summary[] = [
+        'label' => 'Link fragment',
+        'value' => '#' . $fragment_value,
       ];
     }
 

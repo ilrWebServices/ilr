@@ -52,13 +52,14 @@ class SectionNavigation extends ExtraFieldDisplayBase implements ContainerFactor
     }
 
     foreach ($entity->field_sections as $section) {
-      if ($section_link = $section->entity->getBehaviorSetting('in_page_nav', 'title')) {
-        $behavior = $section->entity->type->entity->getBehaviorPlugin('in_page_nav');
+      $in_page_title = $section->entity->getBehaviorSetting('in_page_nav', 'title');
+      $in_page_fragment = $section->entity->getBehaviorSetting('in_page_nav', 'fragment');
 
+      if ($in_page_title && $in_page_fragment) {
         $links[] = [
           '#type' => 'link',
-          '#title' => $section_link,
-          '#url' => $entity->toUrl('canonical', ['fragment' => $behavior->getFragment($section->entity)]),
+          '#title' => $in_page_title,
+          '#url' => $entity->toUrl('canonical', ['fragment' => $in_page_fragment]),
         ];
       }
     }
