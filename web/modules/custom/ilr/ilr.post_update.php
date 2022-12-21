@@ -1248,10 +1248,10 @@ function ilr_post_update_update_climate_jobs_aliases(&$sandbox) {
       }
 
       if ($collection_item->isCanonical()) {
-        $pathauto_generator->updateEntityAlias($collection_item->item->entity, 'update');
+        $pathauto_generator->updateEntityAlias($collection_item->item->entity, 'update', ['force' => TRUE]);
       }
       else {
-        $pathauto_generator->updateEntityAlias($collection_item, 'update');
+        $pathauto_generator->updateEntityAlias($collection_item, 'update', ['force' => TRUE]);
       }
     }
   }
