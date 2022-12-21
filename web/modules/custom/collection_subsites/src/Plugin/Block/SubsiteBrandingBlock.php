@@ -92,10 +92,14 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
   }
 
   /**
-   * Return the first subsite found in the path entities.
+   * Return the last subsite found in the path entities.
+   *
+   * We reverse the array since there are examples of subsites within subsites,
+   * such as the Climate Jobs Initiative.
    */
   protected function getSubsiteFromPath() {
-    foreach ($this->pathEntities as $entity) {
+
+    foreach (array_reverse($this->pathEntities) as $entity) {
       if ($entity instanceof CollectionInterface) {
         $collection_type = $this->entityTypeManager->getStorage('collection_type')->load($entity->bundle());
         if ((bool) $collection_type->getThirdPartySetting('collection_subsites', 'contains_subsites')) {
