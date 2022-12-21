@@ -1256,3 +1256,37 @@ function ilr_post_update_update_climate_jobs_aliases(&$sandbox) {
     }
   }
 }
+
+/**
+ * Fix pathauto aliases for Climate Jobs collection and related blog.
+ */
+function ilr_post_update_fix_mistaken_climate_jobs_aliases(&$sandbox) {
+  $pathauto_generator = \Drupal::service('pathauto.generator');
+  $collection_storage = \Drupal::entityTypeManager()->getStorage('collection');
+  $collection_item_storage = \Drupal::entityTypeManager()->getStorage('collection_item');
+
+  foreach ($collection_storage->loadMultiple([23, 30]) as $climate_jobs_collection) {
+    // Update the alias for the collections themselves before items.
+    $climate_jobs_collection->path->alias = str_replace('/worker-institute/climate-jobs-institute', '/climate-jobs-institute', $climate_jobs_collection->path->alias);
+    $climate_jobs_collection->save();
+
+    // Load all items, sorted by target_type to get terms first.
+    $collection_item_ids = \Drupal::entityQuery('collection_item')
+      ->condition('collection', $climate_jobs_collection->id())
+      ->sort('item__target_type', 'DESC')
+      ->execute();
+
+    foreach ($collection_item_storage->loadMultiple($collection_item_ids) as $collection_item) {
+      if (!$collection_item->item->entity instanceof ContentEntityInterface) {
+        continue;
+      }
+
+      if ($collection_item->isCanonical()) {
+        $pathauto_generator->updateEntityAlias($collection_item->item->entity, 'update', ['force' => TRUE]);
+      }
+      else {
+        $pathauto_generator->updateEntityAlias($collection_item, 'update', ['force' => TRUE]);
+      }
+    }
+  }
+}
