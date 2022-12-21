@@ -1233,7 +1233,7 @@ function ilr_post_update_update_climate_jobs_aliases(&$sandbox) {
 
   foreach ($collection_storage->loadMultiple([23, 30]) as $climate_jobs_collection) {
     // Update the alias for the collections themselves before items.
-    $climate_jobs_collection->path->alias = str_replace('/labor-leading-climate', '/climate-jobs-initiative', $climate_jobs_collection->path->alias);
+    $climate_jobs_collection->path->alias = str_replace('/labor-leading-climate', '/climate-jobs-institute', $climate_jobs_collection->path->alias);
     $climate_jobs_collection->save();
 
     // Load all items, sorted by target_type to get terms first.
