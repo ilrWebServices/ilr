@@ -55,8 +55,8 @@ content:
       default_paragraph_type: _none
       features:
         collapse_edit_all: collapse_edit_all
-        duplicate: '0'
         add_above: '0'
+        duplicate: duplicate
     third_party_settings: {  }
   field_suppress_date_display:
     type: boolean_checkbox

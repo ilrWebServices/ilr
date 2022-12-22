@@ -53,8 +53,8 @@ content:
       default_paragraph_type: section
       features:
         collapse_edit_all: collapse_edit_all
-        duplicate: 0
         add_above: 0
+        duplicate: duplicate
     third_party_settings: {  }
   name:
     type: string_textfield
