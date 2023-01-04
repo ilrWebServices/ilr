@@ -10,6 +10,7 @@ dependencies:
     - collection
     - filter
     - media
+    - media_pdf_thumbnail
     - system
     - toolbar
 _core:
@@ -31,6 +32,7 @@ permissions:
   - 'view content_section collection'
   - 'view media'
   - 'view own collections'
+  - 'view private pdf thumbnails'
   - 'view publication_issue collection'
   - 'view subsite collection'
   - 'view subsite_blog collection'
