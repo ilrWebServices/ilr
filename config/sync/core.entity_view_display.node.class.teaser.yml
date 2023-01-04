@@ -54,8 +54,6 @@ content:
       timezone_override: ''
       date_format: 'Y-m-d\TH:i:s'
       separator: '-'
-      single: 'M j, Y'
-      single_all_day: 'M j, Y'
       one_day: 'M j, Y'
       one_month: 'M j - {j}, Y'
       several_months: 'M j - {M} {j}, Y'
