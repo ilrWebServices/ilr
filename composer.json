@@ -121,7 +121,8 @@
     "drupal/devel": "^5.0",
     "drupal/entity_clone": "^1.0@beta",
     "drupal/stage_file_proxy": "^2.0",
-    "drupal/twig_vardumper": "^3.0"
+    "drupal/twig_vardumper": "^3.0",
+    "phpcompatibility/php-compatibility": "dev-develop"
   },
   "conflict": {
     "drupal/drupal": "*"
@@ -144,6 +145,7 @@
   "scripts": {
     "cs": "phpcs --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml --standard=Drupal --ignore='union_marketing/css/style.css' web/modules/custom/ web/themes/custom/",
     "cbf": "phpcbf --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml --standard=Drupal web/modules/custom/ web/themes/custom/",
+    "cs:phpcompat": "phpcs --extensions=php,module,inc,install,test,profile,theme --standard=PHPCompatibility --runtime-set testVersion 8.1 web/modules/custom/ web/themes/custom/",
     "sync-prod": [
       "Composer\\Config::disableProcessTimeout",
       "drush sql:drop -y",
