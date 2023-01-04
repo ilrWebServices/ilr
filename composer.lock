@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c38f2e2a6269d5fac4326cc24441f19f",
+    "content-hash": "8a3bb013bf4a6f8cbbc5d3ac9424286a",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4552,26 +4552,26 @@
         },
         {
             "name": "drupal/media_library_edit",
-            "version": "2.3.0",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/media_library_edit.git",
-                "reference": "8.x-2.3"
+                "reference": "3.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_library_edit-8.x-2.3.zip",
-                "reference": "8.x-2.3",
-                "shasum": "7cff8281ef0132a2ecb047449d6210d80f1a9e0d"
+                "url": "https://ftp.drupal.org/files/projects/media_library_edit-3.0.2.zip",
+                "reference": "3.0.2",
+                "shasum": "5ca17d7c8fad363a2826b2a6c0709fcde3958499"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.3",
-                    "datestamp": "1653483531",
+                    "version": "3.0.2",
+                    "datestamp": "1671913381",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
