@@ -1497,16 +1497,16 @@
         },
         {
             "name": "drupal-ckeditor-libraries-group/fakeobjects",
-            "version": "4.16.0",
+            "version": "4.20.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal-ckeditor-libraries-group/fakeobjects.git",
-                "reference": "ee1120eaa021434300ccdbbd3e3da7d0cfd8726b"
+                "reference": "61f7ed116868fdd1a19f9012da20b0b7b1617996"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal-ckeditor-libraries-group/fakeobjects/zipball/ee1120eaa021434300ccdbbd3e3da7d0cfd8726b",
-                "reference": "ee1120eaa021434300ccdbbd3e3da7d0cfd8726b",
+                "url": "https://api.github.com/repos/drupal-ckeditor-libraries-group/fakeobjects/zipball/61f7ed116868fdd1a19f9012da20b0b7b1617996",
+                "reference": "61f7ed116868fdd1a19f9012da20b0b7b1617996",
                 "shasum": ""
             },
             "type": "drupal-library",
@@ -1527,7 +1527,7 @@
                 "issues": "https://github.com/ckeditor/ckeditor4/issues",
                 "source": "https://github.com/ckeditor/ckeditor4/tree/master/plugins/fakeobjects"
             },
-            "time": "2021-01-25T12:06:23+00:00"
+            "time": "2022-01-25T09:28:39+00:00"
         },
         {
             "name": "drupal/address",
