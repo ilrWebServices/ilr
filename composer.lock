@@ -2703,10 +2703,10 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/date_range_formatter.git",
-                "reference": "c34acb20c37e6210099bf3080352a6da7227b867"
+                "reference": "8808a9c324c781b4a7cae9ea5f16017a6b8f63f7"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
@@ -2715,7 +2715,7 @@
                 },
                 "drupal": {
                     "version": "9.0.x-dev",
-                    "datestamp": "1589956448",
+                    "datestamp": "1661511425",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
