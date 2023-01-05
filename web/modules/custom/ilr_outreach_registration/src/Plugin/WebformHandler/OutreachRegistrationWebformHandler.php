@@ -145,12 +145,14 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
     ];
 
     // Add any stored UTM codes if they exist in the submission data.
-    foreach ($data['utm_values'] as $utm_name => $utm_code) {
-      $utm_name = ($utm_name === 'utm_term') ? 'utm_keyword': $utm_name;
-      $serialized_order['customer']['additional_fields'][] = [
-        'name' => strtoupper(substr($utm_name, 0, 5)).substr($utm_name, 5) . '__c',
-        'value' => $utm_code,
-      ];
+    if (!empty($data['utm_values'])) {
+      foreach ($data['utm_values'] as $utm_name => $utm_code) {
+        $utm_name = ($utm_name === 'utm_term') ? 'utm_keyword': $utm_name;
+        $serialized_order['customer']['additional_fields'][] = [
+          'name' => strtoupper(substr($utm_name, 0, 5)).substr($utm_name, 5) . '__c',
+          'value' => $utm_code,
+        ];
+      }
     }
 
     // Queue the serialized order for submission to the WebReg webhook on
