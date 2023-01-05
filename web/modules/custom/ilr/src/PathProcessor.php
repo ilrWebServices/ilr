@@ -25,7 +25,7 @@ class PathProcessor implements OutboundPathProcessorInterface {
       // provider and uses a controller for access instead. So we use the
       // `_entity_access` requirement, since most entities use the `.view`
       // convention.
-      $view = preg_match('/\.view$/', $options['route']->getRequirement('_entity_access'));
+      $view = preg_match('/\.view$/', $options['route']->getRequirement('_entity_access') ?? '');
 
       // Change the path for entities with external links to that external URL.
       if ($view && $entity instanceof ContentEntityInterface && $entity->hasField('field_external_link') && !$entity->field_external_link->isEmpty() ) {
