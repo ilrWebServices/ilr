@@ -152,6 +152,7 @@ class EmailConfirmationWebformHandler extends WebformHandlerBase {
         $tempstore_key = 'submission_confirmation_' . $token;
         $confirmation_data = new \stdClass();
         $confirmation_data->sid = $webform_submission->id();
+        $confirmation_data->email = $email;
         $confirmation_data->confirmation_status_element = $email_confirm_element->confirmation_status_element;
         $this->tempstore->set($tempstore_key, $confirmation_data);
 
