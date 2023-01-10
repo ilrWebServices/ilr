@@ -95,11 +95,14 @@ class EmailConfirmationWebformHandler extends WebformHandlerBase {
       $email = $data[$email_confirm_element->element_id];
       $email_orig = $original_data[$email_confirm_element->element_id] ?? '';
 
-      // @todo see why new ones are different here
       // If the email address has changed, revert the confirmation status. The
       // postSave() method will also notice the email address change and send a
       // new confirmation email.
-      if ($email !== $email_orig) {
+      if ($webform_submission->isNew()) {
+        $data[$email_confirm_element->confirmation_status_element] = 'pending';
+        $webform_submission->setData($data);
+      }
+      elseif ($email !== $email_orig) {
         $data[$email_confirm_element->confirmation_status_element] = 'invalid';
         $webform_submission->setData($data);
       }
