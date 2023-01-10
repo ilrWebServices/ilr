@@ -19,6 +19,10 @@ elements: |-
     '#type': textfield
     '#title': 'First name'
     '#required': true
+  last_name:
+    '#type': textfield
+    '#title': 'Last name'
+    '#required': true
   email:
     '#type': email
     '#title': Email
