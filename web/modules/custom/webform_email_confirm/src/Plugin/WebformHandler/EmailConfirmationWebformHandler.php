@@ -76,32 +76,31 @@ class EmailConfirmationWebformHandler extends WebformHandlerBase {
     $original_data = $webform_submission->getOriginalData();
     $elements = $this->webform->getElementsInitializedFlattenedAndHasValue();
     $email_confirm_elements = [];
-    $email_confirm_status_element = '';
 
     // Check webform elements for `email`s that require confirmation.
     foreach ($elements as $element_id => $element) {
-      if ($element['#webform_plugin_id'] === 'email' && !empty($element['#requires_email_confirmation'])) {
-        $email_confirm_elements[] = $element_id;
-      }
-
-      if ($element['#webform_plugin_id'] === 'hidden' && strpos($element_id, 'email_confirmation_status') === 0) {
-        $email_confirm_status_element = $element_id;
+      if ($element['#webform_plugin_id'] === 'email' && !empty($element['#requires_email_confirmation']) && !empty($element['#confirmation_status_element'])) {
+        $email_confirm_element = new \stdClass();
+        $email_confirm_element->element_id = $element_id;
+        $email_confirm_element->confirmation_status_element = $element['#confirmation_status_element'];
+        $email_confirm_elements[] = $email_confirm_element;
       }
     }
 
-    if (empty($email_confirm_elements) || empty($email_confirm_status_element)) {
+    if (empty($email_confirm_elements)) {
       return;
     }
 
-    foreach ($email_confirm_elements as $email_confirm_element_id) {
-      $email = $data[$email_confirm_element_id];
-      $email_orig = $original_data[$email_confirm_element_id] ?? '';
+    foreach ($email_confirm_elements as $email_confirm_element) {
+      $email = $data[$email_confirm_element->element_id];
+      $email_orig = $original_data[$email_confirm_element->element_id] ?? '';
 
+      // @todo see why new ones are different here
       // If the email address has changed, revert the confirmation status. The
       // postSave() method will also notice the email address change and send a
       // new confirmation email.
       if ($email !== $email_orig) {
-        $data[$email_confirm_status_element] = '';
+        $data[$email_confirm_element->confirmation_status_element] = 'invalid';
         $webform_submission->setData($data);
       }
     }
@@ -118,8 +117,11 @@ class EmailConfirmationWebformHandler extends WebformHandlerBase {
 
     // Check webform elements for `email`s that require confirmation.
     foreach ($elements as $element_id => $element) {
-      if ($element['#webform_plugin_id'] === 'email' && !empty($element['#requires_email_confirmation'])) {
-        $email_confirm_elements[] = $element_id;
+      if ($element['#webform_plugin_id'] === 'email' && !empty($element['#requires_email_confirmation']) && !empty($element['#confirmation_status_element'])) {
+        $email_confirm_element = new \stdClass();
+        $email_confirm_element->element_id = $element_id;
+        $email_confirm_element->confirmation_status_element = $element['#confirmation_status_element'];
+        $email_confirm_elements[] = $email_confirm_element;
       }
     }
 
@@ -128,15 +130,14 @@ class EmailConfirmationWebformHandler extends WebformHandlerBase {
     }
 
     // Send a confirmation message to each email address that requires it.
-    // @todo If the email address was changed, remove any existing confirmation tokens.
-    foreach ($email_confirm_elements as $email_confirm_element_id) {
-      $email = $data[$email_confirm_element_id];
+    foreach ($email_confirm_elements as $email_confirm_element) {
+      $email = $data[$email_confirm_element->element_id];
 
       if (empty($email)) {
         continue;
       }
 
-      $email_orig = $original_data[$email_confirm_element_id] ?? '';
+      $email_orig = $original_data[$email_confirm_element->element_id] ?? '';
       $email_new = $update === FALSE;
       $email_changed = $update === TRUE && $email !== $email_orig;
 
@@ -144,9 +145,12 @@ class EmailConfirmationWebformHandler extends WebformHandlerBase {
         // Generate a unique confirmation token.
         $token = Crypt::randomBytesBase64(32);
 
-        // Create a PrivateTempStore record of this pending email confirmation token.
+        // Create a TempStore record of this pending email confirmation.
         $tempstore_key = 'submission_confirmation_' . $token;
-        $this->tempstore->set($tempstore_key, $webform_submission->id());
+        $confirmation_data = new \stdClass();
+        $confirmation_data->sid = $webform_submission->id();
+        $confirmation_data->confirmation_status_element = $email_confirm_element->confirmation_status_element;
+        $this->tempstore->set($tempstore_key, $confirmation_data);
 
         // Send an email with a link containing the confirmation token.
         $current_langcode = $this->languageManager->getCurrentLanguage()->getId();
