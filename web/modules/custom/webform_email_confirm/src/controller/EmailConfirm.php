@@ -23,6 +23,7 @@ class EmailConfirm extends ControllerBase {
    * Constructs an EmailConfirm object.
    *
    * @param \Drupal\Core\TempStore\SharedTempStore $tempstore
+   *   The shared tempstore.
    */
   public function __construct(SharedTempStore $tempstore) {
     $this->tempstore = $tempstore;
@@ -46,15 +47,16 @@ class EmailConfirm extends ControllerBase {
    * https://stackoverflow.com/q/1066611
    */
   public function confirm($token) {
-    $webform_submission_id_for_token = $this->tempstore->get('submission_confirmation_' . $token);
+    $confirmation_data = $this->tempstore->get('submission_confirmation_' . $token);
 
-    if ($webform_submission_id_for_token) {
+    if ($confirmation_data->sid) {
       /** @var \Drupal\webform\WebformSubmissionInterface $webform_submission */
-      $webform_submission = $this->entityTypeManager()->getStorage('webform_submission')->load($webform_submission_id_for_token);
+      $webform_submission = $this->entityTypeManager()->getStorage('webform_submission')->load($confirmation_data->sid);
       $data = $webform_submission->getData();
+      $confirmation_status = $data[$confirmation_data->confirmation_status_element];
 
-      if (isset($data['email_confirmation_status']) && empty($data['email_confirmation_status'])) {
-        $data['email_confirmation_status'] = 1;
+      if (isset($confirmation_status) && $confirmation_status !== 'confirmed') {
+        $data[$confirmation_data->confirmation_status_element] = 'confirmed';
         $webform_submission->setData($data);
 
         if ($webform_submission->save()) {

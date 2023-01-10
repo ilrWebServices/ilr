@@ -13,6 +13,7 @@ use Drupal\Core\Form\FormStateInterface;
 function webform_email_confirm_webform_element_default_properties_alter(array &$properties, array &$definition) {
   if ($definition['id'] === 'email') {
     $properties['requires_email_confirmation'] = 0;
+    $properties['confirmation_status_element'] = '';
   }
 }
 
@@ -34,6 +35,25 @@ function webform_email_confirm_webform_element_configuration_form_alter(&$form, 
     '#type' => 'checkbox',
     '#title' => t('Requires email confirmation'),
     '#description' => t('If checked, and if a hidden element with the machine name "email_confirmation_status" exists on this form, a confirmation link will be send to the email address for this element.'),
+  ];
+
+  /** @var Drupal\webform_ui\Form\WebformUiElementEditForm $form_object */
+  $form_object = $form_state->getFormObject();
+  $status_element_options = [];
+
+  // Only look for top level, hidden elements as potential email confirmation
+  // status fields.
+  foreach ($form_object->getWebform()->getElementsOriginalDecoded() as $element_id => $element) {
+    if ($element['#type'] === 'hidden') {
+      $status_element_options[$element_id] = $element['#title'] ?? $element_id;
+    }
+  }
+
+  $form['webform_email_confirm']['confirmation_status_element'] = [
+    '#type' => 'select',
+    '#title' => t('Email confirmation status element'),
+    '#options' => $status_element_options,
+    '#description' => t('Choose a hidden element to store the email confirmation status. If there are no options here, add a hidden element to the top level of the form, e.g. <code>email_confirmation_status</code>.'),
   ];
 }
 

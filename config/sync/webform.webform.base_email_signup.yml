@@ -22,8 +22,9 @@ elements: |-
   email:
     '#type': email
     '#title': Email
-    '#requires_email_confirmation': 1
     '#required': true
+    '#requires_email_confirmation': 1
+    '#confirmation_status_element': email_confirmation_status
   email_confirmation_status:
     '#type': hidden
     '#title': 'Email confirmation status'
