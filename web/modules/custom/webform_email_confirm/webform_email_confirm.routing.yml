@@ -1,0 +1,10 @@
+email.confirm:
+  path: '/webform-email-confirm/{token}'
+  defaults:
+    _controller: '\Drupal\webform_email_confirm\Controller\EmailConfirm::confirm'
+    _title: 'Webform email confirmation'
+  requirements:
+    _access: 'TRUE'
+  options:
+    _maintenance_access: TRUE
+    no_cache: TRUE
