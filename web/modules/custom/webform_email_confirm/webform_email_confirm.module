@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Functions for the Webform email confirm module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_webform_element_default_properties_alter().
+ */
+function webform_email_confirm_webform_element_default_properties_alter(array &$properties, array &$definition) {
+  if ($definition['id'] === 'email') {
+    $properties['requires_email_confirmation'] = 0;
+  }
+}
+
+/**
+ * Implements hook_webform_element_configuration_form_alter().
+ */
+function webform_email_confirm_webform_element_configuration_form_alter(&$form, FormStateInterface $form_state) {
+  // It appears that we don't need to check the webform element type here. It
+  // seems that as long as the custom `requires_email_confirmation` property
+  // name matches the form element key name, this input will appear only on
+  // email elements.
+  $form['webform_email_confirm'] = [
+    '#type' => 'details',
+    '#title' => t('Email confirmation'),
+    '#open' => TRUE,
+    '#weight' => -10,
+  ];
+  $form['webform_email_confirm']['requires_email_confirmation'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Requires email confirmation'),
+    '#description' => t('If checked, and if a hidden element with the machine name "email_confirmation_status" exists on this form, a confirmation link will be send to the email address for this element.'),
+  ];
+}
+
+/**
+ * Implements hook_mail().
+ */
+function webform_email_confirm_mail($key, &$message, $params) {
+  if ($key === 'email_confirm_message') {
+    $message['subject'] = t('[Cornell ILR] Please confirm your email');
+    $base_url = \Drupal::request()->getSchemeAndHttpHost();
+    $message['body'][] = <<<EOT
+    Thank you for your interest. Please visit the following link to confirm your email address:
+
+    {$base_url}/webform-email-confirm/{$params['token']}
+
+    If you did not request that your email address be added to our mailing list, you may ignore this message.
+    EOT;
+  }
+}

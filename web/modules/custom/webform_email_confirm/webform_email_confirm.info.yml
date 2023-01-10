@@ -1,0 +1,7 @@
+name: 'Webform email confirm'
+type: module
+description: 'Allows confirmation of email addresses on webform submissions.'
+core_version_requirement: ^9
+package: 'Custom'
+dependencies:
+  - webform:webform
