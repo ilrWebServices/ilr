@@ -22,6 +22,13 @@ class EmailConfirm extends ControllerBase {
   protected $tempstore;
 
   /**
+   * The date formatter.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
    * Constructs an EmailConfirm object.
    *
    * @param \Drupal\Core\TempStore\SharedTempStore $tempstore
