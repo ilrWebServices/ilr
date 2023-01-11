@@ -16,25 +16,16 @@ class EmailConfirm extends ControllerBase {
 
   /**
    * The shared tempstore.
-   *
-   * @var \Drupal\Core\TempStore\SharedTempStore
    */
-  protected $tempstore;
+  protected SharedTempStore $tempstore;
 
   /**
    * The date formatter.
-   *
-   * @var \Drupal\Core\Datetime\DateFormatterInterface
    */
-  protected $dateFormatter;
+  protected DateFormatterInterface $dateFormatter;
 
   /**
    * Constructs an EmailConfirm object.
-   *
-   * @param \Drupal\Core\TempStore\SharedTempStore $tempstore
-   *   The shared tempstore.
-   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
-   *   The date formatter.
    */
   public function __construct(SharedTempStore $tempstore, DateFormatterInterface $date_formatter) {
     $this->tempstore = $tempstore;
@@ -59,7 +50,7 @@ class EmailConfirm extends ControllerBase {
    * can be an exception to the rule. See the discussion at
    * https://stackoverflow.com/q/1066611
    */
-  public function confirm($token, Request $request) {
+  public function confirm(string $token, Request $request) {
     $confirmation_data = $this->tempstore->get('submission_confirmation_' . $token);
 
     if ($confirmation_data->sid) {

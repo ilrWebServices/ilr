@@ -3,8 +3,12 @@
 namespace Drupal\webform_email_confirm\Plugin\WebformHandler;
 
 use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Core\TempStore\SharedTempStore;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -23,31 +27,23 @@ class EmailConfirmationWebformHandler extends WebformHandlerBase {
 
   /**
    * A mail manager for sending email.
-   *
-   * @var \Drupal\Core\Mail\MailManagerInterface
    */
-  protected $mailManager;
+  protected MailManagerInterface $mailManager;
 
   /**
    * The logger.
-   *
-   * @var \Psr\Log\LoggerInterface
    */
-  protected $logger;
+  protected LoggerInterface $logger;
 
   /**
    * The language manager.
-   *
-   * @var \Drupal\Core\Language\LanguageManagerInterface
    */
-  protected $languageManager;
+  protected LanguageManagerInterface $languageManager;
 
   /**
    * The shared tempstore.
-   *
-   * @var \Drupal\Core\TempStore\SharedTempStore
    */
-  protected $tempstore;
+  protected SharedTempStore $tempstore;
 
   /**
    * {@inheritdoc}
