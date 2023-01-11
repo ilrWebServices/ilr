@@ -8,6 +8,7 @@ id: default
 label: Default
 allowed_bundles:
   - collection.blog
+  - collection.content_section
   - node.certificate
   - node.course
   - node.media_mention
