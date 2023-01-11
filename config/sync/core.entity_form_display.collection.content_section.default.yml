@@ -7,6 +7,7 @@ dependencies:
     - field.field.collection.content_section.body
     - field.field.collection.content_section.field_representative_image
     - field.field.collection.content_section.field_sections
+    - field.field.collection.content_section.layout_builder__layout
   module:
     - media_library
     - media_library_edit
@@ -87,4 +88,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  layout_builder__layout: true
