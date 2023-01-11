@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.form.field_web_form
-    - field.field.paragraph.form.field_webform
     - paragraphs.paragraphs_type.form
   module:
     - webform
@@ -23,5 +22,4 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_webform: true
   status: true

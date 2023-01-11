@@ -5,7 +5,6 @@ dependencies:
   config:
     - core.entity_view_mode.paragraph.preview
     - field.field.paragraph.form.field_web_form
-    - field.field.paragraph.form.field_webform
     - paragraphs.paragraphs_type.form
   module:
     - layout_builder
@@ -28,5 +27,4 @@ content:
     weight: 1
     region: content
 hidden:
-  field_webform: true
   search_api_excerpt: true
