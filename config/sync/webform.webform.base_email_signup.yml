@@ -30,7 +30,7 @@ elements: |-
     '#requires_email_confirmation': 1
     '#confirmation_status_element': email_confirmation_status
   email_confirmation_status:
-    '#type': hidden
+    '#type': value
     '#title': 'Email confirmation status'
 css: ''
 javascript: ''

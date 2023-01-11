@@ -44,7 +44,7 @@ function webform_email_confirm_webform_element_configuration_form_alter(&$form, 
   // Only look for top level, hidden elements as potential email confirmation
   // status fields.
   foreach ($form_object->getWebform()->getElementsOriginalDecoded() as $element_id => $element) {
-    if ($element['#type'] === 'hidden') {
+    if ($element['#type'] === 'value') {
       $status_element_options[$element_id] = $element['#title'] ?? $element_id;
     }
   }
@@ -53,7 +53,7 @@ function webform_email_confirm_webform_element_configuration_form_alter(&$form, 
     '#type' => 'select',
     '#title' => t('Email confirmation status element'),
     '#options' => $status_element_options,
-    '#description' => t('Choose a hidden element to store the email confirmation status. If there are no options here, add a hidden element to the top level of the form, e.g. <code>email_confirmation_status</code>.'),
+    '#description' => t('Choose a hidden element to store the email confirmation status. If there are no options here, add a <code>value</code> element to the top level of the form, e.g. <code>email_confirmation_status</code>.'),
   ];
 }
 
