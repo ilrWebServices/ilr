@@ -1,9 +1,11 @@
-<div{{attributes}}>
-
-  {{ title_suffix }}
-
+{% set content %}
   {% include '@union/_course-finder.twig' with {
     heading: 'Course Finder'|t,
     content: content
   } only %}
-</div>
+{% endset %}
+
+{% include '@union/_section.twig' with {
+  attributes: attributes.addClass(['cu-section--wide']),
+  content: content,
+} only %}

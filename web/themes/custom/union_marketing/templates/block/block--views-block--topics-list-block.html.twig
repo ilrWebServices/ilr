@@ -9,19 +9,16 @@
   {% set topics = topics|merge([topic]) %}
 {% endfor %}
 
-{# Add the wrapper #}
-<div{{ attributes}}>
-  {{ title_suffix }}
-
-  {# Add the heading #}
-  {% include '@union/_section-heading.twig' with {
-    attributes: { class: 'cu-section-heading--framed', id: 'topics' },
-    heading: 'Topics'|t
-  } only %}
-
+{% set content %}
   {# Render the topics as a feature list #}
   {% include "@union/_feature-list.twig" with {
     items: topics,
     content_attributes: { class: 'cu-grid--3col cu-topic-list' }
   } only %}
-</div>
+{% endset %}
+
+{% include '@union/_section.twig' with {
+  attributes: attributes.addClass(['cu-section--framed']),
+  heading: 'Topics'|t,
+  content: content,
+} only %}
