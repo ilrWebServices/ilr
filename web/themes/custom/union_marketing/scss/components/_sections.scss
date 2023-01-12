@@ -7,6 +7,22 @@
   }
 }
 
+// On certificates, courses and topics the course finder is the first thing on
+// the page (above the banner). When this is the case, shrink the bottom margin.
+.layout__region--content > .views-element-container.cu-section--wide {
+  margin-bottom: var(--cu-vr1);
+}
+
+// If it shows up directly below the banner, restore the standard section
+// margins.
+.layout-banner + .layout--onecol .views-element-container.cu-section--wide {
+  --cu-component-margin-bottom: var(--cu-vr2);
+
+  @include breakpoint(md) {
+    --cu-component-margin-bottom: var(--cu-vr3);
+  }
+}
+
 .field--field-sections .cu-section-heading__link,
 .paragraphs-previewer-html .cu-section-heading__link {
   order: 3;

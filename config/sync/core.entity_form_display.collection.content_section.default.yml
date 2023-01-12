@@ -57,6 +57,11 @@ content:
         add_above: 0
         duplicate: duplicate
     third_party_settings: {  }
+  ief_collection_items:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   name:
     type: string_textfield
     weight: -4

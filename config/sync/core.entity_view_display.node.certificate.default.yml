@@ -21,6 +21,7 @@ dependencies:
     - entity_reference_revisions
     - ilr
     - layout_builder
+    - layout_discovery
     - system
     - text
     - union_organizer
@@ -33,17 +34,14 @@ third_party_settings:
     allow_custom: true
     sections:
       -
-        layout_id: layout_cu_section
+        layout_id: layout_onecol
         layout_settings:
-          label: ''
+          label: 'Course finder'
           context_mapping: {  }
-          full_width: 1
-          collapse_margins: 1
-          extra_classes: ''
         components:
-          c3773e2e-dcd4-45c0-88cf-7086817257db:
-            uuid: c3773e2e-dcd4-45c0-88cf-7086817257db
-            region: main
+          b1e04a6d-a191-4ed8-9543-017d83241050:
+            uuid: b1e04a6d-a191-4ed8-9543-017d83241050
+            region: content
             configuration:
               id: 'views_block:topics_list-course_finder'
               label: ''
