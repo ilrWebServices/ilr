@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b265527643735b7a8b8411d0bee4523",
+    "content-hash": "bb00b8d069956dc3f396e10233c9ae61",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1904,7 +1904,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/collection.git",
-                "reference": "932edc407c49d903d8c2f48da90b05d5a35a9fa0"
+                "reference": "d8c8793059603fa7b26654c3d76a04605791810e"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -1922,8 +1922,8 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "3.x-dev",
-                    "datestamp": "1655408825",
+                    "version": "3.0.0-alpha1+6-dev",
+                    "datestamp": "1673633825",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -1936,16 +1936,16 @@
             ],
             "authors": [
                 {
-                    "name": "Xen",
-                    "homepage": "https://www.drupal.org/user/91385"
-                },
-                {
                     "name": "a-fro",
                     "homepage": "https://www.drupal.org/user/2420892"
                 },
                 {
                     "name": "jeffam",
                     "homepage": "https://www.drupal.org/user/397127"
+                },
+                {
+                    "name": "Xen",
+                    "homepage": "https://www.drupal.org/user/91385"
                 }
             ],
             "description": "Allows collections of content and configuration entities",
