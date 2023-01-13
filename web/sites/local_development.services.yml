@@ -6,6 +6,13 @@ parameters:
   http.response.debug_cacheability_headers: false
   twig.config:
     debug: true
+  renderer.config:
+    required_cache_contexts: ['languages:language_interface', 'theme', 'user.permissions']
+    auto_placeholder_conditions:
+      max-age: 0
+      contexts: ['session', 'user']
+      tags: []
+    debug: true
   persistent_visitor_parameters.options:
     cookie_domain: .ilr.test
 services:
