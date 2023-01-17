@@ -154,11 +154,12 @@ class EmailConfirmationWebformHandler extends WebformHandlerBase {
 
         // Send an email with a link containing the confirmation token.
         $current_langcode = $this->languageManager->getCurrentLanguage()->getId();
+        // @todo Add another setting for the hardcoded email ilrcustomerservice@ilr.mail.cornell.edu
         $site_settings = $this->configFactory->get('system.site');
         $params = [];
         $params['token'] = $token;
 
-        $this->mailManager->mail('webform_email_confirm', 'email_confirm_message', $email, $current_langcode, $params, $site_settings->get('mail'));
+        $this->mailManager->mail('webform_email_confirm', 'email_confirm_message', $email, $current_langcode, $params, 'ilrcustomerservice@ilr.mail.cornell.edu');
 
         $this->logger->notice('Email confirmation message sent for webform submission @webform_submission', [
           '@webform_submission' => $webform_submission->id(),

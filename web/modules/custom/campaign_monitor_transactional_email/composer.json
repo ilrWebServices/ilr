@@ -1,0 +1,16 @@
+{
+  "name": "drupal/campaign_monitor_transactional_email",
+  "type": "drupal-module",
+  "description": "Mail plugin that sends via Campaign Monitor Transactional Email.",
+  "keywords": [
+  ],
+  "homepage": "https://www.drupal.org/project/campaign_monitor_transactional_email",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/campaign_monitor_transactional_email",
+    "source": "http://cgit.drupalcode.org/campaign_monitor_transactional_email"
+  },
+  "require": {
+    "drupal/campaign_monitor_rest_client": "^1.0.0"
+  }
+}

@@ -3,3 +3,4 @@ _core:
 interface:
   default: php_mail
   webform: webform_php_mail
+  webform_email_confirm: campaign_monitor_transactional_mail

@@ -1,0 +1,6 @@
+name: 'Campaign Monitor Transactional Email Plugin'
+type: module
+description: 'Mail plugin that sends via Campaign Monitor Transactional Email.'
+core_version_requirement: ^9 || ^10
+dependencies:
+  - campaign_monitor_rest_client:campaign_monitor_rest_client
