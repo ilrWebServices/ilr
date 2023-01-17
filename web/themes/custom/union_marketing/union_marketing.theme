@@ -213,6 +213,11 @@ function union_marketing_theme_suggestions_block_alter(array &$suggestions, arra
   if ($element['#base_plugin_id'] === 'field_block' && (strpos($element['#derivative_plugin_id'], 'categories:name') > 0 || strpos($element['#derivative_plugin_id'], 'tags:name') > 0)) {
     $suggestions[] = 'block__field_block__taxonomy_term__blog_term__name';
   }
+
+  if (strpos($element['#plugin_id'], 'views_block:memories') === 0) {
+    // Allow us to use block--memory--listing.html.twig for all memories blocks.
+    $suggestions[] = 'block__memory__listing';
+  }
 }
 
 /**

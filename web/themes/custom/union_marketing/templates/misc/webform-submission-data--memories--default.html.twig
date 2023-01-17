@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Default theme implementation for webform submission data.
+ *
+ * Available variables:
+ * - webform_submission: The webform submission.
+ * - webform: The webform.
+ * - elements: Not mentioned in the module template, but this is the data.
+ *
+ * @see template_preprocess_webform_submission_data()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+  'memory',
+  'webform-submission-data',
+  'webform-submission-data--webform-' ~ webform.id()|clean_class,
+  view_mode ? 'webform-submission-data--view-mode-' ~ view_mode|clean_class,
+] %}
+{% set memory = drupal_token('webform_submission:values:memory:raw', {webform_submission: webform_submission}) %}
+{% set name = drupal_token('webform_submission:values:your_name:raw', {webform_submission: webform_submission}) %}
+{% set class_year = drupal_token('webform_submission:values:class_year:raw', {webform_submission: webform_submission}) %}
+{% set location = drupal_token('webform_submission:values:location', {webform_submission: webform_submission}) %}
+{% set class_year_short = class_year|slice(2,4) %}
+<div{{ attributes.addClass(classes) }}>
+  <div class="memory__text">{{ memory|check_markup('plain_text') }}</div>
+  <div class="memory__meta">
+    <span class="memory__meta-name">{{ name }}</span>
+    {% if class_year %}, <span class="memory__meta-classyear">'{{ class_year_short }}</span>{% endif %}
+    {% if location %} &ndash; <span class="memory__meta-location">{{ location }}</span>{% endif %}
+  </div>
+</div>
