@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - collection
+    - ilr
     - media
     - system
 _core:
@@ -17,6 +18,7 @@ permissions:
   - 'view blog collection'
   - 'view content_section collection'
   - 'view media'
+  - 'view memories webform submissions'
   - 'view publication_issue collection'
   - 'view subsite collection'
   - 'view subsite_blog collection'

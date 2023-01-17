@@ -32,6 +32,8 @@ use Drupal\taxonomy\VocabularyInterface;
 use Drupal\collection\Entity\CollectionItemInterface;
 use Drupal\Core\Database\Query\AlterableInterface;
 use Drupal\ilr\Entity\ImageMedia;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_theme().
@@ -1356,4 +1358,18 @@ function ilr_module_implements_alter(&$implementations, $hook) {
     unset($implementations['ilr']);
     $implementations['ilr'] = $group;
   }
+}
+
+function ilr_webform_submission_entity_access(WebformSubmissionInterface $webform_submission, $operation, AccountInterface $account) {
+  dump($operation);
+  if ($webform_submission->getWebform()->id() === 'memories') {
+    if ($operation === 'view') {
+      return AccessResult::allowedIfHasPermission($account, 'view memories webform submissions');
+    }
+    if ($operation === 'edit') {
+      return AccessResult::allowedIfHasPermission($account, 'edit memories webform submissions');
+    }
+  }
+
+  return AccessResult::neutral();
 }

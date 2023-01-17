@@ -9,6 +9,7 @@ dependencies:
   module:
     - collection
     - filter
+    - ilr
     - media
     - media_pdf_thumbnail
     - system
@@ -31,6 +32,7 @@ permissions:
   - 'view blog collection'
   - 'view content_section collection'
   - 'view media'
+  - 'view memories webform submissions'
   - 'view own collections'
   - 'view private pdf thumbnails'
   - 'view publication_issue collection'
