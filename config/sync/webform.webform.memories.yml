@@ -223,5 +223,42 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  approval_email:
+    id: email
+    handler_id: approval_email
+    label: 'Approval email'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: 'bw485@cornell.edu,mc834@cornell.edu,jag235@cornell.edu,zb83@cornell.edu'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: _default
+      body: "<p>A new memory has been submitted for approval.</p>\r\n\r\n<p><a href=\"[site:url]/admin/structure/webform/manage/[webform:id]/results/submissions\">To approve this memory submission</a>, simply click the &quot;lock&quot; icon in the submissions table. Only locked submissions are visible to the public.<br />\r\n&nbsp;</p>\r\n\r\n<hr />\r\n<p>Submitted on [webform_submission:created]</p>\r\n\r\n<p>Submitted by: [webform_sub[webform:id]mission:user]</p>\r\n\r\n<p>Submitted values are:</p>\r\n[webform_submission:values]"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
 variants: {  }
