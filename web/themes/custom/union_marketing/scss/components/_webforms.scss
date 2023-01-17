@@ -69,3 +69,28 @@
     padding: var(--cu-vr1) var(--cu-ps3);
   }
 }
+
+@include breakpoint(sm) {
+  .webform--grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--cu-ps1);
+
+    &.webform--grid__widetextarea {
+      .cu-input-list__item--textarea {
+        grid-column: 1/-1;
+      }
+    }
+
+    .cu-input-list__item--select {
+      display: flex;
+      gap: var(--cu-ps-1);
+
+      .cu-label {
+        white-space: nowrap;
+        font-size: 75%;
+        color: var(--cu-color-text-disabled, #888888);
+      }
+    }
+  }
+}

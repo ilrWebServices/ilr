@@ -1,0 +1,21 @@
+.memories-block {
+  @include breakpoint(sm) {
+    max-width: 30em;
+    margin: 0 auto;
+  }
+}
+
+.memory {
+  margin: var(--cu-vr2) 0;
+
+  .memory__meta {
+    font-style: italic;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    margin: var(--cu-vr2) 0;
+    border-bottom: 2px solid $gray-light;
+  }
+}
