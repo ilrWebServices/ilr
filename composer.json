@@ -63,7 +63,7 @@
     "drupal/date_range_formatter": "^9",
     "drupal/dynamic_entity_reference": "^2.0",
     "drupal/easy_breadcrumb": "^2.0.0",
-    "drupal/entity_browser": "^2.4",
+    "drupal/entity_browser": "^2.9",
     "drupal/entity_usage": "^2.0@beta",
     "drupal/extra_field": "^2.0.0",
     "drupal/filehash": "^1.4",
@@ -213,7 +213,6 @@
         "Fix settings form permission": "https://git.drupalcode.org/issue/persistent_visitor_parameters-3266421/-/commit/3d5c811d7757d36b665c79abf607147988eb2c6f.diff"
       },
       "drupal/webform": {
-        "Issue 3321630: share.js incorrectly caches webforms with specific prepopulate fields": "https://www.drupal.org/files/issues/2022-12-01/webform-3321630-15.patch",
         "Issue #3321649: Shared webforms return HTTP 403 when there is no dedicated URL": "https://git.drupalcode.org/project/webform/-/commit/8e372de6b1aa57036ccf87ddb74ed7ea1ed0eb2f.diff"
       }
     },
