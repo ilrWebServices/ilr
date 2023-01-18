@@ -181,9 +181,7 @@ access:
     users: {  }
     permissions: {  }
   view_any:
-    roles:
-      - anonymous
-      - authenticated
+    roles: {  }
     users: {  }
     permissions: {  }
   update_any:
