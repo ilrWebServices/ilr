@@ -249,7 +249,7 @@ handlers:
       sender_mail: ''
       sender_name: ''
       subject: _default
-      body: "<p>A new memory has been submitted for approval.</p>\r\n\r\n<p><a href=\"[site:url]/admin/structure/webform/manage/[webform:id]/results/submissions\">To approve this memory submission</a>, simply click the &quot;lock&quot; icon in the submissions table.<br />\r\n&nbsp;</p>\r\n\r\n<hr />\r\n<p>Submitted on [webform_submission:created]</p>\r\n\r\n<p>Submitted by: [webform_submission:user]</p>\r\n\r\n<p>Submitted values are:</p>\r\n[webform_submission:values]"
+      body: "{% set site_url = webform_token('[site:url]', webform_submission)|replace({'www.ilr.cornell.edu': 'd8-edit.ilr.cornell.edu'}) %}\r\n<p>A new memory has been submitted for approval.</p>\r\n\r\n<p><a href=\"{{ site_url }}admin/structure/webform/manage/{{ webform_token('[webform:id]', webform_submission) }}/results/submissions\">To approve this memory submission</a>, simply click the &quot;lock&quot; icon in the submissions table.</p>\r\n\r\n<hr />\r\n\r\n<p>Submitted on {{ webform_token('[webform_submission:created]', webform_submission) }}</p>\r\n\r\n<p>Submitted by: {{ webform_token('[webform_submission:user]', webform_submission) }}</p>\r\n\r\n<p>Submitted values are:</p>\r\n{{ webform_token('[webform_submission:values]', webform_submission) }}"
       excluded_elements: {  }
       ignore_access: false
       exclude_empty: true
@@ -257,7 +257,7 @@ handlers:
       exclude_attachments: false
       html: true
       attachments: false
-      twig: false
+      twig: true
       theme_name: ''
       parameters: {  }
       debug: false
