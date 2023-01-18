@@ -183,16 +183,18 @@ access:
   view_any:
     roles: {  }
     users: {  }
-    permissions: {  }
+    permissions:
+      - 'administer memories webform submissions'
   update_any:
-    roles:
-      - form_admin
+    roles: {  }
     users: {  }
-    permissions: {  }
+    permissions:
+      - 'administer memories webform submissions'
   delete_any:
     roles: {  }
     users: {  }
-    permissions: {  }
+    permissions:
+      - 'administer memories webform submissions'
   purge_any:
     roles: {  }
     users: {  }
