@@ -75,6 +75,8 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
       return;
     }
 
+    // @todo Run an action here that can be shared with bulk operations.
+
     // Add some submission data to the serialized order.
     $serialized_order = [
       'point_of_sale' => $this->request->getHost() . ' : ' . $webform_submission->webform_id->target_id . ' webform : ILR Drupal quick signup',
