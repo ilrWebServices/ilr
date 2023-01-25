@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1287ace1917a2317052dfaf327e9002",
+    "content-hash": "ff1a296a43a3c8493390e8527dc2648b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3568,12 +3568,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/ilr_outreach_discount_api.git",
-                "reference": "28438985f51670bb67b93a3c22521a976dd66934"
+                "reference": "f93a33c35dc55f4dd4d0a1ed6856725f78062ca6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/ilr_outreach_discount_api/zipball/28438985f51670bb67b93a3c22521a976dd66934",
-                "reference": "28438985f51670bb67b93a3c22521a976dd66934",
+                "url": "https://api.github.com/repos/ilrWebServices/ilr_outreach_discount_api/zipball/f93a33c35dc55f4dd4d0a1ed6856725f78062ca6",
+                "reference": "f93a33c35dc55f4dd4d0a1ed6856725f78062ca6",
                 "shasum": ""
             },
             "require": {
@@ -3586,7 +3586,7 @@
                 "source": "https://github.com/ilrWebServices/ilr_outreach_discount_api/tree/1.x",
                 "issues": "https://github.com/ilrWebServices/ilr_outreach_discount_api/issues"
             },
-            "time": "2022-11-29T14:55:07+00:00"
+            "time": "2023-01-25T22:08:03+00:00"
         },
         {
             "name": "drupal/ilr_outreach_order_submitter",
@@ -15924,7 +15924,6 @@
         "cornell/union": 20,
         "drupal/collection": 20,
         "drupal/entity_usage": 10,
-        "drupal/ilr_outreach_discount_api": 20,
         "drupal/ilr_outreach_order_submitter": 20,
         "drupal/inline_entity_form": 5,
         "drupal/persistent_visitor_parameters": 20,

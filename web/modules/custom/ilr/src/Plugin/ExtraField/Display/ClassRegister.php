@@ -51,6 +51,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
         'register_url' => '',
         'price' => $class->field_price->value,
         'discount_price' => $class->field_price->value,
+        'discount_enddate' => '',
       ];
 
       $mapped_objects = $this->entityTypeManager->getStorage('salesforce_mapped_object')
@@ -72,9 +73,17 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
             // @todo Revisit if/when multiple discount codes are allowed.
             $eligible_discount = $this->discountManager->getEligibleDiscount($env_disount_codes[0], $mapping->salesforce_id->getString());
 
-            if ($eligible_discount && $eligible_discount->type === 'percentage') {
-              $discount_amt = $class->field_price->value * $eligible_discount->value;
-              $info['discount_price'] = $class->field_price->value + $discount_amt;
+            if ($eligible_discount) {
+              $info['discount_enddate'] = $eligible_discount->endDate;
+
+              if ($eligible_discount->type === 'percentage') {
+                $discount_amt = $class->field_price->value * $eligible_discount->value;
+                $info['discount_price'] = $class->field_price->value + $discount_amt;
+              }
+              elseif ($eligible_discount && $eligible_discount->type === 'amount') {
+                $discount_amt = $eligible_discount->value;
+                $info['discount_price'] = $class->field_price->value + $discount_amt;
+              }
             }
           }
           catch (\Exception $e) {

@@ -54,7 +54,7 @@
     {% if class.price %}
     <div class="price">
       {% if class.discount_price < class.price %}
-      <p class="cu-checkbutton__price cu-heading"><span class="original-price">${{ class.price|number_format(2) }}</span>${{ class.discount_price|number_format(2) }}</p>
+      <p class="cu-checkbutton__price cu-heading"><span class="original-price">${{ class.price|number_format(2) }}</span>${{ class.discount_price|number_format(2) }}{% if class.discount_enddate %} <span style="font-size: .8em;">{{ trans }}until{{ endtrans }} {{ class.discount_enddate|date('n/j') }}</span>{% endif %}</p>
       {% else %}
       <p class="cu-checkbutton__price cu-heading">${{ class.price|number_format(2) }}</p>
       {% endif %}
