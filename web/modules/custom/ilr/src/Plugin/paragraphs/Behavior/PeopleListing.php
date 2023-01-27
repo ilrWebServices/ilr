@@ -33,7 +33,7 @@ class PeopleListing extends ParagraphsBehaviorBase {
     $paragraph = $variables['paragraph'];
     $list_style = $paragraph->getBehaviorSetting('list_styles', 'list_style') ?? 'grid';
     $count = 1;
-    foreach ($variables['content']['field_people']['#items'] as $key => $persona) {
+    foreach ($variables['content']['field_people']['#items'] ?? [] as $key => $persona) {
       $variables['content']['field_people'][$key]['#view_mode'] = $this->getViewModeForListStyle($list_style, $count);
       $count++;
     }
