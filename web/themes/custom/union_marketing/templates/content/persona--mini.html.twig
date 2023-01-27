@@ -11,11 +11,8 @@
  * - url: Direct URL of the current node.
  */
 #}
-<div{{attributes}}>
-  {% include "@union/_person.twig" with {
-    attributes: {class: ['cu-person--mini']},
-    name: content.display_name,
-  } only %}
-	{{ title_suffix }}
-</div>
-
+{% include "@union/_person.twig" with {
+  attributes: attributes.addClass('cu-person--mini'),
+  name: content.display_name,
+  content: title_suffix
+} only %}

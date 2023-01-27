@@ -1,8 +1,9 @@
-uuid: 79314981-208a-4ed4-8486-daa148dcde18
+uuid: 66c3128e-1e42-444b-8ff9-f38e118106e2
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.persona.mini
     - field.field.persona.staff.field_bio
     - field.field.persona.staff.field_email
     - field.field.persona.staff.field_first_name
@@ -13,14 +14,27 @@ dependencies:
     - image.style.thumbnail_square
     - person.persona_type.staff
   module:
+    - layout_builder
     - media
     - telephone
     - text
-id: persona.staff.default
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: persona.staff.mini
 targetEntityType: persona
 bundle: staff
-mode: default
+mode: mini
 content:
+  display_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_bio:
     type: text_default
     label: hidden
@@ -63,7 +77,6 @@ content:
     weight: 1
     region: content
 hidden:
-  display_name: true
   field_first_name: true
   field_last_name: true
   search_api_excerpt: true

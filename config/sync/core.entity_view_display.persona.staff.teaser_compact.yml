@@ -1,8 +1,9 @@
-uuid: 79314981-208a-4ed4-8486-daa148dcde18
+uuid: e9b59752-3df5-45f4-8c41-fd85d489dea4
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.persona.teaser_compact
     - field.field.persona.staff.field_bio
     - field.field.persona.staff.field_email
     - field.field.persona.staff.field_first_name
@@ -13,20 +14,25 @@ dependencies:
     - image.style.thumbnail_square
     - person.persona_type.staff
   module:
+    - layout_builder
     - media
     - telephone
-    - text
-id: persona.staff.default
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: persona.staff.teaser_compact
 targetEntityType: persona
 bundle: staff
-mode: default
+mode: teaser_compact
 content:
-  field_bio:
-    type: text_default
-    label: hidden
-    settings: {  }
+  display_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
-    weight: 5
+    weight: 0
     region: content
   field_email:
     type: email_mailto
@@ -63,7 +69,7 @@ content:
     weight: 1
     region: content
 hidden:
-  display_name: true
+  field_bio: true
   field_first_name: true
   field_last_name: true
   search_api_excerpt: true

@@ -11,12 +11,20 @@
  * - url: Direct URL of the current node.
  */
 #}
-<div{{ attributes }}>
+{% set additional_info %}
+  {{ content|without('display_name', 'field_title', 'field_photo', 'field_bio') }}
+{% endset %}
+
+{% set title = [] %}
+{% for key, item in content.field_title if key|first != '#' %}
+  {% set title = title|merge([item]) %}
+{% endfor %}
+
 {% include "@union/_person.twig" with {
-  attributes: {class: ['cu-person--thumb']},
+  attributes: attributes.addClass('cu-person--thumb'),
   name: content.display_name,
-  title: content.field_title.0,
+  title: title,
+  additional_info: additional_info,
+  content: title_suffix,
   img: content.field_photo
 } only %}
-{{ title_suffix }}
-</div>
