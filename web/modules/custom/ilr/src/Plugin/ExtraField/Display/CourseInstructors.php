@@ -89,7 +89,7 @@ class CourseInstructors extends ExtraFieldDisplayBase implements ContainerFactor
     foreach ($participant_nodes as $participant_node) {
       $instructor = $participant_node->field_instructor->entity;
       if ($instructor && $instructor->isPublished()) {
-        $instructors[$instructor->id()] = $view_builder->view($instructor, 'mini');
+        $instructors[$participant_node->id()] = $view_builder->view($participant_node, 'mini');
       }
     }
 
