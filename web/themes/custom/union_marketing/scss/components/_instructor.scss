@@ -54,17 +54,12 @@
 
 .cu-grid--people {
   @include breakpoint(sm) {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--cu-ps0);
   }
 
-  & > .node--instructor {
-    @include breakpoint(sm) {
-      min-width: 50%;
-    }
-
-    @include breakpoint(md) {
-      min-width: 33.33%;
-    }
+  @include breakpoint(md) {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
