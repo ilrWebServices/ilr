@@ -63,3 +63,7 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.node--participant.node--view-mode-mini.inactive {
+  display: none;
+}

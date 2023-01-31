@@ -115,9 +115,11 @@
       context.addEventListener('change', function (event) {
         if (event.target.matches('.cu-checkbutton__input')) {
           let registerButton = event.target.closest('.cu-registration-form').querySelector('.cu-js-register-link');
+          let class_select_event = new CustomEvent('registration-form-class-select', { detail: event.target.dataset.classid });
 
           if (registerButton) {
             registerButton.setAttribute('href', event.target.value);
+            document.dispatchEvent(class_select_event);
           }
         }
       }, false);
@@ -173,5 +175,22 @@
       });
     }
   };
+
+  document.addEventListener('registration-form-class-select', function (event) {
+    let instructor_selector = '.block__instructors .node--participant';
+    let active_instructor_selector = '.block__instructors .node--participant[data-classid="' + event.detail + '"]';
+    let all_instructors = document.querySelectorAll(instructor_selector);
+    let active_instructors = document.querySelectorAll(active_instructor_selector);
+
+    all_instructors.forEach(function(el) {
+      el.classList.remove('active');
+      el.classList.add('inactive');
+    });
+
+    active_instructors.forEach(function(el) {
+      el.classList.remove('inactive');
+      el.classList.add('active');
+    });
+  });
 
 })(window, document, Drupal);
