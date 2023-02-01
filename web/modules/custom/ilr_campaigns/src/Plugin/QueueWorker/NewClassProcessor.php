@@ -2,9 +2,11 @@
 
 namespace Drupal\ilr_campaigns\Plugin\QueueWorker;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\ilr_campaigns\CourseNotificationHelper;
+use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -26,6 +28,13 @@ class NewClassProcessor extends QueueWorkerBase implements ContainerFactoryPlugi
   protected $courseNotificationHelper;
 
   /**
+   * The entity type manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
    * Constructs a NewClassProcessor queue object.
    *
    * @param array $configuration
@@ -36,10 +45,13 @@ class NewClassProcessor extends QueueWorkerBase implements ContainerFactoryPlugi
    *   The plugin implementation definition.
    * @param \Drupal\ilr_campaigns\CourseNotificationHelper $course_notification_helper
    *   Helper service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, CourseNotificationHelper $course_notification_helper) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, CourseNotificationHelper $course_notification_helper, EntityTypeManagerInterface $entity_type_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->courseNotificationHelper = $course_notification_helper;
+    $this->entityTypeManager = $entity_type_manager;
   }
 
   /**
@@ -50,7 +62,8 @@ class NewClassProcessor extends QueueWorkerBase implements ContainerFactoryPlugi
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('ilr_campaigns.course_notifications')
+      $container->get('ilr_campaigns.course_notifications'),
+      $container->get('entity_type.manager')
     );
   }
 
@@ -58,8 +71,16 @@ class NewClassProcessor extends QueueWorkerBase implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function processItem($data) {
-    // @todo Consider confirming that the data is a node:class entity.
-    $class = $data;
+    /** @var \Drupal\node\NodeInterface $class */
+    $class = $this->entityTypeManager->getStorage('node')->load($data);
+
+    if (!$class instanceof NodeInterface) {
+      return;
+    }
+
+    if ($class->bundle() !== 'class') {
+      return;
+    }
 
     if ($class->field_course->isEmpty()) {
       // Throw an exception to log the missing course. This will re-queue it,
