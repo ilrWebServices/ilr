@@ -6,3 +6,29 @@
 .cu-component.cu-component--no-bottom-margin {
   margin-bottom: 0;
 }
+
+.cu-card--inset {
+  @include breakpoint(md) {
+    .cu-card__content {
+      bottom: var(--cu-vr2);
+      left: var(--cu-ps2);
+      right: var(--cu-ps2);
+    }
+  }
+
+  .cu-composite-heading__heading {
+    font-weight: 400;
+  }
+
+  .cu-composite-heading__eyebrow-heading {
+    color: #6C6C6C;
+  }
+
+  .cu-composite-heading::after {
+    background-color: transparent;
+  }
+
+  .cu-button {
+    margin-bottom: 0;
+  }
+}
