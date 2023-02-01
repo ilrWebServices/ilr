@@ -82,6 +82,12 @@ class NewClassProcessor extends QueueWorkerBase implements ContainerFactoryPlugi
       return;
     }
 
+    // If class node create date is older than 7 days, allow the item to be
+    // removed from the queue.
+    if (time() - $class->getCreatedTime() > 60 * 60 * 24 * 7) {
+      return;
+    }
+
     if ($class->field_course->isEmpty()) {
       // Throw an exception to log the missing course. This will re-queue it,
       // but shouldn't hold up the rest of the queue.
@@ -92,12 +98,6 @@ class NewClassProcessor extends QueueWorkerBase implements ContainerFactoryPlugi
 
     // Check if this Class or the related Course are unpublished.
     if (!$class->isPublished() || !$course->isPublished()) {
-      // If class node create date is older than 28 days, allow the item to be
-      // removed from the queue.
-      if (time() - $class->getCreatedTime() > 60 * 60 * 24 * 28) {
-        return;
-      }
-
       // Re-queue this class in case it or the class is eventually published in
       // the near future.
       throw new \Exception('Course or class is unpublished. Class nid ' . $class->id());
