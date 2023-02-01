@@ -59,17 +59,6 @@ third_party_settings:
           label: ''
           context_mapping: {  }
         components:
-          afbfeda1-bea9-41d8-8649-031588ca42c3:
-            uuid: afbfeda1-bea9-41d8-8649-031588ca42c3
-            region: banner
-            configuration:
-              id: system_breadcrumb_block
-              label: Breadcrumbs
-              label_display: '0'
-              provider: system
-              context_mapping: {  }
-            weight: 0
-            additional: {  }
           38a16e29-ff59-4498-9723-ef44e5deca4d:
             uuid: 38a16e29-ff59-4498-9723-ef44e5deca4d
             region: banner
@@ -86,7 +75,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 1
+            weight: 2
             additional: {  }
           5a395ad3-64f5-4529-bf91-e734770cd74b:
             uuid: 5a395ad3-64f5-4529-bf91-e734770cd74b
@@ -104,7 +93,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
             additional: {  }
           b0e922ef-4160-4605-b9ac-c4170e446dad:
             uuid: b0e922ef-4160-4605-b9ac-c4170e446dad
@@ -247,7 +236,18 @@ third_party_settings:
                 settings:
                   view_mode: default
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
+            additional: {  }
+          afbfeda1-bea9-41d8-8649-031588ca42c3:
+            uuid: afbfeda1-bea9-41d8-8649-031588ca42c3
+            region: top
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: 0
             additional: {  }
         third_party_settings: {  }
       -

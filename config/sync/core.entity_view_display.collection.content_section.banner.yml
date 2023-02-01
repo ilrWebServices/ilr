@@ -27,17 +27,6 @@ third_party_settings:
           label: Banner
           context_mapping: {  }
         components:
-          a1e03f07-de57-41e7-97b6-e5ea1968547d:
-            uuid: a1e03f07-de57-41e7-97b6-e5ea1968547d
-            region: banner
-            configuration:
-              id: system_breadcrumb_block
-              label: Breadcrumbs
-              label_display: '0'
-              provider: system
-              context_mapping: {  }
-            weight: 0
-            additional: {  }
           62d11bc7-c665-4a40-9b02-9c55f4f4f7c0:
             uuid: 62d11bc7-c665-4a40-9b02-9c55f4f4f7c0
             region: banner
@@ -55,7 +44,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 1
+            weight: 2
             additional: {  }
           f1c7031b-3015-4244-a151-c1d68aa2b24c:
             uuid: f1c7031b-3015-4244-a151-c1d68aa2b24c
@@ -75,7 +64,7 @@ third_party_settings:
                   image_link: ''
                   image_style: large_21_9_1200x514_
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
             additional: {  }
           e4938586-e13e-486b-9fe2-fe40072d7537:
             uuid: e4938586-e13e-486b-9fe2-fe40072d7537
@@ -94,7 +83,18 @@ third_party_settings:
                 settings:
                   trim_length: 600
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
+            additional: {  }
+          a1e03f07-de57-41e7-97b6-e5ea1968547d:
+            uuid: a1e03f07-de57-41e7-97b6-e5ea1968547d
+            region: top
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: 0
             additional: {  }
         third_party_settings: {  }
 id: collection.content_section.banner

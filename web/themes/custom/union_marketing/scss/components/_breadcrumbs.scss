@@ -1,9 +1,25 @@
 // Prevent breadcrumbs from breaking with long titles on mobile, e.g. Labor and
 // Employment Law Program
 .cu-breadcrumb .cu-breadcrumb__item {
+  --cu-font-size: var(--cu-ms-2);
+  text-transform: uppercase;
   white-space: initial;
+  opacity: 0.7;
 
   @include breakpoint(sm) {
     white-space: no-wrap;
+  }
+
+  &::after {
+    content: '>';
+  }
+}
+
+.cu-breadcrumb__item:last-child {
+  opacity: 1;
+
+  .cu-breadcrumb__link {
+    --cu-text-color: white;
+    font-weight: 400;
   }
 }

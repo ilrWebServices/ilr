@@ -27,17 +27,6 @@ third_party_settings:
           label: Banner
           context_mapping: {  }
         components:
-          3bfe941b-d893-4e67-b75f-3005bbe10080:
-            uuid: 3bfe941b-d893-4e67-b75f-3005bbe10080
-            region: banner
-            configuration:
-              id: system_breadcrumb_block
-              label: Breadcrumbs
-              label_display: '0'
-              provider: system
-              context_mapping: {  }
-            weight: 0
-            additional: {  }
           f7b76440-beee-4c7b-99bc-edc6740e5fe5:
             uuid: f7b76440-beee-4c7b-99bc-edc6740e5fe5
             region: banner
@@ -52,7 +41,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 1
+            weight: 2
             additional: {  }
           5a3b016b-688d-4406-bdd2-43165fce7609:
             uuid: 5a3b016b-688d-4406-bdd2-43165fce7609
@@ -71,7 +60,7 @@ third_party_settings:
                 settings:
                   view_mode: default
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
             additional: {  }
           45998408-6197-4e06-8f51-00cceafe3ec5:
             uuid: 45998408-6197-4e06-8f51-00cceafe3ec5
@@ -89,7 +78,18 @@ third_party_settings:
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
+            additional: {  }
+          3bfe941b-d893-4e67-b75f-3005bbe10080:
+            uuid: 3bfe941b-d893-4e67-b75f-3005bbe10080
+            region: top
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: 0
             additional: {  }
         third_party_settings: {  }
 id: collection.subsite_blog.banner

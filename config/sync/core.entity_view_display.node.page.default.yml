@@ -44,18 +44,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 2
-            additional: {  }
-          26c5ec80-4c2a-486d-9206-45f4caf49eac:
-            uuid: 26c5ec80-4c2a-486d-9206-45f4caf49eac
-            region: banner
-            configuration:
-              id: system_breadcrumb_block
-              label: Breadcrumbs
-              label_display: '0'
-              provider: system
-              context_mapping: {  }
-            weight: 0
+            weight: 3
             additional: {  }
           ee3862f3-e8f9-4a3f-8610-f0a33055873f:
             uuid: ee3862f3-e8f9-4a3f-8610-f0a33055873f
@@ -73,7 +62,7 @@ third_party_settings:
                 settings:
                   view_mode: default
                 third_party_settings: {  }
-            weight: 1
+            weight: 2
             additional: {  }
           0395edef-fdc2-4166-ba11-d770ba19aa3b:
             uuid: 0395edef-fdc2-4166-ba11-d770ba19aa3b
@@ -83,7 +72,7 @@ third_party_settings:
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-            weight: 4
+            weight: 5
             additional: {  }
           1f5dd978-556e-4ccf-965f-bd9d16d4b332:
             uuid: 1f5dd978-556e-4ccf-965f-bd9d16d4b332
@@ -100,7 +89,18 @@ third_party_settings:
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
+            additional: {  }
+          26c5ec80-4c2a-486d-9206-45f4caf49eac:
+            uuid: 26c5ec80-4c2a-486d-9206-45f4caf49eac
+            region: top
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: 0
             additional: {  }
         third_party_settings: {  }
       -

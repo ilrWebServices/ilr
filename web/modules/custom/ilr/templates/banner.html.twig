@@ -1,7 +1,12 @@
 <div class="layout-banner">
 
 {% set rendered_content %}
-<div class="framed framed--right">
+{% if content.top %}
+<div class="banner__top">
+  {{ content.top }}
+</div>
+{% endif %}
+<div class="banner__content">
   {{ content.banner }}
 </div>
 {% endset %}

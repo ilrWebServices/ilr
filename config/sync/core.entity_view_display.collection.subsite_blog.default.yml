@@ -27,17 +27,6 @@ third_party_settings:
           label: Banner
           context_mapping: {  }
         components:
-          f154346f-9a7f-4cdf-a97a-49979160c394:
-            uuid: f154346f-9a7f-4cdf-a97a-49979160c394
-            region: banner
-            configuration:
-              id: system_breadcrumb_block
-              label: Breadcrumbs
-              label_display: '0'
-              provider: system
-              context_mapping: {  }
-            weight: 0
-            additional: {  }
           b21a5485-e8bc-44d5-90c9-19e4ca470122:
             uuid: b21a5485-e8bc-44d5-90c9-19e4ca470122
             region: banner
@@ -52,7 +41,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 1
+            weight: 2
             additional: {  }
           15e4d050-ef65-476c-9e9b-64b2c1029958:
             uuid: 15e4d050-ef65-476c-9e9b-64b2c1029958
@@ -71,7 +60,7 @@ third_party_settings:
                 settings:
                   view_mode: default
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
             additional: {  }
           0ebf4884-167f-4e9b-b478-17fe05471660:
             uuid: 0ebf4884-167f-4e9b-b478-17fe05471660
@@ -89,7 +78,7 @@ third_party_settings:
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
             additional: {  }
           c672f470-a39f-4664-90b7-f12892890f03:
             uuid: c672f470-a39f-4664-90b7-f12892890f03
@@ -99,7 +88,18 @@ third_party_settings:
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-            weight: 4
+            weight: 5
+            additional: {  }
+          f154346f-9a7f-4cdf-a97a-49979160c394:
+            uuid: f154346f-9a7f-4cdf-a97a-49979160c394
+            region: top
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: 0
             additional: {  }
         third_party_settings: {  }
       -

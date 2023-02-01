@@ -63,17 +63,6 @@ third_party_settings:
           label: ''
           context_mapping: {  }
         components:
-          31e0b82f-e5f0-4462-b916-55ade9f6e41b:
-            uuid: 31e0b82f-e5f0-4462-b916-55ade9f6e41b
-            region: banner
-            configuration:
-              id: system_breadcrumb_block
-              label: Breadcrumbs
-              label_display: '0'
-              provider: system
-              context_mapping: {  }
-            weight: 0
-            additional: {  }
           51125cc7-cef7-47bb-a425-e1cd90850c80:
             uuid: 51125cc7-cef7-47bb-a425-e1cd90850c80
             region: banner
@@ -90,7 +79,7 @@ third_party_settings:
                 settings:
                   trim_length: 600
                 third_party_settings: {  }
-            weight: 4
+            weight: 5
             additional: {  }
           d09dd993-a763-4a0d-bd72-652247eec7cc:
             uuid: d09dd993-a763-4a0d-bd72-652247eec7cc
@@ -108,7 +97,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 1
+            weight: 2
             additional: {  }
           b098a94e-41f0-4d6c-8fe7-2e4fd261beae:
             uuid: b098a94e-41f0-4d6c-8fe7-2e4fd261beae
@@ -126,7 +115,7 @@ third_party_settings:
                 settings:
                   view_mode: default
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
             additional: {  }
           67c13d00-4dc9-46b2-b305-3d432c3ffd9c:
             uuid: 67c13d00-4dc9-46b2-b305-3d432c3ffd9c
@@ -138,7 +127,7 @@ third_party_settings:
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-            weight: 5
+            weight: 6
             additional: {  }
           843326c4-8871-48f9-bcdc-0670dce865f7:
             uuid: 843326c4-8871-48f9-bcdc-0670dce865f7
@@ -156,7 +145,18 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
+            additional: {  }
+          31e0b82f-e5f0-4462-b916-55ade9f6e41b:
+            uuid: 31e0b82f-e5f0-4462-b916-55ade9f6e41b
+            region: top
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: 0
             additional: {  }
         third_party_settings: {  }
       -

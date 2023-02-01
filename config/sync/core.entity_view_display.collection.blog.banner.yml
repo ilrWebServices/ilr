@@ -45,7 +45,7 @@ third_party_settings:
                 settings:
                   trim_length: 600
                 third_party_settings: {  }
-            weight: 3
+            weight: 4
             additional: {  }
           fa06bcce-dd00-4958-a723-ca0de5469edf:
             uuid: fa06bcce-dd00-4958-a723-ca0de5469edf
@@ -62,7 +62,7 @@ third_party_settings:
                   image_link: ''
                   image_style: large_21_9_1200x514_
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
             additional: {  }
           ec06566f-36d8-426d-8c3d-34f6986f0970:
             uuid: ec06566f-36d8-426d-8c3d-34f6986f0970
@@ -78,11 +78,11 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 1
+            weight: 2
             additional: {  }
           fd858844-537d-405e-a5f2-01184ad76b81:
             uuid: fd858844-537d-405e-a5f2-01184ad76b81
-            region: banner
+            region: top
             configuration:
               id: system_breadcrumb_block
               label: Breadcrumbs

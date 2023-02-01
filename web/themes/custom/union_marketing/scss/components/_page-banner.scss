@@ -1,18 +1,82 @@
-.framed > *:last-child .field-type--text-with-summary {
-  @include breakpoint(lg) {
-    max-width: 80%;
-  }
-}
-
 .cu-banner--page {
+  --banner-padding: 20px;
+  --frame-width: 10px;
+
+  padding: var(--banner-padding);
   margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr2));
 
   @include breakpoint(md) {
+    --banner-padding: 50px;
+    --frame-width: 15px;
     margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
   }
 
-  .framed > :last-child {
-    min-height: 175px;
+  .cu-banner__media::before {
+    background: linear-gradient(90deg, rgba(0,0,0,0.75) 25%, rgba(0,0,0,0) 100%);
+  }
+
+  .cu-banner__content {
+    max-width: unset;
+    overflow-wrap: break-word;
+
+    @include breakpoint(sm) {
+      overflow-wrap: normal;
+    }
+
+    &::after {
+      content: '';
+      height: 50px;
+      width: var(--frame-width);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      background-color: white;
+
+      @include breakpoint(md) {
+        height: 80px;
+      }
+
+      @include breakpoint(lg) {
+        height: 100px;
+      }
+    }
+  }
+
+  h1.cu-heading, h2.cu-heading {
+    --cu-font-family: futura-pt;
+    --cu-font-size: var(--cu-ms3);
+    text-transform: uppercase;
+
+    @include breakpoint(md) {
+      --cu-font-size: var(--cu-ms7);
+    }
+
+    @include breakpoint(lg) {
+      --cu-font-size: var(--cu-ms10);
+    }
+  }
+
+  .field-type--text-with-summary p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .cu-page-nav {
+    .cu-heading {
+      margin-bottom: 0;
+    }
+    .cu-page-nav__list {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.banner__content {
+  border-left: var(--frame-width) solid white;
+  border-bottom: var(--frame-width) solid white;
+  padding: 0 10% var(--banner-padding) var(--banner-padding);
+
+  @include breakpoint(md) {
+    padding-right: 40%;
   }
 }
 
@@ -26,7 +90,7 @@
   padding: 0 0 0.5rem;
   list-style: none;
 
-  @include breakpoint(sm) {
+  @include breakpoint(md) {
     display: flex;
     gap: var(--cu-ps2);
     margin-bottom: 0;
