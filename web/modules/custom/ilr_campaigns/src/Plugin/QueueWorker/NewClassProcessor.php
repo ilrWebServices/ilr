@@ -73,7 +73,7 @@ class NewClassProcessor extends QueueWorkerBase implements ContainerFactoryPlugi
     if (!$class->isPublished() || !$course->isPublished()) {
       // If class node create date is older than 28 days, allow the item to be
       // removed from the queue.
-      if (time() - $class->created->value() > 60 * 60 * 24 * 28) {
+      if (time() - $class->getCreatedTime() > 60 * 60 * 24 * 28) {
         return;
       }
 
