@@ -50,6 +50,7 @@
     --cu-font-family: futura-pt;
     --cu-font-size: var(--cu-ms3);
     text-transform: uppercase;
+    line-height: 1;
 
     @include breakpoint(md) {
       --cu-font-size: var(--cu-ms7);
