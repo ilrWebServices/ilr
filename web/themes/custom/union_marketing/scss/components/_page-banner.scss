@@ -104,6 +104,7 @@
   @include breakpoint(md) {
     display: flex;
     gap: var(--cu-ps2);
+    align-items: end;
   }
 
   li {
