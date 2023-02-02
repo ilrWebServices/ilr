@@ -66,6 +66,9 @@
   }
 
   .cu-page-nav {
+    // .cu-page-nav__list already has the margin we want.
+    margin-top: 0;
+
     .cu-heading {
       margin-bottom: 0;
     }
