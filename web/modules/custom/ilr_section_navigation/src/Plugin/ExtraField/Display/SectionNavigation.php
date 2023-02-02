@@ -18,6 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *     "collection.blog",
  *     "collection.subsite",
  *     "collection.subsite_blog",
+ *     "collection.content_section",
  *     "node.page",
  *     "taxonomy_term.*",
  *   },

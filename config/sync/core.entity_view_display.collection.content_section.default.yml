@@ -95,6 +95,16 @@ third_party_settings:
               context_mapping: {  }
             weight: 0
             additional: {  }
+          8f8433e3-ba8a-412d-b358-18697ff0b175:
+            uuid: 8f8433e3-ba8a-412d-b358-18697ff0b175
+            region: banner
+            configuration:
+              id: 'extra_field_block:collection:content_section:extra_field_ilr_section_navigation'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 5
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_onecol
@@ -134,6 +144,11 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
+  extra_field_ilr_section_navigation:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: banner
   field_representative_image:
     type: entity_reference_label
     label: above
