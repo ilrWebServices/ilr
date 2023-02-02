@@ -18,7 +18,7 @@
 {% endset %}
 
 {% include '@union/_section.twig' with {
-  attributes: attributes.addClass(['cu-section--framed']),
+  attributes: attributes.addClass(['cu-section--framed']).setAttribute('id', 'topics'),
   heading: 'Topics'|t,
   content: content,
 } only %}
