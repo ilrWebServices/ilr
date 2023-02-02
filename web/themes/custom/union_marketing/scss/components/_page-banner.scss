@@ -107,7 +107,10 @@
   @include breakpoint(md) {
     display: flex;
     gap: var(--cu-ps2);
-    align-items: end;
+
+    &.cu-page-nav__list {
+      align-items: end;
+    }
   }
 
   li {
