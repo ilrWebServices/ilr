@@ -12,7 +12,11 @@
   }
 
   .cu-banner__media::before {
-    background: linear-gradient(90deg, rgba(0,0,0,0.75) 25%, rgba(0,0,0,0) 100%);
+    background: rgba(0,0,0,0.75);
+
+    @include breakpoint(md) {
+      background: linear-gradient(90deg, rgba(0,0,0,0.75) 25%, rgba(0,0,0,0) 100%);
+    }
   }
 
   .cu-banner__content {
@@ -86,14 +90,13 @@
 }
 
 .cu-banner--page ul {
-  margin: var(--cu-vr2) 0;
+  margin: var(--cu-vr2) 0 0;
   padding: 0 0 0.5rem;
   list-style: none;
 
   @include breakpoint(md) {
     display: flex;
     gap: var(--cu-ps2);
-    margin-bottom: 0;
   }
 
   li {
