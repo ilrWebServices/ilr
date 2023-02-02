@@ -84,9 +84,15 @@
   }
 }
 
-// Override banner margin on course pages for register block/message.
 .node--course .cu-banner--page {
+  // Override banner margin on course pages for register block/message.
   margin-bottom: 0;
+
+  h1.cu-heading {
+    --cu-font-family: revert;
+    --cu-font-size: var(--cu-ms5);
+    text-transform: unset;
+  }
 }
 
 .cu-banner--page ul {
