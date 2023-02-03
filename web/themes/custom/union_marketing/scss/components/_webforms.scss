@@ -94,3 +94,26 @@
     }
   }
 }
+
+.webform-type-fieldset {
+  padding: var(--cu-ms1);
+  border: 1px solid #ccc;
+}
+
+.webform-multiple-table {
+  td:first-of-type {
+    padding: var(--cu-vr0) 0;
+  }
+}
+
+.webform-submission-ladp-application-form .filter-wrapper {
+  display: none;
+}
+
+.form-item-essay-value.cu-input-list__item.has-float-label:not(.js-disabled) label {
+  position: static;
+}
+
+.webform-submission-ladp-application-form .cu-input-message {
+  color: revert;
+}
