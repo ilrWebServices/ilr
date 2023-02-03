@@ -6,6 +6,7 @@ dependencies:
     - filter.format.basic_formatting
     - filter.format.basic_formatting_with_media
     - filter.format.inline_svg
+    - filter.format.simple_formatting
   module:
     - collection
     - filter
@@ -28,6 +29,7 @@ permissions:
   - 'use text format basic_formatting'
   - 'use text format basic_formatting_with_media'
   - 'use text format inline_svg'
+  - 'use text format simple_formatting'
   - 'view blog collection'
   - 'view content_section collection'
   - 'view media'
