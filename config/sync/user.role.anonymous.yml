@@ -2,8 +2,11 @@ uuid: dd7cf10f-fdf2-4c63-9f8d-fc048fbc80db
 langcode: en
 status: true
 dependencies:
+  config:
+    - filter.format.simple_formatting
   module:
     - collection
+    - filter
     - media
     - system
 _core:
@@ -14,6 +17,7 @@ weight: 0
 is_admin: false
 permissions:
   - 'access content'
+  - 'use text format simple_formatting'
   - 'view blog collection'
   - 'view content_section collection'
   - 'view media'

@@ -1,0 +1,41 @@
+uuid: 6fe1c27b-9bf5-4319-9d2f-388480dfcfa9
+langcode: en
+status: true
+dependencies:
+  module:
+    - footnotes
+    - token_filter
+name: 'Simple Formatting'
+format: simple_formatting
+weight: 0
+filters:
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<br> <p> <h2> <h3> <strong> <em> <ul> <ol reversed start> <li>'
+      filter_html_help: false
+      filter_html_nofollow: false
+  filter_footnotes:
+    id: filter_footnotes
+    provider: footnotes
+    status: false
+    weight: 0
+    settings:
+      footnotes_collapse: '0'
+      footnotes_html: '0'
+  token_filter:
+    id: token_filter
+    provider: token_filter
+    status: false
+    weight: 0
+    settings:
+      replace_empty: '0'
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: 10
+    settings: {  }
