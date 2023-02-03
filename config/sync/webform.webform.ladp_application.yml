@@ -1,0 +1,519 @@
+uuid: be450aa8-13a3-46cb-9a8e-e4b23cbf05ba
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 1
+template: false
+archive: false
+id: ladp_application
+title: 'LADP Application'
+description: ''
+category: 'professional programs'
+elements: |-
+  personal_information:
+    '#type': fieldset
+    '#title': 'Personal Information'
+    name:
+      '#type': webform_name
+      '#title': Name
+      '#title_display': ''
+      '#required': true
+      '#wrapper_type': container
+      '#first__required': true
+      '#last__required': true
+      '#degree__access': false
+    preferred_first_name:
+      '#type': textfield
+      '#title': 'Preferred first name'
+  contact:
+    '#type': fieldset
+    '#title': 'Contact Information'
+    address:
+      '#type': webform_contact
+      '#title': 'Contact address'
+      '#title_display': ''
+      '#required': true
+      '#wrapper_type': container
+      '#name__access': false
+      '#company__access': false
+      '#email__required': true
+      '#phone__access': false
+      '#address__title': 'Home Address'
+      '#address__required': true
+      '#address_2__title': 'Home Address 2'
+      '#city__required': true
+      '#state_province__required': true
+      '#postal_code__required': true
+    cell_phone:
+      '#type': tel
+      '#title': 'Cell phone'
+    home_phone:
+      '#type': tel
+      '#title': 'Home phone'
+    emergency_contact:
+      '#type': webform_contact
+      '#title': 'Emergency contact'
+      '#title_display': ''
+      '#required': true
+      '#name__required': true
+      '#company__access': false
+      '#email__access': false
+      '#phone__required': true
+      '#address__access': false
+      '#address_2__access': false
+      '#city__access': false
+      '#state_province__access': false
+      '#postal_code__access': false
+      '#country__access': false
+  employment:
+    '#type': fieldset
+    '#title': 'Employment History'
+    '#description': '<p>Please enter relevant work experience. Add your current position first. If not currently employed, enter most recent.</p>'
+    employment_record:
+      '#type': webform_custom_composite
+      '#title': 'Employment record'
+      '#multiple__header': false
+      '#multiple__item_label': record
+      '#multiple__no_items_message': 'No records entered. Please add records below.'
+      '#multiple__sorting': false
+      '#multiple__add': false
+      '#multiple__add_more_input': false
+      '#multiple__add_more_button_label': 'Add employment record'
+      '#wrapper_type': container
+      '#element':
+        title:
+          '#type': textfield
+          '#required': true
+          '#title': Title
+        employer_name:
+          '#type': textfield
+          '#required': true
+          '#title': 'Employer name'
+        location:
+          '#type': textfield
+          '#required': true
+          '#title': Location
+        dates:
+          '#type': textfield
+          '#required': true
+          '#title': Dates
+        responsibilities:
+          '#type': textarea
+          '#required': true
+          '#title': Responsibilities
+      '#required': true
+  education:
+    '#type': fieldset
+    '#title': 'Educational Background'
+    education_record:
+      '#type': webform_custom_composite
+      '#title': 'Education record'
+      '#multiple__header': false
+      '#multiple__item_label': record
+      '#multiple__no_items_message': 'No records entered. Please add records below.'
+      '#multiple__sorting': false
+      '#multiple__add': false
+      '#multiple__add_more_input': false
+      '#multiple__add_more_button_label': 'Add education record'
+      '#wrapper_type': container
+      '#element':
+        institution:
+          '#type': textfield
+          '#required': true
+          '#title': 'College or University'
+        major_field:
+          '#type': textfield
+          '#required': true
+          '#title': 'Major Field'
+        degree:
+          '#type': textfield
+          '#required': true
+          '#title': Degree
+        dates:
+          '#type': textfield
+          '#required': true
+          '#title': 'Dates Attended'
+      '#required': true
+  dispute_resolution_programs:
+    '#type': fieldset
+    '#title': 'Alternative Dispute Resolution Programs'
+    '#description': 'Please enter completed alternative dispute resolution programs (including workshops and related professional development programs).'
+    dispute_resolution_program_record:
+      '#type': webform_custom_composite
+      '#title': 'Dispute Resolution Program record'
+      '#multiple__header': false
+      '#multiple__item_label': program
+      '#multiple__no_items_message': 'No programs entered. Please add programs below.'
+      '#multiple__sorting': false
+      '#multiple__add': false
+      '#multiple__add_more_input': false
+      '#multiple__add_more_button_label': 'Add program'
+      '#wrapper_type': container
+      '#element':
+        name_topic:
+          '#type': textfield
+          '#required': true
+          '#title': Name/Topic
+        institution:
+          '#type': textfield
+          '#required': true
+          '#title': 'College, University, or Organization'
+        dates:
+          '#type': textfield
+          '#required': true
+          '#title': 'Dates Attended'
+      '#required': true
+  interests_activities:
+    '#type': fieldset
+    '#title': 'Related Interests and Activities'
+    '#description': 'Please enter part time employment, volunteer activities, and professional associations.'
+    interests_activity_record:
+      '#type': webform_custom_composite
+      '#title': 'Related interests and activities record'
+      '#multiple__header': false
+      '#multiple__item_label': activity
+      '#multiple__no_items_message': 'No activities entered. Please add activities below.'
+      '#multiple__sorting': false
+      '#multiple__add': false
+      '#multiple__add_more_input': false
+      '#multiple__add_more_button_label': 'Add activity'
+      '#wrapper_type': container
+      '#element':
+        organization:
+          '#type': textfield
+          '#required': true
+          '#title': Organization
+        title:
+          '#type': textfield
+          '#required': true
+          '#title': 'Position Held or Title'
+        dates:
+          '#type': textfield
+          '#required': true
+          '#title': 'Years/Dates of Service'
+        responsibilities:
+          '#type': textarea
+          '#required': true
+          '#title': 'Description of Responsibilities'
+      '#required': true
+  comments:
+    '#type': textarea
+    '#title': 'Other comments'
+  signature_wrapper:
+    '#type': fieldset
+    '#title': Signature
+    signature:
+      '#type': textfield
+      '#title': Signature
+      '#description': 'I hereby submit my application for the Cornell Labor Arbitrator Development Program and attest that all information contained is correct.'
+      '#required': true
+    signature_date:
+      '#type': date
+      '#title': Date
+      '#required': true
+      '#default_value': today
+  essay_wrapper:
+    '#type': fieldset
+    '#title': Essay
+    essay_help:
+      '#type': processed_text
+      '#text': |
+        <p>Please write a brief (2-3 pages) essay that answers the following questions:</p>
+
+        <ol>
+        	<li>Why are you interested in the Labor Arbitrator Development Program?</li>
+        	<li>How would your entry into Labor Arbitration enrich the profession?</li>
+        	<li>What do you hope to achieve from the Program?</li>
+        	<li>Tell us why you should be selected for one of the limited number of seats in this program.</li>
+        </ol>
+      '#format': basic_formatting
+    essay:
+      '#type': text_format
+      '#title': Essay
+      '#required': true
+      '#label_attributes':
+        class:
+          - foobar
+      '#allowed_formats':
+        simple_formatting: simple_formatting
+  letters_of_reference:
+    '#type': fieldset
+    '#title': 'Letters of reference'
+    '#description': |-
+      <p>Two letters of professional reference will help us evaluate your application. Please ask each of your references to send us a letter that discusses:</p>
+
+      <ul>
+      	<li>How do you know this candidate and for how long</li>
+      	<li>Why you are a good candidate for this type of program</li>
+      	<li>How you are likely to gain value from this program</li>
+      </ul>
+
+      <p>Upon completion, each of your references should send the letter by email directly to <a href="mailto:ilrcr@cornell.edu?subject=LADP%20Reference%20Letter%20for%20%5Bapplicant%20name%5D">ilrcr@cornell.edu</a>.<br />
+      <br />
+      Subject must read: <strong>LADP Reference Letter for [applicant name]</strong></p>
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': 'Submit Application'
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: both
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: false
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: url
+  confirmation_url: /scheinman-institute/labor-arbitrator-development-program/application/submitted
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  notification_email:
+    id: email
+    handler_id: notification_email
+    label: 'Notification Email'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: tlm6@cornell.edu
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ilrcr@cornell.edu
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: _default
+      body: _default
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
+  confirmation_email:
+    id: email
+    handler_id: confirmation_email
+    label: 'Confirmation Email'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 1
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:address:email:raw]'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ilrcr@cornell.edu
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: 'Cornell ILR LADP Application Confirmation'
+      body: "<p>{{ webform_token('[webform_submission:values:name:first]', webform_submission) }},</p>\r\n\r\n<p>Thank you for submitting your ILR LADP application.</p>\r\n\r\n<p>Here is a copy of the information you entered on your application form:</p>\r\n\r\n{{ webform_token('[webform_submission:values]', webform_submission, [], options) }}\r\n"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: true
+      theme_name: ''
+      parameters: {  }
+      debug: false
+variants: {  }
