@@ -148,7 +148,7 @@ settings:
   confirmation_type: inline
   confirmation_url: ''
   confirmation_title: ''
-  confirmation_message: 'Thank you for submitting your LADP scholarship application.'
+  confirmation_message: 'Thank you for submitting your LADP scholarship application. Applications will be considered on a rolling basis. Acceptance notifications will be sent by June 30, [current-date:custom:Y].'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -287,7 +287,7 @@ handlers:
       sender_mail: ''
       sender_name: ''
       subject: 'Cornell ILR LADP Scholarship Application Confirmation'
-      body: "<p>{{ webform_token('[webform_submission:values:applicant:name]', webform_submission) }},</p>\r\n\r\n<p>Thank you for submitting your ILR LADP scholarship application.</p>\r\n\r\n<p>Here is a copy of the information you entered on your scholarship application form:</p>\r\n\r\n{{ webform_token('[webform_submission:values]', webform_submission, [], options) }}\r\n"
+      body: "<p>{{ webform_token('[webform_submission:values:applicant:name]', webform_submission) }},</p>\r\n\r\n<p>Thank you for submitting your ILR LADP scholarship application. Applications will be considered on a rolling basis. Acceptance notifications will be sent by June 30, {{ webform_token('[current-date:custom:Y]', webform_submission, [], options) }}.</p>\r\n\r\n<p>Here is a copy of the information you entered on your scholarship application form:</p>\r\n\r\n{{ webform_token('[webform_submission:values]', webform_submission, [], options) }}\r\n"
       excluded_elements: {  }
       ignore_access: false
       exclude_empty: true
