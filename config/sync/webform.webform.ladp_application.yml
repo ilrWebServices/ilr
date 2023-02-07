@@ -229,6 +229,8 @@ elements: |-
         	<li>What do you hope to achieve from the Program?</li>
         	<li>Tell us why you should be selected for one of the limited number of seats in this program.</li>
         </ol>
+
+        <p>You may wish to write your essay in a word processor and paste it here to retain some formatting.</p>
       '#format': basic_formatting
     essay:
       '#type': text_format
@@ -254,6 +256,32 @@ elements: |-
       <p>Upon completion, each of your references should send the letter by email directly to <a href="mailto:ilrcr@cornell.edu?subject=LADP%20Reference%20Letter%20for%20%5Bapplicant%20name%5D">ilrcr@cornell.edu</a>.<br />
       <br />
       Subject must read: <strong>LADP Reference Letter for [applicant name]</strong></p>
+  financial:
+    '#type': fieldset
+    '#title': 'Financial Assistance'
+    payment_plan_help:
+      '#type': processed_text
+      '#text': '<p>Payment plans are available to accepted participants upon request.</p>'
+      '#format': simple_formatting
+    apply_for_scholarship:
+      '#type': checkbox
+      '#title': 'Apply for scholarship'
+    scholarship_help:
+      '#type': processed_text
+      '#states':
+        visible:
+          ':input[name="apply_for_scholarship"]':
+            checked: true
+      '#text': '<p>A limited number of scholarships are available to offset the program tuition.</p><p>If you are seeking financial assistance, then please use the space below to describe any financial and/or other relevant circumstances in support of your application for scholarship.</p>'
+      '#format': simple_formatting
+    scholarship_request:
+      '#type': textarea
+      '#title': 'Scholarship request'
+      '#title_display': none
+      '#states':
+        visible:
+          ':input[name="apply_for_scholarship"]':
+            checked: true
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
@@ -504,7 +532,7 @@ handlers:
       sender_mail: ''
       sender_name: ''
       subject: 'Cornell ILR LADP Application Confirmation'
-      body: "<p>{{ webform_token('[webform_submission:values:name:first]', webform_submission) }},</p>\r\n\r\n<p>We have received your application for the Labor Arbitrator Development Program.</p>\r\n\r\n<p>To complete the application process, please complete the following steps.</p>\r\n\r\n<p><strong>Letters of recommendation</strong></p>\r\n\r\n<p>Provide two letters of professional reference to help us evaluate your application. Please ask each of your references to send us a letter that discusses:</p>\r\n\r\n<ul>\r\n    <li>How do you know this candidate and for how long</li>\r\n    <li>Why you are a good candidate for this type of program</li>\r\n    <li>How you are likely to gain value from this program</li>\r\n</ul>\r\n\r\n<p>Your references should send their letters by email directly to: <a href=\"mailto:ilrcr@cornell.edu\">ilrcr@cornell.edu</a></p>\r\n\r\n<p>The subject line of their email must read: <strong>LADP Reference Letter for [applicant name]</strong></p>\r\n\r\n<p><strong>Application fee</strong></p>\r\n\r\n<p>Please submit your $150 application fee.</p>\r\n\r\n<p><a href=\"https://registration.ilr.cornell.edu/class/a0i4U00000V1hJeQAJ\" style=\"display: inline-block; padding: 2px 10px; border: 1px solid #b31b1b;\">Pay online</a></p>\r\n\r\n<p><strong>Financial assistance</strong></p>\r\n\r\n<p>If you are seeking financial assistance for tuition, please complete the <a href=\"/scheinman-institute/labor-arbitrator-development-program/scholarship\">online scholarship application</a>.</p>\r\n\r\n<p>Here is a copy of the information you entered on your application form:</p>\r\n\r\n{{ webform_token('[webform_submission:values]', webform_submission, [], options) }}\r\n"
+      body: "<p>{{ webform_token('[webform_submission:values:name:first]', webform_submission) }},</p>\r\n\r\n<p>We have received your application for the Labor Arbitrator Development Program.</p>\r\n\r\n<p>To complete the application process, please complete the following steps.</p>\r\n\r\n<p><strong>Letters of recommendation</strong></p>\r\n\r\n<p>Provide two letters of professional reference to help us evaluate your application. Please ask each of your references to send us a letter that discusses:</p>\r\n\r\n<ul>\r\n    <li>How do you know this candidate and for how long</li>\r\n    <li>Why you are a good candidate for this type of program</li>\r\n    <li>How you are likely to gain value from this program</li>\r\n</ul>\r\n\r\n<p>Your references should send their letters by email directly to: <a href=\"mailto:ilrcr@cornell.edu\">ilrcr@cornell.edu</a></p>\r\n\r\n<p>The subject line of their email must read: <strong>LADP Reference Letter for [applicant name]</strong></p>\r\n\r\n<p><strong>Application fee</strong></p>\r\n\r\n<p>Please submit your $150 application fee.</p>\r\n\r\n<p><a href=\"https://registration.ilr.cornell.edu/class/a0i4U00000V1hJeQAJ\" style=\"display: inline-block; padding: 2px 10px; border: 1px solid #b31b1b;\">Pay online</a></p>\r\n\r\n<p>Here is a copy of the information you entered on your application form:</p>\r\n\r\n{{ webform_token('[webform_submission:values]', webform_submission, [], options) }}\r\n"
       excluded_elements: {  }
       ignore_access: false
       exclude_empty: true
