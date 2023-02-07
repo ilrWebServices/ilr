@@ -16,12 +16,13 @@ settings:
       - italic
       - bulletedList
       - numberedList
+      - link
   plugins:
     ckeditor5_heading:
       enabled_headings:
         - heading2
         - heading3
     ckeditor5_list:
-      reversed: true
-      startIndex: true
+      reversed: false
+      startIndex: false
 image_upload: {  }

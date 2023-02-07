@@ -15,7 +15,7 @@ filters:
     status: true
     weight: -10
     settings:
-      allowed_html: '<br> <p> <h2> <h3> <strong> <em> <ul> <ol reversed start> <li>'
+      allowed_html: '<br> <p> <h2> <h3> <strong> <em> <a href> <ul> <ol> <li>'
       filter_html_help: false
       filter_html_nofollow: false
   filter_footnotes:
