@@ -53,6 +53,10 @@ class SectionNavigation extends ExtraFieldDisplayBase implements ContainerFactor
     }
 
     foreach ($entity->field_sections as $section) {
+      if (!$section->entity->isPublished()) {
+        continue;
+      }
+
       $in_page_title = $section->entity->getBehaviorSetting('in_page_nav', 'title');
       $in_page_fragment = $section->entity->getBehaviorSetting('in_page_nav', 'fragment');
 
