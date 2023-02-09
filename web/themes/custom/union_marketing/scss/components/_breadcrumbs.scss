@@ -1,7 +1,7 @@
 // Prevent breadcrumbs from breaking with long titles on mobile, e.g. Labor and
 // Employment Law Program
 .cu-breadcrumb .cu-breadcrumb__item {
-  --cu-font-size: var(--cu-ms-2);
+  --cu-font-size: var(--cu-ms-4);
   text-transform: uppercase;
   white-space: initial;
   opacity: 0.7;
@@ -11,8 +11,13 @@
   }
 
   &::after {
-    content: '>';
+    content: '›';
+    padding: 0 .8em;
   }
+}
+
+.cu-breadcrumb__link {
+  --cu-font-weight: 700;
 }
 
 .cu-breadcrumb__item:last-child {
@@ -20,6 +25,17 @@
 
   .cu-breadcrumb__link {
     --cu-text-color: white;
-    font-weight: 400;
+  }
+}
+
+.article--postalicious .cu-breadcrumb {
+  margin-top: var(--cu-vr1);
+
+  .cu-breadcrumb__link {
+    --cu-text-color: $black;
+
+    &:last-child {
+      --cu-text-color: $black;
+    }
   }
 }
