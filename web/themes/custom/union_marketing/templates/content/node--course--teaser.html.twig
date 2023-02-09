@@ -96,8 +96,16 @@
   ] %}
 
   {% if not upcoming_classes.0.field_price.isEmpty() %}
+
+  {% set price_display %}
+  {% if not upcoming_classes.0.ilroutreach_discount_price.isEmpty() %}
+  {{ upcoming_classes.0.ilroutreach_discount_price|view('teaser') }}
+  {% endif %}
+  {{ upcoming_classes.0.field_price|view('teaser') }}
+  {% endset %}
+
   {% set feature_list_items = feature_list_items|merge([{
-    name: upcoming_classes.0.field_price|view('teaser'),
+    name: price_display,
     icon: 'check-circle',
     icon_size: '1em'
   }]) %}

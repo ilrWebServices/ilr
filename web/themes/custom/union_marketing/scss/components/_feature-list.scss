@@ -44,3 +44,17 @@ ol.accentuated {
     content: counter(fancy-item); /* Use the counter as content */
   }
 }
+
+.field--ilroutreach-discount-price + .field--field-price {
+  text-decoration: line-through;
+  text-decoration-color: $cornell-red;
+  text-decoration-thickness: 2px;
+  color: #666;
+  font-weight: 300;
+  order: -1;
+}
+
+.node--course.node--view-mode-teaser .cu-feature-list__name {
+  display: flex;
+  gap: .5em;
+}

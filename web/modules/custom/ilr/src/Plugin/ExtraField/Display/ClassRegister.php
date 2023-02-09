@@ -50,46 +50,12 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
         'course' => $class->field_course->entity,
         'register_url' => '',
         'price' => $class->field_price->value,
-        'discount_price' => $class->field_price->value,
-        'discount_enddate' => '',
+        'discount_price' => $class->ilroutreach_discount_price->value,
+        'discount_enddate' => $class->ilroutreach_discount_date->end_value,
       ];
 
-      $mapped_objects = $this->entityTypeManager->getStorage('salesforce_mapped_object')
-        ->loadByProperties([
-          'drupal_entity__target_type' => 'node',
-          'drupal_entity__target_id' => $class->id(),
-          'salesforce_mapping' => 'class_node',
-        ]);
-
-      $mapping = reset($mapped_objects);
-
-      if ($mapping) {
-        $info['register_url'] = $this->config->get('ilr_registration_system.settings')->get('url') . $mapping->salesforce_id->getString();
-
-        if (($env_disount_codes = getenv('ILR_DISCOUNT_CODES')) && !$class->field_price->isEmpty()) {
-          $env_disount_codes = explode(';', $env_disount_codes);
-
-          try {
-            // @todo Revisit if/when multiple discount codes are allowed.
-            $eligible_discount = $this->discountManager->getEligibleDiscount($env_disount_codes[0], $mapping->salesforce_id->getString());
-
-            if ($eligible_discount) {
-              $info['discount_enddate'] = $eligible_discount->endDate;
-
-              if ($eligible_discount->type === 'percentage') {
-                $discount_amt = $class->field_price->value * $eligible_discount->value;
-                $info['discount_price'] = $class->field_price->value + $discount_amt;
-              }
-              elseif ($eligible_discount && $eligible_discount->type === 'amount') {
-                $discount_amt = $eligible_discount->value;
-                $info['discount_price'] = $class->field_price->value + $discount_amt;
-              }
-            }
-          }
-          catch (\Exception $e) {
-            // @todo Maybe log this instead of doing nothing?
-          }
-        }
+      if ($mapped_object = $class->getClassNodeSalesforceMappedObject()) {
+        $info['register_url'] = $this->config->get('ilr_registration_system.settings')->get('url') . $mapped_object->salesforce_id->getString();
       }
 
       if (!$class->field_external_link->isEmpty()) {
