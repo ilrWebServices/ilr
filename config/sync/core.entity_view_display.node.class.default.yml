@@ -137,6 +137,31 @@ content:
     third_party_settings: {  }
     weight: 102
     region: content
+  ilroutreach_discount_date:
+    type: date_range_without_time
+    label: above
+    settings:
+      timezone_override: ''
+      date_format: 'Y-m-d\TH:i:s'
+      separator: '-'
+      one_day: 'd F Y'
+      one_month: 'd - {d} F Y'
+      several_months: 'd F - {d} {F} Y'
+      several_years: 'd F Y - {d} {F} {Y}'
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  ilroutreach_discount_price:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
   links:
     settings: {  }
     third_party_settings: {  }
