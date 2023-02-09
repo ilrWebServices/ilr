@@ -92,7 +92,7 @@ content:
     region: content
   ilroutreach_discount_date:
     type: date_range_without_time
-    label: above
+    label: hidden
     settings:
       timezone_override: ''
       date_format: 'Y-m-d\TH:i:s'
@@ -106,7 +106,7 @@ content:
     region: content
   ilroutreach_discount_price:
     type: number_decimal
-    label: above
+    label: hidden
     settings:
       thousand_separator: ''
       decimal_separator: .
