@@ -1,43 +1,74 @@
+.article--postalicious,
+.collection_item { // For cross-posts.
+  --post-max-width: 100%;
+  --post-max-width-text: 100%;
+
+  @include breakpoint(md) {
+    --post-max-width: 45rem; // 900px
+    --post-max-width-text: 30rem;
+  }
+}
+
 .article--postalicious {
-  .cu-section__content {
-    display: grid;
-    row-gap: var(--cu-vr0);
+  // Allow post sections to use the entire width.
+  .cu-section {
+    --cu-max-width-section: 100%;
+  }
 
-    @include breakpoint(sm) {
-      display: grid;
-      grid-template-columns: 3fr 2fr;
-      grid-auto-flow: dense;
-      align-items: start;
-      column-gap: var(--cu-ps1);
+  .cu-x-block:not(.block-system-breadcrumb-block) {
+    width: 100%; // Allow field content, like published date, to take up full width.
+    max-width: var(--post-max-width);
+    margin: 0 auto;
+  }
 
-      > * {
-        grid-column: 1;
-      }
+  .cu-component--rich-text {
+    blockquote {
+      font-size: var(--cu-ms3);
+      font-weight: 600;
+      line-height: 1.3;
+      font-family: "freight-text-pro", serif;
+      text-align: center;
+      margin: var(--cu-vr1) var(--cu-ps1);
 
-      div[class$='field-representative-image'] {
-        grid-column: 2;
-      }
-
-      div[class$='field-components'],
-      .block-field-block--node--post--field-blog-tags {
-        display: block;
-        grid-column: 1/-1;
-        margin-top: var(--cu-component-margin-bottom, var(--cu-vr2));
-      }
-
-      div[class$='field-components']:first-child {
-        margin-top: 0;
-      }
-
-      .block-better-social-sharing-buttons {
-        display: flex;
-        grid-column: 2;
+      @include breakpoint(md) {
+        font-size: var(--cu-ms5);
+        margin: var(--cu-vr2) calc(var(--post-max-width-text) / 4 * -1);
       }
     }
 
+    @include breakpoint(md) {
+      .cu-media.align-center {
+        margin-right: calc(var(--post-max-width-text) / 4 * -1);
+        margin-left: calc(var(--post-max-width-text) / 4 * -1);
+      }
+
+      .cu-media.align-right {
+        margin-right: calc(var(--post-max-width-text) / 4 * -1);
+      }
+
+      .cu-media.align-left {
+        margin-left: calc(var(--post-max-width-text) / 4 * -1);
+      }
+    }
+  }
+
+  .cu-component--rich-text,
+  .field-type--datetime,
+  .field-type--string,
+  .field--field-authors,
+  .field--field-blog-tags {
+    margin-left: calc((var(--post-max-width) - var(--post-max-width-text))/2);
+    margin-right: calc((var(--post-max-width) - var(--post-max-width-text))/2);
+  }
+
+
+  .cu-section__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--cu-vr1);
+
     .cu-section-heading {
-      margin: 0;
-      align-items: flex-start;
+      margin-top: 0;
     }
 
     .social-sharing-buttons {
@@ -92,4 +123,15 @@
 .cu-topic-list__item .cu-card .field--field-published-date {
   margin: 0;
   font-size: 12px;
+}
+
+// Cross-post specific styles.
+.collection_item .block-system-main-block {
+  width: 100%; // Allow field content, like published date, to take up full width.
+  max-width: var(--post-max-width);
+  margin: 0 auto;
+
+  .field--field-blog-tags {
+    margin-left: calc((var(--post-max-width) - var(--post-max-width-text))/2);
+  }
 }
