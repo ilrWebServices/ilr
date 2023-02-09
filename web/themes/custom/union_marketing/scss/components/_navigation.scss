@@ -231,3 +231,8 @@ nav[id^="block-union-marketing-menu-subsite"] {
     }
   }
 }
+
+// Remove the bottom margin from the admin tabs.
+.block-local-tasks-block ul {
+  margin-bottom: 0;
+}
