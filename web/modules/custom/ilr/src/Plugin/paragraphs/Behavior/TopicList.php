@@ -75,7 +75,17 @@ class TopicList extends ParagraphsBehaviorBase {
 
           if ($node && in_array($node->bundle(), $post_types)) {
             $url = NULL;
+
+            if ($link->title !== $node->getTitle()) {
+              $node->setTitle($link->title);
+            }
+
             $content = \Drupal::entityTypeManager()->getViewBuilder('node')->view($node, 'inline');
+
+            // Add a cache tag for the paragraph to this node render array.
+            // That way if the title is changed in the link field, which is part
+            // of the paragraph, the node will be re-rendered.
+            $content['#cache']['tags'][] = 'paragraph:' . $variables['paragraph']->id();
           }
         }
       }
