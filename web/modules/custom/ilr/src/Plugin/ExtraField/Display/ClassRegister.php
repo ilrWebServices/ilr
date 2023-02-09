@@ -50,7 +50,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
         'course' => $class->field_course->entity,
         'register_url' => '',
         'price' => $class->field_price->value,
-        'discount_price' => $class->ilroutreach_discount_price->value,
+        'discount_price' => $class->ilroutreach_discount_price->value ?? $class->field_price->value,
         'discount_enddate' => $class->ilroutreach_discount_date->end_value,
       ];
 
