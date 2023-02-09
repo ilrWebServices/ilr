@@ -83,7 +83,7 @@ class ClassNode extends Node implements ClassNodeInterface {
         ->setSetting('datetime_type', 'date')
         ->setDisplayConfigurable('view', TRUE)
         ->setDisplayOptions('view', [
-          'type' => 'daterange',
+          'type' => 'date_range_without_time',
           'weight' => '0',
         ]);
 
