@@ -32,7 +32,7 @@
 {# The `_custom` view mode means layout builder. I think. #}
 {% if element['#view_mode'] == '_custom' %}
 {% include '@union/_section-heading.twig' with {
-  attributes: { class: 'cu-section-heading--framed' },
+  attributes: attributes.addClass(classes),
   heading: items[0].content|render,
   heading_element: 'h1',
 } only %}
