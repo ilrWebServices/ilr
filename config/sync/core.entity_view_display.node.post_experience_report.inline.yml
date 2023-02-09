@@ -1,0 +1,63 @@
+uuid: b98cb874-d6d3-4780-8bf3-f871e50a941d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.inline
+    - field.field.node.post_experience_report.body
+    - field.field.node.post_experience_report.field_authors
+    - field.field.node.post_experience_report.field_components
+    - field.field.node.post_experience_report.field_degree_program_grad_year
+    - field.field.node.post_experience_report.field_location
+    - field.field.node.post_experience_report.field_program
+    - field.field.node.post_experience_report.field_published_date
+    - field.field.node.post_experience_report.field_representative_image
+    - field.field.node.post_experience_report.field_subtitle
+    - image.style.thumbnail_square
+    - node.type.post_experience_report
+  module:
+    - datetime
+    - layout_builder
+    - media
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.post_experience_report.inline
+targetEntityType: node
+bundle: post_experience_report
+mode: inline
+content:
+  field_published_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: ilr_date
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_representative_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail_square
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  blog_collection: true
+  blog_tags: true
+  body: true
+  field_authors: true
+  field_components: true
+  field_degree_program_grad_year: true
+  field_location: true
+  field_program: true
+  field_subtitle: true
+  links: true
+  search_api_excerpt: true
