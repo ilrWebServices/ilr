@@ -67,7 +67,7 @@ class ClassDiscountDateItemList extends FieldItemList {
       // @todo Maybe log this instead of doing nothing?
     }
 
-    return NULL;
+    return FALSE;
   }
 
 }
