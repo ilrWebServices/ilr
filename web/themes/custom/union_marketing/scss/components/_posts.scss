@@ -21,6 +21,13 @@
     margin: 0 auto;
   }
 
+  .cu-x-block.block-better-social-sharing-buttons {
+    // Remove the bottom flex row gap for sharing buttons. This is done because
+    // the social sharing buttons are absolutely positioned and thus the zero
+    // height block has a row gap on the top and bottom. See _social-share.scss
+    margin-bottom: calc(var(--cu-vr1) * -1);
+  }
+
   .cu-component--rich-text {
     blockquote {
       font-size: var(--cu-ms3);
@@ -79,10 +86,11 @@
   .cu-section__content {
     display: flex;
     flex-direction: column;
-    row-gap: var(--cu-vr1);
+    gap: var(--cu-vr1);
 
     .cu-section-heading {
       margin-top: 0;
+      margin-bottom: 0;
     }
 
     .social-sharing-buttons {

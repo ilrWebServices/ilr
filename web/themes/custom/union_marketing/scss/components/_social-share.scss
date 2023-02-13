@@ -1,23 +1,17 @@
 .social-sharing-buttons {
-  justify-content: start;
-  margin: var(--cu-vr0) 0;
-
-  :first-child {
-    margin-left: 0;
-  }
-
-  :last-child {
-    margin-right: 0;
-  }
+  // `display: flex` is set in better_social_sharing_buttons.css in the Drupal
+  // module.
+  flex-direction: column;
+  gap: 1em;
+  align-items: flex-start;
+  position: absolute;
 
   a {
-    margin: 0 var(--cu-ps-2);
+    margin: 0;
   }
 }
 
 .social-sharing-buttons__button {
-  margin: 0 var(--cu-ps1);
-
   svg {
     background: #e1e1e1;
   }
