@@ -15,13 +15,14 @@
     --cu-max-width-section: 100%;
   }
 
-  .cu-x-block:not(.block-system-breadcrumb-block) {
+  .cu-x-block:not(.block-system-breadcrumb-block):not(.block-extra-field-block--node--post--blog-tags) {
     width: 100%; // Allow field content, like published date, to take up full width.
     max-width: var(--post-max-width);
     margin: 0 auto;
   }
 
-  .cu-x-block.block-better-social-sharing-buttons {
+  // The extra `.block` class is to match the specificity with the rule above.
+  .cu-x-block.block.block-better-social-sharing-buttons {
     // Remove the bottom flex row gap for sharing buttons. This is done because
     // the social sharing buttons are absolutely positioned and thus the zero
     // height block has a row gap on the top and bottom. See _social-share.scss
@@ -149,11 +150,14 @@
 
 // Cross-post specific styles.
 .collection_item .block-system-main-block {
-  width: 100%; // Allow field content, like published date, to take up full width.
-  max-width: var(--post-max-width);
-  margin: 0 auto;
-
   .field--field-blog-tags {
     margin-left: calc((var(--post-max-width) - var(--post-max-width-text))/2);
+    margin-right: calc((var(--post-max-width) - var(--post-max-width-text))/2);
+
+    // Move the tags on a collection item display into the section margin. This
+    // is required because the collection_item entity display embeds the node
+    // view, which places all content into a section, but displays the tags
+    // after that rendered node.
+    margin-top: calc(var(--cu-component-margin-bottom, var(--cu-vr3)) * -1);
   }
 }
