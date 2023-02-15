@@ -32,7 +32,7 @@
   }
 
   .cu-heading.field--title {
-    --cu-font-size: var(--cu-ms5);
+    --cu-font-size: var(--cu-ms6);
     --cu-font-weight: 400;
   }
 
@@ -109,8 +109,14 @@
     flex-direction: column;
     gap: var(--cu-vr1);
 
-    h1.cu-heading {
+    .cu-heading.field--title,
+    .cu-heading.field--field-subtitle {
       margin-bottom: 0;
+    }
+
+    .cu-heading.field--field-subtitle {
+      font-style: italic;
+      --cu-font-size: var(--cu-ms2);
     }
 
     .social-sharing-buttons {
