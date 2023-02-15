@@ -53,6 +53,7 @@
       @include breakpoint(md) {
         font-size: var(--cu-ms5);
         margin: var(--cu-vr2) calc(var(--post-max-width-text) / 4 * -1);
+        clear: both;
       }
 
       p + p:last-of-type {
