@@ -52,7 +52,7 @@
 
       @include breakpoint(md) {
         font-size: var(--cu-ms5);
-        margin: var(--cu-vr2) calc(var(--post-max-width-text) / 4 * -1);
+        margin: var(--cu-vr2) calc(var(--post-max-width-text) / 8 * -1);
         clear: both;
       }
 
@@ -68,16 +68,16 @@
 
     @include breakpoint(md) {
       .cu-media.align-center {
-        margin-right: calc(var(--post-max-width-text) / 4 * -1);
-        margin-left: calc(var(--post-max-width-text) / 4 * -1);
+        margin-right: calc(var(--post-max-width-text) / 8 * -1);
+        margin-left: calc(var(--post-max-width-text) / 8 * -1);
       }
 
       .cu-media.align-right {
-        margin-right: calc(var(--post-max-width-text) / 4 * -1);
+        margin-right: calc(var(--post-max-width-text) / 8 * -1);
       }
 
       .cu-media.align-left {
-        margin-left: calc(var(--post-max-width-text) / 4 * -1);
+        margin-left: calc(var(--post-max-width-text) / 8 * -1);
       }
     }
   }
