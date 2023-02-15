@@ -38,7 +38,8 @@ content:
   field_experts:
     type: persona_name_list
     label: hidden
-    settings: {  }
+    settings:
+      prefix: ''
     third_party_settings: {  }
     weight: 4
     region: content

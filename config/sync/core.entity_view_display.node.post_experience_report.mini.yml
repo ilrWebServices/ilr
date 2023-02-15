@@ -31,7 +31,8 @@ content:
   field_authors:
     type: persona_name_list
     label: hidden
-    settings: {  }
+    settings:
+      prefix: ''
     third_party_settings: {  }
     weight: 2
     region: content
