@@ -30,6 +30,15 @@
       margin-bottom: calc(var(--cu-vr1) * -1);
     }
   }
+
+  .cu-heading.field--title {
+    --cu-font-size: var(--cu-ms5);
+    --cu-font-weight: 400;
+  }
+
+  .field--field-published-date {
+    --cu-font-size: var(--cu-ms-2);
+    --cu-text-color: #6C6C6C;
   }
 
   .cu-component--rich-text {
@@ -44,6 +53,15 @@
       @include breakpoint(md) {
         font-size: var(--cu-ms5);
         margin: var(--cu-vr2) calc(var(--post-max-width-text) / 4 * -1);
+      }
+
+      p + p:last-of-type {
+        font-family: Replica;
+        text-transform: uppercase;
+        font-size: var(--cu-ms-3);
+        color: #6C6C6C;
+        font-weight: 400;
+        letter-spacing: 0.1em;
       }
     }
 
@@ -61,7 +79,6 @@
         margin-left: calc(var(--post-max-width-text) / 4 * -1);
       }
     }
-
   }
 
   // Add a partial border to un-floated inline images. Note that image
@@ -92,8 +109,7 @@
     flex-direction: column;
     gap: var(--cu-vr1);
 
-    .cu-section-heading {
-      margin-top: 0;
+    h1.cu-heading {
       margin-bottom: 0;
     }
 
