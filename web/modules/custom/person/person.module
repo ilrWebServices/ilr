@@ -39,6 +39,11 @@ function person_theme($existing, $type, $theme, $path) {
     'persona_edit_form' => [
       'render element' => 'form',
     ],
+    'persona_name_list' => [
+      'variables' => [
+        'names' => [],
+      ]
+    ],
   ];
 
   return $theme;
