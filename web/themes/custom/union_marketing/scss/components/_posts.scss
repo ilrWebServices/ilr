@@ -15,7 +15,7 @@
     --cu-max-width-section: 100%;
   }
 
-  .cu-x-block:not(.block-system-breadcrumb-block):not(.block-extra-field-block--node--post--blog-tags) {
+  .cu-x-block:not(.block-system-breadcrumb-block) {
     width: 100%; // Allow field content, like published date, to take up full width.
     max-width: var(--post-max-width);
     margin: 0 auto;
@@ -177,13 +177,13 @@
 // Cross-post specific styles.
 .collection_item .block-system-main-block {
   .field--field-blog-tags {
-    margin-left: calc((var(--post-max-width) - var(--post-max-width-text))/2);
-    margin-right: calc((var(--post-max-width) - var(--post-max-width-text))/2);
+    width: 100%;
+    max-width: var(--post-max-width-text);
 
     // Move the tags on a collection item display into the section margin. This
     // is required because the collection_item entity display embeds the node
     // view, which places all content into a section, but displays the tags
     // after that rendered node.
-    margin-top: calc(var(--cu-component-margin-bottom, var(--cu-vr3)) * -1);
+    margin: calc(var(--cu-component-margin-bottom, var(--cu-vr3)) * -1) auto var(--cu-vr1);
   }
 }
