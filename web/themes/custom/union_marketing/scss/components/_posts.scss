@@ -3,7 +3,7 @@
   --post-max-width: 100%;
   --post-max-width-text: 100%;
 
-  @include breakpoint(md) {
+  @include breakpoint(sm) {
     --post-max-width: 45rem; // 900px
     --post-max-width-text: 30rem;
   }
@@ -21,12 +21,15 @@
     margin: 0 auto;
   }
 
-  // The extra `.block` class is to match the specificity with the rule above.
-  .cu-x-block.block.block-better-social-sharing-buttons {
-    // Remove the bottom flex row gap for sharing buttons. This is done because
-    // the social sharing buttons are absolutely positioned and thus the zero
-    // height block has a row gap on the top and bottom. See _social-share.scss
-    margin-bottom: calc(var(--cu-vr1) * -1);
+  @include breakpoint(sm) {
+    // The extra `.block` class is to match the specificity with the rule above.
+    .cu-x-block.block.block-better-social-sharing-buttons {
+      // Remove the bottom flex row gap for sharing buttons. This is done because
+      // the social sharing buttons are absolutely positioned and thus the zero
+      // height block has a row gap on the top and bottom. See _social-share.scss
+      margin-bottom: calc(var(--cu-vr1) * -1);
+    }
+  }
   }
 
   .cu-component--rich-text {

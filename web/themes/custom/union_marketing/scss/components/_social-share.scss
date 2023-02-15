@@ -1,10 +1,13 @@
 .social-sharing-buttons {
   // `display: flex` is set in better_social_sharing_buttons.css in the Drupal
   // module.
-  flex-direction: column;
   gap: 1em;
   align-items: flex-start;
-  position: absolute;
+
+  @include breakpoint(sm) {
+    flex-direction: column;
+    position: absolute;
+  }
 
   a {
     margin: 0;
@@ -13,7 +16,7 @@
 
 .social-sharing-buttons__button {
   svg {
-    background: #e1e1e1;
+    background: #F7F6F6;
   }
 }
 
