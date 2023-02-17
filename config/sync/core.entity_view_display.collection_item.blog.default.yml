@@ -18,13 +18,18 @@ targetEntityType: collection_item
 bundle: blog
 mode: default
 content:
+  extra_field_canonical_home:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
   field_blog_tags:
     type: entity_reference_label
     label: inline
     settings:
       link: true
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   item:
     type: dynamic_entity_reference_entity_view
@@ -98,7 +103,6 @@ content:
     region: content
 hidden:
   collection: true
-  extra_field_canonical_home: true
   field_blog_categories: true
   name: true
   search_api_excerpt: true

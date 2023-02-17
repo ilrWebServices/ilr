@@ -176,14 +176,17 @@
 
 // Cross-post specific styles.
 .collection_item .block-system-main-block {
-  .field--field-blog-tags {
+  .blog-meta {
     width: 100%;
     max-width: var(--post-max-width-text);
+    margin: var(--cu-vr1) auto;
+  }
 
-    // Move the tags on a collection item display into the section margin. This
-    // is required because the collection_item entity display embeds the node
-    // view, which places all content into a section, but displays the tags
-    // after that rendered node.
-    margin: calc(var(--cu-component-margin-bottom, var(--cu-vr3)) * -1) auto var(--cu-vr1);
+  // Move the original post link and/or tags on a collection item display into
+  // the section margin. This is required because the collection_item entity
+  // display embeds the node view, which places all content into a section, but
+  // displays the tags after that rendered node.
+  .field-type--dynamic-entity-reference + .blog-meta {
+    margin-top: calc(var(--cu-component-margin-bottom, var(--cu-vr2)) * -1);
   }
 }
