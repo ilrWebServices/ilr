@@ -27,4 +27,12 @@
 
 .cu-breadcrumb {
   margin-top: var(--cu-vr1);
+
+  .bvg--cornell-alternate-branding & {
+    margin-top: 0;
+
+    @include breakpoint(md) {
+      margin-top: var(--cu-vr1);
+    }
+  }
 }

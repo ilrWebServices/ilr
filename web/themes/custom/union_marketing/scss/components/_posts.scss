@@ -10,6 +10,12 @@
 }
 
 .article--postalicious {
+  @include breakpoint(md) {
+    .bvg--cornell-alternate-branding & {
+      border-top: 1px solid $gray-light;
+    }
+  }
+
   // Allow post sections to use the entire width.
   .cu-section {
     --cu-max-width-section: 100%;
