@@ -80,3 +80,27 @@
     content: attr(data-header);
   }
 }
+
+.review-listing {
+  --border-color: rgb(208, 208, 208);
+  --cu-font-size: var(--cu-ms-2);
+  font-size: var(--cu-ms-2);
+
+  table {
+    border-collapse: collapse;
+  }
+
+  tr {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  td {
+    padding: .25em .125em;
+    vertical-align: top;
+  }
+
+  a {
+    color: $cornell-red;
+    text-decoration: none;
+  }
+}
