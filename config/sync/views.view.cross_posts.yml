@@ -7,6 +7,10 @@ dependencies:
     - field.storage.node.field_authors
     - field.storage.node.field_published_date
     - field.storage.node.field_subtitle
+    - node.type.post
+    - node.type.post_document
+    - node.type.post_experience_report
+    - node.type.video_post
   module:
     - collection
     - datetime
@@ -614,6 +618,51 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        type_1:
+          id: type_1
+          table: node_field_data
+          field: type
+          relationship: node__item
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            post_document: post_document
+            post_experience_report: post_experience_report
+            post: post
+            video_post: video_post
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
