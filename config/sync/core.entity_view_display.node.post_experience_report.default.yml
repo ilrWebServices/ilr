@@ -24,8 +24,8 @@ dependencies:
     - datetime
     - entity_reference_revisions
     - layout_builder
-    - layout_discovery
     - media
+    - system
     - union_organizer
     - user
 third_party_settings:
@@ -33,25 +33,6 @@ third_party_settings:
     enabled: true
     allow_custom: false
     sections:
-      -
-        layout_id: layout_onecol
-        layout_settings:
-          label: 'Blog banner'
-          context_mapping: {  }
-        components:
-          c8da760c-059f-4df9-8665-4c471adc203f:
-            uuid: c8da760c-059f-4df9-8665-4c471adc203f
-            region: content
-            configuration:
-              id: 'extra_field_block:node:post:blog_collection'
-              label: Blog
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-            weight: 0
-            additional: {  }
-        third_party_settings: {  }
       -
         layout_id: layout_cu_section
         layout_settings:
@@ -78,7 +59,7 @@ third_party_settings:
                 settings:
                   view_mode: default
                 third_party_settings: {  }
-            weight: -1
+            weight: 6
             additional: {  }
           301f6365-4495-4b60-ba04-257d5b77f364:
             uuid: 301f6365-4495-4b60-ba04-257d5b77f364
@@ -98,26 +79,7 @@ third_party_settings:
                   timezone_override: ''
                   format_type: ilr_date
                 third_party_settings: {  }
-            weight: -6
-            additional: {  }
-          e42e92b8-a6e5-46cd-bebe-94c0855336a4:
-            uuid: e42e92b8-a6e5-46cd-bebe-94c0855336a4
-            region: main
-            configuration:
-              id: 'field_block:node:post:title'
-              label: Title
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: string
-                label: hidden
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-            weight: -10
+            weight: 0
             additional: {  }
           9aa98971-c066-4115-a79c-a8fb131f8fa8:
             uuid: 9aa98971-c066-4115-a79c-a8fb131f8fa8
@@ -128,16 +90,17 @@ third_party_settings:
               label_display: '0'
               provider: layout_builder
               context_mapping:
-                entity: layout_builder.entity
                 view_mode: view_mode
               formatter:
                 type: media_thumbnail
                 label: hidden
                 settings:
                   image_link: ''
-                  image_style: medium_3_2
+                  image_style: large_9_5
+                  image_loading:
+                    attribute: lazy
                 third_party_settings: {  }
-            weight: -9
+            weight: -1
             additional: {  }
           60f385c1-c640-4c06-a2ff-089c0757bff4:
             uuid: 60f385c1-c640-4c06-a2ff-089c0757bff4
@@ -156,7 +119,7 @@ third_party_settings:
                 settings:
                   view_mode: mini
                 third_party_settings: {  }
-            weight: -7
+            weight: 8
             additional: {  }
           2dac7178-d331-467a-b42d-3fc863cf898e:
             uuid: 2dac7178-d331-467a-b42d-3fc863cf898e
@@ -166,7 +129,7 @@ third_party_settings:
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-            weight: 0
+            weight: 7
             additional: {  }
           38c13e19-f09e-46a3-bf24-495dc81eb0cf:
             uuid: 38c13e19-f09e-46a3-bf24-495dc81eb0cf
@@ -198,7 +161,7 @@ third_party_settings:
               print_css: ''
               width: 35px
               radius: 0px
-            weight: -2
+            weight: 3
             additional: {  }
           c82aa010-7233-4177-9f6a-45036595c2a5:
             uuid: c82aa010-7233-4177-9f6a-45036595c2a5
@@ -217,7 +180,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: -8
+            weight: 2
             additional: {  }
           a6990c4b-d479-4ac7-b19a-724b189ed828:
             uuid: a6990c4b-d479-4ac7-b19a-724b189ed828
@@ -236,7 +199,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: -4
+            weight: 4
             additional: {  }
           50046e94-5e9b-48d2-8cc4-d0ddfa6f26c5:
             uuid: 50046e94-5e9b-48d2-8cc4-d0ddfa6f26c5
@@ -255,7 +218,26 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: -3
+            weight: 5
+            additional: {  }
+          e42e92b8-a6e5-46cd-bebe-94c0855336a4:
+            uuid: e42e92b8-a6e5-46cd-bebe-94c0855336a4
+            region: main
+            configuration:
+              id: 'field_block:node:post:title'
+              label: Title
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 1
             additional: {  }
           7e0c8479-fdc8-455f-98d2-3074edb388c3:
             uuid: 7e0c8479-fdc8-455f-98d2-3074edb388c3
@@ -274,7 +256,18 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: -5
+            weight: 3
+            additional: {  }
+          23e52b01-00dc-4e71-9dcd-31d93433ddb8:
+            uuid: 23e52b01-00dc-4e71-9dcd-31d93433ddb8
+            region: main
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: -2
             additional: {  }
         third_party_settings: {  }
 id: node.post_experience_report.default
