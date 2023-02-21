@@ -142,13 +142,11 @@
     margin: 0;
   }
 
-  .cu-banner--page,
-  .field--field-blog-tags {
+  .block-system-breadcrumb-block,
+  .block-field-block--node--video-post--title,
+  .block-extra-field-block--node--video-post--blog-tags,
+  .block-field-block--node--video-post--field-published-date {
     display: none;
-  }
-
-  .collection > div {
-    margin: 0;
   }
 }
 
@@ -170,6 +168,8 @@
   padding: 0 .5em;
 }
 
+.content--evergreen .block-field-block--node--post--field-published-date,
+.content--evergreen .block-field-block--node--video-post--field-published-date,
 .content--evergreen .field--field-published-date {
   display: none;
 }
