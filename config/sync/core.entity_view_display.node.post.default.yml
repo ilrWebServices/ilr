@@ -210,7 +210,7 @@ third_party_settings:
                 type: entity_reference_entity_view
                 label: hidden
                 settings:
-                  view_mode: teaser
+                  view_mode: teaser_compact
                 third_party_settings: {  }
             weight: 7
             additional: {  }

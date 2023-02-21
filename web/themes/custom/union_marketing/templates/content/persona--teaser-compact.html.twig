@@ -21,10 +21,15 @@
 {% endfor %}
 
 {% include "@union/_person.twig" with {
-  attributes: attributes.addClass('cu-person--thumb'),
+  attributes: attributes.addClass([
+    'cu-person--thumb',
+    'persona--' ~ persona.bundle|clean_class,
+    not persona.isPublished() ? 'persona--unpublished',
+    view_mode ? 'persona--view-mode-' ~ view_mode|clean_class
+  ]),
   name: content.display_name,
   title: title,
-  additional_info: additional_info,
+  additional_info: additional_info|render|trim,
   content: title_suffix,
   img: content.field_photo
 } only %}

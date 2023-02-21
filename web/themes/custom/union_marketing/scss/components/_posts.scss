@@ -135,6 +135,50 @@
   .persona__name {
     margin-bottom: 0;
   }
+
+  // This is done to target the second placement of authors on full posts.
+  .block-field-block--node--post--field-authors ~ .block-field-block--node--post--field-authors {
+    border-top: 1px solid #BABABA;
+    padding-top: var(--cu-vr2);
+
+    .field--field-authors {
+      display: flex;
+      flex-direction: column;
+      gap: var(--cu-vr1);
+    }
+  }
+
+  .persona--view-mode-teaser-compact {
+    background-color: #F7F6F6;
+    grid-template-columns: 1fr 1.25fr;
+
+    .cu-person__info {
+      & > * {
+        margin: 0;
+      }
+
+      gap: 1em;
+      padding: var(--cu-vr0) var(--cu-ps0) var(--cu-vr0) 0;
+    }
+
+    .persona__name {
+      --cu-font-size: var(--cu-ms0);
+      --cu-font-weight: 400;
+    }
+
+    .cu-person__title {
+      --cu-font-size: var(--cu-ms-2);
+      letter-spacing: 0.02em;
+    }
+
+      .cu-person__image {
+      margin-bottom: unset;
+
+      .cu-image {
+        border-radius: unset;
+      }
+    }
+  }
 }
 
 // Posts in modals
