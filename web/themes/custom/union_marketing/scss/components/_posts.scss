@@ -148,6 +148,11 @@
     }
   }
 
+  // Add an additional top margin for tags when appearing after authors.
+  .block-field-block--node--post--field-authors ~ .block-extra-field-block--node--post--blog-tags {
+    margin-top: var(--cu-vr1);
+  }
+
   .persona--view-mode-teaser-compact {
     background-color: #F7F6F6;
     grid-template-columns: 1fr 1.25fr;
