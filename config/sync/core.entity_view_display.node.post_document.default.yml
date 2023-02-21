@@ -12,8 +12,8 @@ dependencies:
   module:
     - datetime
     - layout_builder
-    - layout_discovery
     - media
+    - system
     - text
     - union_organizer
     - user
@@ -22,28 +22,6 @@ third_party_settings:
     enabled: true
     allow_custom: false
     sections:
-      -
-        layout_id: layout_onecol
-        layout_settings:
-          label: 'Blog banner'
-          context_mapping: {  }
-        components:
-          f9fa08ce-1401-4aac-8ca3-12f689f1aac5:
-            uuid: f9fa08ce-1401-4aac-8ca3-12f689f1aac5
-            region: content
-            configuration:
-              id: 'extra_field_block:node:post_document:blog_collection'
-              label: Blog
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                settings: {  }
-                third_party_settings: {  }
-            weight: 0
-            additional: {  }
-        third_party_settings: {  }
       -
         layout_id: layout_cu_section
         layout_settings:
@@ -126,6 +104,39 @@ third_party_settings:
                   trim_length: 600
                 third_party_settings: {  }
             weight: 3
+            additional: {  }
+          cc6bbb79-df90-4331-914e-a984631680ff:
+            uuid: cc6bbb79-df90-4331-914e-a984631680ff
+            region: main
+            configuration:
+              id: 'field_block:node:post_document:field_representative_image'
+              label: 'Representative Image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: media_thumbnail
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: large_9_5
+                  image_loading:
+                    attribute: lazy
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          19c24a27-cc3e-4e11-ae38-61406e850a1c:
+            uuid: 19c24a27-cc3e-4e11-ae38-61406e850a1c
+            region: main
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: -1
             additional: {  }
         third_party_settings: {  }
 id: node.post_document.default

@@ -101,8 +101,10 @@
   }
 
   .cu-component--rich-text,
+  .field-type--text-with-summary,
   .field-type--datetime,
   .field-type--string,
+  .field-type--file,
   .field--field-authors,
   .field--field-blog-tags {
     margin-left: calc((var(--post-max-width) - var(--post-max-width-text))/2);
