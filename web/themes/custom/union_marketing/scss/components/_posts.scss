@@ -186,6 +186,13 @@
       }
     }
   }
+
+  @include breakpoint(sm) {
+    .cu-grid {
+      margin-left: calc((var(--post-max-width) - var(--post-max-width-text)) / 2 * -1);
+      margin-right: calc((var(--post-max-width) - var(--post-max-width-text)) / 2 * -1);
+    }
+  }
 }
 
 // Posts in modals
