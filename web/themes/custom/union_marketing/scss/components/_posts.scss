@@ -31,7 +31,10 @@
     margin: 0 auto;
   }
 
-  .cu-x-block.block-field-block--node--post--field-representative-image {
+  // All layout field blocks that end with 'field-representative-image', as well
+  // as video.
+  .block-layout-builder[class$="field-representative-image"],
+  .block-field-block--node--video-post--field-video {
     --post-max-width-text: var(--post-max-width);
   }
 
