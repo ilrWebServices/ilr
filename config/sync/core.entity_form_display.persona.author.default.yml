@@ -13,6 +13,8 @@ dependencies:
     - person.persona_type.author
   module:
     - media_library
+    - media_library_edit
+    - path
     - telephone
     - text
 id: persona.author.default
@@ -83,7 +85,9 @@ content:
     region: content
     settings:
       media_types: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
   field_title:
     type: string_textfield
     weight: 8
@@ -91,6 +95,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
     third_party_settings: {  }
   person:
     type: entity_reference_autocomplete
