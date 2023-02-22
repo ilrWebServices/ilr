@@ -25,11 +25,6 @@
     }
   }
 
-  // Allow post sections to use the entire width.
-  .cu-section {
-    --cu-max-width-section: 100%;
-  }
-
   .cu-x-block:not(.block-system-breadcrumb-block) {
     width: 100%; // Allow field content, like published date, to take up full width.
     max-width: var(--post-max-width-text);
@@ -114,7 +109,7 @@
     background-repeat: no-repeat;
   }
 
-  .cu-section__content {
+  .layout__region--content {
     display: flex;
     flex-direction: column;
     gap: var(--cu-vr1);
@@ -197,11 +192,6 @@
 
 // Posts in modals
 .cu-modal .article--postalicious {
-  .cu-section {
-    display: block;
-    margin: 0;
-  }
-
   .block-system-breadcrumb-block,
   .block-field-block--node--video-post--title,
   .block-extra-field-block--node--video-post--blog-tags,
