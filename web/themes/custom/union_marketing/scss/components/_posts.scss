@@ -2,10 +2,19 @@
 .collection_item { // For cross-posts.
   --post-max-width: 100%;
   --post-max-width-text: 100%;
+  --post-max-width-media: 100%;
+  --post-media-offset-margin: calc((var(--post-max-width-media) - var(--post-max-width-text)) / 2 * -1);
 
   @include breakpoint(sm) {
+    --post-max-width: 34rem; // 900px
+    --post-max-width-text: 22rem;
+    --post-max-width-media: 26rem;
+  }
+
+  @include breakpoint(md) {
     --post-max-width: 45rem; // 900px
     --post-max-width-text: 30rem;
+    --post-max-width-media: 38rem;
   }
 }
 
@@ -23,8 +32,12 @@
 
   .cu-x-block:not(.block-system-breadcrumb-block) {
     width: 100%; // Allow field content, like published date, to take up full width.
-    max-width: var(--post-max-width);
+    max-width: var(--post-max-width-text);
     margin: 0 auto;
+  }
+
+  .cu-x-block.block-field-block--node--post--field-representative-image {
+    --post-max-width-text: var(--post-max-width);
   }
 
   @include breakpoint(sm) {
@@ -34,6 +47,7 @@
       // the social sharing buttons are absolutely positioned and thus the zero
       // height block has a row gap on the top and bottom. See _social-share.scss
       margin-bottom: calc(var(--cu-vr1) * -1);
+      --post-max-width-text: var(--post-max-width);
     }
   }
 
@@ -46,44 +60,44 @@
     --cu-font-size: var(--cu-ms-2);
   }
 
-  .cu-component--rich-text {
-    blockquote {
-      font-size: var(--cu-ms3);
-      font-weight: 600;
-      line-height: 1.3;
-      font-family: "freight-text-pro", serif;
-      text-align: center;
-      margin: var(--cu-vr1) var(--cu-ps1);
+  blockquote {
+    font-size: var(--cu-ms3);
+    font-weight: 600;
+    line-height: 1.3;
+    font-family: "freight-text-pro", serif;
+    text-align: center;
+    margin: var(--cu-vr1) var(--cu-ps1);
 
-      @include breakpoint(md) {
-        font-size: var(--cu-ms5);
-        margin: var(--cu-vr2) calc(var(--post-max-width-text) / 8 * -1);
-        clear: both;
-      }
-
-      p + p:last-of-type {
-        font-family: Replica;
-        text-transform: uppercase;
-        font-size: var(--cu-ms-3);
-        color: #6C6C6C;
-        font-weight: 400;
-        letter-spacing: 0.1em;
-      }
+    @include breakpoint(sm) {
+      font-size: var(--cu-ms5);
+      margin: var(--cu-vr2) var(--post-media-offset-margin);
+      clear: both;
     }
 
-    @include breakpoint(md) {
-      .cu-media.align-center {
-        margin-right: calc(var(--post-max-width-text) / 8 * -1);
-        margin-left: calc(var(--post-max-width-text) / 8 * -1);
-      }
+    p + p:last-of-type {
+      font-family: Replica;
+      text-transform: uppercase;
+      font-size: var(--cu-ms-3);
+      color: #6C6C6C;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+    }
+  }
 
-      .cu-media.align-right {
-        margin-right: calc(var(--post-max-width-text) / 8 * -1);
-      }
+  @include breakpoint(sm) {
+    .cu-media.align-center,
+    .cu-component.media:not(.curtain-reveal) {
+      margin: var(--cu-vr2) var(--post-media-offset-margin);
+    }
 
-      .cu-media.align-left {
-        margin-left: calc(var(--post-max-width-text) / 8 * -1);
-      }
+    .cu-media.align-right {
+      width: 50%;
+      margin-right: -25%;
+    }
+
+    .cu-media.align-left {
+      width: 50%;
+      margin-left: -25%;
     }
   }
 
@@ -99,18 +113,6 @@
      linear-gradient(#ccc 0 0) bottom right / 15% 16px,   transparent;
     background-repeat: no-repeat;
   }
-
-  .cu-component--rich-text,
-  .field-type--text-with-summary,
-  .field-type--datetime,
-  .field-type--string,
-  .field-type--file,
-  .field--field-authors,
-  .field--field-blog-tags {
-    margin-left: calc((var(--post-max-width) - var(--post-max-width-text))/2);
-    margin-right: calc((var(--post-max-width) - var(--post-max-width-text))/2);
-  }
-
 
   .cu-section__content {
     display: flex;
