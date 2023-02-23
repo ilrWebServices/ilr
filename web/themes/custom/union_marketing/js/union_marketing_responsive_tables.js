@@ -11,7 +11,9 @@
 
         table.querySelectorAll('tbody tr').forEach(tableRow => {
           tableRow.querySelectorAll('td').forEach((dataCell, index) => {
-            dataCell.setAttribute('data-header', headers[index]);
+            if (!dataCell.hasAttribute('data-header')) {
+              dataCell.setAttribute('data-header', headers[index]);
+            }
           });
         });
       });
