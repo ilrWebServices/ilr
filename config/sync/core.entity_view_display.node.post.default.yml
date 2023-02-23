@@ -137,7 +137,7 @@ third_party_settings:
                 type: persona_name_list
                 label: hidden
                 settings:
-                  prefix: by
+                  prefix: 'by '
                 third_party_settings: {  }
             weight: 3
             additional: {  }
