@@ -35,6 +35,8 @@ mapping:
   CORN_CITIZEN_COUNTRY: Country_of_Citizenship__c
   DECISION_RESPONSE: Accepting_Offer__c
   STATUS: Prospect_Status__c
+  DECISION_DATE: Decision_Date__c
+  OFFER_TERM_TEXT: Admit_Term_Offered__c
 default_fields:
   -
     key: RecordType.Name
