@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af4c05da30a784a47a368fcefd8cd270",
+    "content-hash": "49b6f8458693a11a3f2781e76dd8caa2",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3853,32 +3853,30 @@
         },
         {
             "name": "drupal/linkit",
-            "version": "6.0.0-beta3",
+            "version": "dev-6.0.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/linkit.git",
-                "reference": "6.0.0-beta3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/linkit-6.0.0-beta3.zip",
-                "reference": "6.0.0-beta3",
-                "shasum": "39a5bf54cbc88324d788a573df7b3fecf7622065"
+                "reference": "d95a39274cb73b0096e16fbbc9d5abe80e790c79"
             },
             "require": {
-                "drupal/core": "^8.7.7 || ^9"
+                "drupal/core": "^9.4 || ^10"
             },
             "require-dev": {
+                "drupal/ckeditor": "*",
                 "drupal/imce": "*"
             },
             "type": "drupal-module",
             "extra": {
+                "branch-alias": {
+                    "dev-6.0.x": "6.0.x-dev"
+                },
                 "drupal": {
-                    "version": "6.0.0-beta3",
-                    "datestamp": "1632946984",
+                    "version": "6.0.0-beta3+7-dev",
+                    "datestamp": "1667937361",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
+                        "message": "Dev releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -3903,6 +3901,52 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/linkit",
                 "issues": "http://drupal.org/project/linkit"
+            }
+        },
+        {
+            "name": "drupal/linkit_field",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/linkit_field.git",
+                "reference": "1.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/linkit_field-1.0.1.zip",
+                "reference": "1.0.1",
+                "shasum": "a5c342852e188ac5e9dd906e02e04523af326286"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/linkit": "^5.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.1",
+                    "datestamp": "1655892899",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "sanduhrs",
+                    "homepage": "https://www.drupal.org/user/28074"
+                }
+            ],
+            "description": "Provides a field formatter and widget that supports Linkit module.",
+            "homepage": "https://www.drupal.org/project/linkit_field",
+            "support": {
+                "source": "https://git.drupalcode.org/project/linkit_field",
+                "issues": "http://drupal.org/project/issues/linkit_field"
             }
         },
         {
@@ -16008,6 +16052,12 @@
     ],
     "aliases": [
         {
+            "package": "drupal/linkit",
+            "version": "6.0.9999999.9999999-dev",
+            "alias": "5.0",
+            "alias_normalized": "5.0.0.0"
+        },
+        {
             "package": "thinkshout/mailchimp-api-php",
             "version": "9999999-dev",
             "alias": "2.0.0",
@@ -16021,6 +16071,7 @@
         "drupal/entity_usage": 10,
         "drupal/ilr_outreach_order_submitter": 20,
         "drupal/inline_entity_form": 5,
+        "drupal/linkit": 20,
         "drupal/persistent_visitor_parameters": 20,
         "drupal/sftp_client": 20,
         "drupal/typed_data": 15,

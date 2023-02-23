@@ -12,7 +12,7 @@ dependencies:
     - paragraphs.paragraphs_type.topic_list
   module:
     - allowed_formats
-    - linkit
+    - linkit_field
     - media_library
     - media_library_edit
     - text
@@ -41,24 +41,18 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_link:
-    type: linkit
+    type: linkit_field_linkit
     weight: 3
     region: content
     settings:
-      placeholder_url: ''
-      placeholder_title: ''
       linkit_profile: ilr_content
-      linkit_auto_link_text: true
     third_party_settings: {  }
   field_links:
-    type: linkit
+    type: linkit_field_linkit
     weight: 4
     region: content
     settings:
-      placeholder_url: ''
-      placeholder_title: ''
       linkit_profile: ilr_content
-      linkit_auto_link_text: true
     third_party_settings: {  }
   field_media:
     type: media_library_widget

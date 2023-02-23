@@ -1,54 +1,87 @@
-uuid: a6ce8f0f-378b-454d-b58e-1ae5e1b6d07c
+uuid: 70d267b6-f361-42a3-8218-79438f81bb44
 langcode: en
 status: true
 dependencies:
   config:
     - filter.format.basic_formatting_with_media
   module:
-    - ckeditor
+    - ckeditor5
 format: basic_formatting_with_media
-editor: ckeditor
+editor: ckeditor5
 settings:
   toolbar:
-    rows:
-      -
-        -
-          name: Formatting
-          items:
-            - Bold
-            - Italic
-            - Format
-            - Styles
-        -
-          name: Layout
-          items:
-            - SimpleColumns
-            - SimpleColumnBreak
-        -
-          name: Links
-          items:
-            - DrupalLink
-            - DrupalUnlink
-        -
-          name: Lists
-          items:
-            - BulletedList
-            - NumberedList
-        -
-          name: Media
-          items:
-            - Blockquote
-            - footnotes
-            - DrupalMediaLibrary
-        -
-          name: Tools
-          items:
-            - RemoveFormat
-            - Source
+    items:
+      - bold
+      - italic
+      - heading
+      - style
+      - '|'
+      - link
+      - '|'
+      - bulletedList
+      - numberedList
+      - '|'
+      - blockQuote
+      - drupalMedia
+      - '|'
+      - removeFormat
+      - sourceEditing
+      - '|'
+      - code
+      - insertTable
   plugins:
-    stylescombo:
-      styles: "h3.cu-heading--strong|Alternate heading\r\np.shout|Shout\r\na.cu-button|Link Button\r\nol.accentuated|Accentuated\r\nul.cu-factlist|Fact list"
-    drupallink:
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+    ckeditor5_style:
+      styles:
+        -
+          label: 'Alternate heading'
+          element: '<h3 class="cu-heading--strong">'
+        -
+          label: Shout
+          element: '<p class="shout">'
+        -
+          label: 'Link Button'
+          element: '<a class="cu-button">'
+        -
+          label: Accentuated
+          element: '<ol class="accentuated">'
+        -
+          label: 'Fact list'
+          element: '<ul class="cu-factlist">'
+    ckeditor5_sourceEditing:
+      allowed_tags:
+        - '<cite>'
+        - '<dl>'
+        - '<dt>'
+        - '<dd>'
+        - '<div id class="simple-columns visually_hidden figure-grid">'
+        - '<table visually-hidden>'
+        - '<th scope>'
+        - '<td data-header>'
+        - '<colgroup span>'
+        - '<col span class>'
+        - '<span class>'
+        - '<fn value>'
+        - '<blockquote cite>'
+        - '<ul type class="footnotes">'
+        - '<ol type>'
+        - '<li class>'
+        - '<h2 id class="cu-heading simple-columns--column-break">'
+        - '<h3 id class="cu-heading simple-columns--column-break">'
+        - '<h4 id class="cu-heading simple-columns--column-break">'
+        - '<p class="simple-columns--column-break">'
+        - '<drupal-media data-link-text title>'
+        - '<a hreflang id name data-entity-substitution data-entity-type data-entity-uuid title target class="cu-button--alt see-footnote footnote-label">'
+    ckeditor5_list:
+      reversed: false
+      startIndex: true
+    media_media:
+      allow_view_mode_override: false
+    linkit_extension:
       linkit_enabled: true
       linkit_profile: ilr_content
 image_upload:
