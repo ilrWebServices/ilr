@@ -1,6 +1,9 @@
 html,
 body {
   overflow-x: hidden; // Use of the full-width() mixin causes a tiny horizontal scrollbar.
+
+  --gutter-width: 24px;
+  --content-width: 24fr;
 }
 
 body {
@@ -15,11 +18,11 @@ body {
   grid-row-gap: 0;
   grid-column-gap: 0;
   grid-template-rows: [header] auto [body] auto [content-bottom] auto [footer] auto;
-  grid-template-columns: [left-gutter] 1fr [content] 22fr [right-gutter] 1fr;
+  grid-template-columns: [left-gutter] var(--gutter-width) [content] var(--content-width) [right-gutter] var(--gutter-width);
 
   @include breakpoint(md) {
+    --content-width: 44fr;
     justify-items: stretch;
-    grid-template-columns: [left-gutter] 1fr [content] 44fr [right-gutter] 1fr;
   }
 
   @include breakpoint(xl) {
