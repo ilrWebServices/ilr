@@ -1,0 +1,17 @@
+uuid: be49e017-d6dd-49ae-b690-39169a6d1743
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: small_4_3
+label: 'Small 4:3 (160x120)'
+effects:
+  4865cbe7-e983-4aab-a5bd-23082a009330:
+    uuid: 4865cbe7-e983-4aab-a5bd-23082a009330
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 160
+      height: 120
+      crop_type: focal_point

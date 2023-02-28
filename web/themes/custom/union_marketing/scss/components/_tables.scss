@@ -88,6 +88,7 @@
 
   table {
     border-collapse: collapse;
+    clear: left;
   }
 
   tr {
@@ -99,8 +100,17 @@
     vertical-align: top;
   }
 
+  .views-field-field-representative-image {
+    width: 160px;
+  }
+
   a {
     color: $cornell-red;
     text-decoration: none;
+  }
+
+  .form-item {
+    float: left;
+    margin-right: var(--cu-ps1);
   }
 }
