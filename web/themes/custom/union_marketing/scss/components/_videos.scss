@@ -49,13 +49,6 @@
   }
 }
 
-.node--video-post .node--view-mode-full {
-  .cu-section .block-layout-builder {
-    grid-column: 1/-1;
-    margin-bottom: var(--cu-vr2);
-  }
-}
-
 .node--video-post.node--view-mode-teaser .ajax-progress-throbber,
 .cu-card--promo .ajax-progress-throbber {
   position: absolute;

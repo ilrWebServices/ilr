@@ -1,0 +1,17 @@
+uuid: 19a69ed5-7adf-405a-a5f0-51e38e31d3d5
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: small_5x4
+label: 'Small 5:4 (600x480)'
+effects:
+  f3dd2e08-0635-4251-a6ae-f182cf939902:
+    uuid: f3dd2e08-0635-4251-a6ae-f182cf939902
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 600
+      height: 480
+      crop_type: focal_point

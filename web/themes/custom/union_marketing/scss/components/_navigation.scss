@@ -140,7 +140,6 @@ nav[id^="block-union-marketing-menu-subsite"] {
   @include breakpoint(sm) {
     flex-basis: 100%;
     flex-grow: 1;
-    min-height: 40px;
   }
 
   label[for="nav-trigger"] {
@@ -230,4 +229,9 @@ nav[id^="block-union-marketing-menu-subsite"] {
       text-transform: uppercase;
     }
   }
+}
+
+// Remove the bottom margin from the admin tabs.
+.block-local-tasks-block ul {
+  margin-bottom: 0;
 }

@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Theme template for a persona name list.
+ *
+ * Displays a list of persona display names.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the list element.
+ * - names: An array of persona display names.
+ *
+ * @see person_form_persona_form_alter()
+ */
+#}
+<span{{ attributes.addClass(['persona-display-name-list']) }}>{{ names|join(', ', ' and ') }}</span>

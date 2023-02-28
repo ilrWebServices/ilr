@@ -28,6 +28,15 @@
   min-width: 50%;
 }
 
+.cu-media.align-center {
+  margin-bottom: var(--cu-vr1);
+
+  .cu-image,
+  audio {
+    width: 100%;
+  }
+}
+
 .cu-media.align-right,
 .cu-media.align-left {
   margin: 0 0 var(--cu-vr1) 0;
@@ -171,4 +180,9 @@
   .media__caption {
     text-align: center;
   }
+}
+
+.ilr-effect-image.curtain-reveal {
+  margin-left: -50vw;
+  margin-right: -50vw;
 }

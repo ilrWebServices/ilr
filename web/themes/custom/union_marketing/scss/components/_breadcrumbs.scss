@@ -1,25 +1,38 @@
-// Prevent breadcrumbs from breaking with long titles on mobile, e.g. Labor and
-// Employment Law Program
-.cu-breadcrumb .cu-breadcrumb__item {
-  --cu-font-size: var(--cu-ms-2);
+// Custom changes to default breadcrumbs
+.cu-breadcrumb__item {
+  --cu-font-size: var(--cu-ms-4);
   text-transform: uppercase;
-  white-space: initial;
   opacity: 0.7;
+  letter-spacing: 0.05em;
+}
 
-  @include breakpoint(sm) {
-    white-space: no-wrap;
-  }
+.cu-breadcrumb__item::before {
+  line-height: 0.9;
+  font-size: 1.4em;
+  opacity: 0.6;
+}
 
-  &::after {
-    content: '>';
-  }
+.cu-breadcrumb__list {
+  --cu-breadcrumb-separator: '❯';
+  --cu-breadcrumb-separator: '›';
+}
+
+.cu-breadcrumb__link {
+  --cu-font-weight: 700;
 }
 
 .cu-breadcrumb__item:last-child {
   opacity: 1;
+}
 
-  .cu-breadcrumb__link {
-    --cu-text-color: white;
-    font-weight: 400;
+.cu-breadcrumb {
+  margin-top: var(--cu-vr1);
+
+  .bvg--cornell-alternate-branding & {
+    margin-top: 0;
+
+    @include breakpoint(md) {
+      margin-top: var(--cu-vr1);
+    }
   }
 }

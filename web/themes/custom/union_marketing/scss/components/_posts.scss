@@ -1,43 +1,130 @@
+.article--postalicious,
+.collection_item { // For cross-posts.
+  --post-max-width: 100%;
+  --post-max-width-text: 100%;
+  --post-max-width-media: 100%;
+  --post-media-offset-margin: calc((var(--post-max-width-media) - var(--post-max-width-text)) / 2 * -1);
+
+  @include breakpoint(sm) {
+    --post-max-width: 34rem; // 900px
+    --post-max-width-text: 22rem;
+    --post-max-width-media: 26rem;
+  }
+
+  @include breakpoint(md) {
+    --post-max-width: 45rem; // 900px
+    --post-max-width-text: 26rem;
+    --post-max-width-media: 38rem;
+  }
+}
+
 .article--postalicious {
-  .cu-section__content {
-    display: grid;
-    row-gap: var(--cu-vr0);
+  @include breakpoint(md) {
+    .bvg--cornell-alternate-branding & {
+      border-top: 1px solid $gray-light;
+    }
+  }
+
+  .cu-x-block:not(.block-system-breadcrumb-block) {
+    width: 100%; // Allow field content, like published date, to take up full width.
+    max-width: var(--post-max-width-text);
+    margin: 0 auto;
+  }
+
+  // All layout field blocks that end with 'field-representative-image', as well
+  // as video.
+  .block-layout-builder[class$="field-representative-image"],
+  .block-field-block--node--video-post--field-video {
+    --post-max-width-text: var(--post-max-width);
+  }
+
+  @include breakpoint(sm) {
+    // The extra `.block` class is to match the specificity with the rule above.
+    .cu-x-block.block.block-better-social-sharing-buttons {
+      // Remove the bottom flex row gap for sharing buttons. This is done because
+      // the social sharing buttons are absolutely positioned and thus the zero
+      // height block has a row gap on the top and bottom. See _social-share.scss
+      margin-bottom: calc(var(--cu-vr1) * -1);
+      --post-max-width-text: var(--post-max-width);
+    }
+  }
+
+  .cu-heading.field--title {
+    --cu-font-size: var(--cu-ms6);
+    --cu-font-weight: 400;
+  }
+
+  .field--field-published-date {
+    --cu-font-size: var(--cu-ms-2);
+  }
+
+  blockquote {
+    font-size: var(--cu-ms3);
+    font-weight: 600;
+    line-height: 1.3;
+    font-family: "freight-text-pro", serif;
+    text-align: center;
+    margin: var(--cu-vr1) var(--cu-ps1);
 
     @include breakpoint(sm) {
-      display: grid;
-      grid-template-columns: 3fr 2fr;
-      grid-auto-flow: dense;
-      align-items: start;
-      column-gap: var(--cu-ps1);
-
-      > * {
-        grid-column: 1;
-      }
-
-      div[class$='field-representative-image'] {
-        grid-column: 2;
-      }
-
-      div[class$='field-components'],
-      .block-field-block--node--post--field-blog-tags {
-        display: block;
-        grid-column: 1/-1;
-        margin-top: var(--cu-component-margin-bottom, var(--cu-vr2));
-      }
-
-      div[class$='field-components']:first-child {
-        margin-top: 0;
-      }
-
-      .block-better-social-sharing-buttons {
-        display: flex;
-        grid-column: 2;
-      }
+      font-size: var(--cu-ms5);
+      margin: var(--cu-vr2) var(--post-media-offset-margin);
+      clear: both;
     }
 
-    .cu-section-heading {
-      margin: 0;
-      align-items: flex-start;
+    p + p:last-of-type {
+      font-family: Replica;
+      text-transform: uppercase;
+      font-size: var(--cu-ms-3);
+      color: #6C6C6C;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+    }
+  }
+
+  @include breakpoint(sm) {
+    .cu-media.align-center,
+    .cu-component.media:not(.curtain-reveal) {
+      margin: var(--cu-vr2) var(--post-media-offset-margin);
+    }
+
+    .cu-media.align-right {
+      width: 50%;
+      margin-right: -25%;
+    }
+
+    .cu-media.align-left {
+      width: 50%;
+      margin-left: -25%;
+    }
+  }
+
+  // Add a partial border to un-floated inline images. Note that image
+  // paragraphs (e.g. .paragraph--type--image) should arguably use this
+  // treatment, too, but the border could conflict with image effects (curtain,
+  // ken burns) allowed on image paragraphs.
+  .cu-media.align-center .field--field-media-image {
+    padding: 16px 16px 16px 0;
+    background:
+     linear-gradient(#ccc 0 0) top right / 75% 16px,
+     linear-gradient(#ccc 0 0) right / 16px 100%,
+     linear-gradient(#ccc 0 0) bottom right / 15% 16px,   transparent;
+    background-repeat: no-repeat;
+  }
+
+  .layout__region--content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cu-vr1);
+
+    .cu-heading.field--title,
+    .cu-heading.field--field-subtitle {
+      margin-bottom: 0;
+    }
+
+    .cu-heading.field--field-subtitle {
+      font-style: italic;
+      --cu-font-size: var(--cu-ms2);
     }
 
     .social-sharing-buttons {
@@ -48,22 +135,71 @@
   .persona__name {
     margin-bottom: 0;
   }
+
+  // This is done to target the second placement of authors on full posts.
+  .block-field-block--node--post--field-authors ~ .block-field-block--node--post--field-authors {
+    border-top: 1px solid #BABABA;
+    padding-top: var(--cu-vr2);
+
+    .field--field-authors {
+      display: flex;
+      flex-direction: column;
+      gap: var(--cu-vr1);
+    }
+  }
+
+  // Add an additional top margin for tags when appearing after authors.
+  .block-field-block--node--post--field-authors ~ .block-extra-field-block--node--post--blog-tags {
+    margin-top: var(--cu-vr1);
+  }
+
+  .persona--view-mode-teaser-compact {
+    background-color: #F7F6F6;
+    grid-template-columns: 1fr 1.25fr;
+
+    .cu-person__info {
+      & > * {
+        margin: 0;
+      }
+
+      gap: 1em;
+      padding: var(--cu-vr0) var(--cu-ps0) var(--cu-vr0) 0;
+    }
+
+    .persona__name {
+      --cu-font-size: var(--cu-ms0);
+      --cu-font-weight: 400;
+    }
+
+    .cu-person__title {
+      --cu-font-size: var(--cu-ms-2);
+      letter-spacing: 0.02em;
+    }
+
+      .cu-person__image {
+      margin-bottom: unset;
+
+      .cu-image {
+        border-radius: unset;
+      }
+    }
+  }
+
+  @include breakpoint(sm) {
+    .cu-grid {
+      margin-left: calc((var(--post-max-width) - var(--post-max-width-text)) / 2 * -1);
+      margin-right: calc((var(--post-max-width) - var(--post-max-width-text)) / 2 * -1);
+    }
+  }
 }
 
 // Posts in modals
 .cu-modal .article--postalicious {
-  .cu-section {
-    display: block;
-    margin: 0;
-  }
-
-  .cu-banner--page,
-  .field--field-blog-tags {
+  .block-system-breadcrumb-block,
+  .block-field-block--node--video-post--title,
+  .block-extra-field-block--node--video-post--blog-tags,
+  .block-field-block--node--video-post--field-published-date {
     display: none;
-  }
-
-  .collection > div {
-    margin: 0;
   }
 }
 
@@ -85,6 +221,8 @@
   padding: 0 .5em;
 }
 
+.content--evergreen .block-field-block--node--post--field-published-date,
+.content--evergreen .block-field-block--node--video-post--field-published-date,
 .content--evergreen .field--field-published-date {
   display: none;
 }
@@ -92,4 +230,21 @@
 .cu-topic-list__item .cu-card .field--field-published-date {
   margin: 0;
   font-size: 12px;
+}
+
+// Cross-post specific styles.
+.collection_item .block-system-main-block {
+  .blog-meta {
+    width: 100%;
+    max-width: var(--post-max-width-text);
+    margin: var(--cu-vr1) auto;
+  }
+
+  // Move the original post link and/or tags on a collection item display into
+  // the section margin. This is required because the collection_item entity
+  // display embeds the node view, which places all content into a section, but
+  // displays the tags after that rendered node.
+  .field-type--dynamic-entity-reference + .blog-meta {
+    margin-top: calc(var(--cu-component-margin-bottom, var(--cu-vr2)) * -1);
+  }
 }
