@@ -4,11 +4,15 @@
 
   padding: var(--banner-padding);
   margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr2));
+  margin-left: calc(var(--gutter-width) * -1);
+  margin-right: calc(var(--gutter-width) * -1);
 
   @include breakpoint(md) {
     --banner-padding: 50px;
     --frame-width: 15px;
     margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .cu-banner__media::before {

@@ -112,3 +112,18 @@ hr.pad {
 .cu-composite-heading__body .cu-component {
   margin: 0;
 }
+
+// Pull some components into the grid gutter on smaller screens.
+.cu-component.cu-component--deck,
+.cu-component.cu-card--panel,
+.cu-component--topic-list,
+.cu-component--cinematic,
+.cu-component--popout {
+  margin-left: calc(var(--gutter-width) * -1);
+  margin-right: calc(var(--gutter-width) * -1);
+
+  @include breakpoint(md) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
