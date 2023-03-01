@@ -52,3 +52,11 @@
   min-width: 45px;
   display: inline-block;
 }
+
+.twitter-timeline {
+  width: auto !important;
+
+  iframe {
+    max-width: 80vw;
+  }
+}
