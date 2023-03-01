@@ -3,6 +3,7 @@
   // module.
   gap: 1em;
   align-items: flex-start;
+  justify-content: start;
 
   @include breakpoint(sm) {
     flex-direction: column;
