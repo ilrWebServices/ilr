@@ -33,9 +33,18 @@
 
   // All layout field blocks that end with 'field-representative-image', as well
   // as video.
-  .block-layout-builder[class$="field-representative-image"],
-  .block-field-block--node--video-post--field-video {
+  .cu-x-block.block-layout-builder[class$="field-representative-image"],
+  .cu-x-block.block-field-block--node--video-post--field-video {
     --post-max-width-text: var(--post-max-width);
+    margin-left: calc(var(--gutter-width) * -1);
+    margin-right: calc(var(--gutter-width) * -1);
+    width: auto;
+    max-width: fit-content;
+
+    @include breakpoint(md) {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   @include breakpoint(sm) {
