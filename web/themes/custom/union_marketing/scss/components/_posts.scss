@@ -258,11 +258,17 @@
   }
 }
 
-.cu-card--teaser {
+.cu-card--teaser,
+.cu-card--featured {
+  --card-teaser-padding: var(--cu-ps0);
   background: #F7F6F6;
 
+  @include breakpoint(md) {
+    --card-teaser-padding: var(--cu-ps1);
+  }
+
   .cu-card__content {
-    padding: 0 var(--cu-ps1) var(--cu-vr1);
+    padding: 0 var(--card-teaser-padding) var(--cu-vr1);
 
     p:last-of-type {
       margin-bottom: 0;
