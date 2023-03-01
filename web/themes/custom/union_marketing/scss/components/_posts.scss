@@ -257,3 +257,15 @@
     margin-top: calc(var(--cu-component-margin-bottom, var(--cu-vr2)) * -1);
   }
 }
+
+.cu-card--teaser {
+  background: #F7F6F6;
+
+  .cu-card__content {
+    padding: 0 var(--cu-ps1) var(--cu-vr1);
+
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}

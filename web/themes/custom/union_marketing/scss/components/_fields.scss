@@ -45,8 +45,9 @@
 }
 
 .cu-card .field--field-published-date {
-  margin: var(--cu-vr-1) 0;
-  --cu-text-color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 var(--cu-vr-2) 0;
 }
 
 .cu-component--rich-text iframe {

@@ -71,11 +71,11 @@
  */
 #}
 {% set rendered_content %}
+  {{ content.field_published_date }}
   <h3 class="cu-heading">{{ label }}</h3>
   {{ title_suffix }}
   {% if node.bundle == 'media_mention' %}{{ content.media_outlet_logo }}{% endif %}
   {{ content.body }}
-  {{ content.field_published_date }}
 {% endset %}
 
 {% include '@union/_card.twig' with {

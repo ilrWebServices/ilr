@@ -48,10 +48,17 @@
 }
 
 .cu-card--teaser, .cu-card--teaser-compact, .cu-card--featured, .localistEvent {
-  --cu-font-size: var(--cu-ms-1);
+  --cu-font-size: var(--cu-ms-2);
 
   .cu-heading {
-    --cu-font-size: var(--cu-ms2);
+    --cu-font-size: var(--cu-ms0);
+    --cu-font-weight: 400;
+    --cu-component-margin-bottom: var(--cu-vr-2);
+  }
+
+  .field--field-published-date {
+    --cu-font-size: var(--cu-ms-4);
+    --cu-font-weight: 600;
   }
 }
 
