@@ -255,6 +255,7 @@
   // displays the tags after that rendered node.
   .field-type--dynamic-entity-reference + .blog-meta {
     margin-top: calc(var(--cu-component-margin-bottom, var(--cu-vr2)) * -1);
+    position: relative;
   }
 }
 
