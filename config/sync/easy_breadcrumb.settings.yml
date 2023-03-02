@@ -9,7 +9,7 @@ include_home_segment: true
 alternative_title_field: ''
 home_segment_title: 'ILR Home'
 home_segment_keep: false
-include_title_segment: false
+include_title_segment: true
 title_from_page_when_available: false
 title_segment_as_link: false
 segments_separator: null

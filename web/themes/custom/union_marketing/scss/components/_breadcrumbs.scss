@@ -23,6 +23,7 @@
 
 .cu-breadcrumb__item:last-child {
   opacity: 1;
+  font-weight: 700; // This provides parity with linked breadcrumb items.
 }
 
 .cu-breadcrumb {

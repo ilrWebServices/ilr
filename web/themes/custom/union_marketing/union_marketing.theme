@@ -9,6 +9,7 @@ use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\easy_breadcrumb\EasyBreadcrumbConstants;
 
 /**
  * @file Theme file for the union_marketing.theme.
@@ -484,5 +485,34 @@ function union_marketing_preprocess_image_formatter(&$variables) {
     $anchor = \Drupal::service('focal_point.manager')
       ->absoluteToRelative($crop->x->value, $crop->y->value, $image_props['width'], $image_props['height']);
     $variables['image']['#attributes']['style'][] = '--cu-image-position: ' . $anchor['x'] . '% ' . $anchor['y'] . '%;';
+  }
+}
+
+/**
+ * Implements hook__preprocess_HOOK().
+ *
+ * Remove the page title from the breadcrumbs for postalicious content.
+ */
+function union_marketing_preprocess_breadcrumb(&$variables) {
+  $easy_breadcrumb_config = \Drupal::config('easy_breadcrumb.settings');
+
+  if (!$easy_breadcrumb_config || empty($variables['breadcrumb'])) {
+    return;
+  }
+
+  $include_title_segment = $easy_breadcrumb_config->get(EasyBreadcrumbConstants::INCLUDE_TITLE_SEGMENT);
+
+  if (!$include_title_segment) {
+    return;
+  }
+
+  // Check the breadcrumb is for a node.
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $bundle = $node->type->entity;
+
+    // Remove the last breadcrumb item for nodes that extend posts.
+    if ($bundle->getThirdPartySetting('extended_post', 'extends_posts')) {
+      array_pop($variables['breadcrumb']);
+    }
   }
 }
