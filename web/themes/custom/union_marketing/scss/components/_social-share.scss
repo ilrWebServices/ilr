@@ -54,9 +54,10 @@
 }
 
 .twitter-timeline {
-  width: auto !important;
+  width: 100% !important;
 
   iframe {
     max-width: 80vw;
+    width: auto !important;
   }
 }
