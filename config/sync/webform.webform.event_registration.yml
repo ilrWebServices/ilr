@@ -28,6 +28,11 @@ elements: |-
     '#type': textfield
     '#title': Title
     '#required': true
+  email:
+    '#type': email
+    '#title': Email
+    '#required': true
+    '#default_value': '[current-user:mail]'
   first_name:
     '#type': textfield
     '#title': 'First name'
@@ -36,11 +41,12 @@ elements: |-
     '#type': textfield
     '#title': 'Last name'
     '#required': true
-  email:
-    '#type': email
-    '#title': Email
-    '#required': true
-    '#default_value': '[current-user:mail]'
+  accessible_accommodation:
+    '#type': textarea
+    '#title': Accommodations
+    '#description': 'We strive to host inclusive, accessible events that enable all individuals to engage and participate fully. Please list any reasonable accommodations you may need, such as alternate formats, interpreters, or sign-language interpreters.'
+    '#title_display': invisible
+    '#description_display': before
   opt_in:
     '#type': checkbox
     '#title': Opt-in
@@ -55,6 +61,10 @@ elements: |-
     '#title': 'Event ID'
     '#prepopulate': true
     '#required': true
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': 'Register Now'
 css: ''
 javascript: ''
 settings:
@@ -258,7 +268,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "opt_in:\r\n  '#title': Opt-in for updates from The Worker Institute"
+      elements: "title:\r\n  '#access': false\r\nopt_in:\r\n  '#title': Opt-in for updates from The Worker Institute"
       handlers: {  }
   cji_opt_in:
     id: override
@@ -271,5 +281,5 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "opt_in:\r\n  '#title': Opt-in for updates from The Climate Jobs Institute"
+      elements: "opt_in:\r\n  '#title': Opt-in for updates from The Climate Jobs Institute\r\naccessible_accommodation:\r\n  '#access': false"
       handlers: {  }

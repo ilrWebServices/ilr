@@ -17,3 +17,34 @@
   border: 1px solid #ccc;
   border-radius: 3px;
 }
+
+.webform-submission-event-registration-form {
+  .cu-input-list__item--checkbox {
+    margin-bottom: var(--cu-vr0);
+  }
+
+  @include breakpoint(sm) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0 var(--cu-ps0);
+    align-items: start;
+
+    .form-item-accessible-accommodation.cu-input-list__item.has-float-label {
+      display: flex;
+      flex-direction: column;
+      grid-row: span 2;
+
+      .cu-input-message {
+        margin-bottom: var(--cu-vr-1);
+      }
+
+      .cu-input {
+        order: 2;
+      }
+    }
+
+    .webform-actions {
+      align-self: end;
+    }
+  }
+}
