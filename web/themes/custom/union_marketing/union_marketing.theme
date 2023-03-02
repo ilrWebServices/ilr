@@ -507,18 +507,21 @@ function union_marketing_preprocess_breadcrumb(&$variables) {
   }
 
   $route_match = \Drupal::routeMatch();
+  $remove_last_crumb = FALSE;
 
   // Remove the last item for nodes that extend posts.
   if ($node = $route_match->getParameter('node')) {
     $bundle = $node->type->entity;
-
-    if ($bundle->getThirdPartySetting('extended_post', 'extends_posts')) {
-      array_pop($variables['breadcrumb']);
-    }
+    $remove_last_crumb = $bundle->getThirdPartySetting('extended_post', 'extends_posts');
   }
 
   // Remove the last item for cross-posts.
   if ($route_match->getParameter('collection_item')) {
+    $remove_last_crumb = TRUE;
+  }
+
+  if ($remove_last_crumb) {
     array_pop($variables['breadcrumb']);
+    $variables['attributes']['class'][] = 'breadcrumb-altered';
   }
 }
