@@ -506,13 +506,19 @@ function union_marketing_preprocess_breadcrumb(&$variables) {
     return;
   }
 
-  // Check the breadcrumb is for a node.
-  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+  $route_match = \Drupal::routeMatch();
+
+  // Remove the last item for nodes that extend posts.
+  if ($node = $route_match->getParameter('node')) {
     $bundle = $node->type->entity;
 
-    // Remove the last breadcrumb item for nodes that extend posts.
     if ($bundle->getThirdPartySetting('extended_post', 'extends_posts')) {
       array_pop($variables['breadcrumb']);
     }
+  }
+
+  // Remove the last item for cross-posts.
+  if ($route_match->getParameter('collection_item')) {
+    array_pop($variables['breadcrumb']);
   }
 }
