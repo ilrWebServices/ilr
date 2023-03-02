@@ -84,6 +84,21 @@
   .cu-breadcrumb {
     margin-top: 0;
   }
+
+  &.cu-banner--has-media {
+    @include breakpoint(md) {
+      .banner__content {
+        display: flex;
+        flex-direction: column;
+        min-height: 365px;
+
+
+        div[class$="ilr-section-navigation"] {
+          margin-top: auto;
+        }
+      }
+    }
+  }
 }
 
 .banner__content {

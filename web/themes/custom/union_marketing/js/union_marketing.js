@@ -32,13 +32,17 @@
       const banner_images = context.querySelectorAll('.cu-banner--page .field-representative-image');
 
       for (const banner_image of banner_images) {
-        let banner_media_elem = banner_image.closest('.cu-banner--page').querySelector('.cu-banner__media');
+        let banner = banner_image.closest('.cu-banner--page');
+        let banner_media_elem = banner.querySelector('.cu-banner__media');
         let comment = document.createComment('This image was moved here via javascript from `.field-representative-image`.');
 
         // Move images from the representative image field into the proper
         // container in the Union page banner component.
         banner_media_elem.appendChild(banner_image);
         banner_media_elem.appendChild(comment);
+
+        // Add a class that can be targeted for banners with media.
+        banner.classList.add('cu-banner--has-media');
       }
     }
   };
