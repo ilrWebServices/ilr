@@ -1,4 +1,4 @@
-.cu-grid--3col.cu-grid--featured {
+.cu-grid.cu-grid--featured {
   @include breakpoint(md) {
     grid-template-columns: repeat(4, 1fr);
 
