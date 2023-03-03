@@ -26,13 +26,8 @@ elements: |-
     '#required': true
   title:
     '#type': textfield
-    '#title': Title
+    '#title': Job title
     '#required': true
-  email:
-    '#type': email
-    '#title': Email
-    '#required': true
-    '#default_value': '[current-user:mail]'
   first_name:
     '#type': textfield
     '#title': 'First name'
@@ -41,6 +36,11 @@ elements: |-
     '#type': textfield
     '#title': 'Last name'
     '#required': true
+  email:
+    '#type': email
+    '#title': Email
+    '#required': true
+    '#default_value': '[current-user:mail]'
   accessible_accommodation:
     '#type': textarea
     '#title': Accommodations
@@ -268,7 +268,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "title:\r\n  '#access': false\r\nopt_in:\r\n  '#title': Opt-in for updates from The Worker Institute"
+      elements: "opt_in:\r\n  '#title': Opt-in for updates from The Worker Institute"
       handlers: {  }
   cji_opt_in:
     id: override
@@ -281,5 +281,5 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "opt_in:\r\n  '#title': Opt-in for updates from The Climate Jobs Institute\r\naccessible_accommodation:\r\n  '#access': false"
+      elements: "email:\r\n  '#weight': 6\r\nopt_in:\r\n  '#title': Opt-in for updates from The Climate Jobs Institute\r\naccessible_accommodation:\r\n  '#access': false"
       handlers: {  }
