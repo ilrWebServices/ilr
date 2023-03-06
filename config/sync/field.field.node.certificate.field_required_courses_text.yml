@@ -1,0 +1,26 @@
+uuid: 7ece710c-66d0-480c-8ed0-c67d9ab18086
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_required_courses_text
+    - node.type.certificate
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - simple_formatting
+id: node.certificate.field_required_courses_text
+field_name: field_required_courses_text
+entity_type: node
+bundle: certificate
+label: 'Required courses text'
+description: 'Optional. If no text is entered here, Required Courses will default to a template that calculates the number of published Course nodes in the Courses reference field.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

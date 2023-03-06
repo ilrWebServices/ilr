@@ -42,7 +42,7 @@ function ilr_theme($existing, $type, $theme, $path) {
     'ilr_certificate_basics_block' => [
       'variables' => [
         'node' => [],
-        'course_count' => '',
+        'required_courses_text' => '',
         'completion_time' => '',
       ],
     ],

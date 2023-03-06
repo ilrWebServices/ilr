@@ -6,7 +6,8 @@
  * Available variables:
  * - node: The certificate node.
  * - completion_time: The time, in months, to complete the certificate.
- * - course_count: The number of courses required to complete the certificate.
+ * - required_courses_text: Some text that includes (by default) the number of
+ *   courses required to complete the certificate.
  *
  * @see CertificateBasicsBlock::build()
  */
@@ -14,12 +15,12 @@
 {% set basics = [
   {
     name: 'Required Courses'|t,
-    description: '<span class="strong block">@course_count Focused Workshops</span>Register for individual workshops to fit your schedule'|t({ '@course_count': course_count }),
+    description: required_courses_text,
     icon: 'check-circle'
   },
   {
     name: 'Time to Complete'|t,
-    description: '<span class="strong block">@completion_time months</span>Time participants have to complete the entire certificate program'|t({ '@completion_time': completion_time }),
+    description: '<p><strong>@completion_time months</strong><br/>Time participants have to complete the entire certificate program</p>'|t({ '@completion_time': completion_time }),
     icon: 'check-circle'
   }
 ]%}

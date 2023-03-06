@@ -67,19 +67,31 @@ class CertificateBasicsBlock extends BlockBase implements ContainerFactoryPlugin
       return $build;
     }
 
-    $course_count = 0;
+    if ($node->field_required_courses_text->isEmpty()) {
+      $course_count = 0;
 
-    foreach ($node->field_course->referencedEntities() as $course_node) {
-      if ($course_node->isPublished()) {
-        $course_count++;
+      foreach ($node->field_course->referencedEntities() as $course_node) {
+        if ($course_node->isPublished()) {
+          $course_count++;
+        }
       }
+
+      $required_courses_text = $this->t(<<<EOL
+      <p><strong>@course_count Focused Workshops</strong><br/>
+      Register for individual workshops to fit your schedule</p>
+      EOL, [
+        '@course_count' => $course_count
+      ]);
+    }
+    else {
+      $required_courses_text = $node->field_required_courses_text->value;
     }
 
     $build = [
       '#theme' => 'ilr_certificate_basics_block',
       '#node' => $node,
       '#completion_time' => $node->field_completion_time->value,
-      '#course_count' => $course_count,
+      '#required_courses_text' => $required_courses_text,
     ];
     return $build;
   }

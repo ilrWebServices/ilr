@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.certificate.field_outcomes
     - field.field.node.certificate.field_prerequisites
     - field.field.node.certificate.field_representative_image
+    - field.field.node.certificate.field_required_courses_text
     - field.field.node.certificate.field_sections
     - field.field.node.certificate.field_topics
     - field.field.node.certificate.field_total_cost
@@ -466,6 +467,13 @@ content:
       link: false
     third_party_settings: {  }
     weight: 106
+    region: content
+  field_required_courses_text:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 111
     region: content
   field_sections:
     type: entity_reference_revisions_entity_view

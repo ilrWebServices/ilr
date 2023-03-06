@@ -1,0 +1,19 @@
+uuid: f3cfeacc-ed20-4016-b25e-822c0959ca51
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_required_courses_text
+field_name: field_required_courses_text
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
