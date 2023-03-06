@@ -67,9 +67,19 @@ class CertificateBasicsBlock extends BlockBase implements ContainerFactoryPlugin
       return $build;
     }
 
+    $course_count = 0;
+
+    foreach ($node->field_course->referencedEntities() as $course_node) {
+      if ($course_node->isPublished()) {
+        $course_count++;
+      }
+    }
+
     $build = [
       '#theme' => 'ilr_certificate_basics_block',
       '#node' => $node,
+      '#completion_time' => $node->field_completion_time->value,
+      '#course_count' => $course_count,
     ];
     return $build;
   }
