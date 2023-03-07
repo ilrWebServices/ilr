@@ -10,6 +10,8 @@ icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
+  evergreen:
+    enabled: true
   list_styles:
     enabled: true
     list_styles:
