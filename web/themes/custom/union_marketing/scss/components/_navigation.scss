@@ -158,6 +158,14 @@ nav[id^="block-union-marketing-menu-subsite"] {
 }
 
 .cu-component--section-navigation {
+  margin-left: calc(var(--gutter-width) * -1);
+  margin-right: calc(var(--gutter-width) * -1);
+
+  @include breakpoint(md) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   background-color: #efefef;
   padding: var(--cu-vr1) var(--cu-ps1);
 
