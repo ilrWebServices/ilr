@@ -54,12 +54,11 @@
 .cu-breadcrumb__list {
   --cu-breadcrumb-separator: '❯';
   --cu-breadcrumb-separator: '›';
-
-  display: flex;
   flex-wrap: nowrap;
   justify-content: flex-end;
+  max-width: 100%;
 
-  @include breakpoint(sm) {
+  @include breakpoint(md) {
     flex-wrap: wrap;
     justify-content: flex-start;
   }
