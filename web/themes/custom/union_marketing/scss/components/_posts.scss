@@ -212,7 +212,8 @@
   }
 }
 
-.collection-listing .field-type--entity-reference {
+.collection-listing .field-type--entity-reference,
+.paragraph--type--simple-collection-listing .field-type--entity-reference {
   display: contents;
 }
 

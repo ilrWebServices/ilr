@@ -17,6 +17,8 @@ behavior_plugins:
     list_styles:
       grid: grid
       grid-compact: grid-compact
+      grid-bricks: grid-bricks
+      grid-bricks--reversed: grid-bricks--reversed
       grid-featured: grid-featured
       list-compact: 0
       banner: 0
