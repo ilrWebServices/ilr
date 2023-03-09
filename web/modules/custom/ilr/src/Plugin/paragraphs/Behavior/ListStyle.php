@@ -211,6 +211,8 @@ class ListStyle extends ParagraphsBehaviorBase {
       return is_array($v) && isset($v['#theme']) && $v['#theme'] === 'field' && isset($v['#formatter']) && in_array($v['#formatter'], ['entity_reference_entity_view', 'collected_item_entity_formatter']);
     }));
 
+    $item_count = 0;
+
     foreach ($build_fields as $field) {
       $element = &$build[$field];
 
@@ -220,6 +222,7 @@ class ListStyle extends ParagraphsBehaviorBase {
           continue;
         }
 
+        $item_count++;
         $original_view_mode = $element[$key]['#view_mode'];
         $view_mode_for_liststyle = $this->getViewModeForListStyle($list_style, $key + 1);
         $cache_key_view_mode_key = array_search($original_view_mode, $element[$key]['#cache']['keys']);
@@ -237,6 +240,11 @@ class ListStyle extends ParagraphsBehaviorBase {
         // modified.
         $element[$key]['#cache']['tags'] = array_merge($element[$key]['#cache']['tags'], $build['#cache']['tags']);
       }
+    }
+
+    if ($item_count) {
+      $build['#attributes']['style'] = '--featured-grid-rows: ' . (($item_count < 4) ? 2 : 3);
+      $build['#attributes']['data-itemcount'] = $item_count;
     }
   }
 
