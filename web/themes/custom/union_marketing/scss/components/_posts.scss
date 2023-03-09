@@ -38,8 +38,6 @@
     --post-max-width-text: var(--post-max-width);
     margin-left: calc(var(--gutter-width) * -1);
     margin-right: calc(var(--gutter-width) * -1);
-    width: auto;
-    max-width: fit-content;
 
     @include breakpoint(md) {
       margin-left: auto;
