@@ -302,6 +302,11 @@ class PostListing extends ParagraphsBehaviorBase {
       ],
     ];
 
+    if ($list_style === 'grid-featured') {
+      $variables['attributes']['style'] = '--featured-grid-rows: ' . (count($posts) < 4 ? 2 : 3);
+      $variables['attributes']['data-postcount'] = count($posts);
+    }
+
     // QueryBase::pager(), used above, sets the pager element. The pager manager
     // can now get that element value.
     if ($paragraph->getBehaviorSetting($this->getPluginId(), 'use_pager')) {

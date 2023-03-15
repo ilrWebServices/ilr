@@ -1,19 +1,40 @@
 .cu-grid.cu-grid--featured {
-  @include breakpoint(md) {
-    grid-template-columns: repeat(4, 1fr);
+  @include breakpoint(sm) {
+    grid-template-columns: 1fr 1fr;
 
     .cu-card--featured {
-      grid-column: 1/3;
-      grid-row: 1/3;
-      // background-color: transparent;
+      .field-representative-image .cu-image {
+        aspect-ratio: 3 / 2;
+      }
+    }
+  }
+
+  @include breakpoint(md) {
+    --cu-grid-row-gap: var(--cu-vr1);
+    // The custom property allows us set the number of rows from the CMS via
+    // inline style, if necessary.
+    grid-template-rows: repeat(var(--featured-grid-rows, 3), auto);
+
+    .cu-card:first-child {
+      // This works because we set the number of rows explicitly.
+      grid-row: 1 / -1;
+      justify-content: space-between;
+
+      .cu-card__media {
+        flex-grow: 2;
+
+        .cu-image {
+          height: 100%;
+        }
+      }
+
+      .cu-card__content {
+        height: auto;
+      }
     }
 
-    .cu-card {
-      background-color: transparent;
-    }
-
-    .cu-card__content {
-      --card-teaser-padding: 0;
+    .cu-card:not(:first-child) {
+      @extend .landscape-brick;
     }
   }
 }
