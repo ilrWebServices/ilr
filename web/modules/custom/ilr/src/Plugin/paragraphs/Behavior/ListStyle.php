@@ -72,7 +72,7 @@ class ListStyle extends ParagraphsBehaviorBase {
       '#type' => 'checkboxes',
       '#title' => $this->t('Types to include:'),
       '#options' => $this->listStyles,
-      '#default_value' => $config['list_styles'] ?? $this->listStyles,
+      '#default_value' => $config['list_styles'] ?? array_keys($this->listStyles),
     ];
 
     $form['columns']['enabled'] = [
