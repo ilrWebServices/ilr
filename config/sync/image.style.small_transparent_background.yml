@@ -1,0 +1,22 @@
+uuid: 38adccdc-65ce-4b26-917c-3758056755ed
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr_effects
+name: small_transparent_background
+label: 'Small transparent background (500x500 max)'
+effects:
+  d1820be3-116c-463b-8fad-fdbeb8def595:
+    uuid: d1820be3-116c-463b-8fad-fdbeb8def595
+    id: ilr_invert_grayscale_mask
+    weight: 1
+    data: {  }
+  451965dc-45d8-4383-8610-5985ebb0fad3:
+    uuid: 451965dc-45d8-4383-8610-5985ebb0fad3
+    id: image_scale
+    weight: 0
+    data:
+      width: 500
+      height: 500
+      upscale: false
