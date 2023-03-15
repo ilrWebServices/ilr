@@ -10,5 +10,11 @@ icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
+  ilr_color:
+    enabled: true
+    color_schemes:
+      light: light
+      dark: dark
+      vibrant: 0
   ilr_topic_list:
     enabled: true
