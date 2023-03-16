@@ -44,7 +44,28 @@ class ColorSettings extends ParagraphsBehaviorBase {
       '#default_value' => $config['color_schemes'] ?? array_keys($this->colorSchemes),
     ];
 
+    $form['color_scheme_default'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Default color scheme'),
+      '#options' => $this->colorSchemes,
+      '#empty_option' => $this->t('- None -'),
+      '#default_value' => $config['color_scheme_default'] ?? '',
+    ];
+
     return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
+    $enabled_color_schemes = $form_state->getValue('color_schemes');
+
+    if ($chosen_default = $form_state->getValue('color_scheme_default')) {
+      if (!in_array($chosen_default, $enabled_color_schemes)) {
+        $form_state->setError($form['color_scheme_default'], $this->t('The selected default color scheme is not in the allowed options.'));
+      }
+    }
   }
 
   /**
@@ -52,6 +73,7 @@ class ColorSettings extends ParagraphsBehaviorBase {
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
     $this->configuration['color_schemes'] = $form_state->getValue('color_schemes');
+    $this->configuration['color_scheme_default'] = $form_state->getValue('color_scheme_default');
   }
 
   /**
@@ -70,8 +92,8 @@ class ColorSettings extends ParagraphsBehaviorBase {
       '#description' => $this->t('The color style for this component.'),
       '#options' => $color_scheme_options,
       '#required' => FALSE,
-      '#empty_option' => $this->t('- Default -'),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'color_scheme') ?? '',
+      '#empty_option' => $this->t('- None -'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'color_scheme') ?? $this->configuration['color_scheme_default'],
     ];
 
     return $form;

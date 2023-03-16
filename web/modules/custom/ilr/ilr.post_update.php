@@ -1290,3 +1290,27 @@ function ilr_post_update_fix_mistaken_climate_jobs_aliases(&$sandbox) {
     }
   }
 }
+
+/**
+ * Move card bg_color settings to color_scheme and set default scheme.
+ */
+function ilr_post_update_set_card_color_schemes(&$sandbox) {
+  $query = \Drupal::entityQuery('paragraph');
+  $query->condition('type', ['promo', 'topic_list'], 'IN');
+  $promo_paragraph_ids = $query->execute();
+  $cards = Paragraph::loadMultiple($promo_paragraph_ids);
+
+  foreach ($cards as $card) {
+    $settings = $card->getAllBehaviorSettings();
+    if (isset($settings['ilr_card']['bg_color'])) {
+      $settings['ilr_color']['color_scheme'] =  $settings['ilr_card']['bg_color'];
+      unset($settings['ilr_card']['bg_color']);
+    }
+    else {
+      $settings['ilr_color']['color_scheme'] =  'light';
+    }
+
+    $card->setAllBehaviorSettings($settings);
+    $card->save();
+  }
+}
