@@ -12,3 +12,9 @@ description: ''
 behavior_plugins:
   ilr_card:
     enabled: true
+  ilr_color:
+    enabled: true
+    color_schemes:
+      light: light
+      dark: dark
+      vibrant: vibrant
