@@ -30,6 +30,12 @@
   'block-' ~ configuration.provider|clean_class,
   'block-' ~ plugin_id|replace({':': '--'})|clean_class,
 ] %}
+{% set icon_card_classes = [
+  'cu-card--icon',
+  'cu-card--hover-content-reveal',
+  'cu-colorscheme',
+  'cu-colorscheme--light',
+] %}
 
 {% set undergrad %}
 {% include '@union/_icon.twig' with {
@@ -75,15 +81,15 @@
 
 {% set icon_cards %}
 {% include '@union/_card.twig' with {
-  attributes: { class: 'cu-card--icon cu-card--hover-content-reveal' },
+  attributes: { class: icon_card_classes },
   card_content: undergrad
 } only %}
 {% include '@union/_card.twig' with {
-  attributes: { class: 'cu-card--icon cu-card--hover-content-reveal' },
+  attributes: { class: icon_card_classes },
   card_content: grad
 } only %}
 {% include '@union/_card.twig' with {
-  attributes: { class: 'cu-card--icon cu-card--hover-content-reveal' },
+  attributes: { class: icon_card_classes },
   card_content: professional
 } only %}
 {% endset %}
