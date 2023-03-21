@@ -30,5 +30,6 @@
 {% include '@union/_card.twig' with {
   card_content: rendered_content,
   card_media: event.ilr_image,
-  card_link_url: event.localist_url
+  card_link_url: event.localist_url,
+  attributes: attributes.addClass('cu-card--teaser'),
 } only %}
