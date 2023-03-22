@@ -76,7 +76,14 @@ class RemoteHtmlSnippetBlock extends BlockBase {
       // Add a random string to avoid the realpath cache. If this doesn't work,
       // consider switching to curl.
       $html_content = file_get_contents($this->configuration['url'] . '?' . mt_rand());
-      \Drupal::cache()->set($cid, $html_content, Cache::PERMANENT);
+      \Drupal::cache()->set($cid, $html_content, time() + 60 * 60);
+    }
+
+    // Check whether there was any data returned. At times, such as if there is
+    // an SSL error, then the data on the cache is set to `FALSE`.
+    if (empty($html_content)) {
+      // Add logging or find a more elegant way to handle the error?
+      return $build;
     }
 
     // Pass the remote HTML into DOM.
