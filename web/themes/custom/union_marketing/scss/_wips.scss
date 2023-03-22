@@ -74,3 +74,34 @@
 .cu-topic-list__item-link {
   text-decoration: underline;
 }
+
+.cu-component--rich-text .sidebar {
+  font-size: var(--cu-ms-1);
+  border: 1px solid #ddd;
+  padding: var(--cu-vr1) var(--cu-ps1);
+  margin-top: var(--cu-vr1);
+  margin-bottom: var(--cu-vr1);
+  background-color: #f6f6f6;
+
+  > .cu-media {
+    margin: var(--cu-vr0) 0;
+  }
+
+  .media__caption {
+    font-size: var(--cu-ms-2);
+  }
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+@include breakpoint(md) {
+  .cu-component--rich-text .sidebar {
+    width: 70%;
+    float: right;
+    margin-top: .5em;
+    margin-right: -50%;
+    margin-left: var(--cu-ps1);
+  }
+}

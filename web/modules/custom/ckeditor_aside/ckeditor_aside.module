@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains ckeditor_aside.module.
+ */
+
+use Drupal\editor\Entity\Editor;
+
+/**
+ * Implements hook_ckeditor_css_alter().
+ */
+function ckeditor_aside_ckeditor_css_alter(array &$css, Editor $editor) {
+  $editor_settings = $editor->getSettings();
+
+  foreach ($editor_settings['toolbar']['rows'] as $row) {
+    $all_items = array_merge(...array_column($row, 'items'));
+
+    if (in_array('Aside', $all_items)) {
+      $css[] = drupal_get_path('module', 'ckeditor_aside') . '/css/ckeditoraside-editor.css';
+      return;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+name: 'CKEditor Aside'
+type: module
+description: 'Allows the addition of an aside element in CKEditor.'
+core_version_requirement: ^9
+package: 'ILR'
+dependencies:
+  - drupal:ckeditor
