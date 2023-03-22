@@ -79,6 +79,13 @@ class RemoteHtmlSnippetBlock extends BlockBase {
       \Drupal::cache()->set($cid, $html_content, Cache::PERMANENT);
     }
 
+    // Check whether there was any data returned. At times, such as if there is
+    // an SSL error, then the data on the cache is set to `FALSE`.
+    if (empty($html_content)) {
+      // Add logging or find a more elegant way to handle the error?
+      return $build;
+    }
+
     // Pass the remote HTML into DOM.
     $document = new \DOMDocument('1.0', 'UTF-8');
     // Disable XML errors;.
