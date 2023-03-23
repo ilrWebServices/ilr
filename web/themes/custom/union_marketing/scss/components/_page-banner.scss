@@ -81,6 +81,10 @@
     }
   }
 
+  .cu-page-nav__link {
+    text-shadow: black 0 0 4px;
+  }
+
   .cu-breadcrumb {
     margin-top: 0;
   }
@@ -95,6 +99,7 @@
 
         div[class$="ilr-section-navigation"] {
           margin-top: auto;
+          margin-right: -64%;
         }
       }
     }
