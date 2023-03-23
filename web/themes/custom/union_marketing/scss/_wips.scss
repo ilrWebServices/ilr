@@ -91,6 +91,10 @@
     font-size: var(--cu-ms-2);
   }
 
+  h2.cu-heading {
+    --cu-font-size: var(--cu-ms2);
+  }
+
   p:last-of-type {
     margin-bottom: 0;
   }
