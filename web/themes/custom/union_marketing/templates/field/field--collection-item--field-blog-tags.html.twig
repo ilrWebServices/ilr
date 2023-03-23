@@ -38,22 +38,29 @@
     label_display == 'visually_hidden' ? 'visually-hidden',
   ]
 %}
+{%
+  set button_classes = [
+    'cu-button',
+    'cu-button--pill',
+    'cu-colorscheme--light',
+  ]
+%}
 
 <div{{attributes.addClass(classes)}}>
 {% if label_hidden %}
   {% if multiple %}
     {% for item in items %}
-      {{ item.content|merge({'#options': {'attributes': {'class': ['cu-button cu-button--pill']}}}) }}
+      {{ item.content|merge({'#options': {'attributes': {'class': button_classes}}}) }}
     {% endfor %}
   {% else %}
     {% for item in items %}
-      {{ item.content|merge({'#options': {'attributes': {'class': ['cu-button cu-button--pill']}}}) }}
+      {{ item.content|merge({'#options': {'attributes': {'class': button_classes}}}) }}
     {% endfor %}
   {% endif %}
 {% else %}
   <div{{title_attributes.addClass(title_classes)}}>{{ label }}</div>
   {% for item in items %}
-    {{ item.content|merge({'#options': {'attributes': {'class': ['cu-button cu-button--pill']}}}) }}
+    {{ item.content|merge({'#options': {'attributes': {'class': button_classes}}}) }}
   {% endfor %}
 {% endif %}
 </div>

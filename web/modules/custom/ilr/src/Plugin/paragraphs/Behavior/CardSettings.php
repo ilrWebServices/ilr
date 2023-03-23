@@ -57,17 +57,6 @@ class CardSettings extends ParagraphsBehaviorBase {
   ];
 
   /**
-   * The background variants.
-   *
-   * @var array
-   */
-  protected $bgOptions = [
-    'light' => 'Light',
-    'dark' => 'Dark',
-    'vibrant' => 'Vibrant',
-  ];
-
-  /**
    * The icon options.
    *
    * @var array
@@ -119,16 +108,6 @@ class CardSettings extends ParagraphsBehaviorBase {
       '#options' => $this->layoutOptions,
       '#required' => TRUE,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'layout') ?? array_key_first($this->layoutOptions),
-    ];
-
-    $form['bg_color'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Background'),
-      '#description' => $this->t('The background color for this card. This is only visible in cards where the text does not cover the media.'),
-      '#options' => $this->bgOptions,
-      '#required' => FALSE,
-      '#empty_option' => $this->t('- Default (generally transparent) -'),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'bg_color') ?? '',
     ];
 
     $form['use_media_aspect'] = [
@@ -248,7 +227,6 @@ class CardSettings extends ParagraphsBehaviorBase {
     $overlay_opacity = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'media_overlay_opacity') ?? 50;
     $content_placement = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'content_placement');
     $layout = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'layout');
-    $bg_color = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'bg_color');
     $has_media = !$variables['paragraph']->field_media->isEmpty();
     $use_modal_link = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'use_modal_link') && !$variables['paragraph']->field_link->isEmpty() && $variables['paragraph']->field_link->first()->getUrl()->isRouted();
     $variables['attributes']['style'][] = '--cu-overlay-opacity: ' . $overlay_opacity / 100 . ';';
@@ -264,7 +242,7 @@ class CardSettings extends ParagraphsBehaviorBase {
       // Set the button class attribute for legacy promos.
       $variables['button_attributes'] = new Attribute();
 
-      if ($has_media || $bg_color === 'vibrant') {
+      if ($has_media || $variables['paragraph']->getBehaviorSetting('ilr_color', 'color_scheme') === 'vibrant') {
         $variables['button_attributes']->setAttribute('class', ['cu-button--overlay']);
       }
 
@@ -306,10 +284,6 @@ class CardSettings extends ParagraphsBehaviorBase {
 
     if ($content_placement) {
       $variables['attributes']['class'][] = 'cu-card--' . $content_placement;
-    }
-
-    if ($bg_color) {
-      $variables['attributes']['class'][] = 'cu-card--' . $bg_color;
     }
 
     if ($icon = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'icon')) {
@@ -361,13 +335,6 @@ class CardSettings extends ParagraphsBehaviorBase {
       $summary[] = [
         'label' => $this->t('Layout'),
         'value' => $this->layoutOptions[$layout],
-      ];
-    }
-
-    if ($bg_color = $paragraph->getBehaviorSetting($this->getPluginId(), 'bg_color')) {
-      $summary[] = [
-        'label' => $this->t('Background'),
-        'value' => $this->bgOptions[$bg_color],
       ];
     }
 

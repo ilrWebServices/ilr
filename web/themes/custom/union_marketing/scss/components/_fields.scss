@@ -39,11 +39,6 @@
   --cu-component-margin-bottom: .25em;
 }
 
-// Red links in the page banner are no good.
-.cu-banner--page .field--body {
-  --cu-text-color: white;
-}
-
 .cu-card .field--field-published-date {
   text-transform: uppercase;
   letter-spacing: 0.1em;
