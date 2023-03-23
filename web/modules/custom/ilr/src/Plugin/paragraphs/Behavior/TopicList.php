@@ -55,6 +55,7 @@ class TopicList extends ParagraphsBehaviorBase {
 
     if ($has_media && $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'use_media_aspect')) {
       $variables['content']['field_media'][0]['#image_style'] = 'large_preserve_aspect';
+      $variables['attributes']['class'][] = 'use-media-aspect';
     }
 
     $variables['items'] = [];

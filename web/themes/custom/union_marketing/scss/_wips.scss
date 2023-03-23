@@ -68,13 +68,7 @@
   }
 }
 
-/*----------  Topic List links  ----------*/
-// This is a temporary link underline until the arrow icon is implemented in
-// union.
-.cu-topic-list__item-link {
-  text-decoration: underline;
-}
-
+/*----------  Sidebars  ----------*/
 .cu-component--rich-text .sidebar {
   font-size: var(--cu-ms-1);
   border: 1px solid #ddd;
