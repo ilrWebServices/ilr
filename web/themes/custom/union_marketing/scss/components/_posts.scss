@@ -28,7 +28,8 @@
   .cu-x-block:not(.block-system-breadcrumb-block) {
     width: 100%; // Allow field content, like published date, to take up full width.
     max-width: var(--post-max-width-text);
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   // All layout field blocks that end with 'field-representative-image', as well
@@ -48,10 +49,6 @@
   @include breakpoint(sm) {
     // The extra `.block` class is to match the specificity with the rule above.
     .cu-x-block.block.block-better-social-sharing-buttons {
-      // Remove the bottom flex row gap for sharing buttons. This is done because
-      // the social sharing buttons are absolutely positioned and thus the zero
-      // height block has a row gap on the top and bottom. See _social-share.scss
-      margin-bottom: calc(var(--cu-vr1) * -1);
       --post-max-width-text: var(--post-max-width);
     }
   }
@@ -120,9 +117,9 @@
   }
 
   .layout__region--content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--cu-vr1);
+    > * + * {
+      margin-top: var(--cu-vr1);
+    }
 
     .cu-heading.field--title,
     .cu-heading.field--field-subtitle {
