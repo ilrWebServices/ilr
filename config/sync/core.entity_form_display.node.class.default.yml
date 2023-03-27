@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.class.body
+    - field.field.node.class.field_close_registration
     - field.field.node.class.field_address
     - field.field.node.class.field_class_cancelled
     - field.field.node.class.field_class_date
@@ -41,6 +42,12 @@ content:
   created:
     type: datetime_timestamp
     weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_close_registration:
+    type: datetime_default
+    weight: 131
     region: content
     settings: {  }
     third_party_settings: {  }

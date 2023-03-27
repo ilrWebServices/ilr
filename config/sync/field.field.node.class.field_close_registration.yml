@@ -1,0 +1,21 @@
+uuid: 5a02c725-11eb-41ed-95c5-af965127078e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_close_registration
+    - node.type.class
+  module:
+    - datetime
+id: node.class.field_close_registration
+field_name: field_close_registration
+entity_type: node
+bundle: class
+label: ' Close registration'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

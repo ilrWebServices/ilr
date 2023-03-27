@@ -148,6 +148,13 @@ field_mappings:
     salesforce_field: alternate_registration_url__c
     id: 17
     description: ''
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_close_registration.value
+    direction: sf_drupal
+    salesforce_field: Close_Web_Registration__c
+    id: 18
+    description: ''
 status: true
 dependencies:
   config:

@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.email
     - field.field.node.class.body
+    - field.field.node.class.field_close_registration
     - field.field.node.class.field_address
     - field.field.node.class.field_class_cancelled
     - field.field.node.class.field_class_date
@@ -101,6 +102,7 @@ content:
     region: content
 hidden:
   body: true
+  field_close_registration: true
   field_class_cancelled: true
   field_class_full: true
   field_delivery_method: true
