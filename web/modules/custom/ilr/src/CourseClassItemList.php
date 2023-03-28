@@ -27,10 +27,8 @@ class CourseClassItemList extends EntityReferenceFieldItemList {
       ->sort('field_date_start');
 
     // Get future start dates only.
-    if (TRUE) {
-      $now = new DrupalDateTime('now');
-      $query->condition('field_date_start', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), '>=');
-    }
+    $now = new DrupalDateTime('now');
+    $query->condition('field_date_start', $now->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), '>=');
 
     $results = $query->execute();
     $key = 0;
