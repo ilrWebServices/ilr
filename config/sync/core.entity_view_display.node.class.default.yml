@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.class.body
+    - field.field.node.class.field_close_registration
     - field.field.node.class.field_address
     - field.field.node.class.field_class_cancelled
     - field.field.node.class.field_class_date
@@ -18,6 +19,7 @@ dependencies:
     - node.type.class
   module:
     - address
+    - date_range_formatter
     - datetime
     - datetime_range
     - link
@@ -34,6 +36,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 101
+    region: content
+  field_close_registration:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 112
     region: content
   field_address:
     type: address_default
