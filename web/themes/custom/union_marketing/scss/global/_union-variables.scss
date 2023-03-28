@@ -37,6 +37,10 @@
   }
 }
 
+.node--course.node--view-mode-teaser .cu-card__content {
+  padding-top: var(--cu-vr1);
+}
+
 .node--course.node--view-mode-teaser h3.cu-heading {
   --cu-font-size: var(--cu-ms5);
 }
