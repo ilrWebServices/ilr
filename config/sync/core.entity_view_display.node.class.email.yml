@@ -102,11 +102,13 @@ content:
     region: content
 hidden:
   body: true
-  field_close_registration: true
   field_class_cancelled: true
   field_class_full: true
+  field_close_registration: true
   field_delivery_method: true
   field_external_link: true
   field_message: true
+  ilroutreach_discount_date: true
+  ilroutreach_discount_price: true
   links: true
   search_api_excerpt: true
