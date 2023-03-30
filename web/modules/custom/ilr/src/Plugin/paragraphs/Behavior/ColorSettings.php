@@ -28,7 +28,7 @@ class ColorSettings extends ParagraphsBehaviorBase {
   protected $colorSchemes = [
     'light' => 'Light',
     'dark' => 'Dark',
-    'vibrant' => 'Vibrant',
+    'vibrant' => 'Cornell Red',
   ];
 
   /**
