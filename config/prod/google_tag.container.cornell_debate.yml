@@ -1,0 +1,74 @@
+uuid: bb37cbdf-54e0-4849-b981-eb7d7fac0760
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - collection
+    - ilr
+    - node
+    - taxonomy
+    - webform
+id: cornell_debate
+label: 'Cornell Debate'
+weight: 1
+container_id: GTM-GY8R0P5ED1
+data_layer: dataLayer
+include_classes: false
+whitelist_classes: |-
+  google
+  nonGooglePixels
+  nonGoogleScripts
+  nonGoogleIframes
+blacklist_classes: |-
+  customScripts
+  customPixels
+include_environment: false
+environment_id: ''
+environment_token: ''
+path_toggle: 'include listed'
+path_list: '/cornell-debate*'
+role_toggle: 'exclude listed'
+role_list: {  }
+status_toggle: 'exclude listed'
+status_list: |-
+  403
+  404
+conditions:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+  'entity_bundle:collection':
+    id: 'entity_bundle:collection'
+    negate: false
+    context_mapping:
+      collection: '@collection.collection_route_context:collection'
+    bundles: {  }
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles: {  }
+  'entity_bundle:taxonomy_term':
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    context_mapping:
+      taxonomy_term: '@taxonomy_term.taxonomy_term_route_context:taxonomy_term'
+    bundles: {  }
+  'entity_bundle:webform_submission':
+    id: 'entity_bundle:webform_submission'
+    negate: false
+    context_mapping:
+      webform_submission: '@webform.webform_submission_route_context:webform_submission'
+    bundles: {  }
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: 0
+  webform:
+    id: webform
+    negate: false
+    context_mapping: {  }
+    webforms: {  }
