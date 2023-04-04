@@ -16,7 +16,7 @@ class ClassNode extends Node implements ClassNodeInterface {
    * {@inheritdoc}
    */
   public function getClassNodeSalesforceMappedObject(): MappedObjectInterface|FALSE {
-    if (is_null($this->classNodeSaleforceMappedObject)) {
+    if (is_null($this->classNodeSaleforceMappedObject) && $this->id()) {
       $mapped_objects = $this->entityTypeManager()->getStorage('salesforce_mapped_object')
         ->loadByProperties([
           'drupal_entity__target_type' => 'node',
@@ -27,7 +27,7 @@ class ClassNode extends Node implements ClassNodeInterface {
       $this->classNodeSaleforceMappedObject = reset($mapped_objects);
     }
 
-    return $this->classNodeSaleforceMappedObject;
+    return $this->classNodeSaleforceMappedObject ?? FALSE;
   }
 
   /**
