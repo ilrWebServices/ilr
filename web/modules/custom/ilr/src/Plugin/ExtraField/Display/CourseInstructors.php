@@ -74,14 +74,12 @@ class CourseInstructors extends ExtraFieldDisplayBase implements ContainerFactor
     $query->condition('status', 1);
     $query->condition('field_class.entity:node.field_course.target_id', $node->id());
     $query->condition('field_class.entity:node.field_date_end', date('Y-m-d'), '>');
-    $query->condition('field_class.entity:node.field_class_cancelled', 0);
     $participant_nids = $query->execute();
 
     if (empty($participant_nids)) {
       return $build;
     }
 
-    // dump($query->__toString());
     $participant_nodes = $node_storage->loadMultiple($participant_nids);
     $instructors = [];
     $view_builder = $this->entityTypeManager->getViewBuilder('node');

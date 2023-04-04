@@ -120,10 +120,15 @@
         if (event.target.matches('.cu-checkbutton__input')) {
           let registerButton = event.target.closest('.cu-registration-form').querySelector('.cu-js-register-link');
           let class_select_event = new CustomEvent('registration-form-class-select', { detail: event.target.dataset.classid });
+          document.dispatchEvent(class_select_event);
 
           if (registerButton) {
-            registerButton.setAttribute('href', event.target.value);
-            document.dispatchEvent(class_select_event);
+            if (event.target.value && !['full', 'cancelled'].some(str => str in event.target.dataset)) {
+              registerButton.setAttribute('href', event.target.value);
+            }
+            else {
+              registerButton.removeAttribute('href');
+            }
           }
         }
       }, false);

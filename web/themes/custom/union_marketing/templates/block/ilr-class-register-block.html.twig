@@ -34,14 +34,10 @@
 
     {% if cancelled or full %}
       {% set message = (cancelled)
-        ? 'For more info contact <a href="mailto:ilrcustomerservice@cornell.edu">customer service</a> or call 866-470-1922.'
+        ? 'This date has been cancelled. For more info contact <a href="mailto:ilrcustomerservice@cornell.edu">customer service</a> or call 866-470-1922.'
         : 'Seats in this session are limited. Please contact <a href="mailto:ilrcustomerservice@cornell.edu">customer service</a> or call 866-470-1922.' %}
       {% set indicator_attributes = { 'data-message': message|striptags } %}
-      {% set disabled = 'disabled' %}
-      {% if cancelled %}
-        <p>This date has been cancelled.</p>
-      {% endif %}
-      <p class="touchscreen-only message">{{ message|raw }}</p>
+      <p class="message">{{ message|raw }}</p>
     {% else %}
       <a href="{{ class_register_url }}" class="cu-button cu-button--alt">Register</a>
     {% endif %}
@@ -69,6 +65,8 @@
     'value': class.register_url,
     'data-price': '$'~class.entity.field_price.value|round,
     'data-classid': class.entity.id,
+    'data-full': full,
+    'data-cancelled': cancelled,
     'disabled': disabled
   } %}
 
