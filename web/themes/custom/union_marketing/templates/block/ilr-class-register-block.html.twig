@@ -40,7 +40,7 @@
       {% set indicator_attributes = { 'data-message': message|striptags } %}
       <p class="message">{{ message }} {% trans %}For more info contact <a href="mailto:ilrcustomerservice@cornell.edu">customer service</a> or call 866-470-1922.{% endtrans %}</p>
     {% else %}
-      <a href="{{ class_register_url }}" class="cu-button cu-button--alt">Register</a>
+      <a href="{{ class.register_url }}" class="cu-button cu-button--alt">Register</a>
     {% endif %}
 
     {% if class.entity.field_message.value %}
