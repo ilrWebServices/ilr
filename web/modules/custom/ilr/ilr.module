@@ -585,7 +585,7 @@ function ilr_preprocess_node__course__teaser(&$variables) {
   $variables['upcoming_classes'] = [];
 
   foreach ($variables['node']->classes as $upcoming_class) {
-    $class_is_in_person = strpos(strtolower($upcoming_class->entity->field_delivery_method->value), 'online') === FALSE;
+    $class_is_in_person = strpos(strtolower($upcoming_class->entity->field_delivery_method->value ?? ''), 'online') === FALSE;
 
     switch($upcoming_class->entity->field_delivery_method->value) {
       case 'Classroom':
