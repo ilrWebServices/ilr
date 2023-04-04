@@ -123,7 +123,7 @@
           document.dispatchEvent(class_select_event);
 
           if (registerButton) {
-            if (event.target.value && !['full', 'cancelled'].some(str => str in event.target.dataset)) {
+            if (event.target.value && !['full', 'cancelled', 'registrationClosed'].some(str => str in event.target.dataset)) {
               registerButton.setAttribute('href', event.target.value);
             }
             else {

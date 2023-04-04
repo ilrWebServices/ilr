@@ -7,6 +7,7 @@
   {% set course = class.course %}
   {% set cancelled = class.entity.field_class_cancelled.value == '1' %}
   {% set full = class.entity.field_class_full.value == '1' %}
+  {% set registration_closed = class.entity.field_close_registration.value < 'now'|date('Y-m-d\\TH:i:s')  %}
   {% set disabled = null %}
 
   {% set content %}
@@ -32,12 +33,12 @@
       <p>All instruction will be completed between these dates.</p>
     {% endif %}
 
-    {% if cancelled or full %}
-      {% set message = (cancelled)
-        ? 'This date has been cancelled. For more info contact <a href="mailto:ilrcustomerservice@cornell.edu">customer service</a> or call 866-470-1922.'
-        : 'Seats in this session are limited. Please contact <a href="mailto:ilrcustomerservice@cornell.edu">customer service</a> or call 866-470-1922.' %}
+    {% if cancelled or full or registration_closed %}
+      {% if registration_closed %}{% set message = 'Registration is closed for this session.'|t %}{% endif %}
+      {% if full %}{% set message = 'Seats in this session are limited.'|t %}{% endif %}
+      {% if cancelled %}{% set message = 'This date has been cancelled.'|t %}{% endif %}
       {% set indicator_attributes = { 'data-message': message|striptags } %}
-      <p class="message">{{ message|raw }}</p>
+      <p class="message">{{ message }} {% trans %}For more info contact <a href="mailto:ilrcustomerservice@cornell.edu">customer service</a> or call 866-470-1922.{% endtrans %}</p>
     {% else %}
       <a href="{{ class_register_url }}" class="cu-button cu-button--alt">Register</a>
     {% endif %}
@@ -67,6 +68,7 @@
     'data-classid': class.entity.id,
     'data-full': full,
     'data-cancelled': cancelled,
+    'data-registration-closed': registration_closed,
     'disabled': disabled
   } %}
 

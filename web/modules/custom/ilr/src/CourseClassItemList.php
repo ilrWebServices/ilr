@@ -26,16 +26,12 @@ class CourseClassItemList extends EntityReferenceFieldItemList {
       ->condition('field_course', $course_entity->id())
       ->sort('field_date_start');
 
-    // Limit the query to classes that start tomorrow or later.
+    // Limit the query to classes that start or can still be registered for in
+    // the future. We use `UTC` because that's how it's stored in the database.
     $midnight_tonight = new DrupalDateTime('today 23:59');
-    $query->condition('field_date_start', $midnight_tonight->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), '>=');
-
-    // Check if there is a value for "closing" the registration, and if so, use
-    // it to restrict availability. We use `UTC` because that's how it's stored
-    // in the database.
     $current_utc = new DrupalDateTime('now', 'UTC');
     $group = $query->orConditionGroup()
-      ->condition('field_close_registration', NULL, 'IS NULL')
+      ->condition('field_date_start', $midnight_tonight->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), '>=')
       ->condition('field_close_registration', $current_utc->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), '>=');
     $query->condition($group);
 
