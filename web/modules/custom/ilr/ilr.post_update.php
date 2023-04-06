@@ -1314,3 +1314,32 @@ function ilr_post_update_set_card_color_schemes(&$sandbox) {
     $card->save();
   }
 }
+
+/**
+ * Move card and section icon settings to new icon setting behavior.
+ */
+function ilr_post_update_set_icons(&$sandbox) {
+  $query = \Drupal::entityQuery('paragraph');
+  $query->condition('type', ['promo', 'section'], 'IN');
+  $paragraph_ids = $query->execute();
+  $paragraphs = Paragraph::loadMultiple($paragraph_ids);
+
+  foreach ($paragraphs as $paragraph) {
+    $settings = $paragraph->getAllBehaviorSettings();
+
+    foreach (['icon', 'icon_label', 'icon_placement'] as $prop) {
+      if (isset($settings['ilr_card'][$prop])) {
+        $settings['ilr_icon'][$prop] = $settings['ilr_card'][$prop];
+        unset($settings['ilr_card'][$prop]);
+      }
+
+      if (isset($settings['union_section_settings'][$prop])) {
+        $settings['ilr_icon'][$prop] = $settings['union_section_settings'][$prop];
+        unset($settings['union_section_settings'][$prop]);
+      }
+    }
+
+    $paragraph->setAllBehaviorSettings($settings);
+    $paragraph->save();
+  }
+}
