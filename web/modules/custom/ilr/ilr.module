@@ -598,6 +598,7 @@ function ilr_preprocess_node__course__teaser(&$variables) {
         $computed_delivery_method = t('Live Online');
     }
 
+    // @todo Future Drupal/PHP will not allow object properties to be added like this.
     $upcoming_class->entity->computed_delivery_method = $computed_delivery_method;
     $variables['upcoming_classes'][] = $upcoming_class->entity;
   }
