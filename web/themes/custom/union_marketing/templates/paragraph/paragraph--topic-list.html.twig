@@ -46,6 +46,7 @@
   link_url: content.field_link[0]['#url'],
   link_text: content.field_link[0]['#title'],
   media: content.field_media,
+  icon_data: paragraph.cu_icon ? paragraph.cu_icon : NULL,
   attributes: attributes.addClass([
     'cu-component',
     'cu-component--' ~ paragraph.bundle|clean_class
