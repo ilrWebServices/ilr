@@ -13,6 +13,8 @@ description: ''
 behavior_plugins:
   admin_section_label:
     enabled: true
+  ilr_icon:
+    enabled: true
   in_page_nav:
     enabled: true
   union_section_settings:
