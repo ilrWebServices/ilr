@@ -42,7 +42,7 @@
 #}
 {% include '@union/_carousel.twig' with {
   heading: paragraph.field_heading.value,
-  subheading: paragraph.field_subheading.value,
+  eyebrow_heading: paragraph.field_subheading.value,
   description: content.field_body,
   items: carousel_items,
   link_url: content.field_link[0]['#url'],
