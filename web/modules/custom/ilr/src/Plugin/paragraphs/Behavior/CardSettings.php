@@ -282,7 +282,7 @@ class CardSettings extends ParagraphsBehaviorBase {
       $variables['content']['field_media'][0]['#image_style'] = $image_style;
     }
 
-    if ($content_placement) {
+    if ($content_placement && $layout === 'promo') {
       $variables['attributes']['class'][] = 'cu-card--' . $content_placement;
     }
 
