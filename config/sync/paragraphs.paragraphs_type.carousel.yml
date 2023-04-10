@@ -1,0 +1,21 @@
+uuid: 6524caf6-108f-4808-af66-98e102dfdac4
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: carousel
+label: Carousel
+icon_uuid: null
+icon_default: null
+description: 'A carousel is an interactive media thing. It is generally ineffective and should be used sparingly.'
+behavior_plugins:
+  ilr_carousel:
+    enabled: true
+  ilr_color:
+    enabled: true
+    color_schemes:
+      light: light
+      dark: dark
+      vibrant: vibrant
+    color_scheme_default: light

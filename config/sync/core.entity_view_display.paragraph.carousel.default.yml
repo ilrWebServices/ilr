@@ -1,0 +1,65 @@
+uuid: 84395ceb-a74a-4896-b80f-897e8be75b03
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.carousel.field_body
+    - field.field.paragraph.carousel.field_carousel_items
+    - field.field.paragraph.carousel.field_heading
+    - field.field.paragraph.carousel.field_link
+    - field.field.paragraph.carousel.field_subheading
+    - paragraphs.paragraphs_type.carousel
+  module:
+    - link
+    - text
+id: paragraph.carousel.default
+targetEntityType: paragraph
+bundle: carousel
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_carousel_items:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: minimal
+      link: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_heading:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_subheading:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

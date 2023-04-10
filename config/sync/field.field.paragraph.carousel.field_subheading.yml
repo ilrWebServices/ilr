@@ -1,0 +1,19 @@
+uuid: 4dca66a3-7f24-4e55-ab77-d3c86866fad0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subheading
+    - paragraphs.paragraphs_type.carousel
+id: paragraph.carousel.field_subheading
+field_name: field_subheading
+entity_type: paragraph
+bundle: carousel
+label: 'Eyebrow heading'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,26 @@
+uuid: 7425a415-77e6-4aa3-8e23-d71db475a10c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - paragraphs.paragraphs_type.carousel
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - basic_formatting_with_media
+id: paragraph.carousel.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: carousel
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
