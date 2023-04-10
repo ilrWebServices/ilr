@@ -1,0 +1,38 @@
+uuid: 43476e46-11e9-4750-bb50-63d824dbe8d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.minimal
+    - field.field.media.image.field_media_image
+    - image.style.medium_2_3
+    - media.type.image
+  module:
+    - image
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: media.image.minimal
+targetEntityType: media
+bundle: image
+mode: minimal
+content:
+  field_media_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium_2_3
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

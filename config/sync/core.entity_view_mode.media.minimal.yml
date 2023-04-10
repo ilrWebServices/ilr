@@ -1,0 +1,10 @@
+uuid: 72ff7efa-0e68-486f-804f-0f5801e6f490
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.minimal
+label: Minimal
+targetEntityType: media
+cache: true
