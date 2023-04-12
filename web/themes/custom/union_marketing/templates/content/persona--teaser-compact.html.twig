@@ -11,25 +11,25 @@
  * - url: Direct URL of the current node.
  */
 #}
-{% set additional_info %}
-  {{ content|without('display_name', 'field_title', 'field_photo', 'field_bio') }}
-{% endset %}
-
 {% set title = [] %}
 {% for key, item in content.field_title if key|first != '#' %}
   {% set title = title|merge([item]) %}
 {% endfor %}
 
+{% set additional_info %}
+{{ content|without('display_name', 'field_title', 'field_photo', 'field_bio') }}
+{{ title_suffix }}
+{% endset %}
+
 {% include "@union/_person.twig" with {
   attributes: attributes.addClass([
-    'cu-person--thumb',
+    'cu-person--adaptive',
     'persona--' ~ persona.bundle|clean_class,
     not persona.isPublished() ? 'persona--unpublished',
     view_mode ? 'persona--view-mode-' ~ view_mode|clean_class
   ]),
   name: content.display_name,
   title: title,
-  additional_info: additional_info|render|trim,
-  content: title_suffix,
+  additional_info: additional_info,
   img: content.field_photo
 } only %}

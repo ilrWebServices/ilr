@@ -32,10 +32,9 @@ class PeopleListing extends ParagraphsBehaviorBase {
   public function preprocess(&$variables) {
     $paragraph = $variables['paragraph'];
     $list_style = $paragraph->getBehaviorSetting('list_styles', 'list_style') ?? 'grid';
-    $count = 1;
+
     foreach ($variables['content']['field_people']['#items'] ?? [] as $key => $persona) {
-      $variables['content']['field_people'][$key]['#view_mode'] = $this->getViewModeForListStyle($list_style, $count);
-      $count++;
+      $variables['content']['field_people'][$key]['#view_mode'] = $this->getViewModeForListStyle($list_style);
     }
   }
 
@@ -59,26 +58,21 @@ class PeopleListing extends ParagraphsBehaviorBase {
   }
 
   /**
-   * Get a node view mode for a given list style.
+   * Get a persona view mode for a given list style.
    *
    * @param string $list_style
    *   One of the list style machine names from this::list_styles.
-   * @param int $item_position
-   *   The order placement of the post in the listing.
    *
    * @return string
    *   A node view mode.
    */
-  protected function getViewModeForListStyle($list_style, $item_position) {
+  protected function getViewModeForListStyle($list_style) {
     switch ($list_style) {
       case 'grid-compact':
         return 'teaser_compact';
 
       case 'list-compact':
         return 'mini';
-
-      case 'grid-featured':
-        return $item_position === 1 ? 'promo' : 'teaser';
 
       default:
         return 'teaser';
