@@ -17,9 +17,11 @@ behavior_plugins:
     list_styles:
       grid: grid
       grid-compact: grid-compact
-      grid-featured: 0
       list-compact: list-compact
+      grid-bricks: 0
+      grid-bricks--reversed: 0
+      grid-featured: 0
       banner: 0
     columns_enabled: 1
     columns_min: '2'
-    columns_max: '4'
+    columns_max: '5'

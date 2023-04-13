@@ -100,7 +100,7 @@ class ListStyle extends ParagraphsBehaviorBase {
       '#title' => $this->t('Maxium'),
       '#description' => $this->t('The maximum # of columns allowed.'),
       '#min' => 2,
-      '#max' => 4,
+      '#max' => 5,
       '#states' => [
         'visible' => [
           ':input[name="' . $subform_prefix . '[columns][enabled]"]' => ['checked' => TRUE],

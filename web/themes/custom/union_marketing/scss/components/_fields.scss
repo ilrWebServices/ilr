@@ -54,7 +54,6 @@
   margin: 0;
 
   a {
-    --cu-text-color: #{$black};
     text-decoration: none;
   }
 }
@@ -79,10 +78,6 @@
   @include breakpoint(md) {
     grid-template-columns: repeat(3, 33.33%);
   }
-}
-
-.cu-person__title {
-  --cu-font-size: var(--cu-ms-2);
 }
 
 .cu-testimonial__name .field {
