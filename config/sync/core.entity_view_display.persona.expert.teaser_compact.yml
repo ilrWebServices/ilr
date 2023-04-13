@@ -1,18 +1,18 @@
-uuid: e9b59752-3df5-45f4-8c41-fd85d489dea4
+uuid: 8f9a86ca-1052-4b4b-b7cf-cd107a9769cb
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.persona.teaser_compact
-    - field.field.persona.staff.field_bio
-    - field.field.persona.staff.field_email
-    - field.field.persona.staff.field_first_name
-    - field.field.persona.staff.field_last_name
-    - field.field.persona.staff.field_phone
-    - field.field.persona.staff.field_photo
-    - field.field.persona.staff.field_title
+    - field.field.persona.expert.field_bio
+    - field.field.persona.expert.field_email
+    - field.field.persona.expert.field_first_name
+    - field.field.persona.expert.field_last_name
+    - field.field.persona.expert.field_phone
+    - field.field.persona.expert.field_photo
+    - field.field.persona.expert.field_title
     - image.style.small_5x4
-    - person.persona_type.staff
+    - person.persona_type.expert
   module:
     - layout_builder
     - media
@@ -21,14 +21,14 @@ third_party_settings:
   layout_builder:
     enabled: false
     allow_custom: false
-id: persona.staff.teaser_compact
+id: persona.expert.teaser_compact
 targetEntityType: persona
-bundle: staff
+bundle: expert
 mode: teaser_compact
 content:
   display_name:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: true
     third_party_settings: {  }
