@@ -8,7 +8,7 @@
  * - content: A list of content items. Use 'content' to print all content, or
  *          content.field_name to access public fields
  * - attributes: HTML attributes for the container element.
- * - url: Direct URL of the current node.
+ * - url: Direct URL of the current persona.
  */
 #}
 {% set title = [] %}
@@ -19,6 +19,22 @@
 {% set additional_info %}
 {{ content|without('display_name', 'field_title', 'field_photo', 'field_bio') }}
 {{ title_suffix }}
+{% include "@union/_icon.twig" with {
+  title: 'More about ...',
+  icon: 'right-arrow',
+  size: '32px',
+  link: url,
+  attributes: {
+    class: [
+      'cu-icon--inline',
+      'use-ajax',
+    ],
+    'data-dialog-type': 'modal',
+    'data-dialog-options': '{"width":"90%","classes":{"ui-dialog":"cu-modal"}}',
+    role: 'button',
+    'aria-pressed': "false"
+  }
+} only %}
 {% endset %}
 
 {% include "@union/_person.twig" with {

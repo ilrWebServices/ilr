@@ -57,3 +57,18 @@ body.persona .cu-header {
     }
   }
 }
+
+.cu-person--adaptive {
+  .cu-composite-heading__body {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .cu-icon {
+    --cu-text-color: #{$cornell-red};
+    display: flex;
+    padding: 0;
+  }
+}
