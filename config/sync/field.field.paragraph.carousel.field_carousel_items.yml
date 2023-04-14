@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_carousel_items
-    - media.type.image
     - media.type.remote_video
     - paragraphs.paragraphs_type.carousel
 id: paragraph.carousel.field_carousel_items
@@ -21,7 +20,6 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
-      image: image
       remote_video: remote_video
     sort:
       field: _none
