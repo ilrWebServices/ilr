@@ -16,7 +16,6 @@ dependencies:
   module:
     - layout_builder
     - media
-    - telephone
 third_party_settings:
   layout_builder:
     enabled: false
@@ -33,21 +32,6 @@ content:
       link_to_entity: true
     third_party_settings: {  }
     weight: 0
-    region: content
-  field_email:
-    type: email_mailto
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  field_phone:
-    type: telephone_link
-    label: hidden
-    settings:
-      title: ''
-    third_party_settings: {  }
-    weight: 3
     region: content
   field_photo:
     type: media_thumbnail
@@ -70,6 +54,8 @@ content:
     region: content
 hidden:
   field_bio: true
+  field_email: true
   field_first_name: true
   field_last_name: true
+  field_phone: true
   search_api_excerpt: true
