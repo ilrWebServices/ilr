@@ -23,6 +23,9 @@ settings:
     -
       value: two-right
       label: 'Two right'
+    -
+      value: 3col
+      label: 'Three columns'
   allowed_values_function: ''
 module: options
 locked: false

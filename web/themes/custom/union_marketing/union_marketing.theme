@@ -300,6 +300,11 @@ function union_marketing_preprocess_paragraph__deck(&$variables) {
   $grid_variant = ($variables['paragraph']->hasField('field_grid_variant')) ? $variables['paragraph']->field_grid_variant->value : 'two-up';
 
   $variables['attributes']['class'][] = 'cu-grid--' . $grid_variant;
+
+  if ($grid_variant !== '3col') {
+    $variables['attributes']['class'][] = 'cu-grid--2col';
+    $variables['attributes']['class'][] = 'cu-grid--gapless';
+  }
 }
 
 /**
