@@ -154,8 +154,13 @@ class CardSettings extends ParagraphsBehaviorBase {
     $variables['attributes']['style'][] = '--cu-overlay-opacity: ' . $overlay_opacity / 100 . ';';
 
     if ($layout && $layout !== 'promo') {
-      $layout_type = substr($layout, 0, strpos($layout, '-'));
-      $variables['attributes']['class'][] = 'cu-card--' . $layout_type;
+      // This assumes that any layout with a dash (`-`) is a modification of a
+      // base layout. E.g. `.cu-card--panel-left` should also have
+      // `.cu-card--panel`.
+      if ($layout_type = substr($layout, 0, strpos($layout, '-'))) {
+        $variables['attributes']['class'][] = 'cu-card--' . $layout_type;
+      }
+
       $variables['attributes']['class'][] = 'cu-card--' . $layout;
     }
     else {
