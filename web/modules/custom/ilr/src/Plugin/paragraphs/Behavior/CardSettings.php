@@ -53,6 +53,7 @@ class CardSettings extends ParagraphsBehaviorBase {
     'inset' => 'Content inset',
     'popout' => 'Popout right',
     'popout-left' => 'Popout left',
+    'stacked' => 'Stacked (image top / content bottom)',
     'promo' => 'Text over image (legacy)',
   ];
 
@@ -137,7 +138,7 @@ class CardSettings extends ParagraphsBehaviorBase {
     }
 
     // Prevent someone from choosing inappropriate card layouts inside decks.
-    if ($parent->bundle() === 'deck' && !in_array($form_state->getValue('layout'), ['promo', 'inset'])) {
+    if ($parent->bundle() === 'deck' && !in_array($form_state->getValue('layout'), ['promo', 'inset', 'stacked'])) {
       $form_state->setError($form['layout'], $this->t('Sorry, but the selected layout cannot be used in card decks. Please choose a different option.'));
     }
   }
