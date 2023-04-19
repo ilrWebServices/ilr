@@ -1,9 +1,22 @@
 uuid: ed1c40ee-e134-47d0-af7e-624194887d12
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
 id: testimonial
 label: Testimonial
 icon_uuid: null
+icon_default: null
 description: 'Use <em>Testimonials</em> for quotes or endorsements.'
-behavior_plugins: {  }
+behavior_plugins:
+  ilr_color:
+    enabled: true
+    color_schemes:
+      none: none
+      light: light
+      dark: dark
+      vibrant: vibrant
+    color_scheme_default: none
+  ilr_icon:
+    enabled: true
