@@ -2,9 +2,10 @@
   quote: paragraph.field_quote.value,
   name: paragraph.field_name.value,
   title: paragraph.field_subheading.value,
-  media: content.field_media,
+  media: paragraph.field_media.isEmpty() ? '' : content.field_media,
   attributes: attributes.addClass([
     'cu-component',
     'cu-component--' ~ paragraph.bundle|clean_class
-  ])
+  ]),
+  icon_data: paragraph.cu_icon ? paragraph.cu_icon : NULL,
 } only %}
