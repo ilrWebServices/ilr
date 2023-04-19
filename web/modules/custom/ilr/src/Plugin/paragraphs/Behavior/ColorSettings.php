@@ -26,6 +26,7 @@ class ColorSettings extends ParagraphsBehaviorBase {
    * @var array
    */
   protected $colorSchemes = [
+    'none' => 'None',
     'light' => 'Light',
     'dark' => 'Dark',
     'vibrant' => 'Cornell Red',
@@ -48,8 +49,7 @@ class ColorSettings extends ParagraphsBehaviorBase {
       '#type' => 'select',
       '#title' => $this->t('Default color scheme'),
       '#options' => $this->colorSchemes,
-      '#empty_option' => $this->t('- None -'),
-      '#default_value' => $config['color_scheme_default'] ?? '',
+      '#default_value' => $config['color_scheme_default'] ?? 'none',
     ];
 
     return $form;
@@ -92,7 +92,6 @@ class ColorSettings extends ParagraphsBehaviorBase {
       '#description' => $this->t('The color style for this component.'),
       '#options' => $color_scheme_options,
       '#required' => FALSE,
-      '#empty_option' => $this->t('- None -'),
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'color_scheme') ?? $this->configuration['color_scheme_default'],
     ];
 
@@ -104,7 +103,9 @@ class ColorSettings extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function preprocess(&$variables) {
-    if ($color_scheme = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'color_scheme')) {
+    $color_scheme = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'color_scheme');
+
+    if ($color_scheme !== 'none') {
       $variables['attributes']['class'][] = 'cu-colorscheme--' . $color_scheme;
     }
   }
