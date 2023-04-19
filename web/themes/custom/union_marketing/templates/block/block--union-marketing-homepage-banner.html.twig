@@ -30,66 +30,57 @@
   'block-' ~ configuration.provider|clean_class,
   'block-' ~ plugin_id|replace({':': '--'})|clean_class,
 ] %}
-{% set icon_card_classes = [
-  'cu-card--icon',
+{% set card_classes = [
+  'cu-card--dynamic',
   'cu-card--hover-content-reveal',
-  'cu-colorscheme--light',
+  'cu-colorscheme--dark',
 ] %}
 
 {% set undergrad %}
-{% include '@union/_icon.twig' with {
-  title: 'Cornell University Tower',
-  label: 'Undergraduate\nAdmissions',
-  label_element: 'h2',
-  link: '/programs/undergraduate-degree-program/undergraduate-admissions',
-  icon: 'tower',
-  size: '2.5em',
-  attributes: { class: 'cu-icon--inline-centered' },
-  attributes_label: { class: 'cu--accented' }
-} only %}
 <p class="cu-card__hover-content">Our flexible, interdisciplinary major lets students pursue a wide range of academic interests and careers.</p>
 {% endset %}
 
 {% set grad %}
-{% include '@union/_icon.twig' with {
-  title: 'Mortarboard',
-  label: 'Graduate\nPrograms',
-  label_element: 'h2',
-  link: '/programs/graduate-degree-programs',
-  icon: 'mortarboard',
-  size: '2.5em',
-  attributes: { class: 'cu-icon--inline-centered' },
-  attributes_label: { class: 'cu--accented' }
-} only %}
 <p class="cu-card__hover-content">Study the workplace comprehensively with the world's highest concentration of workplace faculty.</p>
 {% endset %}
 
 {% set professional %}
-{% include '@union/_icon.twig' with {
-  title: 'Handshake',
-  label: 'Professional\nEducation',
-  label_element: 'h2',
-  link: '/programs/professional-education',
-  icon: 'handshake',
-  size: '2.5em',
-  attributes: { class: 'cu-icon--inline-centered' },
-  attributes_label: { class: 'cu--accented' }
-} only %}
 <p class="cu-card__hover-content">Invest in your career by learning from instructors who blend world-leading research with business-tested practicality.</p>
 {% endset %}
 
 {% set icon_cards %}
 {% include '@union/_card.twig' with {
-  attributes: { class: icon_card_classes },
-  card_content: undergrad
+  attributes: { class: card_classes },
+  heading: 'Undergraduate Admissions',
+  card_content: undergrad,
+  card_link_url: '/programs/undergraduate-admissions',
+  card_link_alt: 'Undergraduate Admissions',
+  icon_data: {
+    title: 'Cornell University Tower',
+    icon: 'tower'
+  }
 } only %}
 {% include '@union/_card.twig' with {
-  attributes: { class: icon_card_classes },
-  card_content: grad
+  attributes: { class: card_classes },
+  heading: 'Graduate Programs',
+  card_content: grad,
+  card_link_url: '/programs/graduate-degree-programs',
+  card_link_alt: 'Graduate Programs',
+  icon_data: {
+    title: 'Mortarboard',
+    icon: 'mortarboard'
+  }
 } only %}
 {% include '@union/_card.twig' with {
-  attributes: { class: icon_card_classes },
-  card_content: professional
+  attributes: { class: card_classes },
+  heading: 'Professional Education',
+  card_content: professional,
+  card_link_url: '/programs/professional-education',
+  card_link_alt: 'Professional Education',
+  icon_data: {
+    title: 'Handshake',
+    icon: 'handshake'
+  }
 } only %}
 {% endset %}
 
