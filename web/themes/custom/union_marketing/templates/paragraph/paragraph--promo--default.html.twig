@@ -46,6 +46,8 @@ in the text body. #}
 {% include '@union/_card.twig' with {
   heading: paragraph.field_heading.isEmpty() ? '' : content.field_heading.0,
   eyebrow_heading: paragraph.field_subheading.isEmpty() ? '' : content.field_subheading.0,
+  heading_element: 'h3',
+  eyebrow_heading_element: 'h4',
   card_content: content|without('field_media', 'field_link', 'field_content', 'field_heading', 'field_subheading'),
   card_media: paragraph.field_media.isEmpty() ? '' : content.field_media,
   card_link_url: content.field_link[0]['#url'],
