@@ -71,8 +71,6 @@
  */
 #}
 {% set rendered_content %}
-  {{ content.field_published_date }}
-  <h3 class="cu-heading">{{ label }}</h3>
   {{ title_suffix }}
   {% if node.bundle == 'media_mention' %}{{ content.media_outlet_logo }}{% endif %}
   {{ content.body }}
@@ -82,12 +80,17 @@
   card_content: rendered_content,
   card_link_url: url,
   card_link_alt: label,
+  heading: label,
+  eyebrow_heading: content.field_published_date,
+  heading_element: 'h3',
+  eyebrow_heading_element: 'h4',
   link_attributes: url_attributes,
   attributes: attributes.addClass([
     'node--' ~ node.bundle|clean_class,
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
     'node--postalicious',
-    'cu-card--' ~ view_mode|clean_class
+    'cu-card--teaser',
+    'cu-colorscheme--light'
   ])
 } only %}
