@@ -73,8 +73,6 @@
 {{ attach_library('union_organizer/button') }}
 
 {% set rendered_description %}
-<div class="pinned-wrapper">
-<h3 class="cu-heading">{{ label }}</h3>
 {{ title_suffix }}
 
 {{ content.body }}
@@ -136,12 +134,13 @@
 {% if upcoming_classes|length > 1 %}
 <p class="cu-style cu-style--link">{{ 'See more dates and locations'|t }}</p><hr class="pad" />
 {% endif %}
-</div>
 
 <p class="cu-button">{{ register_link_text|raw }}</p>
 {% endset %}
 
 {% include '@union/_card.twig' with {
+  heading: label,
+  heading_element: 'h3',
   card_content: rendered_description,
   card_link_url: url,
   card_link_alt: register_link_text|striptags,
@@ -149,8 +148,7 @@
     'node--' ~ node.bundle|clean_class,
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-    'cu-card--padded',
-    'cu-card--pinned',
-    'cu-card--teaser'
+    'cu-card--teaser',
+    'cu-colorscheme--light'
   ])
 } only %}

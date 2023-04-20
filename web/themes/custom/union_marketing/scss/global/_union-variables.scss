@@ -37,12 +37,14 @@
   }
 }
 
-.node--course.node--view-mode-teaser .cu-card__content {
-  padding-top: var(--cu-vr1);
+.node--postalicious.cu-card--teaser .cu-composite-heading__heading {
+  --cu-font-size: var(--cu-ms0);
+  --cu-font-weight: 400;
 }
 
-.node--course.node--view-mode-teaser h3.cu-heading {
-  --cu-font-size: var(--cu-ms5);
+.node--course.node--view-mode-teaser .cu-composite-heading__heading {
+  --cu-font-size: var(--cu-ms3);
+  --cu-font-weight: 400;
 }
 
 .cu-heading.cu-heading--label {
@@ -52,17 +54,6 @@
 
 .cu-card--teaser, .cu-card--teaser-compact, .cu-card--featured, .localistEvent {
   --cu-font-size: var(--cu-ms-2);
-
-  .cu-heading {
-    --cu-font-size: var(--cu-ms0);
-    --cu-font-weight: 400;
-    --cu-component-margin-bottom: var(--cu-vr-2);
-  }
-
-  .field--field-published-date {
-    --cu-font-size: var(--cu-ms-4);
-    --cu-font-weight: 600;
-  }
 }
 
 #block-union-marketing-homepage-banner .cu-card--icon {

@@ -39,10 +39,15 @@
   --cu-component-margin-bottom: .25em;
 }
 
-.cu-card .field--field-published-date {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin: 0 0 var(--cu-vr-2) 0;
+.node--course.node--view-mode-teaser .cu-card__content,
+.node--view-mode-teaser-compact.cu-card--teaser .cu-card__content {
+  padding-top: var(--cu-vr1);
+
+  .cu-button {
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+  }
 }
 
 .cu-component--rich-text iframe {

@@ -58,10 +58,6 @@
     --cu-font-weight: 400;
   }
 
-  .field--field-published-date {
-    --cu-font-size: var(--cu-ms-2);
-  }
-
   blockquote {
     font-size: var(--cu-ms3);
     font-weight: 600;
@@ -232,11 +228,6 @@
   display: none;
 }
 
-.cu-topic-list__item .cu-card .field--field-published-date {
-  margin: 0;
-  font-size: 12px;
-}
-
 // Cross-post specific styles.
 .collection_item .block-system-main-block {
   .blog-meta {
@@ -255,25 +246,8 @@
   }
 }
 
-.cu-card--teaser,
-.cu-card--teaser-compact,
-.cu-card--featured {
-  --card-teaser-padding: var(--cu-ps0);
-  background: #F7F6F6;
-
-  @include breakpoint(md) {
-    --card-teaser-padding: var(--cu-ps1);
+.node--postalicious.cu-card--teaser {
+  .cu-card__content p:last-of-type {
+    margin-bottom: 0;
   }
-
-  .cu-card__content {
-    padding: 0 var(--card-teaser-padding) var(--cu-vr1);
-
-    p:last-of-type {
-      margin-bottom: 0;
-    }
-  }
-}
-
-.cu-card--teaser-compact {
-  padding-top: var(--cu-vr1);
 }
