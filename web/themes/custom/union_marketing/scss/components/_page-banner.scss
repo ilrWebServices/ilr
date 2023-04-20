@@ -153,7 +153,6 @@
 
     h4.cu-heading {
       --cu-font-size: var(--cu-ms0);
-      --cu-font-weight: 400;
     }
   }
 
@@ -211,10 +210,6 @@
 
 .layout__region--content .cu-page-nav__link {
   --cu-text-color: #{$black};
-
-  .cu-heading {
-    --cu-font-weight: 400;
-  }
 }
 
 .cu-banner--page .layout-builder-block,
