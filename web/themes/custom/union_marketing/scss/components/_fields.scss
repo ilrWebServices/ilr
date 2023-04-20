@@ -83,3 +83,12 @@
 .cu-testimonial__attribution .field {
   display: inline;
 }
+
+#block-union-marketing-homepage-banner .cu-card--dynamic .cu-card__content {
+  container-type: inline-size;
+}
+
+#block-union-marketing-homepage-banner .cu-card--dynamic .cu-composite-heading__heading {
+  --cu-font-size: 2vw;
+  --cu-font-size: 8cqi;
+}
