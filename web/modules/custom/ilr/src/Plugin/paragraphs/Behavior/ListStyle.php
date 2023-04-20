@@ -305,9 +305,6 @@ class ListStyle extends ParagraphsBehaviorBase {
       case 'list-compact':
         return 'mini';
 
-      case 'grid-featured':
-        return $post_number === 1 ? 'featured' : 'teaser';
-
       case 'banner':
         return 'banner';
 
