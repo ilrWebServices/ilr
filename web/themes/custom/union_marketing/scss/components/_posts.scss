@@ -101,11 +101,18 @@
     }
   }
 
+  // <p> elements have a bottom margin, so we don't a top margin here.
+  .field--field-media-image,
+  .field--field-media-oembed-video {
+    margin-bottom: 1em;
+  }
+
   // Add a partial border to un-floated inline images. Note that image
   // paragraphs (e.g. .paragraph--type--image) should arguably use this
   // treatment, too, but the border could conflict with image effects (curtain,
   // ken burns) allowed on image paragraphs.
   .cu-media.align-center .field--field-media-image {
+    margin-bottom: 0;
     padding: 16px 16px 16px 0;
     background:
      linear-gradient(#ccc 0 0) top right / 75% 16px,
@@ -116,6 +123,7 @@
 
   // This just reduces the video iframe to fit in the border/padding.
   .cu-media.align-center .field--field-media-oembed-video {
+    margin-bottom: 0;
     padding: 16px 16px calc(56.25% + 16px) 0;
     background:
      linear-gradient(#ccc 0 0) top right / 75% 16px,
