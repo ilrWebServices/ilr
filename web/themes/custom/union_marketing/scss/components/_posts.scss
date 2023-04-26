@@ -85,6 +85,9 @@
     .cu-media.align-center,
     .cu-component.media:not(.curtain-reveal) {
       margin: var(--cu-vr2) var(--post-media-offset-margin);
+
+      // The container width PLUS the bust-out left and right margins.
+      width: calc(100% + var(--post-media-offset-margin) * 2 * -1);
     }
 
     .cu-media.align-right {
