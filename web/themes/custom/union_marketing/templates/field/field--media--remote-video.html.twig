@@ -1,3 +1,10 @@
+{%
+  set classes = [
+    'cu-x-field',
+    'field--' ~ field_name|clean_class,
+    'remote-video-wrapper'
+  ]
+%}
 {% for item in items %}
-  <div{{ attributes.addClass('remote-video-wrapper') }}>{{ item.content }}</div>
+  <div{{ attributes.addClass(classes) }}>{{ item.content }}</div>
 {% endfor %}

@@ -114,6 +114,21 @@
     background-repeat: no-repeat;
   }
 
+  // This just reduces the video iframe to fit in the border/padding.
+  .cu-media.align-center .field--field-media-oembed-video {
+    padding: 16px 16px calc(56.25% + 16px) 0;
+    background:
+     linear-gradient(#ccc 0 0) top right / 75% 16px,
+     linear-gradient(#ccc 0 0) right / 16px 100%,
+     linear-gradient(#ccc 0 0) bottom right / 15% 16px,   transparent;
+    background-repeat: no-repeat;
+  }
+  .cu-media.align-center .field--field-media-oembed-video iframe {
+    top: 16px;
+    height: calc(100% - 32px);
+    width: calc(100% - 16px);
+  }
+
   .layout__region--content {
     > * + * {
       margin-top: var(--cu-vr1);
