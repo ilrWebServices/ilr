@@ -32,6 +32,8 @@ use Drupal\taxonomy\VocabularyInterface;
 use Drupal\collection\Entity\CollectionItemInterface;
 use Drupal\Core\Database\Query\AlterableInterface;
 use Drupal\ilr\Entity\ClassNode;
+use Drupal\ilr\Entity\EventLandingNode;
+use Drupal\ilr\Entity\EventNodeBase;
 use Drupal\ilr\Entity\ImageMedia;
 
 /**
@@ -83,6 +85,10 @@ function ilr_entity_bundle_info_alter(array &$bundles): void {
   if (isset($bundles['node']['class'])) {
     $bundles['node']['class']['class'] = ClassNode::class;
   }
+
+  if (isset($bundles['node']['event_landing_page'])) {
+    $bundles['node']['event_landing_page']['class'] = EventLandingNode::class;
+  }
 }
 
 /**
@@ -115,6 +121,8 @@ function ilr_entity_field_storage_info(EntityTypeInterface $entity_type) {
   $definitions = [];
 
   if ($entity_type->id() == 'node') {
+    $definitions = EventNodeBase::bundleFieldDefinitions($entity_type, 'event_landing_page', []);
+
     $definitions['classes'] = FieldStorageDefinition::create('entity_reference')
       ->setName('classes')
       ->setLabel(t('Classes'))

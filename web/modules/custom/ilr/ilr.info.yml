@@ -4,6 +4,10 @@ description: 'Update hooks and misc custom code for the ILR site'
 core_version_requirement: ^8 || ^9
 package: 'ILR'
 dependencies:
+  - address
+  - datetime_range
+  - link
+  - linkit
   - path_alias_entities
   - salesforce
   - collection_pathauto
