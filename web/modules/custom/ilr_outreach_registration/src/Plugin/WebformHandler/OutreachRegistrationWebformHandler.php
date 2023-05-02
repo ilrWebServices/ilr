@@ -87,11 +87,12 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
         'first_name' => $data['first_name'],
         'last_name' => $data['last_name'],
         'email' => $data['email'],
-        'address_line1' => $data['address'] ?? 'NONE PROVIDED',
-        'address_line2' => '',
-        'city' => '',
-        'state' => '',
-        'zip' => '',
+        'phone' => $data['phone'] ?? '',
+        'address_line1' => $data['address']['address'] ?? 'NONE PROVIDED',
+        'address_line2' => $data['address']['address_2'] ?? '',
+        'city' => $data['address']['city'] ?? '',
+        'state' => $data['address']['state_province'] ?? '',
+        'zip' => $data['address']['postal_code'] ?? '',
         'country_code' => '',
         'additional_fields' => [],
       ],
@@ -115,15 +116,16 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
                 'participant_id' => $webform_submission->id(),
                 // 'contact_sfid' => NULL,
                 'email' => $data['email'],
+                'phone' => $data['phone'] ?? '',
                 'first_name' => $data['first_name'],
                 'middle_name' => $data['middle_name'] ?? NULL,
                 'last_name' => $data['last_name'],
                 'company' => $data['company'] ?? 'NONE PROVIDED',
-                'address_line1' => $data['address'] ?? 'NONE PROVIDED',
-                'address_line2' => '',
-                'city' => '',
-                'state' => '',
-                'zip' => '',
+                'address_line1' => $data['address']['address'] ?? 'NONE PROVIDED',
+                'address_line2' => $data['address']['address_2'] ?? '',
+                'city' => $data['address']['city'] ?? '',
+                'state' => $data['address']['state_province'] ?? '',
+                'zip' => $data['address']['postal_code'] ?? '',
                 'country_code' => '',
                 'job_title' => $data['title'] ?? 'NONE PROVIDED',
                 'industry' => $data['industry'] ?? NULL,
@@ -149,6 +151,35 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
           'value' => $utm_code,
         ];
       }
+    }
+
+    // Add any custom questions.
+    $webform = $webform_submission->getWebform();
+    $custom_1_element = $webform->getElement('custom_1_answer');
+    $custom_2_element = $webform->getElement('custom_2_answer');
+
+    if ($custom_1_element && $custom_1_element['#access'] && isset($data['custom_1_answer'])) {
+      $serialized_order['order_items'][0]['product']['participants'][0]['additional_fields'][] = [
+        'name' => 'Custom1_Question__c',
+        'value' => $custom_1_element['#title'] ?? 'Custom question 1',
+      ];
+
+      $serialized_order['order_items'][0]['product']['participants'][0]['additional_fields'][] = [
+        'name' => 'Custom1_Answer__c',
+        'value' => is_array($data['custom_1_answer']) ? implode(';', $data['custom_1_answer']) : $data['custom_1_answer'],
+      ];
+    }
+
+    if ($custom_2_element && $custom_2_element['#access'] && isset($data['custom_2_answer'])) {
+      $serialized_order['order_items'][0]['product']['participants'][0]['additional_fields'][] = [
+        'name' => 'Custom2_Question__c',
+        'value' => $custom_2_element['#title'] ?? 'Custom question 2',
+      ];
+
+      $serialized_order['order_items'][0]['product']['participants'][0]['additional_fields'][] = [
+        'name' => 'Custom2_Answer__c',
+        'value' => is_array($data['custom_2_answer']) ? implode(';', $data['custom_2_answer']) : $data['custom_2_answer'],
+      ];
     }
 
     // Queue the serialized order for submission to the WebReg webhook on

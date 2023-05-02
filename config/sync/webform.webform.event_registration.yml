@@ -26,7 +26,7 @@ elements: |-
     '#required': true
   title:
     '#type': textfield
-    '#title': Job title
+    '#title': 'Job title'
     '#required': true
   first_name:
     '#type': textfield
@@ -41,6 +41,23 @@ elements: |-
     '#title': Email
     '#required': true
     '#default_value': '[current-user:mail]'
+  phone:
+    '#type': tel
+    '#title': Phone
+    '#required': true
+    '#access': false
+  address:
+    '#type': webform_address
+    '#title': Address
+    '#access': false
+    '#address__access': false
+    '#address_2__access': false
+    '#city__title': City
+    '#city__required': true
+    '#state_province__title': State
+    '#state_province__required': true
+    '#postal_code__access': false
+    '#country__access': false
   accessible_accommodation:
     '#type': textarea
     '#title': Accommodations
@@ -48,6 +65,16 @@ elements: |-
     '#title_display': invisible
     '#description_display': before
     '#maxlength': 255
+  custom_1_answer:
+    '#type': textfield
+    '#title': 'Custom 1 Answer'
+    '#access': false
+    '#required': true
+  custom_2_answer:
+    '#type': textfield
+    '#title': 'Custom 2 Answer'
+    '#access': false
+    '#required': true
   opt_in:
     '#type': checkbox
     '#title': Opt-in
@@ -283,4 +310,17 @@ variants:
       debug: false
       settings: {  }
       elements: "email:\r\n  '#weight': 6\r\nopt_in:\r\n  '#title': Opt-in for updates from The Climate Jobs Institute\r\naccessible_accommodation:\r\n  '#access': false"
+      handlers: {  }
+  future_of_care_work:
+    id: override
+    variant_id: future_of_care_work
+    element_key: variant
+    label: 'The Future of Care Work: Convening 1 Taking Care of Care Workers'
+    notes: ''
+    status: true
+    weight: 2
+    settings:
+      debug: false
+      settings: {  }
+      elements: "email:\r\n  '#weight': 6\r\nopt_in:\r\n  '#access': false\r\naccessible_accommodation:\r\n  '#access': false\r\nphone:\r\n  '#access': true\r\naddress:\r\n  '#access': true\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#title': 'Do you plan to attend the Friday night reception and event?'\r\n  '#type': radios\r\n  '#options': yes_no\r\ncustom_2_answer:\r\n  '#access': true\r\n  '#title': 'What care work sector(s) are you most interested in focusing on?'\r\n  '#type': checkboxes\r\n  '#options':\r\n    'Domestic work (nannies and house cleaners)': 'Domestic work (nannies and house cleaners)'\r\n    'Long term care (including home care workers and caregivers in nursing homes)': 'Long term care (including home care workers and caregivers in nursing homes)'\r\n    Healthcare: Healthcare\r\n    'Early childhood care & education': 'Early childhood care & education'"
       handlers: {  }
