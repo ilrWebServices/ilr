@@ -47,6 +47,7 @@ elements: |-
     '#description': 'We strive to host inclusive, accessible events that enable all individuals to engage and participate fully. Please list any reasonable accommodations you may need, such as alternate formats, interpreters, or sign-language interpreters.'
     '#title_display': invisible
     '#description_display': before
+    '#maxlength': 255
   opt_in:
     '#type': checkbox
     '#title': Opt-in

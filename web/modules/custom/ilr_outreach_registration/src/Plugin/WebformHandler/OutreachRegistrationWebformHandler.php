@@ -129,7 +129,7 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
                 'industry' => $data['industry'] ?? NULL,
                 'phone' => $data['phone'] ?? NULL,
                 'dietary_restrictions' => $data['dietary_restrictions'] ?? NULL,
-                'accessible_accommodation' => $data['accessible_accommodation'] ?? NULL,
+                'accessible_accommodation' => substr($data['accessible_accommodation'], 0, 255) ?? NULL,
                 'email_marketing_personas' => ($data['opt_in'] && $data['outreach_marketing_personas']) ? $data['outreach_marketing_personas'] : '',
                 'is_cornell_employee' => $data['is_cornell_employee'] ?? FALSE,
                 'additional_fields' => [],
