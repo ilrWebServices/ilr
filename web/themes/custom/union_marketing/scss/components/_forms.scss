@@ -18,7 +18,7 @@
   border-radius: 3px;
 }
 
-.webform-submission-event-registration-form {
+.webform-submission-event-registration-form[action*="variant=worker_institute_opt_in"] {
   .cu-input-list__item--checkbox {
     margin-bottom: var(--cu-vr0);
   }
