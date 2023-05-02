@@ -153,6 +153,35 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
       }
     }
 
+    // Add any custom questions.
+    $webform = $webform_submission->getWebform();
+    $custom_1_element = $webform->getElement('custom_1_answer');
+    $custom_2_element = $webform->getElement('custom_2_answer');
+
+    if ($custom_1_element && $custom_1_element['#access'] && isset($data['custom_1_answer'])) {
+      $serialized_order['order_items'][0]['product']['participants'][0]['additional_fields'][] = [
+        'name' => 'Custom1_Question__c',
+        'value' => $custom_1_element['#title'] ?? 'Custom question 1',
+      ];
+
+      $serialized_order['order_items'][0]['product']['participants'][0]['additional_fields'][] = [
+        'name' => 'Custom1_Answer__c',
+        'value' => is_array($data['custom_1_answer']) ? implode(';', $data['custom_1_answer']) : $data['custom_1_answer'],
+      ];
+    }
+
+    if ($custom_2_element && $custom_2_element['#access'] && isset($data['custom_2_answer'])) {
+      $serialized_order['order_items'][0]['product']['participants'][0]['additional_fields'][] = [
+        'name' => 'Custom2_Question__c',
+        'value' => $custom_2_element['#title'] ?? 'Custom question 2',
+      ];
+
+      $serialized_order['order_items'][0]['product']['participants'][0]['additional_fields'][] = [
+        'name' => 'Custom2_Answer__c',
+        'value' => is_array($data['custom_2_answer']) ? implode(';', $data['custom_2_answer']) : $data['custom_2_answer'],
+      ];
+    }
+
     // Queue the serialized order for submission to the WebReg webhook on
     // Salesforce.
     $queue_item_id = $this->queue->createItem($serialized_order);

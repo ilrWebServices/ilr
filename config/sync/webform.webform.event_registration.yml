@@ -64,6 +64,16 @@ elements: |-
     '#description': 'We strive to host inclusive, accessible events that enable all individuals to engage and participate fully. Please list any reasonable accommodations you may need, such as alternate formats, interpreters, or sign-language interpreters.'
     '#title_display': invisible
     '#description_display': before
+  custom_1_answer:
+    '#type': textfield
+    '#title': 'Custom 1 Answer'
+    '#access': false
+    '#required': true
+  custom_2_answer:
+    '#type': textfield
+    '#title': 'Custom 2 Answer'
+    '#access': false
+    '#required': true
   opt_in:
     '#type': checkbox
     '#title': Opt-in
