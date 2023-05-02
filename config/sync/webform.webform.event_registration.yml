@@ -26,7 +26,7 @@ elements: |-
     '#required': true
   title:
     '#type': textfield
-    '#title': Job title
+    '#title': 'Job title'
     '#required': true
   first_name:
     '#type': textfield
@@ -41,6 +41,23 @@ elements: |-
     '#title': Email
     '#required': true
     '#default_value': '[current-user:mail]'
+  phone:
+    '#type': tel
+    '#title': Phone
+    '#required': true
+    '#access': false
+  address:
+    '#type': webform_address
+    '#title': Address
+    '#access': false
+    '#address__access': false
+    '#address_2__access': false
+    '#city__title': City
+    '#city__required': true
+    '#state_province__title': State
+    '#state_province__required': true
+    '#postal_code__access': false
+    '#country__access': false
   accessible_accommodation:
     '#type': textarea
     '#title': Accommodations
