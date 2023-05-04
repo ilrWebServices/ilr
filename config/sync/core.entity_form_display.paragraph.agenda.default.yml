@@ -1,0 +1,45 @@
+uuid: 9e7909e0-c2dc-4c4d-8c08-ca4578e49118
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.agenda.field_components
+    - field.field.paragraph.agenda.field_heading
+    - paragraphs.paragraphs_type.agenda
+  module:
+    - paragraphs_previewer
+id: paragraph.agenda.default
+targetEntityType: paragraph
+bundle: agenda
+mode: default
+content:
+  field_components:
+    type: paragraphs_previewer
+    weight: 1
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: '0'
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: agenda_item
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+        add_above: add_above
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

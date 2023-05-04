@@ -1,0 +1,26 @@
+uuid: 45bdf630-050e-4082-b9f7-df0727f6b1a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - paragraphs.paragraphs_type.agenda_item
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - basic_formatting
+id: paragraph.agenda_item.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: agenda_item
+label: Description
+description: 'General information about this item, which can include the name of the activity (e.g. Lunch) the names of presenters, etc.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,19 @@
+uuid: d3919f72-3dd1-494e-a6b7-e83b1c0b1ff7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.agenda_item
+id: paragraph.agenda_item.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: agenda_item
+label: Heading
+description: 'This is generally the start time or time span of the item, e.g. 4:00 PM or 12:00 - 12:45 PM.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
