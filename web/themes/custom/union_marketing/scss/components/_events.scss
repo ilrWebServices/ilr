@@ -25,16 +25,6 @@
     }
   }
 
-  .block-field-block--node--event-landing-page--field-sections {
-    // margin-top: 0;
-  }
-
-  // .layout__region--second {
-  //   align-self: start;
-  //   position: sticky;
-  //   top: 2em;
-  // }
-
   .cu-section {
     margin-bottom: var(--cu-vr2);
     padding-top: var(--cu-vr1);
@@ -46,6 +36,7 @@
   }
 
   .block-field-block--node--event-landing-page--field-registration-form {
+    --cu-font-size: var(--cu-ms-1);
     position: fixed;
     bottom: 0;
     left: 0;
@@ -53,16 +44,27 @@
     width: 100vw;
     max-height: 100vh;
     overflow-y: auto;
-    padding: var(--cu-vr1) var(--cu-ps1);
+    padding: var(--cu-vr-2) var(--cu-ps1);
     z-index: 1;
     box-shadow: 0 2px 10px 2px rgba(0,0,0,.2);
 
     @include breakpoint(md) {
       position: sticky;
-      top: 2em;
+      top: var(--cu-vr0);
+      bottom: unset;
       width: revert;
       max-height: revert;
       margin-top: var(--cu-vr3);
+      padding: var(--cu-vr1) var(--cu-ps1);
+      transition: margin 100ms;
+
+      &[data-collapsed="0"] {
+        margin-left: calc(var(--cu-ps4) * -1);
+      }
+    }
+
+    .cu-input-message {
+      --cu-font-size: var(--cu-ms-2);
     }
   }
 
@@ -79,6 +81,16 @@
     --cu-font-weight: 400;
     --cu-text-color: #6C6C6C;
     text-align: center;
+  }
+
+  .cu-message-list__list-item {
+    --cu-font-size: var(--cu-ms-2);
+    --cu-line-height: 1.3;
+  }
+
+  .cu-message {
+    padding: .2rem .5rem;
+    margin-bottom: var(--cu-vr-1);
   }
 
   .block-better-social-sharing-buttons {
