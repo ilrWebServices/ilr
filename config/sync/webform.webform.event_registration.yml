@@ -338,5 +338,5 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "email:\r\n  '#weight': 6\r\nopt_in:\r\n  '#title': Opt-in for updates from Buffalo Co-Lab Institute\r\ncustom_1_answer:\r\n  '#type': textarea\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Questions for panelists'\r\n  '#counter_type': character\r\n  '#counter_minimum': 1\r\n  '#counter_maximum': 255"
+      elements: "email:\r\n  '#weight': 6\r\nopt_in:\r\n  '#title': Opt-in for updates from Buffalo Co-Lab Institute\r\ncustom_1_answer:\r\n  '#type': textarea\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Questions for panelists'"
       handlers: {  }
