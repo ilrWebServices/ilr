@@ -51,6 +51,32 @@
     --cu-font-weight: 400;
   }
 
+  .cu-section.field--field-sponsor {
+    padding-top: var(--cu-vr-1);
+    border-top: none;
+
+    &.cu-section--left > .cu-section__heading::after {
+      display: none;
+    }
+
+    .cu-composite-heading__heading {
+      --cu-font-size: var(--cu-ms1);
+    }
+
+    .cu-section__content {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--cu-ps3);
+      align-items: center;
+      justify-items: center;
+    }
+
+    .cu-image {
+      max-height: 100px;
+      object-fit: contain;
+    }
+  }
+
   .block-extra-field-block--node--event-landing-page--event-when-where {
     width: 100%;
   }

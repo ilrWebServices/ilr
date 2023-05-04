@@ -1,0 +1,56 @@
+uuid: 60315d1e-8de5-46a9-b0ce-16761fd933f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.event_sponsors.field_logo
+    - taxonomy.vocabulary.event_sponsors
+  module:
+    - media_library
+    - media_library_edit
+    - path
+    - text
+id: taxonomy_term.event_sponsors.default
+targetEntityType: taxonomy_term
+bundle: event_sponsors
+mode: default
+content:
+  description:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_logo:
+    type: media_library_widget
+    weight: -1
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '0'
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden: {  }

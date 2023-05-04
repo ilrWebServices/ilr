@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.event_landing_page.body
     - field.field.node.event_landing_page.field_representative_image
     - field.field.node.event_landing_page.field_sections
+    - field.field.node.event_landing_page.field_sponsor
     - node.type.event_landing_page
   module:
     - address
@@ -37,6 +38,11 @@ content:
     third_party_settings: {  }
     weight: -5
     region: content
+  event_when_where:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   links:
     settings: {  }
     third_party_settings: {  }
@@ -65,4 +71,5 @@ content:
 hidden:
   field_representative_image: true
   field_sections: true
+  field_sponsor: true
   search_api_excerpt: true

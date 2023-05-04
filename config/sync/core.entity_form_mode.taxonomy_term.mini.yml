@@ -1,0 +1,10 @@
+uuid: fe1ee956-dbdf-4d61-9bcc-6c3c82d6b31b
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.mini
+label: Mini
+targetEntityType: taxonomy_term
+cache: true

@@ -3,15 +3,19 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_form_mode.taxonomy_term.mini
     - field.field.node.event_landing_page.body
     - field.field.node.event_landing_page.field_representative_image
     - field.field.node.event_landing_page.field_sections
+    - field.field.node.event_landing_page.field_sponsor
     - node.type.event_landing_page
   module:
     - address
     - allowed_formats
     - datetime_range
+    - entity_browser_entity_form
     - ilr
+    - inline_entity_form
     - linkit
     - media_library
     - media_library_edit
@@ -25,7 +29,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 121
+    weight: 0
     region: content
     settings:
       rows: 9
@@ -77,6 +81,25 @@ content:
         duplicate: duplicate
         collapse_edit_all: collapse_edit_all
     third_party_settings: {  }
+  field_sponsor:
+    type: inline_entity_form_complex
+    weight: 1
+    region: content
+    settings:
+      form_mode: mini
+      override_labels: true
+      label_singular: logo
+      label_plural: logos
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+      revision: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
   location_address:
     type: address_default
     weight: -2

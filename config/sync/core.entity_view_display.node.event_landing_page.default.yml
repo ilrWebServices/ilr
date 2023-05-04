@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.event_landing_page.body
     - field.field.node.event_landing_page.field_representative_image
     - field.field.node.event_landing_page.field_sections
+    - field.field.node.event_landing_page.field_sponsor
     - image.style.large_21_9_1200x514_
     - node.type.event_landing_page
   module:
@@ -133,7 +134,7 @@ third_party_settings:
                 label: above
                 settings: {  }
                 third_party_settings: {  }
-            weight: 6
+            weight: 5
             additional: {  }
           16cc3b31-831b-4cd5-9c82-9a22b4551087:
             uuid: 16cc3b31-831b-4cd5-9c82-9a22b4551087
@@ -150,7 +151,7 @@ third_party_settings:
                   view_mode: default
                   link: ''
                 third_party_settings: {  }
-            weight: 7
+            weight: 6
             additional: {  }
           d35bc236-4c4d-4df8-a4dc-dc7b89a8b5dc:
             uuid: d35bc236-4c4d-4df8-a4dc-dc7b89a8b5dc
@@ -194,6 +195,25 @@ third_party_settings:
                 entity: layout_builder.entity
               formatter:
                 settings: {  }
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
+          e3e872af-d4df-4a0c-894b-b70d246a2d6e:
+            uuid: e3e872af-d4df-4a0c-894b-b70d246a2d6e
+            region: first
+            configuration:
+              id: 'field_block:node:event_landing_page:field_sponsor'
+              label: Co-Sponsors
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: above
+                settings:
+                  view_mode: teaser
                 third_party_settings: {  }
             weight: 3
             additional: {  }
@@ -244,6 +264,14 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 103
+    region: content
+  field_sponsor:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 104
     region: content
   links:
     settings: {  }
