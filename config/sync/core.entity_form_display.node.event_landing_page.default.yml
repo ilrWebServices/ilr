@@ -76,7 +76,7 @@ content:
         show_edit: '1'
   field_sections:
     type: paragraphs_previewer
-    weight: 123
+    weight: 1
     region: content
     settings:
       title: Paragraph
@@ -94,7 +94,7 @@ content:
     third_party_settings: {  }
   field_sponsor:
     type: inline_entity_form_complex
-    weight: 1
+    weight: 5
     region: content
     settings:
       form_mode: mini
