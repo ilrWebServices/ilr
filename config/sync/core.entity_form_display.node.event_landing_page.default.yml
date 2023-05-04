@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_form_mode.taxonomy_term.mini
     - field.field.node.event_landing_page.body
+    - field.field.node.event_landing_page.field_registration_form
     - field.field.node.event_landing_page.field_representative_image
     - field.field.node.event_landing_page.field_sections
     - field.field.node.event_landing_page.field_sponsor
@@ -22,6 +23,7 @@ dependencies:
     - paragraphs_previewer
     - path
     - text
+    - webform
 id: node.event_landing_page.default
 targetEntityType: node
 bundle: event_landing_page
@@ -53,6 +55,15 @@ content:
     weight: -2
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_registration_form:
+    type: webform_entity_reference_select
+    weight: 10
+    region: content
+    settings:
+      default_data: true
+      webforms:
+        - event_registration
     third_party_settings: {  }
   field_representative_image:
     type: media_library_widget

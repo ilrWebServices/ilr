@@ -96,6 +96,19 @@ elements: |-
     '#type': webform_actions
     '#title': 'Submit button(s)'
     '#submit__label': 'Register Now'
+  post_button_text:
+    '#type': webform_computed_twig
+    '#title': 'Post button text'
+    '#title_display': none
+    '#prepopulate': true
+    '#wrapper_attributes':
+      class:
+        - post-button-text
+    '#display_on': form
+    '#mode': text
+    '#template': '{{ data.post_button_text }}'
+    '#whitespace': trim
+    '#hide_empty': true
 css: ''
 javascript: ''
 settings:

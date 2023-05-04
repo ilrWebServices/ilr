@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.event_landing_page.body
+    - field.field.node.event_landing_page.field_registration_form
     - field.field.node.event_landing_page.field_representative_image
     - field.field.node.event_landing_page.field_sections
     - field.field.node.event_landing_page.field_sponsor
@@ -20,6 +21,7 @@ dependencies:
     - media
     - text
     - user
+    - webform
 third_party_settings:
   layout_builder:
     enabled: true
@@ -217,6 +219,25 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 3
             additional: {  }
+          b0b9ab3f-b515-4ebf-ba0f-2dc00da9b0e1:
+            uuid: b0b9ab3f-b515-4ebf-ba0f-2dc00da9b0e1
+            region: second
+            configuration:
+              id: 'field_block:node:event_landing_page:field_registration_form'
+              label: 'Registration form'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: webform_entity_reference_entity_view
+                label: hidden
+                settings:
+                  source_entity: true
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
         third_party_settings: {  }
 id: node.event_landing_page.default
 targetEntityType: node
@@ -244,6 +265,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_registration_form:
+    type: webform_entity_reference_entity_view
+    label: above
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+    weight: 105
     region: content
   field_representative_image:
     type: media_thumbnail

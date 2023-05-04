@@ -38,6 +38,27 @@
     border-top: 1px solid #DFDFDF;
   }
 
+  .block-field-block--node--event-landing-page--field-registration-form {
+    margin-top: var(--cu-vr3);
+    padding: var(--cu-vr1) var(--cu-ps1);
+    box-shadow: 0 2px 10px 2px #ddd;
+  }
+
+  .cu-input-list__item--checkbox {
+    align-items: baseline;
+  }
+
+  .webform-button--submit {
+    width: 100%;
+  }
+
+  .post-button-text {
+    --cu-font-size: var(--cu-ms-2);
+    --cu-font-weight: 400;
+    --cu-text-color: #6C6C6C;
+    text-align: center;
+  }
+
   .block-better-social-sharing-buttons {
     .cu-heading {
       --cu-font-size: var(--cu-ms0);
