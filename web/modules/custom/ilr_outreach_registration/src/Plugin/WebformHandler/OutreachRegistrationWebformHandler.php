@@ -164,9 +164,11 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
         'value' => $custom_1_element['#title'] ?? 'Custom question 1',
       ];
 
+      $custom_1_answer = is_array($data['custom_1_answer']) ? implode(';', $data['custom_1_answer']) : $data['custom_1_answer'];
+
       $serialized_order['order_items'][0]['product']['participants'][0]['additional_fields'][] = [
         'name' => 'Custom1_Answer__c',
-        'value' => is_array($data['custom_1_answer']) ? implode(';', $data['custom_1_answer']) : $data['custom_1_answer'],
+        'value' => substr($custom_1_answer, 0, 255),
       ];
     }
 
@@ -176,9 +178,11 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
         'value' => $custom_2_element['#title'] ?? 'Custom question 2',
       ];
 
+      $custom_2_answer = is_array($data['custom_2_answer']) ? implode(';', $data['custom_2_answer']) : $data['custom_2_answer'];
+
       $serialized_order['order_items'][0]['product']['participants'][0]['additional_fields'][] = [
         'name' => 'Custom2_Answer__c',
-        'value' => is_array($data['custom_2_answer']) ? implode(';', $data['custom_2_answer']) : $data['custom_2_answer'],
+        'value' => substr($custom_2_answer, 0, 255),
       ];
     }
 
