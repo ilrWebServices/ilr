@@ -65,6 +65,9 @@ elements: |-
     '#title_display': before
     '#description_display': after
     '#maxlength': 255
+    '#counter_type': character
+    '#counter_minimum': 1
+    '#counter_maximum': 255
   custom_1_answer:
     '#type': textfield
     '#title': 'Custom 1 Answer'
