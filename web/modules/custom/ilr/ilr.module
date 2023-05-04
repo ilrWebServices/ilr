@@ -35,6 +35,7 @@ use Drupal\ilr\Entity\ClassNode;
 use Drupal\ilr\Entity\EventLandingNode;
 use Drupal\ilr\Entity\EventNodeBase;
 use Drupal\ilr\Entity\ImageMedia;
+use Drupal\node\Entity\NodeType;
 
 /**
  * Implements hook_theme().
@@ -69,6 +70,13 @@ function ilr_theme($existing, $type, $theme, $path) {
       'variables' => [
         'node' => [],
         'links' => [],
+      ],
+    ],
+    'ilr_event_when_where' => [
+      'variables' => [
+        'event_date' => [],
+        'location_address' => [],
+        'location_link' => [],
       ],
     ],
   ];
@@ -278,6 +286,23 @@ function ilr_entity_extra_field_info() {
     'visible' => FALSE,
   ];
 
+  // Add extra fields to eventilicious node types, e.g. any node bundle with a
+  // bundle class that extends EventNodeBase.
+  foreach (\Drupal::service('entity_type.bundle.info')->getBundleInfo('node') as $bundle => $bundle_info) {
+    if (isset($bundle_info['class'])) {
+      $class = new ReflectionClass($bundle_info['class']);
+
+      if ($class->isSubclassOf('\Drupal\ilr\Entity\EventNodeBase')) {
+        $extra['node'][$bundle]['display']['event_when_where'] = [
+          'label' => t('When & Where'),
+          'description' => t('A combination of the event dates and location.'),
+          'weight' => 0,
+          'visible' => TRUE,
+        ];
+      }
+    }
+  }
+
   return $extra;
 }
 
@@ -322,6 +347,31 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
       '#theme' => 'ilr_course_page_nav_block',
       '#node' => $entity,
       '#links' => $page_links,
+    ];
+  }
+
+  if ($display->getComponent('event_when_where')) {
+    $build['event_when_where'] = [
+      '#theme' => 'ilr_event_when_where',
+      '#event_date' => $entity->event_date->view([
+        'label' => 'hidden',
+        'type' => 'date_range_without_time',
+        'settings' => [
+          'timezone_override' => '',
+          'one_day' => 'M j, Y',
+          'one_month' => 'M j - {j}, Y',
+          'several_months' => 'M j - {M} {j}, Y',
+          'several_years' => 'M j, Y - {M} {j}, {Y}',
+        ],
+      ]),
+      '#location_address' => $entity->location_address->view([
+        'label' => 'hidden',
+        'type' => 'address_default',
+      ]),
+      '#location_link' => $entity->location_link->view([
+        'label' => 'hidden',
+        'type' => 'link',
+      ]),
     ];
   }
 

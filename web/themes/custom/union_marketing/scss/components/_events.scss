@@ -1,0 +1,108 @@
+.node--eventalicious.node--view-mode-full {
+  max-width: 1120px;
+  margin: 0 auto;
+
+
+  .layout--twocol-section--67-33 {
+    display: grid;
+    gap: var(--cu-ps1);
+    grid-template-columns: 2fr 1fr;
+    // align-items: start;
+  }
+
+  .layout__region--first,
+  .layout__region--second {
+    // grid-gap: var(--cu-vr-1) var(--cu-grid-column-gap);
+    display: block;
+  }
+
+  .layout__region--first {
+    > * + * {
+      margin: var(--cu-vr1) 0;
+    }
+  }
+
+  .block-field-block--node--event-landing-page--field-sections {
+    // margin-top: 0;
+  }
+
+  // .layout__region--second {
+  //   align-self: start;
+  //   position: sticky;
+  //   top: 2em;
+  // }
+
+  .cu-section {
+    // margin: 0;
+    padding-top: var(--cu-vr1);
+    border-top: 1px solid #DFDFDF;
+  }
+
+  .block-better-social-sharing-buttons {
+    position: sticky;
+    top: 2em;
+  }
+
+  .block-field-block--node--event-landing-page--field-representative-image {
+    margin-bottom: var(--cu-vr2);
+  }
+
+  .block-field-block--node--event-landing-page--event-date {
+    --cu-font-weight: 400;
+  }
+
+  .block-extra-field-block--node--event-landing-page--event-when-where {
+    width: 100%;
+  }
+
+  h1.cu-heading {
+    --cu-font-family: 'futura-pt';
+    --cu-font-size: var(--cu-ms7); // We don't go bigger than this. It's about 45px.
+    --cu-font-size: 65px;
+    text-transform: uppercase;
+    margin-top: -.5em;
+    margin-bottom: 0;
+  }
+
+  .field--body {
+    --cu-font-weight: 400;
+    margin-top: -1em;
+  }
+
+  // The body field is displayed twice on the full page
+  .field--body.field--label-above {
+    --cu-font-weight: 300;
+    margin-top: revert;
+  }
+
+  .cu-section--left {
+    display: block;
+
+    & > .cu-section__heading {
+      margin-bottom: var(--cu-vr1);
+
+      &::after {
+        width: 60px;
+      }
+    }
+  }
+
+  .event-when-where {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1em;
+    --cu-font-size: var(--cu-ms-2);
+    --cu-font-weight: 400;
+    --cu-text-color: #6C6C6C;
+
+    .cu-heading {
+      --cu-font-size: 20px;
+      --cu-text-color: #222;
+      margin-bottom: var(--cu-vr-2);
+    }
+
+    .field--location-link {
+
+    }
+  }
+}

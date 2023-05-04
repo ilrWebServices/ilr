@@ -10,9 +10,11 @@ dependencies:
     - node.type.event_landing_page
   module:
     - address
+    - better_social_sharing_buttons
     - datetime_range
     - entity_reference_revisions
     - layout_builder
+    - layout_discovery
     - link
     - media
     - text
@@ -27,85 +29,6 @@ third_party_settings:
         layout_settings:
           label: ''
         components:
-          fca01649-c912-4f94-a750-d067909bf95c:
-            uuid: fca01649-c912-4f94-a750-d067909bf95c
-            region: content
-            configuration:
-              id: 'field_block:node:event_landing_page:event_date'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: daterange_default
-                label: hidden
-                settings:
-                  timezone_override: ''
-                  format_type: medium
-                  separator: '-'
-                third_party_settings: {  }
-            weight: 0
-            additional: {  }
-          31b752b5-b836-4019-ac28-17534b547303:
-            uuid: 31b752b5-b836-4019-ac28-17534b547303
-            region: content
-            configuration:
-              id: 'field_block:node:event_landing_page:location_address'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: address_default
-                label: hidden
-                settings:
-                  field_settings: {  }
-                third_party_settings: {  }
-            weight: 1
-            additional: {  }
-          7f360f9f-c2a6-4109-95f6-76148bb2486d:
-            uuid: 7f360f9f-c2a6-4109-95f6-76148bb2486d
-            region: content
-            configuration:
-              id: 'field_block:node:event_landing_page:location_link'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: link
-                label: hidden
-                settings:
-                  trim_length: 80
-                  url_only: false
-                  url_plain: false
-                  rel: ''
-                  target: ''
-                third_party_settings: {  }
-            weight: 2
-            additional: {  }
-          5db4b98d-f41d-412f-be0f-1dac5c846880:
-            uuid: 5db4b98d-f41d-412f-be0f-1dac5c846880
-            region: content
-            configuration:
-              id: 'extra_field_block:node:event_landing_page:links'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-            weight: 3
-            additional: {  }
-          b5665f10-6097-4371-980d-d719336b1f53:
-            uuid: b5665f10-6097-4371-980d-d719336b1f53
-            region: content
-            configuration:
-              id: 'field_block:node:event_landing_page:body'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: text_default
-                label: hidden
-                settings: {  }
-                third_party_settings: {  }
-            weight: 4
-            additional: {  }
           ff56066f-f178-449c-b964-4858dcc9561d:
             uuid: ff56066f-f178-449c-b964-4858dcc9561d
             region: content
@@ -123,11 +46,98 @@ third_party_settings:
                   image_loading:
                     attribute: lazy
                 third_party_settings: {  }
-            weight: 5
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          column_widths: 67-33
+        components:
+          b5665f10-6097-4371-980d-d719336b1f53:
+            uuid: b5665f10-6097-4371-980d-d719336b1f53
+            region: first
+            configuration:
+              id: 'field_block:node:event_landing_page:body'
+              label: Overview
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_summary_or_trimmed
+                label: hidden
+                settings:
+                  trim_length: 600
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          fca01649-c912-4f94-a750-d067909bf95c:
+            uuid: fca01649-c912-4f94-a750-d067909bf95c
+            region: first
+            configuration:
+              id: 'field_block:node:event_landing_page:event_date'
+              label: 'Event date'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: date_range_without_time
+                label: hidden
+                settings:
+                  timezone_override: ''
+                  one_day: 'M j, Y'
+                  one_month: 'M j - {j}, Y'
+                  several_months: 'M j - {M} {j}, Y'
+                  several_years: 'M j, Y - {M} {j}, {Y}'
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          7a38d06f-4236-4bfb-a245-ad418eaced41:
+            uuid: 7a38d06f-4236-4bfb-a245-ad418eaced41
+            region: first
+            configuration:
+              id: 'field_block:node:event_landing_page:title'
+              label: Title
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          dc3db026-44bb-47b0-9a0a-551e9bf09954:
+            uuid: dc3db026-44bb-47b0-9a0a-551e9bf09954
+            region: first
+            configuration:
+              id: 'field_block:node:event_landing_page:body'
+              label: Overview
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 6
             additional: {  }
           16cc3b31-831b-4cd5-9c82-9a22b4551087:
             uuid: 16cc3b31-831b-4cd5-9c82-9a22b4551087
-            region: content
+            region: first
             configuration:
               id: 'field_block:node:event_landing_page:field_sections'
               label_display: '0'
@@ -140,7 +150,52 @@ third_party_settings:
                   view_mode: default
                   link: ''
                 third_party_settings: {  }
-            weight: 6
+            weight: 7
+            additional: {  }
+          d35bc236-4c4d-4df8-a4dc-dc7b89a8b5dc:
+            uuid: d35bc236-4c4d-4df8-a4dc-dc7b89a8b5dc
+            region: second
+            configuration:
+              id: social_sharing_buttons_block
+              label: Share
+              label_display: visible
+              provider: better_social_sharing_buttons
+              context_mapping: {  }
+              services:
+                facebook: facebook
+                twitter: twitter
+                email: email
+                linkedin: linkedin
+                whatsapp: 0
+                facebook_messenger: 0
+                pinterest: 0
+                digg: 0
+                tumblr: 0
+                reddit: 0
+                evernote: 0
+                print: 0
+                copy: 0
+              iconset: social-icons--no-color
+              facebook_app_id: ''
+              print_css: ''
+              width: 35px
+              radius: 100%
+            weight: 0
+            additional: {  }
+          fccaaa86-4434-4961-a93a-7337832fab96:
+            uuid: fccaaa86-4434-4961-a93a-7337832fab96
+            region: first
+            configuration:
+              id: 'extra_field_block:node:event_landing_page:event_when_where'
+              label: 'When & Where'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                settings: {  }
+                third_party_settings: {  }
+            weight: 3
             additional: {  }
         third_party_settings: {  }
 id: node.event_landing_page.default
@@ -164,6 +219,11 @@ content:
       separator: '-'
     third_party_settings: {  }
     weight: -5
+    region: content
+  event_when_where:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
     region: content
   field_representative_image:
     type: media_thumbnail

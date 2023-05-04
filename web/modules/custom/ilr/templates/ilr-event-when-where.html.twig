@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Theme template for course instructor list.
+ *
+ * Available variables:
+ * - event_date
+ * - location_address
+ * - location_link
+ */
+#}
+<div class="event-when-where">
+  <div class="event-when-where__date">
+    <h3 class="cu-heading">{% trans %}Date &amp; Time{% endtrans %}</h3>
+    {{ event_date }}
+  </div>
+  <div class="event-when-where__location">
+    <h3 class="cu-heading">{% trans %}Location{% endtrans %}</h3>
+    {{ location_address }}
+    {{ location_link }}
+  </div>
+</div>

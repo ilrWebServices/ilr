@@ -10,6 +10,7 @@ use Drupal\Component\Serialization\Json;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\easy_breadcrumb\EasyBreadcrumbConstants;
+use Drupal\ilr\Entity\EventNodeBase;
 
 /**
  * @file Theme file for the union_marketing.theme.
@@ -175,6 +176,12 @@ function union_marketing_theme_suggestions_node_alter(array &$suggestions, array
     array_unshift($suggestions, 'node__post__' . $sanitized_view_mode);
     array_unshift($suggestions, 'node__post');
   }
+
+  if ($variables['elements']['#node'] instanceof EventNodeBase) {
+    // Prepend this suggestion to the stack so that it ends up with a _lower_
+    // priority than the more specific content type ones.
+    array_unshift($suggestions, 'node__eventalicious');
+  }
 }
 
 /**
@@ -232,6 +239,11 @@ function union_marketing_theme_suggestions_field_alter(array &$suggestions, arra
     // before the bundle name (e.g. `field__node__title__video_post`).
     // @see layout_builder_theme_suggestions_field_alter().
     array_splice($suggestions, -3, 0, ['field__node__' . $element['#field_name'] . '__post']);
+  }
+
+  // Add a theme suggestion to fields on event-like bundles.
+  if ($element['#entity_type'] === 'node' && $element['#object'] instanceof EventNodeBase) {
+    array_unshift($suggestions, 'field__node__eventalicious');
   }
 }
 
