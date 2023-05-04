@@ -33,9 +33,13 @@
   // }
 
   .cu-section {
-    // margin: 0;
+    margin-bottom: var(--cu-vr2);
     padding-top: var(--cu-vr1);
     border-top: 1px solid #DFDFDF;
+  }
+
+  .cu-component {
+    margin-bottom: var(--cu-vr1);
   }
 
   .block-field-block--node--event-landing-page--field-registration-form {
@@ -158,6 +162,31 @@
 
     .field--location-link {
 
+    }
+  }
+
+  .paragraph--type--agenda {
+    padding: var(--cu-vr1) var(--cu-ps1);
+    background-color: #F7F6F6;
+
+    .cu-heading.field--field-heading {
+      --cu-font-family: 'futura-pt';
+      text-transform: uppercase;
+    }
+
+  }
+
+  .paragraph--type--agenda-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--cu-ps1);
+    margin-bottom: var(--cu-v0);
+    padding-top: var(--cu-vr0);
+    border-top: 1px solid #DFDFDF;
+
+    .field--field-heading {
+      --cu-font-family: 'futura-pt';
+      text-transform: uppercase;
     }
   }
 }
