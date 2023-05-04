@@ -2,12 +2,15 @@
   max-width: 1120px;
   margin: 0 auto;
 
-
   .layout--twocol-section--67-33 {
-    display: grid;
-    gap: var(--cu-ps4);
-    grid-template-columns: 2.25fr 1fr;
-    // align-items: start;
+    display: block;
+
+    @include breakpoint(md) {
+      display: grid;
+      gap: var(--cu-ps4);
+      grid-template-columns: 2.25fr 1fr;
+      // align-items: start;
+    }
   }
 
   .layout__region--first,
@@ -43,9 +46,24 @@
   }
 
   .block-field-block--node--event-landing-page--field-registration-form {
-    margin-top: var(--cu-vr3);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    width: 100vw;
+    max-height: 100vh;
+    overflow-y: auto;
     padding: var(--cu-vr1) var(--cu-ps1);
-    box-shadow: 0 2px 10px 2px #ddd;
+    z-index: 1;
+    box-shadow: 0 2px 10px 2px rgba(0,0,0,.2);
+
+    @include breakpoint(md) {
+      position: sticky;
+      top: 2em;
+      width: revert;
+      max-height: revert;
+      margin-top: var(--cu-vr3);
+    }
   }
 
   .cu-input-list__item--checkbox {
@@ -98,10 +116,14 @@
 
     .cu-section__content {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
       gap: var(--cu-ps3);
       align-items: center;
       justify-items: center;
+
+      @include breakpoint(sm) {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
     .cu-image {
@@ -118,6 +140,7 @@
     --cu-font-family: 'futura-pt';
     --cu-font-size: var(--cu-ms7); // We don't go bigger than this. It's about 45px.
     --cu-font-size: 65px;
+    --cu-line-height: 1;
     text-transform: uppercase;
     margin-top: -.5em;
     margin-bottom: 0;
@@ -148,11 +171,16 @@
 
   .event-when-where {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
     gap: 1em;
     --cu-font-size: var(--cu-ms-2);
     --cu-font-weight: 400;
     --cu-text-color: #6C6C6C;
+
+
+    @include breakpoint(sm) {
+      grid-template-columns: auto auto;
+    }
 
     .cu-heading {
       --cu-font-size: 20px;
@@ -180,7 +208,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: var(--cu-ps1);
-    margin-bottom: var(--cu-v0);
+    margin-bottom: var(--cu-vr0);
     padding-top: var(--cu-vr0);
     border-top: 1px solid #DFDFDF;
 
