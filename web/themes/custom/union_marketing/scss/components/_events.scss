@@ -138,12 +138,15 @@
 
   h1.cu-heading {
     --cu-font-family: 'futura-pt';
-    --cu-font-size: var(--cu-ms7); // We don't go bigger than this. It's about 45px.
-    --cu-font-size: 65px;
+    --cu-font-size: var(--cu-ms5);
     --cu-line-height: 1;
     text-transform: uppercase;
     margin-top: -.5em;
     margin-bottom: 0;
+
+    @include breakpoint(md) {
+      --cu-font-size: 65px;
+    }
   }
 
   .field--body {
