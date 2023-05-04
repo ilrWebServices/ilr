@@ -39,8 +39,16 @@
   }
 
   .block-better-social-sharing-buttons {
-    position: sticky;
-    top: 2em;
+    .cu-heading {
+      --cu-font-size: var(--cu-ms0);
+      // --cu-font-weight: 700;
+    }
+  }
+
+  .social-sharing-buttons {
+    position: static;
+    flex-direction: unset;
+    margin-top: var(--cu-vr1);
   }
 
   .block-field-block--node--event-landing-page--field-representative-image {
