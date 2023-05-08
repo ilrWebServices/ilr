@@ -4,6 +4,7 @@
 
   .layout--twocol-section--67-33 {
     display: block;
+    margin-top: var(--cu-vr2);
 
     @include breakpoint(md) {
       display: grid;
@@ -110,7 +111,6 @@
   }
 
   .block-field-block--node--event-landing-page--field-representative-image {
-    margin-bottom: var(--cu-vr2);
   }
 
   .block-field-block--node--event-landing-page--event-date {
