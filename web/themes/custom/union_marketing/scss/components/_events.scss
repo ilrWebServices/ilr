@@ -195,7 +195,6 @@
     --cu-font-weight: 400;
     --cu-text-color: #6C6C6C;
 
-
     @include breakpoint(sm) {
       grid-template-columns: auto auto;
     }
@@ -206,9 +205,25 @@
       margin-bottom: var(--cu-vr-2);
     }
 
-    .field--location-link {
-
+    .cu-icon, .cu-icon__image {
+      margin-bottom: 0;
     }
+
+    .cu-icon {
+      margin-bottom: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #F7F6F6;
+      padding: 14px;
+      border-radius: 20%;
+    }
+  }
+
+  .event-when-where__date,
+  .event-when-where__location {
+    position: relative;
+    padding-left: calc(48px + 20px);
   }
 
   .paragraph--type--agenda {

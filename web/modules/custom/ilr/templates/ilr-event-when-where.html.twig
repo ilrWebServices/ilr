@@ -11,10 +11,20 @@
 #}
 <div class="event-when-where">
   <div class="event-when-where__date">
+    {% include '@union/_icon.twig' with {
+      title: 'Calendar',
+      icon: 'calendar-simple',
+      size: '20px'
+    } only %}
     <h3 class="cu-heading">{% trans %}Date &amp; Time{% endtrans %}</h3>
     {{ event_date }}
   </div>
   <div class="event-when-where__location">
+    {% include '@union/_icon.twig' with {
+      title: 'Geo-marker',
+      icon: 'geomarker',
+      size: '20px'
+    } only %}
     <h3 class="cu-heading">{% trans %}Location{% endtrans %}</h3>
     {{ location_address }}
     {{ location_link }}
