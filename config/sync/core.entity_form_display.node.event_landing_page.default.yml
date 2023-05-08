@@ -99,8 +99,8 @@ content:
     settings:
       form_mode: mini
       override_labels: true
-      label_singular: logo
-      label_plural: logos
+      label_singular: sponsor
+      label_plural: sponsors
       allow_new: true
       allow_existing: true
       match_operator: CONTAINS
