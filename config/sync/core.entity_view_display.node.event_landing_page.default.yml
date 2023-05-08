@@ -1,0 +1,331 @@
+uuid: c496bdbf-50ec-49cb-887a-b0dccc030005
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.event_landing_page.body
+    - field.field.node.event_landing_page.field_registration_form
+    - field.field.node.event_landing_page.field_representative_image
+    - field.field.node.event_landing_page.field_sections
+    - field.field.node.event_landing_page.field_sponsor
+    - image.style.large_21_9_1200x514_
+    - node.type.event_landing_page
+  module:
+    - address
+    - better_social_sharing_buttons
+    - datetime_range
+    - entity_reference_revisions
+    - layout_builder
+    - layout_discovery
+    - link
+    - media
+    - text
+    - user
+    - webform
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          ff56066f-f178-449c-b964-4858dcc9561d:
+            uuid: ff56066f-f178-449c-b964-4858dcc9561d
+            region: content
+            configuration:
+              id: 'field_block:node:event_landing_page:field_representative_image'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: media_thumbnail
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: large_21_9_1200x514_
+                  image_loading:
+                    attribute: lazy
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          column_widths: 67-33
+        components:
+          b5665f10-6097-4371-980d-d719336b1f53:
+            uuid: b5665f10-6097-4371-980d-d719336b1f53
+            region: first
+            configuration:
+              id: 'field_block:node:event_landing_page:body'
+              label: Overview
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_summary_or_trimmed
+                label: hidden
+                settings:
+                  trim_length: 600
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          fca01649-c912-4f94-a750-d067909bf95c:
+            uuid: fca01649-c912-4f94-a750-d067909bf95c
+            region: first
+            configuration:
+              id: 'field_block:node:event_landing_page:event_date'
+              label: 'Event date'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: date_range_without_time
+                label: hidden
+                settings:
+                  timezone_override: ''
+                  one_day: 'M j, Y'
+                  one_month: 'M j - {j}, Y'
+                  several_months: 'M j - {M} {j}, Y'
+                  several_years: 'M j, Y - {M} {j}, {Y}'
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          7a38d06f-4236-4bfb-a245-ad418eaced41:
+            uuid: 7a38d06f-4236-4bfb-a245-ad418eaced41
+            region: first
+            configuration:
+              id: 'field_block:node:event_landing_page:title'
+              label: Title
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          dc3db026-44bb-47b0-9a0a-551e9bf09954:
+            uuid: dc3db026-44bb-47b0-9a0a-551e9bf09954
+            region: first
+            configuration:
+              id: 'field_block:node:event_landing_page:body'
+              label: Overview
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 5
+            additional: {  }
+          16cc3b31-831b-4cd5-9c82-9a22b4551087:
+            uuid: 16cc3b31-831b-4cd5-9c82-9a22b4551087
+            region: first
+            configuration:
+              id: 'field_block:node:event_landing_page:field_sections'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                  link: ''
+                third_party_settings: {  }
+            weight: 6
+            additional: {  }
+          d35bc236-4c4d-4df8-a4dc-dc7b89a8b5dc:
+            uuid: d35bc236-4c4d-4df8-a4dc-dc7b89a8b5dc
+            region: second
+            configuration:
+              id: social_sharing_buttons_block
+              label: Share
+              label_display: visible
+              provider: better_social_sharing_buttons
+              context_mapping: {  }
+              services:
+                facebook: facebook
+                twitter: twitter
+                email: email
+                linkedin: linkedin
+                whatsapp: 0
+                facebook_messenger: 0
+                pinterest: 0
+                digg: 0
+                tumblr: 0
+                reddit: 0
+                evernote: 0
+                print: 0
+                copy: 0
+              iconset: social-icons--no-color
+              facebook_app_id: ''
+              print_css: ''
+              width: 35px
+              radius: 0px
+            weight: 0
+            additional: {  }
+          fccaaa86-4434-4961-a93a-7337832fab96:
+            uuid: fccaaa86-4434-4961-a93a-7337832fab96
+            region: first
+            configuration:
+              id: 'extra_field_block:node:event_landing_page:event_when_where'
+              label: 'When & Where'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                settings: {  }
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
+          e3e872af-d4df-4a0c-894b-b70d246a2d6e:
+            uuid: e3e872af-d4df-4a0c-894b-b70d246a2d6e
+            region: first
+            configuration:
+              id: 'field_block:node:event_landing_page:field_sponsor'
+              label: Co-Sponsors
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: above
+                settings:
+                  view_mode: teaser
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+          b0b9ab3f-b515-4ebf-ba0f-2dc00da9b0e1:
+            uuid: b0b9ab3f-b515-4ebf-ba0f-2dc00da9b0e1
+            region: second
+            configuration:
+              id: 'field_block:node:event_landing_page:field_registration_form'
+              label: 'Registration form'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: webform_entity_reference_entity_view
+                label: hidden
+                settings:
+                  source_entity: true
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
+id: node.event_landing_page.default
+targetEntityType: node
+bundle: event_landing_page
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  event_date:
+    type: daterange_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+      separator: '-'
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  event_when_where:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_registration_form:
+    type: webform_entity_reference_entity_view
+    label: above
+    settings:
+      source_entity: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_representative_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: large_21_9_1200x514_
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_sections:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_sponsor:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+  location_address:
+    type: address_default
+    label: hidden
+    settings:
+      field_settings: {  }
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  location_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: -5
+    region: content
+hidden:
+  search_api_excerpt: true

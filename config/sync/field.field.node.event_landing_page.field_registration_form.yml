@@ -1,0 +1,32 @@
+uuid: 107f4505-726f-47a1-abec-3483f5d022fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_registration_form
+    - node.type.event_landing_page
+    - webform.webform.event_registration
+  module:
+    - webform
+id: node.event_landing_page.field_registration_form
+field_name: field_registration_form
+entity_type: node
+bundle: event_landing_page
+label: 'Registration form'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: ca3cc916-9737-453e-8dcc-88100248bf62
+    default_data: "# eventid is required.\r\nvariant: \r\neventid: \r\npost_button_text: "
+    status: open
+    open: ''
+    close: ''
+default_value_callback: ''
+settings:
+  handler: 'default:webform'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: webform

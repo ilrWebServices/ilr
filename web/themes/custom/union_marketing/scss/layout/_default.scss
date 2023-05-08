@@ -1,7 +1,5 @@
 html,
 body {
-  overflow-x: hidden; // Use of the full-width() mixin causes a tiny horizontal scrollbar.
-
   --gutter-width: 24px;
   --content-width: 24fr;
 }

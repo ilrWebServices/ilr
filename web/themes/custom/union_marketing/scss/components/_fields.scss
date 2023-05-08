@@ -72,7 +72,7 @@
 
 .cu-grid--3col.cu-component--people-listing {
   @include breakpoint(sm) {
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: repeat(2, auto);
 
     .field--field-email {
       overflow-wrap: break-word;
@@ -81,7 +81,7 @@
   }
 
   @include breakpoint(md) {
-    grid-template-columns: repeat(3, 33.33%);
+    grid-template-columns: repeat(3, auto);
   }
 }
 

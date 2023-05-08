@@ -12,6 +12,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\ilr\EventSubscriber\CollectionEventSubscriber;
 use Drupal\Core\Url;
+use Drupal\ilr\Entity\EventNodeBase;
 
 /**
  * Add alt attributes for instructor photos that don't have one.
@@ -1341,5 +1342,24 @@ function ilr_post_update_set_icons(&$sandbox) {
 
     $paragraph->setAllBehaviorSettings($settings);
     $paragraph->save();
+  }
+}
+
+/**
+ * Add bundle fields to event landing page node type.
+ */
+function ilr_post_update_event_landing_bundle_fields() {
+  $entity_type = \Drupal::entityTypeManager()->getDefinition('node');
+  $field_definition_listener = \Drupal::service('field_definition.listener');
+
+  foreach (EventNodeBase::bundleFieldDefinitions($entity_type, 'event_landing_page', []) as $field_name => $storage_definition) {
+    \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition($field_name, 'node', 'node', $storage_definition);
+  }
+
+  // Add the new fields to fields to entity.definitions.bundle_field_map. In my
+  // testing, this needs to happen after the fields are installed above.
+  // @see https://www.drupal.org/i/3045509
+  foreach (EventNodeBase::bundleFieldDefinitions($entity_type, 'event_landing_page', []) as $field_name => $storage_definition) {
+    $field_definition_listener->onFieldDefinitionCreate($storage_definition);
   }
 }

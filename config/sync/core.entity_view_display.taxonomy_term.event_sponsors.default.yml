@@ -1,0 +1,36 @@
+uuid: 90a00a27-1fb0-435b-8b8c-2b3f96c5e7fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.event_sponsors.field_logo
+    - taxonomy.vocabulary.event_sponsors
+  module:
+    - media
+    - text
+id: taxonomy_term.event_sponsors.default
+targetEntityType: taxonomy_term
+bundle: event_sponsors
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_logo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  extra_field_ilr_section_navigation: true
+  search_api_excerpt: true

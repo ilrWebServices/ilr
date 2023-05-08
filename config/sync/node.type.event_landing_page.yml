@@ -1,0 +1,17 @@
+uuid: c81f8b02-163b-45b8-b0f8-677e986af147
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Event Landing Page'
+type: event_landing_page
+description: '<em>Event Landing Pages</em> are fancy pages that represent events. They extend EventNodeInterface to include information like start and end dates and location.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

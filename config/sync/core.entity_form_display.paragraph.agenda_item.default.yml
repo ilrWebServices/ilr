@@ -1,0 +1,34 @@
+uuid: 54f14fdd-3930-4b3d-9ebe-78af91e12d48
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.agenda_item.field_body
+    - field.field.paragraph.agenda_item.field_heading
+    - paragraphs.paragraphs_type.agenda_item
+  module:
+    - text
+id: paragraph.agenda_item.default
+targetEntityType: paragraph
+bundle: agenda_item
+mode: default
+content:
+  field_body:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

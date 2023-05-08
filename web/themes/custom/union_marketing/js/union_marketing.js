@@ -108,6 +108,58 @@
     }
   };
 
+  Drupal.behaviors.union_marketing_generic_event_registration_form = {
+    attach: function (context, settings) {
+
+      const event_registration_forms = context.querySelectorAll('.block-field-block--node--event-landing-page--field-registration-form');
+
+      for (const event_registration_form of event_registration_forms) {
+        let elements = event_registration_form.querySelectorAll('.form-item:not(.webform-actions, .post-button-text), .fieldgroup');
+
+        // Hide most of the form inputs by default.
+        for (const element of elements) {
+          element.dataset.previousDisplay = element.style.display;
+          element.style.display = 'none';
+        }
+
+        event_registration_form.dataset.collapsed = 1;
+
+        let form_overlay = document.createElement('div');
+        form_overlay.style.position = 'absolute';
+        form_overlay.style.inset = '0px';
+        form_overlay.style.cursor = 'pointer';
+        event_registration_form.appendChild(form_overlay);
+
+        form_overlay.addEventListener('click', function (event) {
+          event_registration_form.dataset.collapsed = 0;
+          event.target.style.display = 'none';
+
+          for (const element of elements) {
+            element.style.display = element.dataset.previousDisplay;
+          }
+        });
+      }
+    }
+  }
+
+  Drupal.behaviors.union_marketing_event_agenda_toggle = {
+    attach: function (context, settings) {
+      const agenda_components = context.querySelectorAll('.paragraph--type--agenda');
+
+      for (const agenda_component of agenda_components) {
+        agenda_component.dataset.collapsed = 1;
+
+        agenda_component.addEventListener('click', function (event) {
+          // Only toggle the collapsed attribute if the click is on the div
+          // itself. This will prevent collapse when a user selects text.
+          if (event.target === event.currentTarget) {
+            event.currentTarget.dataset.collapsed = event.currentTarget.dataset.collapsed == 1 ? 0 : 1;
+          }
+        });
+      }
+    }
+  }
+
   Drupal.behaviors.union_marketing_registration_form = {
     attach: function (context, settings) {
       const registrationForms = context.querySelectorAll('.cu-registration-form');

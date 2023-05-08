@@ -1,0 +1,32 @@
+uuid: 9accc83c-7bd0-451e-8332-f09426003c8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.agenda_item.field_body
+    - field.field.paragraph.agenda_item.field_heading
+    - paragraphs.paragraphs_type.agenda_item
+  module:
+    - text
+id: paragraph.agenda_item.default
+targetEntityType: paragraph
+bundle: agenda_item
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_heading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true
