@@ -1,0 +1,22 @@
+uuid: 2d0d74ec-164b-4b8f-9930-409e8c9e9829
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: event_landing_page_nodes
+label: 'Event landing page nodes'
+type: 'canonical_entities:node'
+pattern: 'events/[node:title]'
+selection_criteria:
+  19e1caf0-5934-4eb2-8ec1-d1d60f01bc69:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 19e1caf0-5934-4eb2-8ec1-d1d60f01bc69
+    context_mapping:
+      node: node
+    bundles:
+      event_landing_page: event_landing_page
+selection_logic: and
+weight: -5
+relationships: {  }
