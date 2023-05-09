@@ -25,7 +25,7 @@ dependencies:
 third_party_settings:
   layout_builder:
     enabled: true
-    allow_custom: false
+    allow_custom: true
     sections:
       -
         layout_id: layout_onecol
@@ -328,4 +328,5 @@ content:
     weight: -5
     region: content
 hidden:
+  layout_builder__layout: true
   search_api_excerpt: true
