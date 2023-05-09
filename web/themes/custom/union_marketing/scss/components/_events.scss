@@ -8,7 +8,7 @@
 
     @include breakpoint(md) {
       display: grid;
-      gap: var(--cu-ps4);
+      gap: var(--cu-ps3);
       grid-template-columns: 2.25fr 1fr;
       // align-items: start;
     }
