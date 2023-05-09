@@ -160,7 +160,7 @@
     margin-bottom: 0;
 
     @include breakpoint(md) {
-      --cu-font-size: 65px;
+      --cu-font-size: var(--cu-ms10);
     }
   }
 
