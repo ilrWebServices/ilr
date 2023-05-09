@@ -67,6 +67,42 @@
     .cu-input-message {
       --cu-font-size: var(--cu-ms-2);
     }
+
+    .registration-form-collapse {
+      color: #333;
+      display: none;
+      position: fixed;
+      cursor: pointer;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      background-color: rgba(128,128,128,.15);
+      border: none;
+      border-radius: 0 0 0 20%;
+
+      @include breakpoint(md) {
+        position: absolute;
+      }
+
+      span {
+        visibility: hidden;
+      }
+
+      &::after {
+        content: '×';
+        font-size: var(--cu-ms4);
+        position: absolute;
+        top: 4px;
+        right: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &[data-collapsed="0"] .registration-form-collapse {
+      display: block;
+    }
   }
 
   .cu-input-list__item--checkbox {
