@@ -60,7 +60,7 @@
       transition: margin 100ms;
 
       &[data-collapsed="0"] {
-        margin-left: calc(var(--cu-ps4) * -1);
+        margin-left: calc(var(--cu-ps5) * -1);
       }
     }
 
