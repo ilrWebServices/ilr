@@ -883,7 +883,7 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
  */
 function ilr_field_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
   if (isset($context['widget']) && $context['widget'] instanceof AddressDefaultWidget) {
-    $element['#type'] = 'container';
+    $element['#type'] = 'fieldset';
   }
 }
 
