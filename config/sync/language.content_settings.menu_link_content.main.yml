@@ -1,0 +1,11 @@
+uuid: 28ca37a5-ae48-499a-b9c8-ca5d318dca75
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+id: menu_link_content.main
+target_entity_type_id: menu_link_content
+target_bundle: main
+default_langcode: site_default
+language_alterable: false

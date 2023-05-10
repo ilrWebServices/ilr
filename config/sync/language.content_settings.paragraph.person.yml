@@ -1,0 +1,11 @@
+uuid: b345810a-1e9f-472c-be41-cb3040642d34
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.person
+id: paragraph.person
+target_entity_type_id: paragraph
+target_bundle: person
+default_langcode: site_default
+language_alterable: false

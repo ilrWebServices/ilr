@@ -1,0 +1,11 @@
+uuid: 46db45cd-761c-4051-bbdb-53c6e6c7d8df
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.topic_list
+id: paragraph.topic_list
+target_entity_type_id: paragraph
+target_bundle: topic_list
+default_langcode: site_default
+language_alterable: false

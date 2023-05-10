@@ -1,0 +1,11 @@
+uuid: aa051451-250b-43ee-9eab-ce3561d48c60
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.section-11
+id: menu_link_content.section-11
+target_entity_type_id: menu_link_content
+target_bundle: section-11
+default_langcode: site_default
+language_alterable: false

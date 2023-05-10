@@ -1,0 +1,11 @@
+uuid: a59c8d95-35b4-44b1-a8f0-8513fa8efac7
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.media_deck
+id: paragraph.media_deck
+target_entity_type_id: paragraph
+target_bundle: media_deck
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,11 @@
+uuid: 2a368e1a-ab74-41dc-be17-91a1fa25bea9
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.content_section
+id: collection.content_section
+target_entity_type_id: collection
+target_bundle: content_section
+default_langcode: site_default
+language_alterable: false

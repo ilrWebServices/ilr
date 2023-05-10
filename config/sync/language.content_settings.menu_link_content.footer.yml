@@ -1,0 +1,11 @@
+uuid: e6a28c65-8de8-4386-9e63-84b9b41d5fc7
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+id: menu_link_content.footer
+target_entity_type_id: menu_link_content
+target_bundle: footer
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,11 @@
+uuid: 5c4826c3-b68c-4697-bca1-f74785fd87a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.devel
+id: menu_link_content.devel
+target_entity_type_id: menu_link_content
+target_bundle: devel
+default_langcode: site_default
+language_alterable: false

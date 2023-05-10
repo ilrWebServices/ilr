@@ -1,0 +1,11 @@
+uuid: a1a5bb46-e774-4f59-ac5b-2076368e6288
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.professional-programs
+id: menu_link_content.professional-programs
+target_entity_type_id: menu_link_content
+target_bundle: professional-programs
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,11 @@
+uuid: b38bb705-91c7-40a3-b785-981743d092bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.promo
+id: paragraph.promo
+target_entity_type_id: paragraph
+target_bundle: promo
+default_langcode: site_default
+language_alterable: false

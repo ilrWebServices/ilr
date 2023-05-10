@@ -1,0 +1,11 @@
+uuid: c6272067-cd68-43e2-a5d0-188801d5435a
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.event_sponsors
+id: taxonomy_term.event_sponsors
+target_entity_type_id: taxonomy_term
+target_bundle: event_sponsors
+default_langcode: site_default
+language_alterable: false

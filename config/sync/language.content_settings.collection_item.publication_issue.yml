@@ -1,0 +1,11 @@
+uuid: 6462de25-1c9f-4591-b847-0640e786d84f
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.publication_issue
+id: collection_item.publication_issue
+target_entity_type_id: collection_item
+target_bundle: publication_issue
+default_langcode: site_default
+language_alterable: false

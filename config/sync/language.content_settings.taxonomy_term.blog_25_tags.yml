@@ -1,0 +1,11 @@
+uuid: 8b17f603-6359-4913-b6ed-d117a17acb24
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.blog_25_tags
+id: taxonomy_term.blog_25_tags
+target_entity_type_id: taxonomy_term
+target_bundle: blog_25_tags
+default_langcode: site_default
+language_alterable: false

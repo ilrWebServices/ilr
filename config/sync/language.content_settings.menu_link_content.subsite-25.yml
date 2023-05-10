@@ -1,0 +1,11 @@
+uuid: 9cfc573a-fe8e-4ba6-9cc2-d8e5479447e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.subsite-25
+id: menu_link_content.subsite-25
+target_entity_type_id: menu_link_content
+target_bundle: subsite-25
+default_langcode: site_default
+language_alterable: false

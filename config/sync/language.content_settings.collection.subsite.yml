@@ -1,0 +1,11 @@
+uuid: fafc9716-689b-442b-b2b0-d806fdc419ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.subsite
+id: collection.subsite
+target_entity_type_id: collection
+target_bundle: subsite
+default_langcode: site_default
+language_alterable: false

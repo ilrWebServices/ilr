@@ -1,0 +1,11 @@
+uuid: cd003493-28aa-4c1e-987c-7421830760c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.course_sponsor
+id: taxonomy_term.course_sponsor
+target_entity_type_id: taxonomy_term
+target_bundle: course_sponsor
+default_langcode: site_default
+language_alterable: false

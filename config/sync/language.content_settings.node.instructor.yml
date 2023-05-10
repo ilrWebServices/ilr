@@ -1,0 +1,11 @@
+uuid: 9c4380fe-7670-4e30-b268-ee2bdcc84971
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.instructor
+id: node.instructor
+target_entity_type_id: node
+target_bundle: instructor
+default_langcode: site_default
+language_alterable: false

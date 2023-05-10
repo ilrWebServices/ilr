@@ -1,0 +1,11 @@
+uuid: 04ea3145-83fa-4805-810a-b7ff06852a1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.section-54
+id: menu_link_content.section-54
+target_entity_type_id: menu_link_content
+target_bundle: section-54
+default_langcode: site_default
+language_alterable: false

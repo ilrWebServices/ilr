@@ -1,0 +1,11 @@
+uuid: 351515bc-9c32-4645-bfdf-aa2c81ea4b8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.tools
+id: menu_link_content.tools
+target_entity_type_id: menu_link_content
+target_bundle: tools
+default_langcode: site_default
+language_alterable: false
