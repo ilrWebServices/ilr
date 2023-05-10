@@ -19,7 +19,7 @@ abstract class EventNodeBase extends Node {
       ->setTargetEntityTypeId($entity_type->id())
       ->setTargetBundle($bundle)
       ->setLabel(t('Event date'))
-      ->setRequired(FALSE)
+      ->setRequired(TRUE)
       ->setTranslatable(TRUE)
       ->setRevisionable(TRUE)
       ->setSetting('datetime_type', 'datetime')
