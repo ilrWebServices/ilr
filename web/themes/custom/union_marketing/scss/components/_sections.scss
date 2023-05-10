@@ -44,6 +44,22 @@ figure.cu-media,
   margin-right: auto;
 }
 
+.cu-section--contrast {
+  position: relative;
+  padding: var(--cu-vr2) 0 var(--cu-vr3) 0;
+
+  &::before {
+    content: '';
+    width: calc(2 * 100vw);
+    height: 100%;
+    left:-100vw;
+    top:0;
+    background-color: #efefed; //#F7F6F6;
+    position: absolute;
+    z-index: -1; // Replace with position:relative on the section heading element.
+  }
+}
+
 .cu-component--rich-text {
   // overflow: hidden; // TODO deal with effects on inner block element margins (e.g. blockquote)
 }

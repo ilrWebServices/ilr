@@ -26,7 +26,7 @@
     }
   }
 
-  .cu-section {
+  .cu-section:not(.cu-section--contrast) {
     margin-bottom: var(--cu-vr2);
     padding-top: var(--cu-vr1);
     border-top: 1px solid #DFDFDF;
@@ -264,7 +264,7 @@
 
   .paragraph--type--agenda {
     padding: var(--cu-vr1) var(--cu-ps1);
-    background-color: #F7F6F6;
+    background-color: white;
     position: relative;
 
     .cu-heading.field--field-heading {

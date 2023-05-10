@@ -48,6 +48,13 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'wide'),
     ];
 
+    $form['contrast'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('High contrast'),
+      '#min' => 1,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'contrast'),
+    ];
+
     $form['heading_left'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Place heading on left'),
@@ -82,6 +89,10 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
     // Check the behavior settings and set the class modifier if full width.
     if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'wide')) {
       $variables['attributes']['class'][] = 'cu-section--wide';
+    }
+
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'contrast')) {
+      $variables['attributes']['class'][] = 'cu-section--contrast';
     }
 
     if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'heading_left')) {
