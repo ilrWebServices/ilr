@@ -6,7 +6,6 @@ dependencies:
     - field.field.paragraph.rich_text.field_body
     - field.field.paragraph.rich_text.field_heading
     - field.field.paragraph.rich_text.field_subheading
-    - field.field.paragraph.rich_text.field_text_columns
     - paragraphs.paragraphs_type.rich_text
   module:
     - text
@@ -27,5 +26,4 @@ hidden:
   created: true
   field_heading: true
   field_subheading: true
-  field_text_columns: true
   status: true
