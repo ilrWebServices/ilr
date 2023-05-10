@@ -29,6 +29,13 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
+  collectible:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_representative_image:
     type: media_library_widget
     weight: 101
@@ -61,6 +68,13 @@ content:
     weight: 50
     region: content
     settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
     third_party_settings: {  }
   name:
     type: string_textfield

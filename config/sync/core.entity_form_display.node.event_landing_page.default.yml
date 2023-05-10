@@ -112,6 +112,18 @@ content:
     third_party_settings:
       entity_browser_entity_form:
         entity_browser_id: _none
+  ief_collection_items:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   location_address:
     type: address_default
     weight: -2

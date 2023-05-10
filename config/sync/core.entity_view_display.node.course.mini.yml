@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.course.field_media_section
     - field.field.node.course.field_message
     - field.field.node.course.field_representative_image
+    - field.field.node.course.field_sections
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
     - node.type.course
@@ -55,5 +56,6 @@ hidden:
   field_topics: true
   ilr_certificates: true
   ilr_course_page_links: true
+  langcode: true
   links: true
   search_api_excerpt: true

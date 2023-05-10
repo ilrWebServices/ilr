@@ -22,14 +22,14 @@ content:
     settings:
       size: 60
       placeholder: ''
+      key_label: Key
+      value_label: Value
+      description_label: Description
+      description_rows: 5
       key_size: 60
       key_placeholder: ''
       description_enabled: false
       description_placeholder: ''
-      key_label: Key
-      value_label: Value
-      description_label: Description
-      description_rows: '5'
     third_party_settings: {  }
   canonical:
     type: boolean_checkbox
@@ -59,6 +59,13 @@ content:
       match_limit: 10
       size: 40
       placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
     third_party_settings: {  }
   path:
     type: path

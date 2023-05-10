@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.participant.field_class
+    - field.field.node.participant.field_instructor
     - node.type.participant
   module:
     - user
@@ -20,4 +22,5 @@ content:
 hidden:
   field_class: true
   field_instructor: true
+  langcode: true
   search_api_excerpt: true
