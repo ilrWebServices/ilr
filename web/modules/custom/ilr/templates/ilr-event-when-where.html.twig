@@ -19,6 +19,7 @@
     <h3 class="cu-heading">{% trans %}Date &amp; Time{% endtrans %}</h3>
     {{ event_date }}
   </div>
+  {% if location_address or location_link %}
   <div class="event-when-where__location">
     {% include '@union/_icon.twig' with {
       title: 'Geo-marker',
@@ -29,4 +30,5 @@
     {{ location_address }}
     {{ location_link }}
   </div>
+  {% endif %}
 </div>

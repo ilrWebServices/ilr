@@ -364,14 +364,14 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
           'several_years' => 'M j, Y - {M} {j}, {Y}',
         ],
       ]),
-      '#location_address' => $entity->location_address->view([
+      '#location_address' => !$entity->location_address->isEmpty() ? $entity->location_address->view([
         'label' => 'hidden',
         'type' => 'address_default',
-      ]),
-      '#location_link' => $entity->location_link->view([
+      ]) : '',
+      '#location_link' => !$entity->location_link->isEmpty() ? $entity->location_link->view([
         'label' => 'hidden',
         'type' => 'link',
-      ]),
+      ]) : '',
     ];
   }
 
