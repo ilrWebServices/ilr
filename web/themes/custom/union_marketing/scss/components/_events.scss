@@ -32,6 +32,10 @@
     border-top: 1px solid #DFDFDF;
   }
 
+  .cu-section[class*="cu-colorscheme"] {
+    border-top: none;
+  }
+
   .cu-component {
     margin-bottom: var(--cu-vr1);
   }
@@ -314,6 +318,10 @@
         max-height: 0;
       }
     }
+  }
+
+  .cu-section[class*="cu-colorscheme"] .paragraph--type--agenda {
+    background-color: white;
   }
 
   .paragraph--type--agenda-item {
