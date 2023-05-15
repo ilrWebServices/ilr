@@ -75,6 +75,7 @@ function ilr_theme($existing, $type, $theme, $path) {
     'ilr_event_when_where' => [
       'variables' => [
         'event_date' => [],
+        'event_time' => [],
         'location_address' => [],
         'location_link' => [],
       ],
@@ -362,6 +363,17 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
           'one_month' => 'M j - {j}, Y',
           'several_months' => 'M j - {M} {j}, Y',
           'several_years' => 'M j, Y - {M} {j}, {Y}',
+        ],
+      ]),
+      '#event_time' => $entity->event_date->view([
+        'label' => 'hidden',
+        'type' => 'date_range_without_time',
+        'settings' => [
+          'timezone_override' => '',
+          'one_day' => 'g:i A - {g}:{i} {A}',
+          'one_month' => 'g:i A - {g}:{i} {A}',
+          'several_months' => 'g:i A - {g}:{i} {A}',
+          'several_years' => 'g:i A - {g}:{i} {A}',
         ],
       ]),
       '#location_address' => !$entity->location_address->isEmpty() ? $entity->location_address->view([
