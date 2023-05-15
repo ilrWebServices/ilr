@@ -105,7 +105,7 @@ class ColorSettings extends ParagraphsBehaviorBase {
   public function preprocess(&$variables) {
     $color_scheme = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'color_scheme');
 
-    if ($color_scheme !== 'none') {
+    if (!empty($color_scheme) && $color_scheme !== 'none') {
       $variables['attributes']['class'][] = 'cu-colorscheme--' . $color_scheme;
     }
   }
