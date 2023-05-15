@@ -1,11 +1,11 @@
-html,
-body {
+:root {
   --gutter-width: 24px;
   --content-width: 24fr;
 }
 
 body {
   margin: 0 auto;
+  overflow-x: hidden; // Use of the full-width() mixin causes a tiny horizontal scrollbar.
 }
 
 .layout-container {
