@@ -9,6 +9,7 @@ dependencies:
     - media.type.logo
     - media.type.remote_video
     - media.type.video
+    - node.type.event_landing_page
     - node.type.media_mention
     - node.type.page
     - node.type.post
@@ -98,3 +99,6 @@ permissions:
   - 'view video_post revisions'
   - 'create terms in event_sponsors'
   - 'edit terms in event_sponsors'
+  - 'create event_landing_page content'
+  - 'delete own event_landing_page content'
+  - 'edit own event_landing_page content'
