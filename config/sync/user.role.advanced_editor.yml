@@ -16,6 +16,7 @@ dependencies:
     - node.type.post_experience_report
     - node.type.story
     - node.type.video_post
+    - taxonomy.vocabulary.event_sponsors
   module:
     - collection
     - collection_content_permissions
@@ -95,3 +96,5 @@ permissions:
   - 'view story revisions'
   - 'view unpublished paragraphs'
   - 'view video_post revisions'
+  - 'create terms in event_sponsors'
+  - 'edit terms in event_sponsors'
