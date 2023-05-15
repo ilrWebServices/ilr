@@ -157,9 +157,11 @@
   Drupal.behaviors.union_marketing_event_agenda_toggle = {
     attach: function (context, settings) {
       const agenda_components = context.querySelectorAll('.paragraph--type--agenda');
+      let agenda_count = 0;
 
       for (const agenda_component of agenda_components) {
-        agenda_component.dataset.collapsed = 1;
+        agenda_count += 1;
+        agenda_component.dataset.collapsed = (agenda_count === 1) ? 0 : 1;
 
         agenda_component.addEventListener('click', function (event) {
           // Only toggle the collapsed attribute if the click is on the div
