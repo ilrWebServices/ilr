@@ -184,6 +184,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
    *   The dispatched event.
    */
   public function collectionUpdate(Event $event) {
+    /** @var \Drupal\collection\Entity\CollectionInterface $collection */
     $collection = $event->collection;
     $collection_type = $this->entityTypeManager->getStorage('collection_type')->load($collection->bundle());
     $is_subsite = (bool) $collection_type->getThirdPartySetting('collection_subsites', 'contains_subsites');
@@ -203,7 +204,6 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
       }
 
       $bvg = $bvg_collection_item->item->first()->entity;
-      $path_changed = FALSE;
 
       foreach ($bvg->getConditions() as $condition_id => $condition) {
         if ($condition->getPluginId() !== 'request_path') {
@@ -216,19 +216,32 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
         // has a blog collection in it as well, such as the Worker Institute.
         // @todo - Update collection module event to include the original value
         // for comparison.
+        // @todo consider removing this, as negated conditions could still need an update of their path.
         if ($condition_config['negate'] === TRUE) {
           return;
         }
 
-        $path_changed = $condition_config['pages'] !== $collection->toUrl()->toString() . '*';
-        $condition_config['pages'] = $collection->toUrl()->toString() . '*';
-        $condition->setConfiguration($condition_config);
-      }
+        // $collection->path->alias is the old path alias. We don't know why,
+        // but the value from the path entity is different than the one returned
+        // from toUrl(). We take advantage of that discrepancy here, but we are
+        // relying on undocumented functionality. Note that we also tried
+        // $collection->original, but that property is not available at this
+        // point, for reasons we don't understand.
+        $old_path_alias = $collection->path->alias;
+        $collection_path = $collection->toUrl()->toString();
 
-      if ($path_changed && $bvg->save()) {
-        $this->messenger->addMessage($this->t('Updated the path condition for %bvg_name block visibility group.', [
-          '%bvg_name' => $bvg->label(),
-        ]));
+        if ($collection_path !== $old_path_alias) {
+          $condition_config['pages'] = str_replace($old_path_alias, $collection_path, $condition_config['pages']);
+          $condition->setConfiguration($condition_config);
+
+          if ($bvg->save()) {
+            $this->messenger->addMessage($this->t('Updated the path condition for %bvg_name block visibility group. Changed %old_path to %new_path.', [
+              '%bvg_name' => $bvg->label(),
+              '%old_path' => $old_path_alias,
+              '%new_path' => $collection_path,
+            ]));
+          }
+        }
       }
     }
   }
