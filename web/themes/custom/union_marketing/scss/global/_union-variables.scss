@@ -68,3 +68,7 @@
 .cu-component--people-listing.cu-list--grid-compact {
   --cu-grid-row-gap: var(--cu-vr1);
 }
+
+.cu-card__content .cu-feature-list {
+  --cu-grid-row-gap: 0;
+}
