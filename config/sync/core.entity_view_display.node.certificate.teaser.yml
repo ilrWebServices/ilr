@@ -12,7 +12,11 @@ dependencies:
     - field.field.node.certificate.field_prerequisites
     - field.field.node.certificate.field_representative_image
     - field.field.node.certificate.field_required_courses_text
+    - field.field.node.certificate.field_required_elective_count
     - field.field.node.certificate.field_sections
+    - field.field.node.certificate.field_sf_description
+    - field.field.node.certificate.field_sf_requirements
+    - field.field.node.certificate.field_sf_title
     - field.field.node.certificate.field_topics
     - field.field.node.certificate.field_total_cost
     - field.field.node.certificate.layout_builder__layout
@@ -24,6 +28,11 @@ targetEntityType: node
 bundle: certificate
 mode: teaser
 content:
+  entity_label:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   links:
     settings: {  }
     third_party_settings: {  }
@@ -38,7 +47,11 @@ hidden:
   field_prerequisites: true
   field_representative_image: true
   field_required_courses_text: true
+  field_required_elective_count: true
   field_sections: true
+  field_sf_description: true
+  field_sf_requirements: true
+  field_sf_title: true
   field_topics: true
   field_total_cost: true
   layout_builder__layout: true
