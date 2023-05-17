@@ -1,0 +1,29 @@
+uuid: c13960e3-3000-4839-b0fd-e1c56e12ad11
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.course_certificate.field_certificate
+    - field.field.node.course_certificate.field_course
+    - field.field.node.course_certificate.field_required
+    - field.field.node.course_certificate.field_weight
+    - node.type.course_certificate
+  module:
+    - user
+id: node.course_certificate.teaser
+targetEntityType: node
+bundle: course_certificate
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_certificate: true
+  field_course: true
+  field_required: true
+  field_weight: true
+  search_api_excerpt: true

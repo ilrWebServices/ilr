@@ -1,0 +1,57 @@
+uuid: c5f69046-609c-4561-b29b-8f1b359b899d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.course_certificate.field_certificate
+    - field.field.node.course_certificate.field_course
+    - field.field.node.course_certificate.field_required
+    - field.field.node.course_certificate.field_weight
+    - node.type.course_certificate
+  module:
+    - options
+    - user
+id: node.course_certificate.default
+targetEntityType: node
+bundle: course_certificate
+mode: default
+content:
+  field_certificate:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_course:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_required:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_weight:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  search_api_excerpt: true
