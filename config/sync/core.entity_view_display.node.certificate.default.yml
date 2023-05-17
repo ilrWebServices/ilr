@@ -11,7 +11,11 @@ dependencies:
     - field.field.node.certificate.field_prerequisites
     - field.field.node.certificate.field_representative_image
     - field.field.node.certificate.field_required_courses_text
+    - field.field.node.certificate.field_required_elective_count
     - field.field.node.certificate.field_sections
+    - field.field.node.certificate.field_sf_description
+    - field.field.node.certificate.field_sf_requirements
+    - field.field.node.certificate.field_sf_title
     - field.field.node.certificate.field_topics
     - field.field.node.certificate.field_total_cost
     - field.field.node.certificate.layout_builder__layout
@@ -60,24 +64,6 @@ third_party_settings:
           label: ''
           context_mapping: {  }
         components:
-          38a16e29-ff59-4498-9723-ef44e5deca4d:
-            uuid: 38a16e29-ff59-4498-9723-ef44e5deca4d
-            region: banner
-            configuration:
-              id: 'field_block:node:certificate:title'
-              label: Title
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: string
-                label: hidden
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-            weight: 2
-            additional: {  }
           5a395ad3-64f5-4529-bf91-e734770cd74b:
             uuid: 5a395ad3-64f5-4529-bf91-e734770cd74b
             region: banner
@@ -250,6 +236,25 @@ third_party_settings:
               context_mapping: {  }
             weight: 0
             additional: {  }
+          cc0c45c6-ff08-446d-91a7-6f5c92730ee1:
+            uuid: cc0c45c6-ff08-446d-91a7-6f5c92730ee1
+            region: banner
+            configuration:
+              id: 'field_block:node:certificate:title'
+              label: Title
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_cu_section
@@ -297,24 +302,6 @@ third_party_settings:
                 settings: {  }
                 third_party_settings: {  }
             weight: 0
-            additional: {  }
-          03885a70-5792-45a5-ba6c-4e1906f6584a:
-            uuid: 03885a70-5792-45a5-ba6c-4e1906f6584a
-            region: main
-            configuration:
-              id: 'field_block:node:certificate:field_course'
-              label: Courses
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: entity_reference_entity_view
-                label: hidden
-                settings:
-                  view_mode: teaser
-                third_party_settings: {  }
-            weight: 2
             additional: {  }
           e9f44bac-c8b6-424a-a5bc-793e3d8a97b2:
             uuid: e9f44bac-c8b6-424a-a5bc-793e3d8a97b2
@@ -418,6 +405,11 @@ content:
     third_party_settings: {  }
     weight: 108
     region: banner
+  entity_label:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_completion_time:
     type: number_integer
     label: above
@@ -475,6 +467,15 @@ content:
     third_party_settings: {  }
     weight: 111
     region: content
+  field_required_elective_count:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 115
+    region: content
   field_sections:
     type: entity_reference_revisions_entity_view
     label: above
@@ -484,6 +485,28 @@ content:
     third_party_settings: {  }
     weight: 110
     region: main
+  field_sf_description:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 116
+    region: content
+  field_sf_requirements:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 114
+    region: content
+  field_sf_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 117
+    region: content
   field_topics:
     type: entity_reference_label
     label: above

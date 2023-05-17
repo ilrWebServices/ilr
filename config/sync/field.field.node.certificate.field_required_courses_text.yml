@@ -17,7 +17,7 @@ field_name: field_required_courses_text
 entity_type: node
 bundle: certificate
 label: 'Required courses text'
-description: 'Optional. If no text is entered here, Required Courses will default to a template that calculates the number of published Course nodes in the Courses reference field.'
+description: 'Optional. If no text is entered here, Required Courses will default to a template that displays the number of required Courses and the value of the <em>Number of required electives</em> field.'
 required: false
 translatable: false
 default_value: {  }
