@@ -1,0 +1,17 @@
+uuid: 57993253-45de-40c6-8f82-6bfbe726861e
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Course certificate'
+type: course_certificate
+description: 'This content type is not meant for display. It''s purpose is to join Courses to Certificates from Salesforce.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false
