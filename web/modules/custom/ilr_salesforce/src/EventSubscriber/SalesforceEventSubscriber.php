@@ -201,6 +201,10 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     $course_certificate = $event->getEntity();
     $sf = $event->getMappedObject()->getSalesforceRecord();
     $course_certificate->status = ($sf->field('Status__c') == 'Active') ? 1 : 0;
+
+    if (empty($sf->field('Web_Rank__c'))) {
+      $course_certificate->field_weight = 1000;
+    }
   }
 
 }
