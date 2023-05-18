@@ -158,7 +158,10 @@
     attach: function (context, settings) {
       // Set only the first agenda item to open.
       const agenda_component = context.querySelector('.paragraph--type--agenda');
-      agenda_component.setAttribute('open', '');
+
+      if (agenda_component) {
+        agenda_component.setAttribute('open', '');
+      }
     }
   }
 
