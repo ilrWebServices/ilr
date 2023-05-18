@@ -323,6 +323,32 @@ third_party_settings:
             additional: {  }
         third_party_settings: {  }
       -
+        layout_id: layout_onecol
+        layout_settings:
+          label: Curriculum
+          context_mapping: {  }
+        components:
+          75072445-76b4-40e3-932b-2e614d6e7c29:
+            uuid: 75072445-76b4-40e3-932b-2e614d6e7c29
+            region: content
+            configuration:
+              id: 'field_block:node:certificate:course_certificates'
+              label: 'Course certificates (reverse reference)'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: teaser
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
         layout_id: layout_cu_section
         layout_settings:
           label: ''
@@ -405,6 +431,14 @@ content:
     third_party_settings: {  }
     weight: 108
     region: banner
+  course_certificates:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
   entity_label:
     settings: {  }
     third_party_settings: {  }

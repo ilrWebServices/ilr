@@ -1,0 +1,37 @@
+.block-field-block--node--certificate--course-certificates {
+  position: relative;
+
+  .node--course {
+    height: 100%;
+  }
+
+  .node--course-certificate {
+    overflow: hidden;
+
+  }
+
+  [data-required] {
+    &::after {
+      content: attr(data-required);
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      padding: .25em 1em;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: center;
+      background-color: rebeccapurple;
+      transform: rotate(45deg) translate(32.5%, -300%);
+      opacity: .75;
+    }
+  }
+
+  [data-required="Elective"] {
+    &::after {
+      background-color: green;
+    }
+  }
+}
