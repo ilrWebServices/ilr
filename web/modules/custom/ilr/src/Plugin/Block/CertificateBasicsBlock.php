@@ -63,25 +63,26 @@ class CertificateBasicsBlock extends BlockBase implements ContainerFactoryPlugin
       return $build;
     }
 
-    if ($node->bundle() != 'certificate') {
+    if ($node->bundle() !== 'certificate') {
       return $build;
     }
 
+    /** @var \Drupal\ilr\Entity\CertificateNode $node */
     if ($node->field_required_courses_text->isEmpty()) {
-      $course_count = 0;
 
-      foreach ($node->field_course->referencedEntities() as $course_node) {
-        if ($course_node->isPublished()) {
-          $course_count++;
-        }
-      }
 
-      $required_courses_text = $this->t(<<<EOL
-      <p><strong>@course_count Focused Workshops</strong><br/>
-      Register for individual workshops to fit your schedule</p>
-      EOL, [
-        '@course_count' => $course_count
-      ]);
+      $required_courses_text = [
+        '#type' => 'inline_template',
+        '#template' => <<<EOL
+        <p>
+          <strong>{{course_required_count}} Focused Workshops</strong><br/>
+          {% trans %}Register for individual workshops to fit your schedule{% endtrans %}
+        </p>
+        EOL,
+        '#context' => [
+            'course_required_count' => count($node->getCourseCertificates('Required')),
+        ],
+      ];
     }
     else {
       $required_courses_text = $node->field_required_courses_text->value;
