@@ -62,6 +62,12 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       $query->fields[] = "End_Time__c";
       $query->fields[] = "Start_Time__c";
     }
+
+    if ($event->getMapping()->id() === 'course_certificate_node') {
+      // Add time fields the `course_certificate_node` mapping, to be used in
+      // self::pullPresaveCourseCertificateNode().
+      $query->fields[] = "Status__c";
+    }
   }
 
   /**
@@ -77,6 +83,10 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
 
     if ($event->getMapping()->id() === 'class_session') {
       $this->pullPresaveClassSession($event);
+    }
+
+    if ($event->getMapping()->id() === 'course_certificate_node') {
+      $this->pullPresaveCourseCertificateNode($event);
     }
   }
 
@@ -179,6 +189,18 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     $end_datetime = new DrupalDateTime("$session_date $end_time", 'America/New_York');
     $end_datetime->setTimezone(new \DateTimeZone('UTC'));
     $class_session->session_date->end_value = $end_datetime->format('Y-m-d\TH:i:s');
+  }
+
+  /**
+   * Pull presave event callback for course certificate nodes.
+   *
+   * @param \Drupal\salesforce_mapping\Event\SalesforcePullEvent $event
+   *   The event.
+   */
+  private function pullPresaveCourseCertificateNode(SalesforcePullEvent $event) {
+    $course_certificate = $event->getEntity();
+    $sf = $event->getMappedObject()->getSalesforceRecord();
+    $course_certificate->status = ($sf->field('Status__c') == 'Active') ? 1 : 0;
   }
 
 }

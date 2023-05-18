@@ -60,13 +60,6 @@ field_mappings:
     salesforce_field: Id
     id: 4
     description: ''
-  -
-    drupal_field_type: properties
-    drupal_field_value: status
-    direction: sf_drupal
-    salesforce_field: Status__c
-    id: 5
-    description: ''
 status: true
 dependencies:
   config:
