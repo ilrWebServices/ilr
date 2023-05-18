@@ -76,11 +76,13 @@ class CertificateBasicsBlock extends BlockBase implements ContainerFactoryPlugin
         '#template' => <<<EOL
         <p>
           <strong>{{course_required_count}} Focused Workshops</strong><br/>
+          {% if course_elective_count %}<strong>{{course_elective_count}} Required Electives</strong><br/>{% endif %}
           {% trans %}Register for individual workshops to fit your schedule{% endtrans %}
         </p>
         EOL,
         '#context' => [
             'course_required_count' => count($node->getCourseCertificates('Required')),
+            'course_elective_count' => $node->field_required_elective_count->value ?? 0
         ],
       ];
     }
