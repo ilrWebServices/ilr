@@ -12,6 +12,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\ilr\EventSubscriber\CollectionEventSubscriber;
 use Drupal\Core\Url;
+use Drupal\ilr\Entity\CertificateNode;
 use Drupal\ilr\Entity\EventNodeBase;
 use Drupal\salesforce_mapping\Entity\MappedObject;
 
@@ -1590,5 +1591,21 @@ function ilr_post_update_add_event_keywords_terms_and_migrate_event_listing_beha
 
     $paragraph->setAllBehaviorSettings($settings);
     $paragraph->save();
+  }
+}
+
+/**
+ * Add bundle fields to certificates node type.
+ */
+function ilr_post_update_certificate_bundle_fields() {
+  $entity_type = \Drupal::entityTypeManager()->getDefinition('node');
+  $field_definition_listener = \Drupal::service('field_definition.listener');
+
+  // Add the new fields to fields to entity.definitions.bundle_field_map. In
+  // this case, the field(s) are computed, so the storage doesn't need to be
+  // installed.
+  // @see https://www.drupal.org/i/3045509
+  foreach (CertificateNode::bundleFieldDefinitions($entity_type, 'certificate', []) as $field_name => $storage_definition) {
+    $field_definition_listener->onFieldDefinitionCreate($storage_definition);
   }
 }
