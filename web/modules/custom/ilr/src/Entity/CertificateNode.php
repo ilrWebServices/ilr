@@ -26,6 +26,7 @@ class CertificateNode extends Node implements CertificateNodeInterface {
    */
   public function getCourseCertificates($required = '') {
     $query = \Drupal::entityQuery('node')
+      ->accessCheck(TRUE)
       ->condition('status', 1)
       ->condition('type', 'course_certificate')
       ->condition('field_certificate', $this->id())
