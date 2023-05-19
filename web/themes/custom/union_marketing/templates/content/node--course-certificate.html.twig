@@ -72,7 +72,12 @@
   not node.isPublished() ? 'node--unpublished',
   view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 ] %}
-<div{{attributes.setAttribute('data-required', node.field_required.value).setAttribute('data-weight', node.field_weight.value).addClass(classes)|without('role')}}>
+{% if node.field_required.value == 'Required' %}
+  {% set required = 'Core' %}
+{% else %}
+  {% set required = 'Elective' %}
+{% endif %}
+<div{{attributes.setAttribute('data-required', required).setAttribute('data-weight', node.field_weight.value).addClass(classes)|without('role')}}>
   {{ title_suffix }}
   {{ content }}
 </div>
