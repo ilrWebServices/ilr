@@ -1,5 +1,4 @@
 .block-field-block--node--certificate--course-certificates {
-  position: relative;
 
   .node--course {
     height: 100%;
@@ -7,6 +6,7 @@
 
   .node--course-certificate {
     overflow: hidden;
+    position: relative;
 
   }
 
