@@ -31,6 +31,7 @@ class CertificateNode extends Node implements CertificateNodeInterface {
       ->condition('type', 'course_certificate')
       ->condition('field_certificate', $this->id())
       ->condition('field_course', NULL, 'IS NOT NULL')
+      ->condition('field_course.entity.status', 1)
       ->sort('field_required', 'DESC')
       ->sort('field_weight');
 
