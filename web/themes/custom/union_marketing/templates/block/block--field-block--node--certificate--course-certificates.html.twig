@@ -33,18 +33,9 @@
     'block-' ~ plugin_id|replace({':': '--'})|clean_class,
   ]
 %}
-
-{% set section_content %}
-{% include '@union/_grid.twig' with {
-  grid_content: content,
-  attributes: { class: 'cu-grid--3col' }
-} only %}
-{{ title_suffix }}
-{% endset %}
-
 {% include '@union/_section.twig' with {
   attributes: attributes.addClass(classes).addClass('cu-section--lefty'),
   heading: 'Core Curriculum'|trans,
   eyebrow_heading: 'Register'|trans,
-  content: section_content,
+  content: content,
 } only %}

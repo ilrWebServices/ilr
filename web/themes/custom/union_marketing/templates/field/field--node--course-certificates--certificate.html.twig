@@ -20,6 +20,12 @@
  * @see template_preprocess_field()
  */
 #}
+{% set grid_content = [] %}
 {% for item in items %}
-  {{ item.content }}
+  {% set grid_content = grid_content|merge([item.content]) %}
 {% endfor %}
+
+{% include '@union/_grid.twig' with {
+  grid_content: grid_content,
+  attributes: { class: 'cu-grid--3col' }
+} only %}
