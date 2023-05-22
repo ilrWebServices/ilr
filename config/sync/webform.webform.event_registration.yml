@@ -80,7 +80,7 @@ elements: |-
     '#required': true
   opt_in:
     '#type': checkbox
-    '#title': Opt-in
+    '#title': 'Opt-in for updates on similar programs'
   outreach_marketing_personas:
     '#type': hidden
     '#title': outreach_marketing_personas
