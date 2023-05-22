@@ -353,3 +353,16 @@ variants:
       settings: {  }
       elements: "email:\r\n  '#weight': 6\r\nopt_in:\r\n  '#title': Opt-in for updates from Buffalo Co-Lab Institute\r\ncustom_1_answer:\r\n  '#type': textarea\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Questions for panelists'"
       handlers: {  }
+  paths_to_labor_arbitrator:
+    id: override
+    variant_id: paths_to_labor_arbitrator
+    element_key: variant
+    label: 'Paths to Becoming a Labor Arbitrator'
+    notes: ''
+    status: true
+    weight: 3
+    settings:
+      debug: false
+      settings: {  }
+      elements: "address:\r\n  '#access': true"
+      handlers: {  }
