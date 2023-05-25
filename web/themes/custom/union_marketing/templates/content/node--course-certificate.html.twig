@@ -73,9 +73,9 @@
   view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 ] %}
 {% if node.field_required.value == 'Required' %}
-  {% set required = 'Core' %}
+  {% set required = 'Required'|trans %}
 {% else %}
-  {% set required = 'Elective' %}
+  {% set required = 'Elective'|trans %}
 {% endif %}
 <div{{attributes.setAttribute('data-required', required).setAttribute('data-weight', node.field_weight.value).addClass(classes)|without('role')}}>
   {{ title_suffix }}

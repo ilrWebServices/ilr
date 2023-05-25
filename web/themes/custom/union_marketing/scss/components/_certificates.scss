@@ -7,12 +7,11 @@
   .node--course-certificate {
     overflow: hidden;
     position: relative;
-
   }
 
   [data-required] {
     &::after {
-      content: attr(data-required);
+      // content: attr(data-required);
       display: block;
       position: absolute;
       top: 0;
@@ -23,15 +22,25 @@
       font-weight: bold;
       font-size: 14px;
       text-align: center;
-      background-color: rebeccapurple;
+      background-color: var(--cu-color-brand);
       transform: rotate(45deg) translate(32.5%, -300%);
-      opacity: .75;
     }
   }
 
   [data-required="Elective"] {
     &::after {
-      background-color: green;
+      background-color: white;
+      background-color: #C1B7B1;
+      color: #222;
     }
   }
+
+  [data-required-status="elective"] [data-required="Required"] {
+    display: none;
+  }
+
+  [data-required-status="required"] [data-required="Elective"] {
+    display: none;
+  }
+}
 }
