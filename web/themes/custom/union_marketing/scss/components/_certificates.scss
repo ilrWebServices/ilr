@@ -36,13 +36,4 @@
       color: #222;
     }
   }
-
-  [data-required-status="elective"] [data-required="Required"] {
-    display: none;
-  }
-
-  [data-required-status="required"] [data-required="Elective"] {
-    display: none;
-  }
-}
 }
