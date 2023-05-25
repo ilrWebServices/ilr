@@ -70,6 +70,52 @@ class CertificateNode extends Node implements CertificateNodeInterface {
         'weight' => 0,
       ]);
 
+    $definitions['course_certificates_required'] = BundleFieldDefinition::create('entity_reference')
+      ->setName('course_certificates_required')
+      ->setTargetEntityTypeId($entity_type->id())
+      ->setTargetBundle($bundle)
+      ->setLabel(t('Course certificates - required (reverse reference)'))
+      ->setRevisionable(FALSE)
+      ->setComputed(TRUE)
+      ->setClass('\Drupal\ilr\CertificateCourseCertificateItemList')
+      ->setSettings([
+        'handler' => 'default:node',
+        'handler_settings' => [
+          'target_bundles' => [
+            'course_certificate' => 'course_certificate'
+          ]
+        ],
+        'required_status' => 'required',
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'weight' => 0,
+      ]);
+
+    $definitions['course_certificates_elective'] = BundleFieldDefinition::create('entity_reference')
+      ->setName('course_certificates_elective')
+      ->setTargetEntityTypeId($entity_type->id())
+      ->setTargetBundle($bundle)
+      ->setLabel(t('Course certificates - elective (reverse reference)'))
+      ->setRevisionable(FALSE)
+      ->setComputed(TRUE)
+      ->setClass('\Drupal\ilr\CertificateCourseCertificateItemList')
+      ->setSettings([
+        'handler' => 'default:node',
+        'handler_settings' => [
+          'target_bundles' => [
+            'course_certificate' => 'course_certificate'
+          ]
+        ],
+        'required_status' => 'elective',
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'weight' => 0,
+      ]);
+
     return $definitions;
   }
 

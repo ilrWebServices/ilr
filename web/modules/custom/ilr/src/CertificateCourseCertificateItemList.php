@@ -14,11 +14,13 @@ class CertificateCourseCertificateItemList extends EntityReferenceFieldItemList 
 
   /**
    * Compute the courses that reference this certificate.
+   *
+   * @see CertificateNode::bundleFieldDefinitions()
    */
   protected function computeValue() {
     /** @var \Drupal\ilr\Entity\CertificateNode $certificate_entity */
     $certificate_entity = $this->getEntity();
-    $course_certificates = $certificate_entity->getCourseCertificates();
+    $course_certificates = $certificate_entity->getCourseCertificates($this->getSetting('required_status') ?? '');
     $key = 0;
 
     foreach ($course_certificates as $nid) {

@@ -1368,7 +1368,7 @@ function ilr_post_update_event_landing_bundle_fields() {
 /**
  * Add bundle fields to certificates node type.
  */
-function ilr_post_update_certificate_bundle_fields_2() {
+function ilr_post_update_certificate_bundle_fields() {
   $entity_type = \Drupal::entityTypeManager()->getDefinition('node');
   $field_definition_listener = \Drupal::service('field_definition.listener');
 

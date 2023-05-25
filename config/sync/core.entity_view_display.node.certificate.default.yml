@@ -328,11 +328,11 @@ third_party_settings:
           label: Curriculum
           context_mapping: {  }
         components:
-          75072445-76b4-40e3-932b-2e614d6e7c29:
-            uuid: 75072445-76b4-40e3-932b-2e614d6e7c29
+          71c0d1c2-0cd3-497b-9168-4c55ef3796bb:
+            uuid: 71c0d1c2-0cd3-497b-9168-4c55ef3796bb
             region: content
             configuration:
-              id: 'field_block:node:certificate:course_certificates'
+              id: 'field_block:node:certificate:course_certificates_required'
               label: 'Core curriculum'
               label_display: visible
               provider: layout_builder
@@ -344,16 +344,14 @@ third_party_settings:
                 label: hidden
                 settings:
                   view_mode: teaser
-                third_party_settings:
-                  ilr:
-                    required_status: required
-            weight: 3
+                third_party_settings: {  }
+            weight: 1
             additional: {  }
-          cd74b993-5651-44ba-95fc-8f7e17b50826:
-            uuid: cd74b993-5651-44ba-95fc-8f7e17b50826
+          92fbf831-0cea-4f04-a332-d2c7c3764175:
+            uuid: 92fbf831-0cea-4f04-a332-d2c7c3764175
             region: content
             configuration:
-              id: 'field_block:node:certificate:course_certificates'
+              id: 'field_block:node:certificate:course_certificates_elective'
               label: 'Elective curriculum'
               label_display: visible
               provider: layout_builder
@@ -365,10 +363,8 @@ third_party_settings:
                 label: hidden
                 settings:
                   view_mode: teaser
-                third_party_settings:
-                  ilr:
-                    required_status: elective
-            weight: 4
+                third_party_settings: {  }
+            weight: 2
             additional: {  }
         third_party_settings: {  }
       -
@@ -463,6 +459,14 @@ content:
     weight: 0
     region: content
   course_certificates_elective:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  course_certificates_required:
     type: entity_reference_label
     label: hidden
     settings:
