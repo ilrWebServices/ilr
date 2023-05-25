@@ -35,9 +35,11 @@
 %}
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
+  {% block label %}
   {% if label %}
     <h2{{ title_attributes.addClass('cu-heading') }}>{{ label }}</h2>
   {% endif %}
+  {% endblock %}
   {{ title_suffix }}
   {% block content %}
     {{ content }}
