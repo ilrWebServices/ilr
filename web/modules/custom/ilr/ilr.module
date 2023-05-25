@@ -31,7 +31,6 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\taxonomy\VocabularyInterface;
 use Drupal\collection\Entity\CollectionItemInterface;
 use Drupal\Core\Database\Query\AlterableInterface;
-use Drupal\Core\Field\FormatterInterface;
 use Drupal\ilr\Entity\CertificateNode;
 use Drupal\ilr\Entity\ClassNode;
 use Drupal\ilr\Entity\EventLandingNode;
@@ -1051,27 +1050,6 @@ function ilr_field_widget_text_textarea_with_summary_form_alter(&$element, FormS
     $element['#ilr_hide_value'] = TRUE;
     $element['#after_build'][] = '_ilr_disable_textarea_value';
   }
-}
-
-/**
- * Implements hook_field_formatter_third_party_settings_form().
- */
-function ilr_field_formatter_third_party_settings_form(FormatterInterface $plugin, FieldDefinitionInterface $field_definition, $view_mode, array $form, FormStateInterface $form_state) {
-  $element = [];
-
-  if ($field_definition->getName() === 'course_certificates') {
-    $element['required_status'] = [
-      '#type' => 'select',
-      '#title' => t('Required status'),
-      '#options' => [
-        'required' => 'Required',
-        'elective' => 'Elective',
-      ],
-      '#default_value' => $plugin->getThirdPartySetting('ilr', 'required_status'),
-    ];
-  }
-
-  return $element;
 }
 
 /**

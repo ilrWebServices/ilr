@@ -9,7 +9,6 @@ use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\easy_breadcrumb\EasyBreadcrumbConstants;
 use Drupal\ilr\Entity\EventNodeBase;
 
@@ -425,14 +424,6 @@ function union_marketing_preprocess_field__field_representative_image(&$variable
   if ($entity->hasField('field_representative_img_caption') && !$entity->field_representative_img_caption->isEmpty()) {
     $variables['attributes']['aria-labelledby'][] = 'media__caption-' . $entity->id();
   }
-}
-
-/**
- * Implements hook_preprocess_field().
- */
-function union_marketing_preprocess_field__node__course_certificates(&$variables) {
-  $third_party_settings = $variables['element']['#third_party_settings'];
-  $variables['attributes']['data-required-status'] = $third_party_settings['ilr']['required_status'] ?? '';
 }
 
 /**
