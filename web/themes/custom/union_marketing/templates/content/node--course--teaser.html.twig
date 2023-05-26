@@ -83,12 +83,12 @@
   {% set feature_list_items = [
     {
       name: upcoming_classes.0.field_class_date|view('teaser'),
-      icon: 'check-circle',
+      icon: 'calendar-simple',
       icon_size: '1em'
     },
     {
       name: upcoming_classes.0.computed_delivery_method,
-      icon: 'check-circle',
+      icon: 'geomarker',
       icon_size: '1em'
     }
   ] %}
@@ -112,13 +112,14 @@
   {% if not upcoming_classes.0.field_address.isEmpty() %}
   {% set feature_list_items = feature_list_items|merge([{
     name: upcoming_classes.0.field_address|view('teaser'),
-    icon: 'check-circle',
+    icon: 'geomarker',
     icon_size: '1em'
   }]) %}
   {% endif %}
 
   {% include '@union/_feature-list.twig' with {
     items: feature_list_items,
+    attributes: { class: 'course-teaser-details' },
     content_attributes: { class: 'cu-grid' }
   } only %}
 

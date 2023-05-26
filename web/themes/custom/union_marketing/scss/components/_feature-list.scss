@@ -9,11 +9,25 @@
   --cu-accent-height: 0px;
 }
 
-.node--course.node--view-mode-teaser .cu-feature-list__name {
-  --cu-font-size: var(--cu-ms-1);
+.node--course.node--view-mode-teaser {
+  .cu-feature-list {
+    --cu-grid-row-gap: var(--cu-vr0);
+  }
 
-  &::after {
-    display: none;
+  .cu-feature-list__name {
+    --cu-font-size: var(--cu-ms-1);
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .cu-icon {
+    --cu-text-color: #222;
+  }
+
+  .cu-icon__image {
+    margin-bottom: 0;
   }
 }
 
