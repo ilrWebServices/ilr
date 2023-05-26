@@ -13,7 +13,7 @@ pull_frequency: 0
 push_frequency: 0
 push_limit: 0
 push_retries: 3
-pull_where_clause: 'Course_Class__r.Synchronized_with_Web__c = TRUE'
+pull_where_clause: 'Course_Class__r.Synchronized_with_Web__c = TRUE and Certification__r.Synchronized_with_Web__c = TRUE'
 sync_triggers:
   push_create: false
   push_update: false
