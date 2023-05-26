@@ -53,9 +53,17 @@ field_mappings:
     salesforce_field: Show_on_Web__c
     id: 3
     description: ''
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_required_elective_count
+    direction: sf_drupal
+    salesforce_field: Number_of_Required_Electives__c
+    id: 4
+    description: ''
 status: true
 dependencies:
   config:
+    - field.field.node.certificate.field_required_elective_count
     - field.field.node.certificate.field_sf_description
     - field.field.node.certificate.field_sf_title
     - node.type.certificate
