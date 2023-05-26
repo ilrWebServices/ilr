@@ -46,6 +46,13 @@ field_mappings:
     salesforce_field: Requirements__c
     id: 2
     description: ''
+  -
+    drupal_field_type: properties
+    drupal_field_value: status
+    direction: sf_drupal
+    salesforce_field: Show_on_Web__c
+    id: 3
+    description: ''
 status: true
 dependencies:
   config:
