@@ -1609,3 +1609,48 @@ function ilr_post_update_certificate_bundle_fields() {
     $field_definition_listener->onFieldDefinitionCreate($storage_definition);
   }
 }
+
+/**
+ * Add certificate_node sf mappings for existing certificates.
+ */
+function ilr_post_update_add_certificate_mappings() {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $mapped_object_storage = $entity_type_manager->getStorage('salesforce_mapped_object');
+  $node_storage = $entity_type_manager->getStorage('node');
+
+  $items = [
+    '3964' => 'a0n0P00000DHOF9QAP',
+    '3965' => 'a0n0P00000DHOEaQAP',
+    '3966' => 'a0n0P00000DHOFkQAP',
+    '3967' => 'a0n0P00000DHOCPQA5',
+    '3968' => 'a0n0P00000DHOC4QAP',
+    '3969' => 'a0n0P00000DHOB1QAP',
+    '3970' => 'a0n0P00000DW1pMQAT',
+    '3973' => 'a0n4U00000FnxbTQAR',
+    '3974' => 'a0n4U00000FnxazQAB',
+    '3976' => 'a0n0P00000E39aCQAR',
+    '3977' => 'a0n0P00000DHOL0QAP',
+    '3978' => 'a0n0P00000DHOLDQA5',
+    '3979' => 'a0n0P00000DHOGmQAP',
+    // '3981' => 'a0n0P00000DHOEaQAP', // Dupe
+    '3982' => 'a0n0P00000DV8uwQAD',
+    '3985' => 'a0n4U00000EwUiDQAV',
+    '5482' => 'a0n4U00000EwMwbQAF',
+    '5483' => 'a0n4U00000FGnfLQAT',
+    '10092' => 'a0n4U00000GRBHIQA5',
+  ];
+
+  foreach ($items as $nid => $sfid) {
+    if (!$node = $node_storage->load($nid)) {
+      continue;
+    }
+
+    $mapped_object = $mapped_object_storage->create([
+      'salesforce_mapping' => 'certificate_node',
+      'salesforce_id' => $sfid,
+    ]);
+
+    $mapped_object->drupal_entity = $node;
+    $mapped_object->save();
+  }
+}
