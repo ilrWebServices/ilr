@@ -63,6 +63,12 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       $query->fields[] = "Start_Time__c";
     }
 
+    if ($event->getMapping()->id() === 'certificate_node') {
+      // Add time fields the `certificate_node` mapping, to be used in
+      // self::pullPresaveCertificateNode().
+      $query->fields[] = "Active__c";
+    }
+
     if ($event->getMapping()->id() === 'course_certificate_node') {
       // Add time fields the `course_certificate_node` mapping, to be used in
       // self::pullPresaveCourseCertificateNode().
@@ -85,9 +91,15 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       $this->pullPresaveClassSession($event);
     }
 
+    if ($event->getMapping()->id() === 'certificate_node') {
+      $this->pullPresaveCertificateNode($event);
+    }
+
     if ($event->getMapping()->id() === 'course_certificate_node') {
       $this->pullPresaveCourseCertificateNode($event);
     }
+
+
   }
 
   /**
@@ -189,6 +201,23 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     $end_datetime = new DrupalDateTime("$session_date $end_time", 'America/New_York');
     $end_datetime->setTimezone(new \DateTimeZone('UTC'));
     $class_session->session_date->end_value = $end_datetime->format('Y-m-d\TH:i:s');
+  }
+
+  /**
+   * Pull presave event callback for certificate nodes.
+   *
+   * @param \Drupal\salesforce_mapping\Event\SalesforcePullEvent $event
+   *   The event.
+   *
+   *   Assumptions
+   *   - Times are stored in America/New_York but do not account for DST
+   *   - End times are the same date as the start times.
+   */
+  private function pullPresaveCertificateNode(SalesforcePullEvent $event) {
+    $certificate = $event->getEntity();
+    $sf = $event->getMappedObject()->getSalesforceRecord();
+    $sf_status = $sf->field('Active__c');
+    $certificate->published = ($sf_status == 'active') ? 1 : 0;
   }
 
   /**
