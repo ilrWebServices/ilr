@@ -46,6 +46,14 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  course_certificates_required:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
   entity_label:
     settings: {  }
     third_party_settings: {  }
