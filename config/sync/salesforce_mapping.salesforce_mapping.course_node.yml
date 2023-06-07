@@ -13,7 +13,7 @@ pull_frequency: 0
 push_frequency: 0
 push_limit: 0
 push_retries: 3
-pull_where_clause: 'Synchronized_with_Web__c = TRUE AND Program_Type__c = ''Open Enrollment'''
+pull_where_clause: 'Synchronized_with_Web__c = TRUE AND Program_Type__c = ''Open Enrollment'' AND Program__r.ID != ''a0h4U00001OFFFVQA5'''
 sync_triggers:
   pull_create: true
   pull_update: true
