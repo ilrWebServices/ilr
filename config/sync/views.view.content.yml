@@ -6,6 +6,7 @@ dependencies:
     - node.type.certificate
     - node.type.class
     - node.type.course
+    - node.type.event_landing_page
     - node.type.instructor
     - node.type.media_mention
     - node.type.page
@@ -520,6 +521,7 @@ display:
           value:
             certificate: certificate
             course: course
+            event_landing_page: event_landing_page
             post_document: post_document
             post_experience_report: post_experience_report
             instructor: instructor
