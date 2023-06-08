@@ -1,0 +1,62 @@
+langcode: en
+id: cahrs_event_node
+label: 'CAHRS Event Node'
+weight: 0
+type: salesforce_mapping
+key: ''
+always_upsert: false
+async: false
+push_standalone: false
+pull_standalone: false
+pull_trigger_date: LastModifiedDate
+pull_frequency: 0
+push_frequency: 0
+push_limit: 0
+push_retries: 3
+pull_where_clause: 'Synchronized_with_Web__c = TRUE AND Course__r.Synchronized_with_Web__c = TRUE AND Course__r.Program__r.Name = ''CAHRS Events'''
+sync_triggers:
+  push_create: false
+  push_update: false
+  push_delete: false
+  pull_create: true
+  pull_update: true
+  pull_delete: true
+salesforce_object_type: EXECED_Event_Class__c
+drupal_entity_type: node
+drupal_bundle: event_landing_page
+field_mappings:
+  -
+    drupal_field_type: properties
+    drupal_field_value: event_date.value
+    direction: sf_drupal
+    salesforce_field: Start__c
+    id: 0
+    description: ''
+  -
+    drupal_field_type: properties
+    drupal_field_value: event_date.end_value
+    direction: sf_drupal
+    salesforce_field: End__c
+    id: 1
+    description: ''
+  -
+    drupal_field_type: properties
+    drupal_field_value: title
+    direction: sf_drupal
+    salesforce_field: Name
+    id: 2
+    description: ''
+  -
+    drupal_field_type: properties
+    drupal_field_value: status
+    direction: sf_drupal
+    salesforce_field: Class_Show_on_Web__c
+    id: 3
+    description: ''
+status: true
+dependencies:
+  config:
+    - node.type.event_landing_page
+  module:
+    - salesforce_pull
+uuid: 18bd3b59-3a56-4af0-bf22-b207ba635288
