@@ -366,3 +366,16 @@ variants:
       settings: {  }
       elements: "address:\r\n  '#access': true"
       handlers: {  }
+  cahrs_event:
+    id: override
+    variant_id: cahrs_event
+    element_key: variant
+    label: 'CAHRS Event'
+    notes: ''
+    status: true
+    weight: 3
+    settings:
+      debug: false
+      settings: {  }
+      elements: "company:\r\n  '#title': Company\r\nphone:\r\n  '#access': true\r\naddress:\r\n  '#access': true\r\n  '#address__access': true\r\n  '#postal_code__access': true\r\naccessible_accommodation:\r\n  '#access': false"
+      handlers: {  }
