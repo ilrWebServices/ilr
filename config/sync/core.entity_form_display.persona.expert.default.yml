@@ -13,6 +13,7 @@ dependencies:
     - person.persona_type.expert
   module:
     - media_library
+    - path
     - telephone
     - text
 id: persona.expert.default
@@ -91,6 +92,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
     third_party_settings: {  }
   person:
     type: entity_reference_autocomplete
