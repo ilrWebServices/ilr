@@ -36,6 +36,7 @@ use Drupal\ilr\Entity\EventLandingNode;
 use Drupal\ilr\Entity\EventNodeBase;
 use Drupal\ilr\Entity\ImageMedia;
 use Drupal\node\Entity\NodeType;
+use Drupal\salesforce_mapping\Entity\MappedObjectInterface;
 
 /**
  * Implements hook_theme().
@@ -796,6 +797,32 @@ function ilr_media_load(array $entities) {
   foreach ($entities as $entity) {
     if (!in_array($entity->uid->target_id, $users)) {
       $entity->uid = 1;
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ *
+ * @param \Drupal\salesforce_mapping\Entity\MappedObjectInterface $entity
+ */
+function ilr_salesforce_mapped_object_insert(MappedObjectInterface $entity) {
+  // Add new CAHRS event landing pages to the CAHRS collection.
+  if ($entity->getMapping()->id() === 'cahrs_event_node') {
+    try {
+      $collection_item = \Drupal::service('entity_type.manager')->getStorage('collection_item')->create([
+        'type' => 'default',
+        'collection' => 53,
+        'canonical' => TRUE,
+      ]);
+      $collection_item->item = $entity->getMappedEntity();
+      $collection_item->save();
+    }
+    catch (\Exception $e) {
+      // Do nothing. This page is probably already in the collection. We don't
+      // use $entity->getMappedEntity()->isNew() because by the time the
+      // salesforce_mapped_object is saved, its mapped entity has already been
+      // saved.
     }
   }
 }
