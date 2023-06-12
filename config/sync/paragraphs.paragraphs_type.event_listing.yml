@@ -4,13 +4,17 @@ status: true
 dependencies:
   module:
     - ilr
-    - localist_paragraph_behavior
 id: event_listing
 label: 'Event listing'
 icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
+  ilr_event_listing:
+    enabled: true
+    events_shown: 5
+    keywords: ILR
+    sources: _localist
   list_styles:
     enabled: true
     list_styles:
@@ -24,7 +28,3 @@ behavior_plugins:
     columns_enabled: 0
     columns_min: ''
     columns_max: ''
-  localist_events:
-    enabled: true
-    events_shown: 5
-    keywords: ILR
