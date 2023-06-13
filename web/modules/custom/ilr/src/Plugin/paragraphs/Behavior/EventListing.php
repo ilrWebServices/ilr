@@ -97,7 +97,7 @@ class EventListing extends ParagraphsBehaviorBase {
     ];
 
     $keyword_terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadMultiple(
-      array_keys($paragraph->getBehaviorSetting($this->getPluginId(), 'keywords'))
+      array_keys($paragraph->getBehaviorSetting($this->getPluginId(), 'keywords') ?? [])
     );
 
     $form['keywords'] = [
