@@ -65,6 +65,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
 
     if ($event->getMapping()->id() === 'cahrs_event_node') {
       $query->fields[] = "Close_Web_Registration__c";
+      $query->fields[] = "Class_Description__c";
     }
   }
 
@@ -233,6 +234,13 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       post_button_text:
       outreach_marketing_personas: CAHRS Quarterly
       EOT;
+    }
+
+    // Add the description if it is empty. A text with summary field is only
+    // considered empty if both the summary and value are blank.
+    if ($event_landing_page->body->isEmpty()) {
+      $event_landing_page->body->value = $sf->field('Class_Description__c');
+      $event_landing_page->body->format = 'basic_formatting_with_media';
     }
   }
 
