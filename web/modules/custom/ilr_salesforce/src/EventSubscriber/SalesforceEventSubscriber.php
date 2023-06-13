@@ -236,6 +236,29 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       EOT;
     }
 
+    // Tag these event landing pages with 'CAHRS Partner Event'.
+    $term_storage = $this->entityTypeManager->getStorage('taxonomy_term');
+
+    $cahrs_term_id = $term_storage->getQuery()
+      ->condition('vid', 'event_keywords')
+      ->condition('name', 'CAHRS Partner Event')
+      ->execute();
+
+    if (!empty($cahrs_term_id)) {
+      $cahrs_term_id = reset($cahrs_term_id);
+      $cahrs_term = $term_storage->load($cahrs_term_id);
+    }
+    else {
+      $cahrs_term = $term_storage->create([
+        'vid' => 'event_keywords',
+        'name' => 'CAHRS Partner Event',
+      ]);
+      $cahrs_term->save();
+    }
+
+    // @todo Preserve any additional terms.
+    $event_landing_page->field_keywords->target_id = $cahrs_term->id();
+
     // Add the description if it is empty. A text with summary field is only
     // considered empty if both the summary and value are blank.
     if ($event_landing_page->body->isEmpty()) {
