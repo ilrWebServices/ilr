@@ -9,7 +9,7 @@
  *   - event_instances: An array of 'instances'. The most interesting is at 0.event_instance.start.
  *   - description: The description of the event in HTML.
  *   - description_text: The description of the event in plain text.
- *   - Localist_url: The URL to the event at Localist.
+ *   - localist_url: The URL to the event at Localist.
  *   - photo_url: The URL to the photo from the Localist event.
  *   - Plus many more. Try dump(event) to see them all.
  *
@@ -21,5 +21,6 @@
   event_date: event.event_instances.0.event_instance.start,
   heading: event.title,
   media: event.ilr_image,
+  show_time: false,
   link_url: event.localist_url,
 } only %}

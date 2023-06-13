@@ -81,6 +81,11 @@ function ilr_theme($existing, $type, $theme, $path) {
         'location_link' => [],
       ],
     ],
+    'localist_event' => [
+      'variables' => [
+        'event' => [],
+      ],
+    ],
   ];
 }
 
