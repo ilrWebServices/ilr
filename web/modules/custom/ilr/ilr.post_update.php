@@ -1578,6 +1578,8 @@ function ilr_post_update_add_event_keywords_terms_and_migrate_event_listing_beha
     $settings['ilr_event_listing'] = $settings['localist_events'];
     unset($settings['localist_events']);
 
+    $settings['ilr_event_listing']['sources'] = [ '_localist' => '_localist' ];
+
     $keywords = explode(',', $settings['ilr_event_listing']['keywords']);
     $settings['ilr_event_listing']['keywords'] = [];
 
