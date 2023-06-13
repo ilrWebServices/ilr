@@ -2,15 +2,20 @@
 
 namespace Drupal\ilr\Plugin\paragraphs\Behavior;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\ilr\Entity\EventNodeInterface;
+use Drupal\ilr\Event\IlrEvent;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\ParagraphsBehaviorBase;
 use Drupal\ilr\QueryString;
+use ReflectionClass;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -105,18 +110,30 @@ class EventListing extends ParagraphsBehaviorBase {
         'target_bundles' => ['event_keywords'],
       ],
       '#default_value' => $keyword_terms,
-      '#description' => $this->t('Try "ILR". Separate multiple keywords with commas.'),
+      '#description' => $this->t('Try "ILR". Separate multiple keywords with commas. Events with any of the keywords will be returned.'),
       '#required' => TRUE,
     ];
+
+    $event_node_bundles = [
+      '_localist' => $this->t('Localist'),
+    ];
+    // Get bundle names of eventalicious node types, e.g. any node bundle with a
+    // bundle class that extends EventNodeBase.
+    foreach (\Drupal::service('entity_type.bundle.info')->getBundleInfo('node') as $bundle => $bundle_info) {
+      if (isset($bundle_info['class'])) {
+        $class = new ReflectionClass($bundle_info['class']);
+
+        if ($class->isSubclassOf('\Drupal\ilr\Entity\EventNodeBase')) {
+          $event_node_bundles[$bundle] = $bundle_info['label'];
+        }
+      }
+    }
 
     $form['sources'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Sources'),
       '#description' => $this->t('TBD.'),
-      '#options' => [
-        '_localist' => $this->t('Localist'),
-        'event_landing_page' => $this->t('Event landing page'),
-      ],
+      '#options' => $event_node_bundles,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'sources') ?? '',
       '#required' => TRUE,
     ];
@@ -149,34 +166,92 @@ class EventListing extends ParagraphsBehaviorBase {
    */
   public function view(array &$build, Paragraph $paragraphs_entity, EntityViewDisplayInterface $display, $view_mode) {
     $items = [];
+    $events = [];
     $events_shown = (int) $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'events_shown');
     $keywords = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'keywords') ?? [];
-    $localist_data = $this->getLocalistEvents($keywords);
+    $sources = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'sources') ?? [];
+    $node_view_builder = $this->entityTypeManager->getViewBuilder('node');
 
-    if (empty($localist_data)) {
-      return $build;
+    if (empty($sources)) {
+      return;
     }
 
-    // @todo consider using double underscore template suggestions here if
-    // different list styles need to be supported.
-    foreach ($localist_data['events'] as $item) {
-      // If there is an image for this event, run it through an image style.
-      if (!empty($item['event']['photo_url'])) {
-        $item['event']['ilr_image'] = [
-          '#theme' => 'imagecache_external__localist_event',
-          '#uri' => $item['event']['photo_url'],
-          '#style_name' => 'medium_3_2',
-          '#alt' => 'Localist event image for ' . $item['event']['title'],
-        ];
+    // Get Localist events, if set as source and any are found.
+    if (array_key_exists('_localist', $sources) && $localist_data = $this->getLocalistEvents($keywords)) {
+      foreach ($localist_data['events'] as $localist_event) {
+        $events[] = new IlrEvent(
+          $localist_event['event']['title'],
+          $localist_event['event']['event_instances'][0]['event_instance']['start'],
+          $localist_event['event']['event_instances'][0]['event_instance']['end'],
+          $localist_event['event']
+        );
       }
+    }
 
-      $items[] = [
-        '#theme' => 'localist_event',
-        '#event' => $item['event'],
-      ];
+    // Get a date string suitable for use with entity query.
+    $date_today = new DrupalDateTime();
+    $date_today->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
 
-      if ($events_shown !== 0 && count($items) >= $events_shown) {
-        break;
+    // Append local node events, if any are set as source.
+    $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $query->accessCheck(TRUE); // Check if this is default.
+    $query->condition('type', $sources, 'IN');
+    $query->condition('event_date.value', $date_today->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), '>=');
+    $keywords_group = $query->orConditionGroup();
+
+    foreach ($keywords as $keyword_tid => $keyword) {
+      $keywords_group->condition('field_keywords', $keyword_tid);
+    }
+
+    $query->condition($keywords_group);
+    $query->sort('event_date.value', 'DESC');
+
+    $event_node_ids = $query->execute();
+
+    if (!empty($event_node_ids)) {
+      foreach ($this->entityTypeManager->getStorage('node')->loadMultiple($event_node_ids) as $node) {
+        // @todo Check to see if dates are UTC and if that's OK.
+        $events[] = new IlrEvent(
+          $node->label(),
+          $node->event_date->value,
+          $node->event_date->end_value,
+          $node
+        );
+      }
+    }
+
+    // Sort all events by start date.
+    usort($events, function($a, $b) {
+      return $a->event_start <=> $b->event_start;
+    });
+
+    // Shorten the array to the limit.
+    if ($events_shown) {
+      array_splice($events, $events_shown);
+    }
+
+    foreach ($events as $event) {
+      // This is a node that implements EventNodeInterface, so render it as a
+      // teaser.
+      if ($event->object instanceof EventNodeInterface) {
+        $items[] = $node_view_builder->view($event->object, 'teaser');
+      }
+      // This is a localist event, so use a custom theme template.
+      else {
+        // If there is an image for this event, run it through an image style.
+        if (!empty($event->object['photo_url'])) {
+          $event->object['ilr_image'] = [
+            '#theme' => 'imagecache_external__localist_event',
+            '#uri' => $event->object['photo_url'],
+            '#style_name' => 'medium_3_2',
+            '#alt' => 'Localist event image for ' . $event->object['title'],
+          ];
+        }
+
+        $items[] = [
+          '#theme' => 'localist_event',
+          '#event' => $event->object,
+        ];
       }
     }
 
@@ -215,6 +290,7 @@ class EventListing extends ParagraphsBehaviorBase {
     $query_params->add('pp', 100);
     // $query_params->add('distinct', true);
 
+    // Multiple keywords appear to be OR'd.
     foreach ($keywords as $keyword) {
       $query_params->add('keyword[]', $keyword);
     }

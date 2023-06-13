@@ -167,10 +167,9 @@ function union_marketing_library_info_alter(&$libraries, $extension) {
  */
 function union_marketing_theme_suggestions_node_alter(array &$suggestions, array $variables) {
   $bundle = $variables['elements']['#node']->type->entity;
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
 
   if ($bundle->getThirdPartySetting('extended_post', 'extends_posts')) {
-    $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
-
     // Prepend these suggestions to the stack so that they end up with _lower_
     // priority than the more specific content type ones.
     array_unshift($suggestions, 'node__post__' . $sanitized_view_mode);
@@ -178,8 +177,9 @@ function union_marketing_theme_suggestions_node_alter(array &$suggestions, array
   }
 
   if ($variables['elements']['#node'] instanceof EventNodeBase) {
-    // Prepend this suggestion to the stack so that it ends up with a _lower_
+    // Prepend these suggestions to the stack so that it ends up with a _lower_
     // priority than the more specific content type ones.
+    array_unshift($suggestions, 'node__eventalicious__' . $sanitized_view_mode);
     array_unshift($suggestions, 'node__eventalicious');
   }
 }
