@@ -3,21 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.event_listing.field_heading
     - paragraphs.paragraphs_type.event_listing
 id: paragraph.event_listing.default
 targetEntityType: paragraph
 bundle: event_listing
 mode: default
-content:
-  field_heading:
-    type: string_textfield
-    weight: 0
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
+content: {  }
 hidden:
   created: true
   status: true
