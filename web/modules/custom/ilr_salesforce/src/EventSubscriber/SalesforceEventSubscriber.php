@@ -256,8 +256,12 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       $cahrs_term->save();
     }
 
-    // @todo Preserve any additional terms.
-    $event_landing_page->field_keywords->target_id = $cahrs_term->id();
+    // Ensure that the CAHRS keyword is added to any existing ones.
+    $keywords = $event_landing_page->field_keywords->getValue();
+    if (array_search($cahrs_term->id(), array_column($keywords, 'target_id')) === FALSE) {
+      $keywords[] = ['target_id' => $cahrs_term->id()];
+    }
+    $event_landing_page->field_keywords = $keywords;
 
     // Add the description if it is empty. A text with summary field is only
     // considered empty if both the summary and value are blank.
