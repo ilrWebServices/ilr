@@ -49,6 +49,11 @@ function salesforce_mop_form_node_form_alter(&$form, FormStateInterface $form_st
       $field_mappings = $mapped_object->getMapping()->getFieldMappings();
       foreach ($field_mappings as $field_mapping) {
         $field_name = $field_mapping->getConfiguration()['drupal_field_value'];
+        // Check if this definition has a sub-property (e.g. Such as a daterange
+        // field, that includes `value` and `end_value`).
+        if (strpos($field_name, '.') !== FALSE) {
+          $field_name = substr($field_name, 0, strpos($field_name, '.'));
+        }
         $form[$field_name]['#disabled'] = TRUE;
       }
     }
