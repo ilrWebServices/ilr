@@ -92,9 +92,10 @@ class EventListing extends ParagraphsBehaviorBase {
       '#type' => 'number',
       '#title' => $this->t('Number of events'),
       '#size' => 5,
+      '#min' => 1,
       '#max' => 100,
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'events_shown') ?? '',
-      '#description' => $this->t('Use 0 (zero) to show all events (max 100).'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'events_shown') ?? 3,
+      // '#description' => $this->t('If using a pager, this is the number of events per page.'),
       '#required' => TRUE,
     ];
 
@@ -134,7 +135,6 @@ class EventListing extends ParagraphsBehaviorBase {
     $form['sources'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Sources'),
-      '#description' => $this->t('TBD.'),
       '#options' => $event_node_bundles,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'sources') ?? '',
       '#required' => TRUE,
