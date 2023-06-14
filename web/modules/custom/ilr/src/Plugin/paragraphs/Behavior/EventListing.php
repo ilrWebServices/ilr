@@ -171,6 +171,8 @@ class EventListing extends ParagraphsBehaviorBase {
     $keywords = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'keywords') ?? [];
     $sources = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'sources') ?? [];
     $node_view_builder = $this->entityTypeManager->getViewBuilder('node');
+    $list_style = $paragraphs_entity->getBehaviorSetting('list_styles', 'list_style');
+    $view_mode = $paragraphs_entity->type->entity->getBehaviorPlugin('list_styles')->getViewModeForListStyle($list_style);
 
     if (empty($sources)) {
       return;
@@ -234,7 +236,7 @@ class EventListing extends ParagraphsBehaviorBase {
       // This is a node that implements EventNodeInterface, so render it as a
       // teaser.
       if ($event->object instanceof EventNodeInterface) {
-        $items[] = $node_view_builder->view($event->object, 'teaser');
+        $items[] = $node_view_builder->view($event->object, $view_mode);
       }
       // This is a localist event, so use a custom theme template.
       else {
@@ -249,7 +251,7 @@ class EventListing extends ParagraphsBehaviorBase {
         }
 
         $items[] = [
-          '#theme' => 'localist_event',
+          '#theme' => 'localist_event__' . $view_mode,
           '#event' => $event->object,
         ];
       }

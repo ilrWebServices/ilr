@@ -297,7 +297,7 @@ class ListStyle extends ParagraphsBehaviorBase {
    * @return string
    *   A node view mode.
    */
-  public function getViewModeForListStyle($list_style, $post_number) {
+  public function getViewModeForListStyle($list_style, $post_number = NULL) {
     switch ($list_style) {
       case 'grid-compact':
         return 'teaser_compact';

@@ -266,3 +266,9 @@
     padding-left: calc(48px + 20px);
   }
 }
+
+.cu-list--list-compact .cu-event-card:not(:last-of-type) {
+  padding-bottom: var(--cu-vr1);
+  margin-bottom: var(--cu-vr1);
+  border-bottom: 1px solid $gray-light;
+}
