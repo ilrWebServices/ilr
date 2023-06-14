@@ -15,6 +15,8 @@ use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\ParagraphsBehaviorBase;
 use Drupal\ilr\QueryString;
+use ErrorException;
+use Exception;
 use ReflectionClass;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -300,9 +302,25 @@ class EventListing extends ParagraphsBehaviorBase {
     // Add a random string to avoid the realpath cache.
     $query_params->add('rand', mt_rand());
     $url = 'https://' . self::LOCALIST_HOSTNAME . '/api/2/events?' . $query_params;
-    $json_response = file_get_contents($url);
-    $data = json_decode($json_response, TRUE);
-    \Drupal::cache()->set($cid, $data, time() + (60 * 60 * 2));
+
+    // @todo Swap this for a Guzzle implementation that includes better exception handling.
+    set_error_handler(
+      function($severity, $message, $file, $line) {
+        throw new ErrorException($message, $severity, $severity, $file, $line);
+      }
+    );
+
+    try {
+      $json_response = file_get_contents($url);
+      $data = json_decode($json_response, TRUE);
+      \Drupal::cache()->set($cid, $data, time() + (60 * 60 * 2));
+    }
+    catch (Exception $e) {
+      $data = [];
+    }
+
+    restore_error_handler();
+
     return $data;
   }
 
