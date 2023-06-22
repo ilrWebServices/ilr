@@ -170,6 +170,14 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
         'name' => 'Custom1_Answer__c',
         'value' => substr($custom_1_answer, 0, 255),
       ];
+
+      // Custom for CAHRS events.
+      if ($data['variant'] === 'cahrs_event') {
+        $serialized_order['order_items'][0]['product']['participants'][0]['additional_fields'][] = [
+          'name' => 'CAHRS_Session_Details__c',
+          'value' => substr($custom_1_answer, 0, 255),
+        ];
+      }
     }
 
     if ($custom_2_element && $custom_2_element['#access'] && isset($data['custom_2_answer'])) {
