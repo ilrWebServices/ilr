@@ -210,6 +210,9 @@
       "drupal/persistent_visitor_parameters": {
         "Allow cookie name and domain to be changed": "https://git.drupalcode.org/project/persistent_visitor_parameters/-/commit/04adb18fd4ef95a981ab52220870e0c52fbd5764.diff",
         "Fix settings form permission": "https://git.drupalcode.org/issue/persistent_visitor_parameters-3266421/-/commit/3d5c811d7757d36b665c79abf607147988eb2c6f.diff"
+      },
+      "drupal/date_range_formatter": {
+        "Issue #3309324: Passing empty value to t() when same day + time for start and end date": "https://www.drupal.org/files/issues/2022-10-19/date_range_formatter_3309324.patch"
       }
     },
     "installer-paths": {

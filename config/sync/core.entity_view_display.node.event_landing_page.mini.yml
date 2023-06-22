@@ -1,0 +1,54 @@
+uuid: 7b7737b2-cc49-4090-8de2-9f84e14fe079
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.mini
+    - field.field.node.event_landing_page.body
+    - field.field.node.event_landing_page.field_keywords
+    - field.field.node.event_landing_page.field_registration_form
+    - field.field.node.event_landing_page.field_representative_image
+    - field.field.node.event_landing_page.field_sections
+    - field.field.node.event_landing_page.field_sponsor
+    - field.field.node.event_landing_page.layout_builder__layout
+    - node.type.event_landing_page
+  module:
+    - datetime_range
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.event_landing_page.mini
+targetEntityType: node
+bundle: event_landing_page
+mode: mini
+content:
+  event_date:
+    type: daterange_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+      separator: '-'
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  event_when_where: true
+  field_keywords: true
+  field_registration_form: true
+  field_representative_image: true
+  field_sections: true
+  field_sponsor: true
+  layout_builder__layout: true
+  location_address: true
+  location_link: true
+  search_api_excerpt: true

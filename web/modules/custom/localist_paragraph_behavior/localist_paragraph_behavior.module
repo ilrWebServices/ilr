@@ -22,16 +22,3 @@ function localist_paragraph_behavior_help($route_name, RouteMatchInterface $rout
     default:
   }
 }
-
-/**
- * Implements hook_theme().
- */
-function localist_paragraph_behavior_theme() {
-  return [
-    'localist_event' => [
-      'variables' => [
-        'event' => [],
-      ],
-    ],
-  ];
-}

@@ -62,6 +62,11 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       $query->fields[] = "End_Time__c";
       $query->fields[] = "Start_Time__c";
     }
+
+    if ($event->getMapping()->id() === 'cahrs_event_node') {
+      $query->fields[] = "Close_Web_Registration__c";
+      $query->fields[] = "Class_Description__c";
+    }
   }
 
   /**
@@ -77,6 +82,10 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
 
     if ($event->getMapping()->id() === 'class_session') {
       $this->pullPresaveClassSession($event);
+    }
+
+    if ($event->getMapping()->id() === 'cahrs_event_node') {
+      $this->pullPresaveCahrsEventNode($event);
     }
   }
 
@@ -179,6 +188,87 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     $end_datetime = new DrupalDateTime("$session_date $end_time", 'America/New_York');
     $end_datetime->setTimezone(new \DateTimeZone('UTC'));
     $class_session->session_date->end_value = $end_datetime->format('Y-m-d\TH:i:s');
+  }
+
+  /**
+   * Pull presave event callback for CAHRS event nodes.
+   *
+   * @param \Drupal\salesforce_mapping\Event\SalesforcePullEvent $event
+   *   The event.
+   */
+  private function pullPresaveCahrsEventNode(SalesforcePullEvent $event) {
+    $event_landing_page = $event->getEntity();
+    $sf = $event->getMappedObject()->getSalesforceRecord();
+    $sfid = $sf->id();
+    $sf_close_date = $sf->field('Close_Web_Registration__c') ? $sf->field('Close_Web_Registration__c') : $sf->field('Start__c');
+
+    $close_datetime = new DrupalDateTime($sf_close_date, 'UTC');
+    // @todo Revisit this if we really want to store the time as UTC.
+    $close_datetime->setTimezone(new \DateTimeZone('America/New_York'));
+    $event_landing_page->field_registration_form->status = 'scheduled';
+    $event_landing_page->field_registration_form->close = $close_datetime->format('Y-m-d\TH:i:s');
+
+    // @todo Determine this from the field itself.
+    $default_default_data = <<<EOT
+    # eventid is required.
+    variant:
+    eventid:
+    post_button_text:
+    outreach_marketing_personas:
+    EOT;
+
+    /**
+     * The default data has trailing spaces, but our editors are configured to
+     * remove them, so we calculate the similarity of the default value and the
+     * actual value to see if users have modified it. We only want to update the
+     * default data if it hasn't been edited already.
+     *
+     * Another option:
+     * similar_text($default_default_data, $event_landing_page->field_registration_form->default_data, $percent);
+     */
+    if (levenshtein($default_default_data, $event_landing_page->field_registration_form->default_data) < 10) {
+      $event_landing_page->field_registration_form->default_data = <<<EOT
+      # eventid is required.
+      variant: cahrs_event
+      eventid: $sfid
+      post_button_text:
+      outreach_marketing_personas: CAHRS Quarterly
+      EOT;
+    }
+
+    // Tag these event landing pages with 'CAHRS Partner Event'.
+    $term_storage = $this->entityTypeManager->getStorage('taxonomy_term');
+
+    $cahrs_term_id = $term_storage->getQuery()
+      ->condition('vid', 'event_keywords')
+      ->condition('name', 'CAHRS Partner Event')
+      ->execute();
+
+    if (!empty($cahrs_term_id)) {
+      $cahrs_term_id = reset($cahrs_term_id);
+      $cahrs_term = $term_storage->load($cahrs_term_id);
+    }
+    else {
+      $cahrs_term = $term_storage->create([
+        'vid' => 'event_keywords',
+        'name' => 'CAHRS Partner Event',
+      ]);
+      $cahrs_term->save();
+    }
+
+    // Ensure that the CAHRS keyword is added to any existing ones.
+    $keywords = $event_landing_page->field_keywords->getValue();
+    if (array_search($cahrs_term->id(), array_column($keywords, 'target_id')) === FALSE) {
+      $keywords[] = ['target_id' => $cahrs_term->id()];
+    }
+    $event_landing_page->field_keywords = $keywords;
+
+    // Add the description if it is empty. A text with summary field is only
+    // considered empty if both the summary and value are blank.
+    if ($event_landing_page->body->isEmpty()) {
+      $event_landing_page->body->value = $sf->field('Class_Description__c');
+      $event_landing_page->body->format = 'basic_formatting_with_media';
+    }
   }
 
 }

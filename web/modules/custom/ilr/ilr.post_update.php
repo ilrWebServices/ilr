@@ -1538,3 +1538,57 @@ function ilr_post_update_update_cahrs_entities(&$sandbox) {
   $class_nodes_to_delete = $storage->loadMultiple(array_keys($class_nids_to_delete));
   $storage->delete($class_nodes_to_delete);
 }
+
+/**
+ * Add initial event_keywords vocabulary terms.
+ */
+function ilr_post_update_add_event_keywords_terms_and_migrate_event_listing_behaviors(&$sandbox) {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $term_storage = $entity_type_manager->getStorage('taxonomy_term');
+  $paragraph_storage = $entity_type_manager->getStorage('paragraph');
+  $term_names_to_tid = [];
+
+  $terms = [
+    'ILR Alumni',
+    'WI',
+    'Scheinman Institute',
+    'ILR Student Events',
+    'ILR',
+    'ILR School',
+  ];
+
+  foreach ($terms as $term_name) {
+    $term = $term_storage->create([
+      'vid' => 'event_keywords',
+      'name' => $term_name,
+    ]);
+    $term->save();
+    $term_names_to_tid[strtolower($term_name)] = $term->id();
+  }
+
+  $paragraph_ids = $paragraph_storage
+    ->getQuery()
+    ->condition('type', 'event_listing')
+    ->execute();
+  $paragraphs = $entity_type_manager->getStorage('paragraph')->loadMultiple($paragraph_ids);
+
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  foreach ($paragraphs as $paragraph) {
+    $settings = $paragraph->getAllBehaviorSettings();
+    $settings['ilr_event_listing'] = $settings['localist_events'];
+    unset($settings['localist_events']);
+
+    $settings['ilr_event_listing']['sources'] = [ '_localist' => '_localist' ];
+
+    $keywords = explode(',', $settings['ilr_event_listing']['keywords']);
+    $settings['ilr_event_listing']['keywords'] = [];
+
+    foreach ($keywords as $key => $keyword) {
+      $tid = $term_names_to_tid[strtolower(trim($keyword))];
+      $settings['ilr_event_listing']['keywords'][$tid] = $keyword;
+    }
+
+    $paragraph->setAllBehaviorSettings($settings);
+    $paragraph->save();
+  }
+}

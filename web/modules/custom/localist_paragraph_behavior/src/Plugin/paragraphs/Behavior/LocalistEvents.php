@@ -8,14 +8,14 @@ use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\ParagraphsBehaviorBase;
-use Drupal\localist_paragraph_behavior\QueryString;
+use Drupal\ilr\QueryString;
 
 /**
  * Provides a Union section settings behavior.
  *
  * @ParagraphsBehavior(
  *   id = "localist_events",
- *   label = @Translation("Events from Localist"),
+ *   label = @Translation("Events from Localist - DEPRECATED"),
  *   description = @Translation("Display a listing of events from the Cornell Localist instance at events.cornell.edu, restricted by tags or keywords."),
  *   weight = 1
  * )
@@ -118,10 +118,9 @@ class LocalistEvents extends ParagraphsBehaviorBase {
     }
 
     $build['event_listing'] = [
-      '#theme' => 'item_list__localist_events',
+      '#theme' => 'item_list__minimal',
       '#title' => $this->t('Events'),
       '#items' => $items,
-      '#attributes' => ['class' => 'localist-events'],
       '#empty' => $this->t('There are no events to display.'),
       '#cache' => [
         'max-age' => 0,

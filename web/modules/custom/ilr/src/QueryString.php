@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\localist_paragraph_behavior;
+namespace Drupal\ilr;
 
 /**
  * Generate query strings that allow duplicate key names.

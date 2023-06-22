@@ -117,3 +117,26 @@
 .webform-submission-ladp-application-form .cu-input-message {
   color: revert;
 }
+
+.webform-type-checkboxes {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding-bottom: var(--cu-vr-1);
+}
+
+.webform-type-checkboxes .cu-legend {
+  margin: 0 var(--cu-ps-1) var(--cu-vr-2);
+  padding: 0 .25em;
+}
+
+.webform-type-checkboxes .webform-element-description {
+  margin: 0 var(--cu-ps0) var(--cu-vr-2);
+}
+
+// @todo Remove this when we fix bottom margins and padding in Union fieldsets.
+.webform-type-webform-address .cu-fieldset__wrapper,
+.webform-type-webform-address .form-item-address-postal-code,
+.webform-type-webform-address .form-item-address-postal-code .cu-input--text {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}

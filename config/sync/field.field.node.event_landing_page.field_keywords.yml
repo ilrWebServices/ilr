@@ -1,0 +1,29 @@
+uuid: bd45e1e6-bf75-4d6c-9692-123ece6cdd0c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_keywords
+    - node.type.event_landing_page
+    - taxonomy.vocabulary.event_keywords
+id: node.event_landing_page.field_keywords
+field_name: field_keywords
+entity_type: node
+bundle: event_landing_page
+label: Keywords
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      event_keywords: event_keywords
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

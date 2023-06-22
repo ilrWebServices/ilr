@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Theme override for a Localist event shown in the "mini" view mode.
+ *
+ * Available variables:
+ * - event: An event from the Localist API:
+ *   - title: The event title.
+ *   - event_instances: An array of 'instances'. The most interesting is at 0.event_instance.start.
+ *   - description: The description of the event in HTML.
+ *   - description_text: The description of the event in plain text.
+ *   - localist_url: The URL to the event at Localist.
+ *   - photo_url: The URL to the photo from the Localist event.
+ *   - Plus many more. Try dump(event) to see them all.
+ *
+ * @see https://developer.localist.com/doc/api#events
+ * @see https://schema.org/Event
+ */
+#}
+{% include '@union/_event-card.twig' with {
+  attributes: attributes.addClass('cu-event-card--mini'),
+  event_date: event.event_instances.0.event_instance.start,
+  heading: event.title,
+  show_time: false,
+  link_url: event.localist_url,
+} only %}

@@ -34,8 +34,10 @@ use Drupal\Core\Database\Query\AlterableInterface;
 use Drupal\ilr\Entity\ClassNode;
 use Drupal\ilr\Entity\EventLandingNode;
 use Drupal\ilr\Entity\EventNodeBase;
+use Drupal\ilr\Entity\EventNodeInterface;
 use Drupal\ilr\Entity\ImageMedia;
 use Drupal\node\Entity\NodeType;
+use Drupal\salesforce_mapping\Entity\MappedObjectInterface;
 
 /**
  * Implements hook_theme().
@@ -78,6 +80,11 @@ function ilr_theme($existing, $type, $theme, $path) {
         'event_time' => [],
         'location_address' => [],
         'location_link' => [],
+      ],
+    ],
+    'localist_event' => [
+      'variables' => [
+        'event' => [],
       ],
     ],
   ];
@@ -446,6 +453,18 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
       ];
     }
   }
+
+  if ($entity instanceof EventNodeInterface) {
+    if ($entity->hasField('field_registration_form') && !$entity->field_registration_form->isEmpty()) {
+      if (preg_match("/^# CONFIG \(DO NOT DELETE\)(.*)\n?/m", $entity->field_registration_form->default_data, $matches)) {
+        if ($config = json_decode($matches[1])) {
+          // Attach the library and pass the Drupal settings.
+          $build['#attached']['library'][] = 'ilr/registration_webform_widget_enhancement';
+          $build['#attached']['drupalSettings']['event_registration_form_config'] = $config;
+        }
+      }
+    }
+  }
 }
 
 /**
@@ -801,6 +820,32 @@ function ilr_media_load(array $entities) {
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_insert().
+ *
+ * @param \Drupal\salesforce_mapping\Entity\MappedObjectInterface $entity
+ */
+function ilr_salesforce_mapped_object_insert(MappedObjectInterface $entity) {
+  // Add new CAHRS event landing pages to the CAHRS collection.
+  if ($entity->getMapping()->id() === 'cahrs_event_node') {
+    try {
+      $collection_item = \Drupal::service('entity_type.manager')->getStorage('collection_item')->create([
+        'type' => 'default',
+        'collection' => 53,
+        'canonical' => TRUE,
+      ]);
+      $collection_item->item = $entity->getMappedEntity();
+      $collection_item->save();
+    }
+    catch (\Exception $e) {
+      // Do nothing. This page is probably already in the collection. We don't
+      // use $entity->getMappedEntity()->isNew() because by the time the
+      // salesforce_mapped_object is saved, its mapped entity has already been
+      // saved.
+    }
+  }
+}
+
+/**
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function ilr_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
@@ -897,6 +942,43 @@ function ilr_field_widget_form_alter(&$element, FormStateInterface $form_state, 
   if (isset($context['widget']) && $context['widget'] instanceof AddressDefaultWidget) {
     $element['#type'] = 'fieldset';
   }
+}
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ */
+function ilr_field_widget_webform_entity_reference_select_form_alter(&$element, FormStateInterface &$form_state, $context) {
+  $webform_options_storage = \Drupal::entityTypeManager()->getStorage('webform_options');
+  $mapped_object_storage = \Drupal::entityTypeManager()->getStorage('salesforce_mapped_object');
+  $cahrs_event_node_mapping = \Drupal::entityTypeManager()->getStorage('salesforce_mapping')->load('cahrs_event_node');
+  $entity = $form_state->getFormObject()->getEntity();
+
+  if (!$entity instanceof EventNodeInterface) {
+    return;
+  }
+
+  /** @var \Drupal\salesforce_mapping\Entity\MappedObjectInterface */
+  $drupal_mapped_object = $mapped_object_storage->loadByEntityAndMapping($entity, $cahrs_event_node_mapping);
+
+  // @todo See if this sf event ($drupal_mapped_object->sfid()) has Activity_Format__c == 'CAHRS Partner Meeting'
+  if (empty($drupal_mapped_object)) {
+    return;
+  }
+
+  $options = $webform_options_storage->load('cahrs_session_details')->getOptions();
+
+  $element['settings']['cahrs'] = [
+    '#type' => 'checkboxes',
+    '#title' => t('Available <em>Optional activities</em> options'),
+    '#description' => t('Select the allowed options for the <em>Optional activities</em> field for this CAHRS partner event.'),
+    '#options' => $options,
+    '#attributes' => [
+      'class' => ['cahrs-session-details'],
+    ],
+  ];
+
+  $element['settings']['default_data']['#weight'] = 1;
+  $element['#attached']['library'][] = 'ilr/registration_webform_widget_enhancement';
 }
 
 /**

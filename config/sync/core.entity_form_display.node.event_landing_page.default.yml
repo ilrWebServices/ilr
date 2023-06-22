@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_form_mode.taxonomy_term.mini
     - field.field.node.event_landing_page.body
+    - field.field.node.event_landing_page.field_keywords
     - field.field.node.event_landing_page.field_registration_form
     - field.field.node.event_landing_page.field_representative_image
     - field.field.node.event_landing_page.field_sections
@@ -56,6 +57,16 @@ content:
     weight: -2
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_keywords:
+    type: entity_reference_autocomplete_tags
+    weight: 123
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 25
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_registration_form:
     type: webform_entity_reference_select
@@ -112,6 +123,11 @@ content:
     third_party_settings:
       entity_browser_entity_form:
         entity_browser_id: _none
+  ief_collection_items:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   location_address:
     type: address_default
     weight: -2

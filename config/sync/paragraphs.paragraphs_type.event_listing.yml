@@ -4,27 +4,27 @@ status: true
 dependencies:
   module:
     - ilr
-    - localist_paragraph_behavior
 id: event_listing
 label: 'Event listing'
 icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
+  ilr_event_listing:
+    enabled: true
+    events_shown: 6
+    keywords: ILR
+    sources: _localist
   list_styles:
     enabled: true
     list_styles:
       grid: grid
-      grid-bricks: grid-bricks
-      grid-bricks--reversed: grid-bricks--reversed
+      list-compact: list-compact
       grid-compact: 0
-      list-compact: 0
+      grid-bricks: 0
+      grid-bricks--reversed: 0
       grid-featured: 0
       banner: 0
     columns_enabled: 0
     columns_min: ''
     columns_max: ''
-  localist_events:
-    enabled: true
-    events_shown: 5
-    keywords: ILR
