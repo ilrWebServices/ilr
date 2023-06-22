@@ -1,0 +1,16 @@
+uuid: 1cf647ee-596a-4158-985e-13968b7e9d68
+langcode: en
+status: true
+dependencies: {  }
+id: cahrs_session_details
+label: 'CAHRS Session Details'
+category: ''
+likert: false
+options: |-
+  'Welcome Reception/Dinner': 'Welcome Reception/Dinner'
+  'Continental Breakfast': 'Continental Breakfast'
+  Lunch: Lunch
+  'Afternoon Sessions': 'Afternoon Sessions'
+  'Networking Reception with Students': 'Networking Reception with Students'
+  'Attending In-Person': 'Attending In-Person'
+  'Attending Virtually': 'Attending Virtually'

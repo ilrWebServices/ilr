@@ -377,5 +377,5 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "company:\r\n  '#title': Company\r\nphone:\r\n  '#access': true\r\naddress:\r\n  '#access': true\r\n  '#address__access': true\r\n  '#postal_code__access': true\r\naccessible_accommodation:\r\n  '#access': false"
+      elements: "company:\r\n  '#title': Company\r\nphone:\r\n  '#access': true\r\naddress:\r\n  '#access': true\r\n  '#address__access': true\r\n  '#postal_code__access': true\r\naccessible_accommodation:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Session details'\r\n  '#type': checkboxes\r\n  '#options': cahrs_session_details\r\n  '#wrapper_attributes':\r\n    class:\r\n      - cahrs-session-details-element"
       handlers: {  }
