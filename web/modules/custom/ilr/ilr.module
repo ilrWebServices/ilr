@@ -969,15 +969,16 @@ function ilr_field_widget_webform_entity_reference_select_form_alter(&$element, 
 
   $element['settings']['cahrs'] = [
     '#type' => 'checkboxes',
-    '#title' => t('Available session details'),
+    '#title' => t('Available <em>Optional activities</em> options'),
+    '#description' => t('Select the allowed options for the <em>Optional activities</em> field for this CAHRS partner event.'),
     '#options' => $options,
     '#attributes' => [
       'class' => ['cahrs-session-details'],
     ],
   ];
 
+  $element['settings']['default_data']['#weight'] = 1;
   $element['#attached']['library'][] = 'ilr/registration_webform_widget_enhancement';
-
 }
 
 /**
