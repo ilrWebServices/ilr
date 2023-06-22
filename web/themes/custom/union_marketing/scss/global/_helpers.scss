@@ -37,15 +37,15 @@
     content: 'Unpublished';
     display: block;
     position: absolute;
-    background: rgba(255,0,0,.5);
+    background: rgba(255, 0, 0, 0.5);
     color: white;
     font-weight: bold;
     font-size: 1.5rem;
-    bottom: 10%;
-    left: 2%;
+    top: 5%;
+    right: -150px;
     z-index: 10;
     padding: 1em 3em;
-    transform: rotate(-5deg);
+    transform: rotate(45deg);
     text-shadow: 0 0 2px black;
     pointer-events: none;
   }
