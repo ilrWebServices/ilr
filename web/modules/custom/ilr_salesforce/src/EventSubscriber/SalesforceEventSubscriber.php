@@ -233,6 +233,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       eventid: $sfid
       post_button_text:
       outreach_marketing_personas: CAHRS Quarterly
+      # CONFIG (DO NOT DELETE) {"cahrs_session_detail_options":[]}
       EOT;
     }
 
