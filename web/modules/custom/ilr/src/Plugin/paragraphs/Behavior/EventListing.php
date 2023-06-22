@@ -186,7 +186,7 @@ class EventListing extends ParagraphsBehaviorBase {
         $events[] = new IlrEvent(
           $localist_event['event']['title'],
           $localist_event['event']['event_instances'][0]['event_instance']['start'],
-          $localist_event['event']['event_instances'][0]['event_instance']['end'],
+          $localist_event['event']['event_instances'][0]['event_instance']['end'] ?? '',
           $localist_event['event']
         );
       }
