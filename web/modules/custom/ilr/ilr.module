@@ -953,7 +953,7 @@ function ilr_field_widget_webform_entity_reference_select_form_alter(&$element, 
   $cahrs_event_node_mapping = \Drupal::entityTypeManager()->getStorage('salesforce_mapping')->load('cahrs_event_node');
   $entity = $form_state->getFormObject()->getEntity();
 
-  if (!$entity instanceof EventNodeInterface) {
+  if (!$entity instanceof EventNodeInterface || $entity->isNew()) {
     return;
   }
 
