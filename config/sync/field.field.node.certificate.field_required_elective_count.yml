@@ -1,0 +1,23 @@
+uuid: ed902b61-e474-4bf3-9a24-5bb3aec26381
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_required_elective_count
+    - node.type.certificate
+id: node.certificate.field_required_elective_count
+field_name: field_required_elective_count
+entity_type: node
+bundle: certificate
+label: 'Number of required electives'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

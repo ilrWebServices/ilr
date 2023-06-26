@@ -1,0 +1,27 @@
+uuid: 1ff9b950-a3ee-4fee-9bf4-9afc00f83f7b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_required
+field_name: field_required
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: required
+      label: Required
+    -
+      value: elective
+      label: Elective
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

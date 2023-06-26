@@ -7,6 +7,7 @@ dependencies:
     - node.type.class
     - node.type.course
     - node.type.event_landing_page
+    - node.type.course_certificate
     - node.type.instructor
     - node.type.media_mention
     - node.type.page
@@ -637,6 +638,7 @@ display:
           operator: 'not in'
           value:
             class: class
+            course_certificate: course_certificate
             participant: participant
           group: 1
           exposed: false

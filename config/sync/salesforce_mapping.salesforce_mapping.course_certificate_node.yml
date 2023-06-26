@@ -1,0 +1,77 @@
+langcode: en
+id: course_certificate_node
+label: 'Course certificate node'
+weight: 1
+type: salesforce_mapping
+key: ''
+always_upsert: false
+async: false
+push_standalone: false
+pull_standalone: false
+pull_trigger_date: LastModifiedDate
+pull_frequency: 0
+push_frequency: 0
+push_limit: 0
+push_retries: 3
+pull_where_clause: 'Course_Class__r.Synchronized_with_Web__c = TRUE and Certification__r.Synchronized_with_Web__c = TRUE'
+sync_triggers:
+  push_create: false
+  push_update: false
+  push_delete: false
+  pull_create: true
+  pull_update: true
+  pull_delete: true
+salesforce_object_type: EXECED_Course_Certification__c
+drupal_entity_type: node
+drupal_bundle: course_certificate
+field_mappings:
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_required
+    direction: sf_drupal
+    salesforce_field: Required__c
+    id: 0
+    description: ''
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_weight
+    direction: sf_drupal
+    salesforce_field: Web_Rank__c
+    id: 1
+    description: ''
+  -
+    drupal_field_type: RelatedIDs
+    drupal_field_value: field_course
+    direction: sf_drupal
+    salesforce_field: Course_Class__c
+    id: 2
+    description: ''
+  -
+    drupal_field_type: RelatedIDs
+    drupal_field_value: field_certificate
+    direction: sf_drupal
+    salesforce_field: Certification__c
+    id: 3
+    description: ''
+  -
+    drupal_field_type: properties
+    drupal_field_value: title
+    direction: sf_drupal
+    salesforce_field: Id
+    id: 4
+    description: ''
+status: true
+dependencies:
+  config:
+    - field.field.node.course_certificate.field_certificate
+    - field.field.node.course_certificate.field_course
+    - field.field.node.course_certificate.field_required
+    - field.field.node.course_certificate.field_weight
+    - field.storage.node.field_certificate
+    - field.storage.node.field_course
+    - node.type.certificate
+    - node.type.course
+    - node.type.course_certificate
+  module:
+    - salesforce_pull
+uuid: 962b5c5f-94ee-4f5c-aed5-f52c8c542a14

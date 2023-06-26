@@ -1,0 +1,21 @@
+uuid: e616c39b-6951-4946-abfb-247f92c93656
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_required
+    - node.type.course_certificate
+  module:
+    - options
+id: node.course_certificate.field_required
+field_name: field_required
+entity_type: node
+bundle: course_certificate
+label: Required
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

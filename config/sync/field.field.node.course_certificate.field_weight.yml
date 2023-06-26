@@ -1,0 +1,25 @@
+uuid: 84704e53-ed32-4eaa-b76e-c03aec3345fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_weight
+    - node.type.course_certificate
+id: node.course_certificate.field_weight
+field_name: field_weight
+entity_type: node
+bundle: course_certificate
+label: Weight
+description: 'The weight field can be used to order the courses for display. Mapped to the `web_rank` field in SF.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 10
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

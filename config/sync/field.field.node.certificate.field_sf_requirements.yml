@@ -1,0 +1,26 @@
+uuid: 9c56ecfc-d2f7-44a0-8646-80874075b36f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sf_requirements
+    - node.type.certificate
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - basic_formatting
+id: node.certificate.field_sf_requirements
+field_name: field_sf_requirements
+entity_type: node
+bundle: certificate
+label: Requirements
+description: 'This text is synchronized from Salesforce for reference and is <em>not</em> displayed to visitors.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

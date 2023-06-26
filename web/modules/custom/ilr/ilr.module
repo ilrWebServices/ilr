@@ -31,6 +31,7 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\taxonomy\VocabularyInterface;
 use Drupal\collection\Entity\CollectionItemInterface;
 use Drupal\Core\Database\Query\AlterableInterface;
+use Drupal\ilr\Entity\CertificateNode;
 use Drupal\ilr\Entity\ClassNode;
 use Drupal\ilr\Entity\EventLandingNode;
 use Drupal\ilr\Entity\EventNodeBase;
@@ -100,6 +101,10 @@ function ilr_entity_bundle_info_alter(array &$bundles): void {
 
   if (isset($bundles['node']['class'])) {
     $bundles['node']['class']['class'] = ClassNode::class;
+  }
+
+  if (isset($bundles['node']['certificate'])) {
+    $bundles['node']['certificate']['class'] = CertificateNode::class;
   }
 
   if (isset($bundles['node']['event_landing_page'])) {

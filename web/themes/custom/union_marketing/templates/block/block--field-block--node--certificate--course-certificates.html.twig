@@ -25,23 +25,14 @@
  * @see template_preprocess_block()
  */
 #}
-{%
-  set classes = [
-    'cu-x-block',
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|replace({':': '--'})|clean_class,
-  ]
-%}
-<div{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
-  {% block label %}
-  {% if label %}
-    <h2{{ title_attributes.addClass('cu-heading') }}>{{ label }}</h2>
-  {% endif %}
-  {% endblock %}
-  {{ title_suffix }}
-  {% block content %}
-    {{ content }}
-  {% endblock %}
-</div>
+{% extends "block.html.twig" %}
+
+{% block label %}{% endblock %}
+
+{% block content %}
+{% include '@union/_section.twig' with {
+  heading: label,
+  eyebrow_heading: 'Register'|trans,
+  content: content,
+} only %}
+{% endblock %}

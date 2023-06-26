@@ -1,0 +1,39 @@
+.block-field-block--node--certificate--course-certificates-required,
+.block-field-block--node--certificate--course-certificates-elective,
+.block-field-block--node--certificate--course-certificates {
+
+  .node--course {
+    height: 100%;
+  }
+
+  .node--course-certificate {
+    overflow: hidden;
+    position: relative;
+  }
+
+  [data-required] {
+    &::after {
+      // content: attr(data-required);
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      padding: .25em 1em;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: center;
+      background-color: var(--cu-color-brand);
+      transform: rotate(45deg) translate(32.5%, -300%);
+    }
+  }
+
+  [data-required="Elective"] {
+    &::after {
+      background-color: white;
+      background-color: #C1B7B1;
+      color: #222;
+    }
+  }
+}

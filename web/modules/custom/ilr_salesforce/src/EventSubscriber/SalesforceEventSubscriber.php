@@ -67,6 +67,12 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       $query->fields[] = "Close_Web_Registration__c";
       $query->fields[] = "Class_Description__c";
     }
+
+    if ($event->getMapping()->id() === 'course_certificate_node') {
+      // Add time fields the `course_certificate_node` mapping, to be used in
+      // self::pullPresaveCourseCertificateNode().
+      $query->fields[] = "Status__c";
+    }
   }
 
   /**
@@ -86,6 +92,10 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
 
     if ($event->getMapping()->id() === 'cahrs_event_node') {
       $this->pullPresaveCahrsEventNode($event);
+    }
+
+    if ($event->getMapping()->id() === 'course_certificate_node') {
+      $this->pullPresaveCourseCertificateNode($event);
     }
   }
 
@@ -269,6 +279,22 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     if ($event_landing_page->body->isEmpty()) {
       $event_landing_page->body->value = $sf->field('Class_Description__c');
       $event_landing_page->body->format = 'basic_formatting_with_media';
+    }
+  }
+
+  /**
+   * Pull presave event callback for course certificate nodes.
+   *
+   * @param \Drupal\salesforce_mapping\Event\SalesforcePullEvent $event
+   *   The event.
+   */
+  private function pullPresaveCourseCertificateNode(SalesforcePullEvent $event) {
+    $course_certificate = $event->getEntity();
+    $sf = $event->getMappedObject()->getSalesforceRecord();
+    $course_certificate->status = ($sf->field('Status__c') == 'Active') ? 1 : 0;
+
+    if (empty($sf->field('Web_Rank__c'))) {
+      $course_certificate->field_weight = 1000;
     }
   }
 
