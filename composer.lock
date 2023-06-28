@@ -4821,30 +4821,30 @@
         },
         {
             "name": "drupal/prepopulate",
-            "version": "2.3.0",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/prepopulate.git",
-                "reference": "8.x-2.3"
+                "reference": "8.x-2.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/prepopulate-8.x-2.3.zip",
-                "reference": "8.x-2.3",
-                "shasum": "5a49eaf7f231395f64d378a3978ba42a8fab6554"
+                "url": "https://ftp.drupal.org/files/projects/prepopulate-8.x-2.4.zip",
+                "reference": "8.x-2.4",
+                "shasum": "5e82bd6cbbaafc8320e8b3e48bc3862de4964e00"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "require-dev": {
-                "drupal/inline_entity_form": "*",
-                "drupal/og": "*"
+                "drupal/inline_entity_form": "^1.0@beta",
+                "drupal/og": "^1.0@alpha"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.3",
-                    "datestamp": "1588005625",
+                    "version": "8.x-2.4",
+                    "datestamp": "1678728834",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4857,26 +4857,34 @@
             ],
             "authors": [
                 {
-                    "name": "eafarris",
-                    "homepage": "https://www.drupal.org/user/812"
+                    "name": "Heddn",
+                    "homepage": "https://www.drupal.org/u/heddn",
+                    "role": "Maintainer"
                 },
                 {
-                    "name": "ff1",
-                    "homepage": "https://www.drupal.org/user/41738"
+                    "name": "Jbrauer",
+                    "homepage": "https://www.drupal.org/u/jbrauer",
+                    "role": "Maintainer"
                 },
                 {
-                    "name": "heddn",
-                    "homepage": "https://www.drupal.org/user/1463982"
+                    "name": "Eafarris",
+                    "homepage": "https://www.drupal.org/u/eafarris",
+                    "role": "Maintainer"
                 },
                 {
-                    "name": "jbrauer",
-                    "homepage": "https://www.drupal.org/user/12363"
+                    "name": "FF1",
+                    "homepage": "https://www.drupal.org/u/ff1",
+                    "role": "Maintainer"
                 }
             ],
             "description": "Allows form elements to be prepopulated from the URL.",
             "homepage": "https://www.drupal.org/project/prepopulate",
+            "keywords": [
+                "Drupal"
+            ],
             "support": {
-                "source": "https://git.drupalcode.org/project/prepopulate"
+                "source": "https://git.drupalcode.org/project/prepopulate",
+                "issues": "https://www.drupal.org/project/issues/prepopulate"
             }
         },
         {
