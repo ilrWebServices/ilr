@@ -77,7 +77,7 @@
     "drupal/inline_entity_form": "^1.0@RC",
     "drupal/key": "^1.14",
     "drupal/key_value_field": "^1.0",
-    "drupal/linkit": "^6.0.0",
+    "drupal/linkit": "^6.0",
     "drupal/linkit_media_library": "^1.0",
     "drupal/mailchimp": "^2",
     "drupal/media_library_edit": "^3.0",
@@ -200,9 +200,6 @@
       },
       "drupal/focal_point": {
         "Preview link accidentally closes the media library": "https://www.drupal.org/files/issues/2020-10-11/preview_link_accidentally_closes_the_media_library-3162210-19.patch"
-      },
-      "drupal/linkit": {
-        "Linkit for Link field": "https://www.drupal.org/files/issues/2022-07-22/2712951-293.patch"
       },
       "drupal/salesforce": {
         "Issue #3210809: Salesforce link appears in \"Operations\" links on views for anonymous users": "https://git.drupalcode.org/issue/salesforce-3210809/-/commit/e770f23fd303be476229d7ab89a42427a7ed9bbd.diff",
