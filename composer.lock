@@ -4348,26 +4348,26 @@
         },
         {
             "name": "drupal/migrate_file",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/migrate_file.git",
-                "reference": "2.1.1"
+                "reference": "2.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/migrate_file-2.1.1.zip",
-                "reference": "2.1.1",
-                "shasum": "3e573ad33e4ab9bf8821107d8ca0e867e9110452"
+                "url": "https://ftp.drupal.org/files/projects/migrate_file-2.1.2.zip",
+                "reference": "2.1.2",
+                "shasum": "3febc85243c9a67991db102a10c6d81c0bea07c5"
             },
             "require": {
-                "drupal/core": "^9"
+                "drupal/core": "^9 | ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.1.1",
-                    "datestamp": "1647985110",
+                    "version": "2.1.2",
+                    "datestamp": "1674948365",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
