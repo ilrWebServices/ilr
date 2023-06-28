@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "489a3f643373522c478396dc4721aff6",
+    "content-hash": "bdadf9d758be68b9a722de8ef618eab8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -633,41 +633,36 @@
         },
         {
             "name": "consolidation/output-formatters",
-            "version": "4.2.3",
+            "version": "4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/output-formatters.git",
-                "reference": "cbb50cc86775f14972003f797b61e232788bee1f"
+                "reference": "f65524e9ecd2bd0021c4b18710005caaa6dcbd86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/output-formatters/zipball/cbb50cc86775f14972003f797b61e232788bee1f",
-                "reference": "cbb50cc86775f14972003f797b61e232788bee1f",
+                "url": "https://api.github.com/repos/consolidation/output-formatters/zipball/f65524e9ecd2bd0021c4b18710005caaa6dcbd86",
+                "reference": "f65524e9ecd2bd0021c4b18710005caaa6dcbd86",
                 "shasum": ""
             },
             "require": {
                 "dflydev/dot-access-data": "^1.1.0 || ^2 || ^3",
                 "php": ">=7.1.3",
-                "symfony/console": "^4|^5|^6",
-                "symfony/finder": "^4|^5|^6"
+                "symfony/console": "^4 || ^5 || ^6",
+                "symfony/finder": "^4 || ^5 || ^6"
             },
             "require-dev": {
                 "php-coveralls/php-coveralls": "^2.4.2",
-                "phpunit/phpunit": ">=7",
+                "phpunit/phpunit": "^7 || ^8 || ^9",
                 "squizlabs/php_codesniffer": "^3",
-                "symfony/var-dumper": "^4|^5|^6",
-                "symfony/yaml": "^4|^5|^6",
-                "yoast/phpunit-polyfills": "^0.2.0"
+                "symfony/var-dumper": "^4 || ^5 || ^6",
+                "symfony/yaml": "^4 || ^5 || ^6",
+                "yoast/phpunit-polyfills": "^1"
             },
             "suggest": {
                 "symfony/var-dumper": "For using the var_dump formatter"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "4.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Consolidation\\OutputFormatters\\": "src"
@@ -686,9 +681,9 @@
             "description": "Format text by applying transformations provided by plug-in formatters.",
             "support": {
                 "issues": "https://github.com/consolidation/output-formatters/issues",
-                "source": "https://github.com/consolidation/output-formatters/tree/4.2.3"
+                "source": "https://github.com/consolidation/output-formatters/tree/4.3.1"
             },
-            "time": "2022-10-17T04:01:40+00:00"
+            "time": "2023-05-20T03:23:06+00:00"
         },
         {
             "name": "consolidation/robo",
@@ -4993,36 +4988,36 @@
         },
         {
             "name": "drupal/salesforce",
-            "version": "5.0.0",
+            "version": "5.0.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/salesforce.git",
-                "reference": "5.0.0"
+                "reference": "5.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/salesforce-5.0.0.zip",
-                "reference": "5.0.0",
-                "shasum": "06f63aae2e5e206e4e8abe58e37b0443e4267eec"
+                "url": "https://ftp.drupal.org/files/projects/salesforce-5.0.2.zip",
+                "reference": "5.0.2",
+                "shasum": "1dda8743e3b3650149f94f83ab9773cc5c55a939"
             },
             "require": {
                 "consolidation/output-formatters": "^3.2.0 || ^4.1",
-                "drupal/core": "^9.1",
+                "drupal/core": "^9 || ^10",
                 "ext-json": "*",
                 "lusitanian/oauth": "^0.8.11"
             },
             "require-dev": {
                 "drupal/address": "^1.8",
-                "drupal/dynamic_entity_reference": "^1.9 || ^2.0",
+                "drupal/dynamic_entity_reference": "^1.9 || ^2.0 || ^3 || ^4",
                 "drupal/key": "^1.14",
                 "drupal/salesforce_mapping": "*",
                 "drupal/salesforce_push": "*",
-                "drupal/typed_data": "^1.0-alpha5",
-                "drupal/webform": "^5.9.0-beta1",
+                "drupal/typed_data": "^1.0-beta2",
+                "drupal/webform": "*",
                 "ext-soap": "*",
-                "firebase/php-jwt": "^5.0",
+                "firebase/php-jwt": "^5.0 || ^6.0",
                 "lusitanian/oauth": "^0.8.11",
-                "messageagency/force.com-toolkit-for-php": "^1.0.1"
+                "messageagency/force.com-toolkit-for-php": "^1.0.2"
             },
             "suggest": {
                 "consolidation/output-formatters": "Required for drush 10 commands.",
@@ -5037,8 +5032,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "5.0.0",
-                    "datestamp": "1635946398",
+                    "version": "5.0.2",
+                    "datestamp": "1679940932",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5046,7 +5041,7 @@
                 },
                 "drush": {
                     "services": {
-                        "drush.services.yml": "^9"
+                        "drush.services.yml": "^9 || ^10 || ^11"
                     }
                 }
             },
