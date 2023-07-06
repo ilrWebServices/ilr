@@ -194,6 +194,13 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
       ];
     }
 
+    if (isset($data['attending_online'])) {
+      $serialized_order['order_items'][0]['product']['participants'][0]['additional_fields'][] = [
+        'name' => 'Attending_Online__c',
+        'value' => $data['attending_online'] ? 'true' : 'false',
+      ];
+    }
+
     // Queue the serialized order for submission to the WebReg webhook on
     // Salesforce.
     $queue_item_id = $this->queue->createItem($serialized_order);

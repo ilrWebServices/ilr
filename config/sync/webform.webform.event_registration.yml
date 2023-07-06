@@ -20,6 +20,11 @@ elements: |-
     '#title': Variant
     '#variant': override
     '#display_on': view
+  variant_attendance_type:
+    '#type': webform_variant
+    '#title': 'Variant Attendance Type'
+    '#variant': override
+    '#display_on': view
   company:
     '#type': textfield
     '#title': Organization
@@ -69,6 +74,10 @@ elements: |-
     '#counter_type': character
     '#counter_minimum': 1
     '#counter_maximum': 255
+  attending_online:
+    '#type': checkbox
+    '#title': 'Attending online'
+    '#access': false
   custom_1_answer:
     '#type': textfield
     '#title': 'Custom 1 Answer'
@@ -379,4 +388,17 @@ variants:
       debug: false
       settings: {  }
       elements: "company:\r\n  '#title': Company\r\nphone:\r\n  '#access': true\r\naddress:\r\n  '#access': true\r\n  '#address__access': true\r\n  '#postal_code__access': true\r\naccessible_accommodation:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Optional activities'\r\n  '#description': 'Please tell us which optional activities you’ll attend.'\r\n  '#type': checkboxes\r\n  '#options': cahrs_session_details\r\n  '#wrapper_attributes':\r\n    class:\r\n      - cahrs-session-details-element"
+      handlers: {  }
+  hybrid:
+    id: override
+    variant_id: hybrid
+    element_key: variant_attendance_type
+    label: Hybrid
+    notes: ''
+    status: true
+    weight: 3
+    settings:
+      debug: false
+      settings: {  }
+      elements: "attending_online:\r\n  '#access': true"
       handlers: {  }
