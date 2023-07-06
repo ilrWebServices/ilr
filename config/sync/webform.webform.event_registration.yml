@@ -25,6 +25,11 @@ elements: |-
     '#title': 'Variant Attendance Type'
     '#variant': override
     '#display_on': view
+  variant_address:
+    '#type': webform_variant
+    '#title': 'Variant Address'
+    '#variant': override
+    '#display_on': view
   company:
     '#type': textfield
     '#title': Organization
@@ -401,4 +406,17 @@ variants:
       debug: false
       settings: {  }
       elements: "attending_online:\r\n  '#access': true"
+      handlers: {  }
+  basic_address:
+    id: override
+    variant_id: basic_address
+    element_key: variant_address
+    label: 'Basic address'
+    notes: ''
+    status: true
+    weight: 8
+    settings:
+      debug: false
+      settings: {  }
+      elements: "address:\r\n  '#access': true"
       handlers: {  }
