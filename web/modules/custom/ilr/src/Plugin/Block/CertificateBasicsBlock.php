@@ -75,8 +75,8 @@ class CertificateBasicsBlock extends BlockBase implements ContainerFactoryPlugin
         '#type' => 'inline_template',
         '#template' => <<<EOL
         <p>
-          <strong>{{course_required_count}} Focused Workshops</strong><br/>
-          {% if course_elective_count %}<strong>{{course_elective_count}} Required Electives</strong><br/>{% endif %}
+          <strong>{{course_required_count}} Required Workshops</strong><br/>
+          {% if course_elective_count %}<strong>{{course_elective_count}} Electives</strong><br/>{% endif %}
           {% trans %}Register for individual workshops to fit your schedule{% endtrans %}
         </p>
         EOL,
