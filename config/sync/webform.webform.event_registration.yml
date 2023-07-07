@@ -81,7 +81,7 @@ elements: |-
     '#counter_maximum': 255
   attending_online:
     '#type': checkbox
-    '#title': 'Attending online'
+    '#title': 'I will be attending online'
     '#access': false
   custom_1_answer:
     '#type': textfield
