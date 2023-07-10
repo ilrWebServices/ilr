@@ -194,10 +194,10 @@ class OutreachRegistrationWebformHandler extends WebformHandlerBase {
       ];
     }
 
-    if (isset($data['attending_online'])) {
+    if (!empty($data['attending_online'])) {
       $serialized_order['order_items'][0]['product']['participants'][0]['additional_fields'][] = [
-        'name' => 'Attending_Online__c',
-        'value' => $data['attending_online'] ? 'true' : 'false',
+        'name' => 'Attendance_Type__c',
+        'value' => 'Online',
       ];
     }
 
