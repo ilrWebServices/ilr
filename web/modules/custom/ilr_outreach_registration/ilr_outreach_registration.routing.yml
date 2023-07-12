@@ -11,3 +11,10 @@ ilr_outreach_registration.salesforce_pingback_webform_webhook_v1:
     parameters:
       webform:
         type: 'entity:webform'
+ilr_outreach_registration.event_registration_submit:
+  path: '/admin/structure/webform/manage/{webform}/submission/{webform_submission}/submit-to-salesforce'
+  defaults:
+    _form: 'Drupal\ilr_outreach_registration\Form\WebformSubmissionSalesforceSubmitForm'
+    _title_callback: '\Drupal\ilr_outreach_registration\Form\WebformSubmissionSalesforceSubmitForm::title'
+  requirements:
+    _entity_access: 'webform_submission.update'

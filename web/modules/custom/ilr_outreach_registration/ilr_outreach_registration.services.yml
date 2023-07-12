@@ -1,0 +1,4 @@
+services:
+  ilr_outreach_registration.webform_submission_serializer:
+    class: Drupal\ilr_outreach_registration\WebformSubmissionSerializer
+    arguments: ['@request_stack']
