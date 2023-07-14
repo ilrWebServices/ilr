@@ -62,6 +62,15 @@ class WebformSubmissionSalesforceSubmitForm extends FormBase {
       '#webform_submission' => $webform_submission,
     ];
 
+    $form['payload'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Payload'),
+    ];
+
+    $form['payload']['data'] = [
+      '#markup' => '<pre>' . json_encode($webhook_payload_data, JSON_PRETTY_PRINT) . '</pre>',
+    ];
+
     $form['notes'] = [
       '#type' => 'inline_template',
       '#template' => '<h2>Notes</h2><pre>{{ notes }}</pre><br/>',
