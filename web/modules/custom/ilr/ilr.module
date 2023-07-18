@@ -38,6 +38,7 @@ use Drupal\ilr\Entity\EventNodeBase;
 use Drupal\ilr\Entity\EventNodeInterface;
 use Drupal\ilr\Entity\ImageMedia;
 use Drupal\node\Entity\NodeType;
+use Drupal\node\NodeInterface;
 use Drupal\salesforce_mapping\Entity\MappedObjectInterface;
 
 /**
@@ -744,6 +745,19 @@ function ilr_tokens($type, $tokens, array $data, array $options, BubbleableMetad
  */
 function ilr_entity_type_alter(array &$entity_types) {
   $entity_types['node']->addConstraint('NodeMenuLevel');
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function ilr_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  $type_id = $node->bundle();
+
+  if ($op === 'view' && $account->hasPermission('view any ' . $type_id . ' unpublished content', $account)) {
+    return AccessResult::allowed()->cachePerPermissions();
+  }
+
+  return AccessResult::neutral();
 }
 
 /**

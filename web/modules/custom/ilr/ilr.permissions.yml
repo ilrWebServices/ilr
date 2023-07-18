@@ -4,3 +4,5 @@ view milr eligibility webform submissions:
   title: 'View MILR Eligibitity form submissions'
 administer memories webform submissions:
   title: 'Administer memories form submissions'
+permission_callbacks:
+  - Drupal\ilr\UnpublishedPermissions::nodeTypePermissions

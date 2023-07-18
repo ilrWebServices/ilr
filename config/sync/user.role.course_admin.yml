@@ -8,6 +8,7 @@ dependencies:
     - node.type.instructor
   module:
     - contextual
+    - ilr
     - media
     - node
     - system
@@ -32,6 +33,8 @@ permissions:
   - 'update any media'
   - 'view all media revisions'
   - 'view all revisions'
+  - 'view any certificate unpublished content'
+  - 'view any course unpublished content'
   - 'view certificate revisions'
   - 'view course revisions'
   - 'view instructor revisions'
