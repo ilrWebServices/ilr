@@ -30,6 +30,11 @@ elements: |-
     '#title': 'Variant Address'
     '#variant': override
     '#display_on': view
+  variant_handlers:
+    '#type': webform_variant
+    '#title': 'Variant Handlers'
+    '#variant': override
+    '#display_on': view
   company:
     '#type': textfield
     '#title': Organization
@@ -420,3 +425,18 @@ variants:
       settings: {  }
       elements: "address:\r\n  '#access': true"
       handlers: {  }
+  disable_salesforce_submitter:
+    id: override
+    variant_id: disable_salesforce_submitter
+    element_key: variant_handlers
+    label: 'Disable Salesforce Submitter'
+    notes: ''
+    status: true
+    weight: 9
+    settings:
+      debug: false
+      settings: {  }
+      elements: ''
+      handlers:
+        ilr_outreach_registration_order_submitter:
+          status: false
