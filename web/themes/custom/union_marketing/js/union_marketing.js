@@ -154,6 +154,30 @@
     }
   }
 
+  Drupal.behaviors.union_marketing_generic_event_registration_form_link_trigger = {
+    attach: function (context, settings) {
+      if (context !== document) {
+        return;
+      }
+
+      // If the event location link is a fragment to `#register`, trigger a
+      // click on the registration form overlay to open it.
+      document.addEventListener('click', function(event) {
+        if (event.target.matches('.field--location-link a[href="#register"]')) {
+          event.preventDefault();
+
+          // See the `form_overlay` created in
+          // Drupal.behaviors.union_marketing_generic_event_registration_form().
+          const event_registration_form_overlay = document.querySelector('.block-field-block--node--event-landing-page--field-registration-form > div:last-of-type');
+
+          if (event_registration_form_overlay) {
+            event_registration_form_overlay.click();
+          }
+        }
+      });
+    }
+  }
+
   Drupal.behaviors.union_marketing_event_agenda_toggle = {
     attach: function (context, settings) {
       // Set only the first agenda item to open.
