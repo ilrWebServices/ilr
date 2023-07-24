@@ -35,6 +35,11 @@ elements: |-
     '#title': 'Variant Handlers'
     '#variant': override
     '#display_on': view
+  variant_email_handler:
+    '#type': webform_variant
+    '#title': 'Variant Email Handler'
+    '#variant': override
+    '#display_on': view
   company:
     '#type': textfield
     '#title': Organization
