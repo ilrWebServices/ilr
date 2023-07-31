@@ -1,0 +1,14 @@
+uuid: a131c2a6-1e15-49f0-8179-8c3f6ff2a6f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.event_admin
+  module:
+    - user
+id: user_add_role_action.event_admin
+label: 'Add the Event admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: event_admin

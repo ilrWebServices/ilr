@@ -1,0 +1,14 @@
+uuid: 492734bc-5198-408c-b371-2f16f3aa67d0
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+    - webform
+id: event_admin
+label: 'Event admin'
+weight: 8
+is_admin: null
+permissions:
+  - 'access webform overview'
+  - 'view event registration webform submissions'
