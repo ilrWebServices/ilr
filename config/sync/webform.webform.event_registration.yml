@@ -278,7 +278,8 @@ access:
   view_any:
     roles: {  }
     users: {  }
-    permissions: {  }
+    permissions:
+      - 'view event registration webform submissions'
   update_any:
     roles: {  }
     users: {  }
