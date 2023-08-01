@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - ilr
+    - system
     - webform
 id: event_admin
 label: 'Event admin'
@@ -12,3 +13,4 @@ is_admin: null
 permissions:
   - 'access webform overview'
   - 'view event registration webform submissions'
+  - 'access administration pages'
