@@ -604,3 +604,16 @@ variants:
               <br/>
               Sponsored by:<br/>
               <a href="https://www.ilr.cornell.edu/buffalo-co-lab">The Buffalo Co-Lab</a>, <a href="https://www.ilr.cornell.edu/labor-and-employment-law-program">The Labor and Employment Law Program</a>, and <a href="https://www.ilr.cornell.edu/worker-institute">The Worker Institute</a>
+  international_address:
+    id: override
+    variant_id: international_address
+    element_key: variant_address
+    label: 'International address'
+    notes: ''
+    status: true
+    weight: 8
+    settings:
+      debug: false
+      settings: {  }
+      elements: "address_intl:\r\n  '#access': true"
+      handlers: {  }
