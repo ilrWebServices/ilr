@@ -38,12 +38,6 @@ class WebformSubmissionSerializer {
         'last_name' => $data['last_name'],
         'email' => $data['email'],
         'phone' => $data['phone'] ?? '',
-        'address_line1' => $data['address']['address'] ?? 'NONE PROVIDED',
-        'address_line2' => $data['address']['address_2'] ?? '',
-        'city' => $data['address']['city'] ?? '',
-        'state' => $data['address']['state_province'] ?? '',
-        'zip' => $data['address']['postal_code'] ?? '',
-        'country_code' => '',
         'additional_fields' => [],
       ],
       'order_total' => 0,
@@ -71,12 +65,6 @@ class WebformSubmissionSerializer {
                 'middle_name' => $data['middle_name'] ?? NULL,
                 'last_name' => $data['last_name'],
                 'company' => $data['company'] ?? 'NONE PROVIDED',
-                'address_line1' => $data['address']['address'] ?? 'NONE PROVIDED',
-                'address_line2' => $data['address']['address_2'] ?? '',
-                'city' => $data['address']['city'] ?? '',
-                'state' => $data['address']['state_province'] ?? '',
-                'zip' => $data['address']['postal_code'] ?? '',
-                'country_code' => '',
                 'job_title' => $data['title'] ?? 'NONE PROVIDED',
                 'industry' => $data['industry'] ?? NULL,
                 'phone' => $data['phone'] ?? NULL,
@@ -91,6 +79,31 @@ class WebformSubmissionSerializer {
         ],
       ],
     ];
+
+    // Default the address values to the basic address field.
+    $address = [
+      'address_line1' => $data['address']['address'] ?? 'NONE PROVIDED',
+      'address_line2' => $data['address']['address_2'] ?? '',
+      'city' => $data['address']['city'] ?? '',
+      'state' => $data['address']['state_province'] ?? '',
+      'zip' => $data['address']['postal_code'] ?? '',
+      'country_code' => '',
+    ];
+
+    // If there is international address info, use those values instead.
+    if (!empty($data['address_intl'])) {
+      $address = [
+        'address_line1' => $data['address_intl']['address_line1'] ?: 'NONE PROVIDED',
+        'address_line2' => $data['address_intl']['address_line2'] ?: '',
+        'city' => $data['address_intl']['locality'] ?: '',
+        'state' => $data['address_intl']['administrative_area'] ?: '',
+        'zip' => $data['address_intl']['postal_code'] ?: '',
+        'country_code' => $data['address_intl']['country_code'] ?: '',
+      ];
+    }
+
+    $serialized_payload['customer'] += $address;
+    $serialized_payload['order_items'][0]['product']['participants'][0] += $address;
 
     // Add any stored UTM codes if they exist in the submission data.
     if (!empty($data['utm_values'])) {
