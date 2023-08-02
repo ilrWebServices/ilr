@@ -79,6 +79,34 @@ elements: |-
     '#state_province__required': true
     '#postal_code__access': false
     '#country__access': false
+  address_intl:
+    '#type': address
+    '#title': Address
+    '#default_value':
+      country_code: US
+      given_name: null
+      additional_name: null
+      family_name: null
+      organization: null
+      address_line1: null
+      address_line2: null
+      postal_code: null
+      sorting_code: null
+      dependent_locality: null
+      locality: null
+      administrative_area: null
+      langcode: null
+    '#access': false
+    '#field_overrides':
+      givenName: hidden
+      additionalName: hidden
+      familyName: hidden
+      organization: hidden
+      addressLine1: hidden
+      addressLine2: hidden
+      postalCode: hidden
+      sortingCode: hidden
+      dependentLocality: hidden
   accessible_accommodation:
     '#type': textarea
     '#title': Accommodations
