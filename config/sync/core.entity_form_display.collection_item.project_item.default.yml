@@ -1,0 +1,78 @@
+uuid: b744a253-423f-4ca6-9ba4-6fb07e3848ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.project_item
+    - field.field.collection_item.project_item.field_focus_areas
+  module:
+    - dynamic_entity_reference
+    - key_value_field
+    - path
+id: collection_item.project_item.default
+targetEntityType: collection_item
+bundle: project_item
+mode: default
+content:
+  attributes:
+    type: key_value_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+      key_label: Key
+      value_label: Value
+      description_label: Description
+      description_rows: 5
+      key_size: 60
+      key_placeholder: ''
+      description_enabled: false
+      description_placeholder: ''
+    third_party_settings: {  }
+  canonical:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_focus_areas:
+    type: options_buttons
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  item:
+    type: dynamic_entity_reference_default
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 40
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  weight:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  collection: true
+  user_id: true

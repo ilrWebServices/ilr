@@ -1,0 +1,9 @@
+uuid: 100b92ce-fd2e-48da-a840-90575f913ac0
+langcode: en
+status: true
+dependencies: {  }
+id: project_item
+label: 'Project item'
+allowed_bundles:
+  - node.project
+attributes_access: administrators

@@ -1,0 +1,21 @@
+uuid: 7ac1ac00-3a76-485d-b6ca-b080b5f144d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.project_item
+    - field.storage.collection_item.field_focus_areas
+id: collection_item.project_item.field_focus_areas
+field_name: field_focus_areas
+entity_type: collection_item
+bundle: project_item
+label: 'Focus areas'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: collection_context_project_focus_area_term
+  handler_settings: {  }
+field_type: entity_reference

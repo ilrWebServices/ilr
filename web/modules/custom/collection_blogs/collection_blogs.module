@@ -266,7 +266,7 @@ function collection_blogs_node_view(array &$build, EntityInterface $entity, Enti
       ->condition('type', 'blog')
       ->condition('item__target_type', 'node')
       ->condition('item__target_id', $entity->id())
-      ->range(0, 1) // Limit to one; posts should only be in a single collection.
+      ->condition('canonical', 1) // @todo Test me!
       ->execute();
 
     if (empty($blog_post_collection_item_id)) {
