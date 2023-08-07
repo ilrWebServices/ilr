@@ -6,8 +6,8 @@ dependencies:
     - node.type.certificate
     - node.type.class
     - node.type.course
-    - node.type.event_landing_page
     - node.type.course_certificate
+    - node.type.event_landing_page
     - node.type.instructor
     - node.type.media_mention
     - node.type.page
@@ -15,6 +15,7 @@ dependencies:
     - node.type.post
     - node.type.post_document
     - node.type.post_experience_report
+    - node.type.project
     - node.type.story
     - node.type.video_post
   module:
@@ -522,13 +523,14 @@ display:
           value:
             certificate: certificate
             course: course
-            event_landing_page: event_landing_page
             post_document: post_document
+            event_landing_page: event_landing_page
             post_experience_report: post_experience_report
             instructor: instructor
             media_mention: media_mention
             page: page
             post: post
+            project: project
             story: story
             video_post: video_post
           group: 1
@@ -552,6 +554,9 @@ display:
               editor: '0'
               content_administrator: '0'
               course_admin: '0'
+              form_admin: '0'
+              advanced_editor: '0'
+              event_admin: '0'
             reduce: true
           is_grouped: false
           group_info:
