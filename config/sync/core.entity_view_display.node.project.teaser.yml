@@ -5,6 +5,13 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.project.body
+    - field.field.node.project.field_active
+    - field.field.node.project.field_activities
+    - field.field.node.project.field_contact_info_text
+    - field.field.node.project.field_external_link
+    - field.field.node.project.field_funding_agencies
+    - field.field.node.project.field_partners
+    - field.field.node.project.field_principal_investigator_txt
     - node.type.project
   module:
     - text
@@ -33,4 +40,11 @@ content:
     weight: 102
     region: content
 hidden:
+  field_active: true
+  field_activities: true
+  field_contact_info_text: true
+  field_external_link: true
+  field_funding_agencies: true
+  field_partners: true
+  field_principal_investigator_txt: true
   search_api_excerpt: true

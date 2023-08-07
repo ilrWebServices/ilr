@@ -4,8 +4,16 @@ status: true
 dependencies:
   config:
     - field.field.node.project.body
+    - field.field.node.project.field_active
+    - field.field.node.project.field_activities
+    - field.field.node.project.field_contact_info_text
+    - field.field.node.project.field_external_link
+    - field.field.node.project.field_funding_agencies
+    - field.field.node.project.field_partners
+    - field.field.node.project.field_principal_investigator_txt
     - node.type.project
   module:
+    - link
     - path
     - text
 id: node.project.default
@@ -28,6 +36,63 @@ content:
     weight: 10
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_active:
+    type: boolean_checkbox
+    weight: 127
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_activities:
+    type: text_textarea
+    weight: 122
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_contact_info_text:
+    type: text_textarea
+    weight: 123
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_external_link:
+    type: link_default
+    weight: 128
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_funding_agencies:
+    type: entity_reference_autocomplete
+    weight: 124
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_partners:
+    type: text_textarea
+    weight: 126
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_principal_investigator_txt:
+    type: text_textarea
+    weight: 125
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
     third_party_settings: {  }
   ief_collection_items:
     weight: 50

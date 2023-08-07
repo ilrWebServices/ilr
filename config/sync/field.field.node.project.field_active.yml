@@ -1,0 +1,23 @@
+uuid: dfc59053-4b57-43b3-adb1-be331a488604
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_active
+    - node.type.project
+id: node.project.field_active
+field_name: field_active
+entity_type: node
+bundle: project
+label: Active
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

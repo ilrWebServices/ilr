@@ -4,8 +4,16 @@ status: true
 dependencies:
   config:
     - field.field.node.project.body
+    - field.field.node.project.field_active
+    - field.field.node.project.field_activities
+    - field.field.node.project.field_contact_info_text
+    - field.field.node.project.field_external_link
+    - field.field.node.project.field_funding_agencies
+    - field.field.node.project.field_partners
+    - field.field.node.project.field_principal_investigator_txt
     - node.type.project
   module:
+    - link
     - text
     - user
 id: node.project.default
@@ -19,6 +27,64 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 103
+    region: content
+  field_active:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_activities:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_contact_info_text:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_external_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  field_funding_agencies:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_partners:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_principal_investigator_txt:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 107
     region: content
   links:
     settings: {  }
