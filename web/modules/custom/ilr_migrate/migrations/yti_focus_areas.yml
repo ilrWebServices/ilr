@@ -1,0 +1,35 @@
+id: yti_focus_areas
+label: YTI focus areas
+migration_group: default
+migration_tags:
+  - Custom
+source:
+source:
+  plugin: 'csv_url'
+  path: 'https://raw.githubusercontent.com/ilrWebServices/project_migration_data/main/yti_focus_areas.csv'
+  header_offset: 0
+  ids:
+    - id
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  name: name
+  description/value: short_description
+  # description/format:
+  #   plugin: default_value
+  #   default_value: basic_formatting_with_media
+  changed:
+    plugin: format_date
+    source: updated_at
+    from_format: 'Y-m-d H:i:s'
+    to_format: 'U'
+    from_timezone: 'UTC'
+    to_timezone: 'UTC'
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: project_57_focus_areas
+  validate: true
+migration_dependencies:
+  required: {  }
+  optional: {  }
