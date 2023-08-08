@@ -101,6 +101,11 @@ elements: |-
     '#title': Resume
     '#file_extensions': 'txt rtf pdf doc docx'
     '#sanitize': true
+  linkedin_profile_url:
+    '#type': webform_link
+    '#title': 'LinkedIn Profile URL'
+    '#title__access': false
+    '#url__title': 'LinkedIn Profile URL'
   company:
     '#type': webform_computed_twig
     '#title': Company
