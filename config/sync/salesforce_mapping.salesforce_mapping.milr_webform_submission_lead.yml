@@ -186,6 +186,13 @@ field_mappings:
     salesforce_field: UTM_Keyword__c
     id: 22
     description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:linkedin_profile_url:url:value]'
+    direction: drupal_sf
+    salesforce_field: LinkedIn_Profile_URL__c
+    id: 23
+    description: ''
 status: true
 dependencies:
   config:
