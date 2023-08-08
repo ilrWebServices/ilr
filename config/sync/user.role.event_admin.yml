@@ -11,6 +11,6 @@ label: 'Event admin'
 weight: 8
 is_admin: null
 permissions:
+  - 'access administration pages'
   - 'access webform overview'
   - 'view event registration webform submissions'
-  - 'access administration pages'
