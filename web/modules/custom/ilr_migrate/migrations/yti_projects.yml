@@ -39,7 +39,7 @@ process:
     plugin: default_value
     default_value: basic_formatting_with_media
   field_active: active
-  field_external_link: url
+  field_url: url
   status: display_on_website
   created:
     plugin: format_date

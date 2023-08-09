@@ -1,20 +1,20 @@
-uuid: d653f9ab-a6b7-4bdc-8bc7-8bdcc3f33acb
+uuid: 5e20c760-67e9-4ff4-bedf-5044bc2d6bbc
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_external_link
+    - field.storage.node.field_url
     - node.type.project
   module:
     - link
-id: node.project.field_external_link
-field_name: field_external_link
+id: node.project.field_url
+field_name: field_url
 entity_type: node
 bundle: project
 label: URL
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
