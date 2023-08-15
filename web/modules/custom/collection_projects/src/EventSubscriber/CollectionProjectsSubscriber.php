@@ -60,15 +60,14 @@ class CollectionProjectsSubscriber implements EventSubscriberInterface {
   /**
    * Process the COLLECTION_CREATE event.
    *
-   * @param \Symfony\Contracts\EventDispatcher\Event $event
+   * @param \Drupal\collection\Event\CollectionUpdateEvent $event
    *   The dispatched event.
    */
   public function collectionCreate(CollectionCreateEvent $event): void {
     /** @var \Drupal\collection\Entity\CollectionInterface $collection */
     $collection = $event->collection;
-    $can_contain_projects = $this->collectionProjectsManager->collectionCanContainProjects($collection);
 
-    if ($can_contain_projects === FALSE) {
+    if ($this->collectionProjectsManager->collectionCanContainProjects($collection) === FALSE) {
       return;
     }
 
@@ -78,15 +77,14 @@ class CollectionProjectsSubscriber implements EventSubscriberInterface {
   /**
    * Process the COLLECTION_UPDATE event.
    *
-   * @param \Symfony\Contracts\EventDispatcher\Event $event
+   * @param \Drupal\collection\Event\CollectionUpdateEvent $event
    *   The dispatched event.
    */
   public function collectionUpdate(CollectionUpdateEvent $event): void {
     /** @var \Drupal\collection\Entity\CollectionInterface $collection */
     $collection = $event->collection;
-    $can_contain_projects = $this->collectionProjectsManager->collectionCanContainProjects($collection);
 
-    if ($can_contain_projects === FALSE) {
+    if ($this->collectionProjectsManager->collectionCanContainProjects($collection) === FALSE) {
       return;
     }
 
