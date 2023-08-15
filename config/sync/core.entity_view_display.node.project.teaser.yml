@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.project.field_funding_agencies
     - field.field.node.project.field_partners
     - field.field.node.project.field_principal_investigator_txt
+    - field.field.node.project.field_representative_image
     - field.field.node.project.field_url
     - node.type.project
   module:
@@ -46,5 +47,6 @@ hidden:
   field_funding_agencies: true
   field_partners: true
   field_principal_investigator_txt: true
+  field_representative_image: true
   field_url: true
   search_api_excerpt: true
