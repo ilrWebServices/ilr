@@ -172,7 +172,7 @@ class LocalistEvents extends ParagraphsBehaviorBase {
    * machine name.
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {
-    return strpos($paragraphs_type->id(), 'event') !== FALSE;
+    return !$paragraphs_type->isNew() && strpos($paragraphs_type->id(), 'event') !== FALSE;
   }
 
 }
