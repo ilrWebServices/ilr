@@ -20,8 +20,8 @@ behavior_plugins:
       grid-bricks--reversed: 0
       grid-featured: 0
       banner: 0
-    columns_enabled: 0
-    columns_min: ''
-    columns_max: ''
+    columns_enabled: 1
+    columns_min: '2'
+    columns_max: '4'
   project_listing:
     enabled: true
