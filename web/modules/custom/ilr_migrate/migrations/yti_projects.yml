@@ -25,7 +25,7 @@ process:
   field_contact_info_text/value: contact_info
   field_contact_info_text/format:
     plugin: default_value
-    default_value: basic_formatting_with_media
+    default_value: basic_formatting
   field_funding_agencies:
     plugin: migration_lookup
     migration: funding_agencies
@@ -34,7 +34,7 @@ process:
   field_partners/value: partners
   field_partners/format:
     plugin: default_value
-    default_value: basic_formatting_with_media
+    default_value: basic_formatting
   field_active: active
   field_url: url
   status: display_on_website
