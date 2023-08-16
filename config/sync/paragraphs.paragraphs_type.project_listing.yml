@@ -1,0 +1,27 @@
+uuid: a97e6758-df30-444b-b863-15fa7f292e91
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: project_listing
+label: 'Project listing'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  list_styles:
+    enabled: true
+    list_styles:
+      grid: grid
+      grid-compact: grid-compact
+      list-compact: list-compact
+      grid-bricks: 0
+      grid-bricks--reversed: 0
+      grid-featured: 0
+      banner: 0
+    columns_enabled: 0
+    columns_min: ''
+    columns_max: ''
+  project_listing:
+    enabled: true

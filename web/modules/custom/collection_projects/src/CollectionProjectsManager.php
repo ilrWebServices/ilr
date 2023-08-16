@@ -10,6 +10,7 @@ class CollectionProjectsManager {
 
   use CollectionVocabularyTrait;
 
+  // @todo Refactor to load and analyze all node types to determine if they can contain project and cache here.
   public function __construct(
     public EntityTypeManagerInterface $entityTypeManager
   ) {}
@@ -37,6 +38,19 @@ class CollectionProjectsManager {
     }
 
     return FALSE;
+  }
+
+  public function getProjectTypesWithLabels(): array {
+    $project_types = [];
+
+    /** @var \Drupal\node\NodeTypeInterface $node_type */
+    foreach ($this->entityTypeManager->getStorage('node_type')->loadMultiple() as $bundle_name => $node_type) {
+      if ($node_type->getThirdPartySetting('collection_projects', 'is_project')) {
+        $project_types[$bundle_name] = $node_type->label();
+      }
+    }
+
+    return $project_types;
   }
 
 }

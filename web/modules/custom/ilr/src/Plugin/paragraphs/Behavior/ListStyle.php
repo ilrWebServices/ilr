@@ -283,6 +283,7 @@ class ListStyle extends ParagraphsBehaviorBase {
       'curated_course_listing',
       'event_listing',
       'people_listing',
+      'project_listing',
     ]);
   }
 
