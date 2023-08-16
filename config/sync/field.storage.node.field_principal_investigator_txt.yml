@@ -4,13 +4,13 @@ status: true
 dependencies:
   module:
     - node
-    - text
 id: node.field_principal_investigator_txt
 field_name: field_principal_investigator_txt
 entity_type: node
-type: text_long
-settings: {  }
-module: text
+type: string_long
+settings:
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
 translatable: true

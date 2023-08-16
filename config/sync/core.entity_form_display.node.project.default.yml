@@ -80,8 +80,8 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_principal_investigator_txt:
-    type: text_textarea
     weight: 125
+    type: string_textarea
     region: content
     settings:
       rows: 5

@@ -69,7 +69,7 @@ content:
     weight: 108
     region: content
   field_principal_investigator_txt:
-    type: text_default
+    type: basic_string
     label: above
     settings: {  }
     third_party_settings: {  }

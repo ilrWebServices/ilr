@@ -5,13 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_principal_investigator_txt
     - node.type.project
-  module:
-    - allowed_formats
-    - text
-third_party_settings:
-  allowed_formats:
-    allowed_formats:
-      - basic_formatting
 id: node.project.field_principal_investigator_txt
 field_name: field_principal_investigator_txt
 entity_type: node
@@ -23,4 +16,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: text_long
+field_type: string_long

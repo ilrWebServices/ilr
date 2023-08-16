@@ -30,10 +30,7 @@ process:
     plugin: migration_lookup
     migration: funding_agencies
     source: id
-  field_principal_investigator_txt/value: pi
-  field_principal_investigator_txt/format:
-    plugin: default_value
-    default_value: basic_formatting_with_media
+  field_principal_investigator_txt: pi
   field_partners/value: partners
   field_partners/format:
     plugin: default_value
