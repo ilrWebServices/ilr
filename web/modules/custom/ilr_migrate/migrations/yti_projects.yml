@@ -1,0 +1,61 @@
+id: yti_projects
+label: YTI projects
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'csv_url'
+  path: 'https://raw.githubusercontent.com/ilrWebServices/project_migration_data/main/yti_projects.csv'
+  header_offset: 0
+  ids:
+    - id
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  title: name
+  body/value: overview
+  body/format:
+    plugin: default_value
+    default_value: basic_formatting_with_media
+  field_activities/value: activities
+  field_activities/format:
+    plugin: default_value
+    default_value: basic_formatting_with_media
+  field_contact_info_text/value: contact_info
+  field_contact_info_text/format:
+    plugin: default_value
+    default_value: basic_formatting
+  field_funding_agencies:
+    plugin: migration_lookup
+    migration: funding_agencies
+    source: funding_agency_id
+  field_principal_investigator_txt: pi
+  field_partners/value: partners
+  field_partners/format:
+    plugin: default_value
+    default_value: basic_formatting
+  field_active: active
+  field_url: url
+  status: display_on_website
+  created:
+    plugin: format_date
+    source: created_at
+    from_format: 'Y-m-d H:i:s'
+    to_format: 'U'
+    from_timezone: 'UTC'
+    to_timezone: 'UTC'
+  changed:
+    plugin: format_date
+    source: updated_at
+    from_format: 'Y-m-d H:i:s'
+    to_format: 'U'
+    from_timezone: 'UTC'
+    to_timezone: 'UTC'
+destination:
+  plugin: entity:node
+  default_bundle: project
+migration_dependencies:
+  required:
+    - funding_agencies
+  optional: {  }

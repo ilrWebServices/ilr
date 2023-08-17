@@ -1,0 +1,12 @@
+name: 'Collection Projects'
+type: module
+description: 'Allows collection types to contain projects.'
+core_version_requirement: ^8 || ^9
+package: 'Collection'
+dependencies:
+  - collection
+  - taxonomy
+  - inline_entity_form
+  - collection_pathauto
+  - collection_tools
+  - ilr

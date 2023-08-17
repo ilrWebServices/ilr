@@ -1,0 +1,19 @@
+uuid: 11c62a2b-0068-4804-9835-39d1153813c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_first_name
+    - person.persona_type.principal_investigator
+id: persona.principal_investigator.field_first_name
+field_name: field_first_name
+entity_type: persona
+bundle: principal_investigator
+label: 'First name'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

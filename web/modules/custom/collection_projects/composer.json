@@ -1,0 +1,11 @@
+{
+    "name": "drupal/collection_projects",
+    "type": "drupal-module",
+    "description": "Allows support for projects within collections.",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/collection": "^1.0"
+    }
+}

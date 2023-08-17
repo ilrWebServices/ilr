@@ -43,10 +43,13 @@ class ConfigEventSubscriber implements EventSubscriberInterface {
     '/^block_visibility_groups\.block_visibility_group\.(subsite|publication_issue)_(\d+)$/',
     '/^block\.block\.union_marketing_menu_subsite_(\d+)$/',
     '/^core\.entity_(form|view)_display\.taxonomy_term\.blog_(\d+)_(categories|tags)\.(default|teaser)$/',
+    '/^core\.entity_(form|view)_display\.taxonomy_term\.project_(\d+)_focus_areas\.(default|teaser)$/',
     '/^field\.field\.taxonomy_term\.blog_(\d+)_(categories|tags)\.[a-z_]+$/',
+    '/^field\.field\.taxonomy_term\.project_(\d+)_focus_areas\.[a-z_]+$/',
     '/^pathauto\.pattern\.blog_(\d+)_(categories|tags)_terms$/',
     '/^system\.menu\.(section|subsite)-(\d+)$/',
     '/^taxonomy\.vocabulary\.blog_(\d+)_(categories|tags)$/',
+    '/^taxonomy\.vocabulary\.project_(\d+)_focus_areas$/',
     '/^webform\.webform\.[a-z_]+$/',
   ];
 

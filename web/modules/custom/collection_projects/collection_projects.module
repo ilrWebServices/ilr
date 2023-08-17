@@ -1,0 +1,112 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\collection\Entity\CollectionType;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * @file
+ * Contains collection_projects.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\NodeTypeInterface;
+
+/**
+ * Implements hook_help().
+ */
+function collection_projects_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the collection_projects module.
+    case 'help.page.collection_projects':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Adds custom support for projects within collections.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * - Add a 'Is a project type' setting to node types.
+ */
+function collection_projects_form_node_type_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $node_type = $form_state->getFormObject()->getEntity();
+
+  $form['is_project'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Is a project type'),
+    '#description' => t('If enabled, content of this type will be considered a Project and can be used in project listings.'),
+    '#default_value' => $node_type->getThirdPartySetting('collection_projects', 'is_project'),
+    '#weight' => 1
+  ];
+
+  $form['#entity_builders'][] = 'collection_projects_form_node_form_builder';
+}
+
+/**
+ * Entity builder for the node type configuration entity.
+ */
+function collection_projects_form_node_form_builder($entity_type, NodeTypeInterface $node_type, &$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('is_project')) {
+    $node_type->setThirdPartySetting('collection_projects', 'is_project', $form_state->getValue('is_project'));
+    return;
+  }
+
+  $node_type->unsetThirdPartySetting('collection_projects', 'is_project');
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ *
+ * @see collection_projects_node_view().
+ */
+function collection_projects_entity_extra_field_info() {
+  $extra = [];
+
+  $extra['node']['project']['display']['project_focus_areas'] = [
+    'label' => t('Focus areas (canonical)'),
+    'description' => t('This is a computed reference.'),
+    'weight' => 102,
+    'visible' => TRUE,
+  ];
+
+  return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function collection_projects_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($view_mode !== 'full') {
+    return;
+  }
+
+  if ($display->getComponent('project_focus_areas')) {
+    // Find the canonical collection item for this project.
+    $entity_type_manager = \Drupal::service('entity_type.manager');
+    $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+
+    $project_focus_areas_collection_item_id = $collection_item_storage->getQuery()
+      ->condition('type', 'project_item')
+      ->condition('item__target_type', 'node')
+      ->condition('item__target_id', $entity->id())
+      ->condition('canonical', 1)
+      ->execute();
+
+    if (empty($project_focus_areas_collection_item_id)) {
+      return;
+    }
+
+    $project_focus_areas_collection_item = $collection_item_storage->load(reset($project_focus_areas_collection_item_id));
+
+    // If the collection item was found, display the blog focus areas field as a teaser.
+    if ($project_focus_areas_collection_item) {
+      $build['project_focus_areas'] = $project_focus_areas_collection_item->field_focus_areas->view('teaser');
+    }
+  }
+}

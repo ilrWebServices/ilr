@@ -1,0 +1,7 @@
+name: 'Collection Tools'
+type: module
+description: 'Miscellaneous tools for modules that extend collections.'
+core_version_requirement: ^8 || ^9 || ^10
+package: 'Collection'
+dependencies:
+  - collection

@@ -1,0 +1,19 @@
+uuid: 281cd9cd-a080-4c37-a584-01fb1bf38d06
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_principal_investigator_txt
+    - node.type.project
+id: node.project.field_principal_investigator_txt
+field_name: field_principal_investigator_txt
+entity_type: node
+bundle: project
+label: 'Principal investigator'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

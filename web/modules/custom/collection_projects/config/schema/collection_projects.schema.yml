@@ -1,0 +1,7 @@
+node.node_type.*:third_party_settings.is_project:
+  type: mapping
+  label: 'Is project'
+  mapping:
+    is_project:
+      type: boolean
+      label: 'Is Project'
