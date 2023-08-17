@@ -259,11 +259,8 @@ class EventListing extends ParagraphsBehaviorBase {
       }
     }
 
-    $build['event_listing'] = [
-      '#theme' => 'item_list__minimal',
-      '#title' => $this->t('Events'),
-      '#items' => $items,
-      '#empty' => $this->t('There are no events to display.'),
+    $build['listing'] = [
+      'items' => $items,
       '#cache' => [
         'max-age' => 0,
       ],

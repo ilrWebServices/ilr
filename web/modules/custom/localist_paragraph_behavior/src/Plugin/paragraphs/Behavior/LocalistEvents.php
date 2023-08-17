@@ -117,7 +117,7 @@ class LocalistEvents extends ParagraphsBehaviorBase {
       }
     }
 
-    $build['event_listing'] = [
+    $build['listing'] = [
       '#theme' => 'item_list__minimal',
       '#title' => $this->t('Events'),
       '#items' => $items,

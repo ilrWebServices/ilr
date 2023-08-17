@@ -205,13 +205,13 @@ class ListStyle extends ParagraphsBehaviorBase {
       return;
     }
 
+    $item_count = (isset($build['listing']['items'])) ? count($build['listing']['items']) : 0;
+
     // Only update entity reference fields that are configured to display a
     // rendered entity.
     $build_fields = array_keys(array_filter($build, function ($v) {
       return is_array($v) && isset($v['#theme']) && $v['#theme'] === 'field' && isset($v['#formatter']) && in_array($v['#formatter'], ['entity_reference_entity_view', 'collected_item_entity_formatter']);
     }));
-
-    $item_count = 0;
 
     foreach ($build_fields as $field) {
       $element = &$build[$field];
