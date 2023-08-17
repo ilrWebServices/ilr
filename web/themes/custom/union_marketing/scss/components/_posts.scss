@@ -36,11 +36,13 @@
   // as video.
   .cu-x-block.block-layout-builder[class$="field-representative-image"],
   .cu-x-block.block-field-block--node--video-post--field-video {
-    --post-max-width-text: var(--post-max-width);
+    width: auto;
+    max-width: revert;
     margin-left: calc(var(--gutter-width) * -1);
     margin-right: calc(var(--gutter-width) * -1);
 
     @include breakpoint(md) {
+      max-width: var(--post-max-width);
       margin-left: auto;
       margin-right: auto;
     }
