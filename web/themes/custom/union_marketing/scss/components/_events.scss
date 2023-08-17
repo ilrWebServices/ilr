@@ -273,18 +273,25 @@
   border-bottom: 1px solid $gray-light;
 }
 
+.cu-event-card__content .cu-composite-heading__heading {
+  --cu-font-size: var(--cu-ms3);
+}
+
 .cu-event-card__content .cu-composite-heading__heading,
-.cu-event-card__content .field--body {
+.cu-event-card__content .field--body,
+.cu-event-card__content .event__description {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
 
-.cu-event-card__content .cu-composite-heading__heading {
-  margin-bottom: var(--cu-vr0);
+.cu-event-card__content .field--body,
+.cu-event-card__content .event__description {
+  -webkit-line-clamp: 2;
+  margin-bottom: 0;
 }
 
-.cu-event-card__content .field--body {
-  -webkit-line-clamp: 2;
+.cu-event-card__content .cu-composite-heading__heading {
+  margin-bottom: var(--cu-vr0);
 }

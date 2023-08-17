@@ -17,10 +17,16 @@
  * @see https://schema.org/Event
  */
 #}
+
+{% set rendered_content %}
+<p class="event__description">{{event.description_text}}</p>
+{% endset %}
+
 {% include '@union/_event-card.twig' with {
   event_date: event.event_instances.0.event_instance.start,
   heading: event.title,
   media: event.ilr_image,
   show_time: false,
   link_url: event.localist_url,
+  content: rendered_content
 } only %}
