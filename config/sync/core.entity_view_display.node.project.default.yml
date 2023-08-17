@@ -14,9 +14,216 @@ dependencies:
     - field.field.node.project.field_url
     - node.type.project
   module:
+    - layout_builder
+    - layout_discovery
     - link
+    - system
     - text
     - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: Header
+          context_mapping: {  }
+        components:
+          1613ec19-d2df-4686-8706-9f0a4732c590:
+            uuid: 1613ec19-d2df-4686-8706-9f0a4732c590
+            region: content
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: 0
+            additional: {  }
+          39461390-f09c-4d3d-a895-3ac5e974f004:
+            uuid: 39461390-f09c-4d3d-a895-3ac5e974f004
+            region: content
+            configuration:
+              id: 'field_block:node:project:field_representative_image'
+              label: 'Representative Image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: media_thumbnail
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: large_21_9_1200x514_
+                  image_loading:
+                    attribute: lazy
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: Content
+          context_mapping: {  }
+          column_widths: 67-33
+        components:
+          652260bc-8ca7-4453-b5b7-4d67665b827f:
+            uuid: 652260bc-8ca7-4453-b5b7-4d67665b827f
+            region: first
+            configuration:
+              id: 'field_block:node:project:body'
+              label: Overview
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          8b161ea1-130b-4790-b242-e07ebd1a5052:
+            uuid: 8b161ea1-130b-4790-b242-e07ebd1a5052
+            region: first
+            configuration:
+              id: 'field_block:node:project:field_activities'
+              label: 'Project activities'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          708fc115-62b4-4d52-b49a-8de28f69a3e5:
+            uuid: 708fc115-62b4-4d52-b49a-8de28f69a3e5
+            region: second
+            configuration:
+              id: 'field_block:node:project:field_url'
+              label: Website
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: link
+                label: hidden
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: _blank
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          c3916091-53cc-4170-adc6-6ae5266400a1:
+            uuid: c3916091-53cc-4170-adc6-6ae5266400a1
+            region: second
+            configuration:
+              id: 'field_block:node:project:field_contact_info_text'
+              label: 'Contact information'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          6ea61325-150b-4898-930d-0ca7917aac40:
+            uuid: 6ea61325-150b-4898-930d-0ca7917aac40
+            region: second
+            configuration:
+              id: 'field_block:node:project:field_funding_agencies'
+              label: 'Funding agencies'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_label
+                label: hidden
+                settings:
+                  link: false
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          83452d44-5e85-43c3-8e12-44758b266e5f:
+            uuid: 83452d44-5e85-43c3-8e12-44758b266e5f
+            region: second
+            configuration:
+              id: 'field_block:node:project:field_principal_investigator_txt'
+              label: 'Principal investigator'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: basic_string
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+          82227a5b-e220-4ec2-b93a-da440ed54de5:
+            uuid: 82227a5b-e220-4ec2-b93a-da440ed54de5
+            region: second
+            configuration:
+              id: 'field_block:node:project:field_partners'
+              label: 'Collaborating partners'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
+          ad12daab-3ba8-4132-8627-bde00b6b72a5:
+            uuid: ad12daab-3ba8-4132-8627-bde00b6b72a5
+            region: first
+            configuration:
+              id: 'field_block:node:project:title'
+              label: Title
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
 id: node.project.default
 targetEntityType: node
 bundle: project
@@ -27,65 +234,55 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 103
-    region: content
-  field_active:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 109
+    weight: 1
     region: content
   field_activities:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 104
+    weight: 2
     region: content
   field_contact_info_text:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 105
+    weight: 3
     region: content
   field_funding_agencies:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
-    weight: 106
+    weight: 4
     region: content
   field_partners:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 108
+    weight: 6
     region: content
   field_principal_investigator_txt:
     type: basic_string
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 107
+    weight: 5
     region: content
   field_representative_image:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
-    weight: 112
+    weight: 0
     region: content
   field_url:
     type: link
-    label: above
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -93,17 +290,10 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 111
-    region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
-    region: content
-  project_focus_areas:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 102
+    weight: 7
     region: content
 hidden:
+  field_active: true
+  links: true
+  project_focus_areas: true
   search_api_excerpt: true

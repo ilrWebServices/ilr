@@ -523,10 +523,10 @@ function union_marketing_preprocess_breadcrumb(&$variables) {
   $route_match = \Drupal::routeMatch();
   $remove_last_crumb = FALSE;
 
-  // Remove the last item for nodes that extend posts.
+  // Remove the last item for nodes that extend posts or are projects.
   if ($node = $route_match->getParameter('node')) {
     $bundle = $node->type->entity;
-    $remove_last_crumb = $bundle->getThirdPartySetting('extended_post', 'extends_posts');
+    $remove_last_crumb = $bundle->getThirdPartySetting('extended_post', 'extends_posts') || $bundle->getThirdPartySetting('collection_projects', 'is_project');
   }
 
   // Remove the last item for cross-posts.
