@@ -74,6 +74,12 @@
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
   ]
 %}
+
+{% set rendered_content %}
+{{ title_suffix }}
+{{ content.body }}
+{% endset %}
+
 {% include '@union/_event-card.twig' with {
   event_date: node.event_date.value,
   heading: label,
@@ -81,5 +87,5 @@
   show_time: false,
   link_url: url,
   attributes: attributes.addClass(classes)|without('role'),
-  content: title_suffix,
+  content: rendered_content,
 } only %}

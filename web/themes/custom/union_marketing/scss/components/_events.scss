@@ -272,3 +272,19 @@
   margin-bottom: var(--cu-vr1);
   border-bottom: 1px solid $gray-light;
 }
+
+.cu-event-card__content .cu-composite-heading__heading,
+.cu-event-card__content .field--body {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.cu-event-card__content .cu-composite-heading__heading {
+  margin-bottom: var(--cu-vr0);
+}
+
+.cu-event-card__content .field--body {
+  -webkit-line-clamp: 2;
+}
