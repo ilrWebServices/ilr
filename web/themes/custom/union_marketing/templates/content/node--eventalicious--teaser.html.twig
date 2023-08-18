@@ -86,6 +86,7 @@
   media: node.field_representative_image.isEmpty() ? false : content.field_representative_image,
   show_time: false,
   link_url: url,
+  link_alt: node.label,
   attributes: attributes.addClass(classes)|without('role'),
   content: rendered_content,
 } only %}
