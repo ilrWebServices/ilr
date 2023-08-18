@@ -79,10 +79,11 @@
 {{ title_suffix }}
 {{ content.body }}
 {% endset %}
-
+{# Note the use of `node.label` here. Plain `label` includes some field
+wrapper HTML and is difficult to trim for use as the link `title` attribute. #}
 {% include '@union/_event-card.twig' with {
   event_date: node.event_date.value,
-  heading: label,
+  heading: node.label,
   media: node.field_representative_image.isEmpty() ? false : content.field_representative_image,
   show_time: false,
   link_url: url,
