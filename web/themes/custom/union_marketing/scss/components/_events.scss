@@ -277,9 +277,14 @@
   --cu-font-size: var(--cu-ms3);
 }
 
+.cu-event-card__content .field--body,
+.cu-event-card__content .cu-x-event__description {
+  --cu-font-size: var(--cu-ms-2);
+}
+
 .cu-event-card__content .cu-composite-heading__heading,
 .cu-event-card__content .field--body,
-.cu-event-card__content .event__description {
+.cu-event-card__content .cu-x-event__description {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -287,7 +292,7 @@
 }
 
 .cu-event-card__content .field--body,
-.cu-event-card__content .event__description {
+.cu-event-card__content .cu-x-event__description {
   -webkit-line-clamp: 2;
   margin-bottom: 0;
 }
