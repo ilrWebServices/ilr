@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f14613093e533a44018809185c287415",
+    "content-hash": "489a3f643373522c478396dc4721aff6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4889,26 +4889,26 @@
         },
         {
             "name": "drupal/recreate_block_content",
-            "version": "2.1.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/recreate_block_content.git",
-                "reference": "8.x-2.1"
+                "reference": "3.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/recreate_block_content-8.x-2.1.zip",
-                "reference": "8.x-2.1",
-                "shasum": "415c9787c171e0e2863c3b0cc5d67c697aca781a"
+                "url": "https://ftp.drupal.org/files/projects/recreate_block_content-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "43245342b836281472ab52296095ead9f7463986"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^9.3 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.1",
-                    "datestamp": "1604512966",
+                    "version": "3.0.0",
+                    "datestamp": "1680033508",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4923,6 +4923,10 @@
                 {
                     "name": "Joao Sausen",
                     "homepage": "https://www.drupal.org/user/1504028"
+                },
+                {
+                    "name": "NickDickinsonWilde",
+                    "homepage": "https://www.drupal.org/user/3094661"
                 }
             ],
             "description": "Recreates the block content for a exported block.",
