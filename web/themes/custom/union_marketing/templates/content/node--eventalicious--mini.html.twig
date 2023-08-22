@@ -76,9 +76,10 @@
 %}
 {% include '@union/_event-card.twig' with {
   event_date: node.event_date.value,
-  heading: label,
+  heading: node.label,
   show_time: false,
   link_url: url,
+  link_alt: node.label,
   attributes: attributes.addClass(classes)|without('role'),
   content: title_suffix,
 } only %}

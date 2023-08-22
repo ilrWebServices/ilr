@@ -99,21 +99,22 @@ class EventListing extends ParagraphsBehaviorBase {
       '#required' => TRUE,
     ];
 
-    $keyword_terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadMultiple(
-      array_keys($paragraph->getBehaviorSetting($this->getPluginId(), 'keywords') ?? [])
-    );
+    $keyword_terms_options = [];
+
+    if ($keyword_terms_ids = $this->entityTypeManager->getStorage('taxonomy_term')->loadByProperties(['vid' => 'event_keywords'])) {
+      $keyword_terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadMultiple(array_keys($keyword_terms_ids));
+
+      foreach ($keyword_terms as $keyword_tid => $keyword_term) {
+        $keyword_terms_options[$keyword_tid] = $keyword_term->label();
+      }
+    }
 
     $form['keywords'] = [
-      '#type' => 'entity_autocomplete',
+      '#type' => 'checkboxes',
       '#title' => $this->t('Keywords'),
-      '#target_type' => 'taxonomy_term',
-      '#tags' => TRUE,
-      '#selection_handler' => 'default',
-      '#selection_settings' => [
-        'target_bundles' => ['event_keywords'],
-      ],
-      '#default_value' => $keyword_terms,
-      '#description' => $this->t('Try "ILR". Separate multiple keywords with commas. Events with any of the keywords will be returned.'),
+      '#options' => $keyword_terms_options,
+      '#default_value' => array_keys($paragraph->getBehaviorSetting($this->getPluginId(), 'keywords')),
+      '#multiple' => TRUE,
       '#required' => TRUE,
     ];
 
@@ -149,12 +150,12 @@ class EventListing extends ParagraphsBehaviorBase {
   public function submitBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
     $filtered_values = $this->filterBehaviorFormSubmitValues($paragraph, $form, $form_state);
 
-    // Simplify the keyword array to `$tid => label()`. The values from the
-    // entity_autocomplete are initially `0 => [ 'target_id' => $tid ]`.
+    // Change the keyword array to `$tid => label()`. The values from the
+    // checkboxes are initially `$tid => $tid`.
     $keyword_data = [];
 
-    foreach ($filtered_values['keywords'] as $keyword_term_info) {
-      if ($term = $this->entityTypeManager->getStorage('taxonomy_term')->load($keyword_term_info['target_id'])) {
+    foreach ($filtered_values['keywords'] as $keyword_tid) {
+      if ($term = $this->entityTypeManager->getStorage('taxonomy_term')->load($keyword_tid)) {
         $keyword_data[$term->id()] = $term->label();
       }
     }
@@ -259,11 +260,8 @@ class EventListing extends ParagraphsBehaviorBase {
       }
     }
 
-    $build['event_listing'] = [
-      '#theme' => 'item_list__minimal',
-      '#title' => $this->t('Events'),
-      '#items' => $items,
-      '#empty' => $this->t('There are no events to display.'),
+    $build['listing'] = [
+      'items' => $items,
       '#cache' => [
         'max-age' => 0,
       ],

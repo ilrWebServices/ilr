@@ -74,12 +74,20 @@
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
   ]
 %}
+
+{% set rendered_content %}
+{{ title_suffix }}
+{{ content.body }}
+{% endset %}
+{# Note the use of `node.label` here. Plain `label` includes some field
+wrapper HTML and is difficult to trim for use as the link `title` attribute. #}
 {% include '@union/_event-card.twig' with {
   event_date: node.event_date.value,
-  heading: label,
+  heading: node.label,
   media: node.field_representative_image.isEmpty() ? false : content.field_representative_image,
   show_time: false,
   link_url: url,
+  link_alt: node.label,
   attributes: attributes.addClass(classes)|without('role'),
-  content: title_suffix,
+  content: rendered_content,
 } only %}
