@@ -297,6 +297,10 @@
   margin-bottom: 0;
 }
 
+.cu-event-card__media .field-representative-image {
+  display: contents;
+}
+
 .cu-event-card__content .cu-composite-heading__heading {
   margin-bottom: var(--cu-vr0);
 }
