@@ -114,8 +114,8 @@
     "ilrwebservices/campaign-monitor-rest-api-client": "^1.0.0",
     "league/csv": "^9.0",
     "platformsh/config-reader": "^2.4",
-    "thinkshout/mailchimp-api-php": "dev-master as 2.0.0",
-    "vlucas/phpdotenv": "^4.0"
+    "symfony/dotenv": "^6.0",
+    "thinkshout/mailchimp-api-php": "dev-master as 2.0.0"
   },
   "require-dev": {
     "drupal/core-dev": "^9.0.0",
