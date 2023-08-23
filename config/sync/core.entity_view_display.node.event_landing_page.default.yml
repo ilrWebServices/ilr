@@ -166,25 +166,16 @@ third_party_settings:
               label_display: visible
               provider: better_social_sharing_buttons
               context_mapping: {  }
+              iconset: social-icons--no-color
               services:
                 facebook: facebook
                 twitter: twitter
                 email: email
                 linkedin: linkedin
-                whatsapp: 0
-                facebook_messenger: 0
-                pinterest: 0
-                digg: 0
-                tumblr: 0
-                reddit: 0
-                evernote: 0
-                print: 0
-                copy: 0
-              iconset: social-icons--no-color
-              facebook_app_id: ''
-              print_css: ''
               width: 35px
               radius: 0px
+              print_css: ''
+              facebook_app_id: ''
             weight: 0
             additional: {  }
           fccaaa86-4434-4961-a93a-7337832fab96:
