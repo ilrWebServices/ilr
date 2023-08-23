@@ -5570,26 +5570,26 @@
         },
         {
             "name": "drupal/summary_word_limit",
-            "version": "2.0.0",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/summary_word_limit.git",
-                "reference": "2.0.0"
+                "reference": "2.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/summary_word_limit-2.0.0.zip",
-                "reference": "2.0.0",
-                "shasum": "94e1dc01bee1bb3d6b7d99cf5a8a03a56e6afc9f"
+                "url": "https://ftp.drupal.org/files/projects/summary_word_limit-2.0.2.zip",
+                "reference": "2.0.2",
+                "shasum": "52801483a01b1774703f1b0035d899798371ca27"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.0",
-                    "datestamp": "1608068063",
+                    "version": "2.0.2",
+                    "datestamp": "1690656836",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5608,6 +5608,10 @@
                 {
                     "name": "jeffam",
                     "homepage": "https://www.drupal.org/user/397127"
+                },
+                {
+                    "name": "VladimirAus",
+                    "homepage": "https://www.drupal.org/user/673120"
                 }
             ],
             "description": "Adds a setting to Text with Summary fields to limit the number of words in the summary.",
