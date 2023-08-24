@@ -1,4 +1,4 @@
-uuid: d59f2c73-8e1c-4f4e-8ef3-1bfeb4a4b436
+uuid: 794c0a6c-7fd5-49bf-91a5-69957149d534
 langcode: en
 status: true
 dependencies:
@@ -6,11 +6,11 @@ dependencies:
     - block_visibility_groups
     - ilr
     - system
-id: cornell_debate
-label: 'Cornell Debate'
-weight: 1
+id: ilr
+label: ILR
+weight: 0
 tag_container_ids:
-  - GTM-GY8R0P5ED1
+  - GTM-N966MM
 advanced_settings:
   gtm:
     data_layer: dataLayer
@@ -33,5 +33,5 @@ conditions:
   request_path:
     id: request_path
     negate: false
-    pages: '/cornell-debate*'
+    pages: "!/admin*\r\n!/batch*"
 events: {  }
