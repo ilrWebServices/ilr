@@ -3,9 +3,8 @@ langcode: en
 status: true
 dependencies:
   module:
-    - block_visibility_groups
-    - ilr
     - system
+    - user
 id: ilr
 label: ILR
 weight: 0
@@ -22,16 +21,11 @@ advanced_settings:
     environment_token: ''
 dimensions_metrics: {  }
 conditions:
-  condition_group:
-    id: condition_group
+  user_role:
+    id: user_role
     negate: false
-    block_visibility_group: ''
-  root_path_entity_bundle:
-    id: root_path_entity_bundle
-    root_entity_bundles: {  }
-    negate: false
-  request_path:
-    id: request_path
-    negate: false
-    pages: "!/admin*\r\n!/batch*"
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    roles:
+      anonymous: anonymous
 events: {  }
