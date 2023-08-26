@@ -113,7 +113,7 @@ class EventListing extends ParagraphsBehaviorBase {
       '#type' => 'checkboxes',
       '#title' => $this->t('Keywords'),
       '#options' => $keyword_terms_options,
-      '#default_value' => array_keys($paragraph->getBehaviorSetting($this->getPluginId(), 'keywords')),
+      '#default_value' => array_keys($paragraph->getBehaviorSetting($this->getPluginId(), 'keywords') ?? []),
       '#multiple' => TRUE,
       '#required' => TRUE,
     ];
