@@ -1,0 +1,36 @@
+uuid: bade33dd-1d6c-4dbd-92f9-8780ce6758d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.subsite_35
+    - webform.webform.buffalo_colab_signup
+  module:
+    - block_visibility_groups
+    - ilr
+    - webform
+  theme:
+    - union_marketing
+id: union_marketing_buffalo_signup_form.yml
+theme: union_marketing
+region: content
+weight: 3
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Buffalo Co-lab Signup Form'
+  label_display: visible
+  provider: webform
+  webform_id: buffalo_colab_signup
+  default_data: ''
+  redirect: false
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: subsite_35
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false
