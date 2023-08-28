@@ -140,7 +140,10 @@
     }
   },
   "autoload": {
-    "files": ["load.environment.php"]
+    "files": [
+      "load.environment.php",
+      "proxy.php"
+    ]
   },
   "scripts": {
     "cs": "phpcs --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml --standard=Drupal --ignore='union_marketing/css/style.css' web/modules/custom/ web/themes/custom/",
