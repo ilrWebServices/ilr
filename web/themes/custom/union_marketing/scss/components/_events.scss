@@ -303,6 +303,10 @@
 
 .cu-event-card__content .cu-composite-heading__heading {
   margin-bottom: var(--cu-vr0);
+
+  .cu-list--grid-compact & {
+    margin-bottom: 0;
+  }
 }
 
 .cu-component--event-listing.cu-grid--3col[data-itemcount="1"] {

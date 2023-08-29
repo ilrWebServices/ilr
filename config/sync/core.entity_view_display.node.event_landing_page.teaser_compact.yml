@@ -1,0 +1,97 @@
+uuid: 8a903829-d6ec-48f8-9fa8-72312935259e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser_compact
+    - field.field.node.event_landing_page.body
+    - field.field.node.event_landing_page.field_keywords
+    - field.field.node.event_landing_page.field_registration_form
+    - field.field.node.event_landing_page.field_representative_image
+    - field.field.node.event_landing_page.field_sections
+    - field.field.node.event_landing_page.field_sponsor
+    - field.field.node.event_landing_page.layout_builder__layout
+    - image.style.medium_3_2
+    - node.type.event_landing_page
+  module:
+    - address
+    - datetime_range
+    - layout_builder
+    - link
+    - media
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.event_landing_page.teaser_compact
+targetEntityType: node
+bundle: event_landing_page
+mode: teaser_compact
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  event_date:
+    type: daterange_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+      separator: '-'
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  event_when_where:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_representative_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium_3_2
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+  location_address:
+    type: address_default
+    label: hidden
+    settings:
+      field_settings: {  }
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  location_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: -5
+    region: content
+hidden:
+  field_keywords: true
+  field_registration_form: true
+  field_sections: true
+  field_sponsor: true
+  layout_builder__layout: true
+  search_api_excerpt: true
