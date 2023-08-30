@@ -617,3 +617,17 @@ variants:
       settings: {  }
       elements: "address_intl:\r\n  '#access': true"
       handlers: {  }
+  carow_launch:
+    id: override
+    variant_id: carow_launch
+    element_key: variant
+    label: carow_launch
+    notes: ''
+    status: true
+    weight: 11
+    settings:
+      debug: false
+      settings:
+        form_close_message: 'Registration is closed, please contact rh363@cornell.edu to be added to our waitlist.'
+      elements: ''
+      handlers: {  }
