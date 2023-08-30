@@ -20,7 +20,7 @@ plugin: webform_block
 settings:
   id: webform_block
   label: 'Buffalo Co-lab Signup Form'
-  label_display: visible
+  label_display: '0'
   provider: webform
   webform_id: buffalo_colab_signup
   default_data: ''
