@@ -405,6 +405,7 @@ class PostListing extends ParagraphsBehaviorBase {
     $summary = [];
     $tags_labels = [];
     $post_types = ['All'];
+    $collection_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'collection');
 
     // Ensure that the post listing has a post_type behavior setting.
     if ($selected_post_types = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_types')) {
@@ -429,6 +430,14 @@ class PostListing extends ParagraphsBehaviorBase {
       foreach ($selected_tags as $selected_tag) {
         $tags_labels[] = $selected_tag->label();
       }
+    }
+
+    if ($collection_id) {
+      $collection = $this->entityTypeManager->getStorage('collection')->load($collection_id);
+      $summary[] = [
+        'label' => 'Collection',
+        'value' => $collection->label(),
+      ];
     }
 
     $negated = $paragraph->getBehaviorSetting($this->getPluginId(), 'negate_category');
