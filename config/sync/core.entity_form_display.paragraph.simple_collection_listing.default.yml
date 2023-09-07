@@ -9,13 +9,8 @@ id: paragraph.simple_collection_listing.default
 targetEntityType: paragraph
 bundle: simple_collection_listing
 mode: default
-content:
-  field_collection:
-    type: options_select
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
+content: {  }
 hidden:
   created: true
+  field_collection: true
   status: true

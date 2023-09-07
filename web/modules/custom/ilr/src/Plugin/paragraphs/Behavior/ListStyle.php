@@ -3,6 +3,7 @@
 namespace Drupal\ilr\Plugin\paragraphs\Behavior;
 
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Field\EntityReferenceFieldItemList;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
@@ -183,6 +184,28 @@ class ListStyle extends ParagraphsBehaviorBase {
   public function preprocess(&$variables) {
     $paragraph = $variables['paragraph'];
 
+    // All other behaviors that generate a list from a query should place their
+    // items in $build['listing']['items'] in the view() method.
+    if (isset($variables['content']['listing']['items'])) {
+      $item_count = count($variables['content']['listing']['items']);
+    }
+    // All paragraphs that generate a curated list via entity reference should
+    // be picked up here. We only check the first entity reference field.
+    else {
+      $item_count = 0;
+
+      foreach ($variables['content'] as $content_item) {
+        if (isset($content_item['#items']) && $content_item['#items'] instanceof EntityReferenceFieldItemList) {
+          /** @var \Drupal\Core\Field\EntityReferenceFieldItemList $items */
+          $items = $content_item['#items'];
+          $item_count = $items->count();
+          break;
+        }
+      }
+    }
+
+    $variables['attributes']['data-itemcount'] = $item_count;
+
     if ($list_style = $paragraph->getBehaviorSetting($this->getPluginId(), 'list_style')) {
       foreach ($this->getListStyleClasses($paragraph) as $class) {
         $variables['attributes']['class'][] = $class;
@@ -190,6 +213,11 @@ class ListStyle extends ParagraphsBehaviorBase {
 
       if (strpos($list_style, 'grid') === 0) {
         $variables['#attached']['library'][] = 'union_organizer/grid';
+      }
+
+      // @todo Replace with CSS logic based on data-itemcount.
+      if ($list_style === 'grid-featured') {
+        $variables['attributes']['style'] = '--featured-grid-rows: ' . (($item_count < 4) ? 2 : 3);
       }
     }
   }
@@ -205,10 +233,9 @@ class ListStyle extends ParagraphsBehaviorBase {
       return;
     }
 
-    $item_count = (isset($build['listing']['items'])) ? count($build['listing']['items']) : 0;
-
     // Only update entity reference fields that are configured to display a
-    // rendered entity.
+    // rendered entity. Query-based listings figure out the view mode
+    // themselves, but that could move here, too, someday.
     $build_fields = array_keys(array_filter($build, function ($v) {
       return is_array($v) && isset($v['#theme']) && $v['#theme'] === 'field' && isset($v['#formatter']) && in_array($v['#formatter'], ['entity_reference_entity_view', 'collected_item_entity_formatter']);
     }));
@@ -222,7 +249,6 @@ class ListStyle extends ParagraphsBehaviorBase {
           continue;
         }
 
-        $item_count++;
         $original_view_mode = $element[$key]['#view_mode'];
         $view_mode_for_liststyle = $this->getViewModeForListStyle($list_style, $key + 1);
         $cache_key_view_mode_key = array_search($original_view_mode, $element[$key]['#cache']['keys']);
@@ -240,11 +266,6 @@ class ListStyle extends ParagraphsBehaviorBase {
         // modified.
         $element[$key]['#cache']['tags'] = array_merge($element[$key]['#cache']['tags'], $build['#cache']['tags']);
       }
-    }
-
-    if ($item_count) {
-      $build['#attributes']['style'] = '--featured-grid-rows: ' . (($item_count < 4) ? 2 : 3);
-      $build['#attributes']['data-itemcount'] = $item_count;
     }
   }
 

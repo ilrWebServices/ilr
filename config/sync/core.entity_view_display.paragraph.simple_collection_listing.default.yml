@@ -9,13 +9,7 @@ id: paragraph.simple_collection_listing.default
 targetEntityType: paragraph
 bundle: simple_collection_listing
 mode: default
-content:
-  field_collection:
-    type: entity_reference_entity_id
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
-    region: content
+content: {  }
 hidden:
+  field_collection: true
   search_api_excerpt: true

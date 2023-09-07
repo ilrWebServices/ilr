@@ -2,6 +2,8 @@
 
 namespace Drupal\ilr\Plugin\paragraphs\Behavior;
 
+use Drupal\collection\Entity\CollectionInterface;
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -103,6 +105,33 @@ class PostListing extends ParagraphsBehaviorBase {
     $parents_input_name = array_shift($parents);
     $parents_input_name .= '[' . implode('][', $parents) . ']';
 
+    $collection_options = [];
+    $default_collection_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'collection');
+
+    foreach ($this->entityTypeManager->getStorage('collection')->loadByProperties(['status' => 1]) as $collection) {
+      $is_blog = (bool) $collection->type->entity->getThirdPartySetting('collection_blogs', 'contains_blogs');
+
+      if ($is_blog) {
+        $collection_options[$collection->id()] = $collection->label();
+      }
+    }
+
+    // Sort the collection options alphabetically.
+    asort($collection_options);
+
+    $form['collection'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Collection'),
+      '#options' => $collection_options,
+      '#default_value' => $default_collection_id,
+      '#required' => TRUE,
+      '#ajax' => [
+        'callback' => [$this, 'blogTermFieldsUpdate'],
+        'event' => 'change',
+        'wrapper' => 'edit-blog-terms',
+      ],
+    ];
+
     $form['post_types'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Post type(s)'),
@@ -110,12 +139,28 @@ class PostListing extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'post_types') ?? array_keys($this->postTypes),
     ];
 
-    $form['post_categories'] = [
+    $default_categories = [];
+    $default_tags = [];
+
+    if ($default_collection_id) {
+      $default_collection = $this->entityTypeManager->getStorage('collection')->load($default_collection_id);
+      $default_categories = $this->getCategoryTermOptions($default_collection);
+      $default_tags = $this->getTagTermOptions($default_collection);
+    }
+
+    $form['blog_terms'] = [
+      '#type' => 'container',
+      '#prefix' => '<div id="edit-blog-terms">',
+      '#suffix' => '</div>',
+    ];
+
+    $form['blog_terms']['post_categories'] = [
       '#type' => 'select',
       '#title' => $this->t('Category'),
       '#description' => $this->t('Choose a category to filter the listing.'),
-      '#options' => $this->getCategoryTermOptions($paragraph),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories'),
+      '#options' => $default_categories,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), ['blog_terms', 'post_categories']),
+      '#validated' => 'true',
     ];
 
     $form['negate_category'] = [
@@ -131,12 +176,13 @@ class PostListing extends ParagraphsBehaviorBase {
       ],
     ];
 
-    $form['post_tags'] = [
+    $form['blog_terms']['post_tags'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('Tag(s)'),
       '#description' => $this->t('Optionally choose one or more tags to filter the listing.'),
-      '#options' => $this->getTagTermOptions($paragraph),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'post_tags') ?? [],
+      '#options' => $default_tags,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), ['blog_terms', 'post_tags']) ?? [],
+      '#validated' => 'true',
     ];
 
     $form['count'] = [
@@ -164,6 +210,19 @@ class PostListing extends ParagraphsBehaviorBase {
     ];
 
     return $form;
+  }
+
+  /**
+   * Callback for Collection select change event.
+   */
+  public function blogTermFieldsUpdate(array &$form, FormStateInterface $form_state) {
+    $trigger = $form_state->getTriggeringElement();
+    $collection_id = $form_state->getValue($trigger['#parents']);
+    $collection = $this->entityTypeManager->getStorage('collection')->load($collection_id);
+    $behavior_form = NestedArray::getValue($form, array_slice($trigger['#array_parents'], 0, -1));
+    $behavior_form['blog_terms']['post_categories']['#options'] = $this->getCategoryTermOptions($collection);
+    $behavior_form['blog_terms']['post_tags']['#options'] = $this->getTagTermOptions($collection);
+    return $behavior_form['blog_terms'];
   }
 
   /**
@@ -195,9 +254,9 @@ class PostListing extends ParagraphsBehaviorBase {
   /**
    * {@inheritdoc}
    */
-  public function preprocess(&$variables) {
-    $paragraph = $variables['paragraph'];
-    $collection = $paragraph->field_collection->entity;
+  public function view(array &$build, Paragraph $paragraph, EntityViewDisplayInterface $display, $view_mode) {
+    $collection_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'collection');
+    $collection = $this->entityTypeManager->getStorage('collection')->load($collection_id);
     $category_operator = $paragraph->getBehaviorSetting($this->getPluginId(), 'negate_category') ? '<>' : '=';
     $post_types = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_types') ?? array_keys($this->postTypes);
 
@@ -242,13 +301,13 @@ class PostListing extends ParagraphsBehaviorBase {
     // ilr_query_alter().
     $query->addTag($dedupe_group);
 
-    if ($category_term_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories')) {
+    if ($category_term_id = $paragraph->getBehaviorSetting($this->getPluginId(), ['blog_terms', 'post_categories'])) {
       $category_group = $query->andConditionGroup();
       $category_group->condition('field_blog_categories', $category_term_id, $category_operator);
       $query->condition($category_group);
     }
 
-    if ($tags_terms = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_tags')) {
+    if ($tags_terms = $paragraph->getBehaviorSetting($this->getPluginId(), ['blog_terms', 'post_tags'])) {
       foreach ($tags_terms as $tags_term_id) {
         $tags_group = $query->andConditionGroup();
         $tags_group->condition('field_blog_tags', $tags_term_id);
@@ -285,7 +344,7 @@ class PostListing extends ParagraphsBehaviorBase {
 
     $result = $query->execute();
 
-    $post_count = 0;
+    $post_count = 0; // @todo revisit
     foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
       $post_count++;
       $rendered_entity = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($paragraph, $list_style, $post_count));
@@ -294,24 +353,18 @@ class PostListing extends ParagraphsBehaviorBase {
       $posts[] = $rendered_entity;
     }
 
-    $variables['content']['field_collection']['#printed'] = TRUE;
-    $variables['content']['post_listing'] = [
+    $build['listing'] = [
       'items' => $posts,
       '#cache' => [
         'tags' => $cache_tags,
       ],
     ];
 
-    if ($list_style === 'grid-featured') {
-      $variables['attributes']['style'] = '--featured-grid-rows: ' . (count($posts) < 4 ? 2 : 3);
-      $variables['attributes']['data-postcount'] = count($posts);
-    }
-
     // QueryBase::pager(), used above, sets the pager element. The pager manager
     // can now get that element value.
     if ($paragraph->getBehaviorSetting($this->getPluginId(), 'use_pager')) {
       $element_id = $this->pagerManager->getMaxPagerElementId();
-      $variables['content']['pager'] = [
+      $build['pager'] = [
         '#type' => 'pager',
         '#element' => $element_id,
         '#parameters' => ['post_listing' => $element_id],
@@ -321,11 +374,6 @@ class PostListing extends ParagraphsBehaviorBase {
       ];
     }
   }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function view(array &$build, Paragraph $paragraphs_entity, EntityViewDisplayInterface $display, $view_mode) {}
 
   /**
    * Get a node view mode for a given list style.
@@ -429,30 +477,27 @@ class PostListing extends ParagraphsBehaviorBase {
   /**
    * Get category term options collection set on the paragraph.
    *
-   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
-   *   The paragraph entity.
+   * @param \Drupal\collection\Entity\CollectionInterface $collection
+   *   A collection entity.
    *
    * @return array
    *   List of term labels keyed by tid.
    */
-  protected function getCategoryTermOptions(Paragraph $paragraph) {
-    $collection = $paragraph->field_collection->entity;
+  protected function getCategoryTermOptions(CollectionInterface $collection) {
     $options = [
       '' => '-- all --',
     ];
 
-    if ($collection) {
-      $collection_items = $collection->findItemsByAttribute('blog_taxonomy_categories', 'blog_' . $collection->id() . '_categories');
-      $term_manager = $this->entityTypeManager->getStorage('taxonomy_term');
+    $collection_items = $collection->findItemsByAttribute('blog_taxonomy_categories', 'blog_' . $collection->id() . '_categories');
+    $term_manager = $this->entityTypeManager->getStorage('taxonomy_term');
 
-      foreach ($collection_items as $collection_item) {
-        $vocab = $collection_item->item->entity;
-        $category_terms = $term_manager->loadTree($vocab->id(), 0, NULL, TRUE);
+    foreach ($collection_items as $collection_item) {
+      $vocab = $collection_item->item->entity;
+      $category_terms = $term_manager->loadTree($vocab->id(), 0, NULL, TRUE);
 
-        foreach ($category_terms as $term) {
-          if ($term->isPublished()) {
-            $options[$term->id()] = $term->label();
-          }
+      foreach ($category_terms as $term) {
+        if ($term->isPublished()) {
+          $options[$term->id()] = $term->label();
         }
       }
     }
@@ -463,28 +508,24 @@ class PostListing extends ParagraphsBehaviorBase {
   /**
    * Get tag term options collection set on the paragraph.
    *
-   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
-   *   The paragraph entity.
+   * @param \Drupal\collection\Entity\CollectionInterface $collection
+   *   A collection entity.
    *
    * @return array
    *   List of term labels keyed by tid.
    */
-  protected function getTagTermOptions(Paragraph $paragraph) {
-    $collection = $paragraph->field_collection->entity;
+  protected function getTagTermOptions(CollectionInterface $collection) {
     $options = [];
+    $collection_items = $collection->findItemsByAttribute('blog_taxonomy_tags', 'blog_' . $collection->id() . '_tags');
+    $term_manager = $this->entityTypeManager->getStorage('taxonomy_term');
 
-    if ($collection) {
-      $collection_items = $collection->findItemsByAttribute('blog_taxonomy_tags', 'blog_' . $collection->id() . '_tags');
-      $term_manager = $this->entityTypeManager->getStorage('taxonomy_term');
+    foreach ($collection_items as $collection_item) {
+      $vocab = $collection_item->item->entity;
+      $category_terms = $term_manager->loadTree($vocab->id(), 0, NULL, TRUE);
 
-      foreach ($collection_items as $collection_item) {
-        $vocab = $collection_item->item->entity;
-        $category_terms = $term_manager->loadTree($vocab->id(), 0, NULL, TRUE);
-
-        foreach ($category_terms as $term) {
-          if ($term->isPublished()) {
-            $options[$term->id()] = $term->label();
-          }
+      foreach ($category_terms as $term) {
+        if ($term->isPublished()) {
+          $options[$term->id()] = $term->label();
         }
       }
     }

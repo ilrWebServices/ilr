@@ -86,13 +86,10 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
 
       $listing = Paragraph::create([
         'type' => 'simple_collection_listing',
-        'field_collection' => [
-          'target_id' => $collection->id(),
-        ],
       ]);
 
       $settings = [
-        'post_listing' => ['count' => 12, 'use_pager' => 1],
+        'post_listing' => ['collection' => $collection->id(), 'count' => 12, 'use_pager' => 1],
         'list_styles' => ['list_style' => 'grid'],
       ];
       $listing->setAllBehaviorSettings($settings);

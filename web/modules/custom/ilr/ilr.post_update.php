@@ -1654,3 +1654,31 @@ function ilr_post_update_add_certificate_mappings() {
     $mapped_object->save();
   }
 }
+
+/**
+ * Update all existing post listings to move the collection value to a setting and update term settings.
+ */
+function ilr_post_update_update_post_listing_collection_setting(&$sandbox) {
+  $query = \Drupal::entityQuery('paragraph');
+  $query->condition('type', 'simple_collection_listing');
+  $post_listing_paragraph_ids = $query->execute();
+  $simple_post_listings = Paragraph::loadMultiple($post_listing_paragraph_ids);
+
+  foreach ($simple_post_listings as $simple_post_listing) {
+    $settings = $simple_post_listing->getAllBehaviorSettings();
+    $settings['post_listing']['collection'] = $simple_post_listing->field_collection->target_id;
+
+    if (isset($settings['post_listing']['post_categories'])) {
+      $settings['post_listing']['blog_terms']['post_categories'] = $settings['post_listing']['post_categories'];
+      unset($settings['post_listing']['post_categories']);
+    }
+
+    if (isset($settings['post_listing']['post_tags'])) {
+      $settings['post_listing']['blog_terms']['post_tags'] = $settings['post_listing']['post_tags'];
+      unset($settings['post_listing']['post_tags']);
+    }
+
+    $simple_post_listing->setAllBehaviorSettings($settings);
+    $simple_post_listing->save();
+  }
+}
