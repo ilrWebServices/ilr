@@ -550,6 +550,99 @@ variants:
       handlers:
         ilr_outreach_registration_order_submitter:
           status: false
+  23fgliwebny01_email_confirmation:
+    id: override
+    variant_id: 23fgliwebny01_email_confirmation
+    element_key: variant_email_handler
+    label: 23FGLIWEBNY01_email_confirmation
+    notes: ''
+    status: true
+    weight: 10
+    settings:
+      debug: false
+      settings: {  }
+      elements: ''
+      handlers:
+        confirmation_email:
+          status: true
+          settings:
+            subject: 'Thank you for registering for "Higher Ground? Fashion''s climate breakdown and its effect for workers."'
+            body: |-
+              Thank you for registering for "Higher Ground? Fashion's climate breakdown and its effect for workers."<br />
+              <br />
+              This 90-minute webinar will feature a multi-stakeholder panel who will discuss the Global Labor Institute's Higher Ground report, which looks at the impact of climate breakdown on apparel production countries and workers.<br />
+              <br />
+              DATE AND TIME:<br />
+              Date: Wednesday, September 13, 2023<br />
+              Time: 9:00 am - 10:30 am EST<br />
+              <br />
+              ZOOM INFORMATION:<br />
+              Zoom Link<br />
+              <a href="https://cornell.zoom.us/j/92254730751?pwd=QmZkSTd6d0YyVjBSdTFxU1NNYzVDUT09">https://cornell.zoom.us/j/92254730751?pwd=QmZkSTd6d0YyVjBSdTFxU1NNYzVDUT09</a><br />
+              <br />
+              ACCOMMODATIONS/QUESTIONS:<br />
+              Should you need ADA Accommodations, please notify Isadora Bratton-Benfield at <a href="mailto:imb44@cornell.edu">imb44@cornell.edu</a> at least three days prior to the webinar start date. Additionally, if you have any questions or concerns, you can contact Isadora at the same email address.<br />
+              <br />
+              We look forward to your attendance.
+  23fwipresentny01_email_confirmation:
+    id: override
+    variant_id: 23fwipresentny01_email_confirmation
+    element_key: variant_email_handler
+    label: 23FWIPRESENTNY01_email_confirmation
+    notes: ''
+    status: true
+    weight: 10
+    settings:
+      debug: false
+      settings: {  }
+      elements: ''
+      handlers:
+        confirmation_email:
+          status: true
+          settings:
+            subject: 'Thank you for registering for "Assessing Prevailing Wage Benefits to Workers, Contractors, and the New York City Economy."'
+            body: |-
+              Thank you for registering for "Assessing Prevailing Wage Benefits to Workers, Contractors, and the New York City Economy."<br/>
+              <br/>
+              This is a presentation to launch the report exploring the cost of prevailing wage to New York City workers and contractors.<br/>
+              <br/>
+              This is a public event, which will be photographed and filmed and/or otherwise recorded. Your registration for this event constitutes your consent to such photography, live streaming, filming and/or recording, and any use, in any and all media.<br/>
+              <br/>
+              DATE AND TIME<br/>
+              Date: Tuesday, September 12, 2023<br/>
+              Time: 8:00am - 10:30am EST<br/>
+              Breakfast will be provided from 8:00am - 8:45am<br/>
+              <br/>
+              LOCATION<br/>
+              Cornell ILR NYC Conference Center, 570 Lexington Avenue, 12th Floor, New York, NY 10022<br/>
+              <br/>
+              When entering the building, please provide the staff in the lobby with a government-issued ID and take the elevator to the 12th floor.<br/>
+              <br/>
+              HEALTH AND SAFETY PROTOCOLS<br/>
+              Attendees are strongly recommended to have a negative antigen (rapid) test taken within 24 hours of the start of the program (can be taken using a home test kit or at any medical facility).<br/>
+              <br/>
+              While masks are no longer required, attendees are encouraged to continue to wear a mask, and we ask that all members of our community support and respect one another's masking choices.<br/>
+              <br/>
+              ADA ACCOMMODATIONS<br/>
+              Should you need ADA accommodations, please notify ILR Customer Service, <a href="mailto:ilrcustomerservice@cornell.edu">ilrcustomerservice@cornell.edu</a> by September 5, 2023.<br/>
+              <br/>
+              CANCELLATION POLICY<br/>
+              Should your schedule change and you are no longer able to attend, please advise us as soon as possible by sending an email to <a href="mailto:ilrcustomerservice@cornell.edu">ilrcustomerservice@cornell.edu</a>.<br/>
+              <br/>
+              NEARBY NYC SUBWAYS
+              <ul>
+              <li>6 Train - 51st Street Station Stop (right next door)</li>
+              <li>4, 5, 7 & Shuttle Trains - Grand Central Station Stop</li>
+              <li>E & M Trains - 53rd Street Station Stop</li>
+              <li>N, R, W Trains - 59th Street Station Stop</li>
+              </ul><br/>
+              <br/>
+              If you have any questions, please contact Anne Marie Brady at <a href="mailto:ab2532@cornell.edu">ab2532@cornell.edu</a>.<br/>
+              <br/>
+              We look forward to your attendance.<br/>
+              <br/>
+              Sponsored by:<br/>
+              <a href="https://www.ilr.cornell.edu/buffalo-co-lab">The Buffalo Co-Lab</a>, <a href="https://www.ilr.cornell.edu/labor-and-employment-law-program">The Labor and Employment Law Program</a>, and <a href="https://www.ilr.cornell.edu/worker-institute">The Worker Institute</a>
   international_address:
     id: override
     variant_id: international_address
