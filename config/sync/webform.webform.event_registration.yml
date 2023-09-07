@@ -249,6 +249,8 @@ settings:
   wizard_toggle: true
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
   preview: 0
   preview_label: ''
   preview_title: ''
@@ -359,7 +361,7 @@ handlers:
     handler_id: confirmation_email
     label: 'Confirmation Email'
     notes: ''
-    status: false
+    status: true
     conditions: {  }
     weight: 0
     settings:
@@ -378,8 +380,8 @@ handlers:
       return_path: ''
       sender_mail: ''
       sender_name: ''
-      subject: 'Thank you for registering'
-      body: "Thank you for registering for [webform_submission:source-title].<br />\r\n<br />\r\nIf you have any questions, please contact <a href=\"mailto:ilrcustomerservice@cornell.edu\">ab2532@ilrcustomerservice.edu</a>.<br />\r\n<br />\r\nWe look forward to your attendance."
+      subject: 'Thank you for registering: [webform_submission:source-title]'
+      body: "<p>Dear {{ data.first_name }},</p>\r\n\r\n<p>Thank you for registering for <a href=\"https://www.ilr.cornell.edu{{ webform_token('[webform_submission:source-url:path]', webform_submission) }}\">{{ webform_token('[webform_submission:source-title]', webform_submission) }}</a>.</p>\r\n\r\n<p>You will receive a follow-up email confirmation with the event details.</p>\r\n\r\n<p>Thank You.</p>"
       excluded_elements: {  }
       ignore_access: false
       exclude_empty: true
@@ -387,7 +389,7 @@ handlers:
       exclude_attachments: false
       html: true
       attachments: false
-      twig: false
+      twig: true
       theme_name: ''
       parameters: {  }
       debug: false
