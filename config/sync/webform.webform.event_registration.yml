@@ -393,6 +393,43 @@ handlers:
       theme_name: ''
       parameters: {  }
       debug: false
+  submission_detail_email:
+    id: email
+    handler_id: submission_detail_email
+    label: 'Submission Detail Email'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: ilrcustomerservice@cornell.edu
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ilrweb@cornell.edu
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: 'Event registration: [webform_submission:source-title]'
+      body: "<p>Submitted on [webform_submission:created]</p>\r\n\r\n<p>Submitted values are:</p>\r\n[webform_submission:values]"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
 variants:
   worker_institute_opt_in:
     id: override
