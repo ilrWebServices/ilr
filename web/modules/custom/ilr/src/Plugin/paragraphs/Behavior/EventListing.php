@@ -263,7 +263,7 @@ class EventListing extends ParagraphsBehaviorBase {
     $build['listing'] = [
       'items' => $items,
       '#cache' => [
-        'max-age' => 0,
+        'max-age' => 0, // @todo Revisit for both localist and node events.
       ],
     ];
   }
