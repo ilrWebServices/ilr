@@ -702,4 +702,16 @@ variants:
               <br/>
               To see a list of all submissions log in at <a href="https://d8-edit.ilr.cornell.edu/user">https://d8-edit.ilr.cornell.edu/user</a> and then go to <a href="https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A16287">https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A16287</a>
             twig: true
-
+  spanish_labels:
+    id: override
+    variant_id: spanish_labels
+    element_key: variant
+    label: 'Spanish Labels'
+    notes: ''
+    status: true
+    weight: 13
+    settings:
+      debug: false
+      settings: {  }
+      elements: "company:\r\n  '#title': 'Organization / organización'\r\ntitle:\r\n  '#title': 'Role / función'\r\nfirst_name:\r\n  '#title': 'First Name / nombre de pila'\r\nlast_name:\r\n  '#title': 'Last Name / apellido'\r\nemail:\r\n  '#title': 'Email / correo electrónico'\r\nphone:\r\n  '#title': 'Phone / Número de teléfono'\r\naddress:\r\n  '#title': 'Address / Dirección'\r\n  '#city__title': 'City / ciudad'\r\n  '#state_province__title': 'State / estado'\r\naccessible_accommodation:\r\n  '#title': 'Accommodations / alojamientos'\r\n  '#description': 'We strive to host inclusive, accessible events that enable all individuals to engage and participate fully. Please list any reasonable accommodations you may need, such as alternate formats, interpreters, or sign-language interpreters. Nos esforzamos a organizar eventos inclusivos y accesibles que permitan a todas las personas puedan tomar parte y participar plenamente. Enumere las adaptaciones razonables que pueda necesitar, como formatos alternativos, intérpretes o intérpretes de lenguaje de señas.'\r\nopt_in:\r\n  '#title': 'Opt-in for updates on similar programs / Suscríbase para recibir actualizaciones sobre programas similares'"
+      handlers: {  }
