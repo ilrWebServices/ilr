@@ -654,3 +654,52 @@ variants:
         form_close_message: 'Registration is closed, please contact rh363@cornell.edu to be added to our waitlist.'
       elements: ''
       handlers: {  }
+  23cookgray_email_confirmation:
+    id: override
+    variant_id: 23cookgray_email_confirmation
+    element_key: variant_email_handler
+    label: 23cookgray_email_confirmation
+    notes: ''
+    status: true
+    weight: 12
+    settings:
+      debug: false
+      settings: {  }
+      elements: ''
+      handlers:
+        confirmation_email:
+          settings:
+            subject: 'Thank you for registering for the 2023 Alice Cook-Lois Gray Distinguished Lecture: Resisting Exclusion: Women''s Defense of Democracy in India.'
+            body: |-
+              Thank you for registering for the 2023 Alice Cook-Lois Gray Distinguished Lecture: Resisting Exclusion: Women's Defense of Democracy in India.<br/>
+              <br/>
+              This event is geared toward an in-person audience, so we strongly prefer you join us on our Ithaca campus. If this is not possible, please use the below Zoom information.<br/>
+              <br/>
+              This is a public event, which will be photographed and filmed and/or otherwise recorded. Your registration for this event constitutes your consent to such photography, live streaming, filming and/or recording, and any use in any and all media.<br/>
+              <br/>
+              DATE AND TIME<br/>
+              Date: October 23, 2023<br/>
+              Time: 4:30 - 6pm ET<br/>
+              <br/>
+              LOCATION<br/>
+              423 King-Shaw Hall<br/>
+              140 Garden Avenue<br/>
+              Ithaca, NY 14853<br/>
+              <br/>
+              We look forward to your attendance.<br/>
+              <br/>
+              Join Zoom Meeting: <a href="https://cornell.zoom.us/j/98232695799?pwd=NWxSSWhXaVBzTTNXTGpGVWxHcS9mUT09&from=addon">https://cornell.zoom.us/j/98232695799?pwd=NWxSSWhXaVBzTTNXTGpGVWxHcS9mUT09&from=addon</a>
+              Meeting ID: 982 3269 5799
+              Passcode: 825230
+        submission_detail_email:
+          settings:
+            to_mail: pjg97@cornell.edu
+            subject: '2023 Cook/Gray lecture registration: [webform_submission:source-title]'
+            body: |-
+              {{ data.first_name }} {{ data.last_name }} has just registered for the 2023 Cook/Gray lecture. The data they submitted follows:<br/>
+              <br/>
+              {{ webform_token('[webform_submission:values]', webform_submission) }}<br/>
+              <br/>
+              To see a list of all submissions log in at <a href="https://d8-edit.ilr.cornell.edu/user">https://d8-edit.ilr.cornell.edu/user</a> and then go to <a href="https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A16287">https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A16287</a>
+            twig: true
+
