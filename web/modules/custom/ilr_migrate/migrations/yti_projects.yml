@@ -26,10 +26,10 @@ process:
   field_contact_info_text/format:
     plugin: default_value
     default_value: basic_formatting
-  field_funding_agencies:
-    plugin: migration_lookup
-    migration: funding_agencies
-    source: funding_agency_id
+  field_funding_agencies/value: funding_agency_name
+  field_funding_agencies/format:
+    plugin: default_value
+    default_value: basic_formatting
   field_principal_investigator_txt: pi
   field_partners/value: partners
   field_partners/format:
@@ -56,6 +56,5 @@ destination:
   plugin: entity:node
   default_bundle: project
 migration_dependencies:
-  required:
-    - funding_agencies
+  required: {  }
   optional: {  }
