@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_funding_agencies
     - node.type.project
-    - taxonomy.vocabulary.project_funding_agencies
 id: node.project.field_funding_agencies
 field_name: field_funding_agencies
 entity_type: node
@@ -19,8 +18,7 @@ default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
   handler_settings:
-    target_bundles:
-      project_funding_agencies: project_funding_agencies
+    target_bundles: {  }
     sort:
       field: name
       direction: asc
