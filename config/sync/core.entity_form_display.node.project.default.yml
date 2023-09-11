@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.project.field_active
     - field.field.node.project.field_activities
     - field.field.node.project.field_contact_info_text
+    - field.field.node.project.field_funding_agencies
     - field.field.node.project.field_partners
     - field.field.node.project.field_principal_investigator_txt
     - field.field.node.project.field_representative_image
@@ -57,6 +58,14 @@ content:
   field_contact_info_text:
     type: text_textarea
     weight: 11
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_funding_agencies:
+    type: string_textarea
+    weight: 15
     region: content
     settings:
       rows: 5

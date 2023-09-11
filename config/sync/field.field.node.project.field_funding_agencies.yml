@@ -1,0 +1,19 @@
+uuid: cca9bfb2-2270-4978-b774-56f284be5233
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_funding_agencies
+    - node.type.project
+id: node.project.field_funding_agencies
+field_name: field_funding_agencies
+entity_type: node
+bundle: project
+label: 'Funding agencies'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

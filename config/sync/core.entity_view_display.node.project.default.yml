@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.project.field_active
     - field.field.node.project.field_activities
     - field.field.node.project.field_contact_info_text
+    - field.field.node.project.field_funding_agencies
     - field.field.node.project.field_partners
     - field.field.node.project.field_principal_investigator_txt
     - field.field.node.project.field_representative_image
@@ -203,6 +204,21 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 0
             additional: {  }
+          98103513-dd9c-44cc-becb-7da01cc2ca8f:
+            uuid: 98103513-dd9c-44cc-becb-7da01cc2ca8f
+            region: second
+            configuration:
+              id: 'field_block:node:project:field_funding_agencies'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: basic_string
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
         third_party_settings: {  }
 id: node.project.default
 targetEntityType: node
@@ -229,6 +245,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_funding_agencies:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
     region: content
   field_partners:
     type: text_default
