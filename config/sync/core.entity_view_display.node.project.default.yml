@@ -209,12 +209,15 @@ third_party_settings:
             region: second
             configuration:
               id: 'field_block:node:project:field_funding_agencies'
-              label_display: '0'
+              label: 'Funding agencies'
+              label_display: visible
+              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
               formatter:
                 type: basic_string
-                label: above
+                label: hidden
                 settings: {  }
                 third_party_settings: {  }
             weight: 2
