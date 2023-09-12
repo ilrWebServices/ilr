@@ -267,7 +267,7 @@
   }
 }
 
-.cu-list--list-compact .cu-event-card:not(:last-of-type) {
+.cu-list--list-compact .cu-event-card-wrapper:not(:last-of-type) {
   padding-bottom: var(--cu-vr1);
   margin-bottom: var(--cu-vr1);
   border-bottom: 1px solid $gray-light;
