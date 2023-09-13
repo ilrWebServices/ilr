@@ -39,6 +39,7 @@ elements: |-
     '#required': true
     '#default_value':
       country_code: US
+    '#access': false
     '#field_overrides':
       givenName: hidden
       additionalName: hidden
@@ -51,6 +52,14 @@ elements: |-
       dependentLocality: hidden
       locality: required
       administrativeArea: required
+  citizenship:
+    '#type': select
+    '#title': Citizenship
+    '#options':
+      'U.S. Citizen': 'U.S. Citizen'
+      'U.S. Permanent Resident': 'U.S. Permanent Resident'
+      'Foreign National': 'Foreign National'
+    '#required': true
   phone:
     '#type': tel
     '#title': 'Cell phone number'
