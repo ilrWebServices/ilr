@@ -284,7 +284,8 @@ access:
   view_any:
     roles: {  }
     users: {  }
-    permissions: {  }
+    permissions:
+      - 'view explore program webform submissions'
   update_any:
     roles: {  }
     users: {  }

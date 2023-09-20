@@ -1,0 +1,16 @@
+uuid: a22a25c8-6e3f-41a6-90a1-48cd4857c196
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+    - system
+    - webform
+id: explore_form_admin
+label: 'EXPLORE form admin'
+weight: 9
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access webform overview'
+  - 'view explore program webform submissions'
