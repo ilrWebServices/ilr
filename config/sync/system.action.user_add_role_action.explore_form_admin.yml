@@ -1,0 +1,14 @@
+uuid: 008d85d4-4f60-457f-bc2c-6939bbd8fd57
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.explore_form_admin
+  module:
+    - user
+id: user_add_role_action.explore_form_admin
+label: 'Add the EXPLORE form admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: explore_form_admin

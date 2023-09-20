@@ -1,0 +1,14 @@
+uuid: 0f889363-9281-4660-b0eb-3300cb3fe145
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.explore_form_admin
+  module:
+    - user
+id: user_remove_role_action.explore_form_admin
+label: 'Remove the EXPLORE form admin role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: explore_form_admin

@@ -63,3 +63,16 @@
     margin: 0;
   }
 }
+
+.webform-submission-form .address--wrapper {
+  margin-top: 0;
+}
+
+.webform-submission-form .cu-legend {
+  margin-bottom: 0;
+}
+
+// See https://developer.mozilla.org/en-US/docs/Web/CSS/:has
+.cu-legend:has(.visually-hidden) {
+  margin: 0;
+}
