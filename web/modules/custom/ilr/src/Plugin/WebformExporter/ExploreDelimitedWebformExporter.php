@@ -84,6 +84,10 @@ class ExploreDelimitedWebformExporter extends DelimitedWebformExporter {
     'alternatelocation__city' => 'city2',
     'alternatelocation__state_province' => 'state2',
     'year_in_school' => 'schoolYear',
+    'submitter' => 'Submitter',
+    'localstreet1' => 'localStreet1',
+    'date_submitted' => 'Date submitted',
+    'date_changed' => 'Date changed',
   ];
 
   /**

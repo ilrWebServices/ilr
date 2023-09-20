@@ -138,6 +138,24 @@ elements: |-
       '#address_2__access': false
       '#postal_code__access': false
       '#country__access': false
+  export:
+    '#type': container
+    localstreet1:
+      '#type': webform_computed_twig
+      '#title': localStreet1
+      '#display_on': view
+      '#template': '{{ data.localaddress.address_line1 }}'
+      '#whitespace': trim
+    date_submitted:
+      '#type': webform_computed_twig
+      '#title': 'Date submitted'
+      '#display_on': view
+      '#template': '{{ created|date("Y-m-d H:i:s") }}'
+    date_changed:
+      '#type': webform_computed_twig
+      '#title': 'Date changed'
+      '#display_on': view
+      '#template': '{{ changed|date("Y-m-d H:i:s") }}'
 css: ''
 javascript: ''
 settings:
