@@ -74,10 +74,16 @@ class ExploreDelimitedWebformExporter extends DelimitedWebformExporter {
     'permanentaddress__administrative_area' => 'permanentState',
     'permanentaddress__postal_code' => 'permanentZip',
     'permanentaddress__country_code' => 'permanentCountry',
-    'preferredlocation__locality' => 'city1',
-    'preferredlocation__administrative_area' => 'state1',
-    'alternatelocation__locality' => 'city2',
-    'alternatelocation__administrative_area' => 'state2',
+    // These are used if the location fields are 'Advanced address' elements.
+    // 'preferredlocation__locality' => 'city1',
+    // 'preferredlocation__administrative_area' => 'state1',
+    // 'alternatelocation__locality' => 'city2',
+    // 'alternatelocation__administrative_area' => 'state2',
+    'preferredlocation__city' => 'city1',
+    'preferredlocation__state_province' => 'state1',
+    'alternatelocation__city' => 'city2',
+    'alternatelocation__state_province' => 'state2',
+    'year_in_school' => 'schoolYear',
   ];
 
   /**

@@ -122,38 +122,22 @@ elements: |-
 
       <p>Specify preferred location (city / state). You also have the option to list an alternate location.</p>
     preferredlocation:
-      '#type': address
+      '#type': webform_address
       '#title': 'Preferred city and state'
       '#title_display': before
       '#required': true
-      '#available_countries':
-        - US
-      '#field_overrides':
-        givenName: hidden
-        additionalName: hidden
-        familyName: hidden
-        organization: hidden
-        addressLine1: hidden
-        addressLine2: hidden
-        postalCode: hidden
-        sortingCode: hidden
-        dependentLocality: hidden
+      '#address__access': false
+      '#address_2__access': false
+      '#postal_code__access': false
+      '#country__access': false
     alternatelocation:
-      '#type': address
+      '#type': webform_address
       '#title': 'Alternate city and state'
       '#title_display': before
-      '#available_countries':
-        - US
-      '#field_overrides':
-        givenName: hidden
-        additionalName: hidden
-        familyName: hidden
-        organization: hidden
-        addressLine1: hidden
-        addressLine2: hidden
-        postalCode: hidden
-        sortingCode: hidden
-        dependentLocality: hidden
+      '#address__access': false
+      '#address_2__access': false
+      '#postal_code__access': false
+      '#country__access': false
 css: ''
 javascript: ''
 settings:
