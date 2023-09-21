@@ -256,6 +256,12 @@ class PostListing extends ParagraphsBehaviorBase {
    */
   public function view(array &$build, Paragraph $paragraph, EntityViewDisplayInterface $display, $view_mode) {
     $collection_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'collection');
+
+    // Ensure there is a collection id. At times this will be null, such as when editing a layout.
+    if (!$collection_id) {
+      return;
+    }
+
     $collection = $this->entityTypeManager->getStorage('collection')->load($collection_id);
     $category_operator = $paragraph->getBehaviorSetting($this->getPluginId(), 'negate_category') ? '<>' : '=';
     $post_types = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_types') ?? array_keys($this->postTypes);
