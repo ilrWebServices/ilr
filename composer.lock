@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a55e42d3dc9ea0b4ed175797a8322627",
+    "content-hash": "7b9daea7e70526a81155938eff20d297",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4405,6 +4405,50 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/media_pdf_thumbnail",
                 "issues": "http://drupal.org/project/issues/media_pdf_thumbnail"
+            }
+        },
+        {
+            "name": "drupal/media_remote",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/media_remote.git",
+                "reference": "1.8.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/media_remote-1.8.0.zip",
+                "reference": "1.8.0",
+                "shasum": "4f7c8e8e7bd61501183ef62f91d804edbdb611f9"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.8.0",
+                    "datestamp": "1691050855",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "marcoscano",
+                    "homepage": "https://www.drupal.org/user/1288796"
+                }
+            ],
+            "description": "Provides Media integration for remote content (non-OEmbed).",
+            "homepage": "https://www.drupal.org/project/media_remote",
+            "support": {
+                "source": "https://git.drupalcode.org/project/media_remote"
             }
         },
         {
@@ -16413,5 +16457,5 @@
         "php": ">=5.6"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
