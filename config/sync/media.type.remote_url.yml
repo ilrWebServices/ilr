@@ -1,0 +1,16 @@
+uuid: d180f17a-6a04-42c3-9b46-fc52055029a7
+langcode: en
+status: true
+dependencies:
+  module:
+    - media_remote
+id: remote_url
+label: 'Remote URL'
+description: 'A remotely hosted generic resource.'
+source: media_remote
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_media_remote
+field_map:
+  name: name
