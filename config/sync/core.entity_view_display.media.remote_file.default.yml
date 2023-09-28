@@ -1,0 +1,28 @@
+uuid: b807d32d-0fa1-4a90-a6ce-c5bf9ac1c023
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.remote_file.field_media_media_remote
+    - media.type.remote_file
+  module:
+    - ilr
+id: media.remote_file.default
+targetEntityType: media
+bundle: remote_file
+mode: default
+content:
+  field_media_media_remote:
+    type: media_remote_generic
+    label: visually_hidden
+    settings:
+      formatter_class: Drupal\ilr\Plugin\Field\FieldFormatter\MediaRemoteGenericFormatter
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

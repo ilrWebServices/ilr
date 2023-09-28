@@ -1,0 +1,20 @@
+uuid: 63b468b8-1aa3-4279-a1ac-71a6c0ae48dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.remote_file.field_media_media_remote
+    - media.type.remote_file
+id: media.remote_file.media_library
+targetEntityType: media
+bundle: remote_file
+mode: media_library
+content: {  }
+hidden:
+  created: true
+  field_media_media_remote: true
+  name: true
+  path: true
+  status: true
+  uid: true
