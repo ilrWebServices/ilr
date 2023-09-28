@@ -76,7 +76,13 @@ function union_marketing_preprocess_node(&$variables) {
   $variables['url_attributes'] = new Attribute();
 
   if ($variables['node']->bundle() === 'post_document' && !$variables['node']->field_document->isEmpty()) {
-    $variables['url'] = $variables['node']->field_document->entity->field_media_file->entity->createFileUrl();
+    if ($variables['node']->field_document->entity->bundle() === 'remote_file') {
+      $variables['url'] = $variables['node']->field_document->entity->field_media_media_remote->value;
+    }
+    elseif ($variables['node']->field_document->entity->bundle() === 'file') {
+      $variables['url'] = $variables['node']->field_document->entity->field_media_file->entity->createFileUrl();
+    }
+
     $variables['url_attributes']->setAttribute('target', '_blank');
   }
 
