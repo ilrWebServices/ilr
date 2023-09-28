@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_document
     - media.type.file
+    - media.type.remote_url
     - node.type.post_document
 id: node.post_document.field_document
 field_name: field_document
@@ -21,9 +22,10 @@ settings:
   handler_settings:
     target_bundles:
       file: file
+      remote_url: remote_url
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: file
 field_type: entity_reference
