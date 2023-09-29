@@ -37,8 +37,8 @@ mapping:
   OFFER_TERM_TEXT: Admit_Term_Offered__c
 default_fields:
   -
-    key: RecordType.Name
-    value: Grad
+    key: RecordTypeId
+    value: 0124U0000019PTwQAM
   -
     key: Company
     value: 'NONE PROVIDED'
