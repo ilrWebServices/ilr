@@ -1,0 +1,34 @@
+uuid: 64a00eb3-03fe-43cb-bf4a-e391f4ec0120
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.center_of_excellence
+  module:
+    - block_visibility_groups
+    - facets
+    - ilr
+  theme:
+    - union_marketing
+id: union_marketing_center_excellence
+theme: union_marketing
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:center_of_excellence'
+settings:
+  id: 'facet_block:center_of_excellence'
+  label: 'Center of Excellence'
+  label_display: visible
+  provider: facets
+  context_mapping: {  }
+  block_id: union_marketing_center_excellence
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false

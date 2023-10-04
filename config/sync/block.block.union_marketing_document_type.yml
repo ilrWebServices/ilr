@@ -1,0 +1,34 @@
+uuid: 239617fc-523e-44eb-9039-36a51ce34fae
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.document_type
+  module:
+    - block_visibility_groups
+    - facets
+    - ilr
+  theme:
+    - union_marketing
+id: union_marketing_document_type
+theme: union_marketing
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:document_type'
+settings:
+  id: 'facet_block:document_type'
+  label: 'Document type'
+  label_display: visible
+  provider: facets
+  context_mapping: {  }
+  block_id: union_marketing_document_type
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: false

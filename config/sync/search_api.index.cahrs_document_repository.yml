@@ -1,0 +1,66 @@
+uuid: 1fd14282-6094-4b63-8838-35a9569f88d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.collection_item.field_center_of_excellence
+    - field.storage.collection_item.field_cahrs_document_type
+    - search_api.server.database
+  module:
+    - taxonomy
+    - collection
+    - search_api
+id: cahrs_document_repository
+name: 'CAHRS Document repository'
+description: ''
+read_only: false
+field_settings:
+  coe_name:
+    label: 'Center of Excellence'
+    datasource_id: 'entity:collection_item'
+    property_path: 'field_center_of_excellence:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.collection_item.field_center_of_excellence
+      module:
+        - taxonomy
+  name:
+    label: Name
+    datasource_id: 'entity:collection_item'
+    property_path: name
+    type: string
+    dependencies:
+      module:
+        - collection
+  type_name:
+    label: 'Document type'
+    datasource_id: 'entity:collection_item'
+    property_path: field_cahrs_document_type
+    type: string
+    dependencies:
+      config:
+        - field.storage.collection_item.field_cahrs_document_type
+datasource_settings:
+  'entity:collection_item':
+    bundles:
+      default: false
+      selected:
+        - cahrs_document_item
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  entity_type: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: database
