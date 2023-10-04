@@ -1,0 +1,29 @@
+uuid: 319fce96-c877-4205-b8c5-9e6e337d012a
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.cahrs_document_item
+    - field.storage.collection_item.field_center_of_excellence
+    - taxonomy.vocabulary.cahrs_centers_of_excellence
+id: collection_item.cahrs_document_item.field_center_of_excellence
+field_name: field_center_of_excellence
+entity_type: collection_item
+bundle: cahrs_document_item
+label: 'Center of Excellence'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      cahrs_centers_of_excellence: cahrs_centers_of_excellence
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: cahrs_centers_of_excellence
+field_type: entity_reference

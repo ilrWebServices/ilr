@@ -1,0 +1,85 @@
+uuid: d856614c-e88d-49e6-8e6d-53d44ee53a9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.cahrs_document_item
+    - field.field.collection_item.cahrs_document_item.field_cahrs_document_type
+    - field.field.collection_item.cahrs_document_item.field_center_of_excellence
+  module:
+    - dynamic_entity_reference
+    - key_value_field
+    - path
+id: collection_item.cahrs_document_item.default
+targetEntityType: collection_item
+bundle: cahrs_document_item
+mode: default
+content:
+  attributes:
+    type: key_value_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+      key_label: Key
+      value_label: Value
+      description_label: Description
+      description_rows: 5
+      key_size: 60
+      key_placeholder: ''
+      description_enabled: false
+      description_placeholder: ''
+    third_party_settings: {  }
+  canonical:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_cahrs_document_type:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_center_of_excellence:
+    type: options_buttons
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  item:
+    type: dynamic_entity_reference_default
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 40
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  weight:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  collection: true
+  user_id: true

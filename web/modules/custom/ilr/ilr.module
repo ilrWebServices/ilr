@@ -6,6 +6,7 @@
  */
 
 use Drupal\address\Plugin\Field\FieldWidget\AddressDefaultWidget;
+use Drupal\collection\Entity\CollectionInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -1515,5 +1516,14 @@ function ilr_module_implements_alter(&$implementations, $hook) {
     $group = $implementations['ilr'];
     unset($implementations['ilr']);
     $implementations['ilr'] = $group;
+  }
+}
+
+/**
+ * Implements hook_collection_item_types_allowed_alter().
+ */
+function ilr_collection_item_types_allowed_alter(array &$allowed_types, string|null $collection_type_id, string|null $entity_type_id, string|null $bundle, CollectionInterface|null $collection) {
+  if ($collection && $collection->id() === '53') {
+    array_unshift($allowed_types, 'cahrs_document_item');
   }
 }

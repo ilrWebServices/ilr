@@ -1,0 +1,21 @@
+uuid: a33ce077-589c-47ec-9149-fac40800a9ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.cahrs_document_item
+    - field.storage.collection_item.field_cahrs_document_type
+  module:
+    - options
+id: collection_item.cahrs_document_item.field_cahrs_document_type
+field_name: field_cahrs_document_type
+entity_type: collection_item
+bundle: cahrs_document_item
+label: 'Document type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

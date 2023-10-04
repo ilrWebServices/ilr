@@ -1,0 +1,10 @@
+uuid: fbc76499-9176-4e65-a360-6a2bd5e4d884
+langcode: en
+status: true
+dependencies: {  }
+id: cahrs_document_item
+label: 'CAHRS document item'
+allowed_bundles:
+  - node.post_document
+  - node.video_post
+attributes_access: administrators

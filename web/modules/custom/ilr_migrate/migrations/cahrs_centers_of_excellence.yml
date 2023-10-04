@@ -1,0 +1,50 @@
+id: cahrs_centers_of_excellence
+label: CAHRS Centers of Excellence
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: embedded_data
+  data_rows:
+    -
+      id: 1
+      title: 'CHRO Role/Future Function'
+    -
+      id: 2
+      title: 'Diversity and Inclusion'
+    -
+      id: 3
+      title: 'Employee Engagement'
+    -
+      id: 4
+      title: 'Globalization'
+    -
+      id: 5
+      title: 'HR Analytics/Metrics'
+    -
+      id: 6
+      title: 'HR Business Partner'
+    -
+      id: 7
+      title: 'HR Strategy'
+    -
+      id: 8
+      title: 'Talent Management'
+    -
+      id: 9
+      title: 'Total Rewards'
+  ids:
+    id:
+      type: integer
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  name: title
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: cahrs_centers_of_excellence
+  validate: true
+migration_dependencies:
+  required: {  }
+  optional: {  }

@@ -1,0 +1,65 @@
+uuid: cdff7a0d-11e4-40b5-9f2b-5eb257278069
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.cahrs_document_item
+    - field.field.collection_item.cahrs_document_item.field_cahrs_document_type
+    - field.field.collection_item.cahrs_document_item.field_center_of_excellence
+  module:
+    - dynamic_entity_reference
+    - options
+    - user
+id: collection_item.cahrs_document_item.default
+targetEntityType: collection_item
+bundle: cahrs_document_item
+mode: default
+content:
+  collection:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_cahrs_document_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_center_of_excellence:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  item:
+    type: dynamic_entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  user_id:
+    type: author
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true
