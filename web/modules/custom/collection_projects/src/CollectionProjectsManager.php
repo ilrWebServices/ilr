@@ -27,7 +27,7 @@ class CollectionProjectsManager {
   public function collectionCanContainProjects(CollectionInterface $collection): bool {
     /** @var \Drupal\collection\Entity\CollectionTypeInterface $collection_type */
     $collection_type = $collection->type->entity;
-    $allowed_bundles = $collection_type->getAllowedEntityBundles('node');
+    $allowed_bundles = $collection_type->getAllowedEntityBundles('node', $collection);
     $allowed_node_types = $this->entityTypeManager->getStorage('node_type')->loadMultiple($allowed_bundles['node']);
 
     /** @var \Drupal\node\NodeTypeInterface $node_type */

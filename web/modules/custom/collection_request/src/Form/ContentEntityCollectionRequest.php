@@ -166,7 +166,7 @@ class ContentEntityCollectionRequest extends FormBase {
     // Check if the type was set in a presubmit hook. Otherwise, use the first
     // available option.
     if ($collection_item_type === '¯\_(ツ)_/¯') {
-      $allowed_types = $collection->type->entity->getAllowedCollectionItemTypes($entity->getEntityTypeId(), $entity->bundle());
+      $allowed_types = $collection->type->entity->getAllowedCollectionItemTypes($entity->getEntityTypeId(), $entity->bundle(), $collection);
       $collection_item_type = reset($allowed_types);
     }
 
