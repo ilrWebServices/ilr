@@ -1526,4 +1526,8 @@ function ilr_collection_item_types_allowed_alter(array &$allowed_types, string|n
   if ($collection && $collection->id() === '53') {
     array_unshift($allowed_types, 'cahrs_document_item');
   }
+
+  if ($collection && $collection->id() === '57') {
+    array_unshift($allowed_types, 'project_item');
+  }
 }
