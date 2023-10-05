@@ -12,25 +12,25 @@ type: list_string
 settings:
   allowed_values:
     -
-      value: benchmarking
+      value: Benchmarking
       label: Benchmarking
     -
-      value: news
+      value: News
       label: News
     -
-      value: research-links
+      value: 'Research Links'
       label: 'Research Links'
     -
-      value: student-papers
+      value: 'Student Papers'
       label: 'Student Papers'
     -
-      value: videos
+      value: Videos
       label: Videos
     -
-      value: white-papers
+      value: 'White Papers'
       label: 'White Papers'
     -
-      value: working-group-summaries
+      value: 'Working Group Summaries'
       label: 'Working Group Summaries'
   allowed_values_function: ''
 module: options
