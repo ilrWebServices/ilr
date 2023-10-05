@@ -7,7 +7,6 @@ dependencies:
     - field.storage.collection_item.field_cahrs_document_type
     - search_api.server.database
   module:
-    - taxonomy
     - collection
     - search_api
 id: cahrs_document_repository
@@ -15,16 +14,14 @@ name: 'CAHRS Document repository'
 description: ''
 read_only: false
 field_settings:
-  coe_name:
+  coe:
     label: 'Center of Excellence'
     datasource_id: 'entity:collection_item'
-    property_path: 'field_center_of_excellence:entity:name'
-    type: string
+    property_path: field_center_of_excellence
+    type: integer
     dependencies:
       config:
         - field.storage.collection_item.field_center_of_excellence
-      module:
-        - taxonomy
   name:
     label: Name
     datasource_id: 'entity:collection_item'
@@ -54,6 +51,11 @@ processor_settings:
   add_url: {  }
   aggregated_field: {  }
   entity_type: {  }
+  hierarchy:
+    weights:
+      preprocess_index: -45
+    fields:
+      coe: taxonomy_term-parent
   language_with_fallback: {  }
   rendered_item: {  }
 tracker_settings:

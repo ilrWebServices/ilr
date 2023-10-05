@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.collection_item.field_cahrs_document_type
+    - field.storage.collection_item.field_center_of_excellence
     - search_api.index.cahrs_document_repository
   module:
     - dynamic_entity_reference
@@ -96,10 +97,10 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-        coe_name_1:
-          id: coe_name_1
+        coe:
+          id: coe
           table: search_api_index_cahrs_document_repository
-          field: coe_name
+          field: coe
           relationship: none
           group_type: group
           admin_label: ''
@@ -108,7 +109,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: '<h2>{{ coe_name_1 }}</h2>'
+            text: '<h2 class="cu-heading" style="display: inline;">{{ coe }}</h2>'
             make_link: false
             path: ''
             absolute: false
@@ -145,11 +146,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: string
+          click_sort_column: target_id
+          type: entity_reference_label
           settings:
-            link_to_entity: false
-          group_column: value
+            link: false
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -157,15 +158,307 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: ': '
           field_api_classes: false
-          field_rendering: false
-          fallback_handler: search_api
+          field_rendering: true
+          fallback_handler: search_api_entity
           fallback_options:
             link_to_item: false
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
+            display_methods:
+              blog_10_categories:
+                display_method: label
+                view_mode: default
+              blog_10_tags:
+                display_method: label
+                view_mode: default
+              blog_12_categories:
+                display_method: label
+                view_mode: default
+              blog_12_tags:
+                display_method: label
+                view_mode: default
+              blog_13_categories:
+                display_method: label
+              blog_13_tags:
+                display_method: label
+              blog_14_categories:
+                display_method: label
+                view_mode: default
+              blog_14_tags:
+                display_method: label
+                view_mode: default
+              blog_15_categories:
+                display_method: label
+              blog_15_tags:
+                display_method: label
+              blog_17_categories:
+                display_method: label
+                view_mode: default
+              blog_17_tags:
+                display_method: label
+              blog_18_categories:
+                display_method: label
+                view_mode: default
+              blog_18_tags:
+                display_method: label
+              blog_19_categories:
+                display_method: label
+                view_mode: default
+              blog_19_tags:
+                display_method: label
+                view_mode: default
+              blog_22_categories:
+                display_method: label
+                view_mode: default
+              blog_22_tags:
+                display_method: label
+                view_mode: default
+              blog_23_categories:
+                display_method: label
+                view_mode: default
+              blog_23_tags:
+                display_method: label
+                view_mode: default
+              blog_24_categories:
+                display_method: label
+                view_mode: default
+              blog_24_tags:
+                display_method: label
+                view_mode: default
+              blog_25_categories:
+                display_method: label
+                view_mode: default
+              blog_25_tags:
+                display_method: label
+                view_mode: default
+              blog_26_categories:
+                display_method: label
+                view_mode: default
+              blog_26_tags:
+                display_method: label
+                view_mode: default
+              blog_27_categories:
+                display_method: label
+                view_mode: default
+              blog_27_tags:
+                display_method: label
+                view_mode: default
+              blog_28_categories:
+                display_method: label
+                view_mode: default
+              blog_28_tags:
+                display_method: label
+                view_mode: default
+              blog_29_categories:
+                display_method: label
+              blog_29_tags:
+                display_method: label
+              blog_2_categories:
+                display_method: label
+                view_mode: default
+              blog_2_tags:
+                display_method: label
+                view_mode: default
+              blog_30_categories:
+                display_method: label
+                view_mode: default
+              blog_30_tags:
+                display_method: label
+                view_mode: default
+              blog_31_categories:
+                display_method: label
+                view_mode: default
+              blog_31_tags:
+                display_method: label
+                view_mode: default
+              blog_32_categories:
+                display_method: label
+                view_mode: default
+              blog_32_tags:
+                display_method: label
+                view_mode: default
+              blog_33_categories:
+                display_method: label
+              blog_33_tags:
+                display_method: label
+              blog_34_categories:
+                display_method: label
+                view_mode: default
+              blog_34_tags:
+                display_method: label
+                view_mode: default
+              blog_35_categories:
+                display_method: label
+                view_mode: default
+              blog_35_tags:
+                display_method: label
+                view_mode: default
+              blog_36_categories:
+                display_method: label
+                view_mode: default
+              blog_36_tags:
+                display_method: label
+                view_mode: default
+              blog_37_categories:
+                display_method: label
+                view_mode: default
+              blog_37_tags:
+                display_method: label
+                view_mode: default
+              blog_38_categories:
+                display_method: label
+                view_mode: default
+              blog_38_tags:
+                display_method: label
+                view_mode: default
+              blog_39_categories:
+                display_method: label
+                view_mode: default
+              blog_39_tags:
+                display_method: label
+                view_mode: default
+              blog_40_categories:
+                display_method: label
+                view_mode: default
+              blog_40_tags:
+                display_method: label
+                view_mode: default
+              blog_41_categories:
+                display_method: label
+                view_mode: default
+              blog_41_tags:
+                display_method: label
+                view_mode: default
+              blog_42_categories:
+                display_method: label
+                view_mode: default
+              blog_42_tags:
+                display_method: label
+                view_mode: default
+              blog_43_categories:
+                display_method: label
+                view_mode: default
+              blog_43_tags:
+                display_method: label
+                view_mode: default
+              blog_44_categories:
+                display_method: label
+                view_mode: default
+              blog_44_tags:
+                display_method: label
+                view_mode: default
+              blog_45_categories:
+                display_method: label
+                view_mode: default
+              blog_45_tags:
+                display_method: label
+                view_mode: default
+              blog_46_categories:
+                display_method: label
+              blog_46_tags:
+                display_method: label
+              blog_47_categories:
+                display_method: label
+              blog_47_tags:
+                display_method: label
+              blog_48_categories:
+                display_method: label
+                view_mode: default
+              blog_48_tags:
+                display_method: label
+                view_mode: default
+              blog_49_categories:
+                display_method: label
+              blog_49_tags:
+                display_method: label
+              blog_50_categories:
+                display_method: label
+              blog_50_tags:
+                display_method: label
+              blog_51_categories:
+                display_method: label
+                view_mode: default
+              blog_51_tags:
+                display_method: label
+                view_mode: default
+              blog_52_categories:
+                display_method: label
+              blog_52_tags:
+                display_method: label
+              blog_53_categories:
+                display_method: label
+              blog_53_tags:
+                display_method: label
+              blog_54_categories:
+                display_method: label
+              blog_54_tags:
+                display_method: label
+              blog_55_categories:
+                display_method: label
+                view_mode: default
+              blog_55_tags:
+                display_method: label
+                view_mode: default
+              blog_56_categories:
+                display_method: label
+              blog_56_tags:
+                display_method: label
+              blog_57_categories:
+                display_method: label
+              blog_57_tags:
+                display_method: label
+              blog_58_categories:
+                display_method: label
+                view_mode: default
+              blog_58_tags:
+                display_method: label
+                view_mode: default
+              blog_59_categories:
+                display_method: label
+                view_mode: default
+              blog_59_tags:
+                display_method: label
+                view_mode: default
+              blog_60_categories:
+                display_method: label
+              blog_60_tags:
+                display_method: label
+              cahrs_centers_of_excellence:
+                display_method: label
+              course_sponsor:
+                display_method: label
+              event_keywords:
+                display_method: label
+              event_sponsors:
+                display_method: label
+                view_mode: default
+              project_19_focus_areas:
+                display_method: label
+              project_1_focus_areas:
+                display_method: label
+              project_22_focus_areas:
+                display_method: label
+              project_40_focus_areas:
+                display_method: label
+              project_53_focus_areas:
+                display_method: label
+              project_57_focus_areas:
+                display_method: label
+              project_61_focus_areas:
+                display_method: label
+              project_62_focus_areas:
+                display_method: label
+              project_9_focus_areas:
+                display_method: label
+              publication:
+                display_method: label
+                view_mode: default
+              topics:
+                display_method: label
+                view_mode: default
         type_name:
           id: type_name
           table: search_api_index_cahrs_document_repository
@@ -278,12 +571,8 @@ display:
         options:
           grouping:
             -
-              field: coe_name_1
-              rendered: true
-              rendered_strip: false
-            -
               field: type_name
-              rendered: false
+              rendered: true
               rendered_strip: false
           row_class: ''
           default_row_class: true
@@ -309,6 +598,7 @@ display:
         - url.query_args
       tags:
         - 'config:field.storage.collection_item.field_cahrs_document_type'
+        - 'config:field.storage.collection_item.field_center_of_excellence'
         - 'config:search_api.index.cahrs_document_repository'
         - 'search_api_list:cahrs_document_repository'
   block:
@@ -326,5 +616,6 @@ display:
         - url.query_args
       tags:
         - 'config:field.storage.collection_item.field_cahrs_document_type'
+        - 'config:field.storage.collection_item.field_center_of_excellence'
         - 'config:search_api.index.cahrs_document_repository'
         - 'search_api_list:cahrs_document_repository'
