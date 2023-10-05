@@ -33,6 +33,154 @@ source:
     -
       id: 9
       title: 'Total Rewards'
+    -
+      id: 10
+      title: CHRO
+      parent: 1
+    -
+      id: 11
+      title: Future of Work
+      parent: 1
+    -
+      id: 12
+      title: Leadership
+      parent: 1
+    -
+      id: 13
+      title: Diversity
+      parent: 2
+    -
+      id: 14
+      title: Employees with Disabilities
+      parent: 2
+    -
+      id: 15
+      title: Gender
+      parent: 2
+    -
+      id: 16
+      title: Generational Differences
+      parent: 2
+    -
+      id: 17
+      title: Inclusion
+      parent: 2
+    -
+      id: 18
+      title: Corporate Social Responsibility
+      parent: 3
+    -
+      id: 19
+      title: Employee Engagement
+      parent: 3
+    -
+      id: 20
+      title: Performance Management
+      parent: 3
+    -
+      id: 21
+      title: Emerging Markets
+      parent: 4
+    -
+      id: 22
+      title: Globalization
+      parent: 4
+    -
+      id: 23
+      title: Remote Work
+      parent: 4
+    -
+      id: 24
+      title: Talent
+      parent: 4
+    -
+      id: 25
+      title: Analytics
+      parent: 5
+    -
+      id: 26
+      title: Benchmarking
+      parent: 5
+    -
+      id: 27
+      title: Metrics
+      parent: 5
+    -
+      id: 28
+      title: HR Business Partner
+      parent: 6
+    -
+      id: 29
+      title: HR Competencies
+      parent: 6
+    -
+      id: 30
+      title: HR for HR
+      parent: 6
+    -
+      id: 31
+      title: HR Generalist
+      parent: 6
+    -
+      id: 32
+      title: Innovation
+      parent: 7
+    -
+      id: 33
+      title: Knowledge Management
+      parent: 7
+    -
+      id: 34
+      title: Strategy
+      parent: 7
+    -
+      id: 35
+      title: Attracting Talent
+      parent: 8
+    -
+      id: 36
+      title: Employee Assessments
+      parent: 8
+    -
+      id: 37
+      title: Leadership Development
+      parent: 8
+    -
+      id: 38
+      title: Learning
+      parent: 8
+    -
+      id: 39
+      title: Talent Management
+      parent: 8
+    -
+      id: 40
+      title: Training
+      parent: 8
+    -
+      id: 41
+      title: Benefits
+      parent: 9
+    -
+      id: 42
+      title: Incentives
+      parent: 9
+    -
+      id: 43
+      title: Pay
+      parent: 9
+    -
+      id: 44
+      title: Rewards
+      parent: 9
+    -
+      id: 45
+      title: Total Rewards
+      parent: 9
+    -
+      id: 46
+      title: Work/Life Balance
+      parent: 9
   ids:
     id:
       type: integer
@@ -41,6 +189,14 @@ process:
     plugin: default_value
     default_value: 1
   name: title
+  parent:
+    -
+      plugin: migration_lookup
+      migration: cahrs_centers_of_excellence
+      source: parent
+    -
+      plugin: default_value
+      default_value: 0
 destination:
   plugin: entity:taxonomy_term
   default_bundle: cahrs_centers_of_excellence
