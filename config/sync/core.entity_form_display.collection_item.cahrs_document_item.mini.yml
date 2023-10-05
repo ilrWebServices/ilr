@@ -7,6 +7,8 @@ dependencies:
     - core.entity_form_mode.collection_item.mini
     - field.field.collection_item.cahrs_document_item.field_cahrs_document_type
     - field.field.collection_item.cahrs_document_item.field_center_of_excellence
+  module:
+    - term_reference_tree
 id: collection_item.cahrs_document_item.mini
 targetEntityType: collection_item
 bundle: cahrs_document_item
@@ -26,10 +28,15 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_center_of_excellence:
-    type: options_buttons
+    type: term_reference_tree
     weight: 1
     region: content
-    settings: {  }
+    settings:
+      start_minimized: true
+      leaves_only: false
+      select_parents: true
+      cascading_selection: 3
+      max_depth: 0
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox

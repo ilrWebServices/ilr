@@ -10,6 +10,7 @@ dependencies:
     - dynamic_entity_reference
     - key_value_field
     - path
+    - term_reference_tree
 id: collection_item.cahrs_document_item.default
 targetEntityType: collection_item
 bundle: cahrs_document_item
@@ -45,10 +46,15 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_center_of_excellence:
-    type: options_buttons
+    type: term_reference_tree
     weight: 1
     region: content
-    settings: {  }
+    settings:
+      start_minimized: true
+      leaves_only: false
+      select_parents: true
+      cascading_selection: 3
+      max_depth: 0
     third_party_settings: {  }
   item:
     type: dynamic_entity_reference_default
