@@ -59,8 +59,8 @@ elements: |-
     '#type': select
     '#title': 'For which semester will you be applying to the ILR School?'
     '#options':
-      fall_2023: 'Fall 2023'
-      spring_2023: 'Spring 2023'
+      fall: 'Fall'
+      spring: 'Spring'
   1st_choice_visit_arrival:
     '#type': datetime
     '#title': '1st choice visit arrival'
