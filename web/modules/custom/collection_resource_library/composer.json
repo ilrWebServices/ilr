@@ -1,0 +1,11 @@
+{
+    "name": "drupal/collection_resource_library",
+    "type": "drupal-module",
+    "description": "Allows support for collections as resource libraries.",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/collection": "^1.0"
+    }
+}
