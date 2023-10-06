@@ -1,0 +1,7 @@
+collection.collection_item_type.*:third_party_settings.is_resource_item:
+  type: mapping
+  label: 'Is resource item'
+  mapping:
+    is_resource_item:
+      type: boolean
+      label: 'Is resource item'
