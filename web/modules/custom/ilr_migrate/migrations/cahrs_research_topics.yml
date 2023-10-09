@@ -1,0 +1,32 @@
+id: cahrs_research_topics
+label: CAHRS Research Topics (Centers of Excellence and sub-topics)
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'csv_url'
+  path: 'https://raw.githubusercontent.com/ilrWebServices/cars_migration_data/main/topics.csv'
+  header_offset: 0
+  ids:
+    - id
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  name: topic
+  parent:
+    -
+      plugin: migration_lookup
+      migration: cahrs_research_topics
+      source: parent_id
+      no_stub: true
+    -
+      plugin: default_value
+      default_value: 0
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: research_lib_61_topics
+  validate: true
+migration_dependencies:
+  required: {  }
+  optional: {  }
