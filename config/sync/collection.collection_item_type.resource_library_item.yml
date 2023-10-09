@@ -1,0 +1,15 @@
+uuid: 0270d7b2-4720-4d36-8fd9-7afb8251e9d7
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection_resource_library
+third_party_settings:
+  collection_resource_library:
+    is_resource_item: 1
+id: resource_library_item
+label: 'Resource library item'
+allowed_bundles:
+  - node.post_document
+  - node.video_post
+attributes_access: administrators
