@@ -1,0 +1,76 @@
+uuid: b360124e-8ab5-458c-a97f-ef6b3628f185
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.collection_item.field_research_topics
+    - field.storage.collection_item.field_resource_type
+    - search_api.server.database
+  module:
+    - collection
+    - search_api
+id: resource_library
+name: 'Resource library'
+description: ''
+read_only: false
+field_settings:
+  collection:
+    label: Collection
+    datasource_id: 'entity:collection_item'
+    property_path: collection
+    type: integer
+    dependencies:
+      module:
+        - collection
+  field_research_topics:
+    label: 'Research topics'
+    datasource_id: 'entity:collection_item'
+    property_path: field_research_topics
+    type: integer
+    dependencies:
+      config:
+        - field.storage.collection_item.field_research_topics
+  field_resource_type:
+    label: 'Resource type'
+    datasource_id: 'entity:collection_item'
+    property_path: field_resource_type
+    type: string
+    dependencies:
+      config:
+        - field.storage.collection_item.field_resource_type
+  name:
+    label: Name
+    datasource_id: 'entity:collection_item'
+    property_path: name
+    type: string
+    dependencies:
+      module:
+        - collection
+datasource_settings:
+  'entity:collection_item':
+    bundles:
+      default: false
+      selected:
+        - resource_library_item
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  entity_type: {  }
+  hierarchy:
+    weights:
+      preprocess_index: -45
+    fields:
+      field_research_topics: taxonomy_term-parent
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: database
