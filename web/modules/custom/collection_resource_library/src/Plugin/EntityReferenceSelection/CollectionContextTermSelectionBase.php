@@ -81,7 +81,7 @@ class CollectionContextTermSelectionBase extends SelectionPluginBase implements 
     $terms = $term_storage->loadTree($vocabulary->id(), 0, NULL, TRUE);
 
     foreach ($terms as $term) {
-      $options[$term->bundle()][$term->id()] = $term->label();
+      $options[$term->bundle()][$term->id()] = str_repeat('-', $term->depth) . $term->label();
     }
 
     return $options;
