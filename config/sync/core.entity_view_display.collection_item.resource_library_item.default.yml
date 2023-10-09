@@ -1,0 +1,73 @@
+uuid: 48338f58-ff6e-464f-afb5-10eda3c13735
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.resource_library_item
+    - field.field.collection_item.resource_library_item.field_keywords_text
+    - field.field.collection_item.resource_library_item.field_research_topics
+    - field.field.collection_item.resource_library_item.field_resource_type
+  module:
+    - dynamic_entity_reference
+    - options
+    - user
+id: collection_item.resource_library_item.default
+targetEntityType: collection_item
+bundle: resource_library_item
+mode: default
+content:
+  collection:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_keywords_text:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_research_topics:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_resource_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  item:
+    type: dynamic_entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  user_id:
+    type: author
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -1,0 +1,19 @@
+uuid: e3a36903-2b48-4393-b851-1ae919191960
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.resource_library_item
+    - field.storage.collection_item.field_keywords_text
+id: collection_item.resource_library_item.field_keywords_text
+field_name: field_keywords_text
+entity_type: collection_item
+bundle: resource_library_item
+label: 'Legacy keywords'
+description: 'This is just a string of keywords, not stored in a taxonomy.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

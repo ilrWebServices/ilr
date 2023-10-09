@@ -1,0 +1,21 @@
+uuid: a9b12c87-c78a-4c7c-a0ba-ec7ad83a7fa9
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.resource_library_item
+    - field.storage.collection_item.field_resource_type
+  module:
+    - options
+id: collection_item.resource_library_item.field_resource_type
+field_name: field_resource_type
+entity_type: collection_item
+bundle: resource_library_item
+label: 'Resource type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

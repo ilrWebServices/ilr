@@ -1,0 +1,19 @@
+uuid: 46f07cf1-bf9e-44c9-9707-4dd077aad240
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: collection_item.field_keywords_text
+field_name: field_keywords_text
+entity_type: collection_item
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

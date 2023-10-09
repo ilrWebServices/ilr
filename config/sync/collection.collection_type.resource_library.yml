@@ -1,0 +1,8 @@
+uuid: 898d5be7-bda3-4b0b-a228-b0c96404fb1b
+langcode: en
+status: true
+dependencies: {  }
+id: resource_library
+label: 'Resource library'
+allowed_collection_item_types:
+  - resource_library_item
