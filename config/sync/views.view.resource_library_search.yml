@@ -7,6 +7,7 @@ dependencies:
     - search_api.index.resource_library
   module:
     - dynamic_entity_reference
+    - facets
     - options
     - search_api
 id: resource_library_search
@@ -247,6 +248,48 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        facets:
+          id: facets
+          table: search_api_index_resource_library
+          field: facets
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: facets_filter
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: facet_yKzIfTIB
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          facets:
+            research_topics: research_topics
+            resource_type: resource_type
+          label_display: visible
       style:
         type: default
         options:
@@ -280,6 +323,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
       tags:
         - 'config:field.storage.collection_item.field_resource_type'
@@ -298,6 +342,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
       tags:
         - 'config:field.storage.collection_item.field_resource_type'
