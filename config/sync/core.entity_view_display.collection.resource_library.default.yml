@@ -1,0 +1,67 @@
+uuid: 7c57f962-a107-4e06-bdf2-2445024511c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.resource_library
+    - views.view.resource_library_search
+  module:
+    - layout_builder
+    - layout_discovery
+    - views
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          9b608b30-9762-435c-9640-00e60aa364f2:
+            uuid: 9b608b30-9762-435c-9640-00e60aa364f2
+            region: content
+            configuration:
+              id: 'field_block:collection:resource_library:name'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          66e625f9-dd19-4677-b049-2905642ddd69:
+            uuid: 66e625f9-dd19-4677-b049-2905642ddd69
+            region: content
+            configuration:
+              id: 'views_block:resource_library_search-block_contextual'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: none
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
+id: collection.resource_library.default
+targetEntityType: collection
+bundle: resource_library
+mode: default
+content:
+  name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true
+  user_id: true

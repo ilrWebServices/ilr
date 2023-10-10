@@ -9,12 +9,12 @@ dependencies:
     - search_api
 id: research_topics
 name: 'Research topics'
-weight: 0
+weight: -1
 min_count: 1
 missing: false
 missing_label: others
 url_alias: research_topics
-facet_source_id: 'search_api:views_block__resource_library_search__block_cahrs'
+facet_source_id: 'search_api:views_block__resource_library_search__block_contextual'
 field_identifier: field_research_topics
 query_operator: or
 hard_limit: 0
@@ -24,7 +24,7 @@ keep_hierarchy_parents_active: true
 hierarchy:
   type: taxonomy
   config: {  }
-expand_hierarchy: false
+expand_hierarchy: true
 enable_parent_when_child_gets_disabled: true
 widget:
   type: checkbox

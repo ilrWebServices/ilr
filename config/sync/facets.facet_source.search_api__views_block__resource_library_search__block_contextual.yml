@@ -1,0 +1,12 @@
+uuid: b25ae466-ffa5-4ad8-b408-9e037057a995
+langcode: en
+status: true
+dependencies: {  }
+id: search_api__views_block__resource_library_search__block_contextual
+name: 'search_api:views_block__resource_library_search__block_contextual'
+filter_key: context
+url_processor: query_string
+breadcrumb:
+  active: false
+  before: true
+  group: false
