@@ -1,0 +1,61 @@
+id: cahrs_resource_items
+label: Collection items for CAHRS resources
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'csv_url'
+  path: 'https://raw.githubusercontent.com/ilrWebServices/cars_migration_data/main/resources.csv'
+  header_offset: 0
+  ids:
+    - resource_id
+process:
+  user_id:
+    plugin: default_value
+    default_value: 5
+  created:
+    plugin: format_date
+    source: date_added
+    from_format: 'm/d/Y'
+    to_format: 'U'
+  changed:
+    plugin: format_date
+    source: date_added
+    from_format: 'm/d/Y'
+    to_format: 'U'
+  item/target_id:
+    -
+      plugin: migration_lookup
+      migration: cahrs_resources
+      source: resource_id
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  item/target_type:
+    plugin: default_value
+    default_value: node
+  collection:
+    plugin: default_value
+    default_value: 61
+  canonical:
+    plugin: default_value
+    default_value: 1
+  field_research_topics:
+    -
+      plugin: explode
+      delimiter: ','
+      source: topic_ids
+    -
+      plugin: migration_lookup
+      migration: cahrs_research_topics
+  field_resource_type: resource_type
+  field_keywords_text/value: keywords
+destination:
+  plugin: 'entity:collection_item'
+  default_bundle: resource_library_item
+migration_dependencies:
+  required:
+    - cahrs_resources
+    - cahrs_research_topics
+  optional: {  }
