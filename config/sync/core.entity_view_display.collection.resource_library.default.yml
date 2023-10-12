@@ -6,8 +6,10 @@ dependencies:
     - collection.collection_type.resource_library
     - views.view.resource_library_search
   module:
+    - ilr
     - layout_builder
     - layout_discovery
+    - system
     - views
 third_party_settings:
   layout_builder:
@@ -15,13 +17,14 @@ third_party_settings:
     allow_custom: false
     sections:
       -
-        layout_id: layout_onecol
+        layout_id: banner
         layout_settings:
-          label: ''
+          label: Banner
+          context_mapping: {  }
         components:
           9b608b30-9762-435c-9640-00e60aa364f2:
             uuid: 9b608b30-9762-435c-9640-00e60aa364f2
-            region: content
+            region: banner
             configuration:
               id: 'field_block:collection:resource_library:name'
               label_display: '0'
@@ -35,6 +38,23 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 0
             additional: {  }
+          563f2299-e9ab-4579-9839-d725d7e21f06:
+            uuid: 563f2299-e9ab-4579-9839-d725d7e21f06
+            region: top
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
           66e625f9-dd19-4677-b049-2905642ddd69:
             uuid: 66e625f9-dd19-4677-b049-2905642ddd69
             region: content

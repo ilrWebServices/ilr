@@ -6,3 +6,59 @@
     text-decoration: none;
   }
 }
+
+.resource-library-search-view {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto 1fr;
+  gap: 0 var(--cu-ps1);
+
+  .research-library-search-header {
+    grid-column: 1;
+    grid-row: 1/-1;
+    padding: 0;
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+  }
+
+  .research-library-search-results {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .research-library-search-footer {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 0;
+
+    .block-facets-summary ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      columns: unset; // This is from the global layout footer, which we should fix.
+      display: flex;
+      gap: var(--cu-ps-1);
+    }
+
+    .facet-summary-item--facet {
+      padding: var(--cu-vr-2) var(--cu-ps-1);
+      // border: 1px solid #ccc;
+      border-radius: 3px;
+      background-color: var(--cu-color-brand);
+
+      a {
+        color: white;
+        font-weight: 400;
+        text-decoration: none;
+      }
+
+      .facet-item__status {
+        padding-left: .5em;
+      }
+    }
+  }
+
+}
