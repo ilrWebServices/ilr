@@ -20,7 +20,7 @@ query_operator: or
 hard_limit: 0
 exclude: false
 use_hierarchy: true
-keep_hierarchy_parents_active: true
+keep_hierarchy_parents_active: false
 hierarchy:
   type: taxonomy
   config: {  }
