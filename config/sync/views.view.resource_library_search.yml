@@ -206,7 +206,20 @@ display:
         type: none
         options: {  }
       empty: {  }
-      sorts: {  }
+      sorts:
+        field_resource_type:
+          id: field_resource_type
+          table: search_api_index_resource_library
+          field: field_resource_type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
       arguments:
         collection:
           id: collection
