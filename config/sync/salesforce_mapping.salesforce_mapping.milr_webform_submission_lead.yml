@@ -131,13 +131,6 @@ field_mappings:
     salesforce_field: Is_Pre_assessment__c
     id: 16
     description: ''
-  17:
-    drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:address:country_code:value]'
-    direction: drupal_sf
-    salesforce_field: Country_of_Citizenship__c
-    id: 17
-    description: ''
   18:
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:utm_values:utm_campaign:raw]'
