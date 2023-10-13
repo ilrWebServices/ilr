@@ -9,6 +9,7 @@ dependencies:
   module:
     - dynamic_entity_reference
     - facets
+    - facets_summary
     - options
     - search_api
 id: resource_library_search
@@ -286,7 +287,18 @@ display:
             research_topics: research_topics
             resource_type: resource_type
           label_display: visible
-      footer: {  }
+      footer:
+        facets_summary:
+          id: facets_summary
+          table: search_api_index_resource_library
+          field: facets_summary
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: facets_summary_area
+          empty: true
+          facet_summary: resource_library_search_summary
+          label_display: 0
       display_extenders: {  }
     cache_metadata:
       max-age: -1

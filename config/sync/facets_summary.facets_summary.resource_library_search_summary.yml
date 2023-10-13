@@ -1,0 +1,27 @@
+uuid: 265af838-8614-4adf-b211-2c1dce32bbe6
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.resource_library
+    - views.view.resource_library_search
+  module:
+    - search_api
+id: resource_library_search_summary
+name: 'Resource library search summary'
+facet_source_id: 'search_api:views_block__resource_library_search__block_contextual'
+only_visible_when_facet_source_is_visible: false
+processor_configs: {  }
+facets:
+  research_topics:
+    checked: true
+    label: 'Research topics'
+    separator: ', '
+    show_count: false
+    weight: 0
+  resource_type:
+    checked: true
+    label: 'Resource type'
+    separator: ', '
+    show_count: false
+    weight: 0
