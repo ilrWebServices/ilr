@@ -9,6 +9,7 @@ dependencies:
   module:
     - collection
     - search_api
+    - ilr
 id: resource_library
 name: 'Resource library'
 description: ''
@@ -22,6 +23,11 @@ field_settings:
     dependencies:
       module:
         - collection
+  field_published_date:
+    label: 'Post fields » Published Date'
+    datasource_id: 'entity:collection_item'
+    property_path: 'ilr_post_node_fields:field_published_date'
+    type: date
   field_research_topics:
     label: 'Research topics'
     datasource_id: 'entity:collection_item'
@@ -64,6 +70,7 @@ processor_settings:
       preprocess_index: -45
     fields:
       field_research_topics: taxonomy_term-parent
+  ilr_post_fields: {  }
   language_with_fallback: {  }
   rendered_item: {  }
 tracker_settings:
