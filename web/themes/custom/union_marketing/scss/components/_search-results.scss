@@ -27,6 +27,10 @@
   .research-library-search-results {
     grid-column: 2;
     grid-row: 2;
+
+    .views-field-item + .cu-heading {
+      margin-top: var(--cu-vr1);
+    }
   }
 
   .research-library-search-footer {
@@ -36,7 +40,7 @@
 
     .block-facets-summary ul {
       list-style-type: none;
-      padding: 0;
+      padding: 0 0 var(--cu-vr1) 0;
       margin: 0;
       columns: unset; // This is from the global layout footer, which we should fix.
       display: flex;
@@ -61,4 +65,23 @@
     }
   }
 
+  .node--search-result {
+    display: flex;
+    gap: 1em;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--cu-vr-2);
+
+    a {
+      padding-left: 1em;
+      text-indent: -1em;
+      // --cu-text-color: #222;
+      color: var(--cu-color-brand);
+    }
+
+    .post__info {
+      --cu-font-size: .8rem;
+      line-height: 1;
+    }
+  }
 }
