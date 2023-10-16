@@ -1,0 +1,41 @@
+uuid: c45065ab-1132-48a3-b581-22f6a5c0f2c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_index
+    - field.field.node.video_post.body
+    - field.field.node.video_post.field_published_date
+    - field.field.node.video_post.field_representative_image
+    - field.field.node.video_post.field_video
+    - node.type.video_post
+  module:
+    - datetime
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.video_post.search_index
+targetEntityType: node
+bundle: video_post
+mode: search_index
+content:
+  field_published_date:
+    type: datetime_custom
+    label: hidden
+    settings:
+      timezone_override: ''
+      date_format: 'Y'
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  blog_collection: true
+  blog_tags: true
+  body: true
+  field_representative_image: true
+  field_video: true
+  links: true
+  search_api_excerpt: true

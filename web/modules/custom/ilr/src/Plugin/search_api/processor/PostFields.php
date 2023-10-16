@@ -182,9 +182,9 @@ class PostFields extends ProcessorPluginBase {
     // pretty bad idea, so this might blow up in some use cases. If not
     // required, the foreach block should thus be commented out.
     if (isset($to_extract[''])) {
-      foreach ($to_extract[''] as $field) {
-        $field->setValues([$post_node]);
-      }
+      // foreach ($to_extract[''] as $field) {
+      //   $field->setValues([$post_node]);
+      // }
       unset($to_extract['']);
     }
 
