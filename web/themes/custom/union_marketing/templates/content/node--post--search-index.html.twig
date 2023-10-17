@@ -78,8 +78,6 @@
     'node--search-result'
   ]) }}>
   <a{{ url_attributes }} href="{{ url }}">{{ label }}</a>
+  <span class="post__info">({{ content.field_published_date }})</span>
   {{ title_suffix }}
-  <div class="post__info">
-    {{ content.field_published_date }}
-  </div>
 </div>
