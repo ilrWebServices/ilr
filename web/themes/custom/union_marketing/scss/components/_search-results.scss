@@ -57,7 +57,8 @@
       gap: var(--cu-ps-1);
     }
 
-    .facet-summary-item--facet {
+    .facet-summary-item--facet,
+    .facet-summary-item--search-string {
       padding: var(--cu-vr-2) var(--cu-ps-1);
       // border: 1px solid #ccc;
       border-radius: 3px;

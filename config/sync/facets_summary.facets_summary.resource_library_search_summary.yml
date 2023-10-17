@@ -10,8 +10,14 @@ dependencies:
 id: resource_library_search_summary
 name: 'Resource library search summary'
 facet_source_id: 'search_api:views_block__resource_library_search__block_contextual'
+search_filter_identifier: s
 only_visible_when_facet_source_is_visible: false
-processor_configs: {  }
+processor_configs:
+  reset_string:
+    processor_id: reset_string
+    weights:
+      build: '30'
+    settings: {  }
 facets:
   research_topics:
     checked: true
