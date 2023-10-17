@@ -4,7 +4,7 @@ status: true
 dependencies: {  }
 id: search_api__views_block__resource_library_search__block_contextual
 name: 'search_api:views_block__resource_library_search__block_contextual'
-filter_key: context
+filter_key: f
 url_processor: query_string
 breadcrumb:
   active: false
