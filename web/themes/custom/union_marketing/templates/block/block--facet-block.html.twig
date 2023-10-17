@@ -37,7 +37,7 @@
   {{ title_prefix }}
   {% block label %}
   {% if label %}
-    <summary><h2{{ title_attributes.addClass('cu-heading') }}>{{ label }}</h2></summary>
+    <summary{{ title_attributes.addClass('cu-heading') }}>{{ label }}</summary>
   {% endif %}
   {% endblock %}
   {{ title_suffix }}

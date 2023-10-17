@@ -19,6 +19,7 @@
   }
 
   .research-library-search-header {
+    order: -2;
     grid-column: 1;
     grid-row: 1/-1;
     padding: 0;
@@ -82,8 +83,8 @@
     margin-bottom: var(--cu-vr-2);
 
     a {
-      padding-left: 1em;
-      text-indent: -1em;
+      // padding-left: 1em;
+      // text-indent: -1em;
       // --cu-text-color: #222;
       color: var(--cu-color-brand);
     }
@@ -100,15 +101,33 @@
     }
   }
 
+  .facets-checkbox {
+    margin-right: .4em; // This might add to the theme debugging.
+  }
+
   .block-facets {
     border: 2px solid #ccc;
     margin-bottom: var(--cu-vr1);
     padding: .5em 1em;
     border-radius: 3px;
 
-    summary .cu-heading {
-      display: inline-block;
+    summary {
+      // display: inline-block;
       margin-bottom: 0;
+    }
+
+    .facets-widget-checkbox {
+      margin-top: var(--cu-vr0);
+    }
+  }
+
+  .cu-form.views-exposed-form {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+
+    .cu-input {
+      border-width: 2px;
     }
   }
 }
