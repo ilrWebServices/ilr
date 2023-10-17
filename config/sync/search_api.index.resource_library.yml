@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.collection_item.field_keywords_text
     - field.storage.collection_item.field_research_topics
     - field.storage.collection_item.field_resource_type
     - search_api.server.database
@@ -23,6 +24,14 @@ field_settings:
     dependencies:
       module:
         - collection
+  field_keywords_text:
+    label: 'Legacy keywords'
+    datasource_id: 'entity:collection_item'
+    property_path: field_keywords_text
+    type: text
+    dependencies:
+      config:
+        - field.storage.collection_item.field_keywords_text
   field_published_date:
     label: 'Post fields » Published Date'
     datasource_id: 'entity:collection_item'
@@ -44,11 +53,12 @@ field_settings:
     dependencies:
       config:
         - field.storage.collection_item.field_resource_type
-  name:
-    label: Name
+  name_text:
+    label: 'Name text'
     datasource_id: 'entity:collection_item'
     property_path: name
-    type: string
+    type: text
+    boost: 1.5
     dependencies:
       module:
         - collection
@@ -73,6 +83,73 @@ processor_settings:
   ilr_post_fields: {  }
   language_with_fallback: {  }
   rendered_item: {  }
+  stemmer:
+    weights:
+      preprocess_index: 0
+      preprocess_query: 0
+    all_fields: false
+    fields:
+      - field_keywords_text
+      - name_text
+    exceptions:
+      mexican: mexic
+      texan: texa
+  stopwords:
+    weights:
+      preprocess_index: -5
+      preprocess_query: -2
+    all_fields: false
+    fields:
+      - field_keywords_text
+      - name_text
+    stopwords:
+      - a
+      - an
+      - and
+      - are
+      - as
+      - at
+      - be
+      - but
+      - by
+      - for
+      - if
+      - in
+      - into
+      - is
+      - it
+      - 'no'
+      - not
+      - of
+      - 'on'
+      - or
+      - s
+      - such
+      - t
+      - that
+      - the
+      - their
+      - then
+      - there
+      - these
+      - they
+      - this
+      - to
+      - was
+      - will
+      - with
+  tokenizer:
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
+    all_fields: false
+    fields:
+      - field_keywords_text
+      - name_text
+    spaces: ''
+    ignored: ._-
+    overlap_cjk: 1
+    minimum_word_size: '3'
 tracker_settings:
   default:
     indexing_order: fifo

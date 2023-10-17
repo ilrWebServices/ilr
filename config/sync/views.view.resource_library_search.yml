@@ -12,6 +12,7 @@ dependencies:
     - facets_summary
     - options
     - search_api
+    - views_autocomplete_filters
 id: resource_library_search
 label: 'Resource library search'
 module: views
@@ -270,7 +271,68 @@ display:
             multiple: 0
           break_phrase: false
           not: false
-      filters: {  }
+      filters:
+        search_api_fulltext:
+          id: search_api_fulltext
+          table: search_api_index_resource_library
+          field: search_api_fulltext
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: views_autocomplete_filters_search_api_fulltext
+          operator: or
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: search_api_fulltext_op
+            label: Search
+            description: ''
+            use_operator: false
+            operator: search_api_fulltext_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: s
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              content_administrator: '0'
+              course_admin: '0'
+              form_admin: '0'
+              advanced_editor: '0'
+              event_admin: '0'
+              explore_form_admin: '0'
+            expose_fields: false
+            placeholder: ''
+            searched_fields_id: search_api_fulltext_searched_fields
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          parse_mode: phrase
+          min_length: null
+          fields:
+            - field_keywords_text
+            - name_text
       filter_groups:
         operator: AND
         groups:
