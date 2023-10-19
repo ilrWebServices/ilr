@@ -41,8 +41,9 @@ elements: |-
     '#variant': override
     '#display_on': view
   company:
-    '#type': textfield
+    '#type': webform_autocomplete
     '#title': Organization
+    '#autocomplete_items': certified_organizations
     '#required': true
   title:
     '#type': textfield
