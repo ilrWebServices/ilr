@@ -462,10 +462,12 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
 
   if ($entity instanceof EventNodeInterface) {
     if ($entity->hasField('field_registration_form') && !$entity->field_registration_form->isEmpty()) {
+      // Attach the js library.
+      $build['#attached']['library'][] = 'ilr/registration_webform_widget_enhancement';
+
       if (preg_match("/^# CONFIG \(DO NOT DELETE\)(.*)\n?/m", $entity->field_registration_form->default_data, $matches)) {
         if ($config = json_decode($matches[1])) {
-          // Attach the library and pass the Drupal settings.
-          $build['#attached']['library'][] = 'ilr/registration_webform_widget_enhancement';
+          // Pass the Drupal settings if config was found.
           $build['#attached']['drupalSettings']['event_registration_form_config'] = $config;
         }
       }

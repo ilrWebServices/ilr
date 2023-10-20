@@ -78,4 +78,23 @@
     }
   }
 
+  /**
+   * Hide eventid (e.g. How will you be attending?) if there's only one option.
+   */
+  Drupal.behaviors.enhance_form_eventid = {
+    attach: function (context, settings) {
+      let eventid_wrappers = context.querySelectorAll('.salesforce-event-options--wrapper');
+      console.log(eventid_wrappers)
+
+      for (const eventid_wrapper of eventid_wrappers) {
+        let options = eventid_wrapper.querySelectorAll('input[type="radio"]');
+
+        if (options.length === 1) {
+          options[0].checked = true;
+          eventid_wrapper.classList.add('visually-hidden');
+        }
+      }
+    }
+  }
+
 })(window, document);
