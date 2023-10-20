@@ -38,3 +38,22 @@ span.strong {
 .cu-text--small {
   --cu-font-size: var(--cu-ms-1);
 }
+
+// jQuery UI autocomplete widget overrides.
+.ui-autocomplete .ui-menu-item-wrapper {
+  padding: .25em .5em;
+}
+
+.ui-autocomplete .ui-menu-item {
+  margin: .5em 0;
+  font-family: Replica, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  font-weight: 300;
+  font-size: .8rem;
+}
+
+.ui-autocomplete .ui-state-active {
+  border: unset;
+  font-weight: unset;
+  background: var(--cu-color-brand);
+  border-radius: 3px;
+}
