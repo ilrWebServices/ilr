@@ -2,6 +2,49 @@
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Url;
+use Drupal\salesforce\Rest\RestException;
+
+/**
+ * Implements hook_webform_options_WEBFORM_OPTIONS_ID_alter().
+ */
+function ilr_outreach_registration_webform_options_certified_organizations_alter(array &$options, array &$element) {
+  $cid = 'ilr_outreach_registration_certified_organizations';
+
+  if ($cache = \Drupal::cache()->get($cid)) {
+    $options = $cache->data;
+    return;
+  }
+
+  /** @var \Drupal\salesforce\Rest\RestClientInterface $sfapi */
+  $sfapi = \Drupal::service('salesforce.client');
+
+  $query = new \Drupal\salesforce\SelectQuery('Account');
+  $query->fields = [
+    'Id',
+    'Name',
+  ];
+  $query->addCondition('Certified_Account_Name__c', 'TRUE');
+
+  try {
+    $sf_results = $sfapi->query($query);
+  }
+  catch (RestException $e) {
+    $sf_response = $e->getResponse();
+
+    // Cache the error phrase as options for an hour to prevent excessive calls
+    // to the Salesforce API and to aid in troubleshooting.
+    \Drupal::cache()->set($cid, [$sf_response->getReasonPhrase()], time() + 60 * 60);
+    return;
+  }
+
+  foreach ($sf_results->records() as $record) {
+    $name = $record->field('Name');
+    $options[$name] = $name;
+  }
+
+  // Cache these options for 24 hours.
+  \Drupal::cache()->set($cid, $options, time() + 60 * 60 * 24);
+}
 
 /**
  * Implements hook_webform_options_alter().
