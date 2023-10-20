@@ -30,6 +30,7 @@ function ilr_outreach_registration_webform_options_certified_organizations_alter
   }
   catch (RestException $e) {
     $sf_response = $e->getResponse();
+    \Drupal::logger('ilr_outreach_registration')->error($sf_response->getBody());
 
     // Cache the error phrase as options for an hour to prevent excessive calls
     // to the Salesforce API and to aid in troubleshooting.
