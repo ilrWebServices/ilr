@@ -546,7 +546,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: ''
+      elements: "eventid:\r\n  '#required': false"
       handlers:
         ilr_outreach_registration_order_submitter:
           status: false
