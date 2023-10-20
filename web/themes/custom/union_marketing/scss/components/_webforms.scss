@@ -118,13 +118,15 @@
   color: revert;
 }
 
-.webform-type-checkboxes {
+.webform-type-checkboxes,
+.webform-type-salesforce-event-options {
   border: 1px solid #ccc;
   border-radius: 3px;
   padding-bottom: var(--cu-vr-1);
 }
 
-.webform-type-checkboxes .cu-legend {
+.webform-type-checkboxes .cu-legend,
+.webform-type-salesforce-event-options .cu-legend {
   margin: 0 var(--cu-ps-1) var(--cu-vr-2);
   padding: 0 .25em;
 }
