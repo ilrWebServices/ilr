@@ -121,6 +121,10 @@ elements: |-
     '#type': checkbox
     '#title': 'I will be attending online'
     '#access': false
+  eventid:
+    '#type': salesforce_event_options
+    '#title': 'How will you be attending?'
+    '#required': true
   custom_1_answer:
     '#type': textfield
     '#title': 'Custom 1 Answer'
@@ -140,11 +144,6 @@ elements: |-
     '#prepopulate': true
   utm_values:
     '#type': utm_values
-  eventid:
-    '#type': hidden
-    '#title': 'Event ID'
-    '#prepopulate': true
-    '#required': true
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
