@@ -1214,7 +1214,6 @@ function ilr_preprocess_entity_add_list__collection_subsite_blog_new_node(&$vari
 function ilr_preprocess_entity_add_list__collection_content_section_new_node(&$variables) {
   unset($variables['bundles']['certificate']);
   unset($variables['bundles']['course']);
-  unset($variables['bundles']['media_mention']);
   unset($variables['bundles']['story']);
 }
 
