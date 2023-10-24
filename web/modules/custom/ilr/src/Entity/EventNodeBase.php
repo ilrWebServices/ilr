@@ -92,6 +92,7 @@ abstract class EventNodeBase extends Node {
       ->setTargetEntityTypeId($entity_type->id())
       ->setTargetBundle($bundle)
       ->setLabel(t('Location link'))
+      ->setDescription(t('Use the URL "<code>#register</code>" to make the link trigger the opening of the registration form.'))
       ->setRequired(FALSE)
       ->setTranslatable(TRUE)
       ->setRevisionable(TRUE)
