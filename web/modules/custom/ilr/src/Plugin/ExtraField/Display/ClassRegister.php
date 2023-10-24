@@ -2,10 +2,12 @@
 
 namespace Drupal\ilr\Plugin\ExtraField\Display;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -47,12 +49,17 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
     foreach ($classes as $class) {
       $info = [
         'entity' => $class,
+        'session_dates' => [],
         'course' => $class->field_course->entity,
         'register_url' => '',
         'price' => $class->field_price->value,
         'discount_price' => $class->ilroutreach_discount_price->value ?? $class->field_price->value,
         'discount_enddate' => $class->ilroutreach_discount_date->end_value,
       ];
+
+      foreach ($class->sessions as $session) {
+        $info['session_dates'][] = new DrupalDateTime($session->entity->session_date->value, DateTimeItemInterface::STORAGE_TIMEZONE);
+      }
 
       if ($mapped_object = $class->getClassNodeSalesforceMappedObject()) {
         $info['register_url'] = $this->config->get('ilr_registration_system.settings')->get('url') . $mapped_object->salesforce_id->getString();

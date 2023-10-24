@@ -18,11 +18,11 @@
       <div class="cu-class-delivery-method">{{ drupal_field('field_address', 'node', class.entity.id, 'teaser') }}</div>
     {% endif %}
 
-    {% if class.entity.sessions|length %}
+    {% if class.session_dates|length %}
       <div class="class-sessions">
-      {% for session in class.entity.sessions %}
+      {% for session_date in class.session_dates %}
         {# @see ClassSession::baseFieldDefinitions() session_date field setDisplayOptions() #}
-        <div class="cu-class-session-date">{{ session.entity.session_date.value|date('D, F j, Y, ') }} {{ drupal_field('session_date', 'class_session', session.entity.id.value, 'default', NULL, FALSE) }}</div>
+        <div class="cu-class-session-date">{{ session_date|date('D, F j, Y, g:i a T') }}</div>
       {% endfor %}
       </div>
     {% else %}
