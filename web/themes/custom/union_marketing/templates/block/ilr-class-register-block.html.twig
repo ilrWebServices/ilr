@@ -22,7 +22,7 @@
       <div class="class-sessions">
       {% for session_date in class.session_dates %}
         {# @see ClassSession::baseFieldDefinitions() session_date field setDisplayOptions() #}
-        <div class="cu-class-session-date">{{ session_date|date('D, F j, Y, g:i a T') }}</div>
+        <div class="cu-class-session-date">{{ session_date.start|date('D, F j, Y, g:i a') }} - {{ session_date.end|date('g:i a T') }}</div>
       {% endfor %}
       </div>
     {% else %}

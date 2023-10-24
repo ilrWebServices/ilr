@@ -58,7 +58,10 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
       ];
 
       foreach ($class->sessions as $session) {
-        $info['session_dates'][] = new DrupalDateTime($session->entity->session_date->value, DateTimeItemInterface::STORAGE_TIMEZONE);
+        $session_date = new \stdClass;
+        $session_date->start = new DrupalDateTime($session->entity->session_date->value, DateTimeItemInterface::STORAGE_TIMEZONE);
+        $session_date->end = new DrupalDateTime($session->entity->session_date->end_value, DateTimeItemInterface::STORAGE_TIMEZONE);
+        $info['session_dates'][] = $session_date;
       }
 
       if ($mapped_object = $class->getClassNodeSalesforceMappedObject()) {
