@@ -204,6 +204,13 @@
     }
   }
 
+  h1.cu-heading.loquacious {
+    --cu-font-family: revert;
+    --cu-line-height: 1.2;
+    text-transform: revert;
+    --cu-font-size: var(--cu-ms7);
+  }
+
   .field--body {
     --cu-font-weight: 400;
     margin-top: -1em;
