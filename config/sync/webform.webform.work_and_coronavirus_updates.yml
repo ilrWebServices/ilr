@@ -4,7 +4,6 @@ status: open
 dependencies:
   module:
     - honeypot
-    - webform_mailchimp
 third_party_settings:
   honeypot:
     honeypot: true
@@ -225,21 +224,5 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers:
-  mailchimp:
-    id: mailchimp
-    handler_id: mailchimp
-    label: MailChimp
-    notes: ''
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      list: 0720ba7a5d
-      email: email
-      double_optin: false
-      mergevars: ''
-      interest_groups: {  }
-      control: ''
-      tags: 'Work and Coronavirus updates'
+handlers: {  }
 variants: {  }

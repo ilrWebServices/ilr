@@ -1,9 +1,7 @@
 uuid: 1b85f0c1-c303-436c-90dc-fc4471fc9f97
 langcode: en
 status: open
-dependencies:
-  module:
-    - webform_mailchimp
+dependencies: {  }
 weight: 0
 open: null
 close: null
@@ -221,21 +219,5 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers:
-  mailchimp:
-    id: mailchimp
-    handler_id: mailchimp
-    label: MailChimp
-    notes: ''
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      list: 0720ba7a5d
-      email: email
-      double_optin: false
-      mergevars: ''
-      interest_groups: {  }
-      control: ''
-      tags: '75th updates'
+handlers: {  }
 variants: {  }

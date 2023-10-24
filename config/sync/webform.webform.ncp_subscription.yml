@@ -3,7 +3,11 @@ langcode: en
 status: open
 dependencies:
   module:
-    - webform_mailchimp
+    - honeypot
+third_party_settings:
+  honeypot:
+    honeypot: true
+    time_restriction: true
 weight: 0
 open: null
 close: null
@@ -268,20 +272,4 @@ handlers:
       theme_name: ''
       parameters: {  }
       debug: false
-  mailchimp:
-    id: mailchimp
-    handler_id: mailchimp
-    label: MailChimp
-    notes: ''
-    status: true
-    conditions: {  }
-    weight: 0
-    settings:
-      list: e4044a6343
-      email: email
-      double_optin: false
-      mergevars: "FNAME: [webform_submission:values:first_name]\r\nLNAME: [webform_submission:values:last_name]"
-      interest_groups: {  }
-      control: ''
-      tags: 'New Conversations Project'
 variants: {  }
