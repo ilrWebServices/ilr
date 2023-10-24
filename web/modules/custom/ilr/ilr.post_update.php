@@ -1682,3 +1682,22 @@ function ilr_post_update_update_post_listing_collection_setting(&$sandbox) {
     $simple_post_listing->save();
   }
 }
+
+/**
+ * Create SF leads for GLI (ncp) newsletter submissions.
+ */
+function ilr_post_update_create_ncp_subscription_leads(&$sandbox) {
+  $submission_storage = \Drupal::entityTypeManager()->getStorage('webform_submission');
+  $submission_ids = \Drupal::entityQuery('webform_submission')
+    ->accessCheck(FALSE)
+    ->condition('webform_id', 'ncp_subscription')
+    ->sort('sid')
+    ->execute();
+
+  $submissions = $submission_storage->loadMultiple($submission_ids);
+
+  /** @var \Drupal\webform\Entity\WebformSubmission $submission */
+  foreach ($submissions as $submission) {
+    salesforce_push_entity_crud($submission, 'push_create');
+  }
+}
