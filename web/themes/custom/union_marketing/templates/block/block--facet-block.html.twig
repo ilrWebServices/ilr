@@ -25,6 +25,11 @@
  * @see template_preprocess_block()
  */
 #}
+
+{% if content[0]['#facet'].getActiveItems is not empty %}
+  {% set attributes = attributes.setAttribute('open','open') %}
+{% endif %}
+
 {%
   set classes = [
     'cu-x-block',
