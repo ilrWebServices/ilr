@@ -1,6 +1,19 @@
 :root {
   --gutter-width: 24px;
   --content-width: 24fr;
+  --breakpoint: xs;
+
+  @include breakpoint(sm) {
+    --breakpoint: sm;
+  }
+
+  @include breakpoint(md) {
+    --breakpoint: md;
+  }
+
+  @include breakpoint(lg) {
+    --breakpoint: lg;
+  }
 }
 
 body {
