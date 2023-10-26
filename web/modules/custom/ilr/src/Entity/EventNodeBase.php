@@ -114,6 +114,24 @@ abstract class EventNodeBase extends Node {
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayConfigurable('form', TRUE);
 
+    // $definitions['location_text'] = BundleFieldDefinition::create('string_long')
+    //   ->setLabel(t('Location text'))
+    //   ->setRequired(TRUE)
+    //   ->setDisplayOptions('form', [
+    //     'type' => 'string_textarea',
+    //     'weight' => 0,
+    //     'settings' => [
+    //       'rows' => 3,
+    //     ],
+    //   ])
+    //   ->setDisplayOptions('view', [
+    //     'label' => 'hidden',
+    //     'type' => 'string',
+    //     'weight' => 0,
+    //   ])
+    //   ->setDisplayConfigurable('view', TRUE)
+    //   ->setDisplayConfigurable('form', TRUE);
+
     return $definitions;
   }
 

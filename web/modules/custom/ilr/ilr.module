@@ -82,6 +82,7 @@ function ilr_theme($existing, $type, $theme, $path) {
         'event_time' => [],
         'location_address' => [],
         'location_link' => [],
+        'location_text' => '',
       ],
     ],
     'localist_event' => [
@@ -397,6 +398,10 @@ function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entit
         'label' => 'hidden',
         'type' => 'link',
       ]) : '',
+      // '#location_text' => !$entity->location_text->isEmpty() ? $entity->location_text->view([
+      //   'label' => 'hidden',
+      //   'type' => 'string',
+      // ]) : '',
     ];
   }
 

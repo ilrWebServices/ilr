@@ -7,6 +7,7 @@
  * - event_date
  * - location_address
  * - location_link
+ * - location_text
  */
 #}
 <div class="event-when-where">
@@ -20,7 +21,7 @@
     {{ event_date }}
     {{ event_time }}
   </div>
-  {% if location_address or location_link %}
+  {% if location_address or location_link or location_text %}
   <div class="event-when-where__location">
     {% include '@union/_icon.twig' with {
       title: 'Geo-marker',
@@ -30,6 +31,7 @@
     <h3 class="cu-heading">{% trans %}Location{% endtrans %}</h3>
     {{ location_address }}
     {{ location_link }}
+    {{ location_text }}
   </div>
   {% endif %}
 </div>

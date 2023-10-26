@@ -1701,3 +1701,22 @@ function ilr_post_update_create_ncp_subscription_leads(&$sandbox) {
     salesforce_push_entity_crud($submission, 'push_create');
   }
 }
+
+/**
+ * Add bundle fields to event landing page node type.
+ */
+function ilr_post_update_event_landing_location_text_bundle_field() {
+  $entity_type = \Drupal::entityTypeManager()->getDefinition('node');
+  $field_definition_listener = \Drupal::service('field_definition.listener');
+
+  foreach (EventNodeBase::bundleFieldDefinitions($entity_type, 'event_landing_page', []) as $field_name => $storage_definition) {
+    \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition($field_name, 'node', 'node', $storage_definition);
+  }
+
+  // Add the new fields to fields to entity.definitions.bundle_field_map. In my
+  // testing, this needs to happen after the fields are installed above.
+  // @see https://www.drupal.org/i/3045509
+  foreach (EventNodeBase::bundleFieldDefinitions($entity_type, 'event_landing_page', []) as $field_name => $storage_definition) {
+    $field_definition_listener->onFieldDefinitionCreate($storage_definition);
+  }
+}
