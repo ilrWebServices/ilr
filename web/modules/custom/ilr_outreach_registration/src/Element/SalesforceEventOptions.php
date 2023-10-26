@@ -6,7 +6,6 @@ use Drupal\Core\Render\Element\FormElement;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\Html as HtmlUtility;
 use Drupal\Core\Render\Element\CompositeFormElementTrait;
-use Drupal\salesforce\Rest\RestException;
 use Drupal\ilr_outreach_registration\EventOption;
 
 /**
@@ -149,24 +148,24 @@ class SalesforceEventOptions extends FormElement {
 
     $options = [];
 
-    /** @var \Drupal\salesforce\Rest\RestClientInterface $sfapi */
-    $sfapi = \Drupal::service('salesforce.client');
-
-    $query = new \Drupal\salesforce\SelectQuery('EXECED_Event_Class__c');
-    $query->fields = [
-      'Id',
-      'Name',
-      'Start__c',
-      'Delivery_Method__c',
-    ];
-    // @todo Ensure that SFIDs are formatted correctly to prevent an error.
-    $query->addCondition('Id', $eventids, 'IN');
-
     try {
+      /** @var \Drupal\salesforce\Rest\RestClientInterface $sfapi */
+      $sfapi = \Drupal::service('salesforce.client');
+
+      $query = new \Drupal\salesforce\SelectQuery('EXECED_Event_Class__c');
+      $query->fields = [
+        'Id',
+        'Name',
+        'Start__c',
+        'Delivery_Method__c',
+      ];
+      // @todo Ensure that SFIDs are formatted correctly to prevent an error.
+      $query->addCondition('Id', $eventids, 'IN');
+
       $sf_results = $sfapi->query($query);
     }
-    catch (RestException $e) {
-      $sf_response = $e->getResponse();
+    catch (\Exception $e) {
+      \Drupal::logger('ilr_outreach_registration')->error($e->getMessage());
       return $options;
     }
 
