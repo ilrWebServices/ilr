@@ -149,21 +149,33 @@ class CourseNotificationHelper {
         ],
       ];
 
+      // Create the draft campaign.
       $response = $this->client->post("campaigns/$client_id.json", $campaign_data);
       $campaign_id = $response->getData();
 
-      // Set to send at 9am next day.
-      $send_date = new \DateTime('tomorrow');
-      $send_date->setTime(9, 01);
+      if ($this->settings->get('campaign_preview')) {
+        $preview_data = [
+          'json' => [
+            'PreviewRecipients' => ['ilrweb@cornell.edu'],
+          ],
+        ];
 
-      $data = [
-        'json' => [
-          'ConfirmationEmail' => 'ilrweb@cornell.edu',
-          'SendDate' => $send_date->format('Y-m-d H:i'),
-        ],
-      ];
+        $response = $this->client->post("campaigns/$campaign_id/sendpreview.json", $preview_data);
+      }
 
-      $response = $this->client->post("campaigns/$campaign_id/send.json", $data);
+      if ($this->settings->get('campaign_send')) {
+        // Set to send at 9am next day.
+        $send_date = new \DateTime('tomorrow');
+        $send_date->setTime(9, 01);
+        $send_data = [
+          'json' => [
+            'ConfirmationEmail' => 'ilrweb@cornell.edu',
+            'SendDate' => $send_date->format('Y-m-d H:i'),
+          ],
+        ];
+
+        $response = $this->client->post("campaigns/$campaign_id/send.json", $send_data);
+      }
 
       // Get the details of the scheduled campaign.
       $response = $this->client->get("campaigns/$campaign_id/summary.json");
@@ -174,7 +186,7 @@ class CourseNotificationHelper {
       ];
 
       // Log the details of the new campaign.
-      $this->logger->info('Campaign @campaign created and scheduled: @data', [
+      $this->logger->info('Campaign @campaign created: @data', [
         '@campaign' => $campaign_id,
         '@data' => print_r($campaign_data, TRUE),
       ]);

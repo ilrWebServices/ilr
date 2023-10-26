@@ -51,6 +51,7 @@ function ilr_campaigns_node_insert(ContentEntityInterface $node) {
  */
 function ilr_campaigns_cron() {
   // @todo Maybe don't run this EVERY cron.
+  /** @var \Drupal\ilr_campaigns\CourseNotificationHelper $course_notifications_helper */
   $course_notifications_helper = \Drupal::service('ilr_campaigns.course_notifications');
   $course_notifications_helper->addCustomFieldOptions();
 

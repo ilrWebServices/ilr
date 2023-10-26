@@ -193,6 +193,9 @@ if ($platformsh->onProduction()) {
   $config['samlauth.authentication']['security_authn_requests_sign'] = TRUE;
   $config['samlauth.authentication']['security_assertions_encrypt'] = TRUE;
 
+  // Ensure that campaign monitor sends new class notifications for real.
+  $config['ilr_campaigns.settings']['campaign_send'] = TRUE;
+
   // Load the production services file alongside this settings file.
   $settings['container_yamls'][] = __DIR__ . '/production.services.yml';
 }

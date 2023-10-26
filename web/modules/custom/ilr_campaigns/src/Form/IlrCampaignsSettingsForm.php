@@ -119,6 +119,20 @@ class IlrCampaignsSettingsForm extends ConfigFormBase {
       }
     }
 
+    $form['campaign_preview'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Preview campaigns'),
+      // '#description' => $this->t('.'),
+      '#default_value' => $config->get('campaign_preview'),
+    ];
+
+    $form['campaign_send'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Send campaigns'),
+      // '#description' => $this->t('.'),
+      '#default_value' => $config->get('campaign_send'),
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -127,8 +141,11 @@ class IlrCampaignsSettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('ilr_campaigns.settings');
-    $config->set('course_notification_client_id', $form_state->getValue('course_notification_client_id'))->save();
-    $config->set('course_notification_list_id', $form_state->getValue('course_notification_list_id'))->save();
+    $config->set('course_notification_client_id', $form_state->getValue('course_notification_client_id'));
+    $config->set('course_notification_list_id', $form_state->getValue('course_notification_list_id'));
+    $config->set('campaign_preview', $form_state->getValue('campaign_preview'));
+    $config->set('campaign_send', $form_state->getValue('campaign_send'));
+    $config->save();
     $this->messenger()->addMessage($this->t('Configuration saved.'));
   }
 
