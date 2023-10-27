@@ -2,6 +2,11 @@ uuid: 9b41b63a-af3c-402c-b66e-fb1ad56a6bfa
 langcode: en
 status: true
 dependencies:
+  config:
+    - collection.collection_item_type.blog
+    - collection.collection_item_type.default
+    - collection.collection_item_type.project_item
+    - collection.collection_item_type.publication_issue
   module:
     - collection
     - dynamic_entity_reference
@@ -729,6 +734,110 @@ display:
               content_administrator: '0'
               course_admin: '0'
             placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        type:
+          id: type
+          table: collection_item_field_data
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: collection_item
+          entity_field: type
+          plugin_id: bundle
+          operator: in
+          value:
+            all: all
+            blog: blog
+            default: default
+            project_item: project_item
+            publication_issue: publication_issue
+          group: 1
+          exposed: true
+          expose:
+            operator_id: type_op
+            label: 'Collection item type'
+            description: ''
+            use_operator: false
+            operator: type_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: type
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              content_administrator: '0'
+              course_admin: '0'
+              form_admin: '0'
+              advanced_editor: '0'
+              event_admin: '0'
+              explore_form_admin: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        canonical:
+          id: canonical
+          table: collection_item_field_data
+          field: canonical
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: collection_item
+          entity_field: canonical
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: Canonical
+            description: ''
+            use_operator: false
+            operator: canonical_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: canonical
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              content_administrator: '0'
+              course_admin: '0'
+              form_admin: '0'
+              advanced_editor: '0'
+              event_admin: '0'
+              explore_form_admin: '0'
           is_grouped: false
           group_info:
             label: ''
