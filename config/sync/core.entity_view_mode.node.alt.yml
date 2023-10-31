@@ -1,0 +1,10 @@
+uuid: 2c63357c-c717-48ed-9871-042b468e6c21
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.alt
+label: Alternate
+targetEntityType: node
+cache: true

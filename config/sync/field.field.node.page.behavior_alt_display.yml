@@ -1,0 +1,21 @@
+uuid: 44871958-fbfe-461b-acc0-c050e9a1f1b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.behavior_alt_display
+    - node.type.page
+id: node.page.behavior_alt_display
+field_name: behavior_alt_display
+entity_type: node
+bundle: page
+label: 'Use alternate display'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

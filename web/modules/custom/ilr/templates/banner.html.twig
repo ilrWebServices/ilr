@@ -1,4 +1,4 @@
-<div class="layout-banner">
+<div{{ attributes.addClass('layout-banner') }}>
 
 {% set rendered_content %}
 {% if content.top %}
@@ -12,7 +12,8 @@
 {% endset %}
 
 {% include '@union/_banner.twig' with {
-  attributes: { class: ['cu-banner--page', 'cu-colorscheme--dark']},
+  attributes: { class: ['cu-banner--page', 'cu-colorscheme--' ~ settings.color_scheme]},
   content: rendered_content,
+  media: content.media|render
 } only %}
 </div>

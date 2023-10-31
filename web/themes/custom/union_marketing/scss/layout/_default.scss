@@ -125,3 +125,16 @@ hr.pad {
     margin-right: 0;
   }
 }
+
+.node--view-mode-alt .block-extra-field-block--node--page--extra-field-ilr-section-navigation {
+  margin-bottom: var(--cu-vr1);
+
+  .cu-page-nav__list {
+    // @todo Fix this in the page nav component.
+    row-gap: var(--cu-vr-2);
+
+    .cu-heading {
+      --cu-font-size: var(--cu-ms-1);
+    }
+  }
+}

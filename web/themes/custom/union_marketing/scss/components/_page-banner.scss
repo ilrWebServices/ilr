@@ -1,4 +1,4 @@
-.cu-banner--page {
+.node--view-mode-full .cu-banner--page {
   --banner-padding: 20px;
   --frame-width: 10px;
 
@@ -89,7 +89,7 @@
     margin-top: 0;
   }
 
-  &.cu-banner--has-media {
+  &.cu-banner--with-media {
     @include breakpoint(md) {
       .banner__content {
         display: flex;
@@ -106,7 +106,7 @@
   }
 }
 
-.banner__content {
+.node--view-mode-full .banner__content {
   border-left: var(--frame-width) solid white;
   border-bottom: var(--frame-width) solid white;
   padding: 0 10% var(--banner-padding) var(--banner-padding);
@@ -116,7 +116,7 @@
   }
 }
 
-.node--course .cu-banner--page {
+.node--course.node--view-mode-full .cu-banner--page {
   // Override banner margin on course pages for register block/message.
   margin-bottom: 0;
 
@@ -127,7 +127,78 @@
   }
 }
 
-.cu-banner--page ul {
+.node--view-mode-alt {
+  --cu-max-width-section: 915px;
+
+  .cu-banner--page {
+    padding: 0;
+  }
+
+  .cu-banner__content {
+    max-width: revert;
+  }
+
+  .banner__content {
+    max-width: var(--cu-max-width-section, 1060px);
+    margin: 0 auto var(--cu-vr2) auto;
+    padding: var(--cu-vr2) 0 var(--cu-vr2) var(--cu-ps1);
+    position: relative;
+    border-left: 16px solid #222;
+
+    @include breakpoint(sm) {
+      padding: var(--cu-vr2) 0 var(--cu-vr2) var(--cu-ps2);
+    }
+
+    &::before,
+    &:after {
+      position: absolute;
+      background: #222;
+      content: '';
+      z-index: 1;
+      height: 16px;
+      width: 100%;
+    }
+
+    &:before {
+      top: 0;
+      left: 0;
+      width: 30%;
+    }
+
+    &:after {
+      bottom: 0;
+      left: 0;
+      width: 60%;
+    }
+
+    .cu-heading {
+      --cu-font-family: 'futura-pt';
+      --cu-font-size: var(--cu-ms5);
+      --cu-line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 0;
+
+      @include breakpoint(sm) {
+        --cu-font-size: var(--cu-ms10);
+      }
+    }
+
+    .block-layout-builder {
+      max-width: 640px;
+    }
+
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .block-field-block--node--page--title + .block-field-block--node--page--body {
+      margin-top: var(--cu-vr0);
+    }
+  }
+}
+
+
+.node--view-mode-full .cu-banner--page ul {
   margin: var(--cu-vr2) 0 0;
   padding: 0 0 0.5rem;
   list-style: none;
@@ -215,4 +286,29 @@
 .cu-banner--page .layout-builder-block,
 .cu-banner--page .layout-builder__add-block {
   background-color: rgba(0,0,0,0.2);
+}
+
+// Undo some of the styles that Union Banner adds for layout builder.
+.layout-builder__layout.layout-banner .cu-banner--page {
+  .cu-banner__media {
+    position: relative;
+    background: unset;
+    pointer-events: unset;
+
+    &::before {
+      content: none;
+    }
+
+    :not(img):not(video) {
+      display: revert;
+    }
+
+    .contextual-links {
+      display: none;
+    }
+
+    .contextual.open .contextual-links {
+      display: block;
+    }
+  }
 }

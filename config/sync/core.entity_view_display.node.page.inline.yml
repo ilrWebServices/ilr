@@ -37,6 +37,7 @@ content:
     region: content
 hidden:
   auth_protected: true
+  behavior_alt_display: true
   body: true
   extra_field_ilr_section_navigation: true
   field_sections: true
