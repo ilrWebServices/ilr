@@ -1,6 +1,7 @@
 .collection--view-mode-full .cu-banner--page,
 .collection--view-mode-banner .cu-banner--page,
-.node--view-mode-full .cu-banner--page {
+.node--view-mode-full .cu-banner--page,
+.node--view-mode-banner .cu-banner--page {
   --banner-padding: 20px;
   --frame-width: 10px;
 
@@ -110,7 +111,8 @@
 
 .collection--view-mode-full .banner__content,
 .collection--view-mode-banner .banner__content,
-.node--view-mode-full .banner__content {
+.node--view-mode-full .banner__content,
+.node--view-mode-banner .banner__content {
   border-left: var(--frame-width) solid white;
   border-bottom: var(--frame-width) solid white;
   padding: 0 10% var(--banner-padding) var(--banner-padding);
