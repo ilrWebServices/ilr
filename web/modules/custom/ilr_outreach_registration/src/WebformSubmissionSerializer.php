@@ -80,26 +80,34 @@ class WebformSubmissionSerializer {
       ],
     ];
 
-    // Default the address values to the basic address field.
+    $address_variant = $data['variant_address'] ?? '';
+
     $address = [
-      'address_line1' => $data['address']['address'] ?? 'NONE PROVIDED',
-      'address_line2' => $data['address']['address_2'] ?? '',
-      'city' => $data['address']['city'] ?? '',
-      'state' => $data['address']['state_province'] ?? '',
-      'zip' => $data['address']['postal_code'] ?? '',
+      'address_line1' => 'NONE PROVIDED',
+      'address_line2' => '',
+      'city' => '',
+      'state' => '',
+      'zip' => '',
       'country_code' => '',
     ];
 
+    // Default the address values to the basic address field.
+    if ($address_variant === 'basic_address' && !empty($data['address'])) {
+      $address['address_line1'] = $data['address']['address'] ?: 'NONE PROVIDED';
+      $address['address_line2'] = $data['address']['address_2'] ?: '';
+      $address['city'] = $data['address']['city'] ?: '';
+      $address['state'] = $data['address']['state_province'] ?: '';
+      $address['zip'] = $data['address']['postal_code'] ?: '';
+      $address['country_code'] = $data['address']['country'] ?: '';
+    }
     // If there is international address info, use those values instead.
-    if (!empty($data['address_intl'])) {
-      $address = [
-        'address_line1' => $data['address_intl']['address_line1'] ?: 'NONE PROVIDED',
-        'address_line2' => $data['address_intl']['address_line2'] ?: '',
-        'city' => $data['address_intl']['locality'] ?: '',
-        'state' => $data['address_intl']['administrative_area'] ?: '',
-        'zip' => $data['address_intl']['postal_code'] ?: '',
-        'country_code' => $data['address_intl']['country_code'] ?: '',
-      ];
+    elseif ($address_variant === 'international_address' && !empty($data['address_intl'])) {
+      $address['address_line1'] = $data['address_intl']['address_line1'] ?: 'NONE PROVIDED';
+      $address['address_line2'] = $data['address_intl']['address_line2'] ?: '';
+      $address['city'] = $data['address_intl']['locality'] ?: '';
+      $address['state'] = $data['address_intl']['administrative_area'] ?: '';
+      $address['zip'] = $data['address_intl']['postal_code'] ?: '';
+      $address['country_code'] = $data['address_intl']['country_code'] ?: '';
     }
 
     $serialized_payload['customer'] += $address;
