@@ -27,26 +27,8 @@ third_party_settings:
         layout_settings:
           label: ''
           context_mapping: {  }
+          color_scheme: dark
         components:
-          3a85decd-e508-4acd-9732-2f7977dc8667:
-            uuid: 3a85decd-e508-4acd-9732-2f7977dc8667
-            region: banner
-            configuration:
-              id: 'field_block:collection:blog:field_representative_image'
-              label: 'Representative Image'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: entity_reference_entity_view
-                label: hidden
-                settings:
-                  view_mode: default
-                third_party_settings: {  }
-            weight: 3
-            additional: {  }
           13943e36-496c-4221-b3a3-5d90d11f757d:
             uuid: 13943e36-496c-4221-b3a3-5d90d11f757d
             region: banner
@@ -64,7 +46,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
             additional: {  }
           9ae24e13-4ba7-41c0-8662-81c2f8ddc9cb:
             uuid: 9ae24e13-4ba7-41c0-8662-81c2f8ddc9cb
@@ -103,6 +85,25 @@ third_party_settings:
               label_display: '0'
               provider: system
               context_mapping: {  }
+            weight: 0
+            additional: {  }
+          3a85decd-e508-4acd-9732-2f7977dc8667:
+            uuid: 3a85decd-e508-4acd-9732-2f7977dc8667
+            region: media
+            configuration:
+              id: 'field_block:collection:blog:field_representative_image'
+              label: 'Representative Image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
             weight: 0
             additional: {  }
         third_party_settings: {  }

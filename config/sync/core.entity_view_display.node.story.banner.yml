@@ -26,6 +26,7 @@ third_party_settings:
         layout_settings:
           label: ''
           context_mapping: {  }
+          color_scheme: dark
         components:
           b40d0915-2fac-463e-a81e-78bdbf2adb1c:
             uuid: b40d0915-2fac-463e-a81e-78bdbf2adb1c
@@ -43,26 +44,6 @@ third_party_settings:
                 label: hidden
                 settings:
                   link_to_entity: true
-                third_party_settings: {  }
-            weight: 0
-            additional: {  }
-          4573aac1-ac79-4784-a220-5f8881d39d6f:
-            uuid: 4573aac1-ac79-4784-a220-5f8881d39d6f
-            region: banner
-            configuration:
-              id: 'field_block:node:story:field_representative_image'
-              label: 'Representative Image'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: media_thumbnail
-                label: visually_hidden
-                settings:
-                  image_link: ''
-                  image_style: large_2_1
                 third_party_settings: {  }
             weight: 1
             additional: {  }
@@ -95,6 +76,26 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             weight: 3
+            additional: {  }
+          4573aac1-ac79-4784-a220-5f8881d39d6f:
+            uuid: 4573aac1-ac79-4784-a220-5f8881d39d6f
+            region: media
+            configuration:
+              id: 'field_block:node:story:field_representative_image'
+              label: 'Representative Image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: media_thumbnail
+                label: visually_hidden
+                settings:
+                  image_link: ''
+                  image_style: large_2_1
+                third_party_settings: {  }
+            weight: 0
             additional: {  }
         third_party_settings: {  }
 id: node.story.banner

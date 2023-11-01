@@ -321,6 +321,15 @@ function ilr_entity_extra_field_info() {
 }
 
 /**
+ * Implements hook_entity_view_mode_alter().
+ */
+function ilr_entity_view_mode_alter(&$view_mode, EntityInterface $entity) {
+  if ($entity instanceof ContentEntityInterface && $entity->hasField('behavior_alt_display') && $entity->behavior_alt_display->value) {
+    $view_mode = 'alt';
+  }
+}
+
+/**
  * Implements hook_ENTITY_TYPE_view().
  */
 function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
@@ -699,6 +708,14 @@ function ilr_preprocess_node__course__teaser(&$variables) {
     $upcoming_class->entity->computed_delivery_method = $computed_delivery_method;
     $variables['upcoming_classes'][] = $upcoming_class->entity;
   }
+}
+
+/**
+ * Implements template_preprocess_node().
+ * @see node.html.twig
+ */
+function ilr_preprocess_node__page__alt(&$variables) {
+  $variables['page'] = TRUE;
 }
 
 /**

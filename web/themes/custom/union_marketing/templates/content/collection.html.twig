@@ -16,6 +16,7 @@
   set classes = [
     'collection',
     not collection.isPublished() ? 'collection--unpublished',
+    view_mode ? 'collection--view-mode-' ~ view_mode|clean_class,
   ]
 %}
 <div{{ attributes.addClass(classes) }}>

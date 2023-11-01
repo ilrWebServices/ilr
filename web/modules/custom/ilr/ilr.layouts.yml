@@ -1,6 +1,7 @@
 banner:
   label: 'Banner'
   category: 'ILR'
+  class: '\Drupal\ilr\Plugin\Layout\BannerLayout'
   template: templates/banner
   default_region: banner
   icon_map:
@@ -10,3 +11,5 @@ banner:
       label: Banner top
     banner:
       label: Banner
+    media:
+      label: Media

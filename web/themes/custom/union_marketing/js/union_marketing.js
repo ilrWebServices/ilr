@@ -27,26 +27,6 @@
     }
   };
 
-  Drupal.behaviors.union_marketing_banner_bg_fixup = {
-    attach: function (context, settings) {
-      const banner_images = context.querySelectorAll('.cu-banner--page .field-representative-image');
-
-      for (const banner_image of banner_images) {
-        let banner = banner_image.closest('.cu-banner--page');
-        let banner_media_elem = banner.querySelector('.cu-banner__media');
-        let comment = document.createComment('This image was moved here via javascript from `.field-representative-image`.');
-
-        // Move images from the representative image field into the proper
-        // container in the Union page banner component.
-        banner_media_elem.appendChild(banner_image);
-        banner_media_elem.appendChild(comment);
-
-        // Add a class that can be targeted for banners with media.
-        banner.classList.add('cu-banner--has-media');
-      }
-    }
-  };
-
   Drupal.behaviors.union_marketing_course_notification_form = {
     attach: function (context, settings) {
       const course_notification_forms = context.querySelectorAll('.webform-submission-course-notification-form, .webform-submission-course-customization-request-form');
