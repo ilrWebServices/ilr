@@ -73,7 +73,7 @@ class WebformSubmissionSalesforceSubmitForm extends FormBase {
 
     $form['notes'] = [
       '#type' => 'inline_template',
-      '#template' => '<h2>Notes</h2><pre>{{ notes }}</pre><br/>',
+      '#template' => '<h2>Notes</h2><pre>{{ notes }}</pre><p>Note: Adding this item to the queue may create a duplicate order in Salesforce.</p><br/>',
       '#context' => [
         'notes' => $webform_submission->getNotes(),
       ],
