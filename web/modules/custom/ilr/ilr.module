@@ -944,6 +944,18 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
     $form['field_representative_img_caption']['#group'] = 'ilr_meta';
   }
 
+  $form['ilr_node_settings'] = [
+    '#type' => 'details',
+    '#title' => t('Custom settings'),
+    '#group' => 'advanced',
+    '#weight' => -9,
+    '#optional' => TRUE,
+    '#open' => FALSE,
+  ];
+
+  $form['auth_protected']['#group'] = 'ilr_node_settings';
+  $form['behavior_alt_display']['#group'] = 'ilr_node_settings';
+
   /** @var \Drupal\node\NodeForm $form_object */
   $form_object = $form_state->getFormObject();
 
