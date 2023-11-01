@@ -26,6 +26,7 @@ third_party_settings:
         layout_settings:
           label: Banner
           context_mapping: {  }
+          color_scheme: dark
         components:
           f7b76440-beee-4c7b-99bc-edc6740e5fe5:
             uuid: f7b76440-beee-4c7b-99bc-edc6740e5fe5
@@ -40,25 +41,6 @@ third_party_settings:
                 label: hidden
                 settings:
                   link_to_entity: false
-                third_party_settings: {  }
-            weight: 2
-            additional: {  }
-          5a3b016b-688d-4406-bdd2-43165fce7609:
-            uuid: 5a3b016b-688d-4406-bdd2-43165fce7609
-            region: banner
-            configuration:
-              id: 'field_block:collection:subsite_blog:field_representative_image'
-              label: 'Representative Image'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: entity_reference_entity_view
-                label: hidden
-                settings:
-                  view_mode: default
                 third_party_settings: {  }
             weight: 3
             additional: {  }
@@ -89,6 +71,25 @@ third_party_settings:
               label_display: '0'
               provider: system
               context_mapping: {  }
+            weight: 0
+            additional: {  }
+          5a3b016b-688d-4406-bdd2-43165fce7609:
+            uuid: 5a3b016b-688d-4406-bdd2-43165fce7609
+            region: media
+            configuration:
+              id: 'field_block:collection:subsite_blog:field_representative_image'
+              label: 'Representative Image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
             weight: 0
             additional: {  }
         third_party_settings: {  }

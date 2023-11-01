@@ -27,6 +27,7 @@ third_party_settings:
         layout_settings:
           label: Banner
           context_mapping: {  }
+          color_scheme: dark
         components:
           8ea520d4-4d63-4524-97ae-4390df34d305:
             uuid: 8ea520d4-4d63-4524-97ae-4390df34d305
@@ -47,23 +48,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 4
             additional: {  }
-          fa06bcce-dd00-4958-a723-ca0de5469edf:
-            uuid: fa06bcce-dd00-4958-a723-ca0de5469edf
-            region: banner
-            configuration:
-              id: 'field_block:collection:blog:field_representative_image'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: media_thumbnail
-                label: hidden
-                settings:
-                  image_link: ''
-                  image_style: large_21_9_1200x514_
-                third_party_settings: {  }
-            weight: 3
-            additional: {  }
           ec06566f-36d8-426d-8c3d-34f6986f0970:
             uuid: ec06566f-36d8-426d-8c3d-34f6986f0970
             region: banner
@@ -78,7 +62,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
             additional: {  }
           fd858844-537d-405e-a5f2-01184ad76b81:
             uuid: fd858844-537d-405e-a5f2-01184ad76b81
@@ -89,6 +73,23 @@ third_party_settings:
               label_display: '0'
               provider: system
               context_mapping: {  }
+            weight: 0
+            additional: {  }
+          fa06bcce-dd00-4958-a723-ca0de5469edf:
+            uuid: fa06bcce-dd00-4958-a723-ca0de5469edf
+            region: media
+            configuration:
+              id: 'field_block:collection:blog:field_representative_image'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: media_thumbnail
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: large_21_9_1200x514_
+                third_party_settings: {  }
             weight: 0
             additional: {  }
         third_party_settings: {  }

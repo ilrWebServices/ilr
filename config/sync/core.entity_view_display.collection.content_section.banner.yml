@@ -26,6 +26,7 @@ third_party_settings:
         layout_settings:
           label: Banner
           context_mapping: {  }
+          color_scheme: dark
         components:
           62d11bc7-c665-4a40-9b02-9c55f4f4f7c0:
             uuid: 62d11bc7-c665-4a40-9b02-9c55f4f4f7c0
@@ -43,26 +44,6 @@ third_party_settings:
                 label: hidden
                 settings:
                   link_to_entity: false
-                third_party_settings: {  }
-            weight: 2
-            additional: {  }
-          f1c7031b-3015-4244-a151-c1d68aa2b24c:
-            uuid: f1c7031b-3015-4244-a151-c1d68aa2b24c
-            region: banner
-            configuration:
-              id: 'field_block:collection:content_section:field_representative_image'
-              label: 'Representative Image'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: media_thumbnail
-                label: hidden
-                settings:
-                  image_link: ''
-                  image_style: large_21_9_1200x514_
                 third_party_settings: {  }
             weight: 3
             additional: {  }
@@ -94,6 +75,26 @@ third_party_settings:
               label_display: '0'
               provider: system
               context_mapping: {  }
+            weight: 0
+            additional: {  }
+          f1c7031b-3015-4244-a151-c1d68aa2b24c:
+            uuid: f1c7031b-3015-4244-a151-c1d68aa2b24c
+            region: media
+            configuration:
+              id: 'field_block:collection:content_section:field_representative_image'
+              label: 'Representative Image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: media_thumbnail
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: large_21_9_1200x514_
+                third_party_settings: {  }
             weight: 0
             additional: {  }
         third_party_settings: {  }
