@@ -83,20 +83,6 @@ elements: |-
   address_intl:
     '#type': address
     '#title': Address
-    '#default_value':
-      country_code: US
-      given_name: null
-      additional_name: null
-      family_name: null
-      organization: null
-      address_line1: null
-      address_line2: null
-      postal_code: null
-      sorting_code: null
-      dependent_locality: null
-      locality: null
-      administrative_area: null
-      langcode: null
     '#access': false
     '#field_overrides':
       givenName: hidden
@@ -638,7 +624,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "address_intl:\r\n  '#access': true"
+      elements: "address_intl:\r\n  '#access': true\r\n  '#default_value':\r\n    country_code: US\r\n    given_name: null\r\n    additional_name: null\r\n    family_name: null\r\n    organization: null\r\n    address_line1: null\r\n    address_line2: null\r\n    postal_code: null\r\n    sorting_code: null\r\n    dependent_locality: null\r\n    locality: null\r\n    administrative_area: null\r\n    langcode: null"
       handlers: {  }
   carow_launch:
     id: override
