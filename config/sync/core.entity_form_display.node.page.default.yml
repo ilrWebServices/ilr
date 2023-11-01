@@ -23,21 +23,21 @@ mode: default
 content:
   auth_protected:
     type: boolean_checkbox
-    weight: 12
+    weight: 55
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   behavior_alt_display:
     type: boolean_checkbox
-    weight: 13
+    weight: 52
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   body:
     type: text_textarea_with_summary
-    weight: 10
+    weight: 35
     region: content
     settings:
       rows: 5
@@ -47,7 +47,7 @@ content:
     third_party_settings: {  }
   created:
     type: datetime_timestamp
-    weight: 3
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -90,7 +90,7 @@ content:
         add_above: '0'
     third_party_settings: {  }
   ief_collection_items:
-    weight: 0
+    weight: -10
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -102,34 +102,34 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 6
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 4
+    weight: 3
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 7
+    weight: 6
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 5
+    weight: 4
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 1
+    weight: 0
     region: content
     settings:
       size: 60
@@ -137,7 +137,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 1
     region: content
     settings:
       match_operator: CONTAINS
@@ -146,7 +146,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 11
+    weight: 50
     region: content
     settings: {  }
     third_party_settings: {  }
