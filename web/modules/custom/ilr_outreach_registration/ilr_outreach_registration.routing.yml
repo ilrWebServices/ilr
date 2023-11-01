@@ -17,4 +17,6 @@ ilr_outreach_registration.event_registration_submit:
     _form: 'Drupal\ilr_outreach_registration\Form\WebformSubmissionSalesforceSubmitForm'
     _title_callback: '\Drupal\ilr_outreach_registration\Form\WebformSubmissionSalesforceSubmitForm::title'
   requirements:
-    _entity_access: 'webform_submission.update'
+    _permission: 'submit to salesforce'
+  options:
+    _admin_route: TRUE
