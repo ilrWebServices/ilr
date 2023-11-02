@@ -17,7 +17,8 @@ archive: false
 id: milr_eligibility_check
 title: 'MILR Eligibility Check'
 description: ''
-category: 'graduate programs'
+categories:
+  - 'graduate programs'
 elements: |-
   first_name:
     '#type': textfield
@@ -231,6 +232,8 @@ settings:
   wizard_toggle: false
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
   preview: 0
   preview_label: ''
   preview_title: ''

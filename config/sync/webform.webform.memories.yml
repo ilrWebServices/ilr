@@ -11,7 +11,7 @@ archive: false
 id: memories
 title: Memories
 description: 'Memories, like the corners of my mind. Misty, water-colored memories.'
-category: ''
+categories: {  }
 elements: |-
   your_name:
     '#type': textfield
@@ -126,6 +126,8 @@ settings:
   wizard_toggle: true
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
   preview: 0
   preview_label: ''
   preview_title: ''

@@ -17,7 +17,7 @@ archive: false
 id: buffalo_colab_signup
 title: 'Buffalo Co-lab newsletter signup'
 description: ''
-category: ''
+categories: {  }
 elements: |-
   content_container:
     '#type': container
@@ -149,6 +149,8 @@ settings:
   wizard_toggle: true
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
   preview: 0
   preview_label: ''
   preview_title: ''

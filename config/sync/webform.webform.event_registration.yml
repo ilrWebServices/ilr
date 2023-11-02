@@ -13,7 +13,7 @@ archive: false
 id: event_registration
 title: 'Generic Event Registration'
 description: ''
-category: ''
+categories: {  }
 elements: |-
   variant:
     '#type': webform_variant
