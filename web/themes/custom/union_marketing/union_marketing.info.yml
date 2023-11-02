@@ -8,7 +8,7 @@ ckeditor_stylesheets:
 libraries:
   - union_marketing/global
   - union_organizer/ilr-base
-base theme: stable
+base theme: false
 regions:
     header: Header
     highlighted: Highlighted
