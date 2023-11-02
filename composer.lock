@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69c6b5eb3c48d3a32a42ebeb0bc05a25",
+    "content-hash": "017f0e8dff79e6da3424f8da0cbb0a7b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4210,106 +4210,6 @@
             }
         },
         {
-            "name": "drupal/mailchimp",
-            "version": "2.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/mailchimp.git",
-                "reference": "2.0.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/mailchimp-2.0.2.zip",
-                "reference": "2.0.2",
-                "shasum": "21117bb5181e0421ce7f40c98f3a39a886893cc4"
-            },
-            "require": {
-                "drupal/core": "^8.7.7 || ^9",
-                "thinkshout/mailchimp-api-php": "^2.0"
-            },
-            "require-dev": {
-                "drupal/mailchimp_lists": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "2.0.2",
-                    "datestamp": "1615931525",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "5adiyah",
-                    "homepage": "https://www.drupal.org/user/3622346"
-                },
-                {
-                    "name": "Pastenes",
-                    "homepage": "https://www.drupal.org/user/3640659"
-                },
-                {
-                    "name": "aprice42",
-                    "homepage": "https://www.drupal.org/user/369147"
-                },
-                {
-                    "name": "bobpotter",
-                    "homepage": "https://www.drupal.org/user/3653774"
-                },
-                {
-                    "name": "brendanthinkshout",
-                    "homepage": "https://www.drupal.org/user/3578399"
-                },
-                {
-                    "name": "gcb",
-                    "homepage": "https://www.drupal.org/user/1682976"
-                },
-                {
-                    "name": "itrebecca",
-                    "homepage": "https://www.drupal.org/user/1604434"
-                },
-                {
-                    "name": "kescoto-thinkshout",
-                    "homepage": "https://www.drupal.org/user/3664824"
-                },
-                {
-                    "name": "levelos",
-                    "homepage": "https://www.drupal.org/user/54135"
-                },
-                {
-                    "name": "mariacha1",
-                    "homepage": "https://www.drupal.org/user/2210776"
-                },
-                {
-                    "name": "mshaver",
-                    "homepage": "https://www.drupal.org/user/39079"
-                },
-                {
-                    "name": "spncr",
-                    "homepage": "https://www.drupal.org/user/3664814"
-                },
-                {
-                    "name": "tauno",
-                    "homepage": "https://www.drupal.org/user/105595"
-                },
-                {
-                    "name": "wxactly",
-                    "homepage": "https://www.drupal.org/user/3181097"
-                }
-            ],
-            "description": "Mailchimp is an integration with the Mailchimp Mass email tool.",
-            "homepage": "http://drupal.org/project/mailchimp",
-            "support": {
-                "source": "https://git.drupalcode.org/project/mailchimp"
-            }
-        },
-        {
             "name": "drupal/media_library_edit",
             "version": "3.0.2",
             "source": {
@@ -6166,84 +6066,6 @@
                 "issues": "https://www.drupal.org/project/issues/webform?version=8.x",
                 "docs": "https://www.drupal.org/docs/8/modules/webform",
                 "forum": "https://drupal.stackexchange.com/questions/tagged/webform"
-            }
-        },
-        {
-            "name": "drupal/webform_mailchimp",
-            "version": "5.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/webform_mailchimp.git",
-                "reference": "8.x-5.9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform_mailchimp-8.x-5.9.zip",
-                "reference": "8.x-5.9",
-                "shasum": "d39d231d6381306d7c92b3fa55c135e934740ea4"
-            },
-            "require": {
-                "drupal/core": "^8 || ^9",
-                "drupal/mailchimp": "*",
-                "drupal/webform": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-5.9",
-                    "datestamp": "1579957681",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Berdir",
-                    "homepage": "https://www.drupal.org/user/214652"
-                },
-                {
-                    "name": "Todd Zebert",
-                    "homepage": "https://www.drupal.org/user/762250"
-                },
-                {
-                    "name": "blackdog",
-                    "homepage": "https://www.drupal.org/user/110169"
-                },
-                {
-                    "name": "das-peter",
-                    "homepage": "https://www.drupal.org/user/762870"
-                },
-                {
-                    "name": "grisendo",
-                    "homepage": "https://www.drupal.org/user/848238"
-                },
-                {
-                    "name": "hanoii",
-                    "homepage": "https://www.drupal.org/user/23157"
-                },
-                {
-                    "name": "levelos",
-                    "homepage": "https://www.drupal.org/user/54135"
-                },
-                {
-                    "name": "mbovan",
-                    "homepage": "https://www.drupal.org/user/3149657"
-                },
-                {
-                    "name": "miro_dietiker",
-                    "homepage": "https://www.drupal.org/user/227761"
-                }
-            ],
-            "description": "Allows to send Webform submissions to MailChimp lists.",
-            "homepage": "https://www.drupal.org/project/webform_mailchimp",
-            "support": {
-                "source": "https://git.drupalcode.org/project/webform_mailchimp"
             }
         },
         {
@@ -12253,51 +12075,6 @@
             "time": "2022-08-02T15:47:23+00:00"
         },
         {
-            "name": "thinkshout/mailchimp-api-php",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thinkshout/mailchimp-api-php.git",
-                "reference": "b402bd67308974cae6186b386957d910cd808f0d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thinkshout/mailchimp-api-php/zipball/b402bd67308974cae6186b386957d910cd808f0d",
-                "reference": "b402bd67308974cae6186b386957d910cd808f0d",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^6.2.1|^7.0.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^6.2.2"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Mailchimp\\": "src/",
-                    "Mailchimp\\http\\": "src/http/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "PHP library for v3 of the MailChimp API",
-            "homepage": "https://github.com/thinkshout/mailchimp-api-php",
-            "keywords": [
-                "mail",
-                "mailchimp"
-            ],
-            "support": {
-                "issues": "https://github.com/thinkshout/mailchimp-api-php/issues",
-                "source": "https://github.com/thinkshout/mailchimp-api-php/tree/main"
-            },
-            "time": "2021-12-29T19:57:45+00:00"
-        },
-        {
             "name": "twig/twig",
             "version": "v2.15.5",
             "source": {
@@ -16876,14 +16653,7 @@
             "time": "2021-07-28T10:34:58+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "thinkshout/mailchimp-api-php",
-            "version": "9999999-dev",
-            "alias": "2.0.0",
-            "alias_normalized": "2.0.0.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "cornell/union": 20,
@@ -16895,7 +16665,6 @@
         "drupal/sftp_client": 20,
         "drupal/typed_data": 15,
         "drupal/union_organizer": 20,
-        "thinkshout/mailchimp-api-php": 20,
         "phpcompatibility/php-compatibility": 20
     },
     "prefer-stable": true,
