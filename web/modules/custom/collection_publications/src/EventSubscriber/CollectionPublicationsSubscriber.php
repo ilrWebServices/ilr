@@ -9,7 +9,7 @@ use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\collection\Event\CollectionEvents;
-use Symfony\Component\EventDispatcher\Event;
+use Drupal\Component\EventDispatcher\Event;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -68,7 +68,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
   /**
    * Process the COLLECTION_ENTITY_CREATE event.
    *
-   * @param \Symfony\Component\EventDispatcher\Event $event
+   * @param \Drupal\Component\EventDispatcher\Event $event
    *   The dispatched event.
    */
   public function collectionCreate(Event $event) {
@@ -124,7 +124,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
   /**
    * Process the COLLECTION_ENTITY_UPDATE event.
    *
-   * @param \Symfony\Component\EventDispatcher\Event $event
+   * @param \Drupal\Component\EventDispatcher\Event $event
    *   The dispatched event.
    */
   public function collectionUpdate(Event $event) {

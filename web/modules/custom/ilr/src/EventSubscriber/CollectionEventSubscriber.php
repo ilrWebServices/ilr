@@ -2,12 +2,12 @@
 
 namespace Drupal\ilr\EventSubscriber;
 
+use Drupal\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\collection\Event\CollectionEvents;
-use Symfony\Component\EventDispatcher\Event;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Entity\EntityDisplayRepository;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -67,8 +67,8 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
   /**
    * Process the COLLECTION_ENTITY_CREATE event.
    *
-   * @param \Symfony\Component\EventDispatcher\Event $event The dispatched
-   *   event.
+   * @param \Drupal\Component\EventDispatcher\Event $event
+   *   The dispatched event.
    *
    * @todo Consider refactoring in the future to make the vocabulary
    * configuration a callable service.

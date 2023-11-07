@@ -8,7 +8,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\collection\Event\CollectionEvents;
-use Symfony\Component\EventDispatcher\Event;
+use Drupal\Component\EventDispatcher\Event;
 use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
@@ -65,7 +65,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
   /**
    * Process the COLLECTION_ENTITY_CREATE event.
    *
-   * @param \Symfony\Component\EventDispatcher\Event $event
+   * @param \Drupal\Component\EventDispatcher\Event $event
    *   The dispatched event.
    */
   public function collectionCreate(Event $event) {
@@ -180,7 +180,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
   /**
    * Process the COLLECTION_ENTITY_CREATE event.
    *
-   * @param \Symfony\Component\EventDispatcher\Event $event
+   * @param \Drupal\Component\EventDispatcher\Event $event
    *   The dispatched event.
    */
   public function collectionUpdate(Event $event) {
@@ -249,7 +249,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
   /**
    * Process the COLLECTION_ITEM_FORM_SAVE event.
    *
-   * @param \Symfony\Component\EventDispatcher\Event $event
+   * @param \Drupal\Component\EventDispatcher\Event $event
    *   The dispatched event.
    */
   public function collectionItemFormSave(Event $event) {
