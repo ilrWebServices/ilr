@@ -194,7 +194,7 @@ class ContentEntityCollectionRequest extends FormBase {
     if ($collection_item->save()) {
       $form_state->set('collection_item', $collection_item);
       $event = new CollectionItemFormSaveEvent($collection_item, SAVED_NEW);
-      $this->eventDispatcher->dispatch(CollectionEvents::COLLECTION_ITEM_FORM_SAVE, $event);
+      $this->eventDispatcher->dispatch($event, CollectionEvents::COLLECTION_ITEM_FORM_SAVE);
     }
 
     $this->messenger()->addMessage(t('Collection request for %entity added to %collection.', [

@@ -229,7 +229,7 @@ function ilr_post_update_fix_blog_category_collection_item_attributes(&$sandbox)
  */
 function ilr_post_update_add_blog_tag_terms(&$sandbox) {
   $entity_type_manager = \Drupal::service('entity_type.manager');
-  $path_alias_manager = \Drupal::service('path.alias_manager');
+  $path_alias_manager = \Drupal::service('path_alias.manager');
   $vocabulary_storage = $entity_type_manager->getStorage('taxonomy_vocabulary');
   $collection_storage = $entity_type_manager->getStorage('collection');
   $collection_item_storage = $entity_type_manager->getStorage('collection_item');

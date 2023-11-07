@@ -4,7 +4,8 @@
  * @file
  * Contains ilr.module.
  */
-
+use Drupal\node\NodeForm;
+use Drupal\user\Entity\User;
 use Drupal\address\Plugin\Field\FieldWidget\AddressDefaultWidget;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -332,7 +333,7 @@ function ilr_entity_view_mode_alter(&$view_mode, EntityInterface $entity) {
 /**
  * Implements hook_ENTITY_TYPE_view().
  */
-function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+function ilr_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
   if ($display->getComponent('ilr_certificates') && $view_mode === 'full') {
     $build['ilr_certificates'] = [
       '#theme' => 'ilr_course_certificates_block',
@@ -959,7 +960,7 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
   /** @var \Drupal\node\NodeForm $form_object */
   $form_object = $form_state->getFormObject();
 
-  if ($form_object instanceof \Drupal\node\NodeForm) {
+  if ($form_object instanceof NodeForm) {
     $node = $form_object->getEntity();
 
     if ($node->bundle() === 'page' || $node->bundle() === 'story') {
@@ -1196,7 +1197,7 @@ function _ilr_disable_textarea_value($form_element, FormStateInterface $form_sta
  * Display the common name, if available, as the username.
  */
 function ilr_user_format_name_alter(&$name, $account) {
-  if ($account instanceof \Drupal\user\Entity\User === FALSE) {
+  if ($account instanceof User === FALSE) {
     return;
   }
 

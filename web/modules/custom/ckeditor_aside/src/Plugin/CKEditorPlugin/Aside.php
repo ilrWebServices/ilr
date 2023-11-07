@@ -20,7 +20,7 @@ class Aside extends CKEditorPluginBase {
    * {@inheritdoc}
    */
   public function getFile() {
-    return drupal_get_path('module', 'ckeditor_aside') . '/js/plugins/aside/plugin.js';
+    return \Drupal::service('extension.list.module')->getPath('ckeditor_aside') . '/js/plugins/aside/plugin.js';
   }
 
   /**
@@ -30,7 +30,7 @@ class Aside extends CKEditorPluginBase {
     return [
       'Aside' => [
         'label' => $this->t('Aside'),
-        'image' => drupal_get_path('module', 'ckeditor_aside') . '/js/plugins/aside/icons/aside.png',
+        'image' => \Drupal::service('extension.list.module')->getPath('ckeditor_aside') . '/js/plugins/aside/icons/aside.png',
       ],
     ];
   }

@@ -29,7 +29,7 @@ function union_admin_preprocess_html(&$variables) {
  */
 function union_admin_library_info_alter(&$libraries, $extension) {
   if ($extension == 'paragraphs' && isset($libraries['drupal.paragraphs.widget'])) {
-    $theme_path = '/' . drupal_get_path('theme', 'union_admin');
+    $theme_path = '/' . \Drupal::service('extension.list.theme')->getPath('union_admin');
 
     // Remove the `paragraphs.admin.js` javascript functionality from the
     // paragraphs widget library. If this library ever updates that js file to

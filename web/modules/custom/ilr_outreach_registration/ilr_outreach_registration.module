@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\salesforce\SelectQuery;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Url;
 
@@ -18,7 +19,7 @@ function ilr_outreach_registration_webform_options_certified_organizations_alter
     /** @var \Drupal\salesforce\Rest\RestClientInterface $sfapi */
     $sfapi = \Drupal::service('salesforce.client');
 
-    $query = new \Drupal\salesforce\SelectQuery('Account');
+    $query = new SelectQuery('Account');
     $query->fields = [
       'Id',
       'Name',

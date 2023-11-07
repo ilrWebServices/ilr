@@ -17,7 +17,7 @@ function ckeditor_aside_ckeditor_css_alter(array &$css, Editor $editor) {
     $all_items = array_merge(...array_column($row, 'items'));
 
     if (in_array('Aside', $all_items)) {
-      $css[] = drupal_get_path('module', 'ckeditor_aside') . '/css/ckeditoraside-editor.css';
+      $css[] = \Drupal::service('extension.list.module')->getPath('ckeditor_aside') . '/css/ckeditoraside-editor.css';
       return;
     }
   }

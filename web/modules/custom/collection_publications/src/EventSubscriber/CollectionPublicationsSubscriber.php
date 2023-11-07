@@ -2,6 +2,7 @@
 
 namespace Drupal\collection_publications\EventSubscriber;
 
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -14,7 +15,6 @@ use Drupal\Core\Url;
 use Drupal\Core\Link;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 /**
  * Subscriber for events related to publication collections.
@@ -166,7 +166,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
    *
    * - Publication term canonical routes.
    */
-  public function handleRedirects(GetResponseEvent $event) {
+  public function handleRedirects(RequestEvent $event) {
     $request = $event->getRequest();
 
     if ($request->attributes->get('_route') === 'entity.taxonomy_term.canonical') {
@@ -181,7 +181,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
   /**
    * Redirect publication term canonical routes to the current issue, if set.
    */
-  protected function redirectTerm(GetResponseEvent $event) {
+  protected function redirectTerm(RequestEvent $event) {
     $request = $event->getRequest();
     $term = $request->attributes->get('taxonomy_term');
 
@@ -203,7 +203,7 @@ class CollectionPublicationsSubscriber implements EventSubscriberInterface {
   /**
    * Redirect publication_issue collection canonical routes to their PDF.
    */
-  protected function redirectCollection(GetResponseEvent $event) {
+  protected function redirectCollection(RequestEvent $event) {
     $request = $event->getRequest();
     $collection = $request->attributes->get('collection');
 
