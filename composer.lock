@@ -1990,12 +1990,12 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/collection.git",
-                "reference": "9ef0ce33a822aa7f61f054a9bab2154e8d43f86a"
+                "reference": "fb6cf2cfed60935c2f164f0a7be744eede7ebdf4"
             },
             "require": {
-                "drupal/core": "^8 || ^9",
-                "drupal/dynamic_entity_reference": "^2.0",
-                "drupal/inline_entity_form": "^1.0@RC",
+                "drupal/core": "^9.4 || ^10",
+                "drupal/dynamic_entity_reference": "^2.0 || ^4",
+                "drupal/inline_entity_form": "^1.0@RC || ^2.0@RC",
                 "drupal/key_value_field": "^1.0"
             },
             "require-dev": {
@@ -2008,8 +2008,8 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "3.0.0-alpha1+8-dev",
-                    "datestamp": "1698867708",
+                    "version": "3.0.0-alpha1+21-dev",
+                    "datestamp": "1699390102",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
