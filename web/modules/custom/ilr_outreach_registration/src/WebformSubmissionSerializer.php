@@ -92,7 +92,7 @@ class WebformSubmissionSerializer {
     ];
 
     // Default the address values to the basic address field.
-    if ($address_variant === 'basic_address' && !empty($data['address'])) {
+    if (($address_variant === 'basic_address' || $data['variant'] === 'cahrs_event') && !empty($data['address'])) {
       $address['address_line1'] = $data['address']['address'] ?: 'NONE PROVIDED';
       $address['address_line2'] = $data['address']['address_2'] ?: '';
       $address['city'] = $data['address']['city'] ?: '';
