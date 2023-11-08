@@ -77,7 +77,6 @@ class SubsiteBrandingBlock extends BlockBase implements ContainerFactoryPluginIn
     }
 
     // If the collection has a slogan, use it.
-    // @todo Implement this field if we decide to use this technique.
     if ($subsite_collection->hasField('slogan') && !$subsite_collection->slogan->isEmpty()) {
       $build['#subsite_slogan'] = $subsite_collection->slogan->value;
     }
