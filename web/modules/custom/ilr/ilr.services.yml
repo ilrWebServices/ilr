@@ -33,3 +33,8 @@ services:
     class: Drupal\ilr\PathProcessor
     tags:
       - { name: path_processor_outbound, priority: 200 }
+  ilr.unpublished_403.subscriber:
+    class: Drupal\ilr\EventSubscriber\Unpublished403Subscriber
+    arguments: ['@current_user', '@redirect.repository']
+    tags:
+      - { name: event_subscriber }
