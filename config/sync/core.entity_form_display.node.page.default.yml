@@ -28,13 +28,6 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
-  behavior_alt_display:
-    type: boolean_checkbox
-    weight: 52
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   body:
     type: text_textarea_with_summary
     weight: 35
@@ -150,4 +143,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  behavior_alt_display: true
