@@ -78,6 +78,7 @@ function collection_subsites_form_collection_form_alter(&$form, FormStateInterfa
   ];
 
   $form['logo']['#group'] = 'branding';
+  $form['full_name']['#group'] = 'branding';
 }
 
 /**
@@ -105,6 +106,18 @@ function collection_subsites_entity_field_storage_info(EntityTypeInterface $enti
       ->setRevisionable(TRUE)
       ->setTargetEntityTypeId($entity_type->id())
       ->setSetting('target_type', 'media');
+
+    $definitions['full_name'] = FieldStorageDefinition::create('string')
+      ->setName('full_name')
+      ->setLabel(t('Full name'))
+      ->setTargetEntityTypeId($entity_type->id())
+      ->setRevisionable(TRUE)
+      ->setDescription(t('The full name of this subsite, which gets displayed in the header.'))
+      ->setSettings([
+        'max_length' => 255,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('');
   }
 
   return $definitions;
@@ -127,6 +140,7 @@ function collection_subsites_entity_bundle_field_info(EntityTypeInterface $entit
   if ($is_subsite) {
     $custom_field_storage = collection_subsites_entity_field_storage_info($entity_type);
     $fields[$custom_field_storage['logo']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['logo']);
+    $fields[$custom_field_storage['full_name']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['full_name']);
 
     $fields[$custom_field_storage['logo']->getName()]
       ->setLabel(t('SVG Logo'))
@@ -144,6 +158,20 @@ function collection_subsites_entity_bundle_field_info(EntityTypeInterface $entit
         'type' => 'media_library_widget',
         'weight' => 1,
       ]);
+
+    $fields[$custom_field_storage['full_name']->getName()]
+      ->setLabel(t('Full name'))
+      ->setSettings([
+        'max_length' => 255,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => 0,
+      ])
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayConfigurable('form', TRUE);
   }
 
   return $fields;
