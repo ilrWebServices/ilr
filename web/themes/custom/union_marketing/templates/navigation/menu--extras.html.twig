@@ -6,7 +6,7 @@
  */
 #}
 <ul class="cu-menu__list menu menu-level-{{ items|first.menu_level }}">
-{% for key, item in items if key|first != '#' %}
+{% for key, item in items|filter((v, k) => k|first != '#') %}
   {% set menu_item_classes = [
     'menu-item',
     item.is_expanded ? 'menu-item--expanded',
