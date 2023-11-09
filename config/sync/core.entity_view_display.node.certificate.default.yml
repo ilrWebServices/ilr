@@ -63,6 +63,7 @@ third_party_settings:
         layout_settings:
           label: ''
           context_mapping: {  }
+          color_scheme: dark
         components:
           5a395ad3-64f5-4529-bf91-e734770cd74b:
             uuid: 5a395ad3-64f5-4529-bf91-e734770cd74b
@@ -207,24 +208,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 7
             additional: {  }
-          b3ba24ab-19a2-416f-8ecb-cd31e3ac9b5f:
-            uuid: b3ba24ab-19a2-416f-8ecb-cd31e3ac9b5f
-            region: banner
-            configuration:
-              id: 'field_block:node:certificate:field_representative_image'
-              label: 'Representative Image'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: entity_reference_entity_view
-                label: hidden
-                settings:
-                  view_mode: default
-                third_party_settings: {  }
-            weight: 3
-            additional: {  }
           afbfeda1-bea9-41d8-8649-031588ca42c3:
             uuid: afbfeda1-bea9-41d8-8649-031588ca42c3
             region: top
@@ -253,7 +236,25 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
+            additional: {  }
+          b3ba24ab-19a2-416f-8ecb-cd31e3ac9b5f:
+            uuid: b3ba24ab-19a2-416f-8ecb-cd31e3ac9b5f
+            region: media
+            configuration:
+              id: 'field_block:node:certificate:field_representative_image'
+              label: 'Representative Image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+            weight: 3
             additional: {  }
         third_party_settings: {  }
       -

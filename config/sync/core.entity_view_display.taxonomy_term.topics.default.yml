@@ -55,6 +55,7 @@ third_party_settings:
         layout_settings:
           label: ''
           context_mapping: {  }
+          color_scheme: dark
         components:
           bb5a47b5-52d3-46f0-955b-4d3382dc7787:
             uuid: bb5a47b5-52d3-46f0-955b-4d3382dc7787
@@ -72,7 +73,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 2
+            weight: 3
             additional: {  }
           77526faa-3e39-4d00-aac8-35baa3697471:
             uuid: 77526faa-3e39-4d00-aac8-35baa3697471
@@ -114,9 +115,20 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 5
             additional: {  }
+          189e896f-6453-46c6-821e-9ff0f95d8f20:
+            uuid: 189e896f-6453-46c6-821e-9ff0f95d8f20
+            region: top
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: 0
+            additional: {  }
           3bc8237c-efdf-4c74-8b41-ee8666ef6e7a:
             uuid: 3bc8237c-efdf-4c74-8b41-ee8666ef6e7a
-            region: banner
+            region: media
             configuration:
               id: 'field_block:taxonomy_term:topics:field_representative_image'
               label: 'Representative Image'
@@ -131,17 +143,6 @@ third_party_settings:
                   view_mode: default
                 third_party_settings: {  }
             weight: 3
-            additional: {  }
-          189e896f-6453-46c6-821e-9ff0f95d8f20:
-            uuid: 189e896f-6453-46c6-821e-9ff0f95d8f20
-            region: top
-            configuration:
-              id: system_breadcrumb_block
-              label: Breadcrumbs
-              label_display: '0'
-              provider: system
-              context_mapping: {  }
-            weight: 0
             additional: {  }
         third_party_settings: {  }
       -
