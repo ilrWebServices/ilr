@@ -217,6 +217,7 @@ nav[id^="block-union-marketing-menu-subsite"] {
 // Nav moved into Banner via js.
 // @see union_marking/banner_nav.js
 .include-banner-nav {
+  .term--view-mode-full .cu-banner,
   .collection--view-mode-full .cu-banner,
   .collection--view-mode-banner .cu-banner,
   .node--view-mode-full .cu-banner {
