@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Adds 'logo' base field to subsite collections.
+ * @file
+ * Installation and uninstallation functions.
  */
-function collection_subsites_update_8101(&$sandbox) {
-  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
-  $collection_entity_type = $definition_update_manager->getEntityType('collection');
-  $custom_field_storage = collection_subsites_entity_field_storage_info($collection_entity_type);
-  $definition_update_manager->installFieldStorageDefinition('logo', 'collection', 'collection_subsites', $custom_field_storage['logo']);
 
-  return t('Logo base field added to subsite collections.');
+/**
+ * Implements hook_update_last_removed().
+ */
+function collection_subsites_update_last_removed() {
+  return 8101;
 }
