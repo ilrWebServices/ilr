@@ -97,6 +97,7 @@ class AtomFeed extends ControllerBase {
     ];
 
     $blog_post_collection_item_query = $collection_item_storage->getQuery()
+      ->accessCheck(TRUE)
       ->condition('collection', $collection->id())
       ->condition('type', 'blog')
       ->condition('item.entity:node.status', 1)

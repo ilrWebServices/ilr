@@ -84,6 +84,7 @@ class StoryListing extends ParagraphsBehaviorBase {
     $dedupe_group = 'dedupe:collection_item_field_data.id:collection_' . $collection->id();
 
     $query = $collection_item_storage->getQuery();
+    $query->accessCheck(TRUE);
     $query->condition('collection', $collection->id());
     $query->condition('type', 'publication_issue');
     $query->condition('item.entity:node.status', 1);

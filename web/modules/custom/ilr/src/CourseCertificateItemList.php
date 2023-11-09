@@ -19,6 +19,7 @@ class CourseCertificateItemList extends EntityReferenceFieldItemList {
     $course_entity = $this->getEntity();
 
     $query = \Drupal::entityQuery('node')
+      ->accessCheck(TRUE)
       ->condition('status', 1)
       ->condition('type', 'certificate')
       ->condition('field_course', $course_entity->id());

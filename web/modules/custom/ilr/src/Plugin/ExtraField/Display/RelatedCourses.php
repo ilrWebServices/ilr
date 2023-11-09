@@ -73,6 +73,7 @@ class RelatedCourses extends ExtraFieldDisplayBase implements ContainerFactoryPl
     }
 
     $related_node_ids = $this->nodeStorage->getQuery()
+      ->accessCheck(TRUE)
       ->condition('type', 'course')
       ->condition('status', 1)
       ->condition('nid', $entity->id(), '!=')

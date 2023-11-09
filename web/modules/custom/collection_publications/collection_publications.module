@@ -106,6 +106,7 @@ function collection_publications_collection_view(array &$build, EntityInterface 
   $dedupe_group = 'dedupe:collection_item_field_data.id:collection_' . $collection->id();
   $collection_item_storage = $entity_type_manager->getStorage('collection_item');
   $query = $collection_item_storage->getQuery();
+  $query->accessCheck(TRUE);
   $query->condition('collection', $collection->id());
   $query->condition('type', 'publication_issue');
   $query->condition('field_item_type', ['featured_story', 'editor_letter'], 'IN');

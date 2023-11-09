@@ -849,7 +849,7 @@ function ilr_taxonomy_term_presave(EntityInterface $entity) {
  */
 function ilr_media_load(array $entities) {
   $entity_type_manager = \Drupal::service('entity_type.manager');
-  $users = $entity_type_manager->getStorage('user')->getQuery()->execute();
+  $users = $entity_type_manager->getStorage('user')->getQuery()->accessCheck(TRUE)->execute();
 
   foreach ($entities as $entity) {
     if (!in_array($entity->uid->target_id, $users)) {

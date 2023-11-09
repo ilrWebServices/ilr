@@ -70,6 +70,7 @@ class CourseInstructors extends ExtraFieldDisplayBase implements ContainerFactor
     // Get participant nodes for this course. These are link to the actual
     // instructors via the `field_instructor` reference.
     $query = $node_storage->getQuery();
+    $query->accessCheck(TRUE);
     $query->condition('type', 'participant');
     $query->condition('status', 1);
     $query->condition('field_class.entity:node.field_course.target_id', $node->id());
