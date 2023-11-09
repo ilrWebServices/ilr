@@ -1,7 +1,7 @@
 name: 'Collection Sections'
 type: module
 description: 'Sections allow editors to organize sections of the site.'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.4 || ^10
 package: 'ILR'
 dependencies:
   - collection

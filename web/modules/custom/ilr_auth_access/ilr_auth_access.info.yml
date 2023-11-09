@@ -1,5 +1,5 @@
 name: 'ILR Auth Access'
 type: module
 description: 'Allows entities to be protected so that only logged in users can access the content.'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.4 || ^10
 package: 'ILR'

@@ -1,7 +1,7 @@
 name: 'Extended Post'
 type: module
 description: 'Extends `post` node bundles to include a core set of fields and configuration"'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.4 || ^10
 package: 'Custom'
 dependencies:
   - drupal:node

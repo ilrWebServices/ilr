@@ -1,7 +1,7 @@
 name: 'ILR'
 type: module
 description: 'Update hooks and misc custom code for the ILR site'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.4 || ^10
 package: 'ILR'
 dependencies:
   - address

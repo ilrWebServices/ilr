@@ -1,7 +1,7 @@
 name: 'Collection Item Path'
 type: module
 description: 'The collection item path module integrates collection items with Drupal core paths so that items can be displayed and configured for display.'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.4 || ^10
 package: 'Collection'
 dependencies:
   - collection
