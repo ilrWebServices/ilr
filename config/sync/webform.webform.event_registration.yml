@@ -701,3 +701,18 @@ variants:
       settings: {  }
       elements: "company:\r\n  '#title': 'Organization / organización'\r\ntitle:\r\n  '#title': 'Role / función'\r\nfirst_name:\r\n  '#title': 'First Name / nombre de pila'\r\nlast_name:\r\n  '#title': 'Last Name / apellido'\r\nemail:\r\n  '#title': 'Email / correo electrónico'\r\nphone:\r\n  '#title': 'Phone / Número de teléfono'\r\naddress:\r\n  '#title': 'Address / Dirección'\r\n  '#city__title': 'City / ciudad'\r\n  '#state_province__title': 'State / estado'\r\naccessible_accommodation:\r\n  '#title': 'Accommodations / alojamientos'\r\n  '#description': 'We strive to host inclusive, accessible events that enable all individuals to engage and participate fully. Please list any reasonable accommodations you may need, such as alternate formats, interpreters, or sign-language interpreters. Nos esforzamos a organizar eventos inclusivos y accesibles que permitan a todas las personas puedan tomar parte y participar plenamente. Enumere las adaptaciones razonables que pueda necesitar, como formatos alternativos, intérpretes o intérpretes de lenguaje de señas.'\r\nopt_in:\r\n  '#title': 'Opt-in for updates on similar programs / Suscríbase para recibir actualizaciones sobre programas similares'"
       handlers: {  }
+  disable_customer_service_email:
+    id: override
+    variant_id: disable_customer_service_email
+    element_key: variant_handlers
+    label: 'Disable Customer Service Email'
+    notes: ''
+    status: true
+    weight: 15
+    settings:
+      debug: false
+      settings: {  }
+      elements: ''
+      handlers:
+        submission_detail_email:
+          status: false
