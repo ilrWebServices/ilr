@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "116af69de95bbf2d2da791985d6a1623",
+    "content-hash": "6d9c09052be6605a6329256ec79eb050",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3299,29 +3299,32 @@
         },
         {
             "name": "drupal/filehash",
-            "version": "1.7.0",
+            "version": "2.0.10",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/filehash.git",
-                "reference": "8.x-1.7"
+                "reference": "2.0.10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/filehash-8.x-1.7.zip",
-                "reference": "8.x-1.7",
-                "shasum": "f27e853cc75c270c446f87dec3fd43a52d1253d0"
+                "url": "https://ftp.drupal.org/files/projects/filehash-2.0.10.zip",
+                "reference": "2.0.10",
+                "shasum": "7c4f2cdf0ee89652991990784a4bcdf1481e736f"
             },
             "require": {
-                "drupal/core": "^8.5 || ^9.0"
+                "drupal/core": "^8.6 || ^9.0 || ^10.0"
             },
             "require-dev": {
-                "drush/drush": "^10.6 || ^11.0"
+                "drush/drush": "^10.6 || ^11.0 || ^12.0"
+            },
+            "suggest": {
+                "yzalis/identicon": "^2.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.7",
-                    "datestamp": "1643314519",
+                    "version": "2.0.10",
+                    "datestamp": "1693359335",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3329,7 +3332,7 @@
                 },
                 "drush": {
                     "services": {
-                        "drush.services.yml": "^9 || ^10 || ^11"
+                        "drush.services.yml": "^9 || ^10 || ^11 || ^12"
                     }
                 }
             },
