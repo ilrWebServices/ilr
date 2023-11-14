@@ -1351,59 +1351,6 @@ function ilr_collection_pathauto_alias_alter(&$alias, array &$context) {
 }
 
 /**
- * Implements hook_file_validate().
- *
- * Checks for duplicate file uploads and creates a message used in js to find
- * the duplicate in the library.
- *
- * NOTE: The message of the text matters, since the js uses the filename. Also,
- * this replaces the experimental duplicate detection in the filehash module.
- *
- * @see union_admin.media.enhancements.js
- * @see filehash.module
- */
-function ilr_file_validate(FileInterface $file) {
-  $module_handler = \Drupal::service('module_handler');
-
-  if (!$module_handler->moduleExists('filehash')) {
-    return;
-  }
-
-  $errors = [];
-
-  // We only run the dedupe check on initial file creation.
-  if (!$file->id()) {
-    foreach (filehash_algos() as $algo) {
-      $query = \Drupal::database()->select('filehash');
-      $query->addField('filehash', 'fid');
-      $query->condition($algo, $file->filehash[$algo]);
-      $query->range(0, 1);
-
-      if ($fid = $query->execute()->fetchField()) {
-        $entity_type_manager = \Drupal::service('entity_type.manager');
-        $file = \Drupal::entityTypeManager()->getStorage('file')->load($fid);
-        $duplicate_media_entities = \Drupal::service('file.usage')->listUsage($file);
-
-        if (empty($duplicate_media_entities)) {
-          return;
-        }
-
-        foreach ($duplicate_media_entities['file']['media'] as $media_id => $usage_count) {
-          if ($media = \Drupal::entityTypeManager()->getStorage('media')->load($media_id)) {
-            $error = t('This file has already been uploaded to the media library with the name "%media_name".', [
-              '%media_name' => $media->label(),
-            ]);
-            $errors[] = $error;
-          }
-        }
-      }
-    }
-  }
-
-  return $errors;
-}
-
-/**
  * Implements hook_preprocess_container__CONTAINER_ID().
  *
  * Update the collection request forms to make more relevant to ILR.
