@@ -8,7 +8,7 @@
 /**
  * Implements hook_removed_post_updates().
  */
-function ilr_post_update_removed_post_updates() {
+function ilr_removed_post_updates() {
   return [
     'ilr_post_update_instructor_photo_alt_attributes' => '9.4.0',
     'ilr_post_update_course_message_block' => '9.4.0',
