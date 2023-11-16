@@ -68,3 +68,29 @@ function ilr_removed_post_updates() {
     'ilr_post_update_create_ncp_subscription_leads' => '9.4.0',
   ];
 }
+
+/**
+ * Set alt display for all page nodes without a representative image.
+ */
+function ilr_post_update_set_page_alt_display_setting(&$sandbox) {
+  /** @var \Drupal\pathauto\PathautoGeneratorInterface $pathauto_generator */
+  $pathauto_generator = \Drupal::service('pathauto.generator');
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+
+  $nids_without_representative_images = $node_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'page')
+    ->condition('field_representative_image', NULL, 'IS NULL')
+    ->execute();
+
+  $nodes_for_alt_display = $node_storage->loadMultiple($nids_without_representative_images);
+
+  /** @var \Drupal\node\NodeInterface $node */
+  foreach ($nodes_for_alt_display as $node) {
+    $node->set('behavior_alt_display', 1);
+    $node->save();
+
+    // Without this, all updated nodes will have broken path aliases.
+    $pathauto_generator->updateEntityAlias($node, 'update');
+  }
+}
