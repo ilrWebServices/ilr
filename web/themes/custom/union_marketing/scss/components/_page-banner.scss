@@ -139,7 +139,18 @@
   --cu-max-width-section: 915px;
 
   .cu-banner--page {
-    padding: 0;
+    padding: 1px 0 0; // Why? Because. Just let it go, Jeff!
+
+    &::after {
+      content: '';
+      background-color: var(--cu-colorscheme-background);
+      position: absolute;
+      width: 100vw;
+      top: 0;
+      left: 50%;
+      bottom: 0;
+      margin-left: -50vw;
+    }
   }
 
   .cu-banner__content {
@@ -149,50 +160,24 @@
   .banner__content {
     max-width: var(--cu-max-width-section, 1060px);
     margin: 0 auto var(--cu-vr2) auto;
-    padding: var(--cu-vr2) 0 var(--cu-vr2) var(--cu-ps1);
+    padding: 0 0 var(--cu-vr1) 0;
     position: relative;
-    border-left: 16px solid #222;
 
     @include breakpoint(sm) {
-      padding: var(--cu-vr2) 0 var(--cu-vr2) var(--cu-ps2);
-    }
+      padding: var(--cu-vr1) 0 var(--cu-vr2) 0;
 
-    &::before,
-    &:after {
-      position: absolute;
-      background: #222;
-      content: '';
-      z-index: 1;
-      height: 16px;
-      width: 100%;
-    }
-
-    &:before {
-      top: 0;
-      left: 0;
-      width: 30%;
-    }
-
-    &:after {
-      bottom: 0;
-      left: 0;
-      width: 60%;
-    }
-
-    .cu-heading {
-      --cu-font-family: 'futura-pt';
-      --cu-font-size: var(--cu-ms5);
-      --cu-line-height: 1;
-      text-transform: uppercase;
-      margin-bottom: 0;
-
-      @include breakpoint(sm) {
+      .cu-heading {
         --cu-font-size: var(--cu-ms10);
+        margin-bottom: var(--cu-vr1);
       }
     }
 
     .block-layout-builder {
-      max-width: 640px;
+      max-width: 900px;
+    }
+
+    .field--body {
+      --cu-font-weight: 400;
     }
 
     p:last-of-type {

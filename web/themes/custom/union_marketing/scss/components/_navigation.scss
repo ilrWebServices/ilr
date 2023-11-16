@@ -175,6 +175,11 @@ nav[id^="block-union-marketing-menu-subsite"] {
   }
 }
 
+.node--view-mode-alt .cu-component--section-navigation {
+  background-color: transparent;
+  padding-bottom: 0;
+}
+
 .section-menu {
   list-style-type: none;
   display: grid;
