@@ -7,6 +7,11 @@ dependencies:
     - media.type.video
   module:
     - file
+    - filehash
+third_party_settings:
+  filehash:
+    dedupe: 1
+    dedupe_original: false
 id: media.video.field_media_video_file
 field_name: field_media_video_file
 entity_type: media

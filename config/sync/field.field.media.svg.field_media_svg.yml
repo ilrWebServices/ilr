@@ -6,7 +6,12 @@ dependencies:
     - field.storage.media.field_media_svg
     - media.type.svg
   module:
+    - filehash
     - svg_image_field
+third_party_settings:
+  filehash:
+    dedupe: 1
+    dedupe_original: false
 id: media.svg.field_media_svg
 field_name: field_media_svg
 entity_type: media
@@ -28,7 +33,7 @@ settings:
   title_field: false
   title_field_required: false
   default_image:
-    uuid: null
+    uuid: ''
     alt: ''
     title: ''
 field_type: svg_image_field
