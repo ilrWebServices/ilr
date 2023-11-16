@@ -38,6 +38,7 @@ class ListStyle extends ParagraphsBehaviorBase {
   protected $listStyles = [
     'grid' => 'Grid',
     'grid-compact' => 'Compact grid',
+    'list' => 'List',
     'list-compact' => 'Compact list',
     'grid-bricks' => 'Bricks',
     'grid-bricks--reversed' => 'Bricks (reversed)',
@@ -323,6 +324,9 @@ class ListStyle extends ParagraphsBehaviorBase {
     switch ($list_style) {
       case 'grid-compact':
         return 'teaser_compact';
+
+      case 'list':
+        return 'list';
 
       case 'list-compact':
         return 'mini';
