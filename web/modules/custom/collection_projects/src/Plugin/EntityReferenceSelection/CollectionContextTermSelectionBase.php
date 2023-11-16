@@ -64,7 +64,8 @@ class CollectionContextTermSelectionBase extends SelectionPluginBase implements 
     $options = [];
     $configuration = $this->getConfiguration();
 
-    if (!($configuration['entity'] instanceof CollectionItem)) {
+    // This mostly happens on the field edit form.
+    if (!($configuration['entity'] instanceof CollectionItem) || $configuration['entity']->collection->isEmpty()) {
       return $options;
     }
 
