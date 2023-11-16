@@ -12,7 +12,6 @@ dependencies:
     - datetime
     - dynamic_entity_reference
     - node
-    - views_autocomplete_filters
 id: news_archive
 label: 'News archive'
 module: views

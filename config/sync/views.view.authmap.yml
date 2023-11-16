@@ -5,7 +5,6 @@ dependencies:
   module:
     - externalauth
     - user
-    - views_autocomplete_filters
 id: authmap
 label: 'External authentication links'
 module: views

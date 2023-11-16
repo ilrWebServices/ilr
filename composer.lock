@@ -5806,17 +5806,17 @@
         },
         {
             "name": "drupal/views_autocomplete_filters",
-            "version": "1.4.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_autocomplete_filters.git",
-                "reference": "8.x-1.4"
+                "reference": "8.x-1.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_autocomplete_filters-8.x-1.4.zip",
-                "reference": "8.x-1.4",
-                "shasum": "f65d5c6d25df802968c514836ea8edd22ba063a1"
+                "url": "https://ftp.drupal.org/files/projects/views_autocomplete_filters-8.x-1.7.zip",
+                "reference": "8.x-1.7",
+                "shasum": "4061cac83e39279bbf5515b8ba8f8685b27b4023"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10"
@@ -5824,8 +5824,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.4",
-                    "datestamp": "1677771862",
+                    "version": "8.x-1.7",
+                    "datestamp": "1697624365",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"

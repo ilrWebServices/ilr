@@ -11,7 +11,6 @@ dependencies:
     - media
     - media_library
     - user
-    - views_autocomplete_filters
   enforced:
     module:
       - media_library

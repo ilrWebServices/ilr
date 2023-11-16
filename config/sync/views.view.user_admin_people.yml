@@ -6,7 +6,6 @@ dependencies:
     - field.storage.user.field_common_name
   module:
     - user
-    - views_autocomplete_filters
 id: user_admin_people
 label: People
 module: user
