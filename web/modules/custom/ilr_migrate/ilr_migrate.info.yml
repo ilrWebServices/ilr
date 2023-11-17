@@ -1,7 +1,7 @@
 name: 'ILR Migrate'
 type: module
 description: 'Helpers and custom code for the D7 to D8 migration.'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.4 || ^10
 package: 'ILR'
 dependencies:
   - migrate

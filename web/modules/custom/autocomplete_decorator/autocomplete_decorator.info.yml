@@ -1,5 +1,5 @@
 name: 'Autocomplete Decorator'
 type: module
 description: 'Utilizes the decorator pattern to modify the results returned by Drupal EntityAutocompleteMatcher service.'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.4 || ^10
 package: 'Custom'

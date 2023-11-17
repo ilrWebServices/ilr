@@ -4,7 +4,8 @@
  * @file
  * Contains ilr.module.
  */
-
+use Drupal\node\NodeForm;
+use Drupal\user\Entity\User;
 use Drupal\address\Plugin\Field\FieldWidget\AddressDefaultWidget;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -332,7 +333,7 @@ function ilr_entity_view_mode_alter(&$view_mode, EntityInterface $entity) {
 /**
  * Implements hook_ENTITY_TYPE_view().
  */
-function ilr_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+function ilr_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
   if ($display->getComponent('ilr_certificates') && $view_mode === 'full') {
     $build['ilr_certificates'] = [
       '#theme' => 'ilr_course_certificates_block',
@@ -848,7 +849,7 @@ function ilr_taxonomy_term_presave(EntityInterface $entity) {
  */
 function ilr_media_load(array $entities) {
   $entity_type_manager = \Drupal::service('entity_type.manager');
-  $users = $entity_type_manager->getStorage('user')->getQuery()->execute();
+  $users = $entity_type_manager->getStorage('user')->getQuery()->accessCheck(TRUE)->execute();
 
   foreach ($entities as $entity) {
     if (!in_array($entity->uid->target_id, $users)) {
@@ -959,7 +960,7 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
   /** @var \Drupal\node\NodeForm $form_object */
   $form_object = $form_state->getFormObject();
 
-  if ($form_object instanceof \Drupal\node\NodeForm) {
+  if ($form_object instanceof NodeForm) {
     $node = $form_object->getEntity();
 
     if ($node->bundle() === 'page' || $node->bundle() === 'story') {
@@ -1196,7 +1197,7 @@ function _ilr_disable_textarea_value($form_element, FormStateInterface $form_sta
  * Display the common name, if available, as the username.
  */
 function ilr_user_format_name_alter(&$name, $account) {
-  if ($account instanceof \Drupal\user\Entity\User === FALSE) {
+  if ($account instanceof User === FALSE) {
     return;
   }
 
@@ -1347,59 +1348,6 @@ function ilr_collection_pathauto_alias_alter(&$alias, array &$context) {
     $deduped_alias = preg_replace("|^{$collection_path}{$collection_path}/|", $collection_path . '/', $alias);
     $alias = $deduped_alias;
   }
-}
-
-/**
- * Implements hook_file_validate().
- *
- * Checks for duplicate file uploads and creates a message used in js to find
- * the duplicate in the library.
- *
- * NOTE: The message of the text matters, since the js uses the filename. Also,
- * this replaces the experimental duplicate detection in the filehash module.
- *
- * @see union_admin.media.enhancements.js
- * @see filehash.module
- */
-function ilr_file_validate(FileInterface $file) {
-  $module_handler = \Drupal::service('module_handler');
-
-  if (!$module_handler->moduleExists('filehash')) {
-    return;
-  }
-
-  $errors = [];
-
-  // We only run the dedupe check on initial file creation.
-  if (!$file->id()) {
-    foreach (filehash_algos() as $algo) {
-      $query = \Drupal::database()->select('filehash');
-      $query->addField('filehash', 'fid');
-      $query->condition($algo, $file->filehash[$algo]);
-      $query->range(0, 1);
-
-      if ($fid = $query->execute()->fetchField()) {
-        $entity_type_manager = \Drupal::service('entity_type.manager');
-        $file = \Drupal::entityTypeManager()->getStorage('file')->load($fid);
-        $duplicate_media_entities = \Drupal::service('file.usage')->listUsage($file);
-
-        if (empty($duplicate_media_entities)) {
-          return;
-        }
-
-        foreach ($duplicate_media_entities['file']['media'] as $media_id => $usage_count) {
-          if ($media = \Drupal::entityTypeManager()->getStorage('media')->load($media_id)) {
-            $error = t('This file has already been uploaded to the media library with the name "%media_name".', [
-              '%media_name' => $media->label(),
-            ]);
-            $errors[] = $error;
-          }
-        }
-      }
-    }
-  }
-
-  return $errors;
 }
 
 /**

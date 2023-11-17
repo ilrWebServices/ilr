@@ -203,6 +203,7 @@ class ProjectListing extends ParagraphsBehaviorBase {
       ->condition('cia.attributes_key', 'collection-request-uid');
 
     $query = $collection_item_storage->getQuery();
+    $query->accessCheck(TRUE);
     $query->condition('id', $pending_items, 'NOT IN');
     $query->condition('collection', $collection->id());
     $query->condition('type', 'project_item');

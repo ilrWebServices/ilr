@@ -11,7 +11,8 @@ archive: false
 id: fsp_student_application
 title: 'FSO Student Application'
 description: 'Field Shadowing Program Student Application'
-category: EXPLORE
+categories:
+  - EXPLORE
 elements: |-
   submitter:
     '#type': webform_computed_twig

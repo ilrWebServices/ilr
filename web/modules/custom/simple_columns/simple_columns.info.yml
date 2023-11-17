@@ -1,7 +1,7 @@
 name: 'Simple Columns'
 type: module
 description: 'Allows the addition of simple CSS columns in CKEditor.'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.4 || ^10
 package: 'ILR'
 dependencies:
   - drupal:ckeditor

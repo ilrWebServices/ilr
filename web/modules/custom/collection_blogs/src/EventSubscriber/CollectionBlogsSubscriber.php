@@ -2,11 +2,11 @@
 
 namespace Drupal\collection_blogs\EventSubscriber;
 
+use Drupal\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\path_alias\AliasManagerInterface;
 use Drupal\collection\Event\CollectionEvents;
-use Symfony\Component\EventDispatcher\Event;
 
 /**
  * Class CollectionSubsitesSubscriber.
@@ -47,7 +47,7 @@ class CollectionBlogsSubscriber implements EventSubscriberInterface {
   /**
    * Process the COLLECTION_CREATE event.
    *
-   * @param \Symfony\Component\EventDispatcher\Event $event
+   * @param \Drupal\Component\EventDispatcher\Event $event
    *   The dispatched event.
    */
   public function collectionCreate(Event $event) {

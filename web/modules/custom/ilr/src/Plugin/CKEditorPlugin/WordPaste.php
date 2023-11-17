@@ -21,7 +21,7 @@ class WordPaste extends CKEditorPluginBase implements CKEditorPluginContextualIn
    * {@inheritdoc}
    */
   public function getFile() {
-    return drupal_get_path('module', 'ilr') . '/js/plugins/word-paste/plugin.js';
+    return \Drupal::service('extension.list.module')->getPath('ilr') . '/js/plugins/word-paste/plugin.js';
   }
 
   /**

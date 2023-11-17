@@ -6,7 +6,6 @@ dependencies:
     - search_api.index.programs
   module:
     - search_api
-    - views_autocomplete_filters
 id: program_search_results
 label: 'Program Search Results'
 module: views

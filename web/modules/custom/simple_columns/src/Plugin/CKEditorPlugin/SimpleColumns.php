@@ -20,7 +20,7 @@ class SimpleColumns extends CKEditorPluginBase {
    * {@inheritdoc}
    */
   public function getFile() {
-    return drupal_get_path('module', 'simple_columns') . '/js/plugins/simplecolumns/plugin.js';
+    return \Drupal::service('extension.list.module')->getPath('simple_columns') . '/js/plugins/simplecolumns/plugin.js';
   }
 
   /**
@@ -30,11 +30,11 @@ class SimpleColumns extends CKEditorPluginBase {
     return [
       'SimpleColumns' => [
         'label' => $this->t('Simple Columns'),
-        'image' => drupal_get_path('module', 'simple_columns') . '/js/plugins/simplecolumns/icons/simplecolumns.png',
+        'image' => \Drupal::service('extension.list.module')->getPath('simple_columns') . '/js/plugins/simplecolumns/icons/simplecolumns.png',
       ],
       'SimpleColumnBreak' => [
         'label' => $this->t('Simple Column Break'),
-        'image' => drupal_get_path('module', 'simple_columns') . '/js/plugins/simplecolumns/icons/simplecolumnbreak.png',
+        'image' => \Drupal::service('extension.list.module')->getPath('simple_columns') . '/js/plugins/simplecolumns/icons/simplecolumnbreak.png',
       ],
     ];
   }

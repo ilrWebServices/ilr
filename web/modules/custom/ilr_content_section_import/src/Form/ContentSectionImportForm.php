@@ -57,6 +57,7 @@ class ContentSectionImportForm extends FormBase {
     $options = [];
     $collection_storage = $this->entityTypeManager->getStorage('collection');
     $content_section_collections = $collection_storage->getQuery()
+      ->accessCheck(TRUE)
       ->condition('type', 'content_section')
       ->execute();
 

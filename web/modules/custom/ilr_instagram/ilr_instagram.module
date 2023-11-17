@@ -9,8 +9,8 @@ function ilr_instagram_cron() {
   $last_purge = \Drupal::state()->get('ilr_instagram.last_purge', 0);
 
   // Clear instagram posts at least every hour.
-  if ((REQUEST_TIME - $last_purge) > (60 * 60)) {
+  if ((\Drupal::time()->getRequestTime() - $last_purge) > (60 * 60)) {
     Cache::invalidateTags(['instagram_posts']);
-    \Drupal::state()->set('ilr_instagram.last_purge', REQUEST_TIME);
+    \Drupal::state()->set('ilr_instagram.last_purge', \Drupal::time()->getRequestTime());
   }
 }

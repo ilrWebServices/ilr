@@ -1,7 +1,7 @@
 name: 'Path Alias Entities'
 type: module
 description: 'Small custom module that loads all entities represented by the parts of a path alias.'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.4 || ^10
 package: 'ILR'
 dependencies:
   - path_alias

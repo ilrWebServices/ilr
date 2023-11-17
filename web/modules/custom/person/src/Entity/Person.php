@@ -131,6 +131,7 @@ class Person extends EditorialContentEntityBase implements PersonInterface {
    */
   public static function postDelete(EntityStorageInterface $storage, array $entities) {
     $persona_ids = \Drupal::entityQuery('persona')
+      ->accessCheck(TRUE)
       ->condition('person', array_keys($entities), 'IN')
       ->execute();
 

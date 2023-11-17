@@ -6,7 +6,6 @@ dependencies:
     - externalauth
     - samlauth
     - user
-    - views_autocomplete_filters
 id: samlauth_map
 label: 'SAML Authentication Links'
 module: views

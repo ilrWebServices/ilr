@@ -214,7 +214,7 @@ class CourseNotificationHelper {
     // Only run every 24 hours.
     $last_field_update = $this->state->get('ilr_campaigns.custom_field_update', 0);
 
-    if ((REQUEST_TIME - $last_field_update) < 60 * 60 * 24) {
+    if ((\Drupal::time()->getRequestTime() - $last_field_update) < 60 * 60 * 24) {
       return;
     }
 
@@ -258,7 +258,7 @@ class CourseNotificationHelper {
       // @todo Log and continue. No WSOD for us!
     }
 
-    $this->state->set('ilr_campaigns.custom_field_update', REQUEST_TIME);
+    $this->state->set('ilr_campaigns.custom_field_update', \Drupal::time()->getRequestTime());
   }
 
   /**

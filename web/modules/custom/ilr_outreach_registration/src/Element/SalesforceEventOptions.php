@@ -2,6 +2,7 @@
 
 namespace Drupal\ilr_outreach_registration\Element;
 
+use Drupal\salesforce\SelectQuery;
 use Drupal\Core\Render\Element\FormElement;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\Html as HtmlUtility;
@@ -152,7 +153,7 @@ class SalesforceEventOptions extends FormElement {
       /** @var \Drupal\salesforce\Rest\RestClientInterface $sfapi */
       $sfapi = \Drupal::service('salesforce.client');
 
-      $query = new \Drupal\salesforce\SelectQuery('EXECED_Event_Class__c');
+      $query = new SelectQuery('EXECED_Event_Class__c');
       $query->fields = [
         'Id',
         'Name',

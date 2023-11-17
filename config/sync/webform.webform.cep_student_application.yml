@@ -11,7 +11,8 @@ archive: false
 id: cep_student_application
 title: 'CEP Student Application'
 description: '<p class="title" id="page-title">Career Exploration Project Student Application</p>'
-category: EXPLORE
+categories:
+  - EXPLORE
 elements: |-
   submitter:
     '#type': webform_computed_twig

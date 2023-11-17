@@ -92,6 +92,7 @@ function collection_projects_node_view(array &$build, EntityInterface $entity, E
     $collection_item_storage = $entity_type_manager->getStorage('collection_item');
 
     $project_focus_areas_collection_item_id = $collection_item_storage->getQuery()
+      ->accessCheck(TRUE)
       ->condition('type', 'project_item')
       ->condition('item__target_type', 'node')
       ->condition('item__target_id', $entity->id())

@@ -4,7 +4,7 @@
  * @file
  * Contains salesforce_mop.module.
  */
-
+use Drupal\node\NodeForm;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -31,7 +31,7 @@ function salesforce_mop_form_node_form_alter(&$form, FormStateInterface $form_st
   /** @var \Drupal\node\NodeForm $form_object */
   $form_object = $form_state->getFormObject();
 
-  if ($form_object instanceof \Drupal\node\NodeForm) {
+  if ($form_object instanceof NodeForm) {
     $node = $form_object->getEntity();
 
     if ($node->isNew()) {

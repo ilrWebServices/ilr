@@ -11,7 +11,8 @@ archive: false
 id: ladp_scholarship_application
 title: 'LADP Scholarship Application'
 description: ''
-category: 'professional programs'
+categories:
+  - 'professional programs'
 elements: |-
   applicant_wrapper:
     '#type': fieldset

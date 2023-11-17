@@ -19,6 +19,7 @@ $cache_tags[] = 'node_list:post'; // 8.9 and above
 $posts = [];
 
 $query = $collection_item_storage->getQuery();
+$query->accessCheck(TRUE)
 $query->condition('collection', $collection->id());
 $query->condition('type', 'blog');
 $query->condition('item.entity:node.status', 1);

@@ -57,6 +57,7 @@ class PreviousNextStory extends ExtraFieldDisplayBase implements ContainerFactor
 
     // Get the collection item for this story in the collection.
     $collection_item_ids = $this->collectionItemStorage->getQuery()
+      ->accessCheck(TRUE)
       ->condition('type', 'publication_issue')
       ->condition('collection', $collection->id())
       ->condition('item.entity:node.type', 'story')

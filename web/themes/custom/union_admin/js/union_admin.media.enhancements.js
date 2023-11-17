@@ -1,44 +1,43 @@
-(function ($, Drupal) {
+(function(document) {
 
   'use strict';
 
   Drupal.behaviors.union_admin_media_enhancements = {
     attach: function (context) {
-      let dupeMessages = $(context).find('.messages--error li:contains("This file has already been uploaded")');
+      if (Object.prototype.toString.call(context) !== '[object HTMLDivElement]') {
+        return;
+      }
 
-      dupeMessages.each(function (key, value) {
-        let helpText = $(value).text();
-        let mediaName = helpText.match(/"(.*?)"/)[1];
-        let message = $(this);
+      let mediaLibraryForm = document.querySelector('#views-exposed-form-media-library-widget');
 
-        if (!mediaName.length) {
-          return false;
-        }
-
-        let mediaLibraryForm = $(document).find('#views-exposed-form-media-library-widget');
-
-        if (!mediaLibraryForm) {
-          return false;
-        }
-
-        let mediaLibraryFilterInput = mediaLibraryForm.find('[data-drupal-selector="edit-name"]');
-
-        $(mediaLibraryFilterInput).val(mediaName);
-        $(mediaLibraryForm).find('.js-form-submit').click();
-
-        // Be helpful and select the duplicate item.
-        setTimeout(function () {
-          let firstDupe = $('.media-library-item').first();
-
-          if (firstDupe) {
-            firstDupe.find('input[type="checkbox"]').attr('checked', 'checked').trigger('change');
-            message.append(Drupal.t(' An existing item from the media library has been selected below.'));
-          }
-        }, 750);
-
+      if (!mediaLibraryForm) {
         return false;
-      });
+      }
+
+      let mediaLibraryFilterInput = mediaLibraryForm.querySelector('[data-drupal-selector="edit-name"]');
+
+      let dupeMessages = [...context.querySelectorAll('.messages--error li')]
+        .filter(li => li.innerText.includes('This file has already been uploaded'));
+
+      for (let dupeMessage of dupeMessages) {
+        let filename = dupeMessage.querySelector('a');
+
+        if (filename) {
+          mediaLibraryFilterInput.value = filename.innerText;
+          mediaLibraryForm.querySelector('.js-form-submit').click();
+
+          // Be helpful and select the duplicate item.
+          setTimeout(function() {
+            let firstDupe = document.querySelector('.media-library-item input[type="checkbox"]');
+
+            if (firstDupe) {
+              firstDupe.checked = true;
+              firstDupe.dispatchEvent(new Event('change'));
+            }
+          }, 750);
+        }
+      }
     }
   }
 
-})(jQuery, Drupal);
+})(document);

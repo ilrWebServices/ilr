@@ -12,7 +12,7 @@
  */
 #}
 {% set title = [] %}
-{% for key, item in content.field_title if key|first != '#' %}
+{% for key, item in content.field_title|filter((v, k) => k|first != '#') %}
   {% set title = title|merge([item]) %}
 {% endfor %}
 

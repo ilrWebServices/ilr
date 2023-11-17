@@ -199,7 +199,7 @@ class EventListing extends ParagraphsBehaviorBase {
 
     // Append local node events, if any are set as source.
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $query->accessCheck(TRUE); // Check if this is default.
+    $query->accessCheck(TRUE);
     $query->condition('type', $sources, 'IN');
     $query->condition('event_date.value', $date_today->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), '>=');
     $keywords_group = $query->orConditionGroup();

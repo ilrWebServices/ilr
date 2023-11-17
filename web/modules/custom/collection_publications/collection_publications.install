@@ -6,10 +6,8 @@
  */
 
 /**
- * Remove the collection publication base field.
+ * Implements hook_update_last_removed().
  */
-function collection_publications_update_8001() {
-  $update_manager = \Drupal::entityDefinitionUpdateManager();
-  $definition = $update_manager->getFieldStorageDefinition('publication', 'collection');
-  $update_manager->uninstallFieldStorageDefinition($definition);
+function collection_publications_update_last_removed() {
+  return 8001;
 }

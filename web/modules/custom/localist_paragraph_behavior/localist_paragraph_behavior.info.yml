@@ -1,7 +1,7 @@
 name: 'Localist Paragraph Behavior'
 type: module
 description: 'Allows the attachment of Localist events to Paragraph entities'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.4 || ^10
 package: 'Custom'
 dependencies:
   - paragraphs

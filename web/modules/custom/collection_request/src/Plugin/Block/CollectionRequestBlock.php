@@ -62,6 +62,7 @@ class CollectionRequestBlock extends BlockBase implements ContainerFactoryPlugin
     $build = [];
     $collection_item_storage = $this->entityTypeManager->getStorage('collection_item');
     $query = $collection_item_storage->getQuery()
+      ->accessCheck(TRUE)
       ->condition('attributes.key', 'collection-request-uid')
       ->condition('attributes.value', NULL, 'IS NOT NULL');
     $result = $query->execute();

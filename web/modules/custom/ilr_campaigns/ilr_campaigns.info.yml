@@ -1,7 +1,7 @@
 name: 'ILR Campaigns'
 type: module
 description: 'Manage subscribers and campaigns over the CampaignMonitor API'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.4 || ^10
 package: 'ILR'
 dependencies:
   - webform

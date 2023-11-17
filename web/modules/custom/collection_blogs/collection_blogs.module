@@ -160,6 +160,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
         ->condition('cia.attributes_key', 'collection-request-uid');
 
       $blog_post_collection_items = $collection_item_storage->getQuery()
+        ->accessCheck(TRUE)
         ->condition('id', $pending_items, 'NOT IN')
         ->condition('type', 'blog')
         ->condition('item.entity:node.status', 1)
@@ -205,6 +206,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
 
   if ($display->getComponent('blog_collection')) {
     $vocabulary_collection_items = $collection_item_storage->getQuery()
+      ->accessCheck(TRUE)
       ->condition('item__target_type', 'taxonomy_vocabulary')
       ->condition('item__target_id', $entity->bundle())
       ->execute();
@@ -241,6 +243,7 @@ function collection_blogs_node_view(array &$build, EntityInterface $entity, Enti
     $collection_item_storage = $entity_type_manager->getStorage('collection_item');
 
     $blog_post_collection_items = $collection_item_storage->getQuery()
+      ->accessCheck(TRUE)
       ->condition('type', 'blog')
       ->condition('item__target_type', 'node')
       ->condition('item__target_id', $entity->id())
@@ -263,6 +266,7 @@ function collection_blogs_node_view(array &$build, EntityInterface $entity, Enti
     $collection_item_storage = $entity_type_manager->getStorage('collection_item');
 
     $blog_post_collection_item_id = $collection_item_storage->getQuery()
+      ->accessCheck(TRUE)
       ->condition('type', 'blog')
       ->condition('item__target_type', 'node')
       ->condition('item__target_id', $entity->id())

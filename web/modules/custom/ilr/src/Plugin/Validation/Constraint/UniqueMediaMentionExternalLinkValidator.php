@@ -37,6 +37,7 @@ class UniqueMediaMentionExternalLinkValidator extends ConstraintValidator {
     }
 
     $query = \Drupal::entityTypeManager()->getStorage('node')->getQuery();
+    $query->accessCheck(TRUE);
     $query->condition('field_external_link', $field_external_link->uri);
 
     // Don't include self when updating a media mention.

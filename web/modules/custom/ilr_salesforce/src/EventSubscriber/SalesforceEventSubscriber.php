@@ -48,7 +48,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
    *   The event.
    */
   public function pullQueryAlter(SalesforceQueryEvent $event) {
-    $query = $event->getQuery();
+    $query = $event->getQuery()->accessCheck(TRUE);
 
     if ($event->getMapping()->id() === 'course_node') {
       // Add an additional field to the `course_node` mapping, to be used in
@@ -251,6 +251,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     $term_storage = $this->entityTypeManager->getStorage('taxonomy_term');
 
     $cahrs_term_id = $term_storage->getQuery()
+      ->accessCheck(TRUE)
       ->condition('vid', 'event_keywords')
       ->condition('name', 'CAHRS Partner Event')
       ->execute();

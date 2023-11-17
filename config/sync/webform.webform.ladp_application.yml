@@ -11,7 +11,8 @@ archive: false
 id: ladp_application
 title: 'LADP Application'
 description: ''
-category: 'professional programs'
+categories:
+  - 'professional programs'
 elements: |-
   personal_information:
     '#type': fieldset
