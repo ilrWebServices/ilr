@@ -48,7 +48,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
    *   The event.
    */
   public function pullQueryAlter(SalesforceQueryEvent $event) {
-    $query = $event->getQuery()->accessCheck(TRUE);
+    $query = $event->getQuery();
 
     if ($event->getMapping()->id() === 'course_node') {
       // Add an additional field to the `course_node` mapping, to be used in
