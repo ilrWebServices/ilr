@@ -12,9 +12,11 @@
  */
 #}
 {% set title = [] %}
+{% if content.field_title %}
 {% for key, item in content.field_title|filter((v, k) => k|first != '#') %}
   {% set title = title|merge([item]) %}
 {% endfor %}
+{% endif %}
 
 {% set additional_info %}
 {{ content|without('display_name', 'field_title', 'field_photo', 'field_bio') }}
