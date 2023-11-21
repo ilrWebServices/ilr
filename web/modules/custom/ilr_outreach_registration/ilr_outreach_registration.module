@@ -47,6 +47,49 @@ function ilr_outreach_registration_webform_options_certified_organizations_alter
 }
 
 /**
+ * Implements hook_webform_options_WEBFORM_OPTIONS_ID_alter().
+ */
+function ilr_outreach_registration_webform_options_cahrs_companies_alter(array &$options, array &$element) {
+  $cid = 'ilr_outreach_registration_cahrs_companies';
+
+  if ($cache = \Drupal::cache()->get($cid)) {
+    $options = $cache->data;
+    return;
+  }
+
+  try {
+    /** @var \Drupal\salesforce\Rest\RestClientInterface $sfapi */
+    $sfapi = \Drupal::service('salesforce.client');
+
+    $query = new SelectQuery('Account');
+    $query->fields = [
+      'Id',
+      'Name',
+    ];
+    $query->addCondition('Partnerships__c', "'CAHRS Member'" );
+    $query->addCondition('CAHRS_Top_of_Account_Hierarchy__c', 'True');
+
+    $sf_results = $sfapi->query($query);
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('ilr_outreach_registration')->error($e->getMessage());
+
+    // Cache empty options for an hour to prevent excessive calls to the
+    // Salesforce API and to aid in troubleshooting.
+    \Drupal::cache()->set($cid, [], time() + 60 * 60);
+    return;
+  }
+
+  foreach ($sf_results->records() as $record) {
+    $name = $record->field('Name');
+    $options[$name] = $name;
+  }
+
+  // Cache these options for 24 hours.
+  \Drupal::cache()->set($cid, $options, time() + 60 * 60 * 24);
+}
+
+/**
  * Implements hook_webform_options_alter().
  *
  * @todo This could become a custom webform element instead.
