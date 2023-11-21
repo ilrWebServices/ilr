@@ -64,6 +64,7 @@
       transition: margin 100ms;
 
       &[data-collapsed="0"] {
+        position: relative;
         margin-left: calc(var(--cu-ps5) * -1);
       }
     }

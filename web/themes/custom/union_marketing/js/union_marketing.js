@@ -111,6 +111,7 @@
         form_overlay.addEventListener('click', function (event) {
           event_registration_form.dataset.collapsed = 0;
           event.target.style.display = 'none';
+          event_registration_form.scrollIntoView({ behavior: "smooth" })
 
           for (const element of elements) {
             element.style.display = element.dataset.previousDisplay;
