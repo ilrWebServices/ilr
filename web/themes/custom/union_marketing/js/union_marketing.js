@@ -111,7 +111,11 @@
         form_overlay.addEventListener('click', function (event) {
           event_registration_form.dataset.collapsed = 0;
           event.target.style.display = 'none';
-          event_registration_form.scrollIntoView({ behavior: "smooth" })
+          event_registration_form.scrollIntoView({ behavior: "smooth" });
+
+          // Set focus on the first input. For some reason, this won't work
+          // without the short delay from setTimeout().
+          setTimeout(() => event_registration_form.querySelector('input').focus({ focusVisible: true }), '1');
 
           for (const element of elements) {
             element.style.display = element.dataset.previousDisplay;
