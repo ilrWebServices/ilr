@@ -84,7 +84,6 @@
   Drupal.behaviors.enhance_form_eventid = {
     attach: function (context, settings) {
       let eventid_wrappers = context.querySelectorAll('.salesforce-event-options--wrapper');
-      console.log(eventid_wrappers)
 
       for (const eventid_wrapper of eventid_wrappers) {
         let options = eventid_wrapper.querySelectorAll('input[type="radio"]');
