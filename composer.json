@@ -195,6 +195,9 @@
       "drupal/focal_point": {
         "Preview link accidentally closes the media library": "https://www.drupal.org/files/issues/2020-10-11/preview_link_accidentally_closes_the_media_library-3162210-19.patch"
       },
+      "drupal/footnotes": {
+        "Issue #3381366: Warnings when leaving values empty": "https://www.drupal.org/files/issues/2023-08-23/fix-warnings-when-leaving-values-empty-3381366-5_0.patch"
+      },
       "drupal/salesforce": {
         "Issue #3210809: Salesforce link appears in \"Operations\" links on views for anonymous users": "https://git.drupalcode.org/issue/salesforce-3210809/-/commit/e770f23fd303be476229d7ab89a42427a7ed9bbd.diff",
         "Issue #3221747: Improve performance of asynchronous salesforce push": "https://git.drupalcode.org/issue/salesforce-3221747/-/commit/03a3308d7d1796f007dfb8d0f5648d31ec373f03.diff"
