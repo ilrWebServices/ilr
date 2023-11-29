@@ -12,7 +12,7 @@
 {% endset %}
 
 {% include '@union/_banner.twig' with {
-  attributes: { class: ['cu-banner--page', 'cu-colorscheme--' ~ settings.color_scheme]},
+  attributes: { class: ['cu-banner--page', 'cu-colorscheme--' ~ settings.color_scheme, 'layout-variant--' ~ settings.variant]},
   content: rendered_content,
   media: content.media|render
 } only %}

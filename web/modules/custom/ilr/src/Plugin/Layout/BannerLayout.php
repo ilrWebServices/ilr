@@ -17,6 +17,7 @@ class BannerLayout extends LayoutDefault implements PluginFormInterface {
   public function defaultConfiguration() {
     return parent::defaultConfiguration() + [
       'color_scheme' => 'dark',
+      'variant' => '',
     ];
   }
 
@@ -39,6 +40,17 @@ class BannerLayout extends LayoutDefault implements PluginFormInterface {
       '#default_value' => $configuration['color_scheme'],
     ];
 
+    $form['variant'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Variant'),
+      '#options' => [
+        'default' => 'Default',
+        'alt' => 'Alternate',
+      ],
+      '#required' => FALSE,
+      '#default_value' => $configuration['variant'],
+    ];
+
     return $form;
   }
 
@@ -55,6 +67,7 @@ class BannerLayout extends LayoutDefault implements PluginFormInterface {
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
     $this->configuration['color_scheme'] = $form_state->getValue('color_scheme');
+    $this->configuration['variant'] = $form_state->getValue('variant');
   }
 
 }
