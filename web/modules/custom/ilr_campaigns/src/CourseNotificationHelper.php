@@ -8,6 +8,8 @@ use Drupal\Core\State\StateInterface;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\node\NodeInterface;
+use Drupal\webform\WebformSubmissionInterface;
 use GuzzleHttp\Exception\ClientException;
 use Psr\Log\LoggerInterface;
 
@@ -297,9 +299,9 @@ class CourseNotificationHelper {
    *
    * @throws \Exception
    *
-   * @see CourseNotificationSubscriber::processItem()
+   * @see CourseNotificationSubmissionProcessor::processItem()
    */
-  public function processSubscriber($submission) {
+  public function processSubscriber(WebformSubmissionInterface $submission) {
     $list_id = $this->settings->get('course_notification_list_id');
 
     if (empty($list_id)) {
@@ -330,6 +332,7 @@ class CourseNotificationHelper {
           'Name' => $submission_data['name'],
           'CustomFields' => [],
           'ConsentToTrack' => 'Yes',
+          'Resubscribe' => true,
         ];
       }
       else {
@@ -363,6 +366,70 @@ class CourseNotificationHelper {
     catch (ClientException $e) {
       // @todo throw a SuspendQueueException if the API is down, throttled, or something else?
       throw new \Exception($e->getMessage());
+    }
+  }
+
+  /**
+   * Process a bunch of items from the new_class_processor queue.
+   *
+   * @return void
+   */
+  public function processNewClassQueue() {
+    $last_new_class_processor_queue_run = $this->state->get('ilr_campaigns.last_new_class_processor_queue_run', 0);
+
+    if ((\Drupal::time()->getRequestTime() - $last_new_class_processor_queue_run) < 60 * 60 * 12) {
+      return;
+    }
+
+    $queue = $this->queueFactory->get('new_class_processor');
+    $count = 0;
+
+    while ($item = $queue->claimItem(90) && $count < 50) {
+      $count++;
+
+      try {
+        /** @var \Drupal\node\NodeInterface $class */
+        $class = $this->entityTypeManager->getStorage('node')->load($item->data);
+
+        if (!$class instanceof NodeInterface) {
+          $queue->deleteItem($item);
+          continue;
+        }
+
+        if ($class->bundle() !== 'class') {
+          $queue->deleteItem($item);
+          continue;
+        }
+
+        // If class node create date is older than 7 days, remove the item
+        // from the queue.
+        if (time() - $class->getCreatedTime() > 60 * 60 * 24 * 7) {
+          $queue->deleteItem($item);
+          continue;
+        }
+
+        if ($class->field_course->isEmpty()) {
+          // Throw an exception to log the missing course but leave this item in
+          // the queue.
+          throw new \Exception('Class is missing a course. Class nid ' . $class->id());
+        }
+
+        $course = $class->field_course->entity;
+
+        // Check if this Class or the related Course are unpublished.
+        if (!$class->isPublished() || !$course->isPublished()) {
+          // Leave this item in the queue in case the course or the class is
+          // eventually published in the near future.
+          throw new \Exception('Course or class is unpublished. Class nid ' . $class->id());
+        }
+
+        $this->createClassNotification($class);
+        $queue->deleteItem($item);
+      }
+      catch (\Exception $e) {
+        // In case of any exception, log it.
+        watchdog_exception('course_notifications', $e);
+      }
     }
   }
 

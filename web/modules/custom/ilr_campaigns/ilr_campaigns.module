@@ -5,6 +5,7 @@
  * Contains ilr_campaigns.module.
  */
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 
@@ -57,4 +58,8 @@ function ilr_campaigns_cron() {
 
   // Add Course Notification submissions to the email list.
   $course_notifications_helper->queueSubscribers();
+
+  // Process the new_class_processor queue manually. It's not a QueueWorker
+  // plugin because we don't want to run it every cron.
+  $course_notifications_helper->processNewClassQueue();
 }
