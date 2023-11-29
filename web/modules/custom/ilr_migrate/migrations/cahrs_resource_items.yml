@@ -37,7 +37,7 @@ process:
     default_value: node
   collection:
     plugin: default_value
-    default_value: 61
+    default_value: 62
   canonical:
     plugin: default_value
     default_value: 1
