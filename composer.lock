@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a861581e6ac2d95ccbc4e02417d7e0fd",
+    "content-hash": "4a1b2690dd2db407fdc7d0136884b765",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2049,17 +2049,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/collegenet2sf.git",
-                "reference": "15460b13115ac858df9763a9002629ca5eb553ba"
+                "reference": "4760a60238e75230dae1cbd33251158f95abe9fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/collegenet2sf/zipball/15460b13115ac858df9763a9002629ca5eb553ba",
-                "reference": "15460b13115ac858df9763a9002629ca5eb553ba",
+                "url": "https://api.github.com/repos/ilrWebServices/collegenet2sf/zipball/4760a60238e75230dae1cbd33251158f95abe9fd",
+                "reference": "4760a60238e75230dae1cbd33251158f95abe9fd",
                 "shasum": ""
             },
             "require": {
                 "drupal/salesforce": "^5.0",
-                "drupal/sftp_client": "1.0.x-dev",
+                "drupal/sftp_client": "^1 || ^2",
                 "league/csv": "^9.0"
             },
             "type": "drupal-module",
@@ -2081,7 +2081,7 @@
                 "source": "https://github.com/ilrWebServices/collegenet2sf/tree/2.x",
                 "issues": "https://github.com/ilrWebServices/collegenet2sf/issues"
             },
-            "time": "2023-11-29T19:52:53+00:00"
+            "time": "2023-11-29T21:24:19+00:00"
         },
         {
             "name": "drupal/condition_path",
@@ -5425,37 +5425,29 @@
         },
         {
             "name": "drupal/sftp_client",
-            "version": "dev-1.0.x",
+            "version": "2.0.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/sftp_client.git",
-                "reference": "19b9d16ab7d40e90490dc9486a6c11378086a04d"
+                "url": "https://github.com/ilrWebServices/sftp_client.git",
+                "reference": "f3dc8049c58c568514e948c0c7aa5f5d508c71ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ilrWebServices/sftp_client/zipball/f3dc8049c58c568514e948c0c7aa5f5d508c71ad",
+                "reference": "f3dc8049c58c568514e948c0c7aa5f5d508c71ad",
+                "shasum": ""
             },
             "require": {
-                "drupal/core": "^8 || ^9",
                 "phpseclib/phpseclib": "^2.0.29"
             },
             "require-dev": {
-                "drupal/key": "^1.8"
+                "drupal/key": "^1.17"
             },
             "suggest": {
-                "drupal/key": "^1.8"
+                "drupal/key": "^1.17"
             },
+            "default-branch": true,
             "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.0.x": "1.0.x-dev"
-                },
-                "drupal": {
-                    "version": "1.0.x-dev",
-                    "datestamp": "1601653259",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
                 "GPL-2.0+"
             ],
@@ -5467,10 +5459,11 @@
                 }
             ],
             "description": "The SFTP client for programmatic use.",
-            "homepage": "https://www.drupal.org/project/sftp_client",
             "support": {
-                "source": "https://git.drupalcode.org/project/sftp_client"
-            }
+                "source": "https://github.com/ilrWebServices/sftp_client/tree/2.0.x",
+                "issues": "https://github.com/ilrWebServices/sftp_client/issues"
+            },
+            "time": "2023-11-29T21:13:26+00:00"
         },
         {
             "name": "drupal/smart_read_more_link",
@@ -16903,7 +16896,6 @@
         "drupal/entity_usage": 10,
         "drupal/ilr_outreach_order_submitter": 20,
         "drupal/inline_entity_form": 5,
-        "drupal/sftp_client": 20,
         "drupal/typed_data": 15,
         "drupal/union_organizer": 20,
         "phpcompatibility/php-compatibility": 20
