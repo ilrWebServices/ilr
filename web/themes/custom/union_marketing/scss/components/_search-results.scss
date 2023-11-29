@@ -6,3 +6,129 @@
     text-decoration: none;
   }
 }
+
+.resource-library-search-view {
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint(md) {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto 1fr;
+    gap: 0 var(--cu-ps1);
+  }
+
+  .research-library-search-header {
+    order: -2;
+    grid-column: 1;
+    grid-row: 1/-1;
+    padding: 0;
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 0;
+    }
+  }
+
+  .research-library-search-results {
+    grid-column: 2;
+    grid-row: 2;
+
+    .views-field-item + .cu-heading {
+      margin-top: var(--cu-vr1);
+    }
+  }
+
+  .research-library-search-footer {
+    order: -1;
+
+    grid-column: 2;
+    grid-row: 1;
+    padding: 0;
+
+
+    .block-facets-summary ul {
+      list-style-type: none;
+      padding: 0 0 var(--cu-vr1) 0;
+      margin: 0;
+      columns: unset; // This is from the global layout footer, which we should fix.
+      display: flex;
+      gap: var(--cu-ps-1);
+    }
+
+    .facet-summary-item--facet,
+    .facet-summary-item--search-string {
+      padding: var(--cu-vr-2) var(--cu-ps-1);
+      // border: 1px solid #ccc;
+      border-radius: 3px;
+      background-color: var(--cu-color-brand);
+
+      a {
+        color: white;
+        font-weight: 400;
+        text-decoration: none;
+      }
+
+      .facet-item__status {
+        padding-left: .5em;
+      }
+    }
+  }
+
+  .node--search-result {
+    // display: flex;
+    // gap: .5em;
+    // justify-content: space-between;
+    // align-items: baseline;
+    margin-bottom: var(--cu-vr-2);
+
+    a {
+      // padding-left: 1em;
+      // text-indent: -1em;
+      // --cu-text-color: #222;
+      color: var(--cu-color-brand);
+    }
+
+    .post__info {
+      display: inline;
+      --cu-font-size: .8rem;
+      font-size: .8rem;
+      line-height: 1;
+
+      .field--field-published-date {
+        display: inline;
+      }
+    }
+  }
+
+  .facets-checkbox {
+    margin-right: .4em; // This might add to the theme debugging.
+  }
+
+  .block-facets {
+    border: 2px solid #ccc;
+    margin-bottom: var(--cu-vr1);
+    padding: .5em 1em;
+    border-radius: 3px;
+
+    summary {
+      // display: inline-block;
+      margin-bottom: 0;
+    }
+
+    .facets-widget-checkbox {
+      margin-top: var(--cu-vr0);
+    }
+  }
+
+  .cu-form.views-exposed-form {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+
+    .cu-input {
+      border-width: 2px;
+    }
+  }
+}

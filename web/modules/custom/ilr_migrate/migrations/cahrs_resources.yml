@@ -1,0 +1,80 @@
+id: cahrs_resources
+label: CAHRS Resources
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'csv_url'
+  path: 'https://raw.githubusercontent.com/ilrWebServices/cars_migration_data/main/resources.csv'
+  header_offset: 0
+  ids:
+    - resource_id
+  constants:
+    jan_1: '-01-01'
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  type:
+    plugin: static_map
+    source: resource_format
+    map:
+      pdf: post_document
+      link: post_document
+      video: video_post
+  title: title
+  created:
+    plugin: format_date
+    source: date_added
+    from_format: 'm/d/Y'
+    to_format: 'U'
+  changed:
+    plugin: format_date
+    source: date_updated
+    from_format: 'm/d/Y'
+    to_format: 'U'
+  _month_day_added:
+    plugin: format_date
+    source: date_added
+    from_format: 'm/d/Y'
+    to_format: '-m-d'
+  field_published_date/value:
+    plugin: concat
+    source:
+      - year
+      - constants/jan_1
+  body/summary: summary
+  body/value: summary
+  field_document:
+    -
+      plugin: skip_on_value
+      source: resource_format
+      method: process
+      value: video
+    -
+      plugin: migration_lookup
+      migration: cahrs_resource_media
+      source: resource_id
+      no_stub: true
+  field_video:
+    -
+      plugin: skip_on_value
+      source: resource_format
+      not_equals: true
+      method: process
+      value: video
+    -
+      plugin: migration_lookup
+      migration: cahrs_resource_media
+      source: resource_id
+      no_stub: true
+  # thumbnail
+  # thumbnail_alt_tag
+  # thumbnail_url
+destination:
+  plugin: entity:node
+  default_bundle: post_document
+migration_dependencies:
+  required:
+    - cahrs_resource_media
+  optional: {  }

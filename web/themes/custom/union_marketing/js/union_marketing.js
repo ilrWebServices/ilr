@@ -298,4 +298,29 @@
     });
   });
 
+  // Close all facet details elements on small screens.
+  Drupal.behaviors.union_marketing_responsive_details_element = {
+    attach: function (context, settings) {
+      if (context !== document) {
+        return;
+      }
+
+      // See https://stackoverflow.com/a/49419028.
+      let breakpoint = getComputedStyle(document.documentElement, null).getPropertyValue('--breakpoint');
+
+      // Abort on wider screens (medium breakpoint).
+      if (['md', 'lg'].includes(breakpoint)) {
+        return;
+      }
+
+      const details = document.querySelectorAll("details");
+
+      details.forEach(function(detail) {
+        if (detail.classList.contains('block-facets')) {
+          detail.removeAttribute('open');
+        }
+      });
+    }
+  };
+
 })(window, document, Drupal);

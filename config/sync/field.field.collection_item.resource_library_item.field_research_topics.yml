@@ -1,0 +1,21 @@
+uuid: 05d328b0-3b16-4127-a8cb-29a8d1991651
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.resource_library_item
+    - field.storage.collection_item.field_research_topics
+id: collection_item.resource_library_item.field_research_topics
+field_name: field_research_topics
+entity_type: collection_item
+bundle: resource_library_item
+label: 'Research topics'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: collection_context_research_topics_term
+  handler_settings: {  }
+field_type: entity_reference

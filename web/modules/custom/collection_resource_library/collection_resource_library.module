@@ -1,0 +1,59 @@
+<?php
+/**
+ * @file
+ * Contains collection_resource_library.module.
+ */
+
+use Drupal\collection\Entity\CollectionItemTypeInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+// use Drupal\collection\Entity\CollectionType;
+// use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+// use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_help().
+ */
+function collection_resource_library_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the collection_resource_library module.
+    case 'help.page.collection_resource_library':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Adds custom support for collections acting as resource libraries.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * - Add a 'Is resource item' setting to collection_item types.
+ */
+function collection_resource_library_form_collection_item_type_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $collection_item_type = $form_state->getFormObject()->getEntity();
+
+  $form['is_resource_item'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Is a resource item'),
+    '#description' => t('If enabled, items of this type will be considered a resource library items.'),
+    '#default_value' => $collection_item_type->getThirdPartySetting('collection_resource_library', 'is_resource_item'),
+    '#weight' => 1
+  ];
+
+  $form['#entity_builders'][] = 'collection_resource_library_form_collection_item_form_builder';
+}
+
+/**
+ * Entity builder for the collection_item type configuration entity.
+ */
+function collection_resource_library_form_collection_item_form_builder($entity_type, CollectionItemTypeInterface $collection_item_type, &$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('is_resource_item')) {
+    $collection_item_type->setThirdPartySetting('collection_resource_library', 'is_resource_item', $form_state->getValue('is_resource_item'));
+    return;
+  }
+
+  $collection_item_type->unsetThirdPartySetting('collection_resource_library', 'is_resource_item');
+}

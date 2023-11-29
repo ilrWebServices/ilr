@@ -70,6 +70,7 @@
     "drupal/entity_browser": "^2.9",
     "drupal/entity_usage": "^2.0@beta",
     "drupal/extra_field": "^2.0.0",
+    "drupal/facets": "^3.0",
     "drupal/filehash": "^2",
     "drupal/focal_point": "^2",
     "drupal/footnotes": "^3.0",
@@ -85,6 +86,7 @@
     "drupal/linkit_media_library": "^1.0",
     "drupal/media_library_edit": "^3.0",
     "drupal/media_pdf_thumbnail": "^5",
+    "drupal/media_remote": "^1.8",
     "drupal/menu_item_extras": "^3.0",
     "drupal/metatag": "^2.0",
     "drupal/migrate_file": "^2.0",
@@ -191,6 +193,9 @@
       },
       "drupal/paragraphs_previewer": {
         "Entities using layoutbuilder cannot get fields previewed": "https://gist.githubusercontent.com/a-fro/1c9b5fcf778edcc49eb39dab292cbc0c/raw/c2352a640270412d2d73232a1e5d3ca69a606726/paragraphs-preview-no-output-layout-builder.patch"
+      },
+      "drupal/facets": {
+        "Issue #2979223: Add option to show current search string in facet summary": "https://git.drupalcode.org/issue/facets-2979223/-/commit/871c779a67704275f975541af803e6e2c81373f8.diff"
       },
       "drupal/focal_point": {
         "Preview link accidentally closes the media library": "https://www.drupal.org/files/issues/2020-10-11/preview_link_accidentally_closes_the_media_library-3162210-19.patch"

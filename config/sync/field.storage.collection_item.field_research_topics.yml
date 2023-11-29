@@ -1,0 +1,20 @@
+uuid: eb0f1dd7-4e04-4119-992b-4c707e35cb60
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - taxonomy
+id: collection_item.field_research_topics
+field_name: field_research_topics
+entity_type: collection_item
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

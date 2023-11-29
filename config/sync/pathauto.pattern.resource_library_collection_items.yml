@@ -1,0 +1,22 @@
+uuid: d1445b2a-abba-4988-8436-a2f87574df33
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: resource_library_collection_items
+label: 'Resource library collection items'
+type: 'canonical_entities:collection_item'
+pattern: '[collection_item:collection:entity:url:path]/[collection_item:field_resource_type]/[collection_item:item:entity]/i'
+selection_criteria:
+  d6a6dbb6-c6eb-44a9-afeb-758e49c5a60b:
+    id: 'entity_bundle:collection_item'
+    negate: false
+    uuid: d6a6dbb6-c6eb-44a9-afeb-758e49c5a60b
+    context_mapping:
+      collection_item: collection_item
+    bundles:
+      resource_library_item: resource_library_item
+selection_logic: and
+weight: -5
+relationships: {  }

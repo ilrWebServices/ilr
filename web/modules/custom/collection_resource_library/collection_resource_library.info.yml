@@ -1,0 +1,10 @@
+name: 'Collection Resource Library'
+type: module
+description: 'Allows collection types to contain resources.'
+core_version_requirement: ^9.5 || ^10
+package: 'Collection'
+dependencies:
+  - collection
+  - taxonomy
+  - collection_tools
+  - ilr

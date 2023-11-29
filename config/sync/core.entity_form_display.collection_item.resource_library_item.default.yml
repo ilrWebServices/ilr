@@ -1,0 +1,94 @@
+uuid: b8f3e8ac-9872-4630-99bc-60b814201012
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.resource_library_item
+    - field.field.collection_item.resource_library_item.field_keywords_text
+    - field.field.collection_item.resource_library_item.field_research_topics
+    - field.field.collection_item.resource_library_item.field_resource_type
+  module:
+    - dynamic_entity_reference
+    - key_value_field
+    - path
+id: collection_item.resource_library_item.default
+targetEntityType: collection_item
+bundle: resource_library_item
+mode: default
+content:
+  attributes:
+    type: key_value_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+      key_label: Key
+      value_label: Value
+      description_label: Description
+      description_rows: 5
+      key_size: 60
+      key_placeholder: ''
+      description_enabled: false
+      description_placeholder: ''
+    third_party_settings: {  }
+  canonical:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_keywords_text:
+    type: string_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_research_topics:
+    type: options_buttons
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_resource_type:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  item:
+    type: dynamic_entity_reference_default
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 40
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  weight:
+    type: number
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  collection: true
+  user_id: true

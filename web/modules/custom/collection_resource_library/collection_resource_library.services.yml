@@ -1,0 +1,13 @@
+services:
+  collection_resource_library.manager:
+    class: Drupal\collection_resource_library\CollectionResourceLibraryManager
+    arguments:
+      - '@entity_type.manager'
+  collection_resource_library_subscriber:
+    class: Drupal\collection_resource_library\EventSubscriber\CollectionResourceLibrarySubscriber
+    arguments:
+      - '@entity_type.manager'
+      - '@path_alias.manager'
+      - '@collection_resource_library.manager'
+    tags:
+      - { name: event_subscriber }

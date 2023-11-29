@@ -50,6 +50,7 @@ class ConfigEventSubscriber implements EventSubscriberInterface {
     '/^system\.menu\.(section|subsite)-(\d+)$/',
     '/^taxonomy\.vocabulary\.blog_(\d+)_(categories|tags)$/',
     '/^taxonomy\.vocabulary\.project_(\d+)_focus_areas$/',
+    '/^taxonomy\.vocabulary\.research_lib_(\d+)_topics$/',
     '/^webform\.webform\.[a-z_]+$/',
   ];
 

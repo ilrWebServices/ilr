@@ -1,0 +1,71 @@
+id: cahrs_resource_media
+label: CAHRS resource media
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'csv_url'
+  path: 'https://raw.githubusercontent.com/ilrWebServices/cars_migration_data/main/resources.csv'
+  header_offset: 0
+  ids:
+    - resource_id
+  constants:
+    file_destination: 'public://2023-10/'
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  bundle:
+    plugin: static_map
+    source: resource_format
+    map:
+      pdf: file
+      video: remote_video
+      link: remote_url
+    # default_value: file
+  name:
+    -
+      plugin: skip_on_value
+      source: resource_format
+      not_equals: true
+      method: process
+      value: pdf
+    -
+      plugin: get
+      source: title
+  # status: status
+  created:
+    plugin: format_date
+    source: date_added
+    from_format: 'm/d/Y'
+    to_format: 'U'
+  changed:
+    plugin: format_date
+    source: date_updated
+    from_format: 'm/d/Y'
+    to_format: 'U'
+  _file_destination:
+    plugin: concat
+    source:
+      - constants/file_destination
+      - pdf_upload
+  field_media_file:
+    -
+      plugin: skip_on_value
+      source: resource_format
+      not_equals: true
+      method: process
+      value: pdf
+    -
+      plugin: file_import
+      source: pdf_html_url
+      destination: '@_file_destination'
+      file_exists: rename
+  field_media_oembed_video: pdf_html_url
+  field_media_media_remote: pdf_html_url
+destination:
+  plugin: 'entity:media'
+  default_bundle: file
+migration_dependencies:
+  required: {  }
+  optional: {  }

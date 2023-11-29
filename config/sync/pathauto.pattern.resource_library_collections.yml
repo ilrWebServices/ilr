@@ -1,0 +1,22 @@
+uuid: 440d32f8-d710-45fe-81f5-f0638823b516
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: resource_library_collections
+label: 'Resource library collections'
+type: 'canonical_entities:collection'
+pattern: '[collection:name]'
+selection_criteria:
+  c76fcfff-87a0-4496-a196-1debd2ebda5a:
+    id: 'entity_bundle:collection'
+    negate: false
+    uuid: c76fcfff-87a0-4496-a196-1debd2ebda5a
+    context_mapping:
+      collection: collection
+    bundles:
+      resource_library: resource_library
+selection_logic: and
+weight: -5
+relationships: {  }

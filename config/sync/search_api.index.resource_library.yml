@@ -1,0 +1,160 @@
+uuid: b360124e-8ab5-458c-a97f-ef6b3628f185
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.collection_item.field_keywords_text
+    - field.storage.collection_item.field_research_topics
+    - field.storage.collection_item.field_resource_type
+    - search_api.server.database
+  module:
+    - collection
+    - search_api
+    - ilr
+id: resource_library
+name: 'Resource library'
+description: ''
+read_only: false
+field_settings:
+  collection:
+    label: Collection
+    datasource_id: 'entity:collection_item'
+    property_path: collection
+    type: integer
+    dependencies:
+      module:
+        - collection
+  field_keywords_text:
+    label: 'Legacy keywords'
+    datasource_id: 'entity:collection_item'
+    property_path: field_keywords_text
+    type: text
+    dependencies:
+      config:
+        - field.storage.collection_item.field_keywords_text
+  field_published_date:
+    label: 'Post fields » Published Date'
+    datasource_id: 'entity:collection_item'
+    property_path: 'ilr_post_node_fields:field_published_date'
+    type: date
+  field_research_topics:
+    label: 'Research topics'
+    datasource_id: 'entity:collection_item'
+    property_path: field_research_topics
+    type: integer
+    dependencies:
+      config:
+        - field.storage.collection_item.field_research_topics
+  field_resource_type:
+    label: 'Resource type'
+    datasource_id: 'entity:collection_item'
+    property_path: field_resource_type
+    type: string
+    dependencies:
+      config:
+        - field.storage.collection_item.field_resource_type
+  name_text:
+    label: 'Name text'
+    datasource_id: 'entity:collection_item'
+    property_path: name
+    type: text
+    boost: 1.5
+    dependencies:
+      module:
+        - collection
+datasource_settings:
+  'entity:collection_item':
+    bundles:
+      default: false
+      selected:
+        - resource_library_item
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  entity_type: {  }
+  hierarchy:
+    weights:
+      preprocess_index: -45
+    fields:
+      field_research_topics: taxonomy_term-parent
+  ilr_post_fields: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+  stemmer:
+    weights:
+      preprocess_index: 0
+      preprocess_query: 0
+    all_fields: false
+    fields:
+      - field_keywords_text
+      - name_text
+    exceptions:
+      mexican: mexic
+      texan: texa
+  stopwords:
+    weights:
+      preprocess_index: -5
+      preprocess_query: -2
+    all_fields: false
+    fields:
+      - field_keywords_text
+      - name_text
+    stopwords:
+      - a
+      - an
+      - and
+      - are
+      - as
+      - at
+      - be
+      - but
+      - by
+      - for
+      - if
+      - in
+      - into
+      - is
+      - it
+      - 'no'
+      - not
+      - of
+      - 'on'
+      - or
+      - s
+      - such
+      - t
+      - that
+      - the
+      - their
+      - then
+      - there
+      - these
+      - they
+      - this
+      - to
+      - was
+      - will
+      - with
+  tokenizer:
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
+    all_fields: false
+    fields:
+      - field_keywords_text
+      - name_text
+    spaces: ''
+    ignored: ._-
+    overlap_cjk: 1
+    minimum_word_size: '3'
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: database

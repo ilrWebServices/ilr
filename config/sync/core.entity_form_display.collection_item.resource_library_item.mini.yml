@@ -1,0 +1,62 @@
+uuid: 01e747a8-b348-4764-8289-82d07f5a38e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.resource_library_item
+    - core.entity_form_mode.collection_item.mini
+    - field.field.collection_item.resource_library_item.field_keywords_text
+    - field.field.collection_item.resource_library_item.field_research_topics
+    - field.field.collection_item.resource_library_item.field_resource_type
+id: collection_item.resource_library_item.mini
+targetEntityType: collection_item
+bundle: resource_library_item
+mode: mini
+content:
+  canonical:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_keywords_text:
+    type: string_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_research_topics:
+    type: options_buttons
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_resource_type:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  weight:
+    type: number
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  attributes: true
+  collection: true
+  item: true
+  path: true
+  user_id: true
