@@ -5,16 +5,13 @@ dependencies:
   config:
     - collection.collection_type.content_section
     - field.storage.collection.body
+    - filter.format.basic_formatting
   module:
-    - allowed_formats
     - summary_word_limit
     - text
 third_party_settings:
   summary_word_limit:
     summary_word_limit_count: '50'
-  allowed_formats:
-    allowed_formats:
-      - basic_formatting
 id: collection.content_section.body
 field_name: body
 entity_type: collection
@@ -28,4 +25,6 @@ default_value_callback: ''
 settings:
   display_summary: true
   required_summary: false
+  allowed_formats:
+    - basic_formatting
 field_type: text_with_summary

@@ -4,17 +4,14 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
+    - filter.format.basic_formatting
     - node.type.post
   module:
-    - allowed_formats
     - summary_word_limit
     - text
 third_party_settings:
   summary_word_limit:
     summary_word_limit_count: '50'
-  allowed_formats:
-    allowed_formats:
-      - basic_formatting
 id: node.post.body
 field_name: body
 entity_type: node
@@ -28,4 +25,6 @@ default_value_callback: ''
 settings:
   display_summary: true
   required_summary: true
+  allowed_formats:
+    - basic_formatting
 field_type: text_with_summary
