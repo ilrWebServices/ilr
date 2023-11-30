@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "986bc9684c9690e611390dee78a305bd",
+    "content-hash": "59eaaaedfac6c7b6d17165fae7ae86a9",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4877,19 +4877,18 @@
         },
         {
             "name": "drupal/persistent_visitor_parameters",
-            "version": "2.x-dev",
+            "version": "3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/persistent_visitor_parameters.git",
-                "reference": "02d2b58d12a3f39cb789f6621052931509f92f60"
+                "reference": "81ade2ace1c801169ce422efac324602531f3bbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/persistent_visitor_parameters/zipball/02d2b58d12a3f39cb789f6621052931509f92f60",
-                "reference": "02d2b58d12a3f39cb789f6621052931509f92f60",
+                "url": "https://api.github.com/repos/ilrWebServices/persistent_visitor_parameters/zipball/81ade2ace1c801169ce422efac324602531f3bbc",
+                "reference": "81ade2ace1c801169ce422efac324602531f3bbc",
                 "shasum": ""
             },
-            "default-branch": true,
             "type": "drupal-module",
             "license": [
                 "GPL-2.0+"
@@ -4903,7 +4902,7 @@
                 "issues": "https://github.com/ilrWebServices/persistent_visitor_parameters/issues",
                 "source": "https://github.com/ilrWebServices/persistent_visitor_parameters.git"
             },
-            "time": "2023-11-09T21:08:37+00:00"
+            "time": "2023-11-30T15:44:47+00:00"
         },
         {
             "name": "drupal/prepopulate",
