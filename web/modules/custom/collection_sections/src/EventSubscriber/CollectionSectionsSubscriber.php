@@ -45,7 +45,7 @@ class CollectionSectionsSubscriber implements EventSubscriberInterface {
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents(): array {
     return [
       CollectionEvents::COLLECTION_ENTITY_CREATE => 'collectionCreate',
       CollectionEvents::COLLECTION_ITEM_FORM_SAVE => 'collectionItemFormSave',

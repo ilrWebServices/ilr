@@ -96,7 +96,7 @@ class CollectionRequestSubscriber implements EventSubscriberInterface {
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents(): array {
     return [
       CollectionEvents::COLLECTION_ITEM_ENTITY_CREATE => 'collectionItemCreate',
     ];
