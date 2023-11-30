@@ -168,10 +168,7 @@
       "./post_sync_fix_triggers.php"
     ],
     "sync-prod-update": [
-      "drush cr",
-      "drush updatedb --no-post-updates -y",
-      "drush config:import -y",
-      "drush updatedb -y",
+      "drush deploy",
       "@sf-dev"
     ],
     "sf-dev": [
