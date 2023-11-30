@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - file
     - ilr
     - ilr_outreach_registration
     - system
@@ -14,5 +15,6 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access webform overview'
+  - 'delete own files'
   - 'submit to salesforce'
   - 'view event registration webform submissions'

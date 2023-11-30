@@ -157,7 +157,7 @@ third_party_settings:
             region: content
             configuration:
               id: 'field_block:node:post_experience_report:title'
-              label: 'Student''s name'
+              label: "Student's name"
               label_display: '0'
               provider: layout_builder
               context_mapping:

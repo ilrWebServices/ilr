@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.page.auth_protected
+    - field.field.node.page.behavior_alt_display
     - field.field.node.page.body
     - field.field.node.page.field_representative_image
     - field.field.node.page.field_sections

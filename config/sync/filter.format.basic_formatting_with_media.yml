@@ -121,9 +121,16 @@ filters:
     settings:
       footnotes_collapse: '0'
       footnotes_html: '1'
+      footnotes_css: '1'
   filter_union_components:
     id: filter_union_components
     provider: union_organizer
     status: true
     weight: -42
+    settings: {  }
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: -38
     settings: {  }

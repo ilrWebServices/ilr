@@ -10,7 +10,7 @@ field_name: field_suppress_media
 entity_type: paragraph
 bundle: promo
 label: 'Suppress Media'
-description: 'Select this option when you don''t want this card to display any media (images, videos, etc.) at all. If you want any custom media added below to display, leave this box unchecked.'
+description: "Select this option when you don't want this card to display any media (images, videos, etc.) at all. If you want any custom media added below to display, leave this box unchecked."
 required: false
 translatable: false
 default_value:

@@ -63,7 +63,7 @@ field_settings:
     datasource_id: 'entity:taxonomy_term'
     property_path: name
     type: text
-    boost: !!float 3
+    boost: 3.0
     dependencies:
       module:
         - taxonomy
@@ -89,7 +89,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: title
     type: text
-    boost: !!float 2
+    boost: 2.0
     dependencies:
       module:
         - node
@@ -158,11 +158,11 @@ processor_settings:
       preprocess_index: 0
     boosts:
       'entity:node':
-        datasource_boost: !!float 0
+        datasource_boost: 0.0
         bundle_boosts:
-          course: !!float 3
+          course: 3.0
       'entity:taxonomy_term':
-        datasource_boost: !!float 13
+        datasource_boost: 13.0
 tracker_settings:
   default:
     indexing_order: fifo

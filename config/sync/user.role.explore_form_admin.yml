@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - file
     - ilr
     - system
     - webform
@@ -13,4 +14,5 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access webform overview'
+  - 'delete own files'
   - 'view explore program webform submissions'
