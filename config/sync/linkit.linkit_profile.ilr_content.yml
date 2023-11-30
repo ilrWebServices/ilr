@@ -49,8 +49,9 @@ matchers:
       metadata: ''
       bundles:
         file: file
+        remote_url: remote_url
       group_by_bundle: false
-      substitution_type: media
+      substitution_type: canonical
       limit: 50
     weight: 0
   4bbd41df-c199-4b47-bac2-6946bbc300b0:
