@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "27729a87b3a239cea64ef699f02e2d2f",
+    "content-hash": "178b357c98f986d0a50cf7c651c7ccbc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4222,28 +4222,29 @@
         },
         {
             "name": "drupal/media_pdf_thumbnail",
-            "version": "5.5.0",
+            "version": "6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/media_pdf_thumbnail.git",
-                "reference": "8.x-5.5"
+                "reference": "6.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_pdf_thumbnail-8.x-5.5.zip",
-                "reference": "8.x-5.5",
-                "shasum": "737e678ac21877225c1c9db450f8e3b79ad83541"
+                "url": "https://ftp.drupal.org/files/projects/media_pdf_thumbnail-6.0.0.zip",
+                "reference": "6.0.0",
+                "shasum": "2285d77249538e6d7e9f7e50a9298f216e3ecacd"
             },
             "require": {
                 "drupal/core": "^9 || ^10",
                 "ext-imagick": "*",
-                "spatie/pdf-to-image": "^1.4 || ^2.0"
+                "php": ">=8.0",
+                "spatie/pdf-to-image": "^2.1.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-5.5",
-                    "datestamp": "1678523552",
+                    "version": "6.0.0",
+                    "datestamp": "1699198921",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
