@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9db96ef2d8af249c54bf520ceb10b30",
+    "content-hash": "6279b70194f9626c33f82ad3476f6bd7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3706,20 +3706,21 @@
         },
         {
             "name": "drupal/inline_entity_form",
-            "version": "1.0.0-rc15",
+            "version": "2.0.0-rc10",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/inline_entity_form.git",
-                "reference": "8.x-1.0-rc15"
+                "reference": "2.0.0-rc10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-8.x-1.0-rc15.zip",
-                "reference": "8.x-1.0-rc15",
-                "shasum": "7702801f7e599956fc3d10cff8257809f53ac3ec"
+                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-2.0.0-rc10.zip",
+                "reference": "2.0.0-rc10",
+                "shasum": "f984e26786c5c5187246e8ee9f54d43f44b0ca53"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9 || ^10",
+                "drupal/core": "^9.1 || ^10",
+                "drupal/rat": "^1.0.0@rc",
                 "php": ">=7.1"
             },
             "require-dev": {
@@ -3728,8 +3729,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.0-rc15",
-                    "datestamp": "1678126675",
+                    "version": "2.0.0-rc10",
+                    "datestamp": "1698919897",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -4971,6 +4972,39 @@
                 "source": "https://git.drupalcode.org/project/prepopulate",
                 "issues": "https://www.drupal.org/project/issues/prepopulate"
             }
+        },
+        {
+            "name": "drupal/rat",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/rat.git",
+                "reference": "28202b02262a39ac8dbbfd43696b67c0c8c46b71"
+            },
+            "require": {
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "drupal/core": "^9.4",
+                "drupal/core-dev": "^9.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Drupal\\rat\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "gpl-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Merlin",
+                    "email": "merlin@geeks4change.net"
+                }
+            ],
+            "time": "2023-07-19T20:22:22+00:00"
         },
         {
             "name": "drupal/recreate_block_content",
@@ -16989,7 +17023,6 @@
         "drupal/collection": 20,
         "drupal/entity_usage": 10,
         "drupal/ilr_outreach_order_submitter": 20,
-        "drupal/inline_entity_form": 5,
         "drupal/typed_data": 15,
         "drupal/union_organizer": 20,
         "phpcompatibility/php-compatibility": 20
