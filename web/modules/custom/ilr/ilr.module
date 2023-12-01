@@ -1033,9 +1033,12 @@ function ilr_field_widget_webform_entity_reference_select_form_alter(&$element, 
 }
 
 /**
- * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ * Implements hook_field_widget_single_element_WIDGET_TYPE_form_alter().
+ *
+ * Note that we use the `paragraphs_previewer` widget type here rather than
+ * `paragraphs`.
  */
-function ilr_field_widget_paragraphs_form_alter(&$element, FormStateInterface &$form_state, $context) {
+function ilr_field_widget_single_element_paragraphs_previewer_form_alter(&$element, FormStateInterface &$form_state, $context) {
   $paragraphs_entity = NULL;
   $delta = $element['#delta'];
   $field_name = $context['items']->getName();
@@ -1060,7 +1063,6 @@ function ilr_field_widget_paragraphs_form_alter(&$element, FormStateInterface &$
       $admin_label = $paragraphs_entity->getBehaviorSetting('admin_section_label', 'label') ?? t('Section');
       $element['top']['type']['label']['#markup'] = '<span class="paragraph-type-label paragraph-type-label--admin-label">' . $admin_label . '</span>';
     }
-
   }
 
   // Hide the subheading and subheading link on section paragraphs until the
