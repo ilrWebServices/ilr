@@ -13,7 +13,7 @@ pull_frequency: 0
 push_frequency: 0
 push_limit: 0
 push_retries: 3
-pull_where_clause: 'Id IN (SELECT Contact__c FROM EXECED_Participant__c WHERE Role__c = ''Instructor'')'
+pull_where_clause: "Id IN (SELECT Contact__c FROM EXECED_Participant__c WHERE Role__c = 'Instructor')"
 sync_triggers:
   pull_create: true
   pull_update: true

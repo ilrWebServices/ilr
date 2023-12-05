@@ -1,5 +1,5 @@
 diff --git a/core/modules/comment/tests/src/Unit/Plugin/views/field/CommentBulkFormTest.php b/core/modules/comment/tests/src/Unit/Plugin/views/field/CommentBulkFormTest.php
-index d342bda45e8d7c5931a172868280153ca21d5e08..6806b84fda884212a6b0f873b466ee959c5b402f 100644
+index e4aa6dae605032fdd38d78a6867168d1487289d4..4f769b9382004e56f55481370aa417f17e87ba61 100644
 --- a/core/modules/comment/tests/src/Unit/Plugin/views/field/CommentBulkFormTest.php
 +++ b/core/modules/comment/tests/src/Unit/Plugin/views/field/CommentBulkFormTest.php
 @@ -6,6 +6,7 @@
@@ -29,7 +29,7 @@ index d342bda45e8d7c5931a172868280153ca21d5e08..6806b84fda884212a6b0f873b466ee95
  
      $reflected_actions = (new \ReflectionObject($comment_bulk_form))->getProperty('actions');
 diff --git a/core/modules/node/tests/src/Unit/Plugin/views/field/NodeBulkFormTest.php b/core/modules/node/tests/src/Unit/Plugin/views/field/NodeBulkFormTest.php
-index cd421f167e26011de588032a19c01b5bb7d42fbc..118f46dfbecd37a4474e8c71641b4705108b6bf3 100644
+index 044e4340b41b08391dec3bfc8d04466ddc9f17c0..67e1ad4e9129c575120edaff69e50b8417caf6f9 100644
 --- a/core/modules/node/tests/src/Unit/Plugin/views/field/NodeBulkFormTest.php
 +++ b/core/modules/node/tests/src/Unit/Plugin/views/field/NodeBulkFormTest.php
 @@ -5,6 +5,7 @@
@@ -59,7 +59,7 @@ index cd421f167e26011de588032a19c01b5bb7d42fbc..118f46dfbecd37a4474e8c71641b4705
  
      $reflected_actions = (new \ReflectionObject($node_bulk_form))->getProperty('actions');
 diff --git a/core/modules/user/tests/src/Unit/Plugin/views/field/UserBulkFormTest.php b/core/modules/user/tests/src/Unit/Plugin/views/field/UserBulkFormTest.php
-index cdd6ec685b684e143f00d50df486b8c9310445c4..5040102c0dc806f76c8bdd94ede6af462a88106e 100644
+index 97c9bfc4c5b84499b7183d89e017642cfc86d053..9b007ff11f3b8b0bea2069c12330ca411c89b94b 100644
 --- a/core/modules/user/tests/src/Unit/Plugin/views/field/UserBulkFormTest.php
 +++ b/core/modules/user/tests/src/Unit/Plugin/views/field/UserBulkFormTest.php
 @@ -5,6 +5,7 @@
@@ -89,18 +89,18 @@ index cdd6ec685b684e143f00d50df486b8c9310445c4..5040102c0dc806f76c8bdd94ede6af46
  
      $reflected_actions = (new \ReflectionObject($user_bulk_form))->getProperty('actions');
 diff --git a/core/modules/views/src/Plugin/views/field/BulkForm.php b/core/modules/views/src/Plugin/views/field/BulkForm.php
-index 04c58e46acf04c36fbb4734f1d20541ba1145ee3..19fefce7b9afaf96def1ff9b9a86b34b9a46efeb 100644
+index 32afb60995b317e0f3caa8a7f90386bfd9b31411..35fb8ef4a4da1bcd81b04d4cd620f56cd19902ec 100644
 --- a/core/modules/views/src/Plugin/views/field/BulkForm.php
 +++ b/core/modules/views/src/Plugin/views/field/BulkForm.php
-@@ -11,6 +11,7 @@
- use Drupal\Core\Language\LanguageManagerInterface;
+@@ -12,6 +12,7 @@
  use Drupal\Core\Messenger\MessengerInterface;
  use Drupal\Core\Routing\RedirectDestinationTrait;
+ use Drupal\Core\StringTranslation\TranslatableMarkup;
 +use Drupal\Core\Routing\ResettableStackedRouteMatchInterface;
  use Drupal\Core\TypedData\TranslatableInterface;
  use Drupal\views\Entity\Render\EntityTranslationRenderTrait;
  use Drupal\views\Plugin\views\display\DisplayPluginBase;
-@@ -72,6 +73,13 @@ class BulkForm extends FieldPluginBase implements CacheableDependencyInterface {
+@@ -73,6 +74,13 @@ class BulkForm extends FieldPluginBase implements CacheableDependencyInterface {
     */
    protected $messenger;
  
@@ -109,12 +109,12 @@ index 04c58e46acf04c36fbb4734f1d20541ba1145ee3..19fefce7b9afaf96def1ff9b9a86b34b
 +   *
 +   * @var \Drupal\Core\Routing\ResettableStackedRouteMatchInterface
 +   */
-+  protected $routeMatch;
++  protected ResettableStackedRouteMatchInterface $routeMatch;
 +
    /**
     * Constructs a new BulkForm object.
     *
-@@ -89,10 +97,13 @@ class BulkForm extends FieldPluginBase implements CacheableDependencyInterface {
+@@ -90,10 +98,13 @@ class BulkForm extends FieldPluginBase implements CacheableDependencyInterface {
     *   The messenger.
     * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
     *   The entity repository.
@@ -129,19 +129,19 @@ index 04c58e46acf04c36fbb4734f1d20541ba1145ee3..19fefce7b9afaf96def1ff9b9a86b34b
      parent::__construct($configuration, $plugin_id, $plugin_definition);
  
      $this->entityTypeManager = $entity_type_manager;
-@@ -100,6 +111,11 @@ public function __construct(array $configuration, $plugin_id, $plugin_definition
+@@ -101,6 +112,11 @@ public function __construct(array $configuration, $plugin_id, $plugin_definition
      $this->languageManager = $language_manager;
      $this->messenger = $messenger;
      $this->entityRepository = $entity_repository;
 +    if (!$route_match) {
-+      @trigger_error('Calling BulkForm::__construct() without the $route_match argument is deprecated in drupal:8.9.0 and the $route_match argument will be required in drupal:10.0.0. See https://www.drupal.org/node/3115868', E_USER_DEPRECATED);
++      @trigger_error('Calling  ' . __METHOD__ . ' without the $route_match argument is deprecated in drupal:10.2.0 and it will be required in drupal:11.0.0. See https://www.drupal.org/node/3115868', E_USER_DEPRECATED);
 +      $route_match = \Drupal::routeMatch();
 +    }
 +    $this->routeMatch = $route_match;
    }
  
    /**
-@@ -113,7 +129,8 @@ public static function create(ContainerInterface $container, array $configuratio
+@@ -114,7 +130,8 @@ public static function create(ContainerInterface $container, array $configuratio
        $container->get('entity_type.manager'),
        $container->get('language_manager'),
        $container->get('messenger'),
@@ -151,7 +151,7 @@ index 04c58e46acf04c36fbb4734f1d20541ba1145ee3..19fefce7b9afaf96def1ff9b9a86b34b
      );
    }
  
-@@ -419,7 +436,8 @@ public function viewsFormSubmit(&$form, FormStateInterface $form_state) {
+@@ -428,7 +445,8 @@ public function viewsFormSubmit(&$form, FormStateInterface $form_state) {
          $options = [
            'query' => $this->getDestinationArray(),
          ];
@@ -318,14 +318,15 @@ index 0000000000000000000000000000000000000000..8627f6abef07856f5e95d54b5df88f7b
 +  type: mapping
 diff --git a/core/modules/views/tests/modules/action_bulk_test/src/Form/TestActionConfirmForm.php b/core/modules/views/tests/modules/action_bulk_test/src/Form/TestActionConfirmForm.php
 new file mode 100644
-index 0000000000000000000000000000000000000000..18f3c8667fb75e9cf6eb8fdba2a9d9d3ed23b296
+index 0000000000000000000000000000000000000000..f49aa712bbfc4cdb49476dcd464befa14551ee0e
 --- /dev/null
 +++ b/core/modules/views/tests/modules/action_bulk_test/src/Form/TestActionConfirmForm.php
-@@ -0,0 +1,40 @@
+@@ -0,0 +1,42 @@
 +<?php
 +
 +namespace Drupal\action_bulk_test\Form;
 +
++use Drupal\Component\Render\MarkupInterface;
 +use Drupal\Core\Form\ConfirmFormBase;
 +use Drupal\Core\Form\FormStateInterface;
 +use Drupal\Core\Url;
@@ -338,45 +339,49 @@ index 0000000000000000000000000000000000000000..18f3c8667fb75e9cf6eb8fdba2a9d9d3
 +  /**
 +   * {@inheritdoc}
 +   */
-+  public function getFormId() {
++  public function getFormId(): string {
 +    return 'test_action_confirm_form';
 +  }
 +
 +  /**
 +   * {@inheritdoc}
 +   */
-+  public function getCancelUrl() {
++  public function getCancelUrl(): Url {
 +    return Url::fromRoute('<front>');
 +  }
 +
 +  /**
-+   * @inheritdoc
++   * {@inheritdoc}
 +   */
-+  public function getQuestion() {
++  public function getQuestion(): MarkupInterface {
 +    return $this->t('Do you agree?');
 +  }
 +
 +  /**
-+   * @inheritdoc
++   * {@inheritdoc}
 +   */
-+  public function submitForm(array &$form, FormStateInterface $form_state) {}
++  public function submitForm(array &$form, FormStateInterface $form_state): void {
++  }
 +
 +}
 diff --git a/core/modules/views/tests/modules/action_bulk_test/src/Plugin/Action/TestAction.php b/core/modules/views/tests/modules/action_bulk_test/src/Plugin/Action/TestAction.php
 new file mode 100644
-index 0000000000000000000000000000000000000000..9056ecdbae725d75241bb5e20afc83c4070d7029
+index 0000000000000000000000000000000000000000..228272451538bcd91a31587c5d6d183b908780e5
 --- /dev/null
 +++ b/core/modules/views/tests/modules/action_bulk_test/src/Plugin/Action/TestAction.php
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,35 @@
 +<?php
 +
 +namespace Drupal\action_bulk_test\Plugin\Action;
 +
 +use Drupal\Core\Access\AccessResult;
++use Drupal\Core\Access\AccessResultInterface;
 +use Drupal\Core\Action\ActionBase;
 +use Drupal\Core\Session\AccountInterface;
 +
 +/**
++ * Test action.
++ *
 + * @Action(
 + *   id = "test_action",
 + *   label = @Translation("Test action"),
@@ -387,20 +392,21 @@ index 0000000000000000000000000000000000000000..9056ecdbae725d75241bb5e20afc83c4
 +class TestAction extends ActionBase {
 +
 +  /**
-+   * @inheritdoc
++   * {@inheritdoc}
 +   */
-+  public function access($object, AccountInterface $account = NULL, $return_as_object = FALSE) {
++  public function access($object, AccountInterface $account = NULL, $return_as_object = FALSE): bool|AccessResultInterface {
 +    return $return_as_object ? AccessResult::allowed() : TRUE;
 +  }
 +
 +  /**
-+   * @inheritdoc
++   * {@inheritdoc}
 +   */
-+  public function execute() {}
++  public function execute(): void {
++  }
 +
 +}
 diff --git a/core/modules/views/tests/src/Functional/BulkFormTest.php b/core/modules/views/tests/src/Functional/BulkFormTest.php
-index 4e515c6aa6022cf2ce26845dbb0cd22a990e8816..29aac7ca61fdfed4a65e02b4dca700d92e50db90 100644
+index 0f4c53d7bee4259cb74c1b484c3c90aa445e00d5..4998d51f8db288da7e2b9e6f70a9d972ff820c8a 100644
 --- a/core/modules/views/tests/src/Functional/BulkFormTest.php
 +++ b/core/modules/views/tests/src/Functional/BulkFormTest.php
 @@ -4,6 +4,7 @@
@@ -420,14 +426,14 @@ index 4e515c6aa6022cf2ce26845dbb0cd22a990e8816..29aac7ca61fdfed4a65e02b4dca700d9
    /**
     * Modules to install.
     *
-@@ -209,4 +212,27 @@ public function testBulkForm() {
+@@ -219,4 +222,27 @@ public function testBulkForm() {
      $this->assertSession()->pageTextContains('No content selected.');
    }
  
 +  /**
 +   * Tests that route parameters are passed to the confirmation form route.
 +   */
-+  public function testConfirmRouteWithParameters() {
++  public function testConfirmRouteWithParameters(): void {
 +    $session = $this->getSession();
 +    $page = $session->getPage();
 +    $assert = $this->assertSession();

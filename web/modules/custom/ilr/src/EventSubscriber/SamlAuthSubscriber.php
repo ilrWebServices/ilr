@@ -28,7 +28,7 @@ class SamlAuthSubscriber implements EventSubscriberInterface {
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents(): array {
     $events['samlauth.user_sync'] = ['samlauthUserSync'];
 
     return $events;

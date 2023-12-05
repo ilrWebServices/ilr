@@ -7,7 +7,6 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Psr\Log\LoggerInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
-use Laminas\Feed\Reader\Reader;
 
 /**
  * Process an RSS feed of Instagram posts.
@@ -79,7 +78,7 @@ class InstagramFeedProcessor {
       return $posts;
     }
 
-    $feed = Reader::importString((string) $response->getBody());
+    $feed = simplexml_load_string($response->getBody());
 
     if (empty($feed)) {
       $this->logger->error('Missing data for %url.', [
@@ -91,15 +90,14 @@ class InstagramFeedProcessor {
 
     $posts = [];
 
-    foreach ($feed as $entry) {
-      $posts[$entry->getLink()] = [
-        'title'        => $entry->getTitle(),
-        'description'  => $entry->getDescription(),
-        'dateModified' => $entry->getDateModified(),
-        'authors'      => $entry->getAuthors(),
-        'link'         => $entry->getLink(),
-        'content'      => $entry->getContent(),
-        'enclosure'    => $entry->getEnclosure(),
+    foreach ($feed->channel->item as $item) {
+      $posts[(string) $item->link] = [
+        'title'        => (string) $item->title ?? '',
+        'description'  => (string) $item->description ?? '',
+        'dateModified' => (string) $item->pubDate ?? '',
+        'link'         => (string) $item->link ?? '',
+        'enclosure'    => (array) $item->enclosure ?? [],
+        'url'          => (string) $item->enclosure['url'] ?? '',
       ];
     }
 

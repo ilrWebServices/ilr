@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - file
     - ilr
     - webform
 id: form_admin
@@ -11,5 +12,6 @@ weight: 6
 is_admin: null
 permissions:
   - 'access webform overview'
+  - 'delete own files'
   - 'view any webform submission'
   - 'view milr eligibility webform submissions'

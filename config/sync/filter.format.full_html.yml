@@ -115,9 +115,16 @@ filters:
     settings:
       footnotes_collapse: '0'
       footnotes_html: '1'
+      footnotes_css: '1'
   filter_internal_links:
     id: filter_internal_links
     provider: ilr
     status: false
     weight: -37
+    settings: {  }
+  filter_image_lazy_load:
+    id: filter_image_lazy_load
+    provider: filter
+    status: true
+    weight: -41
     settings: {  }

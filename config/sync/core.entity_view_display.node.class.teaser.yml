@@ -5,11 +5,11 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.class.body
-    - field.field.node.class.field_close_registration
     - field.field.node.class.field_address
     - field.field.node.class.field_class_cancelled
     - field.field.node.class.field_class_date
     - field.field.node.class.field_class_full
+    - field.field.node.class.field_close_registration
     - field.field.node.class.field_course
     - field.field.node.class.field_date_end
     - field.field.node.class.field_date_start

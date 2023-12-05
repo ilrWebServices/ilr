@@ -3,11 +3,12 @@ _core:
 iconset: social-icons--no-color
 services:
   facebook: facebook
-  twitter: twitter
+  x: x
   email: email
   linkedin: linkedin
 width: 35px
 radius: 100%
+print_css: ''
 facebook_app_id: ''
 node_field: false
 height: 35px

@@ -4,14 +4,10 @@ status: true
 dependencies:
   config:
     - field.storage.taxonomy_term.field_inline_svg_logo
+    - filter.format.inline_svg
     - taxonomy.vocabulary.publication
   module:
-    - allowed_formats
     - text
-third_party_settings:
-  allowed_formats:
-    allowed_formats:
-      - inline_svg
 id: taxonomy_term.publication.field_inline_svg_logo
 field_name: field_inline_svg_logo
 entity_type: taxonomy_term
@@ -22,5 +18,7 @@ required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
+settings:
+  allowed_formats:
+    - inline_svg
 field_type: text_long

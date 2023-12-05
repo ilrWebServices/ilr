@@ -8,6 +8,7 @@ dependencies:
     - node.type.instructor
   module:
     - contextual
+    - file
     - ilr
     - media
     - node
@@ -24,6 +25,7 @@ permissions:
   - 'administer media'
   - 'create media'
   - 'delete any media'
+  - 'delete own files'
   - 'edit any certificate content'
   - 'edit any course content'
   - 'edit any instructor content'

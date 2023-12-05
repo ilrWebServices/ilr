@@ -4,15 +4,11 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_body
+    - filter.format.basic_formatting_with_media
+    - filter.format.full_html
     - paragraphs.paragraphs_type.rich_text
   module:
-    - allowed_formats
     - text
-third_party_settings:
-  allowed_formats:
-    allowed_formats:
-      - basic_formatting_with_media
-      - full_html
 id: paragraph.rich_text.field_body
 field_name: field_body
 entity_type: paragraph
@@ -23,5 +19,8 @@ required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
+settings:
+  allowed_formats:
+    - basic_formatting_with_media
+    - full_html
 field_type: text_long
