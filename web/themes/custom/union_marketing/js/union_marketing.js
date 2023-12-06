@@ -161,7 +161,7 @@
 
   Drupal.behaviors.union_marketing_cahrs_newsletter_option_trigger = {
     attach: function (context, settings) {
-      const cahrs_newsletter_form = context.querySelector('#webform-submission-cahrs-newsletter-signup-add-form');
+      const cahrs_newsletter_form = context.querySelector('.webform--cahrs-newsletter-signup');
 
       if (!cahrs_newsletter_form) {
         return;
