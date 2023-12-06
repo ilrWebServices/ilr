@@ -159,6 +159,63 @@
     }
   }
 
+  Drupal.behaviors.union_marketing_cahrs_newsletter_option_trigger = {
+    attach: function (context, settings) {
+      const cahrs_newsletter_form = context.querySelector('#webform-submission-cahrs-newsletter-signup-add-form');
+
+      if (!cahrs_newsletter_form) {
+        return;
+      }
+
+      let options_elements = cahrs_newsletter_form.querySelectorAll('#edit-cahrs-newsletters--wrapper .form-item.cu-input-list__item--checkbox');
+
+      if (options_elements.length === 0) {
+        return;
+      }
+
+      let cahrs_newsletter_options_array = Array.from(options_elements);
+      let cahrs_quarterly_options = cahrs_newsletter_options_array.slice(2); // There are two options that are not CAHRS Quarterly.
+
+      for (const element of cahrs_quarterly_options) {
+        element.classList.add('visually-hidden');
+      }
+
+      let messageText = document.createTextNode(Drupal.t('CAHRS publishes quarterly summaries focusing on select topics in human resources. Please select the topics you would like to receive.'));
+      let message = document.createElement('div');
+      let quarterlyToggleLabel = document.createElement('label');
+      let labelText = document.createTextNode(Drupal.t('CAHRS Quarterly'));
+      let quarterlyToggle = document.createElement('input');
+      let firstItemStyle = window.getComputedStyle(cahrs_newsletter_options_array[1]);
+
+      message.appendChild(messageText);
+      message.classList.add('visually-hidden', 'cahrs-quarterly-message');
+      message.style.margin = '1em'; // This gives it a top and bottom margin. The left margin will be overridden.
+      message.style.marginLeft = firstItemStyle.marginLeft;
+      quarterlyToggle.setAttribute('type','checkbox');
+      quarterlyToggle.style.marginRight = '10px'; // Add space between the checkbox and the label.
+      quarterlyToggleLabel.style.margin = firstItemStyle.margin;
+      quarterlyToggleLabel.appendChild(quarterlyToggle);
+      quarterlyToggleLabel.appendChild(labelText);
+      quarterlyToggleLabel.classList.add('cu-input-list__item--checkbox');
+      cahrs_newsletter_options_array[1].parentNode.insertBefore(quarterlyToggleLabel, cahrs_newsletter_options_array[2]);
+      cahrs_newsletter_options_array[1].parentNode.insertBefore(message, cahrs_newsletter_options_array[2]);
+
+      quarterlyToggle.addEventListener('click', function(event) {
+        for (const element of cahrs_quarterly_options) {
+          if (event.target.checked) {
+            element.classList.remove('visually-hidden');
+            message.classList.remove('visually-hidden');
+          }
+          else {
+            element.classList.add('visually-hidden');
+            message.classList.add('visually-hidden');
+          }
+
+        }
+      });
+    }
+  }
+
   Drupal.behaviors.union_marketing_event_agenda_toggle = {
     attach: function (context, settings) {
       // Set only the first agenda item to open.
