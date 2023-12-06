@@ -1,0 +1,20 @@
+uuid: 61f782d4-0f1a-4056-adea-1bb403b6693a
+langcode: en
+status: true
+dependencies: {  }
+id: cahrs_newsletters_all
+label: 'CAHRS Newsletters all'
+category: ''
+likert: false
+options: |-
+  hrSpectrum: hrSpectrum
+  'Top 10 News': 'Top 10 News'
+  'CHRO Role/Future Function': 'CHRO Role/Future Function'
+  'CAHRS Quarterly Diversity and Inclusion': 'Diversity and Inclusion'
+  'CAHRS Quarterly Employee Engagement': 'Employee Engagement'
+  'CAHRS Quarterly Globalization': 'Globalization'
+  'CAHRS Quarterly HR Analytics/Metrics': 'HR Analytics/Metrics'
+  'CAHRS Quarterly HR Business Partner': 'HR Business Partner'
+  'CAHRS Quarterly HR Strategy': 'HR Strategy'
+  'CAHRS Quarterly Talent Management': 'Talent Management'
+  'CAHRS Quarterly Total Rewards': 'Total Rewards'

@@ -27,6 +27,6 @@
 
 # Ignore build artifacts.
 /node_modules/
-/web/themes/custom/union_marketing/css
+/web/themes/custom/union_marketing/css/style.css*
 
 /data/*.sqlite*
