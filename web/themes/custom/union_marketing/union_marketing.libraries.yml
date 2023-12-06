@@ -10,10 +10,19 @@ global:
     - core/drupal
     - core/jquery
     - core/drupal.dialog.ajax
+
 banner_nav:
   version: 1.x
   js:
     js/banner_nav.js: {}
+
+webform_reveal:
+  version: 1.x
+  css:
+    theme:
+      css/webform-reveal.css: {}
+  js:
+    js/webform-reveal.js: {}
 
 livereload:
   remote: https://github.com/mklabs/tiny-lr
