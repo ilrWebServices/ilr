@@ -114,15 +114,25 @@ class WebformSubmissionSerializer {
     $serialized_payload['order_items'][0]['product']['participants'][0] += $address;
 
     // Add any stored UTM codes if they exist in the submission data.
-    if (!empty($data['utm_values'])) {
-      foreach ($data['utm_values'] as $utm_name => $utm_code) {
-        $utm_name = ($utm_name === 'utm_term') ? 'utm_keyword' : $utm_name;
-        $serialized_payload['customer']['additional_fields'][] = [
-          'name' => strtoupper(substr($utm_name, 0, 5)) . substr($utm_name, 5) . '__c',
-          'value' => $utm_code,
-        ];
-      }
+    $utm_codes = $data['utm_values'] ?? [];
+    $utm_fields = [];
+    $utm_field_map = [
+      'UTM_Campaign__c' => 'utm_campaign',
+      'UTM_Source__c' => 'utm_source',
+      'UTM_Keyword__c' => 'utm_term', // Contacts
+      'UTM_Term__c' => 'utm_term', // Participants
+      'UTM_Medium__c' => 'utm_medium',
+      'UTM_Content__c' => 'utm_content',
+    ];
+
+    foreach ($utm_field_map as $sf_utm_field_name => $utm_param_name) {
+      $utm_fields[] = [
+        'name' => $sf_utm_field_name,
+        'value' => $utm_codes[$utm_param_name] ?? null,
+      ];
     }
+
+    $serialized_payload['customer']['additional_fields'] += $utm_fields;
 
     // Add any custom questions.
     $webform = $webform_submission->getWebform();
