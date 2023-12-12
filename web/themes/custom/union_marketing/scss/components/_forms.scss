@@ -76,3 +76,10 @@
 .cu-legend:has(.visually-hidden) {
   margin: 0;
 }
+
+// Workaround for Safari. For some reason, when the display is set while
+// .visually-hidden, this div's width is set way too wide. But only while
+// authenticated. For reasons.
+.webform-submission-cahrs-newsletter-signup-form .cahrs-quarterly-message {
+  display: inline-block;
+}
