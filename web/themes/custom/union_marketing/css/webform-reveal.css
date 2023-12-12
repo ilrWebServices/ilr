@@ -1,8 +1,6 @@
-webform-reveal[data-collapsed="1"] {
-  .form-item:not(.webform-actions),
-  .fieldgroup {
-    display: none;
-  }
+webform-reveal[data-collapsed="1"] .form-item:not(.webform-actions),
+webform-reveal[data-collapsed="1"] .fieldgroup {
+  display: none;
 }
 
 webform-reveal[data-collapsed="1"] > .webform-submission-form {
