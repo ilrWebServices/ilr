@@ -63,6 +63,10 @@
       if (settings.event_registration_form_config && settings.event_registration_form_config.cahrs_session_detail_options) {
         let session_details_options = context.querySelector('.cahrs-session-details-element');
 
+        if (!session_details_options) {
+          return;
+        }
+
         // Ensure that the form should have selectable options.
         if (settings.event_registration_form_config.cahrs_session_detail_options.length == 0) {
           return session_details_options.parentNode.removeChild(session_details_options);
