@@ -167,7 +167,7 @@
       "drush sql:sync @ilr-web.master @self -y",
       "./post_sync_fix_triggers.php"
     ],
-    "sync-prod-update": [
+    "sync-update": [
       "drush deploy",
       "@sf-dev"
     ],
