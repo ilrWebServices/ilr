@@ -996,9 +996,9 @@ function ilr_field_widget_form_alter(&$element, FormStateInterface $form_state, 
 }
 
 /**
- * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ * Implements hook_field_widget_single_element_WIDGET_TYPE_form_alter().
  */
-function ilr_field_widget_webform_entity_reference_select_form_alter(&$element, FormStateInterface &$form_state, $context) {
+function ilr_field_widget_single_element_webform_entity_reference_select_form_alter(&$element, FormStateInterface &$form_state, $context) {
   $webform_options_storage = \Drupal::entityTypeManager()->getStorage('webform_options');
   $mapped_object_storage = \Drupal::entityTypeManager()->getStorage('salesforce_mapped_object');
   $cahrs_event_node_mapping = \Drupal::entityTypeManager()->getStorage('salesforce_mapping')->load('cahrs_event_node');
@@ -1035,10 +1035,9 @@ function ilr_field_widget_webform_entity_reference_select_form_alter(&$element, 
 /**
  * Implements hook_field_widget_single_element_WIDGET_TYPE_form_alter().
  *
- * Note that we use the `paragraphs_previewer` widget type here rather than
- * `paragraphs`.
+ * @see ilr_field_widget_single_element_paragraphs_previewer_form_alter().
  */
-function ilr_field_widget_single_element_paragraphs_previewer_form_alter(&$element, FormStateInterface &$form_state, $context) {
+function ilr_field_widget_single_element_paragraphs_form_alter(&$element, FormStateInterface &$form_state, $context) {
   $paragraphs_entity = NULL;
   $delta = $element['#delta'];
   $field_name = $context['items']->getName();
@@ -1128,10 +1127,10 @@ function ilr_field_widget_single_element_paragraphs_previewer_form_alter(&$eleme
 }
 
 /**
- * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ * Implements hook_field_widget_single_element_WIDGET_TYPE_form_alter().
  */
-function ilr_field_widget_paragraphs_previewer_form_alter(&$element, FormStateInterface &$form_state, $context) {
-  ilr_field_widget_paragraphs_form_alter($element, $form_state, $context);
+function ilr_field_widget_single_element_paragraphs_previewer_form_alter(&$element, FormStateInterface &$form_state, $context) {
+  ilr_field_widget_single_element_paragraphs_form_alter($element, $form_state, $context);
 }
 
 /**
@@ -1162,9 +1161,9 @@ function ilr_field_widget_third_party_settings_form(WidgetInterface $plugin, Fie
 }
 
 /**
- * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ * Implements hook_field_widget_single_element_WIDGET_TYPE_form_alter().
  */
-function ilr_field_widget_text_textarea_with_summary_form_alter(&$element, FormStateInterface $form_state, $context) {
+function ilr_field_widget_single_element_text_textarea_with_summary_form_alter(&$element, FormStateInterface $form_state, $context) {
   $widget = $context['widget'];
 
   // We can't use the protected isDefaultValueWidget() method.
