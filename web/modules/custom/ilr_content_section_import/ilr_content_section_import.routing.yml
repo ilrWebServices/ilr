@@ -1,7 +1,0 @@
-ilr_content_section.import:
-  path: '/admin/config/content/section_import'
-  defaults:
-    _form: '\Drupal\ilr_content_section_import\Form\ContentSectionImportForm'
-    _title: 'Import Content Section'
-  requirements:
-    _permission: 'administer site configuration'
