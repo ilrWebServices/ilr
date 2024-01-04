@@ -716,3 +716,16 @@ variants:
       handlers:
         submission_detail_email:
           status: false
+  ed_vargas_memory:
+    id: override
+    variant_id: ed_vargas_memory
+    element_key: variant
+    label: 'Ed Vargas Memory'
+    notes: ''
+    status: true
+    weight: 16
+    settings:
+      debug: false
+      settings: {  }
+      elements: "custom_1_answer:\r\n  '#type': textarea\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Memory'\r\n  '#description': 'Please share a fond, funny, or interesting memory of Ed Vargas.'"
+      handlers: {  }
