@@ -25,10 +25,6 @@ services:
       - '@state'
     tags:
       - { name: event_subscriber }
-  ilr_paragraphs_host_entity:
-    class: \Drupal\ilr\Commands\ParagraphsHostEntity
-    tags:
-      - { name: drush.command }
   ilr.path_processor:
     class: Drupal\ilr\PathProcessor
     tags:
