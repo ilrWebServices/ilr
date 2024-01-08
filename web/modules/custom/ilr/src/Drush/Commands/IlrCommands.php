@@ -37,8 +37,9 @@ final class IlrCommands extends DrushCommands {
    */
   #[CLI\Command(name: 'ilr:paragraphs-host', aliases: ['ph', 'phe', 'parahost'])]
   #[CLI\Argument(name: 'pid', description: 'The paragraphs item id.')]
+  #[CLI\Option(name: 'browser', description: 'Open the URL in the default browser. Use --no-browser to avoid opening a browser.')]
   #[CLI\Usage(name: 'ilr:paragraphs-host 1234', description: 'Output the url for the host entity for paragraph 1234')]
-  public function pheCommand($pid, $options = []) {
+  public function pheCommand($pid, $options = ['browser' => true]) {
     $paragraph_storage = $this->entityTypeManager->getStorage('paragraph');
 
     if (!$paragraph = $paragraph_storage->load($pid)) {
@@ -47,6 +48,7 @@ final class IlrCommands extends DrushCommands {
 
     if ($host_entity = $this->getNonParagraphParentReferencingEntity($paragraph)) {
       $link = $host_entity->toUrl('canonical', ['absolute' => TRUE])->toString();
+      $this->startBrowser($link, 0, null, $options['browser']);
       return $this->output()->writeln('Found on ' . $link);
     }
     else {
