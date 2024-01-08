@@ -66,18 +66,20 @@
  * @see template_preprocess_node()
  */
 #}
+{% set is_past = 'now'|date('Y-m-d') > node.event_date.value|date('Y-m-d') %}
 {%
   set classes = [
     'node--eventalicious',
     'cu-event-card--mini',
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    is_past ? 'eventalicious-past-event',
   ]
 %}
 {% include '@union/_event-card.twig' with {
   event_date: node.event_date.value,
   heading: node.label,
-  show_time: false,
+  datetime_format: is_past ? 'M j, Y',
   link_url: url,
   link_alt: node.label,
   attributes: attributes.addClass(classes)|without('role'),

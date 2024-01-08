@@ -66,15 +66,16 @@
  * @see template_preprocess_node()
  */
 #}
+{% set is_past = 'now'|date('Y-m-d') > node.event_date.value|date('Y-m-d') %}
 {%
   set classes = [
     'node--eventalicious',
     'node--' ~ node.bundle|clean_class,
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    is_past ? 'eventalicious-past-event',
   ]
 %}
-
 {% set rendered_content %}
 {{ title_suffix }}
 {% endset %}
@@ -84,7 +85,7 @@ wrapper HTML and is difficult to trim for use as the link `title` attribute. #}
   event_date: node.event_date.value,
   heading: node.label,
   media: node.field_representative_image.isEmpty() ? false : content.field_representative_image,
-  show_time: false,
+  datetime_format: is_past ? 'M j, Y',
   link_url: url,
   link_alt: node.label,
   attributes: attributes.addClass(classes)|without('role'),
