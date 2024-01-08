@@ -35,7 +35,7 @@ final class IlrCommands extends DrushCommands {
   /**
    * Load the 'host entity' and output its url. This is useful for 'nested' paragraphs.
    */
-  #[CLI\Command(name: 'ilr:paragraphs-host', aliases: ['ph', 'phe'])]
+  #[CLI\Command(name: 'ilr:paragraphs-host', aliases: ['ph', 'phe', 'parahost'])]
   #[CLI\Argument(name: 'pid', description: 'The paragraphs item id.')]
   #[CLI\Usage(name: 'ilr:paragraphs-host 1234', description: 'Output the url for the host entity for paragraph 1234')]
   public function pheCommand($pid, $options = []) {
