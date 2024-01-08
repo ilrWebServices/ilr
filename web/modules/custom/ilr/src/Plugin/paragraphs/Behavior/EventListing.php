@@ -7,6 +7,7 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Logger\LoggerChannelTrait;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\ilr\Entity\EventNodeInterface;
 use Drupal\ilr\Event\IlrEvent;
@@ -31,6 +32,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class EventListing extends ParagraphsBehaviorBase {
+
+  use LoggerChannelTrait;
 
   const LOCALIST_HOSTNAME = 'events.cornell.edu';
 
@@ -81,6 +84,8 @@ class EventListing extends ParagraphsBehaviorBase {
       'events_shown' => 6,
       'keywords' => 'ILR',
       'sources' => '_localist',
+      'daterange_start' => NULL,
+      'daterange_end' => NULL,
     ];
   }
 
@@ -88,6 +93,11 @@ class EventListing extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    // There is no #parents key in $form, but this may be OK hardcoded.
+    $parents = $form['#parents'];
+    $parents_input_name = array_shift($parents);
+    $parents_input_name .= '[' . implode('][', $parents) . ']';
+
     $form['events_shown'] = [
       '#type' => 'number',
       '#title' => $this->t('Number of events'),
@@ -96,7 +106,31 @@ class EventListing extends ParagraphsBehaviorBase {
       '#max' => 100,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'events_shown') ?? 3,
       // '#description' => $this->t('If using a pager, this is the number of events per page.'),
-      '#required' => TRUE,
+      '#states' => [
+        'enabled' => [
+          [':input[name="' . $parents_input_name . '[daterange_start]"]' => ['filled' => FALSE]],
+          'or',
+          [':input[name="' . $parents_input_name . '[daterange_end]"]' => ['filled' => FALSE]],
+        ],
+        'required' => [
+          [':input[name="' . $parents_input_name . '[daterange_start]"]' => ['filled' => FALSE]],
+          'or',
+          [':input[name="' . $parents_input_name . '[daterange_end]"]' => ['filled' => FALSE]],
+        ],
+      ],
+    ];
+
+    $form['daterange_start'] = [
+      '#type' => 'date',
+      '#title' => $this->t('Start date'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'daterange_start') ?? '',
+    ];
+
+    $form['daterange_end'] = [
+      '#type' => 'date',
+      '#title' => $this->t('End date'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'daterange_end') ?? '',
+      '#description' => $this->t('Note that localist events can only span 365 days.'),
     ];
 
     $keyword_terms_options = [];
@@ -147,8 +181,22 @@ class EventListing extends ParagraphsBehaviorBase {
   /**
    * {@inheritdoc}
    */
+  public function validateBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    if ((!$form_state->getValue('daterange_start') || !$form_state->getValue('daterange_end')) && empty($form_state->getValue('events_shown'))) {
+      $form_state->setError($form['events_shown'], $this->t('Number of events is required unless both start and end are specified.'));
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function submitBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
     $filtered_values = $this->filterBehaviorFormSubmitValues($paragraph, $form, $form_state);
+
+    // Unset the events_shown limit when both the start and end date are specified.
+    if ($filtered_values['daterange_start'] ?? FALSE && $filtered_values['daterange_end'] ?? FALSE) {
+      $filtered_values['events_shown'] = '';
+    }
 
     // Change the keyword array to `$tid => label()`. The values from the
     // checkboxes are initially `$tid => $tid`.
@@ -171,6 +219,8 @@ class EventListing extends ParagraphsBehaviorBase {
     $items = [];
     $events = [];
     $events_shown = (int) $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'events_shown');
+    $daterange_start = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'daterange_start') ?? '';
+    $daterange_end = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'daterange_end') ?? '';
     $keywords = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'keywords') ?? [];
     $sources = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'sources') ?? [];
     $node_view_builder = $this->entityTypeManager->getViewBuilder('node');
@@ -182,7 +232,7 @@ class EventListing extends ParagraphsBehaviorBase {
     }
 
     // Get Localist events, if set as source and any are found.
-    if (array_key_exists('_localist', $sources) && $localist_data = $this->getLocalistEvents($keywords)) {
+    if (array_key_exists('_localist', $sources) && $localist_data = $this->getLocalistEvents($keywords, $daterange_start, $daterange_end, $events_shown)) {
       foreach ($localist_data['events'] as $localist_event) {
         $events[] = new IlrEvent(
           $localist_event['event']['title'],
@@ -201,7 +251,18 @@ class EventListing extends ParagraphsBehaviorBase {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $query->accessCheck(TRUE);
     $query->condition('type', $sources, 'IN');
-    $query->condition('event_date.value', $date_today->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), '>=');
+
+    if ($daterange_start) {
+      $query->condition('event_date.value', $daterange_start, '>=');
+    }
+    else {
+      $query->condition('event_date.value', $date_today->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), '>=');
+    }
+
+    if ($daterange_end) {
+      $query->condition('event_date.value', $daterange_end, '<=');
+    }
+
     $keywords_group = $query->orConditionGroup();
 
     foreach ($keywords as $keyword_tid => $keyword) {
@@ -210,6 +271,13 @@ class EventListing extends ParagraphsBehaviorBase {
 
     $query->condition($keywords_group);
     $query->sort('event_date.value', 'DESC');
+
+    // If a limit was set, limit the query. This may be limited further if
+    // localist events are selected, too, but we'll never need _more_ than the
+    // limit.
+    if ($events_shown) {
+      $query->range(0, $events_shown);
+    }
 
     $event_node_ids = $query->execute();
 
@@ -279,18 +347,43 @@ class EventListing extends ParagraphsBehaviorBase {
    * @return array
    *   An array of Localist events.
    */
-  protected function getLocalistEvents(array $keywords): array {
-    $cid = 'localist_events:' . implode(',', $keywords);
+  protected function getLocalistEvents(array $keywords, string $daterange_start = 'now', string $daterange_end = '', string $events_shown = NULL): array {
+    $cid = 'localist_events:' . implode(',', $keywords) . ':' . $daterange_start . ':' . $daterange_end . ':' . $events_shown;
     $json_cache_item = \Drupal::cache()->get($cid);
 
     if ($json_cache_item) {
       return $json_cache_item->data;
     }
 
+    $date_start = new \DateTime($daterange_start);
+    $date_start->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
+
     $query_params = new QueryString();
-    $query_params->add('days', 364);
-    $query_params->add('pp', 100);
-    // $query_params->add('distinct', true);
+    $query_params->add('start', $date_start->format(DateTimeItemInterface::DATE_STORAGE_FORMAT));
+
+    if ($daterange_end) {
+      $date_end = new \DateTime($daterange_end);
+      $date_end->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
+
+      $interval = new \DateInterval('P1Y');
+      $date_year = clone $date_start;
+      $date_year->add($interval);
+
+      if ($date_end > $date_year) {
+        $query_params->add('end', $date_year->format(DateTimeItemInterface::DATE_STORAGE_FORMAT));
+      }
+      else {
+        $query_params->add('end', $date_end->format(DateTimeItemInterface::DATE_STORAGE_FORMAT));
+      }
+    }
+    else {
+      $query_params->add('days', 364);
+    }
+
+    // If a limit was set, limit the results per-page (pp). This may be limited
+    // further if node events are selected, too, but we'll never need _more_
+    // than the limit.
+    $query_params->add('pp', $events_shown ?: 100);
 
     // Multiple keywords appear to be OR'd.
     foreach ($keywords as $keyword) {
@@ -311,10 +404,18 @@ class EventListing extends ParagraphsBehaviorBase {
     try {
       $json_response = file_get_contents($url);
       $data = json_decode($json_response, TRUE);
+
+      // Log a warning if there are additional pages in the response and the
+      // page limit is at the max of 100.
+      if ($data['page']['size'] === 100 && $data['page']['total'] > 1) {
+        $this->getLogger('event listing')->warning('There was more than one page of results for %url.', ['%url' => $url]);
+      }
+
       \Drupal::cache()->set($cid, $data, time() + (60 * 60 * 2));
     }
     catch (Exception $e) {
       $data = [];
+      $this->getLogger('event listing')->error($e->getMessage());
     }
 
     restore_error_handler();
@@ -328,7 +429,6 @@ class EventListing extends ParagraphsBehaviorBase {
   public function settingsSummary(Paragraph $paragraph) {
     $summary = [];
 
-    // If it's a wide section, display the summary.
     if ($events_shown = $paragraph->getBehaviorSetting($this->getPluginId(), 'events_shown')) {
       $summary[] = [
         'label' => 'Events shown',
@@ -336,7 +436,20 @@ class EventListing extends ParagraphsBehaviorBase {
       ];
     }
 
-    // Display the frame position.
+    if ($daterange_start = $paragraph->getBehaviorSetting($this->getPluginId(), 'daterange_start')) {
+      $summary[] = [
+        'label' => 'Start',
+        'value' => $daterange_start,
+      ];
+    }
+
+    if ($daterange_end = $paragraph->getBehaviorSetting($this->getPluginId(), 'daterange_end')) {
+      $summary[] = [
+        'label' => 'End',
+        'value' => $daterange_end,
+      ];
+    }
+
     if ($keywords = $paragraph->getBehaviorSetting($this->getPluginId(), 'keywords')) {
       $summary[] = [
         'label' => 'Keywords',

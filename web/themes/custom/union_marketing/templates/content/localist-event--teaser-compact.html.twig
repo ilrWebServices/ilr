@@ -17,12 +17,18 @@
  * @see https://schema.org/Event
  */
 #}
-
+{% set is_past = 'now'|date('Y-m-d') > event.event_instances.0.event_instance.start|date('Y-m-d') %}
+{%
+  set classes = [
+    is_past ? 'eventalicious-past-event',
+  ]
+%}
 {% include '@union/_event-card.twig' with {
+  attributes: attributes.addClass(classes),
   event_date: event.event_instances.0.event_instance.start,
   heading: event.title,
   media: event.ilr_image,
-  show_time: false,
+  datetime_format: is_past ? 'M j, Y',
   link_url: event.localist_url,
-  link_alt: event.title
+  link_alt: event.title,
 } only %}
