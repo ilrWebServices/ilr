@@ -1,0 +1,23 @@
+diff --git a/core/modules/menu_ui/menu_ui.module b/core/modules/menu_ui/menu_ui.module
+index 0349a38b3c..75978f813a 100644
+--- a/core/modules/menu_ui/menu_ui.module
++++ b/core/modules/menu_ui/menu_ui.module
+@@ -228,7 +228,9 @@ function menu_ui_form_node_form_alter(&$form, FormStateInterface $form_state) {
+   $type_menus = Menu::loadMultiple($type_menus_ids);
+   $available_menus = [];
+   foreach ($type_menus as $menu) {
+-    $available_menus[$menu->id()] = $menu->label();
++    if ($menu->access('update')) {
++      $available_menus[$menu->id()] = $menu->label();
++    }
+   }
+   if ($defaults['id']) {
+     $default = $defaults['menu_name'] . ':' . $defaults['parent'];
+@@ -245,7 +247,6 @@ function menu_ui_form_node_form_alter(&$form, FormStateInterface $form_state) {
+   $form['menu'] = [
+     '#type' => 'details',
+     '#title' => t('Menu settings'),
+-    '#access' => \Drupal::currentUser()->hasPermission('administer menu'),
+     '#open' => (bool) $defaults['id'],
+     '#group' => 'advanced',
+     '#attached' => [

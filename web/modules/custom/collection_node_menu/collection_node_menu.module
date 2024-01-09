@@ -1,6 +1,59 @@
 <?php
 
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountInterface;
+
+/**
+ * Implements hook_menu_access().
+ *
+ * Give all but delete access to owners of collections that contain menu entities.
+ *
+ * Checks if the current menu is in a collection and if the user is an owner.
+ */
+function collection_node_menu_menu_access(EntityInterface $entity, string $operation, AccountInterface $account): AccessResultInterface {
+  // Prevent deleting menus.
+  if ($operation === 'delete') {
+    return AccessResult::neutral();
+  }
+
+  /** @var \Drupal\Collection\CollectionContentManager $collection_content_manager */
+  $collection_content_manager = \Drupal::service('collection.content_manager');
+
+  /** @var \Drupal\Collection\Entity\CollectionInterface $collection */
+  foreach ($collection_content_manager->getCollectionsForEntity($entity) as $collection) {
+    if (in_array($account->id(), $collection->getOwnerIds())) {
+      return AccessResult::allowed();
+    }
+  }
+
+  return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_menu_link_content_access().
+ *
+ * Checks if the current user has the permission to edit or delete menu link
+ * items in the menu.
+ *
+ * @param \Drupal\menu_link_content\MenuLinkContentInterface $entity
+ */
+function collection_node_menu_menu_link_content_access(EntityInterface $entity, string $operation, AccountInterface $account): AccessResultInterface {
+  /** @var \Drupal\Collection\CollectionContentManager $collection_content_manager */
+  $collection_content_manager = \Drupal::service('collection.content_manager');
+  $menu = \Drupal::entityTypeManager()->getStorage('menu')->load($entity->getMenuName());
+
+  /** @var \Drupal\Collection\Entity\CollectionInterface $collection */
+  foreach ($collection_content_manager->getCollectionsForEntity($menu) as $collection) {
+    if (in_array($account->id(), $collection->getOwnerIds())) {
+      return AccessResult::allowed();
+    }
+  }
+
+  return AccessResult::neutral();
+}
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().

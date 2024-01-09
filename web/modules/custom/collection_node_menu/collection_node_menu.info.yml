@@ -1,6 +1,6 @@
 name: 'Collection Node Menu'
 type: module
-description: 'Helper module to set the default menu on node add/edit forms.'
+description: 'Helper module to set the default menu on node add/edit forms and alter menu access permissions.'
 core_version_requirement: ^9.4 || ^10
 package: 'ILR'
 dependencies:
