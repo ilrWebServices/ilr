@@ -194,7 +194,7 @@ class EventListing extends ParagraphsBehaviorBase {
     $filtered_values = $this->filterBehaviorFormSubmitValues($paragraph, $form, $form_state);
 
     // Unset the events_shown limit when both the start and end date are specified.
-    if ($filtered_values['daterange_start'] ?? FALSE && $filtered_values['daterange_end'] ?? FALSE) {
+    if (!empty($filtered_values['daterange_start']) && !empty($filtered_values['daterange_end'])) {
       $filtered_values['events_shown'] = '';
     }
 
