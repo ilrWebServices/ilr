@@ -1,59 +1,113 @@
 <?php
 
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountInterface;
+
+/**
+ * Implements hook_menu_access().
+ *
+ * Give all but delete access to owners of collections that contain menu entities.
+ *
+ * Checks if the current menu is in a collection and if the user is an owner.
+ */
+function collection_node_menu_menu_access(EntityInterface $entity, string $operation, AccountInterface $account): AccessResultInterface {
+  // Prevent deleting menus.
+  if ($operation === 'delete') {
+    return AccessResult::neutral();
+  }
+
+  /** @var \Drupal\Collection\CollectionContentManager $collection_content_manager */
+  $collection_content_manager = \Drupal::service('collection.content_manager');
+
+  /** @var \Drupal\Collection\Entity\CollectionInterface $collection */
+  foreach ($collection_content_manager->getCollectionsForEntity($entity) as $collection) {
+    if (in_array($account->id(), $collection->getOwnerIds())) {
+      return AccessResult::allowed();
+    }
+  }
+
+  return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_menu_link_content_access().
+ *
+ * Checks if the current user has the permission to edit or delete menu link
+ * items in the menu.
+ *
+ * @param \Drupal\menu_link_content\MenuLinkContentInterface $entity
+ */
+function collection_node_menu_menu_link_content_access(EntityInterface $entity, string $operation, AccountInterface $account): AccessResultInterface {
+  /** @var \Drupal\Collection\CollectionContentManager $collection_content_manager */
+  $collection_content_manager = \Drupal::service('collection.content_manager');
+  $menu = \Drupal::entityTypeManager()->getStorage('menu')->load($entity->getMenuName());
+
+  /** @var \Drupal\Collection\Entity\CollectionInterface $collection */
+  foreach ($collection_content_manager->getCollectionsForEntity($menu) as $collection) {
+    if (in_array($account->id(), $collection->getOwnerIds())) {
+      return AccessResult::allowed();
+    }
+  }
+
+  return AccessResult::neutral();
+}
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * Update the menu settings for nodes in collections with menus. This allows
+ * the menu settings to appear even if the menu ThirdPartySettings have not
+ * been configured for this bundle.
+ *
+ * This needs to run before menu_ui_form_node_form_alter() because we
+ * temporarily alter the `available_menus` third party setting on the content
+ * type. It also requires a local patch on menu_ui_form_node_form_alter() to
+ * only hide individual menus from the menu item field form element, and not
+ * that entire element.
  */
 function collection_node_menu_form_node_form_alter(&$form, FormStateInterface $form_state) {
-  $form_object = $form_state->getFormObject();
-  $node = $form_object->getEntity();
-  $collections = [];
-  $collection_menus = [];
+  $node = $form_state->getFormObject()->getEntity();
+  $available_menus = $node->type->entity->getThirdPartySetting('menu_ui', 'available_menus');
 
   if ($node->bundle() !== 'page') {
     return;
   }
 
-  // Update the menu settings for nodes in collections with menus. This allows
-  // the menu settings to appear even if the menu ThirdPartySettings have not
-  // been configured for this bundle.
-  $collection_items = \Drupal::service('collection.content_manager')->getCollectionItemsForEntity($node);
+  $collections = [];
+  $collection_menus = [];
 
-  if (!empty($collection_items)) {
+  // For existing pages, check for a canonical collection.
+  if (!$node->isNew() && $collection_items = \Drupal::service('collection.content_manager')->getCollectionItemsForEntity($node)) {
     foreach ($collection_items as $collection_item) {
-      $collection_menus = [];
-
       if ($collection_item->isCanonical()) {
         $collections[] = $collection_item->collection->entity;
       }
     }
   }
-
-  // Check query param here.
-  $collection_storage = \Drupal::entityTypeManager()->getStorage('collection');
-  if (($collection_id_from_param = \Drupal::request()->query->get('collection')) && ($collection_from_param = $collection_storage->load($collection_id_from_param))) {
-    $collections[] = $collection_from_param;
+  // For new pages, check the query param for a collection.
+  else {
+    $collection_storage = \Drupal::entityTypeManager()->getStorage('collection');
+    if (($collection_id_from_param = \Drupal::request()->query->get('collection')) && ($collection_from_param = $collection_storage->load($collection_id_from_param))) {
+      $collections[] = $collection_from_param;
+    }
   }
 
   foreach ($collections as $collection) {
     // Check to see if the collection has one or more menus in it.
     foreach ($collection->findItems('menu') as $collection_item_menu) {
-      $collection_menu = $collection_item_menu->item->entity;
-      $collection_menus[$collection_menu->id()] = $collection_menu;
+      $collection_menus[$collection_item_menu->item->entity->id()] = $collection_item_menu->item->entity;
     }
   }
 
-  foreach ($collection_menus as $collection_menu_id => $collection_menu) {
-    // Load the entity type config for the node.
-    $type = $form_object->getEntity()->type->entity;
-    $available_menus = $type->getThirdPartySetting('menu_ui', 'available_menus');
-
-    // Check if the type can be added to the main menu, but not the
-    // collection menu. Override it if so.
-    if (in_array('main', $available_menus) && !in_array($collection_menu->id(), $available_menus)) {
+  foreach ($collection_menus as $collection_menu) {
+    // If this page can be added to a collection menu, make that the only option.
+    if (!in_array($collection_menu->id(), $available_menus)) {
       $available_menus = [$collection_menu->id()];
-      $type->setThirdPartySetting('menu_ui', 'available_menus', $available_menus);
     }
   }
+
+  $node->type->entity->setThirdPartySetting('menu_ui', 'available_menus', $available_menus);
 }
