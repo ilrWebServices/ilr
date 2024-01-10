@@ -18,7 +18,7 @@
   }
 }
 
-.article--postalicious {
+.article--postalicious:not(.node--view-mode-main-content) {
   @include breakpoint(md) {
     .bvg--cornell-alternate-branding & {
       border-top: 1px solid $gray-light;
@@ -283,5 +283,11 @@
 .node--postalicious.cu-card--teaser {
   .cu-card__content p:last-of-type {
     margin-bottom: 0;
+  }
+}
+
+.article--postalicious.node--view-mode-main-content {
+  .cu-heading:first-of-type a {
+    text-decoration: none;
   }
 }

@@ -1,0 +1,52 @@
+uuid: da4c7a48-10d3-4be5-9add-48e39928b0b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.main_content
+    - field.field.node.post.body
+    - field.field.node.post.field_authors
+    - field.field.node.post.field_components
+    - field.field.node.post.field_published_date
+    - field.field.node.post.field_representative_image
+    - field.field.node.post.field_subtitle
+    - node.type.post
+  module:
+    - entity_reference_revisions
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.post.main_content
+targetEntityType: node
+bundle: post
+mode: main_content
+content:
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_subtitle:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  blog_collection: true
+  blog_tags: true
+  body: true
+  field_authors: true
+  field_published_date: true
+  field_representative_image: true
+  links: true
+  search_api_excerpt: true

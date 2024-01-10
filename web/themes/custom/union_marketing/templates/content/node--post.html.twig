@@ -80,7 +80,7 @@
 
   {{ title_prefix }}
   {% if not page and view_mode != 'default' %}
-    <h2{{title_attributes}}>
+    <h2{{title_attributes.addClass('cu-heading')}}>
       <a href="{{ url }}" rel="bookmark">{{ label }}</a>
     </h2>
   {% endif %}

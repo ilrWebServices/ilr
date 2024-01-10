@@ -43,6 +43,7 @@ class ListStyle extends ParagraphsBehaviorBase {
     'grid-bricks--reversed' => 'Bricks (reversed)',
     'grid-featured' => 'Featured Grid',
     'banner' => 'Banner',
+    'main_content' => 'Main content',
   ];
 
   /**
@@ -329,6 +330,9 @@ class ListStyle extends ParagraphsBehaviorBase {
 
       case 'banner':
         return 'banner';
+
+      case 'main_content':
+        return 'main_content';
 
       default:
         return 'teaser';
