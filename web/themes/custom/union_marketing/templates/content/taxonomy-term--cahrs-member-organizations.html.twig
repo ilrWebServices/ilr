@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Theme override for a cahrs member org taxonomy term.
+ *
+ * Available variables:
+ * - url: URL of the current term.
+ * - name: (optional) Name of the current term.
+ * - content: Items for the content of the term (fields and description).
+ *   Use 'content' to print them all, or print a subset such as
+ *   'content.description'. Use the following code to exclude the
+ *   printing of a given child element:
+ *   @code
+ *   {{ content|without('description') }}
+ *   @endcode
+ * - attributes: HTML attributes for the wrapper.
+ * - page: Flag for the full page state.
+ * - term: The taxonomy term entity, including:
+ *   - id: The ID of the taxonomy term.
+ *   - bundle: Machine name of the current vocabulary.
+ * - view_mode: View mode, e.g. 'full', 'teaser', etc.
+ *
+ * @see template_preprocess_taxonomy_term()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'organization',
+    not term.isPublished() ? 'term--unpublished',
+    view_mode ? 'organization--' ~ view_mode|clean_class,
+    not term.field_logo.empty() ? 'organization--with-logo'
+  ]
+%}
+{% if view_mode == 'teaser' %}
+<div itemscope itemtype="https://schema.org/Organization" {{ attributes.addClass(classes) }}>
+  {{ content.field_logo }}
+  <div itemprop="name"><a href="{{ url }}">{{ name }}</a></div>
+  {{ content.field_industry }}
+  {{ title_suffix }}
+</div>
+{% else %}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if name and not page %}
+    <h2><a href="{{ url }}">{{ name }}</a></h2>
+  {% endif %}
+  {{ title_suffix }}
+  {{ content }}
+</div>
+{% endif %}
