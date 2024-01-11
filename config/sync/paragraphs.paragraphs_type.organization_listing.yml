@@ -1,0 +1,29 @@
+uuid: 79f4aa47-bc51-4549-9b10-7cf21bbe7eed
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+    - ilr_organizations
+id: organization_listing
+label: 'Organization listing'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  ilr_organization_listing:
+    enabled: true
+  list_styles:
+    enabled: true
+    list_styles:
+      grid-compact: grid-compact
+      list-compact: list-compact
+      grid: 0
+      grid-bricks: 0
+      grid-bricks--reversed: 0
+      grid-featured: 0
+      banner: 0
+      main_content: 0
+    columns_enabled: 0
+    columns_min: ''
+    columns_max: ''

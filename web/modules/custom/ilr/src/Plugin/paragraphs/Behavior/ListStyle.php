@@ -306,6 +306,7 @@ class ListStyle extends ParagraphsBehaviorBase {
       'event_listing',
       'people_listing',
       'project_listing',
+      'organization_listing',
     ]);
   }
 
