@@ -1,0 +1,13 @@
+uuid: 2d470d37-e7d2-4aa7-aa12-0800babcb646
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr_organizations
+third_party_settings:
+  ilr_organizations:
+    is_organization: 1
+name: 'CAHRS member organizations'
+vid: cahrs_member_organizations
+description: ''
+weight: 0

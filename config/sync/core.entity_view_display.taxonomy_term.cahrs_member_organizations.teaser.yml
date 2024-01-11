@@ -1,0 +1,42 @@
+uuid: 88e1470c-0b63-4282-9e11-829d87686b9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.teaser
+    - field.field.taxonomy_term.cahrs_member_organizations.field_external_link
+    - field.field.taxonomy_term.cahrs_member_organizations.field_industry
+    - field.field.taxonomy_term.cahrs_member_organizations.field_logo
+    - image.style.medium_preserve_aspect
+    - taxonomy.vocabulary.cahrs_member_organizations
+  module:
+    - media
+id: taxonomy_term.cahrs_member_organizations.teaser
+targetEntityType: taxonomy_term
+bundle: cahrs_member_organizations
+mode: teaser
+content:
+  field_industry:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_logo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium_preserve_aspect
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  description: true
+  extra_field_ilr_section_navigation: true
+  field_external_link: true
+  search_api_excerpt: true
