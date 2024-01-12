@@ -312,7 +312,7 @@ function collection_blogs_form_collection_form_builder($entity_type, CollectionT
     return;
   }
 
-  $collection_type->unsetThirdPartySetting('contains_blogs', 'contains_blogs');
+  $collection_type->unsetThirdPartySetting('collection_blogs', 'contains_blogs');
 }
 
 /**
