@@ -12,7 +12,7 @@ entity_type: taxonomy_term
 bundle: cahrs_member_organizations
 label: Logo
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
