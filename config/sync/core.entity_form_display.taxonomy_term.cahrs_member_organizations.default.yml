@@ -1,0 +1,67 @@
+uuid: 9ebe52ef-47c4-4afa-8c05-b85c1f176ca9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.cahrs_member_organizations.field_external_link
+    - field.field.taxonomy_term.cahrs_member_organizations.field_industry
+    - field.field.taxonomy_term.cahrs_member_organizations.field_logo
+    - taxonomy.vocabulary.cahrs_member_organizations
+  module:
+    - link
+    - media_library
+    - media_library_edit
+    - path
+id: taxonomy_term.cahrs_member_organizations.default
+targetEntityType: taxonomy_term
+bundle: cahrs_member_organizations
+mode: default
+content:
+  field_external_link:
+    type: link_default
+    weight: 2
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_industry:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_logo:
+    type: media_library_widget
+    weight: 1
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '0'
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  description: true

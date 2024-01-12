@@ -1,0 +1,19 @@
+uuid: c25e6a4e-4620-4ed8-9442-23f0d72b5a74
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_industry
+    - taxonomy.vocabulary.cahrs_member_organizations
+id: taxonomy_term.cahrs_member_organizations.field_industry
+field_name: field_industry
+entity_type: taxonomy_term
+bundle: cahrs_member_organizations
+label: Industry
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

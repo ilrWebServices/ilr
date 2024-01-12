@@ -1,0 +1,49 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\collection\Entity\CollectionType;
+use Drupal\pathauto\PathautoState;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Url;
+use Drupal\pathauto\PathautoPatternInterface;
+use Drupal\Core\Database\Query\PagerSelectExtender;
+use Drupal\ilr\IlrLayoutEntityHelper;
+use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
+use Drupal\taxonomy\VocabularyInterface;
+
+/**
+ * @file
+ * Contains ilr_organizations.module.
+ */
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * - Add a 'Is organization' setting to vocabularies.
+ */
+function ilr_organizations_form_taxonomy_vocabulary_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $vocabulary = $form_state->getFormObject()->getEntity();
+
+  $form['is_organization'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Is organization'),
+    // '#description' => t('If enabled, a collection of this type will represent a blog.'),
+    '#default_value' => $vocabulary->getThirdPartySetting('ilr_organizations', 'is_organization'),
+    '#weight' => 1
+  ];
+
+  $form['#entity_builders'][] = 'ilr_organizations_form_taxonomy_vocabulary_form_builder';
+}
+
+/**
+ * Entity builder for the vocabulary configuration entity.
+ */
+function ilr_organizations_form_taxonomy_vocabulary_form_builder($entity_type, VocabularyInterface $vocabulary, &$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('is_organization')) {
+    $vocabulary->setThirdPartySetting('ilr_organizations', 'is_organization', $form_state->getValue('is_organization'));
+    return;
+  }
+
+  $vocabulary->unsetThirdPartySetting('ilr_organizations', 'is_organization');
+}

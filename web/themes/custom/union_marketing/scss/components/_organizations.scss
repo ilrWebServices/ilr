@@ -1,0 +1,21 @@
+.organization--teaser.organization--with-logo {
+  display: grid;
+  grid-template-columns: 100px auto;
+  grid-template-rows: repeat(2, auto);
+  column-gap: var(--cu-ps0);
+
+  .field--field-logo {
+    grid-row: 1/-1;
+  }
+}
+
+.organization [itemprop="name"] {
+  --cu-text-color: var(--cu-color-brand);
+  --cu-font-weight: 400;
+}
+
+.cu-component--organization-listing {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cu-vr1);
+}

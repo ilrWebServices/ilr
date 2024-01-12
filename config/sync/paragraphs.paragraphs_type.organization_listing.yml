@@ -1,30 +1,29 @@
-uuid: 52fe0bca-8852-4313-b118-918bf7b0bb24
+uuid: 79f4aa47-bc51-4549-9b10-7cf21bbe7eed
 langcode: en
 status: true
 dependencies:
   module:
     - ilr
-id: simple_collection_listing
-label: 'Post listing'
+    - ilr_organizations
+id: organization_listing
+label: 'Organization listing'
 icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
-  evergreen:
+  ilr_organization_listing:
     enabled: true
   list_styles:
     enabled: true
     list_styles:
-      grid: grid
       grid-compact: grid-compact
       list-compact: list-compact
-      grid-bricks: grid-bricks
-      grid-bricks--reversed: grid-bricks--reversed
-      grid-featured: grid-featured
-      main_content: main_content
+      grid: 0
+      grid-bricks: 0
+      grid-bricks--reversed: 0
+      grid-featured: 0
       banner: 0
+      main_content: 0
     columns_enabled: 0
     columns_min: ''
     columns_max: ''
-  post_listing:
-    enabled: true

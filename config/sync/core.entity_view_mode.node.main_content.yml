@@ -1,0 +1,10 @@
+uuid: 302bd04e-94b0-4822-b26c-f3f9af91bf57
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.main_content
+label: 'Main content'
+targetEntityType: node
+cache: true

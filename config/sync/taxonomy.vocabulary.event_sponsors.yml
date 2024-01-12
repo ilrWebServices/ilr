@@ -1,7 +1,12 @@
 uuid: 31248d30-a00f-4b9a-9608-35fb92cd2692
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ilr_organizations
+third_party_settings:
+  ilr_organizations:
+    is_organization: 1
 name: 'Event Sponsors'
 vid: event_sponsors
 description: ''

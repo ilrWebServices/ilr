@@ -1,0 +1,25 @@
+id: cahrs_member_orgs
+label: CAHRS member organizations
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'csv_url'
+  path: 'https://raw.githubusercontent.com/ilrWebServices/cars_migration_data/main/orgs.csv'
+  header_offset: 0
+  ids:
+    - id
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  name: name
+  field_external_link: url
+  field_industry: industry
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: cahrs_member_organizations
+  validate: true
+migration_dependencies:
+  required: {  }
+  optional: {  }
