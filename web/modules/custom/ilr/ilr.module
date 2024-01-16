@@ -464,7 +464,7 @@ function ilr_node_view(array &$build, EntityInterface $entity, EntityViewDisplay
     if (!empty($logo)) {
       $build['media_outlet_name'] = [
         '#type' => 'inline_template',
-        '#template' => '<div class="media-mention__outlet">{{name}}</div>',
+        '#template' => '<div class="cu-x-media-mention__outlet">{{name}}</div>',
         '#context' => ['name' => $logo->label()],
       ];
     }

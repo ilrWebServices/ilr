@@ -72,7 +72,7 @@
 #}
 {% set rendered_content %}
   {{ title_suffix }}
-  {% if node.bundle == 'media_mention' %}{{ content.media_outlet_logo }}{% endif %}
+  {% if node.bundle == 'media_mention' %}{{ content.media_outlet_name }}{% endif %}
   {{ content.body }}
 {% endset %}
 
