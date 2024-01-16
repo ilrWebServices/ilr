@@ -24,11 +24,6 @@ targetEntityType: node
 bundle: media_mention
 mode: teaser_compact
 content:
-  blog_collection:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
-    region: banner
   blog_tags:
     settings: {  }
     third_party_settings: {  }
@@ -51,15 +46,16 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  media_outlet_logo:
+  media_outlet_name:
     settings: {  }
     third_party_settings: {  }
     weight: 0
     region: content
 hidden:
+  blog_collection: true
   field_experts: true
   field_external_link: true
   field_representative_image: true
   links: true
-  media_outlet_name: true
+  media_outlet_logo: true
   search_api_excerpt: true
