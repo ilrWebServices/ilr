@@ -121,7 +121,6 @@ display:
           title: ''
           default_argument_type: collection
           default_argument_options: {  }
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -245,7 +244,6 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-        - user
       tags:
         - 'config:core.entity_view_display.collection.blog.banner'
         - 'config:core.entity_view_display.collection.blog.default'
@@ -265,7 +263,6 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-        - user
       tags:
         - 'config:core.entity_view_display.collection.blog.banner'
         - 'config:core.entity_view_display.collection.blog.default'

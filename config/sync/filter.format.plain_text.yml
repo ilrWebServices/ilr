@@ -11,6 +11,21 @@ name: 'Plain text'
 format: plain_text
 weight: 10
 filters:
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
+  filter_footnotes:
+    id: filter_footnotes
+    provider: footnotes
+    status: false
+    weight: 0
+    settings:
+      footnotes_collapse: '0'
+      footnotes_html: '0'
+      footnotes_css: true
   filter_html_escape:
     id: filter_html_escape
     provider: filter
@@ -24,12 +39,6 @@ filters:
     weight: 0
     settings:
       filter_url_length: 72
-  filter_autop:
-    id: filter_autop
-    provider: filter
-    status: true
-    weight: 0
-    settings: {  }
   token_filter:
     id: token_filter
     provider: token_filter
@@ -37,11 +46,3 @@ filters:
     weight: 0
     settings:
       replace_empty: '1'
-  filter_footnotes:
-    id: filter_footnotes
-    provider: footnotes
-    status: false
-    weight: 0
-    settings:
-      footnotes_collapse: '0'
-      footnotes_html: '0'

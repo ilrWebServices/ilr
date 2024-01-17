@@ -12,7 +12,6 @@ dependencies:
     - facets_summary
     - options
     - search_api
-    - views_autocomplete_filters
 id: resource_library_search
 label: 'Resource library search'
 module: views
@@ -253,7 +252,6 @@ display:
           title: ''
           default_argument_type: collection
           default_argument_options: {  }
-          default_argument_skip_url: false
           summary_options: {  }
           summary:
             sort_order: asc

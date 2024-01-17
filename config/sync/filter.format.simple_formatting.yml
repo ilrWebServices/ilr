@@ -9,6 +9,15 @@ name: 'Simple Formatting'
 format: simple_formatting
 weight: 0
 filters:
+  filter_footnotes:
+    id: filter_footnotes
+    provider: footnotes
+    status: false
+    weight: 0
+    settings:
+      footnotes_collapse: '0'
+      footnotes_html: '0'
+      footnotes_css: true
   filter_html:
     id: filter_html
     provider: filter
@@ -18,14 +27,12 @@ filters:
       allowed_html: '<br> <p> <h2> <h3> <strong> <em> <a href> <ul> <ol> <li>'
       filter_html_help: false
       filter_html_nofollow: false
-  filter_footnotes:
-    id: filter_footnotes
-    provider: footnotes
-    status: false
-    weight: 0
-    settings:
-      footnotes_collapse: '0'
-      footnotes_html: '0'
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: 10
+    settings: {  }
   token_filter:
     id: token_filter
     provider: token_filter
@@ -33,9 +40,3 @@ filters:
     weight: 0
     settings:
       replace_empty: '0'
-  filter_htmlcorrector:
-    id: filter_htmlcorrector
-    provider: filter
-    status: true
-    weight: 10
-    settings: {  }

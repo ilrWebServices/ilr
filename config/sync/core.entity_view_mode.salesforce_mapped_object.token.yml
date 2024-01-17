@@ -6,5 +6,6 @@ dependencies:
     - salesforce_mapping
 id: salesforce_mapped_object.token
 label: Token
+description: ''
 targetEntityType: salesforce_mapped_object
 cache: true

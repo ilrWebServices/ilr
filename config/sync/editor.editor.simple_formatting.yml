@@ -23,6 +23,8 @@ settings:
         - heading2
         - heading3
     ckeditor5_list:
-      reversed: false
-      startIndex: false
+      properties:
+        reversed: false
+        startIndex: false
+      multiBlock: true
 image_upload: {  }
