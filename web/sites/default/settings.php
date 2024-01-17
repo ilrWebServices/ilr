@@ -1000,6 +1000,21 @@ $settings['sftp'] = [
 ];
 
 /**
+ * Switch to symfony_mailer when using SMTP for email.
+ */
+if (getenv('SMTP_HOST')) {
+  $config['system.mail']['interface'] = [ 'default' => 'symfony_mailer' ];
+
+  $config['system.mail']['mailer_dsn'] = [
+    'scheme' => 'smtp',
+    'host' => getenv('SMTP_HOST'),
+    'port' => getenv('SMTP_PORT') ?: 587,
+    'user' => getenv('SMTP_USER'),
+    'password' => getenv('SMTP_PASS'),
+  ];
+}
+
+/**
  * Load local development override configuration, if available.
  *
  * Create a settings.local.php file to override variables on secondary (staging,
