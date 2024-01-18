@@ -1505,4 +1505,8 @@ function ilr_mail_alter(&$message) {
   // reporting. See
   // https://help.campaignmonitor.com/classic-transactional-emails#group-smtp
   $message['headers']['X-Cmail-GroupName'] = \Drupal::config('system.site')->get('name');
+
+  // Disable Campaign Monitor transactional email tracking features.
+  $message['headers']['X-Cmail-TrackOpens'] = 'false';
+  $message['headers']['X-Cmail-TrackClicks'] = 'false';
 }
