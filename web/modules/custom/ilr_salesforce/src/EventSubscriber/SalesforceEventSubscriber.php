@@ -10,6 +10,8 @@ use Drupal\salesforce_mapping\Event\SalesforcePullEvent;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\ilr_salesforce\CourseToTopicsTrait;
 use Drupal\salesforce_mapping\Event\SalesforcePushAllowedEvent;
+use Drupal\salesforce_mapping\Event\SalesforcePushParamsEvent;
+use Drupal\webform\WebformSubmissionInterface;
 
 /**
  * Subscriber for SalesForce events.
@@ -40,6 +42,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       SalesforceEvents::PULL_QUERY => 'pullQueryAlter',
       SalesforceEvents::PULL_PRESAVE => 'pullPresave',
       SalesforceEvents::PUSH_ALLOWED => 'pushAllowed',
+      SalesforceEvents::PUSH_PARAMS => 'pushParams',
     ];
   }
 
@@ -120,6 +123,47 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       // this method and be removed.
       if ($variant !== 'cahrs_event') {
         $event->disallowPush();
+      }
+    }
+  }
+
+  /**
+   * Push params event callback.
+   *
+   * @param \Drupal\salesforce_mapping\Event\SalesforcePushParamsEvent $event
+   *   The event.
+   */
+  public function pushParams(SalesforcePushParamsEvent $event) {
+    $entity = $event->getEntity();
+    $sf_object_name = $event->getMapping()->getSalesforceObjectType() ?? '';
+
+    // This is a hard-coded list of SF objects that have the fields
+    // `Custom1_Question__c`, `Custom1_Answer__c`, `Custom2_Question__c`, and
+    // `Custom2_Answer__c`.
+    $custom_q_and_a_objects = ['Touchpoint__c'];
+
+    if ($entity instanceof WebformSubmissionInterface && in_array($sf_object_name, $custom_q_and_a_objects)) {
+      /** @var \Drupal\webform\WebformSubmissionInterface $entity */
+      $data = $entity->getData();
+      $params = $event->getParams();
+
+      // Add any custom questions.
+      $webform = $entity->getWebform();
+      $custom_1_element = $webform->getElement('custom_1_answer');
+      $custom_2_element = $webform->getElement('custom_2_answer');
+
+      if ($custom_1_element && $custom_1_element['#access'] && isset($data['custom_1_answer'])) {
+        $custom_1_question = $custom_1_element['#title'] ?? 'Custom question 1';
+        $custom_1_answer = is_array($data['custom_1_answer']) ? implode(';', $data['custom_1_answer']) : $data['custom_1_answer'];
+        $params->setParam('Custom1_Question__c', substr($custom_1_question, 0, 255));
+        $params->setParam('Custom1_Answer__c', substr($custom_1_answer, 0, 255));
+      }
+
+      if ($custom_2_element && $custom_2_element['#access'] && isset($data['custom_2_answer'])) {
+        $custom_2_question = $custom_2_element['#title'] ?? 'Custom question 2';
+        $custom_2_answer = is_array($data['custom_2_answer']) ? implode(';', $data['custom_2_answer']) : $data['custom_2_answer'];
+        $params->setParam('Custom2_Question__c', substr($custom_2_question, 0, 255));
+        $params->setParam('Custom2_Answer__c', substr($custom_2_answer, 0, 255));
       }
     }
   }
