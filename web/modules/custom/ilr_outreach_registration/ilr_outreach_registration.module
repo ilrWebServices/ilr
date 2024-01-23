@@ -82,7 +82,8 @@ function ilr_outreach_registration_webform_options_cahrs_companies_alter(array &
 
   foreach ($sf_results->records() as $record) {
     $name = $record->field('Name');
-    $options[$name] = $name;
+    $id = $record->id()->__toString();
+    $options[$id] = $name;
   }
 
   // Cache these options for 24 hours.
