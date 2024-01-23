@@ -135,35 +135,60 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
    */
   public function pushParams(SalesforcePushParamsEvent $event) {
     $entity = $event->getEntity();
+    $params = $event->getParams();
     $sf_object_name = $event->getMapping()->getSalesforceObjectType() ?? '';
 
-    // This is a hard-coded list of SF objects that have the fields
-    // `Custom1_Question__c`, `Custom1_Answer__c`, `Custom2_Question__c`, and
-    // `Custom2_Answer__c`.
-    $custom_q_and_a_objects = ['Touchpoint__c'];
-
-    if ($entity instanceof WebformSubmissionInterface && in_array($sf_object_name, $custom_q_and_a_objects)) {
+    if ($entity instanceof WebformSubmissionInterface) {
       /** @var \Drupal\webform\WebformSubmissionInterface $entity */
       $data = $entity->getData();
-      $params = $event->getParams();
-
-      // Add any custom questions.
       $webform = $entity->getWebform();
-      $custom_1_element = $webform->getElement('custom_1_answer');
-      $custom_2_element = $webform->getElement('custom_2_answer');
 
-      if ($custom_1_element && $custom_1_element['#access'] && isset($data['custom_1_answer'])) {
-        $custom_1_question = $custom_1_element['#title'] ?? 'Custom question 1';
-        $custom_1_answer = is_array($data['custom_1_answer']) ? implode(';', $data['custom_1_answer']) : $data['custom_1_answer'];
-        $params->setParam('Custom1_Question__c', substr($custom_1_question, 0, 255));
-        $params->setParam('Custom1_Answer__c', substr($custom_1_answer, 0, 255));
+      // This is a hard-coded list of SF objects that have the fields
+      // `Custom1_Question__c`, `Custom1_Answer__c`, `Custom2_Question__c`, and
+      // `Custom2_Answer__c`.
+      $custom_q_and_a_objects = ['Touchpoint__c'];
+
+      if (in_array($sf_object_name, $custom_q_and_a_objects)) {
+        // Add any custom questions.
+        $custom_1_element = $webform->getElement('custom_1_answer');
+        $custom_2_element = $webform->getElement('custom_2_answer');
+
+        if ($custom_1_element && $custom_1_element['#access'] && isset($data['custom_1_answer'])) {
+          $custom_1_question = $custom_1_element['#title'] ?? 'Custom question 1';
+          $custom_1_answer = is_array($data['custom_1_answer']) ? implode(';', $data['custom_1_answer']) : $data['custom_1_answer'];
+          $params->setParam('Custom1_Question__c', substr($custom_1_question, 0, 255));
+          $params->setParam('Custom1_Answer__c', substr($custom_1_answer, 0, 255));
+        }
+
+        if ($custom_2_element && $custom_2_element['#access'] && isset($data['custom_2_answer'])) {
+          $custom_2_question = $custom_2_element['#title'] ?? 'Custom question 2';
+          $custom_2_answer = is_array($data['custom_2_answer']) ? implode(';', $data['custom_2_answer']) : $data['custom_2_answer'];
+          $params->setParam('Custom2_Question__c', substr($custom_2_question, 0, 255));
+          $params->setParam('Custom2_Answer__c', substr($custom_2_answer, 0, 255));
+        }
       }
 
-      if ($custom_2_element && $custom_2_element['#access'] && isset($data['custom_2_answer'])) {
-        $custom_2_question = $custom_2_element['#title'] ?? 'Custom question 2';
-        $custom_2_answer = is_array($data['custom_2_answer']) ? implode(';', $data['custom_2_answer']) : $data['custom_2_answer'];
-        $params->setParam('Custom2_Question__c', substr($custom_2_question, 0, 255));
-        $params->setParam('Custom2_Answer__c', substr($custom_2_answer, 0, 255));
+      // Send address info to Touchpoints. We can't map these values because
+      // different variants can use different address fields.
+      if ($sf_object_name === 'Touchpoint__c') {
+        $address_variant = $data['variant_address'] ?? '';
+
+        // Default the address values to the basic address field.
+        if (($address_variant === 'basic_address' || $data['variant'] === 'cahrs_event') && !empty($data['address'])) {
+          $params->setParam('Street_Address__c', $data['address']['address'] ?: '');
+          $params->setParam('City__c', $data['address']['city'] ?: '');
+          $params->setParam('State__c', $data['address']['state_province'] ?: '');
+          $params->setParam('Zip_Postal_Code__c', $data['address']['postal_code'] ?: '');
+          $params->setParam('Country__c', $data['address']['Country__c'] ?: '');
+        }
+        // If there is international address info, use those values instead.
+        elseif ($address_variant === 'international_address' && !empty($data['address_intl'])) {
+          $params->setParam('Street_Address__c', $data['address_intl']['address_line1'] ?: '');
+          $params->setParam('City__c', $data['address_intl']['locality'] ?: '');
+          $params->setParam('State__c', $data['address_intl']['administrative_area'] ?: '');
+          $params->setParam('Zip_Postal_Code__c', $data['address_intl']['postal_code'] ?: '');
+          $params->setParam('Country__c', $data['address_intl']['country_code'] ?: '');
+        }
       }
     }
   }
