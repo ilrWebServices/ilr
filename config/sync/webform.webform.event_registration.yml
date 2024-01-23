@@ -46,6 +46,13 @@ elements: |-
     '#title': Organization
     '#autocomplete_items': certified_organizations
     '#required': true
+  company_account:
+    '#type': select
+    '#title': 'Company account'
+    '#options':
+      - 'Change in variants'
+    '#required': true
+    '#access': false
   title:
     '#type': textfield
     '#title': 'Job title'
