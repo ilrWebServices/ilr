@@ -9,6 +9,7 @@ use Drupal\salesforce_mapping\Event\SalesforceQueryEvent;
 use Drupal\salesforce_mapping\Event\SalesforcePullEvent;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\ilr_salesforce\CourseToTopicsTrait;
+use Drupal\salesforce_mapping\Event\SalesforcePushAllowedEvent;
 
 /**
  * Subscriber for SalesForce events.
@@ -38,6 +39,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     return [
       SalesforceEvents::PULL_QUERY => 'pullQueryAlter',
       SalesforceEvents::PULL_PRESAVE => 'pullPresave',
+      SalesforceEvents::PUSH_ALLOWED => 'pushAllowed',
     ];
   }
 
@@ -96,6 +98,29 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
 
     if ($event->getMapping()->id() === 'course_certificate_node') {
       $this->pullPresaveCourseCertificateNode($event);
+    }
+  }
+
+  /**
+   * Push allowed event callback.
+   *
+   * @param \Drupal\salesforce_mapping\Event\SalesforcePushAllowedEvent $event
+   *   The event.
+   */
+  public function pushAllowed(SalesforcePushAllowedEvent $event) {
+
+    if ($event->getMapping()->id() === 'event_registration_touchpoint') {
+      /** @var \Drupal\webform\WebformSubmissionInterface $submission */
+      $submission = $event->getEntity();
+      $submission_data = $submission->getData();
+      $variant = $submission_data['variant'] ?? '';
+
+      // If this is not a CAHRS event, don't allow a push. At some point in the
+      // future, more or all event registration variants will be allowed, and
+      // this method and be removed.
+      if ($variant !== 'cahrs_event') {
+        $event->disallowPush();
+      }
     }
   }
 
