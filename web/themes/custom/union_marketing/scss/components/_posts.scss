@@ -187,37 +187,6 @@
     margin-top: var(--cu-vr1);
   }
 
-  .persona--view-mode-teaser-compact {
-    background-color: #F7F6F6;
-    grid-template-columns: 1fr 1.25fr;
-
-    .cu-person__info {
-      & > * {
-        margin: 0;
-      }
-
-      gap: 1em;
-      padding: var(--cu-vr0) var(--cu-ps0) var(--cu-vr0) 0;
-    }
-
-    .persona__name {
-      --cu-font-size: var(--cu-ms0);
-      --cu-font-weight: 400;
-    }
-
-    .cu-person__title {
-      --cu-font-size: var(--cu-ms-2);
-      letter-spacing: 0.02em;
-    }
-
-      .cu-person__image {
-      margin-bottom: unset;
-
-      .cu-image {
-        border-radius: unset;
-      }
-    }
-  }
 
   @include breakpoint(sm) {
     .cu-grid {
@@ -275,7 +244,6 @@
   // display embeds the node view, which places all content into a section, but
   // displays the tags after that rendered node.
   .field-type--dynamic-entity-reference + .blog-meta {
-    margin-top: calc(var(--cu-component-margin-bottom, var(--cu-vr2)) * -1);
     position: relative;
   }
 }
