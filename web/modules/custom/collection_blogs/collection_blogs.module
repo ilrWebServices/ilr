@@ -133,7 +133,7 @@ function collection_blogs_taxonomy_term_view(array &$build, EntityInterface $ent
   foreach ($mapping as $component_name => $term_reference_field_name) {
     $component_used = FALSE;
 
-    if ($display instanceof LayoutBuilderEntityViewDisplay) {
+    if ($display instanceof LayoutBuilderEntityViewDisplay && $display->isLayoutBuilderEnabled()) {
       foreach ($ilr_layout_entity_helper->getEntitySections($entity) as $section) {
         foreach ($section->getComponents() as $component) {
           if (strpos($component->getPluginId(), $component_name)) {
