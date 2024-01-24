@@ -57,9 +57,6 @@ $config['system.performance']['js']['preprocess'] = FALSE;
 
 // Skip file system permissions hardening.
 $settings['skip_permissions_hardening'] = TRUE;
-
-// Allow local access to media entity canonical URLs (e.g. /media/1).
-$config['media.settings']['standalone_url'] = TRUE;
 ```
 
 ### Clean install
