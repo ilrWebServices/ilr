@@ -78,34 +78,6 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
     $is_blog = (bool) $collection->type->entity->getThirdPartySetting('collection_blogs', 'contains_blogs');
 
     if ($is_blog) {
-      // Create a section paragraph with a collection listing nested inside it
-      // and add it to the collection entity components field.
-      $section = Paragraph::create([
-        'type' => 'section',
-      ]);
-
-      $listing = Paragraph::create([
-        'type' => 'simple_collection_listing',
-      ]);
-
-      $settings = [
-        'post_listing' => ['collection' => $collection->id(), 'count' => 12, 'use_pager' => 1],
-        'list_styles' => ['list_style' => 'grid'],
-      ];
-      $listing->setAllBehaviorSettings($settings);
-      $listing->save();
-      $section->field_components->appendItem($listing);
-      $section->save();
-      $collection->field_sections->appendItem($section);
-
-      if ($collection->save()) {
-        $collection_item_add_url = Url::fromRoute('collection_item.new', ['collection' => $collection->id()]);
-        $this->messenger->addMessage($this->t('%collection_name created. <a href="@collection_add_url">Add content</a> to your blog.', [
-          '%collection_name' => $collection->label(),
-          '@collection_add_url' => $collection_item_add_url->toString(),
-        ]));
-      }
-
       // Load the categories vocabulary that was created with this collection.
       $collection_items = $collection->findItemsByAttribute('blog_taxonomy_categories', 'blog_' . $collection->id() . '_categories');
 
