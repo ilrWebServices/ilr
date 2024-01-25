@@ -375,7 +375,7 @@ handlers:
       sender_mail: ''
       sender_name: ''
       subject: 'Thank you for registering: [webform_submission:source-title]'
-      body: "<p>Dear {{ data.first_name }},</p>\r\n\r\n<p>Thank you for registering for <a href=\"https://www.ilr.cornell.edu{{ webform_token('[webform_submission:source-url:path]', webform_submission) }}\">{{ webform_token('[webform_submission:source-title]', webform_submission) }}</a>.</p>\r\n\r\n<p>You will receive a follow-up email confirmation with the event details.</p>\r\n\r\n<p>Thank You.</p>"
+      body: "<p>Dear {{ data.first_name }},</p>\r\n\r\n<p>Thank you for registering for <a href=\"https://www.ilr.cornell.edu{{ webform_token('[webform_submission:source-url:path]', webform_submission) }}\">{{ webform_token('[webform_submission:source-title]', webform_submission) }}</a>.</p>\r\n\r\n<p>A follow-up email confirmation with details will be sent prior to the event.</p>\r\n\r\n<p>Thank You.</p>"
       excluded_elements: {  }
       ignore_access: false
       exclude_empty: true
