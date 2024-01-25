@@ -1003,7 +1003,10 @@ $settings['sftp'] = [
  * Switch to symfony_mailer when using SMTP for email.
  */
 if (getenv('SMTP_HOST')) {
-  $config['system.mail']['interface'] = [ 'default' => 'symfony_mailer' ];
+  $config['system.mail']['interface'] = [
+    'default' => 'symfony_mailer',
+    'webform' => 'webform_symfony_mailer',
+  ];
 
   $config['system.mail']['mailer_dsn'] = [
     'scheme' => 'smtp',

@@ -1,0 +1,96 @@
+diff --git a/src/Plugin/Mail/WebformSymfonyMailer.php b/src/Plugin/Mail/WebformSymfonyMailer.php
+new file mode 100644
+index 000000000..a1778f6e9
+--- /dev/null
++++ b/src/Plugin/Mail/WebformSymfonyMailer.php
+@@ -0,0 +1,90 @@
++<?php
++
++namespace Drupal\webform\Plugin\Mail;
++
++use Drupal\Component\Render\MarkupInterface;
++use Drupal\Core\Mail\MailFormatHelper;
++use Drupal\Core\Mail\Plugin\Mail\SymfonyMailer;
++use Symfony\Component\Mime\Email;
++use Drupal\Core\Utility\Error;
++
++/**
++ * Extends the Drupal core symfony mailer backend to support HTML email.
++ *
++ * @Mail(
++ *   id = "webform_symfony_mailer",
++ *   label = @Translation("Webform symfony mailer"),
++ *   description = @Translation("Sends the message as plain text or HTML, using Drupal >10.2.x symfony_mailer interface.")
++ * )
++ */
++class WebformSymfonyMailer extends SymfonyMailer {
++
++  /**
++   * {@inheritdoc}
++   */
++  public function format(array $message) {
++    $html_parts = [];
++
++    foreach ($message['body'] as &$part) {
++      // Convert any HTML to plain-text, but keep a copy of HTML parts for the
++      // mailer.
++      if ($part instanceof MarkupInterface) {
++        $html_parts[] = $part;
++        $part = MailFormatHelper::htmlToText($part);
++      }
++      else {
++        $part = MailFormatHelper::wrapMail($part);
++      }
++    }
++
++    // Join the body array into one string.
++    $message['body'] = implode("\n\n", $message['body']);
++
++    // If there were any html parts, join them into a single string.
++    if ($html_parts) {
++      $message['html'] = implode("\n\n", $html_parts);
++    }
++
++    return $message;
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function mail(array $message) {
++    try {
++      $email = new Email();
++
++      $headers = $email->getHeaders();
++      foreach ($message['headers'] as $name => $value) {
++        if (!in_array(strtolower($name), self::SKIP_HEADERS, TRUE)) {
++          if (in_array(strtolower($name), self::MAILBOX_LIST_HEADERS, TRUE)) {
++            // Split values by comma, but ignore commas encapsulated in double
++            // quotes.
++            $value = str_getcsv($value, ',');
++          }
++          $headers->addHeader($name, $value);
++        }
++      }
++
++      $email
++        ->to($message['to'])
++        ->subject($message['subject'])
++        ->text($message['body']);
++
++
++      if (!empty($message['html'])) {
++        $email->html($message['html']);
++      }
++
++      $mailer = $this->getMailer();
++      $mailer->send($email);
++      return TRUE;
++    }
++    catch (\Exception $e) {
++      Error::logException($this->logger, $e);
++      return FALSE;
++    }
++  }
++
++}
