@@ -16,8 +16,11 @@ matchers:
       metadata: ''
       bundles:
         blog: blog
+        content_section: content_section
         publication_issue: publication_issue
+        resource_library: resource_library
         subsite: subsite
+        subsite_blog: subsite_blog
       group_by_bundle: false
       substitution_type: canonical
       limit: 100
