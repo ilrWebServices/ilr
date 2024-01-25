@@ -81,49 +81,49 @@ field_mappings:
     drupal_field_value: '[webform_submission:values:utm_values:utm_campaign:raw]'
     direction: drupal_sf
     salesforce_field: Touchpoint_UTM_Campaign__c
-    id: 8
+    id: 7
     description: ''
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:utm_values:utm_medium:raw]'
     direction: drupal_sf
     salesforce_field: Touchpoint_UTM_Medium__c
-    id: 9
+    id: 8
     description: ''
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:utm_values:utm_source:raw]'
     direction: drupal_sf
     salesforce_field: Touchpoint_UTM_Source__c
-    id: 10
+    id: 9
     description: ''
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:utm_values:utm_content:raw]'
     direction: drupal_sf
     salesforce_field: Touchpoint_UTM_Content__c
-    id: 11
+    id: 10
     description: ''
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:utm_values:utm_term:raw]'
     direction: drupal_sf
     salesforce_field: Touchpoint_UTM_Term__c
-    id: 12
+    id: 11
     description: ''
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:source-url]'
     direction: drupal_sf
     salesforce_field: Origin__c
-    id: 13
+    id: 12
     description: ''
   -
     drupal_field_type: Constant
     drupal_field_value: 'Event Registration'
     direction: drupal_sf
     salesforce_field: Source__c
-    id: 14
+    id: 13
     description: ''
 status: true
 dependencies:
