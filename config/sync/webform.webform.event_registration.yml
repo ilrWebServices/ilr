@@ -133,6 +133,13 @@ elements: |-
   opt_in:
     '#type': checkbox
     '#title': 'Opt-in for updates on similar programs'
+  opt_in_multiple:
+    '#type': checkboxes
+    '#access': false
+    '#title': 'Sign me up for updates from:'
+    '#options':
+      CJI: CJI
+      CAROW: CAROW
   outreach_marketing_personas:
     '#type': hidden
     '#title': outreach_marketing_personas
@@ -770,3 +777,16 @@ variants:
         submission_detail_email:
           settings:
             to_mail: pjg97@cornell.edu
+  cji_carow_opt_in:
+    id: override
+    variant_id: cji_carow_opt_in
+    element_key: variant
+    label: 'CJI/Carow opt-in'
+    notes: ''
+    status: true
+    weight: 16
+    settings:
+      debug: false
+      settings: {  }
+      elements: "opt_in:\r\n  '#access': false\r\nopt_in_multiple:\r\n  '#access': true"
+      handlers: {  }
