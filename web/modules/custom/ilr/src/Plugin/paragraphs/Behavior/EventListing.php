@@ -86,6 +86,7 @@ class EventListing extends ParagraphsBehaviorBase {
       'sources' => '_localist',
       'daterange_start' => NULL,
       'daterange_end' => NULL,
+      'reverse' => NULL,
     ];
   }
 
@@ -131,6 +132,13 @@ class EventListing extends ParagraphsBehaviorBase {
       '#title' => $this->t('End date'),
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'daterange_end') ?? '',
       '#description' => $this->t('Note that localist events can only span 365 days.'),
+    ];
+
+    $form['reverse'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Show this listing in reverse chronological order'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'reverse') ?? FALSE,
+      '#description' => $this->t('This can be useful when displaying a list of events in the past with the most recent showing first.'),
     ];
 
     $keyword_terms_options = [];
@@ -222,6 +230,7 @@ class EventListing extends ParagraphsBehaviorBase {
     $daterange_start = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'daterange_start') ?? '';
     $daterange_end = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'daterange_end') ?? '';
     $keywords = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'keywords') ?? [];
+    $reverse = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'reverse') ?? FALSE;
     $sources = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'sources') ?? [];
     $node_view_builder = $this->entityTypeManager->getViewBuilder('node');
     $list_style = $paragraphs_entity->getBehaviorSetting('list_styles', 'list_style');
@@ -294,9 +303,17 @@ class EventListing extends ParagraphsBehaviorBase {
     }
 
     // Sort all events by start date.
-    usort($events, function($a, $b) {
-      return $a->event_start <=> $b->event_start;
-    });
+    if ($reverse) {
+      usort($events, function($a, $b) {
+        return $b->event_start <=> $a->event_start;
+      });
+    }
+    else {
+      usort($events, function($a, $b) {
+        return $a->event_start <=> $b->event_start;
+      });
+    }
+
 
     // Shorten the array to the limit.
     if ($events_shown) {
