@@ -9,16 +9,18 @@
   {% set full = class.entity.field_class_full.value == '1' %}
   {% set registration_closed = class.entity.field_close_registration.value < 'now'|date('Y-m-d\\TH:i:s')  %}
   {% set disabled = null %}
+  {% set delivery_method = (class.entity.field_delivery_method.value) ? class.entity.field_delivery_method.value|lower : '' %}
+  {% set asynchronous = ('date driven' in delivery_method) ? true : false %}
 
   {% set content %}
     <div class="details">
-    {% if class.entity.field_delivery_method.value and 'online' in class.entity.field_delivery_method.value|lower %}
+    {% if 'online' in delivery_method %}
       <div class="cu-class-delivery-method">Online</div>
     {% else %}
       <div class="cu-class-delivery-method">{{ drupal_field('field_address', 'node', class.entity.id, 'teaser') }}</div>
     {% endif %}
 
-    {% if class.session_dates|length %}
+    {% if class.session_dates|length and not asynchronous %}
       <div class="class-sessions">
       {% for session_date in class.session_dates %}
         {# @see ClassSession::baseFieldDefinitions() session_date field setDisplayOptions() #}
