@@ -60,12 +60,6 @@ class PathAliasEntities {
   public function getPathAliasEntities() {
     $entities = [];
     $alias = $this->requestStack->getCurrentRequest()->getPathInfo();
-
-    // We start by checking if the current path is actually an alias.
-    if ($alias === $this->pathAliasManager->getPathByAlias($alias)) {
-      return $entities;
-    }
-
     $partial_alias = '';
     $parts = explode('/', ltrim($alias, '/'));
 
