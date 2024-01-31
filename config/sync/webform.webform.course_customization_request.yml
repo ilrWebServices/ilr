@@ -72,6 +72,8 @@ elements: |-
     '#type': webform_actions
     '#title': 'Submit button(s)'
     '#submit__label': Request
+  utm_values:
+    '#type': utm_values
 css: ''
 javascript: ''
 settings:

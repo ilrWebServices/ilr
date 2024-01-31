@@ -37,6 +37,8 @@ elements: |-
     '#type': webform_actions
     '#title': 'Submit button(s)'
     '#submit__label': Submit
+  utm_values:
+    '#type': utm_values
 css: ''
 javascript: ''
 settings:

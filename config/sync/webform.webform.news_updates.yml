@@ -41,6 +41,8 @@ elements: |-
       '#type': webform_actions
       '#title': 'Submit button(s)'
       '#submit__label': 'Notify me of new content'
+  utm_values:
+    '#type': utm_values
 css: ''
 javascript: ''
 settings:
