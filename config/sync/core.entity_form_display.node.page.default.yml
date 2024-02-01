@@ -28,6 +28,13 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+  behavior_alt_display:
+    type: boolean_checkbox
+    weight: 52
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   body:
     type: text_textarea_with_summary
     weight: 35
@@ -78,9 +85,9 @@ content:
       form_display_mode: default
       default_paragraph_type: section
       features:
-        duplicate: duplicate
-        collapse_edit_all: collapse_edit_all
         add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
     third_party_settings: {  }
   ief_collection_items:
     weight: -10
@@ -143,5 +150,4 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  behavior_alt_display: true
+hidden: {  }
