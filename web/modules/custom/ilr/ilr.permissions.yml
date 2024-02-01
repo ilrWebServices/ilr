@@ -8,5 +8,7 @@ view explore program webform submissions:
   title: 'View explore program application form submissions'
 administer memories webform submissions:
   title: 'Administer memories form submissions'
+set alternate display:
+  title: 'Set alternate display for content'
 permission_callbacks:
   - Drupal\ilr\UnpublishedPermissions::nodeTypePermissions

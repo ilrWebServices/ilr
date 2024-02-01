@@ -10,6 +10,7 @@ dependencies:
     - entity_browser
     - file
     - filter
+    - ilr
     - media
     - node
     - paragraphs
@@ -58,6 +59,7 @@ permissions:
   - 'edit resource_library collection'
   - 'edit subsite collection'
   - 'edit subsite_blog collection'
+  - 'set alternate display'
   - 'update any media'
   - 'use text format full_html'
   - 'view all media revisions'
