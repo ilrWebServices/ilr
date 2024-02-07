@@ -215,6 +215,10 @@ class EventListing extends ParagraphsBehaviorBase {
     if ((!$form_state->getValue('daterange_start') || !$form_state->getValue('daterange_end')) && (empty($form_state->getValue('events_shown')) && !$form_state->getValue('past_only'))) {
       $form_state->setError($form['events_shown'], $this->t('Number of events is required unless both start and end are specified.'));
     }
+
+    if (in_array('_localist', $form_state->getValue('sources')) && $form_state->getValue('past_only')) {
+      $form_state->setError($form['past_only'], $this->t('The current date cannot be used as the end date with Localist due to API limitations.'));
+    }
   }
 
   /**
