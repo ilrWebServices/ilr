@@ -87,6 +87,7 @@ class EventListing extends ParagraphsBehaviorBase {
       'daterange_start' => NULL,
       'daterange_end' => NULL,
       'reverse' => NULL,
+      'past_only' => NULL,
     ];
   }
 
@@ -118,6 +119,9 @@ class EventListing extends ParagraphsBehaviorBase {
           'or',
           [':input[name="' . $parents_input_name . '[daterange_end]"]' => ['filled' => FALSE]],
         ],
+        'disabled' => [
+          [':input[name="' . $parents_input_name . '[past_only]"]' => ['checked' => TRUE]],
+        ],
       ],
     ];
 
@@ -132,6 +136,24 @@ class EventListing extends ParagraphsBehaviorBase {
       '#title' => $this->t('End date'),
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'daterange_end') ?? '',
       '#description' => $this->t('Note that localist events can only span 365 days.'),
+      '#states' => [
+        'invisible' => [
+          [':input[name="' . $parents_input_name . '[past_only]"]' => ['checked' => TRUE]],
+        ],
+      ],
+    ];
+
+    $form['past_only'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Use the current date as the end date'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'past_only') ?? FALSE,
+      '#states' => [
+        'invisible' => [
+          [':input[name="' . $parents_input_name . '[daterange_start]"]' => ['filled' => FALSE]],
+          'or',
+          [':input[name="' . $parents_input_name . '[daterange_end]"]' => ['filled' => TRUE]],
+        ],
+      ],
     ];
 
     $form['reverse'] = [
@@ -190,7 +212,7 @@ class EventListing extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function validateBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
-    if ((!$form_state->getValue('daterange_start') || !$form_state->getValue('daterange_end')) && empty($form_state->getValue('events_shown'))) {
+    if ((!$form_state->getValue('daterange_start') || !$form_state->getValue('daterange_end')) && (empty($form_state->getValue('events_shown')) && !$form_state->getValue('past_only'))) {
       $form_state->setError($form['events_shown'], $this->t('Number of events is required unless both start and end are specified.'));
     }
   }
@@ -202,7 +224,7 @@ class EventListing extends ParagraphsBehaviorBase {
     $filtered_values = $this->filterBehaviorFormSubmitValues($paragraph, $form, $form_state);
 
     // Unset the events_shown limit when both the start and end date are specified.
-    if (!empty($filtered_values['daterange_start']) && !empty($filtered_values['daterange_end'])) {
+    if (!empty($filtered_values['daterange_start']) && (!empty($filtered_values['daterange_end']) || !empty($filtered_values['past_only']))) {
       $filtered_values['events_shown'] = '';
     }
 
@@ -231,6 +253,7 @@ class EventListing extends ParagraphsBehaviorBase {
     $daterange_end = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'daterange_end') ?? '';
     $keywords = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'keywords') ?? [];
     $reverse = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'reverse') ?? FALSE;
+    $past_only = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'past_only') ?? FALSE;
     $sources = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'sources') ?? [];
     $node_view_builder = $this->entityTypeManager->getViewBuilder('node');
     $list_style = $paragraphs_entity->getBehaviorSetting('list_styles', 'list_style');
@@ -263,6 +286,10 @@ class EventListing extends ParagraphsBehaviorBase {
 
     if ($daterange_start) {
       $query->condition('event_date.value', $daterange_start, '>=');
+
+      if ($past_only) {
+        $query->condition('event_date.value', $date_today, '<');
+      }
     }
     else {
       $query->condition('event_date.value', $date_today->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), '>=');
