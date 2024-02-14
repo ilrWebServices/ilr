@@ -68,3 +68,66 @@ function ilr_removed_post_updates() {
     'ilr_post_update_create_ncp_subscription_leads' => '9.4.0',
   ];
 }
+
+/**
+ * Fix links to CAHRS pdf docs from their legacy system.
+ */
+function ilr_post_update_fix_imported_cahrs_documents(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $file_storage = $entity_type_manager->getStorage('file');
+  $node_storage = $entity_type_manager->getStorage('node');
+  $node_query = $node_storage->getQuery();
+  $node_query->accessCheck(FALSE);
+  $node_query->condition('body', '%est05.esalestrack.com/%', 'LIKE');
+  $relevant_nids = $node_query->execute();
+  $nodes = $node_storage->loadMultiple($relevant_nids);
+
+  foreach ($nodes as $node) {
+    $text_content = $node->body->value;
+
+    if (preg_match_all('/https?:\/\/est05\.esalestrack\.com\/\/?esalestrack\/content\/content.ashx\?(?:aid=2181\&amp;system_filename\=|file=)([^.]+).pdf/mi', $text_content, $matches, PREG_SET_ORDER)) {
+      foreach ($matches as $match) {
+        $file_query = $file_storage->getQuery();
+        $file_query->accessCheck(FALSE);
+        $file_query->condition('filename', '%' . $match[1] . '%', 'LIKE');
+        $fids = $file_query->execute();
+
+        if (!empty($fids)) {
+          $replacement = "/sites/default/files-d8/2023-10/$match[1].pdf";
+          $text_content = str_replace($match[0], $replacement, $text_content);
+          $node->body->value = $text_content;
+          $node->save();
+        }
+      }
+    }
+  }
+
+  $paragraph_storage = $entity_type_manager->getStorage('paragraph');
+  $paragraphs_query = $paragraph_storage->getQuery();
+  $paragraphs_query->accessCheck(FALSE);
+  $paragraphs_query->condition('type', 'rich_text');
+  $paragraphs_query->condition('field_body', '%est05.esalestrack.com/%', 'LIKE');
+  $relevant_paragraph_ids = $paragraphs_query->execute();
+  $paragraphs = $paragraph_storage->loadMultiple($relevant_paragraph_ids);
+
+  foreach ($paragraphs as $paragraph) {
+    $text_content = $paragraph->field_body->value;
+
+    if (preg_match_all('/https?:\/\/est05\.esalestrack\.com\/\/?esalestrack\/content\/content.ashx\?(?:aid=2181\&amp;system_filename\=|file=)([^.]+).pdf/mi', $text_content, $matches, PREG_SET_ORDER)) {
+      foreach ($matches as $match) {
+        $file_query = $file_storage->getQuery();
+        $file_query->accessCheck(FALSE);
+        $file_query->condition('filename', '%' . $match[1] . '%', 'LIKE');
+        $fids = $file_query->execute();
+
+        if (!empty($fids)) {
+          $replacement = "/sites/default/files-d8/2023-10/$match[1].pdf";
+          $text_content = str_replace($match[0], $replacement, $text_content);
+          $paragraph->field_body->value = $text_content;
+          $paragraph->save();
+        }
+      }
+    }
+  }
+}
+
