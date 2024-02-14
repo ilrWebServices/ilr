@@ -98,8 +98,8 @@ content:
       form_display_mode: default
       default_paragraph_type: ''
       features:
-        duplicate: duplicate
         collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
     third_party_settings: {  }
   field_sponsor:
     type: inline_entity_form_complex
