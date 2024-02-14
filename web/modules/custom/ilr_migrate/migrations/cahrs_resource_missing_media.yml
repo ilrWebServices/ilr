@@ -1,0 +1,41 @@
+id: cahrs_resource_missing_media
+label: CAHRS resource mising media
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'csv_url'
+  path: 'https://raw.githubusercontent.com/ilrWebServices/cars_migration_data/main/resources_missing.csv'
+  header_offset: 0
+  ids:
+    - resource_id
+  constants:
+    file_destination: 'public://2023-10/'
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  bundle:
+    plugin: default_value
+    default_value: file
+  name:
+    -
+      plugin: get
+      source: title
+  _file_destination:
+    plugin: concat
+    source:
+      - constants/file_destination
+      - pdf_upload
+  field_media_file:
+    -
+      plugin: file_import
+      source: pdf_html_url
+      destination: '@_file_destination'
+      file_exists: rename
+destination:
+  plugin: 'entity:media'
+  default_bundle: file
+migration_dependencies:
+  required: {  }
+  optional: {  }
