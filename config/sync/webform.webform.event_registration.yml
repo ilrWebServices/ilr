@@ -790,3 +790,44 @@ variants:
       settings: {  }
       elements: "opt_in:\r\n  '#access': false\r\nopt_in_multiple:\r\n  '#access': true"
       handlers: {  }
+  konvitz_lecture:
+    id: override
+    variant_id: konvitz_lecture
+    element_key: variant
+    label: 'Konvitz Lecture'
+    notes: ''
+    status: true
+    weight: 16
+    settings:
+      debug: false
+      settings: {  }
+      elements: "attending_online:\r\n  '#access': true\r\neventid:\r\n  '#access': false\r\nopt_in:\r\n  '#access': false\r\n"
+      handlers:
+        confirmation_email:
+          settings:
+            subject: 'Thank you for registering for the 2024 Milton Konvitz Lecture - Thirty Years Out of Genocide: Lessons on Conflict Resolution and Peace Building in Rwanda.'
+            body: |-
+              <p>Dear {{ data.first_name }},</p>
+              <p>Thank you for registering for the 2024 Milton Konvitz Lecture - Thirty Years Out of Genocide: Lessons on Conflict Resolution and Peace Building in Rwanda.</p>
+              <p>This event is geared toward an in-person audience, so we strongly prefer you join us on our Ithaca campus. If this is not possible, please use the below Zoom information.</p>
+              <p>This is a public event, which will be photographed and filmed and/or otherwise recorded. Your registration for this event constitutes your consent to such photography, live streaming, filming and/or recording, and any use in all media.</p>
+              <p>DATE AND TIME<br/>
+              Date: March 13, 2024<br/>
+              Time: 4:30 – 5:30 pm ET</p>
+              <p>LOCATION<br/>
+              ILR School<br/>
+              105 Ives Hall<br/>
+              Ithaca, NY 14853</p>
+              <p>We look forward to your attendance.</p>
+              <p>Join Online: https://cornell.zoom.us/j/95013164890?pwd=cFV4WHRLT2hpVC9laWM1OElhdWFwQT09</p>
+        submission_detail_email:
+          settings:
+            to_mail: fix_me@cornell.edu
+            subject: '2024 Konvitz lecture registration: [webform_submission:source-title]'
+            body: |-
+              {{ data.first_name }} {{ data.last_name }} has just registered for the 2024 Konvitz lecture. The data they submitted follows:<br/>
+              <br/>
+              {{ webform_token('[webform_submission:values]', webform_submission) }}<br/>
+              <br/>
+              To see a list of all submissions log in at <a href="https://d8-edit.ilr.cornell.edu/user">https://d8-edit.ilr.cornell.edu/user</a> and then go to <a href="https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A18616">https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A18616</a>
+            twig: true
