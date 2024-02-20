@@ -1,0 +1,37 @@
+{#
+ * Theme override of persona featured teasers.
+ *
+ * Available variables:
+ * - persona: The persona entity with limited access to object properties and methods.
+ * - view_mode: View mode; for example, "teaser" or "default".
+ * - label: The display name of the persona.
+ * - content: A list of content items. Use 'content' to print all content, or
+ *          content.field_name to access public fields
+ * - attributes: HTML attributes for the container element.
+ * - url: Direct URL of the current persona.
+ */
+#}
+{% set title = [] %}
+{% if content.field_title %}
+{% for key, item in content.field_title|filter((v, k) => k|first != '#') %}
+  {% set title = title|merge([item]) %}
+{% endfor %}
+{% endif %}
+
+{% set rendered_content %}
+  {{ content.field_bio }}
+  {{ title_suffix }}
+{% endset %}
+
+{% include "@union/_person.twig" with {
+  attributes: attributes.addClass([
+    'cu-person--featured',
+    'persona--' ~ persona.bundle|clean_class,
+    not persona.isPublished() ? 'persona--unpublished',
+    view_mode ? 'persona--view-mode-' ~ view_mode|clean_class
+  ]),
+  name: content.display_name,
+  title: title,
+  img: content.field_photo,
+  content: rendered_content
+} only %}

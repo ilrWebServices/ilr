@@ -1,0 +1,11 @@
+uuid: 7fa9ec98-c485-4367-9d82-a667041a0b6c
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.teaser_featured
+label: 'Featured teaser'
+description: ''
+targetEntityType: persona
+cache: true

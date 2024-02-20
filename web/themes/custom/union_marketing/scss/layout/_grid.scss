@@ -1,4 +1,4 @@
-.cu-grid.cu-grid--featured {
+.cu-grid.cu-grid--featured:not(.cu-component--people-listing) {
   @include breakpoint(sm) {
     grid-template-columns: 1fr 1fr;
 
