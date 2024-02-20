@@ -74,6 +74,9 @@ class PeopleListing extends ParagraphsBehaviorBase {
       case 'list-compact':
         return 'mini';
 
+      case 'grid-featured':
+        return 'teaser_featured';
+
       default:
         return 'teaser';
     }
