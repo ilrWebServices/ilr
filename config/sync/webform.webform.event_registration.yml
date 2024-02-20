@@ -26,6 +26,11 @@ elements: |-
     '#title': 'Variant Attendance Type'
     '#variant': override
     '#display_on': view
+  variant_translation:
+    '#type': webform_variant
+    '#title': 'Variant Translation'
+    '#variant': override
+    '#display_on': both
   variant_address:
     '#type': webform_variant
     '#title': 'Variant Address'
@@ -115,6 +120,10 @@ elements: |-
   attending_online:
     '#type': checkbox
     '#title': 'I will be attending online'
+    '#access': false
+  requires_translation:
+    '#type': checkbox
+    '#title': 'I will need translation services.'
     '#access': false
   eventid:
     '#type': salesforce_event_options
@@ -831,3 +840,16 @@ variants:
               <br/>
               To see a list of all submissions log in at <a href="https://d8-edit.ilr.cornell.edu/user">https://d8-edit.ilr.cornell.edu/user</a> and then go to <a href="https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A18616">https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A18616</a>
             twig: true
+  spanish_translation:
+    id: override
+    variant_id: spanish_translation
+    element_key: variant_translation
+    label: 'Spanish translation'
+    notes: ''
+    status: true
+    weight: 16
+    settings:
+      debug: false
+      settings: {  }
+      elements: "requires_translation:\r\n  '#type': checkbox\r\n  '#title': 'I will need Spanish translation services / Necesito servicios de traducción al español.'\r\n  '#access': true"
+      handlers: {  }
