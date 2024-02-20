@@ -147,8 +147,7 @@ elements: |-
     '#access': false
     '#title': 'Sign me up for updates from:'
     '#options':
-      CJI: CJI
-      CAROW: CAROW
+      'similar programs': 'Similar programs'
   outreach_marketing_personas:
     '#type': hidden
     '#title': outreach_marketing_personas
@@ -797,7 +796,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "opt_in:\r\n  '#access': false\r\nopt_in_multiple:\r\n  '#access': true"
+      elements: "opt_in:\r\n  '#access': false\r\nopt_in_multiple:\r\n  '#access': true\r\n  '#options':\r\n    CJI: CJI\r\n    CAROW: CAROW"
       handlers: {  }
   konvitz_lecture:
     id: override
