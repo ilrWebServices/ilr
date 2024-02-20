@@ -1,0 +1,32 @@
+uuid: 3c7d345f-8351-4d87-91a4-db5c528901fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.subsite_49
+    - webform.webform.carow_newsletter_signup
+  module:
+    - block_visibility_groups
+    - webform
+  theme:
+    - union_marketing
+id: union_marketing_carow_newsletter_signup
+theme: union_marketing
+region: content
+weight: 3
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: Carow Newsletter Signup
+  label_display: '0'
+  provider: webform
+  webform_id: carow_newsletter_signup
+  default_data: ''
+  redirect: false
+  lazy: false
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: subsite_49
