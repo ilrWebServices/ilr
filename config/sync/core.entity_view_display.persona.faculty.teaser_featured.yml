@@ -1,0 +1,69 @@
+uuid: d46e2ee8-8d64-4baf-9400-e06b0f611dbc
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.persona.teaser_featured
+    - field.field.persona.faculty.field_bio
+    - field.field.persona.faculty.field_email
+    - field.field.persona.faculty.field_first_name
+    - field.field.persona.faculty.field_last_name
+    - field.field.persona.faculty.field_phone
+    - field.field.persona.faculty.field_photo
+    - field.field.persona.faculty.field_title
+    - image.style.medium_1_1
+    - person.persona_type.faculty
+  module:
+    - layout_builder
+    - media
+    - smart_read_more_link
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: persona.faculty.teaser_featured
+targetEntityType: persona
+bundle: faculty
+mode: teaser_featured
+content:
+  display_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_bio:
+    type: smart_read_more_link
+    label: hidden
+    settings:
+      trim_length: '600'
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_photo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: content
+      image_style: medium_1_1
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  field_email: true
+  field_first_name: true
+  field_last_name: true
+  field_phone: true
+  search_api_excerpt: true
