@@ -23,12 +23,9 @@ label: 'Authenticated user'
 weight: 1
 is_admin: false
 permissions:
-  - 'access collection overview'
   - 'access content'
   - 'access toolbar'
-  - 'delete own collections'
   - 'delete own files'
-  - 'edit own collections'
   - 'use text format basic_formatting'
   - 'use text format basic_formatting_with_media'
   - 'use text format inline_svg'
