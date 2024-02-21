@@ -18,7 +18,7 @@ provider: null
 plugin: webform_block
 settings:
   id: webform_block
-  label: Carow Newsletter Signup
+  label: 'Carow Newsletter Signup'
   label_display: '0'
   provider: webform
   webform_id: carow_newsletter_signup

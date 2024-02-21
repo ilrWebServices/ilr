@@ -25,6 +25,7 @@ settings:
   webform_id: news_updates
   default_data: ''
   redirect: false
+  lazy: false
 visibility:
   condition_group:
     id: condition_group
