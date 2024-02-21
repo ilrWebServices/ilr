@@ -1,0 +1,30 @@
+uuid: 881f6d9f-7438-40c8-bdeb-cc17577acc2a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.certificate
+    - node.type.course
+    - node.type.event_landing_page
+    - node.type.page
+    - node.type.post
+    - node.type.post_experience_report
+    - node.type.project
+    - node.type.story
+  module:
+    - collection_content_permissions
+    - ilr
+id: reviewer
+label: Reviewer
+weight: 10
+is_admin: null
+permissions:
+  - 'view any certificate unpublished content'
+  - 'view any course unpublished content'
+  - 'view any event_landing_page unpublished content'
+  - 'view any page unpublished content'
+  - 'view any post unpublished content'
+  - 'view any post_experience_report unpublished content'
+  - 'view any project unpublished content'
+  - 'view any story unpublished content'
+  - 'view any unpublished canonical content in editable collections'
