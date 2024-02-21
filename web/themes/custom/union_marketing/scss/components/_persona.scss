@@ -72,3 +72,7 @@ body.persona .cu-header {
     padding: 0;
   }
 }
+
+.cu-person--featured .persona__name {
+  --cu-line-height: 1.1;
+}
