@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_form_mode.taxonomy_term.mini
     - field.field.node.event_landing_page.body
+    - field.field.node.event_landing_page.behavior_suppress_listing
     - field.field.node.event_landing_page.field_keywords
     - field.field.node.event_landing_page.field_registration_form
     - field.field.node.event_landing_page.field_representative_image
@@ -31,6 +32,13 @@ targetEntityType: node
 bundle: event_landing_page
 mode: default
 content:
+  behavior_suppress_listing:
+    type: boolean_checkbox
+    weight: 124
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   body:
     type: text_textarea_with_summary
     weight: 0

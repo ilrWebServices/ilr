@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser_compact
     - field.field.node.event_landing_page.body
+    - field.field.node.event_landing_page.behavior_suppress_listing
     - field.field.node.event_landing_page.field_keywords
     - field.field.node.event_landing_page.field_registration_form
     - field.field.node.event_landing_page.field_representative_image
@@ -89,6 +90,7 @@ content:
     weight: -5
     region: content
 hidden:
+  behavior_suppress_listing: true
   field_keywords: true
   field_registration_form: true
   field_sections: true

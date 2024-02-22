@@ -1,0 +1,21 @@
+uuid: 533501c1-080c-4fec-93b7-6919868160e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.behavior_suppress_listing
+    - node.type.event_landing_page
+id: node.event_landing_page.behavior_suppress_listing
+field_name: behavior_suppress_listing
+entity_type: node
+bundle: event_landing_page
+label: 'Hide this content from listings'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

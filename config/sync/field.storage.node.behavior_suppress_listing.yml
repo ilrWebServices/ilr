@@ -1,0 +1,18 @@
+uuid: 0bb0db1d-59ec-44f8-a78d-a62a8b9df15a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.behavior_suppress_listing
+field_name: behavior_suppress_listing
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: true
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
