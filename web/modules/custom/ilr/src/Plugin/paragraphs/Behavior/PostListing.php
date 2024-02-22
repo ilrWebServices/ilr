@@ -244,7 +244,7 @@ class PostListing extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function submitBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
-    if (empty($form_state->getValue('post_categories'))) {
+    if (empty($form_state->getValue(['blog_terms','post_categories']))) {
       $form_state->setValue('negate_category', FALSE);
     }
 
