@@ -427,7 +427,7 @@ class PostListing extends ParagraphsBehaviorBase {
       }
     }
 
-    if ($selected_category_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'post_categories')) {
+    if ($selected_category_id = $paragraph->getBehaviorSetting($this->getPluginId(), ['blog_terms', 'post_categories'])) {
       $selected_category = $this->entityTypeManager->getStorage('taxonomy_term')->load($selected_category_id);
     }
 
