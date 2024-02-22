@@ -1063,6 +1063,14 @@ function ilr_field_widget_single_element_paragraphs_form_alter(&$element, FormSt
       $admin_label = $paragraphs_entity->getBehaviorSetting('admin_section_label', 'label') ?? t('Section');
       $element['top']['type']['label']['#markup'] = '<span class="paragraph-type-label paragraph-type-label--admin-label">' . $admin_label . '</span>';
     }
+
+    // Automatically set the section heading to the left for new sections on
+    // event landing pages.
+    if ($paragraphs_entity->isNew() && $host_entity = $paragraphs_entity->getParentEntity()) {
+      if ($host_entity->bundle() === 'event_landing_page') {
+        $element['behavior_plugins']['union_section_settings']['heading_left']['#default_value'] = TRUE;
+      }
+    }
   }
 
   // Hide the subheading and subheading link on section paragraphs until the
