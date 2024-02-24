@@ -957,6 +957,7 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
   $form['auth_protected']['#group'] = 'ilr_node_settings';
   $form['behavior_alt_display']['#group'] = 'ilr_node_settings';
   $form['behavior_alt_display']['#access'] = \Drupal::currentUser()->hasPermission('set alternate display');
+  $form['behavior_suppress_listing']['#group'] = 'ilr_node_settings';
 
   /** @var \Drupal\node\NodeForm $form_object */
   $form_object = $form_state->getFormObject();
