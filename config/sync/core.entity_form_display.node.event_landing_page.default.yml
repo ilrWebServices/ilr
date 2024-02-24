@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.event_landing_page.body
     - field.field.node.event_landing_page.behavior_suppress_listing
     - field.field.node.event_landing_page.field_keywords
+    - field.field.node.event_landing_page.field_metatags
     - field.field.node.event_landing_page.field_registration_form
     - field.field.node.event_landing_page.field_representative_image
     - field.field.node.event_landing_page.field_sections
@@ -71,6 +72,14 @@ content:
     weight: 123
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_metatags:
+    type: metatag_simple
+    weight: 125
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   field_registration_form:
     type: webform_entity_reference_select
