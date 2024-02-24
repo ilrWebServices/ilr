@@ -216,19 +216,3 @@ function ilr_post_update_convert_lel_to_subsite(&$sandbox) {
   $collection->type = 'subsite_blog';
   $collection->save();
 }
-
-/**
- * Set a default value for the suppress listings field on event landing pages.
- */
-function ilr_post_update_update_suppress_listing_values(&$sandbox) {
-  $query = \Drupal::entityQuery('node');
-  $query->accessCheck(FALSE);
-  $query->condition('type', 'event_landing_page');
-  $nids = $query->execute();
-  $landing_pages = Node::loadMultiple($nids);
-
-  foreach ($landing_pages as $landing_page) {
-    $landing_page->set('behavior_suppress_listing', 0);
-    $landing_page->save();
-  }
-}
