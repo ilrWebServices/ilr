@@ -287,7 +287,11 @@ class EventListing extends ParagraphsBehaviorBase {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $query->accessCheck(TRUE);
     $query->condition('type', $sources, 'IN');
-    $query->condition('behavior_suppress_listing', 1, '!=');
+
+    $zeroOrNullGroup = $query->orConditionGroup()
+      ->condition('behavior_suppress_listing', 1, '!=')
+      ->condition('behavior_suppress_listing', NULL, 'IS NULL');
+    $query->condition($zeroOrNullGroup);
 
     if ($daterange_start) {
       $query->condition('event_date.value', $daterange_start, '>=');
