@@ -1,0 +1,24 @@
+uuid: 672b1c25-b9ba-4620-b435-cd0f9df441a0
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - person
+id: persona.field_department
+field_name: field_department
+entity_type: persona
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: communications_and_marketing
+      label: 'Communications and Marketing'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

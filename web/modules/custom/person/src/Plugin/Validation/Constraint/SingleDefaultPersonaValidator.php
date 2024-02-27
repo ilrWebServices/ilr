@@ -35,6 +35,10 @@ class SingleDefaultPersonaValidator extends ConstraintValidator implements Conta
       return;
     }
 
+    if (!($persona->person->entity)) {
+      return;
+    }
+
     $person = $persona->person->entity;
 
     $default_persona_query = $this->personaStorage->getQuery()

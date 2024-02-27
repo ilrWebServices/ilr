@@ -95,12 +95,36 @@ function template_preprocess_persona(&$variables) {
 function person_form_persona_faculty_edit_form_alter(&$form, FormStateInterface $form_state) {
   $person = $form_state->getFormObject()->getEntity()->person->entity;
   $persona_manager = \Drupal::service('persona.manager');
-  dump($persona_manager->getPersonas($person));
+  // dump($persona_manager->getPersonas($person));
+
+  dump($form['advanced']);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function person_form_persona_profile_edit_form_alter(&$form, FormStateInterface $form_state) {
+
+  // dump($form);
+
+  $form['ilr_meta'] = [
+    '#type' => 'details',
+    '#title' => t('Meta'),
+    '#group' => 'advanced',
+    '#weight' => -10,
+    '#optional' => TRUE,
+    '#open' => TRUE,
+  ];
+
+  $form['field_role']['#group'] = 'ilr_meta';
+  $form['field_department']['#group'] = 'ilr_meta';
+  $form['field_cv']['#group'] = 'ilr_meta';
+  $form['default']['#group'] = 'ilr_meta';
 }
 
 /**
  * Implements hook_form_FORM_ID_alter().
  */
 function person_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  dump($form_id);
+  // dump($form_id);
 }
