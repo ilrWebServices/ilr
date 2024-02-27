@@ -5,6 +5,7 @@
  * Contains person.module.
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Render\Element;
 
@@ -86,4 +87,20 @@ function template_preprocess_persona(&$variables) {
   $variables['label'] = $persona->display_name->value;
   //provide the alias
   $variables['url'] = $persona->toUrl()->toString();
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function person_form_persona_faculty_edit_form_alter(&$form, FormStateInterface $form_state) {
+  $person = $form_state->getFormObject()->getEntity()->person->entity;
+  $persona_manager = \Drupal::service('persona.manager');
+  dump($persona_manager->getPersonas($person));
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function person_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  dump($form_id);
 }
