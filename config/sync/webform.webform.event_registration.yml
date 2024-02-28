@@ -852,3 +852,36 @@ variants:
       settings: {  }
       elements: "requires_translation:\r\n  '#type': checkbox\r\n  '#title': 'I will need Spanish translation services / Necesito servicios de traducción al español.'\r\n  '#access': true"
       handlers: {  }
+  academic_freedom:
+    id: override
+    variant_id: academic_freedom
+    element_key: variant
+    label: 'Academic Freedom'
+    notes: ''
+    status: true
+    weight: 16
+    settings:
+      debug: false
+      settings: {  }
+      elements: "eventid:\r\n  '#access': false\r\ncompany:\r\n  '#access': false\r\ntitle:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#type': select\r\n  '#title': 'What is your role at Cornell?'\r\n  '#options':\r\n    Faculty: Faculty\r\n    Staff: Staff\r\n    Student: Student\r\n    Alumni: Alumni\r\n    Other: Other\r\ncustom_2_answer:\r\n  '#access': true\r\n  '#type': number\r\n  '#title': 'What is your graduation year?'\r\n  '#states':\r\n    visible:\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Student\r\n      - xor\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Alumni\r\n  '#min': 1950\r\n  '#max': 2030"
+      handlers:
+        confirmation_email:
+          settings:
+            subject: 'Thank you for registering for Academic Freedom and the First Amendment: Academia as a Workplace'
+            body: |-
+              Thank you for registering for Academic Freedom and the First Amendment: Academia as a Workplace. This is an in-person event on our Ithaca campus.<br />
+              <br />
+              This is a public event, which will be photographed and filmed and/or otherwise recorded. Your registration for this event constitutes your consent to such photography, live streaming, filming and/or recording, and any use in any and all media.<br />
+              <br />
+              DATE AND TIME<br />
+              Date: March 26, 2024<br />
+              Time: 4:30 – 6 p.m. EST<br />
+              <br />
+              LOCATION<br />
+              105 Ives Hall East<br />
+              Ithaca, NY 14853<br />
+              <br />
+              We look forward to your attendance.
+        submission_detail_email:
+          settings:
+            to_mail: pjg97@cornell.edu
