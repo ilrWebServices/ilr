@@ -863,7 +863,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "eventid:\r\n  '#access': false\r\ncompany:\r\n  '#access': false\r\ntitle:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#type': select\r\n  '#title': 'What is your role at Cornell?'\r\n  '#options':\r\n    Faculty: Faculty\r\n    Staff: Staff\r\n    Student: Student\r\n    Alumni: Alumni\r\n    Other: Other\r\ncustom_2_answer:\r\n  '#access': true\r\n  '#type': number\r\n  '#title': 'What is your graduation year?'\r\n  '#states':\r\n    visible:\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Student\r\n      - xor\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Alumni\r\n  '#min': 1950\r\n  '#max': 2030"
+      elements: "eventid:\r\n  '#access': false\r\ncompany:\r\n  '#access': false\r\ntitle:\r\n  '#access': false\r\nopt_in:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#type': select\r\n  '#title': 'What is your role at Cornell?'\r\n  '#options':\r\n    Faculty: Faculty\r\n    Staff: Staff\r\n    Student: Student\r\n    Alumni: Alumni\r\n    Other: Other\r\ncustom_2_answer:\r\n  '#access': true\r\n  '#type': number\r\n  '#title': 'What is your graduation year?'\r\n  '#states':\r\n    visible:\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Student\r\n      - xor\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Alumni\r\n  '#min': 1950\r\n  '#max': 2030"
       handlers:
         confirmation_email:
           settings:
