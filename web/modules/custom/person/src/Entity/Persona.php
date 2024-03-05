@@ -170,6 +170,21 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
   /**
    * {@inheritdoc}
    */
+  public function isDefault() {
+    return (bool) $this->get('default')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setDefault($default) {
+    $this->set('default', $default ? 1 : 0);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
@@ -237,6 +252,20 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
       ->setDescription(t('The time this Persona was last edited.'))
       ->setTranslatable(TRUE)
       ->setRevisionable(TRUE);
+
+    $fields['default'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(t('Default persona'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(TRUE)
+      ->setDefaultValue(FALSE)
+      ->setDisplayOptions('form', [
+        'type' => 'boolean_checkbox',
+        'settings' => [
+          'display_label' => TRUE,
+        ],
+        'weight' => 50,
+      ])
+      ->setDisplayConfigurable('form', TRUE);
 
     return $fields;
   }
