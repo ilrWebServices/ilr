@@ -425,7 +425,7 @@ handlers:
       return_path: ''
       sender_mail: ''
       sender_name: ''
-      subject: 'Event registration: [webform_submission:source-title]'
+      subject: 'Event registration: [webform_submission:source-title] ([webform_submission:values:eventid])'
       body: "<p>Submitted on [webform_submission:created]</p>\r\n\r\n<p>Submitted values are:</p>\r\n[webform_submission:values]"
       excluded_elements: {  }
       ignore_access: false
