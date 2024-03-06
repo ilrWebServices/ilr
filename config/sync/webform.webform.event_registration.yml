@@ -829,7 +829,7 @@ variants:
               <p>Join Online: https://cornell.zoom.us/j/95013164890?pwd=cFV4WHRLT2hpVC9laWM1OElhdWFwQT09</p>
         submission_detail_email:
           settings:
-            to_mail: fix_me@cornell.edu
+            to_mail: ilrschool@cornell.edu
             subject: '2024 Konvitz lecture registration: [webform_submission:source-title]'
             body: |-
               {{ data.first_name }} {{ data.last_name }} has just registered for the 2024 Konvitz lecture. The data they submitted follows:<br/>
