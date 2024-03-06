@@ -118,9 +118,8 @@ elements: |-
     '#counter_minimum': 1
     '#counter_maximum': 255
   attending_online:
-    '#type': checkbox
+    '#type': hidden
     '#title': 'I will be attending online'
-    '#access': false
   requires_translation:
     '#type': checkbox
     '#title': 'I will need translation services.'
@@ -529,7 +528,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "attending_online:\r\n  '#access': true"
+      elements: "attending_online:\r\n  '#type': checkbox"
       handlers: {  }
   basic_address:
     id: override
@@ -809,7 +808,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "attending_online:\r\n  '#access': true\r\neventid:\r\n  '#access': false\r\nopt_in:\r\n  '#access': false\r\n"
+      elements: "attending_online:\r\n  '#type': checkbox\r\neventid:\r\n  '#access': false\r\nopt_in:\r\n  '#access': false\r\n"
       handlers:
         confirmation_email:
           settings:
