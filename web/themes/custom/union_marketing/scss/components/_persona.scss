@@ -2,7 +2,9 @@ body.persona .cu-header {
   margin-bottom: var(--cu-vr1);
 }
 
-.persona--full {
+// Generally, personas in the lightbox.
+// @todo: Revisit to make more flexible
+.persona--full:not(.persona--profile) {
   display: flex;
   flex-direction: column;
 
@@ -45,6 +47,159 @@ body.persona .cu-header {
 
     .field--field-bio > h2:first-of-type {
       margin-top: var(--cu-vr1);
+    }
+  }
+}
+
+.persona--profile {
+  .cu-breadcrumb {
+    margin: 0 0 var(--cu-vr1);
+  }
+
+  .cu-banner--profile {
+    @include breakpoint(md) {
+      display: grid;
+      grid-template-columns: 45% 45%;
+      grid-column-gap: 10%;
+      margin-bottom: var(--cu-vr3);
+    }
+  }
+
+  .cu-banner__content {
+    --frame-width: 10px;
+    border-left: var(--frame-width) solid #222;
+    padding-left: var(--cu-ps2);
+    margin-bottom: var(--cu-vr1);
+    position: relative;
+
+    &::before,
+    &::after {
+      position: absolute;
+      left: 0;
+      height: var(--frame-width);
+      background: #222;
+      content: '';
+    }
+
+    &::before {
+      top: 0;
+      width: calc(var(--frame-width) * 2.75);//44px;
+    }
+
+    &::after {
+      bottom: 0;
+      width: 134px;
+    }
+
+    .banner__content {
+      display: flex;
+      flex-direction: column;
+      height: 90%;
+
+      .block-field-block--persona--profile--display-name {
+        flex-grow: 1;
+      }
+    }
+
+    .field--field-title {
+      --cu-font-weight: 400;
+    }
+
+    .field--field-department {
+      --cu-font-size: var(--cu-ms-1);
+      margin-bottom: var(--cu-vr1);
+    }
+
+    @include breakpoint(md) {
+      --frame-width: 16px;
+      padding-left: var(--cu-ps4);
+      margin-bottom: 0;
+    }
+  }
+
+  .cu-banner__media {
+    .cu-image {
+      width: 100%;
+    }
+  }
+
+  .field--field-role {
+    // @see Union/composite_heading__eyebrow-heading
+    --cu-font-size: 12px !important;
+    --cu-font-weight: 700;
+    --cu-line-height: 1 !important;
+    --cu-text-color: #{$gray-dark};
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    order: 2;
+    margin: 0;
+    padding-top: 2px;
+    margin-bottom: var(--cu-vr-2);
+  }
+
+  .cu-heading.field--display-name {
+    --cu-font-family: 'futura-pt';
+    text-transform: uppercase;
+    line-height: 1;
+
+    @include breakpoint(md) {
+      --cu-font-size: var(--cu-ms10);
+    }
+  }
+
+  .layout--twocol-section--33-67 {
+    margin-bottom: var(--cu-vr1);
+
+    .block-entity-view--persona {
+      background-color: #{$gray-lightest};
+      padding: var(--cu-vr1);
+
+      .cu-heading {
+        --cu-font-size: var(--cu-ms1);
+        // --cu-font-weight: 300;
+      }
+
+      .cu-x-field {
+        --cu-font-weight: 400;
+      }
+
+      .field-type--telephone,
+      .field-type--email {
+        --cu-font-weight: 300;
+      }
+
+      .field--label-inline .cu-heading {
+        display: none;
+      }
+
+      .field--field-cv {
+        margin-top: var(--cu-vr1);
+      }
+    }
+  }
+
+  @include breakpoint(md) {
+    // Override the layout to include a gap.
+    .layout--twocol-section--33-67 {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      column-gap: var(--cu-ps5);
+      margin-bottom: var(--cu-vr3);
+
+      .layout__region--first {
+        display: flex;
+        flex-direction: column;
+        row-gap: var(--cu-vr1);
+      }
+
+      .layout__region--second {
+        flex: 0 1 57%;
+        padding-right: var(--cu-ps4);
+      }
+    }
+
+    .block-entity-view--persona {
+      margin: 0 0 0 var(--cu-ps4);
     }
   }
 }
