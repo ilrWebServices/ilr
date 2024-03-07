@@ -1,0 +1,87 @@
+uuid: a106d825-21d1-48f7-b674-4b67ef0f10e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.persona.contact_card
+    - field.field.persona.profile.field_bio
+    - field.field.persona.profile.field_campus_address
+    - field.field.persona.profile.field_components
+    - field.field.persona.profile.field_cv
+    - field.field.persona.profile.field_department
+    - field.field.persona.profile.field_email
+    - field.field.persona.profile.field_fax
+    - field.field.persona.profile.field_first_name
+    - field.field.persona.profile.field_last_name
+    - field.field.persona.profile.field_netid
+    - field.field.persona.profile.field_phone
+    - field.field.persona.profile.field_photo
+    - field.field.persona.profile.field_role
+    - field.field.persona.profile.field_sections
+    - field.field.persona.profile.field_title
+    - person.persona_type.profile
+  module:
+    - layout_builder
+    - telephone
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: persona.profile.contact_card
+targetEntityType: persona
+bundle: profile
+mode: contact_card
+content:
+  field_campus_address:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_cv:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: minimal
+      link: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_email:
+    type: email_mailto
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_fax:
+    type: telephone_link
+    label: inline
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_phone:
+    type: telephone_link
+    label: inline
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  display_name: true
+  field_bio: true
+  field_components: true
+  field_department: true
+  field_first_name: true
+  field_last_name: true
+  field_netid: true
+  field_photo: true
+  field_role: true
+  field_sections: true
+  field_title: true
+  search_api_excerpt: true
