@@ -1,0 +1,21 @@
+uuid: 6103b429-74d6-4fa6-bbe9-c629d685b0de
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_department
+    - person.persona_type.profile
+  module:
+    - options
+id: persona.profile.field_department
+field_name: field_department
+entity_type: persona
+bundle: profile
+label: Department
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
