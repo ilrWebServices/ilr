@@ -1,0 +1,300 @@
+uuid: 672b1c25-b9ba-4620-b435-cd0f9df441a0
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - person
+id: persona.field_department
+field_name: field_department
+entity_type: persona
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: college_unit_industrial_and_labor_relations
+      label: 'College & Unit Industrial and Labor Relations'
+    -
+      value: program_delivery_facilitation
+      label: 'Program Delivery Facilitation'
+    -
+      value: deans_office
+      label: "Dean's Office"
+    -
+      value: economics-ilr
+      label: Economics-ILR
+    -
+      value: college_of_agriculture_and_life_sciences
+      label: 'College of Agriculture and Life Sciences'
+    -
+      value: buffalo_co-lab
+      label: 'Buffalo Co-Lab'
+    -
+      value: carow
+      label: CAROW
+    -
+      value: conflict_resolution
+      label: 'Conflict Resolution'
+    -
+      value: cji
+      label: CJI
+    -
+      value: human_capital_development
+      label: 'Human Capital Development'
+    -
+      value: institute_for_compensation_studies
+      label: 'Institute for Compensation Studies'
+    -
+      value: ithaca_co-lab
+      label: 'Ithaca Co-Lab'
+    -
+      value: labor_and_employment_law
+      label: 'Labor and Employment Law'
+    -
+      value: labor_and_unions
+      label: 'Labor and Unions'
+    -
+      value: outreach_strategic_initiatives_incubator
+      label: 'Outreach Strategic Initiatives Incubator'
+    -
+      value: workforce_industry_and_economic_development
+      label: 'Workforce Industry and Economic Development'
+    -
+      value: yang-tan_institute_on_employment_and_disability
+      label: 'Yang-Tan Institute on Employment and Disability'
+    -
+      value: global_labor_and_work
+      label: 'Global Labor and Work'
+    -
+      value: human_resource_studies
+      label: 'Human Resource Studies'
+    -
+      value: human_resources_management
+      label: 'Human Resources Management'
+    -
+      value: cornell_in_buffalo
+      label: 'Cornell in Buffalo'
+    -
+      value: associate_dean_of_outreach
+      label: 'Associate Dean of Outreach'
+    -
+      value: cornell_forensics_department
+      label: 'Cornell Forensics Department'
+    -
+      value: economics
+      label: Economics
+    -
+      value: employment_labor_law
+      label: 'Employment & Labor Law'
+    -
+      value: extension_administration
+      label: 'Extension Administration'
+    -
+      value: admissions_office
+      label: 'Admissions Office'
+    -
+      value: alumni_affairs_and_develop
+      label: 'Alumni Affairs and Develop'
+    -
+      value: budget_office
+      label: 'Budget Office'
+    -
+      value: climate_jobs_institute
+      label: 'Climate Jobs Institute'
+    -
+      value: center_for_applied_research_on_work
+      label: 'Center for Applied Research on Work'
+    -
+      value: collect_barg_law_hist
+      label: 'Collect Barg Law & Hist'
+    -
+      value: collect_barg_law_history
+      label: 'Collect Barg Law & History'
+    -
+      value: ctr_advanced_hrs
+      label: 'Ctr Advanced HRS'
+    -
+      value: center_for_advanced_hr_studies
+      label: 'Center for Advanced HR Studies'
+    -
+      value: department_of_global_labor_and_work
+      label: 'Department of Global Labor and Work'
+    -
+      value: emhrm
+      label: EMHRM
+    -
+      value: employee_relations_internal_investigations_and_employment_law
+      label: 'Employee Relations Internal Investigations and Employment Law'
+    -
+      value: executive_education
+      label: 'Executive Education'
+    -
+      value: facilities
+      label: Facilities
+    -
+      value: fiscal_operations
+      label: 'Fiscal Operations'
+    -
+      value: global_labor_institute
+      label: 'Global Labor Institute'
+    -
+      value: graduate_programs
+      label: 'Graduate Programs'
+    -
+      value: human_resources
+      label: 'Human Resources'
+    -
+      value: human_resources_dept
+      label: 'Human Resources DEPT'
+    -
+      value: human_resources_subd
+      label: 'Human Resources SUBD'
+    -
+      value: international_and_comparative_labor
+      label: 'International and Comparative Labor'
+    -
+      value: international_programs
+      label: 'International Programs'
+    -
+      value: ithaca_conference_center
+      label: 'Ithaca Conference Center'
+    -
+      value: labor_and_employment_law_program
+      label: 'Labor and Employment Law Program'
+    -
+      value: labor_economics
+      label: 'Labor Economics'
+    -
+      value: labor_dynamics_institute
+      label: 'Labor Dynamics Institute'
+    -
+      value: labor_relations_law_history
+      label: 'Labor Relations Law & History'
+    -
+      value: marketing_communications
+      label: 'Marketing & Communications'
+    -
+      value: nyc_conference_center
+      label: 'NYC Conference Center'
+    -
+      value: nyc_technology_services
+      label: 'NYC Technology Services'
+    -
+      value: new_conversations_project
+      label: 'New Conversations Project'
+    -
+      value: office_of_career_services
+      label: 'Office of Career Services'
+    -
+      value: office_of_off-campus_credit_programs
+      label: 'Office of Off-Campus Credit Programs'
+    -
+      value: office_of_student_services
+      label: 'Office of Student Services'
+    -
+      value: organizational_behavior
+      label: 'Organizational Behavior'
+    -
+      value: registrar_subd
+      label: 'Registrar SUBD'
+    -
+      value: resident_administration
+      label: 'Resident Administration'
+    -
+      value: review
+      label: Review
+    -
+      value: scheinman_institute
+      label: 'Scheinman Institute'
+    -
+      value: smithers
+      label: Smithers
+    -
+      value: social_statistics
+      label: 'Social Statistics'
+    -
+      value: statistics_and_data_science
+      label: 'Statistics and Data Science'
+    -
+      value: technology_services
+      label: 'Technology Services'
+    -
+      value: web_team
+      label: 'Web Team'
+    -
+      value: worker_institute
+      label: 'Worker Institute'
+    -
+      value: worker_rights_institute
+      label: 'Worker Rights Institute'
+    -
+      value: institute_comp_studies
+      label: 'Institute Comp Studies'
+    -
+      value: labor_education_research
+      label: 'Labor Education & Research'
+    -
+      value: registrar
+      label: Registrar
+    -
+      value: yang-tan_institute
+      label: 'Yang-Tan Institute'
+    -
+      value: office_of_the_dean
+      label: 'Office of the Dean'
+    -
+      value: outreach_nyc_administration
+      label: 'Outreach NYC Administration'
+    -
+      value: external_centers_and_institutes
+      label: 'External Centers and Institutes'
+    -
+      value: labor_relations_law_and_history
+      label: 'Labor Relations Law and History'
+    -
+      value: law
+      label: Law
+    -
+      value: digitization_and_conservation_services
+      label: 'Digitization and Conservation Services'
+    -
+      value: digital_scholar_pres_svcs
+      label: 'Digital Scholar & Pres Svcs'
+    -
+      value: catherwood_kheel
+      label: 'Catherwood Kheel'
+    -
+      value: catherwood_library
+      label: 'Catherwood Library'
+    -
+      value: hospitality_labor_management_library
+      label: 'Hospitality Labor & Management Library'
+    -
+      value: library_special_collections
+      label: 'Library Special Collections'
+    -
+      value: teaching_research_outreach_learning_ervices
+      label: 'Teaching Research Outreach & Learning ervices'
+    -
+      value: nyc_marketing_communications
+      label: 'NYC Marketing & Communications'
+    -
+      value: office_of_ilr_associate_dean_of_outreach
+      label: 'Office of ILR Associate Dean of Outreach'
+    -
+      value: worker_insitute
+      label: 'Worker Insitute'
+    -
+      value: human_resrouce_studies
+      label: 'Human Resrouce Studies'
+    -
+      value: provosts_office
+      label: "Provost's Office"
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
