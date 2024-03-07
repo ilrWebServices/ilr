@@ -235,16 +235,7 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers:
-  ilr_outreach_registration_order_submitter:
-    id: outreach_registration_submitter
-    handler_id: ilr_outreach_registration_order_submitter
-    label: 'ILR Outreach registration order submitter'
-    notes: ''
-    status: true
-    conditions: {  }
-    weight: 0
-    settings: {  }
+handlers: {  }
 variants:
   worker_institute_opt_in:
     id: override

@@ -1,8 +1,6 @@
 <?php
 
 use Drupal\salesforce\SelectQuery;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Url;
 
 /**
  * Implements hook_webform_options_WEBFORM_OPTIONS_ID_alter().
@@ -193,34 +191,4 @@ function ilr_outreach_registration_webform_options_alter(array &$options, array 
   }
 
   $options = array_combine($available_options, $available_options);
-}
-
-/**
- * Implements hook_entity_operation().
- */
-function ilr_outreach_registration_entity_operation(EntityInterface $entity) {
-  $operations = [];
-
-  if ($entity->getEntityTypeId() === 'webform_submission') {
-    /** @var \Drupal\webform\WebformSubmissionInterface $entity */
-
-    $webform = $entity->getWebform();
-
-    // See if the webform for this submission uses the
-    // outreach_registration_submitter handler.
-    $outreach_registration_submitter_handler_collection = $webform->getHandlers('outreach_registration_submitter');
-
-    if ($outreach_registration_submitter_handler_collection->count() > 0) {
-      $operations['ilr_outreach_registration_resubmit'] = [
-        'title' => t('Send to Salesforce'),
-        'url' => Url::fromRoute('ilr_outreach_registration.event_registration_submit', [
-          'webform' =>  $webform->id(),
-          'webform_submission' =>  $entity->id(),
-        ]),
-        'weight' => 50,
-      ];
-    }
-  }
-
-  return $operations;
 }
