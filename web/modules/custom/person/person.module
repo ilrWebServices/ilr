@@ -84,6 +84,8 @@ function template_preprocess_persona(&$variables) {
   $variables['persona'] = $persona;
   //provide the label
   $variables['label'] = $persona->display_name->value;
-  //provide the alias
-  $variables['url'] = $persona->toUrl()->toString();
+  //provide the alias if there is an existing persona.
+  if ($persona->id()) {
+    $variables['url'] = $persona->toUrl()->toString();
+  }
 }
