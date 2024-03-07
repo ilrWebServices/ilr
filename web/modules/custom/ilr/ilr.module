@@ -1020,6 +1020,34 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Improve the persona profile edit form.
+ */
+function ilr_form_persona_profile_edit_form_alter(&$form, FormStateInterface $form_state) {
+  $form['basic_info'] = [
+    '#type' => 'details',
+    '#title' => t('Basic info'),
+    '#group' => 'advanced',
+    '#weight' => -10,
+    '#optional' => TRUE,
+    '#open' => TRUE,
+  ];
+
+  # Note that some of these are typcially in the `inherited` element, but we
+  # need to move them if they are overridden.
+  $fields = ['display_name', 'field_first_name', 'field_last_name', 'field_email', 'field_netid', 'field_photo', 'field_title', 'field_role', 'field_department', 'field_campus_address', 'field_phone', 'field_fax', 'field_cv', 'inherited', 'default'];
+
+  foreach ($fields as $field) {
+    if (!isset($form[$field])) {
+      continue;
+    }
+
+    $form[$field]['#group'] = 'basic_info';
+  }
+}
+
+/**
  * Implements hook_field_widget_form_alter().
  */
 function ilr_field_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
