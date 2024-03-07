@@ -1,0 +1,20 @@
+uuid: 0722b048-d632-41a9-a79b-c176ee838908
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.person.field_netid
+  module:
+    - person
+id: person.person.field_netid
+field_name: field_netid
+entity_type: person
+bundle: person
+label: NetID
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

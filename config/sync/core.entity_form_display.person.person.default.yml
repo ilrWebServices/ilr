@@ -7,6 +7,7 @@ dependencies:
     - field.field.person.person.field_email
     - field.field.person.person.field_first_name
     - field.field.person.person.field_last_name
+    - field.field.person.person.field_netid
     - field.field.person.person.field_phone
     - field.field.person.person.field_photo
     - field.field.person.person.field_title
@@ -33,7 +34,7 @@ content:
     third_party_settings: {  }
   field_bio:
     type: text_textarea_with_summary
-    weight: 7
+    weight: 8
     region: content
     settings:
       rows: 9
@@ -65,16 +66,24 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_netid:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_phone:
     type: telephone_default
-    weight: 4
+    weight: 5
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_photo:
     type: media_library_widget
-    weight: 5
+    weight: 6
     region: content
     settings:
       media_types: {  }
@@ -83,7 +92,7 @@ content:
         show_edit: '1'
   field_title:
     type: string_textfield
-    weight: 6
+    weight: 7
     region: content
     settings:
       size: 60
