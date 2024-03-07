@@ -1,0 +1,39 @@
+uuid: 70d786c8-c9f6-4d9c-9023-aaa76f964f24
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - person
+id: persona.field_role
+field_name: field_role
+entity_type: persona
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: faculty
+      label: Faculty
+    -
+      value: staff
+      label: Staff
+    -
+      value: visiting_fellow
+      label: 'Visiting fellow'
+    -
+      value: graduate_student
+      label: 'Graduate student'
+    -
+      value: postdoc
+      label: Postdoc
+    -
+      value: extension_associate
+      label: 'Extension associate'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,84 @@
+uuid: 74170d39-560a-43ab-8095-4e6927bee616
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.persona.teaser
+    - field.field.persona.profile.field_bio
+    - field.field.persona.profile.field_campus_address
+    - field.field.persona.profile.field_components
+    - field.field.persona.profile.field_cv
+    - field.field.persona.profile.field_department
+    - field.field.persona.profile.field_email
+    - field.field.persona.profile.field_fax
+    - field.field.persona.profile.field_first_name
+    - field.field.persona.profile.field_last_name
+    - field.field.persona.profile.field_netid
+    - field.field.persona.profile.field_phone
+    - field.field.persona.profile.field_photo
+    - field.field.persona.profile.field_role
+    - field.field.persona.profile.field_sections
+    - field.field.persona.profile.field_title
+    - image.style.media_library
+    - person.persona_type.profile
+  module:
+    - layout_builder
+    - media
+    - options
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: persona.profile.teaser
+targetEntityType: persona
+bundle: profile
+mode: teaser
+content:
+  display_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_department:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_photo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: media_library
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  field_bio: true
+  field_campus_address: true
+  field_components: true
+  field_cv: true
+  field_email: true
+  field_fax: true
+  field_first_name: true
+  field_last_name: true
+  field_netid: true
+  field_phone: true
+  field_role: true
+  field_sections: true
+  search_api_excerpt: true
