@@ -116,12 +116,9 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       /** @var \Drupal\webform\WebformSubmissionInterface $submission */
       $submission = $event->getEntity();
       $submission_data = $submission->getData();
-      $variant = $submission_data['variant'] ?? '';
 
-      // If this is not a CAHRS event, don't allow a push. At some point in the
-      // future, more or all event registration variants will be allowed, and
-      // this method and be removed.
-      if ($variant !== 'cahrs_event') {
+      // Ensure that there is an eventid present.
+      if (empty($submission_data['eventid'])) {
         $event->disallowPush();
       }
     }
