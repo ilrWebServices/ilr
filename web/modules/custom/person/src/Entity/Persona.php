@@ -67,6 +67,7 @@ use Drupal\Core\Access\AccessResult;
  *   },
  *   bundle_entity_type = "persona_type",
  *   field_ui_base_route = "entity.persona_type.edit_form",
+ *   constraints = {"SingleDefaultPersona" = {}}
  * )
  */
 class Persona extends EditorialContentEntityBase implements PersonaInterface {
