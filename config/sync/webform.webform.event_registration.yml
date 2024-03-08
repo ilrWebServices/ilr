@@ -360,7 +360,7 @@ handlers:
     handler_id: ilr_outreach_registration_order_submitter
     label: 'ILR Outreach registration order submitter'
     notes: ''
-    status: true
+    status: false
     conditions: {  }
     weight: 0
     settings: {  }
@@ -555,9 +555,20 @@ variants:
       debug: false
       settings: {  }
       elements: "eventid:\r\n  '#required': false"
-      handlers:
-        ilr_outreach_registration_order_submitter:
-          status: false
+      handlers: {  }
+  require_salesforce_options:
+    id: override
+    variant_id: require_salesforce_options
+    element_key: variant_attendance_type
+    label: 'Require Salesforce Options'
+    notes: ''
+    status: true
+    weight: 9
+    settings:
+      debug: false
+      settings: {  }
+      elements: "eventid:\r\n  '#required': true"
+      handlers: {  }
   23fgliwebny01_email_confirmation:
     id: override
     variant_id: 23fgliwebny01_email_confirmation
