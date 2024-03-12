@@ -30,7 +30,7 @@ elements: |-
     '#type': webform_variant
     '#title': 'Variant Translation'
     '#variant': override
-    '#display_on': both
+    '#display_on': view
   variant_address:
     '#type': webform_variant
     '#title': 'Variant Address'
@@ -425,7 +425,7 @@ handlers:
       return_path: ''
       sender_mail: ''
       sender_name: ''
-      subject: 'Event registration: [webform_submission:source-title] ([webform_submission:values:eventid])'
+      subject: 'Event registration: [webform_submission:source-title]'
       body: "<p>Submitted on [webform_submission:created]</p>\r\n\r\n<p>Submitted values are:</p>\r\n[webform_submission:values]"
       excluded_elements: {  }
       ignore_access: false
@@ -568,7 +568,10 @@ variants:
       debug: false
       settings: {  }
       elements: "eventid:\r\n  '#required': true"
-      handlers: {  }
+      handlers:
+        submission_detail_email:
+          settings:
+            subject: 'Event registration: [webform_submission:source-title] ([webform_submission:values:eventid])'
   23fgliwebny01_email_confirmation:
     id: override
     variant_id: 23fgliwebny01_email_confirmation
