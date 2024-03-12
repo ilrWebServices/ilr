@@ -1,0 +1,32 @@
+uuid: 6bcf7f00-bbdc-4545-baef-99ed54e4bd1f
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.subsite_9
+    - webform.webform.worker_institute_news_signup
+  module:
+    - block_visibility_groups
+    - webform
+  theme:
+    - union_marketing
+id: union_marketing_worker_institute_news_form
+theme: union_marketing
+region: content
+weight: 3
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Worker Institute News Signup'
+  label_display: '0'
+  provider: webform
+  webform_id: worker_institute_news_signup
+  default_data: ''
+  redirect: false
+  lazy: false
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: subsite_9
