@@ -14,7 +14,7 @@ entity_type: node
 bundle: event_landing_page
 label: 'Registration form'
 description: ''
-required: true
+required: false
 translatable: false
 default_value:
   -
