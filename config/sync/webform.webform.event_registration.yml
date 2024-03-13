@@ -551,7 +551,7 @@ variants:
     variant_id: disable_salesforce_submitter
     element_key: variant_handlers
     label: 'Disable Salesforce Submitter'
-    notes: ''
+    notes: 'Deprecated. The presence of an eventid determines whether the form is sent as a touchpoint.'
     status: true
     weight: 9
     settings:
