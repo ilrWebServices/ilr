@@ -125,9 +125,8 @@ elements: |-
     '#title': 'I will need translation services.'
     '#access': false
   eventid:
-    '#type': salesforce_event_options
-    '#title': 'How will you be attending?'
-    '#required': true
+    '#type': hidden
+    '#title': eventid
   custom_1_answer:
     '#type': textfield
     '#title': 'Custom 1 Answer'
@@ -560,22 +559,6 @@ variants:
       settings: {  }
       elements: "eventid:\r\n  '#required': false"
       handlers: {  }
-  require_salesforce_options:
-    id: override
-    variant_id: require_salesforce_options
-    element_key: variant_attendance_type
-    label: 'Require Salesforce Options'
-    notes: ''
-    status: true
-    weight: 9
-    settings:
-      debug: false
-      settings: {  }
-      elements: "eventid:\r\n  '#required': true"
-      handlers:
-        submission_detail_email:
-          settings:
-            subject: 'Event registration: [webform_submission:source-title] ([webform_submission:values:eventid])'
   23fgliwebny01_email_confirmation:
     id: override
     variant_id: 23fgliwebny01_email_confirmation
@@ -780,7 +763,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "eventid:\r\n  '#access': false\r\ncompany:\r\n  '#access': false\r\ntitle:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#type': select\r\n  '#title': 'What is your role at Cornell?'\r\n  '#options':\r\n    Faculty: Faculty\r\n    Staff: Staff\r\n    Student: Student\r\n    Alumni: Alumni\r\n    Other: Other\r\ncustom_2_answer:\r\n  '#access': true\r\n  '#type': number\r\n  '#title': 'What is your graduation year?'\r\n  '#states':\r\n    visible:\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Student\r\n      - xor\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Alumni\r\n  '#min': 1950\r\n  '#max': 2030"
+      elements: "company:\r\n  '#access': false\r\ntitle:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#type': select\r\n  '#title': 'What is your role at Cornell?'\r\n  '#options':\r\n    Faculty: Faculty\r\n    Staff: Staff\r\n    Student: Student\r\n    Alumni: Alumni\r\n    Other: Other\r\ncustom_2_answer:\r\n  '#access': true\r\n  '#type': number\r\n  '#title': 'What is your graduation year?'\r\n  '#states':\r\n    visible:\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Student\r\n      - xor\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Alumni\r\n  '#min': 1950\r\n  '#max': 2030"
       handlers:
         confirmation_email:
           settings:
@@ -826,7 +809,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "attending_online:\r\n  '#type': checkbox\r\neventid:\r\n  '#access': false\r\nopt_in:\r\n  '#access': false\r\n"
+      elements: "attending_online:\r\n  '#type': checkbox\r\nopt_in:\r\n  '#access': false\r\n"
       handlers:
         confirmation_email:
           settings:
@@ -880,7 +863,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "eventid:\r\n  '#access': false\r\ncompany:\r\n  '#access': false\r\ntitle:\r\n  '#access': false\r\nopt_in:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#type': select\r\n  '#title': 'What is your role at Cornell?'\r\n  '#options':\r\n    Faculty: Faculty\r\n    Staff: Staff\r\n    Student: Student\r\n    Alumni: Alumni\r\n    Other: Other\r\ncustom_2_answer:\r\n  '#access': true\r\n  '#type': number\r\n  '#title': 'What is your graduation year?'\r\n  '#states':\r\n    visible:\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Student\r\n      - xor\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Alumni\r\n  '#min': 1950\r\n  '#max': 2030"
+      elements: "company:\r\n  '#access': false\r\ntitle:\r\n  '#access': false\r\nopt_in:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#type': select\r\n  '#title': 'What is your role at Cornell?'\r\n  '#options':\r\n    Faculty: Faculty\r\n    Staff: Staff\r\n    Student: Student\r\n    Alumni: Alumni\r\n    Other: Other\r\ncustom_2_answer:\r\n  '#access': true\r\n  '#type': number\r\n  '#title': 'What is your graduation year?'\r\n  '#states':\r\n    visible:\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Student\r\n      - xor\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Alumni\r\n  '#min': 1950\r\n  '#max': 2030"
       handlers:
         confirmation_email:
           settings:
@@ -902,3 +885,19 @@ variants:
         submission_detail_email:
           settings:
             to_mail: pjg97@cornell.edu
+  salesforce_options:
+    id: override
+    variant_id: salesforce_options
+    element_key: variant_attendance_type
+    label: 'Salesforce options'
+    notes: 'This variant is used when there are multiple class events in Salesforce for a single landing page and the visitor can choose which they plan to attend (e.g. Online and In-person).'
+    status: true
+    weight: 9
+    settings:
+      debug: false
+      settings: {  }
+      elements: "eventid:\r\n '#type': salesforce_event_options\r\n '#title': 'How will you be attending?'\r\n '#required': true"
+      handlers:
+        submission_detail_email:
+          settings:
+            subject: 'Event registration: [webform_submission:source-title] ([webform_submission:values:eventid])'
