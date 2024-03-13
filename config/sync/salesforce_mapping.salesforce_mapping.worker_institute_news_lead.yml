@@ -14,6 +14,7 @@ push_frequency: 0
 push_limit: 0
 push_retries: 3
 pull_where_clause: ''
+pull_record_type_filter: {  }
 sync_triggers:
   push_create: true
   push_update: false
@@ -116,3 +117,4 @@ dependencies:
   module:
     - salesforce_push
     - token
+uuid: 2a2ebed4-68a3-4b95-b419-aa98a4452e6a
