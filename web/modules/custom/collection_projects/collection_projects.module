@@ -1,7 +1,6 @@
 <?php
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\collection\Entity\CollectionType;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 
@@ -12,6 +11,7 @@ use Drupal\Core\Entity\EntityInterface;
 
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\node\NodeTypeInterface;
+use Drupal\pathauto\PathautoPatternInterface;
 
 /**
  * Implements hook_help().
@@ -108,6 +108,23 @@ function collection_projects_node_view(array &$build, EntityInterface $entity, E
     // If the collection item was found, display the blog focus areas field as a teaser.
     if ($project_focus_areas_collection_item) {
       $build['project_focus_areas'] = $project_focus_areas_collection_item->field_focus_areas->view('teaser');
+    }
+  }
+}
+
+/**
+ * Implements hook_pathauto_pattern_alter().
+ *
+ * Update the path pattern for the auto-generated vocabularies.
+ *
+ * @see collection_pathauto_pathauto_alias_alter(), which alters the alias.
+ */
+function collection_projects_pathauto_pattern_alter(PathautoPatternInterface $pattern, array $context) {
+  // Check if the pattern is for a term.
+  if (isset($context['module']) && $context['module'] === 'taxonomy') {
+    // See CollectionProjectsSubscriber::collectionCreate().
+    if (preg_match('/^project_\d*_(focus_areas)$/', $context['bundle'], $matches)) {
+      $pattern->setPattern('focus/[term:name]');
     }
   }
 }
