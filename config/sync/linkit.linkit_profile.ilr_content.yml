@@ -33,11 +33,13 @@ matchers:
       bundles:
         certificate: certificate
         course: course
+        event_landing_page: event_landing_page
         media_mention: media_mention
         page: page
         post: post
         post_document: post_document
         post_experience_report: post_experience_report
+        project: project
         story: story
         video_post: video_post
       group_by_bundle: true
