@@ -10,6 +10,8 @@ use Drupal\Core\Entity\EntityInterface;
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\ilr\IlrLayoutEntityHelper;
+use Drupal\layout_builder\Entity\LayoutBuilderEntityViewDisplay;
 use Drupal\node\NodeTypeInterface;
 use Drupal\pathauto\PathautoPatternInterface;
 
@@ -27,6 +29,23 @@ function collection_projects_help($route_name, RouteMatchInterface $route_match)
 
     default:
   }
+}
+
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function collection_projects_theme_suggestions_field_alter(&$suggestions, array $variables) {
+  $element = $variables['element'];
+  if ($element['#field_name'] == 'name' && preg_match('/^project_\d*_(focus_areas)$/', $element['#bundle'], $matches)) {
+    $suggestions[] = 'field__' . $element['#entity_type'] . '__project_focus_area' . '__' . $element['#field_name'];
+
+    // See layout_builder_theme_suggestions_field_alter().
+    if (isset($element['#third_party_settings']['layout_builder']['view_mode'])) {
+      $suggestions[] = 'field__' . $element['#entity_type'] . '__project_focus_area' . '__' . $element['#field_name'] . '__' . $element['#third_party_settings']['layout_builder']['view_mode'];
+    }
+  }
+  return $suggestions;
 }
 
 /**
@@ -67,6 +86,7 @@ function collection_projects_form_node_form_builder($entity_type, NodeTypeInterf
  */
 function collection_projects_entity_extra_field_info() {
   $extra = [];
+  $entity_type_info = \Drupal::service('entity_type.bundle.info');
 
   $extra['node']['project']['display']['project_focus_areas'] = [
     'label' => t('Focus areas (canonical)'),
@@ -75,9 +95,88 @@ function collection_projects_entity_extra_field_info() {
     'visible' => TRUE,
   ];
 
+  foreach ($entity_type_info->getBundleInfo('taxonomy_term') as $vocabulary_id => $info) {
+    if (preg_match('/^project_\d+_focus_areas$/', $vocabulary_id)) {
+      $extra['taxonomy_term'][$vocabulary_id]['display']['collection_items_focus_area_term'] = [
+        'label' => $info['label'],
+        'description' => t('This is a computed reference.'),
+        'weight' => 0,
+        'visible' => TRUE,
+      ];
+    }
+  }
   return $extra;
 }
 
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function collection_projects_taxonomy_term_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+  $view_builder = $entity_type_manager->getViewBuilder('node');
+  $ilr_layout_entity_helper = new IlrLayoutEntityHelper();
+  $component_used = FALSE;
+
+  if ($display instanceof LayoutBuilderEntityViewDisplay && $display->isLayoutBuilderEnabled()) {
+    foreach ($ilr_layout_entity_helper->getEntitySections($entity) as $section) {
+      foreach ($section->getComponents() as $component) {
+        if (strpos($component->getPluginId(), 'collection_items_focus_area_term')) {
+          $component_used = TRUE;
+          break 2;
+        }
+      }
+    }
+  }
+  else {
+    $component_used = $display->getComponent('collection_items_focus_area_term');
+  }
+
+  if ($component_used && $view_mode === 'full') {
+    $cache_tags = $entity->getCacheTags();
+    $cache_tags[] = 'node_list:project';
+    $cache_tags[] = 'collection_item_list:project_item';
+    $projects = [];
+
+    $pending_items = \Drupal::database()
+      ->select('collection_item__attributes', 'cia')
+      ->fields('cia', ['entity_id'])
+      ->condition('cia.bundle', 'project_item')
+      ->condition('cia.attributes_key', 'collection-request-uid');
+
+    $project_collection_items = $collection_item_storage->getQuery()
+      ->accessCheck(TRUE)
+      ->condition('id', $pending_items, 'NOT IN')
+      ->condition('type', 'project_item')
+      ->condition('item.entity:node.status', 1)
+      ->condition('item.entity:node.type', 'project')
+      ->condition('field_focus_areas', $entity->id())
+      ->sort('sticky', 'DESC')
+      ->sort('item.entity:node.field_published_date', 'DESC')
+      ->sort('item.entity:node.created', 'DESC')
+      ->pager(30)
+      ->execute();
+
+    foreach ($collection_item_storage->loadMultiple($project_collection_items) as $collection_item) {
+      $rendered_content = $view_builder->view($collection_item->item->entity, 'mini');
+      $rendered_content['#collection_item'] = $collection_item;
+      $rendered_content['#cache']['contexts'][] = 'url';
+      $projects[] = $rendered_content;
+    }
+
+    $build['collection_items_focus_area_term']['listing'] = [
+      '#theme' => 'item_list__collection_listing',
+      '#items' => $projects,
+      '#attributes' => ['class' => 'collection-listing collection-listing--project'],
+      '#collection_listing' => TRUE,
+      '#empty' => t('Content coming soon.'),
+      '#context' => ['taxonomy_term' => $entity],
+      '#cache' => [
+        'tags' => $cache_tags,
+      ],
+    ];
+  }
+}
 /**
  * Implements hook_ENTITY_TYPE_view().
  */
