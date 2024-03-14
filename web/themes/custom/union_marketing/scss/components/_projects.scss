@@ -33,3 +33,52 @@
     }
   }
 }
+
+.term--view-mode-full {
+  --cu-max-width-section: 915px;
+  margin: 0 auto;
+
+  .block-layout-builder {
+    max-width: var(--cu-max-width-section);
+    margin: 0 auto;
+  }
+
+  div[class$="-focus-areas--name"] {
+    margin-bottom: var(--cu-vr3);
+    padding: var(--cu-vr2) 0 var(--cu-vr2) 0;
+    position: relative;
+
+    @include breakpoint(sm) {
+      padding: var(--cu-vr2) 0 var(--cu-vr2) 0;
+    }
+
+    .cu-heading {
+      --cu-font-size: var(--cu-ms5);
+
+      @include breakpoint(sm) {
+        --cu-font-size: var(--cu-ms10);
+      }
+    }
+  }
+
+  div[class$="-focus-areas--description"] {
+    margin-bottom: var(--cu-vr3);
+  }
+
+  h2.cu-heading {
+    --cu-font-size: var(--cu-ms5);
+
+    &::after {
+      content: '';
+      margin-top: 20px;
+      display: var(--cu-composite-heading-accent-display, block);
+      width: 60px;
+      height: 8px;
+      background: var(--cu-colorscheme-accent);
+    }
+  }
+}
+
+.article--project.node--view-mode-mini h3 {
+  --cu-font-size: var(--cu-ms0);
+}

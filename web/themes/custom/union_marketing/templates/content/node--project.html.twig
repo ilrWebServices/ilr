@@ -79,9 +79,9 @@
 <article{{attributes.addClass(classes)|without('role')}}>
   {{ title_prefix }}
   {% if not page and view_mode != 'default' %}
-    <h2{{title_attributes}}>
+    <h3{{title_attributes}}>
       <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-    </h2>
+    </h3>
   {% endif %}
   {{ title_suffix }}
 
