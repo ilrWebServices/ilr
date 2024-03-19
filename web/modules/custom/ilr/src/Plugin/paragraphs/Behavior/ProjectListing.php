@@ -230,6 +230,15 @@ class ProjectListing extends ParagraphsBehaviorBase {
 
     $list_style = $paragraph->getBehaviorSetting('list_styles', 'list_style') ?? 'grid';
 
+    if ($list_style === 'select-list') {
+      $projects[] = [
+        '#markup' => '<div class="project-list__trigger" aria-expanded="false" value="Expand Project List" aria-label="Expand Project List">▼</div><div class="cu-x-field field--title">' . $this->t('-- Choose a project --') . '</div>',
+        '#attached' => [
+          'library' => ['ilr/ilr_select_list'],
+        ],
+      ];
+    }
+
     // Two of the grid list styles require the projects to have images.
     if (in_array($list_style, ['grid', 'grid-featured'])) {
       $has_image_group = $query->orConditionGroup();

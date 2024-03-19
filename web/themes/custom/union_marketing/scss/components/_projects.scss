@@ -81,4 +81,59 @@
 
 .article--project.node--view-mode-mini h3 {
   --cu-font-size: var(--cu-ms0);
+  margin: 0;
+}
+
+.cu-component--project-listing.cu-list--select-list {
+  position: relative;
+  margin: 0 0 var(--cu-vr1) 0;
+  background: white;
+  height: 3rem;
+  overflow: hidden;
+  border: 1px solid $gray-light;
+  border-radius: 5px;
+  transition-duration: 0.25s;
+  transition-property: transform;
+
+  &:hover,
+  &.select-list--expanded {
+    overflow-y: scroll;
+    height: 400px;
+  }
+
+  .project-list__trigger {
+    position: absolute;
+    transition-duration: 0.25s;
+    transition-property: transform;
+    padding: 12px;
+    top: 0;
+    right: 0;
+    color:#757575;
+
+    @include breakpoint(md) {
+      display: none;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .field--title {
+    --cu-text-color: #757575;
+    text-decoration: none;
+    display: block;
+    background: white;
+    min-height: 3rem;
+    padding: 1em 1em 0 1em;
+    line-height: 1;
+
+    &:hover {
+      background: $gray-lightest;
+    }
+  }
+
+  &.select-list--expanded .project-list__trigger {
+    transform: rotate(180deg);
+  }
 }
