@@ -174,6 +174,11 @@ class ProjectListing extends ParagraphsBehaviorBase {
   public function preprocess(&$variables) {
     $paragraph = $variables['paragraph'];
     $collection_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'collection');
+
+    if (!$collection_id) {
+      return;
+    }
+
     $collection = $this->entityTypeManager->getStorage('collection')->load($collection_id);
     $project_types = $paragraph->getBehaviorSetting($this->getPluginId(), 'project_types') ?? array_keys($this->collectionProjectsManager->getProjectTypesWithLabels());
 
