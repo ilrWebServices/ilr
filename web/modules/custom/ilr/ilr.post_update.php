@@ -232,3 +232,21 @@ function ilr_post_update_update_suppress_listing_values(&$sandbox) {
     $landing_page->save();
   }
 }
+
+/**
+ * Update the path aliases for YTI project nodes.
+ */
+function ilr_post_update_update_yti_project_aliases(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+
+  $project_items = $collection_item_storage->loadByProperties([
+    'type' => 'project_item',
+    'collection' => '57',
+  ]);
+
+  // Save the node to update the alias.
+  foreach ($project_items as $project_item) {
+    $project_item->item->entity->save();
+  }
+}
