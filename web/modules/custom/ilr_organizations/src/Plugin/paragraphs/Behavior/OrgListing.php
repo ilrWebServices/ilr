@@ -125,6 +125,7 @@ class OrgListing extends ParagraphsBehaviorBase {
     $query->accessCheck(TRUE);
     $query->condition('vid', $org_types, 'IN');
     $query->condition('status', 1);
+    $query->sort('weight');
     $result = $query->execute();
     $organizations = [];
 
