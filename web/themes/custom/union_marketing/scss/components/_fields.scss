@@ -97,3 +97,8 @@
   --cu-font-size: 2vw;
   --cu-font-size: 8cqi;
 }
+
+// Fix for the Cinematic card link in Chrome.
+.cu-card--cinematic .cu-card__link {
+  width: 100%;
+}
