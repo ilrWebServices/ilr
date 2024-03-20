@@ -1337,6 +1337,8 @@ function ilr_pathauto_pattern_alter(PathautoPatternInterface $pattern, array $co
  * Updates the alias pattern for story nodes that in a publication_issue
  * collection.
  *
+ * Updates the alias pattern for projects in the YTI collection.
+ *
  * @see collection_pathauto_pathauto_alias_alter().
  */
 function ilr_collection_pathauto_alias_alter(&$alias, array &$context) {
@@ -1358,6 +1360,14 @@ function ilr_collection_pathauto_alias_alter(&$alias, array &$context) {
     // with two collection paths.
     $deduped_alias = preg_replace("|^{$collection_path}{$collection_path}/|", $collection_path . '/', $alias);
     $alias = $deduped_alias;
+  }
+
+  if ($context['canonical_collection']->id() === '57') {
+    if (!isset($context['data']['node']) || $context['data']['node']->bundle() != 'project') {
+      return;
+    }
+    // Swap `work` for `project` in the alias.
+    $alias = str_replace('/project/', '/work/', $alias);
   }
 }
 
