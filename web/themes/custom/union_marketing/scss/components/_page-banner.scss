@@ -135,11 +135,11 @@
   }
 }
 
-.node--view-mode-alt {
-  --cu-max-width-section: 915px;
-
-  .cu-banner--page {
-    padding: 0;
+.node--view-mode-alt.node--wide {
+  .cu-breadcrumb {
+    .bvg--cornell-alternate-branding & {
+      margin-top: 0;
+    }
   }
 
   .cu-banner__content {
@@ -147,8 +147,8 @@
   }
 
   .banner__content {
-    max-width: var(--cu-max-width-section, 1060px);
-    margin: 0 auto var(--cu-vr2) auto;
+    max-width: revert;
+    margin: var(--cu-vr2) auto var(--cu-vr2) auto;
     padding: var(--cu-vr2) 0 var(--cu-vr2) var(--cu-ps1);
     position: relative;
     border-left: 16px solid #222;
@@ -170,13 +170,13 @@
     &:before {
       top: 0;
       left: 0;
-      width: 30%;
+      width: 20%;
     }
 
     &:after {
       bottom: 0;
       left: 0;
-      width: 60%;
+      width: 40%;
     }
 
     .cu-heading {
@@ -202,6 +202,33 @@
     .block-field-block--node--page--title + .block-field-block--node--page--body {
       margin-top: var(--cu-vr0);
     }
+  }
+}
+
+.node--view-mode-alt {
+  --cu-max-width-section: 915px;
+
+  .cu-banner--page {
+    padding: 0;
+  }
+
+  .cu-banner__content {
+    max-width: revert;
+  }
+
+  .banner__content {
+    max-width: var(--cu-max-width-section, 1060px);
+    margin: 0 auto var(--cu-vr2) auto;
+    padding: var(--cu-vr1) 0 var(--cu-vr2);
+  }
+
+  h1.cu-heading {
+    --cu-font-size: var(--cu-ms10);
+    margin-bottom: var(--cu-vr1);
+  }
+
+  .field--body.field-type--text-with-summary {
+    --cu-font-weight: 400;
   }
 }
 
