@@ -5,6 +5,7 @@ dependencies:
   config:
     - collection.collection_type.subsite_blog
     - field.field.collection.subsite_blog.body
+    - field.field.collection.subsite_blog.behavior_alt_display
     - field.field.collection.subsite_blog.field_representative_image
     - field.field.collection.subsite_blog.field_sections
     - field.field.collection.subsite_blog.field_suppress_date_display
@@ -189,4 +190,5 @@ content:
     weight: 0
     region: content
 hidden:
+  behavior_alt_display: true
   search_api_excerpt: true

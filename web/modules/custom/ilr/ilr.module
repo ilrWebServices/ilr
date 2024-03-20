@@ -727,6 +727,20 @@ function ilr_preprocess_node__page__alt(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_collection().
+ */
+function ilr_preprocess_collection__subsite_blog__alt(&$variables) {
+  $variables['attributes']['class'][] = 'collection--view-mode-alt';
+  $collection = $variables['collection'];
+
+  if ($collection->hasField('field_sections') && $first_section = $collection->field_sections->first()->entity) {
+    if ($first_section->getBehaviorSetting('union_section_settings', 'wide')) {
+      $variables['attributes']['class'][] = 'collection--wide';
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_paragraph().
  *
  * Add the paragraphs id as a data attribute.
@@ -1301,6 +1315,14 @@ function ilr_form_collection_form_alter(&$form, FormStateInterface $form_state) 
 
     if (isset($form['field_section_path'])) {
       $form['field_section_path']['#group'] = 'ilr_meta';
+    }
+
+    if (isset($form['behavior_alt_display'])) {
+      $form['behavior_alt_display']['#group'] = 'ilr_meta';
+
+      // Only provide the alt_display setting on bundles for which its been
+      // configured.
+      $form['behavior_alt_display']['#access'] = $form_state->getFormObject()->getEntity()->bundle() == 'subsite_blog';
     }
   }
 

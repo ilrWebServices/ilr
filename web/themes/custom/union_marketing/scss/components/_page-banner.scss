@@ -135,7 +135,9 @@
   }
 }
 
-.node--view-mode-alt.node--wide {
+.node--view-mode-alt.node--wide,
+.collection--view-mode-alt.collection--wide {
+  --cu-max-width-section: revert;
   .cu-breadcrumb {
     .bvg--cornell-alternate-branding & {
       margin-top: 0;
@@ -192,7 +194,7 @@
     }
 
     .block-layout-builder {
-      max-width: 640px;
+      max-width: 915px;
     }
 
     p:last-of-type {
@@ -205,7 +207,8 @@
   }
 }
 
-.node--view-mode-alt {
+.node--view-mode-alt,
+.collection--view-mode-alt {
   --cu-max-width-section: 915px;
 
   .cu-banner--page {
