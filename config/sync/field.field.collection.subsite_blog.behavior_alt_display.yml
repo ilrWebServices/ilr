@@ -1,0 +1,21 @@
+uuid: 442c5322-eea1-4e26-84cf-e3745c3f0ab8
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.subsite_blog
+    - field.storage.collection.behavior_alt_display
+id: collection.subsite_blog.behavior_alt_display
+field_name: behavior_alt_display
+entity_type: collection
+bundle: subsite_blog
+label: 'Use alternate display'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

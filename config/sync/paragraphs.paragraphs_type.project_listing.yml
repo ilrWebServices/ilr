@@ -16,10 +16,12 @@ behavior_plugins:
       grid: grid
       grid-compact: grid-compact
       list-compact: list-compact
+      select-list: select-list
       grid-bricks: 0
       grid-bricks--reversed: 0
       grid-featured: 0
       banner: 0
+      main_content: 0
     columns_enabled: 1
     columns_min: '2'
     columns_max: '4'

@@ -1,10 +1,10 @@
-uuid: 8269d98f-f9ca-441b-b950-ea37fc27d140
+uuid: e6d9d558-eb43-4b7d-b9bc-be91b5dcee03
 langcode: en
 status: true
 dependencies:
   config:
     - collection.collection_type.subsite_blog
-    - core.entity_view_mode.collection.banner
+    - core.entity_view_mode.collection.alt
     - field.field.collection.subsite_blog.body
     - field.field.collection.subsite_blog.behavior_alt_display
     - field.field.collection.subsite_blog.field_representative_image
@@ -14,9 +14,9 @@ dependencies:
     - entity_reference_revisions
     - ilr
     - layout_builder
+    - layout_discovery
     - system
     - text
-    - user
 third_party_settings:
   layout_builder:
     enabled: true
@@ -25,12 +25,23 @@ third_party_settings:
       -
         layout_id: banner
         layout_settings:
-          label: Banner
+          label: ''
           context_mapping: {  }
-          color_scheme: dark
+          color_scheme: none
         components:
-          f7b76440-beee-4c7b-99bc-edc6740e5fe5:
-            uuid: f7b76440-beee-4c7b-99bc-edc6740e5fe5
+          4fd26ae8-decc-42b0-8bb8-2d1e1640762a:
+            uuid: 4fd26ae8-decc-42b0-8bb8-2d1e1640762a
+            region: top
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: 0
+            additional: {  }
+          74a009d0-fe6c-4fc3-b0a7-3c113299d3ab:
+            uuid: 74a009d0-fe6c-4fc3-b0a7-3c113299d3ab
             region: banner
             configuration:
               id: 'field_block:collection:subsite_blog:name'
@@ -43,100 +54,82 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 3
+            weight: 0
             additional: {  }
-          45998408-6197-4e06-8f51-00cceafe3ec5:
-            uuid: 45998408-6197-4e06-8f51-00cceafe3ec5
+          e597d459-ba06-4420-95c1-cc80148b398b:
+            uuid: e597d459-ba06-4420-95c1-cc80148b398b
             region: banner
             configuration:
               id: 'field_block:collection:subsite_blog:body'
-              label: 'Intro Text'
               label_display: '0'
-              provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-                view_mode: view_mode
               formatter:
                 type: text_default
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 4
+            weight: 1
             additional: {  }
-          3bfe941b-d893-4e67-b75f-3005bbe10080:
-            uuid: 3bfe941b-d893-4e67-b75f-3005bbe10080
-            region: top
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          c013f431-74d9-468d-9c1d-328ba2c2bae4:
+            uuid: c013f431-74d9-468d-9c1d-328ba2c2bae4
+            region: content
             configuration:
-              id: system_breadcrumb_block
-              label: Breadcrumbs
+              id: 'field_block:collection:subsite_blog:field_sections'
               label_display: '0'
-              provider: system
-              context_mapping: {  }
-            weight: 0
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                  link: ''
+                third_party_settings: {  }
+            weight: 1
             additional: {  }
-          5a3b016b-688d-4406-bdd2-43165fce7609:
-            uuid: 5a3b016b-688d-4406-bdd2-43165fce7609
-            region: media
+          f45b9e43-d075-47ca-8609-6fd05e17fc7d:
+            uuid: f45b9e43-d075-47ca-8609-6fd05e17fc7d
+            region: content
             configuration:
-              id: 'field_block:collection:subsite_blog:field_representative_image'
-              label: 'Representative Image'
+              id: 'extra_field_block:collection:subsite_blog:extra_field_ilr_section_navigation'
+              label: 'In page navigation'
               label_display: '0'
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
-                view_mode: view_mode
               formatter:
-                type: entity_reference_entity_view
-                label: hidden
-                settings:
-                  view_mode: default
+                settings: {  }
                 third_party_settings: {  }
             weight: 0
             additional: {  }
         third_party_settings: {  }
-id: collection.subsite_blog.banner
+id: collection.subsite_blog.alt
 targetEntityType: collection
 bundle: subsite_blog
-mode: banner
+mode: alt
 content:
   body:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 4
-    region: content
-  extra_field_ilr_section_navigation:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
-    region: banner
-  field_representative_image:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   field_sections:
     type: entity_reference_revisions_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 3
-    region: content
-  field_suppress_date_display:
-    type: boolean
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   name:
     type: string
@@ -146,13 +139,10 @@ content:
     third_party_settings: {  }
     weight: -4
     region: content
-  user_id:
-    type: author
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
-    region: content
 hidden:
   behavior_alt_display: true
+  extra_field_ilr_section_navigation: true
+  field_representative_image: true
+  field_suppress_date_display: true
   search_api_excerpt: true
+  user_id: true

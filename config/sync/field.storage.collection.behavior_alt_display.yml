@@ -1,0 +1,18 @@
+uuid: d69b6aeb-b180-48c4-b419-919b2b125fe2
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: collection.behavior_alt_display
+field_name: behavior_alt_display
+entity_type: collection
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

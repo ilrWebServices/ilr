@@ -717,6 +717,27 @@ function ilr_preprocess_node__course__teaser(&$variables) {
  */
 function ilr_preprocess_node__page__alt(&$variables) {
   $variables['page'] = TRUE;
+  $node = $variables['node'];
+
+  if ($node->hasField('field_sections') && $first_section = $node->field_sections->first()->entity) {
+    if ($first_section->getBehaviorSetting('union_section_settings', 'wide')) {
+      $variables['attributes']['class'][] = 'node--wide';
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_collection().
+ */
+function ilr_preprocess_collection__subsite_blog__alt(&$variables) {
+  $variables['attributes']['class'][] = 'collection--view-mode-alt';
+  $collection = $variables['collection'];
+
+  if ($collection->hasField('field_sections') && $first_section = $collection->field_sections->first()->entity) {
+    if ($first_section->getBehaviorSetting('union_section_settings', 'wide')) {
+      $variables['attributes']['class'][] = 'collection--wide';
+    }
+  }
 }
 
 /**
@@ -1295,6 +1316,14 @@ function ilr_form_collection_form_alter(&$form, FormStateInterface $form_state) 
     if (isset($form['field_section_path'])) {
       $form['field_section_path']['#group'] = 'ilr_meta';
     }
+
+    if (isset($form['behavior_alt_display'])) {
+      $form['behavior_alt_display']['#group'] = 'ilr_meta';
+
+      // Only provide the alt_display setting on bundles for which its been
+      // configured.
+      $form['behavior_alt_display']['#access'] = $form_state->getFormObject()->getEntity()->bundle() == 'subsite_blog';
+    }
   }
 
   // Enable new revisions by default.
@@ -1337,6 +1366,8 @@ function ilr_pathauto_pattern_alter(PathautoPatternInterface $pattern, array $co
  * Updates the alias pattern for story nodes that in a publication_issue
  * collection.
  *
+ * Updates the alias pattern for projects in the YTI collection.
+ *
  * @see collection_pathauto_pathauto_alias_alter().
  */
 function ilr_collection_pathauto_alias_alter(&$alias, array &$context) {
@@ -1358,6 +1389,14 @@ function ilr_collection_pathauto_alias_alter(&$alias, array &$context) {
     // with two collection paths.
     $deduped_alias = preg_replace("|^{$collection_path}{$collection_path}/|", $collection_path . '/', $alias);
     $alias = $deduped_alias;
+  }
+
+  if ($context['canonical_collection']->id() === '57') {
+    if (!isset($context['data']['node']) || $context['data']['node']->bundle() != 'project') {
+      return;
+    }
+    // Swap `work` for `project` in the alias.
+    $alias = str_replace('/project/', '/work/', $alias);
   }
 }
 

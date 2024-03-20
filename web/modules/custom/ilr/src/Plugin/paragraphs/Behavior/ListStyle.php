@@ -43,6 +43,7 @@ class ListStyle extends ParagraphsBehaviorBase {
     'grid-bricks--reversed' => 'Bricks (reversed)',
     'grid-featured' => 'Featured Grid',
     'banner' => 'Banner',
+    'select-list' => 'Select list',
     'main_content' => 'Main content',
   ];
 
@@ -327,6 +328,7 @@ class ListStyle extends ParagraphsBehaviorBase {
         return 'teaser_compact';
 
       case 'list-compact':
+      case 'select-list':
         return 'mini';
 
       case 'banner':

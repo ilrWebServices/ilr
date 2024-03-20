@@ -174,6 +174,11 @@ class ProjectListing extends ParagraphsBehaviorBase {
   public function preprocess(&$variables) {
     $paragraph = $variables['paragraph'];
     $collection_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'collection');
+
+    if (!$collection_id) {
+      return;
+    }
+
     $collection = $this->entityTypeManager->getStorage('collection')->load($collection_id);
     $project_types = $paragraph->getBehaviorSetting($this->getPluginId(), 'project_types') ?? array_keys($this->collectionProjectsManager->getProjectTypesWithLabels());
 
@@ -224,6 +229,15 @@ class ProjectListing extends ParagraphsBehaviorBase {
     }
 
     $list_style = $paragraph->getBehaviorSetting('list_styles', 'list_style') ?? 'grid';
+
+    if ($list_style === 'select-list') {
+      $projects[] = [
+        '#markup' => '<div class="project-list__trigger" aria-expanded="false" value="Expand Project List" aria-label="Expand Project List">▼</div><div class="cu-x-field field--title">' . $this->t('-- Choose a project --') . '</div>',
+        '#attached' => [
+          'library' => ['ilr/ilr_select_list'],
+        ],
+      ];
+    }
 
     // Two of the grid list styles require the projects to have images.
     if (in_array($list_style, ['grid', 'grid-featured'])) {

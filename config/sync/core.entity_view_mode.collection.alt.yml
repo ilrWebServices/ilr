@@ -1,0 +1,11 @@
+uuid: 2ddefa8c-d313-4348-95a8-3b88feb6e746
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: collection.alt
+label: Alternate
+description: ''
+targetEntityType: collection
+cache: true
