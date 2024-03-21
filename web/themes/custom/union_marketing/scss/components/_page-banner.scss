@@ -205,6 +205,10 @@
       margin-top: var(--cu-vr0);
     }
   }
+
+  .layout__region--content .cu-page-nav {
+    max-width: 100%;
+  }
 }
 
 .node--view-mode-alt,
@@ -221,8 +225,8 @@
 
   .banner__content {
     max-width: var(--cu-max-width-section, 1060px);
-    margin: 0 auto var(--cu-vr2) auto;
-    padding: var(--cu-vr1) 0 var(--cu-vr2);
+    margin: 0 auto;
+    padding: var(--cu-vr1) 0 0;
   }
 
   h1.cu-heading {
@@ -232,6 +236,14 @@
 
   .field--body.field-type--text-with-summary {
     --cu-font-weight: 400;
+  }
+
+  .layout__region--content .cu-page-nav {
+    margin-bottom: var(--cu-vr2);
+
+    @include breakpoint(sm) {
+      margin-bottom: var(--cu-vr3);
+    }
   }
 }
 
