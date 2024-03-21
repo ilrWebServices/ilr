@@ -165,13 +165,14 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
         }
       }
 
-      // Send address info to Touchpoints. We can't map these values because
-      // different variants can use different address fields.
+      // Send address and company info to Touchpoints. We can't map these values
+      // because different variants can use different address and company
+      // fields.
       if ($sf_object_name === 'Touchpoint__c') {
         $address_variant = $data['variant_address'] ?? '';
 
         // Default the address values to the basic address field.
-        if (($address_variant === 'basic_address' || $data['variant'] === 'cahrs_event') && !empty($data['address'])) {
+        if (($address_variant === 'basic_address' && !empty($data['address']))) {
           $params->setParam('Street_Address__c', $data['address']['address'] ?: '');
           $params->setParam('City__c', $data['address']['city'] ?: '');
           $params->setParam('State__c', $data['address']['state_province'] ?: '');
@@ -185,6 +186,11 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
           $params->setParam('State__c', $data['address_intl']['administrative_area'] ?: '');
           $params->setParam('Zip_Postal_Code__c', $data['address_intl']['postal_code'] ?: '');
           $params->setParam('Country__c', $data['address_intl']['country_code'] ?: '');
+        }
+
+        // Send the company if it was on the form.
+        if (!empty($data['company'])) {
+          $params->setParam(('Company__c'), $data['company']);
         }
       }
     }
