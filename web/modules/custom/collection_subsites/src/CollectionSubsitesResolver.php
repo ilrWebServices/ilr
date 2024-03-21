@@ -72,7 +72,7 @@ class CollectionSubsitesResolver {
         $subsite_collection = $entity;
       }
     }
-    elseif ($entity instanceof ContentEntityInterface) {
+    elseif ($entity instanceof ContentEntityInterface && !$entity->isNew()) {
       $entity_path = $path ?? $entity->toUrl()->toString();
       $collection_items = $this->collectionContentManager->getCollectionItemsForEntity($entity);
 
