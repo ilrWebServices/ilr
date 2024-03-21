@@ -315,7 +315,7 @@ class EventListing extends ParagraphsBehaviorBase {
     }
 
     $query->condition($keywords_group);
-    $query->sort('event_date.value', 'DESC');
+    $query->sort('event_date.value', 'ASC');
 
     // If a limit was set, limit the query. This may be limited further if
     // localist events are selected, too, but we'll never need _more_ than the
