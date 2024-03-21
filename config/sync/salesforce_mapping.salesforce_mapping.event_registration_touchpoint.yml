@@ -11,7 +11,7 @@ pull_standalone: false
 pull_trigger_date: LastModifiedDate
 pull_frequency: 0
 push_frequency: 0
-push_limit: 0
+push_limit: 70
 push_retries: 3
 pull_where_clause: ''
 pull_record_type_filter:

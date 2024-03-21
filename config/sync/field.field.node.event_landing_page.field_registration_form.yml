@@ -19,7 +19,7 @@ translatable: false
 default_value:
   -
     target_uuid: ca3cc916-9737-453e-8dcc-88100248bf62
-    default_data: "# eventid is required.\r\nvariant: \r\neventid: \r\npost_button_text: \r\noutreach_marketing_personas: "
+    default_data: "# Including an eventid below sends these registrations to Salesforce.\r\nvariant: \r\neventid: \r\npost_button_text: \r\noutreach_marketing_personas: "
     status: open
     open: ''
     close: ''
