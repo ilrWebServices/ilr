@@ -899,3 +899,16 @@ variants:
         submission_detail_email:
           settings:
             subject: 'Event registration: [webform_submission:source-title] ([webform_submission:values:eventid])'
+  cji_solar_event:
+    id: override
+    variant_id: cji_solar_event
+    element_key: variant
+    label: 'CJI solar event'
+    notes: 'This variant adds a checkbox to ask if the registration is already working in the solar industry.'
+    status: true
+    weight: 16
+    settings:
+      debug: false
+      settings: {  }
+      elements: "custom_1_answer:\r\n  '#type': checkbox\r\n  '#title': 'I am an existing solar worker'\r\n  '#access': true\r\n  '#required': false"
+      handlers: {  }
