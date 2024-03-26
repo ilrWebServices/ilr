@@ -121,6 +121,8 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       if (empty($submission_data['eventid'])) {
         $event->disallowPush();
       }
+
+      // TODO: Consider disallowing push if address info is missing.
     }
   }
 
@@ -171,21 +173,23 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       if ($sf_object_name === 'Touchpoint__c') {
         $address_variant = $data['variant_address'] ?? '';
 
-        // Default the address values to the basic address field.
-        if (($address_variant === 'basic_address' && !empty($data['address']))) {
-          $params->setParam('Street_Address__c', $data['address']['address'] ?: '');
-          $params->setParam('City__c', $data['address']['city'] ?: '');
-          $params->setParam('State__c', $data['address']['state_province'] ?: '');
-          $params->setParam('Zip_Postal_Code__c', $data['address']['postal_code'] ?: '');
-          $params->setParam('Country__c', $data['address']['Country__c'] ?: '');
-        }
-        // If there is international address info, use those values instead.
-        elseif ($address_variant === 'international_address' && !empty($data['address_intl'])) {
+        // If there is international address info, use values from `$data['address_intl']`.
+        if ($address_variant === 'international_address') {
           $params->setParam('Street_Address__c', $data['address_intl']['address_line1'] ?: '');
           $params->setParam('City__c', $data['address_intl']['locality'] ?: '');
           $params->setParam('State__c', $data['address_intl']['administrative_area'] ?: '');
           $params->setParam('Zip_Postal_Code__c', $data['address_intl']['postal_code'] ?: '');
           $params->setParam('Country__c', $data['address_intl']['country_code'] ?: '');
+        }
+        // Default the address values to the basic address field. We tell people
+        // to use `variant_address: basic_address` for this, and info is stored in
+        // `$data['address']`.
+        else {
+          $params->setParam('Street_Address__c', $data['address']['address'] ?: '');
+          $params->setParam('City__c', $data['address']['city'] ?: '');
+          $params->setParam('State__c', $data['address']['state_province'] ?: '');
+          $params->setParam('Zip_Postal_Code__c', $data['address']['postal_code'] ?: '');
+          $params->setParam('Country__c', $data['address']['Country__c'] ?: '');
         }
 
         // Send the company if it was on the form.
