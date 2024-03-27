@@ -1,0 +1,75 @@
+id: yti_personas
+label: YTI personas
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'csv_url'
+  path: 'https://raw.githubusercontent.com/ilrWebServices/project_migration_data/main/yti_users.csv'
+  header_offset: 0
+  ids:
+    - id
+  constants:
+    label_suffix: ' (YTI)'
+    photo_url_prefix: 'https://yti.cornell.edu/images/staffphotos/'
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  admin_label:
+    plugin: concat
+    source:
+      - full_name
+      - constants/label_suffix
+  display_name: full_name
+  field_email: email
+  field_bio/value: long_bio
+  field_bio/format:
+    plugin: default_value
+    default_value: basic_formatting_with_media
+  field_first_name: first_name
+  field_last_name: last_name
+  field_phone: phone
+  field_title: title
+  field_campus_address/country_code:
+    plugin: default_value
+    default_value: US
+  field_campus_address/langcode:
+    plugin: default_value
+    default_value: en
+  field_campus_address/address_line1: address_1
+  field_campus_address/address_line2: address_2
+  field_campus_address/locality: city
+  field_campus_address/administrative_area: state
+  field_campus_address/postal_code: zip
+  field_fax: fax
+  field_education/value: degrees
+  field_education/format:
+    plugin: default_value
+    default_value: basic_formatting_with_media
+  field_photo:
+    plugin: migration_lookup
+    migration: yti_persona_media
+    source: id
+    no_stub: true
+  created:
+    plugin: format_date
+    source: updated_at
+    from_format: 'Y-m-d H:i:s'
+    to_format: 'U'
+    from_timezone: 'UTC'
+    to_timezone: 'UTC'
+  changed:
+    plugin: format_date
+    source: updated_at
+    from_format: 'Y-m-d H:i:s'
+    to_format: 'U'
+    from_timezone: 'UTC'
+    to_timezone: 'UTC'
+destination:
+  plugin: entity:persona
+  default_bundle: yti_staff
+migration_dependencies:
+  required:
+    - yti_persona_media
+  optional: {  }
