@@ -259,3 +259,62 @@
     text-decoration: none;
   }
 }
+
+// Temporary implementation for CAHRS Quarterly display
+.bvg--subsite-53 .layout--twocol-section.layout--twocol-section--25-75 {
+  max-width: 1060px;
+  gap: var(--cu-vr1);
+  margin: 0 auto;
+
+  .layout__region--first {
+    flex-basis: calc(50% - var(--cu-vr1));
+
+    @include breakpoint(md) {
+      flex-basis: calc(25% - var(--cu-vr1));
+    }
+
+    .cu-image {
+      border-radius: 50%;
+    }
+  }
+
+  .layout__region--second {
+    flex-basis: 100%;
+
+    @include breakpoint(md) {
+      flex-basis: 75%;
+    }
+  }
+
+  .cu-list--grid-bricks {
+    grid-template-columns: 1fr;
+
+    .node--postalicious.cu-card--teaser {
+      --cu-colorscheme-background: transparent;
+      display: flex;
+      flex-direction: row;
+
+      .cu-card__media {
+        margin: 0;
+        .cu-image {
+          aspect-ratio: 1 / 1;
+          max-width: 200px;
+        }
+      }
+
+      .cu-composite-heading__heading {
+        --cu-font-family: "futura-pt";
+        --cu-font-size: var(--cu-ms4);
+        --cu-line-height: 1;
+
+        @include breakpoint(sm) {
+          --cu-font-size: var(--cu-ms9);
+        }
+      }
+
+      .cu-composite-heading__eyebrow-heading {
+        display: none;
+      }
+    }
+  }
+}
