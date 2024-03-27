@@ -1,0 +1,19 @@
+uuid: 9b8fcbe1-b46d-4f9d-8e3e-54c518a134b8
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+    - text
+id: persona.field_education
+field_name: field_education
+entity_type: persona
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

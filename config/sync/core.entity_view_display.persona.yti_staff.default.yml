@@ -1,0 +1,96 @@
+uuid: 2e5abcb5-a365-4969-83cc-fd9a22b4cc51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.persona.yti_staff.field_bio
+    - field.field.persona.yti_staff.field_campus_address
+    - field.field.persona.yti_staff.field_education
+    - field.field.persona.yti_staff.field_email
+    - field.field.persona.yti_staff.field_fax
+    - field.field.persona.yti_staff.field_first_name
+    - field.field.persona.yti_staff.field_last_name
+    - field.field.persona.yti_staff.field_phone
+    - field.field.persona.yti_staff.field_photo
+    - field.field.persona.yti_staff.field_title
+    - image.style.medium_1_1
+    - person.persona_type.yti_staff
+  module:
+    - address
+    - media
+    - telephone
+    - text
+id: persona.yti_staff.default
+targetEntityType: persona
+bundle: yti_staff
+mode: default
+content:
+  field_bio:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_campus_address:
+    type: address_default
+    label: hidden
+    settings:
+      field_settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_education:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_email:
+    type: email_mailto
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_fax:
+    type: telephone_link
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_phone:
+    type: telephone_link
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_photo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium_1_1
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  display_name: true
+  field_first_name: true
+  field_last_name: true
+  search_api_excerpt: true

@@ -1,0 +1,19 @@
+uuid: 8b382c3a-b7cb-4659-a7bb-0e70e6c4977a
+langcode: en
+status: true
+dependencies:
+  module:
+    - address
+    - person
+id: persona.field_campus_address
+field_name: field_campus_address
+entity_type: persona
+type: address
+settings: {  }
+module: address
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,35 @@
+uuid: 3a0a0278-3710-41be-8f06-a483a608465a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_campus_address
+    - person.persona_type.yti_staff
+  module:
+    - address
+id: persona.yti_staff.field_campus_address
+field_name: field_campus_address
+entity_type: persona
+bundle: yti_staff
+label: 'Campus address'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  langcode_override: ''
+  field_overrides:
+    givenName:
+      override: hidden
+    additionalName:
+      override: hidden
+    familyName:
+      override: hidden
+    organization:
+      override: hidden
+    dependentLocality:
+      override: hidden
+  fields: {  }
+field_type: address

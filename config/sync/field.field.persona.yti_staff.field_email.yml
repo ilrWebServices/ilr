@@ -1,0 +1,19 @@
+uuid: bfdaf516-23de-44ce-9e61-c344bf04f42f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_email
+    - person.persona_type.yti_staff
+id: persona.yti_staff.field_email
+field_name: field_email
+entity_type: persona
+bundle: yti_staff
+label: Email
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

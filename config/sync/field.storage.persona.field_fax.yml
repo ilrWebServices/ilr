@@ -1,0 +1,19 @@
+uuid: bb6217b9-f12c-4394-98f6-04af8d6ac671
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+    - telephone
+id: persona.field_fax
+field_name: field_fax
+entity_type: persona
+type: telephone
+settings: {  }
+module: telephone
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
