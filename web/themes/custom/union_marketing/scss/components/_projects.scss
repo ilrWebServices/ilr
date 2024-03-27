@@ -34,7 +34,7 @@
   }
 }
 
-.term--view-mode-full {
+div[class$="-focus-areas"].term--view-mode-full {
   --cu-max-width-section: 915px;
   margin: 0 auto;
 
