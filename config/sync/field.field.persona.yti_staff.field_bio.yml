@@ -1,0 +1,24 @@
+uuid: 64fe5515-d812-4231-9fc3-49f8e4eef4b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_bio
+    - person.persona_type.yti_staff
+  module:
+    - text
+id: persona.yti_staff.field_bio
+field_name: field_bio
+entity_type: persona
+bundle: yti_staff
+label: Bio
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

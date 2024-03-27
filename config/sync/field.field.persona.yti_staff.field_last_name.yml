@@ -1,0 +1,19 @@
+uuid: 72cd9d19-503a-41c0-a2b2-f1460c1ae924
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_last_name
+    - person.persona_type.yti_staff
+id: persona.yti_staff.field_last_name
+field_name: field_last_name
+entity_type: persona
+bundle: yti_staff
+label: 'Last name'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
