@@ -6,7 +6,7 @@ migration_tags:
 source:
 source:
   plugin: 'csv_url'
-  path: 'http://drupal.ilr.test/yti_users.csv'
+  path: 'https://raw.githubusercontent.com/ilrWebServices/project_migration_data/main/yti_users.csv'
   header_offset: 0
   ids:
     - id
