@@ -1,0 +1,20 @@
+uuid: 878df6f8-0702-4ec7-93b5-10048161f7db
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+    - taxonomy
+id: collection_item.field_tags
+field_name: field_tags
+entity_type: collection_item
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,40 @@
+uuid: c3742f7d-50b0-40a8-9211-ed49569f29be
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.persona_item
+    - core.entity_form_mode.collection_item.mini
+    - field.field.collection_item.persona_item.field_tags
+id: collection_item.persona_item.mini
+targetEntityType: collection_item
+bundle: persona_item
+mode: mini
+content:
+  canonical:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_tags:
+    type: options_buttons
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  attributes: true
+  collection: true
+  item: true
+  path: true
+  user_id: true
+  weight: true

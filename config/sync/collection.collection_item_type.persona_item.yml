@@ -1,0 +1,11 @@
+uuid: d72cefad-5485-4cb0-a64f-691edd8027f9
+langcode: en
+status: true
+dependencies: {  }
+id: persona_item
+label: 'Persona item'
+allowed_bundles:
+  - persona.faculty
+  - persona.staff
+  - persona.visiting_fellow
+attributes_access: administrators

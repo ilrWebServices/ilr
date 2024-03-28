@@ -1,0 +1,21 @@
+uuid: 1ab3b9a6-506c-4a10-bf83-c349db2e94ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.persona_item
+    - field.storage.collection_item.field_tags
+id: collection_item.persona_item.field_tags
+field_name: field_tags
+entity_type: collection_item
+bundle: persona_item
+label: Tags
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: collection_context_persona_tag_term
+  handler_settings: {  }
+field_type: entity_reference
