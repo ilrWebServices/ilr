@@ -1,27 +1,29 @@
-uuid: 01bf1f61-9007-42f3-aa8e-6e8190f2909f
+uuid: 0cf9be29-12ce-4e36-ac70-5d9d13f212a8
 langcode: en
 status: true
 dependencies:
   module:
     - ilr
-id: people_listing
-label: 'People listing (curated)'
+id: people_listing_dynamic
+label: 'People listing (from a collection)'
 icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
+  ilr_people_listing:
+    enabled: true
   list_styles:
     enabled: true
     list_styles:
       grid: grid
       grid-compact: grid-compact
-      grid-featured: grid-featured
       list-compact: 0
       grid-bricks: 0
       grid-bricks--reversed: 0
+      grid-featured: 0
       banner: 0
       select-list: 0
       main_content: 0
     columns_enabled: 1
     columns_min: '1'
-    columns_max: '5'
+    columns_max: '4'

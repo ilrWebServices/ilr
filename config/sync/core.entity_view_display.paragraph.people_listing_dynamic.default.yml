@@ -1,0 +1,13 @@
+uuid: 42605ac8-535b-4a6a-9266-73c7ce726227
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.people_listing_dynamic
+id: paragraph.people_listing_dynamic.default
+targetEntityType: paragraph
+bundle: people_listing_dynamic
+mode: default
+content: {  }
+hidden:
+  search_api_excerpt: true
