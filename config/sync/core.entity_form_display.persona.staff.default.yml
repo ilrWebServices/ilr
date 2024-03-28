@@ -4,7 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.persona.staff.field_bio
+    - field.field.persona.staff.field_campus_address
+    - field.field.persona.staff.field_education
     - field.field.persona.staff.field_email
+    - field.field.persona.staff.field_fax
     - field.field.persona.staff.field_first_name
     - field.field.persona.staff.field_last_name
     - field.field.persona.staff.field_phone
@@ -12,6 +15,7 @@ dependencies:
     - field.field.persona.staff.field_title
     - person.persona_type.staff
   module:
+    - address
     - media_library
     - media_library_edit
     - path
@@ -48,6 +52,20 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
+  field_campus_address:
+    type: address_default
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_education:
+    type: text_textarea
+    weight: 29
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_email:
     type: email_default
     weight: 3
@@ -55,6 +73,13 @@ content:
     settings:
       placeholder: ''
       size: 60
+    third_party_settings: {  }
+  field_fax:
+    type: telephone_default
+    weight: 5
+    region: content
+    settings:
+      placeholder: ''
     third_party_settings: {  }
   field_first_name:
     type: string_textfield

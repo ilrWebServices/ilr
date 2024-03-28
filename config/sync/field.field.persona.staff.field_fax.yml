@@ -1,0 +1,21 @@
+uuid: 4f05f7cb-31c6-4eff-834e-3d2022d589c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_fax
+    - person.persona_type.staff
+  module:
+    - telephone
+id: persona.staff.field_fax
+field_name: field_fax
+entity_type: persona
+bundle: staff
+label: Fax
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

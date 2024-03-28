@@ -1,0 +1,24 @@
+uuid: 7122d3f6-d180-40e9-b110-2bb6979f844c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_education
+    - filter.format.basic_formatting_with_media
+    - person.persona_type.staff
+  module:
+    - text
+id: persona.staff.field_education
+field_name: field_education
+entity_type: persona
+bundle: staff
+label: Education
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_formatting_with_media
+field_type: text_long

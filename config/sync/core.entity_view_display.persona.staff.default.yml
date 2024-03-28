@@ -4,7 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.persona.staff.field_bio
+    - field.field.persona.staff.field_campus_address
+    - field.field.persona.staff.field_education
     - field.field.persona.staff.field_email
+    - field.field.persona.staff.field_fax
     - field.field.persona.staff.field_first_name
     - field.field.persona.staff.field_last_name
     - field.field.persona.staff.field_phone
@@ -13,6 +16,7 @@ dependencies:
     - image.style.thumbnail_square
     - person.persona_type.staff
   module:
+    - address
     - media
     - telephone
     - text
@@ -26,14 +30,37 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 5
+    weight: 6
+    region: content
+  field_campus_address:
+    type: address_default
+    label: hidden
+    settings:
+      field_settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_education:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
     region: content
   field_email:
     type: email_mailto
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 1
+    region: content
+  field_fax:
+    type: telephone_link
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_phone:
     type: telephone_link
@@ -60,7 +87,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
 hidden:
   display_name: true
