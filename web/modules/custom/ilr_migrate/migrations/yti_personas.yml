@@ -68,7 +68,7 @@ process:
     to_timezone: 'UTC'
 destination:
   plugin: entity:persona
-  default_bundle: yti_staff
+  default_bundle: staff
 migration_dependencies:
   required:
     - yti_persona_media
