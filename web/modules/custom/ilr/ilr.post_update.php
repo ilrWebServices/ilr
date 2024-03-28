@@ -250,3 +250,48 @@ function ilr_post_update_update_yti_project_aliases(&$sandbox) {
     $project_item->item->entity->save();
   }
 }
+
+/**
+ * Add YTI-related persona tags.
+ */
+function ilr_post_update_add_yti_persona_tags_vocab(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $yti_collection = $entity_type_manager->getStorage('collection')->load(57);
+  $vocab = $entity_type_manager->getStorage('taxonomy_vocabulary')->create([
+    'langcode' => 'en',
+    'status' => TRUE,
+    'name' => $yti_collection->label() . ' persona tags',
+    'vid' => 'collection_' . $yti_collection->id() . '_persona_tags',
+    'description' => 'Auto-generated vocabulary for ' . $yti_collection->label() . ' persona tags',
+  ]);
+  $vocab->save();
+
+  if ($vocab) {
+    // Create the director term and add both the vocab and term to the YTI
+    // collection.
+    $director_term = $entity_type_manager->getStorage('taxonomy_term')->create([
+      'name' => 'Director',
+      'vid' => $vocab->id(),
+    ]);
+    $director_term->save();
+
+    $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+    $collection_item_vocab = $collection_item_storage->create([
+      'type' => 'default',
+      'collection' => $yti_collection->id(),
+      'canonical' => TRUE,
+      'weight' => 10,
+    ]);
+    $collection_item_vocab->item = $vocab;
+    $collection_item_vocab->setAttribute('collection_persona_tags', $vocab->id());
+    $collection_item_vocab->save();
+
+    $collection_item_term = $collection_item_storage->create([
+      'type' => 'default',
+      'collection' => $yti_collection->id(),
+      'canonical' => TRUE,
+    ]);
+    $collection_item_term->item = $director_term;
+    $collection_item_term->save();
+  }
+}
