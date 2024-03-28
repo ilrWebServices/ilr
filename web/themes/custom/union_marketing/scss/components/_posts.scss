@@ -287,18 +287,29 @@
   }
 
   .cu-list--grid-bricks {
-    grid-template-columns: 1fr;
+    display: block;
 
     .node--postalicious.cu-card--teaser {
       --cu-colorscheme-background: transparent;
-      display: flex;
-      flex-direction: row;
+      margin-bottom: var(--cu-vr2);
+
+      @include breakpoint(sm) {
+        display: grid;
+        grid-template-columns: 175px 1fr;
+        gap: var(--cu-ps1);
+        margin-bottom: var(--cu-vr1);
+      }
+
+      .cu-card__content {
+        padding: 0;
+      }
 
       .cu-card__media {
         margin: 0;
         .cu-image {
           aspect-ratio: 1 / 1;
-          max-width: 200px;
+          width: 175px;
+          height: 175px;
         }
       }
 
@@ -306,9 +317,10 @@
         --cu-font-family: "futura-pt";
         --cu-font-size: var(--cu-ms4);
         --cu-line-height: 1;
+        text-transform: uppercase;
 
         @include breakpoint(sm) {
-          --cu-font-size: var(--cu-ms9);
+          --cu-font-size: var(--cu-ms8);
         }
       }
 
