@@ -252,7 +252,7 @@ class ListStyle extends ParagraphsBehaviorBase {
         }
 
         $original_view_mode = $element[$key]['#view_mode'];
-        $view_mode_for_liststyle = $this->getViewModeForListStyle($list_style, $key + 1);
+        $view_mode_for_liststyle = $this->getViewModeForListStyle($list_style);
         $cache_key_view_mode_key = array_search($original_view_mode, $element[$key]['#cache']['keys']);
 
         if ($original_view_mode !== $view_mode_for_liststyle) {
@@ -316,13 +316,11 @@ class ListStyle extends ParagraphsBehaviorBase {
    *
    * @param string $list_style
    *   One of the list style machine names from this::list_styles.
-   * @param int $post_number
-   *   The order placement of the post in the listing.
    *
    * @return string
    *   A node view mode.
    */
-  public function getViewModeForListStyle($list_style, $post_number = NULL) {
+  public function getViewModeForListStyle($list_style) {
     switch ($list_style) {
       case 'grid-compact':
         return 'teaser_compact';
