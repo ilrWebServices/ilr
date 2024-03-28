@@ -1010,6 +1010,14 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
 }
 
 /**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Move collection items into the advanced group.
+  $form['ief_collection_items']['#group'] = 'advanced';
+}
+
+/**
  * Implements hook_field_widget_form_alter().
  */
 function ilr_field_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
