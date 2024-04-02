@@ -30,7 +30,16 @@ process:
   field_first_name: first_name
   field_last_name: last_name
   field_phone: phone
-  field_title: title
+  field_title:
+    -
+      plugin: str_replace
+      source: title
+      search: ['<br/>', '<strong>', '</strong>']
+      replace: ['<br>', '', '']
+    -
+      plugin: explode
+      delimiter: '<br>'
+      strict: false
   field_campus_address/country_code:
     plugin: default_value
     default_value: US
