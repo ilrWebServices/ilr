@@ -223,7 +223,41 @@ class PeopleListing extends ParagraphsBehaviorBase {
   /**
    * {@inheritdoc}
    */
-  public function settingsSummary(Paragraph $paragraph) {}
+  public function settingsSummary(Paragraph $paragraph) {
+    $summary = [];
+    $tags_labels = [];
+    $collection_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'collection');
+
+    if ($selected_tags_ids = $paragraph->getBehaviorSetting($this->getPluginId(), 'tags')) {
+      $selected_tags = $this->entityTypeManager->getStorage('taxonomy_term')->loadMultiple($selected_tags_ids);
+
+      foreach ($selected_tags as $selected_tag) {
+        $tags_labels[] = $selected_tag->label();
+      }
+    }
+
+    if ($collection_id) {
+      $collection = $this->entityTypeManager->getStorage('collection')->load($collection_id);
+      $summary[] = [
+        'label' => 'Collection',
+        'value' => $collection->label(),
+      ];
+    }
+
+    $summary[] = [
+      'label' => 'Tags',
+      'value' => $tags_labels ? implode(', ', $tags_labels) : 'All',
+    ];
+
+    if ($paragraph->getBehaviorSetting($this->getPluginId(), 'ignore_sticky')) {
+      $summary[] = [
+        'label' => 'Ignore sticky sort',
+        'value' => '✓',
+      ];
+    }
+
+    return $summary;
+  }
 
   /**
    * Get focus area term options for a given collection.
