@@ -189,6 +189,8 @@ class PeopleListing extends ParagraphsBehaviorBase {
       $query->sort('sticky', 'DESC');
     }
 
+    $query->sort('item.entity:persona.field_last_name', 'ASC');
+
     if (!empty($tags)) {
       $tags_group = $query->orConditionGroup();
 
