@@ -22,6 +22,16 @@ process:
       - full_name
       - constants/label_suffix
   display_name: full_name
+  person:
+    plugin: static_map
+    source: id
+    defualt_value: null
+    map:
+      2: 520
+      14: 25
+      28: 24
+      40: 717
+      101: 867
   field_email: email
   field_bio/value: long_bio
   field_bio/format:
