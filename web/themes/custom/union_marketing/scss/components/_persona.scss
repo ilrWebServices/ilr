@@ -77,13 +77,6 @@ body.persona .cu-header {
   --cu-line-height: 1.1;
 }
 
-@include breakpoint(md) {
-  .cu-list--tabular-list {
-    display: table;
-    width: 100%;
-  }
-}
-
 .persona--tabular-item {
   margin-bottom: var(--cu-vr0);
   border-bottom: 1px solid #ccc;
@@ -95,7 +88,8 @@ body.persona .cu-header {
   }
 
   @include breakpoint(md) {
-    display: table-row;
+    display: flex;
+    flex-direction: row;
   }
 
   > * {
@@ -108,9 +102,23 @@ body.persona .cu-header {
     }
 
     @include breakpoint(md) {
-      display: table-cell;
-      padding: var(--cu-vr0) var(--cu-ps-1) var(--cu-vr0) 0;
-      border-bottom: 1px solid #ccc;
+      &:not(.persona__photo) {
+        flex-basis: 20%;
+      }
+      &.persona__phone {
+        flex-basis: 16.6666666%;
+      }
+    }
+  }
+
+  .persona__name.cu-heading {
+    margin-bottom: var(--cu-vr-2);
+  }
+
+  .field--field-title {
+    .field__item  {
+      line-height: 1.1;
+      margin-bottom: var(--cu-vr-1);
     }
   }
 }
