@@ -52,7 +52,12 @@ process:
   field_campus_address/administrative_area: state
   field_campus_address/postal_code: zip
   field_fax: fax
-  field_education/value: degrees
+  field_education/value:
+    -
+      plugin: str_replace
+      source: degrees
+      search: '^'
+      replace: '<br />'
   field_education/format:
     plugin: default_value
     default_value: basic_formatting_with_media
