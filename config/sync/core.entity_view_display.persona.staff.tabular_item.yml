@@ -1,0 +1,89 @@
+uuid: 1228828d-498c-4712-8187-4466a8c295fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.persona.tabular_item
+    - field.field.persona.staff.field_bio
+    - field.field.persona.staff.field_campus_address
+    - field.field.persona.staff.field_education
+    - field.field.persona.staff.field_email
+    - field.field.persona.staff.field_fax
+    - field.field.persona.staff.field_first_name
+    - field.field.persona.staff.field_last_name
+    - field.field.persona.staff.field_phone
+    - field.field.persona.staff.field_photo
+    - field.field.persona.staff.field_title
+    - image.style.thumbnail
+    - person.persona_type.staff
+  module:
+    - address
+    - layout_builder
+    - media
+    - telephone
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: persona.staff.tabular_item
+targetEntityType: persona
+bundle: staff
+mode: tabular_item
+content:
+  display_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_campus_address:
+    type: address_default
+    label: hidden
+    settings:
+      field_settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_email:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_phone:
+    type: telephone_link
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_photo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: content
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  field_bio: true
+  field_education: true
+  field_fax: true
+  field_first_name: true
+  field_last_name: true
+  search_api_excerpt: true

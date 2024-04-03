@@ -76,3 +76,41 @@ body.persona .cu-header {
 .cu-person--featured .persona__name {
   --cu-line-height: 1.1;
 }
+
+@include breakpoint(md) {
+  .cu-list--tabular-list {
+    display: table;
+    width: 100%;
+  }
+}
+
+.persona--tabular-item {
+  margin-bottom: var(--cu-vr0);
+  border-bottom: 1px solid #ccc;
+
+  @include breakpoint(sm) {
+    display: grid;
+    column-gap: var(--cu-ps1);
+    grid-template-columns: 100px 1fr;
+  }
+
+  @include breakpoint(md) {
+    display: table-row;
+  }
+
+  > * {
+    vertical-align: top;
+
+    @include breakpoint(sm) {
+      &:not(.persona__photo) {
+        grid-column: 2;
+      }
+    }
+
+    @include breakpoint(md) {
+      display: table-cell;
+      padding: var(--cu-vr0) var(--cu-ps-1) var(--cu-vr0) 0;
+      border-bottom: 1px solid #ccc;
+    }
+  }
+}
