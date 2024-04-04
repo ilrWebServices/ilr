@@ -5,7 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.persona.teaser
     - field.field.persona.faculty.field_bio
+    - field.field.persona.faculty.field_campus_address
+    - field.field.persona.faculty.field_education
     - field.field.persona.faculty.field_email
+    - field.field.persona.faculty.field_fax
     - field.field.persona.faculty.field_first_name
     - field.field.persona.faculty.field_last_name
     - field.field.persona.faculty.field_phone
@@ -76,6 +79,9 @@ content:
     weight: 1
     region: content
 hidden:
+  field_campus_address: true
+  field_education: true
+  field_fax: true
   field_first_name: true
   field_last_name: true
   search_api_excerpt: true

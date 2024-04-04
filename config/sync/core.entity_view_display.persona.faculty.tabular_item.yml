@@ -1,9 +1,9 @@
-uuid: d46e2ee8-8d64-4baf-9400-e06b0f611dbc
+uuid: c5ba15cb-0d25-435d-884e-9c07c929da14
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.persona.teaser_featured
+    - core.entity_view_mode.persona.tabular_item
     - field.field.persona.faculty.field_bio
     - field.field.persona.faculty.field_campus_address
     - field.field.persona.faculty.field_education
@@ -14,34 +14,45 @@ dependencies:
     - field.field.persona.faculty.field_phone
     - field.field.persona.faculty.field_photo
     - field.field.persona.faculty.field_title
-    - image.style.medium_1_1
+    - image.style.thumbnail
     - person.persona_type.faculty
   module:
-    - layout_builder
+    - address
     - media
-    - smart_read_more_link
-third_party_settings:
-  layout_builder:
-    enabled: false
-    allow_custom: false
-id: persona.faculty.teaser_featured
+    - telephone
+id: persona.faculty.tabular_item
 targetEntityType: persona
 bundle: faculty
-mode: teaser_featured
+mode: tabular_item
 content:
   display_name:
     type: string
     label: hidden
     settings:
-      link_to_entity: false
+      link_to_entity: true
     third_party_settings: {  }
     weight: 1
     region: content
-  field_bio:
-    type: smart_read_more_link
+  field_campus_address:
+    type: address_default
     label: hidden
     settings:
-      trim_length: '600'
+      field_settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_email:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_phone:
+    type: telephone_link
+    label: hidden
+    settings:
+      title: ''
     third_party_settings: {  }
     weight: 3
     region: content
@@ -50,7 +61,7 @@ content:
     label: hidden
     settings:
       image_link: content
-      image_style: medium_1_1
+      image_style: thumbnail
       image_loading:
         attribute: lazy
     third_party_settings: {  }
@@ -65,11 +76,9 @@ content:
     weight: 2
     region: content
 hidden:
-  field_campus_address: true
+  field_bio: true
   field_education: true
-  field_email: true
   field_fax: true
   field_first_name: true
   field_last_name: true
-  field_phone: true
   search_api_excerpt: true
