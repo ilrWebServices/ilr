@@ -16,6 +16,12 @@ process:
   uid:
     plugin: default_value
     default_value: 1
+  type:
+    plugin: static_map
+    source: is_faculty
+    map:
+      0: staff
+      1: faculty
   admin_label:
     plugin: concat
     source:
