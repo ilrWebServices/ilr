@@ -84,6 +84,12 @@ div[class$="-focus-areas"].term--view-mode-full {
   margin: 0;
 }
 
+.cu-component--project-listing.cu-list--list-compact {
+  .article--project {
+    margin-bottom: var(--cu-vr-2);
+  }
+}
+
 .cu-component--project-listing.cu-list--select-list {
   position: relative;
   margin: 0 0 var(--cu-vr1) 0;
