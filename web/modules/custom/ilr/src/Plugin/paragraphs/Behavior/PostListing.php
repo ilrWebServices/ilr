@@ -351,10 +351,8 @@ class PostListing extends ParagraphsBehaviorBase {
 
     $result = $query->execute();
 
-    $post_count = 0; // @todo revisit
     foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
-      $post_count++;
-      $rendered_entity = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($paragraph, $list_style, $post_count));
+      $rendered_entity = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($paragraph, $list_style));
       $rendered_entity['#collection_item'] = $collection_item;
       $rendered_entity['#cache']['contexts'][] = 'url';
       $posts[] = $rendered_entity;
@@ -389,17 +387,15 @@ class PostListing extends ParagraphsBehaviorBase {
    *   The paragraph entity.
    * @param string $list_style
    *   One of the list style machine names from this::list_styles.
-   * @param int $post_number
-   *   The order placement of the post in the listing.
    *
    * @return string
    *   A node view mode.
    */
-  protected function getViewModeForListStyle(Paragraph $paragraph, $list_style, $post_number) {
+  protected function getViewModeForListStyle(Paragraph $paragraph, $list_style) {
     $view_mode = 'teaser';
 
     if ($list_styles_plugin = $paragraph->type->entity->getBehaviorPlugin('list_styles')) {
-      $view_mode = $list_styles_plugin->getViewModeForListStyle($list_style, $post_number);
+      $view_mode = $list_styles_plugin->getViewModeForListStyle($list_style);
     }
 
     return $view_mode;

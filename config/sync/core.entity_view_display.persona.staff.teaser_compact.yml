@@ -5,7 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.persona.teaser_compact
     - field.field.persona.staff.field_bio
+    - field.field.persona.staff.field_campus_address
+    - field.field.persona.staff.field_education
     - field.field.persona.staff.field_email
+    - field.field.persona.staff.field_fax
     - field.field.persona.staff.field_first_name
     - field.field.persona.staff.field_last_name
     - field.field.persona.staff.field_phone
@@ -54,7 +57,10 @@ content:
     region: content
 hidden:
   field_bio: true
+  field_campus_address: true
+  field_education: true
   field_email: true
+  field_fax: true
   field_first_name: true
   field_last_name: true
   field_phone: true

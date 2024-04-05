@@ -1,0 +1,45 @@
+{#
+ * Theme override of persona tabular items.
+ *
+ * Available variables:
+ * - persona: The persona entity with limited access to object properties and methods.
+ * - view_mode: View mode; for example, "teaser" or "default".
+ * - label: The display name of the persona.
+ * - content: A list of content items. Use 'content' to print all content, or
+ *          content.field_name to access public fields
+ * - attributes: HTML attributes for the container element.
+ * - url: Direct URL of the current node.
+ *
+ * @see template_preprocess_persona()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'persona',
+    'persona--' ~ persona.bundle|clean_class,
+    view_mode ? 'persona--' ~ view_mode|clean_class,
+  ]
+%}
+
+<div{{attributes.addClass(classes)}}>
+  <div class="persona__photo">
+    {{ content.field_photo }}
+  </div>
+  <div class="persona__name-and-title">
+    {{ content.display_name }}
+    {{ content.field_title }}
+  </div>
+  <div class="persona__phone">
+    {{ content.field_phone }}
+  </div>
+  <div class="persona__email">
+    {{ content.field_email }}
+  </div>
+  <div class="persona__address">
+    {{ content.field_campus_address }}
+  </div>
+
+  {{ title_suffix }}
+</div>

@@ -1,0 +1,11 @@
+uuid: 1d692091-0052-4ff4-96da-a791aee81a84
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.tabular_item
+label: 'Tabular item'
+description: ''
+targetEntityType: persona
+cache: true

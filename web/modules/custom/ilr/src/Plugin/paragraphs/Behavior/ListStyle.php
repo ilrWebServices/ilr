@@ -43,6 +43,7 @@ class ListStyle extends ParagraphsBehaviorBase {
     'grid-bricks--reversed' => 'Bricks (reversed)',
     'grid-featured' => 'Featured Grid',
     'banner' => 'Banner',
+    'tabular-list' => 'Tabular list',
     'select-list' => 'Select list',
     'main_content' => 'Main content',
   ];
@@ -252,7 +253,7 @@ class ListStyle extends ParagraphsBehaviorBase {
         }
 
         $original_view_mode = $element[$key]['#view_mode'];
-        $view_mode_for_liststyle = $this->getViewModeForListStyle($list_style, $key + 1);
+        $view_mode_for_liststyle = $this->getViewModeForListStyle($list_style, $paragraphs_entity);
         $cache_key_view_mode_key = array_search($original_view_mode, $element[$key]['#cache']['keys']);
 
         if ($original_view_mode !== $view_mode_for_liststyle) {
@@ -306,6 +307,7 @@ class ListStyle extends ParagraphsBehaviorBase {
       'curated_course_listing',
       'event_listing',
       'people_listing',
+      'people_listing_dynamic',
       'project_listing',
       'organization_listing',
     ]);
@@ -316,13 +318,17 @@ class ListStyle extends ParagraphsBehaviorBase {
    *
    * @param string $list_style
    *   One of the list style machine names from this::list_styles.
-   * @param int $post_number
-   *   The order placement of the post in the listing.
    *
    * @return string
    *   A node view mode.
    */
-  public function getViewModeForListStyle($list_style, $post_number = NULL) {
+  public function getViewModeForListStyle($list_style, ParagraphInterface $paragraph = NULL) {
+    // Some entities, such as personas, have a teaser_featured view mode.
+    $has_personas = $paragraph && in_array($paragraph->bundle(), ['people_listing', 'people_listing_dynamic']);
+    if ($has_personas && $list_style === 'grid-featured') {
+      return 'teaser_featured';
+    }
+
     switch ($list_style) {
       case 'grid-compact':
         return 'teaser_compact';
@@ -330,6 +336,9 @@ class ListStyle extends ParagraphsBehaviorBase {
       case 'list-compact':
       case 'select-list':
         return 'mini';
+
+      case 'tabular-list':
+        return 'tabular_item';
 
       case 'banner':
         return 'banner';

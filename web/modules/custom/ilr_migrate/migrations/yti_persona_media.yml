@@ -1,0 +1,57 @@
+id: yti_persona_media
+label: YTI persona media
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'csv_url'
+  path: 'https://raw.githubusercontent.com/ilrWebServices/project_migration_data/main/yti_users.csv'
+  header_offset: 0
+  ids:
+    - id
+  constants:
+    suffix: ' (YTI persona)'
+    source_base_path: 'https://yti.cornell.edu/images/staffphotos/'
+    file_destination: 'public://personas/yti/'
+    alt_prefix: 'Photo of '
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  bundle: image
+  name:
+    plugin: concat
+    source:
+      - full_name
+      - constants/label_suffix
+  langcode:
+    plugin: default_value
+    default_value: en
+  _source_full_path:
+    -
+      plugin: concat
+      delimiter: /
+      source:
+        - constants/source_base_path
+        - photo
+    -
+      plugin: urlencode
+  field_media_image:
+    -
+      plugin: image_import
+      source: '@_source_full_path'
+      destination: constants/file_destination
+      uid: '@uid'
+      # alt:
+      #   -
+      #     plugin: concat
+      #     source:
+      #       - constants/alt_prefix
+      #       - full_name
+      skip_on_missing_source: true
+destination:
+  plugin: 'entity:media'
+  default_bundle: image
+migration_dependencies:
+  required: {  }
+  optional: {  }

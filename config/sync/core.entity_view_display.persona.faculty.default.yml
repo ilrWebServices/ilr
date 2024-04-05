@@ -4,7 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.persona.faculty.field_bio
+    - field.field.persona.faculty.field_campus_address
+    - field.field.persona.faculty.field_education
     - field.field.persona.faculty.field_email
+    - field.field.persona.faculty.field_fax
     - field.field.persona.faculty.field_first_name
     - field.field.persona.faculty.field_last_name
     - field.field.persona.faculty.field_phone
@@ -13,6 +16,7 @@ dependencies:
     - image.style.thumbnail_square
     - person.persona_type.faculty
   module:
+    - address
     - media
     - telephone
     - text
@@ -28,12 +32,35 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
+  field_campus_address:
+    type: address_default
+    label: hidden
+    settings:
+      field_settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_education:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
   field_email:
     type: email_mailto
     label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_fax:
+    type: telephone_link
+    label: above
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_phone:
     type: telephone_link

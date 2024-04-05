@@ -76,3 +76,53 @@ body.persona .cu-header {
 .cu-person--featured .persona__name {
   --cu-line-height: 1.1;
 }
+
+.persona--tabular-item {
+  margin-bottom: var(--cu-vr0);
+  border-bottom: 1px solid #ccc;
+
+  @include breakpoint(sm) {
+    display: grid;
+    column-gap: var(--cu-ps1);
+    grid-template-columns: 100px 1fr;
+  }
+
+  @include breakpoint(md) {
+    display: flex;
+    flex-direction: row;
+  }
+
+  > * {
+    vertical-align: top;
+
+    @include breakpoint(sm) {
+      &:not(.persona__photo) {
+        grid-column: 2;
+      }
+    }
+
+    @include breakpoint(md) {
+      &:not(.persona__photo) {
+        flex-basis: 20%;
+      }
+      &.persona__phone {
+        flex-basis: 16.6666666%;
+      }
+    }
+  }
+
+  .persona__name.cu-heading {
+    margin-bottom: var(--cu-vr-2);
+  }
+
+  .field--field-title {
+    .field__item  {
+      line-height: 1.1;
+      margin-bottom: var(--cu-vr-1);
+    }
+  }
+
+  .field--field-campus-address {
+    --cu-line-height: 1.2;
+  }
+}

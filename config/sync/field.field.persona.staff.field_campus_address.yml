@@ -1,0 +1,35 @@
+uuid: c441f662-3e66-46ea-84aa-7f29a1229f9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_campus_address
+    - person.persona_type.staff
+  module:
+    - address
+id: persona.staff.field_campus_address
+field_name: field_campus_address
+entity_type: persona
+bundle: staff
+label: 'Campus address'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  langcode_override: ''
+  field_overrides:
+    givenName:
+      override: hidden
+    additionalName:
+      override: hidden
+    familyName:
+      override: hidden
+    organization:
+      override: hidden
+    dependentLocality:
+      override: hidden
+  fields: {  }
+field_type: address

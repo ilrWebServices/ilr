@@ -1,0 +1,48 @@
+id: yti_personas_items
+label: YTI personas collection items
+migration_group: default
+migration_tags:
+  - Custom
+source:
+source:
+  plugin: 'csv_url'
+  path: 'https://raw.githubusercontent.com/ilrWebServices/project_migration_data/main/yti_users.csv'
+  header_offset: 0
+  ids:
+    - id
+process:
+  user_id:
+    plugin: default_value
+    default_value: 1
+  item/target_id:
+    -
+      plugin: migration_lookup
+      source: id
+      migration: yti_personas
+      no_stub: true
+    -
+      plugin: skip_on_empty
+      method: row
+  item/target_type:
+    plugin: default_value
+    default_value: persona
+  collection:
+    plugin: default_value
+    default_value: 57
+  canonical:
+    plugin: default_value
+    default_value: 1
+  changed:
+    plugin: format_date
+    source: updated_at
+    from_format: 'Y-m-d H:i:s'
+    to_format: 'U'
+    from_timezone: 'UTC'
+    to_timezone: 'UTC'
+destination:
+  plugin: 'entity:collection_item'
+  default_bundle: persona_item
+migration_dependencies:
+  required:
+    - yti_personas
+  optional: {  }
