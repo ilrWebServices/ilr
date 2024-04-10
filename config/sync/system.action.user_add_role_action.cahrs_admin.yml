@@ -1,0 +1,14 @@
+uuid: e8ba34ae-ba52-4af1-b1a7-6b99e970a5ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.cahrs_admin
+  module:
+    - user
+id: user_add_role_action.cahrs_admin
+label: 'Add the CAHRS Admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: cahrs_admin

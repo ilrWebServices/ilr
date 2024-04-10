@@ -1,0 +1,16 @@
+uuid: e36ed870-18e0-423c-9b87-71e8f9f6e515
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.cahrs_member_organizations
+  module:
+    - taxonomy
+id: cahrs_admin
+label: 'CAHRS Admin'
+weight: 11
+is_admin: null
+permissions:
+  - 'create terms in cahrs_member_organizations'
+  - 'delete terms in cahrs_member_organizations'
+  - 'edit terms in cahrs_member_organizations'

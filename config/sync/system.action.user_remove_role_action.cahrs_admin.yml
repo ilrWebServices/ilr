@@ -1,0 +1,14 @@
+uuid: 57cf331f-b5aa-4fbe-9335-13d2d41baa3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.cahrs_admin
+  module:
+    - user
+id: user_remove_role_action.cahrs_admin
+label: 'Remove the CAHRS Admin role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: cahrs_admin
