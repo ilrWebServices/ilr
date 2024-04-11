@@ -38,7 +38,7 @@ class ComponentSettings extends ParagraphsBehaviorBase {
       '#type' => 'checkbox',
       '#title' => $this->t('Remove bottom margin'),
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'remove_bottom_margin') ?? FALSE,
-      '#description' => $this->t('This setting allows to two adjacent decks to appear as one.'),
+      '#description' => $this->t('This setting removes the margin between adjacent components.'),
     ];
 
     return $form;
@@ -80,7 +80,7 @@ class ComponentSettings extends ParagraphsBehaviorBase {
    * This behavior is only applicable to paragraphs of type 'deck'.
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {
-    return $paragraphs_type->id() === 'deck';
+    return in_array($paragraphs_type->id(), ['deck', 'rich_text']);
   }
 
 }
