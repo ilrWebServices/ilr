@@ -50,7 +50,7 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
 
     $form['heading_left'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Place heading on left'),
+      '#title' => $this->t('Place heading on left in a column'),
       '#min' => 1,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'heading_left'),
     ];
@@ -61,6 +61,13 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#description' => $this->t('Use the first Rich text, Form, or Image component in the heading body/blurb area.'),
       '#min' => 1,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'first_component_to_blurb'),
+    ];
+
+    $form['heading_left_align'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Align heading to left'),
+      '#min' => 1,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'heading_left_align'),
     ];
 
     $form['frame_position'] = [
@@ -86,6 +93,10 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
 
     if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'heading_left')) {
       $variables['attributes']['class'][] = 'cu-section--left';
+    }
+
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'heading_left_align')) {
+      $variables['heading_attributes']['class'][] = 'cu-composite-heading--left';
     }
 
     if ($frame_position = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'frame_position')) {
