@@ -1,0 +1,44 @@
+{#
+ * Theme override for a faculty persona.
+ *
+ * Available variables:
+ * - persona: The persona entity with limited access to object properties and methods.
+ * - view_mode: View mode; for example, "teaser" or "default".
+ * - label: The display name of the persona.
+ * - content: A list of content items. Use 'content' to print all content, or
+ *          content.field_name to access public fields
+ * - attributes: HTML attributes for the container element.
+ * - url: Direct URL of the current node.
+ *
+ * @see template_preprocess_persona()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'persona',
+    'persona--' ~ persona.bundle|clean_class,
+    view_mode ? 'persona--' ~ view_mode|clean_class,
+  ]
+%}
+
+<div{{attributes.addClass(classes)}}>
+  {% if content %}
+  <div class="persona--photo">
+  {{ content.field_photo }}
+  </div>
+  <div class="persona--primary">
+  {% if view_mode == 'full' %}
+  <h1 class="cu-heading">{{ label }}</h1>
+  {% endif %}
+  {{- content|without('field_photo', 'field_campus_address', 'field_email', 'field_fax', 'field_phone') -}}
+  </div>
+  <div class="persona--secondary">
+  {{ content.field_campus_address }}
+  {{ content.field_email }}
+  {{ content.field_phone }}
+  {{ content.field_fax }}
+  </div>
+  {% endif %}
+</div>

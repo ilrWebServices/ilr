@@ -7,7 +7,6 @@ body.persona .cu-header {
   flex-direction: column;
 
   .field.field--field-photo {
-    text-align: center;
     margin-bottom: var(--cu-vr1);
 
     .cu-image {
@@ -25,27 +24,19 @@ body.persona .cu-header {
     margin-bottom: var(--cu-vr-1);
   }
 
-  .field--field-phone {
+  .field--field-phone,
+  .field--field-fax {
     --cu-font-size: var(--cu-ms-1);
-    margin-bottom: var(--cu-vr0);
   }
 
   @include breakpoint(sm) {
     display: grid;
     grid-column-gap: var(--cu-ps1);
     grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto 1fr;
 
-    .field.field--field-photo {
-      grid-column: 1;
-      grid-row: 1/20;
-    }
-
-    .cu-heading {
-      grid-column: 2;
-    }
-
-    >.field {
-      grid-column: 2;
+    .persona--primary {
+      grid-row: span 2;
     }
 
     .field--field-bio {
