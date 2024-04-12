@@ -57,3 +57,15 @@ span.strong {
   background: var(--cu-color-brand);
   border-radius: 3px;
 }
+
+// This is for any <details> element that has been placed in the heading of a
+// left-aligned section.
+.cu-section--left .cu-composite-heading__body details {
+  //   margin-left: var(--cu-ps0);
+  margin-left: 1em;
+
+  > summary {
+    cursor: pointer;
+    margin-left: -1em;
+  }
+}
