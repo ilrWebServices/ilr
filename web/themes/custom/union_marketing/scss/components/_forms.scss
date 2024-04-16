@@ -86,3 +86,10 @@
 .webform-submission-cahrs-newsletter-signup-form .cahrs-quarterly-message {
   display: inline-block;
 }
+
+// For reasons unknown, the `visible` #state on `custom_1_answer` in the generic
+// event registration form does not work. `disabled` does, so we're using this
+// extra CSS to also hide the fieldset.∏
+#edit-custom-1-answer--wrapper:disabled {
+  display: none;
+}

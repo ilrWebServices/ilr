@@ -466,14 +466,14 @@ variants:
     id: override
     variant_id: future_of_care_work
     element_key: variant
-    label: 'The Future of Care Work: Convening 1 Taking Care of Care Workers'
+    label: 'Worker Institute: Future of Care Work'
     notes: ''
     status: true
     weight: 2
     settings:
       debug: false
       settings: {  }
-      elements: "email:\r\n  '#weight': 6\r\nopt_in:\r\n  '#title': Opt-in for updates from The Worker Institute\r\naccessible_accommodation:\r\n  '#description': |-\r\n    <p>We are committed to making the convening an accessible event. We will be providing the following:</p>\r\n\r\n    <ul>\r\n    \t<li>Live simultaneous Spanish interpretation.</li>\r\n        <li>Remote CART captioning services for the two panels on Saturday.</li>\r\n    \t<li>Masks. We highly encourage mask-wearing and will be providing them. Because we will be sharing meals, we also ask that participants take a rapid Covid-19 test within one day before entering the convening.</li>\r\n    \t<li>A scent-free space. We ask that participants help to maintain this by not wearing perfume or strongly scented lotions.</li>\r\n    \t<li>Vegetarian and gluten-free meal options</li>\r\n    </ul>\r\n\r\n    <p>If you will need live simultaneous Spanish interpretation, or if you require a disability-related accommodation, please describe in the space above and we will make every effort to accommodate your needs. Please request accommodations by Thursday, June 1st.</p>\r\nphone:\r\n  '#access': true\r\naddress:\r\n  '#access': true\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#title': 'Do you plan to attend the Friday night reception and event?'\r\n  '#type': radios\r\n  '#options': yes_no\r\ncustom_2_answer:\r\n  '#access': true\r\n  '#title': 'What care work sector(s) are you most interested in focusing on?'\r\n  '#type': checkboxes\r\n  '#options':\r\n    'Domestic work (nannies and house cleaners)': 'Domestic work (nannies and house cleaners)'\r\n    'Long term care (including home care workers and caregivers in nursing homes)': 'Long term care (including home care workers and caregivers in nursing homes)'\r\n    Healthcare: Healthcare\r\n    'Early childhood care & education': 'Early childhood care & education'"
+      elements: "opt_in:\r\n  '#title': Opt-in for updates from The Worker Institute\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Which events will you attend?'\r\n  '#type': checkboxes\r\n  '#options':\r\n    'Friday': 'Friday evening'\r\n    'Saturday': 'Saturday'\r\n  '#states':\r\n    visible:\r\n      ':input[name=\"eventid\"]':\r\n        'value': a0iPK000001pAHhYAM\r\n    enabled:\r\n      ':input[name=\"eventid\"]':\r\n        'value': a0iPK000001pAHhYAM"
       handlers: {  }
   buffalo_nlrb:
     id: override
