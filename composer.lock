@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4b089ad827f9981b150d2ed2fdd94775",
+    "content-hash": "786b8546b8c62a52f1683885d4234779",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -632,30 +632,30 @@
         },
         {
             "name": "consolidation/output-formatters",
-            "version": "4.3.2",
+            "version": "4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/output-formatters.git",
-                "reference": "06711568b4cd169700ff7e8075db0a9a341ceb58"
+                "reference": "7a611b01eb48eb19cd54672339fc08c0985bf540"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/output-formatters/zipball/06711568b4cd169700ff7e8075db0a9a341ceb58",
-                "reference": "06711568b4cd169700ff7e8075db0a9a341ceb58",
+                "url": "https://api.github.com/repos/consolidation/output-formatters/zipball/7a611b01eb48eb19cd54672339fc08c0985bf540",
+                "reference": "7a611b01eb48eb19cd54672339fc08c0985bf540",
                 "shasum": ""
             },
             "require": {
                 "dflydev/dot-access-data": "^1.1.0 || ^2 || ^3",
                 "php": ">=7.1.3",
-                "symfony/console": "^4 || ^5 || ^6",
-                "symfony/finder": "^4 || ^5 || ^6"
+                "symfony/console": "^4 || ^5 || ^6 || ^7",
+                "symfony/finder": "^4 || ^5 || ^6 || ^7"
             },
             "require-dev": {
                 "php-coveralls/php-coveralls": "^2.4.2",
                 "phpunit/phpunit": "^7 || ^8 || ^9",
                 "squizlabs/php_codesniffer": "^3",
-                "symfony/var-dumper": "^4 || ^5 || ^6",
-                "symfony/yaml": "^4 || ^5 || ^6",
+                "symfony/var-dumper": "^4 || ^5 || ^6 || ^7",
+                "symfony/yaml": "^4 || ^5 || ^6 || ^7",
                 "yoast/phpunit-polyfills": "^1"
             },
             "suggest": {
@@ -680,9 +680,9 @@
             "description": "Format text by applying transformations provided by plug-in formatters.",
             "support": {
                 "issues": "https://github.com/consolidation/output-formatters/issues",
-                "source": "https://github.com/consolidation/output-formatters/tree/4.3.2"
+                "source": "https://github.com/consolidation/output-formatters/tree/4.5.0"
             },
-            "time": "2023-07-06T04:45:41+00:00"
+            "time": "2024-04-02T15:18:52+00:00"
         },
         {
             "name": "consolidation/robo",
@@ -1469,16 +1469,8 @@
                     "homepage": "https://www.drupal.org/user/46549"
                 },
                 {
-                    "name": "googletorp",
-                    "homepage": "https://www.drupal.org/user/386230"
-                },
-                {
                     "name": "jsacksick",
                     "homepage": "https://www.drupal.org/user/972218"
-                },
-                {
-                    "name": "mglaman",
-                    "homepage": "https://www.drupal.org/user/2416470"
                 },
                 {
                     "name": "rszrama",
@@ -2673,23 +2665,24 @@
         },
         {
             "name": "drupal/dynamic_entity_reference",
-            "version": "4.0.0-alpha3",
+            "version": "4.0.0-alpha4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/dynamic_entity_reference.git",
-                "reference": "4.0.0-alpha3"
+                "reference": "4.0.0-alpha4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/dynamic_entity_reference-4.0.0-alpha3.zip",
-                "reference": "4.0.0-alpha3",
-                "shasum": "8f2399c134bc8f0112eefbe2b900cbcf90c9ce08"
+                "url": "https://ftp.drupal.org/files/projects/dynamic_entity_reference-4.0.0-alpha4.zip",
+                "reference": "4.0.0-alpha4",
+                "shasum": "8436cd1b06aa4fe78e2643f24cfa8cb28da2507f"
             },
             "require": {
                 "drupal/core": "^10 || ^11",
                 "php": ">=8.1"
             },
             "require-dev": {
+                "drupal/diff": "*",
                 "mglaman/phpstan-drupal": "^1.1",
                 "phpstan/phpstan": "^1.1",
                 "phpstan/phpstan-deprecation-rules": "^1.0"
@@ -2697,8 +2690,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.0.0-alpha3",
-                    "datestamp": "1688838696",
+                    "version": "4.0.0-alpha4",
+                    "datestamp": "1706487145",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
@@ -5127,21 +5120,21 @@
         },
         {
             "name": "drupal/salesforce",
-            "version": "5.0.3",
+            "version": "5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/salesforce.git",
-                "reference": "5.0.3"
+                "reference": "5.0.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/salesforce-5.0.3.zip",
-                "reference": "5.0.3",
-                "shasum": "45f22b818a7b4104ee11dce9751bf47fd2ee3b6a"
+                "url": "https://ftp.drupal.org/files/projects/salesforce-5.0.4.zip",
+                "reference": "5.0.4",
+                "shasum": "ba231ab50095552f3d075d2fbe4b4e0a075141b1"
             },
             "require": {
                 "consolidation/output-formatters": "^3.2.0 || ^4.1",
-                "drupal/address": "^1.8",
+                "drupal/address": "^1.8 || ^2.0",
                 "drupal/core": "^9 || ^10",
                 "drupal/dynamic_entity_reference": "^1.9 || ^2.0 || ^3 || ^4",
                 "drupal/key": "^1.14",
@@ -5174,8 +5167,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "5.0.3",
-                    "datestamp": "1691095606",
+                    "version": "5.0.4",
+                    "datestamp": "1710339009",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6452,16 +6445,16 @@
         },
         {
             "name": "firebase/php-jwt",
-            "version": "v6.9.0",
+            "version": "v6.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/php-jwt.git",
-                "reference": "f03270e63eaccf3019ef0f32849c497385774e11"
+                "reference": "a49db6f0a5033aef5143295342f1c95521b075ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/f03270e63eaccf3019ef0f32849c497385774e11",
-                "reference": "f03270e63eaccf3019ef0f32849c497385774e11",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/a49db6f0a5033aef5143295342f1c95521b075ff",
+                "reference": "a49db6f0a5033aef5143295342f1c95521b075ff",
                 "shasum": ""
             },
             "require": {
@@ -6509,9 +6502,9 @@
             ],
             "support": {
                 "issues": "https://github.com/firebase/php-jwt/issues",
-                "source": "https://github.com/firebase/php-jwt/tree/v6.9.0"
+                "source": "https://github.com/firebase/php-jwt/tree/v6.10.0"
             },
-            "time": "2023-10-05T00:24:42+00:00"
+            "time": "2023-12-01T16:26:39+00:00"
         },
         {
             "name": "grasmash/expander",
