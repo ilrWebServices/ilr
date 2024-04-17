@@ -84,5 +84,13 @@ content:
     third_party_settings: {  }
     weight: 4
     region: content
+  personas:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 8
+    region: content
 hidden:
   search_api_excerpt: true

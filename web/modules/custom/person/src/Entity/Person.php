@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\person\PersonInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 
 /**
  * Defines the Person entity.
@@ -173,6 +174,22 @@ class Person extends EditorialContentEntityBase implements PersonInterface {
       ->setTranslatable(TRUE)
       ->setRevisionable(TRUE);
 
+    $fields['personas'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Personas'))
+      ->setDescription(t('The personas for this person.'))
+      ->setSetting('target_type', 'persona')
+      ->setComputed(TRUE)
+      ->setClass('\Drupal\person\PersonaItemList')
+      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'entity_reference_label',
+        'weight' => 0,
+        'settings' => ['link' => TRUE]
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
     return $fields;
   }
 
@@ -181,6 +198,17 @@ class Person extends EditorialContentEntityBase implements PersonInterface {
    */
   public static function getRequestTime() {
     return \Drupal::time()->getRequestTime();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPersonas() {
+    $personas = $this->entityTypeManager()->getStorage('persona')->loadByProperties([
+      'person' => $this->id(),
+    ]);
+
+    return $personas;
   }
 
 }

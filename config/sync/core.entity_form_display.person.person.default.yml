@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.persona_browser
     - field.field.person.person.field_bio
     - field.field.person.person.field_email
     - field.field.person.person.field_first_name
@@ -11,6 +12,7 @@ dependencies:
     - field.field.person.person.field_photo
     - field.field.person.person.field_title
   module:
+    - entity_browser
     - media_library
     - media_library_edit
     - person
@@ -88,5 +90,19 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  personas:
+    type: entity_browser_entity_reference
+    weight: 8
+    region: content
+    settings:
+      entity_browser: persona_browser
+      field_widget_display: label
+      field_widget_edit: true
+      field_widget_remove: true
+      field_widget_replace: false
+      open: false
+      field_widget_display_settings: {  }
+      selection_mode: selection_append
     third_party_settings: {  }
 hidden: {  }
