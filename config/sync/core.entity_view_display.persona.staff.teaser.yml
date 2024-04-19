@@ -6,13 +6,17 @@ dependencies:
     - core.entity_view_mode.persona.teaser
     - field.field.persona.staff.field_bio
     - field.field.persona.staff.field_campus_address
+    - field.field.persona.staff.field_components
+    - field.field.persona.staff.field_cv
     - field.field.persona.staff.field_education
     - field.field.persona.staff.field_email
     - field.field.persona.staff.field_fax
     - field.field.persona.staff.field_first_name
     - field.field.persona.staff.field_last_name
+    - field.field.persona.staff.field_netid
     - field.field.persona.staff.field_phone
     - field.field.persona.staff.field_photo
+    - field.field.persona.staff.field_sections
     - field.field.persona.staff.field_title
     - image.style.thumbnail_square
     - person.persona_type.staff
@@ -80,8 +84,12 @@ content:
     region: content
 hidden:
   field_campus_address: true
+  field_components: true
+  field_cv: true
   field_education: true
   field_fax: true
   field_first_name: true
   field_last_name: true
+  field_netid: true
+  field_sections: true
   search_api_excerpt: true
