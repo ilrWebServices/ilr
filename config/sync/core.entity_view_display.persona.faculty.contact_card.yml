@@ -1,9 +1,9 @@
-uuid: d46e2ee8-8d64-4baf-9400-e06b0f611dbc
+uuid: 740b2b59-baa1-4c00-9c95-fb872840e82f
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.persona.teaser_featured
+    - core.entity_view_mode.persona.contact_card
     - field.field.persona.faculty.field_bio
     - field.field.persona.faculty.field_campus_address
     - field.field.persona.faculty.field_components
@@ -18,20 +18,11 @@ dependencies:
     - field.field.persona.faculty.field_photo
     - field.field.persona.faculty.field_sections
     - field.field.persona.faculty.field_title
-    - image.style.medium_1_1
     - person.persona_type.faculty
-  module:
-    - layout_builder
-    - media
-    - smart_read_more_link
-third_party_settings:
-  layout_builder:
-    enabled: false
-    allow_custom: false
-id: persona.faculty.teaser_featured
+id: persona.faculty.contact_card
 targetEntityType: persona
 bundle: faculty
-mode: teaser_featured
+mode: contact_card
 content:
   display_name:
     type: string
@@ -39,39 +30,21 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
-    region: content
-  field_bio:
-    type: smart_read_more_link
-    label: hidden
-    settings:
-      trim_length: '600'
-    third_party_settings: {  }
-    weight: 3
-    region: content
-  field_photo:
-    type: media_thumbnail
-    label: hidden
-    settings:
-      image_link: content
-      image_style: medium_1_1
-      image_loading:
-        attribute: lazy
-    third_party_settings: {  }
     weight: 0
     region: content
-  field_title:
-    type: string
-    label: hidden
+  field_cv:
+    type: entity_reference_entity_view
+    label: above
     settings:
-      link_to_entity: false
+      view_mode: minimal
+      link: false
     third_party_settings: {  }
-    weight: 2
+    weight: 6
     region: content
 hidden:
+  field_bio: true
   field_campus_address: true
   field_components: true
-  field_cv: true
   field_education: true
   field_email: true
   field_fax: true
@@ -79,5 +52,7 @@ hidden:
   field_last_name: true
   field_netid: true
   field_phone: true
+  field_photo: true
   field_sections: true
+  field_title: true
   search_api_excerpt: true

@@ -1,15 +1,15 @@
-uuid: eac5d33c-20ef-422b-8bbb-f9e081b07e00
+uuid: 5261e5ee-12d3-4454-ab4d-9f17439f8b4f
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.persona.field_title
+    - field.storage.persona.field_netid
     - person.persona_type.faculty
-id: persona.faculty.field_title
-field_name: field_title
+id: persona.faculty.field_netid
+field_name: field_netid
 entity_type: persona
 bundle: faculty
-label: 'Working title'
+label: NetID
 description: ''
 required: false
 translatable: false

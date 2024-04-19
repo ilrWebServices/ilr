@@ -18,7 +18,8 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  available_countries: {  }
+  available_countries:
+    US: US
   langcode_override: ''
   field_overrides:
     givenName:
