@@ -8,6 +8,7 @@ dependencies:
     - field.field.persona.faculty.field_campus_address
     - field.field.persona.faculty.field_components
     - field.field.persona.faculty.field_cv
+    - field.field.persona.faculty.field_department
     - field.field.persona.faculty.field_education
     - field.field.persona.faculty.field_email
     - field.field.persona.faculty.field_fax
@@ -72,6 +73,7 @@ hidden:
   field_campus_address: true
   field_components: true
   field_cv: true
+  field_department: true
   field_education: true
   field_email: true
   field_fax: true
