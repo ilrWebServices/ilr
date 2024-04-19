@@ -1017,33 +1017,28 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
 function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Move collection items into the advanced group.
   $form['ief_collection_items']['#group'] = 'advanced';
-}
 
-/**
- * Implements hook_form_FORM_ID_alter().
- *
- * Improve the persona profile edit form.
- */
-function ilr_form_persona_profile_edit_form_alter(&$form, FormStateInterface $form_state) {
-  $form['basic_info'] = [
-    '#type' => 'details',
-    '#title' => t('Basic info'),
-    '#group' => 'advanced',
-    '#weight' => -10,
-    '#optional' => TRUE,
-    '#open' => TRUE,
-  ];
+  // Move basic info on profile-type personas to a new section in the advance
+  // group, e.g. the sidebar of the add/edit form.
+  if (preg_match('/persona_(faculty|staff|profile)_/', $form_id)) {
+    $form['basic_info'] = [
+      '#type' => 'details',
+      '#title' => t('Basic info'),
+      '#group' => 'advanced',
+      '#weight' => -10,
+      '#optional' => TRUE,
+      '#open' => TRUE,
+    ];
 
-  # Note that some of these are typcially in the `inherited` element, but we
-  # need to move them if they are overridden.
-  $fields = ['display_name', 'field_first_name', 'field_last_name', 'field_email', 'field_netid', 'field_photo', 'field_title', 'field_role', 'field_department', 'field_campus_address', 'field_phone', 'field_fax', 'field_cv', 'inherited', 'default'];
+    // Note that some of these are typically in the `inherited` element, but we
+    // need to move them if they are overridden.
+    $fields = ['display_name', 'field_first_name', 'field_last_name', 'field_email', 'field_netid', 'field_photo', 'field_title', 'field_role', 'field_department', 'field_campus_address', 'field_phone', 'field_fax', 'field_cv', 'inherited'];
 
-  foreach ($fields as $field) {
-    if (!isset($form[$field])) {
-      continue;
+    foreach ($fields as $field) {
+      if (isset($form[$field])) {
+        $form[$field]['#group'] = 'basic_info';
+      }
     }
-
-    $form[$field]['#group'] = 'basic_info';
   }
 }
 
