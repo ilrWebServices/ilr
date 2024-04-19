@@ -7,6 +7,7 @@ dependencies:
     - field.field.persona.faculty.field_campus_address
     - field.field.persona.faculty.field_components
     - field.field.persona.faculty.field_cv
+    - field.field.persona.faculty.field_department
     - field.field.persona.faculty.field_education
     - field.field.persona.faculty.field_email
     - field.field.persona.faculty.field_fax
@@ -61,6 +62,14 @@ content:
       link: false
     third_party_settings: {  }
     weight: 10
+    region: content
+  field_department:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 12
     region: content
   field_education:
     type: text_default
