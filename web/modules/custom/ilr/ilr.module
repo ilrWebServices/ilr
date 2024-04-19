@@ -1018,7 +1018,7 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
 
   // Move basic info on profile-type personas to a new section in the advance
   // group, e.g. the sidebar of the add/edit form.
-  if (preg_match('/persona_(faculty|staff|profile)_/', $form_id)) {
+  if (preg_match('/persona_(faculty|staff)_/', $form_id)) {
     $form['basic_info'] = [
       '#type' => 'details',
       '#title' => t('Basic info'),
