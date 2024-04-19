@@ -11,7 +11,7 @@ id: persona.faculty.field_bio
 field_name: field_bio
 entity_type: persona
 bundle: faculty
-label: Bio
+label: Overview
 description: ''
 required: false
 translatable: true
@@ -20,4 +20,5 @@ default_value_callback: ''
 settings:
   display_summary: true
   required_summary: false
+  allowed_formats: {  }
 field_type: text_with_summary
