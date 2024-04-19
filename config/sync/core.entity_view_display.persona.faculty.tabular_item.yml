@@ -6,13 +6,17 @@ dependencies:
     - core.entity_view_mode.persona.tabular_item
     - field.field.persona.faculty.field_bio
     - field.field.persona.faculty.field_campus_address
+    - field.field.persona.faculty.field_components
+    - field.field.persona.faculty.field_cv
     - field.field.persona.faculty.field_education
     - field.field.persona.faculty.field_email
     - field.field.persona.faculty.field_fax
     - field.field.persona.faculty.field_first_name
     - field.field.persona.faculty.field_last_name
+    - field.field.persona.faculty.field_netid
     - field.field.persona.faculty.field_phone
     - field.field.persona.faculty.field_photo
+    - field.field.persona.faculty.field_sections
     - field.field.persona.faculty.field_title
     - image.style.thumbnail
     - person.persona_type.faculty
@@ -77,8 +81,12 @@ content:
     region: content
 hidden:
   field_bio: true
+  field_components: true
+  field_cv: true
   field_education: true
   field_fax: true
   field_first_name: true
   field_last_name: true
+  field_netid: true
+  field_sections: true
   search_api_excerpt: true
