@@ -18,6 +18,7 @@ dependencies:
     - field.field.persona.staff.field_photo
     - field.field.persona.staff.field_sections
     - field.field.persona.staff.field_title
+    - field.field.persona.staff.layout_builder__layout
     - person.persona_type.staff
   module:
     - address
@@ -226,4 +227,5 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  layout_builder__layout: true
