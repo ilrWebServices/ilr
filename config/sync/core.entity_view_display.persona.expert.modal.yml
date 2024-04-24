@@ -1,0 +1,73 @@
+uuid: b07dd14e-1acd-48b2-9b91-e01c3dd9258d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.persona.modal
+    - field.field.persona.expert.field_bio
+    - field.field.persona.expert.field_email
+    - field.field.persona.expert.field_first_name
+    - field.field.persona.expert.field_last_name
+    - field.field.persona.expert.field_phone
+    - field.field.persona.expert.field_photo
+    - field.field.persona.expert.field_title
+    - image.style.thumbnail_square
+    - person.persona_type.expert
+  module:
+    - layout_builder
+    - media
+    - telephone
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: persona.expert.modal
+targetEntityType: persona
+bundle: expert
+mode: modal
+content:
+  field_bio:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_email:
+    type: email_mailto
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_phone:
+    type: telephone_link
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_photo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: content
+      image_style: thumbnail_square
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  display_name: true
+  field_first_name: true
+  field_last_name: true
+  search_api_excerpt: true
