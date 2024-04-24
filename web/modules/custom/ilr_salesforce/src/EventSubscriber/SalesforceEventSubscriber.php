@@ -317,7 +317,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
 
     // @todo Determine this from the field itself.
     $default_default_data = <<<EOT
-    # eventid is required.
+    # Including an eventid below sends these registrations to Salesforce.
     variant:
     eventid:
     post_button_text:
@@ -335,7 +335,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
      */
     if (levenshtein($default_default_data, $event_landing_page->field_registration_form->default_data) < 10) {
       $event_landing_page->field_registration_form->default_data = <<<EOT
-      # eventid is required.
+      # Including an eventid below sends these registrations to Salesforce.
       variant: cahrs_event
       eventid: $sfid
       post_button_text:
