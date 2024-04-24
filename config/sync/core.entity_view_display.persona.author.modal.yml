@@ -1,0 +1,75 @@
+uuid: c9a28d5e-3f6a-4f52-8eaa-11c54c5e2700
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.persona.modal
+    - field.field.persona.author.field_bio
+    - field.field.persona.author.field_email
+    - field.field.persona.author.field_first_name
+    - field.field.persona.author.field_last_name
+    - field.field.persona.author.field_phone
+    - field.field.persona.author.field_photo
+    - field.field.persona.author.field_title
+    - image.style.thumbnail_square
+    - person.persona_type.author
+  module:
+    - layout_builder
+    - media
+    - telephone
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: persona.author.modal
+targetEntityType: persona
+bundle: author
+mode: modal
+content:
+  field_bio:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_email:
+    type: email_mailto
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_phone:
+    type: telephone_link
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_photo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: content
+      image_style: thumbnail_square
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  display_name: true
+  field_first_name: true
+  field_last_name: true
+  search_api_excerpt: true

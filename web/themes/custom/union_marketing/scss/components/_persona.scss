@@ -4,7 +4,7 @@ body.persona .cu-header {
 
 // Generally, personas in the lightbox.
 // @todo: Revisit to make more flexible
-.persona--full:not(.persona--staff) {
+.persona--modal {
   display: flex;
   flex-direction: column;
 

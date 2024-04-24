@@ -1,0 +1,11 @@
+uuid: 4d6c3a1c-ccf2-4f75-88da-67c8790d45b5
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.modal
+label: Modal
+description: ''
+targetEntityType: persona
+cache: true
