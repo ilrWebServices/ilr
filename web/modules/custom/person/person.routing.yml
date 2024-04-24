@@ -5,3 +5,9 @@ entity.person.admin_form:
     _title: 'Person settings'
   requirements:
     _permission: 'administer content'
+entity.persona.modal:
+  path: '/persona/{persona}/modal'
+  defaults:
+    _entity_view: 'persona.modal'
+  requirements:
+    _permission: 'access content'

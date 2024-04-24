@@ -11,6 +11,7 @@ use Drupal\Core\Template\Attribute;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\easy_breadcrumb\EasyBreadcrumbConstants;
 use Drupal\ilr\Entity\EventNodeBase;
+use Drupal\Core\URL;
 
 /**
  * @file Theme file for the union_marketing.theme.
@@ -280,7 +281,10 @@ function union_marketing_theme_suggestions_webform_alter(array &$suggestions, ar
 function union_marketing_preprocess_persona(&$variables) {
   foreach (['display_name', 'field_photo'] as $field) {
     if (!empty($variables['content'][$field][0]['#url'])) {
-      $variables['content'][$field][0]['#url']->setOption('attributes', [
+      $persona_url = URL::fromRoute('entity.persona.modal',[
+        'persona' => $variables['persona']->id(),
+      ]);
+      $persona_url->setOption('attributes', [
         'class' => ['use-ajax'],
         'data-dialog-type' => 'modal',
         'data-dialog-options' => Json::encode([
@@ -288,6 +292,7 @@ function union_marketing_preprocess_persona(&$variables) {
           'classes' => ['ui-dialog' => 'cu-modal'],
         ]),
       ]);
+      $variables['content'][$field][0]['#url'] = $persona_url;
     }
   }
 }

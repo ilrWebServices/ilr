@@ -1,0 +1,84 @@
+uuid: f3735e29-0e1d-41f8-9fbf-b8c4b04904ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.persona.modal
+    - field.field.persona.visiting_fellow.field_bio
+    - field.field.persona.visiting_fellow.field_email
+    - field.field.persona.visiting_fellow.field_faculty_sponsor_text
+    - field.field.persona.visiting_fellow.field_first_name
+    - field.field.persona.visiting_fellow.field_last_name
+    - field.field.persona.visiting_fellow.field_photo
+    - field.field.persona.visiting_fellow.field_place_of_origin
+    - field.field.persona.visiting_fellow.field_visiting_period
+    - image.style.medium_1_1
+    - person.persona_type.visiting_fellow
+  module:
+    - address
+    - datetime_range
+    - layout_builder
+    - media
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: persona.visiting_fellow.modal
+targetEntityType: persona
+bundle: visiting_fellow
+mode: modal
+content:
+  field_bio:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_email:
+    type: basic_string
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_faculty_sponsor_text:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_photo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium_1_1
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_place_of_origin:
+    type: address_plain
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_visiting_period:
+    type: daterange_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: month_year
+      separator: '-'
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  display_name: true
+  field_first_name: true
+  field_last_name: true
+  search_api_excerpt: true
