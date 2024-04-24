@@ -19,6 +19,7 @@ dependencies:
     - field.field.persona.staff.field_photo
     - field.field.persona.staff.field_sections
     - field.field.persona.staff.field_title
+    - field.field.persona.staff.layout_builder__layout
     - image.style.thumbnail_square
     - person.persona_type.staff
   module:
@@ -94,4 +95,5 @@ hidden:
   field_last_name: true
   field_netid: true
   field_sections: true
+  layout_builder__layout: true
   search_api_excerpt: true

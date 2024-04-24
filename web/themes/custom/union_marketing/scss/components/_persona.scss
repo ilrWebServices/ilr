@@ -4,7 +4,7 @@ body.persona .cu-header {
 
 // Generally, personas in the lightbox.
 // @todo: Revisit to make more flexible
-.persona--full:not(.persona--profile) {
+.persona--full:not(.persona--staff) {
   display: flex;
   flex-direction: column;
 
@@ -51,12 +51,12 @@ body.persona .cu-header {
   }
 }
 
-.persona--profile {
+.persona--full {
   .cu-breadcrumb {
     margin: 0 0 var(--cu-vr1);
   }
 
-  .cu-banner--profile {
+  .cu-banner--persona {
     @include breakpoint(md) {
       display: grid;
       grid-template-columns: 45% 45%;
