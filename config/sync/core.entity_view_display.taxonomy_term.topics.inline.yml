@@ -1,0 +1,46 @@
+uuid: 985f3e61-772a-4697-9044-609703c72799
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.inline
+    - field.field.taxonomy_term.topics.field_body
+    - field.field.taxonomy_term.topics.field_body_heading
+    - field.field.taxonomy_term.topics.field_body_subheading
+    - field.field.taxonomy_term.topics.field_media_section
+    - field.field.taxonomy_term.topics.field_page_links
+    - field.field.taxonomy_term.topics.field_representative_image
+    - image.style.thumbnail_square
+    - taxonomy.vocabulary.topics
+  module:
+    - layout_builder
+    - media
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.topics.inline
+targetEntityType: taxonomy_term
+bundle: topics
+mode: inline
+content:
+  field_representative_image:
+    type: media_thumbnail
+    label: inline
+    settings:
+      image_link: content
+      image_style: thumbnail_square
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  description: true
+  extra_field_ilr_section_navigation: true
+  field_body: true
+  field_body_heading: true
+  field_body_subheading: true
+  field_media_section: true
+  field_page_links: true
+  search_api_excerpt: true
