@@ -67,21 +67,24 @@ class TopicList extends ParagraphsBehaviorBase {
       $url = $link->getUrl();
       $content = $link->title;
 
-      if ($url->isRouted() && $url->getRouteName() === 'entity.node.canonical' && $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'teaser_links')) {
+      if ($url->isRouted() && str_ends_with($url->getRouteName(), '.canonical') && $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'teaser_links')) {
         $route_params = $url->getRouteParameters();
-        $nid = $route_params['node'] ?? 0;
+        $entity_type = array_key_first($route_params);
+        $id = $route_params[$entity_type] ?? 0;
 
-        if ($nid) {
-          $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
-
-          if ($node && in_array($node->bundle(), $post_types)) {
+        if ($id) {
+          $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($id);
+          $configured_view_modes = \Drupal::service('entity_display.repository')->getViewModeOptionsByBundle($entity->getEntityTypeId(), $entity->bundle());
+          
+          if ($entity && array_key_exists('inline', $configured_view_modes)) {
             $url = NULL;
 
-            if ($link->title !== $node->getTitle()) {
-              $node->setTitle($link->title);
+            if ($link->title !== $entity->label()) {
+              $label_key = $entity->getEntityType()->getKey('label');
+              $entity->set($label_key, $link->title);
             }
 
-            $content = \Drupal::entityTypeManager()->getViewBuilder('node')->view($node, 'inline');
+            $content = \Drupal::entityTypeManager()->getViewBuilder($entity_type)->view($entity, 'inline');
 
             // Add a cache tag for the paragraph to this node render array.
             // That way if the title is changed in the link field, which is part
