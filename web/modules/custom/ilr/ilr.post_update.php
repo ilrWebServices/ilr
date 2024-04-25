@@ -6,6 +6,7 @@
  */
 
 use Drupal\node\Entity\Node;
+use Drupal\collection\Entity\CollectionItem;
 
 /**
  * Implements hook_removed_post_updates().
@@ -293,5 +294,35 @@ function ilr_post_update_add_yti_persona_tags_vocab(&$sandbox) {
     ]);
     $collection_item_term->item = $director_term;
     $collection_item_term->save();
+  }
+}
+
+/**
+ * Unpublish older CAHRS Resource Library items, based on created date and type.
+ */
+function ilr_post_update_unpublish_older_cahrs_media(&$sandbox) {
+  $cutoff_dates_by_type = [
+    'News' => strtotime('31 December 2022'),
+    'Working Group Summaries' => strtotime('31 December 2020'),
+    'Research' => strtotime('31 December 2018'),
+  ];
+
+  $query = \Drupal::entityQuery('collection_item');
+  $query->accessCheck(FALSE);
+  $query->condition('type', 'resource_library_item');
+  $query->condition('field_resource_type', array_keys($cutoff_dates_by_type), 'IN');
+  // Only get documents that are old enough to qualify.
+  $query->condition('created', $cutoff_dates_by_type['News'], '<=' );
+  $cids = $query->execute();
+  $document_post_items = CollectionItem::loadMultiple($cids);
+
+  foreach ($document_post_items as $document_post_item) {
+    $type = $document_post_item->field_resource_type->value;
+
+    if ($document_post_item->created->value > $cutoff_dates_by_type[$type]) {
+      continue;
+    }
+
+    $document_post_item->item->entity->set('status', 0)->save();
   }
 }
