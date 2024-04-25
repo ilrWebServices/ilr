@@ -62,6 +62,11 @@ field_settings:
     dependencies:
       module:
         - collection
+  status:
+    label: 'Post fields » Published'
+    datasource_id: 'entity:collection_item'
+    property_path: 'ilr_post_node_fields:status'
+    type: boolean
 datasource_settings:
   'entity:collection_item':
     bundles:
@@ -74,6 +79,7 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  custom_value: {  }
   entity_type: {  }
   hierarchy:
     weights:
