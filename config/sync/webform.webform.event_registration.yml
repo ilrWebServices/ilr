@@ -352,15 +352,6 @@ access:
     users: {  }
     permissions: {  }
 handlers:
-  ilr_outreach_registration_order_submitter:
-    id: outreach_registration_submitter
-    handler_id: ilr_outreach_registration_order_submitter
-    label: 'ILR Outreach registration order submitter'
-    notes: ''
-    status: false
-    conditions: {  }
-    weight: 0
-    settings: {  }
   confirmation_email:
     id: email
     handler_id: confirmation_email
