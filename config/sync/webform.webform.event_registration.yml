@@ -358,7 +358,10 @@ handlers:
     label: 'Confirmation Email'
     notes: ''
     status: true
-    conditions: {  }
+    conditions:
+      disabled:
+        ':input[name="eventid"]':
+          filled: true
     weight: 0
     settings:
       states:
