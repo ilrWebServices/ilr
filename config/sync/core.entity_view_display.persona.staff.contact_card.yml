@@ -19,7 +19,6 @@ dependencies:
     - field.field.persona.staff.field_photo
     - field.field.persona.staff.field_sections
     - field.field.persona.staff.field_title
-    - field.field.persona.staff.layout_builder__layout
     - person.persona_type.staff
 id: persona.staff.contact_card
 targetEntityType: persona
@@ -58,5 +57,4 @@ hidden:
   field_photo: true
   field_sections: true
   field_title: true
-  layout_builder__layout: true
   search_api_excerpt: true
