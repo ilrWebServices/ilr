@@ -23,7 +23,6 @@ dependencies:
     - person.persona_type.faculty
   module:
     - address
-    - entity_reference_revisions
     - layout_builder
     - media
     - telephone
@@ -42,7 +41,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_campus_address:
     type: address_default
@@ -51,32 +50,6 @@ content:
       field_settings: {  }
     third_party_settings: {  }
     weight: 2
-    region: content
-  field_components:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 8
-    region: content
-  field_cv:
-    type: entity_reference_entity_view
-    label: above
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    weight: 10
-    region: content
-  field_department:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 12
     region: content
   field_education:
     type: text_default
@@ -90,7 +63,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   field_fax:
     type: telephone_link
@@ -99,14 +72,6 @@ content:
       title: ''
     third_party_settings: {  }
     weight: 5
-    region: content
-  field_netid:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 6
     region: content
   field_phone:
     type: telephone_link
@@ -122,17 +87,10 @@ content:
     settings:
       image_link: content
       image_style: thumbnail_square
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 4
-    region: content
-  field_sections:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 11
     region: content
   field_title:
     type: string
@@ -140,10 +98,15 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
 hidden:
   display_name: true
+  field_components: true
+  field_cv: true
+  field_department: true
   field_first_name: true
   field_last_name: true
+  field_netid: true
+  field_sections: true
   search_api_excerpt: true

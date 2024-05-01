@@ -1,5 +1,7 @@
 {#
- * Default theme implementation to present a persona.
+ * Theme implementation to present a persona as a full page profile.
+ *
+ * This template is generally included from other persona templates.
  *
  * Available variables:
  * - persona: The persona entity with limited access to object properties and methods.
@@ -17,14 +19,39 @@
 #}
 {%
   set classes = [
+    'profile',
     'persona',
     'persona--' ~ persona.bundle|clean_class,
     view_mode ? 'persona--' ~ view_mode|clean_class,
   ]
 %}
-
 <div{{attributes.addClass(classes)}}>
-  {% if content %}
-    {{- content -}}
-  {% endif %}
+  <div class="profile__header">
+    {{ drupal_block('system_breadcrumb_block') }}
+
+    <div class="profile__banner">
+      <h1 class="cu-heading">{{ label }}</h1>
+      <div class="profile__eyebrow">{% trans %}People/{{ persona.bundle }}{% endtrans %}</div>
+      {{ content.field_photo }}
+      {{ content.field_title }}
+      {{ content.field_department }}
+    </div>
+  </div>
+  <div class="profile__sidebar">
+    <div class="profile__meta">
+      <h2 class="cu-heading">{% trans %}Contact{% endtrans %}</h2>
+      {{ content.field_campus_address }}
+      {{ content.field_phone }}
+      {{ content.field_fax }}
+      {{ content.field_email }}
+      {{ content.field_cv }}
+    </div>
+  </div>
+  <div class="profile__content">
+    {{ content.field_bio }}
+    {{ content.field_components }}
+  </div>
+  <div class="profile__footer">
+    {{ content.field_sections }}
+  </div>
 </div>
