@@ -1,0 +1,17 @@
+.persona.profile {
+  @include breakpoint(md) {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(5, auto);
+    gap: var(--cu-ps1);
+    // max-width: var(--cu-max-width-section);
+    // margin: 0 auto;
+  }
+
+  .profile__header,
+  .profile__footer {
+    grid-column: 1/-1;
+  }
+
+
+}
