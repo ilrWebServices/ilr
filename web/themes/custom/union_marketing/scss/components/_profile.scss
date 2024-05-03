@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: repeat(5, auto);
-    gap: var(--cu-ps1);
+    column-gap: var(--cu-ps4);
     // max-width: var(--cu-max-width-section);
     // margin: 0 auto;
   }
@@ -13,5 +13,87 @@
     grid-column: 1/-1;
   }
 
+  .profile__banner {
+    display: grid;
+    grid-template-columns: 1fr 1.125fr;
+    grid-template-rows: auto 1fr auto auto 75px;
+    column-gap: var(--cu-ps4);
+    padding: 0 0 0 var(--cu-ps4);
+    margin-bottom: var(--cu-vr3);
 
+    // padding: 16px 16px 16px 0;
+    background:
+     linear-gradient($black 0 0) top left / var(--cu-ps3) 16px,
+     linear-gradient($black 0 0) left / 16px 100%,
+     linear-gradient($black 0 0) bottom left / var(--cu-ps5) 16px, transparent;
+    background-repeat: no-repeat;
+
+    .field--field-photo {
+      grid-row: 1/-1;
+      grid-column: 2;
+    }
+
+    .profile__eyebrow {
+      grid-row: 1;
+      text-transform: uppercase;
+      opacity: 0.7;
+      font-size: var(--cu-ms-4);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--cu-vr-1);
+
+      // This is a hack because the name/heading below uses futura, which seems to all a few pixels to the left of most letters.
+      // margin-left: 4px;
+    }
+
+    .cu-heading {
+      --cu-font-size: var(--cu-ms10);
+      --cu-font-family: 'futura-pt';
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .field--field-title {
+      --cu-font-weight: 400;
+    }
+
+    .field--field-department {
+      --cu-font-size: var(--cu-ms-2);
+    }
+  }
+
+  .profile__content {
+    padding-right: var(--cu-ps4);
+
+    .field__label {
+      font-weight: 400;
+      font-size: var(--cu-ms5);
+      margin-bottom: var(--cu-vr-1);
+    }
+  }
+
+  .profile__sidebar {
+    padding-left: var(--cu-ps4);
+  }
+
+  .profile__meta {
+    background: $gray-lightest;
+    padding: var(--cu-vr1) var(--cu-ps1);
+
+    .field {
+      margin-bottom: var(--cu-vr1);
+    }
+
+    .cu-heading,
+    .field__label {
+      font-size: var(--cu-ms1);
+      font-weight: normal;
+      margin-bottom: var(--cu-vr-1);
+    }
+  }
+
+  .cu-breadcrumb {
+    // margin: 0;
+  }
 }

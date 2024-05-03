@@ -27,14 +27,19 @@
 %}
 <div{{attributes.addClass(classes)}}>
   <div class="profile__header">
-    <h1 class="cu-heading">{{ label }}</h1>
-    <div class="profile__eyebrow"></div>
-    {{ content.field_photo }}
-    {{ content.field_title }}
-    {{ content.field_department }}
+    {{ drupal_block('system_breadcrumb_block') }}
+
+    <div class="profile__banner">
+      <h1 class="cu-heading">{{ label }}</h1>
+      <div class="profile__eyebrow">{% trans %}People/{{ persona.bundle }}{% endtrans %}</div>
+      {{ content.field_photo }}
+      {{ content.field_title }}
+      {{ content.field_department }}
+    </div>
   </div>
   <div class="profile__sidebar">
     <div class="profile__meta">
+      <h2 class="cu-heading">{% trans %}Contact{% endtrans %}</h2>
       {{ content.field_campus_address }}
       {{ content.field_phone }}
       {{ content.field_fax }}
