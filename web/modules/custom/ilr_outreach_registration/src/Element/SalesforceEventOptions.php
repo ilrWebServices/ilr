@@ -158,6 +158,7 @@ class SalesforceEventOptions extends FormElement {
         'Id',
         'Name',
         'Start__c',
+        'End__c',
         'Delivery_Method__c',
       ];
       // @todo Ensure that SFIDs are formatted correctly to prevent an error.
@@ -171,9 +172,22 @@ class SalesforceEventOptions extends FormElement {
     }
 
     foreach ($sf_results->records() as $sfid => $record) {
-      $date = new \DateTime($record->field('Start__c'));
+      $date_start = new \DateTime($record->field('Start__c'));
+      $date_end = new \DateTime($record->field('End__c'));
+
+      // Set the DateTime objects to the same time to compare dates but not times.
+      $date_start->setTime(0, 0, 0);
+      $date_end->setTime(0, 0, 0);
+
+      if ($date_start == $date_end) {
+        $date_str = $date_start->format('n/j/Y');
+      }
+      else {
+        $date_str = $date_start->format('n/j/Y') . ' - ' . $date_end->format('n/j/Y');
+      }
+
       $location = strpos($record->field('Delivery_Method__c'), 'Online') !== FALSE ? 'Online' : 'In person';
-      $options[$sfid] = new EventOption($date->format('n/j/Y') . ' - ' . $location);
+      $options[$sfid] = new EventOption($location . ': ' . $date_str);
     }
 
     uksort($options, function($sfid1, $sfid2) use ($eventids) {
