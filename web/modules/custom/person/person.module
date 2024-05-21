@@ -61,6 +61,10 @@ function person_theme_suggestions_persona(array $variables) {
   $suggestions[] = 'persona__' . $persona->bundle();
   $suggestions[] = 'persona__' . $persona->bundle() . '__' . $sanitized_view_mode;
 
+  if ($persona->default->value) {
+    $suggestions[] = 'persona__' . $persona->bundle() . '__default__' . $sanitized_view_mode;
+  }
+
   return $suggestions;
 }
 
