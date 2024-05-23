@@ -13,24 +13,46 @@
     grid-column: 1/-1;
   }
 
+  .profile__footer {
+    @include breakpoint(md) {
+      padding-left: var(--cu-ps4);
+      padding-right: var(--cu-ps4);
+    }
+  }
+
   .profile__banner {
     display: grid;
-    grid-template-columns: 1fr 1.125fr;
-    grid-template-rows: auto 1fr auto auto 75px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto auto auto;
     column-gap: var(--cu-ps4);
-    padding: 0 0 0 var(--cu-ps4);
+    padding: 0 0 0 var(--cu-ps2);
     margin-bottom: var(--cu-vr3);
 
-    // padding: 16px 16px 16px 0;
     background:
-     linear-gradient($black 0 0) top left / var(--cu-ps3) 16px,
+     linear-gradient($black 0 0) top left / var(--cu-ps1) 16px,
      linear-gradient($black 0 0) left / 16px 100%,
      linear-gradient($black 0 0) bottom left / var(--cu-ps5) 16px, transparent;
     background-repeat: no-repeat;
 
+    @include breakpoint(md) {
+      grid-template-columns: 1fr 1.125fr;
+      grid-template-rows: auto 1fr auto auto 75px;
+      padding: 0 0 0 var(--cu-ps4);
+      background:
+       linear-gradient($black 0 0) top left / var(--cu-ps3) 16px,
+       linear-gradient($black 0 0) left / 16px 100%,
+       linear-gradient($black 0 0) bottom left / var(--cu-ps5) 16px, transparent;
+      background-repeat: no-repeat;
+    }
+
     .field--field-photo {
-      grid-row: 1/-1;
-      grid-column: 2;
+      margin: var(--cu-vr1) 0 var(--cu-vr2) 0;
+
+      @include breakpoint(md) {
+        grid-row: 1/-1;
+        grid-column: 2;
+        margin: unset;
+      }
     }
 
     .profile__eyebrow {
@@ -48,7 +70,9 @@
     }
 
     .cu-heading {
-      --cu-font-size: var(--cu-ms10);
+      @include breakpoint(md) {
+        --cu-font-size: var(--cu-ms10);
+      }
       --cu-font-family: 'futura-pt';
       text-transform: uppercase;
       line-height: 1;
@@ -56,6 +80,10 @@
 
     .field--field-title {
       --cu-font-weight: 400;
+      --cu-line-height: 1.25;
+      display: flex;
+      flex-direction: column;
+      gap: var(--cu-vr-1);
     }
 
     .field--field-department {
@@ -64,7 +92,9 @@
   }
 
   .profile__content {
-    padding-right: var(--cu-ps4);
+    @include breakpoint(md) {
+      padding-right: var(--cu-ps4);
+    }
 
     .field__label {
       font-weight: 400;
@@ -74,7 +104,12 @@
   }
 
   .profile__sidebar {
-    padding-left: var(--cu-ps4);
+    margin-bottom: var(--cu-vr2);
+
+    @include breakpoint(md) {
+      padding-left: var(--cu-ps4);
+      margin-bottom: unset;
+    }
   }
 
   .profile__meta {
@@ -95,5 +130,19 @@
 
   .cu-breadcrumb {
     // margin: 0;
+  }
+
+  .cu-section {
+    max-width: 100%;
+  }
+
+  // Never let the full-bleed section background be wider than the viewport on
+  // small screens. @TODO Consider moving this to Union.
+  .cu-section[class*="cu-colorscheme"]::before {
+    width: 100vw;
+
+    @include breakpoint(md) {
+      width: 150vw;
+    }
   }
 }

@@ -32,9 +32,9 @@
     <div class="profile__banner">
       <h1 class="cu-heading">{{ label }}</h1>
       <div class="profile__eyebrow">{% trans %}People/{{ persona.bundle }}{% endtrans %}</div>
-      {{ persona.field_photo|view({type: 'media_thumbnail', label: 'hidden', settings: {image_style: 'medium_3_2'}}) }}
       {{ content.field_title }}
       {{ content.field_department }}
+      {{ persona.field_photo|view({type: 'media_thumbnail', label: 'hidden', settings: {image_style: 'medium_3_2'}}) }}
     </div>
   </div>
   <div class="profile__sidebar">
