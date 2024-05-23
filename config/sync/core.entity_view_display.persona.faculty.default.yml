@@ -18,7 +18,7 @@ dependencies:
     - field.field.persona.faculty.field_photo
     - field.field.persona.faculty.field_sections
     - field.field.persona.faculty.field_title
-    - image.style.medium_3_2
+    - image.style.thumbnail_square
     - person.persona_type.faculty
   module:
     - address
@@ -113,7 +113,7 @@ content:
     label: hidden
     settings:
       image_link: ''
-      image_style: medium_3_2
+      image_style: thumbnail_square
       image_loading:
         attribute: lazy
     third_party_settings: {  }
