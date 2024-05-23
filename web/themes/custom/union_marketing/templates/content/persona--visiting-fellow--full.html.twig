@@ -1,5 +1,5 @@
 {#
- * Theme override for a persona in a modal.
+ * Theme override for a visiting fellow  persona full view.
  *
  * Available variables:
  * - persona: The persona entity with limited access to object properties and methods.
@@ -22,7 +22,6 @@
     view_mode ? 'persona--' ~ view_mode|clean_class,
   ]
 %}
-
 <div{{attributes.addClass(classes)}}>
   {% if content %}
   <div class="persona--photo">
