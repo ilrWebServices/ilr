@@ -138,6 +138,10 @@
 
   .cu-section {
     max-width: 100%;
+
+    .cu-component--rich-text {
+      max-width: 740px;
+    }
   }
 
   // Never let the full-bleed section background be wider than the viewport on
