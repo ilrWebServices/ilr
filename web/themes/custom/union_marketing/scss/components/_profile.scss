@@ -46,7 +46,7 @@
       background-repeat: no-repeat;
     }
 
-    .field--field-photo {
+    .profile__secondary {
       margin: var(--cu-vr1) 0 var(--cu-vr2) 0;
 
       @include breakpoint(md) {
@@ -70,7 +70,7 @@
       // margin-left: 4px;
     }
 
-    .cu-heading {
+    h1.cu-heading {
       @include breakpoint(md) {
         --cu-font-size: var(--cu-ms10);
       }

@@ -25,6 +25,19 @@
     view_mode ? 'persona--' ~ view_mode|clean_class,
   ]
 %}
+{% set meta %}
+  <div class="profile__meta">
+    <h2 class="cu-heading">{% trans %}Contact{% endtrans %}</h2>
+    {{ content.field_campus_address }}
+    {{ content.field_phone }}
+    {{ content.field_fax }}
+    {{ content.field_email }}
+    {{ content.field_cv }}
+  </div>
+{% endset %}
+
+{% set has_photo = persona.field_photo is not empty %}
+
 <div{{attributes.addClass(classes)}}>
   <div class="profile__header">
     {{ drupal_block('system_breadcrumb_block') }}
@@ -34,18 +47,19 @@
       <div class="profile__eyebrow">{% trans %}People/{{ persona.bundle }}{% endtrans %}</div>
       {{ content.field_title }}
       {{ content.field_department }}
-      {{ persona.field_photo|view({type: 'media_thumbnail', label: 'hidden', settings: {image_style: 'medium_3_2'}}) }}
+      <div class="profile__secondary">
+      {% if has_photo %}
+        {{ persona.field_photo|view({type: 'media_thumbnail', label: 'hidden', settings: {image_style: 'medium_3_2'}}) }}
+      {% else %}
+        {{ meta }}
+      {% endif %}
+      </div>
     </div>
   </div>
   <div class="profile__sidebar">
-    <div class="profile__meta">
-      <h2 class="cu-heading">{% trans %}Contact{% endtrans %}</h2>
-      {{ content.field_campus_address }}
-      {{ content.field_phone }}
-      {{ content.field_fax }}
-      {{ content.field_email }}
-      {{ content.field_cv }}
-    </div>
+    {% if has_photo %}
+    {{ meta }}
+    {% endif %}
   </div>
   <div class="profile__content">
     {{ content.field_bio }}
