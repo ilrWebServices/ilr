@@ -1,7 +1,9 @@
 .persona.profile {
+  display: grid;
+  row-gap: var(--cu-vr3);
+
   @include breakpoint(md) {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 2fr 1fr;
     grid-template-rows: repeat(5, auto);
     column-gap: var(--cu-ps4);
     // max-width: var(--cu-max-width-section);
@@ -26,7 +28,6 @@
     grid-template-rows: auto 1fr auto auto auto;
     column-gap: var(--cu-ps4);
     padding: 0 0 0 var(--cu-ps2);
-    margin-bottom: var(--cu-vr3);
 
     background:
      linear-gradient($black 0 0) top left / var(--cu-ps1) 16px,
@@ -93,7 +94,9 @@
 
   .profile__content {
     @include breakpoint(md) {
-      padding-right: var(--cu-ps4);
+      grid-column: 1;
+      grid-row: 2;
+      padding-left: var(--cu-ps4);
     }
 
     .field__label {
@@ -107,7 +110,8 @@
     margin-bottom: var(--cu-vr2);
 
     @include breakpoint(md) {
-      padding-left: var(--cu-ps4);
+      grid-column: 2;
+      padding-right: var(--cu-ps4);
       margin-bottom: unset;
     }
   }
