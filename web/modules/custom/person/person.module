@@ -97,4 +97,22 @@ function template_preprocess_persona(&$variables) {
   // Add a variable to determine if the current request is for a modal.
   $wrapper_format = \Drupal::request()->query->get(MainContentViewSubscriber::WRAPPER_FORMAT);
   $variables['modal'] = in_array($wrapper_format, ['drupal_ajax', 'drupal_modal', 'drupal_dialog']);
+
+  if ($persona->isDefault()) {
+    $has_meta = FALSE;
+    $meta_fields = ['field_campus_address', 'field_phone', 'field_fax', 'field_email', 'field_cv'];
+    foreach ($meta_fields as $meta_field) {
+      if (!$persona->hasField($meta_field)) {
+        continue;
+      }
+
+      if ($persona->{$meta_field}->isEmpty()) {
+        continue;
+      }
+
+      $has_meta = TRUE;
+    }
+
+    $variables['has_meta'] = $has_meta;
+  }
 }
