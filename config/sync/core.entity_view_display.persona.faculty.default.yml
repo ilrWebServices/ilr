@@ -31,6 +31,11 @@ targetEntityType: persona
 bundle: faculty
 mode: default
 content:
+  extra_field_profile:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_bio:
     type: text_default
     label: above
