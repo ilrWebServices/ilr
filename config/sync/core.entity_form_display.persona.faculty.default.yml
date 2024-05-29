@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.persona.faculty.field_areas_of_expertise
     - field.field.persona.faculty.field_bio
     - field.field.persona.faculty.field_campus_address
     - field.field.persona.faculty.field_components
@@ -54,6 +55,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_areas_of_expertise:
+    type: options_buttons
+    weight: 6
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_bio:
     type: text_textarea_with_summary
