@@ -86,6 +86,7 @@ content:
     weight: 2
     region: content
 hidden:
+  extra_field_profile: true
   field_bio: true
   field_components: true
   field_cv: true

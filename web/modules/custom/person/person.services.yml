@@ -1,0 +1,4 @@
+services:
+  persona.manager:
+    class: Drupal\person\PersonaManager
+    arguments: ['@entity_type.manager']
