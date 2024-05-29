@@ -45,3 +45,13 @@ paragraph type labels on the Sections field. */
 .organization-selection .form-checkboxes .form-item {
   margin: unset;
 }
+
+.field--name-field-areas-of-expertise.form-wrapper {
+  max-height: 240px;
+  overflow-y: scroll;
+  margin-bottom: 1.5em;
+}
+
+.field--name-field-areas-of-expertise .fieldset-wrapper {
+  padding: 1em;
+}

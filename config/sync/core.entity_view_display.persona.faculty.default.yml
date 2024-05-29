@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.persona.faculty.field_areas_of_expertise
     - field.field.persona.faculty.field_bio
     - field.field.persona.faculty.field_campus_address
     - field.field.persona.faculty.field_components
@@ -35,6 +36,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_areas_of_expertise:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 13
     region: content
   field_bio:
     type: text_default
