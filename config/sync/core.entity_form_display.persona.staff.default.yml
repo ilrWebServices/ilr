@@ -72,25 +72,6 @@ content:
     settings:
       wrapper_type: details
     third_party_settings: {  }
-  field_components:
-    type: paragraphs_previewer
-    weight: 14
-    region: content
-    settings:
-      title: content
-      title_plural: content
-      edit_mode: closed
-      closed_mode: summary
-      autocollapse: none
-      closed_mode_threshold: 2
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: _none
-      features:
-        add_above: '0'
-        collapse_edit_all: collapse_edit_all
-        duplicate: duplicate
-    third_party_settings: {  }
   field_cv:
     type: media_library_widget
     weight: 16
@@ -226,4 +207,5 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
-hidden: {}
+hidden:
+  field_components: true
