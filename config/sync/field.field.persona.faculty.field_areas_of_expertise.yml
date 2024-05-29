@@ -1,0 +1,29 @@
+uuid: 8830802e-cd33-492c-aa10-54cda8c5738d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_areas_of_expertise
+    - person.persona_type.faculty
+    - taxonomy.vocabulary.areas_of_expertise
+id: persona.faculty.field_areas_of_expertise
+field_name: field_areas_of_expertise
+entity_type: persona
+bundle: faculty
+label: 'Areas of Expertise'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      areas_of_expertise: areas_of_expertise
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
