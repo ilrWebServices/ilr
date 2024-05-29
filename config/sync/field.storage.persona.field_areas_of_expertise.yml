@@ -1,0 +1,20 @@
+uuid: 0c880f78-2f8e-4948-a62b-7f7a82c01ac6
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+    - taxonomy
+id: persona.field_areas_of_expertise
+field_name: field_areas_of_expertise
+entity_type: persona
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

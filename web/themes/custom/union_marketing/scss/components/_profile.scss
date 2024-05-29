@@ -119,6 +119,7 @@
   .profile__meta {
     background: $gray-lightest;
     padding: var(--cu-vr1) var(--cu-ps1);
+    margin-bottom: var(--cu-vr2);
 
     .field {
       margin-bottom: var(--cu-vr1);
@@ -130,6 +131,19 @@
       font-weight: normal;
       margin-bottom: var(--cu-vr-1);
     }
+  }
+
+  .profile__areas-of-expertise {
+    padding: 0 var(--cu-ps1);
+
+    .cu-heading {
+      --cu-font-size: var(--cu-ms1);
+    }
+  }
+
+  .profile__expertise {
+    line-height: 1.1;
+    margin-bottom: var(--cu-vr-1);
   }
 
   .cu-breadcrumb {

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.persona.teaser_compact
+    - field.field.persona.faculty.field_areas_of_expertise
     - field.field.persona.faculty.field_bio
     - field.field.persona.faculty.field_campus_address
     - field.field.persona.faculty.field_components
@@ -62,6 +63,7 @@ content:
     region: content
 hidden:
   extra_field_profile: true
+  field_areas_of_expertise: true
   field_bio: true
   field_campus_address: true
   field_components: true
