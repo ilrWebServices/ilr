@@ -111,29 +111,31 @@ elements: |-
     '#title': Resume
     '#file_extensions': 'txt rtf pdf doc docx'
     '#sanitize': true
+    '#required': true
   linkedin_profile_url:
     '#type': webform_link
     '#title': 'LinkedIn Profile URL'
     '#title__access': false
     '#url__title': 'LinkedIn Profile URL'
+    '#required': true
   company:
     '#type': webform_computed_twig
     '#title': Company
     '#display_on': view
     '#mode': text
-    '#template': '{{ data.employer ? data.employer|raw : ''NONE PROVIDED'' }}'
+    '#template': "{{ data.employer ? data.employer|raw : 'NONE PROVIDED' }}"
   resume_url:
     '#type': webform_computed_twig
     '#title': 'Resume URL'
     '#display_on': view
     '#mode': text
-    '#template': '{{ webform_token(''[webform_submission:values:resume:entity:url]'', webform_submission)|replace({''www.ilr.cornell.edu'': ''d8-edit.ilr.cornell.edu''}) }}'
+    '#template': "{{ webform_token('[webform_submission:values:resume:entity:url]', webform_submission)|replace({'www.ilr.cornell.edu': 'd8-edit.ilr.cornell.edu'}) }}"
   submission_url:
     '#type': webform_computed_twig
     '#title': 'Submission URL'
     '#display_on': view
     '#mode': text
-    '#template': '{{ webform_token(''[webform_submission:url]'', webform_submission)|replace({''www.ilr.cornell.edu'': ''d8-edit.ilr.cornell.edu''}) }}'
+    '#template': "{{ webform_token('[webform_submission:url]', webform_submission)|replace({'www.ilr.cornell.edu': 'd8-edit.ilr.cornell.edu'}) }}"
   utm_values:
     '#type': utm_values
   actions:

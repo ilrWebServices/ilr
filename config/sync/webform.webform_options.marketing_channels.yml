@@ -6,4 +6,15 @@ id: marketing_channels
 label: 'Marketing Channels'
 category: ILR
 likert: false
-options: "'Google ad': 'Google ad'\r\n'Google search': 'Google search'\r\n'LinkedIn ad': 'LinkedIn ad'\r\n'LinkedIn InMail': 'LinkedIn InMail'\r\n'SHRM.org ad': 'SHRM.org ad'\r\nTwitter: Twitter\r\nYouTube: YouTube\r\nEmail: Email\r\nWebsite: Website\r\nReferral: Referral\r\n"
+options: |-
+  'Google ad': 'Google ad'
+  'Google search': 'Google search'
+  'LinkedIn ad': 'LinkedIn ad'
+  'LinkedIn InMail': 'LinkedIn InMail'
+  'LinkedIn Post': 'LinkedIn Post'
+  SHRM: SHRM
+  Twitter: Twitter
+  YouTube: YouTube
+  Email: Email
+  Website: Website
+  Referral: Referral
