@@ -1,0 +1,19 @@
+uuid: 0f55b4f8-af88-4c16-8f5e-3d8be9eadb07
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.field_other_expertise
+field_name: field_other_expertise
+entity_type: persona
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

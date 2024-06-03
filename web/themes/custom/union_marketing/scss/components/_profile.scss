@@ -109,6 +109,11 @@
   .profile__sidebar {
     margin-bottom: var(--cu-vr2);
 
+    // This is the spacing between items in the sidebar.
+    > * + * {
+      margin-top: var(--cu-vr2);
+    }
+
     @include breakpoint(md) {
       grid-column: 2;
       padding-right: var(--cu-ps4);
@@ -119,7 +124,6 @@
   .profile__meta {
     background: $gray-lightest;
     padding: var(--cu-vr1) var(--cu-ps1);
-    margin-bottom: var(--cu-vr2);
 
     .field {
       margin-bottom: var(--cu-vr1);
@@ -133,7 +137,8 @@
     }
   }
 
-  .profile__areas-of-expertise {
+  .profile__areas-of-expertise,
+  .profile__other-expertise {
     padding: 0 var(--cu-ps1);
 
     .cu-heading {
