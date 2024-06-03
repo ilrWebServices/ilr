@@ -1,0 +1,23 @@
+uuid: 670e3ae9-ef88-40a3-a2bc-9d34fb60f4b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_websites
+    - person.persona_type.faculty
+  module:
+    - link
+id: persona.faculty.field_websites
+field_name: field_websites
+entity_type: persona
+bundle: faculty
+label: Websites
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

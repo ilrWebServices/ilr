@@ -1,0 +1,19 @@
+uuid: afdfc4fa-2af1-4eee-bd27-cd28c5904c61
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - person
+id: persona.field_websites
+field_name: field_websites
+entity_type: persona
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
