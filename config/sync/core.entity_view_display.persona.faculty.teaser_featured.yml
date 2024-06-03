@@ -21,6 +21,7 @@ dependencies:
     - field.field.persona.faculty.field_photo
     - field.field.persona.faculty.field_sections
     - field.field.persona.faculty.field_title
+    - field.field.persona.faculty.field_websites
     - image.style.medium_1_1
     - person.persona_type.faculty
   module:
@@ -87,4 +88,5 @@ hidden:
   field_other_expertise: true
   field_phone: true
   field_sections: true
+  field_websites: true
   search_api_excerpt: true
