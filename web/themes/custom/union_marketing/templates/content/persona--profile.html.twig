@@ -11,7 +11,7 @@
  *          content.field_name to access public fields
  * - attributes: HTML attributes for the container element.
  * - url: Direct URL of the current node.
- * - has_meta: Whether there is data in any of the fields that make up the meta 
+ * - has_meta: Whether there is data in any of the fields that make up the meta
  *          details for this profile.
  *
  * @see template_preprocess_persona()
@@ -38,6 +38,7 @@
     {{ content.field_cv }}
   </div>
   {{ content.field_areas_of_expertise }}
+  {{ content.field_other_expertise }}
   {% endif %}
 {% endset %}
 
