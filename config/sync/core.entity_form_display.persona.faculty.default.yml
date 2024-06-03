@@ -20,9 +20,11 @@ dependencies:
     - field.field.persona.faculty.field_photo
     - field.field.persona.faculty.field_sections
     - field.field.persona.faculty.field_title
+    - field.field.persona.faculty.field_websites
     - person.persona_type.faculty
   module:
     - address
+    - link
     - media_library
     - media_library_edit
     - paragraphs_previewer
@@ -194,6 +196,14 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_websites:
+    type: link_default
+    weight: 7
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
   ief_collection_items:
     weight: 21
