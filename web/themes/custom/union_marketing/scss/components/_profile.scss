@@ -112,6 +112,14 @@
     // This is the spacing between items in the sidebar.
     > * + * {
       margin-top: var(--cu-vr2);
+      padding: 0 var(--cu-ps1);
+    }
+
+    .cu-heading,
+    .field__label {
+      font-size: var(--cu-ms1);
+      font-weight: normal;
+      margin-bottom: var(--cu-vr-1);
     }
 
     @include breakpoint(md) {
@@ -129,21 +137,6 @@
       margin-bottom: var(--cu-vr1);
     }
 
-    .cu-heading,
-    .field__label {
-      font-size: var(--cu-ms1);
-      font-weight: normal;
-      margin-bottom: var(--cu-vr-1);
-    }
-  }
-
-  .profile__areas-of-expertise,
-  .profile__other-expertise {
-    padding: 0 var(--cu-ps1);
-
-    .cu-heading {
-      --cu-font-size: var(--cu-ms1);
-    }
   }
 
   .profile__expertise {
