@@ -46,12 +46,9 @@ paragraph type labels on the Sections field. */
   margin: unset;
 }
 
-.field--name-field-areas-of-expertise.form-wrapper {
-  max-height: 240px;
+.field--name-field-areas-of-expertise .fieldset-wrapper {
+  max-height: 30vh;
   overflow-y: scroll;
   margin-bottom: 1.5em;
-}
-
-.field--name-field-areas-of-expertise .fieldset-wrapper {
   padding: 1em;
 }
