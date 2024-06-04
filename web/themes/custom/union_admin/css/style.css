@@ -52,3 +52,7 @@ paragraph type labels on the Sections field. */
   margin-bottom: 1.5em;
   padding: 1em;
 }
+
+.persona-form .field--name-field-websites .description {
+  display: none;
+}
