@@ -281,6 +281,13 @@ function union_marketing_theme_suggestions_webform_alter(array &$suggestions, ar
  * Change links of some fields to modals.
  */
 function union_marketing_preprocess_persona(&$variables) {
+  $current_url = Url::fromRoute('<current>');
+  $path = $current_url->toString();
+
+  if (strpos($path,'/people') === 0) {
+    return;
+  }
+
   foreach (['display_name', 'field_photo'] as $field) {
     if (!empty($variables['content'][$field][0]['#url'])) {
       $variables['content'][$field][0]['#url']->setOption('attributes', [
