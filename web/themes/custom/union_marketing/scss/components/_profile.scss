@@ -154,6 +154,11 @@
     .cu-component--rich-text {
       max-width: 740px;
     }
+
+    .cu-composite-heading {
+      --cu-composite-heading-align: flex-start;
+      --cu-composite-heading-text-align: left;
+    }
   }
 
   // Never let the full-bleed section background be wider than the viewport on
