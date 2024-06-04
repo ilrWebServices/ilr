@@ -110,7 +110,33 @@ display:
         type: tag
         options: {  }
       empty: {  }
-      sorts: {  }
+      sorts:
+        field_last_name_value:
+          id: field_last_name_value
+          table: persona__field_last_name
+          field: field_last_name_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+        field_first_name_value:
+          id: field_first_name_value
+          table: persona__field_first_name
+          field: field_first_name_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
       arguments: {  }
       filters:
         status:
@@ -269,7 +295,7 @@ display:
         type: grid
         options:
           uses_fields: false
-          columns: 3
+          columns: 4
           automatic_width: true
           alignment: horizontal
           row_class_custom: ''
@@ -290,6 +316,7 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
+      css_class: ''
       header: {  }
       footer: {  }
       display_extenders: {  }
