@@ -1,0 +1,37 @@
+uuid: 7c6588f0-e861-40fd-9409-a78da3434edf
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.directory_pages
+  content:
+    - 'block_content:simple_text:29667500-0197-4ccd-b293-10e75fd7f70d'
+  module:
+    - block_content
+    - block_visibility_groups
+    - ilr
+  theme:
+    - union_marketing
+id: union_marketing_invitationtoeditprofile
+theme: union_marketing
+region: footer
+weight: -25
+provider: null
+plugin: 'block_content:29667500-0197-4ccd-b293-10e75fd7f70d'
+settings:
+  id: 'block_content:29667500-0197-4ccd-b293-10e75fd7f70d'
+  label: 'Invitation to edit profile'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: directory_pages
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: 0
