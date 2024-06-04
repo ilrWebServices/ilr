@@ -51,7 +51,7 @@
 
     <div class="profile__banner">
       <h1 class="cu-heading">{{ label }}</h1>
-      <div class="profile__eyebrow">{% trans %}People/{{ persona.bundle }}{% endtrans %}</div>
+      <div class="profile__eyebrow">{% trans %}People/{{ persona.type.entity.label() }}{% endtrans %}</div>
       {{ content.field_title }}
       {{ content.field_department }}
       <div class="profile__secondary">
