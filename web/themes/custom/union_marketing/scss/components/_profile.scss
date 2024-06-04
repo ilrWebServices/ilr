@@ -151,6 +151,11 @@
   .cu-section {
     max-width: 100%;
 
+    // Prevent links from breaking the layout on mobile.
+    a {
+      @include word-wrap();
+    }
+
     .cu-component--rich-text {
       max-width: 740px;
     }
