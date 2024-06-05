@@ -14,7 +14,6 @@ dependencies:
     - field.field.persona.faculty.field_fax
     - field.field.persona.faculty.field_first_name
     - field.field.persona.faculty.field_last_name
-    - field.field.persona.faculty.field_netid
     - field.field.persona.faculty.field_other_expertise
     - field.field.persona.faculty.field_phone
     - field.field.persona.faculty.field_photo
@@ -108,14 +107,6 @@ content:
       title: ''
     third_party_settings: {  }
     weight: 5
-    region: content
-  field_netid:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 6
     region: content
   field_other_expertise:
     type: basic_string

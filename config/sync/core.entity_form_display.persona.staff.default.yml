@@ -13,7 +13,6 @@ dependencies:
     - field.field.persona.staff.field_fax
     - field.field.persona.staff.field_first_name
     - field.field.persona.staff.field_last_name
-    - field.field.persona.staff.field_netid
     - field.field.persona.staff.field_phone
     - field.field.persona.staff.field_photo
     - field.field.persona.staff.field_sections
@@ -123,14 +122,6 @@ content:
   field_last_name:
     type: string_textfield
     weight: 7
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_netid:
-    type: string_textfield
-    weight: 8
     region: content
     settings:
       size: 60

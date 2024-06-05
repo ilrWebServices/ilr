@@ -15,7 +15,6 @@ dependencies:
     - field.field.persona.faculty.field_fax
     - field.field.persona.faculty.field_first_name
     - field.field.persona.faculty.field_last_name
-    - field.field.persona.faculty.field_netid
     - field.field.persona.faculty.field_other_expertise
     - field.field.persona.faculty.field_phone
     - field.field.persona.faculty.field_photo
@@ -84,7 +83,6 @@ hidden:
   field_fax: true
   field_first_name: true
   field_last_name: true
-  field_netid: true
   field_other_expertise: true
   field_phone: true
   field_sections: true
