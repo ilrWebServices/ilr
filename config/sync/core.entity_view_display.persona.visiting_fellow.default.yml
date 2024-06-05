@@ -4,18 +4,21 @@ status: true
 dependencies:
   config:
     - field.field.persona.visiting_fellow.field_bio
+    - field.field.persona.visiting_fellow.field_campus_address
     - field.field.persona.visiting_fellow.field_email
     - field.field.persona.visiting_fellow.field_faculty_sponsor_text
     - field.field.persona.visiting_fellow.field_first_name
     - field.field.persona.visiting_fellow.field_last_name
     - field.field.persona.visiting_fellow.field_photo
     - field.field.persona.visiting_fellow.field_place_of_origin
+    - field.field.persona.visiting_fellow.field_sections
     - field.field.persona.visiting_fellow.field_visiting_period
     - image.style.medium_1_1
     - person.persona_type.visiting_fellow
   module:
     - address
     - datetime_range
+    - entity_reference_revisions
     - media
     - text
 id: persona.visiting_fellow.default
@@ -23,12 +26,25 @@ targetEntityType: persona
 bundle: visiting_fellow
 mode: default
 content:
+  extra_field_profile:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_bio:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 5
+    region: content
+  field_campus_address:
+    type: address_default
+    label: hidden
+    settings:
+      field_settings: {  }
+    third_party_settings: {  }
+    weight: 2
     region: content
   field_email:
     type: basic_string
@@ -60,6 +76,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_sections:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 11
     region: content
   field_visiting_period:
     type: daterange_default
