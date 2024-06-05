@@ -14,7 +14,6 @@ dependencies:
     - field.field.persona.staff.field_fax
     - field.field.persona.staff.field_first_name
     - field.field.persona.staff.field_last_name
-    - field.field.persona.staff.field_netid
     - field.field.persona.staff.field_phone
     - field.field.persona.staff.field_photo
     - field.field.persona.staff.field_sections
@@ -94,6 +93,5 @@ hidden:
   field_fax: true
   field_first_name: true
   field_last_name: true
-  field_netid: true
   field_sections: true
   search_api_excerpt: true
