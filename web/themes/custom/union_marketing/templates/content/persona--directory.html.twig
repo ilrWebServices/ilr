@@ -1,0 +1,57 @@
+{#
+ * Theme override of persona directory display.
+ *
+ * Available variables:
+ * - persona: The persona entity with limited access to object properties and methods.
+ * - view_mode: View mode; for example, "teaser" or "default".
+ * - label: The display name of the persona.
+ * - content: A list of content items. Use 'content' to print all content, or
+ *          content.field_name to access public fields
+ * - attributes: HTML attributes for the container element.
+ * - url: Direct URL of the current persona.
+ */
+#}
+{% set title = [] %}
+{% if content.field_title %}
+{% for key, item in content.field_title|filter((v, k) => k|first != '#') %}
+  {% set title = title|merge([item]) %}
+{% endfor %}
+{% else %}
+  {% set title = title|merge([persona.type.entity.label()]) %}
+{% endif %}
+
+{% set additional_info %}
+{{ title_suffix }}
+{{ content.field_phone }}
+{{ content.field_email }}
+{% include "@union/_icon.twig" with {
+  title: 'More about ...',
+  icon: 'right-arrow',
+  size: '32px',
+  link: url,
+  attributes: {
+    class: [
+      'cu-icon--inline',
+      'use-ajax',
+    ],
+    'data-dialog-type': 'modal',
+    'data-dialog-options': '{"width":"90%","classes":{"ui-dialog":"cu-modal"}}',
+    role: 'button',
+    'aria-pressed': "false"
+  }
+} only %}
+{% endset %}
+
+{% include "@union/_person.twig" with {
+  attributes: attributes.addClass([
+    'cu-person--adaptive',
+    'persona--' ~ persona.bundle|clean_class,
+    not persona.isPublished() ? 'persona--unpublished',
+    view_mode ? 'persona--view-mode-' ~ view_mode|clean_class
+  ]),
+  name: content.display_name,
+  title: title,
+  eyebrow_heading: content.field_department,
+  additional_info: additional_info,
+  img: content.field_photo
+} only %}

@@ -1,9 +1,9 @@
-uuid: 740b2b59-baa1-4c00-9c95-fb872840e82f
+uuid: 03050f16-8267-425f-8aed-06331dee9fbf
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.persona.contact_card
+    - core.entity_view_mode.persona.directory
     - field.field.persona.faculty.field_areas_of_expertise
     - field.field.persona.faculty.field_bio
     - field.field.persona.faculty.field_campus_address
@@ -21,28 +21,70 @@ dependencies:
     - field.field.persona.faculty.field_sections
     - field.field.persona.faculty.field_title
     - field.field.persona.faculty.field_websites
+    - image.style.small_5x4
     - person.persona_type.faculty
-id: persona.faculty.contact_card
+  module:
+    - layout_builder
+    - media
+    - telephone
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: persona.visiting_fellow.directory
 targetEntityType: persona
-bundle: faculty
-mode: contact_card
+bundle: visiting_fellow
+mode: directory
 content:
   display_name:
     type: string
     label: hidden
     settings:
-      link_to_entity: false
+      link_to_entity: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_department:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
     third_party_settings: {  }
     weight: 0
     region: content
-  field_cv:
-    type: entity_reference_entity_view
-    label: above
-    settings:
-      view_mode: minimal
-      link: false
+  field_email:
+    type: email_mailto
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
-    weight: 6
+    weight: 3
+    region: content
+  field_phone:
+    type: telephone_link
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_photo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: content
+      image_style: small_5x4
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   extra_field_profile: true
@@ -50,16 +92,15 @@ hidden:
   field_bio: true
   field_campus_address: true
   field_components: true
-  field_department: true
+  field_cv: true
   field_education: true
-  field_email: true
+  field_faculty_sponsor_text: true
   field_fax: true
   field_first_name: true
   field_last_name: true
   field_other_expertise: true
-  field_phone: true
-  field_photo: true
+  field_place_of_origin: true
   field_sections: true
-  field_title: true
+  field_visiting_period: true
   field_websites: true
   search_api_excerpt: true

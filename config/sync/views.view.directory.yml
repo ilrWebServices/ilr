@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.persona.teaser_compact
+    - core.entity_view_mode.persona.directory
     - person.persona_type.faculty
     - person.persona_type.staff
     - person.persona_type.visiting_fellow
@@ -143,7 +143,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          view_mode: teaser_compact
+          view_mode: directory
       pager:
         type: mini
         options:
@@ -534,7 +534,7 @@ display:
         type: grid
         options:
           grouping: {  }
-          columns: 4
+          columns: 5
           automatic_width: true
           alignment: horizontal
           row_class_custom: ''
@@ -590,21 +590,22 @@ display:
         - 'config:core.entity_view_display.persona.expert.teaser'
         - 'config:core.entity_view_display.persona.expert.teaser_compact'
         - 'config:core.entity_view_display.persona.expert.teaser_featured'
-        - 'config:core.entity_view_display.persona.faculty.contact_card'
         - 'config:core.entity_view_display.persona.faculty.default'
+        - 'config:core.entity_view_display.persona.faculty.directory'
         - 'config:core.entity_view_display.persona.faculty.tabular_item'
         - 'config:core.entity_view_display.persona.faculty.teaser'
         - 'config:core.entity_view_display.persona.faculty.teaser_compact'
         - 'config:core.entity_view_display.persona.faculty.teaser_featured'
         - 'config:core.entity_view_display.persona.principal_investigator.default'
-        - 'config:core.entity_view_display.persona.staff.contact_card'
         - 'config:core.entity_view_display.persona.staff.default'
+        - 'config:core.entity_view_display.persona.staff.directory'
         - 'config:core.entity_view_display.persona.staff.mini'
         - 'config:core.entity_view_display.persona.staff.tabular_item'
         - 'config:core.entity_view_display.persona.staff.teaser'
         - 'config:core.entity_view_display.persona.staff.teaser_compact'
         - 'config:core.entity_view_display.persona.staff.teaser_featured'
         - 'config:core.entity_view_display.persona.visiting_fellow.default'
+        - 'config:core.entity_view_display.persona.visiting_fellow.directory'
         - 'config:core.entity_view_display.persona.visiting_fellow.teaser'
         - 'config:core.entity_view_display.persona.visiting_fellow.teaser_compact'
   attachment_1:
@@ -681,21 +682,22 @@ display:
         - 'config:core.entity_view_display.persona.expert.teaser'
         - 'config:core.entity_view_display.persona.expert.teaser_compact'
         - 'config:core.entity_view_display.persona.expert.teaser_featured'
-        - 'config:core.entity_view_display.persona.faculty.contact_card'
         - 'config:core.entity_view_display.persona.faculty.default'
+        - 'config:core.entity_view_display.persona.faculty.directory'
         - 'config:core.entity_view_display.persona.faculty.tabular_item'
         - 'config:core.entity_view_display.persona.faculty.teaser'
         - 'config:core.entity_view_display.persona.faculty.teaser_compact'
         - 'config:core.entity_view_display.persona.faculty.teaser_featured'
         - 'config:core.entity_view_display.persona.principal_investigator.default'
-        - 'config:core.entity_view_display.persona.staff.contact_card'
         - 'config:core.entity_view_display.persona.staff.default'
+        - 'config:core.entity_view_display.persona.staff.directory'
         - 'config:core.entity_view_display.persona.staff.mini'
         - 'config:core.entity_view_display.persona.staff.tabular_item'
         - 'config:core.entity_view_display.persona.staff.teaser'
         - 'config:core.entity_view_display.persona.staff.teaser_compact'
         - 'config:core.entity_view_display.persona.staff.teaser_featured'
         - 'config:core.entity_view_display.persona.visiting_fellow.default'
+        - 'config:core.entity_view_display.persona.visiting_fellow.directory'
         - 'config:core.entity_view_display.persona.visiting_fellow.teaser'
         - 'config:core.entity_view_display.persona.visiting_fellow.teaser_compact'
   page:
@@ -739,20 +741,21 @@ display:
         - 'config:core.entity_view_display.persona.expert.teaser'
         - 'config:core.entity_view_display.persona.expert.teaser_compact'
         - 'config:core.entity_view_display.persona.expert.teaser_featured'
-        - 'config:core.entity_view_display.persona.faculty.contact_card'
         - 'config:core.entity_view_display.persona.faculty.default'
+        - 'config:core.entity_view_display.persona.faculty.directory'
         - 'config:core.entity_view_display.persona.faculty.tabular_item'
         - 'config:core.entity_view_display.persona.faculty.teaser'
         - 'config:core.entity_view_display.persona.faculty.teaser_compact'
         - 'config:core.entity_view_display.persona.faculty.teaser_featured'
         - 'config:core.entity_view_display.persona.principal_investigator.default'
-        - 'config:core.entity_view_display.persona.staff.contact_card'
         - 'config:core.entity_view_display.persona.staff.default'
+        - 'config:core.entity_view_display.persona.staff.directory'
         - 'config:core.entity_view_display.persona.staff.mini'
         - 'config:core.entity_view_display.persona.staff.tabular_item'
         - 'config:core.entity_view_display.persona.staff.teaser'
         - 'config:core.entity_view_display.persona.staff.teaser_compact'
         - 'config:core.entity_view_display.persona.staff.teaser_featured'
         - 'config:core.entity_view_display.persona.visiting_fellow.default'
+        - 'config:core.entity_view_display.persona.visiting_fellow.directory'
         - 'config:core.entity_view_display.persona.visiting_fellow.teaser'
         - 'config:core.entity_view_display.persona.visiting_fellow.teaser_compact'
