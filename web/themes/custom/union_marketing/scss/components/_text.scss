@@ -1,3 +1,12 @@
+.block-page-title-block h1.cu-heading {
+  margin-top: var(--cu-vr0);
+  --cu-font-size: var(--cu-ms7);
+
+  @include breakpoint(sm) {
+    --cu-font-size: var(--cu-ms10);
+  }
+}
+
 p.shout,
 p.cu-x-shout {
   clear: both;
