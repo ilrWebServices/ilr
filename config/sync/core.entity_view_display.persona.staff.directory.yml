@@ -1,9 +1,9 @@
-uuid: 508c29de-e156-46e9-9701-532e96d84a98
+uuid: 6ed1edb8-352a-4bf0-82d9-a0591d751292
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.persona.contact_card
+    - core.entity_view_mode.persona.directory
     - field.field.persona.staff.field_bio
     - field.field.persona.staff.field_campus_address
     - field.field.persona.staff.field_components
@@ -18,42 +18,80 @@ dependencies:
     - field.field.persona.staff.field_photo
     - field.field.persona.staff.field_sections
     - field.field.persona.staff.field_title
+    - image.style.small_5x4
     - person.persona_type.staff
-id: persona.staff.contact_card
+  module:
+    - layout_builder
+    - media
+    - telephone
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: persona.staff.directory
 targetEntityType: persona
 bundle: staff
-mode: contact_card
+mode: directory
 content:
   display_name:
     type: string
     label: hidden
     settings:
-      link_to_entity: false
+      link_to_entity: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_department:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
     third_party_settings: {  }
     weight: 0
     region: content
-  field_cv:
-    type: entity_reference_entity_view
-    label: above
-    settings:
-      view_mode: minimal
-      link: false
+  field_email:
+    type: email_mailto
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
-    weight: 6
+    weight: 3
+    region: content
+  field_phone:
+    type: telephone_link
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_photo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: content
+      image_style: small_5x4
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   extra_field_profile: true
   field_bio: true
   field_campus_address: true
   field_components: true
-  field_department: true
+  field_cv: true
   field_education: true
-  field_email: true
   field_fax: true
   field_first_name: true
   field_last_name: true
-  field_phone: true
-  field_photo: true
   field_sections: true
-  field_title: true
   search_api_excerpt: true

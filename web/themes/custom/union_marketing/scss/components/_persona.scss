@@ -216,6 +216,7 @@ body.persona .cu-header {
     --cu-text-color: #{$cornell-red};
     display: flex;
     padding: 0;
+    margin-top: var(--cu-vr1);
   }
 }
 
@@ -270,5 +271,19 @@ body.persona .cu-header {
 
   .field--field-campus-address {
     --cu-line-height: 1.2;
+  }
+}
+
+.persona--view-mode-directory {
+  .cu-person__title:not(:first-child),
+  .field--field-department .field__item:not(:first-child) {
+    display: none;
+  }
+
+  .cu-person__additional_info {
+    .field--field-phone,
+    .field--field-email {
+      --cu-font-weight: 400;
+    }
   }
 }

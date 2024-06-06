@@ -1,11 +1,11 @@
-uuid: dce663ca-7617-4288-9019-0f482ac90b84
+uuid: f424dd2d-b1f5-4f51-a66d-877b3c63676b
 langcode: en
 status: true
 dependencies:
   module:
     - person
-id: persona.contact_card
-label: 'Contact card'
+id: persona.directory
+label: Directory
 description: ''
 targetEntityType: persona
 cache: true
