@@ -177,7 +177,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
           $params->setParam('City__c', $data['address']['city'] ?: '');
           $params->setParam('State__c', $data['address']['state_province'] ?: '');
           $params->setParam('Zip_Postal_Code__c', $data['address']['postal_code'] ?: '');
-          $params->setParam('Country__c', $data['address']['Country__c'] ?: '');
+          $params->setParam('Country__c', $data['address']['country'] ?: '');
         }
         // If there is international address info, use those values instead.
         elseif ($address_variant === 'international_address' && !empty($data['address_intl'])) {
