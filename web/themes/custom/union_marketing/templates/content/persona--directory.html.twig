@@ -16,8 +16,6 @@
 {% for key, item in content.field_title|filter((v, k) => k|first != '#') %}
   {% set title = title|merge([item]) %}
 {% endfor %}
-{% else %}
-  {% set title = title|merge([persona.type.entity.label()]) %}
 {% endif %}
 
 {% set additional_info %}
@@ -51,7 +49,7 @@
   ]),
   name: content.display_name,
   title: title,
-  eyebrow_heading: content.field_department,
+  eyebrow_heading: persona.type.entity.label(),
   additional_info: additional_info,
   img: content.field_photo
 } only %}
