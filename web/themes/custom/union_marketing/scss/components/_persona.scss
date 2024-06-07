@@ -275,8 +275,7 @@ body.persona .cu-header {
 }
 
 .persona--view-mode-directory {
-  .cu-person__title:not(:first-child),
-  .field--field-department .field__item:not(:first-child) {
+  .cu-person__title:not(:first-child) {
     display: none;
   }
 
