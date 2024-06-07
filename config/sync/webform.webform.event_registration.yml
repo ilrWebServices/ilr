@@ -89,6 +89,7 @@ elements: |-
     '#city__required': true
     '#state_province__title': State
     '#state_province__required': true
+    '#state_province__options': state_province_codes
     '#postal_code__access': false
     '#country__access': false
   address_intl:
