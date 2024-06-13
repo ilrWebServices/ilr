@@ -20,3 +20,15 @@ paragraph type labels on the Sections field. */
 .paragraph-type--section .paragraph-type-label--admin-label {
   color: #888;
 }
+
+.emp-details .fieldset-wrapper .form-checkboxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-height: 15em;
+  max-width: 100%;
+  overflow-y: scroll;
+}
+
+.emp-details .form-item {
+  margin: .1em 0;
+}

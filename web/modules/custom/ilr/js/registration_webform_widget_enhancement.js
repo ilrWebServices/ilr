@@ -56,6 +56,52 @@
   };
 
   /**
+   * Allow editors to set custom config for event registration forms.
+   */
+  Drupal.behaviors.enhance_emps = {
+    attach: function (context) {
+      let widget_wrapper = context.querySelector('.emp-details');
+
+      if (!widget_wrapper) {
+        return;
+      }
+
+      // @todo Traverse the DOM to find this in relation to the widget_wrapper.
+      let default_data_textarea = context.querySelector('.form-item-field-registration-form-0-settings-default-data textarea');
+      let config_line = default_data_textarea.value.match(/^outreach_marketing_personas:.*$/gm);
+
+      if (config_line) {
+        let config = config_line.pop().replace(/^outreach_marketing_personas: ?/, '').trim();
+
+        // @see https://stackoverflow.com/a/72778258
+        for (const option of config.split(';').filter(Boolean)) {
+          let option_input = widget_wrapper.querySelector('input[value="' + option + '"]');
+          option_input.checked = true;
+        }
+      }
+
+      widget_wrapper.addEventListener('click', function(event) {
+        // Is the target an input?
+        if (event.target.matches('input') === false) {
+          return;
+        }
+
+        let checked_options = widget_wrapper.querySelectorAll('input:checked');
+        let emp_options = [];
+
+        for (const checked_option of checked_options) {
+          emp_options.push(checked_option.value);
+        }
+
+        default_data_textarea.value = default_data_textarea.value.replace(/^outreach_marketing_personas:.*$/gm, "outreach_marketing_personas: " + emp_options.join(';')).trim();
+
+        // This will update the CodeMirror editor, too, after the hidden textarea has been modified.
+        default_data_textarea.dispatchEvent(new Event('change'));
+      });
+    }
+  };
+
+  /**
    * Allow visitors to select options from the custom config on event registration forms.
    */
   Drupal.behaviors.enhance_form = {

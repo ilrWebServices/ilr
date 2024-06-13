@@ -1039,25 +1039,38 @@ function ilr_field_widget_single_element_webform_entity_reference_select_form_al
     return;
   }
 
+  /** @var \Drupal\webform\Entity\WebformOptions $touchpoint_options */
+  $touchpoint_options = $webform_options_storage->load('touchpoint_emps');
+  $dummy_element = ['#options' => $touchpoint_options->id()];
+  $emp_options = $touchpoint_options->getElementOptions($dummy_element);
+
+  $element['settings']['emps_helper'] = [
+    '#type' => 'checkboxes',
+    '#title' => t('Available <em>Email Marketing Personas</em>'),
+    '#description' => t('Selecting EMPs here will update the <code>outreach_marketing_personas</code> value below.'),
+    '#options' => $emp_options,
+    '#attributes' => [
+      'class' => ['emp-details'],
+    ],
+  ];
+
   /** @var \Drupal\salesforce_mapping\Entity\MappedObjectInterface */
   $drupal_mapped_object = $mapped_object_storage->loadByEntityAndMapping($entity, $cahrs_event_node_mapping);
 
   // @todo See if this sf event ($drupal_mapped_object->sfid()) has Activity_Format__c == 'CAHRS Partner Meeting'
-  if (empty($drupal_mapped_object)) {
-    return;
+  if (!empty($drupal_mapped_object)) {
+    $options = $webform_options_storage->load('cahrs_session_details')->getOptions();
+
+    $element['settings']['cahrs'] = [
+      '#type' => 'checkboxes',
+      '#title' => t('Available <em>Optional activities</em> options'),
+      '#description' => t('Select the allowed options for the <em>Optional activities</em> field for this CAHRS partner event.'),
+      '#options' => $options,
+      '#attributes' => [
+        'class' => ['cahrs-session-details'],
+      ],
+    ];
   }
-
-  $options = $webform_options_storage->load('cahrs_session_details')->getOptions();
-
-  $element['settings']['cahrs'] = [
-    '#type' => 'checkboxes',
-    '#title' => t('Available <em>Optional activities</em> options'),
-    '#description' => t('Select the allowed options for the <em>Optional activities</em> field for this CAHRS partner event.'),
-    '#options' => $options,
-    '#attributes' => [
-      'class' => ['cahrs-session-details'],
-    ],
-  ];
 
   $element['settings']['default_data']['#weight'] = 1;
   $element['#attached']['library'][] = 'ilr/registration_webform_widget_enhancement';
