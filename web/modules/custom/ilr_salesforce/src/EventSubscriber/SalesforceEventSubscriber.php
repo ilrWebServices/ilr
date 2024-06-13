@@ -192,6 +192,19 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
         if (!empty($data['company'])) {
           $params->setParam(('Company__c'), $data['company']);
         }
+
+        // Add email marketing personas if user has opted in.
+        if (!empty($data['opt_in']) && !empty(trim($data['outreach_marketing_personas']))) {
+          // Since Touchpoint_EMPS__c is a restricted picklist, we deal with
+          // invalid values via the EMP helper on the registration reference
+          // widget.
+          $params->setParam('Touchpoint_EMPS__c', $data['outreach_marketing_personas']);
+        }
+
+        // Deal with multiple opt-in variants.
+        if (!empty($data['opt_in_multiple'])) {
+          $params->setParam('Touchpoint_EMPS__c', implode(';', $data['opt_in_multiple']));
+        }
       }
     }
   }
