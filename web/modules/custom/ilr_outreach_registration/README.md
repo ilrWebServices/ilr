@@ -2,7 +2,7 @@
 
 This module provides integration between webforms and ILR Outreach Salesforce events.
 
-It provides a webform handler that posts submissions to a webhook in Salesforce at `/services/apexrest/WebReg`.
+~~It provides a webform handler that posts submissions to a webhook in Salesforce at `/services/apexrest/WebReg`.~~ This was removed in 2024 and replaced with a Touchpoint__c mapping.
 
 Also included is generic event registration webform which can be embedded on external sites. It also has two configurable fields.
 
