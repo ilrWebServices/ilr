@@ -89,6 +89,43 @@ function ilr_outreach_registration_webform_options_cahrs_companies_alter(array &
 }
 
 /**
+ * Implements hook_webform_options_WEBFORM_OPTIONS_ID_alter().
+ */
+function ilr_outreach_registration_webform_options_touchpoint_emps_alter(array &$options, array &$element) {
+  $cid = 'ilr_outreach_registration_touchpoint_emps';
+
+  if ($cache = \Drupal::cache()->get($cid)) {
+    $options = $cache->data;
+    return;
+  }
+
+  // Get the Touchpoint_EMPS__c picklist values from the UI API like a boss.
+  // @see
+  // https://developer.salesforce.com/docs/atlas.en-us.244.0.uiapi.meta/uiapi/ui_api_resources_picklist_values.htm
+  try {
+    /** @var \Drupal\salesforce\Rest\RestClientInterface $sfapi */
+    $sfapi = \Drupal::service('salesforce.client');
+
+    $sf_results = $sfapi->apiCall('ui-api/object-info/Touchpoint__c/picklist-values/012000000000000AAA/Touchpoint_EMPS__c');
+
+    foreach ($sf_results['values'] as $value) {
+      $options[$value['value']] = $value['label'];
+    }
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('ilr_outreach_registration')->error($e->getMessage());
+
+    // Cache empty options for an hour to prevent excessive calls to the
+    // Salesforce API and to aid in troubleshooting.
+    \Drupal::cache()->set($cid, [], time() + 60 * 60);
+    return;
+  }
+
+  // Cache these options for 24 hours.
+  \Drupal::cache()->set($cid, $options, time() + 60 * 60 * 24);
+}
+
+/**
  * Implements hook_webform_options_alter().
  *
  * @todo This could become a custom webform element instead.
@@ -124,59 +161,6 @@ function ilr_outreach_registration_webform_options_alter(array &$options, array 
       'Strategic HR Business Partnering Program',
       'Union Leadership',
       'Workplace Health and Safety',
-    ];
-  }
-  elseif ($element['#webform_key'] === 'outreach_marketing_personas') {
-    $url_values = $query->get('personas') ?? [];
-    $allowed_values = [
-      'ADRHUB',
-      'Advisory Council',
-      'Alumni',
-      'Arbitrators Development Program',
-      'Board Member',
-      'BSILR',
-      'Buffalo Co-Lab',
-      'CAHRS hrSpectrum eNews',
-      'CAHRS Quarterly',
-      'CAHRS Top 10 News',
-      'CJI',
-      'CJI Media List',
-      'CJI Summit Attendee',
-      'CJI Summit Registrant',
-      'eCornell',
-      'EMHRM',
-      'Environmental Organization',
-      'Equity in Focus 2022',
-      'Faculty',
-      'Funder',
-      'ICS Research Fellows',
-      'ILR News Updates',
-      'Institute for Compensation Studies',
-      'Ithaca Co-Lab',
-      'Labor and Employment Law Program',
-      'Labor Leaders',
-      'LDI-CRRESS',
-      'Media',
-      'MILR',
-      'MPSNYC',
-      'New Conversations Project',
-      'Newsletter',
-      'NLLI',
-      'Pay Transparency Event',
-      'Policymaker',
-      'Scheinman Board Member',
-      'Scheinman Institute',
-      'Scheinman Institute Member',
-      'Scheinman Newsletter',
-      'Staff',
-      'Student',
-      'Transatlantic Social Dialogue',
-      'ULI',
-      'Union',
-      'Webinar Attendee',
-      'WI Mailing List',
-      'Work and Coronavirus Updates',
-      'Worker Institute',
     ];
   }
   else {
