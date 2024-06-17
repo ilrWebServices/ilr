@@ -28,7 +28,7 @@ drupal_bundle: emhrm_eligibility_check
 field_mappings:
   0:
     drupal_field_type: record_type
-    drupal_field_value: EMRHM
+    drupal_field_value: EMHRM
     direction: drupal_sf
     salesforce_field: RecordTypeId
     id: 0
