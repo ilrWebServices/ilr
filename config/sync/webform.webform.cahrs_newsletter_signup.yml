@@ -73,6 +73,7 @@ elements: |-
       '#title': 'Select the newsletters you would like to receive'
       '#options': cahrs_newsletters_all
       '#required': true
+      '#format': raw
     actions:
       '#type': webform_actions
       '#title': 'Submit button(s)'
