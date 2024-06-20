@@ -24,3 +24,30 @@ function ilr_deploy_collect_cahrs_member_org_vocab(array &$sandbox): string {
 
   return t('Collection item %id saved', ['%id' => $collection_item->id()]);
 }
+
+/**
+ * Map existing CAROW news subscriptions submissions to Touchpoints.
+ */
+function ilr_deploy_map_carow_news_to_touchpoints(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+
+  $submissions = $entity_type_manager->getStorage('webform_submission')->loadByProperties([
+    'webform_id' => 'carow_newsletter_signup',
+  ]);
+
+  /** @var \Drupal\Webform\WebformSubmissionInterface $submission */
+  foreach ($submissions as $submission) {
+    /** @var \Drupal\salesforce_mapping\Entity\MappedObjectInterface $mapped_object */
+    $mapped_object = $entity_type_manager->getStorage('salesforce_mapped_object')->create([
+      'salesforce_mapping' => 'info_req_tp_carow',
+    ]);
+    $mapped_object->setDrupalEntity($submission);
+
+    try {
+      $mapped_object->push();
+    }
+    catch (\Exception $e) {
+      // Fail silently.
+    }
+  }
+}
