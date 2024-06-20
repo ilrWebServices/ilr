@@ -1,11 +1,11 @@
 langcode: en
-id: buffalo_colab_newsletter_lead
-label: 'Buffalo Co-lab newsletter lead'
+id: info_req_tp_buffalo_colab
+label: 'Buffalo Co-lab info request touchpoint'
 weight: 0
 type: salesforce_mapping
 key: ''
 always_upsert: false
-async: true
+async: false
 push_standalone: false
 pull_standalone: false
 pull_trigger_date: LastModifiedDate
@@ -22,93 +22,79 @@ sync_triggers:
   pull_create: false
   pull_update: false
   pull_delete: false
-salesforce_object_type: Lead
+salesforce_object_type: Touchpoint__c
 drupal_entity_type: webform_submission
 drupal_bundle: buffalo_colab_signup
 field_mappings:
   -
-    drupal_field_type: record_type
-    drupal_field_value: Outreach
+    drupal_field_type: Constant
+    drupal_field_value: 'Information Request'
     direction: drupal_sf
-    salesforce_field: RecordTypeId
+    salesforce_field: Source__c
     id: 0
     description: ''
   -
-    drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:first_name:raw]'
+    drupal_field_type: WebformElements
+    drupal_field_value: first_name
     direction: drupal_sf
-    salesforce_field: FirstName
+    salesforce_field: FirstName__c
     id: 1
     description: ''
   -
-    drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:last_name:raw]'
+    drupal_field_type: WebformElements
+    drupal_field_value: last_name
     direction: drupal_sf
-    salesforce_field: LastName
+    salesforce_field: LastName__c
     id: 2
     description: ''
   -
-    drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:email:value]'
+    drupal_field_type: WebformElements
+    drupal_field_value: email
     direction: drupal_sf
-    salesforce_field: Email
+    salesforce_field: Email__c
     id: 3
-    description: ''
-  -
-    drupal_field_type: Token
-    drupal_field_value: '[webform_submission:created:custom:Y-m-d G:i:s]'
-    direction: drupal_sf
-    salesforce_field: Legacy_Created_Date__c
-    id: 4
     description: ''
   -
     drupal_field_type: Constant
     drupal_field_value: 'Buffalo Co-Lab'
     direction: drupal_sf
-    salesforce_field: Email_Marketing_Personas__c
-    id: 5
+    salesforce_field: Touchpoint_EMPS__c
+    id: 4
     description: ''
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:utm_values:utm_campaign:raw]'
     direction: drupal_sf
-    salesforce_field: UTM_Campaign__c
-    id: 6
+    salesforce_field: Touchpoint_UTM_Campaign__c
+    id: 5
     description: ''
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:utm_values:utm_medium:raw]'
     direction: drupal_sf
-    salesforce_field: UTM_Medium__c
-    id: 7
+    salesforce_field: Touchpoint_UTM_Medium__c
+    id: 6
     description: ''
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:utm_values:utm_source:raw]'
     direction: drupal_sf
-    salesforce_field: UTM_Source__c
-    id: 8
+    salesforce_field: Touchpoint_UTM_Source__c
+    id: 7
     description: ''
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:utm_values:utm_content:raw]'
     direction: drupal_sf
-    salesforce_field: UTM_Content__c
-    id: 9
+    salesforce_field: Touchpoint_UTM_Content__c
+    id: 8
     description: ''
   -
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:utm_values:utm_term:raw]'
     direction: drupal_sf
-    salesforce_field: UTM_Keyword__c
-    id: 10
-    description: ''
-  -
-    drupal_field_type: Constant
-    drupal_field_value: 'NONE PROVIDED'
-    direction: drupal_sf
-    salesforce_field: Company
-    id: 11
+    salesforce_field: Touchpoint_UTM_Term__c
+    id: 9
     description: ''
 status: true
 dependencies:
@@ -116,5 +102,6 @@ dependencies:
     - webform.webform.buffalo_colab_signup
   module:
     - salesforce_push
+    - salesforce_webform
     - token
-uuid: ee062d80-464e-4a5d-8490-cae89d92912f
+uuid: 505e41ba-5195-4f85-ac63-716bcf1e4f74

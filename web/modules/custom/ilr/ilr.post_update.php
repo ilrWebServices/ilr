@@ -326,3 +326,24 @@ function ilr_post_update_unpublish_older_cahrs_media(&$sandbox) {
     $document_post_item->item->entity->set('status', 0)->save();
   }
 }
+
+/**
+ * Remove newsletter submission to lead mapped objects.
+ */
+function ilr_post_update_remove_newsletter_lead_mapped_objects(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $mapped_object_storage = $entity_type_manager->getStorage('salesforce_mapped_object');
+
+  $mapped_objects = $mapped_object_storage->loadByProperties([
+    'salesforce_mapping' => [
+      'buffalo_colab_newsletter_lead',
+      'ncp_newsletter_lead',
+      'scheinman_newsletter_lead',
+      'worker_institute_news_lead',
+    ],
+  ]);
+
+  foreach ($mapped_objects as $mapped_object) {
+    $mapped_object->delete();
+  }
+}
