@@ -96,6 +96,13 @@ field_mappings:
     salesforce_field: Touchpoint_UTM_Term__c
     id: 9
     description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:source-url]'
+    direction: drupal_sf
+    salesforce_field: Origin__c
+    id: 10
+    description: ''
 status: true
 dependencies:
   config:
