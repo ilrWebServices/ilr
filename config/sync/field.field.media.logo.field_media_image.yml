@@ -18,7 +18,7 @@ entity_type: media
 bundle: logo
 label: Logo
 description: ''
-required: true
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
