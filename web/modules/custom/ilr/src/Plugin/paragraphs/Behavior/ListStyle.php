@@ -41,7 +41,9 @@ class ListStyle extends ParagraphsBehaviorBase {
     'list-compact' => 'Compact list',
     'grid-bricks' => 'Bricks',
     'grid-bricks--reversed' => 'Bricks (reversed)',
-    'grid-featured' => 'Featured Grid',
+    'grid-featured--standard' => 'Featured Grid (Standard)',
+    'grid-featured--wide' => 'Featured Grid (Wide)',
+    'grid-featured' => 'Featured Grid (4 items)',
     'banner' => 'Banner',
     'tabular-list' => 'Tabular list',
     'select-list' => 'Select list',
@@ -368,6 +370,12 @@ class ListStyle extends ParagraphsBehaviorBase {
 
       if ($list_style === 'grid-featured') {
         $classes[] = 'cu-grid cu-grid--featured';
+      }
+      elseif ($list_style === 'grid-featured--standard') {
+        $classes[] = 'cu-grid cu-grid--featured--standard';
+      }
+      elseif ($list_style === 'grid-featured--wide') {
+        $classes[] = 'cu-grid cu-grid--featured--wide';
       }
       elseif (strpos($list_style, 'grid') === 0) {
         $classes[] = 'cu-grid';
