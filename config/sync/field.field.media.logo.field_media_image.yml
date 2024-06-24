@@ -6,7 +6,12 @@ dependencies:
     - field.storage.media.field_media_image
     - media.type.logo
   module:
+    - filehash
     - image
+third_party_settings:
+  filehash:
+    dedupe: 0
+    dedupe_original: false
 id: media.logo.field_media_image
 field_name: field_media_image
 entity_type: media
