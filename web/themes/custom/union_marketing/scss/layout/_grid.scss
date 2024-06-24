@@ -39,6 +39,95 @@
   }
 }
 
+.cu-grid.cu-list--grid-featured--standard,
+.cu-grid.cu-list--grid-featured--wide {
+  .cu-card:not(:first-child) .field--body {
+    display: none;
+  }
+
+  .cu-card:not(:first-child) .cu-composite-heading__heading {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .cu-card {
+    .field-representative-image .cu-image {
+      aspect-ratio: 2 / 1.125;
+    }
+  }
+
+  .cu-card:first-child {
+    grid-column: 1 / -1;
+  }
+
+  @include breakpoint(sm) {
+    grid-template-columns: 1fr 1fr;
+    --cu-grid-row-gap: var(--cu-vr0);
+  }
+
+  @include breakpoint(md) {
+    grid-template-rows: repeat(2, auto);
+  }
+}
+
+.cu-grid.cu-list--grid-featured--standard {
+  @include breakpoint(md) {
+    grid-template-columns: 2fr 1fr 1fr;
+
+    &:has(> :last-child:nth-child(4)) { /* 4 elements */
+      // grid-template-rows: repeat(3, auto);
+      grid-template-columns: 3fr 1fr 1fr;
+
+      .cu-card:is(:nth-child(2)) {
+        grid-column: 2 / -1;
+      }
+    }
+
+    &:has(> :last-child:nth-child(3)) { /* 3 elements */
+      grid-template-columns: 2fr 1fr;
+    }
+
+    .cu-card:first-child {
+      grid-row: 1 / -1;
+      grid-column: unset;
+    }
+  }
+}
+
+.cu-grid.cu-list--grid-featured--wide {
+  @include breakpoint(md) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    // https://stackoverflow.com/a/74016670
+    &:has(> :last-child:nth-child(4)) { /* 4 elements */
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    &:has(> :last-child:nth-child(3)) { /* 3 elements */
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .cu-card:first-child {
+    @include breakpoint(md) {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: var(--cu-ps1);
+
+      .cu-card__content {
+        padding: var(--cu-ps1) var(--cu-vr1) var(--cu-vr1) 0;
+      }
+
+      .cu-card__media {
+        margin-bottom: 0;
+        position: relative;
+      }
+    }
+  }
+}
+
 .cu-grid .pager {
   grid-column: 1/-1;
 }
