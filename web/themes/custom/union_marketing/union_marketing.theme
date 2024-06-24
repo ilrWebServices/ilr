@@ -73,7 +73,9 @@ function union_marketing_preprocess_html(&$variables) {
  * Implements template_preprocess_node().
  */
 function union_marketing_preprocess_node(&$variables) {
-  $variables['url_attributes'] = new Attribute();
+  $variables['url_attributes'] = new Attribute([
+    'title' => $variables['node']->label()
+  ]);
 
   if ($variables['node']->bundle() === 'post_document' && !$variables['node']->field_document->isEmpty()) {
     if ($variables['node']->field_document->entity->bundle() === 'remote_url') {
