@@ -2,14 +2,13 @@
 .node--media-mention.node--view-mode-teaser-compact .cu-x-media-mention__outlet,
 .node--media-mention.node--view-mode-featured .cu-x-media-mention__outlet {
   display: flex;
-  gap: var(--cu-ps-1);
+  gap: var(--cu-ps-2);
   align-items: center;
   width: 100%;
   margin-bottom: var(--cu-vr-1);
   order: -1;
-  --cu-font-family: 'futura-pt';
-  --cu-font-weight: 900;
-  text-transform: uppercase;
+  --cu-font-weight: 600;
+  --cu-font-size: var(--cu-ms-1);
 }
 
 .node--media-mention.node--view-mode-teaser .cu-x-media-mention__outlet::after,
@@ -17,9 +16,28 @@
 .node--media-mention.node--view-mode-featured .cu-x-media-mention__outlet::after {
   content: '';
   display: block;
-  border-top: 2px solid #222;
+  border-top: 1px solid #222;
   flex-grow: 1;
   height: 0;
+}
+
+// When a grid has posts other than media mentions, move media outlet names to the bottom.
+.cu-grid:has(.node--postalicious:not(.node--media-mention)) .cu-x-media-mention__outlet {
+  align-items: baseline;
+  margin-top: auto;
+  margin-bottom: unset;
+  order: 1;
+  --cu-font-size: var(--cu-ms-3);
+  --cu-line-height: 1.125;
+  --cu-font-weight: 400;
+  --cu-font-size: var(--cu-ms-2);
+
+  &::after {
+    border-top: .5px solid #222;
+  }
+}
+.cu-grid:has(.node--postalicious:not(.node--media-mention)) .field--body {
+  margin-bottom: var(--cu-vr-1);
 }
 
 .media-mention--mini {
