@@ -21,8 +21,11 @@ behavior_plugins:
       grid-bricks: grid-bricks
       grid-bricks--reversed: grid-bricks--reversed
       grid-featured: grid-featured
+      grid-featured--wide: grid-featured--wide
       main_content: main_content
       banner: 0
+      tabular-list: 0
+      select-list: 0
     columns_enabled: 0
     columns_min: ''
     columns_max: ''

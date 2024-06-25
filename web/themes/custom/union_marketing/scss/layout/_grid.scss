@@ -1,45 +1,4 @@
-.cu-grid.cu-grid--featured:not(.cu-component--people-listing) {
-  @include breakpoint(sm) {
-    grid-template-columns: 1fr 1fr;
-
-    .cu-card--featured {
-      .field-representative-image .cu-image {
-        aspect-ratio: 3 / 2;
-      }
-    }
-  }
-
-  @include breakpoint(md) {
-    --cu-grid-row-gap: var(--cu-vr1);
-    // The custom property allows us set the number of rows from the CMS via
-    // inline style, if necessary.
-    grid-template-rows: repeat(var(--featured-grid-rows, 3), auto);
-
-    .cu-card:first-child {
-      // This works because we set the number of rows explicitly.
-      grid-row: 1 / -1;
-      justify-content: space-between;
-
-      .cu-card__media {
-        flex-grow: 2;
-
-        .cu-image {
-          height: 100%;
-        }
-      }
-
-      .cu-card__content {
-        height: auto;
-      }
-    }
-
-    .cu-card:not(:first-child) {
-      @extend .landscape-brick;
-    }
-  }
-}
-
-.cu-grid.cu-list--grid-featured--standard,
+.cu-grid.cu-list--grid-featured:not(.cu-component--people-listing),
 .cu-grid.cu-list--grid-featured--wide {
   .cu-card:not(:first-child) .field--body {
     display: none;
@@ -72,7 +31,7 @@
   }
 }
 
-.cu-grid.cu-list--grid-featured--standard {
+.cu-grid.cu-list--grid-featured:not(.cu-component--people-listing) {
   @include breakpoint(md) {
     grid-template-columns: 2fr 1fr 1fr;
 
