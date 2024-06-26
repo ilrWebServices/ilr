@@ -14,6 +14,7 @@ push_frequency: 0
 push_limit: 0
 push_retries: 3
 pull_where_clause: ''
+pull_record_type_filter: {  }
 sync_triggers:
   push_create: true
   push_update: false
@@ -27,7 +28,7 @@ drupal_bundle: milr_campus_visit
 field_mappings:
   0:
     drupal_field_type: record_type
-    drupal_field_value: Grad
+    drupal_field_value: MILR
     direction: drupal_sf
     salesforce_field: RecordTypeId
     id: 0
