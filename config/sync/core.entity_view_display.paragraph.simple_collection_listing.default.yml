@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.simple_collection_listing.field_collection
     - paragraphs.paragraphs_type.simple_collection_listing
 id: paragraph.simple_collection_listing.default
 targetEntityType: paragraph
@@ -11,5 +10,4 @@ bundle: simple_collection_listing
 mode: default
 content: {  }
 hidden:
-  field_collection: true
   search_api_excerpt: true
