@@ -32,3 +32,16 @@ paragraph type labels on the Sections field. */
 .emp-details .form-item {
   margin: .1em 0;
 }
+
+.organization-selection .form-checkboxes {
+  overflow-y: scroll;
+  max-height: 200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75em;
+  margin-top: .75em;
+}
+
+.organization-selection .form-checkboxes .form-item {
+  margin: unset;
+}
