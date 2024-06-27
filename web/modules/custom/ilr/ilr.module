@@ -1147,6 +1147,14 @@ function ilr_field_widget_single_element_paragraphs_form_alter(&$element, FormSt
       '@type' => $paragraphs_entity->type->entity->label(),
     ]);
     $element['behavior_plugins']['#weight'] = -99;
+
+    // Check if there are any fields added by the UI to this paragraph.
+    $behavior_driven_component = empty(array_filter(array_keys($paragraphs_entity->getFields()), function($key) {
+      return strpos($key, 'field_') === 0;
+    }));
+
+    // If it's behavior-driven, leave the element open.
+    $element['behavior_plugins']['#open'] = $behavior_driven_component;
   }
 
   // Add a class to closed paragraphs.
