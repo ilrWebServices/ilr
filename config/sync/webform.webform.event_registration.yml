@@ -907,3 +907,20 @@ variants:
       settings: {  }
       elements: "custom_1_answer:\r\n  '#type': checkbox\r\n  '#title': 'I am an existing solar worker'\r\n  '#access': true\r\n  '#required': false"
       handlers: {  }
+  cahrs_learning_series:
+    id: override
+    variant_id: cahrs_learning_series
+    element_key: variant
+    label: 'CAHRS Learning Series'
+    notes: ''
+    status: true
+    weight: 3
+    settings:
+      debug: false
+      settings: {  }
+      elements: "company:\r\n  '#access': false\r\ncompany_account:\r\n  '#access': true\r\n  '#title': CAHRS Partner Company\r\n  '#description': '<p>If you don''t belong to a partner company and still want to attend, please email <a href=\"mailto:cahrs@cornell.edu\"><em>cahrs@cornell.edu</em></a> and include your company and reason you want to attend.</p>'\r\n  '#options': cahrs_companies\r\n  '#sort_options': true\r\nphone:\r\n  '#access': true\r\naddress:\r\n  '#access': true\r\n  '#address__access': true\r\n  '#postal_code__access': true\r\naccessible_accommodation:\r\n  '#access': false\r\nopt_in:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#required': true\r\n  '#title': 'Select the statement that best describes your organization’s current talent mobility and career growth strategy.'\r\n  '#description': ''\r\n  '#type': radios\r\n  '#options': cahrs_talent_mobility_options\r\ncustom_2_answer:\r\n  '#access': true\r\n  '#required': true\r\n  '#type': textarea\r\n  '#title': \"Challenge/Opportunity\"\r\n  '#description': 'Please briefly describe a challenge or area of opportunity related to your organization’s talent mobility and career growth strategy that you would like to learn more about from participating in this course.'\r\n  '#title_display': before\r\n  '#description_display': after\r\n  '#maxlength': 255\r\n  '#counter_type': character\r\n  '#counter_minimum': 1\r\n  '#counter_maximum': 255"
+      handlers:
+        submission_detail_email:
+          settings:
+            to_mail: cahrs@cornell.edu
+            subject: 'CAHRS Learning Series Event registration: [webform_submission:source-title]'

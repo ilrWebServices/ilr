@@ -93,3 +93,49 @@
 #edit-custom-1-answer--wrapper:disabled {
   display: none;
 }
+
+.node--event-landing-page.bvg--subsite-53 .webform-submission-event-registration-form {
+  .radios--wrapper {
+    .cu-legend {
+      margin-bottom: var(--cu-vr-1);
+    }
+    .cu-input-list__item--radio {
+      margin-bottom: var(--cu-vr-1);
+
+      .cu-label {
+        margin-left: var(--cu-ps0);
+      }
+    }
+  }
+
+  .cu-legend,
+  .cu-input-message {
+    --cu-font-size: var(--cu-ms-1);
+  }
+
+  .form-item-custom-2-answer.cu-input-list__item--textarea {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cu-vr0);
+
+    .cu-label {
+      display: none;
+    }
+
+    .cu-input-message {
+      order: -1;
+      color: $black;
+
+      // Since we are hiding the label, we'll put a "required" indicator on the
+      // description.
+      ::after {
+        content: '*';
+        color: $cornell-red;
+        font-weight: bold;
+        font-size: 80%;
+        display: inline-block;
+        vertical-align: super;
+      }
+    }
+  }
+}
