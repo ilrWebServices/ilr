@@ -1,0 +1,7 @@
+taxonomy.vocabulary.*:third_party_settings.force_unique:
+  type: mapping
+  label: 'Force unique names'
+  mapping:
+    force_unique:
+      type: boolean
+      label: 'Force unique names'

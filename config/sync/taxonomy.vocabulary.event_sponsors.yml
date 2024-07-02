@@ -3,10 +3,13 @@ langcode: en
 status: true
 dependencies:
   module:
+    - ilr
     - ilr_organizations
 third_party_settings:
   ilr_organizations:
     is_organization: 1
+  ilr:
+    force_unique: 1
 name: 'Event Sponsors'
 vid: event_sponsors
 description: ''

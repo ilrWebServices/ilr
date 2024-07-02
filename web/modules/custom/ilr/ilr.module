@@ -41,6 +41,7 @@ use Drupal\ilr\Entity\ImageMedia;
 use Drupal\node\Entity\NodeType;
 use Drupal\node\NodeInterface;
 use Drupal\salesforce_mapping\Entity\MappedObjectInterface;
+use Drupal\taxonomy\Entity\Vocabulary;
 
 /**
  * Implements hook_theme().
@@ -134,6 +135,17 @@ function ilr_entity_base_field_info(EntityTypeInterface $entity_type) {
       ->setDisplayConfigurable('form', TRUE);
 
     return $fields;
+  }
+}
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ */
+function ilr_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+  if ($entity_type->id() === 'taxonomy_term') {
+    if (isset($fields['name'])) {
+      $fields['name']->addConstraint('UniqueTermName');
+    }
   }
 }
 
@@ -1239,6 +1251,37 @@ function ilr_field_widget_single_element_text_textarea_with_summary_form_alter(&
     $element['#ilr_hide_value'] = TRUE;
     $element['#after_build'][] = '_ilr_disable_textarea_value';
   }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ *
+ * - Add a 'Force unique' setting to vocabularies.
+ */
+function ilr_form_taxonomy_vocabulary_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $vocab = $form_state->getFormObject()->getEntity();
+
+  $form['force_unique'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Force unique names'),
+    '#description' => t('If enabled, terms in this vocabulary will be required to have unique names.'),
+    '#default_value' => $vocab->getThirdPartySetting('ilr', 'force_unique'),
+    '#weight' => 1
+  ];
+
+  $form['#entity_builders'][] = 'ilr_form_taxonomy_vocabulary_form_builder';
+}
+
+/**
+ * Entity builder for the collection type configuration entity.
+ */
+function ilr_form_taxonomy_vocabulary_form_builder($entity_type, Vocabulary $vocabulary, &$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('force_unique')) {
+    $vocabulary->setThirdPartySetting('ilr', 'force_unique', $form_state->getValue('force_unique'));
+    return;
+  }
+
+  $vocabulary->unsetThirdPartySetting('ilr', 'force_unique');
 }
 
 /**
