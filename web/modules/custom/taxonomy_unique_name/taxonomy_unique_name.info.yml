@@ -1,0 +1,7 @@
+name: 'Taxonomy Unique Name'
+type: module
+description: 'Adds an optional per-vocabulary constraint that forces unique term names'
+package: Custom
+core_version_requirement: ^10
+dependencies:
+  - drupal:taxonomy

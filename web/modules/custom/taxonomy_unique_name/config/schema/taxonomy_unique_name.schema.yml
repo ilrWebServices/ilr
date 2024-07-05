@@ -1,0 +1,10 @@
+taxonomy.vocabulary.*:third_party_settings.taxonomy_unique_name:
+  type: mapping
+  label: 'Taxonomy Unique Name settings'
+  mapping:
+    unique:
+      type: boolean
+      label: 'Force unique names'
+    unique_message:
+      type: string
+      label: 'Message to show if term already exists'

@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Taxonomy Unique Name module.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\taxonomy_unique_name\Plugin\Validation\Constraint\TaxonomyUniqueName;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function taxonomy_unique_name_form_taxonomy_vocabulary_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $vocab = $form_state->getFormObject()->getEntity();
+
+  $form['unique_container'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Taxonomy unique name'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  ];
+
+  $form['unique_container']['unique'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Force unique names'),
+    '#default_value' => $vocab->getThirdPartySetting('taxonomy_unique_name', 'unique'),
+  ];
+
+  $form['unique_container']['unique_message'] = [
+    '#type' => 'textfield',
+    '#title' => t('Message to show if term already exists'),
+    '#description' => t('Placeholders: %term and %vocabulary'),
+    '#default_value' => $vocab->getThirdPartySetting('taxonomy_unique_name', 'unique_message') ?? TaxonomyUniqueName::DUPE_MESSAGE
+  ];
+
+  $form['#entity_builders'][] = 'taxonomy_unique_name_taxonomy_form_vocabulary_builder';
+}
+
+/**
+ * Handler function on submit the form.
+ */
+function taxonomy_unique_name_taxonomy_form_vocabulary_builder($entity_type, Vocabulary $vocabulary, &$form, FormStateInterface $form_state) {
+  if ($form_state->getValue('unique')) {
+    $vocabulary->setThirdPartySetting('taxonomy_unique_name', 'unique', $form_state->getValue('unique'));
+    $vocabulary->setThirdPartySetting('taxonomy_unique_name', 'unique_message', $form_state->getValue('unique_message'));
+    return;
+  }
+
+  $vocabulary->unsetThirdPartySetting('taxonomy_unique_name', 'unique');
+  $vocabulary->unsetThirdPartySetting('taxonomy_unique_name', 'unique_message');
+}
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ */
+function taxonomy_unique_name_entity_base_field_info_alter(&$fields, EntityTypeInterface $entityType) {
+  if ($entityType->id() == 'taxonomy_term') {
+    if (!empty($fields['name'])) {
+      $fields['name']->addConstraint("TaxonomyUniqueName");
+    }
+  }
+}
