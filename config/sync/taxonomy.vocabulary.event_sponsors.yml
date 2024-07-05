@@ -4,9 +4,13 @@ status: true
 dependencies:
   module:
     - ilr_organizations
+    - taxonomy_unique_name
 third_party_settings:
   ilr_organizations:
     is_organization: 1
+  taxonomy_unique_name:
+    unique: 1
+    unique_message: '%term already exists in %vocabulary.'
 name: 'Event Sponsors'
 vid: event_sponsors
 description: ''
