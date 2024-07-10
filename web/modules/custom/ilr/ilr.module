@@ -1035,7 +1035,7 @@ function ilr_field_widget_single_element_webform_entity_reference_select_form_al
   $cahrs_event_node_mapping = \Drupal::entityTypeManager()->getStorage('salesforce_mapping')->load('cahrs_event_node');
   $entity = $form_state->getFormObject()->getEntity();
 
-  if (!$entity instanceof EventNodeInterface || $entity->isNew()) {
+  if (!$entity instanceof EventNodeInterface) {
     return;
   }
 
@@ -1054,22 +1054,24 @@ function ilr_field_widget_single_element_webform_entity_reference_select_form_al
     ],
   ];
 
-  /** @var \Drupal\salesforce_mapping\Entity\MappedObjectInterface */
-  $drupal_mapped_object = $mapped_object_storage->loadByEntityAndMapping($entity, $cahrs_event_node_mapping);
+  if (!$entity->isNew()) {
+    /** @var \Drupal\salesforce_mapping\Entity\MappedObjectInterface */
+    $drupal_mapped_object = $mapped_object_storage->loadByEntityAndMapping($entity, $cahrs_event_node_mapping);
 
-  // @todo See if this sf event ($drupal_mapped_object->sfid()) has Activity_Format__c == 'CAHRS Partner Meeting'
-  if (!empty($drupal_mapped_object)) {
-    $options = $webform_options_storage->load('cahrs_session_details')->getOptions();
+    // @todo See if this sf event ($drupal_mapped_object->sfid()) has Activity_Format__c == 'CAHRS Partner Meeting'
+    if (!empty($drupal_mapped_object)) {
+      $options = $webform_options_storage->load('cahrs_session_details')->getOptions();
 
-    $element['settings']['cahrs'] = [
-      '#type' => 'checkboxes',
-      '#title' => t('Available <em>Optional activities</em> options'),
-      '#description' => t('Select the allowed options for the <em>Optional activities</em> field for this CAHRS partner event.'),
-      '#options' => $options,
-      '#attributes' => [
-        'class' => ['cahrs-session-details'],
-      ],
-    ];
+      $element['settings']['cahrs'] = [
+        '#type' => 'checkboxes',
+        '#title' => t('Available <em>Optional activities</em> options'),
+        '#description' => t('Select the allowed options for the <em>Optional activities</em> field for this CAHRS partner event.'),
+        '#options' => $options,
+        '#attributes' => [
+          'class' => ['cahrs-session-details'],
+        ],
+      ];
+    }
   }
 
   $element['settings']['default_data']['#weight'] = 1;
