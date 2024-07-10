@@ -19,8 +19,20 @@
   --cu-font-weight: 400;
 }
 
-.cu-component--organization-listing {
+.cu-component--organization-listing.cu-list--grid-compact {
+  // Images are also centered via `object-fit: contain` and `object-position:
+  // 50% 50%`.
+  align-items: center;
+  justify-items: center;
+}
+
+.cu-component--organization-listing.cu-list--list-compact {
   display: flex;
   flex-direction: column;
   gap: var(--cu-vr1);
+}
+
+.cu-component--organization-listing.cu-list--grid-compact .cu-image {
+  max-height: 100px;
+  object-fit: contain;
 }

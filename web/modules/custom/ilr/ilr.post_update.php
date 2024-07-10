@@ -347,3 +347,51 @@ function ilr_post_update_remove_newsletter_lead_mapped_objects(&$sandbox) {
     $mapped_object->delete();
   }
 }
+
+/**
+ * Merge duplicate event sponsors.
+ */
+function ilr_post_update_merge_dupe_event_sponsors(&$sandbox) {
+  // These term ids are dupes in the event_sponsors vocabulary. We'll keep the
+  // first one and merge the rest.
+  $dupes = [
+    [351,346,484,494],
+    [349,350,483,496],
+    [329,345],
+  ];
+
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $term_storage = $entity_type_manager->getStorage('taxonomy_term');
+  $node_storage = $entity_type_manager->getStorage('node');
+
+  foreach ($dupes as $dupe_tids) {
+    $keeper_tid = array_shift($dupe_tids);
+
+    // Update all event landing page sponsor references.
+    $node_query = $node_storage->getQuery();
+    $node_query->accessCheck(FALSE);
+    $node_query->condition('type', 'event_landing_page');
+    $node_query->condition('field_sponsor', $dupe_tids, 'IN');
+    $node_results = $node_query->execute();
+    $nodes = $node_storage->loadMultiple($node_results);
+
+    foreach ($nodes as $node) {
+      $values = $node->field_sponsor->getValue();
+
+      foreach ($values as &$value) {
+        if (in_array($value['target_id'], $dupe_tids)) {
+          $value['target_id'] = $keeper_tid;
+        }
+      }
+
+      $node->field_sponsor->setValue($values);
+      $node->save();
+    }
+
+    // Load the dupe terms.
+    $dupe_terms = $term_storage->loadMultiple($dupe_tids);
+
+    // Delete the dupe terms.
+    $term_storage->delete($dupe_terms);
+  }
+}

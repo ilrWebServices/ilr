@@ -17,7 +17,6 @@
   --cu-grid-column-gap: var(--cu-ps0);
 
   @include breakpoint(md) {
-    --cu-grid-row-gap: var(--cu-vr3);
     --cu-grid-column-gap: var(--cu-ps1);
   }
 }
