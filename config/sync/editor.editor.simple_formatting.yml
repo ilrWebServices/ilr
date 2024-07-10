@@ -27,4 +27,5 @@ settings:
         reversed: false
         startIndex: false
       multiBlock: true
-image_upload: {  }
+image_upload:
+  status: false

@@ -184,9 +184,7 @@
     },
     "patches": {
       "drupal/core": {
-        "Remove invalid iframe attributes from oembed field formatter": "https://www.drupal.org/files/issues/2019-07-31/remove-iframe-attributes-3071446-4.patch",
         "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch",
-        "Pass current route parameters to the confirmation form route": "./patches/2901412-pass-current-route_mr-4586.patch",
         "Allow custom session cookie name": "./patches/2983612-custom-session-cookie-name.patch",
         "Use sqlite database connection in dblog controller": "./patches/dblog_sqlite.diff",
         "Allow node menu widget to some non-admins": "./patches/menu_ui_access.patch",
