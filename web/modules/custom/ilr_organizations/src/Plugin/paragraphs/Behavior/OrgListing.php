@@ -213,6 +213,7 @@ class OrgListing extends ParagraphsBehaviorBase {
       $query->condition('vid', $org_types, 'IN');
       $query->condition('status', 1);
       $query->sort('weight');
+      $query->sort('name');
       $tids = $query->execute();
     }
 
