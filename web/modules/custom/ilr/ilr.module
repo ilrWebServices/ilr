@@ -1044,7 +1044,13 @@ function ilr_field_widget_single_element_webform_entity_reference_select_form_al
   $dummy_element = ['#options' => $touchpoint_options->id()];
   $emp_options = $touchpoint_options->getElementOptions($dummy_element);
 
-  $element['settings']['emps_helper'] = [
+  $element['settings']['helper_wrapper'] = [
+    '#type' => 'details',
+    '#title' => t('Marketing settings'),
+    '#open' => FALSE,
+  ];
+
+  $element['settings']['helper_wrapper']['emps_helper'] = [
     '#type' => 'checkboxes',
     '#title' => t('Available <em>Email Marketing Personas</em>'),
     '#description' => t('Selecting EMPs here will update the <code>outreach_marketing_personas</code> value below.'),
