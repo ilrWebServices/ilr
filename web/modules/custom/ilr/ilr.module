@@ -393,10 +393,10 @@ function ilr_node_view(array &$build, EntityInterface $entity, EntityViewDisplay
         'type' => 'date_range_without_time',
         'settings' => [
           'timezone_override' => '',
-          'one_day' => 'g:i A - {g}:{i} {A}',
-          'one_month' => 'g:i A - {g}:{i} {A}',
-          'several_months' => 'g:i A - {g}:{i} {A}',
-          'several_years' => 'g:i A - {g}:{i} {A}',
+          'one_day' => 'g:i A - {g}:{i} {A} {T}',
+          'one_month' => 'g:i A - {g}:{i} {A} {T}',
+          'several_months' => 'g:i A - {g}:{i} {A} {T}',
+          'several_years' => 'g:i A - {g}:{i} {A} {T}',
         ],
       ]),
       '#location_address' => !$entity->location_address->isEmpty() ? $entity->location_address->view([
