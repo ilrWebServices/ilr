@@ -215,7 +215,7 @@
         "Issue #3221747: Improve performance of asynchronous salesforce push": "https://git.drupalcode.org/issue/salesforce-3221747/-/commit/03a3308d7d1796f007dfb8d0f5648d31ec373f03.diff"
       },
       "drupal/date_range_formatter": {
-        "Issue #3309324: Passing empty value to t() when same day + time for start and end date": "https://www.drupal.org/files/issues/2022-10-19/date_range_formatter_3309324.patch"
+        "Issue #3309324: Passing empty value to t() when same day + time for start and end date": "https://git.drupalcode.org/issue/date_range_formatter-3309324/-/commit/4e645fcfa229c608be933ca16a4214a2bf5b47ec.diff"
       },
       "drupal/webform": {
         "Use symfony_mailer for html email": "./patches/webform_symfony_mailer.patch"

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36e9117695a9a50f04f72ab877334b93",
+    "content-hash": "acbf2bddcc11bbe84ab49d33dcd08d90",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2677,7 +2677,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/date_range_formatter.git",
-                "reference": "8808a9c324c781b4a7cae9ea5f16017a6b8f63f7"
+                "reference": "d909818f1de39d7498e771a2c334ca7b9b4b350e"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10"
@@ -2689,7 +2689,7 @@
                 },
                 "drupal": {
                     "version": "9.0.x-dev",
-                    "datestamp": "1661511425",
+                    "datestamp": "1718887202",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
