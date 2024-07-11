@@ -6,11 +6,12 @@ id: migrations
 label: Migrations
 description: 'This is a place to store exported migrate plus configuration.'
 weight: 0
+stackable: false
+no_patching: false
+storage: folder
 folder: ../config/migrations
 module: {  }
 theme: {  }
-blacklist:
+complete_list:
   - 'migrate_plus.*'
-graylist: {  }
-graylist_dependents: true
-graylist_skip_equal: true
+partial_list: {  }
