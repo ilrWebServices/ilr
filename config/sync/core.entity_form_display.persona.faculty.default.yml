@@ -56,7 +56,8 @@ content:
     type: address_default
     weight: 6
     region: content
-    settings: {  }
+    settings:
+      wrapper_type: details
     third_party_settings: {  }
   field_education:
     type: text_textarea

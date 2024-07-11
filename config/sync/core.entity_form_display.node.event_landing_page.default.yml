@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - core.entity_form_mode.taxonomy_term.mini
-    - field.field.node.event_landing_page.body
     - field.field.node.event_landing_page.behavior_suppress_listing
+    - field.field.node.event_landing_page.body
     - field.field.node.event_landing_page.field_keywords
     - field.field.node.event_landing_page.field_metatags
     - field.field.node.event_landing_page.field_registration_form
@@ -147,7 +147,8 @@ content:
     type: address_default
     weight: -2
     region: content
-    settings: {  }
+    settings:
+      wrapper_type: details
     third_party_settings: {  }
   location_link:
     type: linkit

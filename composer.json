@@ -59,7 +59,8 @@
     "cornell/union": "dev-union_ng",
     "cweagans/composer-patches": "^1.6.5",
     "drupal-ckeditor-libraries-group/fakeobjects": "^4.16",
-    "drupal/address": "^1.7",
+    "drupal/address": "^2.0",
+    "drupal/address_display": "^1.0@dev",
     "drupal/admin_toolbar": "^3.0.0",
     "drupal/allowed_formats": "^3",
     "drupal/better_social_sharing_buttons": "^4.0",
@@ -189,9 +190,6 @@
         "Use sqlite database connection in dblog controller": "./patches/dblog_sqlite.diff",
         "Allow node menu widget to some non-admins": "./patches/menu_ui_access.patch",
         "Issue #3446368: SymfonyMailer RfcComplianceException when sending to multiple comma-separated addresses": "https://www.drupal.org/files/issues/2024-05-10/3446368-14.patch"
-      },
-      "drupal/address": {
-        "Configure visible address fields per field formatter": "https://www.drupal.org/files/issues/2019-05-23/address-visible_address_fields_per_field_formatter-2852800-23.patch"
       },
       "drupal/block_visibility_groups": {
         "Issue #3412434: Canonical Entity Link problems": "https://git.drupalcode.org/project/block_visibility_groups/-/merge_requests/9.diff"
