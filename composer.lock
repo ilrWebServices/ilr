@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd9f20a9008ae1b54ffcf14a0bc1fee4",
+    "content-hash": "230044d63b0c92fd964095ac2be28c6c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2142,6 +2142,54 @@
                 "source": "https://git.drupalcode.org/project/config_filter",
                 "issues": "https://www.drupal.org/project/issues/config_filter",
                 "slack": "https://drupal.slack.com/archives/C45342CDD"
+            }
+        },
+        {
+            "name": "drupal/config_ignore_pattern",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/config_ignore_pattern.git",
+                "reference": "1.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/config_ignore_pattern-1.0.2.zip",
+                "reference": "1.0.2",
+                "shasum": "502cfde980eb5d015a27465a36c25b1c4d6a52b7"
+            },
+            "require": {
+                "drupal/core": "^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.2",
+                    "datestamp": "1720820494",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "a-fro",
+                    "homepage": "https://www.drupal.org/user/2420892"
+                },
+                {
+                    "name": "jeffam",
+                    "homepage": "https://www.drupal.org/user/397127"
+                }
+            ],
+            "description": "Ignore configuration by patterns while allowing existing config to remain synchronized.",
+            "homepage": "https://www.drupal.org/project/config_ignore_pattern",
+            "support": {
+                "source": "https://git.drupalcode.org/project/config_ignore_pattern"
             }
         },
         {

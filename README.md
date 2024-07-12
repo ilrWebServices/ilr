@@ -57,6 +57,9 @@ $config['system.performance']['js']['preprocess'] = FALSE;
 
 // Skip file system permissions hardening.
 $settings['skip_permissions_hardening'] = TRUE;
+
+// Config ignore pattern debugging.
+$settings['config_ignore_pattern_debug'] = FALSE;
 ```
 
 ### Clean install
@@ -66,6 +69,8 @@ To work on a blank slate of the codebase without syncing content and data from p
 ```
 $ drush si minimal --existing-config
 ```
+
+Some configuration, mainly registration and participant types, is ignored from sync. The `config_ignore_pattern` module is used. See $settings['config_ignore_patterns'].
 
 ## Managing Modules and Other Dependencies
 
