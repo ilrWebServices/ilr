@@ -36,24 +36,4 @@ class PolicyCommands extends DrushCommands {
     }
   }
 
-  /**
-   * Add a policy to require `--partial` to `config-import`.
-   *
-   * @hook validate config:import
-   */
-  public function configImportValidate(CommandData $commandData) {
-    if (getenv('DRUSH_POLICY_IGNORE') === '1') {
-      $this->policyIgnoreMessage();
-      return;
-    }
-
-    if ($commandData->input()->getOption('partial') === FALSE) {
-      throw new \Exception(dt('Per !file, you must use `--partial` when importing configuration. This will prevent the deletion of configuration added to production (e.g. custom menus).', ['!file' =>  __FILE__]));
-    }
-  }
-
-  protected function policyIgnoreMessage() {
-    $this->output()->writeln(PHP_EOL . '<bg=yellow;fg=black;options=bold> NOTE: Drush policy is being ignored via the DRUSH_POLICY_IGNORE environment variable. Proceed with caution! </>'. PHP_EOL);
-  }
-
 }
