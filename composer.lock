@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f296e418c3fad951ab00c33418ed9198",
+    "content-hash": "cd9f20a9008ae1b54ffcf14a0bc1fee4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3339,23 +3339,23 @@
         },
         {
             "name": "drupal/filehash",
-            "version": "2.0.10",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/filehash.git",
-                "reference": "2.0.10"
+                "reference": "3.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/filehash-2.0.10.zip",
-                "reference": "2.0.10",
-                "shasum": "7c4f2cdf0ee89652991990784a4bcdf1481e736f"
+                "url": "https://ftp.drupal.org/files/projects/filehash-3.0.3.zip",
+                "reference": "3.0.3",
+                "shasum": "d2f4d61dc032b0ff602c3977589cd53893588485"
             },
             "require": {
-                "drupal/core": "^8.6 || ^9.0 || ^10.0"
+                "drupal/core": "^10.2"
             },
             "require-dev": {
-                "drush/drush": "^10.6 || ^11.0 || ^12.0"
+                "drush/drush": "^12.0"
             },
             "suggest": {
                 "yzalis/identicon": "^2.0"
@@ -3363,16 +3363,11 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.10",
-                    "datestamp": "1693359335",
+                    "version": "3.0.3",
+                    "datestamp": "1716363404",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
-                    }
-                },
-                "drush": {
-                    "services": {
-                        "drush.services.yml": "^9 || ^10 || ^11 || ^12"
                     }
                 }
             },
@@ -3387,7 +3382,7 @@
                     "role": "Maintainer"
                 }
             ],
-            "description": "File Hash module generates and stores MD5, SHA-1 and/or SHA-256 hashes for each file uploaded to the site.",
+            "description": "File Hash module generates and stores hashes for each file uploaded to the site.",
             "homepage": "https://www.drupal.org/project/filehash",
             "support": {
                 "source": "https://git.drupalcode.org/project/filehash",
