@@ -4145,17 +4145,17 @@
         },
         {
             "name": "drupal/media_pdf_thumbnail",
-            "version": "6.0.0",
+            "version": "6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/media_pdf_thumbnail.git",
-                "reference": "6.0.0"
+                "reference": "6.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_pdf_thumbnail-6.0.0.zip",
-                "reference": "6.0.0",
-                "shasum": "2285d77249538e6d7e9f7e50a9298f216e3ecacd"
+                "url": "https://ftp.drupal.org/files/projects/media_pdf_thumbnail-6.0.1.zip",
+                "reference": "6.0.1",
+                "shasum": "79a9458f9bf5e1bc9bcc56b65f68c3476adc69e8"
             },
             "require": {
                 "drupal/core": "^9 || ^10",
@@ -4166,8 +4166,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "6.0.0",
-                    "datestamp": "1699198921",
+                    "version": "6.0.1",
+                    "datestamp": "1711186273",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8736,16 +8736,16 @@
         },
         {
             "name": "spatie/pdf-to-image",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/pdf-to-image.git",
-                "reference": "9b8d5bae5b77f6023e87b2401028e52b7addbd48"
+                "reference": "7c68cc95c0a5e63d712b705ff55459071c2a7b54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/9b8d5bae5b77f6023e87b2401028e52b7addbd48",
-                "reference": "9b8d5bae5b77f6023e87b2401028e52b7addbd48",
+                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/7c68cc95c0a5e63d712b705ff55459071c2a7b54",
+                "reference": "7c68cc95c0a5e63d712b705ff55459071c2a7b54",
                 "shasum": ""
             },
             "require": {
@@ -8784,7 +8784,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/pdf-to-image/issues",
-                "source": "https://github.com/spatie/pdf-to-image/tree/2.2.0"
+                "source": "https://github.com/spatie/pdf-to-image/tree/2.3.0"
             },
             "funding": [
                 {
@@ -8792,7 +8792,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-08T07:52:26+00:00"
+            "time": "2024-03-07T09:42:07+00:00"
         },
         {
             "name": "symfony/console",
