@@ -11,3 +11,10 @@
 function ilr_update_last_removed() {
   return 8004;
 }
+
+/**
+ * Enable the config_ignore_pattern module.
+ */
+function ilr_update_100101() {
+  \Drupal::service('module_installer')->install(['config_ignore_pattern'], TRUE);
+}
