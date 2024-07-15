@@ -5,10 +5,11 @@
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
-    "breakpoint-sass": "^2.7.1",
-    "gulp": "^4.0.2",
-    "gulp-livereload": "^4.0.2",
-    "gulp-sass": "^4.0.2"
+    "gulp": "^4",
+    "gulp-livereload": "^4",
+    "gulp-sass": "^5",
+    "gulp-sourcemaps": "^3",
+    "sass": "^1"
   },
   "scripts": {
     "start": "gulp",

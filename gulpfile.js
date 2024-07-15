@@ -1,5 +1,6 @@
 const gulp = require("gulp");
-const sass = require("gulp-sass");
+const sass = require("gulp-sass")(require('sass'));
+const sourcemaps = require("gulp-sourcemaps");
 const livereload = require("gulp-livereload");
 
 var sass_config = {
@@ -12,10 +13,12 @@ var sass_config = {
 // CSS task
 function css() {
   return gulp
-    .src('web/themes/custom/union_marketing/scss/style.scss', { sourcemaps: true })
+    .src('web/themes/custom/union_marketing/scss/style.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass(sass_config)
       .on('error', sass.logError))
-    .pipe(gulp.dest('web/themes/custom/union_marketing/css', { sourcemaps: '.' }));
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('web/themes/custom/union_marketing/css'));
 }
 
 function livereloadStartServer(done) {
