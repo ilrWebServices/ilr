@@ -2,10 +2,12 @@
   .cu-component--picture-in-picture {
     @include full-width(true);
 
-    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0);
-    margin-top: var(--cu-component-margin-top, var(--cu-vr2));
-    margin-bottom: var(--cu-component-margin-top, var(--cu-vr2));
-    padding-bottom: var(--cu-vr7);
+    & {
+      clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0);
+      margin-top: var(--cu-component-margin-top, var(--cu-vr2));
+      margin-bottom: var(--cu-component-margin-top, var(--cu-vr2));
+      padding-bottom: var(--cu-vr7);
+    }
 
     @include breakpoint(md) {
       margin-top: var(--cu-component-margin-top, var(--cu-vr3));

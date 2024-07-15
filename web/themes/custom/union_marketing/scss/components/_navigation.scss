@@ -166,8 +166,10 @@ nav[id^="block-union-marketing-menu-subsite"] {
     margin-right: 0;
   }
 
-  background-color: #efefef;
-  padding: var(--cu-vr1) var(--cu-ps1);
+  & {
+    background-color: #efefef;
+    padding: var(--cu-vr1) var(--cu-ps1);
+  }
 
   .cu-heading {
     margin-bottom: var(--cu-vr1);
