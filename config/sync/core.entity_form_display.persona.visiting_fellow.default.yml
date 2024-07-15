@@ -95,7 +95,8 @@ content:
     type: address_default
     weight: 9
     region: content
-    settings: {  }
+    settings:
+      wrapper_type: details
     third_party_settings: {  }
   field_visiting_period:
     type: daterange_default
@@ -103,6 +104,11 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  ief_collection_items:
+    weight: 50
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   path:
     type: path
     weight: 30

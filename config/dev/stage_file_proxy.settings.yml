@@ -3,6 +3,7 @@ _core:
 hotlink: false
 origin: 'https://d8-edit.ilr.cornell.edu'
 origin_dir: sites/default/files-d8
+proxy_headers: ''
 use_imagecache_root: true
 verify: true
 excluded_extensions: ''

@@ -59,7 +59,8 @@
     "cornell/union": "dev-union_ng",
     "cweagans/composer-patches": "^1.6.5",
     "drupal-ckeditor-libraries-group/fakeobjects": "^4.16",
-    "drupal/address": "^1.7",
+    "drupal/address": "^2.0",
+    "drupal/address_display": "^1.0@dev",
     "drupal/admin_toolbar": "^3.0.0",
     "drupal/allowed_formats": "^3",
     "drupal/better_social_sharing_buttons": "^4.0",
@@ -68,7 +69,9 @@
     "drupal/collection": "3.x-dev@dev",
     "drupal/collegenet2sf": "^2",
     "drupal/condition_path": "^2.0",
-    "drupal/config_split": "^1.4",
+    "drupal/config_filter": "^1",
+    "drupal/config_ignore_pattern": "^1",
+    "drupal/config_split": "^2",
     "drupal/core-composer-scaffold": "^10",
     "drupal/core-recommended": "^10",
     "drupal/date_range_formatter": "^9",
@@ -78,7 +81,7 @@
     "drupal/entity_usage": "^2.0@beta",
     "drupal/extra_field": "^2.0.0",
     "drupal/facets": "^3.0",
-    "drupal/filehash": "^2",
+    "drupal/filehash": "^3",
     "drupal/focal_point": "^2",
     "drupal/footnotes": "^3.0",
     "drupal/google_tag": "^2.0",
@@ -126,7 +129,7 @@
     "ilrwebservices/campaign-monitor-rest-api-client": "^1.0.0",
     "league/csv": "^9.0",
     "platformsh/config-reader": "^2.4",
-    "symfony/dotenv": "^6.0"
+    "symfony/dotenv": "^7.1"
   },
   "require-dev": {
     "drupal/core-dev": "^10",
@@ -134,7 +137,7 @@
     "drupal/entity_clone": "^2.0",
     "drupal/stage_file_proxy": "^2.0",
     "drupal/twig_vardumper": "^3.0",
-    "palantirnet/drupal-rector": "^0.18",
+    "palantirnet/drupal-rector": "^0.20.3",
     "phpcompatibility/php-compatibility": "dev-develop"
   },
   "conflict": {
@@ -184,16 +187,11 @@
     },
     "patches": {
       "drupal/core": {
-        "Remove invalid iframe attributes from oembed field formatter": "https://www.drupal.org/files/issues/2019-07-31/remove-iframe-attributes-3071446-4.patch",
         "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch",
-        "Pass current route parameters to the confirmation form route": "./patches/2901412-pass-current-route_mr-4586.patch",
         "Allow custom session cookie name": "./patches/2983612-custom-session-cookie-name.patch",
         "Use sqlite database connection in dblog controller": "./patches/dblog_sqlite.diff",
         "Allow node menu widget to some non-admins": "./patches/menu_ui_access.patch",
         "Issue #3446368: SymfonyMailer RfcComplianceException when sending to multiple comma-separated addresses": "https://www.drupal.org/files/issues/2024-05-10/3446368-14.patch"
-      },
-      "drupal/address": {
-        "Configure visible address fields per field formatter": "https://www.drupal.org/files/issues/2019-05-23/address-visible_address_fields_per_field_formatter-2852800-23.patch"
       },
       "drupal/block_visibility_groups": {
         "Issue #3412434: Canonical Entity Link problems": "https://git.drupalcode.org/project/block_visibility_groups/-/merge_requests/9.diff"
@@ -208,9 +206,6 @@
         "Issue #2979223: Add option to show current search string in facet summary": "https://git.drupalcode.org/issue/facets-2979223/-/commit/871c779a67704275f975541af803e6e2c81373f8.diff",
         "Error: Call to a member function getAllowedBundles() on null": "https://git.drupalcode.org/issue/facets-3458558/-/commit/95a9c9f71d033b9751b25d06892b81609598c747.diff"
       },
-      "drupal/focal_point": {
-        "Preview link accidentally closes the media library": "https://www.drupal.org/files/issues/2020-10-11/preview_link_accidentally_closes_the_media_library-3162210-19.patch"
-      },
       "drupal/footnotes": {
         "Issue #3381366: Warnings when leaving values empty": "https://www.drupal.org/files/issues/2023-08-23/fix-warnings-when-leaving-values-empty-3381366-5_0.patch"
       },
@@ -218,7 +213,7 @@
         "Issue #3221747: Improve performance of asynchronous salesforce push": "https://git.drupalcode.org/issue/salesforce-3221747/-/commit/03a3308d7d1796f007dfb8d0f5648d31ec373f03.diff"
       },
       "drupal/date_range_formatter": {
-        "Issue #3309324: Passing empty value to t() when same day + time for start and end date": "https://www.drupal.org/files/issues/2022-10-19/date_range_formatter_3309324.patch"
+        "Issue #3309324: Passing empty value to t() when same day + time for start and end date": "https://git.drupalcode.org/issue/date_range_formatter-3309324/-/commit/4e645fcfa229c608be933ca16a4214a2bf5b47ec.diff"
       },
       "drupal/webform": {
         "Use symfony_mailer for html email": "./patches/webform_symfony_mailer.patch"

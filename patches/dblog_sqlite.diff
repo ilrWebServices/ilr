@@ -1,5 +1,11 @@
+commit c7e5e3a4e96c55c6c8dd64553727601f4dcc0b71
+Author: Jeff Amaral <jeffam@397127.no-reply.drupal.org>
+Date:   Wed Jul 10 16:22:36 2024 -0400
+
+    ILR Custom: Modify dblog to use custom db connection + misc fixes
+
 diff --git a/core/modules/dblog/dblog.module b/core/modules/dblog/dblog.module
-index aa3f910f9f..2f77c208c3 100644
+index ef11460c2c..82fc0ed5aa 100644
 --- a/core/modules/dblog/dblog.module
 +++ b/core/modules/dblog/dblog.module
 @@ -69,7 +69,7 @@ function dblog_cron() {
@@ -22,19 +28,33 @@ index aa3f910f9f..2f77c208c3 100644
  }
  
 diff --git a/core/modules/dblog/src/Controller/DbLogController.php b/core/modules/dblog/src/Controller/DbLogController.php
-index b52ed5015a..6c661ec35d 100644
+index 134bc22580..d6b9483c3c 100644
 --- a/core/modules/dblog/src/Controller/DbLogController.php
 +++ b/core/modules/dblog/src/Controller/DbLogController.php
-@@ -53,7 +53,7 @@ class DbLogController extends ControllerBase {
+@@ -20,6 +20,7 @@
+ use Symfony\Component\HttpFoundation\Request;
+ use Drupal\Core\Link;
+ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
++use Symfony\Component\DependencyInjection\Attribute\Autowire;
+ 
+ /**
+  * Returns responses for dblog routes.
+@@ -59,7 +60,13 @@ class DbLogController extends ControllerBase {
+    * @param \Drupal\Core\Form\FormBuilderInterface $form_builder
+    *   The form builder service.
     */
-   public static function create(ContainerInterface $container) {
-     return new static(
--      $container->get('database'),
-+      $container->get('database.dblog'),
-       $container->get('module_handler'),
-       $container->get('date.formatter'),
-       $container->get('form_builder')
-@@ -165,7 +165,6 @@ public function overview(Request $request) {
+-  public function __construct(Connection $database, ModuleHandlerInterface $module_handler, DateFormatterInterface $date_formatter, FormBuilderInterface $form_builder) {
++  public function __construct(
++    #[Autowire(service: 'database.dblog')]
++    Connection $database,
++    ModuleHandlerInterface $module_handler,
++    DateFormatterInterface $date_formatter,
++    FormBuilderInterface $form_builder
++  ) {
+     $this->database = $database;
+     $this->moduleHandler = $module_handler;
+     $this->dateFormatter = $date_formatter;
+@@ -152,7 +159,6 @@ public function overview(Request $request) {
        'variables',
        'link',
      ]);
@@ -42,7 +62,7 @@ index b52ed5015a..6c661ec35d 100644
  
      if (!empty($filter['where'])) {
        $query->where($filter['where'], $filter['args']);
-@@ -240,7 +239,7 @@ public function overview(Request $request) {
+@@ -227,7 +233,7 @@ public function overview(Request $request) {
     *   If no event found for the given ID.
     */
    public function eventDetails($event_id) {

@@ -19,7 +19,7 @@ dependencies:
     - field.field.node.class.field_price
     - node.type.class
   module:
-    - address
+    - address_display
     - date_range_formatter
     - datetime
     - user
@@ -29,22 +29,58 @@ bundle: class
 mode: teaser
 content:
   field_address:
-    type: address_default
+    type: address_display_formatter
     label: hidden
     settings:
-      field_settings:
-        locality: locality
-        administrativeArea: administrativeArea
-        givenName: 0
-        additionalName: 0
-        familyName: 0
-        organization: 0
-        addressLine1: 0
-        addressLine2: 0
-        postalCode: 0
-        sortingCode: 0
-        dependentLocality: 0
-        country: 0
+      address_display:
+        organization:
+          glue: ''
+          weight: -1
+          display: false
+        address_line1:
+          glue: ''
+          weight: 0
+          display: false
+        address_line2:
+          glue: ','
+          weight: 1
+          display: false
+        locality:
+          glue: ','
+          weight: 2
+          display: true
+        postal_code:
+          glue: ''
+          weight: 3
+          display: false
+        country_code:
+          glue: ''
+          weight: 4
+          display: false
+        langcode:
+          glue: ','
+          weight: 100
+          display: false
+        administrative_area:
+          glue: ','
+          weight: 100
+          display: true
+        dependent_locality:
+          glue: ','
+          weight: 100
+          display: false
+        sorting_code:
+          glue: ','
+          weight: 100
+          display: false
+        given_name:
+          glue: ''
+          weight: 100
+          display: false
+        family_name:
+          glue: ','
+          weight: 100
+          display: false
     third_party_settings: {  }
     weight: 4
     region: content

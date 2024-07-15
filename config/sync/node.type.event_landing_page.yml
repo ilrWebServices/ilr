@@ -11,7 +11,7 @@ third_party_settings:
 name: 'Event Landing Page'
 type: event_landing_page
 description: '<em>Event Landing Pages</em> are fancy pages that represent events. They extend EventNodeInterface to include information like start and end dates and location.'
-help: ''
+help: null
 new_revision: true
 preview_mode: 1
 display_submitted: false

@@ -17,14 +17,6 @@ services:
     class: Drupal\ilr\Routing\RouteSubscriber
     tags:
       - { name: event_subscriber }
-  ilr_config_event_subscriber:
-    class: Drupal\ilr\EventSubscriber\ConfigEventSubscriber
-    arguments:
-      - '@config.storage'
-      - '@config.storage.sync'
-      - '@state'
-    tags:
-      - { name: event_subscriber }
   ilr.path_processor:
     class: Drupal\ilr\PathProcessor
     tags:

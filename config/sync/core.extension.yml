@@ -2,6 +2,7 @@ _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
 module:
   address: 0
+  address_display: 0
   admin_toolbar: 0
   allowed_formats: 0
   autocomplete_decorator: 0
@@ -34,7 +35,7 @@ module:
   collegenet2sf: 0
   condition_path: 0
   config: 0
-  config_filter: 0
+  config_ignore_pattern: 0
   config_split: 0
   contextual: 0
   crop: 0
@@ -82,6 +83,7 @@ module:
   key: 0
   key_value_field: 0
   layout_builder: 0
+  layout_builder_expose_all_field_blocks: 0
   layout_discovery: 0
   link: 0
   linkit: 0

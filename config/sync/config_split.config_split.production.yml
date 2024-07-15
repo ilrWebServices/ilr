@@ -6,11 +6,12 @@ id: production
 label: Production
 description: 'Modules and configuration that should only be enabled on the production site. Examples include Google Tag Manager (GTM), SimpleSAML authentication, etc.'
 weight: 0
+stackable: false
+no_patching: false
+storage: folder
 folder: ../config/prod
 module:
   google_tag: 0
 theme: {  }
-blacklist: {  }
-graylist: {  }
-graylist_dependents: true
-graylist_skip_equal: true
+complete_list: {  }
+partial_list: {  }
