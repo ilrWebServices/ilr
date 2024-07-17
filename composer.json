@@ -167,7 +167,7 @@
     "sync-prod": [
       "Composer\\Config::disableProcessTimeout",
       "drush sql:drop -y",
-      "drush sql:sync @ilr-web.master @self -y",
+      "drush sql:sync @ilr-web.master @self -y --extra-dump=\" | awk 'NR==1 {if (/enable the sandbox mode/) next} {print}'\"",
       "./post_sync_fix_triggers.php"
     ],
     "sync-update": [
