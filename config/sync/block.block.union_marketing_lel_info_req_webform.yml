@@ -1,0 +1,32 @@
+uuid: c140825b-0f16-4719-90ad-61dbff129889
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.subsite_44
+    - webform.webform.lel_info_request
+  module:
+    - block_visibility_groups
+    - webform
+  theme:
+    - union_marketing
+id: union_marketing_lel_info_req_webform
+theme: union_marketing
+region: content
+weight: 3
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'LEL info request'
+  label_display: '0'
+  provider: webform
+  webform_id: lel_info_request
+  default_data: ''
+  redirect: false
+  lazy: false
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: subsite_44
