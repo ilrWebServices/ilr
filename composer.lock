@@ -1933,7 +1933,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/collection.git",
-                "reference": "7652a229d0d708e2867511dd1e86aab20775140b"
+                "reference": "29f8afef03f4ea01f5a19a2fb3d54ffe22f67ceb"
             },
             "require": {
                 "drupal/core": "^9.4 || ^10",
@@ -1951,8 +1951,8 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "3.0.0+4-dev",
-                    "datestamp": "1720207398",
+                    "version": "3.0.0+5-dev",
+                    "datestamp": "1721331126",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
