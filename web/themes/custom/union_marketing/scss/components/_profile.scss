@@ -71,12 +71,13 @@
     }
 
     h1.cu-heading {
-      @include breakpoint(md) {
-        --cu-font-size: var(--cu-ms10);
-      }
       --cu-font-family: 'futura-pt';
       text-transform: uppercase;
       line-height: 1;
+
+      @include breakpoint(md) {
+        --cu-font-size: var(--cu-ms10);
+      }
     }
 
     .field--field-title {
