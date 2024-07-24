@@ -6,12 +6,14 @@ dependencies:
     - field.field.node.course.body
     - field.field.node.course.field_course_number
     - field.field.node.course.field_delivery_method
+    - field.field.node.course.field_key_outcomes
     - field.field.node.course.field_media_secondary
     - field.field.node.course.field_media_section
     - field.field.node.course.field_message
     - field.field.node.course.field_representative_image
     - field.field.node.course.field_sections
     - field.field.node.course.field_sponsor
+    - field.field.node.course.field_target_audience
     - field.field.node.course.field_topics
     - field.field.node.course.layout_builder__layout
     - node.type.course
@@ -59,6 +61,14 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_key_outcomes:
+    type: text_textarea
+    weight: 121
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_media_secondary:
     type: entity_reference_paragraphs
     weight: 127
@@ -102,7 +112,7 @@ content:
         show_edit: '1'
   field_sections:
     type: paragraphs_previewer
-    weight: 122
+    weight: 123
     region: content
     settings:
       title: Component
@@ -110,14 +120,14 @@ content:
       edit_mode: closed
       closed_mode: summary
       autocollapse: all
-      closed_mode_threshold: '3'
+      closed_mode_threshold: 3
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: section
       features:
+        add_above: '0'
         collapse_edit_all: collapse_edit_all
-        duplicate: 0
-        add_above: 0
+        duplicate: '0'
     third_party_settings: {  }
   field_sponsor:
     type: entity_reference_autocomplete
@@ -127,6 +137,14 @@ content:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_target_audience:
+    type: text_textarea
+    weight: 122
+    region: content
+    settings:
+      rows: 5
       placeholder: ''
     third_party_settings: {  }
   field_topics:

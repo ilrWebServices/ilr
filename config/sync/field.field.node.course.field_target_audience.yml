@@ -1,0 +1,24 @@
+uuid: 86905010-5225-4d5a-9ba1-8f5a0f2661cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_target_audience
+    - filter.format.basic_formatting_with_media
+    - node.type.course
+  module:
+    - text
+id: node.course.field_target_audience
+field_name: field_target_audience
+entity_type: node
+bundle: course
+label: 'Who should enroll'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_formatting_with_media
+field_type: text_long

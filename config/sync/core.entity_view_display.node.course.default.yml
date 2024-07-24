@@ -6,12 +6,14 @@ dependencies:
     - field.field.node.course.body
     - field.field.node.course.field_course_number
     - field.field.node.course.field_delivery_method
+    - field.field.node.course.field_key_outcomes
     - field.field.node.course.field_media_secondary
     - field.field.node.course.field_media_section
     - field.field.node.course.field_message
     - field.field.node.course.field_representative_image
     - field.field.node.course.field_sections
     - field.field.node.course.field_sponsor
+    - field.field.node.course.field_target_audience
     - field.field.node.course.field_topics
     - field.field.node.course.layout_builder__layout
     - node.type.course
@@ -62,8 +64,8 @@ third_party_settings:
         layout_id: banner
         layout_settings:
           label: ''
-          color_scheme: dark
           context_mapping: {  }
+          color_scheme: dark
         components:
           51125cc7-cef7-47bb-a425-e1cd90850c80:
             uuid: 51125cc7-cef7-47bb-a425-e1cd90850c80
@@ -165,10 +167,10 @@ third_party_settings:
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 1
           collapse_margins: 1
           extra_classes: ''
-          context_mapping: {  }
         components:
           a92e4315-abad-4520-a7ba-fd4bd5ebad45:
             uuid: a92e4315-abad-4520-a7ba-fd4bd5ebad45
@@ -203,10 +205,10 @@ third_party_settings:
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 1
           collapse_margins: false
           extra_classes: ''
-          context_mapping: {  }
         components:
           2da97fe0-5f32-406e-88c7-e1e81c12492d:
             uuid: 2da97fe0-5f32-406e-88c7-e1e81c12492d
@@ -231,10 +233,10 @@ third_party_settings:
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 0
           collapse_margins: false
           extra_classes: ''
-          context_mapping: {  }
         components:
           d11772b1-e847-4a39-bb5c-008fbd3f34e2:
             uuid: d11772b1-e847-4a39-bb5c-008fbd3f34e2
@@ -251,7 +253,7 @@ third_party_settings:
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 1
+            weight: -1
             additional: {  }
           d7aa2004-49b9-4be1-93d0-5138dcac3778:
             uuid: d7aa2004-49b9-4be1-93d0-5138dcac3778
@@ -262,6 +264,42 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             weight: 2
+            additional: {  }
+          7d232724-76da-47be-8b4a-d1c2ac7c7144:
+            uuid: 7d232724-76da-47be-8b4a-d1c2ac7c7144
+            region: main
+            configuration:
+              id: 'field_block:node:course:field_target_audience'
+              label: 'Who Should Enroll?'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          cbfb13b1-4a62-4d90-86f6-c7d3d7158a6d:
+            uuid: cbfb13b1-4a62-4d90-86f6-c7d3d7158a6d
+            region: main
+            configuration:
+              id: 'field_block:node:course:field_key_outcomes'
+              label: 'Key Outcomes'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 0
             additional: {  }
         third_party_settings: {  }
       -
@@ -294,10 +332,10 @@ third_party_settings:
         layout_id: layout_cu_twocol
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: false
           collapse_margins: false
           extra_classes: ''
-          context_mapping: {  }
         components:
           758725c7-af6c-43b8-aaec-a3d909aa1f32:
             uuid: 758725c7-af6c-43b8-aaec-a3d909aa1f32
@@ -332,10 +370,10 @@ third_party_settings:
         layout_id: layout_cu_twocol
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 0
           collapse_margins: 0
           extra_classes: ''
-          context_mapping: {  }
         components:
           c2d905b7-a63b-4895-bb23-248d5423fac5:
             uuid: c2d905b7-a63b-4895-bb23-248d5423fac5
@@ -356,10 +394,10 @@ third_party_settings:
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 1
           collapse_margins: false
           extra_classes: ''
-          context_mapping: {  }
         components:
           6d7a6297-6ee2-48f8-bb25-a800485d1b0f:
             uuid: 6d7a6297-6ee2-48f8-bb25-a800485d1b0f
@@ -384,10 +422,10 @@ third_party_settings:
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 1
           collapse_margins: 0
           extra_classes: ''
-          context_mapping: {  }
         components:
           3b7daa15-3e4d-46fd-b191-2fa64ed750cf:
             uuid: 3b7daa15-3e4d-46fd-b191-2fa64ed750cf
@@ -408,10 +446,10 @@ third_party_settings:
         layout_id: layout_cu_section
         layout_settings:
           label: ''
+          context_mapping: {  }
           full_width: 1
           collapse_margins: 0
           extra_classes: ''
-          context_mapping: {  }
         components:
           a938f7ac-395b-4eb5-b2cf-d8ef780ff1db:
             uuid: a938f7ac-395b-4eb5-b2cf-d8ef780ff1db
@@ -479,6 +517,13 @@ content:
     third_party_settings: {  }
     weight: 8
     region: main
+  field_key_outcomes:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 11
+    region: content
   field_message:
     type: text_default
     label: above
@@ -510,6 +555,13 @@ content:
       link: true
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_target_audience:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
     region: content
   field_topics:
     type: entity_reference_label

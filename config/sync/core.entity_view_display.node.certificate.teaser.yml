@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.certificate.field_sf_description
     - field.field.node.certificate.field_sf_requirements
     - field.field.node.certificate.field_sf_title
+    - field.field.node.certificate.field_target_audience
     - field.field.node.certificate.field_topics
     - field.field.node.certificate.field_total_cost
     - field.field.node.certificate.layout_builder__layout
@@ -78,6 +79,7 @@ hidden:
   field_sf_description: true
   field_sf_requirements: true
   field_sf_title: true
+  field_target_audience: true
   field_topics: true
   field_total_cost: true
   layout_builder__layout: true
