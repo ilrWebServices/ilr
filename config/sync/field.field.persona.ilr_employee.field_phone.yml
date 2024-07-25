@@ -1,0 +1,21 @@
+uuid: 165e87f0-0bed-42a9-b69f-961a84640296
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_phone
+    - person.persona_type.ilr_employee
+  module:
+    - telephone
+id: persona.ilr_employee.field_phone
+field_name: field_phone
+entity_type: persona
+bundle: ilr_employee
+label: Tel
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

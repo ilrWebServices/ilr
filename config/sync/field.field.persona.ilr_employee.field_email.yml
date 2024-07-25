@@ -1,0 +1,19 @@
+uuid: f5d0bc20-250a-47d5-a84c-c9d3e57415f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_email
+    - person.persona_type.ilr_employee
+id: persona.ilr_employee.field_email
+field_name: field_email
+entity_type: persona
+bundle: ilr_employee
+label: Email
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email
