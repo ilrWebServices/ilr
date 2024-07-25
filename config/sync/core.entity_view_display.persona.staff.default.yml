@@ -5,9 +5,6 @@ dependencies:
   config:
     - field.field.persona.staff.field_bio
     - field.field.persona.staff.field_campus_address
-    - field.field.persona.staff.field_components
-    - field.field.persona.staff.field_cv
-    - field.field.persona.staff.field_department
     - field.field.persona.staff.field_education
     - field.field.persona.staff.field_email
     - field.field.persona.staff.field_fax
@@ -15,109 +12,59 @@ dependencies:
     - field.field.persona.staff.field_last_name
     - field.field.persona.staff.field_phone
     - field.field.persona.staff.field_photo
-    - field.field.persona.staff.field_sections
     - field.field.persona.staff.field_title
     - image.style.thumbnail_square
     - person.persona_type.staff
   module:
     - address
-    - entity_reference_revisions
-    - layout_builder
     - media
     - telephone
     - text
-third_party_settings:
-  layout_builder:
-    enabled: false
-    allow_custom: false
 id: persona.staff.default
 targetEntityType: persona
 bundle: staff
 mode: default
 content:
-  display_name:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 0
-    region: content
   extra_field_profile:
     settings: {  }
     third_party_settings: {  }
-    weight: 11
+    weight: 0
     region: content
   field_bio:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_campus_address:
     type: address_default
     label: hidden
-    settings:
-      field_settings: {  }
+    settings: {  }
     third_party_settings: {  }
-    weight: 9
+    weight: 2
     region: content
-  field_components:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 14
-    region: content
-  field_cv:
-    type: entity_reference_entity_view
+  field_education:
+    type: text_default
     label: above
-    settings:
-      view_mode: embedded
-      link: false
-    third_party_settings: {  }
-    weight: 10
-    region: content
-  field_department:
-    type: entity_reference_label
-    label: hidden
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 12
-    region: content
-  field_email:
-    type: basic_string
-    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 7
     region: content
-  field_fax:
-    type: telephone_link
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    weight: 11
-    region: content
-  field_first_name:
-    type: string
+  field_email:
+    type: email_mailto
     label: hidden
-    settings:
-      link_to_entity: false
+    settings: {  }
     third_party_settings: {  }
     weight: 1
     region: content
-  field_last_name:
-    type: string
-    label: hidden
+  field_fax:
+    type: telephone_link
+    label: inline
     settings:
-      link_to_entity: false
+      title: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 5
     region: content
   field_phone:
     type: telephone_link
@@ -125,27 +72,18 @@ content:
     settings:
       title: ''
     third_party_settings: {  }
-    weight: 8
+    weight: 3
     region: content
   field_photo:
     type: media_thumbnail
     label: hidden
     settings:
-      image_link: ''
+      image_link: content
       image_style: thumbnail_square
       image_loading:
         attribute: lazy
     third_party_settings: {  }
-    weight: 3
-    region: content
-  field_sections:
-    type: entity_reference_revisions_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    weight: 15
+    weight: 4
     region: content
   field_title:
     type: string
@@ -153,8 +91,10 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 4
+    weight: 0
     region: content
 hidden:
-  field_education: true
+  display_name: true
+  field_first_name: true
+  field_last_name: true
   search_api_excerpt: true
