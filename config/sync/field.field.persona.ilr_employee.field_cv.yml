@@ -1,0 +1,29 @@
+uuid: 872930b9-1c40-43a1-b363-8cf90d5de7d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_cv
+    - media.type.file
+    - person.persona_type.ilr_employee
+id: persona.ilr_employee.field_cv
+field_name: field_cv
+entity_type: persona
+bundle: ilr_employee
+label: CV
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      file: file
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

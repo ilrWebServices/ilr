@@ -1,0 +1,24 @@
+uuid: eabeaaa8-ebcf-4187-b22b-aff21c4567f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_bio
+    - person.persona_type.ilr_employee
+  module:
+    - text
+id: persona.ilr_employee.field_bio
+field_name: field_bio
+entity_type: persona
+bundle: ilr_employee
+label: Overview
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

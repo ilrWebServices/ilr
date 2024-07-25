@@ -1,0 +1,21 @@
+uuid: 89530de7-19be-4b5c-b984-73a7978d0c22
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_employee_role
+    - person.persona_type.ilr_employee
+  module:
+    - options
+id: persona.ilr_employee.field_employee_role
+field_name: field_employee_role
+entity_type: persona
+bundle: ilr_employee
+label: 'Employee role'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
