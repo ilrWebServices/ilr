@@ -4,14 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.persona.visiting_fellow.field_bio
-    - field.field.persona.visiting_fellow.field_campus_address
     - field.field.persona.visiting_fellow.field_email
     - field.field.persona.visiting_fellow.field_faculty_sponsor_text
     - field.field.persona.visiting_fellow.field_first_name
     - field.field.persona.visiting_fellow.field_last_name
     - field.field.persona.visiting_fellow.field_photo
     - field.field.persona.visiting_fellow.field_place_of_origin
-    - field.field.persona.visiting_fellow.field_sections
     - field.field.persona.visiting_fellow.field_visiting_period
     - person.persona_type.visiting_fellow
   module:
@@ -19,7 +17,6 @@ dependencies:
     - datetime_range
     - media_library
     - media_library_edit
-    - paragraphs_previewer
     - path
     - text
 id: persona.visiting_fellow.default
@@ -35,13 +32,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  default:
-    type: boolean_checkbox
-    weight: 14
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   display_name:
     type: string_textfield
     weight: 2
@@ -52,19 +42,13 @@ content:
     third_party_settings: {  }
   field_bio:
     type: text_textarea_with_summary
-    weight: 10
+    weight: 7
     region: content
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
       show_summary: false
-    third_party_settings: {  }
-  field_campus_address:
-    type: address_default
-    weight: 12
-    region: content
-    settings: {  }
     third_party_settings: {  }
   field_email:
     type: email_default
@@ -76,7 +60,7 @@ content:
     third_party_settings: {  }
   field_faculty_sponsor_text:
     type: string_textfield
-    weight: 9
+    weight: 10
     region: content
     settings:
       size: 60
@@ -109,44 +93,25 @@ content:
         show_edit: '1'
   field_place_of_origin:
     type: address_default
-    weight: 8
+    weight: 9
     region: content
     settings:
       wrapper_type: details
     third_party_settings: {  }
-  field_sections:
-    type: paragraphs_previewer
-    weight: 13
-    region: content
-    settings:
-      title: Section
-      title_plural: Sections
-      edit_mode: closed
-      closed_mode: summary
-      autocollapse: all
-      closed_mode_threshold: 2
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: section
-      features:
-        add_above: '0'
-        collapse_edit_all: collapse_edit_all
-        duplicate: duplicate
-    third_party_settings: {  }
   field_visiting_period:
     type: daterange_default
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   ief_collection_items:
-    weight: 15
+    weight: 50
     region: content
     settings: {  }
     third_party_settings: {  }
   path:
     type: path
-    weight: 16
+    weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -167,4 +132,6 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_campus_address: true
+  field_sections: true
