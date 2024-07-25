@@ -44,6 +44,7 @@
 {% endset %}
 
 {% set has_photo = persona.field_photo is not empty %}
+{% set employee_role %}{{ content.field_employee_role }}{% endset %}
 
 <div{{attributes.addClass(classes)}}>
   <div class="profile__header">
@@ -51,14 +52,14 @@
 
     <div class="profile__banner">
       <h1 class="cu-heading">{{ label }}</h1>
-      <div class="profile__eyebrow">{% trans %}People/{{ persona.type.entity.label() }}{% endtrans %}</div>
+      <div class="profile__eyebrow">{% trans %}<span>People/</span>{% endtrans %}{{ employee_role|spaceless }}</div>
       {% if persona.bundle() == 'visiting_fellow' %}
         {{ content.field_place_of_origin }}
         {{ content.field_visiting_period }}
         {{ content.field_faculty_sponsor_text }}
       {% else %}
-        {{ content.field_title }}
-        {{ content.field_department }}
+        {# {{ content.field_title }}
+        {{ content.field_department }} #}
       {% endif %}
       <div class="profile__secondary">
       {% if has_photo %}
