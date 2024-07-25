@@ -1,0 +1,19 @@
+uuid: dbb9152d-05ac-4e3e-8ed1-f8984c31663f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_last_name
+    - person.persona_type.ilr_employee
+id: persona.ilr_employee.field_last_name
+field_name: field_last_name
+entity_type: persona
+bundle: ilr_employee
+label: 'Last name'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
