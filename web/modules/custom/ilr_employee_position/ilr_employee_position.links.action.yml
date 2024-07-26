@@ -1,0 +1,5 @@
+ilr_employee_position.add_form:
+  title: 'Add ILR employee position'
+  route_name: entity.ilr_employee_position.add_form
+  appears_on:
+    - entity.ilr_employee_position.collection

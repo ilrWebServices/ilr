@@ -1,0 +1,7 @@
+entity.ilr_employee_position.settings:
+  path: 'admin/structure/ilr-employee-position'
+  defaults:
+    _form: '\Drupal\ilr_employee_position\Form\ILREmployeePositionSettingsForm'
+    _title: 'ILR employee position'
+  requirements:
+    _permission: 'administer ilr_employee_position'

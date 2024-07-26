@@ -1,0 +1,11 @@
+entity.ilr_employee_position.settings:
+  title: 'ILR employee position'
+  description: 'Configure an ILR employee position entity type.'
+  route_name:  entity.ilr_employee_position.settings
+  parent: system.admin_structure
+
+entity.ilr_employee_position.collection:
+  title: 'ILR employee positions'
+  description: 'List of ILR employee positions.'
+  route_name: entity.ilr_employee_position.collection
+  parent: system.admin_content

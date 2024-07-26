@@ -1,0 +1,13 @@
+uuid: ce2366b4-451b-43c2-9b56-5ab24668fb3f
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr_employee_position
+_core:
+  default_config_hash: jkwcKiKCL7pVz3OJ9I8LnWs7JCdjXx545m44bM3iZdg
+id: ilr_employee_position_delete_action
+label: 'Delete ilr employee positions'
+type: ilr_employee_position
+plugin: 'entity:delete_action:ilr_employee_position'
+configuration: {  }

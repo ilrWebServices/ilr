@@ -1,0 +1,28 @@
+{#
+ * Default theme implementation to present an ilr_employee_position.
+ *
+ * Available variables:
+ * - ilr_employee_position: The ilr_employee_position entity with limited access to object properties and methods.
+ * - view_mode: View mode; for example, "teaser" or "default".
+ * - content: A list of content items. Use 'content' to print all content, or
+ *          content.field_name to access public fields
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_ilr_employee_position()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'ilr-employee-position',
+    view_mode ? 'ilr-employee-position--' ~ view_mode|clean_class,
+  ]
+%}
+
+<div{{attributes.addClass(classes)}}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+  {{ title_suffix }}
+</div>

@@ -1,0 +1,13 @@
+uuid: e4604e12-a2bf-4bdd-9c5e-d96a814a1fb6
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr_employee_position
+_core:
+  default_config_hash: NicgGUgdVhUjtw_3VRNF5YSOUivkMqQ3LLm8ju3-Wks
+id: ilr_employee_position_save_action
+label: 'Save ilr employee positions'
+type: ilr_employee_position
+plugin: 'entity:save_action:ilr_employee_position'
+configuration: {  }
