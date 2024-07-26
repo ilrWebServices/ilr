@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Contains ilr_employee_position.module.
+ */
+
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_theme().
+ *
+ * Provides a theme definition for ilr_employee_position entities.
+ */
+function ilr_employee_position_theme($existing, $type, $theme, $path) {
+  $theme = [
+    'ilr_employee_position' => [
+      'render element' => 'elements',
+    ],
+  ];
+
+  return $theme;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Prepares variables for templates.
+ */
+function template_preprocess_ilr_employee_position(&$variables) {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+
+  // Helpful $content variable for templates.
+  $variables += ['content' => []];
+
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+
+  /** @var \Drupal\person\PersonaInterface $persona */
+  $ilr_employee_position = $variables['elements']['#ilr_employee_position'];
+
+  // Make the ilr_employee_position available.
+  $variables['ilr_employee_position'] = $ilr_employee_position;
+}
