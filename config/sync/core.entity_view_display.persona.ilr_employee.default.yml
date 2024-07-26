@@ -33,6 +33,11 @@ targetEntityType: persona
 bundle: ilr_employee
 mode: default
 content:
+  extra_field_ilr_employee_positions:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   extra_field_profile:
     settings: {  }
     third_party_settings: {  }
@@ -42,7 +47,7 @@ content:
     type: entity_reference_label
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     weight: 9
     region: content
@@ -84,7 +89,7 @@ content:
     region: content
   field_fax:
     type: telephone_link
-    label: inline
+    label: above
     settings:
       title: ''
     third_party_settings: {  }
@@ -99,7 +104,7 @@ content:
     region: content
   field_phone:
     type: telephone_link
-    label: inline
+    label: above
     settings:
       title: ''
     third_party_settings: {  }
@@ -107,7 +112,7 @@ content:
     region: content
   field_photo:
     type: media_thumbnail
-    label: hidden
+    label: above
     settings:
       image_link: ''
       image_style: thumbnail_square
@@ -118,7 +123,7 @@ content:
     region: content
   field_sections:
     type: entity_reference_revisions_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: ''

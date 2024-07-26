@@ -38,6 +38,11 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
+  extra_field_ilr_employee_positions:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_campus_address:
     type: address_default
     label: hidden
