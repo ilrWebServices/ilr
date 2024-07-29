@@ -1,0 +1,21 @@
+uuid: 52c18428-9b5c-4ac2-a141-42e2c459b7ad
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.field_netid
+field_name: field_netid
+entity_type: persona
+type: string
+settings:
+  max_length: 10
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
