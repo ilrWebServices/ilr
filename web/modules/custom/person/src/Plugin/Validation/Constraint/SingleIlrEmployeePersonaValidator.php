@@ -8,9 +8,9 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Validates the SingleDefaultPersona constraint.
+ * Validates the SingleIlrEmployeePersona constraint.
  */
-class SingleDefaultPersonaValidator extends ConstraintValidator implements ContainerInjectionInterface {
+class SingleIlrEmployeePersonaValidator extends ConstraintValidator implements ContainerInjectionInterface {
 
   /**
    * @var Drupal\Core\Entity\Sql\SqlContentEntityStorage
@@ -31,7 +31,7 @@ class SingleDefaultPersonaValidator extends ConstraintValidator implements Conta
    */
   public function validate($persona, Constraint $constraint) {
     // Ensure that we only validate personas attempting to be set as default.
-    if (!$persona->isDefault()) {
+    if (!$persona->bundle() === 'ilr_employee') {
       return;
     }
 
@@ -42,16 +42,19 @@ class SingleDefaultPersonaValidator extends ConstraintValidator implements Conta
 
     $person = $persona->person->entity;
 
-    $default_persona_query = $this->personaStorage->getQuery()
+    $employee_persona_query = $this->personaStorage->getQuery()
       ->accessCheck(FALSE)
       ->condition('person', $person->id())
-      ->condition('pid', $persona->id(), '!=')
-      ->condition('default', 1);
+      ->condition('type', 'ilr_employee');
 
-    $default_persona_ids = $default_persona_query->execute();
+    if (!$persona->isNew()) {
+      $employee_persona_query->condition('pid', $persona->id(), '!=');
+    }
 
-    if (!empty($default_persona_ids)) {
-      $this->context->addViolation($constraint->existing_default, [
+    $employee_persona_ids = $employee_persona_query->execute();
+
+    if (!empty($employee_persona_ids)) {
+      $this->context->addViolation($constraint->existing, [
         '%person' => $person->label(),
       ]);
     }
