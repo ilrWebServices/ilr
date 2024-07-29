@@ -62,10 +62,6 @@ function person_theme_suggestions_persona(array $variables) {
   $suggestions[] = 'persona__' . $persona->bundle();
   $suggestions[] = 'persona__' . $persona->bundle() . '__' . $sanitized_view_mode;
 
-  if ($persona->default->value) {
-    $suggestions[] = 'persona__' . $persona->bundle() . '__default__' . $sanitized_view_mode;
-  }
-
   return $suggestions;
 }
 
@@ -98,7 +94,7 @@ function template_preprocess_persona(&$variables) {
   $wrapper_format = \Drupal::request()->query->get(MainContentViewSubscriber::WRAPPER_FORMAT);
   $variables['modal'] = in_array($wrapper_format, ['drupal_ajax', 'drupal_modal', 'drupal_dialog']);
 
-  if ($persona->isDefault()) {
+  if ($persona->bundle() === 'ilr_employee') {
     $has_meta = FALSE;
     $meta_fields = ['field_campus_address', 'field_phone', 'field_fax', 'field_email', 'field_cv'];
     foreach ($meta_fields as $meta_field) {

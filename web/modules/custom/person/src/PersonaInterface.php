@@ -34,22 +34,4 @@ interface PersonaInterface extends ContentEntityInterface, EntityChangedInterfac
    */
   public function fieldIsOverridden($field_name);
 
-  /**
-   * Returns the persona default status.
-   *
-   * @return bool
-   *   TRUE if the persona is default.
-   */
-  public function isDefault();
-
-  /**
-   * Sets the persona default status.
-   *
-   * @param bool $default
-   *   TRUE to make this persona default, FALSE to remove it as the default.
-   *
-   * @return $this
-   *   The called persona entity.
-   */
-  public function setDefault($default);
 }

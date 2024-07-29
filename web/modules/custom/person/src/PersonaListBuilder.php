@@ -18,7 +18,6 @@ class PersonaListBuilder extends EntityListBuilder {
   public function buildHeader() {
     $header['name'] = $this->t('Name');
     $header['type'] = $this->t('Type');
-    $header['default'] = $this->t('Default');
     return $header + parent::buildHeader();
   }
 
