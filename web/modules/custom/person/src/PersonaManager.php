@@ -59,7 +59,7 @@ class PersonaManager {
   }
 
   /**
-   * Get the "profile" persona for a given person entity.
+   * Get the 'ilr_employee' (AKA 'profile') persona for a given person entity.
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity.
@@ -71,7 +71,7 @@ class PersonaManager {
    */
   public function getPersonaProfile(PersonaInterface $persona) {
     foreach ($this->getPersonas($persona->person->entity) as $persona) {
-      if ($persona->isDefault() && $persona->isPublished()) {
+      if ($persona->bundle() === 'ilr_employee' && $persona->isPublished()) {
         return $persona;
       }
     }
