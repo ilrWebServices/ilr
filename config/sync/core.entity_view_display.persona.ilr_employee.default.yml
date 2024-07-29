@@ -13,6 +13,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_fax
     - field.field.persona.ilr_employee.field_first_name
     - field.field.persona.ilr_employee.field_last_name
+    - field.field.persona.ilr_employee.field_netid
     - field.field.persona.ilr_employee.field_other_expertise
     - field.field.persona.ilr_employee.field_phone
     - field.field.persona.ilr_employee.field_photo
@@ -147,4 +148,5 @@ hidden:
   field_components: true
   field_first_name: true
   field_last_name: true
+  field_netid: true
   search_api_excerpt: true

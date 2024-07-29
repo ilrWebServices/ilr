@@ -13,6 +13,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_fax
     - field.field.persona.ilr_employee.field_first_name
     - field.field.persona.ilr_employee.field_last_name
+    - field.field.persona.ilr_employee.field_netid
     - field.field.persona.ilr_employee.field_other_expertise
     - field.field.persona.ilr_employee.field_phone
     - field.field.persona.ilr_employee.field_photo
@@ -121,6 +122,14 @@ content:
   field_last_name:
     type: string_textfield
     weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_netid:
+    type: string_textfield
+    weight: 27
     region: content
     settings:
       size: 60
