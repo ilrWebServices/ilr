@@ -6,6 +6,7 @@ class EventOption {
 
   public function __construct(
     public $label,
+    public $suffix = '',
     public $disabled = FALSE
   ) {}
 

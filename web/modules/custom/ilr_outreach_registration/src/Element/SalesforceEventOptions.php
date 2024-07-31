@@ -160,6 +160,8 @@ class SalesforceEventOptions extends FormElement {
         'Start__c',
         'End__c',
         'Delivery_Method__c',
+        'Event_Location_City__c',
+        'Event_Location_State__c'
       ];
       // @todo Ensure that SFIDs are formatted correctly to prevent an error.
       $query->addCondition('Id', $eventids, 'IN');
@@ -170,6 +172,8 @@ class SalesforceEventOptions extends FormElement {
       \Drupal::logger('ilr_outreach_registration')->error($e->getMessage());
       return $options;
     }
+
+    $in_person_count = 0;
 
     foreach ($sf_results->records() as $sfid => $record) {
       $date_start = new \DateTime($record->field('Start__c'));
@@ -183,16 +187,30 @@ class SalesforceEventOptions extends FormElement {
         $date_str = $date_start->format('n/j/Y');
       }
       else {
-        $date_str = $date_start->format('n/j/Y') . ' - ' . $date_end->format('n/j/Y');
+        $date_str = $date_start->format('n/j') . ' - ' . $date_end->format('n/j');
       }
 
       $location = strpos($record->field('Delivery_Method__c'), 'Online') !== FALSE ? 'Online' : 'In person';
+
       $options[$sfid] = new EventOption($location . ': ' . $date_str);
+
+      // If in person, increment the count and add a suffix to EventOption.
+      if ($location === 'In person') {
+        $in_person_count++;
+        $options[$sfid]->suffix = ', ' . $record->field('Event_Location_City__c') . ', ' . $record->field('Event_Location_State__c');
+      }
     }
 
     uksort($options, function($sfid1, $sfid2) use ($eventids) {
       return (array_search($sfid1, $eventids) <=> array_search($sfid2, $eventids));
     });
+
+    // When there are multiple in person options, show the suffix.
+    if ($in_person_count > 1) {
+      foreach ($options as $option) {
+        $option->label .= $option->suffix;
+      }
+    }
 
     // Cache these options for 6 hours.
     \Drupal::cache()->set($cid, $options, time() + 60 * 60 * 6);
