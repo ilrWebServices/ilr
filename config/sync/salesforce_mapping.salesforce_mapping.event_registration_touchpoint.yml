@@ -125,6 +125,13 @@ field_mappings:
     salesforce_field: Source__c
     id: 13
     description: ''
+  -
+    drupal_field_type: WebformElements
+    drupal_field_value: accessible_accommodation
+    direction: drupal_sf
+    salesforce_field: ADA_Accommodations__c
+    id: 14
+    description: ''
 status: true
 dependencies:
   config:
