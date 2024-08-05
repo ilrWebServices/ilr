@@ -1,0 +1,56 @@
+id: ilr_employee_personas_positions
+label: ILR employee persona positions
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'csv_url'
+  path: 'https://develop-sr3snxi-3clxnhn74bxvu.us-4.platformsh.site/files/default/employee-position-feed.csv'
+  header_offset: 0
+  ids:
+    - Position_ID
+process:
+  persona:
+    plugin: migration_lookup
+    migration: ilr_employee_personas
+    source: Employee_ID
+    no_stub: true
+  title: Business_Title
+  department:
+    -
+      plugin: skip_on_empty
+      source: KFS_Org_Name
+      method: row
+      message: 'Position has no org name'
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      access_check: false
+      value_key: name
+      bundle_key: vid
+      bundle: organizational_units
+  primary: Primary_Job
+  # created:
+  #   plugin: format_date
+  #   source: updated_at
+  #   from_format: 'Y-m-d H:i:s'
+  #   to_format: 'U'
+  #   from_timezone: 'UTC'
+  #   to_timezone: 'UTC'
+  # changed:
+  #   plugin: format_date
+  #   source: updated_at
+  #   from_format: 'Y-m-d H:i:s'
+  #   to_format: 'U'
+  #   from_timezone: 'UTC'
+  #   to_timezone: 'UTC'
+destination:
+  plugin: entity:ilr_employee_position
+  default_bundle: ilr_employee_position
+migration_dependencies:
+  required:
+    - ilr_employee_personas
+  optional: {  }

@@ -1,0 +1,127 @@
+id: ilr_employee_personas
+label: ILR employee personas
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'csv_url'
+  path: 'https://develop-sr3snxi-3clxnhn74bxvu.us-4.platformsh.site/files/default/employee-feed.csv'
+  header_offset: 0
+  ids:
+    - Employee_ID
+  constants:
+    label_suffix: ' (ILR Employee)'
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  admin_label:
+    plugin: concat
+    source:
+      - Preferred_Name
+      - constants/label_suffix
+  display_name: Preferred_Name
+  person:
+    plugin: static_map
+    source: Employee_ID
+    map:
+      1000908: 22
+      1001780: 520
+      1003893: 26
+      1004502: 42
+      1005431: 20
+      1006143: 580
+      1006768: 6
+      1007895: 326
+      1008872: 514
+      1008903: 491
+      1009055: 708
+      1009649: 672
+      1009675: 44
+      1010429: 46
+      1010581: 706
+      1010739: 107
+      1010886: 305
+      1011207: 3
+      1011284: 710
+      1012259: 467
+      1012298: 49
+      1013089: 146
+      1013438: 601
+      1013497: 7
+      1014350: 482
+      1014457: 1020
+      1016213: 485
+      1018044: 328
+      1019401: 624
+      1021310: 75
+      1022012: 571
+      1024818: 2
+      1027836: 13
+      1028493: 11
+      1043718: 699
+      1055326: 116
+      1070263: 593
+      1079448: 658
+      1093638: 310
+      1116851: 588
+      1119750: 329
+      1123950: 1041
+      1155521: 1021
+      1226193: 626
+      1231921: 131
+    default_value: null
+  field_netid: Netid
+  field_email: Email_Primary_Work
+  field_bio/value: d7_overview
+  field_bio/format:
+    plugin: default_value
+    default_value: basic_formatting_with_media
+  field_first_name: First_Name
+  field_last_name: Last_Name
+  field_phone: Phone_Primary_Work
+  # field_fax: fax
+  field_campus_address/country_code:
+    plugin: default_value
+    default_value: US
+  field_campus_address/langcode:
+    plugin: default_value
+    default_value: en
+  field_campus_address/address_line1: Primary_Work_Address_1
+  field_campus_address/address_line2: Primary_Work_Address_2
+  field_campus_address/locality: Primary_Work_Address_City
+  field_campus_address/administrative_area: Primary_Work_Address_State
+  field_campus_address/postal_code: Primary_Work_Address_Postal
+  field_photo:
+    plugin: migration_lookup
+    migration: ilr_employee_personas_photo_media
+    source: Employee_ID
+    no_stub: true
+  field_cv:
+    plugin: migration_lookup
+    migration: ilr_employee_personas_cv_media
+    source: Employee_ID
+    no_stub: true
+  field_employee_role: employee_role
+  # created:
+  #   plugin: format_date
+  #   source: updated_at
+  #   from_format: 'Y-m-d H:i:s'
+  #   to_format: 'U'
+  #   from_timezone: 'UTC'
+  #   to_timezone: 'UTC'
+  # changed:
+  #   plugin: format_date
+  #   source: updated_at
+  #   from_format: 'Y-m-d H:i:s'
+  #   to_format: 'U'
+  #   from_timezone: 'UTC'
+  #   to_timezone: 'UTC'
+destination:
+  plugin: entity:persona
+  default_bundle: ilr_employee
+migration_dependencies:
+  required:
+    - ilr_employee_personas_photo_media
+    - ilr_employee_personas_cv_media
+  optional: {  }
