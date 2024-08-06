@@ -1,0 +1,19 @@
+uuid: 84521e5a-1534-485f-aaed-9bddb87a8374
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_who_should_enroll
+    - node.type.certificate
+id: node.certificate.field_who_should_enroll
+field_name: field_who_should_enroll
+entity_type: node
+bundle: certificate
+label: 'Who should enroll'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

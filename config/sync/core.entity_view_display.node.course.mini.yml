@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.course.field_sections
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
+    - field.field.node.course.field_who_should_enroll
     - field.field.node.course.layout_builder__layout
     - node.type.course
   module:
@@ -57,6 +58,7 @@ hidden:
   field_sections: true
   field_sponsor: true
   field_topics: true
+  field_who_should_enroll: true
   ilr_certificates: true
   ilr_course_page_links: true
   layout_builder__layout: true

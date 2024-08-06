@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.course.field_sections
     - field.field.node.course.field_sponsor
     - field.field.node.course.field_topics
+    - field.field.node.course.field_who_should_enroll
     - field.field.node.course.layout_builder__layout
     - node.type.course
     - views.view.topics_list
@@ -262,7 +263,7 @@ third_party_settings:
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-            weight: 0
+            weight: 1
             additional: {  }
           984b59b9-d9c6-4e7c-b7cb-9960c2addf72:
             uuid: 984b59b9-d9c6-4e7c-b7cb-9960c2addf72
@@ -282,6 +283,24 @@ third_party_settings:
                   link_to_entity: false
                 third_party_settings: {  }
             weight: -1
+            additional: {  }
+          a454043a-1450-4838-8add-4202d3f1558f:
+            uuid: a454043a-1450-4838-8add-4202d3f1558f
+            region: main
+            configuration:
+              id: 'field_block:node:course:field_who_should_enroll'
+              label: 'Who should enroll'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: basic_string
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 0
             additional: {  }
         third_party_settings: {  }
       -
@@ -546,6 +565,13 @@ content:
       link: true
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_who_should_enroll:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 11
     region: content
   ilr_certificates:
     settings: {  }

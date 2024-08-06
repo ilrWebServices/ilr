@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.certificate.field_sf_title
     - field.field.node.certificate.field_topics
     - field.field.node.certificate.field_total_cost
+    - field.field.node.certificate.field_who_should_enroll
     - field.field.node.certificate.layout_builder__layout
     - node.type.certificate
   module:
@@ -80,5 +81,6 @@ hidden:
   field_sf_title: true
   field_topics: true
   field_total_cost: true
+  field_who_should_enroll: true
   layout_builder__layout: true
   search_api_excerpt: true
