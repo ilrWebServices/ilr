@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.course.field_media_secondary
     - field.field.node.course.field_media_section
     - field.field.node.course.field_message
+    - field.field.node.course.field_outcomes
     - field.field.node.course.field_representative_image
     - field.field.node.course.field_sections
     - field.field.node.course.field_sponsor
@@ -91,6 +92,14 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_outcomes:
+    type: string_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_representative_image:
     type: media_library_widget
     weight: 0
@@ -110,14 +119,14 @@ content:
       edit_mode: closed
       closed_mode: summary
       autocollapse: all
-      closed_mode_threshold: '3'
+      closed_mode_threshold: 3
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: section
       features:
+        add_above: '0'
         collapse_edit_all: collapse_edit_all
-        duplicate: 0
-        add_above: 0
+        duplicate: '0'
     third_party_settings: {  }
   field_sponsor:
     type: entity_reference_autocomplete

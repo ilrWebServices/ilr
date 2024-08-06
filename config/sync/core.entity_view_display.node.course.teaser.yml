@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.course.field_media_secondary
     - field.field.node.course.field_media_section
     - field.field.node.course.field_message
+    - field.field.node.course.field_outcomes
     - field.field.node.course.field_representative_image
     - field.field.node.course.field_sections
     - field.field.node.course.field_sponsor
@@ -68,6 +69,7 @@ hidden:
   field_media_secondary: true
   field_media_section: true
   field_message: true
+  field_outcomes: true
   field_representative_image: true
   field_sections: true
   field_sponsor: true
