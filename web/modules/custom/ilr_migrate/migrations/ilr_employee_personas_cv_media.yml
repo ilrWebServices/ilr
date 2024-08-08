@@ -28,11 +28,16 @@ process:
     plugin: urlencode
     source: d7_cv_uri
   field_media_file:
-    plugin: file_import
-    source: '@_source_full_path'
-    destination: constants/file_destination
-    uid: '@uid'
-    skip_on_missing_source: true
+    -
+      plugin: skip_on_empty
+      method: row
+      source: d7_cv_uri
+    -
+      plugin: file_import
+      source: '@_source_full_path'
+      destination: constants/file_destination
+      uid: '@uid'
+      skip_on_missing_source: true
 destination:
   plugin: 'entity:media'
   default_bundle: file
