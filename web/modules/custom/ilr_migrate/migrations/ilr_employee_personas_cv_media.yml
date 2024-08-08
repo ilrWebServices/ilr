@@ -10,17 +10,24 @@ source:
   ids:
     - Employee_ID
   constants:
-    suffix: ' (ILR Employee CV)'
+    suffix: ' CV'
     file_destination: 'public://personas/ilr_employee/'
 process:
   uid:
     plugin: default_value
     default_value: 1
-  name:
+  _default_entity_name:
     plugin: concat
     source:
       - Preferred_Name
       - constants/suffix
+  name:
+    -
+      plugin: get
+      source: d7_cv_description
+    -
+      plugin: default_value
+      default_value: '@_default_entity_name'
   langcode:
     plugin: default_value
     default_value: en
