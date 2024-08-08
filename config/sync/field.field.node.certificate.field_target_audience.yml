@@ -1,0 +1,24 @@
+uuid: 7a4f5a03-3d29-4539-a7db-9bea2e0ec7af
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_target_audience
+    - filter.format.simple_formatting
+    - node.type.certificate
+  module:
+    - text
+id: node.certificate.field_target_audience
+field_name: field_target_audience
+entity_type: node
+bundle: certificate
+label: 'Who should enroll'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - simple_formatting
+field_type: text_long

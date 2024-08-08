@@ -1005,8 +1005,8 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
       $form['field_delivery_method']['#group'] = 'ilr_meta';
       $form['field_sponsor']['#group'] = 'ilr_meta';
       $form['field_topics']['#group'] = 'ilr_meta';
-      $form['field_outcomes']['#group'] = 'ilr_meta';
-      $form['field_who_should_enroll']['#group'] = 'ilr_meta';
+      $form['field_key_outcomes']['#group'] = 'ilr_meta';
+      $form['field_target_audience']['#group'] = 'ilr_meta';
     }
   }
 }

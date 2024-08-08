@@ -1,0 +1,19 @@
+uuid: ea6820a5-9e2e-40f7-9af8-aff39891c6a9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_target_audience
+field_name: field_target_audience
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

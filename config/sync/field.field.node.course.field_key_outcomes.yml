@@ -1,0 +1,24 @@
+uuid: 7e0cf93a-98c1-4cc4-aad6-96e4fb7eac58
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_key_outcomes
+    - filter.format.simple_formatting
+    - node.type.course
+  module:
+    - text
+id: node.course.field_key_outcomes
+field_name: field_key_outcomes
+entity_type: node
+bundle: course
+label: 'Key outcomes'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - simple_formatting
+field_type: text_long

@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.certificate.body
     - field.field.node.certificate.field_completion_time
     - field.field.node.certificate.field_course
+    - field.field.node.certificate.field_key_outcomes
     - field.field.node.certificate.field_media_section
     - field.field.node.certificate.field_outcomes
     - field.field.node.certificate.field_prerequisites
@@ -16,9 +17,9 @@ dependencies:
     - field.field.node.certificate.field_sf_description
     - field.field.node.certificate.field_sf_requirements
     - field.field.node.certificate.field_sf_title
+    - field.field.node.certificate.field_target_audience
     - field.field.node.certificate.field_topics
     - field.field.node.certificate.field_total_cost
-    - field.field.node.certificate.field_who_should_enroll
     - field.field.node.certificate.layout_builder__layout
     - node.type.certificate
   module:
@@ -64,6 +65,14 @@ content:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_key_outcomes:
+    type: text_textarea
+    weight: 7
+    region: content
+    settings:
+      rows: 5
       placeholder: ''
     third_party_settings: {  }
   field_media_section:
@@ -168,12 +177,22 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_who_should_enroll:
-    type: string_textarea
+  field_target_audience:
+    type: text_textarea
     weight: 7
     region: content
     settings:
       rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_topics:
+    type: entity_reference_autocomplete
+    weight: 7
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
       placeholder: ''
     third_party_settings: {  }
   ief_collection_items:
@@ -232,6 +251,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_topics: true
   field_total_cost: true
   layout_builder__layout: true
