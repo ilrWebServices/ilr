@@ -24,10 +24,17 @@ process:
   name:
     -
       plugin: get
-      source: d7_cv_description
+      source:
+        - d7_cv_description
+        - '@_default_entity_name'
     -
-      plugin: default_value
-      default_value: '@_default_entity_name'
+      # Filter out empty sources
+      plugin: callback
+      callable: array_filter
+    -
+      # Use the first none empty source
+      plugin: callback
+      callable: 'current'
   langcode:
     plugin: default_value
     default_value: en
