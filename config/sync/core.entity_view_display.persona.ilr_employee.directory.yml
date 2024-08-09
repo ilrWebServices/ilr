@@ -1,0 +1,99 @@
+uuid: df2960e1-d350-4170-8cdc-bd59f957538f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.persona.directory
+    - field.field.persona.ilr_employee.field_areas_of_expertise
+    - field.field.persona.ilr_employee.field_bio
+    - field.field.persona.ilr_employee.field_campus_address
+    - field.field.persona.ilr_employee.field_components
+    - field.field.persona.ilr_employee.field_cv
+    - field.field.persona.ilr_employee.field_email
+    - field.field.persona.ilr_employee.field_employee_role
+    - field.field.persona.ilr_employee.field_fax
+    - field.field.persona.ilr_employee.field_first_name
+    - field.field.persona.ilr_employee.field_last_name
+    - field.field.persona.ilr_employee.field_netid
+    - field.field.persona.ilr_employee.field_other_expertise
+    - field.field.persona.ilr_employee.field_phone
+    - field.field.persona.ilr_employee.field_photo
+    - field.field.persona.ilr_employee.field_sections
+    - field.field.persona.ilr_employee.field_websites
+    - image.style.medium_3_2
+    - person.persona_type.ilr_employee
+  module:
+    - layout_builder
+    - media
+    - options
+    - telephone
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: persona.ilr_employee.directory
+targetEntityType: persona
+bundle: ilr_employee
+mode: directory
+content:
+  display_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  extra_field_ilr_employee_positions:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_email:
+    type: email_mailto
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_employee_role:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_phone:
+    type: telephone_link
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_photo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: content
+      image_style: medium_3_2
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  extra_field_profile: true
+  field_areas_of_expertise: true
+  field_bio: true
+  field_campus_address: true
+  field_components: true
+  field_cv: true
+  field_fax: true
+  field_first_name: true
+  field_last_name: true
+  field_netid: true
+  field_other_expertise: true
+  field_sections: true
+  field_websites: true
+  search_api_excerpt: true
