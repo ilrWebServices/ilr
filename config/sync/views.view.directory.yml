@@ -4,14 +4,9 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.persona.directory
-    - person.persona_type.faculty
-    - person.persona_type.staff
-    - person.persona_type.visiting_fellow
-    - taxonomy.vocabulary.areas_of_expertise
-    - taxonomy.vocabulary.organizational_units
+    - person.persona_type.ilr_employee
   module:
     - person
-    - taxonomy
 id: directory
 label: Directory
 module: views
@@ -145,24 +140,9 @@ display:
           hide_alter_empty: true
           view_mode: directory
       pager:
-        type: mini
+        type: none
         options:
           offset: 0
-          pagination_heading_level: h4
-          items_per_page: 100
-          total_pages: null
-          id: 0
-          tags:
-            next: ››
-            previous: ‹‹
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
       exposed_form:
         type: basic
         options:
@@ -258,46 +238,6 @@ display:
           group: 1
           expose:
             operator: ''
-        default:
-          id: default
-          table: persona
-          field: default
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: persona
-          entity_field: default
-          plugin_id: boolean
-          operator: '='
-          value: '1'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         type:
           id: type
           table: persona
@@ -310,11 +250,9 @@ display:
           plugin_id: bundle
           operator: in
           value:
-            faculty: faculty
-            staff: staff
-            visiting_fellow: visiting_fellow
+            ilr_employee: ilr_employee
           group: 1
-          exposed: true
+          exposed: false
           expose:
             operator_id: type_op
             label: Role
@@ -353,121 +291,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        field_department_target_id:
-          id: field_department_target_id
-          table: persona__field_department
-          field: field_department_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_department_target_id_op
-            label: Department
-            description: ''
-            use_operator: false
-            operator: field_department_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: department
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-              content_administrator: '0'
-              course_admin: '0'
-              form_admin: '0'
-              advanced_editor: '0'
-              event_admin: '0'
-              explore_form_admin: '0'
-              reviewer: '0'
-              cahrs_admin: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: 'Department (field_department)'
-            description: null
-            identifier: field_department_target_id
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items:
-              1: {  }
-              2: {  }
-              3: {  }
-          reduce_duplicates: false
-          vid: organizational_units
-          type: select
-          hierarchy: false
-          limit: true
-          error_message: true
-        field_areas_of_expertise_target_id:
-          id: field_areas_of_expertise_target_id
-          table: persona__field_areas_of_expertise
-          field: field_areas_of_expertise_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_areas_of_expertise_target_id_op
-            label: Expertise
-            description: ''
-            use_operator: false
-            operator: field_areas_of_expertise_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: expertise
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-              content_administrator: '0'
-              course_admin: '0'
-              form_admin: '0'
-              advanced_editor: '0'
-              event_admin: '0'
-              explore_form_admin: '0'
-              reviewer: '0'
-              cahrs_admin: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          vid: areas_of_expertise
-          type: select
-          hierarchy: false
-          limit: true
-          error_message: true
         display_name:
           id: display_name
           table: persona
@@ -580,35 +403,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - url.query_args
-      tags:
-        - 'config:core.entity_view_display.persona.author.default'
-        - 'config:core.entity_view_display.persona.author.mini'
-        - 'config:core.entity_view_display.persona.author.teaser'
-        - 'config:core.entity_view_display.persona.author.teaser_compact'
-        - 'config:core.entity_view_display.persona.author.teaser_featured'
-        - 'config:core.entity_view_display.persona.expert.default'
-        - 'config:core.entity_view_display.persona.expert.teaser'
-        - 'config:core.entity_view_display.persona.expert.teaser_compact'
-        - 'config:core.entity_view_display.persona.expert.teaser_featured'
-        - 'config:core.entity_view_display.persona.faculty.default'
-        - 'config:core.entity_view_display.persona.faculty.directory'
-        - 'config:core.entity_view_display.persona.faculty.tabular_item'
-        - 'config:core.entity_view_display.persona.faculty.teaser'
-        - 'config:core.entity_view_display.persona.faculty.teaser_compact'
-        - 'config:core.entity_view_display.persona.faculty.teaser_featured'
-        - 'config:core.entity_view_display.persona.principal_investigator.default'
-        - 'config:core.entity_view_display.persona.staff.default'
-        - 'config:core.entity_view_display.persona.staff.directory'
-        - 'config:core.entity_view_display.persona.staff.mini'
-        - 'config:core.entity_view_display.persona.staff.tabular_item'
-        - 'config:core.entity_view_display.persona.staff.teaser'
-        - 'config:core.entity_view_display.persona.staff.teaser_compact'
-        - 'config:core.entity_view_display.persona.staff.teaser_featured'
-        - 'config:core.entity_view_display.persona.visiting_fellow.default'
-        - 'config:core.entity_view_display.persona.visiting_fellow.directory'
-        - 'config:core.entity_view_display.persona.visiting_fellow.teaser'
-        - 'config:core.entity_view_display.persona.visiting_fellow.teaser_compact'
+      tags: {  }
   attachment_1:
     id: attachment_1
     display_title: Attachment
@@ -673,34 +468,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-      tags:
-        - 'config:core.entity_view_display.persona.author.default'
-        - 'config:core.entity_view_display.persona.author.mini'
-        - 'config:core.entity_view_display.persona.author.teaser'
-        - 'config:core.entity_view_display.persona.author.teaser_compact'
-        - 'config:core.entity_view_display.persona.author.teaser_featured'
-        - 'config:core.entity_view_display.persona.expert.default'
-        - 'config:core.entity_view_display.persona.expert.teaser'
-        - 'config:core.entity_view_display.persona.expert.teaser_compact'
-        - 'config:core.entity_view_display.persona.expert.teaser_featured'
-        - 'config:core.entity_view_display.persona.faculty.default'
-        - 'config:core.entity_view_display.persona.faculty.directory'
-        - 'config:core.entity_view_display.persona.faculty.tabular_item'
-        - 'config:core.entity_view_display.persona.faculty.teaser'
-        - 'config:core.entity_view_display.persona.faculty.teaser_compact'
-        - 'config:core.entity_view_display.persona.faculty.teaser_featured'
-        - 'config:core.entity_view_display.persona.principal_investigator.default'
-        - 'config:core.entity_view_display.persona.staff.default'
-        - 'config:core.entity_view_display.persona.staff.directory'
-        - 'config:core.entity_view_display.persona.staff.mini'
-        - 'config:core.entity_view_display.persona.staff.tabular_item'
-        - 'config:core.entity_view_display.persona.staff.teaser'
-        - 'config:core.entity_view_display.persona.staff.teaser_compact'
-        - 'config:core.entity_view_display.persona.staff.teaser_featured'
-        - 'config:core.entity_view_display.persona.visiting_fellow.default'
-        - 'config:core.entity_view_display.persona.visiting_fellow.directory'
-        - 'config:core.entity_view_display.persona.visiting_fellow.teaser'
-        - 'config:core.entity_view_display.persona.visiting_fellow.teaser_compact'
+      tags: {  }
   page:
     id: page
     display_title: Page
@@ -731,32 +499,4 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - url.query_args
-      tags:
-        - 'config:core.entity_view_display.persona.author.default'
-        - 'config:core.entity_view_display.persona.author.mini'
-        - 'config:core.entity_view_display.persona.author.teaser'
-        - 'config:core.entity_view_display.persona.author.teaser_compact'
-        - 'config:core.entity_view_display.persona.author.teaser_featured'
-        - 'config:core.entity_view_display.persona.expert.default'
-        - 'config:core.entity_view_display.persona.expert.teaser'
-        - 'config:core.entity_view_display.persona.expert.teaser_compact'
-        - 'config:core.entity_view_display.persona.expert.teaser_featured'
-        - 'config:core.entity_view_display.persona.faculty.default'
-        - 'config:core.entity_view_display.persona.faculty.directory'
-        - 'config:core.entity_view_display.persona.faculty.tabular_item'
-        - 'config:core.entity_view_display.persona.faculty.teaser'
-        - 'config:core.entity_view_display.persona.faculty.teaser_compact'
-        - 'config:core.entity_view_display.persona.faculty.teaser_featured'
-        - 'config:core.entity_view_display.persona.principal_investigator.default'
-        - 'config:core.entity_view_display.persona.staff.default'
-        - 'config:core.entity_view_display.persona.staff.directory'
-        - 'config:core.entity_view_display.persona.staff.mini'
-        - 'config:core.entity_view_display.persona.staff.tabular_item'
-        - 'config:core.entity_view_display.persona.staff.teaser'
-        - 'config:core.entity_view_display.persona.staff.teaser_compact'
-        - 'config:core.entity_view_display.persona.staff.teaser_featured'
-        - 'config:core.entity_view_display.persona.visiting_fellow.default'
-        - 'config:core.entity_view_display.persona.visiting_fellow.directory'
-        - 'config:core.entity_view_display.persona.visiting_fellow.teaser'
-        - 'config:core.entity_view_display.persona.visiting_fellow.teaser_compact'
+      tags: {  }

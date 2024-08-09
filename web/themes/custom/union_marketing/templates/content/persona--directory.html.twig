@@ -11,16 +11,20 @@
  * - url: Direct URL of the current persona.
  */
 #}
-{% set title = [] %}
-{% if content.field_title %}
-{% for key, item in content.field_title|filter((v, k) => k|first != '#') %}
-  {% set title = title|merge([item]) %}
+
+{% set primary_title = '' %}
+{% if content.extra_field_ilr_employee_positions is not empty %}
+{% for key, item in content.extra_field_ilr_employee_positions|filter((v, k) => k|first != '#') %}
+  {% set position = item['#ilr_employee_position']%}
+  {% if position.primary %}
+  {% set primary_title = position.title.value %}
+  {% endif %}
 {% endfor %}
 {% endif %}
 
 {% set additional_info %}
 {{ title_suffix }}
-{{ content.field_department }}
+{{ primary_title }}
 {{ content.field_phone }}
 {{ content.field_email }}
 {% include "@union/_icon.twig" with {
@@ -49,8 +53,7 @@
     view_mode ? 'persona--view-mode-' ~ view_mode|clean_class
   ]),
   name: content.display_name,
-  title: title,
-  eyebrow_heading: persona.type.entity.label(),
+  eyebrow_heading: content.field_employee_role,
   additional_info: additional_info,
   img: content.field_photo
 } only %}
