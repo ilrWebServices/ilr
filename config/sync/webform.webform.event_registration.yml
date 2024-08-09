@@ -80,19 +80,20 @@ elements: |-
     '#access': false
   address:
     '#type': webform_address
-    '#title': Address
-    '#title_display': none
-    '#access': false
+    '#title': 'Work address'
+    '#help': '<p><em>ILR’s outreach and continuing education work is supported in part by grants and state funding. Knowing where our event participants are located helps our funders better understand the impact of ILR’s work.</em></p>'
+    '#title_display': before
     '#address__access': false
     '#address_2__access': false
-    '#address_3__access': false
     '#city__title': City
     '#city__required': true
     '#state_province__title': State
     '#state_province__required': true
     '#state_province__options': state_province_codes
-    '#postal_code__access': false
+    '#postal_code__title': Zip
+    '#postal_code__required': true
     '#country__access': false
+    '#address_3__access': false
   address_intl:
     '#type': address
     '#title': Address
@@ -641,7 +642,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "address_intl:\r\n  '#access': true\r\n  '#default_value':\r\n    country_code: US\r\n    given_name: null\r\n    additional_name: null\r\n    family_name: null\r\n    organization: null\r\n    address_line1: null\r\n    address_line2: null\r\n    postal_code: null\r\n    sorting_code: null\r\n    dependent_locality: null\r\n    locality: null\r\n    administrative_area: null\r\n    langcode: null"
+      elements: "address:\r\n  '#access': false\r\naddress_intl:\r\n  '#access': true\r\n  '#default_value':\r\n    country_code: US\r\n    given_name: null\r\n    additional_name: null\r\n    family_name: null\r\n    organization: null\r\n    address_line1: null\r\n    address_line2: null\r\n    postal_code: null\r\n    sorting_code: null\r\n    dependent_locality: null\r\n    locality: null\r\n    administrative_area: null\r\n    langcode: null"
       handlers: {  }
   carow_launch:
     id: override
