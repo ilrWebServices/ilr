@@ -528,18 +528,18 @@ variants:
       settings: {  }
       elements: "attending_online:\r\n  '#type': checkbox"
       handlers: {  }
-  basic_address:
+  remove_address:
     id: override
-    variant_id: basic_address
+    variant_id: remove_address
     element_key: variant_address
-    label: 'Basic address'
+    label: 'Remove address'
     notes: ''
     status: true
     weight: 8
     settings:
       debug: false
       settings: {  }
-      elements: "address:\r\n  '#access': true"
+      elements: "address:\r\n  '#access': false"
       handlers: {  }
   disable_salesforce_submitter:
     id: override
