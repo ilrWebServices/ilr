@@ -103,6 +103,22 @@ process:
     source: Employee_ID
     no_stub: true
   field_employee_role: employee_role
+  field_areas_of_expertise:
+    -
+      plugin: explode
+      delimiter: ';'
+      source: d7_areas_of_expertise
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      access_check: false
+      value_key: name
+      bundle_key: vid
+      bundle: areas_of_expertise
+  field_other_expertise: d7_other_expertise
   # created:
   #   plugin: format_date
   #   source: updated_at
