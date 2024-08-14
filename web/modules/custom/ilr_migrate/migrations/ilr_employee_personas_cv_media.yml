@@ -23,16 +23,14 @@ process:
       - constants/suffix
   name:
     -
-      plugin: get
+      # Filter out empty sources.
+      plugin: callback
+      callable: array_filter
       source:
         - d7_cv_description
         - '@_default_entity_name'
     -
-      # Filter out empty sources
-      plugin: callback
-      callable: array_filter
-    -
-      # Use the first none empty source
+      # Use the first source, now that empty values have been removed.
       plugin: callback
       callable: 'current'
   langcode:
