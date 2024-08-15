@@ -108,6 +108,11 @@
       padding-left: var(--cu-ps4);
     }
 
+    // This is the spacing between items in the main content column.
+    > * + * {
+      margin-top: var(--cu-vr2);
+    }
+
     .field__label {
       font-weight: 400;
       font-size: var(--cu-ms5);
@@ -148,11 +153,6 @@
 
   }
 
-  .profile__expertise {
-    line-height: 1.1;
-    margin-bottom: var(--cu-vr-1);
-  }
-
   .cu-breadcrumb {
     // margin: 0;
   }
@@ -184,4 +184,18 @@
       width: 150vw;
     }
   }
+}
+
+.profile__expertise-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cu-vr-1);
+}
+
+.profile__expertise {
+  padding: var(--cu-vr-3) var(--cu-ps-1);
+  border: 1px solid $gray-medium;
+  border-radius: 1rem;
+  font-weight: 400;
+  font-size: var(--cu-ms-2);
 }

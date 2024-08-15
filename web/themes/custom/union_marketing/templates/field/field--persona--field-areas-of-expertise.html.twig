@@ -29,7 +29,9 @@
 
 <div{{attributes.addClass(classes)}}>
 <h2 class="cu-heading">{{ label }}</h2>
+<div class="profile__expertise-items">
 {% for item in items %}
   <div class='profile__expertise'>{{ item.content }}</div>
 {% endfor %}
+</div>
 </div>
