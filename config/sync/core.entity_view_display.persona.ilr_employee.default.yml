@@ -113,7 +113,7 @@ content:
     region: content
   field_photo:
     type: media_thumbnail
-    label: above
+    label: hidden
     settings:
       image_link: ''
       image_style: thumbnail_square
