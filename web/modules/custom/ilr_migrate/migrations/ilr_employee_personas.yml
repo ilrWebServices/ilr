@@ -105,9 +105,13 @@ process:
   field_employee_role: employee_role
   field_areas_of_expertise:
     -
+      plugin: skip_on_empty
+      source: d7_areas_of_expertise
+      method: process
+      message: 'Record does not contain areas of expertise terms.'
+    -
       plugin: explode
       delimiter: ';'
-      source: d7_areas_of_expertise
     -
       plugin: callback
       callable: trim
