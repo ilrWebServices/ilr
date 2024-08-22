@@ -2,6 +2,7 @@
 
 namespace Drupal\ilr\Plugin\ExtraField\Display;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
@@ -26,16 +27,26 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
 
   use StringTranslationTrait;
 
+  public function __construct(
+    array $configuration,
+    protected string $plugin_id,
+    protected mixed $plugin_definition,
+    protected ConfigFactoryInterface $config
+  ) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+
+  }
+
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    $instance = new static($configuration, $plugin_id, $plugin_definition);
-    $instance->entityTypeManager = $container->get('entity_type.manager');
-    $instance->pathAliasEntitiesManager = $container->get('path_alias.entities');
-    $instance->config = $container->get('config.factory');
-    $instance->discountManager = $container->get('ilr_outreach_discount_manager');
-    return $instance;
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('config.factory')
+    );
   }
 
   /**
