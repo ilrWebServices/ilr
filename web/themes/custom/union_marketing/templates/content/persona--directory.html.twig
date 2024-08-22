@@ -24,7 +24,6 @@
 
 {% set additional_info %}
 {{ title_suffix }}
-{{ primary_title }}
 {{ content.field_phone }}
 {{ content.field_email }}
 {% include "@union/_icon.twig" with {
@@ -50,6 +49,7 @@
     view_mode ? 'persona--view-mode-' ~ view_mode|clean_class
   ]),
   name: content.display_name,
+  title: primary_title,
   eyebrow_heading: content.field_employee_role,
   additional_info: additional_info,
   img: content.field_photo
