@@ -9,6 +9,8 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
+use Drupal\person\Event\PersonaCreateEvent;
+use Drupal\person\Event\PersonEvents;
 
 /**
  * Defines the Persona entity.
@@ -115,6 +117,22 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
     }
     // It's a persona for a non-existing person.
     else {
+      // Fire an event to allow other modules to assign the person entity (if applicable),
+      // or to prevent the persona from being created.
+      $event_dispatcher = \Drupal::service('event_dispatcher');
+
+      if ($this->isNew()) {
+        $event = new PersonaCreateEvent($this);
+        $event_dispatcher->dispatch($event, PersonEvents::PERSONA_ENTITY_CREATE);
+
+      }
+      else {
+        // Dispatch update persona event.
+        // $event = new PersonaUpdateEvent($this);
+        // $event_dispatcher->dispatch($event, PersonEvents::PERSONA_ENTITY_UPDATE);
+      }
+
+      // If no subscribers intervened, create a new person from the data.
       if ($person = $this->createPerson()) {
         $this->person = $person->id();
       }
