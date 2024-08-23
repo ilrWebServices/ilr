@@ -26,7 +26,7 @@ elements: |-
         - form-title
     '#markup': |-
       <h2 class="cu-heading">
-        Labor and Employment Law<br>Newsletter Signup
+        Labor and Employment Law<br>Stay Updated
       </h2>
       <p>
         Keep up with the latest information and news.
@@ -169,7 +169,7 @@ settings:
   confirmation_type: inline
   confirmation_url: ''
   confirmation_title: ''
-  confirmation_message: '<p>Thank you for signing up for the Labor and Employment Law Program newsletter.</p>'
+  confirmation_message: '<p>Thank you for signing up to stay updated with news from the Labor and Employment Law Program.</p>'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
