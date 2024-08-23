@@ -25,6 +25,7 @@ dependencies:
     - inline_entity_form
     - link
     - media_library
+    - media_library_edit
     - path
     - telephone
     - text
@@ -156,7 +157,9 @@ content:
     region: content
     settings:
       media_types: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
   field_sections:
     type: inline_entity_form_complex
     weight: 15
