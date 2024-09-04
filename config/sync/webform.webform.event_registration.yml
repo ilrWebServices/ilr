@@ -926,3 +926,16 @@ variants:
           settings:
             to_mail: cahrs@cornell.edu
             subject: 'CAHRS Learning Series Event registration: [webform_submission:source-title]'
+  portuguese_translation:
+    id: override
+    variant_id: portuguese_translation
+    element_key: variant_translation
+    label: 'Portuguese Translation'
+    notes: ''
+    status: true
+    weight: 25
+    settings:
+      debug: false
+      settings: {  }
+      elements: "company:\r\n  '#title': 'Organization / Organização'\r\ntitle:\r\n  '#title': 'Role / Cargo'\r\nfirst_name:\r\n  '#title': 'First Name / Nome'\r\nlast_name:\r\n  '#title': 'Last Name / Sobrenome'\r\nemail:\r\n  '#title': 'Email / E-mail'\r\nphone:\r\n  '#title': 'Phone / Número de teléfono'\r\naddress:\r\n  '#title': 'Address / Endereço'\r\n  '#city__title': 'City / Cidade'\r\n  '#state_province__title': 'State / Estado'\r\n  '#postal_code__title': 'Zip / Código postal'\r\naccessible_accommodation:\r\n  '#title': 'Accommodations / Local do evento'\r\n  '#description': 'We strive to host inclusive, accessible events that enable all individuals to engage and participate fully. Please list any reasonable accommodations you may need, such as alternate formats, interpreters, or sign-language interpreters. Nós nos esforçamos para hospedar eventos inclusivos e acessíveis que permitam que todos os indivíduos se envolvam e participem plenamente. Por favor, liste todas as acomodações necessárias, como formatos alternativos, intérpretes de idioma ou intérpretes de linguagem de sinais.'\r\nopt_in:\r\n  '#title': 'Opt-in for updates on similar programs / Registre-se aqui para receber atualizações sobre programações semelhantes'"
+      handlers: {  }
