@@ -17,6 +17,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_other_expertise
     - field.field.persona.ilr_employee.field_phone
     - field.field.persona.ilr_employee.field_photo
+    - field.field.persona.ilr_employee.field_publications
     - field.field.persona.ilr_employee.field_sections
     - field.field.persona.ilr_employee.field_websites
     - person.persona_type.ilr_employee
@@ -160,6 +161,14 @@ content:
     third_party_settings:
       media_library_edit:
         show_edit: '1'
+  field_publications:
+    type: text_textarea
+    weight: 10
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_sections:
     type: inline_entity_form_complex
     weight: 15

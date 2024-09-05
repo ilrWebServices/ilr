@@ -1,0 +1,24 @@
+uuid: 1a137acd-3b5d-4c15-8671-d87d7e825299
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_publications
+    - filter.format.standard_formatting
+    - person.persona_type.ilr_employee
+  module:
+    - text
+id: persona.ilr_employee.field_publications
+field_name: field_publications
+entity_type: persona
+bundle: ilr_employee
+label: Publications
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - standard_formatting
+field_type: text_long

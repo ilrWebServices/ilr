@@ -17,6 +17,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_other_expertise
     - field.field.persona.ilr_employee.field_phone
     - field.field.persona.ilr_employee.field_photo
+    - field.field.persona.ilr_employee.field_publications
     - field.field.persona.ilr_employee.field_sections
     - field.field.persona.ilr_employee.field_websites
     - image.style.thumbnail_square
@@ -121,6 +122,13 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_publications:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
     region: content
   field_sections:
     type: entity_reference_revisions_entity_view
