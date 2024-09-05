@@ -7,6 +7,7 @@ dependencies:
     - filter.format.basic_formatting_with_media
     - filter.format.inline_svg
     - filter.format.simple_formatting
+    - filter.format.standard_formatting
     - filter.format.webform_default
   module:
     - collection
@@ -30,6 +31,7 @@ permissions:
   - 'use text format basic_formatting_with_media'
   - 'use text format inline_svg'
   - 'use text format simple_formatting'
+  - 'use text format standard_formatting'
   - 'use text format webform_default'
   - 'view blog collection'
   - 'view content_section collection'

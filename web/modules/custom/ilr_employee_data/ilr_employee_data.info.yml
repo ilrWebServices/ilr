@@ -3,3 +3,5 @@ type: module
 description: 'Services and related support for external employee data (e.g. Publications).'
 package: ILR
 core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:ckeditor5

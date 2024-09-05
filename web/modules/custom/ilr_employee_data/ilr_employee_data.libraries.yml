@@ -1,0 +1,15 @@
+# This adds the plugin JavaScript to the page.
+# cSpell:ignore simplebox demobox
+
+demobox:
+  js:
+    js/build/demoPlugin.js: { preprocess: false, minified: true }
+  dependencies:
+    - core/ckeditor5
+
+# Loaded in the text format configuration form to provide styling for the icon
+# used in toolbar config.
+admin.demobox:
+  css:
+    theme:
+      css/demobox.admin.css: { }
