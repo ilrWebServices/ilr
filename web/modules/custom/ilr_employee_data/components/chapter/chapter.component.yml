@@ -1,0 +1,28 @@
+name: Schema.org BookChapter
+props:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      title: Name
+      description: "The name of the creative work."
+    publisher:
+      type: object
+      title: Publisher
+      description: "The publisher organization of the creative work."
+    isPartOf:
+      type: object
+      title: isPartOf
+      description: "The the issue and volume of the creative work."
+    author:
+      type: array
+      title: Author
+      description: "The authors of the creative work."
+      items:
+        type: object
+    datePublished:
+      type: string
+      title: Date Published
+      description: "The date the creative work was published."

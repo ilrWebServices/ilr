@@ -1,0 +1,4 @@
+services:
+  ilr_employee_data.publications:
+    class: Drupal\ilr_employee_data\PublicationsFetcher
+    arguments: ['@http_client']
