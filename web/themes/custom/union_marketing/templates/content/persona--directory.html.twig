@@ -16,7 +16,7 @@
 {% if content.extra_field_ilr_employee_positions is not empty %}
 {% for key, item in content.extra_field_ilr_employee_positions|filter((v, k) => k|first != '#') %}
   {% set position = item['#ilr_employee_position']%}
-  {% if position.primary %}
+  {% if position.primary.value == "1" %}
   {% set primary_title = position.title.value %}
   {% endif %}
 {% endfor %}
