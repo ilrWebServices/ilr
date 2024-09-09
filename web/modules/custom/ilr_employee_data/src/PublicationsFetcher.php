@@ -102,7 +102,11 @@ class PublicationsFetcher {
         case 'Journal Articles':
           $schemaObject = Schema::scholarlyArticle()
             ->publisher(Schema::organization()->name((string) $publication->JOURNAL->JOURNAL_NAME))
-            ->pagination((string) $publication->PAGENUM);
+            ->pagination((string) $publication->PAGENUM)
+            ->setProperty('x_arxivnum', (string) $publication->ARXIVNUM)
+            ->setProperty('x_doi', (string) $publication->DOI)
+            ->setProperty('x_pmid', (string) $publication->PMID)
+            ->setProperty('x_pmcid', (string) $publication->PMCID);
 
             if ((string) $publication->PAGENUM && (string) $publication->VOLUME) {
               $schemaObject->isPartOf(
@@ -112,7 +116,7 @@ class PublicationsFetcher {
                     Schema::publicationVolume()
                       ->volumeNumber((string) $publication->VOLUME)
                   )
-                );
+              );
             }
           break;
 

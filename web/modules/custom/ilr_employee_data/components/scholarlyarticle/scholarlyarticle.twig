@@ -1,3 +1,52 @@
-<div class="scholarlyarticle">
-  <h2>{{ name }}</h2>
+<div itemscope itemtype="https://schema.org/ScholarlyArticle" class="citation citation--scholarlyarticle cu-text citation--type-apa">
+  <span class="citation__authors">
+  {%- for author_item in author -%}
+    {%- if not loop.first -%}, {%- endif -%}
+    {% if loop.last and not loop.first %} &amp; {% endif %}
+    <span itemprop="author" class="citation__author">
+      {{ author_item.getProperty('givenName') }}
+      {% if author_item.getProperty('additionalName') %}
+        {{ author_item.getProperty('additionalName') }}
+      {% endif %}
+      {{ author_item.getProperty('familyName') -}}
+    </span>
+  {%- endfor -%}
+  </span>.
+
+  <span itemprop="name" class="citation__title">{% if url %}<a href="{{ url }}">{{ name }}</a>{% else %}{{ name }}{% endif %}</span>.
+
+  {%- if publisher.getProperty('name') %}
+    <span class="citation__journal">{{ publisher.getProperty('name') }}</span>,
+
+    {% apply spaceless %}
+    <span class="citation__volume">{{ isPartOf.getProperty('isPartOf').getProperty('volumeNumber') }}</span>
+    {% if isPartOf.getProperty('issueNumber') %}
+      <span class="citation__issue">({{ isPartOf.getProperty('issueNumber') }})</span>,
+    {% endif %}
+    {% endapply %}
+  {% endif %}
+
+  <span itemprop="datePublished" class="citation__publication-date">{{ datePublished|date('Y') }}</span>
+
+  {%- if pagination -%}
+    ,
+    <span itemprop="pagination" class="citation__page-range">{{ pagination }}</span>
+  {%- endif -%}
+  .
+
+  {% if x_arxivnum -%}
+    <span class="citation__arxivnum">(ARXIV:<a href="https://arxiv.org/abs/{{ x_arxivnum }}">{{ x_arxivnum }}</a>)</span>
+  {%- endif -%}
+
+  {% if x_doi -%}
+    <span class="citation__doi">(DOI:<a href="https://dx.doi.org/doi:{{ x_doi }}">{{ x_doi }}</a>)</span>
+  {%- endif -%}
+
+  {% if x_pmid -%}
+    <span class="citation__pmid">(PubMed:<a href="https://www.ncbi.nlm.nih.gov/pubmed/{{ x_pmid }}">{{ x_pmid }}</a>)</span>
+  {%- endif -%}
+
+  {% if x_pmcid -%}
+    <span class="citation__pmcid">(PubMed Central:<a href="https://www.ncbi.nlm.nih.gov/pubmed/{{ x_pmcid }}">{{ x_pmcid }}</a>)</span>
+  {%- endif -%}
 </div>
