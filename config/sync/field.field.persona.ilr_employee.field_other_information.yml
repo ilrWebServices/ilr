@@ -1,0 +1,118 @@
+uuid: bf1fdd00-2afc-4f4a-a2a2-bbdd89322e77
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_other_information
+    - paragraphs.paragraphs_type.publications
+    - person.persona_type.ilr_employee
+  module:
+    - entity_reference_revisions
+id: persona.ilr_employee.field_other_information
+field_name: field_other_information
+entity_type: persona
+bundle: ilr_employee
+label: 'Other information'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      publications: publications
+    negate: 0
+    target_bundles_drag_drop:
+      agenda:
+        weight: 32
+        enabled: false
+      agenda_item:
+        weight: 33
+        enabled: false
+      carousel:
+        weight: 34
+        enabled: false
+      collection_listing:
+        weight: 35
+        enabled: false
+      collection_listing_publication:
+        weight: 36
+        enabled: false
+      curated_course_listing:
+        weight: 37
+        enabled: false
+      curated_post_listing:
+        weight: 38
+        enabled: false
+      deck:
+        weight: 39
+        enabled: false
+      event_listing:
+        weight: 40
+        enabled: false
+      form:
+        weight: 41
+        enabled: false
+      image:
+        weight: 42
+        enabled: false
+      instagram_listing:
+        weight: 43
+        enabled: false
+      media_deck:
+        weight: 44
+        enabled: false
+      organization_listing:
+        weight: 45
+        enabled: false
+      people_listing:
+        weight: 46
+        enabled: false
+      people_listing_dynamic:
+        weight: 47
+        enabled: false
+      person:
+        weight: 48
+        enabled: false
+      picture_in_picture:
+        weight: 49
+        enabled: false
+      project_listing:
+        weight: 50
+        enabled: false
+      promo:
+        weight: 51
+        enabled: false
+      publications:
+        weight: 31
+        enabled: true
+      rich_text:
+        weight: 52
+        enabled: false
+      section:
+        weight: 53
+        enabled: false
+      section_navigation:
+        weight: 54
+        enabled: false
+      simple_collection_listing:
+        weight: 55
+        enabled: false
+      table_of_contents:
+        weight: 56
+        enabled: false
+      testimonial:
+        weight: 57
+        enabled: false
+      testimonial_deck:
+        weight: 58
+        enabled: false
+      topic_list:
+        weight: 59
+        enabled: false
+      video:
+        weight: 60
+        enabled: false
+field_type: entity_reference_revisions

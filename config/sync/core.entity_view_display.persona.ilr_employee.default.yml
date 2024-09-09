@@ -15,6 +15,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_last_name
     - field.field.persona.ilr_employee.field_netid
     - field.field.persona.ilr_employee.field_other_expertise
+    - field.field.persona.ilr_employee.field_other_information
     - field.field.persona.ilr_employee.field_phone
     - field.field.persona.ilr_employee.field_photo
     - field.field.persona.ilr_employee.field_publications
@@ -104,6 +105,15 @@ content:
     third_party_settings: {  }
     weight: 10
     region: content
+  field_other_information:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_phone:
     type: telephone_link
     label: above
@@ -122,13 +132,6 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 3
-    region: content
-  field_publications:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 4
     region: content
   field_sections:
     type: entity_reference_revisions_entity_view
@@ -157,4 +160,5 @@ hidden:
   field_first_name: true
   field_last_name: true
   field_netid: true
+  field_publications: true
   search_api_excerpt: true

@@ -1187,7 +1187,7 @@ function ilr_field_widget_single_element_paragraphs_form_alter(&$element, FormSt
     }));
 
     // If it's behavior-driven, leave the element open.
-    $element['behavior_plugins']['#open'] = $behavior_driven_component;
+    $element['behavior_plugins']['#open'] = $behavior_driven_component || in_array($paragraphs_entity->bundle(), ['publications']);
   }
 
   // Add a class to closed paragraphs.
