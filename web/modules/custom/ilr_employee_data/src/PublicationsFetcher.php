@@ -106,11 +106,13 @@ class PublicationsFetcher {
 
       switch ($publication_group) {
         case 'Journal Articles':
+          $doi = preg_replace('/https?:\/\/dx\.doi\.org\//', '', (string) $publication->DOI);
+
           $schemaObject = Schema::scholarlyArticle()
             ->publisher(Schema::organization()->name((string) $publication->JOURNAL->JOURNAL_NAME))
             ->pagination((string) $publication->PAGENUM)
             ->setProperty('x_arxivnum', (string) $publication->ARXIVNUM)
-            ->setProperty('x_doi', (string) $publication->DOI)
+            ->setProperty('x_doi', $doi)
             ->setProperty('x_pmid', (string) $publication->PMID)
             ->setProperty('x_pmcid', (string) $publication->PMCID);
 
