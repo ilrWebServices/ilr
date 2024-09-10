@@ -1,3 +1,27 @@
-<div class="creativework">
-  <h2>{{ name }}</h2>
+<div itemscope itemtype="https://schema.org/CreativeWork" class="citation citation--creative-work cu-text citation--type-apa">
+  <span class="citation__authors">
+  {%- for author_item in author -%}
+    {%- if not loop.first -%}, {%- endif -%}
+    {% if loop.last and not loop.first %} &amp; {% endif %}
+    <span itemprop="author" class="citation__author">
+      {{ author_item.getProperty('givenName') }}
+      {% if author_item.getProperty('additionalName') %}
+        {{ author_item.getProperty('additionalName') }}
+      {% endif %}
+      {{ author_item.getProperty('familyName') -}}
+    </span>
+  {%- endfor -%}
+  </span>.
+
+  <span itemprop="datePublished" class="citation__publication-date">({{ datePublished|date('Y') }})</span>.
+
+  <span itemprop="name" class="citation__title">{% if url %}<a href="{{ url }}">{{ name|trim }}</a>{% else %}{{ name|trim }}{% endif %}</span>.
+
+  {% if publisher.getProperty('name') %}
+    <span class="citation__publisher">{{ publisher.getProperty('name') }}</span>.
+  {% endif -%}
+
+  {%- if pagination -%}
+    <span itemprop="pagination" class="citation__page-range">(pp. {{ pagination }})</span>.
+  {%- endif -%}
 </div>

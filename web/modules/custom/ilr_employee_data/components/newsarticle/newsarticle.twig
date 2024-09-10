@@ -1,3 +1,27 @@
-<div class="newsarticle">
-  <h2>{{ name }}</h2>
+<div itemscope itemtype="https://schema.org/NewsArticle" class="citation citation--news-article cu-text citation--type-apa">
+  <span class="citation__authors">
+  {%- for author_item in author -%}
+    {%- if not loop.first -%}, {%- endif -%}
+    {% if loop.last and not loop.first %} &amp; {% endif %}
+    <span itemprop="author" class="citation__author">
+      {{ author_item.getProperty('givenName') }}
+      {% if author_item.getProperty('additionalName') %}
+        {{ author_item.getProperty('additionalName') }}
+      {% endif %}
+      {{ author_item.getProperty('familyName') -}}
+    </span>
+  {%- endfor -%}
+  </span>.
+
+  <span itemprop="datePublished" class="citation__publication-date">({{ datePublished|date('Y') }})</span>.
+
+  <span itemprop="name" class="citation__title">{% if url %}<a href="{{ url }}">{{ name|trim }}</a>{% else %}{{ name|trim }}{% endif %}</span>.
+
+  {% if publisher.getProperty('name') %}
+    <span class="citation__publisher">{{ publisher.getProperty('name') }}</span>.
+  {% endif -%}
+
+  {%- if printPage -%}
+    <span itemprop="printPage" class="citation__print-page">(pp. {{ printPage }})</span>.
+  {%- endif -%}
 </div>

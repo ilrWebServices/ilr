@@ -1,4 +1,4 @@
-name: Schema.org BookChapter
+name: Schema.org Chapter
 props:
   type: object
   required:
@@ -8,6 +8,10 @@ props:
       type: string
       title: Name
       description: "The name of the creative work."
+    title:
+      type: string
+      title: Title
+      description: "The book title of the creative work."
     publisher:
       type: object
       title: Publisher

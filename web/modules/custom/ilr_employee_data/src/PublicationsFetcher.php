@@ -95,6 +95,8 @@ class PublicationsFetcher {
         'Cited Research' => 'Cited Research',
         'Conference Proceeding' => 'Conference Proceedings',
         'Abstract' => 'Abstracts',
+        'Research Report' => 'Research Reports',
+        'Research Bulletin' => 'Research Bulletins',
         default => (string) $publication->CONTYPE,
       };
 
@@ -108,16 +110,16 @@ class PublicationsFetcher {
             ->setProperty('x_pmid', (string) $publication->PMID)
             ->setProperty('x_pmcid', (string) $publication->PMCID);
 
-            if ((string) $publication->PAGENUM && (string) $publication->VOLUME) {
-              $schemaObject->isPartOf(
-                Schema::publicationIssue()
-                  ->issueNumber((string) $publication->ISSUE)
-                  ->isPartOf(
-                    Schema::publicationVolume()
-                      ->volumeNumber((string) $publication->VOLUME)
-                  )
-              );
-            }
+          if ((string) $publication->PAGENUM && (string) $publication->VOLUME) {
+            $schemaObject->isPartOf(
+              Schema::publicationIssue()
+                ->issueNumber((string) $publication->ISSUE)
+                ->isPartOf(
+                  Schema::publicationVolume()
+                    ->volumeNumber((string) $publication->VOLUME)
+                )
+            );
+          }
           break;
 
         case 'Books':
@@ -129,11 +131,13 @@ class PublicationsFetcher {
         case 'Book Chapters':
           $schemaObject = Schema::chapter()
             ->publisher(Schema::organization()->name((string) $publication->PUBLISHER))
-            ->title((string) $publication->BOOK_TITLE);
+            ->title((string) $publication->BOOK_TITLE)
+            ->pagination((string) $publication->PAGENUM);
           break;
 
         case 'Newspapers':
-          $schemaObject = Schema::newsArticle();
+          $schemaObject = Schema::newsArticle()
+            ->publisher(Schema::organization()->name((string) $publication->PUBLISHER));
           break;
 
         case 'Book Reviews':
@@ -141,7 +145,20 @@ class PublicationsFetcher {
           break;
 
         case 'Magazine Publications':
-          $schemaObject = Schema::article();
+          $schemaObject = Schema::article()
+            ->publisher(Schema::organization()->name((string) $publication->PUBLISHER))
+            ->pagination((string) $publication->PAGENUM);
+
+          if ((string) $publication->PAGENUM && (string) $publication->VOLUME) {
+            $schemaObject->isPartOf(
+              Schema::publicationIssue()
+                ->issueNumber((string) $publication->ISSUE)
+                ->isPartOf(
+                  Schema::publicationVolume()
+                    ->volumeNumber((string) $publication->VOLUME)
+                )
+            );
+          }
           break;
 
         default:
