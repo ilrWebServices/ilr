@@ -29,12 +29,14 @@
   display: block;
   position: absolute;
   inset: auto 0 0 0;
-  background-color: green;
   background: linear-gradient(rgba(0,0,0,0), white);
   height: 4em;
 }
 
 .readmore-expander-checkbox:checked + .readmore-expander-content {
   max-height: revert;
-  /* overflow: hidden; */
+}
+
+.readmore-expander-checkbox:checked + .readmore-expander-content::after {
+  background: unset;
 }
