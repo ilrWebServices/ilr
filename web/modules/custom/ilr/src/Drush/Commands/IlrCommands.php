@@ -33,6 +33,40 @@ final class IlrCommands extends DrushCommands {
   }
 
   /**
+   * Add a publications paragraph to 'faculty' ilr_employee personas.
+   */
+  #[CLI\Command(name: 'ilr:faculty-publications')]
+  #[CLI\Usage(name: 'ilr:faculty-publications', description: 'Add a publications paragraph to "faculty" ilr_employee personas')]
+  public function facultyPubsCommand() {
+    $ilr_employee_personas = $this->entityTypeManager->getStorage('persona')->loadByProperties([
+      'type' => 'ilr_employee',
+      'field_employee_role' => 'faculty',
+    ]);
+
+    /** @var \Drupal\person\PersonaInterface $persona */
+    foreach ($ilr_employee_personas as $persona) {
+      if ($persona->bundle() === 'ilr_employee' && $persona->field_employee_role->value === 'faculty' && $persona->field_other_information->isEmpty()) {
+        /** @var \Drupal\paragraphs\ParagraphInterface $publications */
+        $publications = $this->entityTypeManager->getStorage('paragraph')->create([
+          'type' => 'publications',
+        ]);
+
+        if ($persona->hasField('field_netid') && $persona->get('field_netid')) {
+          $settings = [
+            'remote_publications' => ['netid' => $persona->field_netid->value],
+          ];
+
+          $publications->setAllBehaviorSettings($settings);
+          $publications->save();
+        }
+
+        $persona->field_other_information->appendItem($publications);
+        $persona->save();
+      }
+    }
+  }
+
+  /**
    * Load the 'host entity' and output its url. This is useful for 'nested' paragraphs.
    */
   #[CLI\Command(name: 'ilr:paragraphs-host', aliases: ['ph', 'phe', 'parahost'])]
