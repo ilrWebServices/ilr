@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.persona.field_other_information
+    - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.publications
     - person.persona_type.ilr_employee
   module:
@@ -23,6 +24,7 @@ settings:
   handler_settings:
     target_bundles:
       publications: publications
+      promo: promo
     negate: 0
     target_bundles_drag_drop:
       agenda:
@@ -84,7 +86,7 @@ settings:
         enabled: false
       promo:
         weight: 51
-        enabled: false
+        enabled: true
       publications:
         weight: 31
         enabled: true
