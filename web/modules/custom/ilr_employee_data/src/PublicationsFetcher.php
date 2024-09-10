@@ -81,6 +81,10 @@ class PublicationsFetcher {
         continue;
       }
 
+      if ((string) $publication->CONTYPE === 'Other') {
+        continue;
+      }
+
       $publication_group = match((string) $publication->CONTYPE) {
         'Journal Article' => 'Journal Articles',
         'Book, Scholarly' => 'Books',
