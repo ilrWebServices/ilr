@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\ilr_employee_position\ILREmployeePositionInterface;
 
 /**
@@ -74,6 +75,7 @@ use Drupal\ilr_employee_position\ILREmployeePositionInterface;
 final class ILREmployeePosition extends RevisionableContentEntityBase implements ILREmployeePositionInterface {
 
   use EntityChangedTrait;
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -83,6 +85,16 @@ final class ILREmployeePosition extends RevisionableContentEntityBase implements
 
     // Remove the related persona from the cache when saving this position.
     Cache::invalidateTags($this->persona->entity->getCacheTags());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function label() {
+    return $this->t('@title position for @persona_name', [
+      '@title' => $this->title->value,
+      '@persona_name' => $this->persona->entity->label()
+    ]);
   }
 
   /**
