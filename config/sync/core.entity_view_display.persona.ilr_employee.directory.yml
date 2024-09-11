@@ -18,7 +18,6 @@ dependencies:
     - field.field.persona.ilr_employee.field_other_expertise
     - field.field.persona.ilr_employee.field_phone
     - field.field.persona.ilr_employee.field_photo
-    - field.field.persona.ilr_employee.field_publications
     - field.field.persona.ilr_employee.field_sections
     - field.field.persona.ilr_employee.field_websites
     - image.style.medium_3_2
@@ -95,7 +94,6 @@ hidden:
   field_last_name: true
   field_netid: true
   field_other_expertise: true
-  field_publications: true
   field_sections: true
   field_websites: true
   search_api_excerpt: true

@@ -25,6 +25,8 @@ use Spatie\SchemaOrg\BaseType;
  * <ilr-publications data-netid="foo123" data-citation-format="mla" />
  *
  * @internal
+ *
+ * @under-construction
  */
 #[Filter(
   id: "ilr_publications_embed",
