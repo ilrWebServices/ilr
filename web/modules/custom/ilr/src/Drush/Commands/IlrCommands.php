@@ -45,7 +45,7 @@ final class IlrCommands extends DrushCommands {
 
     /** @var \Drupal\person\PersonaInterface $persona */
     foreach ($ilr_employee_personas as $persona) {
-      if ($persona->bundle() === 'ilr_employee' && $persona->field_employee_role->value === 'faculty' && $persona->field_other_information->isEmpty()) {
+      if ($persona->bundle() === 'ilr_employee' && $persona->field_employee_role->value === 'faculty' && $persona->field_components->isEmpty()) {
         /** @var \Drupal\paragraphs\ParagraphInterface $publications */
         $publications = $this->entityTypeManager->getStorage('paragraph')->create([
           'type' => 'publications',
@@ -60,7 +60,7 @@ final class IlrCommands extends DrushCommands {
           $publications->save();
         }
 
-        $persona->field_other_information->appendItem($publications);
+        $persona->field_components->appendItem($publications);
         $persona->save();
       }
     }

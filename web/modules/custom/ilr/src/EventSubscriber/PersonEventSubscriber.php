@@ -55,7 +55,7 @@ class PersonEventSubscriber implements EventSubscriberInterface {
         $publications->save();
       }
 
-      $persona->field_other_information->appendItem($publications);
+      $persona->field_components->appendItem($publications);
     }
   }
 
