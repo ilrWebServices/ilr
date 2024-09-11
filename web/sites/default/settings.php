@@ -1045,6 +1045,21 @@ $settings['config_ignore_patterns'] = [
 $settings['config_ignore_pattern_debug'] = TRUE;
 
 /**
+ * Recurring migrations.
+ */
+$config['migrate_scheduler']['migrations'] = [
+  'ilr_employee_personas' => [
+    'time' => 86400,
+    'update' => TRUE,
+  ],
+  'ilr_employee_personas_positions' => [
+    'time' => 86400,
+    'update' => TRUE,
+    'sync' => TRUE,
+  ],
+];
+
+/**
  * Load local development override configuration, if available.
  *
  * Create a settings.local.php file to override variables on secondary (staging,
