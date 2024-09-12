@@ -5,3 +5,10 @@ ilr.course.sfid:
   requirements:
     _permission: 'access content'
     sfid: '[a-zA-Z0-9]{18}|[a-zA-Z0-9]{15}'
+course.feed:
+  path: 'programs/professional-education/feed'
+  defaults:
+    _title: 'JSON Feed'
+    _controller: '\Drupal\ilr\Controller\CourseJsonFeed::content'
+  requirements:
+    _permission: 'access content'
