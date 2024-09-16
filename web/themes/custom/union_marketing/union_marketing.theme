@@ -281,6 +281,25 @@ function union_marketing_theme_suggestions_webform_alter(array &$suggestions, ar
  * Change links of some fields to modals.
  */
 function union_marketing_preprocess_persona(&$variables) {
+  $persona = $variables['persona'];
+
+  if ($persona->bundle() === 'ilr_employee') {
+    $has_meta = FALSE;
+    $meta_fields = ['field_campus_address', 'field_phone', 'field_fax', 'field_email', 'field_cv'];
+    foreach ($meta_fields as $meta_field) {
+      if (!$persona->hasField($meta_field)) {
+        continue;
+      }
+
+      if ($persona->{$meta_field}->isEmpty()) {
+        continue;
+      }
+
+      $has_meta = TRUE;
+    }
+    $variables['has_meta'] = $has_meta;
+  }
+
   $current_url = Url::fromRoute('<current>');
   $path = $current_url->toString();
 
