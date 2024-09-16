@@ -9,6 +9,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_campus_address
     - field.field.persona.ilr_employee.field_components
     - field.field.persona.ilr_employee.field_cv
+    - field.field.persona.ilr_employee.field_editors
     - field.field.persona.ilr_employee.field_email
     - field.field.persona.ilr_employee.field_employee_role
     - field.field.persona.ilr_employee.field_fax
@@ -93,6 +94,7 @@ hidden:
   field_components: true
   field_cv: true
   field_department: true
+  field_editors: true
   field_education: true
   field_employee_role: true
   field_fax: true

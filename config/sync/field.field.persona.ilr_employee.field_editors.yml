@@ -1,0 +1,29 @@
+uuid: 80db6792-e246-43b3-bc8e-21453634f548
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_editors
+    - person.persona_type.ilr_employee
+id: persona.ilr_employee.field_editors
+field_name: field_editors
+entity_type: persona
+bundle: ilr_employee
+label: Editors
+description: 'Users listed here can modify this persona.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user_or_common_name'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    include_anonymous: 0
+    filter:
+      type: _none
+field_type: entity_reference

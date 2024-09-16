@@ -8,6 +8,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_campus_address
     - field.field.persona.ilr_employee.field_components
     - field.field.persona.ilr_employee.field_cv
+    - field.field.persona.ilr_employee.field_editors
     - field.field.persona.ilr_employee.field_email
     - field.field.persona.ilr_employee.field_employee_role
     - field.field.persona.ilr_employee.field_fax
@@ -111,6 +112,16 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_editors:
+    type: entity_reference_autocomplete
+    weight: 28
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_email:
     type: email_default
