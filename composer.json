@@ -217,6 +217,9 @@
       },
       "drupal/webform": {
         "Use symfony_mailer for html email": "./patches/webform_symfony_mailer.patch"
+      },
+      "drupal/linkit_media_library": {
+        "Linkit media library button doesn't open in CKEditor": "https://www.drupal.org/files/issues/2024-08-15/3461637-instance-of-media-library-opener-interface.patch"
       }
     },
     "installer-paths": {
