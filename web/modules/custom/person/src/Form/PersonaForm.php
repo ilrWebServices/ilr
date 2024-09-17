@@ -94,7 +94,7 @@ class PersonaForm extends ContentEntityForm {
     // See person_theme().
     $form['#theme'] = ['persona_edit_form'];
 
-    // Advanced is created in the parent class/
+    // Advanced is created in the parent class.
     $form['advanced']['#type'] = 'container';
     $form['advanced']['#attributes']['class'][] = 'entity-meta';
     $form['revision_information']['#type'] = 'container';
@@ -119,7 +119,6 @@ class PersonaForm extends ContentEntityForm {
     // in the parent class.
     $form['person']['#group'] = 'meta';
     $form['admin_label']['#group'] = 'meta';
-    $form['default']['#group'] = 'meta';
     $form['revision_information']['#group'] = 'meta';
 
     // Place the status/published field at the bottom of the form.
