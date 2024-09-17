@@ -1,0 +1,4 @@
+services:
+  migrate_field_protect.content_entity_form.alter:
+    class: Drupal\migrate_field_protect\EntityFormAlter
+    arguments: ['@current_user', '@config.factory', '@plugin.manager.migration']

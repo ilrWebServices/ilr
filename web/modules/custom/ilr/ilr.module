@@ -1019,31 +1019,15 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
   // Move collection items into the advanced group.
   $form['ief_collection_items']['#group'] = 'advanced';
 
-  // Move basic info on profile-type personas to a new section in the advance
+  // Move editors on ilr_employee personas to the meta section in the advanced
   // group, e.g. the sidebar of the add/edit form.
   if (strpos($form_id, 'persona_ilr_employee') === 0) {
-    $form['basic_info'] = [
-      '#type' => 'details',
-      '#title' => t('Basic info'),
-      '#group' => 'advanced',
-      '#weight' => -10,
-      '#optional' => TRUE,
-      '#open' => TRUE,
-    ];
-
     if (isset($form['field_editors'])) {
       $form['field_editors']['#group'] = 'meta';
     }
 
-    // Note that some of these are typically in the `inherited` element, but we
-    // need to move them if they are overridden.
-    $fields = ['display_name', 'field_first_name', 'field_last_name', 'field_email', 'field_netid', 'field_photo', 'field_title', 'field_role', 'field_department', 'field_campus_address', 'field_phone', 'field_fax', 'field_cv', 'inherited', 'field_areas_of_expertise', 'field_other_expertise', 'field_websites'];
-
-    foreach ($fields as $field) {
-      if (isset($form[$field])) {
-        $form[$field]['#group'] = 'basic_info';
-      }
-    }
+    $form['inherited']['#group'] = 'advanced';
+    $form['inherited']['#weight'] = -9;
   }
 }
 
