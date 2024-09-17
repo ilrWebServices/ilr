@@ -8,6 +8,7 @@ use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -25,6 +26,7 @@ class PersonaForm extends ContentEntityForm {
     EntityTypeBundleInfoInterface $entityTypeBundleInfo,
     TimeInterface $time,
     protected DateFormatterInterface $dateFormatter,
+    protected AccountProxyInterface $account
   ) {
     parent::__construct($entityRepository, $entityTypeBundleInfo, $time);
   }
@@ -37,7 +39,8 @@ class PersonaForm extends ContentEntityForm {
       $container->get('entity.repository'),
       $container->get('entity_type.bundle.info'),
       $container->get('datetime.time'),
-      $container->get('date.formatter')
+      $container->get('date.formatter'),
+      $container->get('current_user')
     );
   }
 
@@ -56,6 +59,7 @@ class PersonaForm extends ContentEntityForm {
         '#type' => 'link',
         '#title' => $this->t('Edit') . ' ' . $persona->person->entity->label(),
         '#url' => $persona->person->entity->toUrl('edit-form'),
+        '#access' => $this->account->hasPermission('administer persons'),
       ];
 
       $form['inherited'] = [
