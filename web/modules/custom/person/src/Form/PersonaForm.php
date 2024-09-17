@@ -18,27 +18,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class PersonaForm extends ContentEntityForm {
 
   /**
-   * The date formatter service.
-   *
-   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   * Constructs a PersonaForm object.
    */
-  protected $dateFormatter;
-
-  /**
-   * Constructs a NodeForm object.
-   *
-   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
-   *   The entity repository.
-   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entity_type_bundle_info
-   *   The entity type bundle service.
-   * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   The time service.
-   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
-   *   The date formatter service.
-   */
-  public function __construct(EntityRepositoryInterface $entity_repository, EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL, TimeInterface $time = NULL, DateFormatterInterface $date_formatter) {
-    parent::__construct($entity_repository, $entity_type_bundle_info, $time);
-    $this->dateFormatter = $date_formatter;
+  public function __construct(
+    EntityRepositoryInterface $entityRepository,
+    EntityTypeBundleInfoInterface $entityTypeBundleInfo,
+    TimeInterface $time,
+    protected DateFormatterInterface $dateFormatter,
+  ) {
+    parent::__construct($entityRepository, $entityTypeBundleInfo, $time);
   }
 
   /**
