@@ -36,6 +36,11 @@ process:
 destination:
   plugin: entity:ilr_employee_position
   default_bundle: ilr_employee_position
+  overwrite_properties:
+    - persona
+    - title
+    - department
+    - primary
 migration_dependencies:
   required:
     - ilr_employee_personas
