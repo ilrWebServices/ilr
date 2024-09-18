@@ -53,11 +53,6 @@ class IlrEmployeePositions extends ExtraFieldDisplayBase implements ContainerFac
   public function view(ContentEntityInterface $persona) {
     $build = [];
 
-    // $positions = $this->entityTypeManager->getStorage('ilr_employee_position')->loadByProperties([
-    //   'field_persona' => $persona->id(),
-    //   'status' => 1,
-    // ]);
-
     $position_ids = $this->entityTypeManager->getStorage('ilr_employee_position')->getQuery()
       ->accessCheck(FALSE)
       ->condition('persona', $persona->id())

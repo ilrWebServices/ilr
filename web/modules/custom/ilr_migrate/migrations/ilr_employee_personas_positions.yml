@@ -33,20 +33,6 @@ process:
       bundle_key: vid
       bundle: organizational_units
   primary: Primary_Job
-  # created:
-  #   plugin: format_date
-  #   source: updated_at
-  #   from_format: 'Y-m-d H:i:s'
-  #   to_format: 'U'
-  #   from_timezone: 'UTC'
-  #   to_timezone: 'UTC'
-  # changed:
-  #   plugin: format_date
-  #   source: updated_at
-  #   from_format: 'Y-m-d H:i:s'
-  #   to_format: 'U'
-  #   from_timezone: 'UTC'
-  #   to_timezone: 'UTC'
 destination:
   plugin: entity:ilr_employee_position
   default_bundle: ilr_employee_position
