@@ -93,10 +93,16 @@ class EntityFormAlter {
       $form['imported_info'] = [
         '#type' => 'details',
         '#title' => t('Imported info'),
+        '#description' => t('Migrated from %migration', [
+          '%migration' => $migration->label(),
+        ]),
         '#group' => 'advanced',
         '#weight' => -10,
         '#optional' => TRUE,
         '#open' => TRUE,
+        '#attributes' => [
+          'data-migration-source' => $migration->id(),
+        ],
       ];
 
       foreach (array_keys($process) as $potential_field_name) {

@@ -56,3 +56,15 @@ paragraph type labels on the Sections field. */
 .persona-form .field--name-field-websites .description {
   display: none;
 }
+
+details[data-migration-source] {
+  position: relative;
+}
+
+details[data-migration-source][open]:hover::before {
+  content: ' source: ' attr(data-migration-source);
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  opacity: .75;
+}
