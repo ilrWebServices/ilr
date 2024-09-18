@@ -345,6 +345,24 @@ process:
 destination:
   plugin: entity:persona
   default_bundle: ilr_employee
+  # Only update fields listed here on subsequent migration runs.
+  # See https://api.drupal.org/api/drupal/core%21modules%21migrate%21src%21Plugin%21migrate%21destination%21EntityContentBase.php/class/EntityContentBase/10
+  overwrite_properties:
+    - admin_label
+    - display_name
+    - field_netid
+    - field_email
+    - field_first_name
+    - field_last_name
+    - field_phone
+    - field_campus_address/country_code
+    - field_campus_address/langcode
+    - field_campus_address/address_line1
+    - field_campus_address/address_line2
+    - field_campus_address/locality
+    - field_campus_address/administrative_area
+    - field_campus_address/postal_code
+    - field_employee_role
 migration_dependencies:
   required:
     - ilr_employee_personas_photo_media
