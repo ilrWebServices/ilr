@@ -33,6 +33,7 @@ use Drupal\taxonomy\VocabularyInterface;
 use Drupal\collection\Entity\CollectionItemInterface;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Database\Query\AlterableInterface;
+use Drupal\Core\Link;
 use Drupal\ilr\Entity\CertificateNode;
 use Drupal\ilr\Entity\ClassNode;
 use Drupal\ilr\Entity\EventLandingNode;
@@ -1028,6 +1029,10 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
 
     $form['inherited']['#group'] = 'advanced';
     $form['inherited']['#weight'] = -9;
+
+    $form['imported_info']['#description'] = t('Imported information can be modified in @workday_link.', [
+      '@workday_link' => Link::fromTextAndUrl('Workday', Url::fromUri('https://shibidp.cit.cornell.edu/idp/profile/SAML2/Unsolicited/SSO?providerId=http://www.workday.com'))->toString(),
+    ]);
   }
 }
 
