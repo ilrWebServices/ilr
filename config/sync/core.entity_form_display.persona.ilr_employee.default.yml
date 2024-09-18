@@ -59,6 +59,11 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  extra_field_ilr_employee_positions_description:
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_areas_of_expertise:
     type: entity_reference_autocomplete
     weight: 13

@@ -1033,6 +1033,10 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
     $form['imported_info']['#description'] = t('Imported information can be modified in @workday_link.', [
       '@workday_link' => Link::fromTextAndUrl('Workday', Url::fromUri('https://shibidp.cit.cornell.edu/idp/profile/SAML2/Unsolicited/SSO?providerId=http://www.workday.com'))->toString(),
     ]);
+
+    // Move the read-only list of related employee positions to the imported
+    // info section.
+    $form['extra_field_ilr_employee_positions_description']['#group'] = 'imported_info';
   }
 }
 
