@@ -5,4 +5,4 @@ mapped to a recurring migration'
 core_version_requirement: ^10 || ^11
 package: 'ILR'
 dependencies:
-  - drupal:migrate_scheduler
+  - drupal:migrate

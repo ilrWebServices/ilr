@@ -45,18 +45,18 @@ class EntityFormAlter {
       return;
     }
 
-    $id_key = $entity->getEntityType()->getKey('id');
+    $migration_definitions = $this->migrationPluginManager->getDefinitions();
+    $recurring_migrations = array_filter($migration_definitions, function($v) {
+      return isset($v['destination']['overwrite_properties']);
+    });
 
-    // Get scheduled migrations, if any.
-    $migrate_scheduler_config = $this->configFactory->get('migrate_scheduler')->get('migrations');
-
-    if (empty($migrate_scheduler_config)) {
+    if (empty($recurring_migrations)) {
       return;
     }
 
-    $recurring_migrations = array_keys($migrate_scheduler_config);
+    $id_key = $entity->getEntityType()->getKey('id');
 
-    foreach ($recurring_migrations as $migration_id) {
+    foreach ($recurring_migrations as $migration_id => $settings) {
       /** @var \Drupal\migrate\Plugin\MigrationInterface $migration */
       $migration = $this->migrationPluginManager->createInstance($migration_id);
 
@@ -88,12 +88,10 @@ class EntityFormAlter {
         continue;
       }
 
-      $process = $migration->getProcess();
-
       $form['imported_info'] = [
         '#type' => 'details',
         '#title' => t('Imported info'),
-        '#description' => t('Migrated from %migration', [
+        '#description' => $this->t('Migrated from %migration', [
           '%migration' => $migration->label(),
         ]),
         '#group' => 'advanced',
@@ -105,7 +103,7 @@ class EntityFormAlter {
         ],
       ];
 
-      foreach (array_keys($process) as $potential_field_name) {
+      foreach ($settings['destination']['overwrite_properties'] as $potential_field_name) {
         // Some process items are in the form field_whatever/value or similar.
         // We only want that first part.
         $potential_field_name = preg_replace('|(.*)/.*|', '$1', $potential_field_name);
