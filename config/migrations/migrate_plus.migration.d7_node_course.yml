@@ -20,8 +20,6 @@ process:
 destination:
   plugin: 'entity:node'
   default_bundle: course
-  overwrite_properties:
-    - body
 migration_dependencies:
   required: {  }
   optional: {  }

@@ -26,10 +26,6 @@ process:
 destination:
   plugin: 'entity:node'
   default_bundle: instructor
-  overwrite_properties:
-    - body
-    - field_job_title
-    - field_representative_image
 migration_dependencies:
   required:
     - d7_file_media
