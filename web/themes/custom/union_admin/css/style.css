@@ -68,3 +68,17 @@ details[data-migration-source][open]:hover::before {
   right: 3px;
   opacity: .75;
 }
+
+.block-ilr-profile-edit-link {
+  display: inline-block;
+  margin: 1em 0;
+  border: 1px solid #a6a6a6;
+  border-radius: 5px;
+}
+
+.profile-button {
+  display: inline-block;
+  padding: .5em 1em;
+  color: #0074bd;
+  --cu-text-color: #0074bd;
+}
