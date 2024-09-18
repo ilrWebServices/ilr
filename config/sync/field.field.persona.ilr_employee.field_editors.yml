@@ -9,8 +9,8 @@ id: persona.ilr_employee.field_editors
 field_name: field_editors
 entity_type: persona
 bundle: ilr_employee
-label: Editors
-description: 'Users listed here can modify this persona.'
+label: 'People who can edit'
+description: 'Users listed here can also modify this persona.'
 required: false
 translatable: false
 default_value: {  }
