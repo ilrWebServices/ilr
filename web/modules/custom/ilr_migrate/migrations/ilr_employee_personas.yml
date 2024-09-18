@@ -326,6 +326,22 @@ process:
       bundle_key: vid
       bundle: areas_of_expertise
   field_other_expertise: d7_other_expertise
+  field_websites:
+    -
+      plugin: callback
+      callable: trim
+      source: d7_links
+    -
+      plugin: skip_on_empty
+      method: process
+      message: 'Record does not contain areas of links.'
+    -
+      plugin: double_delim_links
+    -
+      plugin: sub_process
+      process:
+        uri: uri
+        title: title
   # created:
   #   plugin: format_date
   #   source: updated_at

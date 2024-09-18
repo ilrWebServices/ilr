@@ -150,7 +150,6 @@
     .field {
       margin-bottom: var(--cu-vr1);
     }
-
   }
 
   .cu-breadcrumb {
@@ -183,6 +182,10 @@
     @include breakpoint(md) {
       width: 150vw;
     }
+  }
+
+  .field--field-websites .field__item {
+    margin-bottom: var(--cu-vr0);
   }
 }
 
