@@ -20,7 +20,7 @@ settings:
     -
       value: academic
       label: Academic
-  allowed_values_function: ''
+  allowed_values_function: ilr_employee_position_role_allowed_values
 module: options
 locked: false
 cardinality: 1
