@@ -10,6 +10,7 @@ dependencies:
     - field.storage.persona.field_netid
     - person.persona_type.ilr_employee
   module:
+    - options
     - person
     - text
 id: directory
@@ -420,11 +421,11 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
+          submit_button: Search
+          reset_button: true
+          reset_button_label: All
           exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
+          expose_sort_order: false
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
@@ -629,6 +630,116 @@ display:
             field_first_name: field_first_name
             field_last_name: field_last_name
             field_netid: field_netid
+        field_employee_role_value:
+          id: field_employee_role_value
+          table: persona__field_employee_role
+          field: field_employee_role_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: list_field
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_employee_role_value_op
+            label: Role
+            description: ''
+            use_operator: false
+            operator: field_employee_role_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: role
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              content_administrator: '0'
+              course_admin: '0'
+              form_admin: '0'
+              advanced_editor: '0'
+              event_admin: '0'
+              explore_form_admin: '0'
+              reviewer: '0'
+              cahrs_admin: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+        field_last_name_value:
+          id: field_last_name_value
+          table: persona__field_last_name
+          field: field_last_name_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: string
+          operator: starts
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_last_name_value_op
+            label: 'Last name'
+            description: ''
+            use_operator: false
+            operator: field_last_name_value_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_last
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              content_administrator: '0'
+              course_admin: '0'
+              form_admin: '0'
+              advanced_editor: '0'
+              event_admin: '0'
+              explore_form_admin: '0'
+              reviewer: '0'
+              cahrs_admin: '0'
+            placeholder: ''
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_field: field_last_name
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+            autocomplete_contextual: 0
+            autocomplete_autosubmit: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       filter_groups:
         operator: AND
         groups:
@@ -662,7 +773,12 @@ display:
       relationships: {  }
       css_class: people-directory
       use_ajax: false
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          plugin_id: text
       footer: {  }
       display_extenders: {  }
     cache_metadata:
@@ -683,6 +799,7 @@ display:
     display_plugin: attachment
     position: 3
     display_options:
+      enabled: false
       pager:
         type: none
         options:
@@ -768,7 +885,21 @@ display:
       defaults:
         empty: false
         css_class: true
-        header: true
+        header: false
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: "<div class=\"people-directory--glossary\">\r\n    <ul>\r\n        <li><a href=\"/people?field_last=a\">A</a></li>\r\n        <li><a href=\"/people?field_last=b\">B</a></li>\r\n        <li><a href=\"/people?field_last=c\">C</a></li>\r\n        <li><a href=\"/people?field_last=d\">D</a></li>\r\n        <li><a href=\"/people?field_last=e\">E</a></li>\r\n        <li><a href=\"/people?field_last=f\">F</a></li>\r\n        <li><a href=\"/people?field_last=g\">G</a></li>\r\n        <li><a href=\"/people?field_last=h\">H</a></li>\r\n        <li><a href=\"/people?field_last=i\">I</a></li>\r\n        <li><a href=\"/people?field_last=j\">J</a></li>\r\n        <li><a href=\"/people?field_last=k\">K</a></li>\r\n        <li><a href=\"/people?field_last=l\">L</a></li>\r\n        <li><a href=\"/people?field_last=m\">M</a></li>\r\n        <li><a href=\"/people?field_last=n\">N</a></li>\r\n        <li><a href=\"/people?field_last=o\">O</a></li>\r\n        <li><a href=\"/people?field_last=p\">P</a></li>\r\n        <li><a href=\"/people?field_last=q\">Q</a></li>\r\n        <li><a href=\"/people?field_last=r\">R</a></li>\r\n        <li><a href=\"/people?field_last=s\">S</a></li>\r\n        <li><a href=\"/people?field_last=t\">T</a></li>\r\n        <li><a href=\"/people?field_last=u\">U</a></li>\r\n        <li><a href=\"/people?field_last=v\">V</a></li>\r\n        <li><a href=\"/people?field_last=w\">W</a></li>\r\n        <li><a href=\"/people?field_last=x\">X</a></li>\r\n        <li><a href=\"/people?field_last=y\">Y</a></li>\r\n        <li><a href=\"/people?field_last=z\">Z</a></li>\r\n    </ul>\r\n</div>\r\n\r\n<div class=\"people-directory--rolefilter\">\r\n    <ul>\r\n        <li><a href=\"/people?role=faculty\">Faculty</a></li>\r\n        <li><a href=\"/people?role=faculty_emeritus\">Emeriti faculty</a></li>\r\n        <li><a href=\"/people?role=extension_associate\">Extension associate</a></li>\r\n        <li><a href=\"/people?role=staff\">Staff</a></li>\r\n    </ul>\r\n</div>"
+            format: full_html
+          tokenize: false
       display_extenders: {  }
       path: people
     cache_metadata:

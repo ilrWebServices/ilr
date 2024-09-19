@@ -157,9 +157,15 @@
     border-radius: 3px;
     border: 1px solid $gray-medium;
   }
+
+  .form-item-role,
+  .form-item-field-last {
+    display: none;
+  }
 }
 
-.people-directory__glossary ul {
+.people-directory--rolefilter ul,
+.people-directory--glossary ul {
   display: flex;
   flex-wrap: wrap;
   padding: 0;
