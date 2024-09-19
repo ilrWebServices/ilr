@@ -27,6 +27,7 @@ dependencies:
     - link
     - media_library
     - media_library_edit
+    - multiple_selects
     - paragraphs_previewer
     - path
     - telephone
@@ -65,14 +66,11 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_areas_of_expertise:
-    type: entity_reference_autocomplete
+    type: multiple_options_select
     weight: 14
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      element_type: select
     third_party_settings: {  }
   field_bio:
     type: text_textarea_with_summary
