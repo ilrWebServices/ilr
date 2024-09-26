@@ -1,0 +1,14 @@
+uuid: 28903e77-4228-4f50-b56b-bf5e065a1a34
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr_employee_data
+id: honors_and_awards
+label: 'Honors and Awards'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  remote_awards:
+    enabled: true

@@ -1,0 +1,24 @@
+uuid: e388d1ab-e546-46ba-a39b-c5128d2b54f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - filter.format.simple_formatting
+    - paragraphs.paragraphs_type.honors_and_awards
+  module:
+    - text
+id: paragraph.honors_and_awards.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: honors_and_awards
+label: 'Custom honors and awards'
+description: 'Enter custom honors and awards here. If remote data is configured, this will be appended.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - simple_formatting
+field_type: text_long

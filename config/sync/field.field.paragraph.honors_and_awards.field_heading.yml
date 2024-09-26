@@ -1,0 +1,21 @@
+uuid: a887f1e6-1ed1-4c27-9be7-0bdd4f7edf86
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.honors_and_awards
+id: paragraph.honors_and_awards.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: honors_and_awards
+label: Heading
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 'Honors and Awards'
+default_value_callback: ''
+settings: {  }
+field_type: string

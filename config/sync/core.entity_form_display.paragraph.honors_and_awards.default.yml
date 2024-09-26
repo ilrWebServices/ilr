@@ -1,0 +1,34 @@
+uuid: a7a1ef4f-bea4-43f0-8a98-ca499ecb3472
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.honors_and_awards.field_body
+    - field.field.paragraph.honors_and_awards.field_heading
+    - paragraphs.paragraphs_type.honors_and_awards
+  module:
+    - text
+id: paragraph.honors_and_awards.default
+targetEntityType: paragraph
+bundle: honors_and_awards
+mode: default
+content:
+  field_body:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

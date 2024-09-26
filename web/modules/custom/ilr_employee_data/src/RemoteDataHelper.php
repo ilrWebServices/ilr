@@ -26,13 +26,33 @@ class RemoteDataHelper {
    *   News Articles, Books).
    */
   public function getPublications(string $netid, bool $published_only = TRUE, bool $public_only = TRUE): array {
-    // Do basic validation of NetID.
-    if (preg_match('/^[a-z]{2,4}\d{1,5}$/', $netid) === FALSE) {
-      // @todo throw error to prevent stuff?
+    if (!$this->validateNetid($netid)) {
       return [];
     }
 
     return $this->getActivityInsightPublications($netid, $published_only, $public_only);
+  }
+
+  /**
+   * Get awards and honors for a given person via their netid.
+   *
+   * @param string $netid
+   * @param boolean $public_only
+   *
+   * @return \Spatie\SchemaOrg\EducationalOccupationalCredential[]
+   *   An array of \Spatie\SchemaOrg\EducationalOccupationalCredential objects.
+   */
+  public function getAwards(string $netid, bool $public_only = TRUE): array {
+    if (!$this->validateNetid($netid)) {
+      return [];
+    }
+
+    return $this->getActivityInsightAwards($netid, $public_only);
+  }
+
+  protected function validateNetid(string $netid): bool {
+    // Do basic validation of NetID.
+    return (bool) preg_match('/^[a-z]{2,4}\d{1,5}$/', $netid);
   }
 
   /**
@@ -191,6 +211,56 @@ class RemoteDataHelper {
         ->url((string) $publication->WEB_ADDRESS)
         ->setProperty('ai_contype', (string) $publication->CONTYPE)
         ->setProperty('ai_public_view', (string) $publication->PUBLIC_VIEW);
+    }
+
+    return $data;
+  }
+
+  /**
+   * Get awards and honors from Activity Insight for a given netid.
+   *
+   * @param string $netid
+   * @param boolean $public_only
+   *
+   * @return \Spatie\SchemaOrg\EducationalOccupationalCredential[]
+   *   An array of \Spatie\SchemaOrg\EducationalOccupationalCredential objects.
+   */
+  protected function getActivityInsightAwards(string $netid, bool $public_only): array {
+    $cid = 'ai_award_data:' . $netid;
+
+    if ($cache_data = \Drupal::cache()->get($cid)) {
+      $remote_data = $cache_data->data;
+    }
+    else {
+      // Try to fetch award data from Activity Insight/Watermark/Digital
+      // Measures.
+      $url = sprintf('https://webservices.digitalmeasures.com/login/service/v4/SchemaData/INDIVIDUAL-ACTIVITIES-IndustrialLaborRelations/USERNAME:%s/AWARDHONOR', $netid);
+
+      try {
+        // @todo gzip this request.
+        $response = $this->client->get($url, ['auth' => [getenv('AI_USER'), getenv('AI_PASS')]]);
+      }
+      catch (\Exception $e) {
+        // @todo deal with this. Log it? Throw an error?
+        return [];
+      }
+
+      $remote_data = $response->getBody()->getContents();
+      \Drupal::cache()->set($cid, $remote_data, time() + 60 * 60);
+    }
+
+    $ai_person_xml = new SimpleXMLElement($remote_data);
+    $data = [];
+
+    foreach ($ai_person_xml->Record->AWARDHONOR as $award) {
+      if ($public_only && (string) $award->PUBLIC_VIEW !== 'Yes') {
+        continue;
+      }
+
+      $data[] = Schema::educationalOccupationalCredential()
+        ->name((string) $award->NAME)
+        ->publisher(Schema::organization()->name((string) $award->ORG))
+        ->datePublished(new \DateTime((string) $award->START_START));
     }
 
     return $data;
