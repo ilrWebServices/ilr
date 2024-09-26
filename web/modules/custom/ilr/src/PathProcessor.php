@@ -18,8 +18,21 @@ class PathProcessor implements OutboundPathProcessorInterface {
    * {@inheritdoc}
    */
   public function processOutbound($path, &$options = [], Request $request = NULL, BubbleableMetadata $bubbleable_metadata = NULL) {
-    if (isset($options['entity'])) {
-      $entity = $options['entity']->getEntityTypeId() === 'collection_item' ? $options['entity']->item->entity : $options['entity'];
+    $entity = FALSE;
+
+    if (!empty($options['entity'])) {
+      // This may be from an older version of linkit.
+      $entity = $options['entity'];
+    }
+    // Linkit 6.1.4 stores entity links with these two options.
+    elseif (!empty($options['data-entity-type']) && !empty($options['data-entity-uuid'])) {
+      $entity = \Drupal::service('entity.repository')->loadEntityByUuid($options['data-entity-type'], $options['data-entity-uuid']);
+    }
+
+    if ($entity) {
+      if ($entity->getEntityTypeId() === 'collection_item') {
+        $entity = $entity->item->entity;
+      }
 
       // Check that we are viewing, and not editing or deleting, an entity.
       // $options['route']->getDefault('_entity_view') is present on most
