@@ -15,7 +15,7 @@ use Drupal\filter\Plugin\FilterBase;
 use Drupal\filter\Plugin\FilterInterface;
 use Drupal\filter\Attribute\Filter;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\ilr_employee_data\PublicationsFetcher;
+use Drupal\ilr_employee_data\RemoteDataHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Spatie\SchemaOrg\BaseType;
 
@@ -44,7 +44,7 @@ class PublicationsEmbed extends FilterBase implements ContainerFactoryPluginInte
     array $configuration,
     $plugin_id,
     $plugin_definition,
-    protected PublicationsFetcher $publicationsFetcher,
+    protected RemoteDataHelper $remoteDataHelper,
     protected RendererInterface $renderer,
     protected LoggerChannelFactoryInterface $loggerFactory
   ) {
@@ -59,7 +59,7 @@ class PublicationsEmbed extends FilterBase implements ContainerFactoryPluginInte
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('ilr_employee_data.publications'),
+      $container->get('ilr_employee_data.remote_data_helper'),
       $container->get('renderer'),
       $container->get('logger.factory')
     );
@@ -82,7 +82,7 @@ class PublicationsEmbed extends FilterBase implements ContainerFactoryPluginInte
       /** @var \DOMElement $node */
       $netid = $node->getAttribute('data-netid');
       $citation_format = $node->getAttribute('data-citation-format') ?: 'mla';
-      $publications_data = $this->publicationsFetcher->getPublications($netid);
+      $publications_data = $this->remoteDataHelper->getPublications($netid);
       $build = [];
 
       if (empty($publications_data)) {

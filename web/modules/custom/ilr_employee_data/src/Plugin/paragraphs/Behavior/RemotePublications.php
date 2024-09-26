@@ -10,7 +10,7 @@ use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\ParagraphsBehaviorBase;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\ilr_employee_data\PublicationsFetcher;
+use Drupal\ilr_employee_data\RemoteDataHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -33,7 +33,7 @@ class RemotePublications extends ParagraphsBehaviorBase {
     $plugin_id,
     $plugin_definition,
     protected EntityFieldManagerInterface $entity_field_manager,
-    protected PublicationsFetcher $publicationsFetcher
+    protected RemoteDataHelper $remoteDataHelper
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_field_manager);
   }
@@ -47,7 +47,7 @@ class RemotePublications extends ParagraphsBehaviorBase {
       $plugin_id,
       $plugin_definition,
       $container->get('entity_field.manager'),
-      $container->get('ilr_employee_data.publications')
+      $container->get('ilr_employee_data.remote_data_helper')
     );
   }
 
@@ -79,7 +79,7 @@ class RemotePublications extends ParagraphsBehaviorBase {
     $netid = $paragraph->getBehaviorSetting($this->getPluginId(), 'netid');
 
     if ($netid) {
-      $publications_data = $this->publicationsFetcher->getPublications($netid);
+      $publications_data = $this->remoteDataHelper->getPublications($netid);
 
       $build['remote_publications']['label'] = [
         '#type' => 'inline_template',

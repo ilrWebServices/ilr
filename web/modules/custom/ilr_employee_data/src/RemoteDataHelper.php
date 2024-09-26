@@ -7,9 +7,9 @@ use SimpleXMLElement;
 use Spatie\SchemaOrg\Schema;
 
 /**
- * Fetches remote publications data from external services.
+ * Fetches and transforms remote data from external services.
  */
-class PublicationsFetcher {
+class RemoteDataHelper {
 
   public function __construct(
     protected Client $client
