@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.publications.field_body
+    - field.field.paragraph.publications.field_heading
     - paragraphs.paragraphs_type.publications
   module:
     - text
@@ -18,6 +19,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_heading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
   search_api_excerpt: true

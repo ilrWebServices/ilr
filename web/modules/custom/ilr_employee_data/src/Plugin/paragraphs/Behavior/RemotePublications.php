@@ -81,14 +81,6 @@ class RemotePublications extends ParagraphsBehaviorBase {
     if ($netid) {
       $publications_data = $this->remoteDataHelper->getPublications($netid);
 
-      $build['remote_publications']['label'] = [
-        '#type' => 'inline_template',
-        '#template' => '<h2 class="cu-heading">{{ title }}</h2>',
-        '#context' => [
-          'title' => $this->t('Publications'),
-        ],
-      ];
-
       foreach ($publications_data as $pubgroup => $items) {
         $clean_pubgroup = Html::cleanCssIdentifier($pubgroup);
 

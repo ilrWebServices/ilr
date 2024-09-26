@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override for a section_navigation heading field.
+ * Theme override for a paragraph heading field.
  *
  * Available variables:
  * - attributes: HTML attributes for the containing element.
@@ -20,15 +20,14 @@
  * @see template_preprocess_field()
  */
 #}
-{%
+{%-
   set classes = [
     'cu-heading',
     'field',
     'field--' ~ field_name|clean_class,
     'field-type--' ~ field_type|clean_class,
   ]
-%}
-
+-%}
 {% for item in items %}
   <h2{{attributes.addClass(classes)}}>{{ item.content }}</h2>
 {% endfor %}
