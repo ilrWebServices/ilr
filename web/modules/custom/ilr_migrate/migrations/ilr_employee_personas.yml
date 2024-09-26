@@ -11,6 +11,7 @@ source:
     - Employee_ID
   constants:
     label_suffix: ' (ILR Employee)'
+  track_changes: true
 process:
   uid:
     plugin: default_value

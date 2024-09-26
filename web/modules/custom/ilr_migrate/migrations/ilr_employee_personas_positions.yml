@@ -9,6 +9,7 @@ source:
   header_offset: 0
   ids:
     - Position_ID
+  track_changes: true
 process:
   persona:
     plugin: migration_lookup
