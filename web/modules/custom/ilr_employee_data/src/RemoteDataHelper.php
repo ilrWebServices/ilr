@@ -338,6 +338,10 @@ class RemoteDataHelper {
         continue;
       }
 
+      if (empty($activity->TITLE)) {
+        continue;
+      }
+
       $data[] = Schema::event()
         ->name((string) $activity->TITLE)
         ->organizer(Schema::organization()->name((string) $activity->ORG))
