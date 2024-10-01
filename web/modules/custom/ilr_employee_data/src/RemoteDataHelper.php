@@ -106,8 +106,12 @@ class RemoteDataHelper {
       \Drupal::cache()->set($cid, $remote_data, time() + 60 * 60);
     }
 
-    $ai_person_xml = new SimpleXMLElement($remote_data);
     $data = [];
+    $ai_person_xml = new SimpleXMLElement($remote_data);
+
+    if (empty($ai_person_xml)) {
+      return $data;
+    }
 
     foreach ($ai_person_xml->Record->INTELLCONT as $publication) {
       if ($published_only && (string) $publication->STATUS !== 'Published') {
@@ -266,8 +270,12 @@ class RemoteDataHelper {
       \Drupal::cache()->set($cid, $remote_data, time() + 60 * 60);
     }
 
-    $ai_person_xml = new SimpleXMLElement($remote_data);
     $data = [];
+    $ai_person_xml = new SimpleXMLElement($remote_data);
+
+    if (empty($ai_person_xml)) {
+      return $data;
+    }
 
     foreach ($ai_person_xml->Record->AWARDHONOR as $award) {
       if ($public_only && (string) $award->PUBLIC_VIEW !== 'Yes') {
@@ -316,8 +324,13 @@ class RemoteDataHelper {
       \Drupal::cache()->set($cid, $remote_data, time() + 60 * 60);
     }
 
-    $ai_person_xml = new SimpleXMLElement($remote_data);
     $data = [];
+    $ai_person_xml = new SimpleXMLElement($remote_data);
+
+    if (empty($ai_person_xml)) {
+      return $data;
+    }
+
     $tz = new \DateTimeZone('UTC');
 
     foreach ($ai_person_xml->Record->PRESENT as $activity) {
