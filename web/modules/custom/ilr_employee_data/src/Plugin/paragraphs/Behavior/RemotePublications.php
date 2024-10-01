@@ -81,6 +81,16 @@ class RemotePublications extends ParagraphsBehaviorBase {
     if ($netid) {
       $publications_data = $this->remoteDataHelper->getPublications($netid);
 
+      if (empty($publications_data)) {
+        // If the body field is also empty, clear out the build because we don't
+        // want to only display the heading.
+        if ($paragraph->field_body->isEmpty()) {
+          $build = [];
+        }
+
+        return;
+      }
+
       foreach ($publications_data as $pubgroup => $items) {
         $clean_pubgroup = Html::cleanCssIdentifier($pubgroup);
 

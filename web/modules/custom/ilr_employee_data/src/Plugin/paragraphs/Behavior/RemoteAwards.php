@@ -80,6 +80,16 @@ class RemoteAwards extends ParagraphsBehaviorBase {
     if ($netid) {
       $awards_data = $this->remoteDataHelper->getAwards($netid);
 
+      if (empty($awards_data)) {
+        // If the body field is also empty, clear out the build because we don't
+        // want to only display the heading.
+        if ($paragraph->field_body->isEmpty()) {
+          $build = [];
+        }
+
+        return;
+      }
+
       $build['remote_awards'] = [
         '#theme' => 'item_list__remote_awards',
         '#items' => [],

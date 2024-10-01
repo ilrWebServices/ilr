@@ -2,7 +2,6 @@
 
 namespace Drupal\ilr_employee_data\Plugin\paragraphs\Behavior;
 
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -80,6 +79,16 @@ class RemoteActivities extends ParagraphsBehaviorBase {
 
     if ($netid) {
       $actvities_data = $this->remoteDataHelper->getActivities($netid);
+
+      if (empty($actvities_data)) {
+        // If the body field is also empty, clear out the build because we don't
+        // want to only display the heading.
+        if ($paragraph->field_body->isEmpty()) {
+          $build = [];
+        }
+
+        return;
+      }
 
       $build['remote_activities'] = [
         '#theme' => 'item_list__remote_activities',
