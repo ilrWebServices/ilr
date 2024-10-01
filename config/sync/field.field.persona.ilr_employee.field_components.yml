@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.persona.field_components
     - paragraphs.paragraphs_type.honors_and_awards
+    - paragraphs.paragraphs_type.professional_activities
     - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.publications
     - person.persona_type.ilr_employee
@@ -26,100 +27,104 @@ settings:
     target_bundles:
       publications: publications
       honors_and_awards: honors_and_awards
+      professional_activities: professional_activities
       promo: promo
     negate: 0
     target_bundles_drag_drop:
       agenda:
-        weight: -59
-        enabled: false
-      agenda_item:
-        weight: -58
-        enabled: false
-      carousel:
-        weight: -57
-        enabled: false
-      collection_listing:
-        weight: -56
-        enabled: false
-      collection_listing_publication:
-        weight: -55
-        enabled: false
-      curated_course_listing:
-        weight: -54
-        enabled: false
-      curated_post_listing:
-        weight: -53
-        enabled: false
-      deck:
-        weight: -52
-        enabled: false
-      event_listing:
-        weight: -51
-        enabled: false
-      form:
-        weight: -50
-        enabled: false
-      honors_and_awards:
-        weight: -62
-        enabled: true
-      image:
-        weight: -49
-        enabled: false
-      instagram_listing:
-        weight: -48
-        enabled: false
-      media_deck:
-        weight: -47
-        enabled: false
-      organization_listing:
-        weight: -46
-        enabled: false
-      people_listing:
-        weight: -45
-        enabled: false
-      people_listing_dynamic:
-        weight: -33
-        enabled: false
-      person:
-        weight: -44
-        enabled: false
-      picture_in_picture:
-        weight: -43
-        enabled: false
-      project_listing:
-        weight: -42
-        enabled: false
-      promo:
-        weight: -61
-        enabled: true
-      publications:
-        weight: -63
-        enabled: true
-      rich_text:
         weight: -60
         enabled: false
+      agenda_item:
+        weight: -59
+        enabled: false
+      carousel:
+        weight: -58
+        enabled: false
+      collection_listing:
+        weight: -57
+        enabled: false
+      collection_listing_publication:
+        weight: -56
+        enabled: false
+      curated_course_listing:
+        weight: -55
+        enabled: false
+      curated_post_listing:
+        weight: -54
+        enabled: false
+      deck:
+        weight: -53
+        enabled: false
+      event_listing:
+        weight: -52
+        enabled: false
+      form:
+        weight: -51
+        enabled: false
+      honors_and_awards:
+        weight: -64
+        enabled: true
+      image:
+        weight: -50
+        enabled: false
+      instagram_listing:
+        weight: -49
+        enabled: false
+      media_deck:
+        weight: -48
+        enabled: false
+      organization_listing:
+        weight: -47
+        enabled: false
+      people_listing:
+        weight: -46
+        enabled: false
+      people_listing_dynamic:
+        weight: -34
+        enabled: false
+      person:
+        weight: -45
+        enabled: false
+      picture_in_picture:
+        weight: -44
+        enabled: false
+      professional_activities:
+        weight: -63
+        enabled: true
+      project_listing:
+        weight: -43
+        enabled: false
+      promo:
+        weight: -62
+        enabled: true
+      publications:
+        weight: -65
+        enabled: true
+      rich_text:
+        weight: -61
+        enabled: false
       section:
-        weight: -41
+        weight: -42
         enabled: false
       section_navigation:
-        weight: -40
+        weight: -41
         enabled: false
       simple_collection_listing:
-        weight: -39
+        weight: -40
         enabled: false
       table_of_contents:
-        weight: -38
+        weight: -39
         enabled: false
       testimonial:
-        weight: -37
+        weight: -38
         enabled: false
       testimonial_deck:
-        weight: -36
+        weight: -37
         enabled: false
       topic_list:
-        weight: -35
+        weight: -36
         enabled: false
       video:
-        weight: -34
+        weight: -35
         enabled: false
 field_type: entity_reference_revisions

@@ -1,0 +1,13 @@
+<div itemscope itemtype="https://schema.org/Event" class="event">
+  <span itemprop="name" class="event__title">{{ name|trim }}</span>.
+
+  {% if organizer.getProperty('name') %}
+    <span class="event_organizer">{% trans %}Presented to{% endtrans %} {{ organizer.getProperty('name') }}</span>.
+  {% endif -%}
+
+  {% if location %}
+    <span class="event_location">{{ location }}</span>.
+  {% endif -%}
+
+  <span itemprop="startDate" class="event_startdate">{{ startDate|date('Y') }}</span>.
+</div>

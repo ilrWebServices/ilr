@@ -50,6 +50,23 @@ class RemoteDataHelper {
     return $this->getActivityInsightAwards($netid, $public_only);
   }
 
+  /**
+   * Get professional activities for a given person via their netid.
+   *
+   * @param string $netid
+   * @param boolean $public_only
+   *
+   * @return \Spatie\SchemaOrg\Event[]
+   *   An array of \Spatie\SchemaOrg\Event objects.
+   */
+  public function getActivities(string $netid, bool $public_only = TRUE): array {
+    if (!$this->validateNetid($netid)) {
+      return [];
+    }
+
+    return $this->getActivityInsightActivities($netid, $public_only);
+  }
+
   protected function validateNetid(string $netid): bool {
     // Do basic validation of NetID.
     return (bool) preg_match('/^[a-z]{2,4}\d{1,5}$/', $netid);
@@ -261,6 +278,60 @@ class RemoteDataHelper {
         ->name((string) $award->NAME)
         ->publisher(Schema::organization()->name((string) $award->ORG))
         ->datePublished(new \DateTime((string) $award->START_START));
+    }
+
+    return $data;
+  }
+
+  /**
+   * Get activities from Activity Insight for a given netid.
+   *
+   * @param string $netid
+   * @param boolean $public_only
+   *
+   * @return \Spatie\SchemaOrg\Event[]
+   *   An array of \Spatie\SchemaOrg\Event objects.
+   */
+  protected function getActivityInsightActivities(string $netid, bool $public_only): array {
+    $cid = 'ai_activity_data:' . $netid;
+
+    if ($cache_data = \Drupal::cache()->get($cid)) {
+      $remote_data = $cache_data->data;
+    }
+    else {
+      // Try to fetch activity data from Activity Insight/Watermark/Digital
+      // Measures.
+      $url = sprintf('https://webservices.digitalmeasures.com/login/service/v4/SchemaData/INDIVIDUAL-ACTIVITIES-IndustrialLaborRelations/USERNAME:%s/PRESENT', $netid);
+
+      try {
+        // @todo gzip this request.
+        $response = $this->client->get($url, ['auth' => [getenv('AI_USER'), getenv('AI_PASS')]]);
+      }
+      catch (\Exception $e) {
+        // @todo deal with this. Log it? Throw an error?
+        return [];
+      }
+
+      $remote_data = $response->getBody()->getContents();
+      \Drupal::cache()->set($cid, $remote_data, time() + 60 * 60);
+    }
+
+    $ai_person_xml = new SimpleXMLElement($remote_data);
+    $data = [];
+    $tz = new \DateTimeZone('UTC');
+
+    foreach ($ai_person_xml->Record->PRESENT as $activity) {
+      if ($public_only && (string) $activity->PUBLIC_VIEW !== 'Yes') {
+        continue;
+      }
+
+      $data[] = Schema::event()
+        ->name((string) $activity->TITLE)
+        ->organizer(Schema::organization()->name((string) $activity->ORG))
+        ->superEvent(Schema::event()->name((string) $activity->NAME))
+        ->location((string) $activity->LOCATION)
+        ->startDate(new \DateTime((string) $activity->DATE_START, $tz))
+        ->endDate(new \DateTime((string) $activity->DATE_END, $tz));
     }
 
     return $data;

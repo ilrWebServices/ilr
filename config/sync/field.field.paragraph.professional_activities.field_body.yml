@@ -1,0 +1,24 @@
+uuid: 4220d6f7-9422-4bba-82b5-39ff58b2e0f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - filter.format.simple_formatting
+    - paragraphs.paragraphs_type.professional_activities
+  module:
+    - text
+id: paragraph.professional_activities.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: professional_activities
+label: 'Custom professional activities'
+description: 'Enter custom professional activities here. If remote data is configured, this will be appended.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - simple_formatting
+field_type: text_long
