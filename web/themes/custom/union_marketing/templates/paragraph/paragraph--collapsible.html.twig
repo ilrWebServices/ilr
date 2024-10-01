@@ -52,16 +52,24 @@
 
 {%- set readmore_id = 'readmore-' ~ paragraph.id() -%}
 
+{%- set rendered_content -%}
+{{ content }}
+{%- endset -%}
+
+{%- if rendered_content|length > 10000 -%}
 {{- attach_library('union_marketing/readmore_expander') -}}
 
 <div{{attributes.addClass(classes)}}>
   <input type="checkbox" id="{{ readmore_id }}" class="readmore-expander-checkbox">
 
   <div class="{{ 'cu-component--' ~ paragraph.bundle|clean_class }}-content readmore-expander-content">
-  {%- block content -%}
-    {{ content }}
-  {%- endblock -%}
+    {{ rendered_content }}
   </div>
 
   <label class="readmore-expander-label" for="{{ readmore_id }}">{% trans %}Read more{% endtrans %}</label>
 </div>
+{%- else -%}
+<div{{attributes.addClass(classes)}}>
+  {{ rendered_content }}
+</div>
+{%- endif -%}
