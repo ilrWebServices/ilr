@@ -33,10 +33,10 @@ final class IlrCommands extends DrushCommands {
   }
 
   /**
-   * Add a publications paragraph to 'faculty' ilr_employee personas.
+   * Add a publications, awards, and activities paragraphs to 'faculty' ilr_employee personas.
    */
-  #[CLI\Command(name: 'ilr:faculty-publications')]
-  #[CLI\Usage(name: 'ilr:faculty-publications', description: 'Add a publications paragraph to "faculty" ilr_employee personas')]
+  #[CLI\Command(name: 'ilr:faculty-remote-data')]
+  #[CLI\Usage(name: 'ilr:faculty-remote-data', description: 'Add remote data paragraphs (pubs, awards, activities) to "faculty" ilr_employee personas if they are missing.')]
   public function facultyPubsCommand() {
     $ilr_employee_personas = $this->entityTypeManager->getStorage('persona')->loadByProperties([
       'type' => 'ilr_employee',
@@ -45,22 +45,37 @@ final class IlrCommands extends DrushCommands {
 
     /** @var \Drupal\person\PersonaInterface $persona */
     foreach ($ilr_employee_personas as $persona) {
-      if ($persona->bundle() === 'ilr_employee' && $persona->field_employee_role->value === 'faculty' && $persona->field_components->isEmpty()) {
-        /** @var \Drupal\paragraphs\ParagraphInterface $publications */
-        $publications = $this->entityTypeManager->getStorage('paragraph')->create([
-          'type' => 'publications',
+      $remote_paragraph_types = [
+        'publications' => 'remote_publications',
+        'honors_and_awards' => 'remote_awards',
+        'professional_activities' => 'remote_activities',
+      ];
+
+      /** @var \Drupal\entity_reference_revisions\EntityReferenceRevisionsFieldItemList $paragraphs */
+      $paragraphs = $persona->field_components;
+
+      foreach ($paragraphs->referencedEntities() as $paragraph) {
+        if (isset($remote_paragraph_types[$paragraph->bundle()])) {
+          unset($remote_paragraph_types[$paragraph->bundle()]);
+        }
+      }
+
+      foreach ($remote_paragraph_types as $remote_paragraph_type => $remote_paragraph_setting_name) {
+        /** @var \Drupal\paragraphs\ParagraphInterface $new_paragraph */
+        $new_paragraph = $this->entityTypeManager->getStorage('paragraph')->create([
+          'type' => $remote_paragraph_type,
         ]);
 
         if ($persona->hasField('field_netid') && $persona->get('field_netid')) {
           $settings = [
-            'remote_publications' => ['netid' => $persona->field_netid->value],
+            $remote_paragraph_setting_name => ['netid' => $persona->field_netid->value],
           ];
 
-          $publications->setAllBehaviorSettings($settings);
-          $publications->save();
+          $new_paragraph->setAllBehaviorSettings($settings);
+          $new_paragraph->save();
         }
 
-        $persona->field_components->appendItem($publications);
+        $persona->field_components->appendItem($new_paragraph);
         $persona->save();
       }
     }
