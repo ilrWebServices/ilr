@@ -51,3 +51,18 @@ function ilr_deploy_map_carow_news_to_touchpoints(&$sandbox) {
     }
   }
 }
+
+/**
+ * Add missing publications paragraph headings.
+ */
+function ilr_deploy_add_missing_publication_paragraph_headings(&$sandbox) {
+  $publications_paragraphs = \Drupal::entityTypeManager()->getStorage('paragraph')->loadByProperties(['type' => 'publications']);
+
+  /** @var \Drupal\paragraphs\ParagraphInterface $publications_paragraph */
+  foreach ($publications_paragraphs as $publications_paragraph) {
+    if ($publications_paragraph->hasField('field_heading') && $publications_paragraph->get('field_heading')->isEmpty()) {
+      $publications_paragraph->set('field_heading', 'Publications');
+      $publications_paragraph->save();
+    }
+  }
+}
