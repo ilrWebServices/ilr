@@ -157,7 +157,7 @@ class RemoteDataHelper {
             ->setProperty('x_pmid', (string) $publication->PMID)
             ->setProperty('x_pmcid', (string) $publication->PMCID);
 
-          if ((string) $publication->PAGENUM && (string) $publication->VOLUME) {
+          if ((string) $publication->VOLUME) {
             $schemaObject->isPartOf(
               Schema::publicationIssue()
                 ->issueNumber((string) $publication->ISSUE)
