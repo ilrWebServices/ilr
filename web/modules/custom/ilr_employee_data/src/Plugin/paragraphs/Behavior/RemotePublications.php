@@ -79,7 +79,7 @@ class RemotePublications extends ParagraphsBehaviorBase {
     $netid = $paragraph->getBehaviorSetting($this->getPluginId(), 'netid');
 
     if ($netid) {
-      $publications_data = $this->remoteDataHelper->getPublications($netid);
+      $publications_data = $this->remoteDataHelper->getPublications($netid, FALSE);
 
       if (empty($publications_data)) {
         // If the body field is also empty, clear out the build because we don't
