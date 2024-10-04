@@ -21,9 +21,9 @@
     <span class="citation__journal">{{ publisher.getProperty('name') }}</span>
 
     {%- if isPartOf -%}
-    , <span class="citation__volume">{{ isPartOf.getProperty('isPartOf').getProperty('volumeNumber') }}</span>
+    , <span class="citation__volume">{{ isPartOf.getProperty('isPartOf').getProperty('volumeNumber')|trim }}</span>
       {%- if isPartOf.getProperty('issueNumber') -%}
-        <span class="citation__issue">({{ isPartOf.getProperty('issueNumber') }})</span>
+        <span class="citation__issue">({{ isPartOf.getProperty('issueNumber')|trim }})</span>
       {%- endif -%}
     {%- endif -%}
 
