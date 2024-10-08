@@ -1,0 +1,53 @@
+.employee-directory .filter-label {
+  display: none;
+}
+
+.employee-directory .role-filter {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.employee-directory .role-filter .active {
+  font-weight: bold;
+}
+
+.employee-directory .role-filter > * + *::before,
+.employee-directory .department-filter > * + *::before {
+  content: '';
+  border-left: 1px solid #333;
+  margin: 0 var(--cu-ps-1);
+}
+
+.employee-directory .role-filter a,
+.employee-directory .department-filter a {
+  text-decoration: none;
+}
+
+.employee-directory .filters {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  margin-bottom: var(--cu-vr2);
+}
+
+.employee-directory .filters > * {
+  order: 3;
+}
+
+.employee-directory .filters .role-filter {
+  width: 100%;
+  order: 1;
+}
+
+.employee-directory .filters .search-filter {
+  order: 2;
+  margin: 0;
+  padding: 0;
+}
+
+.employee-directory .filters .cu-input {
+  margin: 0;
+}

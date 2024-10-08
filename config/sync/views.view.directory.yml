@@ -1,6 +1,6 @@
 uuid: e39b47c6-8391-48e7-820f-0787fbb3f81c
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.persona.directory
@@ -10,7 +10,6 @@ dependencies:
     - field.storage.persona.field_netid
     - person.persona_type.ilr_employee
   module:
-    - options
     - person
     - text
 id: directory
@@ -901,7 +900,7 @@ display:
             format: full_html
           tokenize: false
       display_extenders: {  }
-      path: people
+      path: people-old
     cache_metadata:
       max-age: -1
       contexts:
