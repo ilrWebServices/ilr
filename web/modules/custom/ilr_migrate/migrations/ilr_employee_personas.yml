@@ -306,7 +306,14 @@ process:
     migration: ilr_employee_personas_cv_media
     source: Employee_ID
     no_stub: true
-  field_employee_role: employee_role
+  field_employee_role:
+    plugin: entity_generate
+    source: employee_role
+    entity_type: taxonomy_term
+    access_check: false
+    value_key: name
+    bundle_key: vid
+    bundle: ilr_employee_role
   field_areas_of_expertise:
     -
       plugin: skip_on_empty

@@ -38,9 +38,9 @@ class PersonEventSubscriber implements EventSubscriberInterface {
     /** @var \Drupal\person\Event\PersonaCreateEvent $event */
     $persona = $event->getPersona();
 
-    // If this is an ilr_employee persona with the role 'faculty', add a
+    // If this is an ilr_employee persona with the role 'Faculty', add a
     // publications paragraph.
-    if ($persona->bundle() === 'ilr_employee' && $persona->field_employee_role->value === 'faculty') {
+    if ($persona->bundle() === 'ilr_employee' && $persona->field_employee_role->entity->name->value === 'Faculty') {
       /** @var \Drupal\paragraphs\ParagraphInterface $publications */
       $publications = $this->entityTypeManager->getStorage('paragraph')->create([
         'type' => 'publications',

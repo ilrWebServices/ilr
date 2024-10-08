@@ -26,7 +26,6 @@ dependencies:
   module:
     - layout_builder
     - media
-    - options
     - telephone
 third_party_settings:
   layout_builder:
@@ -58,9 +57,10 @@ content:
     weight: 4
     region: content
   field_employee_role:
-    type: list_default
+    type: entity_reference_label
     label: hidden
-    settings: {  }
+    settings:
+      link: false
     third_party_settings: {  }
     weight: 2
     region: content

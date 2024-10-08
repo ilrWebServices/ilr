@@ -5,17 +5,25 @@ dependencies:
   config:
     - field.storage.persona.field_employee_role
     - person.persona_type.ilr_employee
-  module:
-    - options
+    - taxonomy.vocabulary.ilr_employee_role
 id: persona.ilr_employee.field_employee_role
 field_name: field_employee_role
 entity_type: persona
 bundle: ilr_employee
 label: 'Employee role'
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: list_string
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      ilr_employee_role: ilr_employee_role
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -3,25 +3,15 @@ langcode: en
 status: true
 dependencies:
   module:
-    - options
     - person
+    - taxonomy
 id: persona.field_employee_role
 field_name: field_employee_role
 entity_type: persona
-type: list_string
+type: entity_reference
 settings:
-  allowed_values:
-    -
-      value: faculty
-      label: Faculty
-    -
-      value: staff
-      label: Staff
-    -
-      value: academic
-      label: Academic
-  allowed_values_function: ilr_employee_position_role_allowed_values
-module: options
+  target_type: taxonomy_term
+module: core
 locked: false
 cardinality: 1
 translatable: true

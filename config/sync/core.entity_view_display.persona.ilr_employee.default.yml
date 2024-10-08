@@ -27,7 +27,6 @@ dependencies:
     - entity_reference_revisions
     - link
     - media
-    - options
     - telephone
     - text
 id: persona.ilr_employee.default
@@ -92,9 +91,10 @@ content:
     weight: 1
     region: content
   field_employee_role:
-    type: list_default
+    type: entity_reference_label
     label: hidden
-    settings: {  }
+    settings:
+      link: false
     third_party_settings: {  }
     weight: 12
     region: content

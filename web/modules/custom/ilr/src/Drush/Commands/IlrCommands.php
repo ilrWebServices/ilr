@@ -33,14 +33,14 @@ final class IlrCommands extends DrushCommands {
   }
 
   /**
-   * Add a publications, awards, and activities paragraphs to 'faculty' ilr_employee personas.
+   * Add a publications, awards, and activities paragraphs to 'Faculty' ilr_employee personas.
    */
   #[CLI\Command(name: 'ilr:faculty-remote-data')]
-  #[CLI\Usage(name: 'ilr:faculty-remote-data', description: 'Add remote data paragraphs (pubs, awards, activities) to "faculty" ilr_employee personas if they are missing.')]
+  #[CLI\Usage(name: 'ilr:faculty-remote-data', description: 'Add remote data paragraphs (pubs, awards, activities) to "Faculty" ilr_employee personas if they are missing.')]
   public function facultyPubsCommand() {
     $ilr_employee_personas = $this->entityTypeManager->getStorage('persona')->loadByProperties([
       'type' => 'ilr_employee',
-      'field_employee_role' => 'faculty',
+      'field_employee_role.entity.name' => 'Faculty',
     ]);
 
     /** @var \Drupal\person\PersonaInterface $persona */

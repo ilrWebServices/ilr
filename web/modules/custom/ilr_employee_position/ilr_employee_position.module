@@ -45,17 +45,3 @@ function template_preprocess_ilr_employee_position(&$variables) {
   // Make the ilr_employee_position available.
   $variables['ilr_employee_position'] = $ilr_employee_position;
 }
-
-/**
- * Return the allowed values for field_employee_roles.
- *
- * @see config/sync/field.storage.persona.field_employee_role.yml
- */
-function ilr_employee_position_role_allowed_values(FieldStorageConfig $definition, ContentEntityInterface $entity = NULL, $cacheable) {
-  return [
-    'faculty' => 'Faculty',
-    'faculty_emeritus' => 'Faculty emeritus',
-    'staff' => 'Staff',
-    'extension_associate' => 'Extension associate',
-  ];
-}
