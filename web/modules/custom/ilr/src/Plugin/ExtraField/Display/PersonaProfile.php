@@ -10,7 +10,7 @@ use Drupal\person\PersonaManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Canonical home field Display.
+ * Full profile link.
  *
  * @ExtraFieldDisplay(
  *   id = "profile",
