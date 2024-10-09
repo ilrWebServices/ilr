@@ -34,16 +34,16 @@
 }
 
 .employee-directory .filters > * {
-  order: 3;
+  order: 2;
 }
 
 .employee-directory .filters .role-filter {
   width: 100%;
-  order: 1;
+  order: 3;
 }
 
 .employee-directory .filters .search-filter {
-  order: 2;
+  order: 1;
   margin: 0;
   padding: 0;
 }
