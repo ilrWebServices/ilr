@@ -35,7 +35,7 @@ class DirectoryController extends ControllerBase {
             ],
             'department' => [
               '#type' => 'inline_template',
-              '#template' => '<select name="dept" class="department-filter"><option value="">- Any department -</option>{% for option in options %}<option {{ option.attr }} value="{{ option.val }}">{{ option.val }}</option>{% endfor %}</select>',
+              '#template' => '<select name="dept" class="department-filter cu-input"><option value="">- Any department -</option>{% for option in options %}<option {{ option.attr }} value="{{ option.val }}">{{ option.val }}</option>{% endfor %}</select>',
               '#context' => [
                 'options' => [],
               ],
