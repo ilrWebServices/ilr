@@ -17,7 +17,10 @@
 {% for key, item in content.extra_field_ilr_employee_positions|filter((v, k) => k|first != '#') %}
   {% set position = item['#ilr_employee_position']%}
   {% if position.primary.value == "1" %}
-  {% set primary_title = position.title.value ~ ', ' ~ position.department.entity.name.value %}
+  {% set primary_title %}
+  <span class="persona--directory-card-title"><strong>{{ position.title.value }}</strong></span><br/>
+  <span class="persona--directory-card-dept">{{ position.department.entity.name.value }}</span>
+  {% endset %}
   {% endif %}
 {% endfor %}
 {% endif %}
