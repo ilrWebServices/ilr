@@ -48,6 +48,11 @@
   padding: 0;
 }
 
+.employee-directory .filters .search-filter .cu-input:focus {
+  border-color: #b31b1b;
+  outline: #b31b1b;
+}
+
 /* @todo Figure out why this isn't happening in Union. */
 .employee-directory .filters .department-filter {
   background: white;
