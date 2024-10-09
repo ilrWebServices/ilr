@@ -1,0 +1,35 @@
+name: Schema.org Event
+props:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+      title: Name
+      description: "The name of the event."
+    organizer:
+      type: object
+      title: Organizer
+      description: "The organizer organization of the event."
+    startDate:
+      type: string
+      title: Start date
+      description: "The start date of the event."
+    endDate:
+      type: string
+      title: End date
+      description: "The end date of the event."
+    location:
+      type: string
+      title: Location
+      description: "The location of the event."
+    superEvent:
+      type: object
+      title: Super event
+      description: "The event that this event is part of, e.g. the event at which a presentation occurred."
+    url:
+      type: string
+      title: URL
+      description: "The URL of the event."
+

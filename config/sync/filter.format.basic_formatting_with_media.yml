@@ -50,11 +50,11 @@ filters:
     id: filter_footnotes
     provider: footnotes
     status: true
-    weight: -50
+    weight: 0
     settings:
-      footnotes_collapse: '0'
-      footnotes_html: '1'
-      footnotes_css: '1'
+      footnotes_collapse: 0
+      footnotes_html: 0
+      footnotes_css: 1
   filter_html:
     id: filter_html
     provider: filter
@@ -133,4 +133,4 @@ filters:
     status: false
     weight: -36
     settings:
-      replace_empty: '0'
+      replace_empty: false

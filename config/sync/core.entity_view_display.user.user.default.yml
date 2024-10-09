@@ -7,6 +7,7 @@ dependencies:
   module:
     - collection
     - collection_request
+    - ilr
     - layout_builder
     - layout_discovery
     - union_organizer
@@ -42,6 +43,17 @@ third_party_settings:
               provider: collection_request
               context_mapping: {  }
             weight: 0
+            additional: {  }
+          eb5851a9-0631-4941-8577-a89da9bf6d52:
+            uuid: eb5851a9-0631-4941-8577-a89da9bf6d52
+            region: main
+            configuration:
+              id: ilr_profile_edit_link
+              label: 'Profile edit link'
+              label_display: '0'
+              provider: ilr
+              context_mapping: {  }
+            weight: -1
             additional: {  }
         third_party_settings: {  }
       -

@@ -5,12 +5,14 @@ dependencies:
   config:
     - core.entity_view_mode.persona.teaser
     - field.field.persona.visiting_fellow.field_bio
+    - field.field.persona.visiting_fellow.field_campus_address
     - field.field.persona.visiting_fellow.field_email
     - field.field.persona.visiting_fellow.field_faculty_sponsor_text
     - field.field.persona.visiting_fellow.field_first_name
     - field.field.persona.visiting_fellow.field_last_name
     - field.field.persona.visiting_fellow.field_photo
     - field.field.persona.visiting_fellow.field_place_of_origin
+    - field.field.persona.visiting_fellow.field_sections
     - field.field.persona.visiting_fellow.field_visiting_period
     - image.style.thumbnail_square
     - person.persona_type.visiting_fellow
@@ -51,6 +53,8 @@ content:
     settings:
       image_link: content
       image_style: thumbnail_square
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 1
     region: content
@@ -67,14 +71,17 @@ content:
     settings:
       timezone_override: ''
       format_type: month_year
-      separator: '-'
       from_to: both
+      separator: '-'
     third_party_settings: {  }
     weight: 2
     region: content
 hidden:
+  extra_field_profile: true
+  field_campus_address: true
   field_email: true
   field_faculty_sponsor_text: true
   field_first_name: true
   field_last_name: true
+  field_sections: true
   search_api_excerpt: true

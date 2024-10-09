@@ -1,0 +1,42 @@
+.readmore-expander-checkbox {
+  display: none;
+}
+
+.readmore-expander-label {
+  cursor: pointer;
+  color: var(--cu-color-brand);
+  font-weight: 400;
+}
+
+.readmore-expander-label::before {
+  content: '+';
+  display: inline-block;
+  padding-right: .25em;
+}
+
+.readmore-expander-checkbox:checked ~ .readmore-expander-label::before {
+  content: '-';
+}
+
+.readmore-expander-content {
+  position: relative;
+  max-height: 20em;
+  overflow: hidden;
+}
+
+.readmore-expander-content::after {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: auto 0 0 0;
+  background: linear-gradient(rgba(0,0,0,0), white);
+  height: 4em;
+}
+
+.readmore-expander-checkbox:checked + .readmore-expander-content {
+  max-height: revert;
+}
+
+.readmore-expander-checkbox:checked + .readmore-expander-content::after {
+  background: unset;
+}

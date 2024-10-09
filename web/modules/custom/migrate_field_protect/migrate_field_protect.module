@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Contains migrate_field_protect.module.
+ */
+use Drupal\node\NodeForm;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function migrate_field_protect_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the migrate_field_protect module.
+    case 'help.page.migrate_field_protect':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A small custom module used to prevent editing of fields on content entities that have been
+mapped to a recurring migration') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function migrate_field_protect_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  \Drupal::service('migrate_field_protect.content_entity_form.alter')->alterForm($form, $form_state, $form_id);
+}

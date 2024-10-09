@@ -1,5 +1,5 @@
 {#
- * Theme override for a faculty persona.
+ * Theme override for a persona full view.
  *
  * Available variables:
  * - persona: The persona entity with limited access to object properties and methods.
@@ -22,23 +22,25 @@
     view_mode ? 'persona--' ~ view_mode|clean_class,
   ]
 %}
-
 <div{{attributes.addClass(classes)}}>
   {% if content %}
   <div class="persona--photo">
   {{ content.field_photo }}
   </div>
   <div class="persona--primary">
-  {% if view_mode == 'full' %}
   <h1 class="cu-heading">{{ label }}</h1>
-  {% endif %}
-  {{- content|without('field_photo', 'field_campus_address', 'field_email', 'field_fax', 'field_phone') -}}
+  {{ content.field_title }}
+  {{ content.field_department }}
+  {{ content.field_bio }}
   </div>
   <div class="persona--secondary">
   {{ content.field_campus_address }}
   {{ content.field_email }}
   {{ content.field_phone }}
   {{ content.field_fax }}
+  {% if modal %}
+  {{ content.extra_field_profile }}
+  {% endif %}
   </div>
   {% endif %}
 </div>

@@ -1,0 +1,21 @@
+uuid: d36e457e-4dd1-4450-8610-dfbeb9842c39
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: person.field_netid
+field_name: field_netid
+entity_type: person
+type: string
+settings:
+  max_length: 10
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,23 @@
+uuid: de7d43aa-18cb-42c6-a50b-e563ec1d33c5
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: faculty_staff_personas
+label: 'Faculty and Staff personas'
+type: 'canonical_entities:persona'
+pattern: 'people/[persona:type]/[persona:display_name]'
+selection_criteria:
+  a3b4988c-5baf-4b01-901a-dc998aec4597:
+    id: 'entity_bundle:persona'
+    negate: false
+    uuid: a3b4988c-5baf-4b01-901a-dc998aec4597
+    context_mapping:
+      persona: persona
+    bundles:
+      faculty: faculty
+      staff: staff
+selection_logic: and
+weight: -5
+relationships: {  }

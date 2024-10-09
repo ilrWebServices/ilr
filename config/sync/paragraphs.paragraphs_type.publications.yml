@@ -1,0 +1,14 @@
+uuid: c427dd03-d793-42d3-9052-9c0317cfce5e
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr_employee_data
+id: publications
+label: Publications
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  remote_publications:
+    enabled: true

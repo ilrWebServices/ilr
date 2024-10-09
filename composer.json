@@ -101,8 +101,10 @@
     "drupal/metatag": "^2.0",
     "drupal/migrate_file": "^2.0",
     "drupal/migrate_plus": "^6.0",
+    "drupal/migrate_scheduler": "^1.0@RC",
     "drupal/migrate_source_csv": "^3.5",
     "drupal/migrate_tools": "^6.0",
+    "drupal/multiple_selects": "^1.2",
     "drupal/paragraphs": "^1.9",
     "drupal/paragraphs_previewer": "^1.4",
     "drupal/pathauto": "^1.4",
@@ -129,6 +131,7 @@
     "ilrwebservices/campaign-monitor-rest-api-client": "^1.0.0",
     "league/csv": "^9.0",
     "platformsh/config-reader": "^2.4",
+    "spatie/schema-org": "^3.23",
     "symfony/dotenv": "^7.1"
   },
   "require-dev": {

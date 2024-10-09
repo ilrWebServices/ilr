@@ -1,0 +1,58 @@
+id: ilr_employee_personas_cv_media
+label: ILR employee personas cv media
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'csv_url'
+  path: 'https://develop-sr3snxi-3clxnhn74bxvu.us-4.platformsh.site/files/default/employee-feed.csv'
+  header_offset: 0
+  ids:
+    - Employee_ID
+  constants:
+    suffix: ' CV'
+    file_destination: 'public://personas/ilr_employee/'
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  _default_entity_name:
+    plugin: concat
+    source:
+      - Preferred_Name
+      - constants/suffix
+  name:
+    -
+      # Filter out empty sources.
+      plugin: callback
+      callable: array_filter
+      source:
+        - d7_cv_description
+        - '@_default_entity_name'
+    -
+      # Use the first source, now that empty values have been removed.
+      plugin: callback
+      callable: 'current'
+  langcode:
+    plugin: default_value
+    default_value: en
+  _source_full_path:
+    plugin: urlencode
+    source: d7_cv_uri
+  field_media_file:
+    -
+      plugin: skip_on_empty
+      method: row
+      source: d7_cv_uri
+    -
+      plugin: file_import
+      source: '@_source_full_path'
+      destination: constants/file_destination
+      uid: '@uid'
+      skip_on_missing_source: true
+destination:
+  plugin: 'entity:media'
+  default_bundle: file
+migration_dependencies:
+  required: {  }
+  optional: {  }

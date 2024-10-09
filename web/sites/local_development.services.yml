@@ -6,6 +6,7 @@ parameters:
   http.response.debug_cacheability_headers: false
   twig.config:
     debug: true
+    cache: false
   renderer.config:
     required_cache_contexts: ['languages:language_interface', 'theme', 'user.permissions']
     auto_placeholder_conditions:

@@ -1,0 +1,4 @@
+services:
+  ilr_employee_data.remote_data_helper:
+    class: Drupal\ilr_employee_data\RemoteDataHelper
+    arguments: ['@http_client']

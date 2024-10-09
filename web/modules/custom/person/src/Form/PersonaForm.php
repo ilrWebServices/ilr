@@ -8,6 +8,7 @@ use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -18,27 +19,16 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class PersonaForm extends ContentEntityForm {
 
   /**
-   * The date formatter service.
-   *
-   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   * Constructs a PersonaForm object.
    */
-  protected $dateFormatter;
-
-  /**
-   * Constructs a NodeForm object.
-   *
-   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
-   *   The entity repository.
-   * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entity_type_bundle_info
-   *   The entity type bundle service.
-   * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   The time service.
-   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
-   *   The date formatter service.
-   */
-  public function __construct(EntityRepositoryInterface $entity_repository, EntityTypeBundleInfoInterface $entity_type_bundle_info = NULL, TimeInterface $time = NULL, DateFormatterInterface $date_formatter) {
-    parent::__construct($entity_repository, $entity_type_bundle_info, $time);
-    $this->dateFormatter = $date_formatter;
+  public function __construct(
+    EntityRepositoryInterface $entityRepository,
+    EntityTypeBundleInfoInterface $entityTypeBundleInfo,
+    TimeInterface $time,
+    protected DateFormatterInterface $dateFormatter,
+    protected AccountProxyInterface $account
+  ) {
+    parent::__construct($entityRepository, $entityTypeBundleInfo, $time);
   }
 
   /**
@@ -49,7 +39,8 @@ class PersonaForm extends ContentEntityForm {
       $container->get('entity.repository'),
       $container->get('entity_type.bundle.info'),
       $container->get('datetime.time'),
-      $container->get('date.formatter')
+      $container->get('date.formatter'),
+      $container->get('current_user')
     );
   }
 
@@ -68,6 +59,7 @@ class PersonaForm extends ContentEntityForm {
         '#type' => 'link',
         '#title' => $this->t('Edit') . ' ' . $persona->person->entity->label(),
         '#url' => $persona->person->entity->toUrl('edit-form'),
+        '#access' => $this->account->hasPermission('administer persons'),
       ];
 
       $form['inherited'] = [
@@ -83,16 +75,7 @@ class PersonaForm extends ContentEntityForm {
 
       foreach ($persona->type->entity->getInheritedFieldNames() as $field_name) {
         if (isset($form[$field_name]) && (!$persona->fieldIsOverridden($field_name) || $persona->$field_name->isEmpty())) {
-          $form['inherited'][$field_name] = $form[$field_name];
-          $form['inherited'][$field_name]['widget'][0]['value']['#placeholder'] = isset($persona->person->entity) ? $persona->person->entity->$field_name->value : '';
-          // If the render element is at the root, we need to hide it. For all
-          // other field widgets, we need to unset the field.
-          if (empty($form[$field_name]['widget'][0])) {
-            $form[$field_name]['#access'] = FALSE;
-          }
-          else {
-            unset($form[$field_name]);
-          }
+          $form[$field_name]['#group'] = 'inherited';
         }
       }
     }
@@ -102,7 +85,7 @@ class PersonaForm extends ContentEntityForm {
     // See person_theme().
     $form['#theme'] = ['persona_edit_form'];
 
-    // Advanced is created in the parent class/
+    // Advanced is created in the parent class.
     $form['advanced']['#type'] = 'container';
     $form['advanced']['#attributes']['class'][] = 'entity-meta';
     $form['revision_information']['#type'] = 'container';
@@ -157,7 +140,7 @@ class PersonaForm extends ContentEntityForm {
         ]));
     }
 
-    $form_state->setRedirect('entity.persona.collection');
+    $form_state->setRedirect('entity.persona.canonical', ['persona' => $this->entity->id()]);
   }
 
 }

@@ -1,0 +1,75 @@
+.employee-directory .filter-label {
+  display: none;
+}
+
+.employee-directory .role-filter {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.employee-directory .role-filter .active {
+  font-weight: bold;
+}
+
+.employee-directory .role-filter > * + *::before,
+.employee-directory .department-filter > * + *::before {
+  content: '';
+  border-left: 1px solid #333;
+  margin: 0 var(--cu-ps-1);
+}
+
+.employee-directory .role-filter a,
+.employee-directory .department-filter a {
+  text-decoration: none;
+}
+
+.employee-directory .filters {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-bottom: var(--cu-vr2);
+}
+
+.employee-directory .filters > * {
+  order: 2;
+}
+
+.employee-directory .filters .role-filter {
+  width: 100%;
+  order: 3;
+}
+
+.employee-directory .filters .search-filter {
+  order: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.employee-directory .filters .search-filter .cu-input:focus {
+  border-color: #b31b1b;
+  outline: #b31b1b;
+}
+
+/* @todo Figure out why this isn't happening in Union. */
+.employee-directory .filters .department-filter {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6.1018 8C5.02785 8 4.45387 9.2649 5.16108 10.0731L10.6829 16.3838C11.3801 17.1806 12.6197 17.1806 13.3169 16.3838L18.8388 10.0731C19.5459 9.2649 18.972 8 17.898 8H6.1018Z' fill='%23212121'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+
+.employee-directory .filters .clear-filter {
+  text-decoration: none;
+  align-self: center;
+}
+
+.employee-directory .filters .cu-input {
+  margin: 0;
+}

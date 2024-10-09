@@ -1,0 +1,225 @@
+.persona.profile {
+  display: grid;
+  row-gap: var(--cu-vr3);
+
+  @include breakpoint(md) {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(5, auto);
+    column-gap: var(--cu-ps4);
+    // max-width: var(--cu-max-width-section);
+    // margin: 0 auto;
+  }
+
+  .profile__header,
+  .profile__footer {
+    grid-column: 1/-1;
+  }
+
+  .profile__footer {
+    @include breakpoint(md) {
+      padding-left: var(--cu-ps4);
+      padding-right: var(--cu-ps4);
+    }
+  }
+
+  .profile__banner {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto auto;
+    column-gap: var(--cu-ps4);
+    padding: 0 0 0 var(--cu-ps2);
+
+    background:
+     linear-gradient($black 0 0) top left / var(--cu-ps1) 16px,
+     linear-gradient($black 0 0) left / 16px 100%,
+     linear-gradient($black 0 0) bottom left / var(--cu-ps5) 16px, transparent;
+    background-repeat: no-repeat;
+
+    @include breakpoint(md) {
+      grid-template-columns: 1fr 1.125fr;
+      grid-template-rows: auto 1fr auto 75px;
+      padding: 0 0 0 var(--cu-ps4);
+      background:
+       linear-gradient($black 0 0) top left / var(--cu-ps3) 16px,
+       linear-gradient($black 0 0) left / 16px 100%,
+       linear-gradient($black 0 0) bottom left / var(--cu-ps5) 16px, transparent;
+      background-repeat: no-repeat;
+    }
+
+    .profile__secondary {
+      margin: var(--cu-vr1) 0 var(--cu-vr2) 0;
+
+      @include breakpoint(md) {
+        grid-row: 1/-1;
+        grid-column: 2;
+        margin: unset;
+      }
+    }
+
+    .profile__eyebrow {
+      grid-row: 1;
+      text-transform: uppercase;
+      opacity: 0.7;
+      font-size: var(--cu-ms-4);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--cu-vr-1);
+
+      // This is a hack because the name/heading below uses futura, which seems to all a few pixels to the left of most letters.
+      // margin-left: 4px;
+    }
+
+    h1.cu-heading {
+      --cu-font-family: 'futura-pt';
+      text-transform: uppercase;
+      line-height: 1;
+
+      @include breakpoint(md) {
+        --cu-font-size: var(--cu-ms10);
+      }
+    }
+
+    .profile-positions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--cu-vr-1);
+    }
+
+    .ilr-employee-position {
+      .field--title {
+        --cu-font-weight: 400;
+        --cu-line-height: 1.25;
+        display: flex;
+        flex-direction: column;
+        gap: var(--cu-vr-1);
+      }
+
+      .field--department {
+        --cu-font-size: var(--cu-ms-2);
+      }
+    }
+  }
+
+  .profile__content {
+    @include breakpoint(md) {
+      grid-column: 1;
+      grid-row: 2;
+      padding-left: var(--cu-ps4);
+    }
+
+    // This is the spacing between items in the main content column.
+    > * + * {
+      margin-top: var(--cu-vr2);
+    }
+
+    .field__label {
+      font-weight: 400;
+      font-size: var(--cu-ms5);
+      margin-bottom: var(--cu-vr-1);
+    }
+  }
+
+  .profile__sidebar {
+    margin-bottom: var(--cu-vr2);
+
+    // This is the spacing between items in the sidebar.
+    > * + * {
+      margin-top: var(--cu-vr2);
+      padding: 0 var(--cu-ps1);
+    }
+
+    .cu-heading,
+    .field__label {
+      font-size: var(--cu-ms1);
+      font-weight: normal;
+      margin-bottom: var(--cu-vr-1);
+    }
+
+    @include breakpoint(md) {
+      grid-column: 2;
+      padding-right: var(--cu-ps4);
+      margin-bottom: unset;
+    }
+  }
+
+  .profile__meta {
+    background: $gray-lightest;
+    padding: var(--cu-vr1) var(--cu-ps1);
+
+    .field {
+      margin-bottom: var(--cu-vr1);
+    }
+  }
+
+  .cu-breadcrumb {
+    // margin: 0;
+  }
+
+  .cu-section {
+    max-width: 100%;
+
+    // Prevent links from breaking the layout on mobile.
+    a {
+      @include word-wrap();
+    }
+
+    .cu-component--rich-text {
+      max-width: 740px;
+    }
+
+    .cu-composite-heading {
+      --cu-composite-heading-align: flex-start;
+      --cu-composite-heading-text-align: left;
+    }
+  }
+
+  // Never let the full-bleed section background be wider than the viewport on
+  // small screens. @TODO Consider moving this to Union.
+  .cu-section[class*="cu-colorscheme"]::before {
+    width: 100vw;
+
+    @include breakpoint(md) {
+      width: 150vw;
+    }
+  }
+
+  .field--field-websites .field__item {
+    margin-bottom: var(--cu-vr0);
+  }
+}
+
+.profile__expertise-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cu-vr-1);
+}
+
+.profile__expertise {
+  padding: var(--cu-vr-3) var(--cu-ps-1);
+  border: 1px solid $gray-medium;
+  border-radius: 1rem;
+  font-weight: 400;
+  font-size: var(--cu-ms-2);
+}
+
+.cu-person--adaptive.persona--ilr-employee {
+  .cu-person__image {
+    aspect-ratio: 1.4;
+    background-color: $gray-dark;
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgd2lkdGg9IjMybW0iCiAgIGhlaWdodD0iMzJtbSIKICAgdmlld0JveD0iMCAwIDMyIDMyIgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICA8Y2lyY2xlCiAgICAgICBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojZmZmZmZmO3N0cm9rZS13aWR0aDoxLjU7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxO3BhaW50LW9yZGVyOmZpbGwgbWFya2VycyBzdHJva2UiCiAgICAgICBjeD0iMTYiCiAgICAgICBjeT0iNy43IgogICAgICAgcj0iNi44IgogICAgICAgaWQ9ImNpcmNsZTEiIC8+PHBhdGgKICAgICAgIHN0eWxlPSJmaWxsOm5vbmU7c3Ryb2tlOiNmZmZmZmY7c3Ryb2tlLXdpZHRoOjEuNTtzdHJva2UtbGluZWNhcDpyb3VuZDtwYWludC1vcmRlcjpmaWxsIG1hcmtlcnMgc3Ryb2tlIgogICAgICAgZD0iTSA5LDIxIEggMjMgYyAzLjUsMCA2LjMyLDIuOCA2LjMyLDYuMzIgbCAwLDMuOSAtMjYuNSwwIDAsLTMuOSBDIDIuNzUsMjQgNS41LDIxIDksMjEgWiIKICAgICAgIGlkPSJwYXRoMSIgLz48L3N2Zz4K');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 32px;
+  }
+}
+
+@container (min-width: 326px) {
+  .cu-person--adaptive.persona--ilr-employee .cu-person__image{
+    aspect-ratio: revert;
+  }
+}
+
+.remote-publications li {
+  margin-bottom: var(--cu-vr-1);
+}

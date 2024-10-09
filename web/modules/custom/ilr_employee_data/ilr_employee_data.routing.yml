@@ -1,0 +1,7 @@
+ilr_employee_data.directory:
+  path: '/people'
+  defaults:
+    _title: 'People at ILR'
+    _controller: '\Drupal\ilr_employee_data\Controller\DirectoryController::view'
+  requirements:
+    _permission: 'access content'

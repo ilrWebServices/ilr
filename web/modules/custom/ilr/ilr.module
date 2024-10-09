@@ -31,7 +31,9 @@ use Drupal\Core\Field\WidgetInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\taxonomy\VocabularyInterface;
 use Drupal\collection\Entity\CollectionItemInterface;
+use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Database\Query\AlterableInterface;
+use Drupal\Core\Link;
 use Drupal\ilr\Entity\CertificateNode;
 use Drupal\ilr\Entity\ClassNode;
 use Drupal\ilr\Entity\EventLandingNode;
@@ -1017,6 +1019,25 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
 function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Move collection items into the advanced group.
   $form['ief_collection_items']['#group'] = 'advanced';
+
+  // Move editors on ilr_employee personas to the meta section in the advanced
+  // group, e.g. the sidebar of the add/edit form.
+  if (strpos($form_id, 'persona_ilr_employee') === 0) {
+    if (isset($form['field_editors'])) {
+      $form['field_editors']['#group'] = 'meta';
+    }
+
+    $form['inherited']['#group'] = 'advanced';
+    $form['inherited']['#weight'] = -9;
+
+    $form['imported_info']['#description'] = t('Imported information can be modified in @workday_link.', [
+      '@workday_link' => Link::fromTextAndUrl('Workday', Url::fromUri('https://shibidp.cit.cornell.edu/idp/profile/SAML2/Unsolicited/SSO?providerId=http://www.workday.com'))->toString(),
+    ]);
+
+    // Move the read-only list of related employee positions to the imported
+    // info section.
+    $form['extra_field_ilr_employee_positions_description']['#group'] = 'imported_info';
+  }
 }
 
 /**
@@ -1164,7 +1185,7 @@ function ilr_field_widget_single_element_paragraphs_form_alter(&$element, FormSt
     }));
 
     // If it's behavior-driven, leave the element open.
-    $element['behavior_plugins']['#open'] = $behavior_driven_component;
+    $element['behavior_plugins']['#open'] = $behavior_driven_component || in_array($paragraphs_entity->bundle(), ['publications']);
   }
 
   // Add a class to closed paragraphs.
@@ -1515,10 +1536,9 @@ function ilr_paragraph_create_access(AccountInterface $account = NULL, array $co
 
 /**
  * Implements hook_entity_field_access_alter().
- *
- * Add grant access for content owners with 'publish own content` permission.
  */
 function ilr_entity_field_access_alter(array &$grants, array $context) {
+  // Add grant access for content owners with 'publish own content` permission.
   if ($context['field_definition']->getTargetEntityTypeId() === 'node' && $context['field_definition']->getName() === 'status' && $context['operation'] === 'edit') {
     if ($context['account']->hasPermission('administer nodes')) {
       return;
@@ -1527,6 +1547,31 @@ function ilr_entity_field_access_alter(array &$grants, array $context) {
     if ($context['items']->getEntity()->getOwnerId() === $context['account']->id()) {
       $grants[':default'] = AccessResult::allowedIfHasPermission($context['account'], 'publish own content');
     }
+  }
+
+  // Remove edit access for persona editors field unless user has permission to
+  // administer person fields or is the owner if the persona.
+  if ($context['field_definition']->getTargetEntityTypeId() === 'persona' && $context['field_definition']->getName() === 'field_editors' && $context['operation'] === 'edit') {
+    // Allow access to the editors field if the current user owns the persona.
+    if (\Drupal::moduleHandler()->moduleExists('externalauth')) {
+      /** @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $items */
+      $items = $context['items'];
+
+      /** @var \Drupal\person\Entity\Persona */
+      $persona = $items->getEntity();
+      $authmap = \Drupal::service('externalauth.authmap');
+      $netid = $authmap->get($context['account']->id(), 'samlauth');
+
+      if ($persona->hasField('field_netid') && $persona->field_netid->value === $netid) {
+        return;
+      }
+    }
+
+    if ($context['account']->hasPermission('administer persons')) {
+      return;
+    }
+
+    $grants[':default'] = AccessResult::allowedIfHasPermission($context['account'], 'administer person fields and persona types');
   }
 }
 
@@ -1597,4 +1642,47 @@ function ilr_mail_alter(&$message) {
   // Disable Campaign Monitor transactional email tracking features.
   $message['headers']['X-Cmail-TrackOpens'] = 'false';
   $message['headers']['X-Cmail-TrackClicks'] = 'false';
+}
+
+/**
+ * Implements hook_entity_access().
+ *
+ * Allow edit access for users with a netid matching the field values of the
+ * persona.
+ *
+ * @TODO Remove when owners field is added to persona entities.
+ */
+function ilr_entity_access(EntityInterface $entity, $op, AccountInterface $account) {
+  $access_result = AccessResult::neutral();
+
+  if ($entity instanceof ConfigEntityInterface) {
+    return $access_result;
+  }
+
+  if (!in_array($op, ['view', 'update'])) {
+    return $access_result;
+  }
+
+  /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
+  if ($entity->getEntityTypeId() !== 'persona') {
+    return $access_result;
+  }
+
+  if ($entity->hasField('field_netid') && \Drupal::moduleHandler()->moduleExists('externalauth')) {
+    $authmap = \Drupal::service('externalauth.authmap');
+    $netid = $authmap->get($account->id(), 'samlauth');
+
+    $access_result = AccessResult::allowedIf(($netid === $entity->field_netid->value))->cachePerUser()->addCacheableDependency($entity);
+  }
+
+  if ($entity->hasField('field_editors')) {
+    foreach ($entity->field_editors->referencedEntities() as $editor_user) {
+      if ($editor_user->id() === $account->id()) {
+        $access_result = AccessResult::allowed()->cachePerUser()->addCacheableDependency($entity);
+        break;
+      }
+    }
+  }
+
+  return $access_result;
 }

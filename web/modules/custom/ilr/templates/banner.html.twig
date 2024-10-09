@@ -11,8 +11,18 @@
 </div>
 {% endset %}
 
+{% set attributes = attributes.addClass('cu-colorscheme--' ~ settings.color_scheme) %}
+{% set attributes = attributes.addClass('cu-banner--page') %}
+
+{% if content['#entity'] and content['#entity'].bundle() %}
+{% set type = content['#entity'].getEntityTypeId() %}
+{% set bundle = content['#entity'].bundle() %}
+{% set attributes = attributes.addClass('cu-banner--' ~ type) %}
+{% set attributes = attributes.addClass('cu-banner--' ~ bundle) %}
+{% endif %}
+
 {% include '@union/_banner.twig' with {
-  attributes: { class: ['cu-banner--page', 'cu-colorscheme--' ~ settings.color_scheme]},
+  attributes: attributes,
   content: rendered_content,
   media: content.media|render
 } only %}

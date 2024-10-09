@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override for a section_navigation heading field.
+ * Theme override for persona other expertise.
  *
  * Available variables:
  * - attributes: HTML attributes for the containing element.
@@ -17,18 +17,18 @@
  * - field_type: The type of the field.
  * - label_display: The display settings for the label.
  *
+ *
  * @see template_preprocess_field()
  */
 #}
 {%
   set classes = [
-    'cu-heading',
-    'field',
-    'field--' ~ field_name|clean_class,
-    'field-type--' ~ field_type|clean_class,
+    'profile__other-expertise'
   ]
 %}
-
+<div{{attributes.addClass(classes)}}>
+<h2 class="cu-heading">{{ label }}</h2>
 {% for item in items %}
-  <h2{{attributes.addClass(classes)}}>{{ item.content }}</h2>
+  <div{{item.attributes.addClass('profile__other-expertise-item')}}>{{ item.content }}</div>
 {% endfor %}
+</div>

@@ -9,6 +9,8 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
+use Drupal\person\Event\PersonaCreateEvent;
+use Drupal\person\Event\PersonEvents;
 
 /**
  * Defines the Persona entity.
@@ -38,9 +40,12 @@ use Drupal\Core\Access\AccessResult;
  *       "add" = "Drupal\person\Form\PersonaForm",
  *       "edit" = "Drupal\person\Form\PersonaForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
+ *       "revision-delete" = \Drupal\Core\Entity\Form\RevisionDeleteForm::class,
+ *       "revision-revert" = \Drupal\Core\Entity\Form\RevisionRevertForm::class,
  *     },
  *     "route_provider" = {
  *       "default" = "Drupal\person\Routing\PersonaRouteProvider",
+ *       "revision" = \Drupal\Core\Entity\Routing\RevisionHtmlRouteProvider::class,
  *     },
  *   },
  *   admin_permission = "administer persons",
@@ -64,9 +69,14 @@ use Drupal\Core\Access\AccessResult;
  *     "edit-form" = "/persona/{persona}/edit",
  *     "delete-form" = "/persona/{persona}/delete",
  *     "collection" = "/admin/content/people/personas",
+ *     "revision" = "/persona/{persona}/revision/{persona_revision}/view",
+ *     "revision-delete-form" = "/persona/{persona}/revision/{persona_revision}/delete",
+ *     "revision-revert-form" = "/persona/{persona}/revision/{persona_revision}/revert",
+ *     "version-history" = "/persona/{persona}/revisions",
  *   },
  *   bundle_entity_type = "persona_type",
  *   field_ui_base_route = "entity.persona_type.edit_form",
+ *   constraints = {"SingleIlrEmployeePersona" = {}}
  * )
  */
 class Persona extends EditorialContentEntityBase implements PersonaInterface {
@@ -107,6 +117,16 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
     }
     // It's a persona for a non-existing person.
     else {
+      // Fire an event to allow other modules to assign the person entity (if
+      // applicable), or to prevent the persona from being created.
+      $event_dispatcher = \Drupal::service('event_dispatcher');
+
+      if ($this->isNew()) {
+        $event = new PersonaCreateEvent($this);
+        $event_dispatcher->dispatch($event, PersonEvents::PERSONA_ENTITY_CREATE);
+      }
+
+      // If no subscribers intervened, create a new person from the data.
       if ($person = $this->createPerson()) {
         $this->person = $person->id();
       }

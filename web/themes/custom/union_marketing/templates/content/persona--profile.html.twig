@@ -1,0 +1,86 @@
+{#
+ * Theme implementation to present a persona as a full page profile.
+ *
+ * This template is generally included from other persona templates.
+ *
+ * Available variables:
+ * - persona: The persona entity with limited access to object properties and methods.
+ * - view_mode: View mode; for example, "teaser" or "default".
+ * - label: The display name of the persona.
+ * - content: A list of content items. Use 'content' to print all content, or
+ *          content.field_name to access public fields
+ * - attributes: HTML attributes for the container element.
+ * - url: Direct URL of the current node.
+ * - has_meta: Whether there is data in any of the fields that make up the meta
+ *          details for this profile.
+ *
+ * @see template_preprocess_persona()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'profile',
+    'persona',
+    'persona--' ~ persona.bundle|clean_class,
+    view_mode ? 'persona--' ~ view_mode|clean_class,
+  ]
+%}
+{% set meta %}
+  {% if has_meta %}
+  <div class="profile__meta">
+    <h2 class="cu-heading">{% trans %}Contact{% endtrans %}</h2>
+    {{ content.field_campus_address }}
+    {{ content.field_phone }}
+    {{ content.field_fax }}
+    {{ content.field_email }}
+    {{ content.field_cv }}
+  </div>
+  {{ content.field_websites }}
+  {% endif %}
+{% endset %}
+
+{% set has_photo = persona.field_photo is not empty %}
+{% set employee_role %}{{ content.field_employee_role }}{% endset %}
+
+<div{{attributes.addClass(classes)}}>
+  <div class="profile__header">
+    {{ drupal_block('system_breadcrumb_block') }}
+
+    <div class="profile__banner">
+      <h1 class="cu-heading">{{ label }}</h1>
+      <div class="profile__eyebrow">{% trans %}<span>People/</span>{% endtrans %}{{ employee_role|spaceless }}</div>
+      {% if persona.bundle() == 'visiting_fellow' %}
+        {{ content.field_place_of_origin }}
+        {{ content.field_visiting_period }}
+        {{ content.field_faculty_sponsor_text }}
+      {% else %}
+        {{ content.extra_field_ilr_employee_positions }}
+      {% endif %}
+      <div class="profile__secondary">
+      {% if has_photo %}
+        {{ persona.field_photo|view({type: 'media_thumbnail', label: 'hidden', settings: {image_style: 'medium_3_2'}}) }}
+      {% else %}
+        {{ meta }}
+      {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="profile__sidebar">
+    {% if has_photo %}
+    {{ meta }}
+    {% endif %}
+  </div>
+  <div class="profile__content">
+    {{ content.field_bio }}
+    {{ content.field_areas_of_expertise }}
+    {{ content.field_other_expertise }}
+    {{ content.field_components }}
+  </div>
+  <div class="profile__footer">
+    {{ content.field_sections }}
+    {{ content.field_education }}
+    <div class="edit"><a href="https://cornell.box.com/s/hv3zy9olxdxn3n5id76mssjrihlr7543" target="_blank">{% trans %}Edit this profile{% endtrans %}</a> {% trans %}if it's yours{% endtrans %}.</div>
+  </div>
+</div>

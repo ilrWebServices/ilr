@@ -1,0 +1,31 @@
+<div itemscope itemtype="https://schema.org/Chapter" class="citation citation--chapter cu-text citation--type-apa">
+  <span class="citation__authors">
+  {%- for author_item in author -%}
+    {%- if not loop.first -%}, {%- endif -%}
+    {% if loop.last and not loop.first %} &amp; {% endif %}
+    <span itemprop="author" class="citation__author">
+      {{ author_item.getProperty('givenName') }}
+      {% if author_item.getProperty('additionalName') %}
+        {{ author_item.getProperty('additionalName') }}
+      {% endif %}
+      {{ author_item.getProperty('familyName') -}}
+    </span>
+  {%- endfor -%}
+  </span>.
+
+  <span itemprop="datePublished" class="citation__publication-date">({{ datePublished|date('Y') }})</span>.
+
+  <span itemprop="name" class="citation__title">{% if url %}<a href="{{ url }}">{{ name|trim }}</a>{% else %}{{ name|trim }}{% endif %}</span>.
+
+  {% if title %}
+    In <span class="citation__book-title">{{ title }}</span>.
+  {% endif -%}
+
+  {%- if pagination -%}
+    <span itemprop="pagination" class="citation__page-range">(pp. {{ pagination }})</span>.
+  {%- endif -%}
+
+  {% if publisher.getProperty('name') %}
+    <span class="citation__publisher">{{ publisher.getProperty('name') }}</span>.
+  {% endif -%}
+</div>

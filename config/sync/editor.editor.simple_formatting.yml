@@ -27,5 +27,7 @@ settings:
         reversed: false
         startIndex: false
       multiBlock: true
+    linkit_extension:
+      linkit_enabled: false
 image_upload:
   status: false

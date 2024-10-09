@@ -5,6 +5,7 @@
  * Contains person.module.
  */
 
+use Drupal\Core\EventSubscriber\MainContentViewSubscriber;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Render\Element;
 
@@ -84,6 +85,12 @@ function template_preprocess_persona(&$variables) {
   $variables['persona'] = $persona;
   //provide the label
   $variables['label'] = $persona->display_name->value;
-  //provide the alias
-  $variables['url'] = $persona->toUrl()->toString();
+  //provide the alias if there is an existing persona.
+  if ($persona->id()) {
+    $variables['url'] = $persona->toUrl()->toString();
+  }
+
+  // Add a variable to determine if the current request is for a modal.
+  $wrapper_format = \Drupal::request()->query->get(MainContentViewSubscriber::WRAPPER_FORMAT);
+  $variables['modal'] = in_array($wrapper_format, ['drupal_ajax', 'drupal_modal', 'drupal_dialog']);
 }

@@ -1,0 +1,377 @@
+id: ilr_employee_personas
+label: ILR employee personas
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'csv_url'
+  path: 'https://main-bvxea6i-3clxnhn74bxvu.us-4.platformsh.site/files/default/employee-feed.csv'
+  header_offset: 0
+  ids:
+    - Employee_ID
+  constants:
+    label_suffix: ' (ILR Employee)'
+  track_changes: true
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  admin_label:
+    plugin: concat
+    source:
+      - Preferred_Name
+      - constants/label_suffix
+  display_name: Preferred_Name
+  person:
+    plugin: static_map
+    source: Employee_ID
+    map:
+      1000908: 22
+      1001780: 520
+      1003893: 26
+      1004502: 42
+      1005431: 20
+      1006143: 580
+      1006768: 6
+      1007895: 326
+      1008872: 514
+      1008903: 491
+      1009055: 708
+      1009649: 672
+      1009675: 44
+      1010429: 46
+      1010581: 706
+      1010739: 107
+      1010886: 305
+      1011207: 3
+      1011284: 710
+      1012259: 467
+      1012298: 49
+      1013089: 146
+      1013438: 601
+      1013497: 7
+      1014350: 482
+      1014457: 1020
+      1016213: 485
+      1018044: 328
+      1019401: 624
+      1021310: 75
+      1022012: 571
+      1024818: 2
+      1027836: 13
+      1028493: 11
+      1043718: 699
+      1055326: 116
+      1070263: 593
+      1079448: 658
+      1093638: 310
+      1116851: 588
+      1119750: 329
+      1123950: 1041
+      1155521: 1021
+      1226193: 626
+      1231921: 131
+      1277644: 542
+      1278027: 400
+      1282609: 9
+      1286972: 215
+      1287028: 39
+      1289694: 536
+      1292449: 54
+      1294564: 965
+      1304187: 611
+      1304820: 1
+      1304858: 19
+      1305029: 533
+      1313699: 313
+      1316464: 612
+      1317403: 1057
+      1563046: 559
+      1570928: 564
+      1753131: 774
+      1777295: 303
+      1778614: 1023
+      1824277: 830
+      1826411: 535
+      1838661: 159
+      1838838: 456
+      1855929: 1045
+      1861607: 1030
+      2015689: 836
+      2041119: 599
+      2121170: 1024
+      2133229: 25
+      2137541: 125
+      2260805: 111
+      2265960: 669
+      2281837: 57
+      2285124: 399
+      2300311: 1026
+      2319448: 835
+      2332780: 1025
+      2384565: 523
+      2433111: 1027
+      2527673: 80
+      2651050: 691
+      2676717: 1028
+      2808017: 128
+      2808187: 306
+      2850772: 8
+      2859205: 798
+      2883665: 73
+      2974268: 506
+      3092607: 1034
+      3092678: 70
+      3117969: 71
+      3123302: 799
+      3202501: 594
+      3209730: 78
+      3310338: 24
+      3312763: 137
+      3383066: 724
+      3389403: 578
+      3411015: 1029
+      3514850: 846
+      3542803: 713
+      3543624: 132
+      3550526: 5
+      3646672: 1032
+      3653143: 1031
+      3801748: 717
+      3808453: 481
+      3812742: 59
+      3855057: 43
+      3957218: 218
+      3996093: 625
+      4025354: 1033
+      4063061: 1035
+      4113271: 595
+      4153648: 1059
+      4154036: 1036
+      4168716: 464
+      4179878: 718
+      4179879: 668
+      4180288: 1046
+      4195016: 800
+      4238126: 893
+      4247965: 1066
+      4333184: 703
+      4371981: 911
+      4442889: 1049
+      4508381: 1094
+      4698970: 727
+      4749224: 726
+      4760534: 1060
+      4830310: 1037
+      4884016: 72
+      4899638: 1038
+      4902599: 29
+      4904580: 81
+      4904689: 598
+      4905012: 23
+      4908248: 92
+      4911840: 869
+      4922819: 576
+      4927149: 135
+      4929131: 1040
+      4952044: 21
+      4996215: 327
+      4996284: 76
+      5007984: 866
+      5092661: 51
+      5096190: 55
+      5100349: 496
+      5101911: 395
+      5101912: 69
+      5103041: 592
+      5104967: 35
+      5109312: 1042
+      5110317: 1044
+      5110914: 709
+      5114711: 1043
+      5117169: 74
+      5121476: 127
+      5123978: 943
+      5179832: 772
+      5205265: 567
+      5207232: 478
+      5208239: 301
+      5208734: 105
+      5212012: 666
+      5218619: 302
+      5226523: 1047
+      5228516: 1048
+      5261047: 138
+      5325159: 1050
+      5331944: 1152
+      5346699: 1051
+      5349166: 597
+      5351443: 1052
+      5354000: 456
+      5356636: 1053
+      5358654: 495
+      5368700: 494
+      5373425: 1056
+      5385410: 1054
+      5387775: 926
+      5447065: 1140
+      5450773: 635
+      5452509: 867
+      5455761: 1055
+      5457239: 553
+      5466111: 543
+      5467184: 676
+      5472716: 927
+      5472828: 1058
+      5472921: 677
+      5473459: 1061
+      5478393: 575
+      5480043: 870
+      5480403: 1062
+      5481806: 623
+      5481999: 1063
+      5493128: 610
+      5499994: 1064
+      5500704: 1071
+      5511569: 694
+      5583576: 988
+      5589617: 707
+      5589752: 695
+      5591793: 725
+      5591847: 1065
+      5593398: 831
+      5597492: 1137
+      5597910: 1067
+      5599035: 652
+      5600402: 406
+      5602258: 653
+      5606074: 847
+      5606138: 900
+      5606791: 848
+      5607407: 1069
+      5607689: 1068
+      5607697: 851
+      5607958: 1072
+      5608424: 902
+      5608434: 897
+      5608642: 1016
+      5608909: 881
+      5608995: 903
+      5609080: 1131
+      5609247: 898
+      5609651: 901
+      5701554: 992
+      5702725: 963
+      5702727: 967
+      5709161: 991
+      5710959: 1110
+      5721212: 1138
+      5723168: 1154
+      5724145: 916
+      5724974: 1139
+      5725242: 1150
+      5726698: 1115
+      5730081: 1153
+      5730956: 1159
+    default_value: null
+  field_netid: Netid
+  field_email: Email_Primary_Work
+  field_bio/value: d7_overview
+  field_bio/format:
+    plugin: default_value
+    default_value: basic_formatting_with_media
+  field_first_name: First_Name
+  field_last_name: Last_Name
+  field_phone: Phone_Primary_Work
+  # field_fax: fax
+  field_campus_address/country_code:
+    plugin: default_value
+    default_value: US
+  field_campus_address/langcode:
+    plugin: default_value
+    default_value: en
+  field_campus_address/address_line1: Primary_Work_Address_1
+  field_campus_address/address_line2: Primary_Work_Address_2
+  field_campus_address/locality: Primary_Work_Address_City
+  field_campus_address/administrative_area: Primary_Work_Address_State
+  field_campus_address/postal_code: Primary_Work_Address_Postal
+  field_photo:
+    plugin: migration_lookup
+    migration: ilr_employee_personas_photo_media
+    source: Employee_ID
+    no_stub: true
+  field_cv:
+    plugin: migration_lookup
+    migration: ilr_employee_personas_cv_media
+    source: Employee_ID
+    no_stub: true
+  field_employee_role:
+    plugin: entity_generate
+    source: employee_role
+    entity_type: taxonomy_term
+    access_check: false
+    value_key: name
+    bundle_key: vid
+    bundle: ilr_employee_role
+  field_areas_of_expertise:
+    -
+      plugin: skip_on_empty
+      source: d7_areas_of_expertise
+      method: process
+      message: 'Record does not contain areas of expertise terms.'
+    -
+      plugin: explode
+      delimiter: ';'
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: entity_generate
+      entity_type: taxonomy_term
+      access_check: false
+      value_key: name
+      bundle_key: vid
+      bundle: areas_of_expertise
+  field_other_expertise: d7_other_expertise
+  field_websites:
+    -
+      plugin: callback
+      callable: trim
+      source: d7_links
+    -
+      plugin: skip_on_empty
+      method: process
+      message: 'Record does not contain areas of links.'
+    -
+      plugin: double_delim_links
+    -
+      plugin: sub_process
+      process:
+        uri: uri
+        title: title
+destination:
+  plugin: entity:persona
+  default_bundle: ilr_employee
+  # Only update fields listed here on subsequent migration runs.
+  # See https://api.drupal.org/api/drupal/core%21modules%21migrate%21src%21Plugin%21migrate%21destination%21EntityContentBase.php/class/EntityContentBase/10
+  overwrite_properties:
+    - admin_label
+    - display_name
+    - field_netid
+    - field_email
+    - field_first_name
+    - field_last_name
+    - field_phone
+    - field_campus_address/country_code
+    - field_campus_address/langcode
+    - field_campus_address/address_line1
+    - field_campus_address/address_line2
+    - field_campus_address/locality
+    - field_campus_address/administrative_area
+    - field_campus_address/postal_code
+    - field_employee_role
+migration_dependencies:
+  required:
+    - ilr_employee_personas_photo_media
+    - ilr_employee_personas_cv_media
+  optional: {  }

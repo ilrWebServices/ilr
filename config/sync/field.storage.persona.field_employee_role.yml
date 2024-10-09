@@ -1,0 +1,20 @@
+uuid: c34fec1a-5302-4189-ac25-a36a00d5c6c7
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+    - taxonomy
+id: persona.field_employee_role
+field_name: field_employee_role
+entity_type: persona
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -45,3 +45,40 @@ paragraph type labels on the Sections field. */
 .organization-selection .form-checkboxes .form-item {
   margin: unset;
 }
+
+.field--name-field-areas-of-expertise .fieldset-wrapper {
+  max-height: 30vh;
+  overflow-y: scroll;
+  margin-bottom: 1.5em;
+  padding: 1em;
+}
+
+.persona-form .field--name-field-websites .description {
+  display: none;
+}
+
+details[data-migration-source] {
+  position: relative;
+}
+
+details[data-migration-source][open]:hover::before {
+  content: ' source: ' attr(data-migration-source);
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  opacity: .75;
+}
+
+.block-ilr-profile-edit-link {
+  display: inline-block;
+  margin: 1em 0;
+  border: 1px solid #a6a6a6;
+  border-radius: 5px;
+}
+
+.profile-button {
+  display: inline-block;
+  padding: .5em 1em;
+  color: #0074bd;
+  --cu-text-color: #0074bd;
+}

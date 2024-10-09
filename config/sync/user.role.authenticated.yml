@@ -14,6 +14,7 @@ dependencies:
     - filter
     - media
     - media_pdf_thumbnail
+    - paragraphs
     - system
     - toolbar
 _core:
@@ -26,6 +27,7 @@ permissions:
   - 'access content'
   - 'access toolbar'
   - 'delete own files'
+  - 'edit behavior plugin settings'
   - 'use text format basic_formatting'
   - 'use text format basic_formatting_with_media'
   - 'use text format inline_svg'

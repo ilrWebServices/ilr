@@ -1,0 +1,14 @@
+uuid: 7d9552d8-2960-42ec-9ceb-90949a0c785e
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr_employee_data
+id: professional_activities
+label: 'Professional activities'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  remote_activities:
+    enabled: true

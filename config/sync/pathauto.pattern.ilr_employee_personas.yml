@@ -1,0 +1,22 @@
+uuid: 22564c8c-b4b5-4dc0-aab0-0415c2f6b8fe
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: ilr_employee_personas
+label: 'ILR employee personas'
+type: 'canonical_entities:persona'
+pattern: 'people/[persona:display_name]'
+selection_criteria:
+  48edd59e-b4b4-4772-9b50-4770d225227f:
+    id: 'entity_bundle:persona'
+    negate: false
+    uuid: 48edd59e-b4b4-4772-9b50-4770d225227f
+    context_mapping:
+      persona: persona
+    bundles:
+      ilr_employee: ilr_employee
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -6,7 +6,6 @@ dependencies:
     - footnotes
     - ilr
     - linkit
-    - token_filter
 name: 'Basic Formatting'
 format: basic_formatting
 weight: 0
@@ -20,12 +19,12 @@ filters:
   filter_footnotes:
     id: filter_footnotes
     provider: footnotes
-    status: false
+    status: true
     weight: 0
     settings:
-      footnotes_collapse: '0'
-      footnotes_html: '0'
-      footnotes_css: true
+      footnotes_collapse: 0
+      footnotes_html: 0
+      footnotes_css: 1
   filter_html:
     id: filter_html
     provider: filter
@@ -54,10 +53,3 @@ filters:
     weight: 0
     settings:
       title: true
-  token_filter:
-    id: token_filter
-    provider: token_filter
-    status: false
-    weight: 0
-    settings:
-      replace_empty: '0'

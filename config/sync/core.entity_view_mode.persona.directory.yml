@@ -1,0 +1,11 @@
+uuid: f424dd2d-b1f5-4f51-a66d-877b3c63676b
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.directory
+label: Directory
+description: ''
+targetEntityType: persona
+cache: true

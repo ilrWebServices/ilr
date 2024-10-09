@@ -1,0 +1,34 @@
+uuid: b756c49a-a88a-400a-b5a5-830a2511fb37
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.publications.field_body
+    - field.field.paragraph.publications.field_heading
+    - paragraphs.paragraphs_type.publications
+  module:
+    - text
+id: paragraph.publications.default
+targetEntityType: paragraph
+bundle: publications
+mode: default
+content:
+  field_body:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

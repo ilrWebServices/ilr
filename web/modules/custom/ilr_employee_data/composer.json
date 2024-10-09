@@ -1,0 +1,19 @@
+{
+    "name": "cornellilr/ilr_employee_data",
+    "description": "Services and related support for external employee data (e.g. Publications).",
+    "type": "drupal-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aaron Froehlich",
+            "email": "aaronf@cornell.edu"
+        },
+        {
+            "name": "Jeff Amaral",
+            "email": "jeff.amaral@cornell.edu"
+        }
+    ],
+    "require": {
+        "spatie/schema-org": "^3"
+    }
+}

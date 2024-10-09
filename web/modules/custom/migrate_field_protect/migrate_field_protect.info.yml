@@ -1,0 +1,8 @@
+name: 'Migrate Field Protect'
+type: module
+description: 'A small custom module used to prevent editing of fields on content entities that have been
+mapped to a recurring migration'
+core_version_requirement: ^10 || ^11
+package: 'ILR'
+dependencies:
+  - drupal:migrate

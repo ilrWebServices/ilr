@@ -69,6 +69,8 @@ module:
   ilr_auth_access: 0
   ilr_campaigns: 0
   ilr_effects: 0
+  ilr_employee_data: 0
+  ilr_employee_position: 0
   ilr_instagram: 0
   ilr_migrate: 0
   ilr_organizations: 0
@@ -101,10 +103,13 @@ module:
   metatag_twitter_cards: 0
   migrate: 0
   migrate_drupal: 0
+  migrate_field_protect: 0
   migrate_file: 0
   migrate_plus: 0
+  migrate_scheduler: 0
   migrate_source_csv: 0
   migrate_tools: 0
+  multiple_selects: 0
   mysql: 0
   node: 0
   options: 0
