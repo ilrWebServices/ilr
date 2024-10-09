@@ -14,6 +14,7 @@ push_frequency: 0
 push_limit: 0
 push_retries: 3
 pull_where_clause: "Id IN (SELECT Contact__c FROM EXECED_Participant__c WHERE Role__c = 'Instructor')"
+pull_record_type_filter: {  }
 sync_triggers:
   pull_create: true
   pull_update: true
@@ -26,22 +27,29 @@ field_mappings:
     drupal_field_type: properties
     drupal_field_value: title
     direction: sf_drupal
-    salesforce_field: Name
+    salesforce_field: Preferred_Name_Calc__c
     id: 0
+    description: ''
   -
     drupal_field_type: properties
     drupal_field_value: field_job_title
     direction: sf_drupal
     salesforce_field: Title
     id: 1
+    description: ''
   -
     drupal_field_type: properties
     drupal_field_value: field_last_name
     direction: sf_drupal
     salesforce_field: LastName
     id: 2
+    description: ''
 status: true
 dependencies:
+  config:
+    - field.field.node.instructor.field_job_title
+    - field.field.node.instructor.field_last_name
+    - node.type.instructor
   module:
     - salesforce_pull
 uuid: 52e4e897-52c9-4d65-9f50-ac2e72643376
