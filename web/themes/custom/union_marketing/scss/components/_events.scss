@@ -40,7 +40,8 @@
     margin-bottom: var(--cu-vr1);
   }
 
-  .block-field-block--node--event-landing-page--field-registration-form {
+  .block-field-block--node--event-landing-page--field-registration-form,
+  .block-field-block--node--event-landing-page--field-url {
     --cu-font-size: var(--cu-ms-1);
     position: fixed;
     bottom: 0;
@@ -114,11 +115,17 @@
     align-items: baseline;
   }
 
-  .webform-button--submit {
+  .webform-button--submit,
+  .block-field-block--node--event-landing-page--field-url .cu-button {
     --cu-font-weight: 400;
     --cu-text-color: white;
     width: 100%;
     background-color: var(--cu-color-brand);
+  }
+
+  .block-field-block--node--event-landing-page--field-url .cu-button {
+    --cu-font-size: var(--cu-ms-1);
+    text-align: center;
   }
 
   .post-button-text {

@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.event_landing_page.field_representative_image
     - field.field.node.event_landing_page.field_sections
     - field.field.node.event_landing_page.field_sponsor
+    - field.field.node.event_landing_page.field_url
     - field.field.node.event_landing_page.layout_builder__layout
     - node.type.event_landing_page
   module:
@@ -33,8 +34,8 @@ content:
     settings:
       timezone_override: ''
       format_type: medium
-      separator: '-'
       from_to: both
+      separator: '-'
     third_party_settings: {  }
     weight: -5
     region: content
@@ -53,6 +54,7 @@ hidden:
   field_representative_image: true
   field_sections: true
   field_sponsor: true
+  field_url: true
   layout_builder__layout: true
   location_address: true
   location_link: true

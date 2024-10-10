@@ -264,6 +264,14 @@ function ilr_entity_bundle_field_info_alter(array &$fields, EntityTypeInterface 
       $fields['field_external_link']->addConstraint('UniqueMediaMentionExternalLink');
     }
   }
+
+  // Add the EventRegistrationSingleMethod constraint to the event landing page
+  // registration URL field.
+  if (($entity_type->id() === 'node') && ($bundle === 'event_landing_page')) {
+    if (isset($fields['field_url'])) {
+      $fields['field_url']->addConstraint('EventRegistrationSingleMethod');
+    }
+  }
 }
 
 /**

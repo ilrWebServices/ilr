@@ -1,0 +1,23 @@
+uuid: 90b00b7a-9cfd-41f0-8d89-e8363bf9afa5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_url
+    - node.type.event_landing_page
+  module:
+    - link
+id: node.event_landing_page.field_url
+field_name: field_url
+entity_type: node
+bundle: event_landing_page
+label: 'Registration URL'
+description: "(Optional) Link to an external registration form, if you don't want users to register here. Please do not select a registration form if you enter a value here."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 16
+field_type: link

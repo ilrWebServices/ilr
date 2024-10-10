@@ -6,10 +6,12 @@ dependencies:
     - field.field.node.event_landing_page.behavior_suppress_listing
     - field.field.node.event_landing_page.body
     - field.field.node.event_landing_page.field_keywords
+    - field.field.node.event_landing_page.field_metatags
     - field.field.node.event_landing_page.field_registration_form
     - field.field.node.event_landing_page.field_representative_image
     - field.field.node.event_landing_page.field_sections
     - field.field.node.event_landing_page.field_sponsor
+    - field.field.node.event_landing_page.field_url
     - field.field.node.event_landing_page.layout_builder__layout
     - image.style.large_21_9_1200x514_
     - node.type.event_landing_page
@@ -232,6 +234,29 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 1
             additional: {  }
+          6267a2e4-1e27-4abd-b006-bb021d3fb29e:
+            uuid: 6267a2e4-1e27-4abd-b006-bb021d3fb29e
+            region: second
+            configuration:
+              id: 'field_block:node:event_landing_page:field_url'
+              label: 'Registration URL'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: link
+                label: hidden
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: _blank
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
         third_party_settings: {  }
 id: node.event_landing_page.default
 targetEntityType: node
@@ -296,6 +321,18 @@ content:
       link: true
     third_party_settings: {  }
     weight: 104
+    region: content
+  field_url:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: _blank
+    third_party_settings: {  }
+    weight: 106
     region: content
   links:
     settings: {  }
