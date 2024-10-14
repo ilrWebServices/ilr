@@ -276,10 +276,6 @@ process:
     default_value: null
   field_netid: Netid
   field_email: Email_Primary_Work
-  field_bio/value: d7_overview
-  field_bio/format:
-    plugin: default_value
-    default_value: basic_formatting_with_media
   field_first_name: First_Name
   field_last_name: Last_Name
   field_phone: Phone_Primary_Work
@@ -295,16 +291,6 @@ process:
   field_campus_address/locality: Primary_Work_Address_City
   field_campus_address/administrative_area: Primary_Work_Address_State
   field_campus_address/postal_code: Primary_Work_Address_Postal
-  field_photo:
-    plugin: migration_lookup
-    migration: ilr_employee_personas_photo_media
-    source: Employee_ID
-    no_stub: true
-  field_cv:
-    plugin: migration_lookup
-    migration: ilr_employee_personas_cv_media
-    source: Employee_ID
-    no_stub: true
   field_employee_role:
     plugin: entity_generate
     source: employee_role
@@ -313,42 +299,6 @@ process:
     value_key: name
     bundle_key: vid
     bundle: ilr_employee_role
-  field_areas_of_expertise:
-    -
-      plugin: skip_on_empty
-      source: d7_areas_of_expertise
-      method: process
-      message: 'Record does not contain areas of expertise terms.'
-    -
-      plugin: explode
-      delimiter: ';'
-    -
-      plugin: callback
-      callable: trim
-    -
-      plugin: entity_generate
-      entity_type: taxonomy_term
-      access_check: false
-      value_key: name
-      bundle_key: vid
-      bundle: areas_of_expertise
-  field_other_expertise: d7_other_expertise
-  field_websites:
-    -
-      plugin: callback
-      callable: trim
-      source: d7_links
-    -
-      plugin: skip_on_empty
-      method: process
-      message: 'Record does not contain areas of links.'
-    -
-      plugin: double_delim_links
-    -
-      plugin: sub_process
-      process:
-        uri: uri
-        title: title
 destination:
   plugin: entity:persona
   default_bundle: ilr_employee
@@ -371,7 +321,5 @@ destination:
     - field_campus_address/postal_code
     - field_employee_role
 migration_dependencies:
-  required:
-    - ilr_employee_personas_photo_media
-    - ilr_employee_personas_cv_media
+  required: {  }
   optional: {  }
