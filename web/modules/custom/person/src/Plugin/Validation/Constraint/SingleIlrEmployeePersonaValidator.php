@@ -30,8 +30,7 @@ class SingleIlrEmployeePersonaValidator extends ConstraintValidator implements C
    * {@inheritdoc}
    */
   public function validate($persona, Constraint $constraint) {
-    // Ensure that we only validate personas attempting to be set as default.
-    if (!$persona->bundle() === 'ilr_employee') {
+    if ($persona->bundle() !== 'ilr_employee') {
       return;
     }
 
