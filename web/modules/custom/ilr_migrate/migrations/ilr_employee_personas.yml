@@ -3,6 +3,7 @@ label: ILR employee personas
 migration_group: default
 migration_tags:
   - Custom
+  - employee
 source:
   plugin: 'csv_url'
   path: 'https://main-bvxea6i-3clxnhn74bxvu.us-4.platformsh.site/files/default/employee-feed.csv'
