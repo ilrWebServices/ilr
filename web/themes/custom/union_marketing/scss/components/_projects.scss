@@ -5,7 +5,7 @@
   margin-right: auto;
 }
 
-.article--projectalicious {
+.article--projectalicious.node--view-mode-full  {
   .block-system-breadcrumb-block,
   .block-field-block--node--project--field-representative-image {
     // margin-top: var(--cu-vr1);
@@ -30,6 +30,12 @@
 
     > * + * {
       margin: var(--cu-vr2) 0;
+    }
+  }
+
+  @include breakpoint(md) {
+    .layout__region--second .cu-heading {
+      --cu-font-size: var(--cu-ms1);
     }
   }
 }
