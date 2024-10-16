@@ -200,65 +200,9 @@ If needed, the default provider can be overriden during local development (e.g. 
 
 ## Content Migration
 
-Several migrations are defined in `config/migrations/migrate_plus.migration.*.yml`.
+External content can be migrated into Drupal using the Migrate module functionality. Migration config is stored in `web/modules/custom/ilr_migrate/migrations` rather than `config/` because it's faster to reload the migrations when testing.
 
-Most of these migrations require a `drupal7` database 'Connection key', which should define a connection to the Drupal 7 database.
-
-For local development and testing, the connection key can be configured via the `.env` file. See `.env.example` for more information on populating the `MYSQL_MIGRATE_*` environment variables.
-
-In addition to the migration configurations, some custom migrate code, including source plugins, can be found in the custom `ilr_migrate` module.
-
-### Viewing Migration Status
-
-```
-$ drush ms --group=drupal_7
-```
-
-### Running Migrations
-
-All Drupal 7 content can be migrated via:
-
-```
-$ drush mim --group=drupal_7
-```
-
-Individual migrations can be run like so:
-
-```
-$ drush mim d7_node_course
-```
-
-### Migration Notes
-
-Some migrations can take a long time to run. For those migrations, you can configure the `--feedback` parameter so you can see some progress. For example:
-
-```
-$ drush mim d7_file_media --feedback="500 items"
-```
-
-The `d7_file_media` migration can run especially long, since it must download media items from the production D7 site via http. During development, you can speed this migration by copying the D7 site files to your local machine and overriding the source to use these local files.
-
-There are two things you must do to enable local files as the source of the media migration.
-
-#### 1. Get a copy of the D7 files
-
-From the D7 codebase:
-
-```
-rsync -azv --progress --iconv=utf-8-mac,utf-8 `platform ssh --pipe`:/app/web/sites/default/files/ /Users/YOUR_USERNAME/ILR/d7_files/sites/default/files/
-```
-
-Ensure that you are using `rsync` 3.x or above.
-
-#### 2. Configure the media migration source base path
-
-Enable and update the `MIGRATE_MEDIA_SOURCE_BASE_PATH_OVERRIDE` environment variable in `.env` to point to the local file source (e.g. the `rsync` destination from the above command). See `.env.example` for more info.
-
-Note that the migration source will be looking for files relative to the Drupal root, so if your local files are in `/Users/YOUR_USERNAME/work/ilr/d7_files/sites/default/files`, you'll set `MIGRATE_MEDIA_SOURCE_BASE_PATH_OVERRIDE` to `/Users/YOUR_USERNAME/work/ilr/d7_files`.
-
-The `d7_file_media` migration transforms the D7 site files (including images) into D8 media entities. Initially, the D7 file id (`fid`) was mapped to the D7 media id (`mid`), so that for any given file entity in D7, there is a corresponding media entity in D8 _with the same id_.
-
-As of Jan 2021, the media migration has been updated to create new `mid` values for imported media. This allows the migration to be run again when new D7 media is added, but now requires a migration lookup in other migrations.
+As of 2024-10 the legacy D7 migrations have been removed and the `migrate_drupal` module disabled.
 
 ## Theme Development
 

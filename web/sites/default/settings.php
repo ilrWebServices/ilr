@@ -99,18 +99,6 @@ $databases['default']['default'] = [
   'username' => getenv('MYSQL_USER'),
 ];
 
-// D7 database connection.
-$databases['drupal7']['default'] = [
-  'database' => getenv('MYSQL_MIGRATE_DATABASE'),
-  'driver' => 'mysql',
-  'host' => getenv('MYSQL_MIGRATE_HOSTNAME'),
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'password' => getenv('MYSQL_MIGRATE_PASSWORD'),
-  'port' => getenv('MYSQL_MIGRATE_PORT'),
-  'prefix' => '',
-  'username' => getenv('MYSQL_MIGRATE_USER'),
-];
-
 // Sqlite logs database connection.
 $databases['sqlite_logs']['default'] = [
   'database' => '../data/dblog.sqlite',
