@@ -1,0 +1,19 @@
+uuid: 59dc0ed4-5366-4112-869f-5eb56cf35acb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_display_name_override
+    - person.persona_type.ilr_employee
+id: persona.ilr_employee.field_display_name_override
+field_name: field_display_name_override
+entity_type: persona
+bundle: ilr_employee
+label: 'Display name override'
+description: "Optional. Only enter a value here if you'd like to override the display name."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

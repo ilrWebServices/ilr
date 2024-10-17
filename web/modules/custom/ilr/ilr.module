@@ -42,6 +42,7 @@ use Drupal\ilr\Entity\EventNodeInterface;
 use Drupal\ilr\Entity\ImageMedia;
 use Drupal\node\Entity\NodeType;
 use Drupal\node\NodeInterface;
+use Drupal\person\PersonaInterface;
 use Drupal\salesforce_mapping\Entity\MappedObjectInterface;
 
 /**
@@ -1038,13 +1039,22 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
     $form['inherited']['#group'] = 'advanced';
     $form['inherited']['#weight'] = -9;
 
-    $form['imported_info']['#description'] = t('Imported information can be modified in @workday_link.', [
-      '@workday_link' => Link::fromTextAndUrl('Workday', Url::fromUri('https://shibidp.cit.cornell.edu/idp/profile/SAML2/Unsolicited/SSO?providerId=http://www.workday.com'))->toString(),
-    ]);
+    if (!empty($form['imported_info'])) {
+      $form['imported_info']['#description'] = t('Imported information can be modified in @workday_link.', [
+        '@workday_link' => Link::fromTextAndUrl('Workday', Url::fromUri('https://shibidp.cit.cornell.edu/idp/profile/SAML2/Unsolicited/SSO?providerId=http://www.workday.com'))->toString(),
+      ]);
 
-    // Move the read-only list of related employee positions to the imported
-    // info section.
-    $form['extra_field_ilr_employee_positions_description']['#group'] = 'imported_info';
+      // Move the read-only list of related employee positions to the imported
+      // info section.
+      $form['extra_field_ilr_employee_positions_description']['#group'] = 'imported_info';
+
+      $form['field_display_name_override']['#group'] = 'imported_info';
+    }
+
+    // Only show the display name override if the display_name is disabled.
+    if (!isset($form['display_name']['#disabled']) || !$form['display_name']['#disabled']) {
+      $form['field_display_name_override']['#access'] = FALSE;
+    }
   }
 }
 
@@ -1693,4 +1703,13 @@ function ilr_entity_access(EntityInterface $entity, $op, AccountInterface $accou
   }
 
   return $access_result;
+}
+
+/**
+ * Implements hook_persona_display_name_alter().
+ */
+function ilr_persona_display_name_alter(&$display_name, PersonaInterface $persona) {
+  if (!$persona->field_display_name_override->isEmpty()) {
+    $display_name = $persona->field_display_name_override->value;
+  }
 }

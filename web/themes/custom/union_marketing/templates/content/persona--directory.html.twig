@@ -58,7 +58,7 @@
     not persona.isPublished() ? 'persona--unpublished',
     view_mode ? 'persona--view-mode-' ~ view_mode|clean_class
   ]),
-  name: content.display_name,
+  name: label,
   title: primary_title ?: first_title,
   eyebrow_heading: content.field_employee_role,
   additional_info: additional_info,

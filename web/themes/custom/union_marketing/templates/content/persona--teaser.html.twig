@@ -29,7 +29,7 @@
 <div{{ attributes }}>
 {% include "@union/_person.twig" with {
   attributes: {class: ['cu-person--thumb']},
-  name: content.display_name,
+  name: label,
   title: title,
   additional_info: additional_info,
   content: rendered_content,

@@ -8,6 +8,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_campus_address
     - field.field.persona.ilr_employee.field_components
     - field.field.persona.ilr_employee.field_cv
+    - field.field.persona.ilr_employee.field_display_name_override
     - field.field.persona.ilr_employee.field_editors
     - field.field.persona.ilr_employee.field_email
     - field.field.persona.ilr_employee.field_employee_role
@@ -155,6 +156,7 @@ content:
     region: content
 hidden:
   display_name: true
+  field_display_name_override: true
   field_editors: true
   field_first_name: true
   field_last_name: true
