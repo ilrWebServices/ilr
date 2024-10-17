@@ -277,6 +277,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 50
           total_pages: null
           id: 0
@@ -294,7 +295,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -330,49 +330,7 @@ display:
             field_identifier: changed
           exposed: false
           granularity: second
-      arguments:
-        type:
-          id: type
-          table: persona
-          field: type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: persona
-          entity_field: type
-          plugin_id: string
-          default_action: default
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: entity_browser_widget_context
-          default_argument_options:
-            context_key: target_bundles
-            fallback: all
-            multiple: or
-          summary_options:
-            base_path: ''
-            count: true
-            override: false
-            items_per_page: 25
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          glossary: false
-          limit: 0
-          case: none
-          path_case: none
-          transform_dash: false
-          break_phrase: true
+      arguments: {  }
       filters:
         display_name_1:
           id: display_name_1
