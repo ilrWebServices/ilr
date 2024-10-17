@@ -12,7 +12,7 @@ entity_type: persona
 bundle: ilr_employee
 label: 'Employee role'
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
