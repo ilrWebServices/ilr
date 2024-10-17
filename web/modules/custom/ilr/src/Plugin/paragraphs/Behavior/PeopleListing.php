@@ -74,7 +74,7 @@ class PeopleListing extends ParagraphsBehaviorBase {
     $parents_input_name .= '[' . implode('][', $parents) . ']';
 
     // @todo Make this dynamic. @see ProjectListing.
-    $persona_types = ['staff' => 'Staff', 'faculty' => 'Faculty'];
+    $persona_types = ['ilr_employee' => 'ILR Employee', 'staff' => 'Staff', 'faculty' => 'Faculty'];
     $collection_options = [];
     $default_collection_id = $paragraph->getBehaviorSetting($this->getPluginId(), 'collection');
 
