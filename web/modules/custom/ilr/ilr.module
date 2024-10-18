@@ -1056,6 +1056,93 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
       $form['field_display_name_override']['#access'] = FALSE;
     }
   }
+
+  // @Add a tab for ULR Redirects.
+  // @see redirect_form_node_form_alter().
+  /** @var \Drupal\person\PersonaInterface $persona */
+  $persona = $form_state->getFormObject()->getEntity();
+
+  if (!$persona->isNew() && \Drupal::currentUser()->hasPermission('administer redirects')) {
+
+    $pid = $persona->id();
+
+    // Find redirects to this persona.
+    $redirects = \Drupal::service('redirect.repository')
+      ->findByDestinationUri(["internal:/persona/$pid", "entity:persona/$pid"]);
+
+    // Assemble the rows for the table.
+    $rows = [];
+    /** @var \Drupal\Core\Entity\EntityListBuilder $list_builder */
+    $list_builder = \Drupal::service('entity_type.manager')->getListBuilder('redirect');
+    /** @var \Drupal\redirect\Entity\Redirect[] $redirects */
+    foreach ($redirects as $redirect) {
+      $row = [];
+      $path = $redirect->getSourcePathWithQuery();
+      $row['path'] = [
+        'class' => ['redirect-table__path'],
+        'data' => ['#plain_text' => $path],
+        'title' => $path,
+      ];
+      $row['operations'] = [
+        'data' => [
+          '#type' => 'operations',
+          '#links' => $list_builder->getOperations($redirect),
+        ],
+      ];
+      $rows[] = $row;
+    }
+
+    // Add the list to the vertical tabs section of the form.
+    $header = [
+      ['class' => ['redirect-table__path'], 'data' => t('From')],
+      ['class' => ['redirect-table__operations'], 'data' => t('Operations')],
+    ];
+    $form['url_redirects'] = [
+      '#type' => 'details',
+      '#title' => t('URL redirects'),
+      '#group' => 'advanced',
+      '#open' => FALSE,
+      'table' => [
+        '#type' => 'table',
+        '#header' => $header,
+        '#rows' => $rows,
+        '#empty' => t('No URL redirects available.'),
+        '#attributes' => ['class' => ['redirect-table']],
+      ],
+      '#attached' => [
+        'library' => [
+          'redirect/drupal.redirect.admin',
+        ],
+      ],
+    ];
+
+    if (!empty($rows)) {
+      $form['url_redirects']['warning'] = [
+        '#markup' => t('Note: links open in the current window.'),
+        '#prefix' => '<p>',
+        '#suffix' => '</p>',
+      ];
+    }
+
+    $form['url_redirects']['actions'] = [
+      '#theme' => 'links',
+      '#links' => [],
+      '#attributes' => ['class' => ['action-links']],
+    ];
+    $form['url_redirects']['actions']['#links']['add'] = [
+      'title' => t('Add URL redirect'),
+      'url' => Url::fromRoute('redirect.add', [
+        'redirect' => $persona->toUrl()->getInternalPath(),
+        'destination' => \Drupal::destination()->get(),
+      ]),
+      'attributes' => [
+        'class' => [
+          'button',
+        ],
+        'target' => '_blank',
+      ],
+    ];
+  }
 }
 
 /**
