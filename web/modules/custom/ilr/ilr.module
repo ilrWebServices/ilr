@@ -1709,7 +1709,7 @@ function ilr_entity_access(EntityInterface $entity, $op, AccountInterface $accou
  * Implements hook_persona_display_name_alter().
  */
 function ilr_persona_display_name_alter(&$display_name, PersonaInterface $persona) {
-  if (!$persona->field_display_name_override->isEmpty()) {
+  if ($persona->hasField('field_display_name_override') && !$persona->field_display_name_override->isEmpty()) {
     $display_name = $persona->field_display_name_override->value;
   }
 }
