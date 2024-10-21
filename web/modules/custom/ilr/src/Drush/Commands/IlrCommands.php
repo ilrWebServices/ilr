@@ -82,6 +82,62 @@ final class IlrCommands extends DrushCommands {
   }
 
   /**
+   * Add legacy redirects from a CSV source to ilr_employee personas.
+   *
+   * We don't do this with a migration (although we could using the
+   * entity_lookup process plugin) because we also want to do some existing path
+   * matching and it's just too clunky with migrate.
+   */
+  #[CLI\Command(name: 'ilr:legacy-person-path')]
+  #[CLI\Usage(name: 'ilr:legacy-person-path', description: 'Add redirects for legacy people paths to ilr_employee personas if they are different from the new path aliases.')]
+  public function ilrLegacyPeoplePathsCommand() {
+    $data_url = 'https://raw.githubusercontent.com/ilrWebServices/people-data/refs/heads/main/d7_people_paths.csv';
+    $file = new \SplFileObject($data_url);
+
+    while (!$file->eof()) {
+      $row = $file->fgetcsv();
+      list($netid, $path) = $row;
+
+      if ($netid === 'netid') {
+        continue;
+      }
+
+      // Is there an existing path alias?
+      $existing_path_alias = $this->entityTypeManager->getStorage('path_alias')->loadByProperties([ 'alias' => '/' . $path ]);
+
+      if (!empty($existing_path_alias)) {
+        continue;
+      }
+
+      // Is there an existing redirect?
+      $existing_redirect = $this->entityTypeManager->getStorage('redirect')->loadByProperties([ 'redirect_source__path' => $path ]);
+
+      if (!empty($existing_redirect)) {
+        continue;
+      }
+
+      $ilr_employee_persona = $this->entityTypeManager->getStorage('persona')->loadByProperties([
+        'type' => 'ilr_employee',
+        'field_netid' => $netid,
+      ]);
+
+      if (empty($ilr_employee_persona)) {
+        continue;
+      }
+
+      $ilr_employee_persona = reset($ilr_employee_persona);
+
+      $redirect = $this->entityTypeManager->getStorage('redirect')->create([
+        'redirect_source' => $path,
+        'redirect_redirect' => 'internal:/persona/' . $ilr_employee_persona->id(),
+        'status_code' => 301,
+      ]);
+
+      $redirect->save();
+    }
+  }
+
+  /**
    * Load the 'host entity' and output its url. This is useful for 'nested' paragraphs.
    */
   #[CLI\Command(name: 'ilr:paragraphs-host', aliases: ['ph', 'phe', 'parahost'])]
