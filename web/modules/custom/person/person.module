@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\EventSubscriber\MainContentViewSubscriber;
+use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Render\Element;
 
@@ -93,4 +94,35 @@ function template_preprocess_persona(&$variables) {
   // Add a variable to determine if the current request is for a modal.
   $wrapper_format = \Drupal::request()->query->get(MainContentViewSubscriber::WRAPPER_FORMAT);
   $variables['modal'] = in_array($wrapper_format, ['drupal_ajax', 'drupal_modal', 'drupal_dialog']);
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function person_token_info() {
+  $info = [];
+  $info['tokens']['persona']['smart_display_name'] = [
+    'name' => 'Smart display name',
+    'description' => 'The display name of the persona, even if it has been altered by a hook.'
+  ];
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function person_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
+  $replacements = [];
+
+  if ($type == 'persona' && !empty($data['persona'])) {
+    $persona = $data['persona'];
+
+    foreach ($tokens as $name => $token) {
+      if ($name === 'smart_display_name') {
+        $replacements[$token] = $persona->getDisplayName();
+      }
+    }
+  }
+
+  return $replacements;
 }

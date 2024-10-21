@@ -7,7 +7,7 @@ dependencies:
 id: ilr_employee_personas
 label: 'ILR employee personas'
 type: 'canonical_entities:persona'
-pattern: 'people/[persona:display_name]'
+pattern: 'people/[persona:smart_display_name]'
 selection_criteria:
   48edd59e-b4b4-4772-9b50-4770d225227f:
     id: 'entity_bundle:persona'
