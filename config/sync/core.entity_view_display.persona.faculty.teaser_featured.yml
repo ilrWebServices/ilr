@@ -37,11 +37,6 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  extra_field_profile:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
-    region: content
   field_bio:
     type: smart_read_more_link
     label: hidden
@@ -70,6 +65,7 @@ content:
     weight: 2
     region: content
 hidden:
+  extra_field_profile: true
   field_campus_address: true
   field_education: true
   field_email: true
