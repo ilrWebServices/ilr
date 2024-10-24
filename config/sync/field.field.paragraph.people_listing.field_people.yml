@@ -8,6 +8,8 @@ dependencies:
     - person.persona_type.author
     - person.persona_type.expert
     - person.persona_type.faculty
+    - person.persona_type.ilr_employee
+    - person.persona_type.principal_investigator
     - person.persona_type.staff
     - person.persona_type.visiting_fellow
 id: paragraph.people_listing.field_people
@@ -27,6 +29,8 @@ settings:
       author: author
       expert: expert
       faculty: faculty
+      ilr_employee: ilr_employee
+      principal_investigator: principal_investigator
       staff: staff
       visiting_fellow: visiting_fellow
     sort:
