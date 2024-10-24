@@ -6,6 +6,7 @@ id: persona_item
 label: 'Persona item'
 allowed_bundles:
   - persona.faculty
+  - persona.ilr_employee
   - persona.staff
   - persona.visiting_fellow
 attributes_access: administrators
