@@ -16,7 +16,7 @@
 {% endset %}
 
 {% set additional_info %}
-  {{ content|without('display_name', 'field_title', 'field_photo', 'field_bio') }}
+  {{ content|without('display_name', 'field_title', 'field_photo', 'field_bio', 'extra_field_ilr_employee_positions') }}
 {% endset %}
 
 {% set title = [] %}
@@ -25,6 +25,14 @@
   {% set title = title|merge([item]) %}
 {% endfor %}
 {% endif %}
+
+{%- if content.extra_field_ilr_employee_positions %}
+{% for key, item in content.extra_field_ilr_employee_positions|filter((v, k) => k|first != '#') %}
+{% if item['#ilr_employee_position'].primary.value %}
+  {% set title = title|merge([item['#ilr_employee_position'].title.value]) %}
+{% endif %}
+{% endfor %}
+{% endif -%}
 
 <div{{ attributes }}>
 {% include "@union/_person.twig" with {

@@ -1,0 +1,82 @@
+uuid: 3e9c44b7-8a6f-43ca-940b-0d04c933fbda
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.persona.teaser_compact
+    - field.field.persona.ilr_employee.field_areas_of_expertise
+    - field.field.persona.ilr_employee.field_bio
+    - field.field.persona.ilr_employee.field_campus_address
+    - field.field.persona.ilr_employee.field_components
+    - field.field.persona.ilr_employee.field_cv
+    - field.field.persona.ilr_employee.field_display_name_override
+    - field.field.persona.ilr_employee.field_editors
+    - field.field.persona.ilr_employee.field_email
+    - field.field.persona.ilr_employee.field_employee_role
+    - field.field.persona.ilr_employee.field_fax
+    - field.field.persona.ilr_employee.field_first_name
+    - field.field.persona.ilr_employee.field_last_name
+    - field.field.persona.ilr_employee.field_netid
+    - field.field.persona.ilr_employee.field_other_expertise
+    - field.field.persona.ilr_employee.field_phone
+    - field.field.persona.ilr_employee.field_photo
+    - field.field.persona.ilr_employee.field_sections
+    - field.field.persona.ilr_employee.field_websites
+    - image.style.thumbnail_square
+    - person.persona_type.ilr_employee
+  module:
+    - layout_builder
+    - media
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: persona.ilr_employee.teaser_compact
+targetEntityType: persona
+bundle: ilr_employee
+mode: teaser_compact
+content:
+  display_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  extra_field_ilr_employee_positions:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_photo:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: content
+      image_style: thumbnail_square
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  extra_field_profile: true
+  field_areas_of_expertise: true
+  field_bio: true
+  field_campus_address: true
+  field_components: true
+  field_cv: true
+  field_display_name_override: true
+  field_editors: true
+  field_email: true
+  field_employee_role: true
+  field_fax: true
+  field_first_name: true
+  field_last_name: true
+  field_netid: true
+  field_other_expertise: true
+  field_phone: true
+  field_sections: true
+  field_websites: true
+  search_api_excerpt: true

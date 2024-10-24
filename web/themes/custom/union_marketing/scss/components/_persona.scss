@@ -20,9 +20,14 @@ body.persona .cu-header {
     @include framed(right);
   }
 
-  .field--field-title {
+  .field--field-title,
+  .field--title{
     --cu-font-size: var(--cu-ms1);
     --cu-font-weight: 400;
+  }
+
+  .field--field-title,
+  .ilr-employee-position {
     margin-bottom: var(--cu-vr-1);
   }
 
@@ -259,14 +264,23 @@ body.persona .cu-header {
   }
 
   .persona__name.cu-heading {
+    --cu-font-size: var(--cu-ms1);
     margin-bottom: var(--cu-vr-2);
   }
 
-  .field--field-title {
-    .field__item  {
-      line-height: 1.1;
-      margin-bottom: var(--cu-vr-1);
-    }
+  .field--field-title .field__item,
+  .ilr-employee-position {
+    margin-bottom: var(--cu-vr-1);
+  }
+
+  .field--field-title .field__item,
+  .ilr-employee-position .field--title {
+    line-height: 1.1;
+  }
+
+  .ilr-employee-position .field--department {
+    --cu-font-size: var(--cu-ms-2);
+    display: none;
   }
 
   .field--field-campus-address {
