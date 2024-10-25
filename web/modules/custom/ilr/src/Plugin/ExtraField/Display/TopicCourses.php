@@ -80,6 +80,11 @@ class TopicCourses extends ExtraFieldDisplayBase implements ContainerFactoryPlug
       ->condition('field_date_start', $midnight_tonight->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), '>=')
       ->condition('field_close_registration', $current_utc->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT), '>=');
     $class_node_query->condition($upcoming_group);
+
+    if ($city_filter = $this->requestStack->getCurrentRequest()->query->get('city')) {
+      $class_node_query->condition('field_address.locality', $city_filter);
+    }
+
     $class_node_ids = $class_node_query->execute();
     $class_nodes = $node_storage->loadMultiple(array_values($class_node_ids));
     $course_nodes = [];
