@@ -11,7 +11,6 @@ dependencies:
     - field.field.taxonomy_term.topics.field_representative_image
     - taxonomy.vocabulary.topics
     - views.view.topic_certificates
-    - views.view.topic_courses
     - views.view.topics_list
     - webform.webform.professional_education_interests
   module:
@@ -257,18 +256,20 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 0
             additional: {  }
-          c7a5617f-f224-4768-84de-87a9cf6773a9:
-            uuid: c7a5617f-f224-4768-84de-87a9cf6773a9
+          ba62af21-b713-46a2-95c0-1d6eac8758c2:
+            uuid: ba62af21-b713-46a2-95c0-1d6eac8758c2
             region: main
             configuration:
-              id: 'views_block:topic_courses-block'
-              label: ''
+              id: 'extra_field_block:taxonomy_term:topics:extra_field_topic_courses'
+              label: 'Topic courses'
               label_display: '0'
-              provider: views
-              context_mapping: {  }
-              views_label: ''
-              items_per_page: none
-            weight: 0
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
             additional: {  }
         third_party_settings: {  }
       -
@@ -340,6 +341,11 @@ content:
     third_party_settings: {  }
     weight: 0
     region: main
+  extra_field_topic_courses:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_body:
     type: text_default
     label: above

@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Theme override for a topic courses item list.
+ *
+ * Available variables:
+ * - items: A list of items. Each item contains:
+ *   - attributes: HTML attributes to be applied to each list item.
+ *   - value: The content of the list element.
+ * - title: The title of the list.
+ * - list_type: The tag for list element ("ul" or "ol").
+ * - wrapper_attributes: HTML attributes to be applied to the list wrapper.
+ * - attributes: HTML attributes to be applied to the list.
+ * - empty: A message to display when there are no items. Allowed value is a
+ *   string or render array.
+ * - context: A list of contextual data associated with the list. May contain:
+ *   - list_style: The custom list style.
+ *
+ * @see template_preprocess_item_list()
+ */
+#}
+{% if items %}
+  {% set list_content %}
+    {%- for item in items -%}
+      {{ item.value }}
+    {%- endfor -%}
+  {% endset %}
+
+  {% set grid_content %}
+  {% include '@union/_grid.twig' with {
+    grid_content: list_content,
+    attributes: { class: 'cu-grid--3col' }
+  } %}
+  {% endset %}
+
+  {% include '@union/_section.twig' with {
+    heading: title,
+    content: grid_content,
+    attributes: attributes.addClass('topic-courses')
+  } %}
+{%- endif %}
