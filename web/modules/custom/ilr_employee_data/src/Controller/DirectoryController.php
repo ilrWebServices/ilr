@@ -94,7 +94,8 @@ class DirectoryController extends ControllerBase {
     $employee_persona_query = $persona_storage->getQuery()
       ->accessCheck()
       ->sort('field_last_name')
-      ->condition('type', 'ilr_employee');
+      ->condition('type', 'ilr_employee')
+      ->condition('status', 1);
 
     if ($role_filter) {
       $role_filter_group = $employee_persona_query->orConditionGroup();
