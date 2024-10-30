@@ -11,6 +11,7 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\ilr_salesforce\CourseToTopicsTrait;
 use Drupal\salesforce_mapping\Event\SalesforcePushAllowedEvent;
 use Drupal\salesforce_mapping\Event\SalesforcePushParamsEvent;
+use Drupal\salesforce_mapping\Plugin\SalesforceMappingField\Constant;
 use Drupal\webform\WebformSubmissionInterface;
 
 /**
@@ -111,7 +112,6 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
    *   The event.
    */
   public function pushAllowed(SalesforcePushAllowedEvent $event) {
-
     if ($event->getMapping()->id() === 'event_registration_touchpoint') {
       /** @var \Drupal\webform\WebformSubmissionInterface $submission */
       $submission = $event->getEntity();
@@ -119,6 +119,23 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
 
       // Ensure that there is an eventid present.
       if (empty($submission_data['eventid'])) {
+        $event->disallowPush();
+      }
+    }
+
+    if ($event->getMapping()->getDrupalEntityType() === 'webform_submission' && $event->getMapping()->getSalesforceObjectType() === 'Touchpoint__c') {
+      /** @var \Drupal\webform\WebformSubmissionInterface $submission */
+      $submission = $event->getEntity();
+      $submission_data = $submission->getData();
+      $touchpoint_type = '';
+
+      foreach ($event->getMapping()->getFieldMappings() as $field_plugin) {
+        if ($field_plugin instanceof Constant && $field_plugin->get('salesforce_field') === 'Source__c') {
+          $touchpoint_type = $field_plugin->get('drupal_field_value');
+        }
+      }
+
+      if ($touchpoint_type === 'Information Request' && isset($submission_data['opt_in']) && $submission_data['opt_in'] === 0) {
         $event->disallowPush();
       }
     }
