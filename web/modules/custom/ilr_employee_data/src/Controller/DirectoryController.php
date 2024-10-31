@@ -3,7 +3,6 @@
 namespace Drupal\ilr_employee_data\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\Request;
 
 class DirectoryController extends ControllerBase {
@@ -12,30 +11,36 @@ class DirectoryController extends ControllerBase {
     $persona_storage = $this->entityTypeManager()->getStorage('persona');
     $position_storage = $this->entityTypeManager()->getStorage('ilr_employee_position');
     $term_storage = $this->entityTypeManager()->getStorage('taxonomy_term');
+    $text_filter = $request->query->get('s') ?? '';
     $role_filter = $request->query->get('role') ?? '';
     $dept_filter = $request->query->get('dept') ?? '';
 
     $build = [];
     // $build['#cache'] = ['max-age' => 0];
+    $build['#cache'] = ['tags' => ['persona_list:ilr_employee', 'taxonomy_term:ilr_employee_role', 'taxonomy_term:organizational_units']];
     $build = [
       '#theme' => 'container__employee_directory',
       '#children' => [
         'filters' => [
           '#theme' => 'container__employee_directory_filters',
           '#children' => [
-            'role' => [
-              '#theme' => 'links__role_filter',
-              '#links' => [
-                [
-                  'url' => Url::fromRoute('ilr_employee_data.directory'),
-                  'title' => $this->t('All'),
-                ],
+            'search' => [
+              '#type' => 'inline_template',
+              '#template' => '<div class="search-filter form-item cu-input-list__item has-float-label"><label for="search" class="cu-label">Search for people</label><input id="search" name="s" value="{{ default }}" class="form-text cu-input cu-input--text is-touched"></div>',
+              '#context' => [
+                'default' => '',
               ],
-              '#attributes' => ['class' => 'role-filter'],
+            ],
+            'role' => [
+              '#type' => 'inline_template',
+              '#template' => '<select name="role" class="role-filter cu-input"><option value="">All people</option>{% for option in options %}<option {{ option.attr }} value="{{ option.val }}">{{ option.val }}</option>{% endfor %}</select>',
+              '#context' => [
+                'options' => [],
+              ],
             ],
             'department' => [
               '#type' => 'inline_template',
-              '#template' => '<select name="dept" class="department-filter cu-input"><option value="">- Any department -</option>{% for option in options %}<option {{ option.attr }} value="{{ option.val }}">{{ option.val }}</option>{% endfor %}</select>',
+              '#template' => '<select name="dept" class="department-filter cu-input"><option value="">Any department</option>{% for option in options %}<option {{ option.attr }} value="{{ option.val }}">{{ option.val }}</option>{% endfor %}</select>',
               '#context' => [
                 'options' => [],
               ],
@@ -53,31 +58,46 @@ class DirectoryController extends ControllerBase {
       '#attached' => ['library' => ['ilr_employee_data/directory']],
     ];
 
+    if ($text_filter) {
+      $build['#children']['filters']['#children']['search']['#context']['default'] = urldecode($text_filter);
+    }
+
+    $active_employee_query = \Drupal::database()->select('persona', 'p')
+      ->condition('p.type', 'ilr_employee')
+      ->condition('p.status', 1);
+
+    $active_employee_role_tids_query = clone $active_employee_query;
+    $active_employee_role_tids_query->join('persona__field_employee_role', 'r', 'p.pid = r.entity_id and p.vid = r.revision_id');
+    $active_employee_role_tids_query->fields('r', ['field_employee_role_target_id']);
+    $active_employee_role_tids_query->distinct();
+
     $role_ids = $term_storage->getQuery()
       ->accessCheck(FALSE)
       ->condition('vid', 'ilr_employee_role')
-      ->condition('parent.target_id', '0')
+      ->condition('tid', $active_employee_role_tids_query, 'IN')
       ->sort('weight')
+      ->sort('parent')
       ->execute();
 
     $roles = $term_storage->loadMultiple($role_ids);
 
     foreach ($roles as $role) {
-      $role_link_options = [];
-
-      if (urldecode($role_filter) === $role->name->value) {
-        $role_link_options['attributes'] = ['class' => 'active'];
-      }
-
-      $build['#children']['filters']['#children']['role']['#links'][] = [
-        'url' => Url::fromRoute('ilr_employee_data.directory', ['role' => $role->name->value], $role_link_options),
-        'title' => $role->name->value,
+      $option = [
+        'val' => $role->name->value,
+        'attr' => (urldecode($role_filter) === $role->name->value) ? 'selected' : '',
       ];
+      $build['#children']['filters']['#children']['role']['#context']['options'][] = $option;
     }
+
+    $active_employee_dept_tids_query = clone $active_employee_query;
+    $active_employee_dept_tids_query->join('ilr_employee_position', 'pos', 'p.pid = pos.persona');
+    $active_employee_dept_tids_query->fields('pos', ['department']);
+    $active_employee_dept_tids_query->distinct();
 
     $department_ids = $term_storage->getQuery()
       ->accessCheck(FALSE)
       ->condition('vid', 'organizational_units')
+      ->condition('tid', $active_employee_dept_tids_query, 'IN')
       ->sort('name')
       ->execute();
 
@@ -96,6 +116,15 @@ class DirectoryController extends ControllerBase {
       ->sort('field_last_name')
       ->condition('type', 'ilr_employee')
       ->condition('status', 1);
+
+    if ($text_filter) {
+      $text_filter_group = $employee_persona_query->orConditionGroup();
+      $text_filter_group->condition('field_display_name_override', urldecode($text_filter), 'CONTAINS');
+      $text_filter_group->condition('field_first_name', urldecode($text_filter), 'CONTAINS');
+      $text_filter_group->condition('field_last_name', urldecode($text_filter), 'CONTAINS');
+      $text_filter_group->condition('display_name', urldecode($text_filter), 'CONTAINS');
+      $employee_persona_query->condition($text_filter_group);
+    }
 
     if ($role_filter) {
       $role_filter_group = $employee_persona_query->orConditionGroup();
@@ -124,19 +153,28 @@ class DirectoryController extends ControllerBase {
     }
 
     $employee_persona_ids = $employee_persona_query->execute();
+
+    if (empty($employee_persona_ids)) {
+      $build['#children']['message'] = [
+        '#markup' => '<p>' . $this->t('No people that match that search. Sorry!') . '</p>',
+      ];
+
+      return $build;
+    }
+
     $employee_personas = $persona_storage->loadMultiple($employee_persona_ids);
-    $persona_view_builder = \Drupal::entityTypeManager()->getViewBuilder('persona');
+    $persona_view_builder = $this->entityTypeManager()->getViewBuilder('persona');
 
     /** @var \Drupal\person\PersonaInterface $employee_persona */
     foreach ($employee_personas as $employee_persona) {
-      $this_employee_deptartments = [];
+      $this_employee_departments = [];
       $this_employee_titles = [];
       $this_employee_positions = $position_storage->loadByProperties([
         'persona' => $employee_persona->id()
       ]);
 
       foreach ($this_employee_positions as $this_employee_position) {
-        $this_employee_deptartments[] = $this_employee_position->department->entity->name->value;
+        $this_employee_departments[] = $this_employee_position->department->entity->name->value;
         $this_employee_titles[] = $this_employee_position->title->value;
       }
 
@@ -144,7 +182,8 @@ class DirectoryController extends ControllerBase {
         $employee_persona->getDisplayName(),
         $employee_persona->field_first_name->value,
         $employee_persona->field_last_name->value,
-        implode('  ', $this_employee_deptartments),
+        $employee_persona->field_display_name_override->value ?? '',
+        implode('  ', $this_employee_departments),
         implode('  ', $this_employee_titles),
       ];
 
@@ -154,7 +193,8 @@ class DirectoryController extends ControllerBase {
       $directory_view['#attributes']['data-display-name'] = $employee_persona->getDisplayName();
       $directory_view['#attributes']['data-first-name'] = $employee_persona->field_first_name->value;
       $directory_view['#attributes']['data-last-name'] = $employee_persona->field_last_name->value;
-      $directory_view['#attributes']['data-departments'] = implode("\t", $this_employee_deptartments);
+      $directory_view['#attributes']['data-departments'] = implode("\t", $this_employee_departments);
+      $directory_view['#attributes']['data-role'] = $employee_persona->field_employee_role->entity->name->value;
       $directory_view['#attributes']['data-search-index'] = implode("\t", $search_index);
       $build['#children']['personas']['#children'][$employee_persona->id()] = $directory_view;
     }

@@ -21,6 +21,10 @@
 #}
 <form {{ attributes.setAttribute('id', 'filter-form') }}>
 {{ children }}
-<input type="submit" value="Search" class="button form-submit cu-input cu-input--submit" form="filter-form">
-<a href="/people" class="clear-filter">{% trans %}Clear search terms{% endtrans %}</a>
+<div class="filter-actions">
+{% apply spaceless %}
+  <input type="submit" value="Search" class="button form-submit cu-input cu-input--submit" form="filter-form">
+  <a href="/people" class="clear-filter">{% trans %}Clear search terms{% endtrans %}</a>
+{% endapply %}
+</div>
 </form>
