@@ -122,6 +122,7 @@
 
   .profile__sidebar {
     margin-bottom: var(--cu-vr2);
+    overflow-wrap: anywhere;
 
     // This is the spacing between items in the sidebar.
     > * + * {
