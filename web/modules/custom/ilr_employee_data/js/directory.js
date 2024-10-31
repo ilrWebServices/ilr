@@ -17,14 +17,22 @@
         return;
       }
 
+      const urlParams = new URLSearchParams(window.location.search);
       let filter_form = context.querySelector('.employee-directory .filters');
 
       filter_form.addEventListener('submit', function (event) {
+        // If this page was server-side filtered, prevent client filter
+        // enhancements, since the dataset is incomplete.
+        if (urlParams.size > 0) {
+          return;
+        }
+
         event.preventDefault();
         const personas = context.querySelectorAll('.cu-person-wrapper');
         const data = new FormData(event.target);
-        const search_str = data.get('search');
+        const search_str = data.get('s');
         const dept_str = data.get('dept');
+        const role_str = data.get('role');
 
         for (const persona of personas) {
           persona.style.display = 'block';
@@ -38,6 +46,10 @@
 
         if (dept_str) {
           query_selector.push('[data-departments*="' + dept_str.trim() + '"]');
+        }
+
+        if (role_str) {
+          query_selector.push('[data-role="' + role_str.trim() + '"]');
         }
 
         if (query_selector.length) {
@@ -58,25 +70,7 @@
         }
       });
 
-      const search_box = document.createElement('div');
-      const search_box_label = document.createElement('label');
-      const search_box_input = document.createElement('input');
-
-      search_box.classList.add('search-filter', 'form-item', 'cu-input-list__item', 'has-float-label');
-
-      search_box_label.innerText ='Search for people';
-      search_box_label.setAttribute('for', 'search');
-      search_box_label.classList.add('cu-label');
-
-      search_box_input.setAttribute('id', 'search');
-      search_box_input.setAttribute('name', 'search');
-      search_box_input.classList.add('form-text', 'cu-input', 'cu-input--text');
-
-      search_box.appendChild(search_box_label);
-      search_box.appendChild(search_box_input);
-
-      filter_form.appendChild(search_box);
-      search_box_input.focus();
+      filter_form.querySelector('#search').focus();
     }
   };
 
