@@ -3,7 +3,6 @@
 namespace Drupal\ilr_employee_data\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\Request;
 
 class DirectoryController extends ControllerBase {
@@ -62,10 +61,19 @@ class DirectoryController extends ControllerBase {
       $build['#children']['filters']['#children']['search']['#context']['default'] = urldecode($text_filter);
     }
 
+    $active_employee_query = \Drupal::database()->select('persona', 'p')
+      ->condition('p.type', 'ilr_employee')
+      ->condition('p.status', 1);
+
+    $active_employee_role_tids_query = clone $active_employee_query;
+    $active_employee_role_tids_query->join('persona__field_employee_role', 'r', 'p.pid = r.entity_id and p.vid = r.revision_id');
+    $active_employee_role_tids_query->fields('r', ['field_employee_role_target_id']);
+    $active_employee_role_tids_query->distinct();
+
     $role_ids = $term_storage->getQuery()
       ->accessCheck(FALSE)
       ->condition('vid', 'ilr_employee_role')
-      ->condition('parent.target_id', '0')
+      ->condition('tid', $active_employee_role_tids_query, 'IN')
       ->sort('weight')
       ->execute();
 
@@ -79,9 +87,15 @@ class DirectoryController extends ControllerBase {
       $build['#children']['filters']['#children']['role']['#context']['options'][] = $option;
     }
 
+    $active_employee_dept_tids_query = clone $active_employee_query;
+    $active_employee_dept_tids_query->join('ilr_employee_position', 'pos', 'p.pid = pos.persona');
+    $active_employee_dept_tids_query->fields('pos', ['department']);
+    $active_employee_dept_tids_query->distinct();
+
     $department_ids = $term_storage->getQuery()
       ->accessCheck(FALSE)
       ->condition('vid', 'organizational_units')
+      ->condition('tid', $active_employee_dept_tids_query, 'IN')
       ->sort('name')
       ->execute();
 
