@@ -17,6 +17,7 @@ dependencies:
     - media
     - media_pdf_thumbnail
     - paragraphs
+    - paragraphs_previewer
     - system
     - toolbar
 _core:
@@ -37,6 +38,7 @@ permissions:
   - 'use text format inline_svg'
   - 'use text format simple_formatting'
   - 'use text format webform_default'
+  - 'view any paragraphs previewer'
   - 'view blog collection'
   - 'view content_section collection'
   - 'view media'
