@@ -188,6 +188,19 @@
   .field--field-websites .field__item {
     margin-bottom: var(--cu-vr0);
   }
+
+  .edit {
+    text-align: right;
+    opacity: .75;
+  }
+
+  .edit, .edit a {
+    font-size: .8rem;
+  }
+
+  .edit:hover {
+    opacity: 1;
+  }
 }
 
 .profile__expertise-items {
