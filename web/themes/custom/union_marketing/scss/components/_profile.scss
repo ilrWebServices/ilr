@@ -4,10 +4,8 @@
 
   @include breakpoint(md) {
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: repeat(5, auto);
+    grid-template-rows: repeat(3, auto);
     column-gap: var(--cu-ps4);
-    // max-width: var(--cu-max-width-section);
-    // margin: 0 auto;
   }
 
   .profile__header,
