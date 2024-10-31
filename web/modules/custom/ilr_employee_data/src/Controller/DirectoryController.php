@@ -76,6 +76,7 @@ class DirectoryController extends ControllerBase {
       ->condition('vid', 'ilr_employee_role')
       ->condition('tid', $active_employee_role_tids_query, 'IN')
       ->sort('weight')
+      ->sort('parent')
       ->execute();
 
     $roles = $term_storage->loadMultiple($role_ids);
