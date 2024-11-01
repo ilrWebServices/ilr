@@ -66,3 +66,21 @@ function ilr_deploy_add_missing_publication_paragraph_headings(&$sandbox) {
     }
   }
 }
+
+/**
+ * Fix langcode for persona redirects.
+ */
+function ilr_deploy_fix_persona_redirect_langcodes(&$sandbox) {
+  $redirect_query = \Drupal::entityTypeManager()->getStorage('redirect')->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('redirect_redirect__uri', 'internal:/persona', 'STARTS_WITH')
+    ->condition('language', 'en');
+
+  $redirect_ids = $redirect_query->execute();
+  $redirects = \Drupal::entityTypeManager()->getStorage('redirect')->loadMultiple($redirect_ids);
+
+  foreach ($redirects as $redirect) {
+    $redirect->set('language', 'und');
+    $redirect->save();
+  }
+}
