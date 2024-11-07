@@ -153,11 +153,12 @@
     "allow-plugins": {
       "composer/installers": true,
       "cweagans/composer-patches": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true,
       "drupal/console-extend-plugin": true,
       "drupal/core-composer-scaffold": true,
-      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "php-http/discovery": true,
       "phpstan/extension-installer": true,
-      "php-http/discovery": true
+      "tbachert/spi": false
     }
   },
   "autoload": {
