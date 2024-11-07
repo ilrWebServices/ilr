@@ -1,0 +1,14 @@
+.publication-group-options .form-checkboxes .js-form-item.form-type-checkbox label {
+  cursor: inherit;
+}
+
+.publication-group-options .form-checkboxes .js-form-item.form-type-checkbox::before {
+  content: '↕︎';
+  display: inline-block;
+  margin-right: .5em;
+  opacity: .25;
+}
+
+.publication-group-options .form-checkboxes .js-form-item.form-type-checkbox:hover::before {
+  opacity: 1;
+}

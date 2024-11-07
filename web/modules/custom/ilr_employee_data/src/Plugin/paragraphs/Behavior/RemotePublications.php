@@ -55,12 +55,35 @@ class RemotePublications extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    $netid = $paragraph->getBehaviorSetting($this->getPluginId(), 'netid') ?? '';
+    $publication_group_options = $paragraph->getBehaviorSetting($this->getPluginId(), 'publication_group_options') ?? [];
+    $publications_types_indexed_options = array_combine($publication_group_options, $publication_group_options);
+
     $form['netid'] = [
       '#type' => 'textfield',
       '#title' => $this->t('NetID'),
       '#description' => $this->t('(optional) Enter a NetID here to fetch publications from remote services (currently Activity Insight).'),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'netid') ?? '',
+      '#default_value' => $netid,
     ];
+
+    if ($netid) {
+      $publications_types = array_keys($this->remoteDataHelper->getPublications($netid, FALSE));
+      $publications_types_all_options = array_combine($publications_types, $publications_types);
+
+      $form['publication_group_options'] = [
+        '#type' => 'checkboxes',
+        '#title' => $this->t('Publication types'),
+        '#options' => $publications_types_indexed_options + $publications_types_all_options,
+        '#description' => $this->t('Select the publication types to include. You may also sort them in the order they should appear.'),
+        '#default_value' => empty($publication_group_options) ? $publications_types : $publication_group_options,
+        '#attached' => [
+          'library' => ['ilr_employee_data/remote-pubs-enhancements']
+        ],
+        '#attributes' => [
+          'class' => ['publication-group-options'],
+        ],
+      ];
+    }
 
     return $form;
   }
@@ -75,8 +98,23 @@ class RemotePublications extends ParagraphsBehaviorBase {
   /**
    * {@inheritdoc}
    */
+  public function submitBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    $filtered_values = $this->filterBehaviorFormSubmitValues($paragraph, $form, $form_state);
+
+    if (!empty($filtered_values['publication_group_options'])) {
+      // Change the keys to an index.
+      $filtered_values['publication_group_options'] = array_values($filtered_values['publication_group_options']);
+    }
+
+    $paragraph->setBehaviorSettings($this->getPluginId(), $filtered_values);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function view(array &$build, Paragraph $paragraph, EntityViewDisplayInterface $display, $view_mode) {
     $netid = $paragraph->getBehaviorSetting($this->getPluginId(), 'netid');
+    $publication_group_options = $paragraph->getBehaviorSetting($this->getPluginId(), 'publication_group_options') ?? [];
 
     if ($netid) {
       $publications_data = $this->remoteDataHelper->getPublications($netid, FALSE);
@@ -94,10 +132,15 @@ class RemotePublications extends ParagraphsBehaviorBase {
       foreach ($publications_data as $pubgroup => $items) {
         $clean_pubgroup = Html::cleanCssIdentifier($pubgroup);
 
+        if (!empty($publication_group_options) && !in_array($pubgroup, $publication_group_options)) {
+          continue;
+        }
+
         $build['remote_publications'][$clean_pubgroup] = [
           '#theme' => 'item_list__remote_publications',
           '#title' => $pubgroup,
           '#items' => [],
+          '#weight' => array_search($pubgroup, $publication_group_options),
         ];
 
         /** @var BaseType $item */
