@@ -1,0 +1,11 @@
+uuid: d45fb77f-f5e8-4b68-9f13-8026ec1884cf
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.mini
+label: Mini
+description: 'Used for inline entity forms and similar.'
+targetEntityType: persona
+cache: true

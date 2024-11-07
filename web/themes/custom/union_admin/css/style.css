@@ -82,3 +82,34 @@ details[data-migration-source][open]:hover::before {
   color: #0074bd;
   --cu-text-color: #0074bd;
 }
+
+.persona-browser__persona-types {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 1em;
+}
+
+.persona-browser__search {
+  display: flex;
+  align-items: last baseline;
+  gap: 1em;
+}
+
+.persona-browser__persona-types .button,
+.persona-browser__search .button {
+  margin: 0;
+}
+
+.entity-browser-persona-browser-form .form-actions {
+  position: fixed;
+  bottom: 0;
+  margin: 0;
+}
+
+.persona-browser__persona-list img {
+  float: right;
+}
+
+.persona-browser__more-info summary {
+  padding: 0;
+}

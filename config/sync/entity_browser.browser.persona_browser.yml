@@ -2,81 +2,26 @@ uuid: 8e3a26cd-a820-4d0f-bf37-39110d70e70b
 langcode: en
 status: true
 dependencies:
-  config:
-    - views.view.persona_browser
   module:
-    - entity_browser_entity_form
-    - views
+    - person
 name: persona_browser
-label: 'Persona browser'
+label: 'People search'
 display: modal
 display_configuration:
   width: '650'
   height: '500'
-  link_text: Add
+  link_text: 'Add person'
   auto_open: false
 selection_display: no_display
 selection_display_configuration: {  }
-widget_selector: drop_down
+widget_selector: single
 widget_selector_configuration: {  }
 widgets:
-  75f8df85-ad00-4a96-9cb7-7b4585833dea:
-    id: view
-    uuid: 75f8df85-ad00-4a96-9cb7-7b4585833dea
-    label: 'Choose existing'
-    weight: 1
+  415d56ea-14f4-4aa6-af4a-8fa0e78fc092:
+    id: persona_entity_browser
+    uuid: 415d56ea-14f4-4aa6-af4a-8fa0e78fc092
+    label: People
+    weight: 0
     settings:
-      submit_text: Select
-      auto_select: false
-      view: persona_browser
-      view_display: entity_browser_1
-  cecec722-c5a0-47b1-923d-ffbf8c309912:
-    id: entity_form
-    uuid: cecec722-c5a0-47b1-923d-ffbf8c309912
-    label: 'New staff persona'
-    weight: 5
-    settings:
-      submit_text: Save
-      entity_type: persona
-      bundle: staff
-      form_mode: default
-  7bfe7249-a398-4cb2-8466-eeaa623408c6:
-    id: entity_form
-    uuid: 7bfe7249-a398-4cb2-8466-eeaa623408c6
-    label: 'New faculty persona'
-    weight: 4
-    settings:
-      submit_text: Save
-      entity_type: persona
-      bundle: faculty
-      form_mode: default
-  28d64ec5-42c2-413e-b0bf-1b8679a38803:
-    id: entity_form
-    uuid: 28d64ec5-42c2-413e-b0bf-1b8679a38803
-    label: 'New author persona'
-    weight: 2
-    settings:
-      submit_text: Save
-      entity_type: persona
-      bundle: author
-      form_mode: default
-  6fc17ad6-e5b3-4cab-9120-2fee2894a049:
-    id: entity_form
-    uuid: 6fc17ad6-e5b3-4cab-9120-2fee2894a049
-    label: 'New expert persona'
-    weight: 3
-    settings:
-      submit_text: Save
-      entity_type: persona
-      bundle: expert
-      form_mode: default
-  5824f52f-cca1-465e-8490-0d1721441d5c:
-    id: entity_form
-    uuid: 5824f52f-cca1-465e-8490-0d1721441d5c
-    label: 'New visiting fellow persona'
-    weight: 6
-    settings:
-      submit_text: Save
-      entity_type: persona
-      bundle: visiting_fellow
-      form_mode: default
+      submit_text: Add
+      auto_select: 0

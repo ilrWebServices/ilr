@@ -65,7 +65,7 @@ class PersonaForm extends ContentEntityForm {
       $form['inherited'] = [
         '#type' => 'details',
         '#title' => $this->t('Inherited Fields'),
-        '#description' => isset($persona->person->entity) ? $this->t('The values of these fields are inherited from @link. If modified here, they will override the original values.', [
+        '#description' => isset($persona->person->entity) ? $this->t('The values of these fields are inherited from @link. If modified here, they will used instead of the original values.', [
           '@link' => $persona->person->entity->toLink(NULL, 'edit-form')->toString(),
         ]) : '',
         '#collapsible' => TRUE,
