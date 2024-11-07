@@ -7,3 +7,6 @@ administer person fields and persona types:
   title: 'Administer person fields and persona types'
   restrict access: true
   description: 'Maintain the types of personas available and the fields that are associated with both persons and persona types.'
+
+permission_callbacks:
+  - \Drupal\person\PersonPermissions::personaTypePermissions

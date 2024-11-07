@@ -15,6 +15,12 @@ dependencies:
     - node.type.post_experience_report
     - node.type.story
     - node.type.video_post
+    - person.persona_type.author
+    - person.persona_type.expert
+    - person.persona_type.faculty
+    - person.persona_type.principal_investigator
+    - person.persona_type.staff
+    - person.persona_type.visiting_fellow
     - taxonomy.vocabulary.event_sponsors
   module:
     - collection
@@ -44,17 +50,22 @@ permissions:
   - 'access media overview'
   - 'access persona_browser entity browser pages'
   - 'access taxonomy overview'
-  - 'administer persons'
+  - 'create author persona'
+  - 'create expert persona'
+  - 'create faculty persona'
   - 'create media'
   - 'create media_mention content'
   - 'create page content'
   - 'create post content'
   - 'create post_document content'
   - 'create post_experience_report content'
+  - 'create principal_investigator persona'
+  - 'create staff persona'
   - 'create story content'
   - 'create terms in event_sponsors'
   - 'create url aliases'
   - 'create video_post content'
+  - 'create visiting_fellow persona'
   - 'delete own collections'
   - 'delete own files'
   - 'delete own media_mention content'
@@ -65,11 +76,17 @@ permissions:
   - 'delete own story content'
   - 'delete own video_post content'
   - 'edit any audio media'
+  - 'edit any author persona'
   - 'edit any canonical content in editable collections'
+  - 'edit any expert persona'
+  - 'edit any faculty persona'
   - 'edit any file media'
   - 'edit any image media'
+  - 'edit any principal_investigator persona'
   - 'edit any remote_video media'
+  - 'edit any staff persona'
   - 'edit any video media'
+  - 'edit any visiting_fellow persona'
   - 'edit behavior plugin settings'
   - 'edit own collections'
   - 'edit own media_mention content'

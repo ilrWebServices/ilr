@@ -9,7 +9,6 @@ dependencies:
     - entity_browser
     - media
     - person
-    - user
 _core:
   default_config_hash: 6wTp37EaSXyIhOwSS4ESzRdR6Lvi6OFLdd2_yNaK638
 id: persona_browser
@@ -306,9 +305,8 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: perm
-        options:
-          perm: 'administer persons'
+        type: none
+        options: {  }
       cache:
         type: tag
         options: {  }
@@ -521,7 +519,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.permissions
       tags:
         - 'config:field.storage.persona.field_photo'
   entity_browser_1:
@@ -538,6 +535,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.permissions
       tags:
         - 'config:field.storage.persona.field_photo'

@@ -32,6 +32,7 @@ use Drupal\person\Event\PersonEvents;
  *   revision_table = "persona_revision",
  *   show_revision_ui = TRUE,
  *   handlers = {
+ *     "access" = "Drupal\person\PersonaAccessControlHandler",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\person\PersonaListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
