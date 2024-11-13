@@ -65,7 +65,7 @@ class FilterInternalLinks extends FilterBase {
           $parts['path'] = '/';
         }
 
-        $url = Url::fromUri('internal:' . $parts['path'], $options);
+        $url = Url::fromUri('internal:' . trim($parts['path']), $options);
         $node->setAttribute('href', $url->toString());
       }
     }
