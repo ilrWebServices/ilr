@@ -37,6 +37,14 @@ mapping:
   OFFER_TERM_TEXT: Admit_Term_Offered__c
   DEFER_TERM: Deferred_to__c
   CORNELLG-TRANSACTION_DATE: Application_Date_Submitted__c
+  BSILR: BSILR__c
+  DEFERRED: Deferred__c
+  EDP: EDP__c
+  JDMBA: JDMBA__c
+  LG: LG__c
+  MILR_MBA: MILR_MBA__c
+  SFUG: SFUG__c
+  XACT_LAST_UPDATED: XACT_Last_Updated__c
 default_fields:
   -
     key: RecordTypeId
