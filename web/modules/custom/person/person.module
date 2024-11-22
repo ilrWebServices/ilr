@@ -137,6 +137,9 @@ function person_inline_entity_form_entity_form_alter(array &$entity_form, FormSt
     $persona = $entity_form['#entity'];
 
     if ($persona->person->entity) {
+      $admin_label_placeholder = $persona->person->entity->display_name->value . ' - ' . $persona->type->entity->label();
+      $entity_form['admin_label']['widget'][0]['value']['#description'] = str_replace('Jane Doe - Department Staffer', $admin_label_placeholder, $entity_form['admin_label']['widget'][0]['value']['#description']);
+
       // Add placeholder text for inherited values from the person record.
       foreach ($persona->type->entity->getInheritedFieldNames() as $field_name) {
         if ($persona->$field_name->isEmpty()) {
@@ -144,9 +147,9 @@ function person_inline_entity_form_entity_form_alter(array &$entity_form, FormSt
         }
       }
     }
-
-    // dump($persona->type->entity->getInheritedFieldNames());
-    // dump($entity_form);
-    // $entity_form['quantity']['#description'] = t('New quantity description.');
+    else {
+      $entity_form['field_first_name']['widget'][0]['value']['#required'] = TRUE;
+      $entity_form['field_last_name']['widget'][0]['value']['#required'] = TRUE;
+    }
   }
 }

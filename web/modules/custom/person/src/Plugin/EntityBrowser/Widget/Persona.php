@@ -2,20 +2,11 @@
 
 namespace Drupal\person\Plugin\EntityBrowser\Widget;
 
-use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Component\Serialization\Json;
-use Drupal\Component\Utility\NestedArray;
-use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
-use Drupal\Core\Render\Element;
-use Drupal\Core\Url;
-use Drupal\entity_browser\Element\EntityBrowserPagerElement;
 use Drupal\entity_browser\WidgetBase;
-use Drupal\views\Entity\View as ViewEntity;
-use Drupal\views\Views;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Uses a view to provide entity listing in a browser's widget.
@@ -32,20 +23,28 @@ class Persona extends WidgetBase {
   /**
    * {@inheritdoc}
    */
+  public function defaultConfiguration() {
+    return array_merge(parent::defaultConfiguration(), [
+      // This should get populated with the field widget target_bundles settings
+      // via self::handleWidgetContext().
+      'target_bundles' => [],
+    ]);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getForm(array &$original_form, FormStateInterface $form_state, array $additional_widget_parameters) {
     $form = parent::getForm($original_form, $form_state, $additional_widget_parameters);
+    $allowed_bundles = $this->getConfiguration()['settings']['target_bundles'] ?? [];
+
     // steps: person_search, persona_list, new_persona
     $step = $form_state->get('step') ?? 'person_search';
 
-    // $form['debug_message'] = [
-    //   '#markup' => $this->t('Current step reported by the element is: @step.', ['@step' => $step]),
-    // ];
-
     $form['search_wrapper'] = [
       '#type' => 'container',
-      // '#weight' => 10,
       '#access' => in_array($step, ['person_search', 'persona_list']),
-      '#attributes' => ['class' => 'persona-browser__search'],
+      '#attributes' => ['class' => ['persona-browser__search']],
     ];
 
     $form['search_wrapper']['search_name'] = [
@@ -64,25 +63,24 @@ class Persona extends WidgetBase {
     if ($step === 'persona_list') {
       $name = $form_state->getValue('search_name');
 
-      $tmp = <<<EOT
-      <p>Below is a list of people and their personas. Personas represent a person for a specific purpose or context. For example, a person may be displayed in the context of an author of an article or in the context of an employee. Each context may show different information about the person - their photo, bio, or title may be different - but they always represent the same person.</p>
+      $persona_help = <<<EOT
+      <p>Below is a list of people that match your search. Please check a persona and click the <em>Select</em> button to add them to the listing. Alternatively, add a new persona appropriate for this content.</p>
 
       <details class="persona-browser__more-info">
-        <summary>More info</summary>
+        <summary>More about personas</summary>
 
-        <p>Personas represent a particular facet of a person (e.g. in their role as the Director of an Institute, or as an advisor to a project). For that reason, many people at ILR have multiple personas. You can preview a given persona by clicking the preview link below.</p>
+        <p>Personas represent a person for a specific purpose or context. For example, a person may be displayed in the context of an author of an article or in the context of an employee. People can have multiple personas, and each one may show unique information about the person - their photo, bio, or title may be different - but they always represent the same person.</p>
 
-        <p>In some cases, new personas were created where existing ones would have worked. You can help us clean up these duplicates by contacting ilrweb@cornell.edu</p>
+        <p>You can view more information about a given persona by clicking the 'details' link.</p>
 
-        <p>Mention persona types, and what they should be used for: Below each persona option checkbox you'll see the persona type, e.g. Author or ILR Employee...</p>
+        <p>Below each persona checkbox you'll see the persona type, e.g. Author or ILR Employee. Persona types are used in different situations. For example, only Authors and Experts can be added to Posts and Media Mentions.</p>
 
-        <p>Also mention the special ilr_employee persona type, and its 'officialness'.</p>
+        <p>The 'ILR Employee' persona type is an official persona that is automatically kept up-to-date. These personas represent ILR faculty and staff.</p>
       </details>
       EOT;
 
       $form['message'] = [
-        // '#markup' => $this->t('<p>Select a persona below.</p>'),
-        '#markup' => $tmp,
+        '#markup' => $persona_help,
         '#weight' => 5,
       ];
 
@@ -97,12 +95,13 @@ class Persona extends WidgetBase {
         ->range(0, 100)
         ->condition('status', 1)
         ->condition('person.entity.display_name', $name, 'CONTAINS')
+        // ->condition('type', $allowed_bundles, 'IN')
         ->sort('person');
       $persona_ids = $query->execute();
 
       if (empty($persona_ids)) {
         $form['message'] = [
-          '#markup' => $this->t('No people found. Create a new one?'),
+          '#markup' => $this->t('No people found.'),
         ];
       }
 
@@ -116,7 +115,7 @@ class Persona extends WidgetBase {
           $form['people_items']['person_' . $person->id()] = [
             '#type' => 'fieldset',
             '#title' => $person->label(),
-            '#attributes' => ['class' => 'persona-browser__persona-list'],
+            '#attributes' => ['class' => ['persona-browser__persona-list']],
           ];
 
           $form['people_items']['person_' . $person->id()]['persona_new'] = [
@@ -125,6 +124,7 @@ class Persona extends WidgetBase {
             '#name' => 'person:' . $person->id(),
             '#submit' => [[static::class, 'newPersonaType']],
             '#weight' => 10,
+            '#attributes' => ['class' => ['link']],
           ];
 
           if (!$person->field_photo->isEmpty()) {
@@ -163,6 +163,7 @@ class Persona extends WidgetBase {
             '@type' => $persona->type->entity->label(),
             '@preview_link' => Link::fromTextAndUrl('details', $persona_url)->toString(),
           ]),
+          '#access' => in_array($persona->bundle(), $allowed_bundles),
         ];
       }
 
@@ -177,31 +178,41 @@ class Persona extends WidgetBase {
 
       $form['new_persona_wrapper']['persona_new'] = [
         '#type' => 'submit',
-        '#value' => $this->t('Create a new person'),
+        '#value' => $this->t('Add a person now'),
         '#name' => 'person:new',
         '#submit' => [[static::class, 'newPersonaType']],
+        '#attributes' => ['class' => ['link']],
       ];
     }
+
+    // This is almost working, but something is missing when we don't call
+    // newPersonaType() or newPerson(). The intent is to skip the persona type
+    // selection when there is only one option.
+    // if ($step === 'new_persona_type' && count($allowed_bundles) === 1) {
+    //   $step = 'new_persona';
+    //   $form_state->set('persona_type', array_values($allowed_bundles)[0]);
+    // }
 
     if ($step === 'new_persona_type') {
       $persona_type_storage = $this->entityTypeManager->getStorage('persona_type');
 
-      $tmp = <<<EOT
-      Choose a persona type to add. There should be additional text here to help users decide.
+      $new_persona_help = <<<EOT
+      Choose a persona type.
       EOT;
 
       $form['message'] = [
-        '#markup' => '<p>' . nl2br($tmp) . '</p>',
+        '#markup' => '<p>' . nl2br($new_persona_help) . '</p>',
         '#weight' => -1,
       ];
 
       $form['persona_type_wrapper'] = [
         '#type' => 'container',
-        '#attributes' => ['class' => 'persona-browser__persona-types'],
+        '#attributes' => ['class' => ['persona-browser__persona-types']],
       ];
 
-      foreach ($persona_type_storage->loadMultiple() as $persona_type) {
-        if (in_array($persona_type->id(), ['ilr_employee', 'principal_investigator', 'visiting_fellow'])) {
+      foreach ($persona_type_storage->loadMultiple($allowed_bundles) as $persona_type) {
+        // Prevent the creation of some persona types.
+        if (in_array($persona_type->id(), ['ilr_employee', 'visiting_fellow'])) {
           continue;
         }
 
@@ -231,7 +242,7 @@ class Persona extends WidgetBase {
       $persona_new = $this->entityTypeManager->getStorage('persona')->create([
         'type' => $persona_type,
         'person' => $person_id,
-        'admin_label' => $admin_label,
+        // 'admin_label' => $admin_label,
       ]);
 
       // Pretend to be IEFs submit button. See

@@ -113,3 +113,14 @@ details[data-migration-source][open]:hover::before {
 .persona-browser__more-info summary {
   padding: 0;
 }
+
+.entity-browser-persona-browser-form .link.button {
+  margin-left: 1.5em;
+  font-size: unset;
+  font-weight: unset;
+}
+
+.entity-browser-persona-browser-form .link.button:hover {
+  background: none;
+  box-shadow: unset;
+}
