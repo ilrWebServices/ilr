@@ -77,7 +77,10 @@ use Drupal\person\Event\PersonEvents;
  *   },
  *   bundle_entity_type = "persona_type",
  *   field_ui_base_route = "entity.persona_type.edit_form",
- *   constraints = {"SingleIlrEmployeePersona" = {}}
+ *   constraints = {
+ *     "SingleIlrEmployeePersona" = {},
+ *     "UniquePersonaAdminLabel" = {},
+ *   }
  * )
  */
 class Persona extends EditorialContentEntityBase implements PersonaInterface {
@@ -192,6 +195,7 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
    * {@inheritdoc}
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
+    /** @var \Drupal\Core\Field\BaseFieldDefinition[] $fields */
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['status']
