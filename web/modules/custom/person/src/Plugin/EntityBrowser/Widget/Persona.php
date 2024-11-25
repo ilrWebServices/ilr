@@ -4,6 +4,7 @@ namespace Drupal\person\Plugin\EntityBrowser\Widget;
 
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\RevisionableStorageInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\entity_browser\WidgetBase;
@@ -156,12 +157,35 @@ class Persona extends WidgetBase {
           ]),
         ]);
 
+        // Get the first revision for this persona.
+        $persona_first_revision_id = $persona_storage->getQuery()
+          ->accessCheck(FALSE)
+          ->allRevisions()
+          ->condition($persona->getEntityType()->getKey('id'), $persona->id())
+          ->sort($persona->getEntityType()->getKey('revision'), 'ASC')
+          // ->pager(self::REVISIONS_PER_PAGE)
+          ->range(0, 1)
+          ->execute();
+
+        $note = '';
+
+        // Check the log message for the first revision. We use this as a description.
+        if ($persona_first_revision_id) {
+          $persona_first_revision = $persona_storage->loadMultipleRevisions(array_keys($persona_first_revision_id));
+          $persona_first_revision = reset($persona_first_revision);
+
+          if ($log_message = $persona_first_revision->getRevisionLogMessage()) {
+            $note = '• ' . $log_message;
+          }
+        }
+
         $form['people_items']['person_' . $person->id()]['persona:' . $persona->id()] = [
           '#type' => 'checkbox',
           '#title' => $persona->label(),
-          '#description' => $this->t('@type • @preview_link', [
+          '#description' => $this->t('@type • @preview_link @note', [
             '@type' => $persona->type->entity->label(),
             '@preview_link' => Link::fromTextAndUrl('details', $persona_url)->toString(),
+            '@note' => $note,
           ]),
           '#access' => in_array($persona->bundle(), $allowed_bundles),
         ];
