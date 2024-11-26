@@ -11,6 +11,7 @@ dependencies:
     - field.field.persona.author.field_phone
     - field.field.persona.author.field_photo
     - field.field.persona.author.field_title
+    - field.field.persona.author.note
     - image.style.small_5x4
     - person.persona_type.author
   module:
@@ -58,4 +59,5 @@ hidden:
   field_first_name: true
   field_last_name: true
   field_phone: true
+  note: true
   search_api_excerpt: true

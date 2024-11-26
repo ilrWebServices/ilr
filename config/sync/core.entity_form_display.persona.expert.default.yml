@@ -10,6 +10,7 @@ dependencies:
     - field.field.persona.expert.field_phone
     - field.field.persona.expert.field_photo
     - field.field.persona.expert.field_title
+    - field.field.persona.expert.note
     - person.persona_type.expert
   module:
     - media_library
@@ -91,6 +92,14 @@ content:
   field_title:
     type: string_textfield
     weight: 27
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  note:
+    type: string_textfield
+    weight: 1
     region: content
     settings:
       size: 60

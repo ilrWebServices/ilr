@@ -1,0 +1,19 @@
+uuid: f64dd7b0-588e-4522-b6f2-95c7574221c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.note
+    - person.persona_type.expert
+id: persona.expert.note
+field_name: note
+entity_type: persona
+bundle: expert
+label: Note
+description: 'Describe the purpose of this persona. This can help when re-using personas in various contexts.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
