@@ -124,3 +124,18 @@ details[data-migration-source][open]:hover::before {
   background: none;
   box-shadow: unset;
 }
+
+.field--name-field-people.field--widget-entity-browser-entity-reference .entities-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+}
+
+.field--name-field-people.field--widget-entity-browser-entity-reference .entities-list .item-container {
+  margin: 0;
+}
+
+.field--name-field-people.field--widget-entity-browser-entity-reference .entities-list input {
+  margin: .5em 0 0 0;
+  font-size: small;
+}
