@@ -156,13 +156,19 @@ class Persona extends WidgetBase {
           ]),
         ]);
 
+        $context = [
+          $persona->type->entity->label(),
+          Link::fromTextAndUrl('details', $persona_url)->toString(),
+        ];
+
+        if ($persona->hasField('note') && !$persona->get('note')->isEmpty()) {
+          $context[] = $persona->note->value;
+        }
+
         $form['people_items']['person_' . $person->id()]['persona:' . $persona->id()] = [
           '#type' => 'checkbox',
           '#title' => $persona->label(),
-          '#description' => $this->t('@type • @preview_link', [
-            '@type' => $persona->type->entity->label(),
-            '@preview_link' => Link::fromTextAndUrl('details', $persona_url)->toString(),
-          ]),
+          '#description' => implode(' • ', $context),
           '#access' => in_array($persona->bundle(), $allowed_bundles),
         ];
       }
