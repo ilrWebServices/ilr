@@ -112,6 +112,11 @@ class PersonaForm extends ContentEntityForm {
     $form['admin_label']['#group'] = 'meta';
     $form['revision_information']['#group'] = 'meta';
 
+    // The `note` field is added automatically, but can be removed.
+    if (isset($form['note'])) {
+      $form['note']['#group'] = 'meta';
+    }
+
     // Place the status/published field at the bottom of the form.
     $form['status']['#group'] = 'footer';
 
