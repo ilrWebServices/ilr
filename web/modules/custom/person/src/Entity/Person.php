@@ -37,7 +37,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *       "delete" = "Drupal\person\Form\PersonDeleteForm",
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
+ *       "html" = "Drupal\person\Routing\PersonRouteProvider",
  *     },
  *   },
  *   admin_permission = "administer persons",
@@ -54,7 +54,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *     "revision_log_message" = "revision_log_message",
  *   },
  *   links = {
- *     "canonical" = "/person/{person}",
+ *     "canonical" = "/person/{person}/edit",
  *     "add-form" = "/person/add",
  *     "edit-form" = "/person/{person}/edit",
  *     "delete-form" = "/person/{person}/delete",
