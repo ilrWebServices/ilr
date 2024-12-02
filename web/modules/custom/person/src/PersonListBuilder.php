@@ -38,15 +38,12 @@ class PersonListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function getOperations(EntityInterface $entity) {
-    $options = [];
-    $options['query'] = [
-      'person' => $entity->id(),
-    ];
-
-    $operations['add_persona'] = [
-      'title' => $this->t('Add persona'),
+    $operations['personas'] = [
+      'title' => $this->t('Personas'),
       'weight' => -10,
-      'url' => $this->ensureDestination(Url::fromRoute('entity.persona.add_page', [], $options)),
+      'url' => Url::fromRoute('entity.person.personas', [
+        'person' => $entity->id(),
+      ]),
     ];
 
     $operations += parent::getOperations($entity);
