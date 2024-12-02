@@ -56,7 +56,7 @@ class PersonListBuilder extends EntityListBuilder {
     $row['name']['data'] = [
       '#type' => 'link',
       '#title' => $entity->label(),
-      '#url' => Url::fromRoute('entity.persona.collection', ['person' => $entity->id()]),
+      '#url' => $this->ensureDestination($entity->toUrl()),
     ];
     return $row + parent::buildRow($entity);
   }
