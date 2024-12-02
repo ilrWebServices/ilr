@@ -55,6 +55,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *   },
  *   links = {
  *     "canonical" = "/person/{person}/edit",
+ *     "personas" = "/person/{person}/personas",
  *     "add-form" = "/person/add",
  *     "edit-form" = "/person/{person}/edit",
  *     "delete-form" = "/person/{person}/delete",

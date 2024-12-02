@@ -19,6 +19,11 @@ entity.person.canonical:
   base_route: entity.person.canonical
   title: 'Edit'
 
+entity.person.personas:
+  route_name: entity.person.personas
+  base_route: entity.person.canonical
+  title: 'Personas'
+
 entity.person.delete_form:
   route_name:  entity.person.delete_form
   base_route:  entity.person.canonical
