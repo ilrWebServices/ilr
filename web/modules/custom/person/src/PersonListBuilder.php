@@ -56,7 +56,7 @@ class PersonListBuilder extends EntityListBuilder {
     /** @var \Drupal\person\Entity\Person $entity */
     $row['name']['data'] = [
       '#type' => 'link',
-      '#title' => $entity->label(),
+      '#title' => $entity->getDisplayName(),
       '#url' => $this->ensureDestination($entity->toUrl()),
     ];
     $row['changed'] = \Drupal::service('date.formatter')->format($entity->changed->value);

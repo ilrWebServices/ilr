@@ -70,6 +70,20 @@ class Person extends EditorialContentEntityBase implements PersonInterface {
   /**
    * {@inheritdoc}
    */
+  public function getDisplayName() {
+    $display_name = $this->display_name->value;
+    \Drupal::moduleHandler()->alter('person_display_name', $display_name, $this);
+
+    if (empty($display_name)) {
+      $display_name = t('Missing');
+    }
+
+    return $display_name;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function preSaveRevision(EntityStorageInterface $storage, \stdClass $record) {
     parent::preSaveRevision($storage, $record);
 
