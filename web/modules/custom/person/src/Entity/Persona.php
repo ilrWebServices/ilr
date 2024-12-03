@@ -207,7 +207,7 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
 
     $fields['person'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Person'))
-      ->setDescription(t('The person represented by this persona. If you leave this field blank, a new person will be created based on the persona.'))
+      ->setDescription(t('The person represented by this persona.'))
       ->setSetting('target_type', 'person')
       ->setSetting('handler', 'default:person')
       ->setDefaultValueCallback(static::class . '::getPersonParam')
