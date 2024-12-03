@@ -54,7 +54,7 @@ class PersonaForm extends ContentEntityForm {
     $persona = $this->entity;
 
     if (isset($form['person']) && isset($persona->person->entity)) {
-      $form['person']['widget']['#disabled'] = TRUE;
+      $form['person']['widget']['#disabled'] = !$this->account->hasPermission('administer persons');
       $form['person']['widget']['info'] = [
         '#type' => 'link',
         '#title' => $this->t('Edit') . ' ' . $persona->person->entity->label(),
