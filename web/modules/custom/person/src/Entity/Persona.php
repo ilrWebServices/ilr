@@ -34,7 +34,6 @@ use Drupal\person\Event\PersonEvents;
  *   handlers = {
  *     "access" = "Drupal\person\PersonaAccessControlHandler",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\person\PersonaListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
  *     "form" = {
  *       "default" = "Drupal\person\Form\PersonaForm",
@@ -69,7 +68,6 @@ use Drupal\person\Event\PersonEvents;
  *     "add-form" = "/persona/add/{persona_type}",
  *     "edit-form" = "/persona/{persona}/edit",
  *     "delete-form" = "/persona/{persona}/delete",
- *     "collection" = "/admin/content/people/personas",
  *     "revision" = "/persona/{persona}/revision/{persona_revision}/view",
  *     "revision-delete-form" = "/persona/{persona}/revision/{persona_revision}/delete",
  *     "revision-revert-form" = "/persona/{persona}/revision/{persona_revision}/revert",

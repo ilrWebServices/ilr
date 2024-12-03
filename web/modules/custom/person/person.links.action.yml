@@ -13,5 +13,4 @@ entity.persona.add:
   class: '\Drupal\person\Plugin\Menu\LocalAction\PersonaAddLocalAction'
   title: 'Add Persona'
   appears_on:
-    - entity.persona.collection
     - entity.person.personas

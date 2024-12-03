@@ -30,12 +30,6 @@ entity.person.delete_form:
   title: Delete
   weight: 10
 
-entity.persona.collection:
-  route_name: entity.persona.collection
-  base_route: system.admin_content
-  title: 'Personas'
-  weight: 10
-
 entity.persona.canonical:
   route_name: entity.persona.canonical
   base_route: entity.persona.canonical
