@@ -45,6 +45,7 @@ class PersonListBuilder extends EntityListBuilder {
    */
   public function buildHeader() {
     $header['name'] = $this->t('Name');
+    $header['changed'] = $this->t('Last modified');
     return $header + parent::buildHeader();
   }
 
@@ -58,6 +59,7 @@ class PersonListBuilder extends EntityListBuilder {
       '#title' => $entity->label(),
       '#url' => $this->ensureDestination($entity->toUrl()),
     ];
+    $row['changed'] = \Drupal::service('date.formatter')->format($entity->changed->value);
     return $row + parent::buildRow($entity);
   }
 
@@ -80,10 +82,10 @@ class PersonListBuilder extends EntityListBuilder {
    */
   protected function getEntityListQuery(): QueryInterface {
     // We don't call $query = parent:: getEntityListQuery() because it adds a
-    // sort on id, and we want our own sort on display_name.
+    // sort on id, and we want our own sort on changed.
     $query = $this->getStorage()->getQuery()
       ->accessCheck(TRUE)
-      ->sort('display_name');
+      ->sort('changed', 'DESC');
 
     // Only add the pager if a limit is specified.
     if ($this->limit) {
