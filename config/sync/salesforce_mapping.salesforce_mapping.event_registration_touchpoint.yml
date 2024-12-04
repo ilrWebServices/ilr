@@ -132,6 +132,20 @@ field_mappings:
     salesforce_field: ADA_Accommodations__c
     id: 14
     description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:address:city:value]'
+    direction: drupal_sf
+    salesforce_field: City__c
+    id: 15
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[webform_submission:values:address:state_province:value]'
+    direction: drupal_sf
+    salesforce_field: State__c
+    id: 16
+    description: ''
 status: true
 dependencies:
   config:
