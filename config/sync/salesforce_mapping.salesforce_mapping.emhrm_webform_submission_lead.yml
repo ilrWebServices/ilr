@@ -55,18 +55,11 @@ field_mappings:
     id: 3
     description: ''
   4:
-    drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:company:raw]'
+    drupal_field_type: Constant
+    drupal_field_value: 'NONE PROVIDED'
     direction: drupal_sf
     salesforce_field: Company
     id: 4
-    description: ''
-  5:
-    drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:citizenship:raw]'
-    direction: drupal_sf
-    salesforce_field: Citizenship_Status__c
-    id: 5
     description: ''
   6:
     drupal_field_type: Token
@@ -165,20 +158,6 @@ field_mappings:
     direction: drupal_sf
     salesforce_field: LinkedIn_Profile_URL__c
     id: 20
-    description: ''
-  21:
-    drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:level_of_education:raw]'
-    direction: drupal_sf
-    salesforce_field: Level_of_Education__c
-    id: 21
-    description: ''
-  22:
-    drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:current_professional_level:raw]'
-    direction: drupal_sf
-    salesforce_field: Current_Professional_Level__c
-    id: 22
     description: ''
   23:
     drupal_field_type: Token

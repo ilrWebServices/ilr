@@ -64,6 +64,7 @@ elements: |-
       'U.S. Permanent Resident': 'U.S. Permanent Resident'
       'Foreign National': 'Foreign National'
     '#required': true
+    '#access': false
   level_of_education:
     '#type': select
     '#title': 'Level of Education'
@@ -75,6 +76,7 @@ elements: |-
       PhD: PhD
     '#required': true
     '#required_error': 'Please enter level of education'
+    '#access': false
   experience_years:
     '#type': select
     '#title': 'Years of work experience'
@@ -88,9 +90,10 @@ elements: |-
   employer:
     '#type': textfield
     '#title': 'Current employer'
+    '#required': true
     '#pattern': '[^<>]*'
     '#pattern_error': 'Please check your employer value.'
-    '#required': true
+    '#access': false
   current_professional_level:
     '#type': select
     '#title': 'Current Professional Level'
@@ -101,6 +104,7 @@ elements: |-
       VP: VP
       Owner/CEO/Founder: Owner/CEO/Founder
     '#required': true
+    '#access': false
   emhrm_years_as_hr_practitioner:
     '#type': select
     '#title': 'Years as full-time HR practitioner'
