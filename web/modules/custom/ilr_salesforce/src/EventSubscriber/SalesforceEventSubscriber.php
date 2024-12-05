@@ -189,7 +189,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
         $address_variant = $data['variant_address'] ?? '';
 
         // Default the address values to the basic address field.
-        if (($address_variant === 'basic_address' && !empty($data['address']))) {
+        if (($address_variant !== 'remove_address' && !empty($data['address']))) {
           $params->setParam('Street_Address__c', $data['address']['address'] ?: '');
           $params->setParam('City__c', $data['address']['city'] ?: '');
           $params->setParam('State__c', $data['address']['state_province'] ?: '');
