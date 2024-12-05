@@ -55,8 +55,8 @@ field_mappings:
     id: 3
     description: ''
   4:
-    drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:company:raw]'
+    drupal_field_type: Constant
+    drupal_field_value: 'NONE PROVIDED'
     direction: drupal_sf
     salesforce_field: Company
     id: 4
@@ -68,26 +68,12 @@ field_mappings:
     salesforce_field: Citizenship_Status__c
     id: 7
     description: ''
-  8:
-    drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:phone:value]'
-    direction: drupal_sf
-    salesforce_field: MobilePhone
-    id: 8
-    description: ''
   9:
     drupal_field_type: Token
     drupal_field_value: '[webform_submission:values:experience_years:raw]'
     direction: drupal_sf
     salesforce_field: Years_of_Experience__c
     id: 9
-    description: ''
-  10:
-    drupal_field_type: Token
-    drupal_field_value: '[webform_submission:values:bachelors_complete:value]'
-    direction: drupal_sf
-    salesforce_field: Hold_Bachelor_s_Degree__c
-    id: 10
     description: ''
   11:
     drupal_field_type: Token

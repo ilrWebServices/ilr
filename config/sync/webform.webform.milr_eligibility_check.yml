@@ -64,7 +64,7 @@ elements: |-
   phone:
     '#type': tel
     '#title': 'Cell phone number'
-    '#required': true
+    '#access': false
   experience_years:
     '#type': select
     '#title': 'Years of work experience'
@@ -79,13 +79,14 @@ elements: |-
     '#title': 'Current employer (if applicable)'
     '#pattern': '[^<>]*'
     '#pattern_error': 'Please check your employer value.'
+    '#access': false
   bachelors_complete:
     '#type': radios
     '#title': 'Do you hold, or are you in the process of obtaining, a Bachelor’s degree?'
     '#options':
       1: 'Yes'
       0: 'No'
-    '#required': true
+    '#access': false
   degree_year:
     '#type': datelist
     '#title': 'When did, or will, you receive your Bachelor’s degree?'
