@@ -11,6 +11,7 @@ dependencies:
     - field.field.persona.expert.field_phone
     - field.field.persona.expert.field_photo
     - field.field.persona.expert.field_title
+    - field.field.persona.expert.note
     - image.style.small_5x4
     - person.persona_type.expert
   module:
@@ -72,4 +73,5 @@ hidden:
   field_bio: true
   field_first_name: true
   field_last_name: true
+  note: true
   search_api_excerpt: true

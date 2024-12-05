@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\EventSubscriber\MainContentViewSubscriber;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Render\Element;
@@ -125,4 +126,30 @@ function person_tokens($type, $tokens, array $data, array $options, BubbleableMe
   }
 
   return $replacements;
+}
+
+/**
+ * Implements hook_inline_entity_form_entity_form_alter().
+ */
+function person_inline_entity_form_entity_form_alter(array &$entity_form, FormStateInterface &$form_state) {
+  if ($entity_form['#entity_type'] == 'persona') {
+    /** @var \Drupal\person\PersonaInterface $persona */
+    $persona = $entity_form['#entity'];
+
+    if ($persona->person->entity) {
+      $admin_label_placeholder = $persona->person->entity->display_name->value . ' - ' . $persona->type->entity->label();
+      $entity_form['admin_label']['widget'][0]['value']['#description'] = str_replace('Jane Doe - Department Staffer', $admin_label_placeholder, $entity_form['admin_label']['widget'][0]['value']['#description']);
+
+      // Add placeholder text for inherited values from the person record.
+      foreach ($persona->type->entity->getInheritedFieldNames() as $field_name) {
+        if ($persona->$field_name->isEmpty()) {
+          $entity_form[$field_name]['widget'][0]['value']['#placeholder'] = $persona->person->entity->$field_name->value;
+        }
+      }
+    }
+    else {
+      $entity_form['field_first_name']['widget'][0]['value']['#required'] = TRUE;
+      $entity_form['field_last_name']['widget'][0]['value']['#required'] = TRUE;
+    }
+  }
 }

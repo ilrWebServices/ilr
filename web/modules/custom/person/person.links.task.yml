@@ -17,23 +17,17 @@ entity.person.collection:
 entity.person.canonical:
   route_name: entity.person.canonical
   base_route: entity.person.canonical
-  title: 'View'
-
-entity.person.edit_form:
-  route_name: entity.person.edit_form
-  base_route: entity.person.canonical
   title: 'Edit'
+
+entity.person.personas:
+  route_name: entity.person.personas
+  base_route: entity.person.canonical
+  title: 'Personas'
 
 entity.person.delete_form:
   route_name:  entity.person.delete_form
   base_route:  entity.person.canonical
   title: Delete
-  weight: 10
-
-entity.persona.collection:
-  route_name: entity.persona.collection
-  base_route: system.admin_content
-  title: 'Personas'
   weight: 10
 
 entity.persona.canonical:

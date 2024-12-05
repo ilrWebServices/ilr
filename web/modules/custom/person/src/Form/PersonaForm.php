@@ -54,7 +54,7 @@ class PersonaForm extends ContentEntityForm {
     $persona = $this->entity;
 
     if (isset($form['person']) && isset($persona->person->entity)) {
-      $form['person']['widget']['#disabled'] = TRUE;
+      $form['person']['widget']['#disabled'] = !$this->account->hasPermission('administer persons');
       $form['person']['widget']['info'] = [
         '#type' => 'link',
         '#title' => $this->t('Edit') . ' ' . $persona->person->entity->label(),
@@ -65,7 +65,7 @@ class PersonaForm extends ContentEntityForm {
       $form['inherited'] = [
         '#type' => 'details',
         '#title' => $this->t('Inherited Fields'),
-        '#description' => isset($persona->person->entity) ? $this->t('The values of these fields are inherited from @link. If modified here, they will override the original values.', [
+        '#description' => isset($persona->person->entity) ? $this->t('The values of these fields are inherited from @link. If modified here, they will used instead of the original values.', [
           '@link' => $persona->person->entity->toLink(NULL, 'edit-form')->toString(),
         ]) : '',
         '#collapsible' => TRUE,
@@ -76,6 +76,7 @@ class PersonaForm extends ContentEntityForm {
       foreach ($persona->type->entity->getInheritedFieldNames() as $field_name) {
         if (isset($form[$field_name]) && (!$persona->fieldIsOverridden($field_name) || $persona->$field_name->isEmpty())) {
           $form[$field_name]['#group'] = 'inherited';
+          $form[$field_name]['widget'][0]['value']['#placeholder'] = $persona->person->entity->$field_name->value;
         }
       }
     }
@@ -111,6 +112,11 @@ class PersonaForm extends ContentEntityForm {
     $form['person']['#group'] = 'meta';
     $form['admin_label']['#group'] = 'meta';
     $form['revision_information']['#group'] = 'meta';
+
+    // The `note` field is added automatically, but can be removed.
+    if (isset($form['note'])) {
+      $form['note']['#group'] = 'meta';
+    }
 
     // Place the status/published field at the bottom of the form.
     $form['status']['#group'] = 'footer';

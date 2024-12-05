@@ -37,7 +37,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *       "delete" = "Drupal\person\Form\PersonDeleteForm",
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
+ *       "html" = "Drupal\person\Routing\PersonRouteProvider",
  *     },
  *   },
  *   admin_permission = "administer persons",
@@ -54,7 +54,8 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *     "revision_log_message" = "revision_log_message",
  *   },
  *   links = {
- *     "canonical" = "/person/{person}",
+ *     "canonical" = "/person/{person}/edit",
+ *     "personas" = "/person/{person}/personas",
  *     "add-form" = "/person/add",
  *     "edit-form" = "/person/{person}/edit",
  *     "delete-form" = "/person/{person}/delete",
@@ -65,6 +66,20 @@ use Drupal\Core\Entity\EntityTypeInterface;
  * )
  */
 class Person extends EditorialContentEntityBase implements PersonInterface {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDisplayName() {
+    $display_name = $this->display_name->value;
+    \Drupal::moduleHandler()->alter('person_display_name', $display_name, $this);
+
+    if (empty($display_name)) {
+      $display_name = t('Missing');
+    }
+
+    return $display_name;
+  }
 
   /**
    * {@inheritdoc}
@@ -165,7 +180,8 @@ class Person extends EditorialContentEntityBase implements PersonInterface {
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
-      ->setRevisionable(TRUE);
+      ->setRevisionable(TRUE)
+      ->setRequired(TRUE);
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))

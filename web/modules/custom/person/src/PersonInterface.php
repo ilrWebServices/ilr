@@ -14,4 +14,13 @@ use Drupal\Core\Entity\EntityPublishedInterface;
  */
 interface PersonInterface extends ContentEntityInterface, EntityChangedInterface, RevisionLogInterface, EntityPublishedInterface {
 
+  /**
+   * Get the display name (not the admin label) for a Persona.
+   *
+   * @return string
+   *   The display name, which can be modified with
+   *   hook_person_display_name_alter().
+   */
+  public function getDisplayName();
+
 }

@@ -34,7 +34,6 @@ use Drupal\person\Event\PersonEvents;
  *   handlers = {
  *     "access" = "Drupal\person\PersonaAccessControlHandler",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\person\PersonaListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
  *     "form" = {
  *       "default" = "Drupal\person\Form\PersonaForm",
@@ -69,7 +68,6 @@ use Drupal\person\Event\PersonEvents;
  *     "add-form" = "/persona/add/{persona_type}",
  *     "edit-form" = "/persona/{persona}/edit",
  *     "delete-form" = "/persona/{persona}/delete",
- *     "collection" = "/admin/content/people/personas",
  *     "revision" = "/persona/{persona}/revision/{persona_revision}/view",
  *     "revision-delete-form" = "/persona/{persona}/revision/{persona_revision}/delete",
  *     "revision-revert-form" = "/persona/{persona}/revision/{persona_revision}/revert",
@@ -77,7 +75,10 @@ use Drupal\person\Event\PersonEvents;
  *   },
  *   bundle_entity_type = "persona_type",
  *   field_ui_base_route = "entity.persona_type.edit_form",
- *   constraints = {"SingleIlrEmployeePersona" = {}}
+ *   constraints = {
+ *     "SingleIlrEmployeePersona" = {},
+ *     "UniquePersonaAdminLabel" = {},
+ *   }
  * )
  */
 class Persona extends EditorialContentEntityBase implements PersonaInterface {
@@ -192,6 +193,7 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
    * {@inheritdoc}
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
+    /** @var \Drupal\Core\Field\BaseFieldDefinition[] $fields */
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['status']
@@ -205,7 +207,7 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
 
     $fields['person'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Person'))
-      ->setDescription(t('The person represented by this persona. If you leave this field blank, a new person will be created based on the persona.'))
+      ->setDescription(t('The person represented by this persona.'))
       ->setSetting('target_type', 'person')
       ->setSetting('handler', 'default:person')
       ->setDefaultValueCallback(static::class . '::getPersonParam')

@@ -66,7 +66,7 @@ class PersonaType extends ConfigEntityBundleBase implements PersonaTypeInterface
   /**
    * {@inheritdoc}
    *
-   * Add custom inheritable Person fields to new Persona types.
+   * Add note and custom inheritable Person fields to new Persona types.
    */
   public function postSave(EntityStorageInterface $storage, $update = TRUE) {
     parent::postSave($storage, $update);
@@ -77,6 +77,7 @@ class PersonaType extends ConfigEntityBundleBase implements PersonaTypeInterface
 
     $entity_type_manager = $this->entityTypeManager();
     $entity_field_manager = $this->entityFieldManager();
+    /** @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface $display_repository */
     $display_repository = \Drupal::service('entity_display.repository');
     $fieldStorageConfigStorage = $entity_type_manager->getStorage('field_storage_config');
     $fieldConfigStorage = $entity_type_manager->getStorage('field_config');
@@ -84,6 +85,21 @@ class PersonaType extends ConfigEntityBundleBase implements PersonaTypeInterface
     $person_view_display = $display_repository->getViewDisplay('person', 'person');
     $persona_form_display = $display_repository->getFormDisplay('persona', $this->id());
     $persona_view_display = $display_repository->getViewDisplay('persona', $this->id());
+
+    // Add the note field instance.
+    $note_field = $fieldConfigStorage->create([
+      'field_storage' => $fieldStorageConfigStorage->load('persona.note'),
+      'bundle' => $this->id(),
+      'label' => 'Note',
+      'settings' => [],
+      'required' => TRUE,
+      'description' => t('Describe the purpose of this persona. This can help when re-using personas in various contexts.'),
+    ]);
+    $note_field->save();
+    $persona_form_display->setComponent('note', [
+      'type' => 'string_textfield',
+      'weight' => 0,
+    ])->save();
 
     // Check all of the inheritable Person fields to see if this Persona type
     // has the storage and config.

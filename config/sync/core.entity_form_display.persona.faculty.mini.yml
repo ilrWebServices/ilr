@@ -1,27 +1,30 @@
-uuid: 35c40ec1-b83a-45d1-a7a9-649a4ca020ba
+uuid: e88abd46-cd5b-4da8-901c-a1509cfcc59a
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.persona.expert.field_bio
-    - field.field.persona.expert.field_email
-    - field.field.persona.expert.field_first_name
-    - field.field.persona.expert.field_last_name
-    - field.field.persona.expert.field_phone
-    - field.field.persona.expert.field_photo
-    - field.field.persona.expert.field_title
-    - field.field.persona.expert.note
-    - person.persona_type.expert
+    - core.entity_form_mode.persona.mini
+    - field.field.persona.faculty.field_bio
+    - field.field.persona.faculty.field_campus_address
+    - field.field.persona.faculty.field_education
+    - field.field.persona.faculty.field_email
+    - field.field.persona.faculty.field_fax
+    - field.field.persona.faculty.field_first_name
+    - field.field.persona.faculty.field_last_name
+    - field.field.persona.faculty.field_phone
+    - field.field.persona.faculty.field_photo
+    - field.field.persona.faculty.field_title
+    - person.persona_type.faculty
   module:
+    - address
     - media_library
     - media_library_edit
-    - path
     - telephone
     - text
-id: persona.expert.default
+id: persona.faculty.mini
 targetEntityType: persona
-bundle: expert
-mode: default
+bundle: faculty
+mode: mini
 content:
   admin_label:
     type: string_textfield
@@ -33,7 +36,7 @@ content:
     third_party_settings: {  }
   display_name:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
@@ -41,7 +44,7 @@ content:
     third_party_settings: {  }
   field_bio:
     type: text_textarea_with_summary
-    weight: 28
+    weight: 10
     region: content
     settings:
       rows: 9
@@ -49,23 +52,37 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
+  field_campus_address:
+    type: address_default
+    weight: 7
+    region: content
+    settings:
+      wrapper_type: details
+    third_party_settings: {  }
+  field_education:
+    type: text_textarea
+    weight: 11
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_email:
     type: email_default
-    weight: 3
+    weight: 4
     region: content
     settings:
       placeholder: ''
       size: 60
+    third_party_settings: {  }
+  field_fax:
+    type: telephone_default
+    weight: 6
+    region: content
+    settings:
+      placeholder: ''
     third_party_settings: {  }
   field_first_name:
-    type: string_textfield
-    weight: 1
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_last_name:
     type: string_textfield
     weight: 2
     region: content
@@ -73,16 +90,24 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_last_name:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_phone:
     type: telephone_default
-    weight: 4
+    weight: 5
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_photo:
     type: media_library_widget
-    weight: 26
+    weight: 8
     region: content
     settings:
       media_types: {  }
@@ -91,41 +116,14 @@ content:
         show_edit: '1'
   field_title:
     type: string_textfield
-    weight: 27
+    weight: 9
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  note:
-    type: string_textfield
-    weight: 1
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  path:
-    type: path
-    weight: 30
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  person:
-    type: entity_reference_autocomplete
-    weight: -100
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    weight: 30
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  ief_collection_items: true
+  path: true
+  person: true
+  status: true

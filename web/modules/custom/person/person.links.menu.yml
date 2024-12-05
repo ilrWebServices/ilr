@@ -10,3 +10,9 @@ entity.person.admin_form:
   description: 'Configure Person entities, including fields.'
   weight: 10
   route_name: entity.person.admin_form
+
+entity.person.collection:
+  title: 'People'
+  route_name: entity.person.collection
+  description: 'Create and manage People content.'
+  parent: system.admin_content
