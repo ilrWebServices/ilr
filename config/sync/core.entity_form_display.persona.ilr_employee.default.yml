@@ -230,6 +230,11 @@ content:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
+  ief_collection_items:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   path:
     type: path
     weight: 19

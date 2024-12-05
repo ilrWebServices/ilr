@@ -22,6 +22,11 @@ targetEntityType: persona
 bundle: expert
 mode: default
 content:
+  extra_field_profile:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_bio:
     type: text_default
     label: hidden
@@ -50,6 +55,8 @@ content:
     settings:
       image_link: content
       image_style: thumbnail_square
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 4
     region: content
