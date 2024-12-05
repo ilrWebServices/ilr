@@ -17,17 +17,21 @@
     name: 'Required Courses'|t,
     description: required_courses_text,
     icon: 'check-circle'
-  },
-  {
-    name: 'Time to Complete'|t,
-    description: '<p><strong>@completion_time months</strong><br/>Time participants have to complete the entire certificate program</p>'|t({ '@completion_time': completion_time }),
-    icon: 'check-circle'
   }
 ]%}
+
+{% if completion_time > 0 %}
+{% set basics = basics|merge([{
+  name: 'Time to Complete'|t,
+  description: '<p><strong>@completion_time months</strong><br/>Time participants have to complete the entire certificate program</p>'|t({ '@completion_time': completion_time }),
+  icon: 'check-circle'
+}]) %}
+{% endif %}
+
 {% set basics_grid %}
 {% include "@union/_feature-list.twig" with {
     items: basics,
-    content_attributes: { class: 'cu-grid--3col cu-certificate-basics cu-inline-list' }
+    content_attributes: { class: 'cu-grid--' ~ basics|length ~ 'col cu-certificate-basics cu-inline-list' }
   } only %}
 {% endset %}
 

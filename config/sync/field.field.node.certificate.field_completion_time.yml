@@ -10,7 +10,7 @@ field_name: field_completion_time
 entity_type: node
 bundle: certificate
 label: 'Completion Time'
-description: 'Time <em>in months</em> that participants have to complete the entire certificate program.'
+description: 'Time <em>in months</em> that participants have to complete the entire certificate program. Enter 0 (zero) for no limit.'
 required: true
 translatable: false
 default_value:
