@@ -104,7 +104,7 @@ class PersonListBuilder extends EntityListBuilder {
    */
   public function getOperations(EntityInterface $entity) {
     $operations['personas'] = [
-      'title' => $this->t('Personas'),
+      'title' => $this->t('View personas'),
       'weight' => -10,
       'url' => Url::fromRoute('entity.person.personas', [
         'person' => $entity->id(),
