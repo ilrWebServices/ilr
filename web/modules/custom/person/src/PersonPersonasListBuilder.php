@@ -5,12 +5,15 @@ namespace Drupal\person;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityListBuilder;
-use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Link;
+use Drupal\entity_usage\EntityUsageInterface;
 
 /**
  * @ingroup person
  */
 class PersonPersonasListBuilder extends EntityListBuilder {
+
+  protected ?EntityUsageInterface $usage;
 
   /**
    * Constructs a new PersonPersonasListBuilder object.
@@ -23,6 +26,13 @@ class PersonPersonasListBuilder extends EntityListBuilder {
     EntityTypeInterface $entityType
   ) {
     $this->entityType = $entityType;
+
+    try {
+      $this->usage = \Drupal::service('entity_usage.usage');
+    }
+    catch (\Exception $e) {
+      $this->usage = NULL;
+    }
   }
 
   /**
@@ -44,6 +54,11 @@ class PersonPersonasListBuilder extends EntityListBuilder {
     $header['note'] = $this->t('Note');
     $header['status'] = $this->t('Published');
     $header['changed'] = $this->t('Last modified');
+
+    if ($this->usage) {
+      $header['used'] = $this->t('Used');
+    }
+
     return $header + parent::buildHeader();
   }
 
@@ -57,6 +72,15 @@ class PersonPersonasListBuilder extends EntityListBuilder {
     $row['note'] = $entity->hasField('note') ? $entity->note->value : '';
     $row['status'] = $entity->isPublished() ? $this->t('Yes') : $this->t('No');
     $row['changed'] = \Drupal::service('date.formatter')->format($entity->changed->value);
+
+    if ($this->usage) {
+      $usages = $this->usage->listSources($entity);
+      $usage_link = Link::createFromRoute($this->t('Yes'), 'entity.persona.entity_usage', [
+        'persona' => $entity->id()
+      ]);
+      $row['used'] = $usages ? $usage_link : $this->t('No');
+    }
+
     return $row + parent::buildRow($entity);
   }
 
