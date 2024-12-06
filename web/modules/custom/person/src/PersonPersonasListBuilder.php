@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 use Drupal\Core\Link;
+use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\entity_usage\EntityUsageInterface;
 
 /**
@@ -14,6 +15,7 @@ use Drupal\entity_usage\EntityUsageInterface;
 class PersonPersonasListBuilder extends EntityListBuilder {
 
   protected ?EntityUsageInterface $usage;
+  protected AccountProxyInterface $user;
 
   /**
    * Constructs a new PersonPersonasListBuilder object.
@@ -26,6 +28,7 @@ class PersonPersonasListBuilder extends EntityListBuilder {
     EntityTypeInterface $entityType
   ) {
     $this->entityType = $entityType;
+    $this->user = \Drupal::currentUser();
 
     try {
       $this->usage = \Drupal::service('entity_usage.usage');
@@ -55,7 +58,7 @@ class PersonPersonasListBuilder extends EntityListBuilder {
     $header['status'] = $this->t('Published');
     $header['changed'] = $this->t('Last modified');
 
-    if ($this->usage) {
+    if ($this->usage && $this->user->hasPermission('access entity usage statistics')) {
       $header['used'] = $this->t('Used');
     }
 
@@ -73,7 +76,7 @@ class PersonPersonasListBuilder extends EntityListBuilder {
     $row['status'] = $entity->isPublished() ? $this->t('Yes') : $this->t('No');
     $row['changed'] = \Drupal::service('date.formatter')->format($entity->changed->value);
 
-    if ($this->usage) {
+    if ($this->usage && $this->user->hasPermission('access entity usage statistics')) {
       $usages = $this->usage->listSources($entity);
       $usage_link = Link::createFromRoute($this->t('Yes'), 'entity.persona.entity_usage', [
         'persona' => $entity->id()
