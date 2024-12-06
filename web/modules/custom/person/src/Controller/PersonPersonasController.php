@@ -2,9 +2,7 @@
 
 namespace Drupal\person\Controller;
 
-use Drupal\collection\ContentEntityCollectionListBuilder;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\person\PersonaManager;
 use Drupal\person\PersonInterface;
@@ -17,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class PersonPersonasController extends ControllerBase {
 
   /**
-   * Constructs a ContentEntityCollectionsController object.
+   * Constructs a PersonPersonasController object.
    */
   public function __construct(
     protected PersonaManager $personaManager
