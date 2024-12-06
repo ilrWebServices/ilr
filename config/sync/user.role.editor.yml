@@ -26,6 +26,7 @@ dependencies:
     - collection_content_permissions
     - contextual
     - entity_browser
+    - entity_usage
     - file
     - ilr
     - media
@@ -45,6 +46,7 @@ permissions:
   - 'access collection overview'
   - 'access content overview'
   - 'access contextual links'
+  - 'access entity usage statistics'
   - 'access files overview'
   - 'access media overview'
   - 'access persona_browser entity browser pages'
