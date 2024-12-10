@@ -59,7 +59,7 @@ class PersonPersonasListBuilder extends EntityListBuilder {
     $header['changed'] = $this->t('Last modified');
 
     if ($this->usage && $this->user->hasPermission('access entity usage statistics')) {
-      $header['used'] = $this->t('Used');
+      $header['used'] = $this->t('Used') . ' *';
     }
 
     return $header + parent::buildHeader();
@@ -67,9 +67,10 @@ class PersonPersonasListBuilder extends EntityListBuilder {
 
   /**
    * {@inheritdoc}
+   *
+   * @param PersonaInterface $entity
    */
   public function buildRow(EntityInterface $entity) {
-    /* @var Drupal\Core\Entity\ContentEntityInterface $entity */
     $row['admin_label'] = $entity->toLink();
     $row['type'] = $entity->type->entity->label();
     $row['note'] = $entity->hasField('note') ? $entity->note->value : '';
@@ -93,6 +94,7 @@ class PersonPersonasListBuilder extends EntityListBuilder {
   public function render() {
     $build = parent::render();
     $build['table']['#empty'] = $this->t('There are no personas for this person.');
+    $build['footer']['#markup'] = '* ' . $this->t('Usage does not include dynamic listings.');
     return $build;
   }
 
