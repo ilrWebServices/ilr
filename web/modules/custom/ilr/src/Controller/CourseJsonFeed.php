@@ -52,6 +52,7 @@ class CourseJsonFeed extends ControllerBase {
         'key_takeaways' => $course->field_key_outcomes->value,
         'audiences' => $course->field_target_audience->value,
         'topics' => [],
+        'sessions' => [],
       ];
 
       foreach ($course->field_topics->referencedEntities() as $topic) {
@@ -59,16 +60,26 @@ class CourseJsonFeed extends ControllerBase {
       }
 
       foreach ($course->classes->referencedEntities() as $class) {
-        $delivery_method = ($class->field_delivery_method->value === 'Classroom') ? 'In person' : $class->field_delivery_method->value;
         $class_start = new DrupalDateTime($class->field_date_start->value, DateTimeItemInterface::STORAGE_TIMEZONE);
         $register_url = $course->toUrl('canonical', ['absolute' => TRUE]);
+        $delivery_method = '';
+        $location = '';
 
-        if ($delivery_method == 'In person') {
+        if ($class->field_delivery_method->value === 'Classroom' && !$class->field_address->isEmpty()) {
           $location = strtr("%address_line1\n%city, %state", [
             '%address_line1' => $class->field_address->address_line1,
             '%city' => $class->field_address->locality,
             '%state' => $class->field_address->administrative_area,
           ]);
+          $delivery_method = 'In person';
+        }
+        else {
+          continue;
+        }
+
+        // Even if this class is in person, we still only want NYC.
+        if ($class->field_address->locality !== 'New York') {
+          continue;
         }
 
         if ($mapped_object = $class->getClassNodeSalesforceMappedObject()) {
@@ -90,7 +101,9 @@ class CourseJsonFeed extends ControllerBase {
         ];
       }
 
-      $data['courses'][] = $course_data;
+      if (!empty($course_data['sessions'])) {
+        $data['courses'][] = $course_data;
+      }
     }
 
     $response->setData($data);
