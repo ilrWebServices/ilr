@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function ilr_neutrals_theme($existing, $type, $theme, $path) : array {
+  return [
+    'ilr_neutral' => [
+      'variables' => [
+        'content' => '',
+        'display' => 'teaser',
+      ],
+      'template' => 'ilr-neutral',
+    ],
+  ];
+}

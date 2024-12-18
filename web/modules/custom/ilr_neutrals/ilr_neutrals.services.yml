@@ -1,0 +1,5 @@
+services:
+  ilr_neutrals.remote_data_subscriber:
+    class: Drupal\ilr_neutrals\EventSubscriber\RemoteNeutralsSubscriber
+    tags:
+      - { name: event_subscriber }

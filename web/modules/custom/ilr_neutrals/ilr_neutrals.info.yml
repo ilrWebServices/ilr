@@ -1,0 +1,7 @@
+name: 'ILR Neutrals'
+type: module
+description: 'Functionality for the roster of Neutrals.'
+core_version_requirement: ^10 || ^11
+package: 'ILR'
+dependencies:
+  - views_remote_data
