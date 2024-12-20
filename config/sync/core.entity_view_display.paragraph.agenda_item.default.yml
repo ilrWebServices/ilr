@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.agenda_item.field_body
     - field.field.paragraph.agenda_item.field_heading
+    - field.field.paragraph.agenda_item.field_subheading
     - paragraphs.paragraphs_type.agenda_item
   module:
     - text
@@ -18,7 +19,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_heading:
     type: string
@@ -27,6 +28,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_subheading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   search_api_excerpt: true

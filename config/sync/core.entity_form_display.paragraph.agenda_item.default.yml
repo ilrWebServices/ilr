@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.agenda_item.field_body
     - field.field.paragraph.agenda_item.field_heading
+    - field.field.paragraph.agenda_item.field_subheading
     - paragraphs.paragraphs_type.agenda_item
   module:
     - text
@@ -15,7 +16,7 @@ mode: default
 content:
   field_body:
     type: text_textarea
-    weight: 1
+    weight: 2
     region: content
     settings:
       rows: 5
@@ -24,6 +25,14 @@ content:
   field_heading:
     type: string_textfield
     weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_subheading:
+    type: string_textfield
+    weight: 1
     region: content
     settings:
       size: 60
