@@ -26,6 +26,9 @@ settings:
     -
       value: 3col
       label: 'Three columns'
+    -
+      value: 2col
+      label: 'Two columns'
   allowed_values_function: ''
 module: options
 locked: false

@@ -367,7 +367,7 @@ function union_marketing_preprocess_paragraph__deck(&$variables) {
 
   $variables['attributes']['class'][] = 'cu-grid--' . $grid_variant;
 
-  if ($grid_variant !== '3col') {
+  if (!str_ends_with($grid_variant, 'col')) {
     $variables['attributes']['class'][] = 'cu-grid--2col';
     $variables['attributes']['class'][] = 'cu-grid--gapless';
   }

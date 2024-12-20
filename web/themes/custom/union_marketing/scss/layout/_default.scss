@@ -143,6 +143,16 @@ hr.pad {
   }
 }
 
+// Card decks with only two cards get margins to make the cards the size they
+// would be in a three card deck.
+.cu-component--deck.cu-grid--2col:not(.cu-grid--gapless) {
+  @include breakpoint(md) {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 66%;
+  }
+}
+
 .node--view-mode-alt .block-extra-field-block--node--page--extra-field-ilr-section-navigation {
   margin-bottom: var(--cu-vr1);
 
