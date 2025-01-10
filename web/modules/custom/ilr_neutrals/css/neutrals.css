@@ -1,5 +1,24 @@
 .neutrals-view {
   scroll-margin-top: 8em;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+}
+
+@media only screen and (min-width: 61rem) {
+  .neutrals-view {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 80rem) {
+  .neutrals-view {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.neutrals-view:has(> .ilr-neutral--full) {
+  grid-template-columns: 1fr;
 }
 
 .js-neutrals-filter-form {

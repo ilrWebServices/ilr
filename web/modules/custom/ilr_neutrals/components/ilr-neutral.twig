@@ -13,10 +13,16 @@
 {%- set heading_element = display == 'full' ? 'h1' : 'h2' -%}
 {%- set remote_host = 'https://neutrals.app.ilr.cornell.edu' -%}
 <div {{ attributes.addClass('ilr-neutral').addClass('ilr-neutral--' ~ display) }}>
-  <{{ heading_element }} class="cu-heading"><a href="?arbid={{ id }}">{{ title|raw }}</a></{{ heading_element }}>
+  <{{ heading_element }} class="cu-heading">
+    {%- if display == 'full' -%}
+      {{ title|raw }}
+    {%- else -%}
+      <a href="?arbid={{ id }}">{{ title|raw }}</a>
+    {%- endif %}
+  </{{ heading_element -}}>
   <div class="ilr-neutral__teaser">
     {%- if profile_image %}
-    <div class="ilr-neutral__profile_image"><img src="{{ (remote_host ~ profile_image)|imagecache_external('thumbnail') }}" alt="Photo of {{ title|raw }}"></div>
+    <div class="ilr-neutral__profile_image"><img src="{{ (remote_host ~ profile_image)|imagecache_external('small_preserve_aspect') }}" alt="Photo of {{ title|raw }}"></div>
     {% endif -%}
     <div class="ilr-neutral__job-title">{{ job_title }}</div>
     <div class="ilr-neutral__company">{{ company }}</div>

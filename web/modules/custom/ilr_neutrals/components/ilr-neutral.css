@@ -1,17 +1,47 @@
-.ilr-neutral {
-  margin-bottom: 2em;
+.ilr-neutral--teaser {
+  border: 1px solid #ccc;
+  padding: var(--cu-vr0) var(--cu-ps0);
 }
 
-.ilr-neutral__full-info  {
+.ilr-neutral--full  {
   max-width: 800px;
+}
+
+.ilr-neutral__job-title {
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.ilr-neutral__company {
+  font-size: var(--cu-ms-2);
+}
+
+.ilr-neutral__address,
+.ilr-neutral__email,
+.ilr-neutral__phone {
+  margin-top: var(--cu-vr-2);
+}
+
+.ilr-neutral__address {
+  line-height: 1.25;
+}
+
+.ilr-neutral--teaser .ilr-neutral__address {
+  clear: both;
 }
 
 .ilr-neutral--teaser .ilr-neutral__profile_image {
   float: left;
-  margin-right: 1em;
+  margin-right: var(--cu-ps0);
+  margin-bottom: var(--cu-vr0);
+}
+
+.ilr-neutral--teaser .ilr-neutral__profile_image img {
+  max-width: 100px;
 }
 
 .ilr-neutral--full .ilr-neutral__profile_image {
   float: right;
-  margin-left: 1em;
+  margin-left: var(--cu-ps0);
+  margin-bottom: var(--cu-vr0);
 }
