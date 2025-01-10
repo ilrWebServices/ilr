@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * Default template for a 'ilr_neutral' component.
+ *
+ * Available variables:
+ *   - id, title, ...: Data fields for Neutrals.
+ *   - display: Display of the content being rendered. Can be "teaser" or "full".
+ *
+ * @ingroup themeable
+ */
+#}
+{%- set heading_element = display == 'full' ? 'h1' : 'h2' -%}
+{%- set remote_host = 'https://neutrals.app.ilr.cornell.edu' -%}
+<div {{ attributes.addClass('ilr-neutral').addClass('ilr-neutral--' ~ display) }}>
+  <{{ heading_element }} class="cu-heading"><a href="?arbid={{ id }}">{{ title|raw }}</a></{{ heading_element }}>
+  <div class="ilr-neutral__teaser">
+    {%- if profile_image %}
+    <div class="ilr-neutral__profile_image"><img src="{{ (remote_host ~ profile_image)|imagecache_external('thumbnail') }}" alt="Photo of {{ title|raw }}"></div>
+    {% endif -%}
+    <div class="ilr-neutral__job-title">{{ job_title }}</div>
+    <div class="ilr-neutral__company">{{ company }}</div>
+    <div class="ilr-neutral__address" data-state="{{ state }}">
+      {{ address_1 }}<br/>
+      {% if address_2 %}{{ address_2 }}<br/>{% endif %}
+      {{ city }}, {{ state }}&nbsp;&nbsp;{{ zip }}
+    </div>
+    <div class="ilr-neutral__email"><a href="mailto:{{ email }}">{{ email }}</a></div>
+    <div class="ilr-neutral__phone"><a href="tel:{{ phone }}">{{ phone }}</a></div>
+    {% if fax %}<div class="ilr-neutral__fax">{% trans %}Fax{% endtrans %}: {{ fax }}</div>{% endif %}
+    {% if websites %}
+    <ul class="ilr-neutral__websites">
+      {% for website in websites %}
+      <li class="ilr-neutral__website"><a href="{{ website }}">{{ website }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+  </div>
+  {%- if display == 'full' %}
+  <div class="ilr-neutral__full-info">
+    {% if professional_work_history %}
+      <div class="ilr-neutral__professional-work-history"><h2 class="cu-heading">Professional Work History</h2>{{ professional_work_history|raw }}</div>
+    {% endif %}
+    {% if experience %}
+      <div class="ilr-neutral__experience"><h2 class="cu-heading">Dispute Resolution Experience</h2>{{ experience|raw }}</div>
+    {% endif %}
+    {% if cornell_training %}
+      <div class="ilr-neutral__cornell-training"><h2 class="cu-heading">Cornell University Dispute Resolution Training (Course titles and dates taken)</h2>{{ cornell_training|raw }}</div>
+    {% endif %}
+    {% if other_training %}
+      <div class="ilr-neutral__other_training"><h2 class="cu-heading">Other Dispute Resolution Training</h2>{{ other_training|raw }}</div>
+    {% endif %}
+    {% if professional_associations %}
+      <div class="ilr-neutral__professional-associations"><h2 class="cu-heading">Professional Associations</h2>{{ professional_associations|raw }}</div>
+    {% endif %}
+    {% if education %}
+      <div class="ilr-neutral__education"><h2 class="cu-heading">Education</h2>{{ education|raw }}</div>
+    {% endif %}
+    {% if references %}
+      <div class="ilr-neutral__references"><h2 class="cu-heading">References</h2>{{ references|raw }}</div>
+    {% endif %}
+    {% if fee_policy %}
+      <div class="ilr-neutral__fee_policy"><h2 class="cu-heading">Fee Policy</h2>{{ fee_policy|raw }}</div>
+    {% endif %}
+  </div>
+  {% endif -%}
+</div>

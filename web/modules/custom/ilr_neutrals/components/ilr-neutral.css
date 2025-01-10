@@ -1,0 +1,17 @@
+.ilr-neutral {
+  margin-bottom: 2em;
+}
+
+.ilr-neutral__full-info  {
+  max-width: 800px;
+}
+
+.ilr-neutral--teaser .ilr-neutral__profile_image {
+  float: left;
+  margin-right: 1em;
+}
+
+.ilr-neutral--full .ilr-neutral__profile_image {
+  float: right;
+  margin-left: 1em;
+}
