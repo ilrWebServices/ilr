@@ -1,0 +1,15 @@
+uuid: a7a57b36-4a9c-4041-a114-4ab5423fdbfb
+langcode: en
+status: true
+dependencies: {  }
+name: small_preserve_aspect
+label: 'Small preserve aspect ratio (250x250 max)'
+effects:
+  b078e2e2-c3d8-4da8-bc0d-d1b8dd9378a2:
+    uuid: b078e2e2-c3d8-4da8-bc0d-d1b8dd9378a2
+    id: image_scale
+    weight: 2
+    data:
+      width: 250
+      height: 250
+      upscale: false
