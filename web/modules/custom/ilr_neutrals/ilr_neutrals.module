@@ -1,0 +1,12 @@
+<?php
+
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function ilr_neutrals_views_pre_render(ViewExecutable $view) {
+  if ($view->id() === 'neutrals') {
+    $view->element['#attached']['library'][] = 'ilr_neutrals/neutrals';
+  }
+}
