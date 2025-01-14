@@ -79,7 +79,7 @@
 <article{{attributes.addClass(classes)|without('role')}}>
   {{ title_prefix }}
   {% if not page and view_mode != 'default' %}
-    <h3{{title_attributes.addClass('cu-heading')}}>
+    <h3{{title_attributes}}>
       <a href="{{ url }}" rel="bookmark">{{ label }}</a>
     </h3>
   {% endif %}
