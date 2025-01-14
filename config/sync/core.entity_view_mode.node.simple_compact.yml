@@ -1,0 +1,11 @@
+uuid: da0e6d68-299b-4e1c-8ac7-44cd824f880b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.simple_compact
+label: 'Simple compact'
+description: ''
+targetEntityType: node
+cache: true
