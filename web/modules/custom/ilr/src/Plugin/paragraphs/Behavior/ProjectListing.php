@@ -288,6 +288,10 @@ class ProjectListing extends ParagraphsBehaviorBase {
    *   A node view mode.
    */
   protected function getViewModeForListStyle(Paragraph $paragraph, $list_style) {
+    if ($list_style === 'list-summary') {
+      return 'simple_compact';
+    }
+
     if ($list_styles_plugin = $paragraph->type->entity->getBehaviorPlugin('list_styles')) {
       return $list_styles_plugin->getViewModeForListStyle($list_style);
     }

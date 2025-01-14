@@ -39,6 +39,7 @@ class ListStyle extends ParagraphsBehaviorBase {
     'grid' => 'Grid',
     'grid-compact' => 'Compact grid',
     'list-compact' => 'Compact list',
+    'list-summary' => 'Summary list',
     'grid-bricks' => 'Bricks',
     'grid-bricks--reversed' => 'Bricks (reversed)',
     'grid-featured' => 'Featured Grid',

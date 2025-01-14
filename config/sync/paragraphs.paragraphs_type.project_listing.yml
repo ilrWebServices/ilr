@@ -16,11 +16,14 @@ behavior_plugins:
       grid: grid
       grid-compact: grid-compact
       list-compact: list-compact
+      list-summary: list-summary
       select-list: select-list
       grid-bricks: 0
       grid-bricks--reversed: 0
       grid-featured: 0
+      grid-featured--wide: 0
       banner: 0
+      tabular-list: 0
       main_content: 0
     columns_enabled: 1
     columns_min: '2'
