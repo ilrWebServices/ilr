@@ -149,3 +149,14 @@ div[class$="-focus-areas"].term--view-mode-full {
     transform: rotate(180deg);
   }
 }
+
+.article--projectalicious.node--view-mode-simple-compact {
+  .cu-heading {
+    --cu-font-size: var(--cu-ms0);
+    margin-bottom: 0;
+  }
+
+  .node__content {
+    margin-left: var(--cu-ps0);
+  }
+}
