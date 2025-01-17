@@ -1,0 +1,17 @@
+uuid: 822461dc-2482-43be-a1b3-ce40f50e814f
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+id: subsite_23
+label: 'Labor Leading Climate Change subsite'
+logic: and
+conditions:
+  b5dd6fd7-6229-4ff1-9d2b-faff86326169:
+    id: request_path
+    negate: false
+    uuid: b5dd6fd7-6229-4ff1-9d2b-faff86326169
+    context_mapping: {  }
+    pages: '/climate-jobs-institute*'
+allow_other_conditions: null
