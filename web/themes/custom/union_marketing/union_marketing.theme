@@ -35,19 +35,14 @@ function union_marketing_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = 'node--' . $variables['node_type'];
   }
 
-  if (isset($variables['root_path'])) {
-    $entity_type = $variables['root_path'];
+  $route_params = \Drupal::routeMatch()->getParameters()->all();
+  $last_param = end($route_params);
 
-    if ($entity_type === 'collection' && \Drupal::routeMatch()->getParameter('collection_item')) {
-      $entity_type = 'collection_item';
-    }
-
-    if ($entity_type && $entity = \Drupal::routeMatch()->getParameter($entity_type)) {
-      if ($entity instanceof ContentEntityInterface) {
-        $variables['attributes']['class'][] = $entity_type;
-        $variables['attributes']['class'][] = $entity_type . '--' . str_replace('_', '-', $entity->bundle());
-      }
-    }
+  if ($last_param instanceof ContentEntityInterface) {
+    $entity = $last_param;
+    $entity_type = $entity->getEntityTypeId();
+    $variables['attributes']['class'][] = $entity_type;
+    $variables['attributes']['class'][] = $entity_type . '--' . str_replace('_', '-', $entity->bundle());
   }
 
   // Check whether the nearest path entity is set to suppress dates and add a body class if so.
