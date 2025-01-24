@@ -16,6 +16,13 @@ banner_nav:
   js:
     js/banner_nav.js: {}
 
+interaction-analytics:
+  version: 1.x
+  js:
+    js/interaction-analytics.js: {}
+  dependencies:
+    - core/drupalSettings
+
 webform_reveal:
   version: 1.x
   css:

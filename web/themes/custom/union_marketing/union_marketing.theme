@@ -43,6 +43,55 @@ function union_marketing_preprocess_html(&$variables) {
     $entity_type = $entity->getEntityTypeId();
     $variables['attributes']['class'][] = $entity_type;
     $variables['attributes']['class'][] = $entity_type . '--' . str_replace('_', '-', $entity->bundle());
+
+    // Prepare values for the analytics snippet.
+    $request = \Drupal::requestStack()->getCurrentRequest();
+    $collection = FALSE;
+    $canonical = TRUE;
+    $category = 'uncategorized';
+
+    // Check if it's a cross-post.
+    if ($entity_type === 'collection_item' && !$entity->isCanonical()) {
+      $collection = $entity->collection->entity;
+      $canonical = FALSE;
+
+      if ($entity->hasField('field_blog_categories') && !$entity->field_blog_categories->isEmpty()) {
+        $category = $entity->field_blog_categories->entity->label();
+      }
+    } // Check if it's a collection.
+    elseif ($entity_type === 'collection') {
+      $collection = $entity;
+    } // Finally, check if this content entity is in a collection.
+    else {
+      foreach (\Drupal::service('collection.content_manager')->getCollectionItemsForEntity($entity) as $collection_item) {
+        if ($collection_item->isCanonical() && $request->getPathInfo() === $entity->toUrl()->toString()) {
+          $collection = $collection_item->collection->entity;
+          if ($collection_item->hasField('field_blog_categories') && !$collection_item->field_blog_categories->isEmpty()) {
+            $category = $collection_item->field_blog_categories->entity->label();
+          }
+        }
+      }
+    }
+
+    $content_attributes = [
+      'event' => 'page.content',
+      'page.content' => [
+        'is404' => FALSE,
+        'post' => [
+          'id' => $entity->uuid(),
+          'name' => $entity->label(),
+          'url' => $request->getSchemeAndHttpHost() . $entity->toUrl()->toString(),
+          'type' => $entity->getEntityTypeId() . '_' . $entity->bundle(),
+          'collection' => ($collection) ? $collection->label() : 'uncollected',
+          'category' => $category,
+          'dateCreated' => $entity->created->value ?? 'unknown',
+          'dateModified' => $entity->changed->value,
+          'isCanonical' => $canonical,
+        ],
+      ],
+    ];
+    $variables['#attached']['library'][] = 'union_marketing/interaction-analytics';
+    $variables['#attached']['drupalSettings']['content_attributes'] = $content_attributes;
   }
 
   // Check whether the nearest path entity is set to suppress dates and add a body class if so.
