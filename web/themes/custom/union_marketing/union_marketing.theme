@@ -1,8 +1,6 @@
 <?php
 
 use Drupal\Core\Entity\FieldableEntityInterface;
-use Drupal\Core\Link;
-use Drupal\entity_reference_layout\EntityReferenceLayoutRevisionsFieldItemList;
 use Drupal\crop\Entity\Crop;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Render\FormattableMarkup;
@@ -12,6 +10,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\easy_breadcrumb\EasyBreadcrumbConstants;
 use Drupal\ilr\Entity\EventNodeBase;
 use Drupal\Core\URL;
+use Drupal\image\Entity\ImageStyle;
 
 /**
  * @file Theme file for the union_marketing.theme.
@@ -35,19 +34,71 @@ function union_marketing_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = 'node--' . $variables['node_type'];
   }
 
-  if (isset($variables['root_path'])) {
-    $entity_type = $variables['root_path'];
+  $route_params = \Drupal::routeMatch()->getParameters()->all();
+  $last_param = end($route_params);
 
-    if ($entity_type === 'collection' && \Drupal::routeMatch()->getParameter('collection_item')) {
-      $entity_type = 'collection_item';
-    }
+  if ($last_param instanceof ContentEntityInterface) {
+    $entity = $last_param;
+    $entity_type = $entity->getEntityTypeId();
+    $variables['attributes']['class'][] = $entity_type;
+    $variables['attributes']['class'][] = $entity_type . '--' . str_replace('_', '-', $entity->bundle());
 
-    if ($entity_type && $entity = \Drupal::routeMatch()->getParameter($entity_type)) {
-      if ($entity instanceof ContentEntityInterface) {
-        $variables['attributes']['class'][] = $entity_type;
-        $variables['attributes']['class'][] = $entity_type . '--' . str_replace('_', '-', $entity->bundle());
+    // Prepare values for the analytics snippet.
+    $request = \Drupal::requestStack()->getCurrentRequest();
+    $collection = FALSE;
+    $content_entity = $entity;
+    $canonical = TRUE;
+    $category = 'uncategorized';
+
+    // Check if it's a cross-post.
+    if ($entity_type === 'collection_item' && !$entity->isCanonical()) {
+      $collection = $entity->collection->entity;
+      $canonical = FALSE;
+      $content_entity = $entity->item->entity;
+
+      if ($entity->hasField('field_blog_categories') && !$entity->field_blog_categories->isEmpty()) {
+        $category = $entity->field_blog_categories->entity->label();
+      }
+    } // Check if it's a collection.
+    elseif ($entity_type === 'collection') {
+      $collection = $entity;
+    } // Finally, check if this content entity is in a collection.
+    else {
+      foreach (\Drupal::service('collection.content_manager')->getCollectionItemsForEntity($entity) as $collection_item) {
+        if ($collection_item->isCanonical() && $request->getPathInfo() === $entity->toUrl()->toString()) {
+          $collection = $collection_item->collection->entity;
+          if ($collection_item->hasField('field_blog_categories') && !$collection_item->field_blog_categories->isEmpty()) {
+            $category = $collection_item->field_blog_categories->entity->label();
+          }
+        }
       }
     }
+
+    if ($content_entity->hasField('field_representative_image') && !empty($content_entity->field_representative_image->entity)) {
+      $media_entity = $content_entity->field_representative_image->entity;
+      $media_url = ImageStyle::load('large_9_5')->buildUrl($media_entity->field_media_image->entity->getFileUri());
+    }
+
+    $content_attributes = [
+      'event' => 'page.content',
+      'page.content' => [
+        'is404' => FALSE,
+        'post' => [
+          'id' => $entity->uuid(),
+          'name' => $entity->label(),
+          'url' => $request->getSchemeAndHttpHost() . $entity->toUrl()->toString(),
+          'type' => $entity->getEntityTypeId() . '_' . $entity->bundle(),
+          'collection' => ($collection) ? $collection->label() : 'uncollected',
+          'category' => $category,
+          'dateCreated' => $entity->created->value ?? 'unknown',
+          'dateModified' => $entity->changed->value,
+          'img' => $media_url ?? 'none',
+          'isCanonical' => $canonical,
+        ],
+      ],
+    ];
+    $variables['#attached']['library'][] = 'union_marketing/interaction-analytics';
+    $variables['#attached']['drupalSettings']['content_attributes'] = $content_attributes;
   }
 
   // Check whether the nearest path entity is set to suppress dates and add a body class if so.
