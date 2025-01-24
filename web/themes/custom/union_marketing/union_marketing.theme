@@ -12,6 +12,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\easy_breadcrumb\EasyBreadcrumbConstants;
 use Drupal\ilr\Entity\EventNodeBase;
 use Drupal\Core\URL;
+use Drupal\image\Entity\ImageStyle;
 
 /**
  * @file Theme file for the union_marketing.theme.
@@ -47,6 +48,7 @@ function union_marketing_preprocess_html(&$variables) {
     // Prepare values for the analytics snippet.
     $request = \Drupal::requestStack()->getCurrentRequest();
     $collection = FALSE;
+    $content_entity = $entity;
     $canonical = TRUE;
     $category = 'uncategorized';
 
@@ -54,6 +56,7 @@ function union_marketing_preprocess_html(&$variables) {
     if ($entity_type === 'collection_item' && !$entity->isCanonical()) {
       $collection = $entity->collection->entity;
       $canonical = FALSE;
+      $content_entity = $entity->item->entity;
 
       if ($entity->hasField('field_blog_categories') && !$entity->field_blog_categories->isEmpty()) {
         $category = $entity->field_blog_categories->entity->label();
@@ -73,6 +76,11 @@ function union_marketing_preprocess_html(&$variables) {
       }
     }
 
+    if ($content_entity->hasField('field_representative_image') && !empty($content_entity->field_representative_image->entity)) {
+      $media_entity = $content_entity->field_representative_image->entity;
+      $media_url = ImageStyle::load('large_9_5')->buildUrl($media_entity->field_media_image->entity->getFileUri());
+    }
+
     $content_attributes = [
       'event' => 'page.content',
       'page.content' => [
@@ -86,6 +94,7 @@ function union_marketing_preprocess_html(&$variables) {
           'category' => $category,
           'dateCreated' => $entity->created->value ?? 'unknown',
           'dateModified' => $entity->changed->value,
+          'img' => $media_url ?? 'none',
           'isCanonical' => $canonical,
         ],
       ],
