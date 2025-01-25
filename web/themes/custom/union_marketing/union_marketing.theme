@@ -510,6 +510,19 @@ function union_marketing_preprocess_field__paragraph__field_subheading__promo(&$
 
 /**
  * Implements hook_preprocess_field().
+ *
+ * Ensure consistent formatting by stripping tags when viewing the body summary
+ * on the simple compact view mode.
+ */
+function union_marketing_preprocess_field__node__body__project(&$variables) {
+  if ($variables['element']['#view_mode'] === 'simple_compact') {
+    $summary_text = $variables['items'][0]['content']['#text'];
+    $variables['items'][0]['content']['#text'] = strip_tags($summary_text);
+  }
+}
+
+/**
+ * Implements hook_preprocess_field().
  */
 function union_marketing_preprocess_field__node__field_representative_img_caption(&$variables) {
   $variables['attributes']['id'][] = 'media__caption-' . $variables['element']['#object']->id();
