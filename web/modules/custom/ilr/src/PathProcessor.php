@@ -59,7 +59,7 @@ class PathProcessor implements OutboundPathProcessorInterface {
         $url_override = $entity->field_media_media_remote->value;
       }
 
-      if ($view && $entity instanceof MediaInterface && $entity->hasField('field_media_file') && !$entity->field_media_file->isEmpty() ) {
+      if ($view && $entity instanceof MediaInterface && $entity->hasField('field_media_file') && !$entity->field_media_file->isEmpty() && $entity->field_media_file->entity) {
         $url_override = $entity->field_media_file->entity->createFileUrl();
       }
 
