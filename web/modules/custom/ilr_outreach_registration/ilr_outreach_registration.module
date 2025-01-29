@@ -17,6 +17,7 @@ function ilr_outreach_registration_webform_options_certified_organizations_alter
     /** @var \Drupal\salesforce\Rest\RestClientInterface $sfapi */
     $sfapi = \Drupal::service('salesforce.client');
 
+    // TODO: Use $query->limit and $query->offset to load in batches. The REST API has a row limit of 2000 and there are more companies than that.
     $query = new SelectQuery('Account');
     $query->fields = [
       'Id',
