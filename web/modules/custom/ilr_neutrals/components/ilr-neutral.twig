@@ -30,18 +30,10 @@
       {{ address_1 }}<br/>
       {% if address_2 %}{{ address_2 }}<br/>{% endif %}
       {{ city }}, {{ state }}&nbsp;&nbsp;{{ zip }}
+      <div class="ilr-neutral__email"><a href="mailto:{{ email }}">{{ email }}</a></div>
+      <div class="ilr-neutral__phone"><a href="tel:{{ phone }}">{{ phone }}</a></div>
+      {% if fax %}<div class="ilr-neutral__fax">{% trans %}Fax{% endtrans %}: {{ fax }}</div>{% endif %}
     </div>
-    <div class="ilr-neutral__email"><a href="mailto:{{ email }}">{{ email }}</a></div>
-    <div class="ilr-neutral__phone"><a href="tel:{{ phone }}">{{ phone }}</a></div>
-    {% if fax %}<div class="ilr-neutral__fax">{% trans %}Fax{% endtrans %}: {{ fax }}</div>{% endif %}
-    {% if websites %}
-    <ul class="ilr-neutral__websites">
-      {% for website in websites %}
-      <li class="ilr-neutral__website"><a href="{{ website }}">{{ website }}</a></li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-
   </div>
   {%- if display == 'full' %}
   <div class="ilr-neutral__full-info">
