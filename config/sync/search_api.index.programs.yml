@@ -4,15 +4,15 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - field.storage.taxonomy_term.field_body
     - field.storage.node.field_course_number
     - field.storage.node.field_outcomes
     - field.storage.node.field_prerequisites
+    - field.storage.taxonomy_term.field_body
     - search_api.server.database
   module:
-    - taxonomy
+    - ilr
     - node
-    - search_api
+    - taxonomy
 id: programs
 name: programs
 description: 'Full text index of courses, classes, instructors, certificates, and topics.'
