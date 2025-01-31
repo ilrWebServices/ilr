@@ -1686,26 +1686,26 @@
         },
         {
             "name": "drupal/better_social_sharing_buttons",
-            "version": "4.0.7",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/better_social_sharing_buttons.git",
-                "reference": "4.0.7"
+                "reference": "4.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/better_social_sharing_buttons-4.0.7.zip",
-                "reference": "4.0.7",
-                "shasum": "45f63c1b4124c8ba9e765e8d3dc6a894b2b25b6a"
+                "url": "https://ftp.drupal.org/files/projects/better_social_sharing_buttons-4.1.0.zip",
+                "reference": "4.1.0",
+                "shasum": "2c76a58208213ed0a259b334182ca4c5c0729058"
             },
             "require": {
-                "drupal/core": "^9.3 || ^10"
+                "drupal/core": "^9.3 || ^10 || ^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.0.7",
-                    "datestamp": "1694802520",
+                    "version": "4.1.0",
+                    "datestamp": "1733860882",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -1720,6 +1720,10 @@
                 {
                     "name": "flyke",
                     "homepage": "https://www.drupal.org/user/2750085"
+                },
+                {
+                    "name": "mandclu",
+                    "homepage": "https://www.drupal.org/user/52136"
                 },
                 {
                     "name": "shelane",
