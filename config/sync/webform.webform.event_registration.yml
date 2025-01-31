@@ -80,6 +80,7 @@ elements: |-
     '#access': false
   address:
     '#type': webform_address
+    '#access': false
     '#title': 'Work address'
     '#help': '<p><em>ILR’s outreach and continuing education work is supported in part by grants and state funding. Knowing where our event participants are located helps our funders better understand the impact of ILR’s work.</em></p>'
     '#title_display': before
@@ -96,8 +97,22 @@ elements: |-
     '#address_3__access': false
   address_intl:
     '#type': address
-    '#title': Address
-    '#access': false
+    '#title': 'Work address'
+    '#help': '<p><em>ILR’s outreach and continuing education work is supported in part by grants and state funding. Knowing where our event participants are located helps our funders better understand the impact of ILR’s work.</em></p>'
+    '#default_value':
+      country_code: US
+      given_name: null
+      additional_name: null
+      family_name: null
+      organization: null
+      address_line1: null
+      address_line2: null
+      postal_code: null
+      sorting_code: null
+      dependent_locality: null
+      locality: null
+      administrative_area: null
+      langcode: null
     '#field_overrides':
       givenName: hidden
       additionalName: hidden
@@ -106,7 +121,6 @@ elements: |-
       addressLine1: hidden
       addressLine2: hidden
       addressLine3: hidden
-      postalCode: hidden
       sortingCode: hidden
       dependentLocality: hidden
   accessible_accommodation:
@@ -536,7 +550,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "address:\r\n  '#access': false"
+      elements: "address:\r\n  '#access': false\r\naddress_intl:\r\n  '#access': false"
       handlers: {  }
   disable_salesforce_submitter:
     id: override
