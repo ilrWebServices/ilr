@@ -188,21 +188,21 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       if ($sf_object_name === 'Touchpoint__c') {
         $address_variant = $data['variant_address'] ?? '';
 
-        // Default the address values to the basic address field.
-        if (($address_variant !== 'remove_address' && !empty($data['address']))) {
-          $params->setParam('Street_Address__c', $data['address']['address'] ?: '');
-          $params->setParam('City__c', $data['address']['city'] ?: '');
-          $params->setParam('State__c', $data['address']['state_province'] ?: '');
-          $params->setParam('Zip_Postal_Code__c', $data['address']['postal_code'] ?: '');
-          $params->setParam('Country__c', $data['address']['country'] ?: '');
-        }
-        // If there is international address info, use those values instead.
-        elseif ($address_variant === 'international_address' && !empty($data['address_intl'])) {
+        // Default the address values to the international address field.
+        if ($address_variant !== 'remove_address' && !empty($data['address_intl'])) {
           $params->setParam('Street_Address__c', $data['address_intl']['address_line1'] ?: '');
           $params->setParam('City__c', $data['address_intl']['locality'] ?: '');
           $params->setParam('State__c', $data['address_intl']['administrative_area'] ?: '');
           $params->setParam('Zip_Postal_Code__c', $data['address_intl']['postal_code'] ?: '');
           $params->setParam('Country__c', $data['address_intl']['country_code'] ?: '');
+        }
+        // If there is basic address info, use those values instead.
+        elseif ($address_variant === 'basic_address' && !empty($data['address'])) {
+          $params->setParam('Street_Address__c', $data['address']['address'] ?: '');
+          $params->setParam('City__c', $data['address']['city'] ?: '');
+          $params->setParam('State__c', $data['address']['state_province'] ?: '');
+          $params->setParam('Zip_Postal_Code__c', $data['address']['postal_code'] ?: '');
+          $params->setParam('Country__c', $data['address']['country'] ?: '');
         }
 
         // Send the company if it was on the form.
