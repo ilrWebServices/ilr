@@ -198,9 +198,6 @@
         "Allow node menu widget to some non-admins": "./patches/menu_ui_access.patch",
         "Issue #3446368: SymfonyMailer RfcComplianceException when sending to multiple comma-separated addresses": "https://www.drupal.org/files/issues/2024-05-10/3446368-14.patch"
       },
-      "drupal/block_visibility_groups": {
-        "Issue #3412434: Canonical Entity Link problems": "https://git.drupalcode.org/project/block_visibility_groups/-/merge_requests/9.diff"
-      },
       "drupal/entity_usage": {
         "Use local task usage route for warning messages": "./patches/entity_usage_warning_link_urls.patch"
       },
