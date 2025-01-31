@@ -13,7 +13,7 @@ matchers:
     id: 'entity:collection'
     uuid: 8259445a-064d-4f27-97ae-7aec9509379a
     settings:
-      metadata: ''
+      metadata: '[collection:url:path]'
       bundles:
         blog: blog
         content_section: content_section
@@ -29,7 +29,7 @@ matchers:
     id: 'entity:node'
     uuid: ca987b4f-d223-4e5c-831e-5d90bc5cd333
     settings:
-      metadata: ''
+      metadata: '[node:url:path]'
       bundles:
         certificate: certificate
         course: course
@@ -63,7 +63,7 @@ matchers:
     id: 'entity:taxonomy_term'
     uuid: 4bbd41df-c199-4b47-bac2-6946bbc300b0
     settings:
-      metadata: ''
+      metadata: '[term:url:path]'
       bundles: {  }
       group_by_bundle: true
       substitution_type: canonical
