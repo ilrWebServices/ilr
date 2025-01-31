@@ -9,7 +9,6 @@ dependencies:
     - search_api.server.database
   module:
     - collection
-    - search_api
     - ilr
 id: resource_library
 name: 'Resource library'
