@@ -3093,7 +3093,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/entity_usage.git",
-                "reference": "e19fd6c9b4c31e1ab6730ea92ab1632af218dbf9"
+                "reference": "e790f8cd8170689a259cbdf64fb0f8801b1f301e"
             },
             "require": {
                 "drupal/core": "^10.2 || ^11"
@@ -3116,8 +3116,8 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0-beta17+11-dev",
-                    "datestamp": "1738337195",
+                    "version": "8.x-2.0-beta17+12-dev",
+                    "datestamp": "1738362283",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
