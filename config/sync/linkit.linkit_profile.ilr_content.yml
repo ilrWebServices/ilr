@@ -69,3 +69,14 @@ matchers:
       substitution_type: canonical
       limit: 100
     weight: 0
+  72a11bf9-1a92-4620-a287-a7b12d750a2d:
+    id: 'entity:collection_item'
+    uuid: 72a11bf9-1a92-4620-a287-a7b12d750a2d
+    settings:
+      metadata: '[collection_item:url:path]'
+      bundles:
+        blog: blog
+      group_by_bundle: true
+      substitution_type: canonical
+      limit: 100
+    weight: 5
