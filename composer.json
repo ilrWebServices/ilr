@@ -78,7 +78,7 @@
     "drupal/dynamic_entity_reference": "^4",
     "drupal/easy_breadcrumb": "^2.0.0",
     "drupal/entity_browser": "^2.9",
-    "drupal/entity_usage": "^2.0@beta",
+    "drupal/entity_usage": "2.x-dev@dev",
     "drupal/extra_field": "^2.0.0",
     "drupal/facets": "^3.0",
     "drupal/filehash": "^3",
@@ -197,9 +197,6 @@
         "Use sqlite database connection in dblog controller": "./patches/dblog_sqlite.diff",
         "Allow node menu widget to some non-admins": "./patches/menu_ui_access.patch",
         "Issue #3446368: SymfonyMailer RfcComplianceException when sending to multiple comma-separated addresses": "https://www.drupal.org/files/issues/2024-05-10/3446368-14.patch"
-      },
-      "drupal/entity_usage": {
-        "Use local task usage route for warning messages": "./patches/entity_usage_warning_link_urls.patch"
       },
       "drupal/paragraphs_previewer": {
         "Entities using layoutbuilder cannot get fields previewed": "https://gist.githubusercontent.com/a-fro/1c9b5fcf778edcc49eb39dab292cbc0c/raw/c2352a640270412d2d73232a1e5d3ca69a606726/paragraphs-preview-no-output-layout-builder.patch"
