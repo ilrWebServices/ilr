@@ -113,8 +113,6 @@ elements: |-
       locality: null
       administrative_area: null
       langcode: null
-    '#available_countries':
-      - US
     '#field_overrides':
       givenName: hidden
       additionalName: hidden
