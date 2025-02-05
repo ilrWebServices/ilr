@@ -78,14 +78,14 @@
     "drupal/dynamic_entity_reference": "^4",
     "drupal/easy_breadcrumb": "^2.0.0",
     "drupal/entity_browser": "^2.9",
-    "drupal/entity_usage": "^2.0@beta",
+    "drupal/entity_usage": "2.x-dev@dev",
     "drupal/extra_field": "^2.0.0",
     "drupal/facets": "^3.0",
     "drupal/filehash": "^3",
     "drupal/focal_point": "^2",
     "drupal/footnotes": "^3.0",
     "drupal/google_tag": "^2.0",
-    "drupal/honeypot": "^2.0",
+    "drupal/honeypot": "2.1.4",
     "drupal/ilr_outreach_discount_api": "^1",
     "drupal/ilr_outreach_order_submitter": "1.x-dev",
     "drupal/imagecache_external": "^3.0",
@@ -122,7 +122,7 @@
     "drupal/svg_image_field": "^2.1",
     "drupal/token_filter": "^2.0",
     "drupal/twig_tweak": "^3.0.0",
-    "drupal/typed_data": "^1.0@alpha",
+    "drupal/typed_data": "^2",
     "drupal/union_organizer": "dev-union_ng",
     "drupal/views_autocomplete_filters": "^2",
     "drupal/views_remote_data": "^1.0",
@@ -131,7 +131,7 @@
     "firebase/php-jwt": "^6.0",
     "ilrwebservices/campaign-monitor-rest-api-client": "^1.0.0",
     "league/csv": "^9.0",
-    "platformsh/config-reader": "^2.4",
+    "platformsh/config-reader": "^3",
     "spatie/schema-org": "^3.23",
     "symfony/dotenv": "^7.1"
   },
@@ -139,7 +139,7 @@
     "drupal/core-dev": "^10",
     "drupal/devel": "^5.0",
     "drupal/entity_clone": "^2.0",
-    "drupal/stage_file_proxy": "^2.0",
+    "drupal/stage_file_proxy": "^3",
     "drupal/twig_vardumper": "^3.0",
     "palantirnet/drupal-rector": "^0.20.3",
     "phpcompatibility/php-compatibility": "dev-develop"
@@ -198,19 +198,12 @@
         "Allow node menu widget to some non-admins": "./patches/menu_ui_access.patch",
         "Issue #3446368: SymfonyMailer RfcComplianceException when sending to multiple comma-separated addresses": "https://www.drupal.org/files/issues/2024-05-10/3446368-14.patch"
       },
-      "drupal/block_visibility_groups": {
-        "Issue #3412434: Canonical Entity Link problems": "https://git.drupalcode.org/project/block_visibility_groups/-/merge_requests/9.diff"
-      },
-      "drupal/entity_usage": {
-        "Use local task usage route for warning messages": "./patches/entity_usage_warning_link_urls.patch"
-      },
       "drupal/paragraphs_previewer": {
         "Entities using layoutbuilder cannot get fields previewed": "https://gist.githubusercontent.com/a-fro/1c9b5fcf778edcc49eb39dab292cbc0c/raw/c2352a640270412d2d73232a1e5d3ca69a606726/paragraphs-preview-no-output-layout-builder.patch"
       },
       "drupal/facets": {
         "Issue #2979223: Add option to show current search string in facet summary": "https://git.drupalcode.org/issue/facets-2979223/-/commit/871c779a67704275f975541af803e6e2c81373f8.diff",
-        "Error: Call to a member function getAllowedBundles() on null": "https://git.drupalcode.org/issue/facets-3458558/-/commit/95a9c9f71d033b9751b25d06892b81609598c747.diff",
-        "Issue #3360426: PHP 8.2 compatibility": "https://www.drupal.org/files/issues/2024-06-14/facets-php_compatibility_fixes-3360426.patch"
+        "Error: Call to a member function getAllowedBundles() on null": "https://git.drupalcode.org/issue/facets-3458558/-/commit/95a9c9f71d033b9751b25d06892b81609598c747.diff"
       },
       "drupal/footnotes": {
         "Issue #3381366: Warnings when leaving values empty": "https://www.drupal.org/files/issues/2023-08-23/fix-warnings-when-leaving-values-empty-3381366-5_0.patch"
