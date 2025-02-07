@@ -84,9 +84,10 @@ function union_marketing_preprocess_html(&$variables) {
       'page.content' => [
         'is404' => FALSE,
         'post' => [
-          'id' => $entity->uuid(),
+          'id' => $content_entity->uuid(),
           'name' => $entity->label(),
           'url' => $request->getSchemeAndHttpHost() . $entity->toUrl()->toString(),
+          'canonicalUrl' => $content_entity->toUrl('canonical', ['absolute' => TRUE])->toString(),
           'type' => $entity->getEntityTypeId() . '_' . $entity->bundle(),
           'collection' => ($collection) ? $collection->label() : 'uncollected',
           'category' => $category,
