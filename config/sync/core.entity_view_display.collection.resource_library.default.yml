@@ -4,11 +4,14 @@ status: true
 dependencies:
   config:
     - collection.collection_type.resource_library
+    - facets.facet.research_topics
+    - facets.facet.resource_date
+    - facets.facet.resource_type
     - views.view.resource_library_search
   module:
+    - facets
     - ilr
     - layout_builder
-    - layout_discovery
     - system
     - views
 third_party_settings:
@@ -52,13 +55,15 @@ third_party_settings:
             additional: {  }
         third_party_settings: {  }
       -
-        layout_id: layout_onecol
+        layout_id: layout_twocol_section
         layout_settings:
           label: ''
+          context_mapping: {  }
+          column_widths: 33-67
         components:
           66e625f9-dd19-4677-b049-2905642ddd69:
             uuid: 66e625f9-dd19-4677-b049-2905642ddd69
-            region: content
+            region: second
             configuration:
               id: 'views_block:resource_library_search-block_contextual'
               label: ''
@@ -67,7 +72,40 @@ third_party_settings:
               context_mapping: {  }
               views_label: ''
               items_per_page: none
+            weight: 0
+            additional: {  }
+          e17416e7-c277-44d0-8084-8b97195bad06:
+            uuid: e17416e7-c277-44d0-8084-8b97195bad06
+            region: first
+            configuration:
+              id: 'facet_block:research_topics'
+              label: 'Research topics'
+              label_display: visible
+              provider: facets
+              context_mapping: {  }
+            weight: 0
+            additional: {  }
+          f31dee2f-9903-4afa-b8e7-da47cf79b685:
+            uuid: f31dee2f-9903-4afa-b8e7-da47cf79b685
+            region: first
+            configuration:
+              id: 'facet_block:resource_date'
+              label: 'Resource date'
+              label_display: visible
+              provider: facets
+              context_mapping: {  }
             weight: 1
+            additional: {  }
+          6352fa9b-37ac-4a4e-8d20-e84cbf570c03:
+            uuid: 6352fa9b-37ac-4a4e-8d20-e84cbf570c03
+            region: first
+            configuration:
+              id: 'facet_block:resource_type'
+              label: 'Resource type'
+              label_display: visible
+              provider: facets
+              context_mapping: {  }
+            weight: 2
             additional: {  }
         third_party_settings: {  }
 id: collection.resource_library.default

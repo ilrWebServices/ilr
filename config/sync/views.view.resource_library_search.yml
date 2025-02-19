@@ -8,7 +8,6 @@ dependencies:
     - search_api.index.resource_library
   module:
     - dynamic_entity_reference
-    - facets
     - facets_summary
     - options
     - search_api
@@ -173,6 +172,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 100
           total_pages: null
           id: 0
@@ -190,7 +190,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -401,21 +400,6 @@ display:
       relationships: {  }
       css_class: resource-library-search-view
       header:
-        facets:
-          id: facets
-          table: search_api_index_resource_library
-          field: facets
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: facets_area
-          empty: true
-          facets:
-            research_topics: research_topics
-            resource_date: resource_date
-            resource_type: resource_type
-          label_display: visible
-      footer:
         facets_summary:
           id: facets_summary
           table: search_api_index_resource_library
@@ -427,6 +411,7 @@ display:
           empty: true
           facet_summary: resource_library_search_summary
           label_display: 0
+      footer: {  }
       display_extenders: {  }
     cache_metadata:
       max-age: -1
