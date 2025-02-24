@@ -22,5 +22,12 @@
 }
 
 .js-neutrals-filter-form {
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
   margin-bottom: 1em;
+}
+
+.js-neutrals-filter-form-help {
+  order: 1;
 }

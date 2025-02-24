@@ -24,8 +24,13 @@
       let params = new URLSearchParams(document.location.search);
       let neutrals_view = context.querySelector('.neutrals-view');
       let filter_form = document.createElement('form');
+      let help_link = document.createElement('a');
+      help_link.href = 'https://neutrals.app.ilr.cornell.edu/';
+      help_link.text = Drupal.t('Add or Edit Your Neutral Information');
+      help_link.classList.add('js-neutrals-filter-form-help');
       filter_form.method = 'GET';
       filter_form.classList.add('js-neutrals-filter-form');
+      filter_form.appendChild(help_link);
       neutrals_view.parentNode.insertBefore(filter_form, neutrals_view);
 
       if (params.get('state') || params.get('arbid')) {
