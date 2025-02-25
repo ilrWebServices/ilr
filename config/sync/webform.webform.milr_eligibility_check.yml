@@ -33,6 +33,9 @@ elements: |-
     '#title': Email
     '#required': true
     '#default_value': '[current-user:mail]'
+  phone:
+    '#type': tel
+    '#title': 'Cell phone number'
   address:
     '#type': address
     '#title': Citizenship
@@ -61,10 +64,6 @@ elements: |-
       'U.S. Permanent Resident': 'U.S. Permanent Resident'
       'Foreign National': 'Foreign National'
     '#required': true
-  phone:
-    '#type': tel
-    '#title': 'Cell phone number'
-    '#access': false
   experience_years:
     '#type': select
     '#title': 'Years of work experience'
