@@ -26,6 +26,10 @@ body.persona .cu-header {
     --cu-font-weight: 400;
   }
 
+  h2.cu-heading {
+    --cu-font-size: var(--cu-ms2);
+  }
+
   .field--field-title,
   .ilr-employee-position {
     margin-bottom: var(--cu-vr-1);
