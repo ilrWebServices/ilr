@@ -6,7 +6,7 @@ migration_tags:
   - employee
 source:
   plugin: 'csv_url'
-  path: 'https://main-bvxea6i-3clxnhn74bxvu.us-4.platformsh.site/files/default/employee-position-feed.csv'
+  path: 'https://employee-data.app.ilr.cornell.edu/data/employee-position-feed.csv'
   header_offset: 0
   ids:
     - Position_ID
