@@ -12,12 +12,12 @@ field_name: field_url
 entity_type: node
 bundle: event_landing_page
 label: 'Registration URL'
-description: "(Optional) Link to an external registration form, if you don't want users to register here. Please do not select a registration form if you enter a value here."
+description: "(Optional) Link to an external registration form, if you don't want users to register here. Please do not select a registration form if you enter a value here.\r\n\r\nLink text is optional, and if you enter a value, it will be displayed <em>below</em> the 'Register Now' button."
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  title: 0
+  title: 1
   link_type: 16
 field_type: link
