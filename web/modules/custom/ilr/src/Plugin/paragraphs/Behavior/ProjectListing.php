@@ -143,6 +143,16 @@ class ProjectListing extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'ignore_sticky'),
     ];
 
+    $form['active_status'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Show'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'active_status') ?? 'active',
+      '#options' => [
+        'active' => $this->t('Active'),
+        'inactive' => $this->t('Inactive'),
+      ],
+    ];
+
     return $form;
   }
 
@@ -181,6 +191,7 @@ class ProjectListing extends ParagraphsBehaviorBase {
 
     $collection = $this->entityTypeManager->getStorage('collection')->load($collection_id);
     $project_types = $paragraph->getBehaviorSetting($this->getPluginId(), 'project_types') ?? array_keys($this->collectionProjectsManager->getProjectTypesWithLabels());
+    $active_status = $paragraph->getBehaviorSetting($this->getPluginId(), 'active_status') !== 'inactive';
 
     // If the collection was deleted, return nothing to prevent errors.
     if ($collection === NULL) {
@@ -214,6 +225,7 @@ class ProjectListing extends ParagraphsBehaviorBase {
     $query->condition('type', 'project_item');
     $query->condition('item.entity:node.status', 1);
     $query->condition('item.entity:node.type', $project_types, 'IN');
+    $query->condition('item.entity:node.field_active', $active_status);
 
     if (!$paragraph->getBehaviorSetting($this->getPluginId(), 'ignore_sticky')) {
       $query->sort('sticky', 'DESC');
@@ -343,6 +355,11 @@ class ProjectListing extends ParagraphsBehaviorBase {
     $summary[] = [
       'label' => 'Focus area',
       'value' => $area_name,
+    ];
+
+    $summary[] = [
+      'label' => 'Show',
+      'value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'active_status') ?? $this->t('active'),
     ];
 
     if ($paragraph->getBehaviorSetting($this->getPluginId(), 'ignore_sticky')) {
