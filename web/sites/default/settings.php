@@ -985,7 +985,10 @@ if (!empty(getenv('CAMPAIGN_MONITOR_STATUS'))) {
  *
  * This is automatically configured for the current host.
  */
-$config['samlauth.authentication']['sp_entity_id'] = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/saml/metadata';
+$config['samlauth.authentication']['sp_entity_id'] = strtr(':scheme://:host/saml/metadata', [
+  ':scheme' => !empty($_SERVER['HTTPS']) ? 'https' : 'http',
+  ':host' => !empty($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : $_SERVER['HTTP_HOST'],
+]);
 
 /**
  * Configure sftp servers.
