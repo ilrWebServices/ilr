@@ -13,7 +13,7 @@ dependencies:
   module:
     - link
     - media_library
-    - paragraphs
+    - paragraphs_previewer
     - path
     - text
 id: taxonomy_term.topics.default
@@ -48,16 +48,24 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_media_section:
-    type: entity_reference_paragraphs
+    type: paragraphs_previewer
     weight: 6
     region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        convert: '0'
+        duplicate: duplicate
     third_party_settings: {  }
   field_page_links:
     type: link_default

@@ -281,30 +281,6 @@ third_party_settings:
           collapse_margins: 0
           extra_classes: ''
         components:
-          504b7dab-ec84-4e8f-a1ab-6e09515358b5:
-            uuid: 504b7dab-ec84-4e8f-a1ab-6e09515358b5
-            region: main
-            configuration:
-              id: webform_block
-              label: 'Professional education interests form'
-              label_display: '0'
-              provider: webform
-              context_mapping: {  }
-              webform_id: professional_education_interests
-              default_data: ''
-              redirect: false
-            weight: 1
-            additional: {  }
-        third_party_settings: {  }
-      -
-        layout_id: layout_cu_section
-        layout_settings:
-          label: ''
-          context_mapping: {  }
-          full_width: 1
-          collapse_margins: false
-          extra_classes: ''
-        components:
           b0d2e8ee-5ec0-4013-bccc-b54b620eaa41:
             uuid: b0d2e8ee-5ec0-4013-bccc-b54b620eaa41
             region: main
@@ -322,6 +298,30 @@ third_party_settings:
                   view_mode: default
                 third_party_settings: {  }
             weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_cu_section
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          full_width: 1
+          collapse_margins: false
+          extra_classes: ''
+        components:
+          504b7dab-ec84-4e8f-a1ab-6e09515358b5:
+            uuid: 504b7dab-ec84-4e8f-a1ab-6e09515358b5
+            region: main
+            configuration:
+              id: webform_block
+              label: 'Professional education interests form'
+              label_display: '0'
+              provider: webform
+              context_mapping: {  }
+              webform_id: professional_education_interests
+              default_data: ''
+              redirect: false
+            weight: 1
             additional: {  }
         third_party_settings: {  }
 id: taxonomy_term.topics.default
