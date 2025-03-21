@@ -5229,17 +5229,17 @@
         },
         {
             "name": "drupal/salesforce",
-            "version": "5.1.1",
+            "version": "5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/salesforce.git",
-                "reference": "5.1.1"
+                "reference": "5.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/salesforce-5.1.1.zip",
-                "reference": "5.1.1",
-                "shasum": "86e4950b4a411aab3cb44137f7fb2714f534ee84"
+                "url": "https://ftp.drupal.org/files/projects/salesforce-5.1.2.zip",
+                "reference": "5.1.2",
+                "shasum": "7ed9383876b51546e7a583dd91f177cc63931f17"
             },
             "require": {
                 "consolidation/output-formatters": "^3.2.0 || ^4.5",
@@ -5276,8 +5276,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "5.1.1",
-                    "datestamp": "1725652061",
+                    "version": "5.1.2",
+                    "datestamp": "1742323355",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
