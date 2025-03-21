@@ -1,0 +1,17 @@
+uuid: 3054979c-ebd3-4c1d-99f6-216e46efed8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.project
+  module:
+    - node
+id: project_admin
+label: 'Project admin'
+weight: 12
+is_admin: null
+permissions:
+  - 'create project content'
+  - 'delete own project content'
+  - 'edit own project content'
+  - 'view project revisions'
