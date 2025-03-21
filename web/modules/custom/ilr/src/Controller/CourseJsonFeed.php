@@ -61,6 +61,7 @@ class CourseJsonFeed extends ControllerBase {
 
       foreach ($course->classes->referencedEntities() as $class) {
         $class_start = new DrupalDateTime($class->field_date_start->value, DateTimeItemInterface::STORAGE_TIMEZONE);
+        $class_end = new DrupalDateTime($class->field_date_end->value, DateTimeItemInterface::STORAGE_TIMEZONE);
         $register_url = $course->toUrl('canonical', ['absolute' => TRUE]);
         $delivery_method = '';
         $location = '';
@@ -92,6 +93,7 @@ class CourseJsonFeed extends ControllerBase {
 
         $course_data['sessions'][] = [
           'start' => $class_start->format('c'),
+          'end' => $class_end->format('c'),
           'location' => $location,
           'delivery_type' => $delivery_method,
           'price' => '$' . $class->field_price->value,
