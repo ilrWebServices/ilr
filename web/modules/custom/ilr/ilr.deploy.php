@@ -84,3 +84,33 @@ function ilr_deploy_fix_persona_redirect_langcodes(&$sandbox) {
     $redirect->save();
   }
 }
+
+/**
+ * Consolidate High Road posts.
+ */
+function ilr_deploy_highroad_post_consolidatereror_final_v2(&$sandbox) {
+  // Move posts from Buffalo Colab collection categorized as 'High Road' to High
+  // Road collection with the 'Buffalo' category. Move posts from High Road New
+  // York State collection to High Road collection with the 'New York City'
+  // category. Buffalo colab collection cid is 35. High Road New York State blog
+  // collection cid is 55.
+  $collection_item_storage = \Drupal::entityTypeManager()->getStorage('collection_item');
+  $item_query = $collection_item_storage->getQuery();
+  $item_query->accessCheck(FALSE);
+  $item_query->condition('collection', [35, 55], 'IN');
+  $item_query->condition('type', 'blog');
+
+  $item_ids = $item_query->execute();
+  $items = $collection_item_storage->loadMultiple($item_ids);
+
+  foreach ($items as $item) {
+    // tid 136 is 'High Road' in the Buffalo Colab collection.
+    if ((!$item->field_blog_categories->isEmpty() && $item->field_blog_categories->entity->id() === '136') || $item->collection->entity->id() === '55') {
+      $item->set('collection', 70);
+      // tid 771 is 'Buffalo' in the High Road collection. tid 773 is 'New York
+      // City' in the High Road collection.
+      $item->set('field_blog_categories', (!$item->field_blog_categories->isEmpty() && $item->field_blog_categories->entity->id() === '136') ? 771 : 773);
+      $item->save();
+    }
+  }
+}
