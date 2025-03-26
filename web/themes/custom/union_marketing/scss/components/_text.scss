@@ -31,7 +31,7 @@ span.strong {
   font-weight: bold;
 }
 
-.collection--content-section .cu-banner {
+.collection--content-section .collection:not(.collection--view-mode-alt) .cu-banner {
   h1.cu-heading {
     --cu-font-family: 'futura-pt';
     --cu-font-size: 36px;

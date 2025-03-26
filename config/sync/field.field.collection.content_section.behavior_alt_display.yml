@@ -1,0 +1,21 @@
+uuid: 0309a917-66bf-4295-81be-50505d419f45
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.content_section
+    - field.storage.collection.behavior_alt_display
+id: collection.content_section.behavior_alt_display
+field_name: behavior_alt_display
+entity_type: collection
+bundle: content_section
+label: 'Use alternate display'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

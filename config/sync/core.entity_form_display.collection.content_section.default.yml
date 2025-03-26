@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - collection.collection_type.content_section
+    - field.field.collection.content_section.behavior_alt_display
     - field.field.collection.content_section.body
     - field.field.collection.content_section.field_representative_image
     - field.field.collection.content_section.field_sections
@@ -19,15 +20,29 @@ targetEntityType: collection
 bundle: content_section
 mode: default
 content:
+  behavior_alt_display:
+    type: boolean_checkbox
+    weight: 103
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   body:
     type: text_textarea_with_summary
-    weight: 103
+    weight: 102
     region: content
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
       show_summary: false
+    third_party_settings: {  }
+  collectible:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_representative_image:
     type: media_library_widget
@@ -48,13 +63,13 @@ content:
       edit_mode: closed
       closed_mode: summary
       autocollapse: all
-      closed_mode_threshold: '2'
+      closed_mode_threshold: 2
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: section
       features:
+        add_above: '0'
         collapse_edit_all: collapse_edit_all
-        add_above: 0
         duplicate: duplicate
     third_party_settings: {  }
   ief_collection_items:
