@@ -101,7 +101,23 @@ class PopulateDatalayer extends WebformHandlerBase {
       ];
 
       foreach ($this->configuration['datalayer']['elements'] as $element) {
-        if ($value = $webform_submission->getelementData($element)) {
+        if (is_array($element)) {
+          $values = $webform_submission->getelementData(array_key_first($element));
+
+          if (empty($values)) {
+            continue;
+          }
+
+          foreach ($element as $subelements) {
+            foreach ($subelements as $subelement) {
+              if (array_key_exists($subelement, $values)) {
+                $data['data'][$subelement] = $values[$subelement];
+              }
+            }
+
+          }
+        }
+        elseif ($value = $webform_submission->getelementData($element)) {
           $data['data'][$element] = $value;
         }
       }
