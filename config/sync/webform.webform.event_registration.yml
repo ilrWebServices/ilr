@@ -1,7 +1,9 @@
 uuid: ca3cc916-9737-453e-8dcc-88100248bf62
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
 weight: 0
 open: null
 close: null
@@ -447,6 +449,36 @@ handlers:
       theme_name: ''
       parameters: {  }
       debug: false
+  populate_datalayer:
+    id: populate_datalayer
+    handler_id: populate_datalayer
+    label: 'Populate Datalayer'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      datalayer:
+        type: subscribe
+        elements:
+          - company
+          - company_account
+          -
+            address:
+              - city
+              - state_province
+              - postal_code
+              - country
+          -
+            address_intl:
+              - locality
+              - administrative_area
+              - postal_code
+              - country_code
+          - accessible_accommodation
+          - attending_online
+          - requires_translation
+          - opt_in
 variants:
   worker_institute_opt_in:
     id: override

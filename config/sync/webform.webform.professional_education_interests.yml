@@ -1,7 +1,9 @@
 uuid: 3baf7994-9d8c-4d76-bbd8-effebbb8f3c5
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
 weight: 0
 open: null
 close: null
@@ -246,5 +248,18 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  populate_datalayer:
+    id: populate_datalayer
+    handler_id: populate_datalayer
+    label: 'Populate Datalayer'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      datalayer:
+        type: lead
+        elements:
+          - areas_of_interest
 variants: {  }

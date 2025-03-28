@@ -4,6 +4,7 @@ status: open
 dependencies:
   module:
     - honeypot
+    - ilr
 third_party_settings:
   honeypot:
     honeypot: true
@@ -286,4 +287,19 @@ handlers:
       theme_name: ''
       parameters: {  }
       debug: false
+  populate_datalayer:
+    id: populate_datalayer
+    handler_id: populate_datalayer
+    label: 'Populate Datalayer'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      datalayer:
+        type: lead
+        elements:
+          - organization
+          - zip_code
+          - course
 variants: {  }

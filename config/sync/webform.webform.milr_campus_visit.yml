@@ -4,6 +4,7 @@ status: open
 dependencies:
   module:
     - honeypot
+    - ilr
 third_party_settings:
   honeypot:
     honeypot: true
@@ -371,4 +372,29 @@ handlers:
       theme_name: ''
       parameters: {  }
       debug: false
+  populate_datalayer:
+    id: populate_datalayer
+    handler_id: populate_datalayer
+    label: 'Populate Datalayer'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      datalayer:
+        type: lead
+        elements:
+          -
+            address:
+              - city
+              - state_province
+              - postal_code
+              - country
+          - semester_applying
+          - undergraduate_major
+          - years_of_work_experience
+          - concentrations_interested
+          - students_discussion_topics
+          - meet_faculty_members
+          - additional_info
 variants: {  }
