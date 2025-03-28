@@ -33,7 +33,8 @@
 #}
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
 
-{% set attributes = attributes.addClass('cu-menu cu-menu--main').removeClass('contextual-region') %}
+{% set attributes = attributes.removeClass('contextual-region') %}
+{# {% set attributes = attributes.addClass('cu-menu cu-menu--main').removeClass('contextual-region') %} #}
 
 <nav aria-labelledby="{{ heading_id }}" {{ attributes|without('role', 'aria-labelledby') }}>
   {# Label. If not displayed, we still provide it for screen readers. #}

@@ -1,81 +1,144 @@
-// Mega Menu via Menu Item Extras layout builder contents.
-.menu_link_content {
-  display: none;
-  position: fixed;
-  left: 0;
-  width: 100%;
-  background: white;
-  border-bottom: 2px solid #ccc;
-}
-
-.cu-menu--main .cu-menu__item:hover .menu_link_content {
-  @include breakpoint(md) {
-    display: block;
-  }
-}
-
-.menu_link_content a {
-  text-decoration: none;
-  --cu-font-size: var(--cu-ms-2);
-}
-
-.menu_link_content h2 {
-  font-size: var(--cu-ms1);
-  font-weight: 300;
-}
-
-// Adjust some of the menu item padding. This should eventually be modified in
-// the Union ILR skin.
-.cu-menu__link {
-  padding: 0;
-  text-align: left;
-  --cu-font-size: var(--cu-ms-2);
-  --cu-text-color: #222;
-
-  @include breakpoint(md) {
-    text-align: center;
-  }
-}
-
-.cu-menu__item {
-  margin: 0;
-  padding: 0.5em 0;
-
-  @include breakpoint(md) {
-    margin: 0 .5em;
-  }
-}
-
-.cu-menu--main {
-  text-align: right;
-}
-
-.cu-header .cu-logo {
-  padding-bottom: 0;
-}
-
-// Re-apply some simple styles for the content snipped from the D7 site.
-.bean-mega-menu > .content {
-  display: flex;
-  justify-content: space-around;
+// Main menu
+// @todo fix broken subsite nav on mobile
+#block-union-marketing-primary-nav,
+nav[id^="block-union-marketing-menu-subsite"] {
+  flex-grow: 1;
   line-height: 1.2;
-  margin-top: 1em;
+  line-height: 1;
+  position: relative;
+  display: flex;
+  justify-content: end;
+
+  a {
+    font-size: var(--cu-ms-2);
+    text-decoration: none;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  > ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cu-vr-1);
+    position: absolute;
+    top: 24px;
+    min-width: 70vw;
+    box-shadow: 0px 0px 26px -3px rgba(0,0,0,0.37);
+    padding: var(--cu-vr1);
+    z-index: 10;
+    background-color: white;
+    // background-color: gainsboro;
+
+    @include breakpoint(md) {
+      flex-direction: initial;
+      gap: var(--cu-ps0);
+      justify-content: space-evenly;
+      align-items: flex-end;
+      position: unset;
+      width: 100%;
+      min-width: unset;
+      box-shadow: unset;
+      padding: unset;
+    }
+  }
+
+  > ul > li {
+    @include breakpoint(md) {
+      text-align: center;
+    }
+
+  }
+
+  > ul > li > ul {
+    display: none;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-bottom: 2px solid #ccc;
+    padding-top: var(--cu-vr1);
+    padding-bottom: var(--cu-vr1);
+    text-align: initial;
+  }
+
+  > ul > li:hover > ul {
+    @include breakpoint(md) {
+      display: flex;
+      justify-content: space-around;
+      gap: var(--cu-ps0);
+      z-index: 5;
+    }
+  }
+
+  > ul > li:hover > ul > li:first-child {
+    padding-left: var(--cu-ps0);
+  }
+
+  > ul > li:hover > ul > li:last-child {
+    padding-right: var(--cu-ps0);
+  }
+
+  .ilr-menu-heading {
+    display: block;
+    font-size: var(--cu-ms1);
+    margin-bottom: var(--cu-vr-1);
+  }
+
+  // Hamburger menu UI for main and subsite menus.
+  .nav-trigger {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+
+    @include breakpoint(md) {
+      display: none;
+    }
+  }
+
+  label[for="nav-trigger"] {
+    display: inline-block;
+    width: 24px;
+    z-index: 2;
+    line-height: 1;
+    cursor: pointer;
+
+    @include breakpoint(md) {
+      display: none;
+    }
+
+    .cu-accessible {
+      display: none;
+    }
+
+    &::before {
+      content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' stroke='currentColor' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round' class='css-i6dzq1'%3E%3Cline x1='3' y1='12' x2='21' y2='12'%3E%3C/line%3E%3Cline x1='3' y1='6' x2='21' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='18' x2='21' y2='18'%3E%3C/line%3E%3C/svg%3E");
+      display: block;
+      height: 24px;
+    }
+  }
+
+  // Hide menu by default on small screens.
+  .nav-trigger:not(:checked) ~ ul {
+    display: none;
+
+    @include breakpoint(md) {
+      display: flex;
+    }
+  }
+
+  .nav-trigger:checked ~ label[for="nav-trigger"]::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' stroke='currentColor' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round' class='css-i6dzq1'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+  }
 }
 
-.bean-mega-menu > .content > .field {
-  margin: 0 1em;
-}
-
-// Temporary workaround to raise the logo over the mega menu.
+// 'Temporary' workaround to raise the logo over the mega menu.
 #block-union-marketing-branding {
   @include breakpoint(md) {
     z-index: 20;
   }
-}
-
-// Override of Union ILR skin.
-label[for="nav-trigger"] {
-  line-height: 1;
 }
 
 #block-union-register-footer-menu {
@@ -93,7 +156,7 @@ label[for="nav-trigger"] {
   }
 }
 
-.cu-menu__list--subsite {
+nav[id^="block-union-marketing-menu-subsite"] .cu-menu__list--subsite {
   --cu-text-color: #{$black};
   font-size: var(--cu-ms-1);
   list-style-type: none;
@@ -113,6 +176,10 @@ label[for="nav-trigger"] {
     @include breakpoint(md) {
       display: none;
     }
+  }
+
+  .cu-menu__link {
+    display: block;
   }
 }
 

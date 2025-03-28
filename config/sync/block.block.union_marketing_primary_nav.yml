@@ -1,32 +1,36 @@
-uuid: 1614eca0-7f54-4284-8c39-0b4f4272c9dd
+uuid: 61c8fcdd-9108-49bc-ab82-c6c0f9dc8912
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - block_visibility_groups.block_visibility_group.primary_branding
-    - system.menu.main
+    - system.menu.primary
   module:
     - block_visibility_groups
+    - ilr
     - system
   theme:
     - union_marketing
-id: union_marketing_mainnav
+id: union_marketing_primary_nav
 theme: union_marketing
 region: header
 weight: 1
 provider: null
-plugin: 'system_menu_block:main'
+plugin: 'system_menu_block:primary'
 settings:
-  id: 'system_menu_block:main'
-  label: 'Main navigation'
+  id: 'system_menu_block:primary'
+  label: 'Primary navigation'
   label_display: '0'
   provider: system
   level: 1
-  depth: 1
-  expand_all_items: false
+  depth: 3
+  expand_all_items: true
 visibility:
   condition_group:
     id: condition_group
     negate: false
-    context_mapping: {  }
     block_visibility_group: primary_branding
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: 0

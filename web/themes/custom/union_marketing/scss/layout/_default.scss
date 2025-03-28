@@ -67,10 +67,20 @@ body {
 header {
   grid-row: header;
   grid-column: content;
-}
 
-header.cu-header {
+  display: flex;
+  gap: var(--cu-ps-1);
+  align-items: center;
   justify-content: flex-end;
+  padding-top: var(--cu-vr1);
+  margin-bottom: var(--cu-component-margin-bottom, 0);
+  border-bottom: 1px solid var(--cu-color-border, #ccc);
+
+  @include breakpoint(md) {
+    & {
+      gap: var(--cu-ps1);
+    }
+  }
 }
 
 main {
