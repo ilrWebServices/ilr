@@ -2,7 +2,6 @@
 
 namespace Drupal\ilr\Plugin\WebformHandler;
 
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;
@@ -72,6 +71,16 @@ class PopulateDatalayer extends WebformHandlerBase {
       $form['#attached']['drupalSettings']['ilr_webform_data'] = $this->eventData;
       $form['#attached']['drupalSettings']['ilr_include_ajax'] = TRUE;
     }
+
+    // Add a hidden element to all forms that have datalayer integration. This
+    // will be used by GTM as a unique identifier, as requested by the 'Cornell
+    // ILR | GA4 Closed-Loop Server Implementation Guide'.
+    $form['ga_client_id'] = [
+      '#attributes' => ['id' => 'ga_client_id'],
+      '#type' => 'hidden',
+      '#value' => '',
+      '#maxlength' => 255,
+    ];
   }
 
   /**
