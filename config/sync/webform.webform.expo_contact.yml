@@ -2,6 +2,8 @@ uuid: f7058de7-7ec1-4c2c-bde9-a6fa2ae4848a
 langcode: en
 status: open
 dependencies:
+  module:
+    - ilr
   enforced:
     module:
       - webform
@@ -260,4 +262,17 @@ handlers:
       theme_name: ''
       parameters: {  }
       debug: false
+  populate_datalayer:
+    id: populate_datalayer
+    handler_id: populate_datalayer
+    label: 'Populate Datalayer'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      datalayer:
+        type: other
+        elements:
+          - message
 variants: {  }
