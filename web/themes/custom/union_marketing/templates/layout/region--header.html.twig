@@ -13,6 +13,10 @@
  */
 #}
 {% if content %}
+  <label aria-expanded='false' class="nav-trigger">
+    <input type="checkbox" class="nav-trigger-box"/>
+    <span class="cu-accessible">Toggle menu</span>
+  </label>
   {{ content }}
 {% endif %}
 

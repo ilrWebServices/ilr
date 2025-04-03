@@ -1,5 +1,5 @@
 :root {
-  --gutter-width: 24px;
+  --gutter-width: 16px;
   --content-width: 24fr;
   --breakpoint: xs;
 
@@ -32,6 +32,7 @@ body {
   grid-template-columns: [left-gutter] var(--gutter-width) [content] var(--content-width) [right-gutter] var(--gutter-width);
 
   @include breakpoint(md) {
+    --gutter-width: 24px;
     --content-width: 44fr;
     justify-items: stretch;
   }
@@ -68,17 +69,65 @@ header.cu-header {
   grid-row: header;
   grid-column: content;
 
-  display: flex;
-  gap: var(--cu-ps-1);
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  grid-row-gap: var(--cu-vr1);
   align-items: center;
-  justify-content: flex-end;
   padding-top: var(--cu-vr1);
   margin-bottom: var(--cu-component-margin-bottom, 0);
   border-bottom: 1px solid var(--cu-color-border, #ccc);
 
   @include breakpoint(md) {
+    grid-template-columns: 320px 1fr 194px;
+    padding-top: 0;
+
     & {
-      gap: var(--cu-ps1);
+      gap: 42px var(--cu-ps1);
+    }
+  }
+
+  .nav-trigger {
+    order: 1;
+    justify-self: end;
+  }
+  #block-union-marketing-branding {
+    order: 0;
+
+    @include breakpoint(md) {
+      order: 2;
+    }
+  }
+  #block-union-marketing-primary-nav {
+    order: 3;
+    grid-column: 1/-1;
+
+    @include breakpoint(md) {
+      grid-column: 2/-1;
+    }
+  }
+  #block-union-marketing-search-trigger {
+    order: 2;
+    grid-column: 1/-1;
+
+    @include breakpoint(md) {
+      order: 1;
+      grid-row: 1;
+      grid-column: 3;
+      justify-content: flex-end;
+      z-index: 1;
+    }
+  }
+  #block-union-marketing-utility-nav {
+    order: 4;
+    grid-column: 1/-1;
+
+    @include breakpoint(md) {
+      justify-self: end;
+      order: 1;
+      grid-row: 1;
+      grid-column: 1/3;
+      justify-content: end;
+      height: var(--utility-nav-height);
     }
   }
 }
