@@ -2,14 +2,16 @@
   --minibar-height: 60px;
 }
 
-// This provides the background color, since the grid includes a gutter.
-.bvg--cornell-alternate-branding {
-  background: linear-gradient($cornell-red 100%, $white 50%);
-  background-size: 100% var(--minibar-height);
-  background-repeat: no-repeat;
+.bvg--cornell-alternate-branding::before {
+  display: block;
+  content: '';
+  background-color: $cornell-red;
+  width: 100vw;
+  height: var(--minibar-height);
+  position: absolute;
 
-  @include breakpoint(sm) {
-    background: none;
+  @include breakpoint(md) {
+    height: var(--utility-nav-height);
   }
 }
 
@@ -20,7 +22,7 @@
   flex: 0 0 100%; // Make it span the whole width.
   height: var(--minibar-height);
 
-  @include breakpoint(sm) {
+  @include breakpoint(md) {
     display: none;
   }
 }

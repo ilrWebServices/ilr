@@ -1,5 +1,17 @@
+body {
+  @include breakpoint(md) {
+    &::before {
+      display: block;
+      content: '';
+      background-color: $cornell-red;
+      width: 100vw;
+      height: var(--utility-nav-height);
+      position: absolute;
+    }
+  }
+}
+
 header {
-  background: $white;
   padding: 1em 0;
   position: relative;
 }

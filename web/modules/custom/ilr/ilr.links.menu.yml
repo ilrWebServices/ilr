@@ -641,3 +641,52 @@ ilr.primary.alumni.learn-more-about-alumni.groat-and-alpern-awards:
   url: 'internal:/alumni/groat-and-alpern-awards'
   weight: 1
   parent: ilr.primary.alumni.learn-more-about-alumni
+
+
+ilr.utility.apply:
+  title: 'Apply'
+  menu_name: utility
+  url: 'route:<nolink>'
+  weight: 0
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.utility.apply.undergrad:
+  title: 'Undergraduate'
+  menu_name: utility
+  url: 'internal:/programs/undergraduate-admissions#section-9384'
+  weight: 0
+  parent: ilr.utility.apply
+
+ilr.utility.apply.grad:
+  title: 'Graduate'
+  menu_name: utility
+  url: 'internal:/programs/graduate-degree-programs'
+  weight: 1
+  parent: ilr.utility.apply
+
+ilr.utility.apply.professional:
+  title: 'Professional education'
+  menu_name: utility
+  url: 'internal:/programs/professional-education'
+  weight: 2
+  parent: ilr.utility.apply
+
+ilr.utility.visit:
+  title: 'Visit'
+  menu_name: utility
+  url: 'https://www.cornell.edu/visit'
+  weight: 1
+  options:
+    attributes:
+      class: ilr-menu-button
+
+ilr.utility.give:
+  title: 'Give'
+  menu_name: utility
+  url: 'internal:/alumni/giving-to-ilr'
+  weight: 2
+  options:
+    attributes:
+      class: ilr-menu-button
