@@ -6,9 +6,8 @@ dependencies:
     - menu_ui
 third_party_settings:
   menu_ui:
-    available_menus:
-      - main
-    parent: 'main:'
+    available_menus: {  }
+    parent: ''
 name: Participant
 type: participant
 description: '<em>Participants</em> join <em>Classes</em> to <em>Instructors</em>. They are imported from Salesforce.'

@@ -6,9 +6,8 @@ dependencies:
     - menu_ui
 third_party_settings:
   menu_ui:
-    available_menus:
-      - main
-    parent: 'main:'
+    available_menus: {  }
+    parent: ''
 name: Instructor
 type: instructor
 description: 'An <em>Instructor</em> is a minimal person profile for <em>Class</em>es. It is generally imported automatically from Salesforce.'

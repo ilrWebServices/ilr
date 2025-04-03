@@ -1,0 +1,643 @@
+ilr.primary.about-ilr:
+  title: 'About ILR'
+  menu_name: primary
+  url: 'internal:/about-ilr'
+  weight: 0
+
+ilr.primary.about-ilr.who-we-are:
+  title: 'Who We Are'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 0
+  parent: ilr.primary.about-ilr
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.about-ilr.who-we-are.about-ilr:
+  title: 'About ILR'
+  menu_name: primary
+  url: 'internal:/about-ilr'
+  weight: 0
+  parent: ilr.primary.about-ilr.who-we-are
+
+ilr.primary.about-ilr.who-we-are.people-at-ilr:
+  title: 'People at ILR'
+  menu_name: primary
+  url: 'internal:/people'
+  weight: 1
+  parent: ilr.primary.about-ilr.who-we-are
+
+ilr.primary.about-ilr.who-we-are.alumni:
+  title: 'Alumni'
+  menu_name: primary
+  url: 'internal:/alumni'
+  weight: 2
+  parent: ilr.primary.about-ilr.who-we-are
+
+ilr.primary.about-ilr.who-we-are.catherwood-library:
+  title: 'Catherwood Library'
+  menu_name: primary
+  url: 'https://catherwood.library.cornell.edu/'
+  weight: 3
+  parent: ilr.primary.about-ilr.who-we-are
+
+ilr.primary.about-ilr.who-we-are.centers-institutes:
+  title: 'Centers & Institutes'
+  menu_name: primary
+  url: 'internal:/faculty-and-research/centers-and-institutes'
+  weight: 4
+  parent: ilr.primary.about-ilr.who-we-are
+
+ilr.primary.about-ilr.who-we-are.founding-faculty:
+  title: 'Founding Faculty'
+  menu_name: primary
+  url: 'internal:/about-ilr/founding-faculty'
+  weight: 5
+  parent: ilr.primary.about-ilr.who-we-are
+
+ilr.primary.about-ilr.where-we-are:
+  title: 'Where We Are'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 1
+  parent: ilr.primary.about-ilr
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.about-ilr.where-we-are.cornell-ilr-in-nyc:
+  title: 'Cornell ILR in NYC'
+  menu_name: primary
+  url: 'internal:/new-york-city'
+  weight: 0
+  parent: ilr.primary.about-ilr.where-we-are
+
+ilr.primary.about-ilr.where-we-are.buffalo-co-lab:
+  title: 'Buffalo Co-Lab'
+  menu_name: primary
+  url: 'internal:/buffalo-co-lab'
+  weight: 1
+  parent: ilr.primary.about-ilr.where-we-are
+
+ilr.primary.about-ilr.where-we-are.conference-centers:
+  title: 'Conference Centers'
+  menu_name: primary
+  url: 'internal:/centers-institutes/conference-centers'
+  weight: 2
+  parent: ilr.primary.about-ilr.where-we-are
+
+ilr.primary.about-ilr.news-publications:
+  title: 'News & Publications'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 2
+  parent: ilr.primary.about-ilr
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.about-ilr.news-publications.research:
+  title: 'Research'
+  menu_name: primary
+  url: 'internal:/news/research'
+  weight: 0
+  parent: ilr.primary.about-ilr.news-publications
+
+ilr.primary.about-ilr.news-publications.news:
+  title: 'News'
+  menu_name: primary
+  url: 'internal:/news'
+  weight: 1
+  parent: ilr.primary.about-ilr.news-publications
+
+ilr.primary.about-ilr.news-publications.ilr-review:
+  title: 'ILR Review'
+  menu_name: primary
+  url: 'internal:/ilr-review'
+  weight: 2
+  parent: ilr.primary.about-ilr.news-publications
+
+ilr.primary.about-ilr.news-publications.ilr-press:
+  title: 'ILR Press'
+  menu_name: primary
+  url: 'internal:/ilr-press'
+  weight: 3
+  parent: ilr.primary.about-ilr.news-publications
+
+ilr.primary.programs-admissions:
+  title: 'Programs & Admissions'
+  menu_name: primary
+  url: 'internal:/programs'
+  weight: 1
+
+ilr.primary.programs-admissions.undergraduate-program:
+  title: 'Undergraduate Program'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 0
+  parent: ilr.primary.programs-admissions
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.programs-admissions.undergraduate-program.undergraduate-admissions:
+  title: 'Undergraduate Admissions'
+  menu_name: primary
+  url: 'internal:/programs/undergraduate-degree-program/undergraduate-admissions'
+  weight: 0
+  parent: ilr.primary.programs-admissions.undergraduate-program
+
+ilr.primary.programs-admissions.undergraduate-program.curriculum-requirements:
+  title: 'Curriculum Requirements'
+  menu_name: primary
+  url: 'internal:/current-students/undergraduate-student-resources/curriculum-requirements'
+  weight: 1
+  parent: ilr.primary.programs-admissions.undergraduate-program
+
+ilr.primary.programs-admissions.graduate-programs:
+  title: 'Graduate Programs'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 1
+  parent: ilr.primary.programs-admissions
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.programs-admissions.graduate-programs.master-of-industrial-and-labor-relations-milr-:
+  title: 'Master of Industrial and Labor Relations (MILR)'
+  menu_name: primary
+  url: 'internal:/programs/graduate-degree-programs/master-industrial-and-labor-relations-milr'
+  weight: 0
+  parent: ilr.primary.programs-admissions.graduate-programs
+
+ilr.primary.programs-admissions.graduate-programs.the-executive-master-of-human-resource-management-emhrm-program:
+  title: 'The Executive Master of Human Resource Management (EMHRM) Program'
+  menu_name: primary
+  url: 'internal:/programs/graduate-degree-programs/executive-master-human-resource-management-emhrm-program'
+  weight: 1
+  parent: ilr.primary.programs-admissions.graduate-programs
+
+ilr.primary.programs-admissions.graduate-programs.ms-ilr:
+  title: 'MS ILR'
+  menu_name: primary
+  url: 'internal:/programs/graduate-degree-programs/ms-ilr'
+  weight: 2
+  parent: ilr.primary.programs-admissions.graduate-programs
+
+ilr.primary.programs-admissions.graduate-programs.doctoral-program:
+  title: 'Doctoral Program'
+  menu_name: primary
+  url: 'internal:/programs/graduate-degree-programs/doctoral-program'
+  weight: 3
+  parent: ilr.primary.programs-admissions.graduate-programs
+
+ilr.primary.programs-admissions.professional-education:
+  title: 'Professional Education'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 2
+  parent: ilr.primary.programs-admissions
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.programs-admissions.professional-education.professional-workshops-courses-and-training:
+  title: 'Professional Workshops, Courses, and Training'
+  menu_name: primary
+  url: 'internal:/programs/professional-education'
+  weight: 0
+  parent: ilr.primary.programs-admissions.professional-education
+
+ilr.primary.programs-admissions.professional-education.certificate-programs:
+  title: 'Certificate Programs'
+  menu_name: primary
+  url: 'internal:/programs/professional-education/certificate-programs'
+  weight: 1
+  parent: ilr.primary.programs-admissions.professional-education
+
+ilr.primary.programs-admissions.professional-education.senior-leader-programs:
+  title: 'Senior Leader Programs'
+  menu_name: primary
+  url: 'internal:/programs/professional-education/senior-leader-programs'
+  weight: 2
+  parent: ilr.primary.programs-admissions.professional-education
+
+ilr.primary.programs-admissions.professional-education.customized-professional-programs:
+  title: 'Customized Professional Programs'
+  menu_name: primary
+  url: 'internal:/programs/professional-education/customized-programs'
+  weight: 3
+  parent: ilr.primary.programs-admissions.professional-education
+
+ilr.primary.current-students:
+  title: 'Current Students'
+  menu_name: primary
+  url: 'internal:/current-students'
+  weight: 2
+
+ilr.primary.current-students.student-success:
+  title: 'Student Success'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 0
+  parent: ilr.primary.current-students
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.current-students.student-success.diversity-and-inclusion:
+  title: 'Diversity and Inclusion'
+  menu_name: primary
+  url: 'internal:/current-students/diversity-and-inclusion'
+  weight: 0
+  parent: ilr.primary.current-students.student-success
+
+ilr.primary.current-students.student-success.student-support:
+  title: 'Student Support'
+  menu_name: primary
+  url: 'internal:/current-students/undergraduate-student-resources'
+  weight: 1
+  parent: ilr.primary.current-students.student-success
+
+ilr.primary.current-students.student-success.career-services:
+  title: 'Career Services'
+  menu_name: primary
+  url: 'internal:/current-students/career-services'
+  weight: 2
+  parent: ilr.primary.current-students.student-success
+
+ilr.primary.current-students.student-success.consider-graduate-schools:
+  title: 'Consider Graduate Schools'
+  menu_name: primary
+  url: 'internal:/current-students/career-services/consider-graduate-schools'
+  weight: 3
+  parent: ilr.primary.current-students.student-success
+
+ilr.primary.current-students.student-success.ilr-commencement:
+  title: 'ILR Commencement'
+  menu_name: primary
+  url: 'internal:/current-students/ilr-commencement'
+  weight: 4
+  parent: ilr.primary.current-students.student-success
+
+ilr.primary.current-students.beyond-the-classroom:
+  title: 'Beyond the Classroom'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 1
+  parent: ilr.primary.current-students
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.current-students.beyond-the-classroom.student-research:
+  title: 'Student Research'
+  menu_name: primary
+  url: 'internal:/current-students/undergraduate-student-resources/student-research'
+  weight: 0
+  parent: ilr.primary.current-students.beyond-the-classroom
+
+ilr.primary.current-students.beyond-the-classroom.research-fellowships:
+  title: 'Research Fellowships'
+  menu_name: primary
+  url: 'internal:/current-students/research-fellowships'
+  weight: 1
+  parent: ilr.primary.current-students.beyond-the-classroom
+
+ilr.primary.current-students.beyond-the-classroom.international-opportunities:
+  title: 'International Opportunities'
+  menu_name: primary
+  url: 'internal:/current-students/international-opportunities'
+  weight: 2
+  parent: ilr.primary.current-students.beyond-the-classroom
+
+ilr.primary.current-students.beyond-the-classroom.credit-and-non-credit-internships:
+  title: 'Credit and Non-Credit Internships'
+  menu_name: primary
+  url: 'internal:/current-students/credit-and-non-credit-internships'
+  weight: 3
+  parent: ilr.primary.current-students.beyond-the-classroom
+
+ilr.primary.current-students.beyond-the-classroom.student-organizations:
+  title: 'Student Organizations'
+  menu_name: primary
+  url: 'internal:/current-students/student-organizations'
+  weight: 4
+  parent: ilr.primary.current-students.beyond-the-classroom
+
+ilr.primary.current-students.academic-resources:
+  title: 'Academic Resources'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 2
+  parent: ilr.primary.current-students
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.current-students.academic-resources.ilr-class-enrollment-and-course-information:
+  title: 'ILR Class Enrollment and Course Information'
+  menu_name: primary
+  url: 'internal:/academics/ilr-class-enrollment-and-course-information'
+  weight: 0
+  parent: ilr.primary.current-students.academic-resources
+
+ilr.primary.current-students.academic-resources.academic-policies:
+  title: 'Academic Policies'
+  menu_name: primary
+  url: 'internal:/current-students/undergraduate-academic-policies'
+  weight: 1
+  parent: ilr.primary.current-students.academic-resources
+
+ilr.primary.current-students.academic-resources.resources-for-graduate-students:
+  title: 'Resources for Graduate Students'
+  menu_name: primary
+  url: 'internal:/current-students/resources-graduate-students'
+  weight: 2
+  parent: ilr.primary.current-students.academic-resources
+
+ilr.primary.faculty-research:
+  title: 'Faculty & Research'
+  menu_name: primary
+  url: 'internal:/faculty-and-research'
+  weight: 3
+
+ilr.primary.faculty-research.our-faculty:
+  title: 'Our Faculty'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 0
+  parent: ilr.primary.faculty-research
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.faculty-research.our-faculty.faculty:
+  title: 'Faculty'
+  menu_name: primary
+  url: 'internal:/people/faculty'
+  weight: 0
+  parent: ilr.primary.faculty-research.our-faculty
+
+ilr.primary.faculty-research.our-faculty.academic-departments:
+  title: 'Academic Departments'
+  menu_name: primary
+  url: 'internal:/academics/academic-departments'
+  weight: 1
+  parent: ilr.primary.faculty-research.our-faculty
+
+ilr.primary.faculty-research.our-faculty.areas-of-expertise:
+  title: 'Areas of Expertise'
+  menu_name: primary
+  url: 'internal:/people/areas-expertise-from-ai'
+  weight: 2
+  parent: ilr.primary.faculty-research.our-faculty
+  enabled: 0
+
+ilr.primary.faculty-research.our-research-publications:
+  title: 'Our Research & Publications'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 1
+  parent: ilr.primary.faculty-research
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.faculty-research.our-research-publications.ilr-review:
+  title: 'ILR Review'
+  menu_name: primary
+  url: 'internal:/ilr-review'
+  weight: 0
+  parent: ilr.primary.faculty-research.our-research-publications
+
+ilr.primary.faculty-research.our-research-publications.ilr-press:
+  title: 'ILR Press'
+  menu_name: primary
+  url: 'internal:/ilr-press'
+  weight: 1
+  parent: ilr.primary.faculty-research.our-research-publications
+
+ilr.primary.faculty-research.our-research-publications.centers-institutes:
+  title: 'Centers & Institutes'
+  menu_name: primary
+  url: 'internal:/faculty-and-research/centers-and-institutes'
+  weight: 2
+  parent: ilr.primary.faculty-research.our-research-publications
+
+ilr.primary.faculty-research.conducting-research:
+  title: 'Conducting Research'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 2
+  parent: ilr.primary.faculty-research
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.faculty-research.conducting-research.student-research:
+  title: 'Student Research'
+  menu_name: primary
+  url: 'internal:/current-students/undergraduate-student-resources/student-research'
+  weight: 0
+  parent: ilr.primary.faculty-research.conducting-research
+
+ilr.primary.faculty-research.conducting-research.catherwood-library:
+  title: 'Catherwood Library'
+  menu_name: primary
+  url: 'https://catherwood.library.cornell.edu/'
+  weight: 1
+  parent: ilr.primary.faculty-research.conducting-research
+
+ilr.primary.public-impact:
+  title: 'Public Impact'
+  menu_name: primary
+  url: 'internal:/public-impact'
+  weight: 4
+
+ilr.primary.public-impact.leadership-professional-training:
+  title: 'Leadership & Professional Training'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 0
+  parent: ilr.primary.public-impact
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.public-impact.leadership-professional-training.senior-leader-programs:
+  title: 'Senior Leader Programs'
+  menu_name: primary
+  url: 'internal:/programs/professional-education/senior-leader-programs'
+  weight: 0
+  parent: ilr.primary.public-impact.leadership-professional-training
+
+ilr.primary.public-impact.leadership-professional-training.certificate-programs:
+  title: 'Certificate Programs'
+  menu_name: primary
+  url: 'internal:/programs/professional-education/certificate-programs'
+  weight: 1
+  parent: ilr.primary.public-impact.leadership-professional-training
+
+ilr.primary.public-impact.leadership-professional-training.professional-workshops-courses-and-training:
+  title: 'Professional Workshops, Courses, and Training'
+  menu_name: primary
+  url: 'internal:/programs/professional-education'
+  weight: 2
+  parent: ilr.primary.public-impact.leadership-professional-training
+
+ilr.primary.public-impact.research-insights:
+  title: 'Research & Insights'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 1
+  parent: ilr.primary.public-impact
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.public-impact.research-insights.centers-institutes:
+  title: 'Centers & Institutes'
+  menu_name: primary
+  url: 'internal:/faculty-and-research/centers-and-institutes'
+  weight: 0
+  parent: ilr.primary.public-impact.research-insights
+
+ilr.primary.public-impact.research-insights.ilr-press:
+  title: 'ILR Press'
+  menu_name: primary
+  url: 'internal:/ilr-press'
+  weight: 1
+  parent: ilr.primary.public-impact.research-insights
+
+ilr.primary.public-impact.research-insights.digitalcollections-ilr:
+  title: 'DigitalCollections@ILR'
+  menu_name: primary
+  url: 'https://ecommons.cornell.edu/communities/248b4901-f047-44d0-99b8-08613890ba79'
+  weight: 2
+  parent: ilr.primary.public-impact.research-insights
+
+ilr.primary.public-impact.student-engagement:
+  title: 'Student Engagement'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 2
+  parent: ilr.primary.public-impact
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.public-impact.student-engagement.research-fellowships:
+  title: 'Research Fellowships'
+  menu_name: primary
+  url: 'internal:/current-students/research-fellowships'
+  weight: 0
+  parent: ilr.primary.public-impact.student-engagement
+
+ilr.primary.public-impact.student-engagement.credit-and-non-credit-internships:
+  title: 'Credit and Non-Credit Internships'
+  menu_name: primary
+  url: 'internal:/current-students/credit-and-non-credit-internships'
+  weight: 1
+  parent: ilr.primary.public-impact.student-engagement
+
+ilr.primary.public-impact.student-engagement.global-service-learning:
+  title: 'Global Service Learning'
+  menu_name: primary
+  url: 'internal:/current-students/international-opportunities/engaged-learning'
+  weight: 2
+  parent: ilr.primary.public-impact.student-engagement
+
+ilr.primary.alumni:
+  title: 'Alumni'
+  menu_name: primary
+  url: 'internal:/alumni'
+  weight: 5
+
+ilr.primary.alumni.make-an-impact:
+  title: 'Make an Impact'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 0
+  parent: ilr.primary.alumni
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.alumni.make-an-impact.giving-to-ilr:
+  title: 'Giving to ILR'
+  menu_name: primary
+  url: 'internal:/alumni/giving-to-ilr'
+  weight: 0
+  parent: ilr.primary.alumni.make-an-impact
+
+ilr.primary.alumni.make-an-impact.make-a-gift:
+  title: 'Make a Gift'
+  menu_name: primary
+  url: 'internal:/make-a-gift'
+  weight: 1
+  parent: ilr.primary.alumni.make-an-impact
+
+ilr.primary.alumni.ilraa:
+  title: 'ILRAA'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 1
+  parent: ilr.primary.alumni
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.alumni.ilraa.alumni-association:
+  title: 'Alumni Association'
+  menu_name: primary
+  url: 'internal:/alumni/get-involved/alumni-association'
+  weight: 0
+  parent: ilr.primary.alumni.ilraa
+
+ilr.primary.alumni.ilraa.alumni-chapters:
+  title: 'Alumni Chapters'
+  menu_name: primary
+  url: 'internal:/alumni/get-involved/alumni-association/alumni-chapters'
+  weight: 1
+  parent: ilr.primary.alumni.ilraa
+
+ilr.primary.alumni.ilraa.ilr-alumni-association-board-of-directors:
+  title: 'ILR Alumni Association Board of Directors'
+  menu_name: primary
+  url: 'internal:/alumni/get-involved/alumni-association/ilr-alumni-association-board-directors'
+  weight: 2
+  parent: ilr.primary.alumni.ilraa
+
+ilr.primary.alumni.ilraa.affinity-groups:
+  title: 'Affinity Groups'
+  menu_name: primary
+  url: 'internal:/alumni-association/affinity-groups'
+  weight: 3
+  parent: ilr.primary.alumni.ilraa
+
+ilr.primary.alumni.learn-more-about-alumni:
+  title: 'Learn More About Alumni'
+  menu_name: primary
+  url: 'route:<nolink>'
+  weight: 2
+  parent: ilr.primary.alumni
+  options:
+    attributes:
+      class: ilr-menu-heading
+
+ilr.primary.alumni.learn-more-about-alumni.alumni-profiles:
+  title: 'Alumni Profiles'
+  menu_name: primary
+  url: 'internal:/alumni/alumni-stories'
+  weight: 0
+  parent: ilr.primary.alumni.learn-more-about-alumni
+
+ilr.primary.alumni.learn-more-about-alumni.groat-and-alpern-awards:
+  title: 'Groat and Alpern Awards'
+  menu_name: primary
+  url: 'internal:/alumni/groat-and-alpern-awards'
+  weight: 1
+  parent: ilr.primary.alumni.learn-more-about-alumni

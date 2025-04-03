@@ -7,8 +7,8 @@ dependencies:
 third_party_settings:
   menu_ui:
     available_menus:
-      - main
-    parent: 'main:'
+      - primary
+    parent: 'primary:'
 name: Page
 type: page
 description: 'Pages are used for marketing, informational and transactional content, and are the most commonly used page type for the site.'
