@@ -1,5 +1,5 @@
 :root {
-  --gutter-width: 24px;
+  --gutter-width: 16px;
   --content-width: 24fr;
   --breakpoint: xs;
 
@@ -32,6 +32,7 @@ body {
   grid-template-columns: [left-gutter] var(--gutter-width) [content] var(--content-width) [right-gutter] var(--gutter-width);
 
   @include breakpoint(md) {
+    --gutter-width: 24px;
     --content-width: 44fr;
     justify-items: stretch;
   }
@@ -68,10 +69,9 @@ header {
   grid-row: header;
   grid-column: content;
 
-  display: flex;
-  gap: var(--cu-ps-1);
-  align-items: center;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  grid-row-gap: var(--cu-vr0);
   padding-top: var(--cu-vr1);
   margin-bottom: var(--cu-component-margin-bottom, 0);
   border-bottom: 1px solid var(--cu-color-border, #ccc);
@@ -80,6 +80,27 @@ header {
     & {
       gap: var(--cu-ps1);
     }
+  }
+
+  .nav-trigger {
+    order: 1;
+    align-self: center;
+    justify-self: end;
+  }
+  #block-union-marketing-branding {
+    order: 0;
+  }
+  #block-union-marketing-primary-nav {
+    order: 3;
+    grid-column: 1/-1;
+  }
+  #block-union-marketing-search-trigger {
+    order: 2;
+    grid-column: 1/-1;
+  }
+  #block-union-marketing-utility-nav {
+    order: 4;
+    grid-column: 1/-1;
   }
 }
 

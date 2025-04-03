@@ -27,7 +27,11 @@ class ILRSearchTriggerBlock extends BlockBase {
    */
   public function build() {
     $build = [
-      '#theme' => 'ilr_search_trigger_block',
+      '#type' => 'inline_template',
+      '#template' => '<form class="ilr-search" action="/search" method="GET"><input type="text" name="s" placeholder="{% trans %}Search{% endtrans %}" value="{{ value }}"/></form>',
+      '#context' => [
+        'value' => '',
+      ],
     ];
 
     return $build;
