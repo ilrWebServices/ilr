@@ -217,6 +217,11 @@ function union_marketing_library_info_alter(&$libraries, $extension) {
   if ($extension === 'webform' && isset($libraries['webform.form'])) {
     $libraries['webform.form']['dependencies'][] = 'union_organizer/form';
   }
+
+  // Add the interaction analytics js as a dependency of google_tag.
+  if ($extension === 'google_tag' && isset($libraries['gtag'])) {
+    $libraries['gtag']['dependencies'][] = 'union_marketing/interaction-analytics';
+  }
 }
 
 /**
