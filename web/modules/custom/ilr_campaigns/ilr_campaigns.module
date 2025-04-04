@@ -38,7 +38,11 @@ function ilr_campaigns_entity_type_alter(array &$entity_types) {
  */
 function ilr_campaigns_node_insert(ContentEntityInterface $node) {
   if ($node->bundle() === 'class') {
-    \Drupal::queue('new_class_processor')->createItem($node->id());
+    $course = $node->field_course->entity;
+
+    if ($course && $course->isPublished()) {
+      \Drupal::queue('new_class_processor')->createItem($node->id());
+    }
   }
 
   if ($node->bundle() === 'course') {
