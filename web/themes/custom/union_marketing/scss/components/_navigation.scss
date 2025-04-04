@@ -9,6 +9,12 @@ nav[id^="block-union-marketing-menu-subsite"] {
     font-size: var(--cu-ms1);
     text-decoration: none;
     font-weight: 400;
+
+    @include breakpoint(md) {
+      font-size: var(--cu-ms-2);
+      font-weight: 300;
+      column-gap: 20px;
+    }
   }
 
   ul {
@@ -95,6 +101,13 @@ nav[id^="block-union-marketing-menu-subsite"] {
     font-weight: 700;
     letter-spacing: .1rem;
     margin-bottom: var(--cu-vr-1);
+
+    @include breakpoint(md) {
+      color: white;
+      margin-bottom: 0;
+      text-decoration: underline;
+      font-size: var(--cu-ms-2);
+    }
   }
 
   ul {
@@ -108,12 +121,33 @@ nav[id^="block-union-marketing-menu-subsite"] {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: var(--cu-vr0);
+
+    @include breakpoint(md) {
+      display: flex;
+      position: relative;
+      z-index: 11; // Raise above primary menu.
+      right: 250px; // Give space for search.
+      align-items: center;
+    }
   }
 
   > ul > li > ul {
     display: flex;
     flex-direction: column;
     gap: var(--cu-vr-1);
+
+    @include breakpoint(md) {
+      background-color: $cornell-red;
+      padding: var(--cu-vr1) var(--cu-ps1) var(--cu-vr0);
+      display: none;
+      position: absolute;
+      left: -10px;
+
+      a {
+        color: white;
+        font-size: var(--cu-ms-2);
+      }
+    }
   }
 
   > ul > li:has(.ilr-menu-heading) {
@@ -122,11 +156,40 @@ nav[id^="block-union-marketing-menu-subsite"] {
     padding: var(--cu-vr0) 0;
     margin-bottom: var(--cu-vr1);
     grid-column: 1/-1;
+
+    @include breakpoint(md) {
+      position: relative;
+      border: unset;
+      margin-bottom: 0;
+      padding: var(--cu-vr-1) var(--cu-ps0);
+
+      &:hover {
+        ul {
+          display: flex;
+          text-transform: capitalize;
+          width: 225px; // Ensure 'Professional Education' is on 1 line.
+        }
+      }
+
+      &::after {
+        content: '❮';
+        color: white;
+        font-size: var(--cu-ms-4);
+        position: absolute;
+        right: 0px;
+        top: 18px;
+        transform: rotate(-90deg);
+      }
+    }
   }
 
   li:has(.ilr-menu-button) {
     border: 1px solid darken($gray-medium, 10%);
     text-align: center;
+
+    @include breakpoint(md) {
+      border: unset;
+    }
 
     a {
       display: inline-block;
@@ -135,6 +198,12 @@ nav[id^="block-union-marketing-menu-subsite"] {
       letter-spacing: .05rem;
       padding: var(--cu-vr-1) var(--cu-ps0);
       width: 100%;
+
+      @include breakpoint(md) {
+        text-transform: uppercase;
+        color: white;
+        font-size: var(--cu-ms-2);
+      }
     }
   }
 
@@ -145,6 +214,10 @@ nav[id^="block-union-marketing-menu-subsite"] {
     a {
       color: white;
     }
+
+    @include breakpoint(md) {
+      background-color: unset;
+    }
   }
 }
 
@@ -154,6 +227,15 @@ header .ilr-search input {
   border-radius: 2rem;
   padding: var(--cu-vr-1) var(--cu-ps0);
   font-size: var(--cu-ms0);
+
+  @include breakpoint(md) {
+    background-color: darken($cornell-red, 10%);
+    color: white;
+    padding: var(--cu-vr-3) var(--cu-ps0);
+    width: 195px;
+    margin-left: -110%; // the full-width mixin sends this element offscreen, so we bring it back.
+    border: none;
+  }
 }
 
 // Hamburger menu UI for main and subsite menus.
@@ -188,6 +270,10 @@ header .ilr-search input {
 .nav-trigger:has(.nav-trigger-box:not(:checked)) ~ #block-union-marketing-search-trigger,
 .nav-trigger:has(.nav-trigger-box:not(:checked)) ~ #block-union-marketing-utility-nav {
   display: none;
+
+  @include breakpoint(md) {
+    display: flex;
+  }
 }
 
 .nav-trigger:has(.nav-trigger-box:checked)::before {
