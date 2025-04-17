@@ -1,0 +1,25 @@
+uuid: 1fe1f0da-6dec-4b0e-85ca-d7db5d66e1f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_form
+    - node.type.landing_page
+  module:
+    - webform
+id: node.landing_page.field_form
+field_name: field_form
+entity_type: node
+bundle: landing_page
+label: 'Contact form'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:webform'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: webform

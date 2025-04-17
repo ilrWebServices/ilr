@@ -1,0 +1,17 @@
+uuid: f93b8f8d-181f-40ec-83c4-fcd30bbd1e7a
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Landing Page'
+type: landing_page
+description: 'Use <em>Landing Pages</em> for standalone campaign destination pages.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false
