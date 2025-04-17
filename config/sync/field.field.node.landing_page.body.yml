@@ -1,0 +1,26 @@
+uuid: 04bfea5e-52c3-4de0-ba45-2cb920443787
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - filter.format.basic_formatting_with_media
+    - node.type.landing_page
+  module:
+    - text
+id: node.landing_page.body
+field_name: body
+entity_type: node
+bundle: landing_page
+label: Overview
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats:
+    - basic_formatting_with_media
+field_type: text_with_summary
