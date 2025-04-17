@@ -1,0 +1,38 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Stat card
+status: stable
+props:
+  type: object
+  properties:
+    heading:
+      type: string
+      title: Heading
+      # @todo Add examples here.
+      examples: []
+    subheading:
+      type: string
+      title: Subheading
+      # @todo Add examples here.
+      examples: []
+    stats:
+      type: array
+      title: Stats
+      items:
+        type: object
+        properties:
+          value:
+            type: string
+            title: Value
+          label:
+            type: string
+            title: Label
+      # @todo Add examples here.
+      examples: []
+    links:
+      type: array
+      title: Links
+      items:
+        # type: string
+        # Maybe objects of text and url?
+      # @todo Add examples here.
+      examples: []
