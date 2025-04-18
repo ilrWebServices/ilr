@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - block_visibility_groups.block_visibility_group.primary_branding
     - system.menu.primary
   module:
     - block_visibility_groups
@@ -29,8 +28,17 @@ visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: primary_branding
+    block_visibility_group: ''
   root_path_entity_bundle:
     id: root_path_entity_bundle
-    root_entity_bundles: {  }
-    negate: 0
+    root_entity_bundles:
+      collection:
+        subsite: subsite
+        subsite_blog: subsite_blog
+      node:
+        landing_page: landing_page
+    negate: 1
+  request_path:
+    id: request_path
+    negate: true
+    pages: '/75*'

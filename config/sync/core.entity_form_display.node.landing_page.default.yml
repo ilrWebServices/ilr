@@ -44,7 +44,7 @@ content:
     settings:
       default_data: true
       webforms:
-        - contact
+        - request_info
     third_party_settings: {  }
   field_representative_image:
     type: media_library_widget

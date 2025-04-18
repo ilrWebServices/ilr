@@ -5,6 +5,8 @@ dependencies:
   config:
     - system.menu.footer
   module:
+    - block_visibility_groups
+    - ilr
     - system
   theme:
     - union_marketing
@@ -22,4 +24,14 @@ settings:
   level: 1
   depth: 0
   expand_all_items: false
-visibility: {  }
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles:
+      node:
+        landing_page: landing_page
+    negate: 1
