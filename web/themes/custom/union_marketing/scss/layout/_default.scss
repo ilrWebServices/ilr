@@ -224,3 +224,17 @@ hr.pad {
     }
   }
 }
+
+@include breakpoint(md) {
+  .cu-component--columns-2 {
+    columns: 2;
+  }
+
+  .cu-component--columns-3 {
+    columns: 3;
+  }
+
+  .cu-component--columns-4 {
+    columns: 4;
+  }
+}
