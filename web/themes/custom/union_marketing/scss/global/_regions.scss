@@ -44,4 +44,21 @@ footer {
     list-style-type: none;
     padding: 0;
   }
+
+  .social-follow {
+    margin: 0;
+    columns: 1;
+    display: flex;
+    gap: var(--cu-ps0);
+    justify-content: flex-start;
+    align-items: center;
+
+    @include breakpoint(sm) {
+      justify-content: flex-end;
+    }
+
+    .cu-icon, .cu-icon__image {
+      margin: 0;
+    }
+  }
 }
