@@ -78,3 +78,7 @@ span.strong {
     margin-left: -1em;
   }
 }
+
+.cu-component--rich-text > ul:first-child {
+  margin-top: 0;
+}
