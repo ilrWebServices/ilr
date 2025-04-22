@@ -117,19 +117,26 @@ class IconSettings extends ParagraphsBehaviorBase {
    */
   public function preprocess(&$variables) {
     if ($icon = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'icon')) {
-      $variables['paragraph']->cu_icon = [
+      $cu_icon = [
         'title' => $icon,
         'icon' => $icon,
       ];
 
       if ($icon_placement = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'icon_placement')) {
-        $variables['paragraph']->cu_icon['attributes'] = ['class' => 'cu-icon--' . $icon_placement];
+        $cu_icon['attributes'] = ['class' => 'cu-icon--' . $icon_placement];
       }
 
       if ($label = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'icon_label')) {
-        $variables['paragraph']->cu_icon['label'] = $label;
-        $variables['paragraph']->cu_icon['title'] = $label;
+        $cu_icon['label'] = $label;
+        $cu_icon['title'] = $label;
       }
+
+      // Deprecated.
+      $variables['paragraph']->cu_icon = $cu_icon;
+
+      // Future versions of PHP won't allow dynamic properties like `cu_icon`
+      // above. So in addition, add it as a theme variable.
+      $variables['cu_icon'] = $cu_icon;
     }
   }
 
