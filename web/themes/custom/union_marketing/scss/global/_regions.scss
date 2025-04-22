@@ -1,4 +1,4 @@
-body {
+body:not(.paragraphs-previewer) {
   @include breakpoint(md) {
     &::before {
       display: block;
