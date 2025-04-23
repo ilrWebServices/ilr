@@ -26,6 +26,7 @@ dependencies:
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.section_navigation
     - paragraphs.paragraphs_type.simple_collection_listing
+    - paragraphs.paragraphs_type.stats
     - paragraphs.paragraphs_type.table_of_contents
     - paragraphs.paragraphs_type.testimonial
     - paragraphs.paragraphs_type.testimonial_deck
@@ -73,6 +74,7 @@ settings:
       topic_list: topic_list
       carousel: carousel
       agenda: agenda
+      stats: stats
     negate: 0
     target_bundles_drag_drop:
       agenda:
@@ -105,6 +107,9 @@ settings:
       form:
         weight: -51
         enabled: true
+      honors_and_awards:
+        weight: 46
+        enabled: false
       image:
         weight: -53
         enabled: true
@@ -129,12 +134,18 @@ settings:
       picture_in_picture:
         weight: -38
         enabled: true
+      professional_activities:
+        weight: 55
+        enabled: false
       project_listing:
         weight: -46
         enabled: true
       promo:
         weight: -56
         enabled: true
+      publications:
+        weight: 58
+        enabled: false
       rich_text:
         weight: -59
         enabled: true
@@ -146,6 +157,12 @@ settings:
         enabled: true
       simple_collection_listing:
         weight: -58
+        enabled: true
+      stat:
+        weight: 63
+        enabled: false
+      stats:
+        weight: 35
         enabled: true
       table_of_contents:
         weight: -35

@@ -167,4 +167,10 @@
       margin: 0;
     }
   }
+
+  // If a section has only a single stats component, remove top and bottom padding.
+  .cu-section:has(.cu-component--stats):has(.cu-component:only-child) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
