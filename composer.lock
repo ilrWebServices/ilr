@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f3fcb09f5cfd6365e440bc5df9b01f5",
+    "content-hash": "9fc572f004df66f49e49b3f5d914272b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -935,12 +935,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union.git",
-                "reference": "1ba92aa4f7bd5f8fa8c2c35cb9de3f1cb0cec197"
+                "reference": "4b85144f46ecfdaf70093d4bcf41ea23d8fe3e25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/1ba92aa4f7bd5f8fa8c2c35cb9de3f1cb0cec197",
-                "reference": "1ba92aa4f7bd5f8fa8c2c35cb9de3f1cb0cec197",
+                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/4b85144f46ecfdaf70093d4bcf41ea23d8fe3e25",
+                "reference": "4b85144f46ecfdaf70093d4bcf41ea23d8fe3e25",
                 "shasum": ""
             },
             "require": {
@@ -974,7 +974,7 @@
                 "source": "https://github.com/ilrWebServices/union/tree/union_ng",
                 "issues": "https://github.com/ilrWebServices/union/issues"
             },
-            "time": "2025-04-17T18:25:55+00:00"
+            "time": "2025-04-23T20:58:43+00:00"
         },
         {
             "name": "cweagans/composer-patches",
