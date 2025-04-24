@@ -75,6 +75,13 @@
         color: white;
         font-weight: 400;
         text-decoration: none;
+        display: flex;
+        gap: var(--cu-ps-1);
+
+        &:after {
+          content: '✕';
+          display: block;
+        }
       }
 
       .facet-item__status {
