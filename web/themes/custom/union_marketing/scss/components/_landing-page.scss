@@ -252,6 +252,11 @@
 
     .cu-button {
       margin-bottom: 0;
+      display: none;
+
+      @include breakpoint(md) {
+        display: revert;
+      }
     }
   }
 
