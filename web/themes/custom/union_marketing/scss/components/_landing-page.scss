@@ -207,6 +207,7 @@
   .cu-footer {
     position: relative;
     --cu-text-color: white;
+    --cu-colorscheme-accent: white;
 
     // Add padding to accommodate the info button height.
     padding-bottom: 3em;
@@ -243,6 +244,14 @@
 
     .ilr-wordmark {
       margin: 0;
+    }
+
+    .field--body {
+      max-width: 30rem;
+    }
+
+    .cu-button {
+      margin-bottom: 0;
     }
   }
 
