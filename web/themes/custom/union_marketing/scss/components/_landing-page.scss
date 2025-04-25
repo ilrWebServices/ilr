@@ -90,9 +90,13 @@
     width: 100vw;
     max-height: 100vh;
     overflow-y: auto;
-    padding: var(--cu-vr-2) var(--cu-ps1);
-    z-index: 1;
-    box-shadow: 0 2px 8px 2px rgba(0,0,0,.075);
+    padding: var(--cu-vr-1) var(--cu-ps1) var(--cu-vr-2);
+    z-index: 2;
+    box-shadow: 0 2px 8px 2px rgba(0,0,0,.25);
+
+    &[data-state="activated"] {
+      padding-top: var(--cu-vr0);
+    }
 
     @include breakpoint(md) {
       position: sticky;
@@ -103,21 +107,84 @@
       // margin-top: var(--cu-vr3);
       padding: var(--cu-vr1) var(--cu-ps1);
       transition: margin 100ms;
+      box-shadow: 0 2px 8px 2px rgba(0,0,0,.075);
+    }
 
-      &[data-collapsed="0"] {
-        position: relative;
-        margin-left: calc(var(--cu-ps5) * -1);
+    .form-overlay {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      z-index: 11;
+
+      @include breakpoint(md) {
+        pointer-events: none;
+      }
+    }
+
+    &[data-state="activated"] .form-overlay {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .form-collapse {
+      color: #333;
+      display: none;
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      background-color: rgba(128,128,128,.15);
+      border: none;
+      border-radius: 0 0 0 20%;
+      z-index: 12;
+
+      @include breakpoint(md) {
+        position: absolute;
+      }
+
+      span {
+        visibility: hidden;
+      }
+
+      &::after {
+        content: '×';
+        font-size: var(--cu-ms4);
+        position: absolute;
+        top: 4px;
+        right: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &[data-state="activated"] .form-collapse {
+      display: block;
+    }
+
+    &[data-state="initial"] {
+      .form-item:not(.webform-actions) {
+        display: none;
+
+        @include breakpoint(md) {
+          display: block;
+        }
       }
     }
 
     .cu-input--submit {
+      color: var(--cu-color-white);
       background-color: var(--cu-color-brand);
       width: 100%;
-      margin-top: var(--cu-vr-1);
       margin-bottom: 0;
       padding: .6rem 1rem;
       --cu-font-weight: 700;
       letter-spacing: 5%;
+
+      @include breakpoint(md) {
+        margin-top: var(--cu-vr-1);
+      }
     }
   }
 
@@ -141,6 +208,13 @@
     position: relative;
     --cu-text-color: white;
 
+    // Add padding to accommodate the info button height.
+    padding-bottom: 3em;
+
+    @include breakpoint(md) {
+      padding-bottom: unset;
+    }
+
     .cu-section {
       display: flex;
       flex-direction: column;
@@ -154,12 +228,16 @@
         content: '';
         background-color: var(--cu-color-dark);
         position: absolute;
-        width: 150vw;
+        width: 100vw;
         height: 100%;
         top: 0;
         left: 50%;
         margin-left: -50vw;
         z-index: -1;
+
+        @include breakpoint(md) {
+          width: 150vw;
+        }
       }
     }
 
