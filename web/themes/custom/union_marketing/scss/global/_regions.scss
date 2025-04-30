@@ -1,4 +1,4 @@
-body:not(.paragraphs-previewer) {
+body:has(#block-union-marketing-utility-nav) {
   @include breakpoint(md) {
     &::before {
       display: block;
