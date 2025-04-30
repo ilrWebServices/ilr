@@ -226,10 +226,6 @@ header .ilr-search {
   display: flex;
   color: black;
 
-  @include breakpoint(md) {
-    color: white;
-  }
-
   input, button {
     height: 2.5rem;
     padding: var(--cu-vr-1) var(--cu-ps0);
@@ -239,8 +235,6 @@ header .ilr-search {
 
     @include breakpoint(md) {
       height: 1.5rem;
-      background-color: darken($cornell-red, 10%);
-      border: none;
     }
   }
 
@@ -274,6 +268,17 @@ header .ilr-search {
 
     @include breakpoint(md) {
       padding: var(--cu-vr-3) var(--cu-ps-2);
+    }
+  }
+}
+
+header:has(#block-union-marketing-utility-nav) .ilr-search {
+  @include breakpoint(md) {
+    color: white;
+
+    input, button {
+      background-color: darken($cornell-red, 10%);
+      border: none;
     }
   }
 }
