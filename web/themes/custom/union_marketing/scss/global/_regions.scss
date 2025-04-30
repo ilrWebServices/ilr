@@ -1,4 +1,12 @@
+body {
+  @include breakpoint(md) {
+    padding-top: var(--cu-vr1);
+  }
+}
+
 body:has(#block-union-marketing-utility-nav) {
+  padding-top: unset;
+
   @include breakpoint(md) {
     &::before {
       display: block;
