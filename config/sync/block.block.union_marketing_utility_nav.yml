@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - block_visibility_groups.block_visibility_group.utility_navigation
     - system.menu.utility
   module:
     - block_visibility_groups
@@ -28,7 +29,7 @@ visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: ''
+    block_visibility_group: utility_navigation
   root_path_entity_bundle:
     id: root_path_entity_bundle
     root_entity_bundles: {  }

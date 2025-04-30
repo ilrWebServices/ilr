@@ -1,0 +1,19 @@
+uuid: a0900b70-de9b-4021-84fe-9808d71af2c5
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: utility_navigation
+label: 'Utility navigation'
+logic: and
+conditions:
+  4094d42c-7769-4e5b-97a7-3f1efeb06084:
+    id: root_path_entity_bundle
+    root_entity_bundles:
+      node:
+        landing_page: landing_page
+    negate: 1
+    context_mapping: {  }
+    uuid: 4094d42c-7769-4e5b-97a7-3f1efeb06084
+allow_other_conditions: false
