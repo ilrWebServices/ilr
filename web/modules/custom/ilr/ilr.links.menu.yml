@@ -655,14 +655,14 @@ ilr.utility.apply:
 ilr.utility.apply.undergrad:
   title: 'Undergraduate'
   menu_name: utility
-  url: 'internal:/programs/undergraduate-admissions#section-9384'
+  url: 'https://admissions.cornell.edu/how-to-apply'
   weight: 0
   parent: ilr.utility.apply
 
 ilr.utility.apply.grad:
   title: 'Graduate'
   menu_name: utility
-  url: 'internal:/programs/graduate-degree-programs'
+  url: 'https://gradschool.cornell.edu/admissions/application-steps/apply-now/'
   weight: 1
   parent: ilr.utility.apply
 
@@ -685,7 +685,7 @@ ilr.utility.visit:
 ilr.utility.give:
   title: 'Give'
   menu_name: utility
-  url: 'internal:/alumni/giving-to-ilr'
+  url: 'https://securelb.imodules.com/s/1717/giving/interior.aspx?sid=1717&gid=2&pgid=403&cid=1031&dids=50.91&bledit=1&sort=1'
   weight: 2
   options:
     attributes:
