@@ -12,14 +12,14 @@ id: node.landing_page.field_form
 field_name: field_form
 entity_type: node
 bundle: landing_page
-label: 'Contact form'
+label: 'Info request form'
 description: ''
 required: false
 translatable: false
 default_value:
   -
     target_uuid: 950ae7b0-e1aa-417a-89ca-f00207cf3a98
-    default_data: ''
+    default_data: 'outreach_marketing_personas: '
     status: open
     open: ''
     close: ''

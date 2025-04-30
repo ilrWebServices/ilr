@@ -68,6 +68,11 @@
 
       // @todo Traverse the DOM to find this in relation to the widget_wrapper.
       let default_data_textarea = context.querySelector('.form-item-field-registration-form-0-settings-default-data textarea');
+
+      if (!default_data_textarea) {
+        default_data_textarea = context.querySelector('.form-item-field-form-0-settings-default-data textarea');
+      }
+
       let config_line = default_data_textarea.value.match(/^outreach_marketing_personas:.*$/gm);
 
       if (config_line) {
