@@ -1,0 +1,29 @@
+uuid: d3487aaf-8674-47f8-853a-87eea13091bc
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - ilr
+  theme:
+    - union_marketing
+id: union_marketing_ilr_social_links
+theme: union_marketing
+region: footer
+weight: 2
+provider: null
+plugin: ilr_social_links_block
+settings:
+  id: ilr_social_links_block
+  label: 'ILR Social Links'
+  label_display: '0'
+  provider: ilr
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: 0

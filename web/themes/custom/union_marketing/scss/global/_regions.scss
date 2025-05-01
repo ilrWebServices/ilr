@@ -1,5 +1,25 @@
+body {
+  @include breakpoint(md) {
+    padding-top: var(--cu-vr1);
+  }
+}
+
+body:has(#block-union-marketing-utility-nav) {
+  padding-top: unset;
+
+  @include breakpoint(md) {
+    &::before {
+      display: block;
+      content: '';
+      background-color: $cornell-red;
+      width: 100vw;
+      height: var(--utility-nav-height);
+      position: absolute;
+    }
+  }
+}
+
 header {
-  background: $white;
   padding: 1em 0;
   position: relative;
 }
@@ -31,5 +51,34 @@ footer {
     columns: 2;
     list-style-type: none;
     padding: 0;
+  }
+
+  .ilr-wordmark {
+    margin-bottom: var(--cu-vr2);
+  }
+
+  .social-follow {
+    margin: 0;
+    columns: 1;
+    display: flex;
+    gap: var(--cu-ps0);
+    justify-content: flex-start;
+    align-items: center;
+
+    @include breakpoint(sm) {
+      justify-content: flex-end;
+    }
+
+    .cu-icon, .cu-icon__image {
+      margin: 0;
+    }
+  }
+
+  #block-copyright p {
+    margin: 0;
+  }
+
+  #block-union-marketing-sharpspring-tracker {
+    display: none;
   }
 }

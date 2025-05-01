@@ -3,7 +3,6 @@ langcode: en
 status: false
 dependencies:
   config:
-    - block_visibility_groups.block_visibility_group.primary_branding
     - system.menu.main
   module:
     - block_visibility_groups
@@ -29,4 +28,4 @@ visibility:
     id: condition_group
     negate: false
     context_mapping: {  }
-    block_visibility_group: primary_branding
+    block_visibility_group: ''

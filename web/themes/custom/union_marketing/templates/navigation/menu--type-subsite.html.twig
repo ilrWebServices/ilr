@@ -18,13 +18,9 @@
  *   - in_active_trail: TRUE if the link is in the active trail.
  */
 #}
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger"/>
-<label aria-expanded='false' for="nav-trigger">
-  <span class="cu-accessible">Toggle menu</span>
-</label>
-
 {% import _self as menus %}
+
+
 
 {#
   We call a macro which calls itself to render the full tree.
@@ -37,18 +33,19 @@
   {% if items %}
     {% if menu_level == 0 %}
       <ul{{attributes.addClass('cu-menu__list cu-menu__list--subsite')}}>
-      {% else %}
-        <ul class="cu-menu__list--subsite-submenu">
-        {% endif %}
-        {% for item in items %}
-          <li{{item.attributes.addClass('cu-menu__item')}}>
-            {{ link(item.title, item.url, {class: 'cu-menu__link'}) }}
-            {% if item.below %}
-              {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
+        <li class="cu-menu__item cu-menu__item--home"><a href="/" class="cu-menu__link">{% trans %}<svg width="8" height="12" viewBox="0 0 8 12" focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:currentColor;stroke-width:1.5;" d="M 7,1 2,6 7,11" /></svg> &nbsp; Back to ILR{% endtrans %}</a></li>
+    {% else %}
+      <ul class="cu-menu__list--subsite-submenu">
     {% endif %}
-  {% endmacro %}
+      {% for item in items %}
+        <li{{item.attributes.addClass('cu-menu__item')}}>
+          {{ link(item.title, item.url, {class: 'cu-menu__link'}) }}
+          {% if item.below %}
+            {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+          {% endif %}
+        </li>
+      {% endfor %}
+      </ul>
+  {% endif %}
+{% endmacro %}
 

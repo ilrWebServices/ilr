@@ -1,0 +1,22 @@
+uuid: 99a56227-e9e8-40d5-8341-dd276ef70f40
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: stats
+label: Stats
+icon_uuid: null
+icon_default: null
+description: 'A collection of statistics displayed in a box.'
+behavior_plugins:
+  ilr_color:
+    enabled: true
+    color_schemes:
+      none: none
+      light: light
+      dark: dark
+      vibrant: 0
+    color_scheme_default: none
+  ilr_icon:
+    enabled: true

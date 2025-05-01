@@ -1,24 +1,25 @@
-uuid: 51b1555a-2f2f-456f-aa1b-6a3cb99351ba
+uuid: a7689672-da6a-495e-91cf-88a804053c9b
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:simple_text:48bd16f4-0fe8-4b1a-800b-089c03c0be23'
+    - 'block_content:simple_text:1eb4ea6c-53d4-4f00-a8f8-1275650ebfad'
   module:
     - block_content
     - block_visibility_groups
     - ilr
+    - node
   theme:
     - union_marketing
-id: union_marketing_social_follow
+id: union_marketing_landing_page_footer
 theme: union_marketing
 region: footer
-weight: 2
+weight: 1
 provider: null
-plugin: 'block_content:48bd16f4-0fe8-4b1a-800b-089c03c0be23'
+plugin: 'block_content:1eb4ea6c-53d4-4f00-a8f8-1275650ebfad'
 settings:
-  id: 'block_content:48bd16f4-0fe8-4b1a-800b-089c03c0be23'
-  label: 'Social footer'
+  id: 'block_content:1eb4ea6c-53d4-4f00-a8f8-1275650ebfad'
+  label: 'Landing page footer text'
   label_display: '0'
   provider: block_content
   status: true
@@ -28,10 +29,15 @@ visibility:
   condition_group:
     id: condition_group
     negate: false
-    context_mapping: {  }
     block_visibility_group: ''
   root_path_entity_bundle:
     id: root_path_entity_bundle
     root_entity_bundles: {  }
+    negate: 0
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
     negate: false
-    context_mapping: {  }
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      landing_page: landing_page

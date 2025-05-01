@@ -1,0 +1,41 @@
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|replace({':': '--'})|clean_class,
+    'social-follow',
+  ]
+%}
+<div{{attributes.addClass(classes)}}>
+{% include "@union/_icon.twig" with {
+  title: 'ILR School Linked In',
+  icon: 'linkedin',
+  link: 'https://www.linkedin.com/company/cornell-university-ilr-school',
+  size: '1.7em',
+} only %}
+{% include "@union/_icon.twig" with {
+  title: 'ILR School Facebook',
+  icon: 'facebook',
+  link: 'https://facebook.com/ilrschool',
+  size: '1.4em',
+} only %}
+{% include "@union/_icon.twig" with {
+  title: 'ILR School X',
+  icon: 'x',
+  link: 'https://twitter.com/CornellILR',
+  size: '1.3em',
+} only %}
+{% include "@union/_icon.twig" with {
+  title: 'ILR School Instagram',
+  icon: 'instagram',
+  link: 'https://instagram.com/cornellilr',
+  size: '1em',
+} only %}
+{% include "@union/_icon.twig" with {
+  title: 'ILR School YouTube',
+  icon: 'youtube',
+  link: 'https://www.youtube.com/user/CornellUniversityILR?sub_confirmation=1',
+  size: '1.5em',
+} only %}
+
+</div>

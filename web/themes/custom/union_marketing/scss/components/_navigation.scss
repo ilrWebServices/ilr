@@ -2,16 +2,19 @@
 // @todo fix broken subsite nav on mobile
 #block-union-marketing-primary-nav,
 nav[id^="block-union-marketing-menu-subsite"] {
-  flex-grow: 1;
-  line-height: 1.2;
+  order: 4;
   line-height: 1;
-  position: relative;
-  display: flex;
-  justify-content: end;
 
   a {
-    font-size: var(--cu-ms-2);
+    font-size: var(--cu-ms1);
     text-decoration: none;
+    font-weight: 400;
+
+    @include breakpoint(md) {
+      font-size: var(--cu-ms-2);
+      // font-weight: 300;
+      column-gap: 20px;
+    }
   }
 
   ul {
@@ -24,14 +27,8 @@ nav[id^="block-union-marketing-menu-subsite"] {
     display: flex;
     flex-direction: column;
     gap: var(--cu-vr-1);
-    position: absolute;
-    top: 24px;
-    min-width: 70vw;
-    box-shadow: 0px 0px 26px -3px rgba(0,0,0,0.37);
-    padding: var(--cu-vr1);
     z-index: 10;
     background-color: white;
-    // background-color: gainsboro;
 
     @include breakpoint(md) {
       flex-direction: initial;
@@ -87,51 +84,250 @@ nav[id^="block-union-marketing-menu-subsite"] {
     font-size: var(--cu-ms1);
     margin-bottom: var(--cu-vr-1);
   }
+}
 
-  // Hamburger menu UI for main and subsite menus.
-  .nav-trigger {
-    position: absolute;
-    clip: rect(0, 0, 0, 0);
-
-    @include breakpoint(md) {
-      display: none;
-    }
+#block-union-marketing-utility-nav {
+  a {
+    font-size: var(--cu-ms1);
+    text-decoration: none;
+    font-weight: 400;
   }
 
-  label[for="nav-trigger"] {
+  .ilr-menu-heading {
     display: inline-block;
-    width: 24px;
-    z-index: 2;
-    line-height: 1;
-    cursor: pointer;
+    font-size: var(--cu-ms-1);
+    color: $gray-dark;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: .1rem;
+    margin-bottom: var(--cu-vr-1);
 
     @include breakpoint(md) {
-      display: none;
-    }
-
-    .cu-accessible {
-      display: none;
-    }
-
-    &::before {
-      content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' stroke='currentColor' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round' class='css-i6dzq1'%3E%3Cline x1='3' y1='12' x2='21' y2='12'%3E%3C/line%3E%3Cline x1='3' y1='6' x2='21' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='18' x2='21' y2='18'%3E%3C/line%3E%3C/svg%3E");
-      display: block;
-      height: 24px;
+      color: white;
+      margin-bottom: 0;
+      // text-decoration: underline;
+      font-size: var(--cu-ms-2);
     }
   }
 
-  // Hide menu by default on small screens.
-  .nav-trigger:not(:checked) ~ ul {
-    display: none;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    line-height: 1;
+  }
+
+  > ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--cu-vr0);
 
     @include breakpoint(md) {
       display: flex;
+      position: relative;
+      z-index: 11; // Raise above primary menu.
+      align-items: center;
     }
   }
 
-  .nav-trigger:checked ~ label[for="nav-trigger"]::before {
-    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' stroke='currentColor' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round' class='css-i6dzq1'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+  > ul > li > ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cu-vr-1);
+
+    @include breakpoint(md) {
+      background-color: $cornell-red;
+      padding: var(--cu-vr1) var(--cu-ps1) var(--cu-vr0);
+      display: none;
+      position: absolute;
+      left: -10px;
+
+      a {
+        color: white;
+        font-size: var(--cu-ms-2);
+      }
+    }
   }
+
+  > ul > li:has(.ilr-menu-heading) {
+    border-top: 1px solid $gray-medium;
+    border-bottom: 1px solid $gray-medium;
+    padding: var(--cu-vr0) 0;
+    margin-bottom: var(--cu-vr1);
+    grid-column: 1/-1;
+
+    @include breakpoint(md) {
+      position: relative;
+      border: unset;
+      margin-bottom: 0;
+      padding: var(--cu-vr-1) var(--cu-ps-2);
+
+      &:hover {
+        ul {
+          display: flex;
+          text-transform: capitalize;
+          width: 225px; // Ensure 'Professional Education' is on 1 line.
+        }
+      }
+
+      .ilr-menu-heading {
+        display: flex;
+        gap: var(--cu-ps-3);
+      }
+
+      .ilr-menu-heading::after {
+        content: url("data:image/svg+xml,%3Csvg width='10' height='5' viewBox='0 0 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m 0,0 5,5 5,-5 v 0' style='fill:none;stroke:%23fff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round' /%3E%3C/svg%3E ");
+        color: white;
+        font-size: var(--cu-ms-4);
+        display: inline-block;
+      }
+    }
+  }
+
+  li:has(.ilr-menu-button) {
+    border: 1px solid darken($gray-medium, 10%);
+    text-align: center;
+
+    @include breakpoint(md) {
+      border: unset;
+    }
+
+    a {
+      display: inline-block;
+      font-size: var(--cu-ms-1);
+      font-weight: 700;
+      letter-spacing: .05rem;
+      padding: var(--cu-vr-1) var(--cu-ps-2);
+      width: 100%;
+
+      @include breakpoint(md) {
+        text-transform: uppercase;
+        color: white;
+        font-size: var(--cu-ms-2);
+      }
+    }
+  }
+
+  li:has(.ilr-menu-button):last-child {
+    border: unset;
+    background-color: $cornell-red;
+
+    a {
+      color: white;
+    }
+
+    @include breakpoint(md) {
+      background-color: unset;
+    }
+  }
+}
+
+header .ilr-search {
+  display: flex;
+  color: black;
+
+  input, button {
+    height: 2.5rem;
+    padding: var(--cu-vr-1) var(--cu-ps0);
+    border: 1px solid $gray-medium;
+    color: inherit;
+    background-color: transparent;
+
+    @include breakpoint(md) {
+      height: 1.5rem;
+    }
+  }
+
+  input {
+    border-right: none;
+    padding-right: 0;
+    flex-grow: 1;
+    border-radius: 1.5rem 0 0 1.5rem;
+    width: 100%;
+
+    @include breakpoint(md) {
+      font-size: var(--cu-ms-2);
+    }
+
+    &::placeholder {
+      font-weight: 300;
+      color: inherit;
+      opacity: .5;
+    }
+
+    &:focus {
+      outline-style: solid;
+      outline-color: lighten($cornell-red, 10%);
+      outline-width: 2px;
+    }
+  }
+
+  button {
+    border-left: none;
+    border-radius: 0 1.5rem 1.5rem 0;
+
+    @include breakpoint(md) {
+      padding: var(--cu-vr-3) var(--cu-ps-2);
+    }
+  }
+}
+
+header:has(#block-union-marketing-utility-nav) .ilr-search {
+  @include breakpoint(md) {
+    color: white;
+
+    input, button {
+      background-color: darken($cornell-red, 10%);
+      border: none;
+    }
+  }
+}
+
+// Hamburger menu UI for main and subsite menus.
+.nav-trigger-box {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
+body.node--landing-page .nav-trigger {
+  display: none;
+}
+
+.nav-trigger {
+  display: inline-block;
+  width: 24px;
+  z-index: 2;
+  line-height: 1;
+  cursor: pointer;
+
+  @include breakpoint(md) {
+    display: none;
+  }
+
+  .cu-accessible {
+    display: none;
+  }
+
+  &::before {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' stroke='currentColor' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round' class='css-i6dzq1'%3E%3Cline x1='3' y1='12' x2='21' y2='12'%3E%3C/line%3E%3Cline x1='3' y1='6' x2='21' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='18' x2='21' y2='18'%3E%3C/line%3E%3C/svg%3E");
+    display: block;
+    height: 24px;
+  }
+}
+
+.nav-trigger:has(.nav-trigger-box:not(:checked)) ~ #block-union-marketing-primary-nav,
+.nav-trigger:has(.nav-trigger-box:not(:checked)) ~ #block-union-marketing-search-trigger,
+.nav-trigger:has(.nav-trigger-box:not(:checked)) ~ #block-union-marketing-utility-nav,
+.nav-trigger:has(.nav-trigger-box:not(:checked)) ~ nav[id^="block-union-marketing-menu-subsite"] {
+  display: none;
+
+  @include breakpoint(md) {
+    display: flex;
+  }
+}
+
+.nav-trigger:has(.nav-trigger-box:checked)::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' stroke='currentColor' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round' class='css-i6dzq1'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
 }
 
 // 'Temporary' workaround to raise the logo over the mega menu.
@@ -160,12 +356,19 @@ nav[id^="block-union-marketing-menu-subsite"] .cu-menu__list--subsite {
   --cu-text-color: #{$black};
   font-size: var(--cu-ms-1);
   list-style-type: none;
-  padding: var(--cu-vr1) 0;
-  border-top: 1px solid $gray-light;
   justify-content: flex-start;
 
   @include breakpoint(md) {
-    padding-bottom: 0;
+    padding: var(--cu-vr1) 0 0 0;
+    border-top: 1px solid $gray-medium;
+
+    &::before {
+      content: '';
+      display: block;
+      height: 1.5rem;
+      width: 1px;
+      background-color: $gray-medium;
+    }
   }
 
   .cu-menu__list--subsite-submenu {
@@ -183,18 +386,35 @@ nav[id^="block-union-marketing-menu-subsite"] .cu-menu__list--subsite {
   }
 }
 
+.cu-menu__item--home {
+  margin-bottom: var(--cu-vr0);
+  text-wrap: nowrap;
+
+  @include breakpoint(md) {
+    margin-bottom: unset;
+    order: -1;
+  }
+
+  .cu-menu__link {
+    font-size: var(--cu-ms-1);
+    font-weight: 300;
+    color: #6c6c6c;
+
+    @include breakpoint(md) {
+      font-size: var(--cu-ms-2);
+    }
+  }
+}
+
 .cu-menu__list--subsite .cu-menu__item {
-  display: inline-block;
-  padding: 0.25rem 1rem;
+  @include breakpoint(md) {
+    display: inline-block;
+  }
 }
 
 .cu-menu__list--subsite .cu-menu__link {
   text-decoration: none;
-  padding: 0.5rem 0;
-
-  @include breakpoint(md) {
-    padding: 0;
-  }
+  padding: 0;
 
   &.is-active {
     --cu-text-color: #{$cornell-red};

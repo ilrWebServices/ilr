@@ -1,0 +1,5 @@
+{% if content|render|striptags|raw|trim|length > 50 %}
+{% set attributes = attributes.addClass('loquacious') %}
+{% endif %}
+
+{% include "block--field-block--node--page--title.html.twig" %}

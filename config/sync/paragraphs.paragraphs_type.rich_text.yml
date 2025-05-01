@@ -10,5 +10,7 @@ icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
+  column_settings:
+    enabled: true
   component_settings:
     enabled: true

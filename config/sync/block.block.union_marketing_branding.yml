@@ -2,10 +2,9 @@ uuid: d76e61c3-4088-43ee-b569-2dfe0a8b6f11
 langcode: en
 status: true
 dependencies:
-  config:
-    - block_visibility_groups.block_visibility_group.primary_branding
   module:
     - block_visibility_groups
+    - ilr
     - system
   theme:
     - union_marketing
@@ -30,4 +29,15 @@ visibility:
     id: condition_group
     negate: false
     context_mapping: {  }
-    block_visibility_group: primary_branding
+    block_visibility_group: ''
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles:
+      collection:
+        subsite: subsite
+        subsite_blog: subsite_blog
+    negate: 1
+  request_path:
+    id: request_path
+    negate: true
+    pages: '/75*'

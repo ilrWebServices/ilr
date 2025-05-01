@@ -1,0 +1,38 @@
+uuid: b8cf9c5c-e4a0-4a63-a5a8-06b0e46a045d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.main_content
+    - field.field.node.landing_page.body
+    - field.field.node.landing_page.field_form
+    - field.field.node.landing_page.field_representative_image
+    - field.field.node.landing_page.field_sections
+    - field.field.node.landing_page.field_subtitle
+    - node.type.landing_page
+  module:
+    - user
+id: node.landing_page.main_content
+targetEntityType: node
+bundle: landing_page
+mode: main_content
+content:
+  field_subtitle:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  field_form: true
+  field_representative_image: true
+  field_sections: true
+  search_api_excerpt: true

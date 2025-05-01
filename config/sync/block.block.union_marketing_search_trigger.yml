@@ -2,6 +2,8 @@ uuid: 82cebf10-b545-4547-b6b6-9d973bf876ec
 langcode: en
 status: true
 dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.utility_navigation
   module:
     - block_visibility_groups
     - ilr
@@ -15,7 +17,7 @@ provider: null
 plugin: ilr_search_trigger_block
 settings:
   id: ilr_search_trigger_block
-  label: 'ILR search trigger'
+  label: 'ILR search'
   label_display: '0'
   provider: ilr
 visibility:
@@ -23,7 +25,7 @@ visibility:
     id: condition_group
     negate: false
     context_mapping: {  }
-    block_visibility_group: ''
+    block_visibility_group: utility_navigation
   root_path_entity_bundle:
     id: root_path_entity_bundle
     root_entity_bundles: {  }

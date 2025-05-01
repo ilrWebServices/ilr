@@ -1176,8 +1176,9 @@ function ilr_field_widget_single_element_webform_entity_reference_select_form_al
   $mapped_object_storage = \Drupal::entityTypeManager()->getStorage('salesforce_mapped_object');
   $cahrs_event_node_mapping = \Drupal::entityTypeManager()->getStorage('salesforce_mapping')->load('cahrs_event_node');
   $entity = $form_state->getFormObject()->getEntity();
+  $default_data_value = $element['settings']['default_data']['#default_value'] ?? '';
 
-  if (!$entity instanceof EventNodeInterface) {
+  if (strpos($default_data_value, 'outreach_marketing_personas:') === FALSE) {
     return;
   }
 

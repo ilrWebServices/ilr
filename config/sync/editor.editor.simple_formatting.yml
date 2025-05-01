@@ -12,6 +12,7 @@ settings:
   toolbar:
     items:
       - heading
+      - style
       - bold
       - italic
       - bulletedList
@@ -27,6 +28,11 @@ settings:
         reversed: false
         startIndex: false
       multiBlock: true
+    ckeditor5_style:
+      styles:
+        -
+          label: Button
+          element: '<a class="cu-button">'
     linkit_extension:
       linkit_enabled: false
 image_upload:

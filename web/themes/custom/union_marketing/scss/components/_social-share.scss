@@ -32,27 +32,6 @@
   }
 }
 
-.social-follow__items {
-  margin: 0;
-  columns: 1;
-  display: flex;
-  justify-content: flex-start;
-
-  @include breakpoint(sm) {
-    justify-content: flex-end;
-  }
-}
-
-.social-follow__item {
-  text-align: center;
-  align-self: center;
-}
-
-.social-follow__link {
-  min-width: 45px;
-  display: inline-block;
-}
-
 .twitter-timeline {
   width: 100% !important;
 

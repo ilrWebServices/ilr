@@ -1,0 +1,268 @@
+.node--landing-page .layout-container {
+  max-width: 1120px;
+  margin: 0 auto;
+
+  .layout--twocol-section--67-33 {
+    display: block;
+    margin-top: var(--cu-vr1);
+    margin-bottom: var(--cu-vr1);
+
+    @include breakpoint(md) {
+      display: grid;
+      column-gap: var(--cu-ps3);
+      grid-template-columns: 2.25fr 1fr;
+    }
+
+    > .layout__region--first {
+      display: flex;
+      flex-direction: column;
+      gap: var(--cu-vr-1);
+
+      .cu-heading {
+        margin: 0;
+      }
+
+      .block-field-block--node--landing-page--body + .block-field-block--node--landing-page--body {
+        margin-top: var(--cu-vr2);
+      }
+    }
+
+    > .layout__region--second {
+      display: block;
+    }
+  }
+
+  h1.cu-heading {
+    --cu-font-family: 'futura-pt';
+    --cu-font-size: var(--cu-ms5);
+    --cu-line-height: .9;
+    text-transform: uppercase;
+
+    @include breakpoint(md) {
+      --cu-font-size: var(--cu-ms8);
+    }
+  }
+
+  .loquacious h1.cu-heading {
+    --cu-font-family: revert;
+    --cu-line-height: 1.2;
+    text-transform: revert;
+    --cu-font-size: var(--cu-ms7);
+  }
+
+  .field--field-subtitle {
+    --cu-font-size: var(--cu-ms3);
+  }
+
+  .block-field-block--node--landing-page--body .cu-media {
+    margin-bottom: var(--cu-vr1);
+    padding: 16px 16px 16px 0;
+    background: linear-gradient(var(--cu-color-brand) 0 0) top right/75% 16px,linear-gradient(var(--cu-color-brand) 0 0) right/16px 100%,linear-gradient(var(--cu-color-brand) 0 0) bottom right/15% 16px,rgba(0,0,0,0);
+    background-repeat: no-repeat;
+  }
+
+  .block-field-block--node--landing-page--body .field--body h2.cu-heading {
+    --cu-font-size: var(--cu-ms3);
+    text-transform: revert;
+    margin-bottom: var(--cu-vr0);
+  }
+
+  .social-sharing-buttons {
+    position: revert;
+    flex-direction: unset;
+    gap: var(--cu-ps0);
+    margin-top: 0;
+    margin-bottom: var(--cu-vr1);
+  }
+
+  .social-sharing-buttons-button {
+    background-color: #F7F6F6;
+    border-radius: 3px;
+    padding: 3px;
+  }
+
+  .block-field-block--node--landing-page--field-form {
+    --cu-font-size: var(--cu-ms-1);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    width: 100vw;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: var(--cu-vr-1) var(--cu-ps1) var(--cu-vr-2);
+    z-index: 2;
+    box-shadow: 0 2px 8px 2px rgba(0,0,0,.25);
+
+    &[data-state="activated"] {
+      padding-top: var(--cu-vr0);
+    }
+
+    @include breakpoint(md) {
+      position: sticky;
+      top: var(--cu-vr0);
+      bottom: unset;
+      width: revert;
+      max-height: revert;
+      // margin-top: var(--cu-vr3);
+      padding: var(--cu-vr1) var(--cu-ps1);
+      transition: margin 100ms;
+      box-shadow: 0 2px 8px 2px rgba(0,0,0,.075);
+    }
+
+    .form-overlay {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      z-index: 11;
+
+      @include breakpoint(md) {
+        pointer-events: none;
+      }
+    }
+
+    &[data-state="activated"] .form-overlay {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .form-collapse {
+      color: #333;
+      display: none;
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 50px;
+      background-color: rgba(128,128,128,.15);
+      border: none;
+      border-radius: 0 0 0 20%;
+      z-index: 12;
+
+      @include breakpoint(md) {
+        position: absolute;
+      }
+
+      span {
+        visibility: hidden;
+      }
+
+      &::after {
+        content: '×';
+        font-size: var(--cu-ms4);
+        position: absolute;
+        top: 4px;
+        right: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &[data-state="activated"] .form-collapse {
+      display: block;
+    }
+
+    &[data-state="initial"] {
+      .form-item:not(.webform-actions) {
+        display: none;
+
+        @include breakpoint(md) {
+          display: block;
+        }
+      }
+    }
+
+    .cu-input--submit {
+      color: var(--cu-color-white);
+      background-color: var(--cu-color-brand);
+      width: 100%;
+      margin-bottom: 0;
+      padding: .6rem 1rem;
+      --cu-font-weight: 700;
+      letter-spacing: 5%;
+
+      @include breakpoint(md) {
+        margin-top: var(--cu-vr-1);
+      }
+    }
+  }
+
+  .webform-section .cu-heading {
+    --cu-font-size: var(--cu-ms-3);
+    --cu-font-weight: 700;
+    letter-spacing: 10%;
+    text-transform: uppercase;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 54px;
+      height: 6px;
+      background-color: $cornell-red;
+      margin-top: 1em;
+    }
+  }
+
+  .cu-footer {
+    position: relative;
+    --cu-text-color: white;
+    --cu-colorscheme-accent: white;
+
+    // Add padding to accommodate the info button height.
+    padding-bottom: 3em;
+
+    @include breakpoint(md) {
+      padding-bottom: unset;
+    }
+
+    .cu-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--cu-vr1);
+      align-items: center;
+      margin: var(--cu-vr2) 0;
+      text-align: center;
+
+      // This is how colorschemes work on sections. See the Union section component css.
+      &::before {
+        content: '';
+        background-color: var(--cu-color-dark);
+        position: absolute;
+        width: 100vw;
+        height: 100%;
+        top: 0;
+        left: 50%;
+        margin-left: -50vw;
+        z-index: -1;
+
+        @include breakpoint(md) {
+          width: 150vw;
+        }
+      }
+    }
+
+    .ilr-wordmark {
+      margin: 0;
+    }
+
+    .field--body {
+      max-width: 30rem;
+    }
+
+    .cu-button {
+      margin-bottom: 0;
+      display: none;
+
+      @include breakpoint(md) {
+        display: revert;
+      }
+    }
+  }
+
+  // If a section has only a single stats component, remove top and bottom padding.
+  .cu-section:has(.cu-component--stats):has(.cu-component:only-child) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
