@@ -1016,6 +1016,11 @@ if (getenv('SMTP_HOST')) {
   ];
 }
 
+/**
+ * Configure Request Info webform remote_post webhook for Zapier.
+ */
+$config['webform.webform.request_info']['handlers']['zapier_295202085']['settings']['completed_url'] = getenv('ZAP_295202085_WEBHOOK_URL');
+
  /**
   * Ignored config name regex patterns.
   */

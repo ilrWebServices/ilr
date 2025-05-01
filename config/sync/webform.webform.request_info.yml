@@ -43,6 +43,10 @@ elements: |-
     '#prepopulate': true
   utm_values:
     '#type': utm_values
+  variant_handler:
+    '#type': webform_variant
+    '#title': 'Handler Variant'
+    '#variant': override
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
@@ -234,5 +238,72 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
-variants: {  }
+handlers:
+  zapier_295202085:
+    id: remote_post
+    handler_id: zapier_295202085
+    label: 'Zapier Webhook for Zap 295202085'
+    notes: ''
+    status: false
+    conditions: {  }
+    weight: 1
+    settings:
+      method: POST
+      type: x-www-form-urlencoded
+      excluded_data:
+        serial: serial
+        sid: sid
+        uuid: uuid
+        token: token
+        uri: uri
+        created: created
+        completed: completed
+        changed: changed
+        in_draft: in_draft
+        current_page: current_page
+        remote_addr: remote_addr
+        uid: uid
+        langcode: langcode
+        webform_id: webform_id
+        entity_type: entity_type
+        entity_id: entity_id
+        locked: locked
+        sticky: sticky
+        notes: notes
+        metatag: metatag
+      custom_data: ''
+      custom_options: ''
+      file_data: true
+      cast: false
+      debug: false
+      completed_url: 'https://hooks.zapier.com/hooks/catch/SEE/ENV_VARS/'
+      completed_custom_data: ''
+      updated_url: ''
+      updated_custom_data: ''
+      deleted_url: ''
+      deleted_custom_data: ''
+      draft_created_url: ''
+      draft_created_custom_data: ''
+      draft_updated_url: ''
+      draft_updated_custom_data: ''
+      converted_url: ''
+      converted_custom_data: ''
+      message: ''
+      messages: {  }
+      error_url: ''
+variants:
+  zapier_295202085:
+    id: override
+    variant_id: zapier_295202085
+    element_key: variant_handler
+    label: Zapier Webhook for Zap 295202085
+    notes: ''
+    status: true
+    weight: 0
+    settings:
+      debug: false
+      settings: {  }
+      elements: ''
+      handlers:
+        zapier_295202085:
+          status: true
