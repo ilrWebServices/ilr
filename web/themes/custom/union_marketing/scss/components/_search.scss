@@ -68,3 +68,36 @@
   color: white;
   opacity: 1;
 }
+
+.gsc-control-cse {
+  max-width: $max-width-section;
+  margin: 0 auto;
+
+  .gs-result .gs-title *, .gsc-cursor-page, .gs-spelling a {
+    color: var(--cu-color-brand);
+    font-family: Replica;
+    font-size: var(--cu-ms0) !important;
+  }
+
+  .gs-promotion .gs-visibleUrl, .gs-webResult .gs-visibleUrl {
+    color: var(--cu-color-medium-gray);
+    font-size: var(--cu-ms-1);
+  }
+
+  .gsc-table-result .gsc-table-cell-snippet-close {
+    font-size: var(--cu-ms-2);
+  }
+
+  .gs-web-image-box, .gs-promotion-image-box {
+    width: unset;
+  }
+
+  .gs-web-image-box .gs-image, .gs-promotion-image-box .gs-promotion-image {
+    max-width: 100px;
+  }
+
+  .gcsc-find-more-on-google {
+    color: var(--cu-color-brand);
+    font-family: Replica;
+  }
+}

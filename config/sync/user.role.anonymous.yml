@@ -8,6 +8,7 @@ dependencies:
     - collection
     - filter
     - media
+    - simple_gse_search
     - system
 _core:
   default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
@@ -17,6 +18,7 @@ weight: 0
 is_admin: false
 permissions:
   - 'access content'
+  - 'access gse search page'
   - 'use text format simple_formatting'
   - 'view blog collection'
   - 'view content_section collection'

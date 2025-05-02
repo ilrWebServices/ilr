@@ -19,6 +19,7 @@ dependencies:
     - media_pdf_thumbnail
     - paragraphs
     - paragraphs_previewer
+    - simple_gse_search
     - system
     - toolbar
 _core:
@@ -29,6 +30,7 @@ weight: 1
 is_admin: false
 permissions:
   - 'access content'
+  - 'access gse search page'
   - 'access toolbar'
   - 'create file media'
   - 'create image media'
