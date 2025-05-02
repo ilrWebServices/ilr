@@ -18,6 +18,7 @@ use Drupal\paragraphs\ParagraphsBehaviorBase;
 use Drupal\ilr\QueryString;
 use ErrorException;
 use Exception;
+use GuzzleHttp\ClientInterface;
 use ReflectionClass;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -38,29 +39,17 @@ class EventListing extends ParagraphsBehaviorBase {
   const LOCALIST_HOSTNAME = 'events.cornell.edu';
 
   /**
-   * The entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManager
-   */
-  protected $entityTypeManager;
-
-  /**
    * Creates a new PostListing behavior.
-   *
-   * @param array $configuration
-   *   The configuration array.
-   * @param string $plugin_id
-   *   This plugin id.
-   * @param mixed $plugin_definition
-   *   Plugin definition.
-   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entity_field_manager
-   *   Entity field manager service.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityFieldManagerInterface $entity_field_manager, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    EntityFieldManagerInterface $entity_field_manager,
+    protected EntityTypeManagerInterface $entityTypeManager,
+    protected ClientInterface $httpClient
+  ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_field_manager);
-    $this->entityTypeManager = $entity_type_manager;
   }
 
   /**
@@ -72,7 +61,8 @@ class EventListing extends ParagraphsBehaviorBase {
       $plugin_id,
       $plugin_definition,
       $container->get('entity_field.manager'),
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('http_client')
     );
   }
 
@@ -367,9 +357,23 @@ class EventListing extends ParagraphsBehaviorBase {
       else {
         // If there is an image for this event, run it through an image style.
         if (!empty($event->object['photo_url'])) {
+          // See if the undocumented 'card' variation of the image exists.
+          $card_photo_url = str_replace('/huge/', '/card/', $event->object['photo_url']);
+
+          try {
+            $card_photo_check_req = $this->httpClient->request('HEAD', $card_photo_url);
+
+            if ($card_photo_check_req->getStatusCode() == 200) {
+              $photo_url = $card_photo_url;
+            }
+          }
+          catch (\Exception $e) {
+            $photo_url = $event->object['photo_url'];
+          }
+
           $event->object['ilr_image'] = [
             '#theme' => 'imagecache_external__localist_event',
-            '#uri' => $event->object['photo_url'],
+            '#uri' => $photo_url,
             '#style_name' => 'medium_3_2',
             '#alt' => 'Localist event image for ' . $event->object['title'],
           ];
