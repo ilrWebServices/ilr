@@ -364,3 +364,8 @@
     }
   }
 }
+
+// Quick homepage banner text color fix for mobile.
+.cu-banner--video .cu-heading {
+  --cu-text-color: white;
+}
