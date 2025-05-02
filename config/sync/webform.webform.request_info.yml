@@ -13,6 +13,7 @@ title: 'Request info'
 description: '<p>Often used on landing pages.</p>'
 categories:
   - Touchpoint
+  - 'Landing Page'
 elements: |-
   request_info:
     '#type': webform_section
@@ -296,7 +297,7 @@ variants:
     id: override
     variant_id: zapier_295202085
     element_key: variant_handler
-    label: Zapier Webhook for Zap 295202085
+    label: 'Zapier Webhook for Zap 295202085'
     notes: ''
     status: true
     weight: 0
