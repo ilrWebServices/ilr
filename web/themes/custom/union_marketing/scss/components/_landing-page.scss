@@ -169,8 +169,16 @@
 
         @include breakpoint(md) {
           display: block;
+
+          &.cu-input-list__item--checkbox {
+            display: flex;
+          }
         }
       }
+    }
+
+    .cu-input-list__item--checkbox {
+      margin-left: unset;
     }
 
     .cu-input--submit {

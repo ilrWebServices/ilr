@@ -53,6 +53,7 @@ content:
       default_data: true
       webforms:
         - request_info
+        - nlms_request_info
     third_party_settings: {  }
   field_representative_image:
     type: media_library_widget
