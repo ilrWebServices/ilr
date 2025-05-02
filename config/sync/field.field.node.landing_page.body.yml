@@ -21,8 +21,8 @@ default_value: {  }
 default_value_callback: ''
 settings:
   display_summary: true
-  required_summary: false
+  required_summary: true
   allowed_formats:
-    - basic_formatting_with_media
     - standard_formatting
+    - basic_formatting_with_media
 field_type: text_with_summary
