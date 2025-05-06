@@ -60,6 +60,8 @@ elements: |-
       '#type': textarea
       '#title': Comments/Questions
       '#rows': 2
+      '#counter_type': character
+      '#counter_maximum': 255
   outreach_marketing_personas:
     '#type': hidden
     '#title': outreach_marketing_personas
