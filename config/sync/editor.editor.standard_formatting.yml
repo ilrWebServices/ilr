@@ -41,6 +41,12 @@ settings:
     ckeditor5_style:
       styles:
         -
+          label: 'Column heading'
+          element: '<h2 class="cu-heading--column">'
+        -
+          label: 'Smaller column heading'
+          element: '<h3 class="cu-heading--column">'
+        -
           label: 'Alternate heading'
           element: '<h3 class="cu-heading--strong">'
         -

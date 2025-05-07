@@ -82,3 +82,8 @@ span.strong {
 .cu-component--rich-text > ul:first-child {
   margin-top: 0;
 }
+
+.cu-heading--column {
+  break-before: column;
+  -webkit-column-break-before: always;
+}
