@@ -21,6 +21,7 @@ default_value: {  }
 default_value_callback: ''
 settings:
   allowed_formats:
+    - standard_formatting
     - basic_formatting_with_media
     - full_html
 field_type: text_long
