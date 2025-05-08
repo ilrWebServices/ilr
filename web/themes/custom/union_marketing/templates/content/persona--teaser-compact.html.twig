@@ -50,6 +50,7 @@
 {% include "@union/_person.twig" with {
   attributes: attributes.addClass([
     'cu-person--adaptive',
+    'cu-colorscheme--light',
     'persona--' ~ persona.bundle|clean_class,
     not persona.isPublished() ? 'persona--unpublished',
     view_mode ? 'persona--view-mode-' ~ view_mode|clean_class
