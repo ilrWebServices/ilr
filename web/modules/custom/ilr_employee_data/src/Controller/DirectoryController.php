@@ -17,7 +17,10 @@ class DirectoryController extends ControllerBase {
 
     $build = [];
     // $build['#cache'] = ['max-age' => 0];
-    $build['#cache'] = ['tags' => ['persona_list:ilr_employee', 'taxonomy_term:ilr_employee_role', 'taxonomy_term:organizational_units']];
+    $build['#cache'] = [
+      'keys' => ['ilr_employee_directory'],
+      'tags' => ['persona_list:ilr_employee', 'taxonomy_term:ilr_employee_role', 'taxonomy_term:organizational_units']
+    ];
     $build = [
       '#theme' => 'container__employee_directory',
       '#children' => [
