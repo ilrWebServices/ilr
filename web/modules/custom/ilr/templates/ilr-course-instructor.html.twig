@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme template for a course instructor.
+ *
+ * Available variables:
+ * - name: The name of the instructor.
+ * - title: The title of the instructor.
+ * - img: A photo of the person.
+ * - class_dates: An array of class dates.
+ * - url: A link to the person or related page.
+ *
+ * @see template_preprocess_ilr_course_instructor()
+ */
+#}
+{% set eyebrow %}
+{% for class_date in class_dates %}
+<span class="class-date">{{ class_date|date('M j') }}</span>
+{% endfor %}
+{% endset %}
+{% include "@union/_person.twig" with {
+  attributes: attributes.addClass('cu-person--adaptive').addClass('cu-colorscheme--light'),
+  name: name,
+  title: title,
+  img: img,
+  eyebrow_heading: eyebrow,
+  url: url
+} only %}

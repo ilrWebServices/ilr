@@ -8,6 +8,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\image\Entity\ImageStyle;
 
 /**
  * Course Instructors extra field display.
@@ -75,6 +76,7 @@ class CourseInstructors extends ExtraFieldDisplayBase implements ContainerFactor
     $query->condition('status', 1);
     $query->condition('field_class.entity:node.field_course.target_id', $node->id());
     $query->condition('field_class.entity:node.field_date_end', date('Y-m-d'), '>');
+    $query->sort('field_class.entity:node.field_date_start');
     $participant_nids = $query->execute();
 
     if (empty($participant_nids)) {
@@ -83,12 +85,38 @@ class CourseInstructors extends ExtraFieldDisplayBase implements ContainerFactor
 
     $participant_nodes = $node_storage->loadMultiple($participant_nids);
     $instructors = [];
-    $view_builder = $this->entityTypeManager->getViewBuilder('node');
 
     foreach ($participant_nodes as $participant_node) {
       $instructor = $participant_node->field_instructor->entity;
+      $image_render = null;
+
       if ($instructor && $instructor->isPublished()) {
-        $instructors[$participant_node->id()] = $view_builder->view($participant_node, 'mini');
+        if (empty($instructors[$instructor->id()])) {
+          if (!$instructor->field_representative_image->isEmpty()) {
+            // Thanks to union_marketing_preprocess_image_formatter(), this will
+            // be centered by focal point settings!
+            $image_render = [
+              '#theme' => 'image_formatter',
+              '#item' => $instructor->field_representative_image->entity->field_media_image->first(),
+              '#image_style' => 'medium_3_2',
+              '#url' => $instructor->toUrl(),
+            ];
+          }
+
+          $instructors[$instructor->id()] = [
+            '#theme' => 'ilr_course_instructor',
+            '#name' => $instructor->label(),
+            '#title' => $instructor->field_job_title->value ?? null,
+            '#img' => $image_render ?? null,
+            '#class_dates' => [],
+            '#class_ids' => [],
+            '#instructor_id' => $instructor->id(),
+            '#url' => $instructor->toUrl()->toString(),
+          ];
+        }
+
+        $instructors[$instructor->id()]['#class_dates'][] = $participant_node->field_class->entity->field_date_start->date;
+        $instructors[$instructor->id()]['#class_ids'][] = $participant_node->field_class->entity->id();
       }
     }
 
@@ -97,7 +125,8 @@ class CourseInstructors extends ExtraFieldDisplayBase implements ContainerFactor
       '#label' => $this->formatPlural(count($instructors), 'Instructor', 'Instructors'),
       '#instructors' => $instructors,
       '#cache' => [
-        'tags' => ['node_list:participant', 'node_list:class'],
+        'keys' => ['ilr_course_instructors_block', $node->id()],
+        'tags' => ['node_list:participant', 'node_list:class', 'node_list:instructor'],
       ],
     ];
 

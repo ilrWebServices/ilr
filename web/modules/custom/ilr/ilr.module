@@ -68,6 +68,17 @@ function ilr_theme($existing, $type, $theme, $path) {
         'instructors' => [],
       ],
     ],
+    'ilr_course_instructor' => [
+      'variables' => [
+        'name' => '',
+        'title' => '',
+        'img' => '',
+        'class_dates' => [],
+        'class_ids' => [],
+        'instructor_id' => '',
+        'url' => ''
+      ],
+    ],
     'ilr_course_certificates_block' => [
       'variables' => [
         'node' => [],
@@ -94,6 +105,16 @@ function ilr_theme($existing, $type, $theme, $path) {
       ],
     ],
   ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Prepares variables for ilr_course_instructor templates.
+ */
+function template_preprocess_ilr_course_instructor(&$variables) {
+  $variables['attributes']['data-classid'] = implode(' ', $variables['class_ids']);
+  $variables['attributes']['data-instructorid'] = $variables['instructor_id'];
 }
 
 /**

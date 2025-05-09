@@ -313,40 +313,6 @@
     }
   };
 
-  Drupal.behaviors.union_marketing_instructor_block_observer = {
-    attach: function (context, settings) {
-      // If there are no active instructor-participants in .block__instructors,
-      // add a class to it.
-      let instructor_block = context.querySelector('.block__instructors');
-
-      if (!instructor_block) {
-        return;
-      }
-
-      let instructor_list = instructor_block.querySelector('.cu-grid--people');
-
-      if (!instructor_list) {
-        return;
-      }
-
-      const observer = new MutationObserver(function(mutationList, observer) {
-        let active_instructors = instructor_list.querySelectorAll('.node--participant.active');
-
-        if (active_instructors.length) {
-          instructor_block.classList.remove('empty');
-        }
-        else {
-          instructor_block.classList.add('empty');
-        }
-      });
-
-      observer.observe(instructor_list, { attributes: true, childList: true, subtree: true });
-
-      // Trigger a mutation on the instructor list to run it once automatically.
-      instructor_list.classList.add('js-enabled');
-    }
-  };
-
   Drupal.behaviors.union_marketing_dialog_closer = {
     attach: function (context, settings) {
       if (context !== document) {
@@ -366,19 +332,18 @@
   };
 
   document.addEventListener('registration-form-class-select', function (event) {
-    let instructor_selector = '.block__instructors .node--participant';
-    let active_instructor_selector = '.block__instructors .node--participant[data-classid="' + event.detail + '"]';
+    let instructor_selector = '.block__instructors .cu-person';
+    let active_instructor_selector = '.block__instructors .cu-person[data-classid~="' + event.detail + '"]';
+
     let all_instructors = document.querySelectorAll(instructor_selector);
     let active_instructors = document.querySelectorAll(active_instructor_selector);
 
     all_instructors.forEach(function(el) {
-      el.classList.remove('active');
       el.classList.add('inactive');
     });
 
     active_instructors.forEach(function(el) {
       el.classList.remove('inactive');
-      el.classList.add('active');
     });
   });
 

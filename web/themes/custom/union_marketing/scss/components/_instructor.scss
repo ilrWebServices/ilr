@@ -52,22 +52,26 @@
   }
 }
 
-.cu-grid--people {
-  @include breakpoint(sm) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: var(--cu-ps0);
+.block__instructors {
+  .cu-person-wrapper:has(.cu-person.inactive) {
+    display: none;
   }
 
-  @include breakpoint(md) {
-    grid-template-columns: repeat(3, 1fr);
+  .cu-grid--person {
+    @include breakpoint(md) {
+      padding: 0 var(--cu-ps1);
+    }
   }
-}
 
-.node--participant.node--view-mode-mini.inactive {
-  display: none;
-}
+  .cu-composite-heading__eyebrow-heading {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5em .75em;
 
-.block__instructors.empty {
-  display: none;
+    .class-date:not(:last-of-type)::after {
+      content: '•';
+      display: inline-block;
+      margin-left: .75em;
+    }
+  }
 }

@@ -8,14 +8,28 @@
  * - instructors
  */
 #}
-{% set box_content %}
-<h2 class="cu-heading">{{ label }}</h2>
-
-<div class="cu-grid--people">
-  {{ instructors }}
-</div>
-{% endset %}
-{% include '@union/_highlight-box.twig' with {
-  content: box_content,
-  attributes: attributes.setAttribute('id', 'instructors').addClass('block__instructors')
+{%
+  set classes = [
+    'cu-x-block',
+    'block',
+    'block__instructors'
+  ]
+%}
+{% set content %}
+{% include '@union/_grid.twig' with {
+  grid_content: instructors,
+  attributes: { class: 'cu-grid--3col cu-grid--person' },
 } only %}
+{% endset %}
+<div{{ attributes.setAttribute('id', 'instructors').addClass(classes) }}>
+  {{ title_prefix }}
+  {% block label %}
+  {% if label %}
+    <{{ heading_element|default('h2') }}{{ title_attributes.addClass('cu-heading') }}>{{ label }}</{{ heading_element|default('h2') }}>
+  {% endif %}
+  {% endblock %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>
