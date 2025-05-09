@@ -14,7 +14,11 @@ push_frequency: 0
 push_limit: 0
 push_retries: 3
 pull_where_clause: 'Event_Class__c IN (SELECT Id FROM EXECED_Event_Class__c WHERE Synchronized_with_Web__c = true AND (CreatedDate = LAST_90_DAYS OR LastModifiedDate = LAST_90_DAYS))'
+pull_record_type_filter: {  }
 sync_triggers:
+  push_create: false
+  push_update: false
+  push_delete: false
   pull_create: true
   pull_update: true
   pull_delete: true
