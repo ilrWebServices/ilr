@@ -13,9 +13,12 @@ pull_frequency: 0
 push_frequency: 0
 push_limit: 0
 push_retries: 3
-pull_where_clause: "Id IN (SELECT Contact__c FROM EXECED_Participant__c WHERE Role__c = 'Instructor')"
+pull_where_clause: "Id IN (SELECT Contact__c FROM EXECED_Participant__c WHERE Role__c = 'Instructor' AND (CreatedDate = LAST_N_DAYS:356 OR LastModifiedDate = LAST_N_DAYS:356))"
 pull_record_type_filter: {  }
 sync_triggers:
+  push_create: false
+  push_update: false
+  push_delete: false
   pull_create: true
   pull_update: true
   pull_delete: false
