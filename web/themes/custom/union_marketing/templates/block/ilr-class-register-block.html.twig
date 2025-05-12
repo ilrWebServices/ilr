@@ -31,6 +31,14 @@
       {{ drupal_field('field_class_date', 'node', class.entity.id, 'teaser') }}
     {% endif %}
 
+    {% if class.instructors|length %}
+      <div class="class-instructors">
+      {% for instructor in class.instructors %}
+        <div class="cu-class-instructor">{{ instructor.label }}</div>
+      {% endfor %}
+      </div>
+    {% endif %}
+
     {% if course.field_course_number.value|upper starts with 'OLLB' or course.field_course_number.value|upper starts with 'LS' %}
       <p>All instruction will be completed between these dates.</p>
     {% endif %}

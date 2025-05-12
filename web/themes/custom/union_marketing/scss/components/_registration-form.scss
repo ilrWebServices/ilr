@@ -79,6 +79,18 @@
     border-color: #333;
     opacity: .5;
   }
+
+  .class-instructors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--cu-ps1);
+    --cu-font-size: var(--cu-ms-2);
+    margin-bottom: var(--cu-vr-1);
+
+    @include breakpoint(md) {
+      margin-bottom: unset;
+    }
+  }
 }
 
 .cu-registration-form .message__content {
