@@ -662,7 +662,7 @@ ilr.utility.apply.undergrad:
 ilr.utility.apply.grad:
   title: 'Graduate'
   menu_name: utility
-  url: 'https://gradschool.cornell.edu/admissions/application-steps/apply-now/'
+  url: 'internal:/programs/graduate-degree-programs'
   weight: 1
   parent: ilr.utility.apply
 
