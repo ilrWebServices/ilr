@@ -129,7 +129,7 @@ function ilr_deploy_post_featured_media_create(&$sandbox) {
   $posts = $node_storage->loadMultiple($post_ids);
 
   foreach ($posts as $post) {
-    $post->field_featured_media = $post->field_representative_image->target_id;
+    $post->field_featured_media = $post->field_representative_image;
     $post->save();
   }
 }

@@ -20,8 +20,8 @@ class IlrHooks {
       return;
     }
 
-    if (!$entity->field_featured_media->isEmpty() && $entity->field_featured_media->entity->bundle() === 'image' && $entity->field_representative_image->isEmpty()) {
-      $entity->field_representative_image = $entity->field_featured_media->target_id;
+    if (!$entity->field_featured_media->isEmpty() && $entity->field_featured_media->entity && $entity->field_featured_media->entity->bundle() === 'image' && $entity->field_representative_image->isEmpty()) {
+      $entity->field_representative_image = $entity->field_featured_media;
     }
   }
 
