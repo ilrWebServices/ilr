@@ -31,3 +31,6 @@ services:
     arguments: ['@entity_type.manager']
     tags:
       - { name: event_subscriber }
+  Drupal\ilr\Hook\IlrHooks:
+    class: Drupal\ilr\Hook\IlrHooks
+    autowire: true

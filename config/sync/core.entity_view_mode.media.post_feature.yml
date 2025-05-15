@@ -1,0 +1,11 @@
+uuid: c6e191c3-996e-45f0-9809-9566e1882e37
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.post_feature
+label: 'Post feature'
+description: ''
+targetEntityType: media
+cache: true

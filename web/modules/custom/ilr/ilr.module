@@ -33,6 +33,7 @@ use Drupal\taxonomy\VocabularyInterface;
 use Drupal\collection\Entity\CollectionItemInterface;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Database\Query\AlterableInterface;
+use Drupal\Core\Hook\Attribute\LegacyHook;
 use Drupal\Core\Link;
 use Drupal\ilr\Entity\CertificateNode;
 use Drupal\ilr\Entity\ClassNode;
@@ -40,6 +41,7 @@ use Drupal\ilr\Entity\EventLandingNode;
 use Drupal\ilr\Entity\EventNodeBase;
 use Drupal\ilr\Entity\EventNodeInterface;
 use Drupal\ilr\Entity\ImageMedia;
+use Drupal\ilr\Hook\IlrHooks;
 use Drupal\node\Entity\NodeType;
 use Drupal\node\NodeInterface;
 use Drupal\person\PersonaInterface;
@@ -880,6 +882,24 @@ function ilr_node_presave(EntityInterface $entity) {
   if ($entity->bundle() === 'class' && !$entity->field_course->isEmpty()) {
     Cache::invalidateTags($entity->field_course->entity->getCacheTagsToInvalidate());
   }
+
+  \Drupal::service(IlrHooks::class)->populateRepresentativeImage($entity);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+#[LegacyHook]
+function ilr_node_insert(EntityInterface $entity) {
+  \Drupal::service(IlrHooks::class)->missingRepresetativeImageNotice($entity);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+#[LegacyHook]
+function ilr_node_update(EntityInterface $entity) {
+  \Drupal::service(IlrHooks::class)->missingRepresetativeImageNotice($entity);
 }
 
 /**
@@ -1002,8 +1022,9 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
     '#open' => TRUE,
   ];
 
-  // Move the representative image and page body fields into the new section.
+  // Move representative image/video and page body fields into the new section.
   $form['field_representative_image']['#group'] = 'ilr_meta';
+  $form['field_featured_media']['#group'] = 'ilr_meta';
 
   // Put inline collection item forms in the 'sidebar' on node add/edit forms.
   $form['ief_collection_items']['#group'] = 'advanced';

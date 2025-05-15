@@ -32,9 +32,9 @@
     margin-right: auto;
   }
 
-  // All layout field blocks that end with 'field-representative-image', as well
-  // as video.
-  .cu-x-block.block-layout-builder[class$="field-representative-image"],
+  // All layout field blocks that end with 'field-featured-media', as well as
+  // video post videos.
+  .cu-x-block.block-layout-builder[class$="field-featured-media"],
   .cu-x-block.block-field-block--node--video-post--field-video {
     width: auto;
     max-width: revert;

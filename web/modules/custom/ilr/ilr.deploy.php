@@ -114,3 +114,22 @@ function ilr_deploy_highroad_post_consolidatereror_final_v2(&$sandbox) {
     }
   }
 }
+
+/**
+ * Set all post representative images as featured media.
+ */
+function ilr_deploy_post_featured_media_create(&$sandbox) {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $post_query = $node_storage->getQuery();
+  $post_query->accessCheck(FALSE);
+  $post_query->condition('type', 'post');
+  $post_query->condition('field_representative_image', NULL, 'IS NOT NULL');
+
+  $post_ids = $post_query->execute();
+  $posts = $node_storage->loadMultiple($post_ids);
+
+  foreach ($posts as $post) {
+    $post->field_featured_media = $post->field_representative_image->target_id;
+    $post->save();
+  }
+}
