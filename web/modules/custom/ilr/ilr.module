@@ -33,6 +33,7 @@ use Drupal\taxonomy\VocabularyInterface;
 use Drupal\collection\Entity\CollectionItemInterface;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Database\Query\AlterableInterface;
+use Drupal\Core\Hook\Attribute\LegacyHook;
 use Drupal\Core\Link;
 use Drupal\ilr\Entity\CertificateNode;
 use Drupal\ilr\Entity\ClassNode;
@@ -883,6 +884,22 @@ function ilr_node_presave(EntityInterface $entity) {
   }
 
   \Drupal::service(IlrHooks::class)->populateRepresentativeImage($entity);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+#[LegacyHook]
+function ilr_node_insert(EntityInterface $entity) {
+  \Drupal::service(IlrHooks::class)->missingRepresetativeImageNotice($entity);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+#[LegacyHook]
+function ilr_node_update(EntityInterface $entity) {
+  \Drupal::service(IlrHooks::class)->missingRepresetativeImageNotice($entity);
 }
 
 /**
