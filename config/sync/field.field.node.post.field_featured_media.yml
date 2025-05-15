@@ -1,0 +1,31 @@
+uuid: 8653d71e-a0d8-4bba-bf4e-87d1f570e586
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_featured_media
+    - media.type.image
+    - media.type.remote_video
+    - node.type.post
+id: node.post.field_featured_media
+field_name: field_featured_media
+entity_type: node
+bundle: post
+label: 'Featured media'
+description: 'Optional. If a video or image is selected here, it will be displayed prominently at the top of the page. If no <em>Representative image</em> is selected, this will be used there, too.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+      remote_video: remote_video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference

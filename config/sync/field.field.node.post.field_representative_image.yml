@@ -10,8 +10,8 @@ id: node.post.field_representative_image
 field_name: field_representative_image
 entity_type: node
 bundle: post
-label: 'Representative Image'
-description: 'This image may be used: As the banner background; when sharing this content on social media; or when representing it a smaller component, such as a teaser.'
+label: 'Representative image'
+description: 'This image is used when sharing this content, either on social media or in post listings. If left empty and a <em>Featured media</em> image is set, it will be used here, too.'
 required: false
 translatable: true
 default_value: {  }
@@ -23,6 +23,7 @@ settings:
       image: image
     sort:
       field: _none
+      direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: image
 field_type: entity_reference

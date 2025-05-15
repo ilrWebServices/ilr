@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.post.body
     - field.field.node.post.field_authors
     - field.field.node.post.field_components
+    - field.field.node.post.field_featured_media
     - field.field.node.post.field_published_date
     - field.field.node.post.field_representative_image
     - field.field.node.post.field_subtitle
@@ -46,6 +47,7 @@ hidden:
   blog_tags: true
   body: true
   field_authors: true
+  field_featured_media: true
   field_published_date: true
   field_representative_image: true
   links: true
