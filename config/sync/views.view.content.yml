@@ -9,6 +9,7 @@ dependencies:
     - node.type.course_certificate
     - node.type.event_landing_page
     - node.type.instructor
+    - node.type.landing_page
     - node.type.media_mention
     - node.type.page
     - node.type.participant
@@ -330,6 +331,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 50
           total_pages: null
           id: 0
@@ -347,7 +349,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -536,6 +537,7 @@ display:
             event_landing_page: event_landing_page
             post_experience_report: post_experience_report
             instructor: instructor
+            landing_page: landing_page
             media_mention: media_mention
             page: page
             post: post
@@ -566,6 +568,10 @@ display:
               form_admin: '0'
               advanced_editor: '0'
               event_admin: '0'
+              explore_form_admin: '0'
+              reviewer: '0'
+              cahrs_admin: '0'
+              project_admin: '0'
             reduce: true
           is_grouped: false
           group_info:
