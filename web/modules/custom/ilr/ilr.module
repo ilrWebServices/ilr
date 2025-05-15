@@ -852,37 +852,10 @@ function ilr_node_access(NodeInterface $node, $op, AccountInterface $account) {
 /**
  * Implements hook_ENTITY_TYPE_presave().
  */
+#[LegacyHook]
 function ilr_node_presave(EntityInterface $entity) {
-  if ($entity->bundle() === 'certificate') {
-    $certificate_total = 0;
-    $certificate_topics = [];
-
-    // Deduce the total cost and topic terms of the certificate from its courses
-    // (and classes).
-    foreach ($entity->field_course->referencedEntities() as $course) {
-      // Since `classes` is a computed field, and it is sorted by upcoming class
-      // dates, using `first()` will ensure that the next upcoming class will be
-      // used for the course price.
-      if ($course->classes->count()) {
-        $certificate_total += $course->classes->first()->entity->field_price->value;
-      }
-
-      // Add all unique topics for each course to the topics for certificate.
-      foreach ($course->field_topics->referencedEntities() as $topic) {
-        if (!in_array($topic->id(), $certificate_topics)) {
-          $certificate_topics[] = $topic->id();
-        }
-      }
-    }
-
-    $entity->set('field_total_cost', $certificate_total);
-    $entity->set('field_topics', $certificate_topics);
-  }
-
-  if ($entity->bundle() === 'class' && !$entity->field_course->isEmpty()) {
-    Cache::invalidateTags($entity->field_course->entity->getCacheTagsToInvalidate());
-  }
-
+  \Drupal::service(IlrHooks::class)->calculateCertificateInfo($entity);
+  \Drupal::service(IlrHooks::class)->clearCourseCacheForClass($entity);
   \Drupal::service(IlrHooks::class)->populateRepresentativeImage($entity);
 }
 
