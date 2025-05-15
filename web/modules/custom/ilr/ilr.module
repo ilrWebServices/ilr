@@ -40,6 +40,7 @@ use Drupal\ilr\Entity\EventLandingNode;
 use Drupal\ilr\Entity\EventNodeBase;
 use Drupal\ilr\Entity\EventNodeInterface;
 use Drupal\ilr\Entity\ImageMedia;
+use Drupal\ilr\Hook\IlrHooks;
 use Drupal\node\Entity\NodeType;
 use Drupal\node\NodeInterface;
 use Drupal\person\PersonaInterface;
@@ -880,6 +881,8 @@ function ilr_node_presave(EntityInterface $entity) {
   if ($entity->bundle() === 'class' && !$entity->field_course->isEmpty()) {
     Cache::invalidateTags($entity->field_course->entity->getCacheTagsToInvalidate());
   }
+
+  \Drupal::service(IlrHooks::class)->populateRepresentativeImage($entity);
 }
 
 /**
