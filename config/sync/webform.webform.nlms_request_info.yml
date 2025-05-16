@@ -1,7 +1,9 @@
 uuid: eabb4508-a85e-4f71-82e1-8b8837f6906f
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - ilr_salesforce
 weight: 0
 open: null
 close: null
@@ -9,7 +11,7 @@ uid: 1
 template: false
 archive: false
 id: nlms_request_info
-title: 'NLMS request info'
+title: 'NCRS request info'
 description: '<p>Definitely used on landing pages.</p>'
 categories:
   - 'Landing Page'
@@ -297,4 +299,30 @@ handlers:
       theme_name: ''
       parameters: {  }
       debug: false
+  ilr_outreach_touchpoint_submitter:
+    id: outreach_touchpoint_submitter
+    handler_id: ilr_outreach_touchpoint_submitter
+    label: 'ILR Outreach touchpoint submitter'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      extra_values: 'Information request'
+      fields_mapping:
+        request_type: Touchpoint_NCRS_Request_Type__c
+        first_name: FirstName__c
+        last_name: LastName__c
+        organization: Company__c
+        email: Email__c
+        mobile: Phone__c
+        texting_opt_in: Texting_Opt_In__c
+        comments_questions: Touchpoint_NCRS_Comment__c
+        outreach_marketing_personas: Touchpoint_EMPS__c
+        'utm_values:utm_source': Touchpoint_UTM_Source__c
+        'utm_values:utm_medium': Touchpoint_UTM_Medium__c
+        'utm_values:utm_campaign': Touchpoint_UTM_Campaign__c
+        'utm_values:utm_term': Touchpoint_UTM_Term__c
+        'utm_values:utm_content': Touchpoint_UTM_Content__c
+        'Information request': Source__c
 variants: {  }

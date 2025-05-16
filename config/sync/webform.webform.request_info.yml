@@ -1,7 +1,9 @@
 uuid: 950ae7b0-e1aa-417a-89ca-f00207cf3a98
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - ilr_salesforce
 weight: 0
 open: null
 close: null
@@ -292,6 +294,28 @@ handlers:
       message: ''
       messages: {  }
       error_url: ''
+  ilr_outreach_touchpoint_submitter:
+    id: outreach_touchpoint_submitter
+    handler_id: ilr_outreach_touchpoint_submitter
+    label: 'ILR Outreach touchpoint submitter'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 2
+    settings:
+      extra_values: 'Information request'
+      fields_mapping:
+        email: Email__c
+        first_name: FirstName__c
+        last_name: LastName__c
+        phone: Phone__c
+        outreach_marketing_personas: Touchpoint_EMPS__c
+        'utm_values:utm_source': Touchpoint_UTM_Source__c
+        'utm_values:utm_medium': Touchpoint_UTM_Medium__c
+        'utm_values:utm_campaign': Touchpoint_UTM_Campaign__c
+        'utm_values:utm_term': Touchpoint_UTM_Term__c
+        'utm_values:utm_content': Touchpoint_UTM_Content__c
+        'Information request': Source__c
 variants:
   zapier_295202085:
     id: override
