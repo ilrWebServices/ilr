@@ -3,11 +3,8 @@
 namespace Drupal\ilr_salesforce\Plugin\WebformHandler;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Queue\QueueInterface;
-use Drupal\ilr_outreach_registration\WebformSubmissionSerializer;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;
-use GuzzleHttp\Exception\RequestException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -204,6 +201,5 @@ class TouchpointHandler extends WebformHandlerBase {
 
     return $merge_vars;
   }
-
 
 }
