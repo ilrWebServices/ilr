@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_components
     - node.type.post
     - paragraphs.paragraphs_type.curated_post_listing
+    - paragraphs.paragraphs_type.gallery
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.media_deck
     - paragraphs.paragraphs_type.picture_in_picture
@@ -35,8 +36,18 @@ settings:
       curated_post_listing: curated_post_listing
       media_deck: media_deck
       picture_in_picture: picture_in_picture
+      gallery: gallery
     negate: 0
     target_bundles_drag_drop:
+      agenda:
+        weight: 37
+        enabled: false
+      agenda_item:
+        weight: 38
+        enabled: false
+      carousel:
+        weight: 39
+        enabled: false
       collection_listing:
         weight: 0
         enabled: false
@@ -58,6 +69,12 @@ settings:
       form:
         weight: 0
         enabled: false
+      gallery:
+        weight: 36
+        enabled: true
+      honors_and_awards:
+        weight: 47
+        enabled: false
       image:
         weight: -9
         enabled: true
@@ -67,8 +84,14 @@ settings:
       media_deck:
         weight: -5
         enabled: true
+      organization_listing:
+        weight: 51
+        enabled: false
       people_listing:
         weight: 0
+        enabled: false
+      people_listing_dynamic:
+        weight: 53
         enabled: false
       person:
         weight: 0
@@ -76,8 +99,17 @@ settings:
       picture_in_picture:
         weight: -4
         enabled: true
+      professional_activities:
+        weight: 56
+        enabled: false
+      project_listing:
+        weight: 57
+        enabled: false
       promo:
         weight: 0
+        enabled: false
+      publications:
+        weight: 59
         enabled: false
       rich_text:
         weight: -10
@@ -91,11 +123,23 @@ settings:
       simple_collection_listing:
         weight: -7
         enabled: true
+      stat:
+        weight: 64
+        enabled: false
+      stats:
+        weight: 65
+        enabled: false
       table_of_contents:
         weight: 40
         enabled: false
       testimonial:
         weight: 0
+        enabled: false
+      testimonial_deck:
+        weight: 68
+        enabled: false
+      topic_list:
+        weight: 69
         enabled: false
       video:
         weight: -8

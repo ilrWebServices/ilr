@@ -154,6 +154,14 @@
   }
 }
 
+.cu-component.cu-component--gallery {
+  @include full-width();
+}
+
+.cu-component.cu-component--gallery:not([class*="cu-colorscheme--"]) {
+  padding: 0 var(--cu-ps1);
+}
+
 .ilr-effect-image.curtain-reveal::before {
   background-position: var(--cu-image-position);
 }

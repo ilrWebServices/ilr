@@ -1,0 +1,23 @@
+uuid: ac715296-2188-4c0e-9e00-965f0095c233
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: gallery
+label: Gallery
+icon_uuid: null
+icon_default: null
+description: 'A <em>Gallery</em> contains multiple images and presents them in a carousel-like container.'
+behavior_plugins:
+  ilr_carousel:
+    enabled: true
+    media_view_mode_default: gallery
+  ilr_color:
+    enabled: true
+    color_schemes:
+      none: none
+      light: light
+      dark: dark
+      vibrant: 0
+    color_scheme_default: none

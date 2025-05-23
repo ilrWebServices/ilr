@@ -1,0 +1,24 @@
+uuid: 1c43480d-0cfb-401a-bd1a-e6d1c57751e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - filter.format.simple_formatting
+    - paragraphs.paragraphs_type.gallery
+  module:
+    - text
+id: paragraph.gallery.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: gallery
+label: Attribution
+description: 'General information about this item, which can include the name of the activity (e.g. Lunch) the names of presenters, etc.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - simple_formatting
+field_type: text_long
