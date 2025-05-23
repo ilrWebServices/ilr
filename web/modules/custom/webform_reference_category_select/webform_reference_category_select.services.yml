@@ -1,0 +1,4 @@
+services:
+  Drupal\webform_reference_category_select\Hook\WebformHooks:
+    class: Drupal\webform_reference_category_select\Hook\WebformHooks
+    autowire: true

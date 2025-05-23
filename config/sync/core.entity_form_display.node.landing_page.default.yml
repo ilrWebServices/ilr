@@ -18,6 +18,7 @@ dependencies:
     - path
     - text
     - webform
+    - webform_reference_category_select
 id: node.landing_page.default
 targetEntityType: node
 bundle: landing_page
@@ -51,10 +52,11 @@ content:
     region: content
     settings:
       default_data: true
-      webforms:
-        - request_info
-        - nlms_request_info
-    third_party_settings: {  }
+      webforms: {  }
+    third_party_settings:
+      webform_reference_category_select:
+        categories:
+          - 'Landing Page'
   field_representative_image:
     type: media_library_widget
     weight: 12

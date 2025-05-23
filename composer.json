@@ -217,7 +217,8 @@
         "Issue #3309324: Passing empty value to t() when same day + time for start and end date": "https://git.drupalcode.org/issue/date_range_formatter-3309324/-/commit/4e645fcfa229c608be933ca16a4214a2bf5b47ec.diff"
       },
       "drupal/webform": {
-        "Use symfony_mailer for html email": "./patches/webform_symfony_mailer.patch"
+        "Use symfony_mailer for html email": "./patches/webform_symfony_mailer.patch",
+        "Add filtering by category to Webform reference widget": "./patches/webform_reference_widget_alter_context.diff"
       },
       "drupal/linkit_media_library": {
         "Linkit media library button doesn't open in CKEditor": "https://www.drupal.org/files/issues/2024-08-15/3461637-instance-of-media-library-opener-interface.patch"
