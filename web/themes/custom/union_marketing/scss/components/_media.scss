@@ -162,6 +162,16 @@
   padding: 0 var(--cu-ps1);
 }
 
+// Don't let Drupal media wrapper markup affect gallery item styles.
+.cu-component--gallery .cu-gallery__item :not(img, video) {
+  display: contents;
+}
+
+// Gallery items have a set height, which should set the width automatically.
+.cu-component--gallery .cu-gallery__item img {
+  width: unset;
+}
+
 .ilr-effect-image.curtain-reveal::before {
   background-position: var(--cu-image-position);
 }
