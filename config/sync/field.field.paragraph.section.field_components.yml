@@ -13,6 +13,7 @@ dependencies:
     - paragraphs.paragraphs_type.deck
     - paragraphs.paragraphs_type.event_listing
     - paragraphs.paragraphs_type.form
+    - paragraphs.paragraphs_type.gallery
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.instagram_listing
     - paragraphs.paragraphs_type.media_deck
@@ -72,111 +73,115 @@ settings:
       section_navigation: section_navigation
       table_of_contents: table_of_contents
       topic_list: topic_list
+      gallery: gallery
       carousel: carousel
       agenda: agenda
       stats: stats
     negate: 0
     target_bundles_drag_drop:
       agenda:
-        weight: -31
-        enabled: true
-      agenda_item:
-        weight: -32
-        enabled: false
-      carousel:
-        weight: -33
-        enabled: true
-      collection_listing:
-        weight: -41
-        enabled: true
-      collection_listing_publication:
-        weight: -43
-        enabled: true
-      curated_course_listing:
         weight: -42
         enabled: true
-      curated_post_listing:
-        weight: -57
-        enabled: true
-      deck:
-        weight: -55
-        enabled: true
-      event_listing:
-        weight: -45
-        enabled: true
-      form:
-        weight: -51
-        enabled: true
-      honors_and_awards:
-        weight: 46
+      agenda_item:
+        weight: -43
         enabled: false
-      image:
-        weight: -53
-        enabled: true
-      instagram_listing:
-        weight: -37
-        enabled: true
-      media_deck:
-        weight: -54
-        enabled: true
-      organization_listing:
+      carousel:
         weight: -44
         enabled: true
-      people_listing:
-        weight: -48
+      collection_listing:
+        weight: -53
         enabled: true
-      people_listing_dynamic:
-        weight: -47
+      collection_listing_publication:
+        weight: -55
         enabled: true
-      person:
+      curated_course_listing:
+        weight: -54
+        enabled: true
+      curated_post_listing:
+        weight: -69
+        enabled: true
+      deck:
+        weight: -67
+        enabled: true
+      event_listing:
+        weight: -57
+        enabled: true
+      form:
+        weight: -63
+        enabled: true
+      gallery:
+        weight: -45
+        enabled: true
+      honors_and_awards:
         weight: -40
         enabled: false
-      picture_in_picture:
-        weight: -38
+      image:
+        weight: -65
         enabled: true
-      professional_activities:
-        weight: 55
-        enabled: false
-      project_listing:
-        weight: -46
-        enabled: true
-      promo:
-        weight: -56
-        enabled: true
-      publications:
-        weight: 58
-        enabled: false
-      rich_text:
-        weight: -59
-        enabled: true
-      section:
-        weight: -39
-        enabled: false
-      section_navigation:
-        weight: -36
-        enabled: true
-      simple_collection_listing:
-        weight: -58
-        enabled: true
-      stat:
-        weight: 63
-        enabled: false
-      stats:
-        weight: 35
-        enabled: true
-      table_of_contents:
-        weight: -35
-        enabled: true
-      testimonial:
-        weight: -50
-        enabled: true
-      testimonial_deck:
+      instagram_listing:
         weight: -49
         enabled: true
+      media_deck:
+        weight: -66
+        enabled: true
+      organization_listing:
+        weight: -56
+        enabled: true
+      people_listing:
+        weight: -60
+        enabled: true
+      people_listing_dynamic:
+        weight: -59
+        enabled: true
+      person:
+        weight: -52
+        enabled: false
+      picture_in_picture:
+        weight: -50
+        enabled: true
+      professional_activities:
+        weight: -39
+        enabled: false
+      project_listing:
+        weight: -58
+        enabled: true
+      promo:
+        weight: -68
+        enabled: true
+      publications:
+        weight: -38
+        enabled: false
+      rich_text:
+        weight: -71
+        enabled: true
+      section:
+        weight: -51
+        enabled: false
+      section_navigation:
+        weight: -48
+        enabled: true
+      simple_collection_listing:
+        weight: -70
+        enabled: true
+      stat:
+        weight: -37
+        enabled: false
+      stats:
+        weight: -41
+        enabled: true
+      table_of_contents:
+        weight: -47
+        enabled: true
+      testimonial:
+        weight: -62
+        enabled: true
+      testimonial_deck:
+        weight: -61
+        enabled: true
       topic_list:
-        weight: -34
+        weight: -46
         enabled: true
       video:
-        weight: -52
+        weight: -64
         enabled: true
 field_type: entity_reference_revisions

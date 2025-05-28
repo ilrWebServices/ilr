@@ -154,6 +154,30 @@
   }
 }
 
+.cu-component.cu-component--gallery {
+  @include full-width();
+}
+
+.cu-component.cu-component--gallery:not([class*="cu-colorscheme--"]) {
+  padding: 0 var(--cu-ps1);
+}
+
+// Don't let Drupal media wrapper markup affect gallery item styles.
+.cu-component--gallery .cu-gallery__item :not(img, video, iframe) {
+  display: contents;
+}
+
+// Gallery items have a set height, which should set the width automatically.
+.cu-component--gallery .cu-gallery__item img {
+  width: unset;
+}
+
+.cu-gallery__item .remote-video-wrapper iframe {
+  position: unset;
+  width: unset;
+  aspect-ratio: 1.5;
+}
+
 .ilr-effect-image.curtain-reveal::before {
   background-position: var(--cu-image-position);
 }
