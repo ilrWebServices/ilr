@@ -38,12 +38,14 @@
  * @ingroup themeable
  */
 #}
+
 {%
   set classes = [
     'paragraph',
     'paragraph--type--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
-    not paragraph.isPublished() ? 'paragraph--unpublished'
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+    paragraph.getParentEntity.bundle == 'event_landing_page' ? 'cu-section--left'
   ]
 %}
 {% include '@union/_section.twig' with {
