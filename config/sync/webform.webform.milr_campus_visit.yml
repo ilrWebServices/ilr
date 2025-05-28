@@ -61,8 +61,8 @@ elements: |-
     '#type': select
     '#title': 'For which semester will you be applying to the ILR School?'
     '#options':
-      fall: 'Fall'
-      spring: 'Spring'
+      fall: Fall
+      spring: Spring
   1st_choice_visit_arrival:
     '#type': datetime
     '#title': '1st choice visit arrival'
@@ -101,6 +101,7 @@ elements: |-
       'Dispute Resolution': 'Dispute Resolution'
       'Collective Representation': 'Collective Representation'
       'International and Comparative Labor': 'International and Comparative Labor'
+    '#access': false
   students_discussion_topics:
     '#type': webform_checkboxes_other
     '#title': 'If you would like to meet with current students during your visit, which of the following topics would you like to discuss with the them?'
@@ -125,10 +126,10 @@ elements: |-
     '#multiple__add_more_input_label': 'more faculty names'
   profile_link:
     '#type': webform_link
-    '#title': 'What is the public URL or web address to your LinkedIn profile (if you''d like to share it with us)?'
+    '#title': "What is the public URL or web address to your LinkedIn profile (if you'd like to share it with us)?"
     '#title__access': false
     '#url__title': 'Profile URL'
-    '#url__description': 'What is the public URL or web address to your LinkedIn profile (if you''d like to share it with us)?'
+    '#url__description': "What is the public URL or web address to your LinkedIn profile (if you'd like to share it with us)?"
     '#flexbox': '1'
   additional_info:
     '#type': textarea
@@ -138,7 +139,7 @@ elements: |-
     '#title': 'Submission URL'
     '#display_on': view
     '#mode': text
-    '#template': '{{ webform_token(''[webform_submission:url]'', webform_submission)|replace({''www.ilr.cornell.edu'': ''d8-edit.ilr.cornell.edu''}) }}'
+    '#template': "{{ webform_token('[webform_submission:url]', webform_submission)|replace({'www.ilr.cornell.edu': 'd8-edit.ilr.cornell.edu'}) }}"
   utm_values:
     '#type': utm_values
   actions:
