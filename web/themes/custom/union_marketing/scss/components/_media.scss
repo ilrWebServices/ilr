@@ -159,7 +159,7 @@
 }
 
 .cu-component.cu-component--gallery:not([class*="cu-colorscheme--"]) {
-  padding: 0 var(--cu-ps1);
+  padding: var(--cu-vr-2) var(--cu-ps1);
 }
 
 // Don't let Drupal media wrapper markup affect gallery item styles.
