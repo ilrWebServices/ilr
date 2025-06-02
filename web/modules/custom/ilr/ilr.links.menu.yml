@@ -655,7 +655,7 @@ ilr.utility.apply:
 ilr.utility.apply.undergrad:
   title: 'Undergraduate'
   menu_name: utility
-  url: 'https://admissions.cornell.edu/how-to-apply'
+  url: 'internal:/programs/undergraduate-admissions/apply-ilr'
   weight: 0
   parent: ilr.utility.apply
 
