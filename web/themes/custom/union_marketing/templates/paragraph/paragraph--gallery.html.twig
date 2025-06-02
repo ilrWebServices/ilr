@@ -42,7 +42,7 @@
 #}
 {% include '@union/_gallery.twig' with {
   title: paragraph.field_heading.value,
-  description: content.field_body,
+  attribution: content.field_body,
   items: carousel_items,
   attributes: attributes.addClass([
     'cu-component',
