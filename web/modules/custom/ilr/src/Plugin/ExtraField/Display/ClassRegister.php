@@ -5,8 +5,6 @@ namespace Drupal\ilr\Plugin\ExtraField\Display;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -33,8 +31,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
     array $configuration,
     protected string $plugin_id,
     protected mixed $plugin_definition,
-    protected ConfigFactoryInterface $config,
-    protected EntityTypeManagerInterface $entityTypeManager
+    protected ConfigFactoryInterface $config
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
@@ -48,8 +45,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('config.factory'),
-      $container->get('entity_type.manager')
+      $container->get('config.factory')
     );
   }
 
@@ -65,7 +61,6 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
       $info = [
         'entity' => $class,
         'session_dates' => [],
-        'instructors' => [],
         'course' => $class->field_course->entity,
         'register_url' => '',
         'price' => $class->field_price->value,
@@ -78,10 +73,6 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
         $session_date->start = new DrupalDateTime($session->entity->session_date->value, DateTimeItemInterface::STORAGE_TIMEZONE);
         $session_date->end = new DrupalDateTime($session->entity->session_date->end_value, DateTimeItemInterface::STORAGE_TIMEZONE);
         $info['session_dates'][] = $session_date;
-      }
-
-      foreach ($this->getClassInstructors($class) as $instructor) {
-        $info['instructors'][] = $instructor;
       }
 
       if ($mapped_object = $class->getClassNodeSalesforceMappedObject()) {
@@ -161,27 +152,6 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
     }
 
     return $classes;
-  }
-
-  private function getClassInstructors(EntityInterface $class_entity): array {
-    $instructors = [];
-    $node_storage = $this->entityTypeManager->getStorage('node');
-    $query = $node_storage->getQuery();
-    $query
-      ->accessCheck(TRUE)
-      ->condition('type', 'participant')
-      ->condition('status', 1)
-      ->condition('field_class', $class_entity->id())
-      ->condition('field_class.entity:node.field_date_end', date('Y-m-d'), '>')
-      ->sort('field_class.entity:node.field_date_start');
-    $participant_results = $query->execute();
-    $participants = $node_storage->loadMultiple($participant_results);
-
-    foreach ($participants as $participant) {
-      $instructors[] = $participant->field_instructor->entity;
-    }
-
-    return $instructors;
   }
 
 }
