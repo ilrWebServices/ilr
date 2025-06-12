@@ -19,6 +19,12 @@ class IlrServiceProvider extends ServiceProviderBase {
       $definition = $container->getDefinition('email.validator');
       $definition->setClass('Drupal\ilr\EmailValidator');
     }
+
+    // Overrides the Slack webhook URL in sites/default/monolog.services.yml.
+    if ($container->hasDefinition('monolog.handler.slack_webhook')) {
+      $definition = $container->getDefinition('monolog.handler.slack_webhook');
+      $definition->setArgument('$webhookUrl', getenv('SLACK_NOTIFICATIONS_WEBHOOK_URL'));
+    }
   }
 
 }
