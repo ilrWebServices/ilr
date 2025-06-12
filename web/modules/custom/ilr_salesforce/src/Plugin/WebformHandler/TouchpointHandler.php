@@ -64,6 +64,26 @@ class TouchpointHandler extends WebformHandlerBase {
     $webform = $this->getWebform();
 
     $this->applyFormStateToConfiguration($form_state);
+    $touchpoint_fields = [];
+
+    try {
+      $object_description = $this->sfapi->objectDescribe('Touchpoint__c');
+
+      if (!is_object($object_description)) {
+        throw new \Exception('Could not load info for Touchpoint__c.');
+      }
+
+      foreach ($object_description->getFields() as $field => $data) {
+        $touchpoint_fields[$field] = sprintf('%s (%s)', $data['label'], $data['name']);
+      }
+
+      asort($touchpoint_fields);
+    }
+    catch (\Exception $e) {
+      $this->logger->error('Touchpoint handler error: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+    }
 
     $form['extra_values'] = [
       '#type' => 'textarea',
@@ -82,6 +102,8 @@ class TouchpointHandler extends WebformHandlerBase {
       '#description_display' => 'before',
       '#default_value' => $this->configuration['fields_mapping'],
       '#source' => $this->getWebformMappingOptions(),
+      '#destination__type' => 'select',
+      '#destination' => $touchpoint_fields,
     ];
 
     return $this->setSettingsParents($form);
@@ -101,7 +123,7 @@ class TouchpointHandler extends WebformHandlerBase {
   public function postSave(WebformSubmissionInterface $webform_submission, $update = TRUE) {
     $notes = $webform_submission->getNotes();
 
-    // Check the notes to see if we've sent this submission
+    // Check the notes to see if we've sent this submission.
     if (strpos($notes, 'Touchpoint:') !== FALSE) {
       return;
     }
@@ -120,7 +142,7 @@ class TouchpointHandler extends WebformHandlerBase {
       $webform_submission->save();
     }
     catch (\Exception $e) {
-      $this->logger->notice('Touchpoint handler error for webform submission @webform_submission: @message', [
+      $this->logger->error('Touchpoint handler error for webform submission @webform_submission: @message', [
         '@webform_submission' => $webform_submission->id(),
         '@message' => $e->getMessage(),
       ]);
