@@ -53,6 +53,12 @@ elements: |-
     '#template': '{{ webform_token(''[webform_submission:url]'', webform_submission)|replace({''www.ilr.cornell.edu'': ''d8-edit.ilr.cornell.edu''}) }}'
   utm_values:
     '#type': utm_values
+  ga_client_id:
+    '#type': hidden
+    '#title': 'GA client id'
+    '#default_value': '[site:analytics_session_id]'
+    '#attributes':
+      id: ga_client_id
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'

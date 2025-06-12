@@ -46,6 +46,12 @@ elements: |-
     '#prepopulate': true
   utm_values:
     '#type': utm_values
+  ga_client_id:
+    '#type': hidden
+    '#title': 'GA client id'
+    '#default_value': '[site:analytics_session_id]'
+    '#attributes':
+      id: ga_client_id
   variant_handler:
     '#type': webform_variant
     '#title': 'Handler Variant'
@@ -324,6 +330,7 @@ handlers:
         'utm_values:utm_content': Touchpoint_UTM_Content__c
         touchpoint_source: Source__c
         grad_program_of_interest: Graduate_Program_of_Interest__c
+        ga_client_id: GAClientID__c
         'Marketing Landing Page': Lead_Source__c
         'NONE PROVIDED': Company__c
 variants:
