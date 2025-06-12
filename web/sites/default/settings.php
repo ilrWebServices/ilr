@@ -744,6 +744,7 @@ $settings['locale_custom_strings_en'][''] = [
  * Load services definition file.
  */
 $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
+$settings['container_yamls'][] = $app_root . '/' . $site_path . '/monolog.services.yml';
 
 /**
  * Override the default service container class.
