@@ -1,0 +1,11 @@
+parameters:
+  monolog.channel_handlers:
+    webform_touchpoint: ['slack_webhook', 'drupal.dblog']
+    default: ['drupal.dblog']
+
+services:
+  monolog.handler.slack_webhook:
+    class: Monolog\Handler\SlackWebhookHandler
+    arguments:
+      $webhookUrl: 'This webhook URL is set in IlrServiceProvider::alter().'
+      $level: 'ERROR'

@@ -40,7 +40,7 @@ class TouchpointHandler extends WebformHandlerBase {
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
     $instance->sfapi = $container->get('salesforce.client');
-    $instance->logger = $container->get('logger.factory')->get('webform_email_confirm');
+    $instance->logger = $container->get('logger.factory')->get('webform_touchpoint');
     return $instance;
   }
 
