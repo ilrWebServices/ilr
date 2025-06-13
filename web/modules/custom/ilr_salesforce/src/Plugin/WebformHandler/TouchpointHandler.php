@@ -140,6 +140,11 @@ class TouchpointHandler extends WebformHandlerBase {
 
       // Save to store the notes.
       $webform_submission->save();
+
+      $this->logger->info('Touchpoint %id created for submission @webform_submission.', [
+        '@webform_submission' => $webform_submission->id(),
+        '%id' => $sf_results['id'],
+      ]);
     }
     catch (\Exception $e) {
       $this->logger->error('Touchpoint handler error for webform submission @webform_submission: @message', [
