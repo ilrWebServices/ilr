@@ -158,7 +158,30 @@
     margin-top: var(--cu-vr1);
   }
 
-  .block-field-block--node--event-landing-page--field-representative-image {
+  .layout__region--first .social-sharing-buttons {
+    margin-top: var(--cu-vr0);
+    margin-bottom: var(--cu-vr0);
+  }
+
+  .layout__region--second .social-sharing-buttons {
+    display: none;
+    margin-bottom: var(--cu-vr1);
+  }
+
+  @include breakpoint(md) {
+    .layout__region--first .social-sharing-buttons {
+      display: none;
+    }
+
+    .layout__region--second .social-sharing-buttons {
+      display: flex;
+    }
+  }
+
+  .social-sharing-buttons-button {
+    background-color: #F7F6F6;
+    border-radius: 3px;
+    padding: 3px;
   }
 
   .block-field-block--node--event-landing-page--event-date {
