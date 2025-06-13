@@ -38,7 +38,7 @@ class ComponentSettings extends ParagraphsBehaviorBase {
       '#type' => 'checkbox',
       '#title' => $this->t('Remove bottom margin'),
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'remove_bottom_margin') ?? FALSE,
-      '#description' => $this->t('This setting removes the margin between adjacent components.'),
+      '#description' => $this->t('This setting removes the margin between adjacent components or sections.'),
     ];
 
     return $form;
@@ -49,7 +49,9 @@ class ComponentSettings extends ParagraphsBehaviorBase {
    */
   public function preprocess(&$variables) {
     if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'remove_bottom_margin') ) {
-      $variables['attributes']['class'][] = 'cu-component--no-bottom-margin';
+      $variables['attributes']['class'][] = $variables['paragraph']->bundle() === 'section'
+        ? 'cu-section--gapless'
+        : 'cu-component--no-bottom-margin';
     }
   }
 
@@ -80,7 +82,7 @@ class ComponentSettings extends ParagraphsBehaviorBase {
    * This behavior is only applicable to paragraphs of type 'deck'.
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {
-    return in_array($paragraphs_type->id(), ['deck', 'rich_text']);
+    return in_array($paragraphs_type->id(), ['deck', 'rich_text', 'section']);
   }
 
 }

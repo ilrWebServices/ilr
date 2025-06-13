@@ -13,6 +13,8 @@ description: ''
 behavior_plugins:
   admin_section_label:
     enabled: true
+  component_settings:
+    enabled: true
   ilr_color:
     enabled: true
     color_schemes:
