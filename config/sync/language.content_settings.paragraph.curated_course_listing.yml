@@ -1,0 +1,11 @@
+uuid: 0e93261c-25ff-4437-a014-eed20b194d9b
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.curated_course_listing
+id: paragraph.curated_course_listing
+target_entity_type_id: paragraph
+target_bundle: curated_course_listing
+default_langcode: site_default
+language_alterable: false

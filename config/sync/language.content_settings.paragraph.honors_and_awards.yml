@@ -1,0 +1,11 @@
+uuid: 05d67274-7c1f-4f15-89f6-ab9cb78953a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.honors_and_awards
+id: paragraph.honors_and_awards
+target_entity_type_id: paragraph
+target_bundle: honors_and_awards
+default_langcode: site_default
+language_alterable: false

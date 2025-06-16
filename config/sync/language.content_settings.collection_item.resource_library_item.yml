@@ -1,0 +1,11 @@
+uuid: 74169cb9-da3d-49ab-b29c-8be43a9cf9ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.resource_library_item
+id: collection_item.resource_library_item
+target_entity_type_id: collection_item
+target_bundle: resource_library_item
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,11 @@
+uuid: fc245eab-3a12-4a92-8937-e44efa226349
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.story
+id: node.story
+target_entity_type_id: node
+target_bundle: story
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,11 @@
+uuid: 68725063-0f8e-458d-932e-d4807d09ca54
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.subsite
+id: collection.subsite
+target_entity_type_id: collection
+target_bundle: subsite
+default_langcode: site_default
+language_alterable: false

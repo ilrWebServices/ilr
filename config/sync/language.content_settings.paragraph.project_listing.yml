@@ -1,0 +1,11 @@
+uuid: 1ba3ae34-c53b-432b-8fd3-22287ce98d9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.project_listing
+id: paragraph.project_listing
+target_entity_type_id: paragraph
+target_bundle: project_listing
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,11 @@
+uuid: 2691ab49-a88b-4ebb-8b1b-7b623b2b3285
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.cahrs_member_organizations
+id: taxonomy_term.cahrs_member_organizations
+target_entity_type_id: taxonomy_term
+target_bundle: cahrs_member_organizations
+default_langcode: site_default
+language_alterable: false

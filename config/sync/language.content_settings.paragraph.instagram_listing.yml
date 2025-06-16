@@ -1,0 +1,11 @@
+uuid: 4fd4af73-342f-4f94-a618-075fff601f0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.instagram_listing
+id: paragraph.instagram_listing
+target_entity_type_id: paragraph
+target_bundle: instagram_listing
+default_langcode: site_default
+language_alterable: false

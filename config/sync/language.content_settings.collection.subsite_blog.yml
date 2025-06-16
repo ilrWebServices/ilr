@@ -1,0 +1,11 @@
+uuid: a76d346c-7666-4c5e-88c3-fa880f9937f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_type.subsite_blog
+id: collection.subsite_blog
+target_entity_type_id: collection
+target_bundle: subsite_blog
+default_langcode: site_default
+language_alterable: false

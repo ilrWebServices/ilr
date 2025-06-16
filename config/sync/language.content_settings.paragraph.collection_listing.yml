@@ -1,0 +1,11 @@
+uuid: 37637be5-36a8-4334-9550-44eeca80d138
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.collection_listing
+id: paragraph.collection_listing
+target_entity_type_id: paragraph
+target_bundle: collection_listing
+default_langcode: site_default
+language_alterable: false

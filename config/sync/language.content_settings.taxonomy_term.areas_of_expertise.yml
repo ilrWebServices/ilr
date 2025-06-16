@@ -1,0 +1,11 @@
+uuid: 72af00a1-f229-42e5-be90-ea9f3bff1fcf
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.areas_of_expertise
+id: taxonomy_term.areas_of_expertise
+target_entity_type_id: taxonomy_term
+target_bundle: areas_of_expertise
+default_langcode: site_default
+language_alterable: false

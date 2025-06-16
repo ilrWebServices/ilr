@@ -1,0 +1,11 @@
+uuid: f450e91a-5c3e-4067-9ad9-d684962affb2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.post_experience_report
+id: node.post_experience_report
+target_entity_type_id: node
+target_bundle: post_experience_report
+default_langcode: site_default
+language_alterable: false

@@ -37,6 +37,7 @@ module:
   config: 0
   config_ignore_pattern: 0
   config_split: 0
+  config_translation: 0
   contextual: 0
   crop: 0
   ctools: 0
@@ -91,6 +92,7 @@ module:
   link: 0
   linkit: 0
   linkit_media_library: 0
+  locale: 0
   localist_paragraph_behavior: 0
   media: 0
   media_library: 0

@@ -1,0 +1,11 @@
+uuid: dab555fa-13bc-40df-a76a-b19c14585a0d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.certificate
+id: node.certificate
+target_entity_type_id: node
+target_bundle: certificate
+default_langcode: site_default
+language_alterable: false

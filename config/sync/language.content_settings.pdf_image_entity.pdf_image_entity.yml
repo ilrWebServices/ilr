@@ -1,0 +1,11 @@
+uuid: d88c99c2-3ffd-44c0-bfde-72480dc84703
+langcode: en
+status: true
+dependencies:
+  module:
+    - media_pdf_thumbnail
+id: pdf_image_entity.pdf_image_entity
+target_entity_type_id: pdf_image_entity
+target_bundle: pdf_image_entity
+default_langcode: site_default
+language_alterable: false

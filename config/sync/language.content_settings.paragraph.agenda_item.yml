@@ -1,0 +1,11 @@
+uuid: 9650fbf1-3e47-4040-9af9-73127a1608d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.agenda_item
+id: paragraph.agenda_item
+target_entity_type_id: paragraph
+target_bundle: agenda_item
+default_langcode: site_default
+language_alterable: false

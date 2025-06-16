@@ -1,0 +1,11 @@
+uuid: 91277006-7b90-4d01-ae48-21884a416c96
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.remote_url
+id: media.remote_url
+target_entity_type_id: media
+target_bundle: remote_url
+default_langcode: site_default
+language_alterable: false

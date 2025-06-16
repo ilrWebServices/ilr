@@ -1,0 +1,11 @@
+uuid: 89ae1181-2a64-4210-ba67-1dc145b65f8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.project_item
+id: collection_item.project_item
+target_entity_type_id: collection_item
+target_bundle: project_item
+default_langcode: site_default
+language_alterable: false

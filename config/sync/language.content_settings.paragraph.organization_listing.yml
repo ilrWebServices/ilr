@@ -1,0 +1,11 @@
+uuid: 0fb981f6-a19e-421e-96b8-22185fb34a3a
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.organization_listing
+id: paragraph.organization_listing
+target_entity_type_id: paragraph
+target_bundle: organization_listing
+default_langcode: site_default
+language_alterable: false

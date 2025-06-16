@@ -1,0 +1,11 @@
+uuid: 76fd58ff-860f-4c5a-b05b-facab9cacd9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.course_sponsor
+id: taxonomy_term.course_sponsor
+target_entity_type_id: taxonomy_term
+target_bundle: course_sponsor
+default_langcode: site_default
+language_alterable: false

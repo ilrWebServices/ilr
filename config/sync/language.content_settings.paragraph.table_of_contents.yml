@@ -1,0 +1,11 @@
+uuid: bac9334e-4735-486e-96be-66fc352d1291
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.table_of_contents
+id: paragraph.table_of_contents
+target_entity_type_id: paragraph
+target_bundle: table_of_contents
+default_langcode: site_default
+language_alterable: false
