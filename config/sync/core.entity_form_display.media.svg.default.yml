@@ -28,6 +28,13 @@ content:
       preview_image_max_width: 300
       preview_image_max_height: 300
     third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   name:
     type: string_textfield
     weight: -5

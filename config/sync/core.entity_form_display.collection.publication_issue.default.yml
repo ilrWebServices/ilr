@@ -34,6 +34,13 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
+  collectible:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_download:
     type: inline_entity_form_complex
     weight: 102
@@ -88,14 +95,21 @@ content:
       edit_mode: closed
       closed_mode: summary
       autocollapse: all
-      closed_mode_threshold: '2'
+      closed_mode_threshold: 2
       add_mode: dropdown
       form_display_mode: default
       default_paragraph_type: section
       features:
+        add_above: '0'
         collapse_edit_all: collapse_edit_all
-        duplicate: 0
-        add_above: 0
+        duplicate: '0'
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
     third_party_settings: {  }
   name:
     type: string_textfield

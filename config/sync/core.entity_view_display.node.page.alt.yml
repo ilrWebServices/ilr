@@ -28,8 +28,8 @@ third_party_settings:
         layout_id: banner
         layout_settings:
           label: Banner
-          color_scheme: none
           context_mapping: {  }
+          color_scheme: none
         components:
           2cdec9e4-b214-499c-828a-b1e118a61391:
             uuid: 2cdec9e4-b214-499c-828a-b1e118a61391
@@ -157,5 +157,6 @@ hidden:
   auth_protected: true
   behavior_alt_display: true
   extra_field_ilr_section_navigation: true
+  langcode: true
   layout_builder__layout: true
   search_api_excerpt: true

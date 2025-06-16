@@ -28,6 +28,13 @@ content:
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
+  collectible:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_representative_image:
     type: media_library_widget
     weight: 101
@@ -52,9 +59,16 @@ content:
       form_display_mode: default
       default_paragraph_type: section
       features:
-        collapse_edit_all: collapse_edit_all
         add_above: '0'
+        collapse_edit_all: collapse_edit_all
         duplicate: duplicate
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
     third_party_settings: {  }
   logo:
     type: media_library_widget
