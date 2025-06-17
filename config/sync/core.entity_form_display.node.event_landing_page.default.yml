@@ -155,7 +155,7 @@ content:
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 2
+    weight: 130
     region: content
     settings:
       include_locked: true
