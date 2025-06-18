@@ -423,7 +423,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     // considered empty if both the summary and value are blank.
     if ($event_landing_page->body->isEmpty()) {
       $event_landing_page->body->value = $sf->field('Class_Description__c');
-      $event_landing_page->body->format = 'basic_formatting_with_media';
+      $event_landing_page->body->format = 'standard_formatting';
     }
   }
 

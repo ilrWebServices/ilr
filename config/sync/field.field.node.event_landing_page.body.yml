@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.body
     - filter.format.basic_formatting_with_media
+    - filter.format.standard_formatting
     - node.type.event_landing_page
   module:
     - text
@@ -22,5 +23,6 @@ settings:
   display_summary: true
   required_summary: false
   allowed_formats:
+    - standard_formatting
     - basic_formatting_with_media
 field_type: text_with_summary
