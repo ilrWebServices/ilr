@@ -974,6 +974,15 @@ variants:
           settings:
             to_mail: cahrs@cornell.edu
             subject: 'CAHRS Learning Series Event registration: [webform_submission:source-title]'
+        confirmation_email:
+          settings:
+            subject: "Thank You for Registering – CAHRS Learning Series."
+            body: |-
+              Thank you for registering for [webform_submission:source-title].
+              <br/>
+              We’ve received your submission. Our team will review your registration and follow up within 3–5 business days with additional information.
+              <br/>
+              If you have any questions in the meantime, feel free to reach out to Karen Siewert at <a href="mailto:kts47@cornell.edu">kts47@cornell.edu</a>.
   portuguese_translation:
     id: override
     variant_id: portuguese_translation
