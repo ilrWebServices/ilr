@@ -1,0 +1,11 @@
+uuid: 76b952a4-e2db-412b-8532-3ff5088a47a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.testimonial_deck
+id: paragraph.testimonial_deck
+target_entity_type_id: paragraph
+target_bundle: testimonial_deck
+default_langcode: site_default
+language_alterable: false

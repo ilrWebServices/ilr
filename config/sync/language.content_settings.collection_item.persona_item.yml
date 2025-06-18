@@ -1,0 +1,11 @@
+uuid: d239a6d6-bb0c-4634-a9f0-ec69b8e37ca5
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.persona_item
+id: collection_item.persona_item
+target_entity_type_id: collection_item
+target_bundle: persona_item
+default_langcode: site_default
+language_alterable: false

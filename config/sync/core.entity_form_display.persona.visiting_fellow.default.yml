@@ -4,12 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.persona.visiting_fellow.field_bio
+    - field.field.persona.visiting_fellow.field_campus_address
     - field.field.persona.visiting_fellow.field_email
     - field.field.persona.visiting_fellow.field_faculty_sponsor_text
     - field.field.persona.visiting_fellow.field_first_name
     - field.field.persona.visiting_fellow.field_last_name
     - field.field.persona.visiting_fellow.field_photo
     - field.field.persona.visiting_fellow.field_place_of_origin
+    - field.field.persona.visiting_fellow.field_sections
     - field.field.persona.visiting_fellow.field_visiting_period
     - person.persona_type.visiting_fellow
   module:

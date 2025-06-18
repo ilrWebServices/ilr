@@ -1,0 +1,11 @@
+uuid: 00f80090-fde9-409c-a990-905c697ea3a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.organizational_units
+id: taxonomy_term.organizational_units
+target_entity_type_id: taxonomy_term
+target_bundle: organizational_units
+default_langcode: site_default
+language_alterable: false

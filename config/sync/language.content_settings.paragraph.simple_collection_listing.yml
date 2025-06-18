@@ -1,0 +1,11 @@
+uuid: 55f0c9cb-2a98-4a1c-a84f-b7de3e41f6ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.simple_collection_listing
+id: paragraph.simple_collection_listing
+target_entity_type_id: paragraph
+target_bundle: simple_collection_listing
+default_langcode: site_default
+language_alterable: false

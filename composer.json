@@ -197,7 +197,8 @@
         "Allow custom session cookie name": "./patches/2983612-custom-session-cookie-name.patch",
         "Use sqlite database connection in dblog controller": "./patches/dblog_sqlite.diff",
         "Allow node menu widget to some non-admins": "./patches/menu_ui_access.patch",
-        "Issue #3446368: SymfonyMailer RfcComplianceException when sending to multiple comma-separated addresses": "https://www.drupal.org/files/issues/2024-05-10/3446368-14.patch"
+        "Issue #3446368: SymfonyMailer RfcComplianceException when sending to multiple comma-separated addresses": "https://www.drupal.org/files/issues/2024-05-10/3446368-14.patch",
+        "Issue #34165856: alter local.module to properly check whether a JS file is local or not": "https://git.drupalcode.org/project/drupal/-/commit/f2687c85d02466e90979c36b025c8b8ec1cdcaf8.diff"
       },
       "drupal/paragraphs_previewer": {
         "Entities using layoutbuilder cannot get fields previewed": "https://gist.githubusercontent.com/a-fro/1c9b5fcf778edcc49eb39dab292cbc0c/raw/c2352a640270412d2d73232a1e5d3ca69a606726/paragraphs-preview-no-output-layout-builder.patch"

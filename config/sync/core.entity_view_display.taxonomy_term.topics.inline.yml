@@ -24,6 +24,11 @@ targetEntityType: taxonomy_term
 bundle: topics
 mode: inline
 content:
+  extra_field_topic_courses:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_representative_image:
     type: media_thumbnail
     label: inline
@@ -43,4 +48,5 @@ hidden:
   field_body_subheading: true
   field_media_section: true
   field_page_links: true
+  langcode: true
   search_api_excerpt: true

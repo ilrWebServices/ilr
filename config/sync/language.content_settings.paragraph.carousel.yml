@@ -1,0 +1,11 @@
+uuid: a3e17c49-5f7b-4725-9aa4-193cc39b36b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.carousel
+id: paragraph.carousel
+target_entity_type_id: paragraph
+target_bundle: carousel
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,11 @@
+uuid: 77d132c9-82c9-4273-8826-afcafad6a8ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.ilr_employee_role
+id: taxonomy_term.ilr_employee_role
+target_entity_type_id: taxonomy_term
+target_bundle: ilr_employee_role
+default_langcode: site_default
+language_alterable: false

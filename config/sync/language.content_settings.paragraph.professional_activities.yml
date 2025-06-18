@@ -1,0 +1,11 @@
+uuid: 1b24232e-e250-48ce-9006-1477b7448d46
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.professional_activities
+id: paragraph.professional_activities
+target_entity_type_id: paragraph
+target_bundle: professional_activities
+default_langcode: site_default
+language_alterable: false

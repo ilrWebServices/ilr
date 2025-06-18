@@ -1,0 +1,11 @@
+uuid: 8af713a1-ac29-4595-aa66-11f1f87cdaea
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.curated_post_listing
+id: paragraph.curated_post_listing
+target_entity_type_id: paragraph
+target_bundle: curated_post_listing
+default_langcode: site_default
+language_alterable: false

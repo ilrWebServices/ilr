@@ -1,0 +1,11 @@
+uuid: b6ed2122-18ff-4778-8e05-43494005aa92
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.video
+id: media.video
+target_entity_type_id: media
+target_bundle: video
+default_langcode: site_default
+language_alterable: false

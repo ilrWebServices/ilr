@@ -1,0 +1,11 @@
+uuid: 449d0303-056d-4378-beca-0c13334f45dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.publications
+id: paragraph.publications
+target_entity_type_id: paragraph
+target_bundle: publications
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,11 @@
+uuid: e486a027-1b66-40ca-ae30-428b0b834f9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.event_listing
+id: paragraph.event_listing
+target_entity_type_id: paragraph
+target_bundle: event_listing
+default_langcode: site_default
+language_alterable: false

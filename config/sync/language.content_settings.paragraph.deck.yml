@@ -1,0 +1,11 @@
+uuid: d550c34e-c4e9-43e6-a152-9c75a5c4166d
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.deck
+id: paragraph.deck
+target_entity_type_id: paragraph
+target_bundle: deck
+default_langcode: site_default
+language_alterable: false

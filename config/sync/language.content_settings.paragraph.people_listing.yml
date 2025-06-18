@@ -1,0 +1,11 @@
+uuid: 066f4d08-633e-4f63-b3e5-3560fee7a25a
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.people_listing
+id: paragraph.people_listing
+target_entity_type_id: paragraph
+target_bundle: people_listing
+default_langcode: site_default
+language_alterable: false

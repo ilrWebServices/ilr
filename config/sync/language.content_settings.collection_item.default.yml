@@ -1,0 +1,11 @@
+uuid: 8dddeb9c-92d8-4954-af83-c78ec62d219f
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.default
+id: collection_item.default
+target_entity_type_id: collection_item
+target_bundle: default
+default_langcode: site_default
+language_alterable: false

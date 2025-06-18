@@ -1,0 +1,11 @@
+uuid: 4da12d7d-79c3-4d26-8663-2fd5cb630464
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.course_certificate
+id: node.course_certificate
+target_entity_type_id: node
+target_bundle: course_certificate
+default_langcode: site_default
+language_alterable: false

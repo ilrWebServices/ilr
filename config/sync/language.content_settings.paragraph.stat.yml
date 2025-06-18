@@ -1,0 +1,11 @@
+uuid: ec2c8879-924f-4141-87a6-632d5890b6f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.stat
+id: paragraph.stat
+target_entity_type_id: paragraph
+target_bundle: stat
+default_langcode: site_default
+language_alterable: false

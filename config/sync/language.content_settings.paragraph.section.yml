@@ -1,0 +1,11 @@
+uuid: da185a1c-4c0b-4a98-8a24-1d6b7aebdf10
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.section
+id: paragraph.section
+target_entity_type_id: paragraph
+target_bundle: section
+default_langcode: site_default
+language_alterable: false
