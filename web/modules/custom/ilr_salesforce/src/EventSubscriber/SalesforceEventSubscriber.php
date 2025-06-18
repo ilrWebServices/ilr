@@ -72,6 +72,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     if ($event->getMapping()->id() === 'cahrs_event_node') {
       $query->fields[] = "Close_Web_Registration__c";
       $query->fields[] = "Class_Description__c";
+      $query->fields[] = "Class_Number__c";
     }
 
     if ($event->getMapping()->id() === 'course_certificate_node') {
@@ -354,6 +355,16 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     outreach_marketing_personas:
     EOT;
 
+    // Check if this is a Learning Series.
+    if (str_ends_with($sf->field('Class_Number__c'), 'CLSR')) {
+      // Suppress from event listings.
+      $event_landing_page->behavior_suppress_listing->value = 1;
+      $event_variant = 'cahrs_learning_series';
+    }
+    else {
+      $event_variant = 'cahrs_event';
+    }
+
     /**
      * The default data has trailing spaces, but our editors are configured to
      * remove them, so we calculate the similarity of the default value and the
@@ -366,12 +377,18 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     if (levenshtein($default_default_data, $event_landing_page->field_registration_form->default_data) < 10) {
       $event_landing_page->field_registration_form->default_data = <<<EOT
       # Including an eventid below sends these registrations to Salesforce.
-      variant: cahrs_event
+      variant: $event_variant
       eventid: $sfid
       post_button_text:
       outreach_marketing_personas:
-      # CONFIG (DO NOT DELETE) {"cahrs_session_detail_options":[]}
+      # Class number: {$sf->field('Class_Number__c')}
       EOT;
+
+      if ($event_variant === 'cahrs_event') {
+        $event_landing_page->field_registration_form->default_data .= <<<EOT
+        # CONFIG (DO NOT DELETE) {"cahrs_session_detail_options":[]}
+        EOT;
+      }
     }
 
     // Tag these event landing pages with 'CAHRS Partner Event'.
