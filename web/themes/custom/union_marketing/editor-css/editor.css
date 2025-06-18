@@ -31,3 +31,13 @@ ol.accentuated li::marker {
   color: #B1313B;
   font-weight: bold;
 }
+
+/* The first line is for CKEditor 5 */
+.ck-editor .ck-content hr,
+hr {
+  height: 2px;
+  width: 100px;
+  margin-left: 0;
+  border: none;
+  background: var(--cu-color-brand, #B1313B);
+}

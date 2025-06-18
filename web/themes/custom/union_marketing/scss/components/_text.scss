@@ -83,6 +83,15 @@ span.strong {
   margin-top: 0;
 }
 
+.field--body hr,
+.cu-component--rich-text > hr {
+  height: 2px;
+  width: 100px;
+  margin-left: 0;
+  border: none;
+  background: var(--cu-color-brand);
+}
+
 .cu-heading--column {
   break-before: column;
   -webkit-column-break-before: always;
