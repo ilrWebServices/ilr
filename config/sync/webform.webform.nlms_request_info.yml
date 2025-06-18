@@ -308,7 +308,7 @@ handlers:
     conditions: {  }
     weight: 0
     settings:
-      extra_values: 'Information request'
+      extra_values: "Information request\r\nMarketing Landing Page"
       fields_mapping:
         request_type: Touchpoint_NCRS_Request_Type__c
         first_name: FirstName__c
@@ -325,4 +325,5 @@ handlers:
         'utm_values:utm_term': Touchpoint_UTM_Term__c
         'utm_values:utm_content': Touchpoint_UTM_Content__c
         'Information request': Source__c
+        'Marketing Landing Page': Lead_Source__c
 variants: {  }
