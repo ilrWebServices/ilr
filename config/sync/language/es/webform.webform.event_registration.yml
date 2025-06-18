@@ -35,7 +35,7 @@ elements: |
   actions:
     '#submit__label': 'Regístrate ahora'
 settings:
-  form_close_message: '<p><span class="HwtZe jCAhz ChMk0b ryNqvb" jsname="W297wb" jsaction="click:PDNqTc,GFf3ac,qlVvte;contextmenu:Nqw7Te,QP7LD; mouseout:Nqw7Te; mouseover:PDNqTc,c2aHje" lang="es" jscontroller="BiTO4b">Las inscripciones para este evento han finalizado.</span></p>'
+  form_close_message: '<p>Las inscripciones para este evento han finalizado.</p>'
   confirmation_message: '<p>Gracias por registrarse en [webform_submission:source-title]. Revise su correo electrónico para obtener más información sobre el evento.</p>'
 handlers:
   submission_detail_email:
