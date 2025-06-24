@@ -3,6 +3,7 @@
 namespace Drupal\ilr_salesforce\Plugin\WebformHandler;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\KeyValueStore\KeyValueStoreInterface;
 use Drupal\ilr_analytics_session\IlrAnalyticsSessionManager;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;
@@ -31,6 +32,11 @@ class TouchpointHandler extends WebformHandlerBase {
   protected $sfapi;
 
   /**
+   * A key-value store for Touchpoint SFIDs.
+   */
+  protected KeyValueStoreInterface $sfDataStore;
+
+  /**
    * The logger.
    */
   protected LoggerInterface $logger;
@@ -43,6 +49,7 @@ class TouchpointHandler extends WebformHandlerBase {
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
     $instance->sfapi = $container->get('salesforce.client');
+    $instance->sfDataStore = $container->get('keyvalue')->get('ilr_salesforce.touchpoint.sfid');
     $instance->logger = $container->get('logger.factory')->get('webform_touchpoint');
     $instance->analyticsSessionManager = $container->get('ilr_analytics_session_manager');
     return $instance;
@@ -137,14 +144,41 @@ class TouchpointHandler extends WebformHandlerBase {
   /**
    * {@inheritdoc}
    */
+  public function postLoad(WebformSubmissionInterface $webform_submission) {
+    $notes = $webform_submission->getNotes() ?? '';
+
+    // Add the touchpoint id for this submission to the notes. This is for
+    // temporary display only. It will be removed in self::preSave().
+    if ($touchpoint_sfid = $this->sfDataStore->get($webform_submission->id())) {
+      $webform_submission->setNotes($notes . $this->formatMapNote($touchpoint_sfid));
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preSave(WebformSubmissionInterface $webform_submission) {
+    $notes = $webform_submission->getNotes() ?? '';
+
+    // Remove the touchpoint id from the submission notes to prevent duplicate
+    // values. This value was added in self::postLoad() for informational use.
+    if (preg_match_all('/(\s?)+{ Touchpoint: \w+ }/m', $notes, $matches, PREG_SET_ORDER, 0)) {
+      $webform_submission->setNotes(preg_replace('/(\s?)+{ Touchpoint: \w+ }/m', '', $notes));
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function postSave(WebformSubmissionInterface $webform_submission, $update = TRUE) {
     $notes = $webform_submission->getNotes();
 
     // Check the notes to see if we've sent this submission.
-    if (strpos($notes, 'Touchpoint:') !== FALSE) {
+    if (strpos($notes ?? '', 'Touchpoint:') !== FALSE) {
       return;
     }
 
+    // TODO: Figure out why the data is slightly different when submitting via the Edit and Notes forms. In our case, the `Texting_Opt_In__c` field is sometimes a string and sometimes an int.
     $data = $webform_submission->getData();
     $touchpoint_vars = $this->createMergeVars($data);
 
@@ -153,10 +187,9 @@ class TouchpointHandler extends WebformHandlerBase {
 
     try {
       $sf_results = $this->sfapi->apiCall('sobjects/Touchpoint__c', $touchpoint_vars, 'POST');
-      $webform_submission->setNotes($notes . ' Touchpoint: ' . $sf_results['id']);
 
       // Save to store the notes.
-      $webform_submission->save();
+      $this->sfDataStore->set($webform_submission->id(), $sf_results['id']);
 
       $this->logger->info('Touchpoint %id created for submission @webform_submission.', [
         '@webform_submission' => $webform_submission->id(),
@@ -244,6 +277,17 @@ class TouchpointHandler extends WebformHandlerBase {
     }
 
     return $merge_vars;
+  }
+
+  /**
+   * Format a string of the submission to Touchpoint SFID.
+   *
+   * @param string $sfid
+   *
+   * @return string A formatted string for inclusion in a submission note.
+   */
+  private function formatMapNote(string $sfid): string {
+    return sprintf("\n{ Touchpoint: %s }", trim($sfid));
   }
 
 }
