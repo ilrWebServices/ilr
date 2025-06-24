@@ -50,6 +50,13 @@ elements: |-
     '#type': webform_variant
     '#title': 'Handler Variant'
     '#variant': override
+  touchpoint_source:
+    '#type': hidden
+    '#title': 'Touchpoint source'
+    '#default_value': 'Information request'
+  grad_program_of_interest:
+    '#type': hidden
+    '#title': 'Grad program of interest'
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
@@ -303,7 +310,7 @@ handlers:
     conditions: {  }
     weight: 2
     settings:
-      extra_values: "Information request\r\nMarketing Landing Page"
+      extra_values: 'Marketing Landing Page'
       fields_mapping:
         email: Email__c
         first_name: FirstName__c
@@ -315,7 +322,8 @@ handlers:
         'utm_values:utm_campaign': Touchpoint_UTM_Campaign__c
         'utm_values:utm_term': Touchpoint_UTM_Term__c
         'utm_values:utm_content': Touchpoint_UTM_Content__c
-        'Information request': Source__c
+        touchpoint_source: Source__c
+        grad_program_of_interest: Graduate_Program_of_Interest__c
         'Marketing Landing Page': Lead_Source__c
 variants:
   zapier_295202085:
