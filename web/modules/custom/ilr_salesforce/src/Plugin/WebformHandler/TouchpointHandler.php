@@ -162,8 +162,9 @@ class TouchpointHandler extends WebformHandlerBase {
 
     // Remove the touchpoint id from the submission notes to prevent duplicate
     // values. This value was added in self::postLoad() for informational use.
-    if (preg_match_all('/(\s?)+{ Touchpoint: \w+ }/m', $notes, $matches, PREG_SET_ORDER, 0)) {
-      $webform_submission->setNotes(preg_replace('/(\s?)+{ Touchpoint: \w+ }/m', '', $notes));
+    // https://regex101.com/r/bdoJLa/1
+    if (preg_match_all('/\s*{ Touchpoint: \w+ }/m', $notes, $matches, PREG_SET_ORDER, 0)) {
+      $webform_submission->setNotes(preg_replace('/\s*{ Touchpoint: \w+ }/m', '', $notes));
     }
   }
 
