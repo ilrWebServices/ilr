@@ -100,7 +100,7 @@ class TouchpointHandler extends WebformHandlerBase {
       '#type' => 'textarea',
       '#title' => $this->t('Extra values'),
       '#default_value' => $this->configuration['extra_values'],
-      '#description' => $this->t('Define extra values to map. One value per line. Only after saving this handler, values will be available in the mappings-field to map with a SalesForce-field.'),
+      '#description' => $this->t('Define extra values (AKA constants) to map. One value per line. Only after saving this handler, values will be available in the mappings-field to map with a SalesForce-field. To use webform_submission tokens, use the format token(webform_submission:url)'),
     ];
 
     $form['fields_mapping'] = [
@@ -109,7 +109,7 @@ class TouchpointHandler extends WebformHandlerBase {
       '#title_display' => 'invisible',
       '#webform_id' => $webform->id(),
       '#required' => FALSE,
-      '#description' => $this->t('Please map webform fields to Salesforce Touchpoint fields. Use a pipe to map to multiple fields.'),
+      '#description' => $this->t('Please map webform fields to Salesforce Touchpoint fields.'),
       '#description_display' => 'before',
       '#default_value' => $this->configuration['fields_mapping'],
       '#source' => $this->getWebformMappingOptions(),
@@ -265,14 +265,23 @@ class TouchpointHandler extends WebformHandlerBase {
           $merge_vars[$destination_key] = $values[$submission_key];
         }
       }
-      elseif (strpos($submission_key, ':') !== FALSE) {
-        // Composite element.
+      // Composite element.
+      elseif (strpos($submission_key, ':') !== FALSE && strpos($submission_key, 'token(') === FALSE) {
         list($submission_key_1, $submission_key_2) = explode(':', $submission_key);
         $merge_vars[$destination_key] = $values[$submission_key_1][$submission_key_2] ?? NUll;
       }
+      // Add extra mapping values.
       elseif (in_array($submission_key, preg_split('/\r\n|\r|\n/', $extra_values))) {
-        // Add extra mapping values.
-        $merge_vars[$destination_key] = $submission_key;
+        if (strpos($submission_key, 'token(') !== FALSE) {
+          $tokenified_submission_key = preg_replace('/token\((.*)\)/mU', '[$1]', $submission_key);
+          $token_manager = \Drupal::service('webform.token_manager');
+          $webform_submission = $this->getWebformSubmission();
+          $token_data['webform_submission'] = $webform_submission;
+          $merge_vars[$destination_key] = $token_manager->replace($tokenified_submission_key, $webform_submission, $token_data);
+        }
+        else {
+          $merge_vars[$destination_key] = $submission_key;
+        }
       }
     }
 

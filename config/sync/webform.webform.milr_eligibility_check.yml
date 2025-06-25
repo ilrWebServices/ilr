@@ -127,18 +127,6 @@ elements: |-
     '#display_on': view
     '#mode': text
     '#template': "{{ data.employer ? data.employer|raw : 'NONE PROVIDED' }}"
-  resume_url:
-    '#type': webform_computed_twig
-    '#title': 'Resume URL'
-    '#display_on': view
-    '#mode': text
-    '#template': "{{ webform_token('[webform_submission:values:resume:entity:url]', webform_submission)|replace({'www.ilr.cornell.edu': 'd8-edit.ilr.cornell.edu'}) }}"
-  submission_url:
-    '#type': webform_computed_twig
-    '#title': 'Submission URL'
-    '#display_on': view
-    '#mode': text
-    '#template': "{{ webform_token('[webform_submission:url]', webform_submission)|replace({'www.ilr.cornell.edu': 'd8-edit.ilr.cornell.edu'}) }}"
   utm_values:
     '#type': utm_values
   ga_client_id:
@@ -395,7 +383,7 @@ handlers:
     conditions: {  }
     weight: 0
     settings:
-      extra_values: "Graduate Programs\r\nMILR\r\n1"
+      extra_values: "Graduate Programs\r\nMILR\r\n1\r\ntoken(webform_submission:values:resume:entity:url)\r\ntoken(webform_submission:url)"
       fields_mapping:
         first_name: FirstName__c
         last_name: LastName__c
@@ -405,7 +393,6 @@ handlers:
         experience_years: Years_of_Experience__c
         'linkedin_profile_url:url': LinkedIn_Profile_URL__c
         company: Company__c
-        resume_url: Resume__c
         'utm_values:utm_source': Touchpoint_UTM_Source__c
         'utm_values:utm_medium': Touchpoint_UTM_Medium__c
         'utm_values:utm_campaign': Touchpoint_UTM_Campaign__c
@@ -415,4 +402,6 @@ handlers:
         'Graduate Programs': Source__c
         MILR: Graduate_Program_of_Interest__c
         1: Is_Pre_assessment__c
+        'token(webform_submission:values:resume:entity:url)': Resume__c
+        'token(webform_submission:url)': Web_Form_Submission_URL__c
 variants: {  }
