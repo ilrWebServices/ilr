@@ -172,10 +172,8 @@ class TouchpointHandler extends WebformHandlerBase {
    * {@inheritdoc}
    */
   public function postSave(WebformSubmissionInterface $webform_submission, $update = TRUE) {
-    $notes = $webform_submission->getNotes();
-
-    // Check the notes to see if we've sent this submission.
-    if (strpos($notes ?? '', 'Touchpoint:') !== FALSE) {
+    // Check the key-value store to see if we've sent this submission.
+    if ($this->sfDataStore->get($webform_submission->id())) {
       return;
     }
 
