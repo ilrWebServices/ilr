@@ -65,6 +65,10 @@ elements: |-
   grad_program_of_interest:
     '#type': hidden
     '#title': 'Grad program of interest'
+  lead_source:
+    '#type': hidden
+    '#title': 'Lead source'
+    '#default_value': 'Marketing Landing Page'
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
@@ -317,7 +321,7 @@ handlers:
     conditions: {  }
     weight: 2
     settings:
-      extra_values: "Marketing Landing Page\r\nNONE PROVIDED"
+      extra_values: 'NONE PROVIDED'
       fields_mapping:
         email: Email__c
         first_name: FirstName__c
@@ -333,7 +337,7 @@ handlers:
         touchpoint_source: Source__c
         grad_program_of_interest: Graduate_Program_of_Interest__c
         ga_client_id: GAClientID__c
-        'Marketing Landing Page': Lead_Source__c
+        lead_source: Lead_Source__c
         'NONE PROVIDED': Company__c
 variants:
   zapier_295202085:
