@@ -15,9 +15,10 @@ uid: 1
 template: false
 archive: false
 id: grad_info_request
-title: 'Graduate Programs Information Request'
-description: ''
+title: '(Deprecated) Graduate Programs Information Request'
+description: '<p>This has been replaced with the request_info form.</p>'
 categories:
+  - Deprecated
   - 'graduate programs'
 elements: |-
   first_name:
@@ -59,6 +60,11 @@ elements: |-
     '#template': "{{ webform_token('[webform_submission:url]', webform_submission)|replace({'www.ilr.cornell.edu': 'd8-edit.ilr.cornell.edu'}) }}"
   utm_values:
     '#type': utm_values
+  ga_client_id:
+    '#type': hidden
+    '#title': 'GA client id'
+    '#attributes':
+      id: ga_client_id
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'

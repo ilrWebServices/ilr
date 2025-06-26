@@ -70,6 +70,11 @@ elements: |-
     '#prepopulate': true
   utm_values:
     '#type': utm_values
+  ga_client_id:
+    '#type': hidden
+    '#title': 'GA client id'
+    '#attributes':
+      id: ga_client_id
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
@@ -324,6 +329,7 @@ handlers:
         'utm_values:utm_campaign': Touchpoint_UTM_Campaign__c
         'utm_values:utm_term': Touchpoint_UTM_Term__c
         'utm_values:utm_content': Touchpoint_UTM_Content__c
+        ga_client_id: GAClientID__c
         'Information request': Source__c
         'Marketing Landing Page': Lead_Source__c
 variants: {  }

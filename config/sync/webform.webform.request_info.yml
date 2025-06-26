@@ -40,12 +40,20 @@ elements: |-
       '#type': tel
       '#title': 'Mobile phone'
       '#required': true
+    texting_opt_in:
+      '#type': checkbox
+      '#title': "I'd like to receive texts."
   outreach_marketing_personas:
     '#type': hidden
     '#title': outreach_marketing_personas
     '#prepopulate': true
   utm_values:
     '#type': utm_values
+  ga_client_id:
+    '#type': hidden
+    '#title': 'GA client id'
+    '#attributes':
+      id: ga_client_id
   variant_handler:
     '#type': webform_variant
     '#title': 'Handler Variant'
@@ -57,6 +65,14 @@ elements: |-
   grad_program_of_interest:
     '#type': hidden
     '#title': 'Grad program of interest'
+  variant_display:
+    '#type': webform_variant
+    '#title': 'Variant display'
+    '#variant': override
+  lead_source:
+    '#type': hidden
+    '#title': 'Lead source'
+    '#default_value': 'Marketing Landing Page'
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
@@ -64,7 +80,6 @@ elements: |-
     '#submit__attributes':
       class:
         - cu-button
-        - cu-button--alt
 css: ''
 javascript: ''
 settings:
@@ -172,7 +187,7 @@ settings:
   confirmation_type: inline
   confirmation_url: ''
   confirmation_title: ''
-  confirmation_message: '<p>Thanks!</p>'
+  confirmation_message: '<p>Thank you for your interest! We will be in touch soon with more information.</p>'
   confirmation_attributes: {  }
   confirmation_back: false
   confirmation_back_label: ''
@@ -310,21 +325,23 @@ handlers:
     conditions: {  }
     weight: 2
     settings:
-      extra_values: "Marketing Landing Page\r\nNONE PROVIDED"
+      extra_values: 'NONE PROVIDED'
       fields_mapping:
         email: Email__c
         first_name: FirstName__c
         last_name: LastName__c
         phone: Phone__c
+        texting_opt_in: Texting_Opt_In__c
         outreach_marketing_personas: Touchpoint_EMPS__c
         'utm_values:utm_source': Touchpoint_UTM_Source__c
         'utm_values:utm_medium': Touchpoint_UTM_Medium__c
         'utm_values:utm_campaign': Touchpoint_UTM_Campaign__c
         'utm_values:utm_term': Touchpoint_UTM_Term__c
         'utm_values:utm_content': Touchpoint_UTM_Content__c
+        ga_client_id: GAClientID__c
         touchpoint_source: Source__c
         grad_program_of_interest: Graduate_Program_of_Interest__c
-        'Marketing Landing Page': Lead_Source__c
+        lead_source: Lead_Source__c
         'NONE PROVIDED': Company__c
 variants:
   zapier_295202085:
@@ -342,3 +359,16 @@ variants:
       handlers:
         zapier_295202085:
           status: true
+  embedded:
+    id: override
+    variant_id: embedded
+    element_key: variant_display
+    label: Embedded
+    notes: 'Hides the title, mainly.'
+    status: true
+    weight: 0
+    settings:
+      debug: false
+      settings: {  }
+      elements: "request_info:\r\n  '#title': ''"
+      handlers: {  }

@@ -3,6 +3,7 @@
 namespace Drupal\ilr_salesforce\Plugin\WebformHandler;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\KeyValueStore\KeyValueStoreInterface;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;
 use Psr\Log\LoggerInterface;
@@ -30,6 +31,11 @@ class TouchpointHandler extends WebformHandlerBase {
   protected $sfapi;
 
   /**
+   * A key-value store for Touchpoint SFIDs.
+   */
+  protected KeyValueStoreInterface $sfDataStore;
+
+  /**
    * The logger.
    */
   protected LoggerInterface $logger;
@@ -40,7 +46,8 @@ class TouchpointHandler extends WebformHandlerBase {
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
     $instance->sfapi = $container->get('salesforce.client');
-    $instance->logger = $container->get('logger.factory')->get('webform_email_confirm');
+    $instance->sfDataStore = $container->get('keyvalue')->get('ilr_salesforce.touchpoint.sfid');
+    $instance->logger = $container->get('logger.factory')->get('webform_touchpoint');
     return $instance;
   }
 
@@ -64,12 +71,32 @@ class TouchpointHandler extends WebformHandlerBase {
     $webform = $this->getWebform();
 
     $this->applyFormStateToConfiguration($form_state);
+    $touchpoint_fields = [];
+
+    try {
+      $object_description = $this->sfapi->objectDescribe('Touchpoint__c');
+
+      if (!is_object($object_description)) {
+        throw new \Exception('Could not load info for Touchpoint__c.');
+      }
+
+      foreach ($object_description->getFields() as $field => $data) {
+        $touchpoint_fields[$field] = sprintf('%s (%s)', $data['label'], $data['name']);
+      }
+
+      asort($touchpoint_fields);
+    }
+    catch (\Exception $e) {
+      $this->logger->error('Touchpoint handler error: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+    }
 
     $form['extra_values'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Extra values'),
       '#default_value' => $this->configuration['extra_values'],
-      '#description' => $this->t('Define extra values to map. One value per line. Only after saving this handler, values will be available in the mappings-field to map with a SalesForce-field.'),
+      '#description' => $this->t('Define extra values (AKA constants) to map. One value per line. Only after saving this handler, values will be available in the mappings-field to map with a SalesForce-field. To use webform_submission tokens, use the format token(webform_submission:url)'),
     ];
 
     $form['fields_mapping'] = [
@@ -78,10 +105,12 @@ class TouchpointHandler extends WebformHandlerBase {
       '#title_display' => 'invisible',
       '#webform_id' => $webform->id(),
       '#required' => FALSE,
-      '#description' => $this->t('Please map webform fields to Salesforce Touchpoint fields. Use a pipe to map to multiple fields.'),
+      '#description' => $this->t('Please map webform fields to Salesforce Touchpoint fields.'),
       '#description_display' => 'before',
       '#default_value' => $this->configuration['fields_mapping'],
       '#source' => $this->getWebformMappingOptions(),
+      '#destination__type' => 'select',
+      '#destination' => $touchpoint_fields,
     ];
 
     return $this->setSettingsParents($form);
@@ -98,14 +127,40 @@ class TouchpointHandler extends WebformHandlerBase {
   /**
    * {@inheritdoc}
    */
-  public function postSave(WebformSubmissionInterface $webform_submission, $update = TRUE) {
-    $notes = $webform_submission->getNotes();
+  public function postLoad(WebformSubmissionInterface $webform_submission) {
+    $notes = $webform_submission->getNotes() ?? '';
 
-    // Check the notes to see if we've sent this submission
-    if (strpos($notes, 'Touchpoint:') !== FALSE) {
+    // Add the touchpoint id for this submission to the notes. This is for
+    // temporary display only. It will be removed in self::preSave().
+    if ($touchpoint_sfid = $this->sfDataStore->get($webform_submission->id())) {
+      $webform_submission->setNotes($notes . $this->formatMapNote($touchpoint_sfid));
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preSave(WebformSubmissionInterface $webform_submission) {
+    $notes = $webform_submission->getNotes() ?? '';
+
+    // Remove the touchpoint id from the submission notes to prevent duplicate
+    // values. This value was added in self::postLoad() for informational use.
+    // https://regex101.com/r/bdoJLa/1
+    if (preg_match_all('/\s*{ Touchpoint: \w+ }/m', $notes, $matches, PREG_SET_ORDER, 0)) {
+      $webform_submission->setNotes(preg_replace('/\s*{ Touchpoint: \w+ }/m', '', $notes));
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function postSave(WebformSubmissionInterface $webform_submission, $update = TRUE) {
+    // Check the key-value store to see if we've sent this submission.
+    if ($this->sfDataStore->get($webform_submission->id())) {
       return;
     }
 
+    // TODO: Figure out why the data is slightly different when submitting via the Edit and Notes forms. In our case, the `Texting_Opt_In__c` field is sometimes a string and sometimes an int.
     $data = $webform_submission->getData();
     $touchpoint_vars = $this->createMergeVars($data);
 
@@ -114,13 +169,17 @@ class TouchpointHandler extends WebformHandlerBase {
 
     try {
       $sf_results = $this->sfapi->apiCall('sobjects/Touchpoint__c', $touchpoint_vars, 'POST');
-      $webform_submission->setNotes($notes . ' Touchpoint: ' . $sf_results['id']);
 
       // Save to store the notes.
-      $webform_submission->save();
+      $this->sfDataStore->set($webform_submission->id(), $sf_results['id']);
+
+      $this->logger->info('Touchpoint %id created for submission @webform_submission.', [
+        '@webform_submission' => $webform_submission->id(),
+        '%id' => $sf_results['id'],
+      ]);
     }
     catch (\Exception $e) {
-      $this->logger->notice('Touchpoint handler error for webform submission @webform_submission: @message', [
+      $this->logger->error('Touchpoint handler error for webform submission @webform_submission: @message', [
         '@webform_submission' => $webform_submission->id(),
         '@message' => $e->getMessage(),
       ]);
@@ -188,18 +247,38 @@ class TouchpointHandler extends WebformHandlerBase {
           $merge_vars[$destination_key] = $values[$submission_key];
         }
       }
-      elseif (strpos($submission_key, ':') !== FALSE) {
-        // Composite element.
+      // Composite element.
+      elseif (strpos($submission_key, ':') !== FALSE && strpos($submission_key, 'token(') === FALSE) {
         list($submission_key_1, $submission_key_2) = explode(':', $submission_key);
         $merge_vars[$destination_key] = $values[$submission_key_1][$submission_key_2] ?? NUll;
       }
+      // Add extra mapping values.
       elseif (in_array($submission_key, preg_split('/\r\n|\r|\n/', $extra_values))) {
-        // Add extra mapping values.
-        $merge_vars[$destination_key] = $submission_key;
+        if (strpos($submission_key, 'token(') !== FALSE) {
+          $tokenified_submission_key = preg_replace('/token\((.*)\)/mU', '[$1]', $submission_key);
+          $token_manager = \Drupal::service('webform.token_manager');
+          $webform_submission = $this->getWebformSubmission();
+          $token_data['webform_submission'] = $webform_submission;
+          $merge_vars[$destination_key] = $token_manager->replace($tokenified_submission_key, $webform_submission, $token_data);
+        }
+        else {
+          $merge_vars[$destination_key] = $submission_key;
+        }
       }
     }
 
     return $merge_vars;
+  }
+
+  /**
+   * Format a string of the submission to Touchpoint SFID.
+   *
+   * @param string $sfid
+   *
+   * @return string A formatted string for inclusion in a submission note.
+   */
+  private function formatMapNote(string $sfid): string {
+    return sprintf("\n{ Touchpoint: %s }", trim($sfid));
   }
 
 }

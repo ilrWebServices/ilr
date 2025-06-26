@@ -67,6 +67,7 @@ module:
   footnotes: 0
   honeypot: 0
   ilr: 0
+  ilr_analytics_session: 0
   ilr_auth_access: 0
   ilr_campaigns: 0
   ilr_effects: 0
@@ -110,6 +111,7 @@ module:
   migrate_scheduler: 0
   migrate_source_csv: 0
   migrate_tools: 0
+  monolog: 0
   multiple_selects: 0
   mysql: 0
   node: 0

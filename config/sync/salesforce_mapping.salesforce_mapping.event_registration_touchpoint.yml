@@ -15,7 +15,7 @@ push_limit: 70
 push_retries: 3
 pull_where_clause: ''
 pull_record_type_filter:
-  Master: 0
+  Master: '0'
 sync_triggers:
   push_create: true
   push_update: false
@@ -131,6 +131,13 @@ field_mappings:
     direction: drupal_sf
     salesforce_field: ADA_Accommodations__c
     id: 14
+    description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[site:analytics_session_id]'
+    direction: drupal_sf
+    salesforce_field: GAClientID__c
+    id: 15
     description: ''
 status: true
 dependencies:

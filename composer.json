@@ -51,6 +51,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/ilrWebServices/sftp_client.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/ilrWebServices/ilr-analytics-session.git"
     }
   ],
   "require": {
@@ -86,6 +90,7 @@
     "drupal/footnotes": "^3.0",
     "drupal/google_tag": "^2.0",
     "drupal/honeypot": "2.1.4",
+    "drupal/ilr_analytics_session": "dev-main",
     "drupal/ilr_outreach_discount_api": "^1",
     "drupal/ilr_outreach_order_submitter": "1.x-dev",
     "drupal/imagecache_external": "^3.0",
@@ -104,6 +109,7 @@
     "drupal/migrate_scheduler": "^1.0@RC",
     "drupal/migrate_source_csv": "^3.5",
     "drupal/migrate_tools": "^6.0",
+    "drupal/monolog": "^3.0",
     "drupal/multiple_selects": "^1.2",
     "drupal/paragraphs": "^1.9",
     "drupal/paragraphs_previewer": "^1.4",

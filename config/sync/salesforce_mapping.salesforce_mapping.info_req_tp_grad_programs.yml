@@ -16,7 +16,7 @@ push_retries: 3
 pull_where_clause: ''
 pull_record_type_filter: {  }
 sync_triggers:
-  push_create: true
+  push_create: false
   push_update: false
   push_delete: false
   pull_create: false
@@ -131,12 +131,18 @@ field_mappings:
     salesforce_field: Lead_Source__c
     id: 14
     description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[site:analytics_session_id]'
+    direction: drupal_sf
+    salesforce_field: GAClientID__c
+    id: 15
+    description: ''
 status: true
 dependencies:
   config:
     - webform.webform.grad_info_request
   module:
-    - salesforce_push
     - salesforce_webform
     - token
 uuid: 7fec766e-1c24-4461-840d-09f902cf3b11

@@ -103,6 +103,13 @@ field_mappings:
     salesforce_field: Touchpoint_EMPS__c
     id: 10
     description: ''
+  -
+    drupal_field_type: Token
+    drupal_field_value: '[site:analytics_session_id]'
+    direction: drupal_sf
+    salesforce_field: GAClientID__c
+    id: 11
+    description: ''
 status: true
 dependencies:
   config:
