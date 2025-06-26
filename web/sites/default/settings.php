@@ -954,20 +954,6 @@ if (!empty(getenv('SAMLAUTH_SP_PRIVATE_KEY'))) {
 }
 
 /**
- * MailChimp API settings
- *
- * Bogus data for the service provider private key is stored in config. The real
- * value should be added to the environment.
- */
-if (!empty(getenv('MAILCHIMP_API_KEY'))) {
-  $config['mailchimp.settings']['api_key'] = getenv('MAILCHIMP_API_KEY');
-}
-
-if (!empty(getenv('MAILCHIMP_WEBHOOK_HASH'))) {
-  $config['mailchimp.settings']['webhook_hash'] = getenv('MAILCHIMP_WEBHOOK_HASH');
-}
-
-/**
  * Campaign Monitor API settings.
  *
  * A bogus value for the api key is stored in config. The real value should be
