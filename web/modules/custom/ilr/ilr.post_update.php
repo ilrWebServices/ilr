@@ -395,3 +395,99 @@ function ilr_post_update_merge_dupe_event_sponsors(&$sandbox) {
     $term_storage->delete($dupe_terms);
   }
 }
+
+/**
+ * Update the NCRS collection bundle from content_section to subsite_blog.
+ */
+function ilr_post_update_convert_ncrs_to_subsite(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $collection = $entity_type_manager->getStorage('collection')->load(72);
+  $collection_machine_name = 'subsite-' . $collection->id();
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+
+  // Create the subsite menu.
+  $menu = $entity_type_manager->getStorage('menu')->create([
+    'langcode' => 'en',
+    'status' => TRUE,
+    'id' => $collection_machine_name,
+    'label' => $collection->label() . ' subsite main navigation',
+    'description' => 'Auto-generated menu for ' . $collection->label() . ' subsite',
+  ]);
+  $menu->save();
+
+  // Move the old menu_link_content items to the new menu.
+  $mlc_query = $entity_type_manager->getStorage('menu_link_content')->getQuery();
+  $mlc_query->accessCheck(FALSE);
+  $mlc_query->condition('menu_name', 'section-72');
+  $mlc_results = $mlc_query->execute();
+  $mlc_entities = $entity_type_manager->getStorage('menu_link_content')->loadMultiple($mlc_results);
+
+  foreach ($mlc_entities as $mlc_entity) {
+    $mlc_entity->menu_name = 'subsite-72';
+    $mlc_entity->save();
+  }
+
+  // Add the menu to the collection.
+  $collection_item_menu = $collection_item_storage->create([
+    'type' => 'default',
+    'collection' => $collection->id(),
+    'weight' => 10,
+  ]);
+  $collection_item_menu->item = $menu;
+  $collection_item_menu->setAttribute('subsite_collection_id', $collection->id());
+  $collection_item_menu->save();
+
+  // Create a block visibility group.
+  $bvg_storage = $entity_type_manager->getStorage('block_visibility_group');
+  $bvg = $bvg_storage->create([
+    'label' => $collection->label() . ' subsite',
+    'id' => str_replace('-', '_', $collection_machine_name),
+    'logic' => 'and',
+  ]);
+
+  // Add the subsite collection path to the BVG as a condition.
+  $bvg->addCondition([
+    'id' => 'request_path',
+    'pages' => $collection->toUrl()->toString() . '*',
+    'negate' => FALSE,
+    'context_mapping' => [],
+  ]);
+
+  $bvg->save();
+
+  // Add the bvg to this new collection.
+  $collection_item_bvg = $collection_item_storage->create([
+    'type' => 'default',
+    'collection' => $collection->id(),
+    'weight' => 10,
+  ]);
+  $collection_item_bvg->item = $bvg;
+  $collection_item_bvg->setAttribute('subsite_collection_id', $collection->id());
+  $collection_item_bvg->save();
+
+  // Add the new menu block to the header region of the new
+  // block visibility group.
+  $block_storage = $entity_type_manager->getStorage('block');
+  $default_theme = \Drupal::service('theme_handler')->getDefault();
+  $subsite_menu_block = $block_storage->create([
+    'id' => $default_theme . '_menu_' . str_replace('-', '_', $collection_machine_name),
+    'plugin' => 'system_menu_block:' . $collection_machine_name,
+    'theme' => $default_theme,
+    'region' => 'header',
+    'settings' => [
+      'label' => $collection->label() . ' menu block',
+      'label_display' => FALSE,
+    ],
+    'weight' => 100,
+  ]);
+  $subsite_menu_block->setVisibilityConfig('condition_group', [
+    'id' => 'condition_group',
+    'negate' => FALSE,
+    'block_visibility_group' => $bvg->id(),
+  ]);
+  $subsite_menu_block->save();
+
+  // Update the collection type.
+  $collection->type = 'subsite_blog';
+  $collection->save();
+}
