@@ -40,6 +40,9 @@ elements: |-
       '#type': tel
       '#title': 'Mobile phone'
       '#required': true
+    texting_opt_in:
+      '#type': checkbox
+      '#title': "I'd like to receive texts."
   outreach_marketing_personas:
     '#type': hidden
     '#title': outreach_marketing_personas
@@ -320,6 +323,7 @@ handlers:
         first_name: FirstName__c
         last_name: LastName__c
         phone: Phone__c
+        texting_opt_in: Texting_Opt_In__c
         outreach_marketing_personas: Touchpoint_EMPS__c
         'utm_values:utm_source': Touchpoint_UTM_Source__c
         'utm_values:utm_medium': Touchpoint_UTM_Medium__c
