@@ -16,8 +16,9 @@ template: false
 archive: false
 id: grad_info_request
 title: 'Graduate Programs Information Request'
-description: ''
+description: '<p>This has been replaced with the request_info form.</p>'
 categories:
+  - Deprecated
   - 'graduate programs'
 elements: |-
   first_name:
