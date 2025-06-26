@@ -155,3 +155,19 @@ function ilr_deploy_transform_grad_lead_mapped_objects(&$sandbox) {
     $mapped_object->delete();
   }
 }
+
+/**
+ * Remove broken CJI mapped objects (incorrectly wired up to GLI submissions)
+ */
+function ilr_deploy_remove_cji_mapped_objects(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $mapped_object_storage = $entity_type_manager->getStorage('salesforce_mapped_object');
+
+  $mapped_objects = $mapped_object_storage->loadByProperties([
+    'salesforce_mapping' => [
+      'info_req_tp_cji',
+    ],
+  ]);
+
+  $mapped_object_storage->delete($mapped_objects);
+}
