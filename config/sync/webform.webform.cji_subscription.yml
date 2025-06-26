@@ -168,7 +168,7 @@ settings:
   confirmation_type: message
   confirmation_url: ''
   confirmation_title: ''
-  confirmation_message: 'Thank you for subscribing to the Global Labor Institute mailing list!'
+  confirmation_message: '<p>Thank you for subscribing to the Climate Jobs Institute mailing list!</p>'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -254,7 +254,7 @@ handlers:
     conditions: {  }
     weight: 0
     settings:
-      extra_values: CJI
+      extra_values: "CJI\r\nInformation Request"
       fields_mapping:
         first_name: FirstName__c
         last_name: LastName__c
@@ -266,4 +266,5 @@ handlers:
         'utm_values:utm_content': Touchpoint_UTM_Content__c
         ga_client_id: GAClientID__c
         CJI: Touchpoint_EMPS__c
+        'Information Request': Source__c
 variants: {  }
