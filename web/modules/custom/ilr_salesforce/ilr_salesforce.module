@@ -53,3 +53,20 @@ function ilr_salesforce_form_node_form_alter(&$form, FormStateInterface $form_st
   $form_state->set(['inline_entity_form'], []);
 
 }
+
+/**
+ * Implements hook_webform_element_alter().
+ *   Set the ga_client_id here instead of using the TouchpointHandler. We do
+ *   this because the element might be used on forms that are not using the
+ *   TouchpointHandler, and we'd still like to get the value.
+ */
+function ilr_salesforce_webform_element_alter(array &$element, FormStateInterface $form_state, array $context) {
+  if (isset($element['#webform_submission']) || empty($element['#webform_key'])) {
+    return;
+  }
+
+  if ($element['#webform_key'] === 'ga_client_id') {
+    $analytics_session_manager = Drupal::service('ilr_analytics_session_manager');
+    $element['#default_value'] = $analytics_session_manager->getClientId();
+  }
+}

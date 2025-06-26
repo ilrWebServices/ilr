@@ -4,7 +4,6 @@ namespace Drupal\ilr_salesforce\Plugin\WebformHandler;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\KeyValueStore\KeyValueStoreInterface;
-use Drupal\ilr_analytics_session\IlrAnalyticsSessionManager;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;
 use Psr\Log\LoggerInterface;
@@ -41,8 +40,6 @@ class TouchpointHandler extends WebformHandlerBase {
    */
   protected LoggerInterface $logger;
 
-  protected IlrAnalyticsSessionManager $analyticsSessionManager;
-
   /**
    * {@inheritdoc}
    */
@@ -51,7 +48,6 @@ class TouchpointHandler extends WebformHandlerBase {
     $instance->sfapi = $container->get('salesforce.client');
     $instance->sfDataStore = $container->get('keyvalue')->get('ilr_salesforce.touchpoint.sfid');
     $instance->logger = $container->get('logger.factory')->get('webform_touchpoint');
-    $instance->analyticsSessionManager = $container->get('ilr_analytics_session_manager');
     return $instance;
   }
 
@@ -126,19 +122,6 @@ class TouchpointHandler extends WebformHandlerBase {
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
     parent::submitConfigurationForm($form, $form_state);
     $this->applyFormStateToConfiguration($form_state);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function preCreate(array &$values) {
-    // Set the ga_client_id here instead of using a token in the default value
-    // for the hidden field. We do this because the default value is also used
-    // when viewing submissions that don't have a value for this element.
-    // TODO: Consider doing this in a separate handler, since some forms submit via salesforce_mappings.
-    if ($this->getWebform()->getElement('ga_client_id')) {
-      $values['data']['ga_client_id'] = $this->analyticsSessionManager->getClientId();
-    }
   }
 
   /**
