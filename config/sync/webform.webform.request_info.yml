@@ -183,7 +183,7 @@ settings:
   confirmation_type: inline
   confirmation_url: ''
   confirmation_title: ''
-  confirmation_message: '<p>Thanks!</p>'
+  confirmation_message: '<p>Thank you for your interest! We will be in touch soon with more information.</p>'
   confirmation_attributes: {  }
   confirmation_back: false
   confirmation_back_label: ''
@@ -334,9 +334,9 @@ handlers:
         'utm_values:utm_campaign': Touchpoint_UTM_Campaign__c
         'utm_values:utm_term': Touchpoint_UTM_Term__c
         'utm_values:utm_content': Touchpoint_UTM_Content__c
+        ga_client_id: GAClientID__c
         touchpoint_source: Source__c
         grad_program_of_interest: Graduate_Program_of_Interest__c
-        ga_client_id: GAClientID__c
         lead_source: Lead_Source__c
         'NONE PROVIDED': Company__c
 variants:
