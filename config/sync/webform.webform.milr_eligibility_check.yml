@@ -383,7 +383,7 @@ handlers:
     conditions: {  }
     weight: 0
     settings:
-      extra_values: "Graduate Programs\r\nMILR\r\n1\r\ntoken(webform_submission:values:resume:entity:url)\r\ntoken(webform_submission:url)"
+      extra_values: "Graduate Programs\r\nPre-assessment\r\nMILR\r\n1\r\ntoken(webform_submission:values:resume:entity:url)\r\ntoken(webform_submission:url)"
       fields_mapping:
         first_name: FirstName__c
         last_name: LastName__c
@@ -400,6 +400,7 @@ handlers:
         'utm_values:utm_content': Touchpoint_UTM_Content__c
         ga_client_id: GAClientID__c
         'Graduate Programs': Source__c
+        Pre-assessment: Lead_Source__c
         MILR: Graduate_Program_of_Interest__c
         1: Is_Pre_assessment__c
         'token(webform_submission:values:resume:entity:url)': Resume__c
