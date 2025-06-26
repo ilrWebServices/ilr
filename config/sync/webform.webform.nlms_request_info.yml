@@ -273,7 +273,7 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: jr2479@cornell.edu
+      to_mail: ncrs@cornell.edu
       to_options: {  }
       bcc_mail: ''
       bcc_options: {  }
@@ -282,7 +282,7 @@ handlers:
       from_mail: _default
       from_options: {  }
       from_name: _default
-      reply_to: jr2479@cornell.edu
+      reply_to: ncrs@cornell.edu
       return_path: ''
       sender_mail: ''
       sender_name: ''
