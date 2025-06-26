@@ -65,6 +65,10 @@ elements: |-
   grad_program_of_interest:
     '#type': hidden
     '#title': 'Grad program of interest'
+  variant_display:
+    '#type': webform_variant
+    '#title': 'Variant display'
+    '#variant': override
   lead_source:
     '#type': hidden
     '#title': 'Lead source'
@@ -355,3 +359,16 @@ variants:
       handlers:
         zapier_295202085:
           status: true
+  embedded:
+    id: override
+    variant_id: embedded
+    element_key: variant_display
+    label: Embedded
+    notes: 'Hides the title, mainly.'
+    status: true
+    weight: 0
+    settings:
+      debug: false
+      settings: {  }
+      elements: "request_info:\r\n  '#title': ''"
+      handlers: {  }
