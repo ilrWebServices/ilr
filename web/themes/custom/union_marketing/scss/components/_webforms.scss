@@ -118,17 +118,29 @@
   color: revert;
 }
 
+.webform-submission-form .cu-input-list__item--checkbox {
+  margin: 0 0 var(--cu-vr-1);
+}
+
 .webform-type-checkboxes,
 .webform-type-salesforce-event-options {
   border: 1px solid #ccc;
   border-radius: 3px;
   padding-bottom: var(--cu-vr-1);
+
+  .cu-input-list__item--checkbox {
+    margin-bottom: revert;
+  }
 }
 
 .webform-type-checkboxes .cu-legend,
 .webform-type-salesforce-event-options .cu-legend {
   margin: 0 var(--cu-ps-1) var(--cu-vr-2);
   padding: 0 .25em;
+}
+
+.webform-type-checkboxes.cu-fieldset .cu-fieldset__wrapper {
+  padding-left: var(--cu-ps0);
 }
 
 .webform-type-checkboxes .webform-element-description {
