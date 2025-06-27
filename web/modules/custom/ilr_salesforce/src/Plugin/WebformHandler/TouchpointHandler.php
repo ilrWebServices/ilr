@@ -238,6 +238,13 @@ class TouchpointHandler extends WebformHandlerBase {
     $field_mapping = $this->configuration['fields_mapping'];
     $extra_values = $this->configuration['extra_values'];
 
+    // Semicolon delimit any array values to conform to the API expectations.
+    foreach ($values as $key => $value) {
+      if (is_array(($value))) {
+        $values[$key] = implode(';', $value);
+      }
+    }
+
     foreach ($field_mapping as $submission_key => $destination_key) {
       if (isset($values[$submission_key]) && $values[$submission_key] != '') {
         // Multiple destinations can be set with a pipe.

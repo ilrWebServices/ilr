@@ -24,7 +24,7 @@ elements: |-
       class:
         - cu-heading
     request_type:
-      '#type': select
+      '#type': checkboxes
       '#title': 'Type of request'
       '#options':
         'Immediate service': 'Immediate service'
