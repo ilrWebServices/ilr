@@ -1807,6 +1807,7 @@ function ilr_mail_alter(&$message) {
  *
  * Allow edit access for users with a netid matching the field values of the
  * persona.
+ * Check 'edit homepage' permission for node 1.
  *
  * @TODO Remove when owners field is added to persona entities.
  */
@@ -1819,6 +1820,10 @@ function ilr_entity_access(EntityInterface $entity, $op, AccountInterface $accou
 
   if (!in_array($op, ['view', 'update'])) {
     return $access_result;
+  }
+
+  if ($entity->id() === '1' && $entity->getEntityTypeId() === 'node') {
+    return AccessResult::allowedIfHasPermission($account, 'edit homepage');
   }
 
   /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */

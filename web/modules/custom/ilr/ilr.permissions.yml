@@ -10,5 +10,7 @@ administer memories webform submissions:
   title: 'Administer memories form submissions'
 set alternate display:
   title: 'Set alternate display for content'
+edit homepage:
+  title: 'Edit the homepage'
 permission_callbacks:
   - Drupal\ilr\UnpublishedPermissions::nodeTypePermissions
