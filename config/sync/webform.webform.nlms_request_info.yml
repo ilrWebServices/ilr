@@ -190,7 +190,7 @@ settings:
   confirmation_type: inline
   confirmation_url: ''
   confirmation_title: ''
-  confirmation_message: '<p>Thanks!</p>'
+  confirmation_message: '<p>Thanks for your interest. A member of our team will be in touch shortly with more information.</p>'
   confirmation_attributes: {  }
   confirmation_back: false
   confirmation_back_label: ''
@@ -267,10 +267,10 @@ access:
     users: {  }
     permissions: {  }
 handlers:
-  email:
+  submission_detail_email:
     id: email
-    handler_id: email
-    label: Email
+    handler_id: submission_detail_email
+    label: Submission detail email
     notes: ''
     status: true
     conditions: {  }
@@ -301,6 +301,43 @@ handlers:
       html: true
       attachments: false
       twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
+  confirmation_email:
+    id: email
+    handler_id: confirmation_email
+    label: 'Confirmation email'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email:raw]'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: ncrs@cornell.edu
+      from_options: {  }
+      from_name: _default
+      reply_to: _default
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: 'Thank you for your interest'
+      body: "<p>Thanks for your interest in Cornell ILR's National Conflict Resolution Service. A member of our team will be in touch shortly with more information regarding your submission.</p>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: true
       theme_name: ''
       parameters: {  }
       debug: false
