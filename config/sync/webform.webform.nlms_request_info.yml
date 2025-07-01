@@ -270,7 +270,7 @@ handlers:
   submission_detail_email:
     id: email
     handler_id: submission_detail_email
-    label: Submission detail email
+    label: 'Submission detail email'
     notes: ''
     status: true
     conditions: {  }
@@ -350,7 +350,7 @@ handlers:
     conditions: {  }
     weight: 0
     settings:
-      extra_values: "Information request\r\nMarketing Landing Page"
+      extra_values: "NCRS\r\nMarketing Landing Page"
       fields_mapping:
         request_type: Touchpoint_NCRS_Request_Type__c
         first_name: FirstName__c
@@ -367,6 +367,6 @@ handlers:
         'utm_values:utm_term': Touchpoint_UTM_Term__c
         'utm_values:utm_content': Touchpoint_UTM_Content__c
         ga_client_id: GAClientID__c
-        'Information request': Source__c
+        NCRS: Source__c
         'Marketing Landing Page': Lead_Source__c
 variants: {  }
