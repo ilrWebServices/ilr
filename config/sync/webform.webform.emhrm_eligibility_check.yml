@@ -405,6 +405,7 @@ handlers:
         phone: Phone__c
         emhrm_years_as_hr_practitioner: Years_as_Full_Time_HR_Practitioner__c
         'linkedin_profile_url:url': LinkedIn_Profile_URL__c
+        marketing_channel: Pre_assessment_Source__c
         company: Company__c
         'utm_values:utm_source': Touchpoint_UTM_Source__c
         'utm_values:utm_medium': Touchpoint_UTM_Medium__c

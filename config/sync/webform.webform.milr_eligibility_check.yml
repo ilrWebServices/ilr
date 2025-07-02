@@ -391,6 +391,7 @@ handlers:
         phone: Phone__c
         citizenship: Citizenship_Status__c
         experience_years: Years_of_Experience__c
+        marketing_channel: Pre_assessment_Source__c
         'linkedin_profile_url:url': LinkedIn_Profile_URL__c
         company: Company__c
         'utm_values:utm_source': Touchpoint_UTM_Source__c
