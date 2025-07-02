@@ -1,17 +1,17 @@
-# ILR Drupal 8 Site
+# ILR Drupal 10 Site
 
-This is the Drupal 8 version of https://www.ilr.cornell.edu, AKA The Marketing Site.
+This is the Drupal 10 version of https://www.ilr.cornell.edu, AKA The Marketing Site.
 
 It is based on the [Composer template for Drupal projects][].
 
 ## Requirements
 
 - git
-- PHP 7.2 or greater
+- PHP 8.2 or greater
 - the PHP [ImageMagick extension][] (for PDF thumbnail generation)
 - Composer
-- Drush ([Drush launcher][] is recommended, since a copy of Drush is included in this project)
-- Node.js 8.x or greater (for theming)
+- Drush (included in this project; use the bash/zsh `drush` function below to use it)
+- Node.js 18.x or greater (for theming; a `.tool-versions` file is included for use with [asdf][])
 
 ## Setup
 
@@ -21,7 +21,15 @@ It is based on the [Composer template for Drupal projects][].
 4. Copy `.env.example` to `.env` and update the database connection and other info.
 5. Run `npm install && npm run build` to generate the CSS for the custom theme.
 
-Setting up your local web server and database is left as an excercise for the developer. Please note when setting up your web server, though, that this project uses the `web` directory as the web root.
+Setting up your local web server and database is left as an exercise for the developer. Please note when setting up your web server, though, that this project uses the `web` directory as the web root.
+
+Our recommended `drush` setup uses the following function to use the version of drush included in this project. To use it, add the following to your `.zshrc` or `.bashrc` file:
+
+```bash
+function drush () {
+  $(git rev-parse --show-toplevel)/vendor/bin/drush "$@"
+}
+```
 
 ### Development-only Settings
 
@@ -128,11 +136,11 @@ See https://www.drupal.org/node/2700999 for more information.
 
 ## Configuration import and export
 
-As with many Drupal 8 sites, configuration is managed in version control by exporting it to the filesystem. This project is configured, via `$settings['config_sync_directory']` in `settings.php`, to store configuration in the `./config/sync/` directory.
+As with many Drupal 8+ sites, configuration is managed in version control by exporting it to the filesystem. This project is configured, via `$settings['config_sync_directory']` in `settings.php`, to store configuration in the `./config/sync/` directory.
 
 During development, configuration is exported via `drush cex`. For example, if a new content type were created on a local development site, the node type and field config would be exported, and the new config yml files would be committed to git.
 
-During deployment, modified configuration is synchronized via a script that runs `drush cim` on the production site. In general, this means that any configuration added or modified on production will be reverted or removed during deployment. For example, if a new content type were added on production, it would be remove during deployment.
+During deployment, modified configuration is synchronized via a script that runs `drush cim` on the production site. In general, this means that any configuration added or modified on production will be reverted or removed during deployment. For example, if a new content type were added on production, it would be removed during deployment.
 
 ### Ignored configuration
 
@@ -142,20 +150,21 @@ Some examples:
 
 - The `collection_subsites` module generates a menu and a block visibility group when a new subsite collection is created.
 - The `collection_blogs` module generates category and tag taxonomy vocabularies when new blog collections are created.
+- Some Webforms are manually created on production.
 
-Since new subsites and blogs can be created by administrators on the production site, we don't want those menus, block visibility groups, and vocabularies accidentally deleted during a deployment.
+Since new subsites and blogs can be created by administrators on the production site, we don't want those menus, block visibility groups, and vocabularies accidentally deleted during a deployment. Same with on-the-fly Webforms that we don't want to have to build locally and deploy.
 
 Additionally, we don't want this generated configuration exported to the `config/sync/` directory during local development.
 
-Therefore, some configuration is ignored using import and export config storage transform events: `config.transform.export` and `config.transform.import`. See the [configuration transform event change record][] for more information.
+Therefore, some configuration is ignored using the [Config ignore pattern module][].
 
-The event subscribers can be found in `\Drupal\ilr\EventSubscriber\ConfigEventSubscriber`. The ignore patterns are, for now, manually maintained in that file in the `$ignoredPatterns` property.
+The ignore patterns are manually maintained in `settings.php` via `$settings['config_ignore_patterns']`.
 
 #### Forcing ignored configuration
 
 On occasion, ignored configuration needs to be updated via deployment. For example, the display view mode for a blog category taxonomy page may be need to be updated.
 
-For these cases, the transform event subscribers in `ConfigEventSubscriber` check for ignored configuration items in `config/sync/` and _don't ignore them if they are found_.
+For these cases, the [Config ignore pattern module][] checks for ignored configuration items in `config/sync/` and _doesn't ignore them if they are found_.
 
 Continuing the view mode example above, imagine that a developer updates the default view display for a blog category taxonomy vocabulary with the machine name `blog_2_categories`. This vocabulary display view mode was generated on production when the collection blog with the id `2` was created.
 
@@ -221,9 +230,9 @@ If you set `LIVERELOAD=1` in your `.env` file and reload your browser while `npm
 
 [Composer template for Drupal projects]: https://github.com/drupal-composer/drupal-project
 [ImageMagick extension]: https://www.php.net/manual/en/book.imagick.php
-[Drush launcher]: https://github.com/drush-ops/drush-launcher
+[asdf]: https://asdf-vm.com/
 [git submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
-[configuration transform event change record]: https://www.drupal.org/node/3066005
+[Config ignore pattern module]: https://www.drupal.org/project/config_ignore_pattern
 [OAuth JWT Bearer Token flow documentation]: https://www.drupal.org/docs/8/modules/salesforce-suite/create-a-oauth-jwt-bearer-token-flow-connected-app-4x
 [composer-patches]: https://github.com/cweagans/composer-patches
 [Union Component Library]: https://github.com/ilrWebServices/union
