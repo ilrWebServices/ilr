@@ -12,3 +12,11 @@ description: 'Decks are used to prominently display 2 or 3 cards. They can be co
 behavior_plugins:
   component_settings:
     enabled: true
+  ilr_color:
+    enabled: true
+    color_schemes:
+      none: none
+      light: light
+      dark: dark
+      vibrant: 0
+    color_scheme_default: none

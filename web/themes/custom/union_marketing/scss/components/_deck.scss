@@ -24,3 +24,15 @@
     margin-bottom: 0;
   }
 }
+
+.cu-component--deck {
+  background-color: var(--cu-colorscheme-background);
+
+  &[class*="cu-colorscheme--"] {
+    padding: 50px;
+
+    @include breakpoint(md) {
+      padding: 100px;
+    }
+  }
+}
