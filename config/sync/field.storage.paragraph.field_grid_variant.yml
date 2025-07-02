@@ -29,6 +29,9 @@ settings:
     -
       value: 2col
       label: 'Two columns'
+    -
+      value: two_columns_divided
+      label: 'Two columns w/ divider'
   allowed_values_function: ''
 module: options
 locked: false
