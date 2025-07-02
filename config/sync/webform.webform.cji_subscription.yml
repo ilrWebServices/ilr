@@ -254,7 +254,7 @@ handlers:
     conditions: {  }
     weight: 0
     settings:
-      extra_values: "CJI\r\nInformation Request"
+      extra_values: "CJI\r\nNewsletter Signup"
       fields_mapping:
         first_name: FirstName__c
         last_name: LastName__c
