@@ -43,6 +43,7 @@ elements: |-
       '#type': webform_autocomplete
       '#title': Organization
       '#autocomplete_items': certified_organizations
+      '#required': true
     email:
       '#type': email
       '#title': Email
