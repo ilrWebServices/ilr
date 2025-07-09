@@ -174,6 +174,9 @@ class TouchpointHandler extends WebformHandlerBase {
       }
     }
 
+    // Set a default value if Company__c if blank.
+    $touchpoint_vars['Company__c'] = $touchpoint_vars['Company__c'] ?? 'NONE PROVIDED';
+
     try {
       $sf_results = $this->sfapi->apiCall('sobjects/Touchpoint__c', $touchpoint_vars, 'POST');
 
