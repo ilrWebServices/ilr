@@ -280,7 +280,7 @@ handlers:
     conditions: {  }
     weight: 0
     settings:
-      extra_values: 'Site Inquiry Form'
+      extra_values: "Site Inquiry Form\r\nInformation Request"
       fields_mapping:
         first_name: FirstName__c
         last_name: LastName__c
@@ -295,4 +295,5 @@ handlers:
         'utm_values:utm_content': Touchpoint_UTM_Content__c
         ga_client_id: GAClientID__c
         'Site Inquiry Form': Lead_Source__c
+        'Information Request': Source__c
 variants: {  }
