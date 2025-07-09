@@ -37,7 +37,14 @@ elements: |-
     '#default_value': '[current-user:mail]'
   phone:
     '#type': tel
-    '#title': 'Phone number'
+    '#title': 'Cell phone number'
+    '#states':
+      required:
+        ':input[name="texting_opt_in"]':
+          checked: true
+  texting_opt_in:
+    '#type': checkbox
+    '#title': 'I’d like to receive texts.'
   address:
     '#type': address
     '#title': Citizenship
@@ -403,6 +410,7 @@ handlers:
         last_name: LastName__c
         email: Email__c
         phone: Phone__c
+        texting_opt_in: Texting_Opt_In__c
         emhrm_years_as_hr_practitioner: Years_as_Full_Time_HR_Practitioner__c
         'linkedin_profile_url:url': LinkedIn_Profile_URL__c
         marketing_channel: Pre_assessment_Source__c

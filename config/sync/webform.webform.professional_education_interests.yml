@@ -40,6 +40,9 @@ elements: |-
       '#type': tel
       '#title': Phone
       '#required': true
+    texting_opt_in:
+      '#type': checkbox
+      '#title': 'I’d like to receive texts.'
   element_container:
     '#type': container
     areas_of_interest:
