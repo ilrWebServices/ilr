@@ -167,6 +167,13 @@ class TouchpointHandler extends WebformHandlerBase {
     // Add the URL to the page the form was submitted to.
     $touchpoint_vars['Origin__c'] = $webform_submission->getSourceUrl()->toString();
 
+    // Semicolon delimit any array values to conform to the API expectations.
+    foreach ($touchpoint_vars as $key => $value) {
+      if (is_array(($value))) {
+        $touchpoint_vars[$key] = implode(';', $value);
+      }
+    }
+
     try {
       $sf_results = $this->sfapi->apiCall('sobjects/Touchpoint__c', $touchpoint_vars, 'POST');
 
@@ -237,13 +244,6 @@ class TouchpointHandler extends WebformHandlerBase {
     $merge_vars = [];
     $field_mapping = $this->configuration['fields_mapping'];
     $extra_values = $this->configuration['extra_values'];
-
-    // Semicolon delimit any array values to conform to the API expectations.
-    foreach ($values as $key => $value) {
-      if (is_array(($value))) {
-        $values[$key] = implode(';', $value);
-      }
-    }
 
     foreach ($field_mapping as $submission_key => $destination_key) {
       if (isset($values[$submission_key]) && $values[$submission_key] != '') {
