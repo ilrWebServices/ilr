@@ -99,7 +99,12 @@ class TouchpointHandler extends WebformHandlerBase {
       '#description' => $this->t('Define extra values (AKA constants) to map. One value per line. Only after saving this handler, values will be available in the mappings-field to map with a SalesForce-field. To use webform_submission tokens, use the format token(webform_submission:url)'),
     ];
 
-    $form['fields_mapping'] = [
+    $form['details'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Fields mapping'),
+    ];
+
+    $form['details']['fields_mapping'] = [
       '#type' => 'webform_mapping',
       '#title' => $this->t('Fields mapping'),
       '#title_display' => 'invisible',
