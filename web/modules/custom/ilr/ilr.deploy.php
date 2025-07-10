@@ -192,3 +192,33 @@ function ilr_deploy_transform_prof_ed_interest_lead_mapped_objects(&$sandbox) {
     $mapped_object->delete();
   }
 }
+
+/**
+ * Transform Salesforce mapped objects for touchpoint mappings.
+ */
+function ilr_deploy_transform_touchpoint_mapped_objects(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $mapped_object_storage = $entity_type_manager->getStorage('salesforce_mapped_object');
+  $sfDataStore = \Drupal::service('keyvalue')->get('ilr_salesforce.touchpoint.sfid');
+
+  $mapped_objects = $mapped_object_storage->loadByProperties([
+    'salesforce_mapping' => [
+      'info_req_tp_buffalo_colab',
+      'info_req_tp_carow',
+      'info_req_tp_gli',
+      'info_req_tp_grad_programs',
+      'info_req_tp_scheinman_news',
+      'info_req_tp_worker_institute',
+      'info_request_tp_lel',
+      'cahrs_newsletter_touchpoint',
+      'event_registration_touchpoint',
+      'ics_contact_touchpoint',
+    ],
+  ]);
+
+  foreach ($mapped_objects as $mapped_object) {
+    $webform_submission = $mapped_object->getMappedEntity();
+    $sfDataStore->set($webform_submission->id(), $mapped_object->sfid());
+    $mapped_object->delete();
+  }
+}
