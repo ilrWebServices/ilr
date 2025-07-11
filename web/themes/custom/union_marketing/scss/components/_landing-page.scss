@@ -184,7 +184,8 @@
     }
 
     &[data-state="initial"] {
-      .form-item:not(.webform-actions) {
+      .form-item:not(.form-item-email, .webform-section),
+      .webform-actions {
         display: none;
 
         @include breakpoint(md) {

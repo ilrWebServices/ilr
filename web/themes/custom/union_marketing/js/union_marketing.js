@@ -170,6 +170,8 @@
         let form_overlay = document.createElement('div');
         form_overlay.classList.add('form-overlay');
         form_overlay.addEventListener('click', function (event) {
+          // Focus on the first input.
+          form.querySelector('.cu-input').focus();
           form.dataset.state = 'activated';
         });
         form.appendChild(form_overlay);
