@@ -185,7 +185,8 @@
 
     &[data-state="initial"] {
       .form-item:not(.form-item-email, .webform-section),
-      .webform-actions {
+      .webform-actions,
+      .cu-fieldset {
         display: none;
 
         @include breakpoint(md) {
