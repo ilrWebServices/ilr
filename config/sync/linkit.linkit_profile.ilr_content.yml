@@ -80,3 +80,16 @@ matchers:
       substitution_type: canonical
       limit: 100
     weight: 5
+  c8f13c52-bc56-4e91-86e7-38967ee2a561:
+    id: 'entity:persona'
+    uuid: c8f13c52-bc56-4e91-86e7-38967ee2a561
+    settings:
+      metadata: '[persona:type]'
+      bundles:
+        author: author
+        expert: expert
+        ilr_employee: ilr_employee
+      group_by_bundle: false
+      substitution_type: canonical
+      limit: 100
+    weight: 0
