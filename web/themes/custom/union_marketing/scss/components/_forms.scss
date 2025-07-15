@@ -139,3 +139,22 @@
     }
   }
 }
+
+.paragraph--type--form[class*="cu-colorscheme"] {
+  padding: var(--cu-vr0) var(--cu-ps1);
+}
+
+.paragraph--type--form .cu-button--alt {
+  --cu-text-color: unset;
+}
+
+.paragraph--type--form.cu-colorscheme--vibrant .cu-button--alt {
+  border-color: white;
+}
+
+// We might want/need to generalize this to any use of the same colorscheme inside another colorscheme.
+.cu-colorscheme--light .paragraph--type--form.cu-colorscheme--light,
+.cu-colorscheme--dark .paragraph--type--form.cu-colorscheme--dark,
+.cu-colorscheme--vibrant .paragraph--type--form.cu-colorscheme--vibrant {
+  box-shadow: inset 0 0 5px 0px rgba(128,128,128,.75);
+}
