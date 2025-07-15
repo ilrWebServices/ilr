@@ -78,7 +78,7 @@ elements: |-
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
-    '#submit__label': 'Get more information'
+    '#submit__label': 'Submit request'
     '#submit__attributes':
       class:
         - cu-button
