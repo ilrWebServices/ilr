@@ -1,105 +1,132 @@
 {#
 /**
  * @file
- * Included mobile template for the homepage banner
- *
- * @see block--union-marketing-homepage-banner.html.twig
+ * Theme override to display the homepage banner block for mobile.
  */
 #}
+
 {% set video_media %}
-{# commencement_override is passed in from the desktop version. #}
 {% include '@union/_video.twig' with {
-    src: commencement_override ? 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_75_congrats_202105_500.mp4' : 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_202106_500.mp4',
-    poster: 'https://www.ilr.cornell.edu/sites/default/files/poster-mobile.jpg'
-  } only %}
+  src: '/sites/default/files-d8/ILR-80-Home-Background.mp4',
+  poster: '/sites/default/files-d8/ILR-80-Home-Background-poster.jpg',
+  autoplay: TRUE,
+  loop: TRUE,
+  muted: TRUE,
+  playsinline: TRUE
+} only %}
 {% endset %}
-{% set rendered_content %}
-<div class="framed framed--right">
-  <div>
-    <h2 class="cu-heading cu-heading--strong">It takes
-      <span>work</span>
-      to make an impact</h2>
-  </div>
-  <div class="play">
-    {% include "@union/_icon.twig" with {
-        title: 'Play video',
-        icon: 'play',
-        size: '4em',
-        label: 'Watch Video',
-        attributes: {
-          class: 'cu-icon--inline',
-          role: 'button',
-          'aria-pressed': "false"
-        }
-      } only %}
-  </div>
+
+{% set years_logo %}
+<svg width="200" height="200" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M130 220C179.706 220 220 179.706 220 130C220 80.2944 179.706 40 130 40C80.2944 40 40 80.2944 40 130C40 179.706 80.2944 220 130 220Z" fill="#B31B1B"/>
+  <path d="M130 190C163.137 190 190 163.137 190 130C190 96.8629 163.137 70 130 70C96.8629 70 70 96.8629 70 130C70 163.137 96.8629 190 130 190Z" fill="white"/>
+  <path d="M130 170C152.091 170 170 152.091 170 130C170 107.909 152.091 90 130 90C107.909 90 90 107.909 90 130C90 152.091 107.909 170 130 170Z" fill="#B31B1B"/>
+  <path d="M220 235H250V245H220V235Z" fill="black"/>
+  <text x="170" y="140" font-family="futura-pt, sans-serif" font-weight="700" font-size="40" fill="white">YEARS</text>
+</svg>
+{% endset %}
+
+{% set undergrad %}
+<p class="cu-card__content-text">The ILR major focuses on the world of people and work, preparing students for a wide range of academic interests and careers.</p>
+<div class="cu-card__button">
+  {% include '@union/_button.twig' with {
+    text: 'Explore',
+    attributes: {'class': 'cu-button--overlay'}
+  } only %}
 </div>
 {% endset %}
 
-{% include '@union/_banner.twig' with {
-  attributes: { class: 'cu-banner--video cu-component--mobile' },
-  content: rendered_content,
-  media: video_media
-} only %}
+{% set graduate %}
+<p class="cu-card__content-text">From students straight out of college, to professionals working for over 20 years - we have your program.</p>
+<div class="cu-card__button">
+  {% include '@union/_button.twig' with {
+    text: 'Explore',
+    attributes: {'class': 'cu-button--overlay'}
+  } only %}
+</div>
+{% endset %}
+
+{% set professional %}
+<p class="cu-card__content-text">You can choose from a wide range of professional and academic programs grounded in practice and research.</p>
+<div class="cu-card__button">
+  {% include '@union/_button.twig' with {
+    text: 'Explore',
+    attributes: {'class': 'cu-button--overlay'}
+  } only %}
+</div>
+{% endset %}
+
+{% set card_classes = [
+  'cu-card--dynamic',
+  'cu-colorscheme--dark',
+] %}
 
 {% set card_data = {
-  'undergradudate': {
-    'heading': 'Undergraduate Programs',
-    'text': 'Our flexible, interdisciplinary major lets students pursue a wide range of academic interests and careers.',
-    'href': '/programs/undergraduate-degree-program/undergraduate-admissions',
-    'media_backup_src': image_undergrad_url,
-    'media_id': 106034,
+  'undergraduate': {
+    'heading': 'Undergraduate Admissions',
+    'content': undergrad,
+    'href': '/programs/undergraduate-admissions',
+    'icon': 'tower',
+    'icon_title': 'Cornell University Tower'
   },
-  'gradudate': {
+  'graduate': {
     'heading': 'Graduate Programs',
-    'text': 'Study the workplace comprehensively with the world\'s highest concentration of workplace faculty.',
+    'content': graduate,
     'href': '/programs/graduate-degree-programs',
-    'media_backup_src': '//www.ilr.cornell.edu/sites/default/files/graduate.jpg',
-    'media_id': 106035,
+    'icon': 'graduation-cap',
+    'icon_title': 'Cornell University Graduation Cap'
   },
   'professional': {
     'heading': 'Professional Education',
-    'text': 'Invest in your career by learning from instructors who blend world-leading research with business-tested practicality.',
+    'content': professional,
     'href': '/programs/professional-education',
-    'media_backup_src': '//www.ilr.cornell.edu/sites/default/files/professional.jpg',
-    'media_id': 106036,
+    'icon': 'handshake',
+    'icon_title': 'Cornell University Handshake'
   }
 }%}
 
-{% set grid_content %}
-  {% for card in card_data %}
-    {% set card_content %}
-      <h2 class="cu-card__heading cu-heading--strong">{{ card.heading }}</h2>
-      <p>{{ card.text }}</p>
-      <div class="cu-card__button">
-        {% include '@union/_button.twig' with {
-          text: 'Explore',
-          attributes: {'class': 'cu-button--overlay'}
-        } only %}
-      </div>
-    {% endset %}
-
-    {% set media_entity = drupal_entity('media', card.media_id) %}
-    {% set image_uri = media_entity['#media'].field_media_image.entity.uri.value %}
-    {% set media_url = (image_uri) ? image_uri | image_style('medium_3_2') : card.media_backup_src %}
-
-    {% set card_media %}
-      {% include '@union/_image.twig' with {
-        img_src: media_url,
-        img_alt: 'Blurred background photo for ' ~ card.heading,
-        blurred: true,
-      } only %}
-    {% endset %}
-    {% include '@union/_card.twig' with {
-      card_content: card_content,
-      card_media: card_media,
-      card_link_url: card.href,
-      attributes: {'class': 'cu-card--with-aside'},
-    } only %}
-  {% endfor %}
+{% set hero_content %}
+  <p>80 years of pioneering research, education, and real-world impact.</p>
 {% endset %}
 
-{% include '@union/_grid.twig' with {
-  grid_content: grid_content,
-  attributes: { class: 'cu-component--mobile' }
-} only %}
+<div class="cu-banner--hero cu-component--mobile">
+  {# Logo section with video background #}
+  <div class="cu-banner__logo">
+    <div class="video-background">
+      {{ video_media }}
+    </div>
+    <div class="cu-banner__overlay">
+      {{ years_logo }}
+    </div>
+  </div>
+
+  {# Content section with white background #}
+  <div class="cu-banner__content">
+    <h2 class="cu-heading">Built for the future of work</h2>
+    <p>80 years of pioneering research, education, and real-world impact.</p>
+      {% include '@union/_button.twig' with {
+        text: 'Some CTA Here',
+        url: '#',
+        attributes: {'class': 'cu-banner__link'}
+      } only %}
+  </div>
+
+  {# Mobile card grid #}
+  <div class="cu-hero-card-grid cu-component--mobile">
+    <div class="cu-grid">
+      {% for key, card in card_data %}
+        {% include '@union/_card.twig' with {
+          attributes: { class: card_classes },
+          heading: card.heading,
+          card_content: card.content,
+          card_link_url: card.href,
+          card_link_alt: card.heading,
+          icon_data: {
+            title: card.icon_title,
+            icon: card.icon
+          }
+        } only %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
