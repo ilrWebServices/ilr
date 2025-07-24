@@ -31,5 +31,6 @@ function collection_content_permissions_entity_field_access_alter(array &$grants
 function collection_content_permissions_entity_access(EntityInterface $entity, $op, AccountInterface $account) {
   $unpub_access_result = \Drupal::service(CollectionContentPermissionsHooks::class)->canonicalUnpublishedViewAccess($entity, $op, $account);
   $edit_access_result = \Drupal::service(CollectionContentPermissionsHooks::class)->canonicalEditAccess($entity, $op, $account);
-  return $unpub_access_result->orIf($edit_access_result);
+  $restricted_collection_access_result = \Drupal::service(CollectionContentPermissionsHooks::class)->restrictedCollectionViewAccess($entity, $op, $account);
+  return $unpub_access_result->orIf($edit_access_result)->orIf($restricted_collection_access_result);
 }
