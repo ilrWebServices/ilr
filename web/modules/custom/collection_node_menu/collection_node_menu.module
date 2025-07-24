@@ -72,7 +72,7 @@ function collection_node_menu_form_node_form_alter(&$form, FormStateInterface $f
   $node = $form_state->getFormObject()->getEntity();
   $available_menus = $node->type->entity->getThirdPartySetting('menu_ui', 'available_menus');
 
-  if ($node->bundle() !== 'page') {
+  if (!in_array($node->bundle(), ['page', 'simple_page'])) {
     return;
   }
 

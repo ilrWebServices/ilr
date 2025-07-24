@@ -1,0 +1,147 @@
+uuid: 462323c5-5b8b-4769-987e-773ad5e755e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.simple_page.body
+    - node.type.simple_page
+  module:
+    - ilr
+    - layout_builder
+    - layout_discovery
+    - system
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: Top
+          context_mapping: {  }
+        components:
+          45ed2a11-9797-4891-974d-47168c635dac:
+            uuid: 45ed2a11-9797-4891-974d-47168c635dac
+            region: content
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: 'Main and nav'
+          context_mapping: {  }
+          column_widths: 33-67
+        components:
+          3d6e8985-0787-4b95-8275-3be18669df0e:
+            uuid: 3d6e8985-0787-4b95-8275-3be18669df0e
+            region: second
+            configuration:
+              id: 'field_block:node:simple_page:title'
+              label: Title
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          d7090ae3-950d-47c6-82be-cf73ed18e702:
+            uuid: d7090ae3-950d-47c6-82be-cf73ed18e702
+            region: second
+            configuration:
+              id: 'field_block:node:simple_page:body'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          77b04683-c3cd-4a04-ab11-e37cffe029df:
+            uuid: 77b04683-c3cd-4a04-ab11-e37cffe029df
+            region: second
+            configuration:
+              id: 'field_block:node:simple_page:changed'
+              label: 'Last modified'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: timestamp
+                label: hidden
+                settings:
+                  date_format: ilr_date
+                  custom_date_format: ''
+                  timezone: ''
+                  tooltip:
+                    date_format: long
+                    custom_date_format: ''
+                  time_diff:
+                    enabled: false
+                    future_format: '@interval hence'
+                    past_format: '@interval ago'
+                    granularity: 2
+                    refresh: 60
+                    description: ''
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          e1e727d2-e3f1-4e86-8ab4-b3983748f056:
+            uuid: e1e727d2-e3f1-4e86-8ab4-b3983748f056
+            region: first
+            configuration:
+              id: collection_menu_block
+              label: Navigation
+              label_display: '0'
+              provider: ilr
+              context_mapping: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components: {  }
+        third_party_settings: {  }
+id: node.simple_page.default
+targetEntityType: node
+bundle: simple_page
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

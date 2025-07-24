@@ -1,0 +1,17 @@
+uuid: 8b521877-8782-412f-ba61-9e956826fe5b
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection_blogs
+    - collection_subsites
+third_party_settings:
+  collection_blogs:
+    contains_blogs: 1
+  collection_subsites:
+    contains_subsites: 1
+id: restricted
+label: Restricted
+allowed_collection_item_types:
+  - blog
+  - simple_item
