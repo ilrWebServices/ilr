@@ -1,0 +1,22 @@
+uuid: 846ad671-b256-49b8-b5c6-bd007bf426a3
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: restricted_collections
+label: 'Restricted collections'
+type: 'canonical_entities:collection'
+pattern: '[collection:name]'
+selection_criteria:
+  b46d65e0-349a-41f5-beda-98139d9e53b0:
+    id: 'entity_bundle:collection'
+    negate: false
+    uuid: b46d65e0-349a-41f5-beda-98139d9e53b0
+    context_mapping:
+      collection: collection
+    bundles:
+      restricted: restricted
+selection_logic: and
+weight: -5
+relationships: {  }
