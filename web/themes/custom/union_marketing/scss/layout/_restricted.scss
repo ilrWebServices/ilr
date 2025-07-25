@@ -1,0 +1,56 @@
+.collection--restricted,
+.node--simple-page {
+
+  .block-system-breadcrumb-block {
+    margin-bottom: var(--cu-vr0);
+  }
+}
+
+.bvg--subsite-74 {
+
+  .block-social-sharing-buttons-block {
+    display: none;
+  }
+}
+
+.collection--restricted,
+.node--simple-page {
+  .cu-menu__list--subsite {
+    padding: 0;
+    margin-top: 0;
+  }
+
+  .layout__region--first {
+    order: 2;
+
+    @include breakpoint(sm) {
+      order: 1;
+    }
+
+    .cu-section {
+      margin: 0;
+    }
+
+    .cu-menu__item {
+      display: block;
+
+      .cu-menu__link {
+        display: inline-block;
+        padding: .25em 0;
+      }
+    }
+  }
+
+  .layout__region--second {
+    order: 1;
+
+    @include breakpoint(sm) {
+      order: 2;
+    }
+  }
+
+  .block-field-block--node--simple-page--changed .cu-heading {
+    --cu-font-size: var(--cu-ms0);
+    margin: var(--cu-vr2) 0 0;
+  }
+}

@@ -1,0 +1,4 @@
+services:
+  Drupal\collection_content_permissions\Hook\CollectionContentPermissionsHooks:
+    class: Drupal\collection_content_permissions\Hook\CollectionContentPermissionsHooks
+    autowire: true

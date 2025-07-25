@@ -1,0 +1,26 @@
+uuid: c2a07e41-61db-4691-97b0-17a413121438
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - filter.format.standard_formatting
+    - node.type.simple_page
+  module:
+    - text
+id: node.simple_page.body
+field_name: body
+entity_type: node
+bundle: simple_page
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats:
+    - standard_formatting
+field_type: text_with_summary
