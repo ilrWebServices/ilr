@@ -28,7 +28,8 @@
   min-width: 50%;
 }
 
-.cu-media.align-center {
+.cu-media.align-center,
+.cu-component--rich-text .cu-media {
   margin-bottom: var(--cu-vr1);
 
   .cu-image,
