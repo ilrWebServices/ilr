@@ -21,6 +21,12 @@
   }
 
   .layout__region--first {
+    order: 2;
+
+    @include breakpoint(sm) {
+      order: 1;
+    }
+
     .cu-section {
       margin: 0;
     }
@@ -32,6 +38,14 @@
         display: inline-block;
         padding: .25em 0;
       }
+    }
+  }
+
+  .layout__region--second {
+    order: 1;
+
+    @include breakpoint(sm) {
+      order: 2;
     }
   }
 
