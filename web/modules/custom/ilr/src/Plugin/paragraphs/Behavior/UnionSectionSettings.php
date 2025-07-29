@@ -33,6 +33,17 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
   ];
 
   /**
+   * The header alignment options.
+   *
+   * @var array
+   */
+  protected $headerAlignment = [
+    '' => 'Default',
+    'left' => 'Left',
+    'right' => 'Right',
+  ];
+
+  /**
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
@@ -48,11 +59,11 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'wide'),
     ];
 
-    $form['heading_left'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Place heading on left'),
-      '#min' => 1,
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'heading_left'),
+    $form['header_alignment'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Header alignment'),
+      '#options' => $this->headerAlignment,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'header_alignment') ?? '',
     ];
 
     $form['first_component_to_blurb'] = [
@@ -84,8 +95,8 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       $variables['attributes']['class'][] = 'cu-section--wide';
     }
 
-    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'heading_left')) {
-      $variables['attributes']['class'][] = 'cu-section--left';
+    if ($header_alignment = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'header_alignment')) {
+      $variables['attributes']['class'][] = 'cu-section--' . $header_alignment;
     }
 
     if ($frame_position = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'frame_position')) {
@@ -120,6 +131,14 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       $summary[] = [
         'label' => 'Wide',
         'value' => '✓',
+      ];
+    }
+
+    // Display header alignment settings.
+    if ($header_alignment = $paragraph->getBehaviorSetting($this->getPluginId(), 'header_alignment')) {
+      $summary[] = [
+        'label' => 'Header alignment',
+        'value' => $this->headerAlignment[$header_alignment],
       ];
     }
 

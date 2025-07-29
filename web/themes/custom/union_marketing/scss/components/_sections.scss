@@ -48,6 +48,65 @@ figure.cu-media,
   // overflow: hidden; // TODO deal with effects on inner block element margins (e.g. blockquote)
 }
 
+// Red frame styling for images within wide left sections
+.cu-section--wide.cu-section--left, .cu-section--wide.cu-section--right {
+  .cu-component--image {
+    position: relative;
+    padding: 8px;
+    margin: 0;
+
+    .cu-image {
+      position: relative;
+      z-index: 1;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      background: var(--cu-color-brand, #{$cornell-red});
+      z-index: 0;
+    }
+  }
+
+  &.cu-section--left .cu-component--image {
+    // Horizontal bar (top right edge)
+    &::before {
+      top: 0;
+      right: 0;
+      width: 75%;
+      height: 8px;
+    }
+
+    // Vertical bar (right/bottom edge)
+    &::after {
+      bottom: 0;
+      right: 0;
+      width: 10%;
+      height: calc(100% - 8px);
+    }
+  }
+
+  &.cu-section--right .cu-component--image {
+    // Horizontal bar (top left edge)
+    &::before {
+      top: 0;
+      left: 0;
+      width: 75%;
+      height: 8px;
+    }
+
+    // Vertical bar (left/bottom edge)
+    &::after {
+      bottom: 0;
+      left: 0;
+      width: 10%;
+      height: calc(100% - 8px);
+    }
+  }
+}
+
+
 // Clear floats from rich text media for adjacent components (e.g. paragraphs).
 .cu-component--rich-text + .cu-component {
   clear: both;
