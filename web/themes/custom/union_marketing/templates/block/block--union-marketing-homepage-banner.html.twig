@@ -25,28 +25,32 @@
  * @see template_preprocess_block()
  */
 #}
-{% set classes = [
-  'block',
-  'block-' ~ configuration.provider|clean_class,
-  'block-' ~ plugin_id|replace({':': '--'})|clean_class,
-] %}
-{% set card_classes = [
-  'cu-card--dynamic',
-  'cu-card--hover-content-reveal',
-  'cu-colorscheme--dark',
-] %}
+{{ attach_library('union_marketing/lottie') }}
+{{ attach_library('union_marketing/lottie_80years') }}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
+%}
 
 {% set undergrad %}
-<p class="cu-card__hover-content">Our flexible, interdisciplinary major lets students pursue a wide range of academic interests and careers.</p>
+<p class="cu-card__content-text">Our flexible, interdisciplinary major lets students pursue a wide range of academic interests and careers.</p>
 {% endset %}
 
 {% set grad %}
-<p class="cu-card__hover-content">Study the workplace comprehensively with the world's highest concentration of workplace faculty.</p>
+<p class="cu-card__content-text">Study the workplace comprehensively with the world's highest concentration of workplace faculty.</p>
 {% endset %}
 
 {% set professional %}
-<p class="cu-card__hover-content">Invest in your career by learning from instructors who blend world-leading research with business-tested practicality.</p>
+<p class="cu-card__content-text">Invest in your career by learning from instructors who blend world-leading research with business-tested practicality.</p>
 {% endset %}
+
+{% set card_classes = [
+  'cu-card--dynamic',
+  'cu-colorscheme--dark',
+] %}
 
 {% set icon_cards %}
 {% include '@union/_card.twig' with {
@@ -84,66 +88,70 @@
 } only %}
 {% endset %}
 
-{% set card_grid %}
-{% include '@union/_grid.twig' with {
-  grid_content: icon_cards,
-  attributes: { class: 'cu-grid--3col cu-grid--align-end' }
-} %}
+{% set years_logo %}
+<div class="lottie-80years-container cu-banner--80years"></div>
 {% endset %}
 
 {% set controls %}
-<div class="video-pause">
-  {% include "@union/_icon.twig" with {
-    title: 'Pause video',
-    icon: 'pause',
-    size: '3em',
-    label: '',
-    attributes: {
-      class: 'cu-icon--inline pause cu-icon--play',
-      role: 'button',
-      'aria-pressed': "false"
-    }
-  } only %}
-  {% include "@union/_icon.twig" with {
-    title: 'Play video',
-    icon: 'play',
-    size: '3em',
-    label: '',
-    attributes: {
-      class: 'cu-icon--inline play visually-hidden',
-      role: 'button',
-      'aria-pressed': "true"
-    }
-  } only %}
-</div>
+  <div class="video-pause">
+    {% include "@union/_icon.twig" with {
+      title: 'Pause video',
+      icon: 'pause',
+      size: '3em',
+      label: '',
+      attributes: {
+        class: 'cu-icon--inline pause cu-icon--play',
+        role: 'button',
+        'aria-pressed': "false"
+      }
+    } only %}
+    {% include "@union/_icon.twig" with {
+      title: 'Play video',
+      icon: 'play',
+      size: '3em',
+      label: '',
+      attributes: {
+        class: 'cu-icon--inline play visually-hidden',
+        role: 'button',
+        'aria-pressed': "true"
+      }
+    } only %}
+  </div>
 {% endset %}
-
-{% set banner_content %}
-  {{ controls }}
-  {{ card_grid }}
-{% endset %}
-
-{# Temporary update for 2021 Commencement image #}
-{% set commencement_override = (date('now') > date('2021-05-27') and date('now') < date('2021-06-14')) %}
-
-{{ commencement_override}}
 
 {% set video_media %}
 {% include '@union/_video.twig' with {
-  src: commencement_override ? 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_75_congrats_202105_500.mp4' : 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_202106_500.mp4',
+  src: '/sites/default/files-d8/ILR-80-Home-Background.mp4',
+  poster: '/sites/default/files-d8/ILR-80-Home-Background-poster.jpg',
   autoplay: TRUE,
   loop: TRUE,
-  muted: TRUE
+  muted: TRUE,
+  playsinline: TRUE
 } only %}
 {% endset %}
 
+{% set hero_content %}
+    <p>80 years of pioneering research, education, and real-world impact.</p>
+{% endset %}
+
 <div{{attributes.addClass(classes)}}>
-  {% include '@union/_banner.twig' with {
-    attributes: { class: 'cu-banner--video pick cu-component--desktop' },
-    content_attributes: { class: 'cu-banner__content--align-bottom' },
-    media: video_media,
-    content: banner_content
-  } only %}
+    {% include '@union/_banner.twig' with {
+      attributes: { class: ['cu-banner--hero', 'cu-banner--video', 'cu-component--desktop'] },
+      heading: 'Built for the future of work',
+      content: hero_content,
+      media: video_media,
+      overlay_content: years_logo,
+      link_url: '#',
+      link_text: 'Some CTA Here'
+    } only %}
+
+  {# Desktop card grid #}
+  <div class="cu-hero-card-grid cu-component--desktop">
+    <div class="cu-grid">
+      {{ icon_cards }}
+    </div>
+  </div>
+
   {# Be sure to place the mobile version after desktop, so that js can target the correct play button (union bug). #}
   {% include "block--union-marketing-homepage-banner--mobile.html.twig" %}
 </div>

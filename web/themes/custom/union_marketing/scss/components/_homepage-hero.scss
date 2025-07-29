@@ -1,0 +1,181 @@
+// Card grid styling
+.cu-hero-card-grid {
+  margin-top: -2rem;
+  position: relative;
+  z-index: 3;
+
+  @media (min-width: 768px) {
+    margin-top: 2rem;
+  }
+
+  .cu-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  // Always show card content (override Union defaults)
+  .cu-card--dynamic {
+    .cu-card__content {
+      opacity: 1;
+      transform: none;
+      position: static;
+      padding: 2rem;
+      height: auto;
+    }
+
+    .cu-card__heading {
+      transform: none;
+      position: static;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .cu-card__content-text {
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    .cu-card__button {
+      margin-top: auto;
+    }
+  }
+}
+
+// 80 Years Logo Lottie Animation
+.lottie-80years-container {
+  &.cu-banner--80years {
+    width: 260px;
+    height: 260px;
+    transform: scale(3.5);
+    transform-origin: top right;
+    position: relative;
+    top: -100px;
+  }
+
+  &.cu-banner--80years-mobile {
+    width: 200px;
+    height: 200px;
+    transform: scale(1.5);
+    transform-origin: center;
+    position: relative;
+  }
+}
+
+// Mobile specific styles
+.cu-banner--hero.cu-component--mobile {
+  // Logo section with video background
+  .cu-banner__logo {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.7);
+        z-index: 1;
+      }
+
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .cu-banner__overlay {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+
+      svg {
+        width: 150px;
+        height: auto;
+      }
+    }
+  }
+
+  // Content section with white background
+  .cu-banner__content {
+    background-color: white;
+    padding: 2rem 1.5rem;
+    text-align: center;
+
+    .cu-heading {
+      font-family: 'futura-pt', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+      color: var(--cu-text-color);
+    }
+
+    .hero-content {
+      margin-bottom: 1.5rem;
+
+      p {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin: 0 auto 1.5rem auto;
+        max-width: 90%;
+      }
+    }
+  }
+
+  // Mobile card grid styling
+  .cu-hero-card-grid {
+    margin-top: 0;
+    padding: 0;
+
+    .cu-grid {
+      grid-template-columns: 1fr;
+      gap: 1px;
+    }
+
+    .cu-card {
+      margin-bottom: 0;
+      border-radius: 0;
+
+      &__heading {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+
+      &__content-text {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .cu-icon {
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .cu-card__button {
+        margin-top: auto;
+      }
+    }
+  }
+}
