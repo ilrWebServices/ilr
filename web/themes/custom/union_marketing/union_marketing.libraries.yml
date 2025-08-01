@@ -39,6 +39,25 @@ readmore_expander:
     theme:
       css/readmore-expander.css: {}
 
+lottie:
+  version: 5.13.0
+  js:
+    https://unpkg.com/lottie-web@5.13.0/build/player/lottie.min.js:
+      type: external
+      minified: true
+      attributes:
+        integrity: "sha384-vfy4Ln1gWZnGF5PKMEkqQ+kS3n2GAauccVbfcEDS59jQl6EbNsVVCHzSP0OtTpRC"
+        crossorigin: anonymous
+
+lottie_80years:
+  version: 1.x
+  js:
+    js/lottie-80years.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - union_marketing/lottie
+
 livereload:
   remote: https://github.com/mklabs/tiny-lr
   version: 1.1.1
