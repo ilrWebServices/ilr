@@ -1,21 +1,21 @@
 // Card grid styling
 .cu-hero-card-grid {
-  margin-top: -2rem;
+  margin-top: calc(var(--cu-vr1) * -1);
   position: relative;
   z-index: 3;
 
   @media (min-width: 768px) {
-    margin-top: 2rem;
+    margin-top: var(--cu-vr1);
   }
 
   .cu-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: var(--cu-vr0);
 
     @media (min-width: 768px) {
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      gap: var(--cu-vr1);
     }
   }
 
@@ -25,20 +25,19 @@
       opacity: 1;
       transform: none;
       position: static;
-      padding: 2rem;
       height: auto;
     }
 
     .cu-card__heading {
       transform: none;
       position: static;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
+      padding-bottom: var(--cu-vr-1);
+      margin-bottom: var(--cu-vr0);
     }
 
     .cu-card__content-text {
       display: block;
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--cu-vr1);
     }
 
     .cu-card__button {
@@ -90,7 +89,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.7);
+        background: color-mix(in srgb, var(--cu-color-white) 70%, transparent);
         z-index: 1;
       }
 
@@ -118,27 +117,27 @@
 
   // Content section with white background
   .cu-banner__content {
-    background-color: white;
-    padding: 2rem 1.5rem;
+    background-color: var(--cu-color-white);
+    padding: var(--cu-vr1) var(--cu-ps1);
     text-align: center;
 
     .cu-heading {
       font-family: 'futura-pt', sans-serif;
-      font-size: 2.5rem;
+      font-size: var(--cu-ms2);
       font-weight: 700;
       text-transform: uppercase;
-      margin-bottom: 1rem;
+      margin-bottom: var(--cu-vr0);
       line-height: 1.1;
       color: var(--cu-text-color);
     }
 
     .hero-content {
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--cu-vr1);
 
       p {
-        font-size: 1rem;
+        font-size: var(--cu-ms0);
         line-height: 1.5;
-        margin: 0 auto 1.5rem auto;
+        margin: 0 auto var(--cu-vr1) auto;
         max-width: 90%;
       }
     }
@@ -159,18 +158,18 @@
       border-radius: 0;
 
       &__heading {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
+        font-size: var(--cu-ms1);
+        margin-bottom: var(--cu-vr-1);
       }
 
       &__content-text {
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
+        font-size: var(--cu-ms-1);
+        margin-bottom: var(--cu-vr0);
       }
 
       .cu-icon {
-        font-size: 1.75rem;
-        margin-bottom: 0.75rem;
+        font-size: var(--cu-ms2);
+        margin-bottom: var(--cu-vr-1);
       }
 
       .cu-card__button {

@@ -23,7 +23,7 @@
           renderer: 'svg',
           loop: false,
           autoplay: true,
-          path: '/sites/default/files-d8/80years.json'
+          path: '/themes/custom/union_marketing/data/80years.json'
         });
       });
     }

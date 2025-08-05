@@ -9,8 +9,8 @@
 
 {% set video_media %}
 {% include '@union/_video.twig' with {
-  src: '/sites/default/files-d8/ILR-80-Home-Background.mp4',
-  poster: '/sites/default/files-d8/ILR-80-Home-Background-poster.jpg',
+  src: 'https://ilr-images.s3.us-east-1.amazonaws.com/video/ilr_hero_80years.mp4',
+  poster: '/themes/custom/union_marketing/images/hero-poster.jpg',
   autoplay: TRUE,
   loop: TRUE,
   muted: TRUE,
@@ -24,32 +24,15 @@
 
 {% set undergrad %}
 <p class="cu-card__content-text">The ILR major focuses on the world of people and work, preparing students for a wide range of academic interests and careers.</p>
-<div class="cu-card__button">
-  {% include '@union/_button.twig' with {
-    text: 'Explore',
-    attributes: {'class': 'cu-button--overlay'}
-  } only %}
-</div>
+
 {% endset %}
 
 {% set graduate %}
 <p class="cu-card__content-text">From students straight out of college, to professionals working for over 20 years - we have your program.</p>
-<div class="cu-card__button">
-  {% include '@union/_button.twig' with {
-    text: 'Explore',
-    attributes: {'class': 'cu-button--overlay'}
-  } only %}
-</div>
 {% endset %}
 
 {% set professional %}
 <p class="cu-card__content-text">You can choose from a wide range of professional and academic programs grounded in practice and research.</p>
-<div class="cu-card__button">
-  {% include '@union/_button.twig' with {
-    text: 'Explore',
-    attributes: {'class': 'cu-button--overlay'}
-  } only %}
-</div>
 {% endset %}
 
 {% set card_classes = [
@@ -69,7 +52,7 @@
     'heading': 'Graduate Programs',
     'content': graduate,
     'href': '/programs/graduate-degree-programs',
-    'icon': 'graduation-cap',
+    'icon': 'mortarboard',
     'icon_title': 'Cornell University Graduation Cap'
   },
   'professional': {
