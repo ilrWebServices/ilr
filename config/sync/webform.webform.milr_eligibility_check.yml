@@ -124,10 +124,8 @@ elements: |-
   linkedin_profile_url:
     '#type': webform_link
     '#title': 'LinkedIn Profile URL'
-    '#required': true
     '#title__access': false
     '#url__title': 'LinkedIn Profile URL'
-    '#url__required': true
   company:
     '#type': webform_computed_twig
     '#title': Company
