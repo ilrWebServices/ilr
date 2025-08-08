@@ -67,8 +67,6 @@
 }
 
 #block-union-marketing-homepage-banner {
-  @include full-width();
-
   margin-bottom: var(--cu-vr1);
 
   @include breakpoint(md) {

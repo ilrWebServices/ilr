@@ -49,19 +49,16 @@
 // 80 Years Logo Lottie Animation
 .lottie-80years-container {
   &.cu-banner--80years {
-    width: 260px;
-    height: 260px;
-    transform: scale(3.5);
-    transform-origin: top right;
-    position: relative;
-    top: -100px;
+    height: 100%;
+
+    @include breakpoint(lg) {
+      transform: scale(1.25);
+    }
   }
 
   &.cu-banner--80years-mobile {
     width: 200px;
     height: 200px;
-    transform: scale(1.5);
-    transform-origin: center;
     position: relative;
   }
 }

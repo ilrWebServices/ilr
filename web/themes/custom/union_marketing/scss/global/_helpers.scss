@@ -9,26 +9,6 @@
   width: 1px;
 }
 
-// "Desktop" and "Mobile" components can be used to hide content.
-// @see the homepage banner video as an example of where this is used.
-.cu-component--desktop {
-  display: none;
-
-  @include breakpoint(md) {
-    display: block;
-  }
-}
-
-.cu-component--mobile {
-  @include breakpoint(md) {
-    display: none;
-  }
-
-  .cu-video {
-    margin-bottom: 1rem; // needed?
-  }
-}
-
 .node--unpublished,
 .term--unpublished,
 .collection--unpublished,
