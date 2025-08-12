@@ -5,3 +5,33 @@ entity.ilr_employee_position.settings:
     _title: 'ILR employee position'
   requirements:
     _permission: 'administer ilr_employee_position'
+
+# ilr_employee_position.persona.ilr_employee_positions:
+#   path: '/persona/{persona}/ilr_employee_positions'
+#   defaults:
+#     _controller: '\Drupal\ilr_employee_position\Controller\PersonaIlrEmployeePositionsController::content'
+#     _title_callback: '\Drupal\ilr_employee_position\Controller\PersonaIlrEmployeePositionsController::addTitle'
+#   requirements:
+#     _permission: 'administer ilr_employee_positions'
+#   options:
+#     _admin_route: 'TRUE'
+#     parameters:
+#       persona:
+#         type: 'entity:persona'
+#         converter: paramconverter.entity
+#     _access_checks:
+#       - access_check.permission
+
+ilr_employee_position.persona.ilr_employee_positions:
+  path: '/persona/{persona}/ilr_employee_positions'
+  defaults:
+    _form: '\Drupal\ilr_employee_position\Form\PersonaIlrEmployeePositionsForm'
+    _title_callback: '\Drupal\ilr_employee_position\Form\PersonaIlrEmployeePositionsForm::getTitle'
+  requirements:
+    _permission: 'administer ilr_employee_positions'
+  options:
+    _admin_route: 'TRUE'
+    parameters:
+      persona:
+        type: 'entity:persona'
+        converter: paramconverter.entity

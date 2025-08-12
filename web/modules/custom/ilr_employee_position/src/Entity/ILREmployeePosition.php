@@ -212,6 +212,12 @@ final class ILREmployeePosition extends RevisionableContentEntityBase implements
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the ILR employee position was last edited.'));
 
+    $fields['weight'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Weight'))
+      ->setDescription(t('The weight of this term in relation to other terms.'))
+      ->setInitialValue(0)
+      ->setDefaultValue(0);
+
     return $fields;
   }
 

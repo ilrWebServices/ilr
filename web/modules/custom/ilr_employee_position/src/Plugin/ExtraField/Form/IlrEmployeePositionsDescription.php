@@ -4,6 +4,7 @@ namespace Drupal\ilr_employee_position\Plugin\ExtraField\Form;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\extra_field\Plugin\ExtraFieldFormBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -52,7 +53,13 @@ class IlrEmployeePositionsDescription extends ExtraFieldFormBase implements Cont
   public function formElement(array &$form, FormStateInterface $form_state) {
     $persona = $form_state->getFormObject()->getEntity();
     $element = [
-      '#type' => 'container',
+      '#type' => 'fieldset',
+      '#title' => $this->t('Positions (title plus department)'),
+      '#description' => $this->t('@edit_link these employee positions.', [
+        '@edit_link' => Link::createFromRoute('Reorder or edit', 'ilr_employee_position.persona.ilr_employee_positions', [
+          'persona' => $persona->id(),
+        ])->toString(),
+      ]),
       '#attributes' => ['class' => 'profile-positions'],
     ];
 
@@ -71,7 +78,6 @@ class IlrEmployeePositionsDescription extends ExtraFieldFormBase implements Cont
     $view_builder = $this->entityTypeManager->getViewBuilder('ilr_employee_position');
     $element['profile_positions'] = [
       '#theme' => 'item_list__profile_positions',
-      '#title' => $this->t('Titles'),
       '#items' => [],
       '#attributes' => ['class' => 'profile-positions'],
     ];

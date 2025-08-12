@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains ilr_employee_position.install.
+ */
+
+use Drupal\Core\Field\BaseFieldDefinition;
+
+/**
+ * Add a weight field to the ilr_employee_position entity.
+ */
+function ilr_employee_position_update_10101() {
+  $entity_definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $entity_type_id = 'ilr_employee_position';
+
+  $field_storage_definition = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Weight'))
+      ->setDescription(t('The weight of this term in relation to other terms.'))
+      ->setInitialValue(0)
+      ->setDefaultValue(0);
+
+  $entity_definition_update_manager->installFieldStorageDefinition('weight', $entity_type_id, $entity_type_id, $field_storage_definition);
+}
