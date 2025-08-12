@@ -25,125 +25,43 @@
  * @see template_preprocess_block()
  */
 #}
-{% set classes = [
-  'block',
-  'block-' ~ configuration.provider|clean_class,
-  'block-' ~ plugin_id|replace({':': '--'})|clean_class,
-] %}
-{% set card_classes = [
-  'cu-card--dynamic',
-  'cu-card--hover-content-reveal',
-  'cu-colorscheme--dark',
-] %}
+{{ attach_library('union_marketing/lottie') }}
+{{ attach_library('union_marketing/lottie_80years') }}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'cu-banner--hero',
+    'cu-banner--video'
+  ]
+%}
 
-{% set undergrad %}
-<p class="cu-card__hover-content">Our flexible, interdisciplinary major lets students pursue a wide range of academic interests and careers.</p>
+{% set years_logo %}
+<div class="lottie-80years-container cu-banner--80years"></div>
 {% endset %}
-
-{% set grad %}
-<p class="cu-card__hover-content">Study the workplace comprehensively with the world's highest concentration of workplace faculty.</p>
-{% endset %}
-
-{% set professional %}
-<p class="cu-card__hover-content">Invest in your career by learning from instructors who blend world-leading research with business-tested practicality.</p>
-{% endset %}
-
-{% set icon_cards %}
-{% include '@union/_card.twig' with {
-  attributes: { class: card_classes },
-  heading: 'Undergraduate Admissions',
-  card_content: undergrad,
-  card_link_url: '/programs/undergraduate-admissions',
-  card_link_alt: 'Undergraduate Admissions',
-  icon_data: {
-    title: 'Cornell University Tower',
-    icon: 'tower'
-  }
-} only %}
-{% include '@union/_card.twig' with {
-  attributes: { class: card_classes },
-  heading: 'Graduate Programs',
-  card_content: grad,
-  card_link_url: '/programs/graduate-degree-programs',
-  card_link_alt: 'Graduate Programs',
-  icon_data: {
-    title: 'Mortarboard',
-    icon: 'mortarboard'
-  }
-} only %}
-{% include '@union/_card.twig' with {
-  attributes: { class: card_classes },
-  heading: 'Professional Education',
-  card_content: professional,
-  card_link_url: '/programs/professional-education',
-  card_link_alt: 'Professional Education',
-  icon_data: {
-    title: 'Handshake',
-    icon: 'handshake'
-  }
-} only %}
-{% endset %}
-
-{% set card_grid %}
-{% include '@union/_grid.twig' with {
-  grid_content: icon_cards,
-  attributes: { class: 'cu-grid--3col cu-grid--align-end' }
-} %}
-{% endset %}
-
-{% set controls %}
-<div class="video-pause">
-  {% include "@union/_icon.twig" with {
-    title: 'Pause video',
-    icon: 'pause',
-    size: '3em',
-    label: '',
-    attributes: {
-      class: 'cu-icon--inline pause cu-icon--play',
-      role: 'button',
-      'aria-pressed': "false"
-    }
-  } only %}
-  {% include "@union/_icon.twig" with {
-    title: 'Play video',
-    icon: 'play',
-    size: '3em',
-    label: '',
-    attributes: {
-      class: 'cu-icon--inline play visually-hidden',
-      role: 'button',
-      'aria-pressed': "true"
-    }
-  } only %}
-</div>
-{% endset %}
-
-{% set banner_content %}
-  {{ controls }}
-  {{ card_grid }}
-{% endset %}
-
-{# Temporary update for 2021 Commencement image #}
-{% set commencement_override = (date('now') > date('2021-05-27') and date('now') < date('2021-06-14')) %}
-
-{{ commencement_override}}
 
 {% set video_media %}
 {% include '@union/_video.twig' with {
-  src: commencement_override ? 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_75_congrats_202105_500.mp4' : 'https://ilr-images.s3.amazonaws.com/video/ilr_hero_clip_202106_500.mp4',
+  src: 'https://ilr-images.s3.us-east-1.amazonaws.com/video/ilr_hero_80years.mp4',
+  poster: '/themes/custom/union_marketing/images/hero-poster.jpg',
   autoplay: TRUE,
   loop: TRUE,
-  muted: TRUE
+  muted: TRUE,
+  playsinline: TRUE
 } only %}
 {% endset %}
 
-<div{{attributes.addClass(classes)}}>
-  {% include '@union/_banner.twig' with {
-    attributes: { class: 'cu-banner--video pick cu-component--desktop' },
-    content_attributes: { class: 'cu-banner__content--align-bottom' },
-    media: video_media,
-    content: banner_content
-  } only %}
-  {# Be sure to place the mobile version after desktop, so that js can target the correct play button (union bug). #}
-  {% include "block--union-marketing-homepage-banner--mobile.html.twig" %}
-</div>
+{% set hero_content %}
+  <p>80 years of pioneering research, education, and real-world impact.</p>
+{% endset %}
+
+{% include '@union/_banner.twig' with {
+  attributes: attributes.addClass(classes),
+  heading: 'Built for the future of work',
+  content: hero_content,
+  media: video_media,
+  content_side: years_logo,
+  link_url: '#',
+  link_text: 'Some CTA Here'
+} only %}

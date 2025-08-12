@@ -1,0 +1,61 @@
+// Card grid styling
+.cu-hero-card-grid {
+  margin-top: calc(var(--cu-vr1) * -1);
+  position: relative;
+  z-index: 3;
+
+  @media (min-width: 768px) {
+    margin-top: var(--cu-vr1);
+  }
+
+  .cu-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--cu-vr0);
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--cu-vr1);
+    }
+  }
+
+  // Always show card content (override Union defaults)
+  .cu-card--dynamic {
+    .cu-card__content {
+      opacity: 1;
+      transform: none;
+      position: static;
+      height: auto;
+    }
+
+    .cu-card__heading {
+      transform: none;
+      position: static;
+      padding-bottom: var(--cu-vr-1);
+      margin-bottom: var(--cu-vr0);
+    }
+
+    .cu-card__content-text {
+      display: block;
+      margin-bottom: var(--cu-vr1);
+    }
+
+    .cu-card__button {
+      margin-top: auto;
+    }
+  }
+}
+
+.region-highlighted .cu-banner--hero .cu-banner__content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// 80 Years Logo Lottie Animation
+.lottie-80years-container {
+  &.cu-banner--80years {
+    @include breakpoint(lg) {
+      transform: scale(1.10);
+    }
+  }
+}
