@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:simple_text:1d1640f5-d922-4622-835f-fba08eb0a788'
+    - 'block_content:component:cd73985d-a508-4e02-bcc9-51b6262c4c99'
   module:
     - block_content
     - block_visibility_groups
@@ -16,9 +16,9 @@ theme: union_marketing
 region: highlighted
 weight: -10
 provider: null
-plugin: 'block_content:1d1640f5-d922-4622-835f-fba08eb0a788'
+plugin: 'block_content:cd73985d-a508-4e02-bcc9-51b6262c4c99'
 settings:
-  id: 'block_content:1d1640f5-d922-4622-835f-fba08eb0a788'
+  id: 'block_content:cd73985d-a508-4e02-bcc9-51b6262c4c99'
   label: 'Homepage Banner'
   label_display: '0'
   provider: block_content
