@@ -272,7 +272,7 @@ handlers:
     handler_id: submission_detail_email
     label: 'Submission detail email'
     notes: ''
-    status: true
+    status: false
     conditions: {  }
     weight: 0
     settings:
