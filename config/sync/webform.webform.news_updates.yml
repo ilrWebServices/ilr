@@ -1,12 +1,7 @@
 uuid: 9894cb3b-3d43-48fc-ba48-0025e4b109fa
 langcode: en
 status: open
-dependencies:
-  module:
-    - honeypot
-third_party_settings:
-  honeypot:
-    honeypot: true
+dependencies: {  }
 weight: 0
 open: null
 close: null
