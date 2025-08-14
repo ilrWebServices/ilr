@@ -1270,6 +1270,51 @@ function ilr_field_widget_single_element_webform_entity_reference_select_form_al
 }
 
 /**
+ * Implements hook_webform_options_WEBFORM_OPTIONS_ID_alter().
+ *
+ * Use the current date to dynamically update the graduation date options.
+ */
+function ilr_webform_options_undergraduate_application_date_alter(array &$options, array &$element) {
+  $cid = 'ilr_undergraduate_application_date';
+
+  if ($cache = \Drupal::cache()->get($cid)) {
+    $options = $cache->data;
+    return;
+  }
+
+  $current_year = idate('y');
+  $next_year = $current_year + 1;
+
+  // Jan - May
+  if (idate('m') < 6) {
+    $options = [
+      "May '$current_year" => "May '$current_year",
+      "Aug '$current_year" => "Aug '$current_year",
+      "Dec '$current_year" => "Dec '$current_year",
+    ];
+  }
+  // Jun - Aug
+  elseif (idate('m') < 9) {
+    $options = [
+      "Aug '$current_year" => "Aug '$current_year",
+      "Dec '$current_year" => "Dec '$current_year",
+      "May '$next_year" => "May '$next_year",
+    ];
+  }
+  // Sep - Dec
+  else {
+    $options = [
+      "Dec '$current_year" => "Dec '$current_year",
+      "May '$next_year" => "May '$next_year",
+      "Aug '$next_year" => "Aug '$next_year",
+    ];
+  }
+
+  // Cache these options for 24 hours.
+  \Drupal::cache()->set($cid, $options, time() + 60 * 60 * 24);
+}
+
+/**
  * Implements hook_field_widget_single_element_WIDGET_TYPE_form_alter().
  *
  * @see ilr_field_widget_single_element_paragraphs_previewer_form_alter().
