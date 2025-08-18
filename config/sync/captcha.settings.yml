@@ -4,8 +4,8 @@ langcode: en
 enable_globally: 0
 enable_globally_on_admin_routes: false
 default_challenge: friendlycaptcha/friendlycaptcha
-description: 'This question is for testing whether or not you are a human visitor and to prevent automated spam submissions.'
-title: CAPTCHA
+description: ''
+title: ''
 administration_mode: false
 administration_mode_on_admin_routes: false
 whitelist_ips: ''
