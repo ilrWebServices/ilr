@@ -3,7 +3,12 @@ langcode: en
 status: open
 dependencies:
   module:
+    - honeypot
     - ilr_salesforce
+third_party_settings:
+  honeypot:
+    honeypot: true
+    time_restriction: true
 weight: 0
 open: null
 close: null

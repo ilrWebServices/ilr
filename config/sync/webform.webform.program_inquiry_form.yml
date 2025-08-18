@@ -3,7 +3,11 @@ langcode: en
 status: open
 dependencies:
   module:
+    - honeypot
     - ilr
+third_party_settings:
+  honeypot:
+    honeypot: true
 weight: 0
 open: null
 close: null
@@ -12,7 +16,7 @@ template: false
 archive: false
 id: program_inquiry_form
 title: 'Program Inquiry Form'
-description: '<p>An inquiry/eligibility form for some programs</p>'
+description: 'An inquiry/eligibility form for some programs'
 categories:
   - 'professional programs'
 elements: |-

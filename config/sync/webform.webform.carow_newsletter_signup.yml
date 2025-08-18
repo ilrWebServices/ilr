@@ -1,7 +1,13 @@
 uuid: 61314a59-badb-4ca9-82cd-ddae17c212c1
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - honeypot
+third_party_settings:
+  honeypot:
+    honeypot: true
+    time_restriction: true
 weight: 0
 open: null
 close: null
