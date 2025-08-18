@@ -1,12 +1,7 @@
 uuid: 023d54cb-817a-4107-87bd-84f29d84370e
 langcode: en
 status: open
-dependencies:
-  module:
-    - honeypot
-third_party_settings:
-  honeypot:
-    honeypot: true
+dependencies: {  }
 weight: 0
 open: null
 close: null
@@ -15,7 +10,7 @@ template: false
 archive: false
 id: high_road_application
 title: 'High Road Application'
-description: 'Application for the High Road Fellowships'
+description: '<p>Application for the High Road Fellowships</p>'
 categories: {  }
 elements: |-
   name:

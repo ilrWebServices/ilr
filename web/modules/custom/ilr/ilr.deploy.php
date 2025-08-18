@@ -192,3 +192,25 @@ function ilr_deploy_transform_prof_ed_interest_lead_mapped_objects(&$sandbox) {
     $mapped_object->delete();
   }
 }
+
+/**
+ * Remove Honeypot from all Webforms.
+ *
+ * Some of this is done on exported webforms in config/sync, but some webforms
+ * are ignored from config, and they'll need to be updated here.
+ */
+function ilr_deploy_remove_honeypot_from_webforms(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $webform_storage = $entity_type_manager->getStorage('webform');
+
+  /** @var \Drupal\webform\WebformInterface $webform */
+  foreach ($webform_storage->loadMultiple() as $webform) {
+    if ($webform->getThirdPartySettings('honeypot')) {
+      $webform->unsetThirdPartySettings('honeypot');
+      $webform->save();
+      \Drupal::messenger()->addStatus(t('honeypot settings removed from @webform.', [
+        '@webform' => $webform->label(),
+      ]));
+    }
+  }
+}
