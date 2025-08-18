@@ -134,6 +134,8 @@ elements: |-
     '#title': 'GA client id'
     '#attributes':
       id: ga_client_id
+  captcha:
+    '#type': captcha
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'

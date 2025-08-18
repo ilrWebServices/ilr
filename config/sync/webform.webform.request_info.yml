@@ -43,6 +43,8 @@ elements: |-
     texting_opt_in:
       '#type': checkbox
       '#title': "I'd like to receive texts."
+    captcha:
+      '#type': captcha
   outreach_marketing_personas:
     '#type': hidden
     '#title': outreach_marketing_personas
