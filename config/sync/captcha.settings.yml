@@ -1,8 +1,9 @@
 _core:
   default_config_hash: hfqTr6E3eXAcVQU25_tYHa4BzsSDaYhwkoF34xq5_k4
+langcode: en
 enable_globally: 0
 enable_globally_on_admin_routes: false
-default_challenge: captcha/Math
+default_challenge: friendlycaptcha/friendlycaptcha
 description: 'This question is for testing whether or not you are a human visitor and to prevent automated spam submissions.'
 title: CAPTCHA
 administration_mode: false
@@ -13,4 +14,3 @@ default_validation: 1
 persistence: 1
 enable_stats: false
 log_wrong_responses: false
-langcode: en
