@@ -67,6 +67,8 @@ content:
     settings:
       image_link: ''
       image_style: large_21_9_1200x514_
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 1
     region: content
@@ -78,6 +80,7 @@ content:
 hidden:
   blog_tags: true
   body: true
+  extra_field_related_posts: true
   field_featured_media: true
   field_related_posts: true
   field_subtitle: true
