@@ -193,6 +193,16 @@
       margin-left: calc((var(--post-max-width) - var(--post-max-width-text)) / 2 * -1);
       margin-right: calc((var(--post-max-width) - var(--post-max-width-text)) / 2 * -1);
     }
+
+    .block-extra-field-block--node--post--extra-field-related-posts {
+      --post-max-width-text: var(--post-max-width); // Width of the media element.
+    }
+  }
+
+  .related-posts {
+    .cu-composite-heading {
+      margin-bottom: var(--cu-vr1);
+    }
   }
 }
 
@@ -330,3 +340,4 @@
     }
   }
 }
+
