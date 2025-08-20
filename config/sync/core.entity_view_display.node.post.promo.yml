@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.post.field_components
     - field.field.node.post.field_featured_media
     - field.field.node.post.field_published_date
+    - field.field.node.post.field_related_posts
     - field.field.node.post.field_representative_image
     - field.field.node.post.field_subtitle
     - image.style.large_21_9_1200x514_
@@ -66,6 +67,8 @@ content:
     settings:
       image_link: ''
       image_style: large_21_9_1200x514_
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 1
     region: content
@@ -77,7 +80,9 @@ content:
 hidden:
   blog_tags: true
   body: true
+  extra_field_related_posts: true
   field_featured_media: true
+  field_related_posts: true
   field_subtitle: true
   langcode: true
   search_api_excerpt: true

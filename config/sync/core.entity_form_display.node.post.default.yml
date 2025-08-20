@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.post.field_components
     - field.field.node.post.field_featured_media
     - field.field.node.post.field_published_date
+    - field.field.node.post.field_related_posts
     - field.field.node.post.field_representative_image
     - field.field.node.post.field_subtitle
     - node.type.post
@@ -93,6 +94,16 @@ content:
     weight: 10
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_related_posts:
+    type: entity_reference_autocomplete
+    weight: 29
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_representative_image:
     type: media_library_widget

@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.post.field_components
     - field.field.node.post.field_featured_media
     - field.field.node.post.field_published_date
+    - field.field.node.post.field_related_posts
     - field.field.node.post.field_representative_image
     - field.field.node.post.field_subtitle
     - image.style.large_21_9_1200x514_
@@ -187,7 +188,7 @@ third_party_settings:
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-            weight: 9
+            weight: 10
             additional: {  }
           b38c70a3-2446-49a2-8a68-20a715f1de34:
             uuid: b38c70a3-2446-49a2-8a68-20a715f1de34
@@ -208,6 +209,16 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 1
             additional: {  }
+          125d26f6-bb76-4965-b19e-46dbb2c71b48:
+            uuid: 125d26f6-bb76-4965-b19e-46dbb2c71b48
+            region: content
+            configuration:
+              id: 'extra_field_block:node:post:extra_field_related_posts'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 11
+            additional: {  }
         third_party_settings: {  }
 id: node.post.default
 targetEntityType: node
@@ -223,6 +234,11 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 100
+    region: content
+  extra_field_related_posts:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
     region: content
   field_authors:
     type: entity_reference_entity_view
@@ -284,5 +300,6 @@ content:
     region: content
 hidden:
   body: true
+  field_related_posts: true
   langcode: true
   search_api_excerpt: true
