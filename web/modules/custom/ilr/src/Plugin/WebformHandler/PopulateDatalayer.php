@@ -3,8 +3,10 @@
 namespace Drupal\ilr\Plugin\WebformHandler;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\ilr_analytics_session\IlrAnalyticsSessionManager;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Datalayer webform handler.
@@ -26,6 +28,22 @@ class PopulateDatalayer extends WebformHandlerBase {
    * @var string|array<mixed>
    */
   private $eventData;
+
+  /**
+   * ILRAnalyticsSessionManager
+   *
+   * @var IlrAnalyticsSessionManager
+   */
+  protected $analyticsSessionManager;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
+    $instance->analyticsSessionManager = $container->get('ilr_analytics_session_manager');
+    return $instance;
+  }
 
   /**
    * {@inheritdoc}
@@ -70,10 +88,16 @@ class PopulateDatalayer extends WebformHandlerBase {
       /** @var \Drupal\Webform\WebformSubmissionStorageInterface $submission_storage */
       $submission_storage = $this->entityTypeManager->getStorage('webform_submission');
       /** @var \Drupal\Webform\WebformSubmissionInterface $last_submission */
-      $last_submission = $submission_storage->getLastSubmission($webform_submission->getWebform(), $webform_submission->getSourceEntity(), \Drupal::currentUser(), ['in_draft' => FALSE]);
+      $last_submission = $submission_storage->getLastSubmission($webform_submission->getWebform(), $webform_submission->getSourceEntity(), NULL, ['in_draft' => FALSE, 'access_check' => FALSE]);
+
+      // Since we're skipping the access_check for anonymous users, we need to
+      // compare the analytics session ids to ensure we have the appropriate
+      // submission.
+      $submission_client_id = $last_submission->getElementData('ga_client_id');
+      $current_client_id = $this->analyticsSessionManager->getClientId();
 
       // Ensure there is a previous submission and it was completed in the last 5 seconds.
-      if (empty($last_submission) || (time() - $last_submission->getCompletedTime() > 5)) {
+      if (empty($last_submission) || (time() - $last_submission->getCompletedTime() > 5) || $submission_client_id !== $current_client_id) {
         return;
       }
       $this->setEventData($last_submission);
