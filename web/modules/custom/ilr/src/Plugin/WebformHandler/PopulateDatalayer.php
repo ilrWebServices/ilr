@@ -2,7 +2,6 @@
 
 namespace Drupal\ilr\Plugin\WebformHandler;
 
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;
@@ -100,25 +99,27 @@ class PopulateDatalayer extends WebformHandlerBase {
         ]
       ];
 
-      foreach ($this->configuration['datalayer']['elements'] as $element) {
-        if (is_array($element)) {
-          $values = $webform_submission->getelementData(array_key_first($element));
+      if (isset($this->configuration['datalayer']['elements'])) {
+        foreach ($this->configuration['datalayer']['elements'] as $element) {
+          if (is_array($element)) {
+            $values = $webform_submission->getelementData(array_key_first($element));
 
-          if (empty($values)) {
-            continue;
-          }
-
-          foreach ($element as $subelements) {
-            foreach ($subelements as $subelement) {
-              if (array_key_exists($subelement, $values)) {
-                $data['data'][$subelement] = $values[$subelement];
-              }
+            if (empty($values)) {
+              continue;
             }
 
+            foreach ($element as $subelements) {
+              foreach ($subelements as $subelement) {
+                if (array_key_exists($subelement, $values)) {
+                  $data['data'][$subelement] = $values[$subelement];
+                }
+              }
+
+            }
           }
-        }
-        elseif ($value = $webform_submission->getelementData($element)) {
-          $data['data'][$element] = $value;
+          elseif ($value = $webform_submission->getelementData($element)) {
+            $data['data'][$element] = $value;
+          }
         }
       }
 
