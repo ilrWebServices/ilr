@@ -66,17 +66,38 @@ class PopulateDatalayer extends WebformHandlerBase {
    * {@inheritdoc}
    */
   public function alterForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
-    if (!empty($this->eventData)) {
-      $form['#attached']['library'][] = 'union_marketing/interaction-analytics';
-      $form['#attached']['drupalSettings']['ilr_webform_data'] = $this->eventData;
-      $form['#attached']['drupalSettings']['ilr_include_ajax'] = TRUE;
+    if (empty($this->eventData)) {
+      /** @var \Drupal\Webform\WebformSubmissionStorageInterface $submission_storage */
+      $submission_storage = $this->entityTypeManager->getStorage('webform_submission');
+      /** @var \Drupal\Webform\WebformSubmissionInterface $last_submission */
+      $last_submission = $submission_storage->getLastSubmission($webform_submission->getWebform(), $webform_submission->getSourceEntity(), \Drupal::currentUser(), ['in_draft' => FALSE]);
+
+      // Ensure there is a previous submission and it was completed in the last 5 seconds.
+      if (empty($last_submission) || (time() - $last_submission->getCompletedTime() > 5)) {
+        return;
+      }
+      $this->setEventData($last_submission);
     }
+
+    $form['#attached']['library'][] = 'union_marketing/interaction-analytics';
+    $form['#attached']['drupalSettings']['ilr_webform_data'] = $this->eventData;
+    $form['#attached']['drupalSettings']['ilr_include_ajax'] = TRUE;
   }
 
   /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
+    $this->setEventData($webform_submission);
+  }
+
+  /**
+   * Set the event data so it can be added to the dataLayer.
+   *
+   * @param WebformSubmissionInterface $webform_submission
+   * @return void
+   */
+  protected function setEventData(WebformSubmissionInterface $webform_submission) {
     $webform = $webform_submission->getWebform();
 
     // Check for a confirmation message, and replace any existing tokens if found.
