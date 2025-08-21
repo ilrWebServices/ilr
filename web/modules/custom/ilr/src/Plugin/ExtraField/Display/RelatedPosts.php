@@ -60,7 +60,6 @@ class RelatedPosts extends ExtraFieldDisplayBase implements ContainerFactoryPlug
   public function view(ContentEntityInterface $entity) {
     $elements = [];
     $related_posts = [];
-    $all_posts_related = TRUE;
 
     if ($entity->hasField('field_related_posts')) {
       $related_posts = $entity->field_related_posts->referencedEntities();
@@ -108,8 +107,6 @@ class RelatedPosts extends ExtraFieldDisplayBase implements ContainerFactoryPlug
 
     // Still need moar posts?
     if ($posts_needed > 0) {
-      $all_posts_related = FALSE;
-
       // Query the news collection!
       $current_news_collection_item_id_query = $this->entityTypeManager->getStorage('collection_item')->getQuery()
         ->accessCheck(FALSE)
@@ -133,7 +130,7 @@ class RelatedPosts extends ExtraFieldDisplayBase implements ContainerFactoryPlug
 
     $elements['related_posts'] = [
       '#theme' => 'item_list__related_posts',
-      '#title' => $this->t($all_posts_related ? 'Related' : 'More news'),
+      '#title' => $this->t('You may also like:'),
       '#items' => [],
       '#attributes' => ['class' => 'related-posts'],
       '#context' => ['node' => $entity],
