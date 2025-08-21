@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - ilr
     - ilr_effects
 id: image
 label: Image
@@ -10,5 +11,7 @@ icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
+  frame_media:
+    enabled: true
   ilr_effects_image:
     enabled: true

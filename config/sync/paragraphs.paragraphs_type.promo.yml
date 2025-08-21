@@ -10,6 +10,8 @@ icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
+  frame_media:
+    enabled: true
   ilr_card:
     enabled: true
   ilr_color:
