@@ -2,6 +2,8 @@ uuid: f18bc70c-ac4f-438f-89e9-157909e41a5d
 langcode: en
 status: open
 dependencies:
+  module:
+    - ilr
   enforced:
     module:
       - webform
@@ -300,4 +302,15 @@ handlers:
       theme_name: ''
       parameters: {  }
       debug: false
+  populate_datalayer:
+    id: populate_datalayer
+    handler_id: populate_datalayer
+    label: 'Populate Datalayer'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 2
+    settings:
+      datalayer:
+        type: lead
 variants: {  }

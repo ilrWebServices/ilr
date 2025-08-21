@@ -4,6 +4,7 @@ status: open
 dependencies:
   module:
     - honeypot
+    - ilr
 third_party_settings:
   honeypot:
     honeypot: true
@@ -157,7 +158,7 @@ settings:
   confirmation_type: message
   confirmation_url: ''
   confirmation_title: ''
-  confirmation_message: 'Thank you for subscribing to our News updates!'
+  confirmation_message: '<p>Thank you for subscribing to our News updates!</p>'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -233,5 +234,16 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  populate_datalayer:
+    id: populate_datalayer
+    handler_id: populate_datalayer
+    label: 'Populate Datalayer'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      datalayer:
+        type: subscribe
 variants: {  }
