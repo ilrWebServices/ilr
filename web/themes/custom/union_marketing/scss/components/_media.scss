@@ -38,6 +38,20 @@
   }
 }
 
+// Add a partial border to un-floated inline images. Note that image
+// paragraphs (e.g. .paragraph--type--image) should arguably use this
+// treatment, too, but the border could conflict with image effects (curtain,
+// ken burns) allowed on image paragraphs.
+.cu-media.align-center .field--field-media-image {
+  margin-bottom: 0;
+  padding: 16px 16px 16px 0;
+  background:
+    linear-gradient(#ccc 0 0) top right / 75% 16px,
+    linear-gradient(#ccc 0 0) right / 16px 100%,
+    linear-gradient(#ccc 0 0) bottom right / 15% 16px,   transparent;
+  background-repeat: no-repeat;
+}
+
 .cu-media.align-right,
 .cu-media.align-left {
   margin: 0 0 var(--cu-vr1) 0;
