@@ -77,56 +77,54 @@ class PopulateDatalayer extends WebformHandlerBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
-    if ($this->configuration['datalayer']) {
-      $webform = $webform_submission->getWebform();
+    $webform = $webform_submission->getWebform();
 
-      // Check for a confirmation message, and replace any existing tokens if found.
-      if ($confirmation_message = $webform->getSetting('confirmation_message', '')) {
-        $message = $this->replaceTokens($confirmation_message, $webform_submission);
-      }
+    // Check for a confirmation message, and replace any existing tokens if found.
+    if ($confirmation_message = $webform->getSetting('confirmation_message', '')) {
+      $message = $this->replaceTokens($confirmation_message, $webform_submission);
+    }
 
-      $data = [
-        'id' => $webform->id(),
-        'name' => $webform->label(),
-        'uuid' => $webform_submission->uuid() ?? 'unknown',
-        'data' => [],
-        'type' => $this->configuration['datalayer']['type'] ?? 'lead',
-        'done' => 'true',
-        'url' => ($webform_submission->getSourceUrl()) ? $webform_submission->getSourceUrl()->toString() : 'unknown',
-        'result' => [
-          'count' => 1,
-          'message' => $message ?? 'unknown',
-        ]
-      ];
+    $data = [
+      'id' => $webform->id(),
+      'name' => $webform->label(),
+      'uuid' => $webform_submission->uuid() ?? 'unknown',
+      'data' => [],
+      'type' => $this->configuration['datalayer']['type'] ?? 'lead',
+      'done' => 'true',
+      'url' => ($webform_submission->getSourceUrl()) ? $webform_submission->getSourceUrl()->toString() : 'unknown',
+      'result' => [
+        'count' => 1,
+        'message' => $message ?? 'unknown',
+      ]
+    ];
 
-      if (isset($this->configuration['datalayer']['elements'])) {
-        foreach ($this->configuration['datalayer']['elements'] as $element) {
-          if (is_array($element)) {
-            $values = $webform_submission->getelementData(array_key_first($element));
+    if (isset($this->configuration['datalayer']['elements'])) {
+      foreach ($this->configuration['datalayer']['elements'] as $element) {
+        if (is_array($element)) {
+          $values = $webform_submission->getelementData(array_key_first($element));
 
-            if (empty($values)) {
-              continue;
-            }
-
-            foreach ($element as $subelements) {
-              foreach ($subelements as $subelement) {
-                if (array_key_exists($subelement, $values)) {
-                  $data['data'][$subelement] = $values[$subelement];
-                }
-              }
-
-            }
+          if (empty($values)) {
+            continue;
           }
-          elseif ($value = $webform_submission->getelementData($element)) {
-            $data['data'][$element] = $value;
+
+          foreach ($element as $subelements) {
+            foreach ($subelements as $subelement) {
+              if (array_key_exists($subelement, $values)) {
+                $data['data'][$subelement] = $values[$subelement];
+              }
+            }
+
           }
         }
+        elseif ($value = $webform_submission->getelementData($element)) {
+          $data['data'][$element] = $value;
+        }
       }
-
-      $this->eventData = [
-        'event' => 'page.submit',
-        'page.submit' => $data,
-      ];
     }
+
+    $this->eventData = [
+      'event' => 'page.submit',
+      'page.submit' => $data,
+    ];
   }
 }
