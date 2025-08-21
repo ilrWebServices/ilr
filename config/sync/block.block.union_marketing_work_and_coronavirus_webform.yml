@@ -25,7 +25,7 @@ settings:
   webform_id: work_and_coronavirus_updates
   default_data: ''
   redirect: false
-  lazy: false
+  lazy: true
 visibility:
   condition_group:
     id: condition_group
