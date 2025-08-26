@@ -1,0 +1,26 @@
+# Requires https://github.com/freethoughtdesign/caddystack
+services:
+  web:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    networks:
+      - caddystack
+    labels:
+      caddy: http://drupal.ilr.test
+      caddy.reverse_proxy: "{{upstreams 8181}}"
+  db:
+    image: docker.io/mariadb:10.11
+    restart: always
+    env_file:
+      - .env
+    environment:
+      MARIADB_USER: jeff
+      MARIADB_PASSWORD: jeff
+    networks:
+      - caddystack
+networks:
+  caddystack:
+    external: true

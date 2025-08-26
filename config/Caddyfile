@@ -1,0 +1,14 @@
+{
+    supervisor {
+        php-fpm
+    }
+}
+
+:8181 {
+    root * /app/web
+    php_fastcgi unix//run/php-fpm/www.sock {
+        trusted_proxies private_ranges
+    }
+    encode gzip
+    file_server
+}
