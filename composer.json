@@ -182,7 +182,7 @@
     "sync-prod": [
       "Composer\\Config::disableProcessTimeout",
       "drush sql:drop -y",
-      "drush sql:sync @ilr-web.master @self -y --extra-dump=\" | awk 'NR==1 {if (/enable the sandbox mode/) next} {print}'\"",
+      "platform db:dump --stdout --project=yf4o2w34wqxm6 --environment=master --app=drupal8 --relationship=database --gzip | gunzip | drush sql:cli",
       "./post_sync_fix_triggers.php"
     ],
     "sync-update": [
