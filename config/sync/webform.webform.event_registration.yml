@@ -980,6 +980,8 @@ variants:
             to_mail: cahrs@cornell.edu
             subject: 'CAHRS Learning Series Event registration: [webform_submission:source-title]'
         confirmation_email:
+          status: true
+          conditions: {  }
           settings:
             subject: 'Thank You for Registering – CAHRS Learning Series.'
             body: |-
