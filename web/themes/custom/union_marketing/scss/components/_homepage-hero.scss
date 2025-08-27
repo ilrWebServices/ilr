@@ -51,6 +51,10 @@
   padding-right: 0;
 }
 
+.region-highlighted .cu-banner--hero .cu-banner__media video[src*="ilr_hero_80years"] {
+  object-position: bottom;
+}
+
 // 80 Years Logo Lottie Animation
 .lottie-80years-container {
   &.cu-banner--80years {
