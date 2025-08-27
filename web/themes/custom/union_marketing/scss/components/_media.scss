@@ -42,7 +42,7 @@
 // paragraphs (e.g. .paragraph--type--image) should arguably use this
 // treatment, too, but the border could conflict with image effects (curtain,
 // ken burns) allowed on image paragraphs.
-.cu-component:not(.cu-component--framed-media) .cu-media.align-center .field--field-media-image {
+.cu-component:not(.cu-component__frame) .cu-media.align-center .field--field-media-image {
   margin-bottom: 0;
   padding: 16px 16px 16px 0;
   background:
@@ -226,7 +226,7 @@
   margin-right: -50vw;
 }
 
-.cu-component--framed-media {
+.cu-component__frame {
   --frame-color: #ccc;
   --frame-width: 16px;
 
@@ -240,11 +240,11 @@
     background-repeat: no-repeat;
   }
 
-  &.cu-component--frame-vibrant {
+  &.cu-component__frame--vibrant {
     --frame-color: var(--cu-color-brand, #{$cornell-red});
   }
 
-  &.cu-component--frame-dark {
+  &.cu-component__frame--dark {
     --frame-color: #222;
   }
 
@@ -252,5 +252,4 @@
   .cu-media.align-right {
     --frame-width: 8px;
   }
-
 }
