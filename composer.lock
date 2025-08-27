@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "25467599c241069258b964977a649c96",
+    "content-hash": "e6d2ddb779857b06ef041d30de330dd3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -931,7 +931,7 @@
         },
         {
             "name": "cornell/union",
-            "version": "dev-union_ng",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union.git",
@@ -971,7 +971,7 @@
             ],
             "description": "A component-based design system",
             "support": {
-                "source": "https://github.com/ilrWebServices/union/tree/union_ng",
+                "source": "https://github.com/ilrWebServices/union/tree/master",
                 "issues": "https://github.com/ilrWebServices/union/issues"
             },
             "time": "2025-08-21T18:59:09+00:00"
