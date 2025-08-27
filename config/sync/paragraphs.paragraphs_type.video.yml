@@ -1,9 +1,21 @@
 uuid: 83814c41-ec51-482d-bb84-10ac341eb5e0
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
 id: video
 label: Video
 icon_uuid: null
+icon_default: null
 description: 'Use <em>Video</em>s for remote (e.g. YouTube) or local videos.'
-behavior_plugins: {  }
+behavior_plugins:
+  ilr_color:
+    enabled: true
+    color_schemes:
+      none: 0
+      light: 0
+      dark: 0
+      vibrant: 0
+    color_scheme_default: none
+    allow_framed_media: 1
