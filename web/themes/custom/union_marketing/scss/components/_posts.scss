@@ -16,6 +16,11 @@
     --post-max-width-text: 26rem;
     --post-max-width-media: 38rem;
   }
+
+  .cu-media.align-left,
+  .cu-media.align-right {
+    --frame-width: 8px;
+  }
 }
 
 .article--postalicious:not(.node--view-mode-main-content) {
