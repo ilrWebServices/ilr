@@ -169,13 +169,14 @@ class TouchpointHandler extends WebformHandlerBase {
     $data = $webform_submission->getData();
     $touchpoint_vars = $this->createMergeVars($data);
 
-    // Respect "opt in" status if asked on information requests.
-    if (isset($data['opt_in']) &&
-      $data['opt_in'] === 0 &&
-      isset($touchpoint_vars['Source__c']) &&
-      strtolower($touchpoint_vars['Source__c']) === 'information request'
-    ) {
-      return;
+
+    if (isset($data['opt_in']) && $data['opt_in'] === 0) {
+      // Respect "opt in" status if asked on information requests.
+      if (isset($touchpoint_vars['Source__c']) && strtolower($touchpoint_vars['Source__c']) === 'information request') {
+        return;
+      }
+      // Unset any emps that may have been set.
+      unset($touchpoint_vars['Touchpoint_EMPS__c']);
     }
 
     // Add the URL to the page the form was submitted to.
