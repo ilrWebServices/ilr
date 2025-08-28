@@ -191,6 +191,25 @@ class TouchpointHandler extends WebformHandlerBase {
       $touchpoint_vars['Company__c'] = 'NONE_PROVIDED';
     }
 
+    // Add any custom questions/answers.
+    $webform = $webform_submission->getWebform();
+    $custom_1_element = $webform->getElement('custom_1_answer');
+    $custom_2_element = $webform->getElement('custom_2_answer');
+
+    if ($custom_1_element && $custom_1_element['#access'] && isset($data['custom_1_answer'])) {
+      $custom_1_question = $custom_1_element['#title'] ?? 'Custom question 1';
+      $custom_1_answer = is_array($data['custom_1_answer']) ? implode(';', $data['custom_1_answer']) : $data['custom_1_answer'];
+      $touchpoint_vars['Custom1_Question__c'] = substr($custom_1_question, 0, 255);
+      $touchpoint_vars['Custom1_Answer__c'] = substr($custom_1_answer, 0, 255);
+    }
+
+    if ($custom_2_element && $custom_2_element['#access'] && isset($data['custom_2_answer'])) {
+      $custom_2_question = $custom_2_element['#title'] ?? 'Custom question 2';
+      $custom_2_answer = is_array($data['custom_2_answer']) ? implode(';', $data['custom_2_answer']) : $data['custom_2_answer'];
+      $touchpoint_vars['Custom2_Question__c'] = substr($custom_2_question, 0, 255);
+      $touchpoint_vars['Custom2_Answer__c'] = substr($custom_2_answer, 0, 255);
+    }
+
     // Add the URL to the page the form was submitted to.
     $touchpoint_vars['Origin__c'] = $webform_submission->getSourceUrl()->toString();
 
