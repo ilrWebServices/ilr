@@ -179,6 +179,18 @@ class TouchpointHandler extends WebformHandlerBase {
       unset($touchpoint_vars['Touchpoint_EMPS__c']);
     }
 
+    // Check for company_account and company values.
+    // Set a default if company was omitted.
+    if (!empty($data['company_account'])) {
+      $touchpoint_vars['Account_ID__c'] = $data['company_account'];
+    }
+    elseif (!empty($data['company'])) {
+      $touchpoint_vars['Company__c'] = $data['company'];
+    }
+    else {
+      $touchpoint_vars['Company__c'] = 'NONE_PROVIDED';
+    }
+
     // Add the URL to the page the form was submitted to.
     $touchpoint_vars['Origin__c'] = $webform_submission->getSourceUrl()->toString();
 
@@ -188,9 +200,6 @@ class TouchpointHandler extends WebformHandlerBase {
         $touchpoint_vars[$key] = implode(';', $value);
       }
     }
-
-    // Set a default value if Company__c if blank.
-    $touchpoint_vars['Company__c'] = $touchpoint_vars['Company__c'] ?? 'NONE PROVIDED';
 
     try {
       $sf_results = $this->sfapi->apiCall('sobjects/Touchpoint__c', $touchpoint_vars, 'POST');
