@@ -95,6 +95,10 @@ class RelatedPosts extends ExtraFieldDisplayBase implements ContainerFactoryPlug
 
       // Look for posts in the same category of collection items for this entity.
       foreach ($this->collectionContentManager->getCollectionItemsForEntity($entity) as $collection_item) {
+        if (!$collection_item->hasField('field_blog_categories')) {
+          continue;
+        }
+
         if ($collection_item->collection->entity->id() === $path_collection_entity->id() && !$collection_item->field_blog_categories->isEmpty()) {
           $remaining_category_collection_item_id_query->condition('field_blog_categories', $collection_item->field_blog_categories->target_id);
         }
