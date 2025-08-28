@@ -71,7 +71,7 @@ class PersonaNameListFormatter extends FormatterBase {
     $persona_display_names = [];
 
     foreach ($items as $delta => $persona) {
-      $persona_display_names[] = $persona->entity->getDisplayName();
+      $persona_display_names[] = $persona->entity->getDisplayName() ?? 'Unknown';
     }
 
     if (!empty($persona_display_names)) {
