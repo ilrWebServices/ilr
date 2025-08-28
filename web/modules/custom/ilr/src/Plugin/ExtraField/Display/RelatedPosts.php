@@ -74,6 +74,10 @@ class RelatedPosts extends ExtraFieldDisplayBase implements ContainerFactoryPlug
       }
     }
 
+    if (!$path_collection_entity) {
+      return $elements;
+    }
+
     $posts_needed = 3 - count($related_posts);
 
     if ($posts_needed > 0) {
