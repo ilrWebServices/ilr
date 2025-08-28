@@ -168,11 +168,16 @@ class TouchpointHandler extends WebformHandlerBase {
     // TODO: Figure out why the data is slightly different when submitting via the Edit and Notes forms. In our case, the `Texting_Opt_In__c` field is sometimes a string and sometimes an int.
     $data = $webform_submission->getData();
     $touchpoint_vars = $this->createMergeVars($data);
+    $touchpoint_type = $touchpoint_vars['Source__c'] ?? '';
 
+    // Ensure that there is an eventid present when sending event registrations.
+    if (strtolower($touchpoint_type) === 'event registration' && empty($data['eventid'])) {
+      return;
+    }
 
     if (isset($data['opt_in']) && $data['opt_in'] === 0) {
       // Respect "opt in" status if asked on information requests.
-      if (isset($touchpoint_vars['Source__c']) && strtolower($touchpoint_vars['Source__c']) === 'information request') {
+      if (strtolower($touchpoint_type) === 'information request') {
         return;
       }
       // Unset any emps that may have been set.
