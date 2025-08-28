@@ -33,7 +33,7 @@ class PopulateDatalayer extends WebformHandlerBase {
    */
   public function defaultConfiguration() {
     return [
-      'datalayer' => [],
+      'datalayer' => '',
     ];
   }
 
