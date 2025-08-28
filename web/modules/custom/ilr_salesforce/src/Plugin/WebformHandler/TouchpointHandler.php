@@ -170,6 +170,14 @@ class TouchpointHandler extends WebformHandlerBase {
     $touchpoint_vars = $this->createMergeVars($data);
     $touchpoint_type = $touchpoint_vars['Source__c'] ?? '';
 
+    // Check to ensure there is a touchpoint type set.
+    if (empty($touchpoint_type)) {
+      $this->logger->error('Touchpoint handler configuration error for the @webform', [
+        '@webform' => $webform_submission->getWebform()->label(),
+        '@message' => $this->t('Touchpoint handlers require the `Source__c` property.'),
+      ]);
+    }
+
     // Ensure that there is an eventid present when sending event registrations.
     if (strtolower($touchpoint_type) === 'event registration' && empty($data['eventid'])) {
       return;
