@@ -210,6 +210,11 @@ class TouchpointHandler extends WebformHandlerBase {
       $touchpoint_vars['Custom2_Answer__c'] = substr($custom_2_answer, 0, 255);
     }
 
+    // Deal with multiple opt-in variants.
+    if (!empty($data['opt_in_multiple'])) {
+      $touchpoint_vars['Touchpoint_EMPS__c'] = implode(';', $data['opt_in_multiple']);
+    }
+
     // Add the URL to the page the form was submitted to.
     $touchpoint_vars['Origin__c'] = $webform_submission->getSourceUrl()->toString();
 
