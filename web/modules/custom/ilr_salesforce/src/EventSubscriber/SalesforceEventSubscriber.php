@@ -9,10 +9,6 @@ use Drupal\salesforce_mapping\Event\SalesforceQueryEvent;
 use Drupal\salesforce_mapping\Event\SalesforcePullEvent;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\ilr_salesforce\CourseToTopicsTrait;
-use Drupal\salesforce_mapping\Event\SalesforcePushAllowedEvent;
-use Drupal\salesforce_mapping\Event\SalesforcePushParamsEvent;
-use Drupal\salesforce_mapping\Plugin\SalesforceMappingField\Constant;
-use Drupal\webform\WebformSubmissionInterface;
 
 /**
  * Subscriber for SalesForce events.
@@ -42,8 +38,6 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     return [
       SalesforceEvents::PULL_QUERY => 'pullQueryAlter',
       SalesforceEvents::PULL_PRESAVE => 'pullPresave',
-      SalesforceEvents::PUSH_ALLOWED => 'pushAllowed',
-      SalesforceEvents::PUSH_PARAMS => 'pushParams',
     ];
   }
 
@@ -103,127 +97,6 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
 
     if ($event->getMapping()->id() === 'course_certificate_node') {
       $this->pullPresaveCourseCertificateNode($event);
-    }
-  }
-
-  /**
-   * Push allowed event callback.
-   *
-   * @param \Drupal\salesforce_mapping\Event\SalesforcePushAllowedEvent $event
-   *   The event.
-   */
-  public function pushAllowed(SalesforcePushAllowedEvent $event) {
-    if ($event->getMapping()->id() === 'event_registration_touchpoint') {
-      /** @var \Drupal\webform\WebformSubmissionInterface $submission */
-      $submission = $event->getEntity();
-      $submission_data = $submission->getData();
-
-      // Ensure that there is an eventid present.
-      if (empty($submission_data['eventid'])) {
-        $event->disallowPush();
-      }
-    }
-
-    if ($event->getMapping()->getDrupalEntityType() === 'webform_submission' && $event->getMapping()->getSalesforceObjectType() === 'Touchpoint__c') {
-      /** @var \Drupal\webform\WebformSubmissionInterface $submission */
-      $submission = $event->getEntity();
-      $submission_data = $submission->getData();
-      $touchpoint_type = '';
-
-      foreach ($event->getMapping()->getFieldMappings() as $field_plugin) {
-        if ($field_plugin instanceof Constant && $field_plugin->get('salesforce_field') === 'Source__c') {
-          $touchpoint_type = $field_plugin->get('drupal_field_value');
-        }
-      }
-
-      if ($touchpoint_type === 'Information Request' && isset($submission_data['opt_in']) && $submission_data['opt_in'] === 0) {
-        $event->disallowPush();
-      }
-    }
-  }
-
-  /**
-   * Push params event callback.
-   *
-   * @param \Drupal\salesforce_mapping\Event\SalesforcePushParamsEvent $event
-   *   The event.
-   */
-  public function pushParams(SalesforcePushParamsEvent $event) {
-    $entity = $event->getEntity();
-    $params = $event->getParams();
-    $sf_object_name = $event->getMapping()->getSalesforceObjectType() ?? '';
-
-    if ($entity instanceof WebformSubmissionInterface) {
-      /** @var \Drupal\webform\WebformSubmissionInterface $entity */
-      $data = $entity->getData();
-      $webform = $entity->getWebform();
-
-      // This is a hard-coded list of SF objects that have the fields
-      // `Custom1_Question__c`, `Custom1_Answer__c`, `Custom2_Question__c`, and
-      // `Custom2_Answer__c`.
-      $custom_q_and_a_objects = ['Touchpoint__c'];
-
-      if (in_array($sf_object_name, $custom_q_and_a_objects)) {
-        // Add any custom questions.
-        $custom_1_element = $webform->getElement('custom_1_answer');
-        $custom_2_element = $webform->getElement('custom_2_answer');
-
-        if ($custom_1_element && $custom_1_element['#access'] && isset($data['custom_1_answer'])) {
-          $custom_1_question = $custom_1_element['#title'] ?? 'Custom question 1';
-          $custom_1_answer = is_array($data['custom_1_answer']) ? implode(';', $data['custom_1_answer']) : $data['custom_1_answer'];
-          $params->setParam('Custom1_Question__c', substr($custom_1_question, 0, 255));
-          $params->setParam('Custom1_Answer__c', substr($custom_1_answer, 0, 255));
-        }
-
-        if ($custom_2_element && $custom_2_element['#access'] && isset($data['custom_2_answer'])) {
-          $custom_2_question = $custom_2_element['#title'] ?? 'Custom question 2';
-          $custom_2_answer = is_array($data['custom_2_answer']) ? implode(';', $data['custom_2_answer']) : $data['custom_2_answer'];
-          $params->setParam('Custom2_Question__c', substr($custom_2_question, 0, 255));
-          $params->setParam('Custom2_Answer__c', substr($custom_2_answer, 0, 255));
-        }
-      }
-
-      // Send address and company info to Touchpoints. We can't map these values
-      // because different variants can use different address and company
-      // fields.
-      if ($sf_object_name === 'Touchpoint__c') {
-        $address_variant = $data['variant_address'] ?? '';
-
-        // Default the address values to the international address field.
-        if ($address_variant !== 'remove_address' && !empty($data['address_intl'])) {
-          $params->setParam('Street_Address__c', $data['address_intl']['address_line1'] ?: '');
-          $params->setParam('City__c', $data['address_intl']['locality'] ?: '');
-          $params->setParam('State__c', $data['address_intl']['administrative_area'] ?: '');
-          $params->setParam('Zip_Postal_Code__c', $data['address_intl']['postal_code'] ?: '');
-          $params->setParam('Country__c', $data['address_intl']['country_code'] ?: '');
-        }
-        // If there is basic address info, use those values instead.
-        elseif ($address_variant === 'basic_address' && !empty($data['address'])) {
-          $params->setParam('Street_Address__c', $data['address']['address'] ?: '');
-          $params->setParam('City__c', $data['address']['city'] ?: '');
-          $params->setParam('State__c', $data['address']['state_province'] ?: '');
-          $params->setParam('Zip_Postal_Code__c', $data['address']['postal_code'] ?: '');
-          $params->setParam('Country__c', $data['address']['country'] ?: '');
-        }
-
-        // Send the company if it was on the form.
-        if (!empty($data['company'])) {
-          $params->setParam(('Company__c'), $data['company']);
-        }
-
-        // Add email marketing personas if user has opted in.
-        if (!empty($data['opt_in']) && !empty(trim($data['outreach_marketing_personas']))) {
-          // Since Touchpoint_EMPS__c is a restricted picklist, we deal with
-          // invalid values via the EMP helper on the registration reference
-          // widget.
-          $params->setParam('Touchpoint_EMPS__c', $data['outreach_marketing_personas']);
-        }
-
-        // Deal with multiple opt-in variants.
-        if (!empty($data['opt_in_multiple'])) {
-          $params->setParam('Touchpoint_EMPS__c', implode(';', $data['opt_in_multiple']));
-        }
-      }
     }
   }
 
