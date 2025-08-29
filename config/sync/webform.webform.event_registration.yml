@@ -81,23 +81,6 @@ elements: |-
     '#title': Phone
     '#required': true
     '#access': false
-  address:
-    '#type': webform_address
-    '#access': false
-    '#title': 'Work address'
-    '#help': '<p><em>ILR’s outreach and continuing education work is supported in part by grants and state funding. Knowing where our event participants are located helps our funders better understand the impact of ILR’s work.</em></p>'
-    '#title_display': before
-    '#address__access': false
-    '#address_2__access': false
-    '#city__title': City
-    '#city__required': true
-    '#state_province__title': State
-    '#state_province__required': true
-    '#state_province__options': state_province_codes
-    '#postal_code__title': Zip
-    '#postal_code__required': true
-    '#country__access': false
-    '#address_3__access': false
   address_intl:
     '#type': address
     '#title': 'Work address'
@@ -510,7 +493,7 @@ handlers:
         'address_intl:locality': City__c
         'address_intl:administrative_area': State__c
         'address_intl:postal_code': Zip_Postal_Code__c
-        'address_intl:country_code':  Country__c
+        'address_intl:country_code': Country__c
         accessible_accommodation: ADA_Accommodations__c
         outreach_marketing_personas: Touchpoint_EMPS__c
         'utm_values:utm_source': Touchpoint_UTM_Source__c
@@ -573,19 +556,6 @@ variants:
       debug: false
       settings: {  }
       elements: "email:\r\n  '#weight': 6\r\nopt_in:\r\n  '#title': Opt-in for updates from Buffalo Co-Lab Institute\r\ncustom_1_answer:\r\n  '#type': textarea\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Questions for panelists'"
-      handlers: {  }
-  paths_to_labor_arbitrator:
-    id: override
-    variant_id: paths_to_labor_arbitrator
-    element_key: variant
-    label: 'Paths to Becoming a Labor Arbitrator'
-    notes: ''
-    status: true
-    weight: 3
-    settings:
-      debug: false
-      settings: {  }
-      elements: "address:\r\n  '#access': true"
       handlers: {  }
   cahrs_event:
     id: override
