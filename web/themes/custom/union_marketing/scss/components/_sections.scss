@@ -60,3 +60,12 @@ figure.cu-media,
 .paragraphs-previewer-html .cu-section.paragraph--unpublished {
   display: unset;
 }
+
+// Tighten spacing between gapless sections and the section to follow.
+.cu-section.cu-section--gapless {
+  padding-bottom: var(--cu-vr1);
+
+  + .cu-section {
+    padding-top: 0;
+  }
+}
