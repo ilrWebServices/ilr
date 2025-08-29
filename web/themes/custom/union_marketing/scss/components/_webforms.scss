@@ -154,3 +154,8 @@
   margin-bottom: 0;
   padding-bottom: 0;
 }
+
+// TODO: Fix stuff like this when we refactor the Union form component.
+.cu-input.cu-input--url {
+  width: 100%;
+}
