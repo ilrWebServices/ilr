@@ -109,7 +109,7 @@ class PopulateDatalayer extends WebformHandlerBase {
       'page.submit' => $data,
     ]);
 
-    setcookie(name: 'ilr_datalayer_submission', value: base64_encode($json_data), expires_or_options: time() + 120, secure: TRUE);
+    setcookie(name: 'ilr_datalayer_submission', value: base64_encode($json_data), path: '/', expires_or_options: time() + 120, secure: TRUE);
   }
 
 }

@@ -26,6 +26,10 @@
           if (data) {
             window.dataLayer = window.dataLayer || [];
             dataLayer.push(JSON.parse(data));
+
+            // Delete the cookie so that this submission doesn't get added to
+            // the datalayer again.
+            document.cookie = "ilr_datalayer_submission=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
           }
         }
       } catch (error) {
