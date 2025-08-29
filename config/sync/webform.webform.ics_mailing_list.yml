@@ -4,6 +4,12 @@ status: open
 dependencies:
   module:
     - ilr
+    - honeypot
+    - ilr_salesforce
+third_party_settings:
+  honeypot:
+    honeypot: true
+    time_restriction: true
 weight: 0
 open: null
 close: null
@@ -11,10 +17,22 @@ uid: 1
 template: false
 archive: false
 id: ics_mailing_list
-title: 'ICS Mailing List'
+title: 'ICS newsletter signup'
 description: ''
 categories: {  }
 elements: |-
+  content_container:
+    '#type': container
+    '#attributes':
+      class:
+        - form-title
+    '#markup': |-
+      <h2 class="cu-heading">
+        ICS Newsletter Signup
+      </h2>
+      <p>
+        Keep up with the latest information and news.
+      </p>
   element_container:
     '#type': container
     '#attributes':
@@ -28,46 +46,21 @@ elements: |-
       '#type': textfield
       '#title': 'Last name'
       '#required': true
-    job_title:
-      '#type': textfield
-      '#title': 'Job Title'
-    organization:
-      '#type': textfield
-      '#title': Organization
     email:
       '#type': email
       '#title': Email
       '#required': true
-      '#default_value': '[current-user:mail]'
-    phone:
-      '#type': tel
-      '#title': Phone
-  address_container:
-    '#type': container
-    '#attributes':
-      class:
-        - form-fields
-    address:
-      '#type': webform_address
-      '#title': Address
-      '#address__required': true
-      '#address_2__access': false
-      '#city__required': true
-      '#state_province__required': true
-      '#postal_code__required': true
-  action_container:
-    '#type': container
-    '#attributes':
-      class:
-        - colspan
-    please_share_updates_on_future_ics_activities_and_insights_with_:
-      '#type': checkbox
-      '#title': 'Please share updates on future ICS activities and insights with me.'
-      '#default_value': true
     actions:
       '#type': webform_actions
       '#title': 'Submit button(s)'
       '#submit__label': Submit
+  utm_values:
+    '#type': utm_values
+  ga_client_id:
+    '#type': hidden
+    '#title': 'GA client id'
+    '#attributes':
+      id: ga_client_id
 css: ''
 javascript: ''
 settings:
@@ -76,11 +69,11 @@ settings:
   ajax_progress_type: ''
   ajax_effect: ''
   ajax_speed: null
-  page: true
+  page: false
   page_submit_path: ''
   page_confirm_path: ''
   page_theme_name: ''
-  form_title: both
+  form_title: source_entity_webform
   form_submit_once: false
   form_open_message: ''
   form_close_message: ''
@@ -111,7 +104,8 @@ settings:
   form_file_limit: ''
   form_attributes:
     class:
-      - 'webform--with-content webform--dark'
+      - webform--with-content
+      - webform--dark
   form_method: ''
   form_action: ''
   share: false
@@ -154,7 +148,7 @@ settings:
   wizard_track: ''
   wizard_prev_button_label: ''
   wizard_next_button_label: ''
-  wizard_toggle: false
+  wizard_toggle: true
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
   wizard_page_type: container
@@ -174,10 +168,10 @@ settings:
   draft_loaded_message: ''
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
-  confirmation_type: message
+  confirmation_type: inline
   confirmation_url: ''
   confirmation_title: ''
-  confirmation_message: 'Thank you for subscribing to the Institute for Compensation Studies mailing list!'
+  confirmation_message: 'Thank you for signing up for the ICS newsletter.'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -254,43 +248,29 @@ access:
     users: {  }
     permissions: {  }
 handlers:
-  email:
-    id: email
-    handler_id: email
-    label: Email
-    notes: 'Admin email'
+  ilr_outreach_touchpoint_submitter:
+    id: outreach_touchpoint_submitter
+    handler_id: ilr_outreach_touchpoint_submitter
+    label: 'ILR Outreach touchpoint submitter'
+    notes: ''
     status: true
     conditions: {  }
     weight: 0
     settings:
-      states:
-        - completed
-      to_mail: ICS-ILR@cornell.edu
-      to_options: {  }
-      bcc_mail: ''
-      bcc_options: {  }
-      cc_mail: ''
-      cc_options: {  }
-      from_mail: _default
-      from_options: {  }
-      from_name: _default
-      reply_to: ''
-      return_path: ''
-      sender_mail: ''
-      sender_name: ''
-      subject: _default
-      body: _default
-      excluded_elements: {  }
-      ignore_access: false
-      exclude_empty: true
-      exclude_empty_checkbox: false
-      exclude_attachments: false
-      html: true
-      attachments: false
-      twig: false
-      theme_name: ''
-      parameters: {  }
-      debug: false
+      extra_values: "Institute for Compensation Studies\r\nInformation Request\r\nSite Inquiry Form"
+      fields_mapping:
+        first_name: FirstName__c
+        last_name: LastName__c
+        email: Email__c
+        'utm_values:utm_source': Touchpoint_UTM_Source__c
+        'utm_values:utm_medium': Touchpoint_UTM_Medium__c
+        'utm_values:utm_campaign': Touchpoint_UTM_Campaign__c
+        'utm_values:utm_term': Touchpoint_UTM_Term__c
+        'utm_values:utm_content': Touchpoint_UTM_Content__c
+        ga_client_id: GAClientID__c
+        'Information Request': Source__c
+        'Site Inquiry Form': Lead_Source__c
+        'Institute for Compensation Studies': Touchpoint_EMPS__c
   populate_datalayer:
     id: populate_datalayer
     handler_id: populate_datalayer

@@ -168,6 +168,65 @@ class TouchpointHandler extends WebformHandlerBase {
     // TODO: Figure out why the data is slightly different when submitting via the Edit and Notes forms. In our case, the `Texting_Opt_In__c` field is sometimes a string and sometimes an int.
     $data = $webform_submission->getData();
     $touchpoint_vars = $this->createMergeVars($data);
+    $touchpoint_type = $touchpoint_vars['Source__c'] ?? '';
+
+    // Check to ensure there is a touchpoint type set.
+    if (empty($touchpoint_type)) {
+      $this->logger->error('Touchpoint handler configuration error for the @webform', [
+        '@webform' => $webform_submission->getWebform()->label(),
+        '@message' => $this->t('Touchpoint handlers require the `Source__c` property.'),
+      ]);
+    }
+
+    // Ensure that there is an eventid present when sending event registrations.
+    if (strtolower($touchpoint_type) === 'event registration' && empty($data['eventid'])) {
+      return;
+    }
+
+    if (isset($data['opt_in']) && $data['opt_in'] === 0) {
+      // Respect "opt in" status if asked on information requests.
+      if (strtolower($touchpoint_type) === 'information request') {
+        return;
+      }
+      // Unset any emps that may have been set.
+      unset($touchpoint_vars['Touchpoint_EMPS__c']);
+    }
+
+    // Check for company_account and company values.
+    // Set a default if company was omitted.
+    if (!empty($data['company_account'])) {
+      $touchpoint_vars['Account_ID__c'] = $data['company_account'];
+    }
+    elseif (!empty($data['company'])) {
+      $touchpoint_vars['Company__c'] = $data['company'];
+    }
+    else {
+      $touchpoint_vars['Company__c'] = 'NONE_PROVIDED';
+    }
+
+    // Add any custom questions/answers.
+    $webform = $webform_submission->getWebform();
+    $custom_1_element = $webform->getElement('custom_1_answer');
+    $custom_2_element = $webform->getElement('custom_2_answer');
+
+    if ($custom_1_element && $custom_1_element['#access'] && isset($data['custom_1_answer'])) {
+      $custom_1_question = $custom_1_element['#title'] ?? 'Custom question 1';
+      $custom_1_answer = is_array($data['custom_1_answer']) ? implode(';', $data['custom_1_answer']) : $data['custom_1_answer'];
+      $touchpoint_vars['Custom1_Question__c'] = substr($custom_1_question, 0, 255);
+      $touchpoint_vars['Custom1_Answer__c'] = substr($custom_1_answer, 0, 255);
+    }
+
+    if ($custom_2_element && $custom_2_element['#access'] && isset($data['custom_2_answer'])) {
+      $custom_2_question = $custom_2_element['#title'] ?? 'Custom question 2';
+      $custom_2_answer = is_array($data['custom_2_answer']) ? implode(';', $data['custom_2_answer']) : $data['custom_2_answer'];
+      $touchpoint_vars['Custom2_Question__c'] = substr($custom_2_question, 0, 255);
+      $touchpoint_vars['Custom2_Answer__c'] = substr($custom_2_answer, 0, 255);
+    }
+
+    // Deal with multiple opt-in variants.
+    if (!empty($data['opt_in_multiple'])) {
+      $touchpoint_vars['Touchpoint_EMPS__c'] = implode(';', $data['opt_in_multiple']);
+    }
 
     // Add the URL to the page the form was submitted to.
     $touchpoint_vars['Origin__c'] = $webform_submission->getSourceUrl()->toString();
@@ -178,9 +237,6 @@ class TouchpointHandler extends WebformHandlerBase {
         $touchpoint_vars[$key] = implode(';', $value);
       }
     }
-
-    // Set a default value if Company__c if blank.
-    $touchpoint_vars['Company__c'] = $touchpoint_vars['Company__c'] ?? 'NONE PROVIDED';
 
     try {
       $sf_results = $this->sfapi->apiCall('sobjects/Touchpoint__c', $touchpoint_vars, 'POST');
