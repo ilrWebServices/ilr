@@ -107,3 +107,8 @@
     margin-left: var(--cu-ps1);
   }
 }
+
+// Remove the top padding on galleries when placed after a gapless section.
+.cu-section--gapless + .cu-section .cu-gallery {
+  padding-top: 0;
+}
