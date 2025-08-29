@@ -3,6 +3,7 @@ langcode: en
 status: open
 dependencies:
   module:
+    - ilr
     - ilr_salesforce
 weight: 0
 open: null
@@ -369,4 +370,15 @@ handlers:
         ga_client_id: GAClientID__c
         NCRS: Source__c
         'Marketing Landing Page': Lead_Source__c
+  populate_datalayer:
+    id: populate_datalayer
+    handler_id: populate_datalayer
+    label: 'Populate Datalayer'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      datalayer:
+        type: lead
 variants: {  }

@@ -2,7 +2,6 @@
 
 namespace Drupal\ilr\Plugin\WebformHandler;
 
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\WebformSubmissionInterface;
@@ -22,18 +21,11 @@ use Drupal\webform\WebformSubmissionInterface;
 class PopulateDatalayer extends WebformHandlerBase {
 
   /**
-   * Event data with replaced tokens.
-   *
-   * @var string|array<mixed>
-   */
-  private $eventData;
-
-  /**
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
     return [
-      'datalayer' => [],
+      'datalayer' => '',
     ];
   }
 
@@ -66,40 +58,29 @@ class PopulateDatalayer extends WebformHandlerBase {
   /**
    * {@inheritdoc}
    */
-  public function alterForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
-    if (!empty($this->eventData)) {
-      $form['#attached']['library'][] = 'union_marketing/interaction-analytics';
-      $form['#attached']['drupalSettings']['ilr_webform_data'] = $this->eventData;
-      $form['#attached']['drupalSettings']['ilr_include_ajax'] = TRUE;
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function submitForm(array &$form, FormStateInterface $form_state, WebformSubmissionInterface $webform_submission) {
-    if ($this->configuration['datalayer']) {
-      $webform = $webform_submission->getWebform();
+    $webform = $webform_submission->getWebform();
 
-      // Check for a confirmation message, and replace any existing tokens if found.
-      if ($confirmation_message = $webform->getSetting('confirmation_message', '')) {
-        $message = $this->replaceTokens($confirmation_message, $webform_submission);
-      }
+    // Check for a confirmation message, and replace any existing tokens if found.
+    if ($confirmation_message = $webform->getSetting('confirmation_message', '')) {
+      $message = $this->replaceTokens($confirmation_message, $webform_submission);
+    }
 
-      $data = [
-        'id' => $webform->id(),
-        'name' => $webform->label(),
-        'uuid' => $webform_submission->uuid() ?? 'unknown',
-        'data' => [],
-        'type' => $this->configuration['datalayer']['type'] ?? 'lead',
-        'done' => 'true',
-        'url' => ($webform_submission->getSourceUrl()) ? $webform_submission->getSourceUrl()->toString() : 'unknown',
-        'result' => [
-          'count' => 1,
-          'message' => $message ?? 'unknown',
-        ]
-      ];
+    $data = [
+      'id' => $webform->id(),
+      'name' => $webform->label(),
+      'uuid' => $webform_submission->uuid() ?? 'unknown',
+      'data' => [],
+      'type' => $this->configuration['datalayer']['type'] ?? 'lead',
+      'done' => 'true',
+      'url' => ($webform_submission->getSourceUrl()) ? $webform_submission->getSourceUrl()->toString() : 'unknown',
+      'result' => [
+        'count' => 1,
+        'message' => $message ?? 'unknown',
+      ]
+    ];
 
+    if (isset($this->configuration['datalayer']['elements'])) {
       foreach ($this->configuration['datalayer']['elements'] as $element) {
         if (is_array($element)) {
           $values = $webform_submission->getelementData(array_key_first($element));
@@ -121,11 +102,14 @@ class PopulateDatalayer extends WebformHandlerBase {
           $data['data'][$element] = $value;
         }
       }
-
-      $this->eventData = [
-        'event' => 'page.submit',
-        'page.submit' => $data,
-      ];
     }
+
+    $json_data = json_encode([
+      'event' => 'page.submit',
+      'page.submit' => $data,
+    ]);
+
+    setcookie(name: 'ilr_datalayer_submission', value: base64_encode($json_data), path: '/', expires_or_options: time() + 120);
   }
+
 }
