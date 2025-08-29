@@ -16,4 +16,8 @@ registration_webform_widget_enhancement:
     js/registration_webform_widget_enhancement.js: {}
   dependencies:
     - core/drupalSettings
-
+ilr_webform_datalayer:
+  header: true
+  version: 1.x
+  js:
+    js/ilr_webform_datalayer.js: {}
