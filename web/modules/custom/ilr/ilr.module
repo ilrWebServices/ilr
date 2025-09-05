@@ -839,6 +839,7 @@ function ilr_tokens($type, $tokens, array $data, array $options, BubbleableMetad
  */
 function ilr_entity_type_alter(array &$entity_types) {
   $entity_types['node']->addConstraint('NodeMenuLevel');
+  $entity_types['paragraph']->addConstraint('MinimumItemCount', ['minItems' => 4]);
 }
 
 /**
