@@ -75,6 +75,26 @@
   margin-bottom: 0;
 }
 
+.webform-submission-form #edit-program-of-interest--wrapper .cu-fieldset__wrapper {
+  padding-right: var(--cu-ps-2);
+  padding-left: var(--cu-ps-1);
+}
+
+.webform-submission-form #edit-program-of-interest {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+.webform-submission-form #edit-program-of-interest .cu-input-list__item--checkbox {
+  align-items: baseline;
+}
+
+.webform-submission-form #edit-program-of-interest .cu-label {
+  line-height: 1.25;
+  --cu-font-size: var(--cu-ms-2);
+}
+
 // See https://developer.mozilla.org/en-US/docs/Web/CSS/:has
 .cu-legend:has(.visually-hidden) {
   margin: 0;
