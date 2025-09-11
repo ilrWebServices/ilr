@@ -1,0 +1,29 @@
+uuid: 2532226a-d7e4-465c-8306-11be286a9fe6
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - ilr
+  theme:
+    - union_marketing
+id: union_marketing_ilr80thwordmark
+theme: union_marketing
+region: footer
+weight: 0
+provider: null
+plugin: ilr80wordmark_block
+settings:
+  id: ilr80wordmark_block
+  label: 'ILR 80th Wordmark'
+  label_display: '0'
+  provider: ilr
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: 0
