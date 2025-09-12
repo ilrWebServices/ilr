@@ -1,0 +1,22 @@
+uuid: ad0ea99d-3519-401d-bbe2-e4b9a8340063
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.timeline
+id: node.timeline.status
+field_name: status
+entity_type: node
+bundle: timeline
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

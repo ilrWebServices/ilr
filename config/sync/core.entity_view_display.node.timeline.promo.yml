@@ -1,0 +1,37 @@
+uuid: 19ccb8cb-2e05-4177-878e-68c796c8781e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.promo
+    - field.field.node.timeline.body
+    - field.field.node.timeline.field_components
+    - field.field.node.timeline.field_representative_image
+    - node.type.timeline
+  module:
+    - entity_reference_revisions
+    - user
+id: node.timeline.promo
+targetEntityType: node
+bundle: timeline
+mode: promo
+content:
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  field_representative_image: true
+  langcode: true
+  search_api_excerpt: true

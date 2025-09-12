@@ -1,0 +1,23 @@
+uuid: 931a816f-5c71-4bf6-940d-2899e01f1083
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.milestone.field_body
+    - paragraphs.paragraphs_type.milestone
+  module:
+    - text
+id: paragraph.milestone.default
+targetEntityType: paragraph
+bundle: milestone
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true

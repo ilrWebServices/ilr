@@ -1,0 +1,36 @@
+uuid: 8b75aa48-6b6f-4622-bea6-d18d902016a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.timeline.body
+    - field.field.node.timeline.field_components
+    - field.field.node.timeline.field_representative_image
+    - node.type.timeline
+  module:
+    - text
+    - user
+id: node.timeline.teaser
+targetEntityType: node
+bundle: timeline
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_components: true
+  field_representative_image: true
+  langcode: true
+  search_api_excerpt: true
