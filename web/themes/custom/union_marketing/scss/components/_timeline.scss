@@ -17,6 +17,16 @@
     border-left: 1px solid #ccc;
     padding: var(--cu-component-padding-top) 0 var(--cu-component-padding-top) var(--cu-component-padding-left);
     min-height: 200px;
+
+    &.cu-component--reversed {
+      @include breakpoint(md) {
+        grid-column: 1/-1;
+        width: 50%;
+        padding-right: var(--cu-component-padding-left);
+        border-right: 1px solid #ccc;
+        border-left: none;
+      }
+    }
   }
 
   .cu-component--milestone .cu-media {
@@ -25,6 +35,26 @@
 
   .cu-component--milestone figure.cu-media .cu-media {
     margin-bottom: 0;
+  }
+
+  .cu-component--milestone .cu-media.align-left,
+  .cu-component--milestone .cu-media.align-right {
+    display: flex;
+    height: 100%;
+    align-content: stretch;
+    margin-bottom: 0;
+
+    // Ensure the image users the whole height.
+    .cu-image {
+      height: 100%;
+    }
+  }
+
+  .cu-component--milestone.cu-component[class^="cu-colorscheme--"] .cu-media.align-left,
+  .cu-component--milestone.cu-component[class^="cu-colorscheme--"] .cu-media.align-right {
+    + p {
+      padding-top: var(--cu-component-padding-top);
+    }
   }
 
   .cu-component--milestone::before {
@@ -39,6 +69,13 @@
       border-radius: 50%;
       color: #D9D9D9;
       background-color: #D9D9D9;
+  }
+
+  .cu-component--milestone.cu-component--reversed::before {
+    @include breakpoint(md) {
+      right: calc(var(--bullet-size) / 2 * -1);
+      left: auto;
+    }
   }
 
   .cu-component[class^="cu-colorscheme--"] {
