@@ -139,3 +139,10 @@ details[data-migration-source][open]:hover::before {
   margin: .5em 0 0 0;
   font-size: small;
 }
+
+button.ck-media-library {
+  --ck-border-radius: 15px;
+  --ck-color-button-default-background: #efefef;
+  margin: 0 auto !important;
+  max-width: 50%;
+}
