@@ -100,8 +100,8 @@
     "drupal/inline_entity_form": "^3",
     "drupal/key": "^1.14",
     "drupal/key_value_field": "^1.0",
-    "drupal/linkit": "^6.1",
-    "drupal/linkit_media_library": "^1.0",
+    "drupal/linkit": "^7.0",
+    "drupal/linkit_media_library": "^2.0",
     "drupal/media_library_edit": "^3.0",
     "drupal/media_pdf_thumbnail": "^6",
     "drupal/media_remote": "^1.8",
@@ -229,9 +229,6 @@
       "drupal/webform": {
         "Use symfony_mailer for html email": "./patches/webform_symfony_mailer.patch",
         "Add filtering by category to Webform reference widget": "./patches/webform_reference_widget_alter_context.diff"
-      },
-      "drupal/linkit_media_library": {
-        "Linkit media library button doesn't open in CKEditor": "https://www.drupal.org/files/issues/2024-08-15/3461637-instance-of-media-library-opener-interface.patch"
       },
       "drupal/linkit": {
         "Issue #3436733: Linkit Link field: Double-encoded file links": "https://www.drupal.org/files/issues/2024-09-26/3436733-7-linkit_base_url_decode_fix.patch"
