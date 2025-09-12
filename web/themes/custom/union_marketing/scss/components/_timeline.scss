@@ -1,0 +1,53 @@
+.node--timeline {
+  .field--field-components {
+    @include breakpoint(md) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .cu-component--milestone {
+    --cu-component-margin-bottom: 0;
+    --cu-component-padding-top: var(--cu-vr2);
+    --cu-component-padding-left: var(--cu-ps1);
+    --cu-font-size: var(--cu-ms-1);
+    position: relative;
+    grid-column: 2;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    padding: var(--cu-component-padding-top) 0 var(--cu-component-padding-top) var(--cu-component-padding-left);
+    min-height: 200px;
+  }
+
+  .cu-component--milestone .cu-media {
+    margin-bottom: var(--cu-vr1);
+  }
+
+  .cu-component--milestone figure.cu-media .cu-media {
+    margin-bottom: 0;
+  }
+
+  .cu-component--milestone::before {
+     --bullet-size: 16px;
+      content: '';
+      position: absolute;
+      top: calc(var(--bullet-size) / 2 * -1);
+      left: calc(var(--bullet-size) / 2 * -1);
+      display: block;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      color: #D9D9D9;
+      background-color: #D9D9D9;
+  }
+
+  .cu-component[class^="cu-colorscheme--"] {
+    background-clip: content-box;
+
+    p {
+      padding: 0 var(--cu-component-padding-left) var(--cu-component-padding-top) var(--cu-component-padding-left);
+      padding-bottom: var(--cu-vr1);
+    }
+  }
+
+}
