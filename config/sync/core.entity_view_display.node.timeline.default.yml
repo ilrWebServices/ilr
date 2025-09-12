@@ -9,8 +9,106 @@ dependencies:
     - node.type.timeline
   module:
     - entity_reference_revisions
+    - ilr
+    - layout_builder
+    - layout_discovery
     - text
     - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: banner
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          color_scheme: none
+        components:
+          666e1a11-6864-433e-a559-082840ecad18:
+            uuid: 666e1a11-6864-433e-a559-082840ecad18
+            region: banner
+            configuration:
+              id: 'field_block:node:timeline:title'
+              label: Title
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          6ac2fe57-5454-4716-9383-7d15670f49b1:
+            uuid: 6ac2fe57-5454-4716-9383-7d15670f49b1
+            region: banner
+            configuration:
+              id: 'field_block:node:timeline:body'
+              label: 'Intro Text'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          f2bee381-d9aa-4393-9159-d6bcb43614cf:
+            uuid: f2bee381-d9aa-4393-9159-d6bcb43614cf
+            region: media
+            configuration:
+              id: 'field_block:node:timeline:field_representative_image'
+              label: 'Representative Image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: media_thumbnail
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: large_preserve_aspect
+                  image_loading:
+                    attribute: lazy
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          77e7147c-c403-4f44-8419-166cad363f4b:
+            uuid: 77e7147c-c403-4f44-8419-166cad363f4b
+            region: content
+            configuration:
+              id: 'field_block:node:timeline:field_components'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                  link: ''
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+        third_party_settings: {  }
 id: node.timeline.default
 targetEntityType: node
 bundle: timeline

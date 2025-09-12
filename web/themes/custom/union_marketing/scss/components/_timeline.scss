@@ -1,4 +1,44 @@
 .node--timeline {
+  .cu-header {
+    border: none;
+    margin-bottom: var(--cu-vr3);
+  }
+
+  .article--timeline .cu-banner.cu-banner--timeline {
+    --cu-text-color: #222;
+    background:
+      linear-gradient(#ccc 0 0) top left / 30% 5px,
+      linear-gradient(#ccc 0 0) left / 5px 100%,
+      linear-gradient(#ccc 0 0) bottom left / 100% 5px,   transparent;
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    gap: var(--cu-vr1) var(--cu-ps2);
+    padding: var(--cu-vr3) 0 var(--cu-vr2) var(--cu-ps4);
+
+    .banner__content {
+      display: block;
+      border: none;
+      padding-right: 0;
+    }
+
+    .cu-banner__media {
+      position: relative;
+      grid-row: 1 / -1;
+      grid-column: 2;
+      margin-top: calc(var(--cu-vr4) * -1);
+
+      &::before {
+        display: none;
+      }
+
+      img {
+        height: auto;
+        object-fit: initial;
+      }
+    }
+  }
+
   .field--field-components {
     @include breakpoint(md) {
       display: grid;
