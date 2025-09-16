@@ -301,7 +301,7 @@ handlers:
     weight: 3
     settings:
       method: POST
-      type: x-www-form-urlencoded
+      type: json
       excluded_data:
         serial: serial
         sid: sid
