@@ -104,7 +104,7 @@ class ColorSettings extends ParagraphsBehaviorBase {
       ];
     }
 
-    if (isset($config['allow_framed_media'])) {
+    if (!empty($config['allow_framed_media'])) {
       $form['frame_media'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Frame media elements in this component'),
