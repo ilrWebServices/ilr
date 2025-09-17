@@ -5,7 +5,9 @@ dependencies:
   config:
     - field.storage.node.field_components
     - node.type.timeline
+    - paragraphs.paragraphs_type.gallery
     - paragraphs.paragraphs_type.milestone
+    - paragraphs.paragraphs_type.milestone_heading
   module:
     - entity_reference_revisions
 id: node.timeline.field_components
@@ -23,6 +25,8 @@ settings:
   handler_settings:
     target_bundles:
       milestone: milestone
+      gallery: gallery
+      milestone_heading: milestone_heading
     negate: 0
     target_bundles_drag_drop:
       agenda:
@@ -57,7 +61,7 @@ settings:
         enabled: false
       gallery:
         weight: 36
-        enabled: false
+        enabled: true
       honors_and_awards:
         weight: 47
         enabled: false
@@ -72,6 +76,9 @@ settings:
         enabled: false
       milestone:
         weight: -15
+        enabled: true
+      milestone_heading:
+        weight: 38
         enabled: true
       organization_listing:
         weight: 51

@@ -1,0 +1,19 @@
+uuid: 1479d373-7560-436c-bb94-2bf32c64fb23
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subheading
+    - paragraphs.paragraphs_type.milestone_heading
+id: paragraph.milestone_heading.field_subheading
+field_name: field_subheading
+entity_type: paragraph
+bundle: milestone_heading
+label: Subheading
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,4 +1,6 @@
 .node--timeline {
+  --milestone-edge-color: #bababa;
+
   .cu-header {
     border: none;
     margin-bottom: var(--cu-vr3);
@@ -7,14 +9,19 @@
   .article--timeline .cu-banner.cu-banner--timeline {
     --cu-text-color: #222;
     background:
-      linear-gradient(#ccc 0 0) top left / 30% 5px,
-      linear-gradient(#ccc 0 0) left / 5px 100%,
-      linear-gradient(#ccc 0 0) bottom left / 100% 5px,   transparent;
+      linear-gradient(var(--milestone-edge-color) 0 0) top left / 40% 12px,
+      linear-gradient(var(--milestone-edge-color) 0 0) left / 12px 100%,
+      linear-gradient(var(--milestone-edge-color) 0 0) bottom left / 100% 12px,   transparent;
     background-repeat: no-repeat;
     display: grid;
-    grid-template-columns: 30% 1fr;
+    grid-template-columns: 36% 1fr;
     gap: var(--cu-vr1) var(--cu-ps2);
-    padding: var(--cu-vr3) 0 var(--cu-vr2) var(--cu-ps4);
+    padding: var(--cu-vr4) 0 var(--cu-vr2) var(--cu-ps3);
+
+    .cu-heading {
+      --cu-font-size: var(--cu-ms10);
+      --cu-font-weight: 900;
+    }
 
     .banner__content {
       display: block;
@@ -26,7 +33,7 @@
       position: relative;
       grid-row: 1 / -1;
       grid-column: 2;
-      margin-top: calc(var(--cu-vr4) * -1);
+      margin-top: calc(var(--cu-vr4) * -1 + -50px);
 
       &::before {
         display: none;
@@ -42,30 +49,41 @@
   .field--field-components {
     @include breakpoint(md) {
       display: grid;
+      gap: 4px;
       grid-template-columns: 1fr 1fr;
     }
   }
 
   .cu-component--milestone {
+    --bullet-size: 18px;
     --cu-component-margin-bottom: 0;
-    --cu-component-padding-top: var(--cu-vr2);
+    --cu-component-padding-top: var(--cu-vr0);
     --cu-component-padding-left: var(--cu-ps1);
     --cu-font-size: var(--cu-ms-1);
     position: relative;
     grid-column: 2;
-    border-top: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    padding: var(--cu-component-padding-top) 0 var(--cu-component-padding-top) var(--cu-component-padding-left);
+    box-shadow: -2px -2px 0px 0px var(--milestone-edge-color);
+    padding: var(--cu-component-padding-top) 0 0 var(--cu-component-padding-left);
     min-height: 200px;
 
-    &.cu-component--reversed {
+    &:nth-of-type(odd) {
       @include breakpoint(md) {
         grid-column: 1/-1;
         width: 50%;
         padding-right: var(--cu-component-padding-left);
-        border-right: 1px solid #ccc;
+        box-shadow: 2px -2px 0px 0px var(--milestone-edge-color);
         border-left: none;
       }
+    }
+
+    p:last-of-type {
+      margin-bottom: initial;
+    }
+
+    .shout {
+      font-family: "freight-text-pro", serif;
+      // font-weight: 300;
+      font-size: var(--cu-ms7);
     }
   }
 
@@ -97,23 +115,39 @@
     }
   }
 
-  .cu-component--milestone::before {
-     --bullet-size: 16px;
+  // .cu-component--milestone:has(+ .cu-component--milestone-heading)  {
+  //   opacity: .5;
+  // }
+
+  // DOTS
+  .cu-component--milestone::before,
+  .cu-component--milestone:has(+ .cu-component--milestone-heading)::after,
+  .cu-component--milestone:last-of-type::after {
       content: '';
       position: absolute;
-      top: calc(var(--bullet-size) / 2 * -1);
-      left: calc(var(--bullet-size) / 2 * -1);
+      top: calc(var(--bullet-size) / 2 * -1 - 1px);
+      left: calc(var(--bullet-size) / 2 * -1 - 1px);
       display: block;
-      width: 15px;
-      height: 15px;
+      width: var(--bullet-size);
+      height: var(--bullet-size);
       border-radius: 50%;
-      color: #D9D9D9;
-      background-color: #D9D9D9;
+      background-color: var(--milestone-edge-color);
   }
 
-  .cu-component--milestone.cu-component--reversed::before {
+  .cu-component--milestone:has(+ .cu-component--milestone-heading)::after,
+  .cu-component--milestone:last-of-type::after {
+    top: auto;
+    bottom: calc(var(--bullet-size) / 2 * -1 + 1px);
+    background-color: white;
+    box-shadow: 0px 0px 0px 2px var(--milestone-edge-color);
+
+  }
+
+  .cu-component--milestone:nth-of-type(odd)::before,
+  .cu-component--milestone:nth-of-type(odd):has(+ .cu-component--milestone-heading)::after,
+  .cu-component--milestone:nth-of-type(odd):last-of-type::after {
     @include breakpoint(md) {
-      right: calc(var(--bullet-size) / 2 * -1);
+      right: calc(var(--bullet-size) / 2 * -1 - 1px);
       left: auto;
     }
   }
@@ -125,6 +159,29 @@
       padding: 0 var(--cu-component-padding-left) var(--cu-component-padding-top) var(--cu-component-padding-left);
       padding-bottom: var(--cu-vr1);
     }
+  }
+
+}
+
+.cu-component.cu-component--milestone-heading {
+  grid-column: -1/1;
+  margin: var(--cu-vr4) auto var(--cu-vr2);
+  max-width: 50vw;
+
+  .field--field-subheading {
+    color: var(--cu-color-brand);
+    --cu-font-size: var(--cu-ms9);
+    --cu-font-weight: 400;
+    font-style: italic;
+    margin-top: var(--cu-vr1);
+  }
+
+  .field--field-body {
+    font-family: "freight-text-pro", serif;
+    --cu-font-weight: 300;
+    --cu-font-size: var(--cu-ms7);
+    line-height: 1.1;
+    margin-top: var(--cu-vr0);
   }
 
 }
