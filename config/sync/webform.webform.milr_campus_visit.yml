@@ -352,7 +352,7 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: ilrgradapplicant@cornell.edu
+      to_mail: grad_eligibility@cornell.edu
       to_options: {  }
       bcc_mail: ''
       bcc_options: {  }
