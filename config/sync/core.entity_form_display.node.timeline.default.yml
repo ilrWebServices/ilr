@@ -39,20 +39,20 @@ content:
     weight: 2
     region: content
     settings:
-      title: milestone
-      title_plural: milestones
+      title: 'Timeline section'
+      title_plural: 'Timeline sections'
       edit_mode: closed
       closed_mode: summary
       autocollapse: all
-      closed_mode_threshold: 2
+      closed_mode_threshold: 1
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: milestone
+      default_paragraph_type: milestone_section
       features:
-        add_above: add_above
+        add_above: '0'
         collapse_edit_all: collapse_edit_all
         convert: '0'
-        duplicate: duplicate
+        duplicate: '0'
     third_party_settings: {  }
   field_representative_image:
     type: media_library_widget

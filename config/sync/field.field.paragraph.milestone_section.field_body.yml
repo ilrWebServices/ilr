@@ -5,13 +5,13 @@ dependencies:
   config:
     - field.storage.paragraph.field_body
     - filter.format.standard_formatting
-    - paragraphs.paragraphs_type.milestone_heading
+    - paragraphs.paragraphs_type.milestone_section
   module:
     - text
-id: paragraph.milestone_heading.field_body
+id: paragraph.milestone_section.field_body
 field_name: field_body
 entity_type: paragraph
-bundle: milestone_heading
+bundle: milestone_section
 label: Description
 description: ''
 required: false

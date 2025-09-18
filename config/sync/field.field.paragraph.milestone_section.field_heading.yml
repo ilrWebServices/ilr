@@ -4,11 +4,11 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_heading
-    - paragraphs.paragraphs_type.milestone_heading
-id: paragraph.milestone_heading.field_heading
+    - paragraphs.paragraphs_type.milestone_section
+id: paragraph.milestone_section.field_heading
 field_name: field_heading
 entity_type: paragraph
-bundle: milestone_heading
+bundle: milestone_section
 label: Heading
 description: ''
 required: true

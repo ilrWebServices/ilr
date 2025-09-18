@@ -4,11 +4,11 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_subheading
-    - paragraphs.paragraphs_type.milestone_heading
-id: paragraph.milestone_heading.field_subheading
+    - paragraphs.paragraphs_type.milestone_section
+id: paragraph.milestone_section.field_subheading
 field_name: field_subheading
 entity_type: paragraph
-bundle: milestone_heading
+bundle: milestone_section
 label: Subheading
 description: ''
 required: false

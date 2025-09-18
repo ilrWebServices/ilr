@@ -1,18 +1,19 @@
-uuid: 9f67deed-89a2-4f11-9319-a26c85dfbf68
+uuid: 30d2f8de-470f-4fd9-8c03-590c518ea8cf
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_components
-    - node.type.timeline
+    - field.storage.paragraph.field_components
+    - paragraphs.paragraphs_type.gallery
+    - paragraphs.paragraphs_type.milestone
     - paragraphs.paragraphs_type.milestone_section
   module:
     - entity_reference_revisions
-id: node.timeline.field_components
+id: paragraph.milestone_section.field_components
 field_name: field_components
-entity_type: node
-bundle: timeline
-label: 'Timeline sections'
+entity_type: paragraph
+bundle: milestone_section
+label: Milestones
 description: ''
 required: false
 translatable: false
@@ -22,118 +23,119 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      milestone_section: milestone_section
+      milestone: milestone
+      gallery: gallery
     negate: 0
     target_bundles_drag_drop:
       agenda:
-        weight: 37
+        weight: -74
         enabled: false
       agenda_item:
-        weight: 38
+        weight: -75
         enabled: false
       carousel:
-        weight: 39
+        weight: -73
         enabled: false
       collection_listing:
-        weight: 0
+        weight: -72
         enabled: false
       collection_listing_publication:
-        weight: 0
+        weight: -71
         enabled: false
       curated_course_listing:
-        weight: 0
+        weight: -70
         enabled: false
       curated_post_listing:
-        weight: -6
+        weight: -69
         enabled: false
       deck:
-        weight: 0
+        weight: -68
         enabled: false
       event_listing:
-        weight: 0
+        weight: -67
         enabled: false
       form:
-        weight: 0
+        weight: -66
         enabled: false
       gallery:
-        weight: 36
-        enabled: false
+        weight: -53
+        enabled: true
       honors_and_awards:
-        weight: 47
+        weight: -51
         enabled: false
       image:
-        weight: -9
+        weight: -65
         enabled: false
       instagram_listing:
-        weight: 0
+        weight: -64
         enabled: false
       media_deck:
-        weight: -5
+        weight: -63
         enabled: false
       milestone:
-        weight: -15
-        enabled: false
-      milestone_section:
-        weight: 38
+        weight: -54
         enabled: true
+      milestone_section:
+        weight: -46
+        enabled: false
       organization_listing:
-        weight: 51
+        weight: -45
         enabled: false
       people_listing:
-        weight: 0
+        weight: -62
         enabled: false
       people_listing_dynamic:
-        weight: 53
+        weight: -44
         enabled: false
       person:
-        weight: 0
+        weight: -61
         enabled: false
       picture_in_picture:
-        weight: -4
+        weight: -60
         enabled: false
       professional_activities:
-        weight: 56
+        weight: -43
         enabled: false
       project_listing:
-        weight: 57
+        weight: -42
         enabled: false
       promo:
-        weight: 0
+        weight: -59
         enabled: false
       publications:
-        weight: 59
+        weight: -41
         enabled: false
       rich_text:
-        weight: -10
+        weight: -58
         enabled: false
       section:
-        weight: 0
+        weight: -57
         enabled: false
       section_navigation:
-        weight: 0
+        weight: -56
         enabled: false
       simple_collection_listing:
-        weight: -7
+        weight: -55
         enabled: false
       stat:
-        weight: 64
+        weight: -40
         enabled: false
       stats:
-        weight: 65
+        weight: -39
         enabled: false
       table_of_contents:
-        weight: 40
+        weight: -52
         enabled: false
       testimonial:
-        weight: 0
+        weight: -50
         enabled: false
       testimonial_deck:
-        weight: 68
+        weight: -49
         enabled: false
       topic_list:
-        weight: 69
+        weight: -48
         enabled: false
       video:
-        weight: -8
+        weight: -47
         enabled: false
 field_type: entity_reference_revisions

@@ -5,14 +5,14 @@ dependencies:
   config:
     - field.storage.paragraph.field_media
     - media.type.svg
-    - paragraphs.paragraphs_type.milestone_heading
-id: paragraph.milestone_heading.field_media
+    - paragraphs.paragraphs_type.milestone_section
+id: paragraph.milestone_section.field_media
 field_name: field_media
 entity_type: paragraph
-bundle: milestone_heading
-label: Media
+bundle: milestone_section
+label: 'Heading graphic'
 description: 'In many cases, this is a graphical version of the heading, and if present, the text heading will be hidden.'
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''

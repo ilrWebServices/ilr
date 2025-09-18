@@ -3,18 +3,20 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.milestone_heading.field_body
-    - field.field.paragraph.milestone_heading.field_heading
-    - field.field.paragraph.milestone_heading.field_media
-    - field.field.paragraph.milestone_heading.field_subheading
+    - field.field.paragraph.milestone_section.field_body
+    - field.field.paragraph.milestone_section.field_components
+    - field.field.paragraph.milestone_section.field_heading
+    - field.field.paragraph.milestone_section.field_media
+    - field.field.paragraph.milestone_section.field_subheading
     - image.style.full
-    - paragraphs.paragraphs_type.milestone_heading
+    - paragraphs.paragraphs_type.milestone_section
   module:
+    - entity_reference_revisions
     - media
     - text
-id: paragraph.milestone_heading.default
+id: paragraph.milestone_section.default
 targetEntityType: paragraph
-bundle: milestone_heading
+bundle: milestone_section
 mode: default
 content:
   field_body:
@@ -22,7 +24,16 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 3
+    region: content
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
     region: content
   field_heading:
     type: string
@@ -41,7 +52,7 @@ content:
       image_loading:
         attribute: lazy
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
   field_subheading:
     type: string
@@ -49,7 +60,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
 hidden:
   search_api_excerpt: true
