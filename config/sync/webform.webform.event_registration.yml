@@ -1070,6 +1070,53 @@ variants:
               <br/>
               To see a list of all submissions log in at <a href="https://d8-edit.ilr.cornell.edu/user">https://d8-edit.ilr.cornell.edu/user</a> and then go to <a href="https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A20634">https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A20634</a>
             twig: true
+  25_oct_cookgray_email_confirmation:
+    id: override
+    variant_id: 25_oct_cookgray_email_confirmation
+    element_key: variant_email_handler
+    label: 25_oct_cookgray_email_confirmation
+    notes: ''
+    status: true
+    weight: 27
+    settings:
+      debug: false
+      settings: {  }
+      elements: ''
+      handlers:
+        confirmation_email:
+          settings:
+            subject: "Thank you for registering for the 2025 Alice Cook-Lois Gray Distinguished Lecture: Status: What Is It? Why Does It Matter For Race And Gender Inequality?"
+            body: |-
+              Thank you for registering for the 2025 Alice Cook-Lois Gray Distinguished Lecture: Status: What Is It? Why Does It Matter For Race And Gender Inequality?<br/>
+              <br/>
+              This event is geared toward an in-person audience, so we strongly prefer you join us on our Ithaca campus. If this is not possible, please use the Zoom information below.<br/>
+              <br/>
+              This is a public event, which will be photographed and filmed and/or otherwise recorded. Your registration for this event constitutes your consent to such photography, live streaming, filming and/or recording, and any use in any and all media.<br/>
+              <br/>
+              DATE AND TIME<br/>
+              Date: October 23, 2025<br/>
+              Time: 4:30 - 6pm EDT<br/>
+              <br/>
+              LOCATION<br/>
+              ILR School<br/>
+              115 Ives Hall<br/>
+              Ithaca, NY 14853<br/>
+              <br/>
+              Join Zoom Meeting: <a href="https://cornell.zoom.us/j/92608968928?pwd=bjpqzx9XZw2EgN_MpMsAaKob2EWJ2A.NWm8yzA-65V1NNIB">https://cornell.zoom.us/j/92608968928?pwd=bjpqzx9XZw2EgN_MpMsAaKob2EWJ2A.NWm8yzA-65V1NNIB</a><br/>
+              Passcode: 368675<br/>
+              <br/>
+              We look forward to your attendance.
+        submission_detail_email:
+          settings:
+            to_mail: pjg97@cornell.edu
+            subject: '2025 Cook/Gray lecture registration: [webform_submission:source-title]'
+            body: |-
+              {{ data.first_name }} {{ data.last_name }} has just registered for the 2025 Cook/Gray lecture. The data they submitted follows:<br/>
+              <br/>
+              {{ webform_token('[webform_submission:values]', webform_submission) }}<br/>
+              <br/>
+              To see a list of all submissions log in at <a href="https://www.ilr.cornell.edu/user">https://www.ilr.cornell.edu/user</a> and then go to <a href="https://www.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A21877">https://www.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A21877</a>
+            twig: true
   dietary:
     id: override
     variant_id: dietary
