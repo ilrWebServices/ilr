@@ -1,5 +1,6 @@
 .node--timeline {
   --milestone-edge-color: #bababa;
+  --bullet-size: 18px;
 
   .cu-header {
     border: none;
@@ -46,16 +47,21 @@
     }
   }
 
-  .field--field-components {
+  .cu-component--milestone-section {
     @include breakpoint(md) {
       display: grid;
-      gap: 4px;
       grid-template-columns: 1fr 1fr;
+
+      .field--field-components {
+        grid-column: 1/-1;
+        display: grid;
+        gap: 4px;
+        grid-template-columns: 1fr 1fr;
+      }
     }
   }
 
   .cu-component--milestone {
-    --bullet-size: 18px;
     --cu-component-margin-bottom: 0;
     --cu-component-padding-top: var(--cu-vr0);
     --cu-component-padding-left: var(--cu-ps1);
@@ -66,7 +72,7 @@
     padding: var(--cu-component-padding-top) 0 0 var(--cu-component-padding-left);
     min-height: 200px;
 
-    &:nth-of-type(odd) {
+    &:nth-of-type(even) {
       @include breakpoint(md) {
         grid-column: 1/-1;
         width: 50%;
@@ -102,7 +108,7 @@
     align-content: stretch;
     margin-bottom: 0;
 
-    // Ensure the image users the whole height.
+    // Ensure the image uses the whole height.
     .cu-image {
       height: 100%;
     }
@@ -121,7 +127,7 @@
 
   // DOTS
   .cu-component--milestone::before,
-  .cu-component--milestone:has(+ .cu-component--milestone-heading)::after,
+  .cu-component--milestone:has(+ .cu-component--milestone-section)::after,
   .cu-component--milestone:last-of-type::after {
       content: '';
       position: absolute;
@@ -134,7 +140,7 @@
       background-color: var(--milestone-edge-color);
   }
 
-  .cu-component--milestone:has(+ .cu-component--milestone-heading)::after,
+  .cu-component--milestone:has(+ .cu-component--milestone-section)::after,
   .cu-component--milestone:last-of-type::after {
     top: auto;
     bottom: calc(var(--bullet-size) / 2 * -1 + 1px);
@@ -143,9 +149,9 @@
 
   }
 
-  .cu-component--milestone:nth-of-type(odd)::before,
-  .cu-component--milestone:nth-of-type(odd):has(+ .cu-component--milestone-heading)::after,
-  .cu-component--milestone:nth-of-type(odd):last-of-type::after {
+  .cu-component--milestone:nth-of-type(even)::before,
+  .cu-component--milestone:nth-of-type(even):has(+ .cu-component--milestone-section)::after,
+  .cu-component--milestone:nth-of-type(even):last-of-type::after {
     @include breakpoint(md) {
       right: calc(var(--bullet-size) / 2 * -1 - 1px);
       left: auto;
@@ -163,17 +169,39 @@
 
 }
 
-.cu-component.cu-component--milestone-heading {
-  grid-column: -1/1;
+.cu-component.cu-component--milestone-section {
   margin: var(--cu-vr4) auto var(--cu-vr2);
-  max-width: 50vw;
+
+  .field--field-heading + .cu-image {
+    grid-column: 1/-1;
+    justify-self: center;
+    margin-bottom: var(--cu-vr3);
+  }
+
+  .milestone-section__meta {
+    position: relative;
+    grid-column: 1;
+    box-shadow: 2px 0 0px 0px var(--milestone-edge-color);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: calc(var(--bullet-size) / 2 * -1 - 1px);
+      right: calc(var(--bullet-size) / 2 * -1 - 1px);
+      display: block;
+      width: var(--bullet-size);
+      height: var(--bullet-size);
+      border-radius: 50%;
+      background-color: var(--milestone-edge-color);
+    }
+  }
 
   .field--field-subheading {
     color: var(--cu-color-brand);
     --cu-font-size: var(--cu-ms9);
     --cu-font-weight: 400;
     font-style: italic;
-    margin-top: var(--cu-vr1);
+    padding-bottom: var(--cu-vr0);
   }
 
   .field--field-body {
@@ -181,7 +209,12 @@
     --cu-font-weight: 300;
     --cu-font-size: var(--cu-ms7);
     line-height: 1.1;
-    margin-top: var(--cu-vr0);
+    grid-column: 1;
+
+    p:last-child {
+      margin-bottom: 0;
+      padding-bottom: var(--cu-vr0);
+    }
   }
 
 }
