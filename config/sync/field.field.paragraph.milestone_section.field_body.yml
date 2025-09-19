@@ -1,0 +1,24 @@
+uuid: aac71070-3a9b-4db4-82ee-e4f71e6a6a58
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - filter.format.standard_formatting
+    - paragraphs.paragraphs_type.milestone_section
+  module:
+    - text
+id: paragraph.milestone_section.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: milestone_section
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - standard_formatting
+field_type: text_long

@@ -42,7 +42,7 @@
 // paragraphs (e.g. .paragraph--type--image) should arguably use this
 // treatment, too, but the border could conflict with image effects (curtain,
 // ken burns) allowed on image paragraphs.
-.cu-component:not(.cu-component__frame) .cu-media.align-center .field--field-media-image {
+.cu-component:not(.cu-component__frame):not(.cu-component--milestone) .cu-media.align-center .field--field-media-image {
   margin-bottom: 0;
   padding: 16px 16px 16px 0;
   background:

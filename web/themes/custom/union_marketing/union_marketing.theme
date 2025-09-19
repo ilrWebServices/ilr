@@ -459,6 +459,19 @@ function union_marketing_preprocess_paragraph__curated_post_listing(&$variables)
 
 /**
  * Implements hook_preprocess_paragraph().
+ *
+ * Adds the milestone class to galleries on timelines.
+ */
+function union_marketing_preprocess_paragraph__gallery(&$variables) {
+  if (!$variables['paragraph']->getParentEntity() || $variables['paragraph']->getParentEntity()->bundle() !== 'milestone_section') {
+    return;
+  }
+
+  $variables['attributes']['class'][] = 'cu-component--milestone';
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
  */
 function union_marketing_preprocess_paragraph__promo(&$variables) {
   // If there is no title on the link, then don't render the button. The entire
