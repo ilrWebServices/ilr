@@ -97,7 +97,7 @@ class CollectionContentPermissionsHooks {
         }
       }
 
-      // Also forbit access to content within Collections of the type
+      // Also forbid access to content within Collections of the type
       // 'restricted' when not logged in.
       if ($entity instanceof ContentEntityInterface) {
         $collection_items = \Drupal::service('collection.content_manager')->getCollectionItemsForEntity($entity, FALSE);
