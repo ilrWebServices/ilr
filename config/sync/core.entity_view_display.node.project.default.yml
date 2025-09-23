@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.project.field_principal_investigator_txt
     - field.field.node.project.field_representative_image
     - field.field.node.project.field_url
+    - field.field.node.project.field_why_this_work_matters
     - node.type.project
   module:
     - layout_builder
@@ -222,6 +223,24 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 2
             additional: {  }
+          6ff152fa-1a39-4c20-90dc-47885bd7ed4f:
+            uuid: 6ff152fa-1a39-4c20-90dc-47885bd7ed4f
+            region: first
+            configuration:
+              id: 'field_block:node:project:field_why_this_work_matters'
+              label: 'Why This Work Matters'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
         third_party_settings: {  }
 id: node.project.default
 targetEntityType: node
@@ -289,6 +308,13 @@ content:
       target: ''
     third_party_settings: {  }
     weight: 7
+    region: content
+  field_why_this_work_matters:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
     region: content
 hidden:
   field_active: true

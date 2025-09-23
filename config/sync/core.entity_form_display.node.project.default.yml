@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.project.field_principal_investigator_txt
     - field.field.node.project.field_representative_image
     - field.field.node.project.field_url
+    - field.field.node.project.field_why_this_work_matters
     - node.type.project
   module:
     - link
@@ -103,6 +104,14 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_why_this_work_matters:
+    type: text_textarea
+    weight: 9
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
     third_party_settings: {  }
   ief_collection_items:
     weight: 6

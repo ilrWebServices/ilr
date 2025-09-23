@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.project.field_principal_investigator_txt
     - field.field.node.project.field_representative_image
     - field.field.node.project.field_url
+    - field.field.node.project.field_why_this_work_matters
     - image.style.medium_3_2
     - node.type.project
   module:
@@ -51,6 +52,7 @@ hidden:
   field_partners: true
   field_principal_investigator_txt: true
   field_url: true
+  field_why_this_work_matters: true
   langcode: true
   links: true
   project_focus_areas: true
