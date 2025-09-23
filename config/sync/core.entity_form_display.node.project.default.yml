@@ -48,14 +48,14 @@ content:
     third_party_settings: {  }
   field_active:
     type: boolean_checkbox
-    weight: 16
+    weight: 30
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_activities:
     type: text_textarea
-    weight: 10
+    weight: 11
     region: content
     settings:
       rows: 5
@@ -115,7 +115,7 @@ content:
     third_party_settings: {  }
   field_project_status_text:
     type: string_textfield
-    weight: 27
+    weight: 17
     region: content
     settings:
       size: 60
@@ -123,7 +123,7 @@ content:
     third_party_settings: {  }
   field_project_timeframe:
     type: daterange_default
-    weight: 26
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
