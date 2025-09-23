@@ -1,0 +1,11 @@
+uuid: 8b9d34c6-ddbc-49a3-b151-a60a883bfd28
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.expanded
+label: Expanded
+description: 'An alternative form mode for use cases such as enabling the heading field on rich text paragraphs.'
+targetEntityType: paragraph
+cache: true
