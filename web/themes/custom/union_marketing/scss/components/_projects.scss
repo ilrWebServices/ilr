@@ -38,6 +38,30 @@
       --cu-font-size: var(--cu-ms1);
     }
   }
+
+  summary {
+    margin-left: calc(1.75rem * -1);
+  }
+
+  summary::marker {
+    color: var(--cu-color-brand);
+    font-size: 1.75rem;
+  }
+
+  summary .cu-heading {
+    display: inline-block;
+    margin: 0;
+  }
+
+  .paragraph--type--rich-text.paragraph--view-mode--expanded {
+    --cu-component-margin-bottom: 0;
+    padding: var(--cu-vr0) 1.75rem;
+    border-top: 1px solid var(--cu-color-gray);
+
+    &[open] summary .cu-heading {
+      margin-bottom: var(--cu-vr0);
+    }
+  }
 }
 
 div[class$="-focus-areas"].term--view-mode-full {
