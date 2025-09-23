@@ -11,11 +11,14 @@ dependencies:
     - field.field.node.project.field_funding_agencies
     - field.field.node.project.field_partners
     - field.field.node.project.field_principal_investigator_txt
+    - field.field.node.project.field_project_status_text
+    - field.field.node.project.field_project_timeframe
     - field.field.node.project.field_representative_image
     - field.field.node.project.field_url
     - field.field.node.project.field_why_this_work_matters
     - node.type.project
   module:
+    - datetime_range
     - link
     - media_library
     - media_library_edit
@@ -109,6 +112,20 @@ content:
     settings:
       rows: 5
       placeholder: ''
+    third_party_settings: {  }
+  field_project_status_text:
+    type: string_textfield
+    weight: 27
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_project_timeframe:
+    type: daterange_default
+    weight: 26
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_representative_image:
     type: media_library_widget

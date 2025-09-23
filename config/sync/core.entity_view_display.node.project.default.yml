@@ -11,11 +11,14 @@ dependencies:
     - field.field.node.project.field_funding_agencies
     - field.field.node.project.field_partners
     - field.field.node.project.field_principal_investigator_txt
+    - field.field.node.project.field_project_status_text
+    - field.field.node.project.field_project_timeframe
     - field.field.node.project.field_representative_image
     - field.field.node.project.field_url
     - field.field.node.project.field_why_this_work_matters
     - node.type.project
   module:
+    - datetime_range
     - entity_reference_revisions
     - layout_builder
     - layout_discovery
@@ -262,6 +265,50 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 0
             additional: {  }
+          7fe3221c-819a-4fcc-9146-f1b470c54397:
+            uuid: 7fe3221c-819a-4fcc-9146-f1b470c54397
+            region: second
+            configuration:
+              id: 'field_block:node:project:field_project_status_text'
+              label: 'Project status'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 6
+            additional: {  }
+          6011ab31-c4c4-40e4-bc3d-ace2d8aefeda:
+            uuid: 6011ab31-c4c4-40e4-bc3d-ace2d8aefeda
+            region: second
+            configuration:
+              id: 'field_block:node:project:field_project_timeframe'
+              label: 'Project timeframe'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: date_range_without_time
+                label: hidden
+                settings:
+                  timezone_override: ''
+                  one_day: 'F Y'
+                  one_month: 'F Y'
+                  several_months: 'F - {F} Y'
+                  several_years: 'F Y - {F} {Y}'
+                  single: 'F Y'
+                  single_all_day: 'F Y'
+                third_party_settings: {  }
+            weight: 5
+            additional: {  }
         third_party_settings: {  }
 id: node.project.default
 targetEntityType: node
@@ -318,6 +365,25 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 5
+    region: content
+  field_project_status_text:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_project_timeframe:
+    type: daterange_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+      from_to: both
+      separator: '-'
+    third_party_settings: {  }
+    weight: 12
     region: content
   field_representative_image:
     type: entity_reference_label
