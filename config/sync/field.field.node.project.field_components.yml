@@ -1,0 +1,139 @@
+uuid: 8051969d-3df9-48e8-a86e-34e9b92ee770
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_components
+    - node.type.project
+    - paragraphs.paragraphs_type.rich_text
+  module:
+    - entity_reference_revisions
+id: node.project.field_components
+field_name: field_components
+entity_type: node
+bundle: project
+label: 'Additional info'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      rich_text: rich_text
+    negate: 0
+    target_bundles_drag_drop:
+      agenda:
+        weight: 37
+        enabled: false
+      agenda_item:
+        weight: 38
+        enabled: false
+      carousel:
+        weight: 39
+        enabled: false
+      collection_listing:
+        weight: 0
+        enabled: false
+      collection_listing_publication:
+        weight: 0
+        enabled: false
+      curated_course_listing:
+        weight: 0
+        enabled: false
+      curated_post_listing:
+        weight: -6
+        enabled: false
+      deck:
+        weight: 0
+        enabled: false
+      event_listing:
+        weight: 0
+        enabled: false
+      form:
+        weight: 0
+        enabled: false
+      gallery:
+        weight: 36
+        enabled: false
+      honors_and_awards:
+        weight: 47
+        enabled: false
+      image:
+        weight: -9
+        enabled: false
+      instagram_listing:
+        weight: 0
+        enabled: false
+      media_deck:
+        weight: -5
+        enabled: false
+      milestone:
+        weight: 54
+        enabled: false
+      milestone_section:
+        weight: 38
+        enabled: false
+      organization_listing:
+        weight: 51
+        enabled: false
+      people_listing:
+        weight: 0
+        enabled: false
+      people_listing_dynamic:
+        weight: 53
+        enabled: false
+      person:
+        weight: 0
+        enabled: false
+      picture_in_picture:
+        weight: -4
+        enabled: false
+      professional_activities:
+        weight: 56
+        enabled: false
+      project_listing:
+        weight: 57
+        enabled: false
+      promo:
+        weight: 0
+        enabled: false
+      publications:
+        weight: 59
+        enabled: false
+      rich_text:
+        weight: -10
+        enabled: true
+      section:
+        weight: 0
+        enabled: false
+      section_navigation:
+        weight: 0
+        enabled: false
+      simple_collection_listing:
+        weight: -7
+        enabled: false
+      stat:
+        weight: 64
+        enabled: false
+      stats:
+        weight: 65
+        enabled: false
+      table_of_contents:
+        weight: 40
+        enabled: false
+      testimonial:
+        weight: 0
+        enabled: false
+      testimonial_deck:
+        weight: 68
+        enabled: false
+      topic_list:
+        weight: 69
+        enabled: false
+      video:
+        weight: -8
+        enabled: false
+field_type: entity_reference_revisions

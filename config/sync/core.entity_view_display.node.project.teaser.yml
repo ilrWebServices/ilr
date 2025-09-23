@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.project.body
     - field.field.node.project.field_active
     - field.field.node.project.field_activities
+    - field.field.node.project.field_components
     - field.field.node.project.field_contact_info_text
     - field.field.node.project.field_funding_agencies
     - field.field.node.project.field_partners
@@ -47,6 +48,7 @@ content:
 hidden:
   field_active: true
   field_activities: true
+  field_components: true
   field_contact_info_text: true
   field_funding_agencies: true
   field_partners: true

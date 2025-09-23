@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.project.body
     - field.field.node.project.field_active
     - field.field.node.project.field_activities
+    - field.field.node.project.field_components
     - field.field.node.project.field_contact_info_text
     - field.field.node.project.field_funding_agencies
     - field.field.node.project.field_partners
@@ -15,6 +16,7 @@ dependencies:
     - field.field.node.project.field_why_this_work_matters
     - node.type.project
   module:
+    - entity_reference_revisions
     - layout_builder
     - layout_discovery
     - link
@@ -89,7 +91,7 @@ third_party_settings:
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 1
+            weight: -2
             additional: {  }
           8b161ea1-130b-4790-b242-e07ebd1a5052:
             uuid: 8b161ea1-130b-4790-b242-e07ebd1a5052
@@ -107,7 +109,7 @@ third_party_settings:
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 2
+            weight: 1
             additional: {  }
           708fc115-62b4-4d52-b49a-8de28f69a3e5:
             uuid: 708fc115-62b4-4d52-b49a-8de28f69a3e5
@@ -203,7 +205,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: 0
+            weight: -3
             additional: {  }
           98103513-dd9c-44cc-becb-7da01cc2ca8f:
             uuid: 98103513-dd9c-44cc-becb-7da01cc2ca8f
@@ -239,7 +241,26 @@ third_party_settings:
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 1
+            weight: -1
+            additional: {  }
+          19ac04c5-f11f-46ff-ab8c-28a9847f096e:
+            uuid: 19ac04c5-f11f-46ff-ab8c-28a9847f096e
+            region: first
+            configuration:
+              id: 'field_block:node:project:field_components'
+              label: 'Additional info'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: hidden
+                settings:
+                  view_mode: expanded
+                third_party_settings: {  }
+            weight: 0
             additional: {  }
         third_party_settings: {  }
 id: node.project.default
@@ -260,6 +281,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 10
     region: content
   field_contact_info_text:
     type: text_default
