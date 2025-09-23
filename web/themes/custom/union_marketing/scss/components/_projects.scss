@@ -6,6 +6,12 @@
 }
 
 .article--projectalicious.node--view-mode-full  {
+
+  a:not([class*="cu-"]) {
+    color: var(--cu-color-brand);
+    font-weight: 400;
+  }
+
   .block-system-breadcrumb-block,
   .block-field-block--node--project--field-representative-image {
     // margin-top: var(--cu-vr1);
