@@ -78,41 +78,13 @@ class CollectionContentPermissionsHooks {
   #[Hook('entity_access')]
   public function restrictedCollectionViewAccess(EntityInterface $entity, $op, AccountInterface $account): AccessResultInterface {
     if ($op === 'view') {
-      // Forbid access to Collections of the type 'restricted' when not logged
-      // in.
-      if ($entity instanceof CollectionInterface && $entity->bundle() === 'restricted') {
-        if ($account->isAnonymous()) {
-          $current_url = \Drupal::request()->getRequestUri();
-          $login_url = Url::fromRoute('samlauth.saml_controller_login', [], ['query' => ['destination' => $current_url]]);
-
-          \Drupal::messenger()->addWarning(t('You must be <a href="@url">logged in</a> to view @content_name.', [
-            '@url' => $login_url->toString(),
-            '@content_name' => $entity->label(),
-          ]));
-
-          return AccessResult::forbidden();
-        }
-        else {
-          return AccessResult::allowed();
-        }
-      }
-
       // Also forbid access to content within Collections of the type
       // 'restricted' when not logged in.
       if ($entity instanceof ContentEntityInterface) {
         $collection_items = \Drupal::service('collection.content_manager')->getCollectionItemsForEntity($entity, FALSE);
-
         foreach ($collection_items as $collection_item) {
           if ($collection_item->isCanonical() && $collection_item->collection->entity->bundle() === 'restricted') {
             if ($account->isAnonymous()) {
-              $current_url = \Drupal::request()->getRequestUri();
-              $login_url = Url::fromRoute('samlauth.saml_controller_login', [], ['query' => ['destination' => $current_url]]);
-
-              \Drupal::messenger()->addWarning(t('You must be <a href="@url">logged in</a> to view content in @content_name.', [
-                '@url' => $login_url->toString(),
-                '@content_name' => $collection_item->collection->entity->label(),
-              ]));
-
               return AccessResult::forbidden();
             }
             else {
