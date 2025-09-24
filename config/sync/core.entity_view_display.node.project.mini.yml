@@ -7,12 +7,16 @@ dependencies:
     - field.field.node.project.body
     - field.field.node.project.field_active
     - field.field.node.project.field_activities
+    - field.field.node.project.field_components
     - field.field.node.project.field_contact_info_text
     - field.field.node.project.field_funding_agencies
     - field.field.node.project.field_partners
     - field.field.node.project.field_principal_investigator_txt
+    - field.field.node.project.field_project_status_text
+    - field.field.node.project.field_project_timeframe
     - field.field.node.project.field_representative_image
     - field.field.node.project.field_url
+    - field.field.node.project.field_why_this_work_matters
     - node.type.project
   module:
     - layout_builder
@@ -30,12 +34,16 @@ hidden:
   body: true
   field_active: true
   field_activities: true
+  field_components: true
   field_contact_info_text: true
   field_funding_agencies: true
   field_partners: true
   field_principal_investigator_txt: true
+  field_project_status_text: true
+  field_project_timeframe: true
   field_representative_image: true
   field_url: true
+  field_why_this_work_matters: true
   langcode: true
   links: true
   project_focus_areas: true

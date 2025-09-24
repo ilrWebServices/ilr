@@ -6,17 +6,23 @@ dependencies:
     - field.field.node.project.body
     - field.field.node.project.field_active
     - field.field.node.project.field_activities
+    - field.field.node.project.field_components
     - field.field.node.project.field_contact_info_text
     - field.field.node.project.field_funding_agencies
     - field.field.node.project.field_partners
     - field.field.node.project.field_principal_investigator_txt
+    - field.field.node.project.field_project_status_text
+    - field.field.node.project.field_project_timeframe
     - field.field.node.project.field_representative_image
     - field.field.node.project.field_url
+    - field.field.node.project.field_why_this_work_matters
     - node.type.project
   module:
+    - datetime_range
     - link
     - media_library
     - media_library_edit
+    - paragraphs
     - path
     - text
 id: node.project.default
@@ -42,18 +48,38 @@ content:
     third_party_settings: {  }
   field_active:
     type: boolean_checkbox
-    weight: 16
+    weight: 30
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_activities:
     type: text_textarea
-    weight: 10
+    weight: 11
     region: content
     settings:
       rows: 5
       placeholder: ''
+    third_party_settings: {  }
+  field_components:
+    type: paragraphs
+    weight: 10
+    region: content
+    settings:
+      title: content
+      title_plural: content
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: all
+      closed_mode_threshold: 2
+      add_mode: dropdown
+      form_display_mode: expanded
+      default_paragraph_type: rich_text
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        convert: convert
+        duplicate: '0'
     third_party_settings: {  }
   field_contact_info_text:
     type: text_textarea
@@ -87,6 +113,20 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_project_status_text:
+    type: string_textfield
+    weight: 17
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_project_timeframe:
+    type: daterange_default
+    weight: 16
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_representative_image:
     type: media_library_widget
     weight: 17
@@ -103,6 +143,14 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_why_this_work_matters:
+    type: text_textarea
+    weight: 9
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
     third_party_settings: {  }
   ief_collection_items:
     weight: 6

@@ -226,6 +226,26 @@ function union_marketing_library_info_alter(&$libraries, $extension) {
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function union_marketing_theme_suggestions_paragraph_alter(array &$suggestions, array $variables) {
+  /** @var \Drupal\paragraph\Entity\Paragraph $paragraph */
+  $paragraph = $variables['elements']['#paragraph'];
+
+  // Get the parent entity.
+  $parent = $paragraph->getParentEntity();
+
+  // Make sure the parent exists and is a node.
+  if ($parent instanceof \Drupal\node\NodeInterface) {
+    $node_type = $parent->bundle();
+    $paragraph_type = $paragraph->bundle();
+    $suggestions[] = 'paragraph__node__' . $node_type . '__' . $paragraph_type;
+  }
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
  *
  * Add some post theme suggestions to all post_* node types.
  *

@@ -1,9 +1,9 @@
-uuid: 142fe164-bb75-4ad6-b048-5d120892315a
+uuid: e747c769-db61-44b8-ac65-dff413a9a581
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser_compact
+    - core.entity_view_mode.node.main_content
     - field.field.node.project.body
     - field.field.node.project.field_active
     - field.field.node.project.field_activities
@@ -19,22 +19,36 @@ dependencies:
     - field.field.node.project.field_why_this_work_matters
     - node.type.project
   module:
-    - layout_builder
+    - entity_reference_revisions
     - user
-third_party_settings:
-  layout_builder:
-    enabled: false
-    allow_custom: false
-id: node.project.teaser_compact
+id: node.project.main_content
 targetEntityType: node
 bundle: project
-mode: teaser_compact
-content: {  }
+mode: main_content
+content:
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+  project_focus_areas:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
 hidden:
   body: true
   field_active: true
   field_activities: true
-  field_components: true
   field_contact_info_text: true
   field_funding_agencies: true
   field_partners: true
@@ -45,6 +59,4 @@ hidden:
   field_url: true
   field_why_this_work_matters: true
   langcode: true
-  links: true
-  project_focus_areas: true
   search_api_excerpt: true

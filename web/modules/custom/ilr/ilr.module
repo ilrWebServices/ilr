@@ -1360,6 +1360,14 @@ function ilr_field_widget_single_element_paragraphs_form_alter(&$element, FormSt
     }
   }
 
+  // If the paragraph is using the 'expanded' form display mode and has the
+  // heading field, use that heading value as the label.
+  if ($paragraphs_entity && $paragraphs_entity->hasField('field_heading') && $context['widget']->getSetting('form_display_mode') === 'expanded') {
+    if (!$paragraphs_entity->field_heading->isEmpty()) {
+      $element['top']['type']['label']['#markup'] = '<span class="paragraph-type-label">' . $paragraphs_entity->field_heading->value . '</span>';
+    }
+  }
+
   // Hide the subheading and subheading link on section paragraphs until the
   // heading has a value.
   if ($paragraphs_entity && $paragraphs_entity->bundle() === 'section' && isset($element['subform']['field_heading'])) {
