@@ -11,7 +11,17 @@
     }
   }
 
-  .article--timeline .cu-banner.cu-banner--timeline {
+  .article--timeline {
+    a:not(.cu-button) {
+      font-family: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      color: var(--cu-color-brand);
+    }
+  }
+
+  .cu-banner.cu-banner--timeline {
     --cu-text-color: #222;
     background:
       linear-gradient(var(--milestone-edge-color) 0 0) top left / 40% 12px,
@@ -78,7 +88,7 @@
     --cu-component-padding-top: var(--cu-vr0);
     --cu-component-padding-bottom: var(--cu-vr3);
     --cu-component-padding-left: var(--cu-ps1);
-    --cu-component-padding-right: var(--cu-ps1);
+    --cu-component-padding-right: 0;
     --cu-font-size: var(--cu-ms-1);
     position: relative;
     grid-column: 2;
@@ -88,34 +98,69 @@
 
     @include breakpoint(md) {
       --cu-component-padding-bottom: 0;
-      --cu-component-padding-right: 0;
     }
 
-    p:last-of-type {
-      margin-bottom: initial;
+    p {
+      --cu-component-padding-top: 0;
+      --cu-component-padding-right: 0;
+      --cu-component-padding-bottom: 0;
+      --cu-component-padding-left: 0;
+      line-height: 1.3;
+      font-weight: 400;
+      padding: var(--cu-component-padding-top) var(--cu-component-padding-right) var(--cu-component-padding-bottom) var(--cu-component-padding-left);
+
+      &:last-of-type {
+        margin-bottom: initial;
+      }
     }
 
     .shout {
       font-family: "freight-text-pro", serif;
-      // font-weight: 300;
+      line-height: 1;
       font-size: var(--cu-ms7);
+    }
+
+    @include breakpoint(sm) {
+      &:has(.cu-media.align-left),
+      &:has(.cu-media.align-right) {
+        --cu-component-padding-top: var(--cu-vr0);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        > * {
+          --cu-component-padding-right: var(--cu-ps0);
+          --cu-component-padding-left: var(--cu-ps0);
+          grid-column: 2;
+        }
+
+        .cu-media {
+          grid-column: 1;
+          grid-row: 1/5; // Set explicit rows that are enough to accommodate content.
+          width: 100%;
+        }
+      }
+    }
+
+    &:has(.cu-media.align-right) {
+      > * {
+        grid-column: 1;
+      }
+
+      .cu-media {
+        grid-column: 2;
+        margin-left: 0;
+      }
     }
   }
 
   :nth-child(even of .cu-component--milestone) {
     @include breakpoint(md) {
+      --cu-component-padding-left: 0;
+      --cu-component-padding-right: var(--cu-ps1);
       grid-column: 1/-1;
       width: 50%;
-      padding-right: var(--cu-component-padding-left);
       box-shadow: 2px -2px 0px 0px var(--milestone-edge-color);
       border-left: none;
-
-      &::before,
-      &:has(+ .cu-component--milestone-section)::after,
-      &:last-of-type::after {
-        right: calc(var(--bullet-size) / 2 * -1 - 1px);
-        left: auto;
-      }
     }
   }
 
@@ -130,44 +175,52 @@
   .cu-component--milestone .cu-media.align-left,
   .cu-component--milestone .cu-media.align-right {
     display: flex;
-    height: 100%;
     align-content: stretch;
-    margin-bottom: 0;
+    margin-bottom: var(--cu-vr0);
+
+    @include breakpoint(sm) {
+      margin-bottom: 0;
+      + p:first-of-type {
+        --cu-component-padding-top: var(--cu-ps0);
+      }
+    }
 
     // Ensure the image uses the whole height.
-    .cu-image {
+    .cu-image,
+    .field-type--image {
       height: 100%;
+      width: 100%;
+      align-self: stretch;
+      justify-self: stretch;
     }
   }
-
-  .cu-component--milestone.cu-component[class^="cu-colorscheme--"] .cu-media.align-left,
-  .cu-component--milestone.cu-component[class^="cu-colorscheme--"] .cu-media.align-right {
-    + p {
-      padding-top: var(--cu-component-padding-top);
-    }
-  }
-
-  // .cu-component--milestone:has(+ .cu-component--milestone-heading)  {
-  //   opacity: .5;
-  // }
 
   // DOTS
+  // All milestones have a solid, top dot. Only the last milestone in a section has a bottom dot.
   .cu-component--milestone::before,
-  .cu-component--milestone:has(+ .cu-component--milestone-section)::after,
-  .cu-component--milestone:last-of-type::after {
-      content: '';
-      position: absolute;
-      top: calc(var(--bullet-size) / 2 * -1 - 1px);
-      left: calc(var(--bullet-size) / 2 * -1 - 1px);
-      display: block;
-      width: var(--bullet-size);
-      height: var(--bullet-size);
-      border-radius: 50%;
-      background-color: var(--milestone-edge-color);
+  :nth-last-child(1 of .cu-component--milestone)::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--bullet-size) / 2 * -1 - 1px);
+    left: calc(var(--bullet-size) / 2 * -1 - 1px);
+    display: block;
+    width: var(--bullet-size);
+    height: var(--bullet-size);
+    border-radius: 50%;
+    background-color: var(--milestone-edge-color);
   }
 
-  .cu-component--milestone:has(+ .cu-component--milestone-section)::after,
-  .cu-component--milestone:last-of-type::after {
+  // Dots on even milestones are placed on the opposite side.
+  :nth-child(even of .cu-component--milestone)::before,
+  :nth-child(even of .cu-component--milestone):nth-last-child(1 of .cu-component--milestone)::after {
+    @include breakpoint(md) {
+      right: calc(var(--bullet-size) / 2 * -1 - 1px);
+      left: auto;
+    }
+  }
+
+  // Make the bottom dot white with a border and put it at the bottom.
+  :nth-last-child(1 of .cu-component--milestone)::after {
     top: auto;
     bottom: calc(var(--bullet-size) / 2 * -1 + 1px);
     background-color: white;
@@ -178,8 +231,8 @@
     background-clip: content-box;
 
     p {
-      padding: 0 var(--cu-component-padding-left) var(--cu-component-padding-top) var(--cu-component-padding-left);
-      padding-bottom: var(--cu-vr1);
+      --cu-component-padding-right: var(--cu-ps1);
+      --cu-component-padding-left: var(--cu-ps1);
     }
   }
 
@@ -210,10 +263,7 @@
     }
 
     .cu-gallery__navigation-next {
-background-image: url("data:image/svg+xml,%3Csvg width='37' height='37' fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' version='1.1' viewBox='0 0 37 37' xml:space='preserve' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cpath d='m15.5,24.5 6,-6 -6,-6' /%3E%3C/svg%3E");    }
-
-    &::after {
-      display: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='37' height='37' fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' version='1.1' viewBox='0 0 37 37' xml:space='preserve' xmlns='http://www.w3.org/2000/svg' xmlns:svg='http://www.w3.org/2000/svg'%3E%3Cpath d='m15.5,24.5 6,-6 -6,-6' /%3E%3C/svg%3E");
     }
   }
 }
