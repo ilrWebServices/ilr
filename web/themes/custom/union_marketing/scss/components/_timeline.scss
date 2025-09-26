@@ -11,15 +11,17 @@
     }
   }
 
-  a:not(.cu-button) {
-    font-family: inherit;
-    font-weight: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    color: var(--cu-color-brand);
+  .article--timeline {
+    a:not(.cu-button) {
+      font-family: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      color: var(--cu-color-brand);
+    }
   }
 
-  .article--timeline .cu-banner.cu-banner--timeline {
+  .cu-banner.cu-banner--timeline {
     --cu-text-color: #222;
     background:
       linear-gradient(var(--milestone-edge-color) 0 0) top left / 40% 12px,
@@ -86,7 +88,7 @@
     --cu-component-padding-top: var(--cu-vr0);
     --cu-component-padding-bottom: var(--cu-vr3);
     --cu-component-padding-left: var(--cu-ps1);
-    --cu-component-padding-right: var(--cu-ps1);
+    --cu-component-padding-right: 0;
     --cu-font-size: var(--cu-ms-1);
     position: relative;
     grid-column: 2;
@@ -96,12 +98,12 @@
 
     @include breakpoint(md) {
       --cu-component-padding-bottom: 0;
-      --cu-component-padding-right: 0;
     }
 
     p {
       --cu-component-padding-top: 0;
       --cu-component-padding-right: 0;
+      --cu-component-padding-bottom: 0;
       --cu-component-padding-left: 0;
       line-height: 1.3;
       font-weight: 400;
