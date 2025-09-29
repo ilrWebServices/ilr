@@ -1,0 +1,9 @@
+uuid: 9e609081-ec05-4782-995b-841382824541
+langcode: en
+status: true
+dependencies: {  }
+id: simple_item
+label: 'Simple item'
+allowed_bundles:
+  - node.simple_page
+attributes_access: administrators

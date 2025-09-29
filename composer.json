@@ -60,7 +60,7 @@
   "require": {
     "php": ">=5.6",
     "composer/installers": "^2.0",
-    "cornell/union": "dev-union_ng",
+    "cornell/union": "dev-master",
     "cweagans/composer-patches": "^1.6.5",
     "drupal-ckeditor-libraries-group/fakeobjects": "^4.16",
     "drupal/address": "^2.0",
@@ -70,6 +70,7 @@
     "drupal/better_social_sharing_buttons": "^4.0",
     "drupal/block_visibility_groups": "^2.0",
     "drupal/campaign_monitor_rest_client": "^1.0.0",
+    "drupal/captcha": "^2",
     "drupal/collection": "3.x-dev@dev",
     "drupal/collegenet2sf": "^2",
     "drupal/condition_path": "^2.0",
@@ -88,6 +89,8 @@
     "drupal/filehash": "^3",
     "drupal/focal_point": "^2",
     "drupal/footnotes": "^3.0",
+    "drupal/friendly_captcha_challenge": "^0.9.18",
+    "drupal/friendlycaptcha": "^1",
     "drupal/google_tag": "^2.0",
     "drupal/honeypot": "2.1.4",
     "drupal/ilr_analytics_session": "dev-main",
@@ -97,8 +100,8 @@
     "drupal/inline_entity_form": "^3",
     "drupal/key": "^1.14",
     "drupal/key_value_field": "^1.0",
-    "drupal/linkit": "^6.1",
-    "drupal/linkit_media_library": "^1.0",
+    "drupal/linkit": "^7.0",
+    "drupal/linkit_media_library": "^2.0",
     "drupal/media_library_edit": "^3.0",
     "drupal/media_pdf_thumbnail": "^6",
     "drupal/media_remote": "^1.8",
@@ -179,7 +182,7 @@
     "sync-prod": [
       "Composer\\Config::disableProcessTimeout",
       "drush sql:drop -y",
-      "drush sql:sync @ilr-web.master @self -y --extra-dump=\" | awk 'NR==1 {if (/enable the sandbox mode/) next} {print}'\"",
+      "platform db:dump --stdout --project=yf4o2w34wqxm6 --environment=master --app=drupal8 --relationship=database --gzip | gunzip | drush sql:cli",
       "./post_sync_fix_triggers.php"
     ],
     "sync-update": [
@@ -226,9 +229,6 @@
       "drupal/webform": {
         "Use symfony_mailer for html email": "./patches/webform_symfony_mailer.patch",
         "Add filtering by category to Webform reference widget": "./patches/webform_reference_widget_alter_context.diff"
-      },
-      "drupal/linkit_media_library": {
-        "Linkit media library button doesn't open in CKEditor": "https://www.drupal.org/files/issues/2024-08-15/3461637-instance-of-media-library-opener-interface.patch"
       },
       "drupal/linkit": {
         "Issue #3436733: Linkit Link field: Double-encoded file links": "https://www.drupal.org/files/issues/2024-09-26/3436733-7-linkit_base_url_decode_fix.patch"

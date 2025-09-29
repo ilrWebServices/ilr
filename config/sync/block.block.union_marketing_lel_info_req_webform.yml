@@ -24,7 +24,7 @@ settings:
   webform_id: lel_info_request
   default_data: ''
   redirect: false
-  lazy: false
+  lazy: true
 visibility:
   condition_group:
     id: condition_group

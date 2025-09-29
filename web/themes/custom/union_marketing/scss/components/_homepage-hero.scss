@@ -1,21 +1,21 @@
 // Card grid styling
 .cu-hero-card-grid {
-  margin-top: -2rem;
+  margin-top: calc(var(--cu-vr1) * -1);
   position: relative;
   z-index: 3;
 
   @media (min-width: 768px) {
-    margin-top: 2rem;
+    margin-top: var(--cu-vr1);
   }
 
   .cu-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: var(--cu-vr0);
 
     @media (min-width: 768px) {
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      gap: var(--cu-vr1);
     }
   }
 
@@ -25,20 +25,19 @@
       opacity: 1;
       transform: none;
       position: static;
-      padding: 2rem;
       height: auto;
     }
 
     .cu-card__heading {
       transform: none;
       position: static;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
+      padding-bottom: var(--cu-vr-1);
+      margin-bottom: var(--cu-vr0);
     }
 
     .cu-card__content-text {
       display: block;
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--cu-vr1);
     }
 
     .cu-card__button {
@@ -47,116 +46,64 @@
   }
 }
 
+.region-highlighted .cu-banner--hero .cu-banner__content {
+  padding-left: 0;
+  padding-right: 0;
+}
 
-// Mobile specific styles
-.cu-banner--hero.cu-component--mobile {
-// Logo section with video background
-.cu-banner__logo {
-  position: relative;
-  height: 200px;
-  overflow: hidden;
+.region-highlighted .cu-banner--hero .cu-banner__media video[src*="ilr_hero_80years"] {
+  object-position: bottom;
+}
 
-  .video-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.7);
-      z-index: 1;
-    }
-
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  .cu-banner__overlay {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-
-    svg {
-      width: 150px;
-      height: auto;
+// 80 Years Logo Lottie Animation
+.lottie-80years-container {
+  &.cu-banner--80years {
+    @include breakpoint(lg) {
+      transform: scale(1.10);
     }
   }
 }
 
-// Content section with white background
-.cu-banner__content {
-  background-color: white;
-  padding: 2rem 1.5rem;
-  text-align: center;
+// Modify 3-card decks only when they are the first component in a wide section.
+.node__content > .layout--onecol .field--field-sections > .cu-section--wide .field--field-components > .cu-component--deck.cu-grid--3col:first-child {
+  grid-gap: var(--cu-vr-5);
 
-  .cu-heading {
-    font-family: 'futura-pt', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    line-height: 1.1;
-    color: var(--cu-text-color);
+  @include breakpoint(md) {
+    grid-gap: var(--cu-ps1);
   }
 
-  .hero-content {
-    margin-bottom: 1.5rem;
-
-    p {
-      font-size: 1rem;
-      line-height: 1.5;
-      margin: 0 auto 1.5rem auto;
-      max-width: 90%;
-    }
-  }
-}
-
-// Mobile card grid styling
-.cu-hero-card-grid {
-  margin-top: 0;
-  padding: 0;
-
-  .cu-grid {
-    grid-template-columns: 1fr;
-    gap: 1px;
+  .cu-card__content {
+    gap: var(--cu-vr0);
   }
 
-  .cu-card {
+  .cu-card__content > * {
+    order: 3;
+  }
+
+  .cu-card__meta {
+    order: 1;
     margin-bottom: 0;
-    border-radius: 0;
-
-    &__heading {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-
-    &__content-text {
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-
-    .cu-icon {
-      font-size: 1.75rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .cu-card__button {
-      margin-top: auto;
-    }
   }
-}
+
+  .cu-card__meta .cu-heading {
+    --cu-font-size: var(--cu-ms3);
+  }
+
+  .cu-card__content::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--cu-color-brand);
+    order: 2;
+  }
+
+  .cu-card__content p {
+    font-size: var(--cu-ms-2);
+    font-weight: 400;
+  }
+
+  .cu-icon__image {
+    width: 2.5em;
+  }
 }

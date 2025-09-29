@@ -4,6 +4,7 @@ status: open
 dependencies:
   module:
     - ilr
+    - ilr_salesforce
 weight: 0
 open: null
 close: null
@@ -40,6 +41,9 @@ elements: |-
       '#type': tel
       '#title': Phone
       '#required': true
+    texting_opt_in:
+      '#type': checkbox
+      '#title': 'I’d like to receive texts.'
   element_container:
     '#type': container
     areas_of_interest:
@@ -267,4 +271,29 @@ handlers:
         type: lead
         elements:
           - areas_of_interest
+  ilr_outreach_touchpoint_submitter:
+    id: outreach_touchpoint_submitter
+    handler_id: ilr_outreach_touchpoint_submitter
+    label: 'ILR Outreach touchpoint submitter'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      extra_values: "Site Inquiry Form\r\nInformation Request"
+      fields_mapping:
+        first_name: FirstName__c
+        last_name: LastName__c
+        email: Email__c
+        phone: Phone__c
+        texting_opt_in: Texting_Opt_In__c
+        areas_of_interest: Touchpoints_AOIs__c
+        'utm_values:utm_source': Touchpoint_UTM_Source__c
+        'utm_values:utm_medium': Touchpoint_UTM_Medium__c
+        'utm_values:utm_campaign': Touchpoint_UTM_Campaign__c
+        'utm_values:utm_term': Touchpoint_UTM_Term__c
+        'utm_values:utm_content': Touchpoint_UTM_Content__c
+        ga_client_id: GAClientID__c
+        'Site Inquiry Form': Lead_Source__c
+        'Information Request': Source__c
 variants: {  }

@@ -75,6 +75,26 @@
   margin-bottom: 0;
 }
 
+.webform-submission-form #edit-program-of-interest--wrapper .cu-fieldset__wrapper {
+  padding-right: var(--cu-ps-2);
+  padding-left: var(--cu-ps-1);
+}
+
+.webform-submission-form #edit-program-of-interest {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+.webform-submission-form #edit-program-of-interest .cu-input-list__item--checkbox {
+  align-items: baseline;
+}
+
+.webform-submission-form #edit-program-of-interest .cu-label {
+  line-height: 1.25;
+  --cu-font-size: var(--cu-ms-2);
+}
+
 // See https://developer.mozilla.org/en-US/docs/Web/CSS/:has
 .cu-legend:has(.visually-hidden) {
   margin: 0;
@@ -138,4 +158,38 @@
       }
     }
   }
+}
+
+.paragraph--type--form[class*="cu-colorscheme"] {
+  padding: var(--cu-vr0) var(--cu-ps1);
+}
+
+.paragraph--type--form .cu-button--alt {
+  --cu-text-color: unset;
+}
+
+.paragraph--type--form.cu-colorscheme--vibrant .cu-button--alt {
+  border-color: white;
+}
+
+// We might want/need to generalize this to any use of the same colorscheme inside another colorscheme.
+.cu-colorscheme--light .paragraph--type--form.cu-colorscheme--light,
+.cu-colorscheme--dark .paragraph--type--form.cu-colorscheme--dark,
+.cu-colorscheme--vibrant .paragraph--type--form.cu-colorscheme--vibrant {
+  box-shadow: inset 0 0 5px 0px rgba(128,128,128,.75);
+}
+
+.captcha-type-challenge--friendlycaptcha {
+  margin-bottom: var(--cu-vr1);
+
+  .captcha__description {
+    font-size: var(--cu-ms-1);
+    color: var(--cu-color-text-disabled, #888888);
+    margin-top: var(--cu-vr-4);
+    margin-bottom: 0;
+  }
+}
+
+.frc-banner a {
+  font-size: 10px;
 }

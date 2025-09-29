@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_contact_info_text
-    - filter.format.basic_formatting
+    - filter.format.simple_formatting
     - node.type.project
   module:
     - text
@@ -20,5 +20,5 @@ default_value: {  }
 default_value_callback: ''
 settings:
   allowed_formats:
-    - basic_formatting
+    - simple_formatting
 field_type: text_long

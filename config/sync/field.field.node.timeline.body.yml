@@ -1,0 +1,24 @@
+uuid: 98616a14-b19a-465c-b07c-aa70c82aed96
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.timeline
+  module:
+    - text
+id: node.timeline.body
+field_name: body
+entity_type: node
+bundle: timeline
+label: 'Intro Text'
+description: 'If there is intro text, it is added to the banner section of the timeline and can be used in social media posts. Summaries added here are also used in smaller components, such as cards. The summary will also be used when sharing this page via social media.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

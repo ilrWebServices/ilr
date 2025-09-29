@@ -17,13 +17,11 @@ use Drupal\Core\Field\FieldDefinition;
 use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
-use Drupal\Core\Field\Entity\BaseFieldOverride;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\webform\Plugin\WebformHandlerInterface;
 use Drupal\webform\WebformSubmissionInterface;
-use Drupal\file\FileInterface;
 use Drupal\pathauto\PathautoPatternInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
@@ -42,7 +40,6 @@ use Drupal\ilr\Entity\EventNodeBase;
 use Drupal\ilr\Entity\EventNodeInterface;
 use Drupal\ilr\Entity\ImageMedia;
 use Drupal\ilr\Hook\IlrHooks;
-use Drupal\node\Entity\NodeType;
 use Drupal\node\NodeInterface;
 use Drupal\person\PersonaInterface;
 use Drupal\salesforce_mapping\Entity\MappedObjectInterface;
@@ -107,6 +104,14 @@ function ilr_theme($existing, $type, $theme, $path) {
       ],
     ],
   ];
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function ilr_page_attachments(array &$attachments) {
+  // Attach the webform datalayer library to every page.
+  $attachments['#attached']['library'][] = 'ilr/ilr_webform_datalayer';
 }
 
 /**
@@ -834,6 +839,7 @@ function ilr_tokens($type, $tokens, array $data, array $options, BubbleableMetad
  */
 function ilr_entity_type_alter(array &$entity_types) {
   $entity_types['node']->addConstraint('NodeMenuLevel');
+  $entity_types['paragraph']->addConstraint('MinimumItemCount', ['minItems' => 4]);
 }
 
 /**
@@ -1270,6 +1276,51 @@ function ilr_field_widget_single_element_webform_entity_reference_select_form_al
 }
 
 /**
+ * Implements hook_webform_options_WEBFORM_OPTIONS_ID_alter().
+ *
+ * Use the current date to dynamically update the graduation date options.
+ */
+function ilr_webform_options_undergraduate_application_date_alter(array &$options, array &$element) {
+  $cid = 'ilr_undergraduate_application_date';
+
+  if ($cache = \Drupal::cache()->get($cid)) {
+    $options = $cache->data;
+    return;
+  }
+
+  $current_year = idate('y');
+  $next_year = $current_year + 1;
+
+  // Jan - May
+  if (idate('m') < 6) {
+    $options = [
+      "May '$current_year" => "May '$current_year",
+      "Aug '$current_year" => "Aug '$current_year",
+      "Dec '$current_year" => "Dec '$current_year",
+    ];
+  }
+  // Jun - Aug
+  elseif (idate('m') < 9) {
+    $options = [
+      "Aug '$current_year" => "Aug '$current_year",
+      "Dec '$current_year" => "Dec '$current_year",
+      "May '$next_year" => "May '$next_year",
+    ];
+  }
+  // Sep - Dec
+  else {
+    $options = [
+      "Dec '$current_year" => "Dec '$current_year",
+      "May '$next_year" => "May '$next_year",
+      "Aug '$next_year" => "Aug '$next_year",
+    ];
+  }
+
+  // Cache these options for 24 hours.
+  \Drupal::cache()->set($cid, $options, time() + 60 * 60 * 24);
+}
+
+/**
  * Implements hook_field_widget_single_element_WIDGET_TYPE_form_alter().
  *
  * @see ilr_field_widget_single_element_paragraphs_previewer_form_alter().
@@ -1306,6 +1357,14 @@ function ilr_field_widget_single_element_paragraphs_form_alter(&$element, FormSt
       if ($host_entity->bundle() === 'event_landing_page') {
         $element['behavior_plugins']['union_section_settings']['heading_left']['#default_value'] = TRUE;
       }
+    }
+  }
+
+  // If the paragraph is using the 'expanded' form display mode and has the
+  // heading field, use that heading value as the label.
+  if ($paragraphs_entity && $paragraphs_entity->hasField('field_heading') && $context['widget']->getSetting('form_display_mode') === 'expanded') {
+    if (!$paragraphs_entity->field_heading->isEmpty()) {
+      $element['top']['type']['label']['#markup'] = '<span class="paragraph-type-label">' . $paragraphs_entity->field_heading->value . '</span>';
     }
   }
 

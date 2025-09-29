@@ -52,6 +52,12 @@ class ColorSettings extends ParagraphsBehaviorBase {
       '#default_value' => $config['color_scheme_default'] ?? 'none',
     ];
 
+    $form['allow_framed_media'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Allow media elements in this component to be framed.'),
+      '#default_value' => $config['allow_framed_media'] ?? 0,
+    ];
+
     return $form;
   }
 
@@ -59,9 +65,9 @@ class ColorSettings extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
-    $enabled_color_schemes = $form_state->getValue('color_schemes');
+    $enabled_color_schemes = array_filter($form_state->getValue('color_schemes'));
 
-    if ($chosen_default = $form_state->getValue('color_scheme_default')) {
+    if (!empty($enabled_color_schemes) && $chosen_default = $form_state->getValue('color_scheme_default')) {
       if (!in_array($chosen_default, $enabled_color_schemes)) {
         $form_state->setError($form['color_scheme_default'], $this->t('The selected default color scheme is not in the allowed options.'));
       }
@@ -74,6 +80,7 @@ class ColorSettings extends ParagraphsBehaviorBase {
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
     $this->configuration['color_schemes'] = $form_state->getValue('color_schemes');
     $this->configuration['color_scheme_default'] = $form_state->getValue('color_scheme_default');
+    $this->configuration['allow_framed_media'] = $form_state->getValue('allow_framed_media');
   }
 
   /**
@@ -86,14 +93,46 @@ class ColorSettings extends ParagraphsBehaviorBase {
       return (bool) $config['color_schemes'][$k];
     }, ARRAY_FILTER_USE_KEY);
 
-    $form['color_scheme'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Color scheme'),
-      '#description' => $this->t('The color style for this component.'),
-      '#options' => $color_scheme_options,
-      '#required' => FALSE,
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'color_scheme') ?? $this->configuration['color_scheme_default'],
-    ];
+    if (!empty($color_scheme_options)) {
+      $form['color_scheme'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Color scheme'),
+        '#description' => $this->t('The color style for this component.'),
+        '#options' => $color_scheme_options,
+        '#required' => FALSE,
+        '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'color_scheme') ?? $this->configuration['color_scheme_default'],
+      ];
+    }
+
+    if (!empty($config['allow_framed_media'])) {
+      $form['frame_media'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Frame media elements in this component'),
+        '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'frame_media') ?? 0,
+      ];
+
+      // There is no #parents key in $form, but this may be OK hardcoded.
+      $parents = $form['#parents'];
+      $parents_input_name = array_shift($parents);
+      $parents_input_name .= '[' . implode('][', $parents) . ']';
+
+      $form['frame_color'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Frame color'),
+        '#options' => [
+          'light' => 'Light',
+          'dark' => 'Dark',
+          'vibrant' => 'Cornell Red',
+        ],
+        '#states' => [
+          'visible' => [
+            ':input[name="' . $parents_input_name . '[frame_media]"]' => ['checked' => TRUE],
+          ],
+        ],
+        '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'frame_color') ?? 'light',
+      ];
+
+    }
 
     return $form;
   }
@@ -107,6 +146,11 @@ class ColorSettings extends ParagraphsBehaviorBase {
 
     if (!empty($color_scheme) && $color_scheme !== 'none') {
       $variables['attributes']['class'][] = 'cu-colorscheme--' . $color_scheme;
+    }
+
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'frame_media')) {
+      $variables['attributes']['class'][] = 'cu-component__frame';
+      $variables['attributes']['class'][] = 'cu-component__frame--' . $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'frame_color');
     }
   }
 

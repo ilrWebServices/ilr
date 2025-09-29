@@ -89,7 +89,7 @@ third_party_settings:
                 label: hidden
                 settings:
                   source_entity: true
-                  lazy: false
+                  lazy: true
                 third_party_settings: {  }
             weight: 5
             additional: {  }

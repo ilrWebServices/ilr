@@ -3,6 +3,7 @@ langcode: en
 status: open
 dependencies:
   module:
+    - ilr
     - ilr_salesforce
 weight: 0
 open: null
@@ -43,6 +44,8 @@ elements: |-
     texting_opt_in:
       '#type': checkbox
       '#title': "I'd like to receive texts."
+    captcha:
+      '#type': captcha
   outreach_marketing_personas:
     '#type': hidden
     '#title': outreach_marketing_personas
@@ -343,6 +346,17 @@ handlers:
         grad_program_of_interest: Graduate_Program_of_Interest__c
         lead_source: Lead_Source__c
         'NONE PROVIDED': Company__c
+  populate_datalayer:
+    id: populate_datalayer
+    handler_id: populate_datalayer
+    label: 'Populate Datalayer'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 2
+    settings:
+      datalayer:
+        type: lead
 variants:
   zapier_295202085:
     id: override

@@ -24,3 +24,62 @@
     margin-bottom: 0;
   }
 }
+
+.cu-component--deck {
+  background-color: var(--cu-colorscheme-background);
+
+  &[class*="cu-colorscheme--"] {
+    padding: 50px;
+
+    @include breakpoint(md) {
+      padding: 100px;
+    }
+  }
+}
+
+.cu-grid--two_columns_divided {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1px 1fr;
+  gap: 50px;
+
+  @include breakpoint(sm) {
+    grid-template-columns: 1fr 1px 1fr;
+    grid-template-rows: unset;
+  }
+
+  > * {
+    order: 4;
+  }
+
+  > :first-child {
+    order: 1;
+  }
+
+  > :last-child {
+    order: 3;
+  }
+
+  &::before {
+    display: block;
+    content: '';
+    background-color: #bababa;
+    order: 2;
+  }
+
+  .cu-card--stacked {
+    gap: var(--cu-vr2);
+
+    .cu-card__media {
+      margin-bottom: 0;
+    }
+
+    .cu-card__meta {
+      margin-bottom: var(--cu-vr0);
+    }
+
+    img {
+      aspect-ratio: 1/1;
+    }
+  }
+
+}

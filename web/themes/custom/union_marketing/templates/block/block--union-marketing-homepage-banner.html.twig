@@ -25,126 +25,26 @@
  * @see template_preprocess_block()
  */
 #}
+{{ attach_library('union_marketing/lottie') }}
+{{ attach_library('union_marketing/lottie_80years') }}
 {%
   set classes = [
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
+    'cu-banner--hero',
+    'cu-banner--video'
   ]
 %}
 
-{% set undergrad %}
-<p class="cu-card__content-text">Our flexible, interdisciplinary major lets students pursue a wide range of academic interests and careers.</p>
-<div class="cu-card__button">
-  {% include '@union/_button.twig' with {
-    text: 'Explore',
-    attributes: {'class': 'cu-button--overlay'}
-  } only %}
-</div>
-{% endset %}
-
-{% set grad %}
-<p class="cu-card__content-text">Study the workplace comprehensively with the world's highest concentration of workplace faculty.</p>
-<div class="cu-card__button">
-  {% include '@union/_button.twig' with {
-    text: 'Explore',
-    attributes: {'class': 'cu-button--overlay'}
-  } only %}
-</div>
-{% endset %}
-
-{% set professional %}
-<p class="cu-card__content-text">Invest in your career by learning from instructors who blend world-leading research with business-tested practicality.</p>
-<div class="cu-card__button">
-  {% include '@union/_button.twig' with {
-    text: 'Explore',
-    attributes: {'class': 'cu-button--overlay'}
-  } only %}
-</div>
-{% endset %}
-
-{% set card_classes = [
-  'cu-card--dynamic',
-  'cu-colorscheme--dark',
-] %}
-
-{% set icon_cards %}
-{% include '@union/_card.twig' with {
-  attributes: { class: card_classes },
-  heading: 'Undergraduate Admissions',
-  card_content: undergrad,
-  card_link_url: '/programs/undergraduate-admissions',
-  card_link_alt: 'Undergraduate Admissions',
-  icon_data: {
-    title: 'Cornell University Tower',
-    icon: 'tower'
-  }
-} only %}
-{% include '@union/_card.twig' with {
-  attributes: { class: card_classes },
-  heading: 'Graduate Programs',
-  card_content: grad,
-  card_link_url: '/programs/graduate-degree-programs',
-  card_link_alt: 'Graduate Programs',
-  icon_data: {
-    title: 'Mortarboard',
-    icon: 'mortarboard'
-  }
-} only %}
-{% include '@union/_card.twig' with {
-  attributes: { class: card_classes },
-  heading: 'Professional Education',
-  card_content: professional,
-  card_link_url: '/programs/professional-education',
-  card_link_alt: 'Professional Education',
-  icon_data: {
-    title: 'Handshake',
-    icon: 'handshake'
-  }
-} only %}
-{% endset %}
-
 {% set years_logo %}
-<svg width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M130 220C179.706 220 220 179.706 220 130C220 80.2944 179.706 40 130 40C80.2944 40 40 80.2944 40 130C40 179.706 80.2944 220 130 220Z" fill="#B31B1B"/>
-    <path d="M130 190C163.137 190 190 163.137 190 130C190 96.8629 163.137 70 130 70C96.8629 70 70 96.8629 70 130C70 163.137 96.8629 190 130 190Z" fill="white"/>
-    <path d="M130 170C152.091 170 170 152.091 170 130C170 107.909 152.091 90 130 90C107.909 90 90 107.909 90 130C90 152.091 107.909 170 130 170Z" fill="#B31B1B"/>
-    <path d="M220 235H250V245H220V235Z" fill="black"/>
-    <text x="170" y="140" font-family="futura-pt, sans-serif" font-weight="700" font-size="40" fill="white">YEARS</text>
-</svg>
-{% endset %}
-
-{% set controls %}
-  <div class="video-pause">
-    {% include "@union/_icon.twig" with {
-      title: 'Pause video',
-      icon: 'pause',
-      size: '3em',
-      label: '',
-      attributes: {
-        class: 'cu-icon--inline pause cu-icon--play',
-        role: 'button',
-        'aria-pressed': "false"
-      }
-    } only %}
-    {% include "@union/_icon.twig" with {
-      title: 'Play video',
-      icon: 'play',
-      size: '3em',
-      label: '',
-      attributes: {
-        class: 'cu-icon--inline play visually-hidden',
-        role: 'button',
-        'aria-pressed': "true"
-      }
-    } only %}
-  </div>
+<div class="lottie-80years-container cu-banner--80years"></div>
 {% endset %}
 
 {% set video_media %}
 {% include '@union/_video.twig' with {
-  src: '/sites/default/files-d8/ILR-80-Home-Background.mp4',
-  poster: '/sites/default/files-d8/ILR-80-Home-Background-poster.jpg',
+  src: 'https://ilr-images.s3.us-east-1.amazonaws.com/video/ilr_hero_80years.mp4',
+  poster: '/themes/custom/union_marketing/images/hero-poster.jpg',
   autoplay: TRUE,
   loop: TRUE,
   muted: TRUE,
@@ -152,28 +52,26 @@
 } only %}
 {% endset %}
 
-{% set hero_content %}
+{% set card = content.field_component.0['#paragraph'] %}
+
+{% set content %}
+  {% if card.field_body.value %}
+    {{ card.field_body.value|raw }}
+  {% else %}
     <p>80 years of pioneering research, education, and real-world impact.</p>
+  {% endif %}
+
+  {{ title_suffix }}
 {% endset %}
 
-<div{{attributes.addClass(classes)}}>
-    {% include '@union/_banner.twig' with {
-      attributes: { class: ['cu-banner--hero', 'cu-banner--video', 'cu-component--desktop'] },
-      heading: 'Built for the future of work',
-      content: hero_content,
-      media: video_media,
-      overlay_content: years_logo,
-      link_url: '#',
-      link_text: 'Some CTA Here'
-    } only %}
+{% set link =  card.field_link.get(0) %}
 
-  {# Desktop card grid #}
-  <div class="cu-hero-card-grid cu-component--desktop">
-    <div class="cu-grid">
-      {{ icon_cards }}
-    </div>
-  </div>
-
-  {# Be sure to place the mobile version after desktop, so that js can target the correct play button (union bug). #}
-  {% include "block--union-marketing-homepage-banner--mobile.html.twig" %}
-</div>
+{% include '@union/_banner.twig' with {
+  attributes: attributes.addClass(classes),
+  heading: card.field_heading.value ?? 'Built for the future of work',
+  content: content,
+  media: video_media,
+  content_side: years_logo,
+  link_url: link.getUrl().toString(),
+  link_text: link.getTitle(),
+} only %}

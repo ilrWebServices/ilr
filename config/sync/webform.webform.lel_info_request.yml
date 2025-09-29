@@ -4,6 +4,8 @@ status: open
 dependencies:
   module:
     - honeypot
+    - ilr
+    - ilr_salesforce
 third_party_settings:
   honeypot:
     honeypot: true
@@ -118,12 +120,7 @@ settings:
   submission_excluded_elements: {  }
   submission_exclude_empty: false
   submission_exclude_empty_checkbox: false
-  submission_views:
-    salesforce-mappings:
-      title: 'Salesforce mappings'
-      view: 'webform_submissions:embed_salesforce'
-      webform_routes:
-        - entity.webform.results_submissions
+  submission_views: {  }
   submission_views_replace: {  }
   submission_user_columns: {  }
   submission_user_duplicate: false
@@ -250,5 +247,39 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  populate_datalayer:
+    id: populate_datalayer
+    handler_id: populate_datalayer
+    label: 'Populate Datalayer'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      datalayer:
+        type: subscribe
+  ilr_outreach_touchpoint_submitter:
+    id: outreach_touchpoint_submitter
+    handler_id: ilr_outreach_touchpoint_submitter
+    label: 'ILR Outreach touchpoint submitter'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      extra_values: "Labor and Employment Law Program\r\nInformation Request\r\nSite Inquiry Form"
+      fields_mapping:
+        first_name: FirstName__c
+        last_name: LastName__c
+        email: Email__c
+        'utm_values:utm_source': Touchpoint_UTM_Source__c
+        'utm_values:utm_medium': Touchpoint_UTM_Medium__c
+        'utm_values:utm_campaign': Touchpoint_UTM_Campaign__c
+        'utm_values:utm_term': Touchpoint_UTM_Term__c
+        'utm_values:utm_content': Touchpoint_UTM_Content__c
+        ga_client_id: GAClientID__c
+        'Information Request': Source__c
+        'Site Inquiry Form': Lead_Source__c
+        'Labor and Employment Law Program': Touchpoint_EMPS__c
 variants: {  }

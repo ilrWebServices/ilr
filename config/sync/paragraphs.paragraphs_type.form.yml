@@ -1,9 +1,20 @@
 uuid: d27d78a5-286b-4cf5-b35c-9b9f221be136
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
 id: form
 label: Form
 icon_uuid: null
+icon_default: null
 description: 'Use <em>Forms</em> to embed existing web forms.'
-behavior_plugins: {  }
+behavior_plugins:
+  ilr_color:
+    enabled: true
+    color_schemes:
+      none: none
+      light: light
+      dark: dark
+      vibrant: vibrant
+    color_scheme_default: none

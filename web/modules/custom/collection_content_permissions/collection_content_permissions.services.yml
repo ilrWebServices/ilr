@@ -1,0 +1,9 @@
+services:
+  Drupal\collection_content_permissions\Hook\CollectionContentPermissionsHooks:
+    class: Drupal\collection_content_permissions\Hook\CollectionContentPermissionsHooks
+    autowire: true
+  collection_content_permissions.exception_html_subscriber:
+    class: Drupal\collection_content_permissions\EventSubscriber\CcpDefaultExceptionHtmlSubscriber
+    arguments: ['@redirect.destination','@messenger', '@collection.content_manager']
+    tags:
+      - { name: event_subscriber }

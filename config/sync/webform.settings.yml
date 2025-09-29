@@ -339,5 +339,4 @@ requirements:
   bootstrap: true
   spam: false
 third_party_settings:
-  honeypot:
-    honeypot: true
+  honeypot: {  }

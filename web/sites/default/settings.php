@@ -972,7 +972,10 @@ if (!empty(getenv('CAMPAIGN_MONITOR_STATUS'))) {
  *
  * This is automatically configured for the current host.
  */
-$config['samlauth.authentication']['sp_entity_id'] = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/saml/metadata';
+$config['samlauth.authentication']['sp_entity_id'] = strtr(':scheme://:host/saml/metadata', [
+  ':scheme' => !empty($_SERVER['HTTPS']) ? 'https' : 'http',
+  ':host' => !empty($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : $_SERVER['HTTP_HOST'],
+]);
 
 /**
  * Configure sftp servers.
@@ -1004,9 +1007,10 @@ if (getenv('SMTP_HOST')) {
 }
 
 /**
- * Configure Request Info webform remote_post webhook for Zapier.
+ * Configure Zapier webform webhook handlers.
  */
 $config['webform.webform.request_info']['handlers']['zapier_295202085']['settings']['completed_url'] = getenv('ZAP_295202085_WEBHOOK_URL');
+$config['webform.webform.hr_program_request_info']['handlers']['zapier_319018624']['settings']['completed_url'] = getenv('ZAP_319018624_WEBHOOK_URL');
 
  /**
   * Ignored config name regex patterns.
@@ -1056,4 +1060,10 @@ $config['migrate_scheduler']['migrations'] = [
  */
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
+}
+
+// Automatically generated include for settings managed by ddev.
+$ddev_settings = __DIR__ . '/settings.ddev.php';
+if (getenv('IS_DDEV_PROJECT') == 'true' && is_readable($ddev_settings)) {
+  require $ddev_settings;
 }

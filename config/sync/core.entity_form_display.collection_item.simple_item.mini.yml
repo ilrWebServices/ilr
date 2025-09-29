@@ -1,0 +1,28 @@
+uuid: 85a46df9-7b92-43cd-90bb-fe383c54a891
+langcode: en
+status: true
+dependencies:
+  config:
+    - collection.collection_item_type.simple_item
+    - core.entity_form_mode.collection_item.mini
+id: collection_item.simple_item.mini
+targetEntityType: collection_item
+bundle: simple_item
+mode: mini
+content:
+  weight:
+    type: number
+    weight: 0
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  attributes: true
+  canonical: true
+  collection: true
+  item: true
+  langcode: true
+  path: true
+  sticky: true
+  user_id: true

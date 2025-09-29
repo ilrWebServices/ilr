@@ -3,8 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - block_content.type.component
+    - block_content.type.media
+    - block_content.type.simple_text
+    - entity_browser.browser.persona_browser
     - filter.format.full_html
   module:
+    - block_content
     - collection
     - contextual
     - entity_browser
@@ -56,6 +61,9 @@ permissions:
   - 'delete any media'
   - 'delete own collections'
   - 'delete own files'
+  - 'edit any component block content'
+  - 'edit any media block content'
+  - 'edit any simple_text block content'
   - 'edit any webform'
   - 'edit behavior plugin settings'
   - 'edit blog collection'

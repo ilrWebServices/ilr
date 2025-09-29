@@ -3,13 +3,8 @@ langcode: en
 status: open
 dependencies:
   module:
-    - honeypot
     - ilr
     - ilr_salesforce
-third_party_settings:
-  honeypot:
-    honeypot: true
-    time_restriction: true
 weight: 0
 open: null
 close: null
@@ -38,6 +33,13 @@ elements: |-
   phone:
     '#type': tel
     '#title': 'Cell phone number'
+    '#states':
+      required:
+        ':input[name="texting_opt_in"]':
+          checked: true
+  texting_opt_in:
+    '#type': checkbox
+    '#title': 'I’d like to receive texts.'
   address:
     '#type': address
     '#title': Citizenship
@@ -117,10 +119,8 @@ elements: |-
   linkedin_profile_url:
     '#type': webform_link
     '#title': 'LinkedIn Profile URL'
-    '#required': true
     '#title__access': false
     '#url__title': 'LinkedIn Profile URL'
-    '#url__required': true
   company:
     '#type': webform_computed_twig
     '#title': Company
@@ -134,6 +134,8 @@ elements: |-
     '#title': 'GA client id'
     '#attributes':
       id: ga_client_id
+  captcha:
+    '#type': captcha
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
@@ -334,7 +336,7 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: ilrgradapplicant@cornell.edu
+      to_mail: grad_eligibility@cornell.edu
       to_options: {  }
       bcc_mail: ''
       bcc_options: {  }
@@ -389,6 +391,7 @@ handlers:
         last_name: LastName__c
         email: Email__c
         phone: Phone__c
+        texting_opt_in: Texting_Opt_In__c
         citizenship: Citizenship_Status__c
         experience_years: Years_of_Experience__c
         marketing_channel: Pre_assessment_Source__c

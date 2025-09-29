@@ -1,0 +1,141 @@
+uuid: 30d2f8de-470f-4fd9-8c03-590c518ea8cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_components
+    - paragraphs.paragraphs_type.gallery
+    - paragraphs.paragraphs_type.milestone
+    - paragraphs.paragraphs_type.milestone_section
+  module:
+    - entity_reference_revisions
+id: paragraph.milestone_section.field_components
+field_name: field_components
+entity_type: paragraph
+bundle: milestone_section
+label: Milestones
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      milestone: milestone
+      gallery: gallery
+    negate: 0
+    target_bundles_drag_drop:
+      agenda:
+        weight: -74
+        enabled: false
+      agenda_item:
+        weight: -75
+        enabled: false
+      carousel:
+        weight: -73
+        enabled: false
+      collection_listing:
+        weight: -72
+        enabled: false
+      collection_listing_publication:
+        weight: -71
+        enabled: false
+      curated_course_listing:
+        weight: -70
+        enabled: false
+      curated_post_listing:
+        weight: -69
+        enabled: false
+      deck:
+        weight: -68
+        enabled: false
+      event_listing:
+        weight: -67
+        enabled: false
+      form:
+        weight: -66
+        enabled: false
+      gallery:
+        weight: -53
+        enabled: true
+      honors_and_awards:
+        weight: -51
+        enabled: false
+      image:
+        weight: -65
+        enabled: false
+      instagram_listing:
+        weight: -64
+        enabled: false
+      media_deck:
+        weight: -63
+        enabled: false
+      milestone:
+        weight: -54
+        enabled: true
+      milestone_section:
+        weight: -46
+        enabled: false
+      organization_listing:
+        weight: -45
+        enabled: false
+      people_listing:
+        weight: -62
+        enabled: false
+      people_listing_dynamic:
+        weight: -44
+        enabled: false
+      person:
+        weight: -61
+        enabled: false
+      picture_in_picture:
+        weight: -60
+        enabled: false
+      professional_activities:
+        weight: -43
+        enabled: false
+      project_listing:
+        weight: -42
+        enabled: false
+      promo:
+        weight: -59
+        enabled: false
+      publications:
+        weight: -41
+        enabled: false
+      rich_text:
+        weight: -58
+        enabled: false
+      section:
+        weight: -57
+        enabled: false
+      section_navigation:
+        weight: -56
+        enabled: false
+      simple_collection_listing:
+        weight: -55
+        enabled: false
+      stat:
+        weight: -40
+        enabled: false
+      stats:
+        weight: -39
+        enabled: false
+      table_of_contents:
+        weight: -52
+        enabled: false
+      testimonial:
+        weight: -50
+        enabled: false
+      testimonial_deck:
+        weight: -49
+        enabled: false
+      topic_list:
+        weight: -48
+        enabled: false
+      video:
+        weight: -47
+        enabled: false
+field_type: entity_reference_revisions

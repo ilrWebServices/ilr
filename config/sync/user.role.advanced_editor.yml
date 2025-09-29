@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.persona_browser
     - media.type.audio
     - media.type.file
     - media.type.image
@@ -16,6 +17,7 @@ dependencies:
     - node.type.post_document
     - node.type.post_experience_report
     - node.type.story
+    - node.type.timeline
     - node.type.video_post
     - taxonomy.vocabulary.event_sponsors
   module:
@@ -90,6 +92,7 @@ permissions:
   - 'edit own post_document content'
   - 'edit own post_experience_report content'
   - 'edit own story content'
+  - 'edit own timeline content'
   - 'edit own video_post content'
   - 'edit publication_issue collection'
   - 'edit resource_library collection'

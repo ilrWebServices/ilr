@@ -4,6 +4,7 @@ status: open
 dependencies:
   module:
     - ilr
+    - ilr_salesforce
 weight: 0
 open: null
 close: null
@@ -80,23 +81,6 @@ elements: |-
     '#title': Phone
     '#required': true
     '#access': false
-  address:
-    '#type': webform_address
-    '#access': false
-    '#title': 'Work address'
-    '#help': '<p><em>ILR’s outreach and continuing education work is supported in part by grants and state funding. Knowing where our event participants are located helps our funders better understand the impact of ILR’s work.</em></p>'
-    '#title_display': before
-    '#address__access': false
-    '#address_2__access': false
-    '#city__title': City
-    '#city__required': true
-    '#state_province__title': State
-    '#state_province__required': true
-    '#state_province__options': state_province_codes
-    '#postal_code__title': Zip
-    '#postal_code__required': true
-    '#country__access': false
-    '#address_3__access': false
   address_intl:
     '#type': address
     '#title': 'Work address'
@@ -489,6 +473,37 @@ handlers:
           - attending_online
           - requires_translation
           - opt_in
+  ilr_outreach_touchpoint_submitter:
+    id: outreach_touchpoint_submitter
+    handler_id: ilr_outreach_touchpoint_submitter
+    label: 'ILR Outreach touchpoint submitter'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      extra_values: "Event Registration\r\nSite Inquiry Form"
+      fields_mapping:
+        first_name: FirstName__c
+        last_name: LastName__c
+        email: Email__c
+        title: Title__c
+        eventid: Event_ID__c
+        'address_intl:address_line1': Street_Address__c
+        'address_intl:locality': City__c
+        'address_intl:administrative_area': State__c
+        'address_intl:postal_code': Zip_Postal_Code__c
+        'address_intl:country_code': Country__c
+        accessible_accommodation: ADA_Accommodations__c
+        outreach_marketing_personas: Touchpoint_EMPS__c
+        'utm_values:utm_source': Touchpoint_UTM_Source__c
+        'utm_values:utm_medium': Touchpoint_UTM_Medium__c
+        'utm_values:utm_campaign': Touchpoint_UTM_Campaign__c
+        'utm_values:utm_term': Touchpoint_UTM_Term__c
+        'utm_values:utm_content': Touchpoint_UTM_Content__c
+        ga_client_id: GAClientID__c
+        'Event Registration': Source__c
+        'Site Inquiry Form': Lead_Source__c
 variants:
   worker_institute_opt_in:
     id: override
@@ -541,19 +556,6 @@ variants:
       debug: false
       settings: {  }
       elements: "email:\r\n  '#weight': 6\r\nopt_in:\r\n  '#title': Opt-in for updates from Buffalo Co-Lab Institute\r\ncustom_1_answer:\r\n  '#type': textarea\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Questions for panelists'"
-      handlers: {  }
-  paths_to_labor_arbitrator:
-    id: override
-    variant_id: paths_to_labor_arbitrator
-    element_key: variant
-    label: 'Paths to Becoming a Labor Arbitrator'
-    notes: ''
-    status: true
-    weight: 3
-    settings:
-      debug: false
-      settings: {  }
-      elements: "address:\r\n  '#access': true"
       handlers: {  }
   cahrs_event:
     id: override
@@ -980,6 +982,8 @@ variants:
             to_mail: cahrs@cornell.edu
             subject: 'CAHRS Learning Series Event registration: [webform_submission:source-title]'
         confirmation_email:
+          status: true
+          conditions: {  }
           settings:
             subject: 'Thank You for Registering – CAHRS Learning Series.'
             body: |-
@@ -1065,6 +1069,53 @@ variants:
               {{ webform_token('[webform_submission:values]', webform_submission) }}<br/>
               <br/>
               To see a list of all submissions log in at <a href="https://d8-edit.ilr.cornell.edu/user">https://d8-edit.ilr.cornell.edu/user</a> and then go to <a href="https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A20634">https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A20634</a>
+            twig: true
+  25_oct_cookgray_email_confirmation:
+    id: override
+    variant_id: 25_oct_cookgray_email_confirmation
+    element_key: variant_email_handler
+    label: 25_oct_cookgray_email_confirmation
+    notes: ''
+    status: true
+    weight: 27
+    settings:
+      debug: false
+      settings: {  }
+      elements: ''
+      handlers:
+        confirmation_email:
+          settings:
+            subject: 'Thank you for registering for the 2025 Alice Cook-Lois Gray Distinguished Lecture: Status: What Is It? Why Does It Matter For Race And Gender Inequality?'
+            body: |-
+              Thank you for registering for the 2025 Alice Cook-Lois Gray Distinguished Lecture: Status: What Is It? Why Does It Matter For Race And Gender Inequality?<br/>
+              <br/>
+              This event is geared toward an in-person audience, so we strongly prefer you join us on our Ithaca campus. If this is not possible, please use the Zoom information below.<br/>
+              <br/>
+              This is a public event, which will be photographed and filmed and/or otherwise recorded. Your registration for this event constitutes your consent to such photography, live streaming, filming and/or recording, and any use in any and all media.<br/>
+              <br/>
+              DATE AND TIME<br/>
+              Date: October 23, 2025<br/>
+              Time: 4:30 - 6pm EDT<br/>
+              <br/>
+              LOCATION<br/>
+              ILR School<br/>
+              115 Ives Hall<br/>
+              Ithaca, NY 14853<br/>
+              <br/>
+              Join Zoom Meeting: <a href="https://cornell.zoom.us/j/92608968928?pwd=bjpqzx9XZw2EgN_MpMsAaKob2EWJ2A.NWm8yzA-65V1NNIB">https://cornell.zoom.us/j/92608968928?pwd=bjpqzx9XZw2EgN_MpMsAaKob2EWJ2A.NWm8yzA-65V1NNIB</a><br/>
+              Passcode: 368675<br/>
+              <br/>
+              We look forward to your attendance.
+        submission_detail_email:
+          settings:
+            to_mail: pjg97@cornell.edu
+            subject: '2025 Cook/Gray lecture registration: [webform_submission:source-title]'
+            body: |-
+              {{ data.first_name }} {{ data.last_name }} has just registered for the 2025 Cook/Gray lecture. The data they submitted follows:<br/>
+              <br/>
+              {{ webform_token('[webform_submission:values]', webform_submission) }}<br/>
+              <br/>
+              To see a list of all submissions log in at <a href="https://www.ilr.cornell.edu/user">https://www.ilr.cornell.edu/user</a> and then go to <a href="https://www.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A21877">https://www.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A21877</a>
             twig: true
   dietary:
     id: override

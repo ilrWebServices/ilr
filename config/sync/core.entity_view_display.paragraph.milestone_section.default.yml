@@ -1,0 +1,66 @@
+uuid: 07c242be-0dd7-4ac5-a714-4c8ccae59cad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.milestone_section.field_body
+    - field.field.paragraph.milestone_section.field_components
+    - field.field.paragraph.milestone_section.field_heading
+    - field.field.paragraph.milestone_section.field_media
+    - field.field.paragraph.milestone_section.field_subheading
+    - image.style.full
+    - paragraphs.paragraphs_type.milestone_section
+  module:
+    - entity_reference_revisions
+    - media
+    - text
+id: paragraph.milestone_section.default
+targetEntityType: paragraph
+bundle: milestone_section
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_heading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_media:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: full
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_subheading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true

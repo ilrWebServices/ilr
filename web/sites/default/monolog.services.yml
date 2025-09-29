@@ -1,9 +1,15 @@
 parameters:
   monolog.channel_handlers:
+    'page not found': ['grist_link_log']
     webform_touchpoint: ['slack_webhook', 'drupal.dblog']
     default: ['drupal.dblog']
 
 services:
+  monolog.handler.grist_link_log:
+    class: Drupal\ilr\Logger\Handler\GristLinkLog
+    arguments:
+      $gristDocument: 'This document URL is set in IlrServiceProvider::alter().'
+      $gristApiToken: 'This token is set in IlrServiceProvider::alter().'
   monolog.handler.slack_webhook:
     class: Monolog\Handler\SlackWebhookHandler
     arguments:

@@ -1,0 +1,24 @@
+uuid: cb22be4b-1aa2-4010-946e-af139efd4b59
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_why_this_work_matters
+    - filter.format.standard_formatting
+    - node.type.project
+  module:
+    - text
+id: node.project.field_why_this_work_matters
+field_name: field_why_this_work_matters
+entity_type: node
+bundle: project
+label: 'Why This Work Matters'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - standard_formatting
+field_type: text_long

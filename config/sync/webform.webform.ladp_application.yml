@@ -1,7 +1,9 @@
 uuid: be450aa8-13a3-46cb-9a8e-e4b23cbf05ba
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - ilr
 weight: 0
 open: null
 close: null
@@ -545,4 +547,15 @@ handlers:
       theme_name: ''
       parameters: {  }
       debug: false
+  populate_datalayer:
+    id: populate_datalayer
+    handler_id: populate_datalayer
+    label: 'Populate Datalayer'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 2
+    settings:
+      datalayer:
+        type: lead
 variants: {  }

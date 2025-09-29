@@ -28,13 +28,28 @@
   min-width: 50%;
 }
 
-.cu-media.align-center {
+.cu-media.align-center,
+.cu-component--rich-text .cu-media {
   margin-bottom: var(--cu-vr1);
 
   .cu-image,
   audio {
     width: 100%;
   }
+}
+
+// Add a partial border to un-floated inline images. Note that image
+// paragraphs (e.g. .paragraph--type--image) should arguably use this
+// treatment, too, but the border could conflict with image effects (curtain,
+// ken burns) allowed on image paragraphs.
+.cu-component:not(.cu-component__frame):not(.cu-component--milestone) .cu-media.align-center .field--field-media-image {
+  margin-bottom: 0;
+  padding: 16px 16px 16px 0;
+  background:
+    linear-gradient(#ccc 0 0) top right / 75% 16px,
+    linear-gradient(#ccc 0 0) right / 16px 100%,
+    linear-gradient(#ccc 0 0) bottom right / 15% 16px,   transparent;
+  background-repeat: no-repeat;
 }
 
 .cu-media.align-right,
@@ -209,4 +224,27 @@
 .ilr-effect-image.curtain-reveal {
   margin-left: -50vw;
   margin-right: -50vw;
+}
+
+.cu-component__frame {
+  --frame-color: #ccc;
+  --frame-width: 16px;
+
+  .cu-image,
+  iframe {
+    padding: var(--frame-width) var(--frame-width) var(--frame-width) 0;
+    background:
+      linear-gradient(var(--frame-color) 0 0) top right / 75% var(--frame-width),
+      linear-gradient(var(--frame-color) 0 0) right / var(--frame-width) 100%,
+      linear-gradient(var(--frame-color) 0 0) bottom right / 15% var(--frame-width),   transparent;
+    background-repeat: no-repeat;
+  }
+
+  &.cu-component__frame--vibrant {
+    --frame-color: var(--cu-color-brand, #{$cornell-red});
+  }
+
+  &.cu-component__frame--dark {
+    --frame-color: #222;
+  }
 }

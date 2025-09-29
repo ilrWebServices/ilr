@@ -491,3 +491,20 @@ function ilr_post_update_convert_ncrs_to_subsite(&$sandbox) {
   $collection->type = 'subsite_blog';
   $collection->save();
 }
+
+/**
+ * Create new homepage banner component content block.
+ */
+function ilr_post_update_create_homepage_banner_component_block(&$sandbox) {
+  $blockEntityManager = \Drupal::service('entity_type.manager')
+    ->getStorage('block_content');
+
+  $block = $blockEntityManager->create([
+    'type' => 'component',
+    'uuid' => 'cd73985d-a508-4e02-bcc9-51b6262c4c99',
+    'label_display' => 0,
+  ]);
+
+  $block->info = "Homepage Banner";
+  $block->save();
+}

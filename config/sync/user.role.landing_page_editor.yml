@@ -1,0 +1,15 @@
+uuid: 54076eb7-efaa-49d8-9596-91550be05bb9
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.landing_page
+  module:
+    - node
+id: landing_page_editor
+label: 'Landing page editor'
+weight: 13
+is_admin: null
+permissions:
+  - 'edit any landing_page content'
+  - 'view landing_page revisions'

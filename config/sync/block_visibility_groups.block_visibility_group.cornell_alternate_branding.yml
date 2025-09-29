@@ -13,6 +13,7 @@ conditions:
     id: root_path_entity_bundle
     root_entity_bundles:
       collection:
+        restricted: restricted
         subsite: subsite
         subsite_blog: subsite_blog
       taxonomy_term:

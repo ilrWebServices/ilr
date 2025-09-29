@@ -66,8 +66,14 @@
   }
 }
 
+.region-highlighted .cu-banner--hero.cu-banner--video .cu-banner__media {
+  @include breakpoint(md) {
+    @include full-width();
+    position: absolute;
+  }
+}
+
 #block-union-marketing-homepage-banner {
-  @include full-width();
 
   margin-bottom: var(--cu-vr1);
 

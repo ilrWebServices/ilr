@@ -171,3 +171,48 @@ function ilr_deploy_remove_cji_mapped_objects(&$sandbox) {
 
   $mapped_object_storage->delete($mapped_objects);
 }
+
+/**
+ * Transform Salesforce mapped objects for prof ed leads into keystore entries.
+ */
+function ilr_deploy_transform_prof_ed_interest_lead_mapped_objects(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $mapped_object_storage = $entity_type_manager->getStorage('salesforce_mapped_object');
+  $sfDataStore = \Drupal::service('keyvalue')->get('ilr_salesforce.touchpoint.sfid');
+
+  $mapped_objects = $mapped_object_storage->loadByProperties([
+    'salesforce_mapping' => [
+      'prof_education_interest_leads',
+    ],
+  ]);
+
+  foreach ($mapped_objects as $mapped_object) {
+    $webform_submission = $mapped_object->getMappedEntity();
+    $sfDataStore->set($webform_submission->id(), $mapped_object->sfid());
+    $mapped_object->delete();
+  }
+}
+
+/**
+ * Delete all touchpoint mappings and mapped objects.
+ */
+function ilr_deploy_touchpoint_mapping_delete(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $touchpoint_push_mappings = $entity_type_manager->getStorage('salesforce_mapping')->loadPushMappingsByProperties(['salesforce_object_type' => 'Touchpoint__c']);
+  $mapped_object_storage = $entity_type_manager->getStorage('salesforce_mapped_object');
+  $sfDataStore = \Drupal::service('keyvalue')->get('ilr_salesforce.touchpoint.sfid');
+
+  foreach ($touchpoint_push_mappings as $touchpoint_push_mapping) {
+    $mapped_objects = $mapped_object_storage->loadByProperties(['salesforce_mapping' => [$touchpoint_push_mapping->id()]]);
+
+    foreach ($mapped_objects as $mapped_object) {
+      $webform_submission = $mapped_object->getMappedEntity();
+      $sfDataStore->set($webform_submission->id(), $mapped_object->sfid());
+      $mapped_object->delete();
+    }
+
+    // This is necessary, even though the config files have been removed,
+    // because the mapping config depends on ignored webform config.
+    $touchpoint_push_mapping->delete();
+  }
+}

@@ -1,0 +1,17 @@
+uuid: 0f010f28-82d9-4d06-9f0a-31f314fa891f
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Simple page'
+type: simple_page
+description: 'A simple page has no components, just a single body field with media embedding enabled.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

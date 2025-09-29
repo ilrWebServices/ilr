@@ -5,13 +5,13 @@ dependencies:
   module:
     - focal_point
 name: large_9_5
-label: 'Large 9:5 (900x500)'
+label: 'Large 9:5 (1800x1000)'
 effects:
   915cfa4d-1e52-40b4-b13e-4b1001955b18:
     uuid: 915cfa4d-1e52-40b4-b13e-4b1001955b18
     id: focal_point_scale_and_crop
     weight: 1
     data:
-      width: 900
-      height: 500
+      width: 1800
+      height: 1000
       crop_type: focal_point

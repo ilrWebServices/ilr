@@ -7,3 +7,5 @@
 .cu-topic-list__item-link {
   text-decoration: underline;
 }
+
+.cu-component__frame .cu-topic-list__items { --frame-width: 0; }

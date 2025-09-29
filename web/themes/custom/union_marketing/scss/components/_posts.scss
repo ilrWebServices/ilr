@@ -16,6 +16,11 @@
     --post-max-width-text: 26rem;
     --post-max-width-media: 38rem;
   }
+
+  .cu-media.align-left,
+  .cu-media.align-right {
+    --frame-width: 8px;
+  }
 }
 
 .article--postalicious:not(.node--view-mode-main-content) {
@@ -116,20 +121,6 @@
     margin-bottom: 1em;
   }
 
-  // Add a partial border to un-floated inline images. Note that image
-  // paragraphs (e.g. .paragraph--type--image) should arguably use this
-  // treatment, too, but the border could conflict with image effects (curtain,
-  // ken burns) allowed on image paragraphs.
-  .cu-media.align-center .field--field-media-image {
-    margin-bottom: 0;
-    padding: 16px 16px 16px 0;
-    background:
-     linear-gradient(#ccc 0 0) top right / 75% 16px,
-     linear-gradient(#ccc 0 0) right / 16px 100%,
-     linear-gradient(#ccc 0 0) bottom right / 15% 16px,   transparent;
-    background-repeat: no-repeat;
-  }
-
   // This just reduces the video iframe to fit in the border/padding.
   .cu-media.align-center .field--field-media-oembed-video {
     margin-bottom: 0;
@@ -192,6 +183,16 @@
     .cu-grid {
       margin-left: calc((var(--post-max-width) - var(--post-max-width-text)) / 2 * -1);
       margin-right: calc((var(--post-max-width) - var(--post-max-width-text)) / 2 * -1);
+    }
+
+    .block-extra-field-block--node--post--extra-field-related-posts {
+      --post-max-width-text: var(--post-max-width); // Width of the media element.
+    }
+  }
+
+  .related-posts {
+    .cu-composite-heading {
+      margin-bottom: var(--cu-vr1);
     }
   }
 }
@@ -330,3 +331,4 @@
     }
   }
 }
+

@@ -184,7 +184,10 @@
     }
 
     &[data-state="initial"] {
-      .form-item:not(.webform-actions) {
+      .form-item:not(.form-item-email, .webform-section),
+      .webform-actions,
+      .cu-fieldset,
+      .captcha {
         display: none;
 
         @include breakpoint(md) {

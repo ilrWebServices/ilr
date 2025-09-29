@@ -14,3 +14,12 @@ behavior_plugins:
     enabled: true
   component_settings:
     enabled: true
+  ilr_color:
+    enabled: true
+    color_schemes:
+      none: 0
+      light: 0
+      dark: 0
+      vibrant: 0
+    color_scheme_default: none
+    allow_framed_media: 1

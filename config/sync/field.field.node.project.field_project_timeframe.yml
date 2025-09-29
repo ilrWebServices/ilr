@@ -1,0 +1,21 @@
+uuid: dad8a71b-f200-4303-81ba-b25c3b2c983d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_timeframe
+    - node.type.project
+  module:
+    - datetime_range
+id: node.project.field_project_timeframe
+field_name: field_project_timeframe
+entity_type: node
+bundle: project
+label: 'Project timeframe'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

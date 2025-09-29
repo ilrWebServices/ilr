@@ -1,0 +1,11 @@
+uuid: afc23bb1-bbbe-4545-a10d-744b54b03443
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.expanded
+label: Expanded
+description: 'An alternate view mode for viewing paragraphs modified in the Expanded form mode'
+targetEntityType: paragraph
+cache: true

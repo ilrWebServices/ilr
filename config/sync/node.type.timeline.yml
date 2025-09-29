@@ -1,0 +1,17 @@
+uuid: 14d03f89-0cfb-4784-94ce-4207a0499769
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Timeline Page'
+type: timeline
+description: 'Use <em>Timeline Pages</em> for occasional, long-form content that creates a historical timeline.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

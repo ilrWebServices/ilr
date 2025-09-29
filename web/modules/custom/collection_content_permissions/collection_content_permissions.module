@@ -1,88 +1,36 @@
 <?php
 
-use Drupal\collection\Entity\CollectionInterface;
-use Drupal\collection\Entity\CollectionItemInterface;
-use Drupal\Core\Config\Entity\ConfigEntityInterface;
+use Drupal\collection_content_permissions\Hook\CollectionContentPermissionsHooks;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Entity\EntityPublishedInterface;
+use Drupal\Core\Hook\Attribute\LegacyHook;
 
 /**
  * @file
  * Contains collection_content_permissions.module.
  */
 
-use Drupal\Core\Routing\RouteMatchInterface;
-
-/**
- * Implements hook_help().
- */
-function collection_content_permissions_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    // Main module help for the collection_content_permissions module.
-    case 'help.page.collection_content_permissions':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Adds permissions that bridge content entities with the collection module ecosystem') . '</p>';
-      return $output;
-
-    default:
-  }
-}
-
 /**
  * Implements hook_entity_field_access_alter().
  */
+#[LegacyHook]
 function collection_content_permissions_entity_field_access_alter(array &$grants, array $context) {
-  if ($context['field_definition']->getTargetEntityTypeId() === 'node' && $context['field_definition']->getName() === 'status' && $context['operation'] === 'edit') {
-    if ($context['account']->hasPermission('administer nodes')) {
-      return;
-    }
-
-    $collection_items = \Drupal::service('collection.content_manager')->getCollectionItemsForEntity($context['items']->getEntity(), FALSE);
-
-    foreach ($collection_items as $collection_item) {
-      if ($collection_item->isCanonical() && $collection_item->collection->entity->access('update', $context['account'])) {
-        $grants[':default'] = AccessResult::allowedIfHasPermission($context['account'], 'override status for canonical content in editable collections');
-        return;
-      }
-    }
-  }
+  \Drupal::service(CollectionContentPermissionsHooks::class)->canonicalStatusFieldAccess($grants, $context);
 }
 
 /**
  * Implements hook_entity_access().
+ *
+ * Allow view access to unpublished content collected canonically in collections
+ * this account can edit (if the account has permission).
+ *
+ * Allow edit access to content collected canonically in collections this
+ * account can edit (if the account has permission).
  */
+#[LegacyHook]
 function collection_content_permissions_entity_access(EntityInterface $entity, $op, AccountInterface $account) {
-  if ($entity instanceof ConfigEntityInterface || $entity instanceof CollectionItemInterface || $entity instanceof CollectionInterface) {
-    return;
-  }
-
-  if (!in_array($op, ['view', 'update'])) {
-    return;
-  }
-
-  $collection_items = \Drupal::service('collection.content_manager')->getCollectionItemsForEntity($entity, FALSE);
-
-  // Allow view access to unpublished content collected canonically in
-  // collections this account can edit (if the account has permission).
-  if ($op === 'view' && $entity instanceof EntityPublishedInterface && !$entity->isPublished()) {
-    foreach ($collection_items as $collection_item) {
-      if ($collection_item->isCanonical() && $collection_item->collection->entity->access('update', $account)) {
-        return AccessResult::allowedIfHasPermission($account, 'view any unpublished canonical content in editable collections');
-      }
-    }
-  }
-  // Allow edit access to content collected canonically in collections this
-  // account can edit (if the account has permission).
-  elseif ($op === 'update') {
-    foreach ($collection_items as $collection_item) {
-      if ($collection_item->isCanonical() && $collection_item->collection->entity->access('update', $account)) {
-        return AccessResult::allowedIfHasPermission($account, 'edit any canonical content in editable collections');
-      }
-    }
-  }
-
-  return AccessResult::neutral();
+  $unpub_access_result = \Drupal::service(CollectionContentPermissionsHooks::class)->canonicalUnpublishedViewAccess($entity, $op, $account);
+  $edit_access_result = \Drupal::service(CollectionContentPermissionsHooks::class)->canonicalEditAccess($entity, $op, $account);
+  $restricted_collection_access_result = \Drupal::service(CollectionContentPermissionsHooks::class)->restrictedCollectionViewAccess($entity, $op, $account);
+  return $unpub_access_result->orIf($edit_access_result)->orIf($restricted_collection_access_result);
 }

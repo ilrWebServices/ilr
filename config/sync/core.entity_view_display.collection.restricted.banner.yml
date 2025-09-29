@@ -1,0 +1,34 @@
+uuid: 9c2b25d6-58f8-4fc8-94fe-9134887d5140
+langcode: en
+status: false
+dependencies:
+  config:
+    - collection.collection_type.restricted
+    - core.entity_view_mode.collection.banner
+    - field.field.collection.restricted.field_sections
+  module:
+    - user
+id: collection.restricted.banner
+targetEntityType: collection
+bundle: restricted
+mode: banner
+content:
+  name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  user_id:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_sections: true
+  langcode: true
+  search_api_excerpt: true

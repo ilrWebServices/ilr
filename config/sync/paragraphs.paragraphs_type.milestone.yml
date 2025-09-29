@@ -1,0 +1,21 @@
+uuid: 4860c46f-f310-4ac6-815c-e088710272d1
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: milestone
+label: Milestone
+icon_uuid: null
+icon_default: null
+description: 'Milestones can be added as components to a timeline'
+behavior_plugins:
+  ilr_color:
+    enabled: true
+    color_schemes:
+      none: none
+      light: light
+      dark: dark
+      vibrant: vibrant
+    color_scheme_default: none
+    allow_framed_media: 0
