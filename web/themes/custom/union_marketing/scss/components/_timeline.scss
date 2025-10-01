@@ -239,6 +239,10 @@
       font-weight: 300;
       line-height: 1.8;
     }
+
+    &.cu-colorscheme--dark {
+      --cu-colorscheme-accent: white;
+    }
   }
 
   .cu-component.cu-component--gallery {
