@@ -152,8 +152,9 @@
       }
     }
   }
-@include breakpoint(md) {
-  :nth-child(2n of .cu-component--milestone.cu-component) {
+
+  @include breakpoint(md) {
+    :nth-child(2n of .cu-component--milestone.cu-component) {
       --cu-component-padding-left: 0;
       --cu-component-padding-right: var(--cu-ps1);
       grid-column: 1/-1;
@@ -165,6 +166,10 @@
 
   .cu-component--milestone .cu-media {
     margin-bottom: var(--cu-vr1);
+
+    .cu-image {
+      width: 100%;
+    }
   }
 
   .cu-component--milestone figure.cu-media .cu-media {
@@ -188,7 +193,6 @@
     .cu-image,
     .field-type--image {
       height: 100%;
-      width: 100%;
       align-self: stretch;
       justify-self: stretch;
     }
