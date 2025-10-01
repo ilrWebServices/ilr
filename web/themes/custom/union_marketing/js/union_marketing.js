@@ -374,4 +374,41 @@
     }
   };
 
+  // Animate milestones for timeline (if present).
+  Drupal.behaviors.union_marketing_timeline_animation = {
+    attach: function (context, settings) {
+      if (context !== document) {
+        return;
+      }
+
+      const milestones = context.querySelectorAll('.cu-component--milestone');
+
+      if (milestones.length === 0) {
+        return;
+      }
+
+      const msObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            entry.target.classList.remove('not-yet-visible', 'previously-visible');
+          }
+          else {
+            entry.target.classList.remove('is-visible');
+
+            if (entry.boundingClientRect.top < entry.rootBounds.top) {
+              // Element has scrolled *past* the top of the screen
+              entry.target.classList.add('previously-visible');
+            }
+            entry.target.classList.add('not-yet-visible');
+          }
+        });
+      });
+
+      milestones.forEach(milestone => {
+        msObserver.observe(milestone);
+      });
+    }
+  };
+
 })(window, document, Drupal);

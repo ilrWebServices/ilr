@@ -96,6 +96,22 @@
     padding: var(--cu-component-padding-top) var(--cu-component-padding-right) var(--cu-component-padding-bottom) var(--cu-component-padding-left);
     min-height: 200px;
 
+    // See union_marketing.js.
+    &.not-yet-visible {
+      opacity: 0;
+      transform: translateY(60px); /* Initial position. */
+
+      &.previously-visible {
+        transform: translateY(-60px); /* Reverse animation direction. */
+      }
+    }
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Animate opacity and transform */
+    }
+
     @include breakpoint(md) {
       --cu-component-padding-bottom: var(--cu-vr2);
     }
