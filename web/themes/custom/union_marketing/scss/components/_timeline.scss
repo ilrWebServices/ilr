@@ -184,7 +184,7 @@
     @include breakpoint(sm) {
       margin-bottom: 0;
       + p:first-of-type {
-        --cu-component-padding-top: var(--cu-ps0);
+        --cu-component-padding-top: var(--cu-vr2);
       }
     }
 
