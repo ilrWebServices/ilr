@@ -97,7 +97,7 @@
     min-height: 200px;
 
     @include breakpoint(md) {
-      --cu-component-padding-bottom: 0;
+      --cu-component-padding-bottom: var(--cu-vr2);
     }
 
     p {
