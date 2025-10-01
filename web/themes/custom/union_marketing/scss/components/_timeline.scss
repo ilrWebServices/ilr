@@ -152,9 +152,8 @@
       }
     }
   }
-
-  :nth-child(even of .cu-component--milestone) {
-    @include breakpoint(md) {
+@include breakpoint(md) {
+  :nth-child(2n of .cu-component--milestone.cu-component) {
       --cu-component-padding-left: 0;
       --cu-component-padding-right: var(--cu-ps1);
       grid-column: 1/-1;
