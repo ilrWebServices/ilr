@@ -1,0 +1,14 @@
+uuid: 42dfb6fa-7121-488f-b068-4ec537d4a74a
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.employee_admin
+  module:
+    - user
+id: user_add_role_action.employee_admin
+label: 'Add the Employee admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: employee_admin

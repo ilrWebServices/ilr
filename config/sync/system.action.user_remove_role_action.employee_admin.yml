@@ -1,0 +1,14 @@
+uuid: b0d89b81-9f8f-4dbb-a961-be0a36780f98
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.employee_admin
+  module:
+    - user
+id: user_remove_role_action.employee_admin
+label: 'Remove the Employee admin role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: employee_admin
