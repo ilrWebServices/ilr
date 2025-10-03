@@ -7,9 +7,14 @@ dependencies:
     - media.type.file
   module:
     - file
+    - filehash
   enforced:
     module:
       - media
+third_party_settings:
+  filehash:
+    dedupe: 0
+    dedupe_original: false
 id: media.file.field_media_file
 field_name: field_media_file
 entity_type: media
