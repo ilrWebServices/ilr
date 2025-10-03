@@ -69,6 +69,14 @@
     .cu-image {
       width: auto;
     }
+
+    + .cu-media.align-left,
+    + .cu-media.align-right,
+    &:has(+ .cu-media.align-left),
+    &:has(+ .cu-media.align-right) {
+      margin-right: 0;
+      margin-left: 0;
+    }
   }
 
   .field--field-media-image {
