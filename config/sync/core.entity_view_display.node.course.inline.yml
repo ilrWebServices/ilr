@@ -1,0 +1,71 @@
+uuid: 417fa684-40a3-45ea-8083-de65b5e19a6f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.inline
+    - field.field.node.course.body
+    - field.field.node.course.field_course_number
+    - field.field.node.course.field_delivery_method
+    - field.field.node.course.field_key_outcomes
+    - field.field.node.course.field_media_secondary
+    - field.field.node.course.field_media_section
+    - field.field.node.course.field_message
+    - field.field.node.course.field_representative_image
+    - field.field.node.course.field_sections
+    - field.field.node.course.field_sponsor
+    - field.field.node.course.field_target_audience
+    - field.field.node.course.field_topics
+    - field.field.node.course.layout_builder__layout
+    - image.style.thumbnail_square
+    - node.type.course
+  module:
+    - layout_builder
+    - media
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.course.inline
+targetEntityType: node
+bundle: course
+mode: inline
+content:
+  field_representative_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail_square
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  classes: true
+  extra_field_class_register: true
+  extra_field_course_instructors: true
+  extra_field_related_courses: true
+  field_course_number: true
+  field_delivery_method: true
+  field_key_outcomes: true
+  field_media_secondary: true
+  field_media_section: true
+  field_message: true
+  field_sections: true
+  field_sponsor: true
+  field_target_audience: true
+  field_topics: true
+  ilr_certificates: true
+  ilr_course_page_links: true
+  langcode: true
+  layout_builder__layout: true
+  search_api_excerpt: true
