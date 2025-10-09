@@ -4,6 +4,7 @@ status: open
 dependencies:
   module:
     - ilr
+    - ilr_salesforce
 weight: 0
 open: null
 close: null
@@ -309,4 +310,30 @@ handlers:
         elements:
           - company
           - message
+  ilr_outreach_touchpoint_submitter:
+    id: outreach_touchpoint_submitter
+    handler_id: ilr_outreach_touchpoint_submitter
+    label: 'ILR Outreach touchpoint submitter'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      extra_values: "Arbitrators Development Program\r\nInformation Request\r\nSite Inquiry Form"
+      fields_mapping:
+        firstname: FirstName__c
+        lastname: LastName__c
+        email: Email__c
+        phone: Phone__c
+        title: Title__c
+        company: Company__c
+        'utm_values:utm_source': Touchpoint_UTM_Source__c
+        'utm_values:utm_medium': Touchpoint_UTM_Medium__c
+        'utm_values:utm_campaign': Touchpoint_UTM_Campaign__c
+        'utm_values:utm_term': Touchpoint_UTM_Term__c
+        'utm_values:utm_content': Touchpoint_UTM_Content__c
+        ga_client_id: GAClientID__c
+        'Arbitrators Development Program': Touchpoint_EMPS__c
+        'Information Request': Source__c
+        'Site Inquiry Form': Lead_Source__c
 variants: {  }
