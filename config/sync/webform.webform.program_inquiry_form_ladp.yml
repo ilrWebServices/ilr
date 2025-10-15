@@ -4,6 +4,7 @@ status: open
 dependencies:
   module:
     - ilr
+    - ilr_salesforce
 weight: 0
 open: null
 close: null
@@ -16,41 +17,54 @@ description: 'An inquiry/eligibility form for the Labor Arbitrator Development P
 categories:
   - 'professional programs'
 elements: |-
-  firstname:
-    '#type': textfield
-    '#title': 'First name'
-    '#required': true
-  lastname:
-    '#type': textfield
-    '#title': 'Last name'
-    '#required': true
-  email:
-    '#type': email
-    '#title': Email
-    '#required': true
-    '#default_value': '[current-user:mail]'
-  phone:
-    '#type': tel
-    '#title': Phone
-    '#required': true
-  title:
-    '#type': textfield
-    '#title': Title
-    '#required': true
-  company:
-    '#type': textfield
-    '#title': Organization
-    '#required': true
-  message:
-    '#title': Message
-    '#type': textarea
-    '#test': 'Please ignore this email.'
-  submission_url:
-    '#type': webform_computed_twig
-    '#title': 'Submission URL'
-    '#display_on': view
-    '#mode': text
-    '#template': '{{ webform_token(''[webform_submission:url]'', webform_submission)|replace({''www.ilr.cornell.edu'': ''d8-edit.ilr.cornell.edu''}) }}'
+  content_container:
+    '#type': container
+    '#attributes':
+      class:
+        - form-title
+    '#markup': |-
+      <h2 class="cu-heading">
+        Request Info
+      </h2>
+      <p>If you are interested in learning more about the Labor Arbitration Development Program, please complete this form.</p>    
+  element_container:
+    '#type': container
+    '#attributes':
+      class:
+        - form-fields
+    firstname:
+      '#type': textfield
+      '#title': 'First name'
+      '#required': true
+    lastname:
+      '#type': textfield
+      '#title': 'Last name'
+      '#required': true
+    email:
+      '#type': email
+      '#title': Email
+      '#required': true
+      '#default_value': '[current-user:mail]'
+    phone:
+      '#type': tel
+      '#title': Phone
+      '#required': true
+    title:
+      '#type': textfield
+      '#title': Title
+      '#required': true
+    company:
+      '#type': textfield
+      '#title': Organization
+      '#required': true
+    message:
+      '#title': Message
+      '#type': textarea
+      '#test': 'Please ignore this email.'
+    actions:
+      '#type': webform_actions
+      '#title': 'Submit button(s)'
+      '#submit__label': Submit
   utm_values:
     '#type': utm_values
   ga_client_id:
@@ -58,10 +72,6 @@ elements: |-
     '#title': 'GA client id'
     '#attributes':
       id: ga_client_id
-  actions:
-    '#type': webform_actions
-    '#title': 'Submit button(s)'
-    '#submit__label': 'Submit'
 css: ".program-inquiry-page-ref {\r\n  display: none !important;\r\n}"
 javascript: ''
 settings:
@@ -74,7 +84,7 @@ settings:
   page_submit_path: ''
   page_confirm_path: ''
   page_theme_name: ''
-  form_title: both
+  form_title: source_entity_webform
   form_submit_once: false
   form_open_message: ''
   form_close_message: ''
@@ -103,7 +113,10 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
-  form_attributes: {  }
+  form_attributes:
+    class:
+      - webform--with-content
+      - webform--dark
   form_method: ''
   form_action: ''
   share: false
@@ -297,4 +310,30 @@ handlers:
         elements:
           - company
           - message
+  ilr_outreach_touchpoint_submitter:
+    id: outreach_touchpoint_submitter
+    handler_id: ilr_outreach_touchpoint_submitter
+    label: 'ILR Outreach touchpoint submitter'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      extra_values: "Arbitrators Development Program\r\nInformation Request\r\nSite Inquiry Form"
+      fields_mapping:
+        firstname: FirstName__c
+        lastname: LastName__c
+        email: Email__c
+        phone: Phone__c
+        title: Title__c
+        company: Company__c
+        'utm_values:utm_source': Touchpoint_UTM_Source__c
+        'utm_values:utm_medium': Touchpoint_UTM_Medium__c
+        'utm_values:utm_campaign': Touchpoint_UTM_Campaign__c
+        'utm_values:utm_term': Touchpoint_UTM_Term__c
+        'utm_values:utm_content': Touchpoint_UTM_Content__c
+        ga_client_id: GAClientID__c
+        'Arbitrators Development Program': Touchpoint_EMPS__c
+        'Information Request': Source__c
+        'Site Inquiry Form': Lead_Source__c
 variants: {  }

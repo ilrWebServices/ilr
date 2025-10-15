@@ -38,6 +38,11 @@
   }
 }
 
+// Fix bottom margin for captioned, floated images introduced in 2de466a.
+.cu-component--rich-text .cu-media.caption .cu-media {
+  margin-bottom: 0;
+}
+
 // Add a partial border to un-floated inline images. Note that image
 // paragraphs (e.g. .paragraph--type--image) should arguably use this
 // treatment, too, but the border could conflict with image effects (curtain,
@@ -68,6 +73,14 @@
 
     .cu-image {
       width: auto;
+    }
+
+    + .cu-media.align-left,
+    + .cu-media.align-right,
+    &:has(+ .cu-media.align-left),
+    &:has(+ .cu-media.align-right) {
+      margin-right: 0;
+      margin-left: 0;
     }
   }
 

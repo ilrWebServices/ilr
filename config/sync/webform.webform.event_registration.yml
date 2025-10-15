@@ -567,9 +567,14 @@ variants:
     weight: 3
     settings:
       debug: false
-      settings: {  }
+      settings:
+        confirmation_message: "Thank you for registering for <em>[webform_submission:source-title]</em>. You'll receive more information regarding the event in the next few days."
       elements: "company:\r\n  '#access': false\r\ncompany_account:\r\n  '#access': true\r\n  '#title': CAHRS Partner Company\r\n  '#description': '<p>If you don''t belong to a partner company and still want to attend, please email <a href=\"mailto:cahrs@cornell.edu\"><em>cahrs@cornell.edu</em></a> and include your company and reason you want to attend.</p>'\r\n  '#options': cahrs_companies\r\n  '#sort_options': true\r\nphone:\r\n  '#access': true\r\naccessible_accommodation:\r\n  '#access': false\r\nopt_in:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Optional activities'\r\n  '#description': 'Please tell us which optional activities you’ll attend.'\r\n  '#type': checkboxes\r\n  '#options': cahrs_session_details\r\n  '#wrapper_attributes':\r\n    class:\r\n      - cahrs-session-details-element"
-      handlers: {  }
+      handlers:
+        confirmation_email:
+          conditions: {  }
+          settings:
+            reply_to: cahrs@cornell.edu
   hybrid:
     id: override
     variant_id: hybrid

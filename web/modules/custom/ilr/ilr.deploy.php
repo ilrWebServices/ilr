@@ -216,3 +216,23 @@ function ilr_deploy_touchpoint_mapping_delete(&$sandbox) {
     $touchpoint_push_mapping->delete();
   }
 }
+
+/**
+ * Set the text format for all existing project briefs.
+ */
+function ilr_deploy_set_formats_on_project_briefs(&$sandbox) {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $project_query = $node_storage->getQuery();
+  $project_query->accessCheck(FALSE);
+  $project_query->condition('type', 'project');
+  $project_ids = $project_query->execute();
+  $projects = $node_storage->loadMultiple($project_ids);
+
+  foreach ($projects as $project) {
+    $project->body->format = 'standard_formatting';
+    $project->field_activities->format = 'standard_formatting';
+    $project->field_contact_info_text->format = 'simple_formatting';
+    $project->field_partners->format = 'simple_formatting';
+    $project->save();
+  }
+}

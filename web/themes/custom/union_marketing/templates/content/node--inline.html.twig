@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display an `inline` page node.
+ * Theme override to display an `inline` node.
  *
  * Available variables:
  * - node: The node entity with limited access to object properties and methods.
@@ -66,4 +66,18 @@
  * @see template_preprocess_node()
  */
 #}
-{% include 'node--inline.html.twig' %}
+{% include '@union/_card.twig' with {
+  card_content: title_suffix,
+  card_media: content.field_representative_image,
+  heading: label,
+  heading_element: 'h3',
+  card_link_url: url,
+  card_link_alt: label,
+  link_attributes: url_attributes,
+  attributes: attributes.addClass([
+    'node--' ~ node.bundle|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'cu-card--post-small'
+  ])
+} only %}

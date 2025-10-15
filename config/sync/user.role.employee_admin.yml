@@ -1,0 +1,18 @@
+uuid: e20b5aa0-1702-428c-91ef-71eaf877df7c
+langcode: en
+status: true
+dependencies:
+  config:
+    - person.persona_type.ilr_employee
+  module:
+    - contextual
+    - person
+    - system
+id: employee_admin
+label: 'Employee admin'
+weight: 14
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access contextual links'
+  - 'edit any ilr_employee persona'

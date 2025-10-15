@@ -96,8 +96,24 @@
     padding: var(--cu-component-padding-top) var(--cu-component-padding-right) var(--cu-component-padding-bottom) var(--cu-component-padding-left);
     min-height: 200px;
 
+    // See union_marketing.js.
+    &.not-yet-visible {
+      opacity: 0;
+      transform: translateY(60px); /* Initial position. */
+
+      &.previously-visible {
+        transform: translateY(-60px); /* Reverse animation direction. */
+      }
+    }
+
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Animate opacity and transform */
+    }
+
     @include breakpoint(md) {
-      --cu-component-padding-bottom: 0;
+      --cu-component-padding-bottom: var(--cu-vr2);
     }
 
     p {
@@ -128,7 +144,6 @@
         grid-template-columns: 1fr 1fr;
 
         > * {
-          --cu-component-padding-right: var(--cu-ps0);
           --cu-component-padding-left: var(--cu-ps0);
           grid-column: 2;
         }
@@ -153,8 +168,8 @@
     }
   }
 
-  :nth-child(even of .cu-component--milestone) {
-    @include breakpoint(md) {
+  @include breakpoint(md) {
+    :nth-child(2n of .cu-component--milestone.cu-component) {
       --cu-component-padding-left: 0;
       --cu-component-padding-right: var(--cu-ps1);
       grid-column: 1/-1;
@@ -166,6 +181,10 @@
 
   .cu-component--milestone .cu-media {
     margin-bottom: var(--cu-vr1);
+
+    .cu-image {
+      width: 100%;
+    }
   }
 
   .cu-component--milestone figure.cu-media .cu-media {
@@ -181,7 +200,7 @@
     @include breakpoint(sm) {
       margin-bottom: 0;
       + p:first-of-type {
-        --cu-component-padding-top: var(--cu-ps0);
+        --cu-component-padding-top: var(--cu-vr2);
       }
     }
 
@@ -189,7 +208,6 @@
     .cu-image,
     .field-type--image {
       height: 100%;
-      width: 100%;
       align-self: stretch;
       justify-self: stretch;
     }
@@ -231,8 +249,15 @@
     background-clip: content-box;
 
     p {
-      --cu-component-padding-right: var(--cu-ps1);
+      --cu-component-padding-right: var(--cu-ps2);
       --cu-component-padding-left: var(--cu-ps1);
+      --cu-component-padding-bottom: var(--cu-vr1);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    &.cu-colorscheme--dark {
+      --cu-colorscheme-accent: white;
     }
   }
 
@@ -274,7 +299,7 @@
   .field--field-heading + .cu-image {
     grid-column: 1/-1;
     justify-self: center;
-    margin-bottom: var(--cu-vr3);
+    margin-bottom: var(--cu-vr4);
   }
 
   .milestone-section__meta {
