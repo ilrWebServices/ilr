@@ -103,11 +103,11 @@
 
   .block-field-block--node--landing-page--field-form {
     --cu-font-size: var(--cu-ms-1);
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     background-color: white;
-    width: 100vw;
+    width: 100%;
     max-height: 100vh;
     overflow-y: auto;
     padding: var(--cu-vr-1) var(--cu-ps1) var(--cu-vr-2);
