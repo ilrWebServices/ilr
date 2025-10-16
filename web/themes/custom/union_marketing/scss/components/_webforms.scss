@@ -156,6 +156,7 @@
 }
 
 // TODO: Fix stuff like this when we refactor the Union form component.
-.cu-input.cu-input--url {
+.cu-input.cu-input--url,
+.cu-input--file {
   width: 100%;
 }
