@@ -108,11 +108,6 @@
   }
 }
 
-// Remove the top padding on galleries when placed after a gapless section.
-.cu-section--gapless + .cu-section .cu-gallery {
-  padding-top: 0;
-}
-
 // Temp 80 years override for the ILR wordmark.
 footer .block-ilr80wordmark-block {
   width: 230px;
