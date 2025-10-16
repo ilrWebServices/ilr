@@ -159,35 +159,6 @@
     }
   }
 
-  Drupal.behaviors.union_marketing_landing_page_contact_form = {
-    attach: function (context, settings) {
-
-      const forms = context.querySelectorAll('.block-field-block--node--landing-page--field-form');
-
-      for (const form of forms) {
-        form.dataset.state = 'initial';
-
-        let form_overlay = document.createElement('div');
-        form_overlay.classList.add('form-overlay');
-        form_overlay.addEventListener('click', function (event) {
-          // Focus on the first input.
-          form.querySelector('.cu-input').focus();
-          form.dataset.state = 'activated';
-        });
-        form.appendChild(form_overlay);
-
-        let form_close = document.createElement('button');
-        form_close.classList.add('form-collapse');
-        form_close.setAttribute('title', 'Close');
-        form_close.innerHTML = '<span>Close</span>';
-        form_close.addEventListener('click', function (event) {
-          form.dataset.state = 'initial';
-        });
-        form.appendChild(form_close);
-      }
-    }
-  }
-
   Drupal.behaviors.union_marketing_cahrs_newsletter_option_trigger = {
     attach: function (context, settings) {
       const cahrs_newsletter_form = context.querySelector('.webform--cahrs-newsletter-signup');
