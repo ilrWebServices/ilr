@@ -1,6 +1,6 @@
 :root {
   --gutter-width: 16px;
-  --content-width: 24fr;
+  --content-width: 1fr;
   --breakpoint: xs;
 
   @include breakpoint(sm) {
@@ -33,7 +33,6 @@ body {
 
   @include breakpoint(md) {
     --gutter-width: 24px;
-    --content-width: 44fr;
     justify-items: stretch;
   }
 
