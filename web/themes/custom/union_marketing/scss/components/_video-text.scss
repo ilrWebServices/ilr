@@ -1,0 +1,17 @@
+/**
+ * Video Text Component Styles
+ *
+ * Custom styles for the video-text paragraph component that uses the side-by-side layout.
+ */
+
+.paragraph--type--video-text.cu-side-by-side--image-left.cu-component__frame {
+  .cu-image,
+  iframe {
+    padding: var(--frame-width) 0 var(--frame-width) var(--frame-width);
+    background:
+      linear-gradient(var(--frame-color) 0 0) bottom left / 75% var(--frame-width),
+      linear-gradient(var(--frame-color) 0 0) left / var(--frame-width) 100%,
+      linear-gradient(var(--frame-color) 0 0) top left / 15% var(--frame-width),   transparent;
+    background-repeat: no-repeat;
+  }
+}
