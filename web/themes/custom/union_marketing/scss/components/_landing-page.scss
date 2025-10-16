@@ -188,14 +188,10 @@
       .webform-actions,
       .cu-fieldset,
       .captcha {
-        display: none;
+        display: block;
 
-        @include breakpoint(md) {
-          display: block;
-
-          &.cu-input-list__item--checkbox {
-            display: flex;
-          }
+        &.cu-input-list__item--checkbox {
+          display: flex;
         }
       }
     }
