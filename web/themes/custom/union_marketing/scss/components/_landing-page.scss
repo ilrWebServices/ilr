@@ -321,18 +321,16 @@
         column-count: 2;
         padding-left: 10px;
 
-        @include breakpoint(sm) {
-          column-count: 3; // 3 columns on larger mobile/tablet
-          padding-left: 40px;
-        }
-
         @include breakpoint(md) {
           column-count: unset;
         }
 
         @include breakpoint(sm) {
-          column-count: 3;
           padding-left: 40px;
+        }
+
+        @media (min-width:37.5rem) and (max-width:61rem) {
+          column-count: 3;
         }
 
         li {
