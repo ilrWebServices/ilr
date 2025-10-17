@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.landing_page.body
     - field.field.node.landing_page.field_form
+    - field.field.node.landing_page.field_mobile_form_anchor_text
     - field.field.node.landing_page.field_representative_image
     - field.field.node.landing_page.field_sections
     - field.field.node.landing_page.field_subtitle
@@ -33,6 +34,7 @@ content:
     region: content
 hidden:
   field_form: true
+  field_mobile_form_anchor_text: true
   field_representative_image: true
   field_sections: true
   field_subtitle: true

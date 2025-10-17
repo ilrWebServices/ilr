@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.landing_page.body
     - field.field.node.landing_page.field_form
+    - field.field.node.landing_page.field_mobile_form_anchor_text
     - field.field.node.landing_page.field_representative_image
     - field.field.node.landing_page.field_sections
     - field.field.node.landing_page.field_subtitle
@@ -147,7 +148,7 @@ third_party_settings:
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 6
+            weight: 7
             additional: {  }
           ec70bff2-9d7e-473b-af75-e22c69c6dd9e:
             uuid: ec70bff2-9d7e-473b-af75-e22c69c6dd9e
@@ -188,6 +189,25 @@ third_party_settings:
               radius: 100%
               print_css: ''
               facebook_app_id: ''
+            weight: 6
+            additional: {  }
+          e3c7fd2a-590d-43da-9deb-4ee783e58a22:
+            uuid: e3c7fd2a-590d-43da-9deb-4ee783e58a22
+            region: first
+            configuration:
+              id: 'field_block:node:landing_page:field_mobile_form_anchor_text'
+              label: 'Mobile Form Anchor Text'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
             weight: 5
             additional: {  }
         third_party_settings: {  }
