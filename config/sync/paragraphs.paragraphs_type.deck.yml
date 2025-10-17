@@ -8,7 +8,7 @@ id: deck
 label: 'Card deck'
 icon_uuid: null
 icon_default: null
-description: 'Decks are used to prominently display 2 or 3 cards. They can be comprised of standalone promo cards, or card displays of content that exists elsewhere on the site.'
+description: 'Decks are used to prominently display 2 or 3 cards, although more are allowed. They can be comprised of standalone promo cards, or card displays of content that exists elsewhere on the site.'
 behavior_plugins:
   component_settings:
     enabled: true
@@ -20,3 +20,4 @@ behavior_plugins:
       dark: dark
       vibrant: 0
     color_scheme_default: none
+    allow_framed_media: 0
