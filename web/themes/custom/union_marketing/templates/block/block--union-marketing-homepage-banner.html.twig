@@ -52,26 +52,16 @@
 } only %}
 {% endset %}
 
-{% set card = content.field_component.0['#paragraph'] %}
-
-{% set content %}
-  {% if card.field_body.value %}
-    {{ card.field_body.value|raw }}
-  {% else %}
-    <p>80 years of pioneering research, education, and real-world impact.</p>
-  {% endif %}
-
-  {{ title_suffix }}
+{% set hero_content %}
+  <p>80 years of pioneering research, education, and real-world impact.</p>
 {% endset %}
-
-{% set link =  card.field_link.get(0) %}
 
 {% include '@union/_banner.twig' with {
   attributes: attributes.addClass(classes),
-  heading: card.field_heading.value ?? 'Built for the future of work',
-  content: content,
+  heading: 'Built for the future of work',
+  content: hero_content,
   media: video_media,
   content_side: years_logo,
-  link_url: link.getUrl().toString(),
-  link_text: link.getTitle(),
+  link_url: '#',
+  link_text: 'Some CTA Here'
 } only %}
