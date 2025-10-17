@@ -25,6 +25,17 @@
       .block-field-block--node--landing-page--body + .block-field-block--node--landing-page--body {
         margin-top: var(--cu-vr2);
       }
+
+      .block-field-block--node--landing-page--field-mobile-form-anchor-text {
+        //Anchor button to scroll users to form
+        .cu-button--anchor {
+          display: inline-block;
+
+          @include breakpoint(md) {
+            display: none;
+          }
+        }
+      }
     }
 
     > .layout__region--second {
@@ -103,16 +114,19 @@
 
   .block-field-block--node--landing-page--field-form {
     --cu-font-size: var(--cu-ms-1);
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     background-color: white;
-    width: 100vw;
+    width: 100%;
     max-height: 100vh;
     overflow-y: auto;
-    padding: var(--cu-vr-1) var(--cu-ps1) var(--cu-vr-2);
     z-index: 2;
-    box-shadow: 0 2px 8px 2px rgba(0,0,0,.25);
+
+    @include breakpoint(md) {
+      padding: var(--cu-vr-1) var(--cu-ps1) var(--cu-vr-2);
+      box-shadow: 0 2px 8px 2px rgba(0,0,0,.25);
+    }
 
     &[data-state="activated"] {
       padding-top: var(--cu-vr0);
@@ -188,14 +202,10 @@
       .webform-actions,
       .cu-fieldset,
       .captcha {
-        display: none;
+        display: block;
 
-        @include breakpoint(md) {
-          display: block;
-
-          &.cu-input-list__item--checkbox {
-            display: flex;
-          }
+        &.cu-input-list__item--checkbox {
+          display: flex;
         }
       }
     }
@@ -220,18 +230,18 @@
   }
 
   .webform-section .cu-heading {
-    --cu-font-size: var(--cu-ms-3);
+    --cu-font-size: var(--cu-ms2);
     --cu-font-weight: 700;
-    letter-spacing: 10%;
-    text-transform: uppercase;
+    text-align: center;
 
     &::after {
       content: '';
       display: block;
-      width: 54px;
+      width: 85px;
       height: 6px;
       background-color: $cornell-red;
-      margin-top: 1em;
+      margin-top: 5px;
+      margin-inline: auto;
     }
   }
 
@@ -303,5 +313,36 @@
 
   .text-count-wrapper {
     font-size: var(--cu-ms-3);
+  }
+
+  .cu-component--rich-text {
+    &[class^='cu-component--columns-'] {
+      ul {
+        column-count: 2;
+        padding-left: 10px;
+
+        @include breakpoint(md) {
+          column-count: unset;
+        }
+
+        @include breakpoint(sm) {
+          padding-left: 40px;
+        }
+
+        @media (min-width:37.5rem) and (max-width:61rem) {
+          column-count: 3;
+        }
+
+        li {
+          font-size: 16px;
+          break-inside: avoid;
+
+          @include breakpoint(md) {
+            font-size: var(--cu-font-size, inherit);
+            break-inside: unset;
+          }
+        }
+      }
+    }
   }
 }

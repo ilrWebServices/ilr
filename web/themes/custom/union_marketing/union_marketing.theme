@@ -627,6 +627,17 @@ function union_marketing_preprocess_block__remote_html_snippet_block(&$variables
 }
 
 /**
+ * Implements hook_preprocess_block().
+ */
+function union_marketing_preprocess_block__field_block__node__landing_page__field_mobile_form_anchor_text(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node && $node->hasField('field_form') && !$node->get('field_form')->isEmpty()) {
+    $form_id = $node->get('field_form')->target_id;
+    $variables['content']['#webform_id'] = $form_id;
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for imagecache_external__instagram_post.
  */
 function union_marketing_preprocess_imagecache_external__instagram_post(&$variables) {

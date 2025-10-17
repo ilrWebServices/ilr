@@ -1,0 +1,19 @@
+uuid: 9bec9d83-8c9c-4eb9-8ea2-174687daad5d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mobile_form_anchor_text
+    - node.type.landing_page
+id: node.landing_page.field_mobile_form_anchor_text
+field_name: field_mobile_form_anchor_text
+entity_type: node
+bundle: landing_page
+label: 'Mobile Form Anchor Text'
+description: 'Utilize this to create an anchor link as a button to the form within the page (used for tablet/mobile screens). Leave blank for no button to appear.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
