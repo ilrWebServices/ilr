@@ -304,6 +304,31 @@
     }
   };
 
+  Drupal.behaviors.union_marketing_landing_page_contact_form_anchor_button = {
+    attach: function (context, settings) {
+      const anchorButtons = context.querySelectorAll('.cu-button--anchor');
+
+      for (const button of anchorButtons) {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+
+          if (targetElement) {
+            const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+            const offsetPosition = elementPosition - 100;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      }
+    }
+  };
+
   document.addEventListener('registration-form-class-select', function (event) {
     let instructor_selector = '.block__instructors .cu-person';
     let active_instructor_selector = '.block__instructors .cu-person[data-classid~="' + event.detail + '"]';

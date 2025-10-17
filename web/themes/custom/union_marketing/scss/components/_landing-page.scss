@@ -25,6 +25,17 @@
       .block-field-block--node--landing-page--body + .block-field-block--node--landing-page--body {
         margin-top: var(--cu-vr2);
       }
+
+      .block-field-block--node--landing-page--field-mobile-form-anchor-text {
+        //Anchor button to scroll users to form
+        .cu-button--anchor {
+          display: inline-block;
+
+          @include breakpoint(md) {
+            display: none;
+          }
+        }
+      }
     }
 
     > .layout__region--second {
@@ -219,20 +230,20 @@
   }
 
   .webform-section .cu-heading {
-    --cu-font-size: var(--cu-ms-3);
+    --cu-font-size: var(--cu-ms2);
     --cu-font-weight: 700;
-    letter-spacing: 10%;
-    text-transform: uppercase;
+    text-align: center;
 
     &::after {
       content: '';
       display: block;
-      width: 54px;
+      width: 85px;
       height: 6px;
       background-color: $cornell-red;
-      margin-top: 1em;
+      margin-top: 5px;
+      margin-inline: auto;
     }
-  }
+  } 
 
   .cu-footer {
     position: relative;
