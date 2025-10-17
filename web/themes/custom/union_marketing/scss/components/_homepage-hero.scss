@@ -63,3 +63,47 @@
     }
   }
 }
+
+// Modify 3-card decks only when they are the first component in a wide section.
+.node__content > .layout--onecol .field--field-sections > .cu-section--wide .field--field-components > .cu-component--deck.cu-grid--3col:first-child {
+  grid-gap: var(--cu-vr-5);
+
+  @include breakpoint(md) {
+    grid-gap: var(--cu-ps1);
+  }
+
+  .cu-card__content {
+    gap: var(--cu-vr0);
+  }
+
+  .cu-card__content > * {
+    order: 3;
+  }
+
+  .cu-card__meta {
+    order: 1;
+    margin-bottom: 0;
+  }
+
+  .cu-card__meta .cu-heading {
+    --cu-font-size: var(--cu-ms3);
+  }
+
+  .cu-card__content::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--cu-color-brand);
+    order: 2;
+  }
+
+  .cu-card__content p {
+    font-size: var(--cu-ms-2);
+    font-weight: 400;
+  }
+
+  .cu-icon__image {
+    width: 2.5em;
+  }
+}
