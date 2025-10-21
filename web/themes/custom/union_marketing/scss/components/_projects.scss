@@ -50,23 +50,19 @@
   }
 
   summary::marker {
-    color: var(--cu-color-brand);
     font-size: 1.75rem;
   }
 
   summary .cu-heading {
-    display: inline-block;
-    margin: 0;
+    --cu-font-size: var(--cu-ms3);
   }
 
   .paragraph--type--rich-text.paragraph--view-mode--expanded {
     --cu-component-margin-bottom: 0;
     padding: var(--cu-vr0) 1.75rem;
+    margin: initial;
+    border: initial;
     border-top: 1px solid var(--cu-color-gray);
-
-    &[open] summary .cu-heading {
-      margin-bottom: var(--cu-vr0);
-    }
   }
 }
 

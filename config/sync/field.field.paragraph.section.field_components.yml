@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_components
+    - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.agenda
     - paragraphs.paragraphs_type.carousel
     - paragraphs.paragraphs_type.collection_listing
@@ -77,8 +78,12 @@ settings:
       carousel: carousel
       agenda: agenda
       stats: stats
+      accordion: accordion
     negate: 0
     target_bundles_drag_drop:
+      accordion:
+        weight: 39
+        enabled: true
       agenda:
         weight: -42
         enabled: true
