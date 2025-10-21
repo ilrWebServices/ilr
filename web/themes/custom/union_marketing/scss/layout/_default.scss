@@ -177,7 +177,7 @@ hr.pad {
   margin-bottom: 0;
 }
 
-.cu-component .cu-component,
+.cu-component .cu-component:not(.cu-component--rich-text),
 .cu-layout--twocol .cu-component {
   margin: 0;
 }
