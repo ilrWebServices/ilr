@@ -129,6 +129,12 @@ settings:
       media_deck:
         weight: -66
         enabled: true
+      milestone:
+        weight: 55
+        enabled: false
+      milestone_section:
+        weight: 56
+        enabled: false
       organization_listing:
         weight: -56
         enabled: true
