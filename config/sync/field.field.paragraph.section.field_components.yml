@@ -24,6 +24,7 @@ dependencies:
     - paragraphs.paragraphs_type.picture_in_picture
     - paragraphs.paragraphs_type.project_listing
     - paragraphs.paragraphs_type.promo
+    - paragraphs.paragraphs_type.publications
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.section_navigation
@@ -78,6 +79,7 @@ settings:
       carousel: carousel
       agenda: agenda
       stats: stats
+      publications: publications
       accordion: accordion
     negate: 0
     target_bundles_drag_drop:
@@ -161,7 +163,7 @@ settings:
         enabled: true
       publications:
         weight: -38
-        enabled: false
+        enabled: true
       rich_text:
         weight: -71
         enabled: true
