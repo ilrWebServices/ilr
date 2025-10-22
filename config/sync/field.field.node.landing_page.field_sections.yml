@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_sections
     - node.type.landing_page
+    - paragraphs.paragraphs_type.anchor_button_to_form
     - paragraphs.paragraphs_type.section
   module:
     - entity_reference_revisions
@@ -23,6 +24,7 @@ settings:
   handler_settings:
     target_bundles:
       section: section
+      anchor_button_to_form: anchor_button_to_form
     negate: 0
     target_bundles_drag_drop:
       agenda:
@@ -31,6 +33,9 @@ settings:
       agenda_item:
         weight: 34
         enabled: false
+      anchor_button_to_form:
+        weight: 41
+        enabled: true
       carousel:
         weight: 35
         enabled: false
@@ -55,6 +60,9 @@ settings:
       form:
         weight: 27
         enabled: false
+      gallery:
+        weight: 50
+        enabled: false
       honors_and_awards:
         weight: 43
         enabled: false
@@ -66,6 +74,12 @@ settings:
         enabled: false
       media_deck:
         weight: 30
+        enabled: false
+      milestone:
+        weight: 55
+        enabled: false
+      milestone_section:
+        weight: 56
         enabled: false
       organization_listing:
         weight: 47
@@ -105,6 +119,12 @@ settings:
         enabled: false
       simple_collection_listing:
         weight: 38
+        enabled: false
+      stat:
+        weight: 70
+        enabled: false
+      stats:
+        weight: 71
         enabled: false
       table_of_contents:
         weight: 60

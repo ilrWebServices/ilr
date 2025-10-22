@@ -85,6 +85,9 @@ settings:
       agenda_item:
         weight: -43
         enabled: false
+      anchor_button_to_form:
+        weight: 39
+        enabled: false
       carousel:
         weight: -44
         enabled: true
