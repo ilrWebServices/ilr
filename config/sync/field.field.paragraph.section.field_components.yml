@@ -32,6 +32,7 @@ dependencies:
     - paragraphs.paragraphs_type.table_of_contents
     - paragraphs.paragraphs_type.testimonial
     - paragraphs.paragraphs_type.testimonial_deck
+    - paragraphs.paragraphs_type.text_with_media
     - paragraphs.paragraphs_type.topic_list
     - paragraphs.paragraphs_type.video
   module:
@@ -79,6 +80,7 @@ settings:
       agenda: agenda
       stats: stats
       accordion: accordion
+      text_with_media: text_with_media
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -188,6 +190,9 @@ settings:
         enabled: true
       testimonial_deck:
         weight: -61
+        enabled: true
+      text_with_media:
+        weight: 76
         enabled: true
       topic_list:
         weight: -46
