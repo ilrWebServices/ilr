@@ -168,10 +168,10 @@ settings:
   draft_loaded_message: ''
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
-  confirmation_type: inline
+  confirmation_type: message
   confirmation_url: ''
   confirmation_title: ''
-  confirmation_message: 'Thank you for signing up for the CAROW newsletter.'
+  confirmation_message: '<p>Thank you for signing up for our newsletter. Stay tuned for emails about upcoming events and webinars.</p><p>We’re excited to share our work with you and keep you connected to the CAROW community.</p>'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -248,6 +248,45 @@ access:
     users: {  }
     permissions: {  }
 handlers:
+  confirmation_email:
+    id: email
+    handler_id: confirmation_email
+    label: 'Confirmation Email'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:email:raw]'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: carow@cornell.edu
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: 'You’re subscribed to the CAROW Newsletter'
+      body: '<p>Thank you for signing up for our newsletter. Stay tuned for emails about upcoming events and webinars.</p><p>We’re excited to share our work with you and keep you connected to the CAROW community.</p>'
+      excluded_elements:
+        utm_values: utm_values
+        ga_client_id: ga_client_id
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: true
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      parameters: {  }
+      debug: false
   populate_datalayer:
     id: populate_datalayer
     handler_id: populate_datalayer
