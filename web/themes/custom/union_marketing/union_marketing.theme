@@ -584,6 +584,19 @@ function union_marketing_preprocess_field__field_representative_image(&$variable
 }
 
 /**
+ * Implements hook_preprocess_field().
+ *
+ * Adds webform ID to the field template for anchor_button_to_form paragraphs.
+ */
+function union_marketing_preprocess_field__paragraph__field_button_text__anchor_button_to_form(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node && $node->hasField('field_form') && !$node->get('field_form')->isEmpty()) {
+    $form_id = $node->get('field_form')->target_id;
+    $variables['content']['#webform_id'] = $form_id;
+  }
+}
+
+/**
  * Implements hook_preprocess_collection().
  *
  * Modify the template theme suggestions when blog collections are rendered as

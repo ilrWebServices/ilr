@@ -1,0 +1,22 @@
+uuid: 9dc73620-8c72-4db0-9e56-04492c40cd55
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.anchor_button_to_form.field_button_text
+    - paragraphs.paragraphs_type.anchor_button_to_form
+id: paragraph.anchor_button_to_form.default
+targetEntityType: paragraph
+bundle: anchor_button_to_form
+mode: default
+content:
+  field_button_text:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

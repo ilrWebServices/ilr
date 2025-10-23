@@ -307,6 +307,18 @@
     padding-bottom: 0;
   }
 
+  // Anchor button to form section
+  .cu-section[class*="cu-colorscheme"].cu-component--anchor-button-to-form {
+    padding-top: 0;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+
+    @include breakpoint(md) {
+      display: none;
+    }
+  }
+
   .form-textarea.webform-counter {
     margin-bottom: 0;
   }

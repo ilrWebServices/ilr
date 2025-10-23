@@ -82,7 +82,7 @@ class ComponentSettings extends ParagraphsBehaviorBase {
    * This behavior is only applicable to paragraphs of type 'deck'.
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {
-    return in_array($paragraphs_type->id(), ['deck', 'rich_text', 'section']);
+    return in_array($paragraphs_type->id(), ['deck', 'rich_text', 'section', 'anchor_button_to_form']);
   }
 
 }

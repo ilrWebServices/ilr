@@ -1,0 +1,23 @@
+uuid: 12bd50ce-8416-44c2-a9aa-5008f8b93c79
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: anchor_button_to_form
+label: 'Anchor Button to Form'
+icon_uuid: null
+icon_default: null
+description: "Anchor to the landing page's form (field_form). Only visible on small devices. "
+behavior_plugins:
+  component_settings:
+    enabled: true
+  ilr_color:
+    enabled: true
+    color_schemes:
+      none: none
+      light: light
+      dark: dark
+      vibrant: 0
+    color_scheme_default: none
+    allow_framed_media: 0
