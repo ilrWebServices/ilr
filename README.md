@@ -219,6 +219,16 @@ This project uses a custom theme that includes shared components from the [Union
 
 The custom theme is found in `web/themes/custom/union_marketing/`. The Sass CSS preprocessor is used for styles, and you can compile CSS either 1) manually via `npm run build` or 2) automatically by running `npm start` in a spare terminal.
 
+## Easier Union Design System Development
+
+After an initial install:
+
+```
+composer require cornell/union:master --prefer-source
+```
+
+This updates the composer install of `cornell/union` in `vendor/cornell/union` to a git checkout, which allows development of the design system and the main site at the same time.
+
 ### Including Union Components
 
 Union Components are integrated into the theme using the [Union Organizer][] module. See the documentation for that module for more information.
