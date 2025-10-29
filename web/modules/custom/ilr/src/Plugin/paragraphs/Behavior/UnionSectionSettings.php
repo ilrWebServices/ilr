@@ -107,7 +107,11 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
   /**
    * {@inheritdoc}
    */
-  public function view(array &$build, Paragraph $paragraphs_entity, EntityViewDisplayInterface $display, $view_mode) {}
+  public function view(array &$build, Paragraph $paragraphs_entity, EntityViewDisplayInterface $display, $view_mode) {
+    if (!$paragraphs_entity->isPublished()) {
+      $build = [];
+    }
+  }
 
   /**
    * {@inheritdoc}
