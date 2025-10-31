@@ -11,16 +11,16 @@ use Drupal\paragraphs\ParagraphsBehaviorBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides settings for side-by-side components.
+ * Provides layout settings for components.
  *
  * @ParagraphsBehavior(
- *   id = "side_by_side_settings",
- *   label = @Translation("Side by Side settings"),
- *   description = @Translation("Configure side-by-side component settings."),
+ *   id = "layout_settings",
+ *   label = @Translation("Layout Settings"),
+ *   description = @Translation("Configure layout settings for components."),
  *   weight = 2
  * )
  */
-class SideBySideSettings extends ParagraphsBehaviorBase {
+class LayoutSettings extends ParagraphsBehaviorBase {
 
   /**
    * {@inheritdoc}
@@ -49,7 +49,7 @@ class SideBySideSettings extends ParagraphsBehaviorBase {
    */
   public function preprocess(&$variables) {
     if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'reverse_component')) {
-      $variables['attributes']['class'][] = 'cu-side-by-side--reversed';
+      $variables['attributes']['class'][] = 'cu-layoutscheme--reversed';
     }
   }
 
@@ -66,7 +66,7 @@ class SideBySideSettings extends ParagraphsBehaviorBase {
 
     if ($paragraph->getBehaviorSetting($this->getPluginId(), 'reverse_component')) {
       $summary[] = [
-        'label' => 'Reverse Component',
+        'label' => 'Reversed Component',
         'value' => 'True',
       ];
     }
@@ -77,7 +77,7 @@ class SideBySideSettings extends ParagraphsBehaviorBase {
   /**
    * {@inheritdoc}
    *
-   * This behavior is only applicable to side-by-side paragraphs.
+   * This behavior is applicable to paragraphs that support layout settings.
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {
     return in_array($paragraphs_type->id(), ['text_with_media']);
