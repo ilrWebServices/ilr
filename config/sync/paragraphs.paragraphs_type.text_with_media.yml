@@ -1,0 +1,25 @@
+uuid: 32be155f-bf57-42dc-9c29-b7b95e018afa
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: text_with_media
+label: 'Text with Media'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  ilr_color:
+    enabled: true
+    color_schemes:
+      none: none
+      light: light
+      dark: dark
+      vibrant: vibrant
+    color_scheme_default: none
+    allow_framed_media: 1
+  ilr_icon:
+    enabled: true
+  layout_settings:
+    enabled: true
