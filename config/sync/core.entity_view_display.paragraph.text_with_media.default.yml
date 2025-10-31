@@ -8,11 +8,9 @@ dependencies:
     - field.field.paragraph.text_with_media.field_link
     - field.field.paragraph.text_with_media.field_media
     - field.field.paragraph.text_with_media.field_subheading
-    - image.style.full
     - paragraphs.paragraphs_type.text_with_media
   module:
     - link
-    - media
     - text
 id: paragraph.text_with_media.default
 targetEntityType: paragraph
@@ -47,13 +45,11 @@ content:
     weight: 3
     region: content
   field_media:
-    type: media_thumbnail
+    type: entity_reference_entity_view
     label: hidden
     settings:
-      image_link: ''
-      image_style: full
-      image_loading:
-        attribute: lazy
+      view_mode: embedded
+      link: false
     third_party_settings: {  }
     weight: 0
     region: content
