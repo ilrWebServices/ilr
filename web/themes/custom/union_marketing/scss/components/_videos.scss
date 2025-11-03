@@ -6,19 +6,10 @@
   }
 }
 
-// From https://alistapart.com/article/creating-intrinsic-ratios-for-video/
-.remote-video-wrapper {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-}
-
 .remote-video-wrapper iframe {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
+  height: auto;
   width: 100%;
+  aspect-ratio: 16/9;
   border: 0;
 }
 
