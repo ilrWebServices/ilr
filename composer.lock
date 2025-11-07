@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f168709e36fb1a8d5cb7522e9e8f223",
+    "content-hash": "96f747e1403d528745118a7db1abe8a8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -872,16 +872,16 @@
         },
         {
             "name": "cornell/union",
-            "version": "dev-master",
+            "version": "dev-testimonial-refactor",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union.git",
-                "reference": "cb475a65885c808cda3695b9457af0b7b6fa34df"
+                "reference": "e99ad1c3d3ac9fdda4c40a232d93cfb10f122f73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/cb475a65885c808cda3695b9457af0b7b6fa34df",
-                "reference": "cb475a65885c808cda3695b9457af0b7b6fa34df",
+                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/e99ad1c3d3ac9fdda4c40a232d93cfb10f122f73",
+                "reference": "e99ad1c3d3ac9fdda4c40a232d93cfb10f122f73",
                 "shasum": ""
             },
             "require": {
@@ -890,7 +890,6 @@
                 "symfony/yaml": "^4.4.19 || ^5 || ^6",
                 "twig/twig": "^2 || ^3"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -912,10 +911,10 @@
             ],
             "description": "A component-based design system",
             "support": {
-                "source": "https://github.com/ilrWebServices/union/tree/master",
+                "source": "https://github.com/ilrWebServices/union/tree/testimonial-refactor",
                 "issues": "https://github.com/ilrWebServices/union/issues"
             },
-            "time": "2025-11-04T21:37:39+00:00"
+            "time": "2025-11-07T21:08:46+00:00"
         },
         {
             "name": "cweagans/composer-patches",
