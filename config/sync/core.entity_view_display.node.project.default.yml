@@ -101,7 +101,7 @@ third_party_settings:
             region: first
             configuration:
               id: 'field_block:node:project:field_activities'
-              label: 'Project activities'
+              label: 'Project Activities'
               label_display: visible
               provider: layout_builder
               context_mapping:
@@ -251,7 +251,7 @@ third_party_settings:
             region: first
             configuration:
               id: 'field_block:node:project:field_components'
-              label: 'Additional info'
+              label: 'Additional Info'
               label_display: visible
               provider: layout_builder
               context_mapping:
