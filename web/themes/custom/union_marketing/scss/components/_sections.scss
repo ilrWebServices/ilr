@@ -1,10 +1,25 @@
+// Tmp
+#jsg-grid {
+  pointer-events: none;
+}
+
 .cu-section {
+  --cu-max-width-section: 1130px;
   clear: both;
   margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr2));
 
   @include breakpoint(md) {
     margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr3));
   }
+}
+
+.cu-section--left {
+  grid-template-columns: 1.3fr 2fr;
+  gap: 32px;
+}
+
+.cu-section--left.cu-section--wide {
+  grid-template-columns: 432px auto;
 }
 
 // On certificates, courses and topics the course finder is the first thing on

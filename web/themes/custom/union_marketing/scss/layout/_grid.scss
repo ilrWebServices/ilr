@@ -34,10 +34,12 @@
 .cu-grid.cu-list--grid-featured:not(.cu-component--people-listing) {
   @include breakpoint(md) {
     grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2.1fr 1fr 1fr;
 
     &:has(> :last-child:nth-child(4)) { /* 4 elements */
       // grid-template-rows: repeat(3, auto);
       grid-template-columns: 3fr 1fr 1fr;
+      grid-template-columns: 3.3fr 1fr 1fr;
 
       .cu-card:is(:nth-child(2)) {
         grid-column: 2 / -1;
