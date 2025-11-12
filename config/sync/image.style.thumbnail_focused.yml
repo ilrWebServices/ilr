@@ -1,0 +1,17 @@
+uuid: d3a7d092-5bd3-4fb5-8c38-4dd2fd2b6c5b
+langcode: en
+status: true
+dependencies:
+  module:
+    - focal_point
+name: thumbnail_focused
+label: 'Thumbnail focused (100×100)'
+effects:
+  5aa253d3-c30a-4691-b701-8000bf12934a:
+    uuid: 5aa253d3-c30a-4691-b701-8000bf12934a
+    id: focal_point_scale_and_crop
+    weight: 1
+    data:
+      width: 100
+      height: 100
+      crop_type: focal_point
