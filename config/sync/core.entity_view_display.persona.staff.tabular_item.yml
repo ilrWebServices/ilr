@@ -14,7 +14,7 @@ dependencies:
     - field.field.persona.staff.field_phone
     - field.field.persona.staff.field_photo
     - field.field.persona.staff.field_title
-    - image.style.thumbnail
+    - image.style.thumbnail_focused
     - person.persona_type.staff
   module:
     - address
@@ -46,8 +46,7 @@ content:
   field_campus_address:
     type: address_default
     label: hidden
-    settings:
-      field_settings: {  }
+    settings: {  }
     third_party_settings: {  }
     weight: 5
     region: content
@@ -71,7 +70,7 @@ content:
     label: hidden
     settings:
       image_link: content
-      image_style: thumbnail
+      image_style: thumbnail_focused
       image_loading:
         attribute: lazy
     third_party_settings: {  }

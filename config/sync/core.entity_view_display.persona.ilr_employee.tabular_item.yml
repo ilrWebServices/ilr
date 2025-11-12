@@ -22,7 +22,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_photo
     - field.field.persona.ilr_employee.field_sections
     - field.field.persona.ilr_employee.field_websites
-    - image.style.thumbnail
+    - image.style.thumbnail_focused
     - person.persona_type.ilr_employee
   module:
     - address
@@ -49,8 +49,7 @@ content:
   field_campus_address:
     type: address_default
     label: hidden
-    settings:
-      field_settings: {  }
+    settings: {  }
     third_party_settings: {  }
     weight: 5
     region: content
@@ -74,7 +73,7 @@ content:
     label: hidden
     settings:
       image_link: content
-      image_style: thumbnail
+      image_style: thumbnail_focused
       image_loading:
         attribute: lazy
     third_party_settings: {  }
