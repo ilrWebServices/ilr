@@ -15,5 +15,8 @@
 <div{{ attributes.addClass('cu-media') }}>
 {% if content %}
   {{ content }}
+  {% if media %}
+  {{ drupal_field('field_attribution', 'media', media.id) }}
+  {% endif %}
 {% endif %}
 </div>
