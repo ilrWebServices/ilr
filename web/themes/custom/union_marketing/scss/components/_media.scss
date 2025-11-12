@@ -57,6 +57,22 @@
   background-repeat: no-repeat;
 }
 
+.cu-component:not(.cu-component__frame):not(.cu-component--milestone) .cu-media.align-center,
+.cu-component__frame:not(.cu-layoutscheme--reversed) .cu-media {
+  .field--field-attribution {
+    // left: 0;
+    // bottom: -5px;
+  }
+}
+
+figure.cu-media .field--field-attribution {
+  // bottom: 0;
+  // right: 0;
+  // color: white;
+  // background: rgba(0, 0, 0, .8);
+  // padding: 3px 10px;
+}
+
 .cu-media.align-right,
 .cu-media.align-left {
   margin: 0 0 var(--cu-vr1) 0;
@@ -260,4 +276,27 @@
   &.cu-component__frame--dark {
     --frame-color: #222;
   }
+}
+
+.cu-media .field--field-media-image:has(+ .field--field-attribution) {
+  margin-bottom: 0;
+}
+
+.cu-media .field--field-attribution {
+  --cu-font-size: var(--cu-ms-3);
+  color: $gray-dark;
+  position: absolute;
+  bottom: calc(var(--cu-vr0) * -1);
+  right: var(--cu-ps-3);
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 90%;
+}
+
+.cu-grid:has(.field--field-attribution) .cu-card__media {
+  margin-bottom: var(--cu-vr1);
+}
+
+.cu-component--rich-text .cu-media {
+  position: relative;
 }
