@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.media.image.field_media_image
-    - image.style.thumbnail
+    - image.style.media_library
     - media.type.image
   module:
     - focal_point
@@ -26,7 +26,7 @@ content:
     region: content
     settings:
       progress_indicator: throbber
-      preview_image_style: thumbnail
+      preview_image_style: media_library
       preview_link: true
       offsets: '50,50'
     third_party_settings: {  }
