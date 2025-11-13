@@ -1744,27 +1744,27 @@
         },
         {
             "name": "drupal/campaign_monitor_rest_client",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/campaign_monitor_rest_client.git",
-                "reference": "1.0.2"
+                "reference": "1.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/campaign_monitor_rest_client-1.0.2.zip",
-                "reference": "1.0.2",
-                "shasum": "1bbd0c6621b7a79bf83087d3c13bedf1c20ffed5"
+                "url": "https://ftp.drupal.org/files/projects/campaign_monitor_rest_client-1.0.3.zip",
+                "reference": "1.0.3",
+                "shasum": "aee6670215af0c94928cbcb03a7fd6562083867d"
             },
             "require": {
-                "drupal/core": "^8 || ^9 || ^10",
+                "drupal/core": "^8 || ^9 || ^10 || ^11",
                 "ilrwebservices/campaign-monitor-rest-api-client": "^1.0.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.0.2",
-                    "datestamp": "1698337173",
+                    "version": "1.0.3",
+                    "datestamp": "1756261422",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
