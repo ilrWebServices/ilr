@@ -756,13 +756,6 @@ function ilr_preprocess_node__course__teaser(&$variables) {
  */
 function ilr_preprocess_node__page__alt(&$variables) {
   $variables['page'] = TRUE;
-  $node = $variables['node'];
-
-  if ($node->hasField('field_sections') && $first_section = $node->field_sections->first()->entity) {
-    if ($first_section->getBehaviorSetting('union_section_settings', 'wide')) {
-      $variables['attributes']['class'][] = 'node--wide';
-    }
-  }
 }
 
 /**
@@ -770,13 +763,6 @@ function ilr_preprocess_node__page__alt(&$variables) {
  */
 function ilr_preprocess_collection__subsite_blog__alt(&$variables) {
   $variables['attributes']['class'][] = 'collection--view-mode-alt';
-  $collection = $variables['collection'];
-
-  if ($collection->hasField('field_sections') && $first_section = $collection->field_sections->first()->entity) {
-    if ($first_section->getBehaviorSetting('union_section_settings', 'wide')) {
-      $variables['attributes']['class'][] = 'collection--wide';
-    }
-  }
 }
 
 /**
@@ -784,13 +770,6 @@ function ilr_preprocess_collection__subsite_blog__alt(&$variables) {
  */
 function ilr_preprocess_collection__content_section__alt(&$variables) {
   $variables['attributes']['class'][] = 'collection--view-mode-alt';
-  $collection = $variables['collection'];
-
-  if ($collection->hasField('field_sections') && $first_section = $collection->field_sections->first()->entity) {
-    if ($first_section->getBehaviorSetting('union_section_settings', 'wide')) {
-      $variables['attributes']['class'][] = 'collection--wide';
-    }
-  }
 }
 
 /**
