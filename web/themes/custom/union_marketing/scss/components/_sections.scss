@@ -4,7 +4,6 @@
 }
 
 .cu-section {
-  --cu-max-width-section: 1130px;
   clear: both;
   margin-bottom: var(--cu-component-margin-bottom, var(--cu-vr2));
 
@@ -54,7 +53,7 @@ figure.cu-media,
 }
 
 .cu-section--wide .cu-component--rich-text {
-  max-width: var(--cu-max-width-section, 1060px);
+  max-width: var(--cu-max-width-section, 1130px);
   margin-left: auto;
   margin-right: auto;
 }

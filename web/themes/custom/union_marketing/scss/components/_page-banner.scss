@@ -135,8 +135,10 @@
   }
 }
 
-.node--view-mode-alt.node--wide,
-.collection--view-mode-alt.collection--wide {
+// This is surprising, but correct. `:first-child` will get the first
+// `<section>`, and if it's not wide, this won't match.
+.node--view-mode-alt:has(section.cu-section--wide:first-child),
+.collection--view-mode-alt:has(section.cu-section--wide:first-child) {
   --cu-max-width-section: revert;
   .cu-breadcrumb {
     .bvg--cornell-alternate-branding & {
@@ -213,7 +215,7 @@
 
 .node--view-mode-alt,
 .collection--view-mode-alt {
-  --cu-max-width-section: 915px;
+  --cu-max-width-section: 894px;
 
   .cu-banner--page {
     padding: 0;
@@ -224,7 +226,7 @@
   }
 
   .banner__content {
-    max-width: var(--cu-max-width-section, 1060px);
+    max-width: var(--cu-max-width-section, 1130px);
     margin: 0 auto;
     padding: var(--cu-vr1) 0 0;
   }
