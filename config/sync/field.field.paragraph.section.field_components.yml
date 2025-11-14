@@ -17,6 +17,7 @@ dependencies:
     - paragraphs.paragraphs_type.gallery
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.instagram_listing
+    - paragraphs.paragraphs_type.link_listing
     - paragraphs.paragraphs_type.media_deck
     - paragraphs.paragraphs_type.organization_listing
     - paragraphs.paragraphs_type.people_listing
@@ -73,6 +74,7 @@ settings:
       collection_listing: collection_listing
       picture_in_picture: picture_in_picture
       instagram_listing: instagram_listing
+      link_listing: link_listing
       section_navigation: section_navigation
       table_of_contents: table_of_contents
       topic_list: topic_list
@@ -132,6 +134,9 @@ settings:
         enabled: true
       instagram_listing:
         weight: -49
+        enabled: true
+      link_listing:
+        weight: -72
         enabled: true
       media_deck:
         weight: -66

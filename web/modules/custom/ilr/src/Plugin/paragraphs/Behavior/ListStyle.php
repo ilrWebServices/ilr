@@ -48,6 +48,7 @@ class ListStyle extends ParagraphsBehaviorBase {
     'tabular-list' => 'Tabular list',
     'select-list' => 'Select list',
     'main_content' => 'Main content',
+    'link-cloud' => 'Link cloud',
   ];
 
   /**
@@ -312,6 +313,7 @@ class ListStyle extends ParagraphsBehaviorBase {
       'people_listing_dynamic',
       'project_listing',
       'organization_listing',
+      'link_listing',
     ]);
   }
 

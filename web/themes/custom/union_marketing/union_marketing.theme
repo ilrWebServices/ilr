@@ -533,6 +533,31 @@ function union_marketing_preprocess_paragraph__section_navigation(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_paragraph().
+ *
+ * Prepare the items array for link_listing paragraphs.
+ */
+function union_marketing_preprocess_paragraph__link_listing(&$variables) {
+  $variables['items'] = [];
+
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link */
+  foreach ($variables['paragraph']->field_links as $link) {
+    $url = $link->getUrl();
+    $content = $link->title;
+
+    $variables['items'][] = [
+      'url' => $url,
+      'content' => $content,
+    ];
+  }
+
+  // Attach the link-cloud library if using that style.
+  if ($variables['paragraph']->getBehaviorSetting('list_styles', 'list_style') === 'link-cloud') {
+    $variables['#attached']['library'][] = 'union_marketing/link-cloud';
+  }
+}
+
+/**
  * Implements hook_preprocess_field().
  */
 function union_marketing_preprocess_field__paragraph__field_heading__promo(&$variables) {
