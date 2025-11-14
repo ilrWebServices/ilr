@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.link_listing.field_heading
+    - field.field.paragraph.link_listing.field_links
+    - paragraphs.paragraphs_type.link_listing
+  module:
+    - linkit
+id: paragraph.link_listing.default
+targetEntityType: paragraph
+bundle: link_listing
+mode: default
+content:
+  field_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_links:
+    type: linkit
+    weight: 1
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      linkit_profile: ilr_content
+      linkit_auto_link_text: true
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

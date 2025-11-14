@@ -11,6 +11,10 @@ libraries:
   - union_marketing/global
   - union_organizer/ilr-base
 base theme: false
+component-libraries:
+  union:
+    paths:
+      - ../../../../../../union/components
 regions:
     header: Header
     highlighted: Highlighted
