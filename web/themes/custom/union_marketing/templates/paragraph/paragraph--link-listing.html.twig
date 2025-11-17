@@ -21,11 +21,9 @@
   ]
 %}
 
-{# DEBUG: Check what list style is set #}
-{# Current list style: {{ paragraph.getBehaviorSetting('list_styles', 'list_style') }} #}
-
 {% if paragraph.getBehaviorSetting('list_styles', 'list_style') == 'link-cloud' %}
   {# Link cloud style - use the Union link-cloud component #}
+  {{ attach_library('union_organizer/link-cloud') }}
   {% include '@union/_link-cloud.twig' with {
     heading: paragraph.field_heading.value,
     items: items,
