@@ -550,11 +550,6 @@ function union_marketing_preprocess_paragraph__link_listing(&$variables) {
       'content' => $content,
     ];
   }
-
-  // Attach the link-cloud library if using that style.
-  if ($variables['paragraph']->getBehaviorSetting('list_styles', 'list_style') === 'link-cloud') {
-    $variables['#attached']['library'][] = 'union_organizer/link-cloud';
-  }
 }
 
 /**
