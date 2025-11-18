@@ -23,7 +23,6 @@
 
 {% if paragraph.getBehaviorSetting('list_styles', 'list_style') == 'link-cloud' %}
   {# Link cloud style - use the Union link-cloud component #}
-  {{ attach_library('union_organizer/link-cloud') }}
   {% include '@union/_link-cloud.twig' with {
     items: items,
     attributes: attributes.addClass(classes)
