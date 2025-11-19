@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.link_listing.field_heading
     - field.field.paragraph.link_listing.field_links
     - paragraphs.paragraphs_type.link_listing
   module:
@@ -12,17 +11,9 @@ targetEntityType: paragraph
 bundle: link_listing
 mode: default
 content:
-  field_heading:
-    type: string_textfield
-    weight: 0
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_links:
     type: linkit
-    weight: 1
+    weight: 0
     region: content
     settings:
       placeholder_url: ''
@@ -32,4 +23,5 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_heading: true
   status: true
