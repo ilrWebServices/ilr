@@ -25,16 +25,12 @@
   {# Link cloud style - use the Union link-cloud component #}
   {{ attach_library('union_organizer/link-cloud') }}
   {% include '@union/_link-cloud.twig' with {
-    heading: paragraph.field_heading.value,
     items: items,
     attributes: attributes.addClass(classes)
   } only %}
 {% else %}
   {# Compact list style - simple list rendering #}
   <div{{ attributes.addClass(classes) }}>
-    {% if paragraph.field_heading.value %}
-      <h2>{{ paragraph.field_heading.value }}</h2>
-    {% endif %}
     <ul class="cu-link-list">
     {% for item in items %}
       <li class="cu-link-list__item">

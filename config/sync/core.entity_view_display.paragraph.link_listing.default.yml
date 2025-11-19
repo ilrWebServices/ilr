@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.link_listing.field_heading
     - field.field.paragraph.link_listing.field_links
     - paragraphs.paragraphs_type.link_listing
   module:
@@ -12,14 +11,6 @@ targetEntityType: paragraph
 bundle: link_listing
 mode: default
 content:
-  field_heading:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 0
-    region: content
   field_links:
     type: link
     label: hidden
@@ -30,7 +21,8 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
 hidden:
+  field_heading: true
   search_api_excerpt: true
