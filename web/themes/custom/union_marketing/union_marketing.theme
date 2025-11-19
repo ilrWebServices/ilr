@@ -543,11 +543,11 @@ function union_marketing_preprocess_paragraph__link_listing(&$variables) {
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link */
   foreach ($variables['paragraph']->field_links as $link) {
     $url = $link->getUrl();
-    $content = $link->title;
+    $text = $link->title;
 
     $variables['items'][] = [
       'url' => $url,
-      'content' => $content,
+      'text' => $text,
     ];
   }
 }
