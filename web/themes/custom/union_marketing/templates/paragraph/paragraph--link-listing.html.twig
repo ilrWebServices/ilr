@@ -34,9 +34,9 @@
     {% for item in items %}
       <li class="cu-link-list__item">
         {% if item.url %}
-        <a href="{{ item.url }}">{{ item.content }}</a>
+        <a href="{{ item.url }}">{{ item.text }}</a>
         {% else %}
-        {{ item.content }}
+        {{ item.text }}
         {% endif %}
       </li>
     {% endfor %}
