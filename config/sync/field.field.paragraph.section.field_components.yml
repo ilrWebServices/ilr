@@ -6,6 +6,7 @@ dependencies:
     - field.storage.paragraph.field_components
     - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.agenda
+    - paragraphs.paragraphs_type.call_to_action
     - paragraphs.paragraphs_type.carousel
     - paragraphs.paragraphs_type.collection_listing
     - paragraphs.paragraphs_type.collection_listing_publication
@@ -56,6 +57,7 @@ settings:
       rich_text: rich_text
       simple_collection_listing: simple_collection_listing
       curated_post_listing: curated_post_listing
+      call_to_action: call_to_action
       promo: promo
       deck: deck
       media_deck: media_deck
@@ -99,6 +101,9 @@ settings:
       anchor_button_to_form:
         weight: 39
         enabled: false
+      call_to_action:
+        weight: -73
+        enabled: true
       carousel:
         weight: -44
         enabled: true
