@@ -1,0 +1,23 @@
+uuid: 9e21d6c1-d922-4453-8693-1b7086cca124
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_links
+    - paragraphs.paragraphs_type.link_listing
+  module:
+    - link
+id: paragraph.link_listing.field_links
+field_name: field_links
+entity_type: paragraph
+bundle: link_listing
+label: Links
+description: 'Add links to display in the listing. Each link will be styled according to the selected list style.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 2
+  link_type: 17
+field_type: link

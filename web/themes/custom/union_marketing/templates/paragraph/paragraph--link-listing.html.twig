@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Theme override to display a link listing paragraph.
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ * - content: All paragraph items.
+ * - attributes: HTML attributes for the containing element.
+ * - view_mode: View mode; for example, "preview" or "full".
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'cu-component',
+    'cu-component--' ~ paragraph.bundle|clean_class,
+  ]
+%}
+
+{% if paragraph.getBehaviorSetting('list_styles', 'list_style') == 'link-cloud' %}
+  {# Link cloud style - use the Union link-cloud component #}
+  {% include '@union/_link-cloud.twig' with {
+    items: items,
+    attributes: attributes.addClass(classes)
+  } only %}
+{% else %}
+  {# Compact list style - simple list rendering #}
+  <div{{ attributes.addClass(classes) }}>
+    <ul class="cu-link-list">
+    {% for item in items %}
+      <li class="cu-link-list__item">
+        {% if item.url %}
+        <a href="{{ item.url }}">{{ item.text }}</a>
+        {% else %}
+        {{ item.text }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endif %}

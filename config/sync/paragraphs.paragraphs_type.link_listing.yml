@@ -1,0 +1,28 @@
+uuid: d96ccb5c-0ae5-4be6-8ffe-bd843aa70387
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: link_listing
+label: 'Link listing'
+icon_uuid: null
+icon_default: null
+description: 'A list of links displayed with various styles, including link cloud (button-styled links).'
+behavior_plugins:
+  ilr_color:
+    enabled: true
+    color_schemes:
+      none: none
+      light: light
+      dark: dark
+      vibrant: 0
+    color_scheme_default: light
+  list_styles:
+    enabled: true
+    list_styles:
+      link-cloud: link-cloud
+      list-compact: list-compact
+    columns_enabled: 0
+    columns_min: ''
+    columns_max: ''
