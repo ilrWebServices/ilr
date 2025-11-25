@@ -526,6 +526,54 @@ function union_marketing_preprocess_paragraph__testimonial_deck(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_paragraph().
+ *
+ * Prepare the slideshow data for slide_deck paragraphs.
+ */
+function union_marketing_preprocess_paragraph__slide_deck(&$variables) {
+  $paragraph = $variables['paragraph'];
+  
+  // Static content (from Slide Deck)
+  $variables['heading'] = $paragraph->field_heading->value ?? '';
+  $variables['subheading'] = $paragraph->field_subheading->value ?? '';
+  
+  // Process links field (for control in static card)
+  $variables['links'] = [];
+  if ($paragraph->hasField('field_links') && !$paragraph->get('field_links')->isEmpty()) {
+    foreach ($paragraph->field_links as $link_item) {
+      $variables['links'][] = [
+        'url' => $link_item->getUrl()->toString(),
+        'title' => $link_item->title,
+      ];
+    }
+  }
+  
+  // Build slides array (rotating images)
+  $variables['slides'] = [];
+  foreach ($paragraph->field_slides->referencedEntities() as $slide_paragraph) {
+    $image_link = NULL;
+    
+    // Process image link field
+    if ($slide_paragraph->hasField('field_image_link') && !$slide_paragraph->get('field_image_link')->isEmpty()) {
+      $link_item = $slide_paragraph->field_image_link->first();
+      $image_link = [
+        'url' => $link_item->getUrl()->toString(),
+        'title' => $link_item->title,
+      ];
+    }
+    
+    $variables['slides'][] = [
+      'media' => $slide_paragraph->field_media->view('default'),
+      'image_title' => $slide_paragraph->field_image_title->value ?? '',
+      'image_link' => $image_link,
+    ];
+  }
+  
+  // Attach the slideshow library
+  $variables['#attached']['library'][] = 'union/slideshow';
+}
+
+/**
  * {@inheritdoc}
  */
 function union_marketing_preprocess_paragraph__section_navigation(&$variables) {

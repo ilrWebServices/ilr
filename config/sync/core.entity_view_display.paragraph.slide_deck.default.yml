@@ -1,0 +1,57 @@
+uuid: e100afc2-26d1-48a1-9538-8bcdc659acd0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.slide_deck.field_heading
+    - field.field.paragraph.slide_deck.field_links
+    - field.field.paragraph.slide_deck.field_slides
+    - field.field.paragraph.slide_deck.field_subheading
+    - paragraphs.paragraphs_type.slide_deck
+  module:
+    - entity_reference_revisions
+    - link
+id: paragraph.slide_deck.default
+targetEntityType: paragraph
+bundle: slide_deck
+mode: default
+content:
+  field_heading:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_links:
+    type: link
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_slides:
+    type: entity_reference_revisions_entity_view
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_subheading:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  search_api_excerpt: true

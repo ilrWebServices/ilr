@@ -1,0 +1,23 @@
+uuid: 5e17a88f-0b13-4af1-9af4-1b8d985f34ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_image_link
+    - paragraphs.paragraphs_type.slide
+  module:
+    - link
+id: paragraph.slide.field_image_link
+field_name: field_image_link
+entity_type: paragraph
+bundle: slide
+label: 'Image Link/CTA'
+description: 'Optional link/CTA that appears on the image'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

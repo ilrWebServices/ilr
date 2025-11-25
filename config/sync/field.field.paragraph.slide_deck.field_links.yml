@@ -1,0 +1,23 @@
+uuid: da5057c5-3113-4bf1-b907-eac938f9ba83
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_links
+    - paragraphs.paragraphs_type.slide_deck
+  module:
+    - link
+id: paragraph.slide_deck.field_links
+field_name: field_links
+entity_type: paragraph
+bundle: slide_deck
+label: Control
+description: 'Optional control - single button or dropdown (max 1 link for button, multiple for dropdown)'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link
