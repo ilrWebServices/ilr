@@ -7,24 +7,6 @@
   margin-bottom: 0;
 }
 
-.cu-card--inset {
-  @include breakpoint(md) {
-    .cu-card__content {
-      bottom: var(--cu-vr2);
-      left: var(--cu-ps2);
-      right: var(--cu-ps2);
-    }
-  }
-
-  .cu-composite-heading::after {
-    display: none;
-  }
-
-  .cu-button {
-    margin-bottom: 0;
-  }
-}
-
 .cu-component--deck {
   background-color: var(--cu-colorscheme-background);
 
