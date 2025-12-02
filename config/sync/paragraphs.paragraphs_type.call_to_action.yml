@@ -1,0 +1,20 @@
+uuid: 89ab5af7-08e4-4e5d-8ad0-f91b26cca9f8
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: call_to_action
+label: 'Call to action'
+icon_uuid: null
+icon_default: null
+description: 'A prominent banner component for highlighting important information and encouraging user action. Typically displayed at the top of pages.'
+behavior_plugins:
+  ilr_color:
+    enabled: true
+    color_schemes:
+      none: none
+      light: light
+      dark: dark
+      vibrant: vibrant
+    color_scheme_default: light

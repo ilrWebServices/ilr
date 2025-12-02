@@ -6,6 +6,7 @@ dependencies:
     - field.storage.paragraph.field_components
     - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.agenda
+    - paragraphs.paragraphs_type.call_to_action
     - paragraphs.paragraphs_type.carousel
     - paragraphs.paragraphs_type.collection_listing
     - paragraphs.paragraphs_type.collection_listing_publication
@@ -53,11 +54,13 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
+      call_to_action: call_to_action
       rich_text: rich_text
       simple_collection_listing: simple_collection_listing
       curated_post_listing: curated_post_listing
       promo: promo
       deck: deck
+      text_with_media: text_with_media
       media_deck: media_deck
       image: image
       video: video
@@ -68,13 +71,13 @@ settings:
       people_listing_dynamic: people_listing_dynamic
       project_listing: project_listing
       event_listing: event_listing
+      link_listing: link_listing
       organization_listing: organization_listing
       collection_listing_publication: collection_listing_publication
       curated_course_listing: curated_course_listing
       collection_listing: collection_listing
       picture_in_picture: picture_in_picture
       instagram_listing: instagram_listing
-      link_listing: link_listing
       section_navigation: section_navigation
       table_of_contents: table_of_contents
       topic_list: topic_list
@@ -84,7 +87,6 @@ settings:
       stats: stats
       publications: publications
       accordion: accordion
-      text_with_media: text_with_media
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -99,6 +101,9 @@ settings:
       anchor_button_to_form:
         weight: 39
         enabled: false
+      call_to_action:
+        weight: -60
+        enabled: true
       carousel:
         weight: -44
         enabled: true

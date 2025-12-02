@@ -1,0 +1,11 @@
+uuid: 5d3685b5-431f-48e4-8c1c-4e55dd0feee6
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.call_to_action
+id: paragraph.call_to_action
+target_entity_type_id: paragraph
+target_bundle: call_to_action
+default_langcode: site_default
+language_alterable: false
