@@ -124,6 +124,30 @@
   }
 }
 
+// Hide frame modifier - removes the decorative border/frame from banners.
+.cu-banner--hide-frame {
+  .banner__content {
+    border-left: none;
+    border-bottom: none;
+    padding-right: 0%;
+  }
+
+  .cu-banner__content::after {
+    display: none;
+  }
+}
+
+// Full bleed modifier - only applies to the header banner (inside layout-banner wrapper).
+// This prevents affecting other banners elsewhere on the page.
+.layout-banner .cu-banner--full-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
 .node--course .node--view-mode-full .cu-banner--page {
   // Override banner margin on course pages for register block/message.
   margin-bottom: 0;
