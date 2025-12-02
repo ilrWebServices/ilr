@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Theme override to display a post node in carousel teaser view mode.
+ * 
+ * This is a simplified card layout for carousel display:
+ * - Image with category tag overlay
+ * - Title below image
+ * - Red bar separator
+ * - Date below the red bar
+ * - No body/summary text
+ */
+#}
+{% set media_content %}
+  {% if node.bundle == 'video_post' %}
+    {% include "@union/_icon.twig" with {
+      title: '',
+      icon: 'play',
+      size: '4em',
+      label: '',
+      attributes: {
+        class: 'cu-icon',
+        role: 'button',
+        'aria-pressed': "false"
+      }
+    } only %}
+  {% endif %}
+
+  {% if node.bundle == 'video_post' and node.field_representative_image.isEmpty() %}
+  {{ content.field_video }}
+  {% else %}
+  {{ content.field_representative_image }}
+  {% endif %}
+{% endset %}
+
+{% set date_content %}
+  <div class="cu-card__date">{{ content.field_published_date }}</div>
+{% endset %}
+
+{% include '@union/_card.twig' with {
+  card_content: date_content,
+  card_media: media_content,
+  card_link_url: url,
+  card_link_alt: label,
+  heading: label,
+  heading_element: 'h3',
+  link_attributes: url_attributes,
+  attributes: attributes.addClass([
+    'node--' ~ node.bundle|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'node--postalicious',
+    'cu-card--teaser',
+    'cu-card--carousel',
+    'cu-colorscheme--light'
+  ])
+} only %}

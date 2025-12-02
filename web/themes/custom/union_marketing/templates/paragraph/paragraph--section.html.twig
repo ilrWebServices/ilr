@@ -48,12 +48,15 @@
     paragraph.getParentEntity.bundle == 'event_landing_page' ? 'cu-section--left'
   ]
 %}
+{% set is_compact = paragraph.getBehaviorSetting('union_section_settings', 'compact') %}
+{% set subheading_value = not paragraph.field_subheading.isEmpty() ? paragraph.field_subheading.value : null %}
 {% include '@union/_section.twig' with {
   attributes: attributes.addClass(classes),
   heading: paragraph.field_heading.value,
-  eyebrow_heading: not paragraph.field_subheading.isEmpty() ? paragraph.field_subheading.value,
+  eyebrow_heading: not is_compact ? subheading_value : null,
   icon_data: paragraph.cu_icon ? paragraph.cu_icon : NULL,
   link: not paragraph.field_subheading_link.isEmpty() ? { url: paragraph.field_subheading_link.0.url, text: paragraph.field_subheading_link.title},
   content: content|without('field_heading', 'field_subheading', 'field_subheading_link'),
-  blurb: blurb,
+  blurb: is_compact ? subheading_value : blurb,
+  compact: is_compact ? true : false,
 } only %}

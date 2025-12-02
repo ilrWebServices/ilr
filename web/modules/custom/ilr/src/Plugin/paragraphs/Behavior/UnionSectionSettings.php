@@ -63,6 +63,13 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'first_component_to_blurb'),
     ];
 
+    $form['compact'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Compact'),
+      '#description' => $this->t('Use compact heading style with left-aligned heading, subheading below, and link as button on right.'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'compact'),
+    ];
+
     $form['frame_position'] = [
       '#type' => 'radios',
       '#title' => $this->t('Frame position'),
@@ -86,6 +93,10 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
 
     if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'heading_left')) {
       $variables['attributes']['class'][] = 'cu-section--left';
+    }
+
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'compact')) {
+      $variables['attributes']['class'][] = 'cu-section--compact';
     }
 
     if ($frame_position = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'frame_position')) {
@@ -123,6 +134,14 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
     if ($wide = $paragraph->getBehaviorSetting($this->getPluginId(), 'wide')) {
       $summary[] = [
         'label' => 'Wide',
+        'value' => '✓',
+      ];
+    }
+
+    // If it's a compact section, display the summary.
+    if ($compact = $paragraph->getBehaviorSetting($this->getPluginId(), 'compact')) {
+      $summary[] = [
+        'label' => 'Compact',
         'value' => '✓',
       ];
     }

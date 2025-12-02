@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Theme override to display a simple collection listing (post listing).
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ * - content: All paragraph items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ * - view_mode: View mode; for example, "preview" or "full".
+ * - logged_in: Flag for authenticated user status.
+ * - is_admin: Flag for admin user status.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'cu-component',
+    'cu-component--' ~ paragraph.bundle|clean_class,
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+{% if attributes.hasClass('cu-list--carousel') %}
+  {# Carousel list style - use gallery component #}
+  {% set attributes = attributes.addClass(classes).addClass('cu-gallery') %}
+  <cu-gallery{{ attributes.addClass('cu-gallery--content') }}>
+    <div class="cu-gallery__item-wrapper">
+      <div class="cu-gallery__items">
+      {% for item in content.listing.items %}
+        <div class="cu-gallery__item">
+          {{ item }}
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </cu-gallery>
+{% else %}
+  {# Default rendering with grid #}
+  {% include '@union/_grid.twig' with {
+    grid_content: content.listing.items,
+    attributes: attributes.addClass(classes)
+  } only %}
+{% endif %}
+
+{% if content.pager %}
+  {{ content.pager }}
+{% endif %}
