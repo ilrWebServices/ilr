@@ -138,14 +138,21 @@
 }
 
 // Full bleed modifier - only applies to the header banner (inside layout-banner wrapper).
-// This prevents affecting other banners elsewhere on the page.
+// Uses a pseudo-element so the background goes full-bleed while content stays aligned with the grid.
 .layout-banner .cu-banner--full-bleed {
-  width: 100vw;
   position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+
+  &::before {
+    content: '';
+    background-color: var(--cu-colorscheme-background);
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    margin-left: -50vw;
+    z-index: -1;
+  }
 }
 
 .node--course .node--view-mode-full .cu-banner--page {
