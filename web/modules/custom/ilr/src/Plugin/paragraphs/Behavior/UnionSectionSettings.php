@@ -48,6 +48,13 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'wide'),
     ];
 
+    $form['compact'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Compact heading'),
+      '#description' => $this->t('Use compact heading style with left-aligned heading, subheading below, and link as button on right.'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'compact'),
+    ];
+
     $form['heading_left'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Place heading on left'),
@@ -61,13 +68,6 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#description' => $this->t('Use the first Rich text, Form, or Image component in the heading body/blurb area.'),
       '#min' => 1,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'first_component_to_blurb'),
-    ];
-
-    $form['compact'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Compact'),
-      '#description' => $this->t('Use compact heading style with left-aligned heading, subheading below, and link as button on right.'),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'compact'),
     ];
 
     $form['frame_position'] = [
@@ -141,7 +141,7 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
     // If it's a compact section, display the summary.
     if ($compact = $paragraph->getBehaviorSetting($this->getPluginId(), 'compact')) {
       $summary[] = [
-        'label' => 'Compact',
+        'label' => 'Compact heading',
         'value' => '✓',
       ];
     }
