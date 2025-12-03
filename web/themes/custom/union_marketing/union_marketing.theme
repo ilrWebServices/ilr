@@ -551,12 +551,12 @@ function union_marketing_preprocess_paragraph__slide_deck(&$variables) {
   // Build slides array (rotating images)
   $variables['slides'] = [];
   foreach ($paragraph->field_slides->referencedEntities() as $slide_paragraph) {
-    $image_link = NULL;
+    $link = NULL;
     
     // Process image link field
     if ($slide_paragraph->hasField('field_image_link') && !$slide_paragraph->get('field_image_link')->isEmpty()) {
       $link_item = $slide_paragraph->field_image_link->first();
-      $image_link = [
+      $link = [
         'url' => $link_item->getUrl()->toString(),
         'title' => $link_item->title,
       ];
@@ -564,8 +564,8 @@ function union_marketing_preprocess_paragraph__slide_deck(&$variables) {
     
     $variables['slides'][] = [
       'media' => $slide_paragraph->field_media->view('default'),
-      'image_title' => $slide_paragraph->field_image_title->value ?? '',
-      'image_link' => $image_link,
+      'heading' => $slide_paragraph->field_image_title->value ?? '',
+      'link' => $link,
     ];
   }
   
