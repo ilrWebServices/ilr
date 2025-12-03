@@ -236,3 +236,24 @@ function ilr_deploy_set_formats_on_project_briefs(&$sandbox) {
     $project->save();
   }
 }
+
+/**
+ * Transform Salesforce mapped objects for grad programs into keystore entries.
+ */
+function ilr_deploy_transform_grad_visit_request_mapped_objects(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $mapped_object_storage = $entity_type_manager->getStorage('salesforce_mapped_object');
+  $sfDataStore = \Drupal::service('keyvalue')->get('ilr_salesforce.touchpoint.sfid');
+
+  $mapped_objects = $mapped_object_storage->loadByProperties([
+    'salesforce_mapping' => [
+      'milr_visit_form_submission_lead',
+    ],
+  ]);
+
+  foreach ($mapped_objects as $mapped_object) {
+    $webform_submission = $mapped_object->getMappedEntity();
+    $sfDataStore->set($webform_submission->id(), $mapped_object->sfid());
+    $mapped_object->delete();
+  }
+}
