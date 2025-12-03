@@ -60,6 +60,11 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#title' => $this->t('Place heading on left'),
       '#min' => 1,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'heading_left'),
+      '#states' => [
+        'disabled' => [
+          [':input[name="' . $parents_input_name . '[compact]"]' => ['checked' => TRUE]],
+        ],
+      ],
     ];
 
     $form['first_component_to_blurb'] = [
