@@ -57,7 +57,7 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
 
     $form['heading_left'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Place heading on left'),
+      '#title' => $this->t('Place heading in a left column'),
       '#min' => 1,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'heading_left'),
       '#states' => [
