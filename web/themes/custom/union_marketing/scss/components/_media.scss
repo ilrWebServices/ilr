@@ -277,6 +277,10 @@
   max-width: 90%;
 }
 
+.cu-media:has(.field--field-attribution) {
+  position: relative;
+}
+
 // When there are both a caption and attribution present, use a grid.
 figure.cu-media:has(.field--field-attribution) {
   display: grid;
