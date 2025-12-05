@@ -111,6 +111,22 @@
   }
 }
 
+// Hide frame modifier - removes the decorative border/frame from banners.
+.cu-banner--hide-frame {
+  .banner__content {
+    background: unset;
+    padding: 0;
+  }
+}
+
+// Revert to the value from the compontent because specificity.
+.layout-banner .cu-banner--full-bleed {
+  @include breakpoint(md) {
+    padding-left: revert;
+    padding-right: revert;
+  }
+}
+
 .node--course .node--view-mode-full .cu-banner--page {
   // Override banner margin on course pages for register block/message.
   margin-bottom: 0;
