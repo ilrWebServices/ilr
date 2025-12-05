@@ -13,6 +13,15 @@
 
 {% set attributes = attributes.addClass('cu-colorscheme--' ~ settings.color_scheme) %}
 {% set attributes = attributes.addClass('cu-banner--page') %}
+{% if settings.hide_frame %}
+{% set attributes = attributes.addClass('cu-banner--hide-frame') %}
+{% endif %}
+{% if settings.text_align == 'center' %}
+{% set attributes = attributes.addClass('cu-banner--text-center') %}
+{% endif %}
+{% if settings.full_bleed %}
+{% set attributes = attributes.addClass('cu-banner--full-bleed') %}
+{% endif %}
 
 {% if content['#entity'] and content['#entity'].bundle() %}
 {% set type = content['#entity'].getEntityTypeId() %}
