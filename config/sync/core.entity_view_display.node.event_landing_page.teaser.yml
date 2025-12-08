@@ -11,7 +11,10 @@ dependencies:
     - field.field.node.event_landing_page.field_registration_form
     - field.field.node.event_landing_page.field_representative_image
     - field.field.node.event_landing_page.field_sections
+    - field.field.node.event_landing_page.field_series_name
+    - field.field.node.event_landing_page.field_sf_title
     - field.field.node.event_landing_page.field_sponsor
+    - field.field.node.event_landing_page.field_subtitle
     - field.field.node.event_landing_page.field_url
     - field.field.node.event_landing_page.layout_builder__layout
     - image.style.medium_3_2
@@ -94,7 +97,10 @@ hidden:
   field_metatags: true
   field_registration_form: true
   field_sections: true
+  field_series_name: true
+  field_sf_title: true
   field_sponsor: true
+  field_subtitle: true
   field_url: true
   langcode: true
   layout_builder__layout: true
