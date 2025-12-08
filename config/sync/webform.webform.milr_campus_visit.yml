@@ -414,7 +414,7 @@ handlers:
     conditions: {  }
     weight: 0
     settings:
-      extra_values: "Graduate Programs\r\nMILR\r\n1\r\ntoken(webform_submission:url)"
+      extra_values: "Graduate Programs\r\nMILR\r\n1\r\ntoken(webform_submission:url)\r\ntoken(webform_submission:values:1st_choice_visit_arrival:html_date)"
       fields_mapping:
         first_name: FirstName__c
         last_name: LastName__c
@@ -436,5 +436,5 @@ handlers:
         MILR: Graduate_Program_of_Interest__c
         1: Visit_Requested__c
         'token(webform_submission:url)': Web_Form_Submission_URL__c
-        'token(webform_submission:values:1st_choice_visit_arrival:format:custom:Y-m-d)': Visit_Request_Date__c
+        'token(webform_submission:values:1st_choice_visit_arrival:html_date)': Visit_Request_Date__c
 variants: {  }
