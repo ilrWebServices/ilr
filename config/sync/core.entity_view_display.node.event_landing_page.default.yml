@@ -10,7 +10,10 @@ dependencies:
     - field.field.node.event_landing_page.field_registration_form
     - field.field.node.event_landing_page.field_representative_image
     - field.field.node.event_landing_page.field_sections
+    - field.field.node.event_landing_page.field_series_name
+    - field.field.node.event_landing_page.field_sf_title
     - field.field.node.event_landing_page.field_sponsor
+    - field.field.node.event_landing_page.field_subtitle
     - field.field.node.event_landing_page.field_url
     - field.field.node.event_landing_page.layout_builder__layout
     - image.style.large_21_9_1200x514_
@@ -55,6 +58,22 @@ third_party_settings:
                     attribute: lazy
                 third_party_settings: {  }
             weight: 0
+            additional: {  }
+          fa1f1149-343b-4658-8269-9f73cd96f61c:
+            uuid: fa1f1149-343b-4658-8269-9f73cd96f61c
+            region: content
+            configuration:
+              id: 'field_block:node:event_landing_page:field_subtitle'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 2
             additional: {  }
         third_party_settings: {  }
       -
@@ -338,6 +357,22 @@ content:
     third_party_settings: {  }
     weight: 103
     region: content
+  field_series_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 119
+    region: content
+  field_sf_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 117
+    region: content
   field_sponsor:
     type: entity_reference_label
     label: above
@@ -345,6 +380,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 104
+    region: content
+  field_subtitle:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 118
     region: content
   field_url:
     type: link
