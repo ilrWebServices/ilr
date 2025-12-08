@@ -1,0 +1,19 @@
+uuid: 4dc98cf4-2baa-439c-898e-1ced680824c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_series_name
+    - node.type.event_landing_page
+id: node.event_landing_page.field_series_name
+field_name: field_series_name
+entity_type: node
+bundle: event_landing_page
+label: 'Series name'
+description: 'If this event is part of a series, you can optionally specify it here.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
