@@ -19,6 +19,12 @@ function ilr_salesforce_form_node_form_alter(&$form, FormStateInterface $form_st
   /** @var \Drupal\node\NodeInterface $node */
   $node = $form_state->getFormObject()->getEntity();
 
+  // Only display the Salesforce title and series if the title has a value.
+  if ($node->bundle() === 'event_landing_page' && $node->hasField('field_sf_title')) {
+    $form['field_sf_title']['#access'] = !empty($node->field_sf_title->value);
+    $form['field_series_name']['#access'] = $form['field_sf_title']['#access'];
+  }
+
   if ($node->bundle() !== 'class') {
     return;
   }
