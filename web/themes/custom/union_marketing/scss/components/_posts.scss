@@ -113,6 +113,10 @@
     width: 100%;
     margin-top: 1em;
     margin-bottom: 1em;
+
+    .field--field-media-image {
+      margin-bottom: 0;
+    }
   }
 
   // <p> elements have a bottom margin, so we don't a top margin here.

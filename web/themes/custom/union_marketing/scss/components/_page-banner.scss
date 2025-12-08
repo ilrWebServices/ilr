@@ -34,24 +34,6 @@
     @include breakpoint(sm) {
       overflow-wrap: normal;
     }
-
-    &::after {
-      content: '';
-      height: 50px;
-      width: var(--frame-width);
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      background-color: white;
-
-      @include breakpoint(md) {
-        height: 80px;
-      }
-
-      @include breakpoint(lg) {
-        height: 100px;
-      }
-    }
   }
 
   h1.cu-heading, h2.cu-heading {
@@ -93,13 +75,13 @@
     margin-top: 0;
   }
 
-  &.cu-banner--with-media {
+  &:has(.cu-banner__media) {
     @include breakpoint(md) {
       .banner__content {
         display: flex;
         flex-direction: column;
         min-height: 365px;
-
+        padding-right: 40%;
 
         div[class$="ilr-section-navigation"] {
           margin-top: auto;
@@ -110,17 +92,38 @@
   }
 }
 
+// The Frame™.
 .term--view-mode-full .banner__content,
 .collection--view-mode-full .banner__content,
 .collection--view-mode-banner .banner__content,
 .node--view-mode-full .banner__content,
 .node--view-mode-banner .banner__content {
-  border-left: var(--frame-width) solid white;
-  border-bottom: var(--frame-width) solid white;
-  padding: 0 10% var(--banner-padding) var(--banner-padding);
+  background:
+    linear-gradient(var(--cu-text-color) 0 0) right bottom/var(--frame-width) 65%,
+    linear-gradient(var(--cu-text-color) 0 0) left/var(--frame-width) 100%,
+    linear-gradient(var(--cu-text-color) 0 0) bottom right/100% var(--frame-width),
+    rgba(0,0,0,0);
+  background-repeat: no-repeat;
+  padding: 0 calc(var(--frame-width) + 1.1em) calc(var(--frame-width) + 1.1em);
 
   @include breakpoint(md) {
-    padding-right: 40%;
+    padding: 0 calc(var(--frame-width) + 2.5em) calc(var(--frame-width) + 2.5em);
+  }
+}
+
+// Hide frame modifier - removes the decorative border/frame from banners.
+.cu-banner--hide-frame {
+  .banner__content {
+    background: unset;
+    padding: 0;
+  }
+}
+
+// Revert to the value from the compontent because specificity.
+.layout-banner .cu-banner--full-bleed {
+  @include breakpoint(md) {
+    padding-left: revert;
+    padding-right: revert;
   }
 }
 
@@ -236,7 +239,7 @@
     margin-bottom: var(--cu-vr1);
   }
 
-  .field--body.field-type--text-with-summary {
+  .banner__content .field--body.field-type--text-with-summary {
     --cu-font-weight: 400;
   }
 

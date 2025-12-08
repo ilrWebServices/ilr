@@ -100,11 +100,16 @@
 
 @include breakpoint(md) {
   .cu-component--rich-text .sidebar {
-    width: 70%;
+    width: 50%;
     float: right;
     margin-top: .5em;
-    margin-right: -50%;
+
     margin-left: var(--cu-ps1);
+
+    .article--postalicious & {
+      width: 70%;
+      margin-right: -50%;
+    }
   }
 }
 

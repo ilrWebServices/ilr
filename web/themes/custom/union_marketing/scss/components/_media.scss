@@ -2,7 +2,7 @@
 .field--field-representative-img-caption {
   font-size: var(--cu-ms-1);
   line-height: 1.4;
-  margin: .5em auto 0;
+  margin: 0 auto;
   max-width: var(--cu-max-width-section, #{$max-width-section});
 }
 
@@ -260,4 +260,57 @@
   &.cu-component__frame--dark {
     --frame-color: #222;
   }
+}
+
+.cu-media .field--field-media-image:has(+ .field--field-attribution) {
+  margin-bottom: 0;
+}
+
+.cu-media .field--field-attribution {
+  --cu-font-size: var(--cu-ms-3);
+  color: $gray-dark;
+  position: absolute;
+  bottom: calc(var(--cu-vr0) * -1);
+  right: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 90%;
+}
+
+.cu-media:has(.field--field-attribution) {
+  position: relative;
+}
+
+// When there are both a caption and attribution present, use a grid.
+figure.cu-media:has(.field--field-attribution) {
+  display: grid;
+  grid-template-columns: auto minmax(20%, 1fr);
+  gap: 0 var(--cu-ps-1);
+
+  .cu-media {
+    display: contents;
+
+    .field-type--image {
+      grid-column: 1/-1;
+    }
+
+    .field--field-attribution {
+      position: relative;
+      top: 3px; // Align to caption.
+      bottom: initial;
+      grid-column: 2;
+      grid-row: 2;
+      white-space: initial;
+      text-align: right;
+      max-width: initial;
+    }
+  }
+}
+
+.cu-grid:has(.field--field-attribution) .cu-card__media {
+  margin-bottom: var(--cu-vr1);
+}
+
+.cu-component--rich-text .cu-media {
+  position: relative;
 }
