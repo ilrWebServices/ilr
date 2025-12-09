@@ -31,6 +31,7 @@ dependencies:
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.section_navigation
     - paragraphs.paragraphs_type.simple_collection_listing
+    - paragraphs.paragraphs_type.slide_deck
     - paragraphs.paragraphs_type.stats
     - paragraphs.paragraphs_type.table_of_contents
     - paragraphs.paragraphs_type.testimonial
@@ -54,7 +55,6 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      call_to_action: call_to_action
       rich_text: rich_text
       simple_collection_listing: simple_collection_listing
       curated_post_listing: curated_post_listing
@@ -67,6 +67,7 @@ settings:
       form: form
       testimonial: testimonial
       testimonial_deck: testimonial_deck
+      call_to_action: call_to_action
       people_listing: people_listing
       people_listing_dynamic: people_listing_dynamic
       project_listing: project_listing
@@ -87,6 +88,7 @@ settings:
       stats: stats
       publications: publications
       accordion: accordion
+      slide_deck: slide_deck
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -190,6 +192,12 @@ settings:
         enabled: true
       simple_collection_listing:
         weight: -70
+        enabled: true
+      slide:
+        weight: 79
+        enabled: false
+      slide_deck:
+        weight: 80
         enabled: true
       stat:
         weight: -37
