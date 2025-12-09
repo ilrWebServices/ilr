@@ -1,0 +1,26 @@
+uuid: b4bbc05d-8486-4eae-8e6b-d9cec2695c16
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - filter.format.plain_text
+    - filter.format.simple_formatting
+    - paragraphs.paragraphs_type.slide_deck
+  module:
+    - text
+id: paragraph.slide_deck.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: slide_deck
+label: Text
+description: 'Optional text which appears in the static box.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - simple_formatting
+    - plain_text
+field_type: text_long

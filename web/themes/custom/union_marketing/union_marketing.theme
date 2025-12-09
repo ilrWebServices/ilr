@@ -535,8 +535,7 @@ function union_marketing_preprocess_paragraph__slide_deck(&$variables) {
   
   // Static content (from Slide Deck)
   $variables['heading'] = $paragraph->field_heading->value ?? '';
-  $variables['subheading'] = $paragraph->field_subheading->value ?? '';
-  
+
   // Process links field (for control in static card)
   $variables['links'] = [];
   if ($paragraph->hasField('field_links') && !$paragraph->get('field_links')->isEmpty()) {

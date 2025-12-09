@@ -3,19 +3,27 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.slide_deck.field_body
     - field.field.paragraph.slide_deck.field_heading
     - field.field.paragraph.slide_deck.field_links
     - field.field.paragraph.slide_deck.field_slides
-    - field.field.paragraph.slide_deck.field_subheading
     - paragraphs.paragraphs_type.slide_deck
   module:
     - entity_reference_revisions
     - link
+    - text
 id: paragraph.slide_deck.default
 targetEntityType: paragraph
 bundle: slide_deck
 mode: default
 content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_heading:
     type: string
     label: visually_hidden
@@ -44,14 +52,6 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 2
-    region: content
-  field_subheading:
-    type: string
-    label: visually_hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 3
     region: content
 hidden:
   search_api_excerpt: true

@@ -3,28 +3,31 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.slide_deck.field_body
     - field.field.paragraph.slide_deck.field_heading
     - field.field.paragraph.slide_deck.field_links
     - field.field.paragraph.slide_deck.field_slides
-    - field.field.paragraph.slide_deck.field_subheading
     - paragraphs.paragraphs_type.slide_deck
   module:
     - link
     - paragraphs_previewer
+    - text
 id: paragraph.slide_deck.default
 targetEntityType: paragraph
 bundle: slide_deck
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 1
+  field_body:
+    type: text_textarea
+    weight: 2
     region: content
-    settings: {  }
+    settings:
+      rows: 5
+      placeholder: ''
     third_party_settings: {  }
   field_heading:
     type: string_textfield
-    weight: 2
+    weight: 1
     region: content
     settings:
       size: 60
@@ -40,7 +43,7 @@ content:
     third_party_settings: {  }
   field_slides:
     type: paragraphs_previewer
-    weight: 5
+    weight: 4
     region: content
     settings:
       title: Slide
@@ -58,14 +61,6 @@ content:
         convert: '0'
         duplicate: duplicate
     third_party_settings: {  }
-  field_subheading:
-    type: string_textfield
-    weight: 4
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   status:
     type: boolean_checkbox
     weight: 0
@@ -73,4 +68,5 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  created: true
