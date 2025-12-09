@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Theme override to display a slide deck paragraph.
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ * - content: All paragraph items.
+ * - attributes: HTML attributes for the containing element.
+ * - view_mode: View mode; for example, "preview" or "full".
+ * - logged_in: Flag for authenticated user status.
+ * - is_admin: Flag for admin user status.
+ * - heading: Static heading text.
+ * - subheading: Static subheading text.
+ * - links: Static links for control.
+ * - slides: A list of slide data (rotating images).
+ *
+ * @see template_preprocess_paragraph()
+ * @see union_marketing_preprocess_paragraph__slide_deck()
+ *
+ * @ingroup themeable
+ */
+#}
+{% include '@union/_slideshow.twig' with {
+  heading: heading,
+  text: content.field_body,
+  links: links,
+  slides: slides,
+  attributes: attributes.addClass([
+    'cu-component',
+    'cu-component--' ~ paragraph.bundle|clean_class
+  ])
+} only %}

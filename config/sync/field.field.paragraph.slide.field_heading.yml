@@ -1,18 +1,18 @@
-uuid: 1dc08a0e-807f-4e1a-8b9c-302d73df6b53
+uuid: 554ddd40-1aab-415c-bc34-73c659c52d13
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_heading
-    - paragraphs.paragraphs_type.section
-id: paragraph.section.field_heading
+    - paragraphs.paragraphs_type.slide
+id: paragraph.slide.field_heading
 field_name: field_heading
 entity_type: paragraph
-bundle: section
-label: 'Section heading'
+bundle: slide
+label: Heading
 description: ''
-required: false
-translatable: true
+required: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }

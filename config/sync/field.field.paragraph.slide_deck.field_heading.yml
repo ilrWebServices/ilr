@@ -1,16 +1,16 @@
-uuid: 1dc08a0e-807f-4e1a-8b9c-302d73df6b53
+uuid: 626c5d3e-ae2e-4f3b-bc96-8cbf8769c9fd
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_heading
-    - paragraphs.paragraphs_type.section
-id: paragraph.section.field_heading
+    - paragraphs.paragraphs_type.slide_deck
+id: paragraph.slide_deck.field_heading
 field_name: field_heading
 entity_type: paragraph
-bundle: section
-label: 'Section heading'
-description: ''
+bundle: slide_deck
+label: Heading
+description: 'Main heading for the slideshow (appears in static white card).'
 required: false
 translatable: true
 default_value: {  }
