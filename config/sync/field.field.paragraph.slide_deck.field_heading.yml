@@ -9,9 +9,9 @@ id: paragraph.slide_deck.field_heading
 field_name: field_heading
 entity_type: paragraph
 bundle: slide_deck
-label: Header
-description: 'Main heading for the slideshow (appears in static white card)'
-required: true
+label: Heading
+description: 'Main heading for the slideshow (appears in static white card).'
+required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
