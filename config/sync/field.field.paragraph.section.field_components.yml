@@ -7,6 +7,7 @@ dependencies:
     - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.agenda
     - paragraphs.paragraphs_type.call_to_action
+    - paragraphs.paragraphs_type.tabs
     - paragraphs.paragraphs_type.carousel
     - paragraphs.paragraphs_type.collection_listing
     - paragraphs.paragraphs_type.collection_listing_publication
@@ -87,6 +88,7 @@ settings:
       stats: stats
       publications: publications
       accordion: accordion
+      tabs: tabs
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -215,4 +217,10 @@ settings:
       video:
         weight: -64
         enabled: true
+      tabs:
+        weight: -35
+        enabled: true
+      tab_item:
+        weight: -34
+        enabled: false
 field_type: entity_reference_revisions
