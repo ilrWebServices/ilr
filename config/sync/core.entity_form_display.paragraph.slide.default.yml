@@ -34,15 +34,11 @@ content:
       linkit_auto_link_text: true
     third_party_settings: {  }
   field_media:
-    type: entity_reference_autocomplete
+    type: media_library_widget
     weight: 0
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
+      media_types: {  }
     third_party_settings: {  }
 hidden:
   created: true
