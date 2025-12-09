@@ -10,30 +10,26 @@ dependencies:
     - paragraphs.paragraphs_type.section
   module:
     - linkit
-    - paragraphs
+    - paragraphs_browser
 id: paragraph.section.default
 targetEntityType: paragraph
 bundle: section
 mode: default
 content:
   field_components:
-    type: paragraphs
+    type: entity_reference_paragraphs_browser
     weight: 4
     region: content
     settings:
       title: component
       title_plural: components
       edit_mode: closed
-      closed_mode: summary
-      autocollapse: all
-      closed_mode_threshold: 0
-      add_mode: dropdown
+      add_mode: paragraphs_browser
       form_display_mode: default
       default_paragraph_type: _none
-      features:
-        add_above: '0'
-        collapse_edit_all: collapse_edit_all
-        duplicate: '0'
+      paragraphs_browser: content
+      modal_width: 80%
+      modal_height: auto
     third_party_settings: {  }
   field_heading:
     type: string_textfield
