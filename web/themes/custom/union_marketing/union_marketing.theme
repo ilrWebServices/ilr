@@ -532,7 +532,7 @@ function union_marketing_preprocess_paragraph__testimonial_deck(&$variables) {
  */
 function union_marketing_preprocess_paragraph__slide_deck(&$variables) {
   $paragraph = $variables['paragraph'];
-  
+
   // Static content (from Slide Deck)
   $variables['heading'] = $paragraph->field_heading->value ?? '';
 
@@ -546,12 +546,12 @@ function union_marketing_preprocess_paragraph__slide_deck(&$variables) {
       ];
     }
   }
-  
+
   // Build slides array (rotating images)
   $variables['slides'] = [];
   foreach ($paragraph->field_slides->referencedEntities() as $slide_paragraph) {
     $link = NULL;
-    
+
     // Process image link field
     if ($slide_paragraph->hasField('field_image_link') && !$slide_paragraph->get('field_image_link')->isEmpty()) {
       $link_item = $slide_paragraph->field_image_link->first();
@@ -560,14 +560,14 @@ function union_marketing_preprocess_paragraph__slide_deck(&$variables) {
         'title' => $link_item->title,
       ];
     }
-    
+
     $variables['slides'][] = [
       'media' => $slide_paragraph->field_media->view('default'),
       'heading' => $slide_paragraph->field_heading->value ?? '',
       'link' => $link,
     ];
   }
-  
+
   // Attach the slideshow library
   $variables['#attached']['library'][] = 'union/slideshow';
 }
