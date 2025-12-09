@@ -6,7 +6,6 @@ _core:
   default_config_hash: KUumpKGaihwt7ld0Ba82jPUpgKDO5aE066wdVfFAztU
 id: content
 label: Content
-map: {  }
 groups:
   content:
     label: Content
@@ -24,3 +23,5 @@ groups:
     label: Decks
     id: decks
     weight: '6'
+map:
+  simple_collection_listing: listings

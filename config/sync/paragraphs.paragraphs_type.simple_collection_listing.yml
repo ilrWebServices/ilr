@@ -4,11 +4,15 @@ status: true
 dependencies:
   module:
     - ilr
+    - paragraphs_browser
+third_party_settings:
+  paragraphs_browser:
+    image_path: static/paragraphs_browser_images/post_listing.png
 id: simple_collection_listing
 label: 'Post listing'
 icon_uuid: null
 icon_default: null
-description: ''
+description: 'Post listings can display post-like content from any collection in various listing styles including grids and carousels.'
 behavior_plugins:
   evergreen:
     enabled: true
@@ -23,9 +27,11 @@ behavior_plugins:
       grid-featured: grid-featured
       grid-featured--wide: grid-featured--wide
       main_content: main_content
+      list-summary: 0
       banner: 0
       tabular-list: 0
       select-list: 0
+      link-cloud: 0
     columns_enabled: 0
     columns_min: ''
     columns_max: ''
