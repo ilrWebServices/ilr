@@ -9,7 +9,7 @@ dependencies:
     - field.field.paragraph.slide_deck.field_slides
     - paragraphs.paragraphs_type.slide_deck
   module:
-    - link
+    - linkit
     - paragraphs_previewer
     - text
 id: paragraph.slide_deck.default
@@ -34,12 +34,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_links:
-    type: link_default
+    type: linkit
     weight: 3
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      linkit_profile: ilr_content
+      linkit_auto_link_text: true
     third_party_settings: {  }
   field_slides:
     type: paragraphs_previewer

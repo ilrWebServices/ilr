@@ -8,7 +8,8 @@ dependencies:
     - field.field.paragraph.slide.field_media
     - paragraphs.paragraphs_type.slide
   module:
-    - link
+    - linkit
+    - media_library
 id: paragraph.slide.default
 targetEntityType: paragraph
 bundle: slide
@@ -23,12 +24,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_image_link:
-    type: link_default
+    type: linkit
     weight: 3
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      linkit_profile: ilr_content
+      linkit_auto_link_text: true
     third_party_settings: {  }
   field_media:
     type: entity_reference_autocomplete
