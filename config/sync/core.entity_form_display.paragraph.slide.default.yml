@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.slide.field_heading
     - field.field.paragraph.slide.field_image_link
-    - field.field.paragraph.slide.field_image_title
     - field.field.paragraph.slide.field_media
     - paragraphs.paragraphs_type.slide
   module:
@@ -14,11 +14,13 @@ targetEntityType: paragraph
 bundle: slide
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 2
+  field_heading:
+    type: string_textfield
+    weight: 0
     region: content
-    settings: {  }
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_image_link:
     type: link_default
@@ -27,14 +29,6 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
-    third_party_settings: {  }
-  field_image_title:
-    type: string_textfield
-    weight: 4
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   field_media:
     type: entity_reference_autocomplete
@@ -46,11 +40,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    weight: 1
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  created: true
+  status: true

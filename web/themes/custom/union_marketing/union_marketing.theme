@@ -564,7 +564,7 @@ function union_marketing_preprocess_paragraph__slide_deck(&$variables) {
     
     $variables['slides'][] = [
       'media' => $slide_paragraph->field_media->view('default'),
-      'heading' => $slide_paragraph->field_image_title->value ?? '',
+      'heading' => $slide_paragraph->field_heading->value ?? '',
       'link' => $link,
     ];
   }
