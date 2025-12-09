@@ -6,5 +6,21 @@ _core:
   default_config_hash: KUumpKGaihwt7ld0Ba82jPUpgKDO5aE066wdVfFAztU
 id: content
 label: Content
-groups: {  }
 map: {  }
+groups:
+  content:
+    label: Content
+    id: content
+    weight: '3'
+  listings:
+    label: Listings
+    id: listings
+    weight: '4'
+  media:
+    label: Media
+    id: media
+    weight: '5'
+  decks:
+    label: Decks
+    id: decks
+    weight: '6'
