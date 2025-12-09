@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override to display a tabs paragraph.
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ * - content: All paragraph items.
+ * - attributes: HTML attributes for the containing element.
+ * - items: Array of tab item data prepared by preprocess.
+ *
+ * @see template_preprocess_paragraph()
+ * @see union_marketing_preprocess_paragraph__tabs()
+ *
+ * @ingroup themeable
+ */
+#}
+{% include '@union/_tabs.twig' with {
+  heading: paragraph.field_heading.value,
+  body: paragraph.field_body.value,
+  media: paragraph.field_media.isEmpty() ? '' : content.field_media,
+  items: items,
+  attributes: attributes.addClass([
+    'cu-component',
+    'cu-component--' ~ paragraph.bundle|clean_class
+  ])
+} only %}

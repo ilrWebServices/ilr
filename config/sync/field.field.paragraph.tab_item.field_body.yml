@@ -1,0 +1,22 @@
+uuid: d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - paragraphs.paragraphs_type.tab_item
+  module:
+    - text
+id: paragraph.tab_item.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: tab_item
+label: Content
+description: 'The main content area. Can include text, images, stats, etc.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

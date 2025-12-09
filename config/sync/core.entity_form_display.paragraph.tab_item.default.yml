@@ -1,0 +1,55 @@
+uuid: f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.tab_item.field_body
+    - field.field.paragraph.tab_item.field_heading
+    - field.field.paragraph.tab_item.field_link
+    - field.field.paragraph.tab_item.field_subheading
+    - paragraphs.paragraphs_type.tab_item
+  module:
+    - linkit
+    - text
+id: paragraph.tab_item.default
+targetEntityType: paragraph
+bundle: tab_item
+mode: default
+content:
+  field_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_subheading:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_body:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_link:
+    type: linkit
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      linkit_profile: ilr_content
+      linkit_auto_link_text: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

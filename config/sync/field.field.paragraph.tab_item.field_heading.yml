@@ -1,0 +1,19 @@
+uuid: b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.tab_item
+id: paragraph.tab_item.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: tab_item
+label: 'Tab Heading'
+description: 'The heading displayed in the tab list/dropdown.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
