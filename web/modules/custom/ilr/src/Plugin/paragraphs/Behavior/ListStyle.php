@@ -49,6 +49,7 @@ class ListStyle extends ParagraphsBehaviorBase {
     'select-list' => 'Select list',
     'main_content' => 'Main content',
     'link-cloud' => 'Link cloud',
+    'carousel' => 'Carousel',
   ];
 
   /**
@@ -221,6 +222,12 @@ class ListStyle extends ParagraphsBehaviorBase {
         $variables['#attached']['library'][] = 'union_organizer/grid';
       }
 
+      if ($list_style === 'carousel') {
+        if (isset($variables['content']['listing']['items'])) {
+          $variables['carousel_items'] = $variables['content']['listing']['items'];
+        }
+      }
+
       // @todo Replace with CSS logic based on data-itemcount.
       if ($list_style === 'grid-featured') {
         $variables['attributes']['style'] = '--featured-grid-rows: ' . (($item_count < 4) ? 2 : 3);
@@ -349,6 +356,9 @@ class ListStyle extends ParagraphsBehaviorBase {
 
       case 'main_content':
         return 'main_content';
+
+      case 'carousel':
+        return 'compact_media';
 
       default:
         return 'teaser';
