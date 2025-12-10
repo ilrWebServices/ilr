@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.slide.field_eyebrow_heading
     - field.field.paragraph.slide.field_heading
     - field.field.paragraph.slide.field_image_link
     - field.field.paragraph.slide.field_media
@@ -15,6 +16,14 @@ targetEntityType: paragraph
 bundle: slide
 mode: default
 content:
+  field_eyebrow_heading:
+    type: string_textfield
+    weight: -1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_heading:
     type: string_textfield
     weight: 0
