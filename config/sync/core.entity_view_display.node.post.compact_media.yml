@@ -1,0 +1,63 @@
+uuid: 664c6a2f-b43e-4894-a7b1-bdc56e1780ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.compact_media
+    - field.field.node.post.body
+    - field.field.node.post.field_authors
+    - field.field.node.post.field_components
+    - field.field.node.post.field_featured_media
+    - field.field.node.post.field_published_date
+    - field.field.node.post.field_related_posts
+    - field.field.node.post.field_representative_image
+    - field.field.node.post.field_subtitle
+    - image.style.medium_3_2
+    - node.type.post
+  module:
+    - datetime
+    - layout_builder
+    - media
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.post.compact_media
+targetEntityType: node
+bundle: post
+mode: compact_media
+content:
+  field_published_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: ilr_date
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_representative_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium_3_2
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  blog_collection: true
+  blog_tags: true
+  body: true
+  extra_field_related_posts: true
+  field_authors: true
+  field_components: true
+  field_featured_media: true
+  field_related_posts: true
+  field_subtitle: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

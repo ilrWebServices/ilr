@@ -1,0 +1,11 @@
+uuid: 40baec37-4811-4eab-9425-e02e85fce526
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.compact_media
+label: 'Compact with Media'
+description: ''
+targetEntityType: node
+cache: true

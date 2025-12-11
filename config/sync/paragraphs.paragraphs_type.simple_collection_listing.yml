@@ -23,9 +23,12 @@ behavior_plugins:
       grid-featured: grid-featured
       grid-featured--wide: grid-featured--wide
       main_content: main_content
+      carousel: carousel
+      list-summary: 0
       banner: 0
       tabular-list: 0
       select-list: 0
+      link-cloud: 0
     columns_enabled: 0
     columns_min: ''
     columns_max: ''
