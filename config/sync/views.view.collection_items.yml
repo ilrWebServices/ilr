@@ -826,6 +826,130 @@ display:
           fields:
             field_subtitle: field_subtitle
             name: name
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          relationship: node__item
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: Status
+            description: ''
+            use_operator: false
+            operator: status_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: status
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              content_administrator: '0'
+              course_admin: '0'
+              form_admin: '0'
+              advanced_editor: '0'
+              event_admin: '0'
+              explore_form_admin: '0'
+              reviewer: '0'
+              cahrs_admin: '0'
+              project_admin: '0'
+              landing_page_editor: '0'
+              employee_admin: '0'
+          is_grouped: true
+          group_info:
+            label: Published
+            description: ''
+            identifier: status
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: Published
+                operator: '='
+                value: '1'
+              2:
+                title: Unpublished
+                operator: '='
+                value: '0'
+        canonical:
+          id: canonical
+          table: collection_item_field_data
+          field: canonical
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: collection_item
+          entity_field: canonical
+          plugin_id: boolean
+          operator: '='
+          value: '0'
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: 'Cross post'
+            description: ''
+            use_operator: false
+            operator: canonical_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: canonical
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              content_administrator: '0'
+              course_admin: '0'
+              form_admin: '0'
+              advanced_editor: '0'
+              event_admin: '0'
+              explore_form_admin: '0'
+              reviewer: '0'
+              cahrs_admin: '0'
+              project_admin: '0'
+              landing_page_editor: '0'
+              employee_admin: '0'
+          is_grouped: true
+          group_info:
+            label: Canonical
+            description: ''
+            identifier: canonical
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: 'Yes'
+                operator: '='
+                value: '1'
+              2:
+                title: 'No'
+                operator: '='
+                value: '0'
       filter_groups:
         operator: AND
         groups:
