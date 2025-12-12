@@ -1,0 +1,29 @@
+uuid: 9e0f1a2b-3c4d-5e6f-7a8b-9c0d1e2f3a4b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_report_topic
+    - node.type.report_summary
+    - taxonomy.vocabulary.report_topics
+id: node.report_summary.field_report_topic
+field_name: field_report_topic
+entity_type: node
+bundle: report_summary
+label: Topic
+description: 'Select the topic for this report.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      report_topics: report_topics
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

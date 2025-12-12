@@ -20,6 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *     "collection.subsite_blog",
  *     "collection.content_section",
  *     "node.page",
+ *     "node.report_summary",
  *     "taxonomy_term.*",
  *   },
  *   visible = true

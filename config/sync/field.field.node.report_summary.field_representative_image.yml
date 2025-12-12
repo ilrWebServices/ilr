@@ -1,0 +1,29 @@
+uuid: 0f1a2b3c-4d5e-6f7a-8b9c-0d1e2f3a4b5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_representative_image
+    - media.type.image
+    - node.type.report_summary
+id: node.report_summary.field_representative_image
+field_name: field_representative_image
+entity_type: node
+bundle: report_summary
+label: 'Representative image'
+description: 'This image is used when displaying this report in listings and carousels.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference

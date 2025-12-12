@@ -1,0 +1,80 @@
+uuid: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.report_summary.field_authors
+    - field.field.node.report_summary.field_emphasized_title_text
+    - field.field.node.report_summary.field_published_date
+    - field.field.node.report_summary.field_report_files
+    - field.field.node.report_summary.field_report_state
+    - field.field.node.report_summary.field_report_topic
+    - field.field.node.report_summary.field_representative_image
+    - field.field.node.report_summary.field_sections
+    - node.type.report_summary
+  module:
+    - address
+    - datetime
+    - entity_reference_revisions
+    - layout_builder
+    - media
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: true
+id: node.report_summary.default
+targetEntityType: node
+bundle: report_summary
+mode: default
+content:
+  field_report_files:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_report_state:
+    type: address_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_report_topic:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_representative_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_sections:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+hidden:
+  field_authors: true
+  field_emphasized_title_text: true
+  field_published_date: true
+  langcode: true
+  links: true
+  search_api_excerpt: true
