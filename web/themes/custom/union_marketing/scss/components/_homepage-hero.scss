@@ -64,8 +64,8 @@
   }
 }
 
-// Modify 3-card decks only when they are the first component in a wide section.
-.node__content > .layout--onecol .field--field-sections > .cu-section--wide .field--field-components > .cu-component--deck.cu-grid--3col:first-child {
+// Modify 3-card decks only when they are the first component in the first section and that section is wide.
+.node__content > .layout--onecol .field--field-sections > .cu-section--wide:first-child .field--field-components > .cu-component--deck.cu-grid--3col:first-child {
   grid-gap: var(--cu-vr-5);
 
   @include breakpoint(md) {
