@@ -1,0 +1,22 @@
+uuid: c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - paragraphs.paragraphs_type.tabs
+  module:
+    - text
+id: paragraph.tabs.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: tabs
+label: Body
+description: 'Optional introductory text displayed below the heading.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

@@ -573,6 +573,32 @@ function union_marketing_preprocess_paragraph__slide_deck(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_paragraph().
+ *
+ * Prepare the items array for tabs paragraphs.
+ */
+function union_marketing_preprocess_paragraph__tabs(&$variables) {
+  $variables['items'] = [];
+
+  foreach ($variables['paragraph']->field_components->referencedEntities() as $tab_item_paragraph) {
+    $link_data = NULL;
+    if (!$tab_item_paragraph->field_link->isEmpty()) {
+      $link_data = [
+        'url' => $tab_item_paragraph->field_link->first()->getUrl()->toString(),
+        'title' => $tab_item_paragraph->field_link->title,
+      ];
+    }
+
+    $variables['items'][] = [
+      'tab_heading' => $tab_item_paragraph->field_heading->value,
+      'subheading' => $tab_item_paragraph->field_subheading->value,
+      'content' => $tab_item_paragraph->field_body->view('default'),
+      'link' => $link_data,
+    ];
+  }
+}
+
+/**
  * {@inheritdoc}
  */
 function union_marketing_preprocess_paragraph__section_navigation(&$variables) {

@@ -1,0 +1,160 @@
+uuid: e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_components
+    - paragraphs.paragraphs_type.tab_item
+    - paragraphs.paragraphs_type.tabs
+  module:
+    - entity_reference_revisions
+id: paragraph.tabs.field_components
+field_name: field_components
+entity_type: paragraph
+bundle: tabs
+label: 'Tab Items'
+description: 'Add tab items to display in the tabs component.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      tab_item: tab_item
+    negate: 0
+    target_bundles_drag_drop:
+      tab_item:
+        weight: 0
+        enabled: true
+      accordion:
+        weight: 1
+        enabled: false
+      agenda:
+        weight: 2
+        enabled: false
+      agenda_item:
+        weight: 3
+        enabled: false
+      anchor_button_to_form:
+        weight: 4
+        enabled: false
+      call_to_action:
+        weight: 5
+        enabled: false
+      carousel:
+        weight: 6
+        enabled: false
+      collection_listing:
+        weight: 7
+        enabled: false
+      collection_listing_publication:
+        weight: 8
+        enabled: false
+      curated_course_listing:
+        weight: 9
+        enabled: false
+      curated_post_listing:
+        weight: 10
+        enabled: false
+      deck:
+        weight: 11
+        enabled: false
+      event_listing:
+        weight: 12
+        enabled: false
+      form:
+        weight: 13
+        enabled: false
+      gallery:
+        weight: 14
+        enabled: false
+      honors_and_awards:
+        weight: 15
+        enabled: false
+      image:
+        weight: 16
+        enabled: false
+      instagram_listing:
+        weight: 17
+        enabled: false
+      link_listing:
+        weight: 18
+        enabled: false
+      media_deck:
+        weight: 19
+        enabled: false
+      milestone:
+        weight: 20
+        enabled: false
+      milestone_section:
+        weight: 21
+        enabled: false
+      organization_listing:
+        weight: 22
+        enabled: false
+      people_listing:
+        weight: 23
+        enabled: false
+      people_listing_dynamic:
+        weight: 24
+        enabled: false
+      person:
+        weight: 25
+        enabled: false
+      picture_in_picture:
+        weight: 26
+        enabled: false
+      professional_activities:
+        weight: 27
+        enabled: false
+      project_listing:
+        weight: 28
+        enabled: false
+      promo:
+        weight: 29
+        enabled: false
+      publications:
+        weight: 30
+        enabled: false
+      rich_text:
+        weight: 31
+        enabled: false
+      section:
+        weight: 32
+        enabled: false
+      section_navigation:
+        weight: 33
+        enabled: false
+      simple_collection_listing:
+        weight: 34
+        enabled: false
+      stat:
+        weight: 35
+        enabled: false
+      stats:
+        weight: 36
+        enabled: false
+      table_of_contents:
+        weight: 37
+        enabled: false
+      tabs:
+        weight: 38
+        enabled: false
+      testimonial:
+        weight: 39
+        enabled: false
+      testimonial_deck:
+        weight: 40
+        enabled: false
+      text_with_media:
+        weight: 41
+        enabled: false
+      topic_list:
+        weight: 42
+        enabled: false
+      video:
+        weight: 43
+        enabled: false
+field_type: entity_reference_revisions
