@@ -81,6 +81,9 @@ settings:
       simple_collection_listing:
         weight: 41
         enabled: false
+      slide_deck:
+        weight: 47
+        enabled: true
       table_of_contents:
         weight: 42
         enabled: false
@@ -93,9 +96,6 @@ settings:
       topic_list:
         weight: 45
         enabled: false
-      slide_deck:
-        weight: 47
-        enabled: true
       video:
         weight: 48
         enabled: false
