@@ -207,8 +207,14 @@ settings:
       stats:
         weight: -41
         enabled: true
+      tab_item:
+        weight: -34
+        enabled: false
       table_of_contents:
         weight: -47
+        enabled: true
+      tabs:
+        weight: -35
         enabled: true
       testimonial:
         weight: -62
@@ -225,10 +231,4 @@ settings:
       video:
         weight: -64
         enabled: true
-      tabs:
-        weight: -35
-        enabled: true
-      tab_item:
-        weight: -34
-        enabled: false
 field_type: entity_reference_revisions

@@ -25,9 +25,6 @@ settings:
       tab_item: tab_item
     negate: 0
     target_bundles_drag_drop:
-      tab_item:
-        weight: 0
-        enabled: true
       accordion:
         weight: 1
         enabled: false
@@ -136,6 +133,9 @@ settings:
       stats:
         weight: 36
         enabled: false
+      tab_item:
+        weight: 0
+        enabled: true
       table_of_contents:
         weight: 37
         enabled: false

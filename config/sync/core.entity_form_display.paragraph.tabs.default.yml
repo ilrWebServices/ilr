@@ -17,14 +17,6 @@ targetEntityType: paragraph
 bundle: tabs
 mode: default
 content:
-  field_heading:
-    type: string_textfield
-    weight: 0
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_body:
     type: text_textarea
     weight: 1
@@ -32,13 +24,6 @@ content:
     settings:
       rows: 3
       placeholder: ''
-    third_party_settings: {  }
-  field_media:
-    type: media_library_widget
-    weight: 2
-    region: content
-    settings:
-      media_types: {  }
     third_party_settings: {  }
   field_components:
     type: paragraphs_previewer
@@ -58,6 +43,21 @@ content:
         add_above: '0'
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_media:
+    type: media_library_widget
+    weight: 2
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
 hidden:
   created: true

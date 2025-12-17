@@ -28,6 +28,9 @@ third_party_settings:
           label: Banner
           context_mapping: {  }
           color_scheme: dark
+          hide_frame: false
+          text_align: left
+          full_bleed: false
         components:
           b21a5485-e8bc-44d5-90c9-19e4ca470122:
             uuid: b21a5485-e8bc-44d5-90c9-19e4ca470122

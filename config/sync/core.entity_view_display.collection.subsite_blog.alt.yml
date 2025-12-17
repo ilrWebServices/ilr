@@ -28,6 +28,9 @@ third_party_settings:
           label: ''
           context_mapping: {  }
           color_scheme: none
+          hide_frame: false
+          text_align: left
+          full_bleed: false
         components:
           4fd26ae8-decc-42b0-8bb8-2d1e1640762a:
             uuid: 4fd26ae8-decc-42b0-8bb8-2d1e1640762a

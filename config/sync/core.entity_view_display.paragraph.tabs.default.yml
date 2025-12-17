@@ -16,29 +16,12 @@ targetEntityType: paragraph
 bundle: tabs
 mode: default
 content:
-  field_heading:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 0
-    region: content
   field_body:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 1
-    region: content
-  field_media:
-    type: entity_reference_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    weight: 2
     region: content
   field_components:
     type: entity_reference_revisions_entity_view
@@ -48,6 +31,23 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_heading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_media:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   search_api_excerpt: true
