@@ -25,10 +25,11 @@ content:
       closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: promo
+      default_paragraph_type: _none
       features:
         add_above: '0'
         collapse_edit_all: '0'
+        convert: '0'
         duplicate: '0'
     third_party_settings: {  }
   info:
