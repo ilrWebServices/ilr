@@ -10,6 +10,7 @@ dependencies:
     - field.field.collection.subsite_blog.field_representative_image
     - field.field.collection.subsite_blog.field_sections
     - field.field.collection.subsite_blog.field_suppress_date_display
+    - field.field.collection.subsite_blog.layout_builder__layout
   module:
     - entity_reference_revisions
     - ilr
@@ -159,4 +160,5 @@ content:
 hidden:
   behavior_alt_display: true
   langcode: true
+  layout_builder__layout: true
   search_api_excerpt: true

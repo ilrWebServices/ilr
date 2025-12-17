@@ -9,6 +9,7 @@ dependencies:
     - field.field.collection.subsite_blog.field_representative_image
     - field.field.collection.subsite_blog.field_sections
     - field.field.collection.subsite_blog.field_suppress_date_display
+    - field.field.collection.subsite_blog.layout_builder__layout
   module:
     - media_library
     - paragraphs_previewer
@@ -123,4 +124,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  layout_builder__layout: true
