@@ -568,9 +568,6 @@ function union_marketing_preprocess_paragraph__slide_deck(&$variables) {
       'link' => $link,
     ];
   }
-
-  // Attach the slideshow library
-  $variables['#attached']['library'][] = 'union/slideshow';
 }
 
 /**
