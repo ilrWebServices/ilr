@@ -592,7 +592,7 @@ function union_marketing_preprocess_paragraph__tabs(&$variables) {
     $variables['items'][] = [
       'tab_heading' => $tab_item_paragraph->field_heading->value,
       'subheading' => $tab_item_paragraph->field_subheading->value,
-      'content' => $tab_item_paragraph->field_body->view('default'),
+      'content' => [$tab_item_paragraph->field_body->view('default'), $tab_item_paragraph->field_components->view('default')],
       'link' => $link_data,
     ];
   }

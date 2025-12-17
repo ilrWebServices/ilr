@@ -111,3 +111,47 @@
     --cu-font-weight: 600;
   }
 }
+
+// field--field-components is a paragraph field on tab_item that only references the `stat` paragraph type.
+.cu-tabs__content .field--field-components {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 1em;
+  align-items: stretch;
+
+  .cu-component--stat {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    justify-items: center;
+  }
+
+  .cu-component--stat:not(:last-child) {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  .cu-component--stat:not(:last-child):after {
+    content: '';
+    display: inline;
+    grid-column: 2;
+    grid-row: 1/-1;
+    width: 1px;
+    height: 100%;
+    background-color: var(--cu-text-color);
+    opacity: .5;
+    margin: 0 1em;
+  }
+
+  .field--field-heading {
+    --cu-font-family: 'futura-pt';
+    --cu-font-size: var(--cu-ms3);
+
+    @include breakpoint(md) {
+      --cu-font-size: var(--cu-ms8);
+    }
+  }
+
+  .field--field-subheading {
+    max-width: 5rem;
+    text-align: center;
+  }
+}
