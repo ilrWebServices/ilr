@@ -34,3 +34,15 @@
     @extend %tabs;
   }
 }
+
+.cu-component--tabs {
+  .shout {
+    font-size: var(--cu-ms3);
+
+    @include breakpoint(md) {
+      font-size: var(--cu-ms6);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+  }
+}
