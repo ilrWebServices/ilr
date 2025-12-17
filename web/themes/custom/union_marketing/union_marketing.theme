@@ -563,7 +563,7 @@ function union_marketing_preprocess_paragraph__slide_deck(&$variables) {
 
     $variables['slides'][] = [
       'media' => $slide_paragraph->field_media->view('default'),
-      'eyebrow_heading' => $slide_paragraph->field_eyebrow_heading->value ?? '',
+      'eyebrow_heading' => $slide_paragraph->field_subheading->value ?? '',
       'heading' => $slide_paragraph->field_heading->value ?? '',
       'link' => $link,
     ];
