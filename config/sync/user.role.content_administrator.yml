@@ -6,6 +6,7 @@ dependencies:
     - block_content.type.component
     - block_content.type.media
     - block_content.type.simple_text
+    - core.entity_view_display.collection.subsite_blog.default
     - entity_browser.browser.persona_browser
     - filter.format.full_html
   module:
@@ -17,6 +18,7 @@ dependencies:
     - file
     - filter
     - ilr
+    - layout_builder
     - media
     - node
     - paragraphs
@@ -56,6 +58,7 @@ permissions:
   - 'administer taxonomy'
   - 'administer users in collections'
   - 'bypass node access'
+  - 'configure editable subsite_blog collection layout overrides'
   - 'create media'
   - 'create url aliases'
   - 'delete any media'
