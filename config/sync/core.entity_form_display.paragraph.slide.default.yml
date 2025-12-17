@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.slide.field_heading
     - field.field.paragraph.slide.field_image_link
     - field.field.paragraph.slide.field_media
+    - field.field.paragraph.slide.field_subheading
     - paragraphs.paragraphs_type.slide
   module:
     - linkit
@@ -17,7 +18,7 @@ mode: default
 content:
   field_heading:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
@@ -39,6 +40,14 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_subheading:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
 hidden:
   created: true

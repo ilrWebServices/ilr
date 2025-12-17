@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.slide.field_heading
     - field.field.paragraph.slide.field_image_link
     - field.field.paragraph.slide.field_media
+    - field.field.paragraph.slide.field_subheading
     - paragraphs.paragraphs_type.slide
   module:
     - link
@@ -42,6 +43,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_subheading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   search_api_excerpt: true
