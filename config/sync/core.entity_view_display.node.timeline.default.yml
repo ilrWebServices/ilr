@@ -25,6 +25,9 @@ third_party_settings:
           label: ''
           context_mapping: {  }
           color_scheme: none
+          hide_frame: true
+          text_align: left
+          full_bleed: false
         components:
           666e1a11-6864-433e-a559-082840ecad18:
             uuid: 666e1a11-6864-433e-a559-082840ecad18
