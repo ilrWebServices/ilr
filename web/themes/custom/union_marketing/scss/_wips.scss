@@ -133,3 +133,8 @@ footer .block-ilr80wordmark-block {
     height: auto;
   }
 }
+
+// 2025-12 workaround for removal of bottom margin on button component.
+.cu-button + br + .cu-button {
+  margin-top: var(--cu-vr0);
+}
