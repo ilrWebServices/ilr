@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override for the Report files field on Report Summary nodes.
+ *
+ * Displays the first PDF file as a red "Read the Report" button.
+ */
+#}
+{% if items %}
+  {% set file = items[0].content['#media'] %}
+  {% if file and file.field_media_file.entity %}
+    {% set file_url = file_url(file.field_media_file.entity.uri.value) %}
+    <a href="{{ file_url }}" class="cu-button cu-button--red report-summary-cta" target="_blank" rel="noopener">
+      Read the Report
+    </a>
+  {% endif %}
+{% endif %}

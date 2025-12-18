@@ -149,6 +149,62 @@ function union_marketing_preprocess_node(&$variables) {
       'classes' => ['ui-dialog' => 'cu-modal'],
     ]));
   }
+
+  // Report Summary specific preprocessing.
+  if ($variables['node']->bundle() === 'report_summary' && $variables['view_mode'] === 'full') {
+    $node = $variables['node'];
+    
+    // Process emphasized title text.
+    $title = $node->label();
+    $emphasized_text = '';
+    
+    if ($node->hasField('field_emphasized_title_text') && !$node->field_emphasized_title_text->isEmpty()) {
+      $emphasized_text = $node->field_emphasized_title_text->value;
+    }
+    
+    // Wrap emphasized text in <strong> tags if it exists in the title.
+    if (!empty($emphasized_text) && strpos($title, $emphasized_text) !== FALSE) {
+      $variables['emphasized_title'] = str_replace(
+        Html::escape($emphasized_text),
+        '<strong>' . Html::escape($emphasized_text) . '</strong>',
+        Html::escape($title)
+      );
+    }
+    else {
+      $variables['emphasized_title'] = Html::escape($title);
+    }
+    
+    // Get representative image URL for banner background.
+    $variables['representative_image_url'] = '';
+    try {
+      if ($node->hasField('field_representative_image') && !$node->field_representative_image->isEmpty()) {
+        $media = $node->field_representative_image->entity;
+        if ($media && $media->hasField('field_media_image') && !$media->field_media_image->isEmpty()) {
+          $file = $media->field_media_image->entity;
+          if ($file) {
+            $image_uri = $file->getFileUri();
+            $image_style = ImageStyle::load('large');
+            if ($image_style) {
+              $variables['representative_image_url'] = $image_style->buildUrl($image_uri);
+            }
+          }
+        }
+      }
+    }
+    catch (\Exception $e) {
+      // Silently fail if image cannot be loaded
+      \Drupal::logger('union_marketing')->warning('Could not load representative image for report summary @nid: @message', [
+        '@nid' => $node->id(),
+        '@message' => $e->getMessage(),
+      ]);
+    }
+    
+    // Add breadcrumbs.
+    $breadcrumb_manager = \Drupal::service('breadcrumb');
+    $route_match = \Drupal::routeMatch();
+    $breadcrumb = $breadcrumb_manager->build($route_match);
+    $variables['breadcrumbs'] = $breadcrumb->toRenderable();
+  }
 }
 
 /**
