@@ -1,0 +1,23 @@
+uuid: 59e5b88b-89bf-4722-98ec-e80b5262ac3a
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: card_overlays
+label: 'Card Overlays'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  ilr_color:
+    enabled: true
+    color_schemes:
+      light: light
+      vibrant: vibrant
+      none: 0
+      dark: 0
+    color_scheme_default: light
+    allow_framed_media: 0
+  ilr_icon:
+    enabled: true

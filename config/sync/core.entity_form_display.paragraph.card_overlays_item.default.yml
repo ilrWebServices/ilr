@@ -1,0 +1,46 @@
+uuid: 623e1a1c-c632-495e-a5fc-9d908969b992
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.card_overlays_item.field_body
+    - field.field.paragraph.card_overlays_item.field_heading
+    - field.field.paragraph.card_overlays_item.field_link
+    - paragraphs.paragraphs_type.card_overlays_item
+  module:
+    - linkit
+    - text
+id: paragraph.card_overlays_item.default
+targetEntityType: paragraph
+bundle: card_overlays_item
+mode: default
+content:
+  field_body:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_link:
+    type: linkit
+    weight: 2
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      linkit_profile: ilr_content
+      linkit_auto_link_text: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
