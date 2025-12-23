@@ -1,0 +1,172 @@
+uuid: a7fbd2fe-64f3-4ed4-bed4-4055eb95a675
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_components
+    - paragraphs.paragraphs_type.card_overlays
+    - paragraphs.paragraphs_type.card_overlays_item
+  module:
+    - entity_reference_revisions
+id: paragraph.card_overlays.field_components
+field_name: field_components
+entity_type: paragraph
+bundle: card_overlays
+label: Items
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      card_overlays_item: card_overlays_item
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 39
+        enabled: false
+      agenda:
+        weight: 28
+        enabled: false
+      agenda_item:
+        weight: 27
+        enabled: false
+      anchor_button_to_form:
+        weight: 51
+        enabled: false
+      call_to_action:
+        weight: 52
+        enabled: false
+      card_overlays:
+        weight: 53
+        enabled: false
+      card_overlays_item:
+        weight: 49
+        enabled: true
+      carousel:
+        weight: 29
+        enabled: false
+      collection_listing:
+        weight: 30
+        enabled: false
+      collection_listing_publication:
+        weight: 31
+        enabled: false
+      curated_course_listing:
+        weight: 32
+        enabled: false
+      curated_post_listing:
+        weight: 33
+        enabled: false
+      deck:
+        weight: 34
+        enabled: false
+      event_listing:
+        weight: 35
+        enabled: false
+      form:
+        weight: 36
+        enabled: false
+      gallery:
+        weight: 50
+        enabled: false
+      honors_and_awards:
+        weight: 51
+        enabled: false
+      image:
+        weight: 37
+        enabled: false
+      instagram_listing:
+        weight: 38
+        enabled: false
+      link_listing:
+        weight: 66
+        enabled: false
+      media_deck:
+        weight: 39
+        enabled: false
+      milestone:
+        weight: 55
+        enabled: false
+      milestone_section:
+        weight: 56
+        enabled: false
+      organization_listing:
+        weight: 57
+        enabled: false
+      people_listing:
+        weight: 40
+        enabled: false
+      people_listing_dynamic:
+        weight: 59
+        enabled: false
+      person:
+        weight: 41
+        enabled: false
+      picture_in_picture:
+        weight: 42
+        enabled: false
+      professional_activities:
+        weight: 62
+        enabled: false
+      project_listing:
+        weight: 63
+        enabled: false
+      promo:
+        weight: 43
+        enabled: false
+      publications:
+        weight: 65
+        enabled: false
+      rich_text:
+        weight: 44
+        enabled: false
+      section:
+        weight: 45
+        enabled: false
+      section_navigation:
+        weight: 46
+        enabled: false
+      simple_collection_listing:
+        weight: 47
+        enabled: false
+      slide:
+        weight: 83
+        enabled: false
+      slide_deck:
+        weight: 84
+        enabled: false
+      stat:
+        weight: 70
+        enabled: false
+      stats:
+        weight: 71
+        enabled: false
+      tab_item:
+        weight: 89
+        enabled: false
+      table_of_contents:
+        weight: 48
+        enabled: false
+      tabs:
+        weight: 88
+        enabled: false
+      testimonial:
+        weight: 49
+        enabled: false
+      testimonial_deck:
+        weight: 50
+        enabled: false
+      text_with_media:
+        weight: 92
+        enabled: false
+      topic_list:
+        weight: 51
+        enabled: false
+      video:
+        weight: 52
+        enabled: false
+field_type: entity_reference_revisions

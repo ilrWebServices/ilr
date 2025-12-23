@@ -1,0 +1,111 @@
+.cu-component--card-overlays {
+   .cu-section {
+      &__heading {
+         width: 100%;
+         max-width: 896px;
+         margin-inline: auto;
+         text-align: center;
+
+         h2.cu-heading {
+            --cu-font-family: 'futura-pt';
+            font-size: 50px;
+            font-style: normal;
+            font-weight: 900;
+            line-height: 56px;
+            text-transform: uppercase;
+         }
+
+         .cu-body {
+            padding-inline: 30px;
+
+            a:not([class]) {
+               font-weight: 400;
+            }
+         }
+
+         &:after {
+            content: '';
+            display: var(--cu-composite-heading-accent-display, block);
+            width: 100px;
+            height: 8px;
+            background: var(--cu-colorscheme-accent);
+            margin: 0;
+         }
+      }
+
+      &__content {
+         @media (min-width: 1200px) {
+            margin-bottom: -130px;
+         }
+
+         .field--field-components {
+            display: flex;
+            gap: 32px;
+
+            @media (max-width: 1200px) {
+               flex-wrap: wrap;
+               justify-content: center;
+            }
+         }
+      }
+   }
+
+   .cu-icon {
+      &__label {
+         margin-top: 24px;
+         text-align: center;
+         font-size: 12px;
+         font-style: normal;
+         font-weight: 700;
+         line-height: 20px;
+         letter-spacing: 1.2px;
+         text-transform: uppercase;
+      }
+   }
+
+   .cu-card {
+      display: flex;
+      padding: 80px 56px 76px 56px;
+      flex-direction: column;
+      align-items: center;
+      flex: 1 0 0;
+
+      @media (max-width: 1200px) {
+         flex: 1 0 calc(50% - 32px);
+         max-width: calc(50% - 32px);
+      }
+
+      @media (max-width: 992px) {
+         flex: 1 0 100%;
+         max-width: 100%;
+      }
+
+      .cu-heading {
+         color: $white;
+      }
+
+      p {
+         color: $white;
+      }
+
+      .cu-composite-heading::after {
+         order: 2;
+      }
+
+      &__content {
+         align-items: center;
+
+         .cu-composite-heading {
+            gap: 5px;
+         }
+
+         .cu-composite-heading, p {
+            margin-bottom: 10px;
+         }
+
+         .cu-button {
+            margin-bottom: 0;
+         }
+      }
+   }
+}

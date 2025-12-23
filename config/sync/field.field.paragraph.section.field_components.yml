@@ -7,7 +7,7 @@ dependencies:
     - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.agenda
     - paragraphs.paragraphs_type.call_to_action
-    - paragraphs.paragraphs_type.tabs
+    - paragraphs.paragraphs_type.card_overlays
     - paragraphs.paragraphs_type.carousel
     - paragraphs.paragraphs_type.collection_listing
     - paragraphs.paragraphs_type.collection_listing_publication
@@ -35,6 +35,7 @@ dependencies:
     - paragraphs.paragraphs_type.slide_deck
     - paragraphs.paragraphs_type.stats
     - paragraphs.paragraphs_type.table_of_contents
+    - paragraphs.paragraphs_type.tabs
     - paragraphs.paragraphs_type.testimonial
     - paragraphs.paragraphs_type.testimonial_deck
     - paragraphs.paragraphs_type.text_with_media
@@ -88,9 +89,10 @@ settings:
       agenda: agenda
       stats: stats
       publications: publications
-      accordion: accordion
-      slide_deck: slide_deck
       tabs: tabs
+      accordion: accordion
+      card_overlays: card_overlays
+      slide_deck: slide_deck
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -107,6 +109,9 @@ settings:
         enabled: false
       call_to_action:
         weight: -60
+        enabled: true
+      card_overlays:
+        weight: 53
         enabled: true
       carousel:
         weight: -44

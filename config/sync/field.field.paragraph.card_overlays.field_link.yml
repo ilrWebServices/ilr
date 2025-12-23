@@ -1,0 +1,23 @@
+uuid: e1e57408-d915-4476-b454-deb3eb4403c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link
+    - paragraphs.paragraphs_type.card_overlays
+  module:
+    - link
+id: paragraph.card_overlays.field_link
+field_name: field_link
+entity_type: paragraph
+bundle: card_overlays
+label: Link
+description: 'The call to action button link. <em>Link text</em> is required and will be shown as a button.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 2
+  link_type: 17
+field_type: link
