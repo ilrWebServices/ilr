@@ -1,0 +1,50 @@
+{#
+/**
+ * @file
+ * Banner layout template for Report Summary content type.
+ *
+ * This is a custom template specifically for report_summary nodes
+ * to implement the Figma design with sidebar positioned on the right.
+ */
+#}
+<div{{ attributes.addClass('layout-banner') }}>
+
+{% set rendered_content %}
+{% if content.top %}
+{{ content.top }}
+{% endif %}
+<div class="banner__main">
+  {{ content.banner }}
+</div>
+{% if content.sidebar %}
+<div class="banner__sidebar">
+  {{ content.sidebar }}
+</div>
+{% endif %}
+{% endset %}
+
+{% set attributes = attributes.addClass('cu-colorscheme--' ~ settings.color_scheme) %}
+{% set attributes = attributes.addClass('cu-banner--page') %}
+{% if settings.hide_frame %}
+{% set attributes = attributes.addClass('cu-banner--hide-frame') %}
+{% endif %}
+{% if settings.text_align == 'center' %}
+{% set attributes = attributes.addClass('cu-banner--text-center') %}
+{% endif %}
+{% if settings.full_bleed %}
+{% set attributes = attributes.addClass('cu-banner--full-bleed') %}
+{% endif %}
+
+{% if content['#entity'] and content['#entity'].bundle() %}
+{% set type = content['#entity'].getEntityTypeId() %}
+{% set bundle = content['#entity'].bundle() %}
+{% set attributes = attributes.addClass('cu-banner--' ~ type) %}
+{% set attributes = attributes.addClass('cu-banner--' ~ bundle) %}
+{% endif %}
+
+{% include '@union/_banner.twig' with {
+  attributes: attributes,
+  content: rendered_content,
+  media: content.media|render
+} only %}
+</div>

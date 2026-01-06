@@ -1,0 +1,334 @@
+/**
+ * Report Summary Banner Styling
+ * Based on Figma designs for Report Summary content type
+ */
+
+/* Report Summary Banner Layout - 50/50 split */
+.cu-banner--report_summary.cu-banner {
+  position: relative;
+  display: block;
+  min-height: 500px;
+  overflow: visible;
+}
+
+/* Dark overlay on left side */
+.cu-banner--report_summary.cu-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.85) 50%, transparent 50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 999px) {
+  .cu-banner--report_summary.cu-banner::before {
+    background: rgba(0, 0, 0, 0.75);
+  }
+}
+
+/* Content wrapper - left side only */
+.cu-banner--report_summary.cu-banner .cu-banner__content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  align-items: center;
+  padding: 3rem;
+  min-height: 500px;
+}
+
+@media (min-width: 1000px) {
+  .cu-banner--report_summary.cu-banner .cu-banner__content {
+    padding: 4rem 3rem;
+  }
+}
+
+/* Main content area */
+.cu-banner--report_summary .banner__main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+}
+
+/* Ensure proper stacking order */
+.cu-banner--report_summary .banner__main > * {
+  order: 10;
+}
+
+.cu-banner--report_summary .banner__main .block-system-breadcrumb-block,
+.cu-banner--report_summary .banner__main [id*="breadcrumb"],
+.cu-banner--report_summary .banner__main [class*="breadcrumb"] {
+  order: 1;
+}
+
+.cu-banner--report_summary .banner__main .block-field-block--node--report-summary--title {
+  order: 2;
+}
+
+.cu-banner--report_summary .banner__main .field--field-report-topics {
+  order: 3;
+}
+
+.cu-banner--report_summary .banner__main [class*="section"] {
+  order: 4;
+}
+
+/* REPORT label above title - mobile only */
+@media (max-width: 999px) {
+  .cu-banner--report_summary .block-field-block--node--report-summary--title::before {
+    content: 'REPORT';
+    font-family: 'Replica Std', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #ffffff;
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+}
+
+/* Title styling - 50px FuturaBT ExtraBlack */
+.cu-banner--report_summary .block-field-block--node--report-summary--title,
+.cu-banner--report_summary .block-field-block--node--report-summary--title * {
+  font-family: 'FuturaBT', 'futura-pt', sans-serif;
+  font-weight: 900;
+  font-size: 50px;
+  line-height: 56px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: #ffffff;
+  margin: 0;
+  padding: 20px 0;
+  border: none;
+  max-width: 620px;
+}
+
+/* Topic tags styling - pill style */
+.cu-banner--report_summary .field--field-report-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cu-banner--report_summary .field--field-report-topics .field__item {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-family: 'Replica Std', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Mobile topic pill styling */
+@media (max-width: 999px) {
+  .cu-banner--report_summary .field--field-report-topics .field__item {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #bababa;
+  }
+}
+
+/* Desktop topic pill styling */
+@media (min-width: 1000px) {
+  .cu-banner--report_summary .field--field-report-topics .field__item {
+    background: transparent;
+    border: 1px solid #6c6c6c;
+  }
+}
+
+.cu-banner--report_summary .field--field-report-topics .field__item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Sidebar card styling */
+.cu-banner--report_summary.cu-banner .banner__sidebar {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.14);
+  padding: 1.5rem;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Mobile sidebar - stacked below content */
+@media (max-width: 999px) {
+  .cu-banner--report_summary .banner__sidebar {
+    position: relative;
+    z-index: 10;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    max-width: calc(100% - 6rem);
+    top: 50px
+  }
+}
+
+/* Desktop sidebar - absolutely positioned, overlapping image */
+@media (min-width: 1000px) {
+  .cu-banner--report_summary.cu-banner .banner__sidebar {
+    position: absolute;
+    z-index: 10;
+    bottom: -1rem;
+    right: 1rem;
+    width: 280px;
+    max-width: calc(100% - 6rem);
+  }
+}
+
+/* Remove inherited backgrounds except sidebar itself */
+.cu-banner--report_summary .banner__sidebar * {
+  background: transparent;
+}
+
+/* Sidebar field styling */
+.cu-banner--report_summary .banner__sidebar .field {
+  margin: 0 0 1rem 0;
+  padding: 0;
+}
+
+.cu-banner--report_summary .banner__sidebar .field:last-child {
+  margin-bottom: 0;
+}
+
+.cu-banner--report_summary .banner__sidebar .field__label {
+  font-family: 'Replica Std', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #000000;
+  margin-bottom: 0.25rem;
+  display: block;
+  background: none;
+}
+
+.cu-banner--report_summary .banner__sidebar .field__item {
+  font-family: 'Replica Std', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #000000;
+  background: none;
+}
+
+.cu-banner--report_summary .banner__sidebar .field__item a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.cu-banner--report_summary .banner__sidebar .field__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+/* Download button styling - Cornell Red */
+.cu-banner--report_summary .banner__sidebar .report-download,
+.cu-banner--report_summary .banner__sidebar a[href*=".pdf"],
+.cu-banner--report_summary .banner__sidebar .field--name-field-report-pdf a {
+  display: inline-block;
+  padding: 12px 40px;
+  background-color: #b31b1b;
+  border: 2px solid #b31b1b;
+  color: #ffffff;
+  font-family: 'Replica Std', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  text-align: center;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Override button text to always say "Read the Report" */
+.cu-banner--report_summary .banner__sidebar .field--name-field-report-pdf a::after {
+  content: 'Read the Report';
+}
+
+.cu-banner--report_summary .banner__sidebar .field--name-field-report-pdf a {
+  font-size: 0;
+}
+
+.cu-banner--report_summary .banner__sidebar .field--name-field-report-pdf a::after {
+  font-size: 14px;
+}
+
+.cu-banner--report_summary .banner__sidebar .report-download:hover,
+.cu-banner--report_summary .banner__sidebar a[href*=".pdf"]:hover,
+.cu-banner--report_summary .banner__sidebar .field--name-field-report-pdf a:hover {
+  background-color: #8a1515;
+}
+
+/* Breadcrumb styling */
+.cu-banner--report_summary [class*="breadcrumb"] {
+  font-family: 'Replica Std', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0.7;
+  margin-bottom: 2rem;
+}
+
+.cu-banner--report_summary [class*="breadcrumb"] a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Hide current page title in breadcrumbs */
+.cu-banner--report_summary .cu-breadcrumb:not(.breadcrumb-altered) .cu-breadcrumb__item:last-child {
+  display: none;
+}
+
+/* Media positioning - right side */
+.cu-banner--report_summary.cu-banner .cu-banner__media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Desktop media positioning - 50/50 split */
+@media (min-width: 1000px) {
+  .cu-banner--report_summary.cu-banner .cu-banner__media {
+    left: 50%;
+    width: 50%;
+  }
+}
+
+.cu-banner--report_summary.cu-banner .cu-banner__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Mobile title size */
+@media (max-width: 999px) {
+  .cu-banner--report_summary .block-field-block--node--report-summary--title,
+  .cu-banner--report_summary .block-field-block--node--report-summary--title * {
+    font-size: 32px;
+    line-height: 36px;
+  }
+}

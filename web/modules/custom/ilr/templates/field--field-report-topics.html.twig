@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Theme override for the report topics field.
+ */
+#}
+<ul{{ attributes.addClass('report-topics') }}>
+  {% for item in items %}
+    <li{{ item.attributes.addClass('report-topics__item') }}>
+      <span class="report-topics__link">{{ item.content }}</span>
+    </li>
+  {% endfor %}
+</ul>

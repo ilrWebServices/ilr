@@ -38,6 +38,17 @@ third_party_settings:
           text_align: left
           full_bleed: false
         components:
+          26c5ec80-4c2a-486d-9206-45f4caf49eac:
+            uuid: 26c5ec80-4c2a-486d-9206-45f4caf49eac
+            region: banner
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: 0
+            additional: {  }
           cba962d8-8d80-46a0-8bd2-f24d8bfd5536:
             uuid: cba962d8-8d80-46a0-8bd2-f24d8bfd5536
             region: banner
@@ -56,6 +67,23 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 1
             additional: {  }
+          report-topics-field:
+            uuid: report-topics-field
+            region: banner
+            configuration:
+              id: 'field_block:node:report_summary:field_report_topics'
+              label: Topics
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
           0395edef-fdc2-4166-ba11-d770ba19aa3b:
             uuid: 0395edef-fdc2-4166-ba11-d770ba19aa3b
             region: banner
@@ -64,18 +92,7 @@ third_party_settings:
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-            weight: 2
-            additional: {  }
-          26c5ec80-4c2a-486d-9206-45f4caf49eac:
-            uuid: 26c5ec80-4c2a-486d-9206-45f4caf49eac
-            region: top
-            configuration:
-              id: system_breadcrumb_block
-              label: Breadcrumbs
-              label_display: '0'
-              provider: system
-              context_mapping: {  }
-            weight: 0
+            weight: 3
             additional: {  }
           ee3862f3-e8f9-4a3f-8610-f0a33055873f:
             uuid: ee3862f3-e8f9-4a3f-8610-f0a33055873f

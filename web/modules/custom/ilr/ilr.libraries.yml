@@ -23,3 +23,8 @@ ilr_webform_datalayer:
     js/ilr_webform_datalayer.js: {}
   dependencies:
     - core/drupal
+report_summary:
+  version: 1.x
+  css:
+    theme:
+      css/report-summary.css: {}

@@ -759,6 +759,31 @@ function ilr_preprocess_node__page__alt(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for node templates.
+ */
+function ilr_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  
+  // Attach Report Summary CSS library for report_summary content type.
+  if ($node->bundle() === 'report_summary') {
+    $variables['#attached']['library'][] = 'ilr/report_summary';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for layout templates.
+ */
+function ilr_preprocess_layout(&$variables) {
+  // Add content type specific class to banner layout for report_summary.
+  if (isset($variables['content']['#entity']) && $variables['content']['#entity'] instanceof NodeInterface) {
+    $node = $variables['content']['#entity'];
+    if ($node->bundle() === 'report_summary' && isset($variables['attributes']['class'])) {
+      $variables['attributes']['class'][] = 'cu-banner--report_summary';
+    }
+  }
+}
+
+/**
  * Implements template_preprocess_collection().
  */
 function ilr_preprocess_collection__subsite_blog__alt(&$variables) {
