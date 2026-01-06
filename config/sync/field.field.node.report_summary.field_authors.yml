@@ -1,4 +1,4 @@
-uuid: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d
+uuid: 026b621d-5964-4a19-b83f-a98810220201
 langcode: en
 status: true
 dependencies:
@@ -13,7 +13,7 @@ bundle: report_summary
 label: Author(s)
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -21,8 +21,4 @@ settings:
   handler_settings:
     target_bundles:
       author: author
-    sort:
-      field: _none
-    auto_create: false
-    auto_create_bundle: ''
 field_type: entity_reference

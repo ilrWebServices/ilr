@@ -1,13 +1,7 @@
-uuid: 2d3e4f5a-6b7c-8d9e-0f1a-2b3c4d5e6f7a
+uuid: c97acd29-4e75-4cdf-8f5f-8692a8d651ef
 langcode: en
 status: true
-dependencies:
-  module:
-    - menu_ui
-third_party_settings:
-  menu_ui:
-    available_menus: {  }
-    parent: ''
+dependencies: {  }
 name: 'Report summary'
 type: report_summary
 description: 'A summary of a report with associated PDF files.'

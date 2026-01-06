@@ -1,4 +1,4 @@
-uuid: 7c8d9e0f-1a2b-3c4d-5e6f-7a8b9c0d1e2f
+uuid: 609546ed-3d7d-41dc-b98d-a571aed96d4b
 langcode: en
 status: true
 dependencies:
@@ -13,9 +13,9 @@ field_name: field_sections
 entity_type: node
 bundle: report_summary
 label: Sections
-description: ''
+description: 'Content sections for this report.'
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -23,9 +23,7 @@ settings:
   handler_settings:
     target_bundles:
       section: section
-    negate: 0
     target_bundles_drag_drop:
       section:
-        weight: 0
         enabled: true
 field_type: entity_reference_revisions

@@ -1,4 +1,4 @@
-uuid: 2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e
+uuid: 9dcf3f8b-ea13-4feb-9054-30ecd21d622e
 langcode: en
 status: true
 dependencies:
@@ -10,7 +10,7 @@ field_name: field_emphasized_title_text
 entity_type: node
 bundle: report_summary
 label: 'Emphasized title text'
-description: 'If this text matches a portion of the title, it will be wrapped in bold when displayed in report listings/carousels.'
+description: 'Text from the title that should be emphasized (wrapped in <strong> tags). If this text matches a portion of the title, it will be automatically wrapped when rendered in cards.'
 required: false
 translatable: true
 default_value: {  }

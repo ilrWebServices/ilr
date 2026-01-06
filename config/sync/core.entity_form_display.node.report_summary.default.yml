@@ -1,20 +1,23 @@
-uuid: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f
+uuid: ed5e1ce6-a42f-481c-b42a-d1cb61ca2ce9
 langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.report_summary.field_address
     - field.field.node.report_summary.field_authors
+    - field.field.node.report_summary.field_cta
+    - field.field.node.report_summary.field_document
     - field.field.node.report_summary.field_emphasized_title_text
     - field.field.node.report_summary.field_published_date
-    - field.field.node.report_summary.field_report_files
-    - field.field.node.report_summary.field_report_state
-    - field.field.node.report_summary.field_report_topic
     - field.field.node.report_summary.field_representative_image
     - field.field.node.report_summary.field_sections
+    - field.field.node.report_summary.field_topics
+    - field.field.node.report_summary.layout_builder__layout
     - node.type.report_summary
   module:
     - address
     - datetime
+    - link
     - media_library
     - media_library_edit
     - paragraphs
@@ -30,6 +33,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_address:
+    type: address_default
+    weight: 5
+    region: content
+    settings:
+      wrapper_type: fieldset
+    third_party_settings: {  }
   field_authors:
     type: entity_reference_autocomplete
     weight: 9
@@ -40,9 +50,25 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_cta:
+    type: link_default
+    weight: 10
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: 'Read the Report'
+    third_party_settings: {  }
+  field_document:
+    type: media_library_widget
+    weight: 6
+    region: content
+    settings:
+      media_types:
+        - file
+    third_party_settings: {  }
   field_emphasized_title_text:
     type: string_textfield
-    weight: 2
+    weight: 1
     region: content
     settings:
       size: 60
@@ -51,27 +77,6 @@ content:
   field_published_date:
     type: datetime_default
     weight: 10
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_report_files:
-    type: media_library_widget
-    weight: 8
-    region: content
-    settings:
-      media_types: {  }
-    third_party_settings:
-      media_library_edit:
-        show_edit: '1'
-  field_report_state:
-    type: address_default
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_report_topic:
-    type: options_select
-    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -103,6 +108,21 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: '0'
     third_party_settings: {  }
+  field_topics:
+    type: entity_reference_autocomplete
+    weight: 7
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  ief_collection_items:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   langcode:
     type: language_select
     weight: 1
@@ -118,7 +138,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 11
+    weight: 14
     region: content
     settings:
       display_label: true
@@ -141,6 +161,12 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
+  layout_builder__layout: true
   promote: true
   sticky: true

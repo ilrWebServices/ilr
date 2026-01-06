@@ -1,4 +1,4 @@
-uuid: 8b9c0d1e-2f3a-4b5c-6d7e-8f9a0b1c2d3e
+uuid: 58831709-9bfa-46e3-81f3-10b8c26faad3
 langcode: en
 status: true
 dependencies:
@@ -14,7 +14,7 @@ bundle: report_summary
 label: 'Published Date'
 description: 'The published date for this report.'
 required: true
-translatable: false
+translatable: true
 default_value:
   -
     default_date_type: now

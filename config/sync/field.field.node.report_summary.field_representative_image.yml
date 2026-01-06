@@ -1,4 +1,4 @@
-uuid: 0f1a2b3c-4d5e-6f7a-8b9c-0d1e2f3a4b5c
+uuid: 0857b624-74e1-4d7b-955c-c3c86223b679
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ field_name: field_representative_image
 entity_type: node
 bundle: report_summary
 label: 'Representative image'
-description: 'This image is used when displaying this report in listings and carousels.'
+description: 'Image for the report banner.'
 required: false
 translatable: true
 default_value: {  }
@@ -21,9 +21,4 @@ settings:
   handler_settings:
     target_bundles:
       image: image
-    sort:
-      field: _none
-      direction: ASC
-    auto_create: false
-    auto_create_bundle: image
 field_type: entity_reference
