@@ -9,6 +9,11 @@
 <div class="banner__content">
   {{ content.banner }}
 </div>
+{% if content.sidebar %}
+<div class="banner__sidebar">
+  {{ content.sidebar }}
+</div>
+{% endif %}
 {% endset %}
 
 {% set attributes = attributes.addClass('cu-colorscheme--' ~ settings.color_scheme) %}

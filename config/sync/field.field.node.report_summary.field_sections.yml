@@ -1,0 +1,64 @@
+uuid: 00000000-0000-0000-0000-000000000014
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sections
+    - node.type.report_summary
+    - paragraphs.paragraphs_type.section
+  module:
+    - entity_reference_revisions
+id: node.report_summary.field_sections
+field_name: field_sections
+entity_type: node
+bundle: report_summary
+label: Sections
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      section: section
+    negate: 0
+    target_bundles_drag_drop:
+      collection_listing:
+        weight: 13
+        enabled: false
+      deck:
+        weight: 14
+        enabled: false
+      form:
+        weight: 15
+        enabled: false
+      image:
+        weight: 16
+        enabled: false
+      person:
+        weight: 17
+        enabled: false
+      promo:
+        weight: 18
+        enabled: false
+      referenced_entity:
+        weight: 19
+        enabled: false
+      rich_text:
+        weight: 20
+        enabled: false
+      section:
+        weight: 21
+        enabled: true
+      simple_collection_listing:
+        weight: 22
+        enabled: false
+      testimonial:
+        weight: 23
+        enabled: false
+      video:
+        weight: 24
+        enabled: false
+field_type: entity_reference_revisions

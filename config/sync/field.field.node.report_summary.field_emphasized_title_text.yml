@@ -1,0 +1,19 @@
+uuid: 00000000-0000-0000-0000-000000000010
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_emphasized_title_text
+    - node.type.report_summary
+id: node.report_summary.field_emphasized_title_text
+field_name: field_emphasized_title_text
+entity_type: node
+bundle: report_summary
+label: 'Emphasized title text'
+description: 'A string that, if it matches a portion of the title, will be wrapped with <strong> when rendered in cards.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

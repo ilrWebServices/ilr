@@ -1,0 +1,262 @@
+uuid: 00000000-0000-0000-0000-000000000021
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.report_summary.field_address
+    - field.field.node.report_summary.field_authors
+    - field.field.node.report_summary.field_emphasized_title_text
+    - field.field.node.report_summary.field_published_date
+    - field.field.node.report_summary.field_report_pdf
+    - field.field.node.report_summary.field_report_topics
+    - field.field.node.report_summary.field_representative_image
+    - field.field.node.report_summary.field_sections
+    - node.type.report_summary
+  module:
+    - address
+    - datetime
+    - entity_reference_revisions
+    - ilr
+    - layout_builder
+    - layout_discovery
+    - media
+    - system
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: true
+    sections:
+      -
+        layout_id: banner
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          color_scheme: dark
+          hide_frame: false
+          text_align: left
+          full_bleed: false
+        components:
+          cba962d8-8d80-46a0-8bd2-f24d8bfd5536:
+            uuid: cba962d8-8d80-46a0-8bd2-f24d8bfd5536
+            region: banner
+            configuration:
+              id: 'field_block:node:report_summary:title'
+              label: Title
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          0395edef-fdc2-4166-ba11-d770ba19aa3b:
+            uuid: 0395edef-fdc2-4166-ba11-d770ba19aa3b
+            region: banner
+            configuration:
+              id: 'extra_field_block:node:report_summary:extra_field_ilr_section_navigation'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 2
+            additional: {  }
+          26c5ec80-4c2a-486d-9206-45f4caf49eac:
+            uuid: 26c5ec80-4c2a-486d-9206-45f4caf49eac
+            region: top
+            configuration:
+              id: system_breadcrumb_block
+              label: Breadcrumbs
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+            weight: 0
+            additional: {  }
+          ee3862f3-e8f9-4a3f-8610-f0a33055873f:
+            uuid: ee3862f3-e8f9-4a3f-8610-f0a33055873f
+            region: media
+            configuration:
+              id: 'field_block:node:report_summary:field_representative_image'
+              label: 'Representative Image'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          sidebar-published-date:
+            uuid: sidebar-published-date
+            region: sidebar
+            configuration:
+              id: 'field_block:node:report_summary:field_published_date'
+              label: 'Published Date'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: datetime_default
+                label: above
+                settings:
+                  timezone_override: ''
+                  format_type: medium
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          sidebar-authors:
+            uuid: sidebar-authors
+            region: sidebar
+            configuration:
+              id: 'field_block:node:report_summary:field_authors'
+              label: Author(s)
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          sidebar-pdf:
+            uuid: sidebar-pdf
+            region: sidebar
+            configuration:
+              id: 'field_block:node:report_summary:field_report_pdf'
+              label: 'Download Report'
+              label_display: visible
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: 'Report sections'
+          context_mapping: {  }
+        components:
+          7ab5d735-5fc6-4a5c-b4a3-a52e775d5f16:
+            uuid: 7ab5d735-5fc6-4a5c-b4a3-a52e775d5f16
+            region: content
+            configuration:
+              id: 'field_block:node:report_summary:field_sections'
+              label: Sections
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: node.report_summary.default
+targetEntityType: node
+bundle: report_summary
+mode: default
+content:
+  extra_field_ilr_section_navigation:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: banner
+  field_address:
+    type: address_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_authors:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_emphasized_title_text:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_published_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_report_pdf:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_report_topics:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_representative_image:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 100
+    region: content
+  field_sections:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 99
+    region: content
+hidden:
+  langcode: true
+  layout_builder__layout: true
+  search_api_excerpt: true
