@@ -6,7 +6,6 @@ dependencies:
     - field.field.node.report_summary.field_address
     - field.field.node.report_summary.field_authors
     - field.field.node.report_summary.field_cta
-    - field.field.node.report_summary.field_document
     - field.field.node.report_summary.field_emphasized_title_text
     - field.field.node.report_summary.field_published_date
     - field.field.node.report_summary.field_representative_image
@@ -31,6 +30,7 @@ third_party_settings:
         layout_id: report_summary_banner
         layout_settings:
           label: ''
+          background_image: ''
         components:
           0f79ab04-b76e-409e-9c15-38480bb8b752:
             uuid: 0f79ab04-b76e-409e-9c15-38480bb8b752
@@ -124,16 +124,20 @@ third_party_settings:
             uuid: ce4aa4e3-6bb3-43cc-a492-b3354bdf6773
             region: banner_sidebar
             configuration:
-              id: 'field_block:node:report_summary:field_document'
+              id: 'field_block:node:report_summary:field_cta'
               label: ''
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
               formatter:
-                type: entity_reference_label
+                type: link
                 label: hidden
                 settings:
-                  link: true
+                  trim_length: null
+                  url_only: false
+                  url_plain: false
+                  rel: ''
+                  target: ''
             weight: 2
             additional: {  }
           5ce25a14-bf66-458b-b231-53084df7ee7d:
@@ -261,6 +265,9 @@ hidden:
   field_address: true
   field_cta: true
   field_document: true
+  field_report_files: true
+  field_report_state: true
+  field_report_topic: true
   field_representative_image: true
   field_topics: true
   langcode: true

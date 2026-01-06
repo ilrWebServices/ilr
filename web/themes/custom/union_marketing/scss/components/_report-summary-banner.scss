@@ -1,0 +1,236 @@
+/**
+ * Report Summary Banner Layout
+ * Matches Figma design with full background image, 50/50 split, dark overlay on left, white sidebar card on right
+ */
+
+.report-summary-banner {
+  position: relative;
+  min-height: 600px;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+
+  // Background image - full width, positioned absolutely
+  &__image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Dark overlay - covers full width with gradient from left
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 40%, rgba(0, 0, 0, 0.2) 70%, rgba(0, 0, 0, 0) 100%);
+    z-index: 1;
+  }
+
+  // Container for content and sidebar
+  &__container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 60px 103px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  // Main content area - left side (50%)
+  &__content {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  &__main {
+    color: #fff;
+
+    // Breadcrumbs
+    .breadcrumb {
+      margin-bottom: 20px;
+      
+      a, span {
+        color: rgba(255, 255, 255, 0.7);
+        font-family: 'Replica Std', sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+    }
+
+    // Eyebrow (REPORT)
+    .report-eyebrow {
+      color: #fff;
+      font-family: 'Replica Std', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    // Title
+    h1, .field--name-title {
+      color: #fff;
+      font-family: 'FuturaBT', sans-serif;
+      font-size: 50px;
+      font-weight: 900;
+      line-height: 56px;
+      margin-bottom: 30px;
+
+      strong {
+        font-weight: 900;
+      }
+    }
+
+    // Topics
+    .field--name-field-topics {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+
+      .field__item {
+        border-radius: 100px;
+        border: 1px solid #BABABA;
+        background: rgba(0, 0, 0, 0.50);
+        padding: 8px 20px;
+
+        a {
+          color: #fff;
+          text-decoration: none;
+          font-family: 'Replica Std', sans-serif;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  // Sidebar card - white box overlaying bottom right
+  &__sidebar {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 350px;
+    background: #fff;
+    padding: 40px 30px;
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.14);
+    z-index: 3;
+
+    .field {
+      margin-bottom: 24px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .field__label {
+      font-family: 'Replica Std', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #222;
+      margin: 0 0 8px 0;
+    }
+
+    .field__item {
+      font-family: 'Replica Std', sans-serif;
+      font-size: 16px;
+      color: #222;
+      line-height: 1.5;
+
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+    }
+
+    // CTA button styling
+    .field--name-field-cta {
+      a {
+        display: inline-block;
+        background: #b31b1b;
+        color: #fff;
+        font-family: 'Replica Std', sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+        padding: 12px 24px;
+        text-decoration: none;
+        border: none;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background: #8b1515;
+        }
+
+        &:focus {
+          outline: 2px solid #b31b1b;
+          outline-offset: 2px;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 1024px) {
+  .report-summary-banner {
+    &__container {
+      padding: 40px;
+      flex-direction: column;
+    }
+
+    &__content {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+
+    &__overlay {
+      width: 100%;
+    }
+
+    &__sidebar {
+      position: static;
+      width: 100%;
+      margin-top: 40px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .report-summary-banner {
+    min-height: 400px;
+
+    &__container {
+      padding: 20px;
+    }
+
+    &__main {
+      h1, .field--name-title {
+        font-size: 36px;
+        line-height: 42px;
+      }
+    }
+
+    &__sidebar {
+      padding: 30px 20px;
+    }
+  }
+}

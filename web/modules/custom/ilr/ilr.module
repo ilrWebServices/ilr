@@ -103,6 +103,11 @@ function ilr_theme($existing, $type, $theme, $path) {
         'event' => [],
       ],
     ],
+    'report_summary_banner' => [
+      'render element' => 'content',
+      'template' => 'report-summary-banner',
+      'path' => \Drupal::service('extension.list.module')->getPath('ilr') . '/templates/layout',
+    ],
   ];
 }
 

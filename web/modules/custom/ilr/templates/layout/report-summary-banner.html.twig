@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Template for Report Summary Banner Layout.
+ * Matches Figma design with full background image, dark overlay on left, and sidebar card.
+ */
+#}
+{%
+  set classes = [
+    'report-summary-banner',
+  ]
+%}
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+    
+    {# Background image - renders as actual image element for proper display #}
+    {% if content.banner_image %}
+      <div class="report-summary-banner__image-wrapper">
+        {{ content.banner_image }}
+      </div>
+    {% endif %}
+    
+    {# Dark overlay on left side for text readability #}
+    <div class="report-summary-banner__overlay"></div>
+    
+    <div class="report-summary-banner__container">
+      
+      {# Main content area (50% width) - left side with dark overlay #}
+      {% if content.banner_main %}
+        <div class="report-summary-banner__content">
+          <div class="report-summary-banner__main">
+            {{ content.banner_main }}
+          </div>
+        </div>
+      {% endif %}
+
+      {# Sidebar metadata card - overlays bottom right of image #}
+      {% if content.banner_sidebar %}
+        <div class="report-summary-banner__sidebar">
+          {{ content.banner_sidebar }}
+        </div>
+      {% endif %}
+      
+    </div>
+
+  </div>
+{% endif %}

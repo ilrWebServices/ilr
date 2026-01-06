@@ -6,7 +6,6 @@ dependencies:
     - field.field.node.report_summary.field_address
     - field.field.node.report_summary.field_authors
     - field.field.node.report_summary.field_cta
-    - field.field.node.report_summary.field_document
     - field.field.node.report_summary.field_emphasized_title_text
     - field.field.node.report_summary.field_published_date
     - field.field.node.report_summary.field_representative_image
@@ -167,6 +166,9 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_report_files: true
+  field_report_state: true
+  field_report_topic: true
   layout_builder__layout: true
   promote: true
   sticky: true

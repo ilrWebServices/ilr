@@ -1,0 +1,19 @@
+uuid: cac3764e-54b2-4434-addf-1e3bbd42798a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subheading
+    - paragraphs.paragraphs_type.slide
+id: paragraph.slide.field_subheading
+field_name: field_subheading
+entity_type: paragraph
+bundle: slide
+label: 'Eyebrow Heading'
+description: 'Optional smaller text that appears above the main heading.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,19 @@
+uuid: b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.tabs
+id: paragraph.tabs.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: tabs
+label: Heading
+description: 'The main heading displayed above the tabs component.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
