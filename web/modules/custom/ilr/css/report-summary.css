@@ -77,23 +77,6 @@
   order: 4;
 }
 
-/* REPORT label above title - mobile only */
-@media (max-width: 999px) {
-  .cu-banner--report_summary .block-field-block--node--report-summary--title::before {
-    content: 'REPORT';
-    font-family: 'Replica Std', sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 20px;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: #ffffff;
-    opacity: 0.7;
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-}
-
 /* Title styling - 50px FuturaBT ExtraBlack */
 .cu-banner--report_summary .block-field-block--node--report-summary--title,
 .cu-banner--report_summary .block-field-block--node--report-summary--title * {
@@ -443,7 +426,7 @@
   opacity: 0.7;
 }
 
-/* Down arrow after each link - from Figma design system */
+/* Down arrow after each link */
 .layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] a.ilr-section-nav__link::after {
   content: '';
   display: inline-block;
