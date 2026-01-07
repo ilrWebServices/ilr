@@ -243,8 +243,9 @@
   --frame-color: #ccc;
   --frame-width: 16px;
 
-  .cu-image,
-  iframe {
+  &.cu-component--rich-text .cu-media {
+    --cu-line-height: 0;
+
     padding: var(--frame-width) var(--frame-width) var(--frame-width) 0;
     background:
       linear-gradient(var(--frame-color) 0 0) top right / 75% var(--frame-width),
