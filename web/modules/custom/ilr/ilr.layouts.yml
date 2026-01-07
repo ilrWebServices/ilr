@@ -15,3 +15,16 @@ banner:
       label: Media
     sidebar:
       label: Sidebar
+banner_col:
+  label: 'Banner - Two Column wide'
+  category: 'ILR'
+  class: '\Drupal\ilr\Plugin\Layout\BannerLayout'
+  template: templates/banner2col
+  default_region: banner
+  icon_map:
+    - [banner]
+  regions:
+    left:
+      label: Banner left
+    right:
+      label: Banner right
