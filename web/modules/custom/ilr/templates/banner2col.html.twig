@@ -1,0 +1,27 @@
+{% set rendered_content %}
+<div class="banner__content">
+  <div class="banner__left">
+    {{ content.left }}
+  </div>
+  <div class="banner__right">
+    {{ content.right }}
+  </div>
+</div>
+{% endset %}
+
+<div class="layout-banner layout-banner--2col">
+{% set attributes = attributes.addClass('cu-colorscheme--' ~ settings.color_scheme) %}
+{# {% set attributes = attributes.addClass('cu-banner--page') %} #}
+
+{% if content['#entity'] and content['#entity'].bundle() %}
+{% set type = content['#entity'].getEntityTypeId() %}
+{% set bundle = content['#entity'].bundle() %}
+{% set attributes = attributes.addClass('cu-banner--' ~ type) %}
+{% set attributes = attributes.addClass('cu-banner--' ~ bundle) %}
+{% endif %}
+
+{% include '@union/_banner.twig' with {
+  attributes: attributes,
+  content: rendered_content
+} only %}
+</div>
