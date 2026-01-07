@@ -1,5 +1,5 @@
 .node--eventalicious.node--view-mode-full {
-  max-width: 1120px;
+  max-width: 1128px;
   margin: 0 auto;
 
   .layout--twocol-section--67-33 {
@@ -185,7 +185,9 @@
   }
 
   .block-field-block--node--event-landing-page--event-date {
-    --cu-font-weight: 400;
+    --cu-font-weight: 700;
+    --cu-font-size: var(--cu-ms-2);
+    margin-bottom: var(--cu-vr0);
   }
 
   .cu-section.field--field-sponsor {
@@ -223,28 +225,20 @@
   }
 
   h1.cu-heading {
-    --cu-font-family: 'futura-pt';
-    --cu-font-size: var(--cu-ms5);
-    --cu-line-height: 1;
-    text-transform: uppercase;
-    margin-top: -.5em;
+    --cu-font-weight: 700;
+    --cu-line-height: 1.2;
+    --cu-font-size: var(--cu-ms7);
     margin-bottom: 0;
-
-    @include breakpoint(md) {
-      --cu-font-size: var(--cu-ms10);
-    }
   }
 
-  .loquacious h1.cu-heading {
-    --cu-font-family: revert;
-    --cu-line-height: 1.2;
-    text-transform: revert;
-    --cu-font-size: var(--cu-ms7);
+  .field--field-series-name {
+    --cu-font-size: var(--cu-ms-2);
+    --cu-font-weight: 700;
+    text-transform: uppercase;
   }
 
   .field--body {
     --cu-font-weight: 400;
-    margin-top: -1em;
   }
 
   // The body field is displayed twice on the full page
