@@ -26,7 +26,13 @@
 
 @media (max-width: 999px) {
   .cu-banner--report_summary.cu-banner::before {
-    background: rgba(0, 0, 0, 0.75);
+    display: none;
+  }
+  
+  .cu-banner--report_summary.cu-banner {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -43,6 +49,15 @@
 @media (min-width: 1000px) {
   .cu-banner--report_summary.cu-banner .cu-banner__content {
     padding: 4rem 3rem;
+  }
+}
+
+@media (max-width: 999px) {
+  .cu-banner--report_summary.cu-banner .cu-banner__content {
+    background-color: #222222;
+    min-height: auto;
+    padding: 2rem 1.5rem;
+    order: 1;
   }
 }
 
@@ -152,11 +167,9 @@
   .cu-banner--report_summary .banner__sidebar {
     position: relative;
     z-index: 10;
-    bottom: 0;
-    right: 0;
-    width: 400px;
-    max-width: calc(100% - 6rem);
-    top: 50px
+    width: 350px;
+    top: 28rem;
+    left: calc(50% - 175px);
   }
 }
 
@@ -167,7 +180,7 @@
     z-index: 10;
     bottom: -1rem;
     right: 1rem;
-    width: 280px;
+    width: 300px;
     max-width: calc(100% - 6rem);
   }
 }
@@ -287,6 +300,15 @@
   width: 100%;
   height: 100%;
   z-index: 0;
+}
+
+/* Mobile media positioning - stacked below content */
+@media (max-width: 999px) {
+  .cu-banner--report_summary.cu-banner .cu-banner__media {
+    position: relative;
+    height: 400px;
+    order: 2;
+  }
 }
 
 /* Desktop media positioning - 50/50 split */
