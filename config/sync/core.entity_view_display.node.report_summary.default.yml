@@ -123,11 +123,11 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
               formatter:
-                type: datetime_default
+                type: datetime_custom
                 label: above
                 settings:
                   timezone_override: ''
-                  format_type: medium
+                  date_format: 'D, m/d/Y'
                 third_party_settings: {  }
             weight: 1
             additional: {  }
