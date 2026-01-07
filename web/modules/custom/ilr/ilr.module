@@ -799,6 +799,25 @@ function ilr_preprocess_layout(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for item list templates.
+ */
+function ilr_preprocess_item_list(&$variables) {
+  // Pass the current node to section navigation item lists.
+  if (isset($variables['context']['collection']) || 
+      (isset($variables['theme_hook_original']) && $variables['theme_hook_original'] === 'item_list__section_navigation')) {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    
+    if (is_numeric($node)) {
+      $node = \Drupal::entityTypeManager()->getStorage('node')->load($node);
+    }
+    
+    if ($node instanceof NodeInterface) {
+      $variables['node'] = $node;
+    }
+  }
+}
+
+/**
  * Implements template_preprocess_collection().
  */
 function ilr_preprocess_collection__subsite_blog__alt(&$variables) {

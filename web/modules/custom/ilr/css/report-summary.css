@@ -328,3 +328,129 @@
     line-height: 36px;
   }
 }
+
+/* Section Navigation - Report Summary Only */
+.layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] {
+  background-color: #f5f5f5;
+  padding: 1.5rem 3rem;
+  margin: 0;
+}
+
+@media (max-width: 999px) {
+  .layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] {
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* Mobile select dropdown - shown below 1000px */
+.layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] div.ilr-section-nav__mobile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 1000px) {
+  .layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] div.ilr-section-nav__mobile {
+    display: none;
+  }
+}
+
+.layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] label.ilr-section-nav__label {
+  font-family: 'Replica Std', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #000000;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] select.ilr-section-nav__select {
+  flex: 1;
+  max-width: 300px;
+  padding: 8px 32px 8px 12px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 0;
+  font-family: 'Replica Std', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] select.ilr-section-nav__select:focus {
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}
+
+/* Desktop horizontal list - shown at 1000px and above */
+.layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] nav.ilr-section-nav__desktop {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] nav.ilr-section-nav__desktop {
+    display: block;
+  }
+}
+
+@media (max-width: 999px) {
+  .layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] nav.ilr-section-nav__desktop {
+    display: none;
+  }
+}
+
+.layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] ul.ilr-section-nav__list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] li.ilr-section-nav__item {
+  margin: 0;
+  padding: 0;
+}
+
+.layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] a.ilr-section-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #000000;
+  text-decoration: none;
+  font-family: 'Replica Std', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
+}
+
+.layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] a.ilr-section-nav__link:hover {
+  opacity: 0.7;
+}
+
+/* Down arrow after each link - from Figma design system */
+.layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] a.ilr-section-nav__link::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10 3C10.2761 3 10.5 3.22386 10.5 3.5V14.7929L15.1464 10.1464C15.3417 9.95118 15.6583 9.95118 15.8536 10.1464C16.0488 10.3417 16.0488 10.6583 15.8536 10.8536L10.3536 16.3536C10.1583 16.5488 9.84171 16.5488 9.64645 16.3536L4.14645 10.8536C3.95118 10.6583 3.95118 10.3417 4.14645 10.1464C4.34171 9.95118 4.65829 9.95118 4.85355 10.1464L9.5 14.7929V3.5C9.5 3.22386 9.72386 3 10 3Z' fill='black'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}

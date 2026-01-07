@@ -28,3 +28,7 @@ report_summary:
   css:
     theme:
       css/report-summary.css: {}
+  js:
+    js/section-navigation.js: {}
+  dependencies:
+    - core/drupal
