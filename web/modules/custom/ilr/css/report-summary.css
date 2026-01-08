@@ -276,7 +276,6 @@
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: #ffffff;
-  opacity: 0.7;
   margin-bottom: 2rem;
 }
 
@@ -440,10 +439,6 @@
   letter-spacing: 1.2px;
   text-transform: uppercase;
   transition: opacity 0.2s ease;
-}
-
-.layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] a.ilr-section-nav__link:hover {
-  opacity: 0.7;
 }
 
 /* Down arrow after each link */
