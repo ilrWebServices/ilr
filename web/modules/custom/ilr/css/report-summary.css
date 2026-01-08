@@ -43,12 +43,11 @@
   display: grid;
   align-items: center;
   padding: 3rem;
-  min-height: 500px;
 }
 
 @media (min-width: 1000px) {
   .cu-banner--report_summary.cu-banner .cu-banner__content {
-    padding: 4rem 3rem;
+    padding: 0rem 3rem;
   }
 }
 
@@ -267,7 +266,6 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #ffffff;
-  margin-bottom: 2rem;
 }
 
 .cu-banner--report_summary [class*="breadcrumb"] a {
