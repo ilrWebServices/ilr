@@ -1,0 +1,38 @@
+uuid: 3e7f9a2b-5c8d-4f1e-9b6a-7d4c3e2f1a0b
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: report_summary_listing
+label: 'Report listing'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  evergreen:
+    enabled: true
+  list_styles:
+    enabled: true
+    list_styles:
+      carousel: carousel
+      grid: 0
+      grid-compact: 0
+      list-compact: 0
+      grid-bricks: 0
+      grid-bricks--reversed: 0
+      grid-featured: 0
+      grid-featured--wide: 0
+      list-summary: 0
+      banner: 0
+      tabular-list: 0
+      select-list: 0
+      main_content: 0
+      link-cloud: 0
+    columns_enabled: 0
+    columns_min: ''
+    columns_max: ''
+  report_summary_listing:
+    enabled: true
+  union_section_settings:
+    enabled: true
