@@ -78,9 +78,10 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
               formatter:
-                type: entity_reference_rss_category
+                type: entity_reference_label
                 label: hidden
-                settings: {  }
+                settings:
+                  link: false
                 third_party_settings: {  }
             weight: 2
             additional: {  }
