@@ -33,9 +33,9 @@ third_party_settings:
           label: ''
           context_mapping: {  }
           color_scheme: dark
-          hide_frame: false
+          hide_frame: true
           text_align: left
-          full_bleed: false
+          full_bleed: true
         components:
           26c5ec80-4c2a-486d-9206-45f4caf49eac:
             uuid: 26c5ec80-4c2a-486d-9206-45f4caf49eac
