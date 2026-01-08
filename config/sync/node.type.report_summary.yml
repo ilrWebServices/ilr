@@ -1,0 +1,17 @@
+uuid: 00000000-0000-0000-0000-000000000002
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Report summary'
+type: report_summary
+description: 'Use <em>Report summary</em> to create report detail pages with sections, topics, and downloadable PDFs'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

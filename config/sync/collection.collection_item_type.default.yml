@@ -15,5 +15,6 @@ allowed_bundles:
   - node.event_landing_page
   - node.media_mention
   - node.page
+  - node.report_summary
   - node.story
 attributes_access: administrators
