@@ -92,13 +92,13 @@
   order: 4;
 }
 
-/* Title styling - 50px FuturaBT ExtraBlack */
+/* Title styling - FuturaBT ExtraBlack */
 .cu-banner--report_summary .block-field-block--node--report-summary--title,
 .cu-banner--report_summary .block-field-block--node--report-summary--title * {
-  font-family: 'FuturaBT', 'futura-pt', sans-serif;
+  font-family: 'futura-pt', sans-serif;
   font-weight: 900;
-  font-size: 50px;
-  line-height: 56px;
+  font-size: var(--cu-ms7);
+  line-height: 1.12;
   text-transform: uppercase;
   letter-spacing: 0;
   color: #ffffff;
@@ -122,10 +122,9 @@
   display: inline-block;
   padding: 8px 16px;
   border-radius: 100px;
-  font-family: 'Replica Std', sans-serif;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: var(--cu-ms-1);
+  line-height: 1.5;
   color: #ffffff;
   text-decoration: none;
   white-space: nowrap;
@@ -196,11 +195,9 @@
 }
 
 .cu-banner--report_summary .banner__sidebar .field__label {
-  font-family: 'Replica Std', sans-serif;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0;
+  font-size: var(--cu-ms-1);
+  line-height: 1.43;
   color: #000000;
   margin-bottom: 0.25rem;
   display: block;
@@ -208,11 +205,8 @@
 }
 
 .cu-banner--report_summary .banner__sidebar .field__item {
-  font-family: 'Replica Std', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0;
+  font-size: var(--cu-ms-1);
+  line-height: 1.43;
   color: #000000;
   background: none;
 }
@@ -237,10 +231,9 @@
   background-color: #b31b1b;
   border: 2px solid #b31b1b;
   color: #ffffff;
-  font-family: 'Replica Std', sans-serif;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: var(--cu-ms-1);
+  line-height: 1.5;
   text-decoration: none;
   transition: background-color 0.2s ease;
   text-align: center;
@@ -258,7 +251,7 @@
 }
 
 .cu-banner--report_summary .banner__sidebar .field--name-field-report-pdf a::after {
-  font-size: 14px;
+  font-size: var(--cu-ms-1);
 }
 
 .cu-banner--report_summary .banner__sidebar .report-download:hover,
@@ -269,11 +262,9 @@
 
 /* Breadcrumb styling */
 .cu-banner--report_summary [class*="breadcrumb"] {
-  font-family: 'Replica Std', sans-serif;
   font-weight: 700;
-  font-size: 12px;
-  line-height: 20px;
-  letter-spacing: 1.2px;
+  line-height: 1.67;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #ffffff;
   margin-bottom: 2rem;
@@ -326,8 +317,8 @@
 @media (max-width: 999px) {
   .cu-banner--report_summary .block-field-block--node--report-summary--title,
   .cu-banner--report_summary .block-field-block--node--report-summary--title * {
-    font-size: 32px;
-    line-height: 36px;
+    font-size: var(--cu-ms5);
+    line-height: 1.125;
   }
 }
 
@@ -358,11 +349,10 @@
 }
 
 .layout__region--content .cu-x-block.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation div.ilr-section-nav[data-ilr-section-nav] label.ilr-section-nav__label {
-  font-family: 'Replica Std', sans-serif;
   font-weight: 700;
-  font-size: 12px;
-  line-height: 20px;
-  letter-spacing: 1.2px;
+  font-size: var(--cu-ms-2);
+  line-height: 1.67;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #000000;
   margin: 0;
@@ -377,10 +367,8 @@
   color: #000000;
   border: 1px solid #000000;
   border-radius: 0;
-  font-family: 'Replica Std', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: var(--cu-ms-1);
+  line-height: 1.43;
   cursor: pointer;
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
@@ -432,11 +420,10 @@
   gap: 0.5rem;
   color: #000000;
   text-decoration: none;
-  font-family: 'Replica Std', sans-serif;
   font-weight: 700;
-  font-size: 12px;
-  line-height: 20px;
-  letter-spacing: 1.2px;
+  font-size: var(--cu-ms-2);
+  line-height: 1.67;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: opacity 0.2s ease;
 }
