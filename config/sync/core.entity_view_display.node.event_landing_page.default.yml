@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.event_landing_page.behavior_suppress_listing
     - field.field.node.event_landing_page.body
+    - field.field.node.event_landing_page.field_delivery_method
     - field.field.node.event_landing_page.field_keywords
     - field.field.node.event_landing_page.field_metatags
     - field.field.node.event_landing_page.field_registration_form
@@ -455,6 +456,7 @@ content:
     region: content
 hidden:
   behavior_suppress_listing: true
+  field_delivery_method: true
   field_keywords: true
   field_metatags: true
   langcode: true
