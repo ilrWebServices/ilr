@@ -76,8 +76,9 @@ third_party_settings:
               provider: layout_builder
               context_mapping:
                 entity: layout_builder.entity
+                view_mode: view_mode
               formatter:
-                type: string
+                type: entity_reference_rss_category
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
