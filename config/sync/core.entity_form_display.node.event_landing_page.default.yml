@@ -6,6 +6,7 @@ dependencies:
     - core.entity_form_mode.taxonomy_term.mini
     - field.field.node.event_landing_page.behavior_suppress_listing
     - field.field.node.event_landing_page.body
+    - field.field.node.event_landing_page.field_delivery_method
     - field.field.node.event_landing_page.field_keywords
     - field.field.node.event_landing_page.field_metatags
     - field.field.node.event_landing_page.field_registration_form
@@ -71,6 +72,14 @@ content:
     weight: 4
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_delivery_method:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_keywords:
     type: options_buttons
