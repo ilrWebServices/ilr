@@ -1,0 +1,46 @@
+uuid: bec36ac9-5ff9-4a3f-bbf9-b6056d291341
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.card_overlay_item.field_body
+    - field.field.paragraph.card_overlay_item.field_heading
+    - field.field.paragraph.card_overlay_item.field_link
+    - paragraphs.paragraphs_type.card_overlay_item
+  module:
+    - link
+    - text
+id: paragraph.card_overlay_item.default
+targetEntityType: paragraph
+bundle: card_overlay_item
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_heading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true
