@@ -23,6 +23,11 @@ targetEntityType: node
 bundle: report_summary
 mode: compact_media
 content:
+  extra_field_ilr_section_navigation:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_published_date:
     type: datetime_default
     label: hidden
