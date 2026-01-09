@@ -1,0 +1,102 @@
+uuid: 2f85270c-2475-481b-9fd7-b481f26eec0d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.card_overlay.field_body
+    - field.field.paragraph.card_overlay.field_components
+    - field.field.paragraph.card_overlay.field_enlarge_eyebrow_heading
+    - field.field.paragraph.card_overlay.field_heading
+    - field.field.paragraph.card_overlay.field_link
+    - field.field.paragraph.card_overlay.field_media
+    - field.field.paragraph.card_overlay.field_reveal_on_hover
+    - field.field.paragraph.card_overlay.field_subheading
+    - image.style.full
+    - paragraphs.paragraphs_type.card_overlay
+  module:
+    - entity_reference_revisions
+    - link
+    - media
+    - text
+id: paragraph.card_overlay.default
+targetEntityType: paragraph
+bundle: card_overlay
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: expanded
+      link: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_enlarge_eyebrow_heading:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_heading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_media:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: full
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_reveal_on_hover:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_subheading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true
