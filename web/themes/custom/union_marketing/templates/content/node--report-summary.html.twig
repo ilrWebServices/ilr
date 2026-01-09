@@ -1,0 +1,146 @@
+{#
+/**
+ * @file
+ * Theme override for Report Summary nodes.
+ *
+ * This template provides a custom banner/header for Report Summary pages
+ * with emphasized title, breadcrumbs, metadata, and jump links.
+ *
+ * Available variables:
+ * - node: The node entity.
+ * - label: The title of the node.
+ * - content: All node items.
+ * - url: Direct URL of the current node.
+ * - emphasized_title: Title with emphasized text wrapped in <strong> tags.
+ * - breadcrumbs: Breadcrumb navigation.
+ * - page: Flag for full page state.
+ */
+#}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+<article{{ attributes.addClass(classes) }}>
+
+  {% if page %}
+    {# Report Summary Banner/Header #}
+    {% set banner_style = '' %}
+    {% if representative_image_url %}
+      {% set banner_style = 'background-image: url(' ~ representative_image_url ~ ');' %}
+    {% elseif node.field_representative_image.entity %}
+      {# Fallback: Get image URL directly from field if preprocessing failed #}
+      {% set media = node.field_representative_image.entity %}
+      {% if media.field_media_image.entity %}
+        {% set image_uri = media.field_media_image.entity.uri.value %}
+        {% set banner_style = 'background-image: url(' ~ file_url(image_uri) ~ ');' %}
+      {% endif %}
+    {% endif %}
+    <div class="report-summary-banner"{% if banner_style %} style="{{ banner_style }}"{% endif %}>
+      <div class="report-summary-banner__overlay"></div>
+      
+      {# Breadcrumbs - positioned at top of banner #}
+      {% if breadcrumbs %}
+        <nav class="report-summary-banner__breadcrumbs" aria-label="Breadcrumb">
+          {{ breadcrumbs }}
+        </nav>
+      {% endif %}
+      
+      <div class="report-summary-banner__container">
+        <div class="report-summary-banner__content">
+          <div class="report-summary-banner__main">
+              {# Eyebrow #}
+              <div class="report-summary-banner__eyebrow">
+                <span class="cu-eyebrow">Report</span>
+              </div>
+
+              {# Title with emphasized text #}
+              {{ title_prefix }}
+              <h1 class="report-summary-banner__title cu-heading cu-heading--h1">
+                {{ emphasized_title|raw }}
+              </h1>
+              {{ title_suffix }}
+
+              {# Topic Tags #}
+              {% if node.field_report_topic|length > 0 %}
+                <div class="report-summary-banner__topics">
+                  {% for topic in node.field_report_topic %}
+                    {% if topic.entity %}
+                      <span class="field__item">
+                        <a href="{{ path('entity.taxonomy_term.canonical', {'taxonomy_term': topic.entity.id}) }}">
+                          {{ topic.entity.label }}
+                        </a>
+                      </span>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Metadata Sidebar - positioned absolutely relative to banner #}
+      <aside class="report-summary-banner__sidebar">
+              <div class="report-summary-metadata">
+                {# Published Date #}
+                {% if node.field_published_date.value %}
+                  <div class="report-summary-metadata__item">
+                    <h2 class="report-summary-metadata__label">Published</h2>
+                    <div class="report-summary-metadata__value">
+                      {{ node.field_published_date.value|date('F j, Y') }}
+                    </div>
+                  </div>
+                {% endif %}
+
+                {# Authors #}
+                {% if node.field_authors|length > 0 %}
+                  <div class="report-summary-metadata__item">
+                    <h2 class="report-summary-metadata__label">Authors</h2>
+                    <div class="report-summary-metadata__value">
+                      {% for author in node.field_authors %}
+                        {% if author.entity %}
+                          <div class="field__item">
+                            <a href="{{ path('entity.persona.canonical', {'persona': author.entity.id}) }}">
+                              {{ author.entity.label|replace({' - author': ''}) }}
+                            </a>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% endif %}
+
+                {# Read the Report Button #}
+                {% if node.field_report_files|length > 0 %}
+                  <div class="report-summary-metadata__item">
+                    {% set file_media = node.field_report_files.0.entity %}
+                    {% if file_media and file_media.field_media_file.entity %}
+                      <a href="{{ file_url(file_media.field_media_file.entity.uri.value) }}" class="cu-button cu-button--red report-summary-cta" target="_blank" rel="noopener">
+                        Read the Report
+                      </a>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+      </aside>
+    </div>
+
+    {# Jump Links Navigation #}
+    {% if content.ilr_section_navigation|render %}
+      <nav class="report-summary-jump-links" aria-label="Jump to section">
+        {{ content.ilr_section_navigation }}
+      </nav>
+    {% endif %}
+  {% endif %}
+
+  {# Main Content (Layout Builder sections) #}
+  <div{{ content_attributes.addClass('node__content') }}>
+    {{ content|without('field_emphasized_title_text', 'field_published_date', 'field_authors', 'field_report_files', 'field_report_topic', 'field_representative_image', 'ilr_section_navigation') }}
+  </div>
+
+</article>

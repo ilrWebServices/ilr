@@ -1,0 +1,361 @@
+/**
+ * Report Summary Banner and Layout Styles
+ */
+
+.report-summary-banner {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(270deg, rgba(34, 34, 34, 0) 0%, #222 100%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%);
+  }
+  
+  &__container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 60px 103px;
+  }
+  
+  &__breadcrumbs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    padding: 20px 103px;
+    
+    .cu-breadcrumb__item {
+      color: #fff;
+      opacity: 0.7;
+      font-family: 'Replica Std', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      
+      &:not(:last-child)::after {
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 8px;
+        margin: 0 12px;
+        background-image: url("data:image/svg+xml,%3Csvg width='4' height='8' viewBox='0 0 4 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.5 0.5L3.5 4L0.5 7.5' stroke='%23C1B7B1' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        vertical-align: middle;
+      }
+    }
+  }
+  
+  &__content {
+    position: relative;
+    max-width: calc(100% - 410px); // Leave space for sidebar (350px + 60px gap)
+  }
+  
+  &__main {
+    color: #fff;
+  }
+  
+  &__eyebrow {
+    margin-bottom: 20px;
+    
+    .cu-eyebrow {
+      color: #fff;
+      font-family: 'Replica Std', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+  }
+  
+  &__title {
+    color: #fff;
+    font-family: 'FuturaBT', sans-serif;
+    font-size: 50px;
+    font-weight: 900;
+    line-height: 56px;
+    margin-bottom: 30px;
+    
+    strong {
+      display: block;
+      font-weight: 900;
+    }
+  }
+  
+  &__topics {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    
+    .field__item {
+      border-radius: 100px;
+      border: 1px solid var(--Light-Iron, #BABABA);
+      background: rgba(0, 0, 0, 0.50);
+      padding: 8px 20px;
+      
+      a {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+  
+  &__sidebar {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 350px;
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 0;
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.14);
+    z-index: 2;
+  }
+}
+
+.report-summary-metadata {
+  &__item {
+    margin-bottom: 24px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__label {
+    font-family: 'Replica Std', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
+    margin: 0 0 8px 0;
+    line-height: 1.5;
+  }
+  
+  &__value {
+    font-family: 'Replica Std', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #222;
+    line-height: 1.5;
+    
+    .field__item {
+      margin-bottom: 2px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      a {
+      color: #000;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0.32px;
+      text-decoration: none;
+      
+      }
+    }
+  }
+}
+
+// Read the Report button styling
+a.cu-button.cu-button--red.report-summary-cta {
+  display: inline-block;
+  background: #b31b1b;
+  color: #fff;
+  font-family: 'Replica Std', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  padding: 12px 24px;
+  text-decoration: none;
+  border: none;
+  border-radius: 0;
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background: #8b1515;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  &:focus {
+    outline: 2px solid #b31b1b;
+    outline-offset: 2px;
+  }
+}
+
+// Jump links navigation styling for Report Summary
+// Target the block directly using its unique class
+div.block-extra-field-block--node--report-summary--extra-field-ilr-section-navigation {
+  background: #f7f6f6;
+  padding: 16px 0;
+  
+  // Mobile dropdown styles
+  .jump-links-mobile {
+    display: block;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+    
+    .jump-links-label {
+      font-family: 'Replica Std', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #767676;
+      margin-bottom: 8px;
+    }
+    
+    .jump-links-select {
+      width: 100%;
+      padding: 12px 40px 12px 16px;
+      font-family: 'Replica Std', sans-serif;
+      font-size: 14px;
+      color: #222;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 0;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23767676' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      cursor: pointer;
+      
+      &:focus {
+        outline: 2px solid #b31b1b;
+        outline-offset: 2px;
+      }
+    }
+  }
+  
+  // Desktop list styles - hidden on mobile
+  div.cu-page-nav ul.cu-page-nav__list {
+    display: none;
+  }
+  
+  // Desktop breakpoint
+  @media (min-width: 768px) {
+    .jump-links-mobile {
+      display: none;
+    }
+    
+    div.cu-page-nav ul.cu-page-nav__list {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      gap: 50px;
+      list-style: none;
+      
+      li.cu-page-nav__item {
+        position: relative;
+        
+        a.cu-page-nav__link {
+          color: #767676;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          position: relative;
+          padding-bottom: 4px;
+          
+          h4.cu-heading {
+            font-family: 'Replica Std', sans-serif;
+            font-size: 12px;
+            font-weight: normal;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #767676;
+            margin: 0;
+            line-height: 20px;
+            color: var(--Iron, #222);
+            
+            &::after {
+              display: none;
+            }
+          }
+          
+          &::after {
+            content: '↓';
+            font-size: 20px;
+            color: #767676;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 1024px) {
+  .report-summary-banner {
+    &__container {
+      padding: 0 40px 40px;
+    }
+    
+    &__content {
+      max-width: 100%;
+    }
+    
+    &__sidebar {
+      position: static;
+      width: 100%;
+      margin-top: 40px;
+    }
+    
+    &__title {
+      font-size: 67px;
+      line-height: 76px;
+    }
+  }
+  
+  .node--type-report-summary .cu-page-nav__list {
+    padding: 0 40px;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .report-summary-banner {
+    min-height: 400px;
+    
+    &__container {
+      padding: 0 20px 30px;
+    }
+    
+    &__sidebar {
+      padding: 30px 20px;
+    }
+    
+    &__title {
+      font-size: 50px;
+      line-height: 56px;
+    }
+  }
+  
+  .node--type-report-summary .cu-page-nav__list {
+    padding: 0 20px;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

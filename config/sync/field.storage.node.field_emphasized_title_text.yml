@@ -1,0 +1,21 @@
+uuid: 6b7c8d9e-0f1a-2b3c-4d5e-6f7a8b9c0d1e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_emphasized_title_text
+field_name: field_emphasized_title_text
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

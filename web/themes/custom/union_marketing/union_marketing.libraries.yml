@@ -6,6 +6,7 @@ global:
   js:
     js/union_marketing.js: {}
     js/union_marketing_responsive_tables.js: {}
+    js/jump-links-mobile.js: {}
   dependencies:
     - core/drupal
     - core/jquery
