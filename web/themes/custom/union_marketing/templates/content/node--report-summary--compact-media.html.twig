@@ -7,22 +7,35 @@
  * Shows the title and emphasized title text over the representative image.
  */
 #}
+{{ attach_library('union_organizer/card') }}
 {% set emphasized_title = node.field_emphasized_title_text.value %}
-{% set title_with_emphasis = label %}
+{% set title_text = node.label|render|striptags %}
 
-{# If emphasized title text is set, wrap matching portion with <strong> #}
-{% if emphasized_title %}
-  {% set title_with_emphasis = label|replace({(emphasized_title): '<strong>' ~ emphasized_title ~ '</strong>'})|raw %}
+{# If emphasized title text is set and matches a portion of the title, wrap it in strong tags #}
+{% if emphasized_title and emphasized_title in title_text %}
+  {% set title_with_emphasis = title_text|replace({(emphasized_title): '<strong>' ~ emphasized_title ~ '</strong>'}) %}
+{% else %}
+  {% set title_with_emphasis = title_text %}
 {% endif %}
 
 {% set rendered_content %}
   {{ title_suffix }}
-  <h3 class="cu-composite-heading__heading">{{ title_with_emphasis }}</h3>
-  {{ content.field_published_date }}
+  <h3 class="cu-composite-heading__heading">{{ title_with_emphasis|raw }}</h3>
+  <div class="cu-card__hover-overlay-content">
+    <span class="cu-card__hover-text">Read Report</span>
+    <span class="cu-card__hover-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#B31B1B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </div>
 {% endset %}
 
 {% set media_content %}
-  {{ content.field_representative_image }}
+  {% if node.field_representative_image.entity.field_media_image.entity %}
+    {% set image = node.field_representative_image.entity.field_media_image.entity %}
+    <img src="{{ file_url(image.uri.value) }}" alt="{{ image.alt }}" />
+  {% endif %}
 {% endset %}
 
 {% include '@union/_card.twig' with {
