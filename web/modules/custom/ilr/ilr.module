@@ -759,23 +759,11 @@ function ilr_preprocess_node__page__alt(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for node templates.
- */
-function ilr_preprocess_node(&$variables) {
-  $node = $variables['node'];
-  
-  // Attach Report Summary CSS library for report_summary content type.
-  if ($node->bundle() === 'report_summary') {
-    $variables['#attached']['library'][] = 'ilr/report_summary';
-  }
-}
-
-/**
  * Implements hook_preprocess_HOOK() for field templates.
  */
 function ilr_preprocess_field(&$variables) {
   // Override PDF link text for Report Summary.
-  if ($variables['field_name'] === 'field_report_pdf' && 
+  if ($variables['field_name'] === 'field_report_pdf' &&
       $variables['element']['#bundle'] === 'report_summary') {
     foreach ($variables['items'] as &$item) {
       if (isset($item['content']['#title'])) {
@@ -803,14 +791,14 @@ function ilr_preprocess_layout(&$variables) {
  */
 function ilr_preprocess_item_list(&$variables) {
   // Pass the current node to section navigation item lists.
-  if (isset($variables['context']['collection']) || 
+  if (isset($variables['context']['collection']) ||
       (isset($variables['theme_hook_original']) && $variables['theme_hook_original'] === 'item_list__section_navigation')) {
     $node = \Drupal::routeMatch()->getParameter('node');
-    
+
     if (is_numeric($node)) {
       $node = \Drupal::entityTypeManager()->getStorage('node')->load($node);
     }
-    
+
     if ($node instanceof NodeInterface) {
       $variables['node'] = $node;
     }
