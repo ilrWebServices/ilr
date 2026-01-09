@@ -9,11 +9,6 @@
 <div class="banner__content">
   {{ content.banner }}
 </div>
-{% if content.sidebar %}
-<div class="banner__sidebar">
-  {{ content.sidebar }}
-</div>
-{% endif %}
 {% endset %}
 
 {% set attributes = attributes.addClass('cu-colorscheme--' ~ settings.color_scheme) %}
@@ -38,6 +33,7 @@
 {% include '@union/_banner.twig' with {
   attributes: attributes,
   content: rendered_content,
-  media: content.media|render
+  media: content.media|render,
+  content_side: content.sidebar ?? content.sidebar
 } only %}
 </div>
