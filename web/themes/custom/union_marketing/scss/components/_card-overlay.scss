@@ -1,0 +1,199 @@
+.cu-component--card-overlay {
+   position: relative;
+   z-index: 1000;
+
+   .cu-section {
+      &__heading {
+         position: relative;
+         margin-bottom: 0;
+         padding: 30px 30px 100px;
+         overflow: hidden;
+
+         @media (min-width: 1200px) {
+            padding: 60px 140px 140px;
+         }
+
+         &:after {
+            display: none;
+         }
+
+         h2.cu-heading,
+         h3.cu-heading,
+         &__body {
+            color: $white;
+         }
+
+         h2.cu-heading {
+            --cu-font-family: 'futura-pt';
+            font-size: 34px;
+            font-style: normal;
+            font-weight: 900;
+            line-height: 40px;
+            text-transform: uppercase;
+
+            @media (min-width: 1200px) {
+               font-size: 50px;
+               line-height: 56px;
+            }
+         }
+
+         .cu-body {
+            padding-inline: 30px;
+
+            a:not([class]) {
+               font-weight: 400;
+            }
+         }
+
+         .media-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+
+            img {
+               position: absolute;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+               mix-blend-mode: multiply;
+               filter: grayscale(1) contrast(1.2);
+            }
+
+            &:after {
+               content: '';
+               position: absolute;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+               background-color: rgba(#B31B1B, 0.8);
+            }
+         }
+      }
+   }
+
+   .cu-icon {
+      &__label {
+         margin-top: 24px;
+         color: $white;
+         text-align: center;
+         font-size: 12px;
+         font-style: normal;
+         font-weight: 700;
+         line-height: 20px;
+         letter-spacing: 1.2px;
+         text-transform: uppercase;
+      }
+
+      .cu-icon__image {
+         fill: $white;
+      }
+   }
+
+   .cu-card {
+      display: flex;
+      padding: 30px;
+      flex-direction: column;
+      align-items: center;
+      flex: 1 0 0;
+
+      @media (max-width: 1200px) {
+         flex: 1 0 calc(50% - 32px);
+         max-width: calc(50% - 32px);
+      }
+
+      @media (max-width: 992px) {
+         flex: 1 0 100%;
+         max-width: 100%;
+      }
+
+      .cu-heading,
+      p {
+         color: $white;
+         text-align: center;
+      }
+
+      .cu-heading {
+         font-size: 24px;
+         font-style: normal;
+         font-weight: 400;
+         line-height: 32px;
+      }
+
+      p {
+         font-size: 16px;
+         font-style: normal;
+         font-weight: 300;
+         line-height: 24px;
+         margin-bottom: 15px;
+      }
+
+      &__content {
+         align-items: center;
+
+         .cu-composite-heading {
+            gap: 20px;
+            margin-bottom: 10px;
+         }
+
+         .cu-button {
+            margin-top: 15px;
+            margin-bottom: 0;
+         }
+      }
+   }
+
+   .cu-composite-heading {
+      &:after {
+         order: 2;
+      }
+
+      &__eyebrow-heading {
+         opacity: 1;
+
+         &__enlarge {
+            font-size: 32px;
+            text-align: center;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 38px;
+            letter-spacing: 0.1px;
+
+            @media (min-width: 1200px) {
+               font-size: 50px;
+               line-height: 62px;
+            }
+         }
+      }
+
+      &__body {
+         color: $white;
+      }
+   }
+
+   .field--field-components {
+      position: relative;
+      display: flex;
+      gap: 20px;
+      padding-inline: 30px;
+      top: -75px;
+      z-index: 2;
+
+      @media (max-width: 1200px) {
+         flex-wrap: wrap;
+         justify-content: center;
+      }
+   }
+
+   &.cu-section--reveal-on-hover  {
+      .cu-card {
+         .cu-component--card-overlay-item--card-body {
+            display: none;
+         }
+      }
+   }
+}

@@ -1,0 +1,14 @@
+uuid: 74cb24c3-56bf-4ef9-bd50-b49122c57acf
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: card_overlay
+label: 'Card Overlay'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  ilr_icon:
+    enabled: true

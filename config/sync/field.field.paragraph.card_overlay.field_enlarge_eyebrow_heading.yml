@@ -1,0 +1,21 @@
+uuid: 80f3d380-bba5-4704-90e2-351ef97d9817
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_enlarge_eyebrow_heading
+    - paragraphs.paragraphs_type.card_overlay
+id: paragraph.card_overlay.field_enlarge_eyebrow_heading
+field_name: field_enlarge_eyebrow_heading
+entity_type: paragraph
+bundle: card_overlay
+label: 'Enlarge Eyebrow Heading'
+description: 'This increases the font-size for the eyebrow text displayed above the main heading element.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

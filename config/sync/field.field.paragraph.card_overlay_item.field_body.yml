@@ -1,0 +1,24 @@
+uuid: 74173cf8-2169-40a1-9755-c516763e0a6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - filter.format.simple_formatting
+    - paragraphs.paragraphs_type.card_overlay_item
+  module:
+    - text
+id: paragraph.card_overlay_item.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: card_overlay_item
+label: Description
+description: 'General information about this item, which can include the name of the activity (e.g. Lunch) the names of presenters, etc.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - simple_formatting
+field_type: text_long
