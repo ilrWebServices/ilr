@@ -4,7 +4,7 @@
 
   > .cu-composite-heading {
     position: relative;
-    margin: 0;
+    margin: 0 calc(var(--gutter-width) * -1);
     padding: var(--cu-vr1) var(--cu-ps1) 100px;
     overflow: hidden;
     background-color: var(--cu-colorscheme-background, var(--cu-color-light-gray));
@@ -17,8 +17,14 @@
       display: none;
     }
 
-    @media (min-width: 1200px) {
-      padding: 60px 140px 140px;
+
+    @include breakpoint(md) {
+      padding: var(--cu-vr3) var(--cu-ps3) 140px;
+      margin: 0 calc((1360px - 1130px) / 2 * -1);
+
+      .cu-section--wide & {
+        margin: 0;
+      }
     }
 
     h2.cu-heading {
@@ -139,12 +145,14 @@
   }
 
   .field--field-components {
+    --cu-max-width-section: 1130px;
     position: relative;
     display: flex;
-    gap: 20px;
-    padding-inline: 30px;
+    gap: 32px;
     top: -75px;
     z-index: 2;
+    max-width: var(--cu-max-width-section); // Force narrow section width;
+    margin: 0 auto;
 
     @media (max-width: 1200px) {
       flex-wrap: wrap;
