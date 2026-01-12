@@ -9,7 +9,6 @@ dependencies:
     - field.field.paragraph.card_overlay.field_heading
     - field.field.paragraph.card_overlay.field_link
     - field.field.paragraph.card_overlay.field_media
-    - field.field.paragraph.card_overlay.field_reveal_on_hover
     - field.field.paragraph.card_overlay.field_subheading
     - paragraphs.paragraphs_type.card_overlay
   module:
@@ -85,13 +84,6 @@ content:
     third_party_settings:
       media_library_edit:
         show_edit: '1'
-  field_reveal_on_hover:
-    type: boolean_checkbox
-    weight: 7
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   field_subheading:
     type: string_textfield
     weight: 1

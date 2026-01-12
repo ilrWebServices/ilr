@@ -102,6 +102,13 @@
 
     .cu-component--card-overlay-item--card-body {
       --cu-font-size: var(--cu-ms-1);
+
+      @include breakpoint(md) {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease-out, max-height 0.3s ease-out;
+      }
     }
 
     &__content {
@@ -116,6 +123,13 @@
       .cu-button {
         margin-top: 15px;
         margin-bottom: 0;
+      }
+    }
+
+    &:hover {
+      .cu-component--card-overlay-item--card-body {
+        opacity: 1;
+        max-height: 100%;
       }
     }
   }
@@ -157,14 +171,6 @@
     @media (max-width: 1200px) {
       flex-wrap: wrap;
       justify-content: center;
-    }
-  }
-
-  &.cu-section--reveal-on-hover  {
-    .cu-card {
-      .cu-component--card-overlay-item--card-body {
-        display: none;
-      }
     }
   }
 }

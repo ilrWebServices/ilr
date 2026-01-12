@@ -9,7 +9,6 @@ dependencies:
     - field.field.paragraph.card_overlay.field_heading
     - field.field.paragraph.card_overlay.field_link
     - field.field.paragraph.card_overlay.field_media
-    - field.field.paragraph.card_overlay.field_reveal_on_hover
     - field.field.paragraph.card_overlay.field_subheading
     - image.style.full
     - paragraphs.paragraphs_type.card_overlay
@@ -79,16 +78,6 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 0
-    region: content
-  field_reveal_on_hover:
-    type: boolean
-    label: hidden
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 7
     region: content
   field_subheading:
     type: string
