@@ -2,76 +2,74 @@
   position: relative;
   z-index: 1000;
 
-  .cu-section {
-    &__heading {
-      position: relative;
-      margin-bottom: 0;
-      padding: 30px 30px 100px;
-      overflow: hidden;
+  > .cu-composite-heading {
+    position: relative;
+    margin-bottom: 0;
+    padding: 30px 30px 100px;
+    overflow: hidden;
+
+    @media (min-width: 1200px) {
+      padding: 60px 140px 140px;
+    }
+
+    &:after {
+      display: none;
+    }
+
+    h2.cu-heading,
+    h3.cu-heading,
+    &__body {
+      color: $white;
+    }
+
+    h2.cu-heading {
+      --cu-font-family: 'futura-pt';
+      font-size: 34px;
+      font-style: normal;
+      font-weight: 900;
+      line-height: 40px;
+      text-transform: uppercase;
 
       @media (min-width: 1200px) {
-        padding: 60px 140px 140px;
+        font-size: 50px;
+        line-height: 56px;
       }
+    }
 
-      &:after {
-        display: none;
+    .cu-body {
+      padding-inline: 30px;
+
+      a:not([class]) {
+        font-weight: 400;
       }
+    }
 
-      h2.cu-heading,
-      h3.cu-heading,
-      &__body {
-        color: $white;
-      }
+    .media-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
 
-      h2.cu-heading {
-        --cu-font-family: 'futura-pt';
-        font-size: 34px;
-        font-style: normal;
-        font-weight: 900;
-        line-height: 40px;
-        text-transform: uppercase;
-
-        @media (min-width: 1200px) {
-          font-size: 50px;
-          line-height: 56px;
-        }
-      }
-
-      .cu-body {
-        padding-inline: 30px;
-
-        a:not([class]) {
-          font-weight: 400;
-        }
-      }
-
-      .media-wrapper {
+      img {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: -1;
+        mix-blend-mode: multiply;
+        filter: grayscale(1) contrast(1.2);
+      }
 
-        img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          mix-blend-mode: multiply;
-          filter: grayscale(1) contrast(1.2);
-        }
-
-        &:after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(#B31B1B, 0.8);
-        }
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(#B31B1B, 0.8);
       }
     }
   }
