@@ -111,3 +111,8 @@
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid var(--cu-color-gray);
 }
+
+/* In-page links on report summary nodes */
+.node--report_summary .cu-page-nav {
+  margin-bottom: var(--cu-vr2);
+}

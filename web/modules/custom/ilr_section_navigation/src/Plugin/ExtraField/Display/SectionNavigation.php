@@ -6,6 +6,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -74,12 +75,18 @@ class SectionNavigation extends ExtraFieldDisplayBase implements ContainerFactor
       $elements['ilr_section_navigation'] = [
         '#theme' => 'item_list__section_navigation',
         '#items' => $links,
-        '#attributes' => ['class' => 'section-navigation'],
+        '#attributes' => ['class' => ['section-navigation']],
         '#context' => ['collection' => $entity],
         '#cache' => [
           'tags' => $entity->getCacheTags(),
         ],
       ];
+
+      if ($entity instanceof NodeInterface && $entity->bundle() === 'report_summary') {
+        $elements['ilr_section_navigation']['#attributes']['class'][] = 'cu-page-nav--select';
+        $elements['ilr_section_navigation']['#attributes']['class'][] = 'cu-colorscheme--light';
+        $elements['ilr_section_navigation']['#title'] = $this->t('Jump to:');
+      }
     }
 
     return $elements;

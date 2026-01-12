@@ -85,16 +85,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 2
             additional: {  }
-          0395edef-fdc2-4166-ba11-d770ba19aa3b:
-            uuid: 0395edef-fdc2-4166-ba11-d770ba19aa3b
-            region: banner
-            configuration:
-              id: 'extra_field_block:node:report_summary:extra_field_ilr_section_navigation'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-            weight: 3
-            additional: {  }
           ee3862f3-e8f9-4a3f-8610-f0a33055873f:
             uuid: ee3862f3-e8f9-4a3f-8610-f0a33055873f
             region: media
@@ -169,6 +159,23 @@ third_party_settings:
                 settings:
                   link: true
                 third_party_settings: {  }
+            weight: 3
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: 'In-page nav'
+          context_mapping: {  }
+        components:
+          0395edef-fdc2-4166-ba11-d770ba19aa3b:
+            uuid: 0395edef-fdc2-4166-ba11-d770ba19aa3b
+            region: content
+            configuration:
+              id: 'extra_field_block:node:report_summary:extra_field_ilr_section_navigation'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
             weight: 3
             additional: {  }
         third_party_settings: {  }
