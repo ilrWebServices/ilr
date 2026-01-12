@@ -2,53 +2,35 @@
 /**
  * @file
  * Theme override for section navigation.
- * Custom implementation for Report Summary (mobile select dropdown, desktop horizontal with arrows).
- * Falls back to Union page-nav for other content types.
+ *
+ * Available variables:
+ * - items: A list of items. Each item contains:
+ *   - attributes: HTML attributes to be applied to each list item.
+ *   - value: The content of the list element.
+ * - title: The title of the list.
+ * - list_type: The tag for list element ("ul" or "ol").
+ * - wrapper_attributes: HTML attributes to be applied to the list wrapper.
+ * - attributes: HTML attributes to be applied to the list.
+ * - empty: A message to display when there are no items. Allowed value is a
+ *   string or render array.
+ * - context: A list of contextual data associated with the list. May contain:
+ *   - list_style: The custom list style.
+ *
+ * @see template_preprocess_item_list()
  */
 #}
-{% set is_report_summary = node and node.bundle() == 'report_summary' %}
+{% set links = [] %}
 
-{% if is_report_summary and items and items|length > 0 %}
-  {# Custom section navigation for Report Summary #}
-  <div class="ilr-section-nav" data-ilr-section-nav>
-    {# Mobile select dropdown #}
-    <div class="ilr-section-nav__mobile">
-      <label for="ilr-section-nav-select" class="ilr-section-nav__label">JUMP TO:</label>
-      <select id="ilr-section-nav-select" class="ilr-section-nav__select" aria-label="Navigate to section">
-        <option value="">Select a section...</option>
-        {% for item in items %}
-          <option value="{{ item.value['#url'].toString }}">{{ item.value['#title'] }}</option>
-        {% endfor %}
-      </select>
-    </div>
+{% for item in items %}
+  {% set nav_item = {
+    url: item.value['#url'].toString,
+    text: item.value['#title']
+  } %}
+  {% set links = links|merge([nav_item]) %}
+{% endfor %}
 
-    {# Desktop horizontal list with arrows #}
-    <nav class="ilr-section-nav__desktop" aria-label="Section navigation">
-      <ul class="ilr-section-nav__list">
-        {% for item in items %}
-          <li class="ilr-section-nav__item">
-            <a href="{{ item.value['#url'].toString }}" class="ilr-section-nav__link">
-              {{ item.value['#title']|upper }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
-  </div>
-{% else %}
-  {# Use Union page-nav component for all other content types #}
-  {% set links = [] %}
-  {% for item in items %}
-    {% set nav_item = {
-      url: item.value['#url'].toString,
-      text: item.value['#title']
-    } %}
-    {% set links = links|merge([nav_item]) %}
-  {% endfor %}
-
-  {% include '@union/_page-nav.twig' with {
-    heading: title,
-    items: links
-  } only %}
-{% endif %}
+{% include '@union/_page-nav.twig' with {
+  heading: title,
+  items: links
+} only %}
 
