@@ -4,8 +4,8 @@
 
   > .cu-composite-heading {
     position: relative;
-    margin-bottom: 0;
-    padding: 30px 30px 100px;
+    margin: 0;
+    padding: var(--cu-vr1) var(--cu-ps1) 100px;
     overflow: hidden;
     background-color: var(--cu-colorscheme-background, var(--cu-color-light-gray));
 
@@ -23,23 +23,18 @@
 
     h2.cu-heading {
       --cu-font-family: 'futura-pt';
-      font-size: 34px;
-      font-style: normal;
-      font-weight: 900;
-      line-height: 40px;
       text-transform: uppercase;
 
-      @media (min-width: 1200px) {
-        font-size: 50px;
-        line-height: 56px;
+      @include breakpoint(md) {
+        --cu-font-size: var(--cu-ms8);
       }
     }
 
-    .cu-body {
-      padding-inline: 30px;
+    .cu-composite-heading__body {
+      max-width: 80%;
 
-      a:not([class]) {
-        font-weight: 400;
+      @include breakpoint(md) {
+        max-width: 50%;
       }
     }
 
@@ -65,23 +60,22 @@
     }
   }
 
-  .cu-icon {
-    &__label {
-      margin-top: 24px;
-      text-align: center;
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 20px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-    }
+  // Apply eyebrow styles to label
+  .cu-icon__label {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
   }
 
   .cu-card {
     --cu-colorscheme-accent: var(--cu-color-brand); // Force the accent color on all cards.
     display: flex;
-    padding: 30px;
+    padding: var(--cu-vr2) var(--cu-ps2);
     flex-direction: column;
     align-items: center;
     flex: 1 0 0;
@@ -97,22 +91,16 @@
     }
 
     .cu-heading {
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 32px;
+      font-size: var(--cu-ms2);
     }
 
-    p {
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 300;
-      line-height: 24px;
-      margin-bottom: 15px;
+    .cu-component--card-overlay-item--card-body {
+      --cu-font-size: var(--cu-ms-1);
     }
 
     &__content {
       align-items: center;
+      text-align: center;
 
       .cu-composite-heading {
         gap: 20px;
