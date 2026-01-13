@@ -1,0 +1,139 @@
+/**
+ * Report Summary Banner Styling
+ * Based on Figma designs for Report Summary content type
+ */
+
+.cu-banner--report_summary {
+  --banner-padding: 0 !important;
+  background-color: unset;
+  margin-bottom: var(--cu-vr1) !important;
+}
+
+.cu-banner--report_summary .cu-banner__content {
+  padding: var(--cu-vr1) var(--cu-ps0);
+  background-color: var(--cu-colorscheme-background);
+}
+
+.cu-banner--report_summary .banner__content {
+  padding-right: unset !important;
+  min-height: unset !important;
+}
+
+.cu-banner--report_summary .cu-banner__media img {
+  aspect-ratio: 1/1;
+}
+
+.cu-banner--report_summary .cu-banner__content_side {
+  position: relative;
+  width: calc(100% - 2 * var(--cu-ps0));
+  margin: calc(var(--cu-vr2) * -1) auto 0;
+  padding: var(--cu-vr1) var(--cu-ps1);
+  --cu-text-color: var(--cu-color-dark);
+  background-color: var(--cu-color-white);
+  z-index: 1;
+  --cu-font-size: var(--cu-ms-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--cu-vr-1);
+}
+
+.cu-banner--report_summary .cu-banner__content_side .field__label {
+  font-weight: bold;
+}
+
+.cu-banner--report_summary .cu-banner__content_side .cu-button--report {
+  margin-top: var(--cu-vr-2);
+  text-align: center;
+  width: 100%;
+}
+
+/* Remove overlay pseudo elements */
+.cu-banner--report_summary::before,
+.cu-banner--report_summary .cu-banner__media::before {
+  all: unset;
+}
+
+/* Hide current page title in breadcrumbs. See _breadcrumbs.scss */
+.cu-banner--report_summary .cu-breadcrumb:not(.breadcrumb-altered) .cu-breadcrumb__item:nth-last-child(2):after,
+.cu-banner--report_summary .cu-breadcrumb:not(.breadcrumb-altered) .cu-breadcrumb__item:last-child {
+  display: none;
+}
+
+.node--view-mode-full .cu-banner--report_summary .cu-heading.field--title {
+  --cu-font-size: var(--cu-ms4);
+  line-height: 1.3;
+}
+
+@media (min-width: 37.5rem) {
+  .cu-banner--report_summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .node--view-mode-full .cu-banner--report_summary .cu-heading.field--title {
+    --cu-font-size: var(--cu-ms8);
+    line-height: 1.1;
+  }
+
+  .cu-banner--report_summary .cu-banner__content {
+    padding-left: var(--cu-ps2);
+  }
+
+  .cu-banner--report_summary .cu-banner__content_side {
+    position: absolute;
+    bottom: var(--cu-vr0);
+    right: var(--cu-ps0);
+    width: 250px;
+    max-width: 50%;
+    margin-top: unset;
+  }
+
+  .cu-banner--report_summary .cu-banner__media img {
+    aspect-ratio: 7/6;
+  }
+}
+
+/* Topic tags styling - pill style */
+/* TODO: Update the field template to use button component pill variant. */
+.cu-banner--report_summary .field--field-report-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cu-ps-1);
+}
+
+.cu-banner--report_summary .field--field-report-topics .field__item {
+  padding: 8px var(--cu-ps1);
+  border-radius: 1.5rem;
+  font-weight: 700;
+  font-size: var(--cu-ms-2);
+  text-decoration: none;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--cu-color-gray);
+}
+
+/* In-page links on report summary nodes */
+.node--report_summary .cu-page-nav {
+  margin-bottom: var(--cu-vr2);
+}
+
+@media (min-width: 61rem) {
+  .node--report_summary .cu-page-nav .cu-page-nav__link {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+  }
+
+  .node--report_summary .cu-page-nav__link::after {
+    content: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23000000;stroke:%23000000;stroke-width:1;stroke-linecap:square' d='M 7,1 V 12' /%3E%3Cpath style='fill:none;stroke:%23000000;stroke-width:1;stroke-linejoin:round' d='M 13,7 7,13 1,7' /%3E%3C/svg%3E");
+  }
+
+  .node--report_summary .cu-page-nav .cu-page-nav__link .cu-heading {
+    text-transform: uppercase;
+    --cu-font-size: var(--cu-ms-4);
+  }
+
+  .node--report_summary .cu-page-nav__item:has(.cu-page-nav__select-trigger) {
+    display: none;
+  }
+}

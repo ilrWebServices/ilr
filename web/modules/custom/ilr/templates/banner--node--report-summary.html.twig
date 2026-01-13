@@ -1,14 +1,26 @@
+{#
+/**
+ * @file
+ * Banner layout template for Report Summary content type.
+ *
+ * This is a custom template specifically for report_summary nodes
+ * to implement the Figma design with sidebar positioned on the right.
+ */
+#}
 <div{{ attributes.addClass('layout-banner') }}>
 
 {% set rendered_content %}
 {% if content.top %}
-<div class="banner__top">
-  {{ content.top }}
-</div>
+{{ content.top }}
 {% endif %}
-<div class="banner__content">
+<div class="banner__main">
   {{ content.banner }}
 </div>
+{% if content.sidebar %}
+<div class="banner__sidebar">
+  {{ content.sidebar }}
+</div>
+{% endif %}
 {% endset %}
 
 {% set attributes = attributes.addClass('cu-colorscheme--' ~ settings.color_scheme) %}
@@ -33,7 +45,6 @@
 {% include '@union/_banner.twig' with {
   attributes: attributes,
   content: rendered_content,
-  media: content.media|render,
-  content_side: content.sidebar ?? content.sidebar
+  media: content.media|render
 } only %}
 </div>

@@ -149,6 +149,11 @@ function union_marketing_preprocess_node(&$variables) {
       'classes' => ['ui-dialog' => 'cu-modal'],
     ]));
   }
+
+  // Attach Report Summary CSS library for report_summary content type.
+  if ($variables['node']->bundle() === 'report_summary') {
+    $variables['#attached']['library'][] = 'union_marketing/report_summary';
+  }
 }
 
 /**

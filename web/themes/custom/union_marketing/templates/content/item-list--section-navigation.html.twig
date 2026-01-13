@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override for a collection item list.
+ * Theme override for section navigation.
  *
  * Available variables:
  * - items: A list of items. Each item contains:
@@ -31,6 +31,7 @@
 
 {% include '@union/_page-nav.twig' with {
   heading: title,
-  items: links
+  items: links,
+  attributes: attributes
 } only %}
 

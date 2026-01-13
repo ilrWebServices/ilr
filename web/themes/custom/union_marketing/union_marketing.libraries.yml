@@ -58,6 +58,14 @@ lottie_80years:
     - core/jquery
     - union_marketing/lottie
 
+report_summary:
+  version: 1.x
+  css:
+    theme:
+      css/report-summary.css: {}
+  dependencies:
+    - core/drupal
+
 livereload:
   remote: https://github.com/mklabs/tiny-lr
   version: 1.1.1
