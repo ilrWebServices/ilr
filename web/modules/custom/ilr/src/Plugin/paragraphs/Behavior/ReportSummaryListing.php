@@ -116,7 +116,7 @@ class ReportSummaryListing extends ParagraphsBehaviorBase {
     $collection_item_storage = $this->entityTypeManager->getStorage('collection_item');
     $view_builder = $this->entityTypeManager->getViewBuilder('node');
     $cache_tags = $collection->getCacheTags();
-    $cache_tags[] = 'node_list';
+    $cache_tags[] = 'node_list:report_summary';
     $reports = [];
 
     $query = $collection_item_storage->getQuery();
