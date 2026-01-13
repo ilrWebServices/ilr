@@ -816,18 +816,3 @@ function union_marketing_preprocess_breadcrumb(&$variables) {
     $variables['attributes']['class'][] = 'breadcrumb-altered';
   }
 }
-
-/**
- * Implements hook_preprocess_paragraph().
- *
- * Set carousel_items for report summary listing when carousel list style is selected.
- * This matches the pattern used by the list_styles behavior plugin.
- */
-function union_marketing_preprocess_paragraph__report_summary_listing(&$variables) {
-  $paragraph = $variables['paragraph'];
-  $list_style = $paragraph->getBehaviorSetting('list_styles', 'list_style');
-  
-  if ($list_style === 'carousel' && isset($variables['content']['listing']['items'])) {
-    $variables['carousel_items'] = $variables['content']['listing']['items'];
-  }
-}
