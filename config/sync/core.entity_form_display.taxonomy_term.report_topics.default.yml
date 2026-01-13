@@ -1,0 +1,51 @@
+uuid: 0b4fa01c-6cad-4fa1-8dc5-792d884287c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.report_topics
+  module:
+    - path
+    - text
+id: taxonomy_term.report_topics.default
+targetEntityType: taxonomy_term
+bundle: report_topics
+mode: default
+content:
+  description:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden: {  }

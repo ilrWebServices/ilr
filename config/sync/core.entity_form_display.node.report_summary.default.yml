@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_form_mode.taxonomy_term.mini
     - entity_browser.browser.persona_browser
     - field.field.node.report_summary.field_address
     - field.field.node.report_summary.field_authors
@@ -18,6 +19,8 @@ dependencies:
     - address
     - datetime
     - entity_browser
+    - entity_browser_entity_form
+    - inline_entity_form
     - media_library
     - media_library_edit
     - paragraphs_previewer
@@ -78,15 +81,25 @@ content:
       media_library_edit:
         show_edit: '1'
   field_report_topics:
-    type: entity_reference_autocomplete
+    type: inline_entity_form_complex
     weight: 13
     region: content
     settings:
+      form_mode: mini
+      override_labels: true
+      label_singular: Topic
+      label_plural: Topics
+      allow_new: true
+      allow_existing: true
       match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+      revision: false
+      removed_reference: optional
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
   field_representative_image:
     type: media_library_widget
     weight: 11
