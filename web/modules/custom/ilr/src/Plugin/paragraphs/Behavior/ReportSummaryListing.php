@@ -118,6 +118,7 @@ class ReportSummaryListing extends ParagraphsBehaviorBase {
     $cache_tags = $collection->getCacheTags();
     $cache_tags[] = 'node_list:report_summary';
     $reports = [];
+    $list_style = $paragraph->getBehaviorSetting('list_styles', 'list_style') ?? 'carousel';
 
     $query = $collection_item_storage->getQuery();
     $query->accessCheck(TRUE);
@@ -142,7 +143,7 @@ class ReportSummaryListing extends ParagraphsBehaviorBase {
     }
 
     foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
-      $rendered_entity = $view_builder->view($collection_item->item->entity, 'compact_media');
+      $rendered_entity = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($paragraph, $list_style));
       $rendered_entity['#collection_item'] = $collection_item;
       $rendered_entity['#cache']['contexts'][] = 'url';
       $reports[] = $rendered_entity;
