@@ -135,10 +135,10 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
               formatter:
-                type: entity_reference_label
+                type: persona_name_list
                 label: above
                 settings:
-                  link: true
+                  prefix: ''
                 third_party_settings: {  }
             weight: 2
             additional: {  }
