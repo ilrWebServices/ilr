@@ -118,7 +118,6 @@ class ReportSummaryListing extends ParagraphsBehaviorBase {
     $cache_tags = $collection->getCacheTags();
     $cache_tags[] = 'node_list';
     $reports = [];
-    $dedupe_group = 'dedupe:collection_item_field_data.id:collection_' . $collection->id();
 
     $query = $collection_item_storage->getQuery();
     $query->accessCheck(TRUE);
