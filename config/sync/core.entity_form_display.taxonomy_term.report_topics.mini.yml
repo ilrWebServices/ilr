@@ -1,0 +1,25 @@
+uuid: 64dfcf60-0841-474a-9376-45d7f34e7aac
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.taxonomy_term.mini
+    - taxonomy.vocabulary.report_topics
+id: taxonomy_term.report_topics.mini
+targetEntityType: taxonomy_term
+bundle: report_topics
+mode: mini
+content:
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  langcode: true
+  path: true
+  status: true

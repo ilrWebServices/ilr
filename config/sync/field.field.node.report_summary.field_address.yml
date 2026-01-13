@@ -17,19 +17,20 @@ required: false
 translatable: false
 default_value:
   -
-    langcode: ''
+    langcode: en
     country_code: US
     administrative_area: ''
-    locality: ''
+    locality: null
     dependent_locality: null
-    postal_code: ''
+    postal_code: null
     sorting_code: null
-    address_line1: ''
-    address_line2: ''
-    organization: ''
-    given_name: ''
+    address_line1: null
+    address_line2: null
+    address_line3: ''
+    organization: null
+    given_name: null
     additional_name: null
-    family_name: ''
+    family_name: null
 default_value_callback: ''
 settings:
   available_countries:
@@ -48,13 +49,15 @@ settings:
       override: hidden
     addressLine2:
       override: hidden
-    locality:
+    addressLine3:
       override: hidden
     postalCode:
       override: hidden
     sortingCode:
       override: hidden
     dependentLocality:
+      override: hidden
+    locality:
       override: hidden
   fields: {  }
 field_type: address
