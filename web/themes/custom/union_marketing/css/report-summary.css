@@ -116,3 +116,24 @@
 .node--report_summary .cu-page-nav {
   margin-bottom: var(--cu-vr2);
 }
+
+@media (min-width: 61rem) {
+  .node--report_summary .cu-page-nav .cu-page-nav__link {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+  }
+
+  .node--report_summary .cu-page-nav__link::after {
+    content: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath style='fill:%23000000;stroke:%23000000;stroke-width:1;stroke-linecap:square' d='M 7,1 V 12' /%3E%3Cpath style='fill:none;stroke:%23000000;stroke-width:1;stroke-linejoin:round' d='M 13,7 7,13 1,7' /%3E%3C/svg%3E");
+  }
+
+  .node--report_summary .cu-page-nav .cu-page-nav__link .cu-heading {
+    text-transform: uppercase;
+    --cu-font-size: var(--cu-ms-4);
+  }
+
+  .node--report_summary .cu-page-nav__item:has(.cu-page-nav__select-trigger) {
+    display: none;
+  }
+}
