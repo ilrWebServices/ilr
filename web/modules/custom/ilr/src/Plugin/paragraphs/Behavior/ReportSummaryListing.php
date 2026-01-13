@@ -123,24 +123,15 @@ class ReportSummaryListing extends ParagraphsBehaviorBase {
     $query = $collection_item_storage->getQuery();
     $query->accessCheck(TRUE);
     $query->condition('collection', $collection->id());
-    
-    $result = $query->execute();
-    
-    // Filter manually for report_summary content type and published status
-    $filtered_result = [];
-    foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
-      if ($collection_item->item->entity && 
-          $collection_item->item->entity->bundle() === 'report_summary' &&
-          $collection_item->item->entity->isPublished()) {
-        $filtered_result[] = $collection_item->id();
-      }
-    }
-    
-    $result = $filtered_result;
-    
+    $query->condition('type', 'default');
+    $query->condition('item.entity:node.status', 1);
+    $query->condition('item.entity:node.type', 'report_summary');
+
     if ($limit = $paragraph->getBehaviorSetting($this->getPluginId(), 'count')) {
-      $result = array_slice($result, 0, $limit);
+      $query->range(0, $limit);
     }
+
+    $result = $query->execute();
 
     foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
       $rendered_entity = $view_builder->view($collection_item->item->entity, $this->getViewModeForListStyle($paragraph, $list_style));
