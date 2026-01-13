@@ -10,8 +10,6 @@ icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
-  evergreen:
-    enabled: true
   list_styles:
     enabled: true
     list_styles:
@@ -19,11 +17,11 @@ behavior_plugins:
       grid: 0
       grid-compact: 0
       list-compact: 0
+      list-summary: 0
       grid-bricks: 0
       grid-bricks--reversed: 0
       grid-featured: 0
       grid-featured--wide: 0
-      list-summary: 0
       banner: 0
       tabular-list: 0
       select-list: 0
@@ -33,6 +31,4 @@ behavior_plugins:
     columns_min: ''
     columns_max: ''
   report_summary_listing:
-    enabled: true
-  union_section_settings:
     enabled: true
