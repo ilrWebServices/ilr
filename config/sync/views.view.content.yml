@@ -17,7 +17,10 @@ dependencies:
     - node.type.post_document
     - node.type.post_experience_report
     - node.type.project
+    - node.type.report_summary
+    - node.type.simple_page
     - node.type.story
+    - node.type.timeline
     - node.type.video_post
   module:
     - collection
@@ -542,7 +545,10 @@ display:
             page: page
             post: post
             project: project
+            report_summary: report_summary
+            simple_page: simple_page
             story: story
+            timeline: timeline
             video_post: video_post
           group: 1
           exposed: true
@@ -572,6 +578,8 @@ display:
               reviewer: '0'
               cahrs_admin: '0'
               project_admin: '0'
+              landing_page_editor: '0'
+              employee_admin: '0'
             reduce: true
           is_grouped: false
           group_info:
