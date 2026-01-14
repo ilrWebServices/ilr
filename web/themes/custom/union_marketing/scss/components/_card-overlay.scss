@@ -32,6 +32,7 @@
 
       @include breakpoint(md) {
         --cu-font-size: var(--cu-ms8);
+        max-width: 60%;
       }
     }
 
@@ -165,8 +166,13 @@
   padding: 0;
 
   .cu-component--card-overlay > .cu-composite-heading {
-    max-width: 100%;
     margin: 0 auto;
+
+    @include breakpoint(md) {
+      .cu-heading {
+        --cu-font-size: var(--cu-ms8);
+      }
+    }
   }
 
   &.cu-banner--full-bleed .cu-component--card-overlay {
