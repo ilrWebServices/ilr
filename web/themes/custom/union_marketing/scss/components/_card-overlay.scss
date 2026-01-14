@@ -6,7 +6,6 @@
     position: relative;
     margin: 0 calc(var(--gutter-width) * -1);
     padding: var(--cu-vr1) var(--cu-ps1) 100px;
-    overflow: hidden;
     background-color: var(--cu-colorscheme-background, var(--cu-color-light-gray));
 
     > * {
@@ -171,6 +170,44 @@
     @media (max-width: 1200px) {
       flex-wrap: wrap;
       justify-content: center;
+    }
+  }
+}
+
+// Update styles when placed in the banner and allow full-bleed.
+.layout-banner .cu-banner:has(.cu-component--card-overlay) {
+  padding: 0;
+
+  .cu-component--card-overlay > .cu-composite-heading {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  &.cu-banner--full-bleed .cu-component--card-overlay {
+    > .cu-composite-heading {
+      max-width: var(--cu-max-width-section);
+
+      .media-wrapper {
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        width: 100vw;
+        max-width: 100vw;
+      }
+    }
+
+    .field--field-components {
+      max-width: 100%;
+    }
+  }
+
+  .field--field-components {
+    margin: 0 var(--gutter-width);
+
+    @include breakpoint(md) {
+      margin: 0 auto;
+      max-width: var(--cu-max-width-section);
     }
   }
 }

@@ -5,6 +5,7 @@ dependencies:
   config:
     - block_content.type.component
     - field.storage.block_content.field_component
+    - paragraphs.paragraphs_type.card_overlay
     - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.slide_deck
   module:
@@ -25,8 +26,33 @@ settings:
     target_bundles:
       promo: promo
       slide_deck: slide_deck
+      card_overlay: card_overlay
     negate: 0
     target_bundles_drag_drop:
+      accordion:
+        weight: 49
+        enabled: false
+      agenda:
+        weight: 50
+        enabled: false
+      agenda_item:
+        weight: 51
+        enabled: false
+      anchor_button_to_form:
+        weight: 52
+        enabled: false
+      call_to_action:
+        weight: 53
+        enabled: false
+      card_overlay:
+        weight: 54
+        enabled: true
+      card_overlay_item:
+        weight: 55
+        enabled: false
+      carousel:
+        weight: 56
+        enabled: false
       collection_listing:
         weight: 24
         enabled: false
@@ -48,17 +74,38 @@ settings:
       form:
         weight: 30
         enabled: false
+      gallery:
+        weight: 64
+        enabled: false
+      honors_and_awards:
+        weight: 65
+        enabled: false
       image:
         weight: 31
         enabled: false
       instagram_listing:
         weight: 32
         enabled: false
+      link_listing:
+        weight: 68
+        enabled: false
       media_deck:
         weight: 33
         enabled: false
+      milestone:
+        weight: 70
+        enabled: false
+      milestone_section:
+        weight: 71
+        enabled: false
+      organization_listing:
+        weight: 72
+        enabled: false
       people_listing:
         weight: 34
+        enabled: false
+      people_listing_dynamic:
+        weight: 74
         enabled: false
       person:
         weight: 35
@@ -66,9 +113,18 @@ settings:
       picture_in_picture:
         weight: 36
         enabled: false
+      professional_activities:
+        weight: 77
+        enabled: false
+      project_listing:
+        weight: 78
+        enabled: false
       promo:
         weight: 37
         enabled: true
+      publications:
+        weight: 80
+        enabled: false
       rich_text:
         weight: 38
         enabled: false
@@ -81,17 +137,35 @@ settings:
       simple_collection_listing:
         weight: 41
         enabled: false
+      slide:
+        weight: 85
+        enabled: false
       slide_deck:
         weight: 47
         enabled: true
+      stat:
+        weight: 87
+        enabled: false
+      stats:
+        weight: 88
+        enabled: false
+      tab_item:
+        weight: 91
+        enabled: false
       table_of_contents:
         weight: 42
+        enabled: false
+      tabs:
+        weight: 90
         enabled: false
       testimonial:
         weight: 43
         enabled: false
       testimonial_deck:
         weight: 44
+        enabled: false
+      text_with_media:
+        weight: 94
         enabled: false
       topic_list:
         weight: 45
