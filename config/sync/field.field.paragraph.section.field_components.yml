@@ -70,6 +70,7 @@ settings:
       testimonial: testimonial
       testimonial_deck: testimonial_deck
       call_to_action: call_to_action
+      card_overlay: card_overlay
       people_listing: people_listing
       people_listing_dynamic: people_listing_dynamic
       project_listing: project_listing
@@ -91,7 +92,6 @@ settings:
       publications: publications
       tabs: tabs
       accordion: accordion
-      card_overlay: card_overlay
       slide_deck: slide_deck
     negate: 0
     target_bundles_drag_drop:
@@ -111,7 +111,7 @@ settings:
         weight: -60
         enabled: true
       card_overlay:
-        weight: 56
+        weight: -66
         enabled: true
       card_overlay_item:
         weight: 59
