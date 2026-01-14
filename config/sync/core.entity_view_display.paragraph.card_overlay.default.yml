@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.field.paragraph.card_overlay.field_body
     - field.field.paragraph.card_overlay.field_components
-    - field.field.paragraph.card_overlay.field_enlarge_eyebrow_heading
     - field.field.paragraph.card_overlay.field_heading
     - field.field.paragraph.card_overlay.field_link
     - field.field.paragraph.card_overlay.field_media
@@ -37,16 +36,6 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 6
-    region: content
-  field_enlarge_eyebrow_heading:
-    type: boolean
-    label: hidden
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 2
     region: content
   field_heading:
     type: string
