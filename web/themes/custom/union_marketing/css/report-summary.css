@@ -95,13 +95,13 @@
 
 /* Topic tags styling - pill style */
 /* TODO: Update the field template to use button component pill variant. */
-.cu-banner--report_summary .field--field-report-topics {
+.cu-banner--report_summary .field--field-topics {
   display: flex;
   flex-wrap: wrap;
   gap: var(--cu-ps-1);
 }
 
-.cu-banner--report_summary .field--field-report-topics .field__item {
+.cu-banner--report_summary .field--field-topics .field__item {
   padding: 8px var(--cu-ps1);
   border-radius: 1.5rem;
   font-weight: 700;

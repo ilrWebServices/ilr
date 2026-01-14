@@ -1,13 +1,13 @@
-uuid: 00000000-0000-0000-0000-000000000012
+uuid: adb4cc03-64d8-4a29-bc1b-fdf35d273558
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_report_topics
+    - field.storage.node.field_topics
     - node.type.report_summary
     - taxonomy.vocabulary.report_topics
-id: node.report_summary.field_report_topics
-field_name: field_report_topics
+id: node.report_summary.field_topics
+field_name: field_topics
 entity_type: node
 bundle: report_summary
 label: 'Report topics'

@@ -763,11 +763,11 @@ function ilr_preprocess_node__page__alt(&$variables) {
  */
 function ilr_preprocess_field(&$variables) {
   // Override PDF link text for Report Summary.
-  if ($variables['field_name'] === 'field_report_pdf' &&
+  if ($variables['field_name'] === 'field_document' &&
       $variables['element']['#bundle'] === 'report_summary') {
     foreach ($variables['items'] as &$item) {
       if (isset($item['content']['#title'])) {
-        $item['content']['#title'] = 'Read the Report';
+        $item['content']['#title'] = t('Read the Report');
       }
     }
   }

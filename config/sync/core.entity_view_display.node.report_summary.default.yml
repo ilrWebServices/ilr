@@ -7,8 +7,8 @@ dependencies:
     - field.field.node.report_summary.field_authors
     - field.field.node.report_summary.field_emphasized_title_text
     - field.field.node.report_summary.field_published_date
-    - field.field.node.report_summary.field_report_pdf
-    - field.field.node.report_summary.field_report_topics
+    - field.field.node.report_summary.field_document
+    - field.field.node.report_summary.field_topics
     - field.field.node.report_summary.field_representative_image
     - field.field.node.report_summary.field_sections
     - field.field.node.report_summary.layout_builder__layout
@@ -70,7 +70,7 @@ third_party_settings:
             uuid: report-topics-field
             region: banner
             configuration:
-              id: 'field_block:node:report_summary:field_report_topics'
+              id: 'field_block:node:report_summary:field_topics'
               label: Topics
               label_display: '0'
               provider: layout_builder
@@ -146,7 +146,7 @@ third_party_settings:
             uuid: sidebar-pdf
             region: sidebar
             configuration:
-              id: 'field_block:node:report_summary:field_report_pdf'
+              id: 'field_block:node:report_summary:field_document'
               label: 'Download Report'
               label_display: '0'
               provider: layout_builder
@@ -230,6 +230,14 @@ content:
     third_party_settings: {  }
     weight: 105
     region: content
+  field_document:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
   field_emphasized_title_text:
     type: string
     label: above
@@ -247,22 +255,6 @@ content:
     third_party_settings: {  }
     weight: 106
     region: content
-  field_report_pdf:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 103
-    region: content
-  field_report_topics:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 102
-    region: content
   field_representative_image:
     type: entity_reference_label
     label: hidden
@@ -279,6 +271,14 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 107
+    region: content
+  field_topics:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
     region: content
   links:
     settings: {  }

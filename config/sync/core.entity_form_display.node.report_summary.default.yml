@@ -7,12 +7,12 @@ dependencies:
     - entity_browser.browser.persona_browser
     - field.field.node.report_summary.field_address
     - field.field.node.report_summary.field_authors
+    - field.field.node.report_summary.field_document
     - field.field.node.report_summary.field_emphasized_title_text
     - field.field.node.report_summary.field_published_date
-    - field.field.node.report_summary.field_report_pdf
-    - field.field.node.report_summary.field_report_topics
     - field.field.node.report_summary.field_representative_image
     - field.field.node.report_summary.field_sections
+    - field.field.node.report_summary.field_topics
     - field.field.node.report_summary.layout_builder__layout
     - node.type.report_summary
   module:
@@ -38,14 +38,14 @@ content:
     third_party_settings: {  }
   field_address:
     type: address_default
-    weight: 12
+    weight: 14
     region: content
     settings:
       wrapper_type: fieldset
     third_party_settings: {  }
   field_authors:
     type: entity_browser_entity_reference
-    weight: 15
+    weight: 13
     region: content
     settings:
       entity_browser: persona_browser
@@ -57,6 +57,15 @@ content:
       field_widget_display_settings: {  }
       selection_mode: selection_append
     third_party_settings: {  }
+  field_document:
+    type: media_library_widget
+    weight: 12
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
   field_emphasized_title_text:
     type: string_textfield
     weight: 10
@@ -71,35 +80,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_report_pdf:
-    type: media_library_widget
-    weight: 14
-    region: content
-    settings:
-      media_types: {  }
-    third_party_settings:
-      media_library_edit:
-        show_edit: '1'
-  field_report_topics:
-    type: inline_entity_form_complex
-    weight: 13
-    region: content
-    settings:
-      form_mode: mini
-      override_labels: true
-      label_singular: Topic
-      label_plural: Topics
-      allow_new: true
-      allow_existing: true
-      match_operator: CONTAINS
-      allow_duplicate: false
-      collapsible: false
-      collapsed: false
-      revision: false
-      removed_reference: optional
-    third_party_settings:
-      entity_browser_entity_form:
-        entity_browser_id: _none
   field_representative_image:
     type: media_library_widget
     weight: 11
@@ -128,6 +108,26 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
     third_party_settings: {  }
+  field_topics:
+    type: inline_entity_form_complex
+    weight: 13
+    region: content
+    settings:
+      form_mode: mini
+      override_labels: true
+      label_singular: Topic
+      label_plural: Topics
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+      revision: false
+      removed_reference: optional
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
   ief_collection_items:
     weight: 50
     region: content
