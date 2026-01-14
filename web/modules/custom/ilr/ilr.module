@@ -1099,6 +1099,14 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
       $form['created']['widget'][0]['value']['#title'] = t('Created on');
     }
 
+    if ($node->bundle() === 'report_summary') {
+      $form['field_address']['#group'] = 'ilr_meta';
+      $form['field_authors']['#group'] = 'ilr_meta';
+      $form['field_document']['#group'] = 'ilr_meta';
+      $form['field_published_date']['#group'] = 'ilr_meta';
+      $form['field_topics']['#group'] = 'ilr_meta';
+    }
+
     if ($node->bundle() === 'course') {
       $form['field_message']['#group'] = 'ilr_meta';
       $form['field_delivery_method']['#group'] = 'ilr_meta';
