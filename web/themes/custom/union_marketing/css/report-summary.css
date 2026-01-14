@@ -12,6 +12,7 @@
 .cu-banner--report_summary .cu-banner__content {
   padding: var(--cu-vr1) var(--cu-ps0);
   background-color: var(--cu-colorscheme-background);
+  width: 100%;
 }
 
 .cu-banner--report_summary .banner__content {
