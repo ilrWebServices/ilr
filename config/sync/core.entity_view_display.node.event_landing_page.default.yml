@@ -67,7 +67,7 @@ third_party_settings:
                   several_months: 'M j - {M} {j}, Y'
                   several_years: 'M j, Y - {M} {j}, {Y}'
                 third_party_settings: {  }
-            weight: -3
+            weight: -2
             additional: {  }
           f57e01c5-aba4-464a-843b-2f06923204e5:
             uuid: f57e01c5-aba4-464a-843b-2f06923204e5
@@ -86,7 +86,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: -2
+            weight: -1
             additional: {  }
           7a38d06f-4236-4bfb-a245-ad418eaced41:
             uuid: 7a38d06f-4236-4bfb-a245-ad418eaced41
@@ -105,7 +105,7 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
-            weight: -1
+            weight: 0
             additional: {  }
           b5665f10-6097-4371-980d-d719336b1f53:
             uuid: b5665f10-6097-4371-980d-d719336b1f53
@@ -124,7 +124,7 @@ third_party_settings:
                 settings:
                   trim_length: 600
                 third_party_settings: {  }
-            weight: 1
+            weight: 2
             additional: {  }
           ff56066f-f178-449c-b964-4858dcc9561d:
             uuid: ff56066f-f178-449c-b964-4858dcc9561d
@@ -162,7 +162,32 @@ third_party_settings:
                 settings:
                   link_to_entity: false
                 third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          bb415ab0-2588-4ed9-a91f-3d4e17b0fea9:
+            uuid: bb415ab0-2588-4ed9-a91f-3d4e17b0fea9
+            region: banner
+            configuration:
+              id: 'extra_field_block:node:event_landing_page:extra_field_delivery_method'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
             weight: 0
+            additional: {  }
+          d6ecf5f6-93e4-4f17-a3f6-7520400a74b7:
+            uuid: d6ecf5f6-93e4-4f17-a3f6-7520400a74b7
+            region: left
+            configuration:
+              id: 'extra_field_block:node:event_landing_page:extra_field_delivery_method'
+              label: 'Delivery method'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                settings: {  }
+                third_party_settings: {  }
+            weight: -4
             additional: {  }
         third_party_settings: {  }
       -
@@ -357,6 +382,11 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  extra_field_delivery_method:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: banner
   field_registration_form:
     type: webform_entity_reference_entity_view
     label: above
