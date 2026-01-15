@@ -1,7 +1,13 @@
 uuid: 653e3962-47cf-41ba-af6c-6bb9964401a4
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - taxonomy_unique_name
+third_party_settings:
+  taxonomy_unique_name:
+    unique: 1
+    unique_message: 'Term %term already exists in vocabulary %vocabulary.'
 name: 'Report topics'
 vid: report_topics
 description: 'Topics for report summaries'
