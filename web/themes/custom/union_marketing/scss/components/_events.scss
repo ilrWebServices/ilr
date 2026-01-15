@@ -42,34 +42,6 @@
 
   .block-field-block--node--event-landing-page--field-registration-form,
   .block-field-block--node--event-landing-page--field-url {
-    --cu-font-size: var(--cu-ms-1);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background-color: white;
-    width: 100vw;
-    max-height: 100vh;
-    overflow-y: auto;
-    padding: var(--cu-vr-2) var(--cu-ps1);
-    z-index: 1;
-    box-shadow: 0 2px 10px 2px rgba(0,0,0,.2);
-
-    @include breakpoint(md) {
-      position: sticky;
-      top: var(--cu-vr0);
-      bottom: unset;
-      width: revert;
-      max-height: revert;
-      margin-top: var(--cu-vr3);
-      padding: var(--cu-vr1) var(--cu-ps1);
-      transition: margin 100ms;
-
-      &[data-collapsed="0"] {
-        position: relative;
-        margin-left: calc(var(--cu-ps5) * -1);
-      }
-    }
-
     .cu-input-message {
       --cu-font-size: var(--cu-ms-2);
     }
@@ -108,6 +80,54 @@
 
     &[data-collapsed="0"] .registration-form-collapse {
       display: block;
+    }
+  }
+
+  // Form in the banner.
+  .layout-banner .block-field-block--node--event-landing-page--field-registration-form {
+    padding: 0;
+
+    .webform-submission-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--cu-vr0);
+      justify-content: space-between;
+      align-items: center;
+
+      @include breakpoint (sm) {
+        flex-direction: row;
+      }
+      #address-intl-ajax-wrapper {
+        display: none;
+      }
+
+      > *,
+      .cu-input {
+        flex-grow: 1;
+        margin: 0;
+      }
+    }
+  }
+
+  // Form in the sidebar.
+  .layout--twocol-section .block-field-block--node--event-landing-page--field-registration-form {
+    box-shadow: 0 2px 10px 2px rgba(0,0,0,.2);
+    background-color: white;
+    z-index: 2;
+    padding: var(--cu-vr1) var(--cu-ps1);
+
+    @include breakpoint(md) {
+      position: sticky;
+      top: var(--cu-vr0);
+      bottom: unset;
+      width: revert;
+      max-height: revert;
+      transition: margin 100ms;
+
+      &[data-collapsed="0"] {
+        position: relative;
+        margin-left: calc(var(--cu-ps5) * -1);
+      }
     }
   }
 

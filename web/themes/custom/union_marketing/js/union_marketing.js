@@ -94,6 +94,7 @@
       const event_registration_forms = context.querySelectorAll('.block-field-block--node--event-landing-page--field-registration-form');
 
       for (const event_registration_form of event_registration_forms) {
+        let inBannerLayout = event_registration_form.parentNode.closest('.layout-banner');
         let elements = event_registration_form.querySelectorAll('.form-item:not(.webform-actions, .post-button-text), .fieldgroup');
 
         // Hide most of the form inputs by default.
@@ -109,6 +110,17 @@
         form_overlay.style.inset = '0px';
         form_overlay.style.cursor = 'pointer';
         form_overlay.addEventListener('click', function (event) {
+
+          if (inBannerLayout) { // Open the form in the sidebar.
+            // @TODO: Refactor to remove dependency on arbitrary layout classes.
+            const event_registration_form_overlay = document.querySelector('.layout--twocol-section .block-field-block--node--event-landing-page--field-registration-form > div:last-of-type');
+
+            if (event_registration_form_overlay) {
+              event_registration_form_overlay.click();
+            }
+            return;
+          }
+
           event_registration_form.dataset.collapsed = 0;
           event.target.style.display = 'none';
           event_registration_form.scrollIntoView({ behavior: "smooth" })

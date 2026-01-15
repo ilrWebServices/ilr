@@ -170,6 +170,26 @@ third_party_settings:
                 third_party_settings: {  }
             weight: -4
             additional: {  }
+          e5caaa66-56fe-4b24-8c1c-cadc508b0feb:
+            uuid: e5caaa66-56fe-4b24-8c1c-cadc508b0feb
+            region: left
+            configuration:
+              id: 'field_block:node:event_landing_page:field_registration_form'
+              label: 'Registration form'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: webform_entity_reference_entity_view
+                label: hidden
+                settings:
+                  source_entity: true
+                  lazy: false
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_twocol_section
