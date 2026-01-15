@@ -153,6 +153,16 @@ function union_marketing_preprocess_node(&$variables) {
   // Attach Report Summary CSS library for report_summary content type.
   if ($variables['node']->bundle() === 'report_summary') {
     $variables['#attached']['library'][] = 'union_marketing/report_summary';
+
+    if (!$variables['node']->field_emphasized_title_text->isEmpty()) {
+      $variables['title_with_emphasis'] = [
+        '#markup' => str_replace(
+          $variables['node']->field_emphasized_title_text->value,
+          '<strong>' . $variables['node']->field_emphasized_title_text->value . '</strong>',
+          $variables['node']->label()
+        ),
+      ];
+    }
   }
 }
 

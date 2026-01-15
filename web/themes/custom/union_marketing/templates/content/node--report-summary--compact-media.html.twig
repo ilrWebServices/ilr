@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Theme override to display a report summary node in Compact with Media view mode.
+ *
+ * This template displays report summaries in a carousel with hover overlay effect.
+ * Shows the title and emphasized title text over the representative image.
+ */
+#}
+{% set rendered_content %}
+  <div class="cu-card__hover-overlay-content">
+    <span class="cu-card__hover-text">{% trans %}Read Report{% endtrans %}</span>
+    <span class="cu-card__hover-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#B31B1B" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </div>
+{% endset %}
+
+{% include '@union/_card.twig' with {
+  heading: title_with_emphasis,
+  heading_element: 'h3',
+  card_content: rendered_content,
+  card_media: content.field_representative_image,
+  card_link_url: url,
+  card_link_alt: label,
+  suffix: title_suffix,
+  link_attributes: url_attributes,
+  content_attributes: { class: 'cu-card__content--hover-overlay' },
+  heading_attributes: { class: 'cu-composite-heading--minimal' },
+  attributes: attributes.addClass([
+    'cu-card--hover-overlay',
+    'node--' ~ node.bundle|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ])
+} only %}

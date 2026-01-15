@@ -28,6 +28,7 @@ dependencies:
     - paragraphs.paragraphs_type.project_listing
     - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.publications
+    - paragraphs.paragraphs_type.report_summary_listing
     - paragraphs.paragraphs_type.rich_text
     - paragraphs.paragraphs_type.section
     - paragraphs.paragraphs_type.section_navigation
@@ -93,6 +94,7 @@ settings:
       tabs: tabs
       accordion: accordion
       slide_deck: slide_deck
+      report_summary_listing: report_summary_listing
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -190,6 +192,9 @@ settings:
         enabled: true
       publications:
         weight: -38
+        enabled: true
+      report_summary_listing:
+        weight: -56
         enabled: true
       rich_text:
         weight: -71

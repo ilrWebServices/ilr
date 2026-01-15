@@ -1,0 +1,11 @@
+uuid: 6b4d3c2a-1f9e-4d8c-7b6a-5f4e3d2c1b0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.report_summary_listing
+id: paragraph.report_summary_listing
+target_entity_type_id: paragraph
+target_bundle: report_summary_listing
+default_langcode: site_default
+language_alterable: false

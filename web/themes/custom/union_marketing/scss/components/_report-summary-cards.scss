@@ -1,0 +1,118 @@
+/**
+ * Report Summary Card Styles
+ *
+ * Adds blur effect to background images on report summary cards
+ * to match the design system.
+ */
+
+// TODO: See if we'd like do to this in the component itself.
+cu-gallery.cu-component--report-summary-listing .cu-gallery__item.active {
+  box-shadow: inset 0 0 30px 0 var(--cu-color-dark);
+}
+
+
+cu-gallery.cu-component--report-summary-listing .node--view-mode-compact-media .cu-card__meta {
+  margin-bottom: 0;
+}
+
+// Hide the gallery previous navigation until hover. It's OK to skip this on mobile.
+cu-gallery.cu-component--report-summary-listing .cu-gallery__navigation-prev {
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+cu-gallery.cu-component--report-summary-listing:hover .cu-gallery__navigation-prev {
+  opacity: 1;
+}
+
+.node--report-summary.node--view-mode-compact-media {
+  min-height: 280px;
+}
+
+.node--report-summary.node--view-mode-compact-media .cu-card__media .cu-image {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Blur the background image on report summary cards */
+.node--report-summary.node--view-mode-compact-media .cu-card__media .cu-image {
+  filter: blur(15px) opacity(.5);
+  transform: scale(1.2);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+/* Remove blur on hover to show crisp image */
+.node--report-summary.node--view-mode-compact-media:hover .cu-card__media .cu-image {
+  filter: blur(0) opacity(1);
+  transform: scale(1);
+}
+
+/* Override justify-content for report summary cards only */
+.node--report-summary.node--view-mode-compact-media .cu-card__content {
+  --cu-composite-heading-text-align: left;
+  text-align: left;
+  padding: var(--cu-vr0) var(--cu-ps0);
+  align-items: flex-start;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+/* Show title by default, hide overlay */
+.node--report-summary.node--view-mode-compact-media .cu-composite-heading__heading {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  --cu-font-size: var(--cu-ms0);
+  hyphens: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cu-vr0);
+  margin-bottom: 0;
+}
+
+.node--report-summary.node--view-mode-compact-media:hover .cu-composite-heading__heading {
+  opacity: 0;
+}
+
+.node--report-summary.node--view-mode-compact-media .cu-card__hover-overlay-content {
+  opacity: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  backdrop-filter: blur(10px) brightness(50%);
+  padding: .5rem .75rem;
+  border-radius: 5px;
+  // var(--cu-vr0) * 2 will move the Read more link directly on top of the
+  // title. Without it, we get a little more bottom space as per the design.
+  margin-top: calc((var(--cu-font-size) + var(--cu-vr0)) * -1);
+}
+
+.node--report-summary.node--view-mode-compact-media:hover .cu-card__hover-overlay-content {
+  opacity: 1;
+}
+
+.node--report-summary.node--view-mode-compact-media .cu-card__hover-text {
+  color: var(--cu-color-white);
+  font-weight: 400;
+  flex: 1;
+}
+
+.node--report-summary.node--view-mode-compact-media .cu-card__hover-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  background: var(--cu-color-white);
+  border-radius: 50%;
+}
+
+/* Emphasized text (strong tags) styling */
+.node--report-summary.node--view-mode-compact-media .cu-composite-heading__heading strong {
+  font-family: 'futura-pt', 'Futura', sans-serif;
+  font-size: var(--cu-ms3);
+  line-height: 1.1;
+  font-weight: 800;
+  text-transform: uppercase;
+}

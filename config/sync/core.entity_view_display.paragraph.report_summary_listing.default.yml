@@ -1,0 +1,13 @@
+uuid: 7c5e4d3b-2a1f-4e9c-8d7b-6a5f4e3d2c1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.report_summary_listing
+id: paragraph.report_summary_listing.default
+targetEntityType: paragraph
+bundle: report_summary_listing
+mode: default
+content: {  }
+hidden:
+  search_api_excerpt: true

@@ -1,0 +1,61 @@
+uuid: 9f8e3c2d-4b5a-4e9c-8d7f-6a5b4c3d2e1f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.compact_media
+    - field.field.node.report_summary.field_address
+    - field.field.node.report_summary.field_authors
+    - field.field.node.report_summary.field_emphasized_title_text
+    - field.field.node.report_summary.field_published_date
+    - field.field.node.report_summary.field_report_pdf
+    - field.field.node.report_summary.field_report_topics
+    - field.field.node.report_summary.field_representative_image
+    - field.field.node.report_summary.field_sections
+    - field.field.node.report_summary.layout_builder__layout
+    - image.style.medium_3_2
+    - node.type.report_summary
+  module:
+    - datetime
+    - media
+id: node.report_summary.compact_media
+targetEntityType: node
+bundle: report_summary
+mode: compact_media
+content:
+  extra_field_ilr_section_navigation:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_published_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: ilr_date
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_representative_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium_3_2
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_address: true
+  field_authors: true
+  field_emphasized_title_text: true
+  field_report_pdf: true
+  field_report_topics: true
+  field_sections: true
+  langcode: true
+  layout_builder__layout: true
+  links: true
+  search_api_excerpt: true
