@@ -54,13 +54,14 @@ content:
       rows: 9
       summary_rows: 3
       placeholder: ''
-      show_summary: true
+      show_summary: false
     third_party_settings:
       allowed_formats:
         hide_help: '1'
         hide_guidelines: '1'
       ilr:
         hide_value: 0
+        hide_summary_description: 0
   created:
     type: datetime_timestamp
     weight: 10

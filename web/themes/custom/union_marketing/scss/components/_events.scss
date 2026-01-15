@@ -231,6 +231,10 @@
     }
   }
 
+  .cu-heading.field--field-subtitle {
+    --cu-font-size: var(--cu-ms2);
+  }
+
   .block-extra-field-block--node--event-landing-page--event-when-where {
     width: 100%;
   }
