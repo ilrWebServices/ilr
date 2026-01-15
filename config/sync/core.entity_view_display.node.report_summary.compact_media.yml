@@ -8,8 +8,8 @@ dependencies:
     - field.field.node.report_summary.field_authors
     - field.field.node.report_summary.field_emphasized_title_text
     - field.field.node.report_summary.field_published_date
-    - field.field.node.report_summary.field_report_pdf
-    - field.field.node.report_summary.field_report_topics
+    - field.field.node.report_summary.field_document
+    - field.field.node.report_summary.field_topics
     - field.field.node.report_summary.field_representative_image
     - field.field.node.report_summary.field_sections
     - field.field.node.report_summary.layout_builder__layout
@@ -51,10 +51,12 @@ content:
 hidden:
   field_address: true
   field_authors: true
+  field_document: true
   field_emphasized_title_text: true
   field_report_pdf: true
   field_report_topics: true
   field_sections: true
+  field_topics: true
   langcode: true
   layout_builder__layout: true
   links: true
