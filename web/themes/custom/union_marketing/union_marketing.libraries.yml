@@ -64,8 +64,6 @@ report_summary:
   css:
     theme:
       css/report-summary.css: {}
-  dependencies:
-    - core/drupal
 
 livereload:
   remote: https://github.com/mklabs/tiny-lr
