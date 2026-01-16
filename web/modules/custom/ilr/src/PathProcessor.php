@@ -49,7 +49,7 @@ class PathProcessor implements OutboundPathProcessorInterface {
         $url_override = $entity->field_external_link->first()->getUrl()->toString();
       }
 
-      if ($view && $entity instanceof NodeInterface && $entity->hasField('field_document') && !$entity->field_document->isEmpty()) {
+      if ($view && $entity instanceof NodeInterface && $entity->hasField('field_document') && !$entity->field_document->isEmpty() && $entity->bundle() !== 'report_summary') {
         // Since field_document is a media reference, it allows us to pass
         // responsibility to the MediaInterface processor below.
         $url_override = $entity->field_document->first()->entity->toUrl()->toString();
