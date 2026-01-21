@@ -190,6 +190,16 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 2
             additional: {  }
+          8cf96013-a2b7-4aa5-b303-b20e5b58797f:
+            uuid: 8cf96013-a2b7-4aa5-b303-b20e5b58797f
+            region: banner
+            configuration:
+              id: 'extra_field_block:node:event_landing_page:extra_field_event_registration_details'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 1
+            additional: {  }
         third_party_settings: {  }
       -
         layout_id: layout_twocol_section
@@ -213,7 +223,7 @@ third_party_settings:
                   view_mode: default
                   link: ''
                 third_party_settings: {  }
-            weight: 9
+            weight: 7
             additional: {  }
           d35bc236-4c4d-4df8-a4dc-dc7b89a8b5dc:
             uuid: d35bc236-4c4d-4df8-a4dc-dc7b89a8b5dc
@@ -235,7 +245,7 @@ third_party_settings:
               radius: 0px
               print_css: ''
               facebook_app_id: ''
-            weight: 0
+            weight: -2
             additional: {  }
           e3e872af-d4df-4a0c-894b-b70d246a2d6e:
             uuid: e3e872af-d4df-4a0c-894b-b70d246a2d6e
@@ -254,50 +264,7 @@ third_party_settings:
                 settings:
                   view_mode: teaser
                 third_party_settings: {  }
-            weight: 4
-            additional: {  }
-          b0b9ab3f-b515-4ebf-ba0f-2dc00da9b0e1:
-            uuid: b0b9ab3f-b515-4ebf-ba0f-2dc00da9b0e1
-            region: second
-            configuration:
-              id: 'field_block:node:event_landing_page:field_registration_form'
-              label: 'Registration form'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: webform_entity_reference_entity_view
-                label: hidden
-                settings:
-                  source_entity: true
-                  lazy: true
-                third_party_settings: {  }
-            weight: 1
-            additional: {  }
-          6267a2e4-1e27-4abd-b006-bb021d3fb29e:
-            uuid: 6267a2e4-1e27-4abd-b006-bb021d3fb29e
-            region: second
-            configuration:
-              id: 'field_block:node:event_landing_page:field_url'
-              label: 'Registration URL'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: link
-                label: hidden
-                settings:
-                  trim_length: 80
-                  url_only: false
-                  url_plain: false
-                  rel: '0'
-                  target: _blank
-                third_party_settings: {  }
-            weight: 2
+            weight: 5
             additional: {  }
           0c3fe114-2c92-4fbf-9143-05f019c05aae:
             uuid: 0c3fe114-2c92-4fbf-9143-05f019c05aae
@@ -319,22 +286,7 @@ third_party_settings:
               radius: 100%
               print_css: ''
               facebook_app_id: ''
-            weight: 3
-            additional: {  }
-          fccaaa86-4434-4961-a93a-7337832fab96:
-            uuid: fccaaa86-4434-4961-a93a-7337832fab96
-            region: second
-            configuration:
-              id: 'extra_field_block:node:event_landing_page:event_when_where'
-              label: 'When & Where'
-              label_display: visible
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                settings: {  }
-                third_party_settings: {  }
-            weight: 3
+            weight: 4
             additional: {  }
           dc3db026-44bb-47b0-9a0a-551e9bf09954:
             uuid: dc3db026-44bb-47b0-9a0a-551e9bf09954
@@ -352,7 +304,22 @@ third_party_settings:
                 label: above
                 settings: {  }
                 third_party_settings: {  }
-            weight: 8
+            weight: 6
+            additional: {  }
+          2efab6ec-80cf-4f78-9a91-d46f56d58d24:
+            uuid: 2efab6ec-80cf-4f78-9a91-d46f56d58d24
+            region: second
+            configuration:
+              id: 'extra_field_block:node:event_landing_page:extra_field_event_registration_details'
+              label: 'Registration details'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                settings: {  }
+                third_party_settings: {  }
+            weight: -1
             additional: {  }
         third_party_settings: {  }
 id: node.event_landing_page.default
@@ -378,12 +345,12 @@ content:
     third_party_settings: {  }
     weight: -5
     region: content
-  event_when_where:
+  extra_field_delivery_method:
     settings: {  }
     third_party_settings: {  }
     weight: 0
-    region: content
-  extra_field_delivery_method:
+    region: banner
+  extra_field_event_registration_details:
     settings: {  }
     third_party_settings: {  }
     weight: 0
@@ -487,6 +454,7 @@ content:
     region: content
 hidden:
   behavior_suppress_listing: true
+  event_when_where: true
   field_delivery_method: true
   field_keywords: true
   field_metatags: true

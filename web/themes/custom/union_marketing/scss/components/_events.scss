@@ -40,8 +40,7 @@
     margin-bottom: var(--cu-vr1);
   }
 
-  .block-field-block--node--event-landing-page--field-registration-form,
-  .block-field-block--node--event-landing-page--field-url {
+  .block-extra-field-block--node--event-landing-page--extra-field-event-registration-details {
     .cu-input-message {
       --cu-font-size: var(--cu-ms-2);
     }
@@ -51,8 +50,8 @@
       display: none;
       position: fixed;
       cursor: pointer;
-      top: 0;
-      right: 0;
+      top: calc(var(--cu-vr1) * -1);
+      right: calc(var(--cu-ps1) * -1);
       width: 50px;
       height: 50px;
       background-color: rgba(128,128,128,.15);
@@ -78,7 +77,7 @@
       }
     }
 
-    &[data-collapsed="0"] .registration-form-collapse {
+    [data-collapsed="0"] .registration-form-collapse {
       display: block;
     }
   }
@@ -110,7 +109,7 @@
   }
 
   // Form in the sidebar.
-  .layout--twocol-section .block-field-block--node--event-landing-page--field-registration-form {
+  .layout--twocol-section .block-extra-field-block--node--event-landing-page--extra-field-event-registration-details {
     box-shadow: 0 2px 10px 2px rgba(0,0,0,.2);
     background-color: white;
     z-index: 2;
@@ -124,7 +123,7 @@
       max-height: revert;
       transition: margin 100ms;
 
-      &[data-collapsed="0"] {
+      &:has([data-collapsed="0"]) {
         position: relative;
         margin-left: calc(var(--cu-ps5) * -1);
       }
@@ -136,14 +135,14 @@
   }
 
   .webform-button--submit,
-  .block-field-block--node--event-landing-page--field-url .cu-button {
+  .cu-button {
     --cu-font-weight: 400;
     --cu-text-color: white;
     width: 100%;
     background-color: var(--cu-color-brand);
   }
 
-  .block-field-block--node--event-landing-page--field-url .cu-button {
+  .cu-button {
     --cu-font-size: var(--cu-ms-1);
     text-align: center;
   }
@@ -295,12 +294,16 @@
   }
 
   .event-when-where {
-    display: flex;
-    flex-direction: column;
-    gap: var(--cu-vr1);
+    display: grid;
+    grid-template-columns: auto;
+    gap: 1em;
     --cu-font-size: var(--cu-ms-2);
     --cu-font-weight: 400;
     --cu-text-color: #6C6C6C;
+
+    @include breakpoint(sm) {
+      grid-template-columns: auto auto;
+    }
 
     .cu-heading {
       --cu-font-size: 20px;
@@ -312,21 +315,73 @@
       margin-bottom: 0;
     }
 
+    .event-when-where__date,
+    .event-when-where__location {
+      display: grid;
+      column-gap: var(--cu-ms0);
+      grid-template-columns: auto 1fr;
+
+      > * {
+        grid-column: 2;
+      }
+
+      .cu-icon {
+        grid-column: 1;
+        background-color: transparent;
+      }
+    }
     .cu-icon {
       margin-bottom: 0;
-      position: absolute;
-      top: 0;
-      left: 0;
       background-color: #F7F6F6;
       padding: 14px;
       border-radius: 20%;
     }
   }
 
-  .event-when-where__date,
-  .event-when-where__location {
-    position: relative;
-    padding-left: calc(48px + 20px);
+  .block-extra-field-block--node--event-landing-page--extra-field-event-registration-details {
+    .field--field-registration-form,
+    .event-when-where__date,
+    .event-when-where__location {
+      position: relative;
+      padding-bottom: var(--cu-vr1);
+      border-bottom: 2px dotted $gray-medium;
+
+      &:last-child {
+        border: none;
+        padding-bottom: 0;
+      }
+    }
+
+    .event-when-where {
+      margin-top: var(--cu-vr1);
+      gap: var(--cu-vr1);
+      display: flex;
+      flex-direction: column;
+
+      h3.cu-heading {
+        display: none;
+      }
+
+      .cu-icon {
+        padding: 0;
+      }
+
+      .field--event-date {
+        --cu-font-weight: 600;
+        --cu-text-color: var(--cu-color-dark);
+      }
+
+      .field--event-date ~ .field--event-date {
+        --cu-font-weight: 400;
+        --cu-text-color: revert;
+      }
+    }
+
+    .webform-submission-event-registration-form .webform-actions,
+    .webform-submission-event-registration-form .post-button-text {
+      margin: 0;
+      padding: 0;
+    }
   }
 }
 
