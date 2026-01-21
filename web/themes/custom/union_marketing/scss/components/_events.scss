@@ -295,16 +295,12 @@
   }
 
   .event-when-where {
-    display: grid;
-    grid-template-columns: auto;
-    gap: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: var(--cu-vr1);
     --cu-font-size: var(--cu-ms-2);
     --cu-font-weight: 400;
     --cu-text-color: #6C6C6C;
-
-    @include breakpoint(sm) {
-      grid-template-columns: auto auto;
-    }
 
     .cu-heading {
       --cu-font-size: 20px;

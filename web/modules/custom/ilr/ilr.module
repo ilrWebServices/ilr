@@ -92,6 +92,7 @@ function ilr_theme($existing, $type, $theme, $path) {
     ],
     'ilr_event_when_where' => [
       'variables' => [
+        'registration_form' => [],
         'event_date' => [],
         'event_time' => [],
         'location_address' => [],
@@ -416,6 +417,10 @@ function ilr_node_view(array &$build, EntityInterface $entity, EntityViewDisplay
   if ($display->getComponent('event_when_where')) {
     $build['event_when_where'] = [
       '#theme' => 'ilr_event_when_where',
+      '#registration_form' => !$entity->field_registration_form->isEmpty() ? $entity->field_registration_form->view([
+        'label' => 'hidden',
+        'type' => 'webform_entity_reference_entity_view',
+      ]) : '',
       '#event_date' => $entity->event_date->view([
         'label' => 'hidden',
         'type' => 'date_range_without_time',
