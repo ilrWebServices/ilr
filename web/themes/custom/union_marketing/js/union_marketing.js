@@ -131,18 +131,20 @@
         });
         event_registration_form.appendChild(form_overlay);
 
-        let form_close = document.createElement('button');
-        form_close.setAttribute('title', 'Close');
-        form_close.classList.add('registration-form-collapse');
-        form_close.innerHTML = '<span>Close</span>';
-        form_close.addEventListener('click', function (event) {
-          for (const element of elements) {
-            element.style.display = 'none';
-          }
-          event_registration_form.dataset.collapsed = 1;
-          form_overlay.style.display = 'block';
-        });
-        event_registration_form.appendChild(form_close);
+        if (!inBannerLayout) {
+          let form_close = document.createElement('button');
+          form_close.setAttribute('title', 'Close');
+          form_close.classList.add('registration-form-collapse');
+          form_close.innerHTML = '<span>Close</span>';
+          form_close.addEventListener('click', function (event) {
+            for (const element of elements) {
+              element.style.display = 'none';
+            }
+            event_registration_form.dataset.collapsed = 1;
+            form_overlay.style.display = 'block';
+          });
+          event_registration_form.appendChild(form_close);
+        }
       }
     }
   }
