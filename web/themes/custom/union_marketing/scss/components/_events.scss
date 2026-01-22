@@ -26,10 +26,13 @@
     }
   }
 
+  .field--field-sections {
+    border-top: 1px solid #DFDFDF;
+  }
+
   .cu-section {
     margin-bottom: var(--cu-vr2);
     padding-top: var(--cu-vr1);
-    border-top: 1px solid #DFDFDF;
   }
 
   .cu-section[class*="cu-colorscheme"] {
@@ -48,19 +51,15 @@
     .registration-form-collapse {
       color: #333;
       display: none;
-      position: fixed;
+      position: absolute;
       cursor: pointer;
-      top: calc(var(--cu-vr1) * -1);
-      right: calc(var(--cu-ps1) * -1);
+      top: 0;
+      right: 0;
       width: 50px;
       height: 50px;
       background-color: rgba(128,128,128,.15);
       border: none;
       border-radius: 0 0 0 20%;
-
-      @include breakpoint(md) {
-        position: absolute;
-      }
 
       span {
         visibility: hidden;
@@ -89,8 +88,10 @@
     align-items: center;
 
     .cu-button {
-      padding-left: var(--cu-ps2);
-      padding-right: var(--cu-ps2);
+      @include breakpoint(sm) {
+        padding-left: var(--cu-ps2);
+        padding-right: var(--cu-ps2);
+      }
     }
     .post-button-text {
       flex-grow: 1;
@@ -198,7 +199,6 @@
   .block-field-block--node--event-landing-page--event-date {
     --cu-font-weight: 700;
     --cu-font-size: var(--cu-ms-2);
-    margin-bottom: var(--cu-vr0);
   }
 
   .block-extra-field-block--node--event-landing-page--extra-field-delivery-method {
@@ -330,10 +330,11 @@
   }
 
   .block-extra-field-block--node--event-landing-page--extra-field-event-registration-details {
+    position: relative;
+
     .field--field-registration-form,
     .event-when-where__date,
     .event-when-where__location {
-      position: relative;
       padding-bottom: var(--cu-vr1);
       border-bottom: 2px dotted $gray-medium;
 
@@ -435,7 +436,12 @@
 .cu-banner--event_landing_page .banner__left:has(.field--field-delivery-method) {
   display: grid;
   grid-template-columns: auto auto 1fr;
-  column-gap: var(--cu-ps0);
+  gap: var(--cu-vr0) var(--cu-ps0);
+  align-self: start;
+
+  .cu-heading {
+    margin-bottom: 0;
+  }
 
   > * {
     grid-column: 1 / -1;
@@ -449,3 +455,10 @@
     grid-column: 2;
   }
 }
+
+.cu-banner--event_landing_page .banner__right {
+  @include breakpoint(md) {
+    min-height: 400px;
+  }
+}
+
