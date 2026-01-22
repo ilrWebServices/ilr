@@ -1,0 +1,19 @@
+uuid: de217812-15ad-4bf2-a939-8d8cdb532951
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_subtitle
+    - node.type.event_landing_page
+id: node.event_landing_page.field_subtitle
+field_name: field_subtitle
+entity_type: node
+bundle: event_landing_page
+label: Subtitle
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

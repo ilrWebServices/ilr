@@ -2,9 +2,12 @@ uuid: 9b41b63a-af3c-402c-b66e-fb1ad56a6bfa
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.storage.node.field_subtitle
   module:
     - collection
     - dynamic_entity_reference
+    - node
 id: collection_items
 label: 'Collection items'
 module: views
@@ -74,17 +77,80 @@ display:
           action_title: Action
           include_exclude: exclude
           selected_actions: {  }
-        name:
-          id: name
+        field_subtitle:
+          id: field_subtitle
+          table: node__field_subtitle
+          field: field_subtitle
+          relationship: node__item
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: '| {{ field_subtitle }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 150
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: true
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        item__target_id_1:
+          id: item__target_id_1
           table: collection_item_field_data
-          field: name
+          field: item__target_id
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: collection_item
-          entity_field: name
+          entity_field: item
           plugin_id: field
-          label: ''
+          label: 'Collected item'
           exclude: true
           alter:
             alter_text: false
@@ -117,7 +183,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -125,11 +191,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: string
+          click_sort_column: target_id
+          type: dynamic_entity_reference_label
           settings:
-            link_to_entity: false
-          group_column: value
+            link: true
+          group_column: ''
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -152,8 +218,8 @@ display:
           label: Item
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '{{ item__target_id }} {{ field_subtitle }}'
             make_link: false
             path: ''
             absolute: false
@@ -557,6 +623,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 50
           total_pages: null
           id: 0
@@ -574,7 +641,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -695,26 +761,24 @@ display:
           not: false
           target_entity_type_id: collection
       filters:
-        name:
-          id: name
-          table: collection_item_field_data
-          field: name
+        combine:
+          id: combine
+          table: views
+          field: combine
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: collection_item
-          entity_field: name
-          plugin_id: string
-          operator: word
+          plugin_id: combine
+          operator: contains
           value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: name_op
+            operator_id: combine_op
             label: Name
             description: ''
             use_operator: false
-            operator: name_op
+            operator: combine_op
             operator_limit_selection: false
             operator_list: {  }
             identifier: name
@@ -728,7 +792,25 @@ display:
               editor: '0'
               content_administrator: '0'
               course_admin: '0'
+              form_admin: '0'
+              advanced_editor: '0'
+              event_admin: '0'
+              explore_form_admin: '0'
+              reviewer: '0'
+              cahrs_admin: '0'
+              project_admin: '0'
+              landing_page_editor: '0'
+              employee_admin: '0'
             placeholder: ''
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_field: ''
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+            autocomplete_contextual: 0
+            autocomplete_autosubmit: 0
           is_grouped: false
           group_info:
             label: ''
@@ -741,6 +823,133 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+          fields:
+            field_subtitle: field_subtitle
+            item__target_id_1: item__target_id_1
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          relationship: node__item
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: Status
+            description: ''
+            use_operator: false
+            operator: status_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: status
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              content_administrator: '0'
+              course_admin: '0'
+              form_admin: '0'
+              advanced_editor: '0'
+              event_admin: '0'
+              explore_form_admin: '0'
+              reviewer: '0'
+              cahrs_admin: '0'
+              project_admin: '0'
+              landing_page_editor: '0'
+              employee_admin: '0'
+          is_grouped: true
+          group_info:
+            label: Published
+            description: ''
+            identifier: status
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: Published
+                operator: '='
+                value: '1'
+              2:
+                title: Unpublished
+                operator: '='
+                value: '0'
+        canonical:
+          id: canonical
+          table: collection_item_field_data
+          field: canonical
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: collection_item
+          entity_field: canonical
+          plugin_id: boolean
+          operator: '='
+          value: '0'
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: 'Cross post'
+            description: ''
+            use_operator: false
+            operator: canonical_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: canonical
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              content_administrator: '0'
+              course_admin: '0'
+              form_admin: '0'
+              advanced_editor: '0'
+              event_admin: '0'
+              explore_form_admin: '0'
+              reviewer: '0'
+              cahrs_admin: '0'
+              project_admin: '0'
+              landing_page_editor: '0'
+              employee_admin: '0'
+          is_grouped: true
+          group_info:
+            label: Canonical
+            description: ''
+            identifier: canonical
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: 'Yes'
+                operator: '='
+                value: '1'
+              2:
+                title: 'No'
+                operator: '='
+                value: '0'
       filter_groups:
         operator: AND
         groups:
@@ -757,7 +966,17 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships: {  }
+      relationships:
+        node__item:
+          id: node__item
+          table: collection_item_field_data
+          field: node__item
+          relationship: none
+          group_type: group
+          admin_label: 'Collected item: Content'
+          entity_type: collection_item
+          plugin_id: standard
+          required: false
       use_ajax: false
       header: {  }
       footer: {  }
@@ -769,7 +988,8 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_subtitle'
   page_1:
     id: page_1
     display_title: Page
@@ -800,4 +1020,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_subtitle'

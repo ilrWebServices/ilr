@@ -1,0 +1,19 @@
+uuid: ad6a1906-b95a-4940-81d8-23b44372bff9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_delivery_method
+    - node.type.event_landing_page
+id: node.event_landing_page.field_delivery_method
+field_name: field_delivery_method
+entity_type: node
+bundle: event_landing_page
+label: 'Delivery Method'
+description: 'Typically <em>In Person</em> or <em>Online</em>.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -91,7 +91,7 @@
   Drupal.behaviors.union_marketing_generic_event_registration_form = {
     attach: function (context, settings) {
 
-      const event_registration_forms = context.querySelectorAll('.block-field-block--node--event-landing-page--field-registration-form');
+      const event_registration_forms = context.querySelectorAll('.field--field-registration-form');
 
       for (const event_registration_form of event_registration_forms) {
         let elements = event_registration_form.querySelectorAll('.form-item:not(.webform-actions, .post-button-text), .fieldgroup');
@@ -149,7 +149,7 @@
 
           // See the `form_overlay` created in
           // Drupal.behaviors.union_marketing_generic_event_registration_form().
-          const event_registration_form_overlay = document.querySelector('.block-field-block--node--event-landing-page--field-registration-form > div:last-of-type');
+          const event_registration_form_overlay = document.querySelector('.layout--twocol-section .field--field-registration-form > div:last-of-type');
 
           if (event_registration_form_overlay) {
             event_registration_form_overlay.click();

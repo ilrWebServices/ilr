@@ -1,16 +1,38 @@
 .node--eventalicious.node--view-mode-full {
-  max-width: 1120px;
+  max-width: 1128px;
   margin: 0 auto;
 
   .layout--twocol-section--67-33 {
-    display: block;
     margin-top: var(--cu-vr2);
+    display: flex;
+    flex-direction: column;
+
+    .layout__region--first {
+      order: 2;
+    }
+
+    .layout__region--second {
+      order: 1;
+      margin-bottom: var(--cu-vr2);
+    }
 
     @include breakpoint(md) {
+      .layout__region--first,
+      .layout__region--second {
+        order: unset;
+      }
+    }
+
+    // Align to the grid provided by Built.
+    @include breakpoint(md) {
       display: grid;
-      gap: var(--cu-ps3);
-      grid-template-columns: 2.25fr 1fr;
-      // align-items: start;
+      grid-template-columns: 2.5fr 1fr;
+      gap: var(--cu-ps0);
+    }
+
+    @include breakpoint(lg) {
+      gap: 32px;
+      grid-template-columns: 1fr 316px;
     }
   }
 
@@ -26,10 +48,13 @@
     }
   }
 
+  .field--field-sections {
+    border-top: 1px solid #DFDFDF;
+  }
+
   .cu-section {
     margin-bottom: var(--cu-vr2);
     padding-top: var(--cu-vr1);
-    border-top: 1px solid #DFDFDF;
   }
 
   .cu-section[class*="cu-colorscheme"] {
@@ -40,36 +65,7 @@
     margin-bottom: var(--cu-vr1);
   }
 
-  .block-field-block--node--event-landing-page--field-registration-form,
-  .block-field-block--node--event-landing-page--field-url {
-    --cu-font-size: var(--cu-ms-1);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background-color: white;
-    width: 100vw;
-    max-height: 100vh;
-    overflow-y: auto;
-    padding: var(--cu-vr-2) var(--cu-ps1);
-    z-index: 1;
-    box-shadow: 0 2px 10px 2px rgba(0,0,0,.2);
-
-    @include breakpoint(md) {
-      position: sticky;
-      top: var(--cu-vr0);
-      bottom: unset;
-      width: revert;
-      max-height: revert;
-      margin-top: var(--cu-vr3);
-      padding: var(--cu-vr1) var(--cu-ps1);
-      transition: margin 100ms;
-
-      &[data-collapsed="0"] {
-        position: relative;
-        margin-left: calc(var(--cu-ps5) * -1);
-      }
-    }
-
+  .block-extra-field-block--node--event-landing-page--extra-field-event-registration-details {
     .cu-input-message {
       --cu-font-size: var(--cu-ms-2);
     }
@@ -77,7 +73,7 @@
     .registration-form-collapse {
       color: #333;
       display: none;
-      position: fixed;
+      position: absolute;
       cursor: pointer;
       top: 0;
       right: 0;
@@ -86,10 +82,6 @@
       background-color: rgba(128,128,128,.15);
       border: none;
       border-radius: 0 0 0 20%;
-
-      @include breakpoint(md) {
-        position: absolute;
-      }
 
       span {
         visibility: hidden;
@@ -106,8 +98,54 @@
       }
     }
 
-    &[data-collapsed="0"] .registration-form-collapse {
+    [data-collapsed="0"] .registration-form-collapse {
       display: block;
+    }
+  }
+
+  // Register link in the banner.
+  .layout-banner .block-extra-field-block--node--event-landing-page--extra-field-register-link-button {
+    display: none;
+    gap: var(--cu-ps1);
+    align-items: center;
+
+    @include breakpoint(md) {
+      display: flex;
+    }
+
+    .cu-button {
+      @include breakpoint(sm) {
+        padding-left: var(--cu-ps2);
+        padding-right: var(--cu-ps2);
+      }
+    }
+    .post-button-text {
+      flex-grow: 1;
+    }
+    .cu-text {
+      margin: 0;
+    }
+  }
+
+  // Form in the sidebar.
+  .layout--twocol-section .block-extra-field-block--node--event-landing-page--extra-field-event-registration-details {
+    box-shadow: 0 2px 10px 2px rgba(0,0,0,.2);
+    background-color: white;
+    z-index: 2;
+    padding: var(--cu-vr1) var(--cu-ps1);
+
+    @include breakpoint(md) {
+      position: sticky;
+      top: var(--cu-vr0);
+      bottom: unset;
+      width: revert;
+      max-height: revert;
+      transition: margin 100ms;
+
+      &:has([data-collapsed="0"]) {
+        position: relative;
+        margin-left: calc(var(--cu-ps5) * -1);
+      }
     }
   }
 
@@ -116,14 +154,15 @@
   }
 
   .webform-button--submit,
-  .block-field-block--node--event-landing-page--field-url .cu-button {
+  .block-extra-field-block--node--event-landing-page--extra-field-register-link-button .cu-button,
+  .block-extra-field-block--node--event-landing-page--extra-field-event-registration-details .cu-button {
     --cu-font-weight: 400;
     --cu-text-color: white;
     width: 100%;
     background-color: var(--cu-color-brand);
   }
 
-  .block-field-block--node--event-landing-page--field-url .cu-button {
+  .cu-button {
     --cu-font-size: var(--cu-ms-1);
     text-align: center;
   }
@@ -185,7 +224,19 @@
   }
 
   .block-field-block--node--event-landing-page--event-date {
-    --cu-font-weight: 400;
+    --cu-font-weight: 700;
+    --cu-font-size: var(--cu-ms-2);
+  }
+
+  .block-extra-field-block--node--event-landing-page--extra-field-delivery-method {
+    --cu-font-weight: 700;
+    --cu-font-size: var(--cu-ms-3);
+    text-align: center;
+    text-transform: uppercase;
+    border: 1px solid var(--cu-text-color);
+    border-radius: var(--cu-font-size);
+    align-self: flex-start;
+    padding: 0 var(--cu-font-size);
   }
 
   .cu-section.field--field-sponsor {
@@ -218,39 +269,34 @@
     }
   }
 
+  .cu-heading.field--field-subtitle {
+    --cu-font-size: var(--cu-ms2);
+  }
+
   .block-extra-field-block--node--event-landing-page--event-when-where {
     width: 100%;
   }
 
   h1.cu-heading {
-    --cu-font-family: 'futura-pt';
-    --cu-font-size: var(--cu-ms5);
-    --cu-line-height: 1;
-    text-transform: uppercase;
-    margin-top: -.5em;
-    margin-bottom: 0;
-
-    @include breakpoint(md) {
-      --cu-font-size: var(--cu-ms10);
-    }
+    --cu-font-weight: 700;
+    --cu-line-height: 1.2;
+    --cu-font-size: var(--cu-ms7);
   }
 
-  .loquacious h1.cu-heading {
-    --cu-font-family: revert;
-    --cu-line-height: 1.2;
-    text-transform: revert;
-    --cu-font-size: var(--cu-ms7);
+  .field--field-series-name {
+    --cu-font-size: var(--cu-ms-2);
+    --cu-font-weight: 700;
+    text-transform: uppercase;
   }
 
   .field--body {
     --cu-font-weight: 400;
-    margin-top: -1em;
   }
 
-  // The body field is displayed twice on the full page
   .field--body.field--label-above {
     --cu-font-weight: 300;
     margin-top: revert;
+    padding-top: 0;
   }
 
   .cu-section--left {
@@ -287,21 +333,80 @@
       margin-bottom: 0;
     }
 
+    .event-when-where__date,
+    .event-when-where__location {
+      display: grid;
+      column-gap: var(--cu-ps-1);
+      grid-template-columns: auto 1fr;
+
+      > * {
+        grid-column: 2;
+      }
+
+      .cu-icon {
+        grid-column: 1;
+        background-color: transparent;
+      }
+    }
     .cu-icon {
       margin-bottom: 0;
-      position: absolute;
-      top: 0;
-      left: 0;
       background-color: #F7F6F6;
       padding: 14px;
       border-radius: 20%;
     }
   }
 
-  .event-when-where__date,
-  .event-when-where__location {
+  .block-extra-field-block--node--event-landing-page--extra-field-event-registration-details {
     position: relative;
-    padding-left: calc(48px + 20px);
+
+    .field--field-registration-form,
+    .event-when-where__date,
+    .event-when-where__location {
+      padding-bottom: var(--cu-vr1);
+      border-bottom: 2px dotted $gray-medium;
+
+      &:last-child {
+        border: none;
+        padding-bottom: 0;
+      }
+    }
+
+    .event-when-where {
+      margin-top: var(--cu-vr1);
+      gap: var(--cu-vr1);
+      display: flex;
+      flex-direction: column;
+
+      .cu-icon {
+        padding: 0;
+        --cu-text-color: #C1B7B1;
+      }
+
+      .field--event-date {
+        --cu-font-weight: 600;
+        --cu-text-color: var(--cu-color-dark);
+      }
+
+      .field--event-date ~ .field--event-date {
+        --cu-font-weight: 400;
+        --cu-text-color: revert;
+      }
+
+      .cu-heading {
+        --cu-font-size: var(--cu-ms-2);
+        --cu-font-weight: 700;
+      }
+    }
+
+    .event-when-where__date .cu-heading {
+      display: none;
+    }
+
+    .webform-submission-event-registration-form .webform-actions,
+    .webform-submission-event-registration-form .post-button-text {
+      margin: 0;
+      padding: 0;
+    }
   }
 }
 
@@ -354,3 +459,36 @@
 .cu-component--event-listing.cu-grid--3col[data-itemcount="2"] {
   grid-template-columns: 1fr 1fr;
 }
+
+.cu-banner--event_landing_page .banner__left:has(.field--field-delivery-method) {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: var(--cu-vr0) var(--cu-ps0);
+
+  @include breakpoint(md) {
+    align-self: center;
+  }
+
+  .cu-heading {
+    margin-bottom: 0;
+  }
+
+  > * {
+    grid-column: 1 / -1;
+  }
+
+  .block-extra-field-block--node--event-landing-page--extra-field-delivery-method {
+    grid-column: 1;
+  }
+
+  .block-field-block--node--event-landing-page--event-date {
+    grid-column: 2;
+  }
+}
+
+.cu-banner--event_landing_page .banner__right {
+  @include breakpoint(md) {
+    min-height: 350px;
+  }
+}
+

@@ -208,6 +208,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
    *   The event.
    */
   private function pullPresaveCahrsEventNode(SalesforcePullEvent $event) {
+    /** @var \Drupal\node\NodeInterface $event_landing_page */
     $event_landing_page = $event->getEntity();
     $sf = $event->getMappedObject()->getSalesforceRecord();
     $sfid = $sf->id();
@@ -297,6 +298,11 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     if ($event_landing_page->body->isEmpty()) {
       $event_landing_page->body->value = $sf->field('Class_Description__c');
       $event_landing_page->body->format = 'standard_formatting';
+    }
+
+    // Map the Published class title from SF if the event is new.
+    if ($event_landing_page->isNew() && !empty($sf->field('Published_Class_Title__c'))) {
+      $event_landing_page->setTitle($sf->field('Published_Class_Title__c'));
     }
   }
 

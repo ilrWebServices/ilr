@@ -3,7 +3,7 @@
 {%- for item in items %}
   {% set link = item.content %}
   {% set title_orig = link['#title'] %}
-  {% set link = link|merge({'#title': 'Register Now'|trans }) %}
+  {% set link = link|merge({'#title': 'Register Today'|trans }) %}
   {{ link|merge({'#options': {'attributes': {'class': ['cu-button']}}}) }}
   {%- if not (title_orig starts with 'http') %}
   <div class="post-button-text cu-x-label">{{ title_orig }}</div>

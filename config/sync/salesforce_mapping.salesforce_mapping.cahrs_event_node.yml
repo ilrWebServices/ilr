@@ -42,7 +42,7 @@ field_mappings:
     description: ''
   -
     drupal_field_type: properties
-    drupal_field_value: title
+    drupal_field_value: field_sf_title
     direction: sf_drupal
     salesforce_field: Published_Class_Title__c
     id: 2
@@ -57,6 +57,7 @@ field_mappings:
 status: true
 dependencies:
   config:
+    - field.field.node.event_landing_page.field_sf_title
     - node.type.event_landing_page
   module:
     - salesforce_pull
