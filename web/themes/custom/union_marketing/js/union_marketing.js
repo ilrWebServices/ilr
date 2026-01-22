@@ -163,7 +163,7 @@
 
           // See the `form_overlay` created in
           // Drupal.behaviors.union_marketing_generic_event_registration_form().
-          const event_registration_form_overlay = document.querySelector('.block-field-block--node--event-landing-page--field-registration-form > div:last-of-type');
+          const event_registration_form_overlay = document.querySelector('.layout--twocol-section .field--field-registration-form > div:last-of-type');
 
           if (event_registration_form_overlay) {
             event_registration_form_overlay.click();
