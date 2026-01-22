@@ -6,11 +6,16 @@
     display: block;
     margin-top: var(--cu-vr2);
 
+    // Align to the grid provided by Built.
     @include breakpoint(md) {
       display: grid;
-      gap: var(--cu-ps3);
-      grid-template-columns: 2.25fr 1fr;
-      // align-items: start;
+      grid-template-columns: 2.5fr 1fr;
+      gap: var(--cu-ps0);
+    }
+
+    @include breakpoint(lg) {
+      gap: 32px;
+      grid-template-columns: 1fr 316px;
     }
   }
 
