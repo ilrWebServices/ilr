@@ -154,7 +154,8 @@
   }
 
   .webform-button--submit,
-  .cu-button {
+  .block-extra-field-block--node--event-landing-page--extra-field-register-link-button .cu-button,
+  .block-extra-field-block--node--event-landing-page--extra-field-event-registration-details .cu-button {
     --cu-font-weight: 400;
     --cu-text-color: white;
     width: 100%;
