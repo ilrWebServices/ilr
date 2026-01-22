@@ -3,8 +3,25 @@
   margin: 0 auto;
 
   .layout--twocol-section--67-33 {
-    display: block;
     margin-top: var(--cu-vr2);
+    display: flex;
+    flex-direction: column;
+
+    .layout__region--first {
+      order: 2;
+    }
+
+    .layout__region--second {
+      order: 1;
+      margin-bottom: var(--cu-vr2);
+    }
+
+    @include breakpoint(md) {
+      .layout__region--first,
+      .layout__region--second {
+        order: unset;
+      }
+    }
 
     // Align to the grid provided by Built.
     @include breakpoint(md) {
@@ -88,9 +105,13 @@
 
   // Register link in the banner.
   .layout-banner .block-extra-field-block--node--event-landing-page--extra-field-register-link-button {
-    display: flex;
+    display: none;
     gap: var(--cu-ps1);
     align-items: center;
+
+    @include breakpoint(md) {
+      display: flex;
+    }
 
     .cu-button {
       @include breakpoint(sm) {
