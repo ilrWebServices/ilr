@@ -167,7 +167,7 @@ elements: |-
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
-    '#submit__label': 'Register Now'
+    '#submit__label': 'Register Today'
   post_button_text:
     '#type': webform_computed_twig
     '#title': 'Post button text'
