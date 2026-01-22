@@ -10,7 +10,7 @@ field_name: field_delivery_method
 entity_type: node
 bundle: event_landing_page
 label: 'Delivery Method'
-description: ''
+description: 'Typically <em>In Person</em> or <em>Online</em>.'
 required: false
 translatable: false
 default_value: {  }
