@@ -170,26 +170,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: -4
             additional: {  }
-          e5caaa66-56fe-4b24-8c1c-cadc508b0feb:
-            uuid: e5caaa66-56fe-4b24-8c1c-cadc508b0feb
-            region: left
-            configuration:
-              id: 'field_block:node:event_landing_page:field_registration_form'
-              label: 'Registration form'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: webform_entity_reference_entity_view
-                label: hidden
-                settings:
-                  source_entity: true
-                  lazy: false
-                third_party_settings: {  }
-            weight: 2
-            additional: {  }
           8cf96013-a2b7-4aa5-b303-b20e5b58797f:
             uuid: 8cf96013-a2b7-4aa5-b303-b20e5b58797f
             region: banner
@@ -199,6 +179,31 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
             weight: 1
+            additional: {  }
+          6b97f4a8-a86f-4e53-a9ca-3404376936c7:
+            uuid: 6b97f4a8-a86f-4e53-a9ca-3404376936c7
+            region: banner
+            configuration:
+              id: 'extra_field_block:node:event_landing_page:extra_field_register_link_button'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 2
+            additional: {  }
+          b6e47fe1-df59-49d7-b8e8-c66d646105a2:
+            uuid: b6e47fe1-df59-49d7-b8e8-c66d646105a2
+            region: left
+            configuration:
+              id: 'extra_field_block:node:event_landing_page:extra_field_register_link_button'
+              label: 'Register link'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                settings: {  }
+                third_party_settings: {  }
+            weight: 3
             additional: {  }
         third_party_settings: {  }
       -
@@ -351,6 +356,11 @@ content:
     weight: 0
     region: banner
   extra_field_event_registration_details:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: banner
+  extra_field_register_link_button:
     settings: {  }
     third_party_settings: {  }
     weight: 0

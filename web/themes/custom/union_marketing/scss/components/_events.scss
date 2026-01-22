@@ -82,29 +82,21 @@
     }
   }
 
-  // Form in the banner.
-  .layout-banner .block-field-block--node--event-landing-page--field-registration-form {
-    padding: 0;
+  // Register link in the banner.
+  .layout-banner .block-extra-field-block--node--event-landing-page--extra-field-register-link-button {
+    display: flex;
+    gap: var(--cu-ps1);
+    align-items: center;
 
-    .webform-submission-form {
-      display: flex;
-      flex-direction: column;
-      gap: var(--cu-vr0);
-      justify-content: space-between;
-      align-items: center;
-
-      @include breakpoint (sm) {
-        flex-direction: row;
-      }
-      #address-intl-ajax-wrapper {
-        display: none;
-      }
-
-      > *,
-      .cu-input {
-        flex-grow: 1;
-        margin: 0;
-      }
+    .cu-button {
+      padding-left: var(--cu-ps2);
+      padding-right: var(--cu-ps2);
+    }
+    .post-button-text {
+      flex-grow: 1;
+    }
+    .cu-text {
+      margin: 0;
     }
   }
 
@@ -262,7 +254,6 @@
     --cu-font-weight: 700;
     --cu-line-height: 1.2;
     --cu-font-size: var(--cu-ms7);
-    margin-bottom: 0;
   }
 
   .field--field-series-name {

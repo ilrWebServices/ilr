@@ -94,7 +94,6 @@
       const event_registration_forms = context.querySelectorAll('.field--field-registration-form');
 
       for (const event_registration_form of event_registration_forms) {
-        let inBannerLayout = event_registration_form.parentNode.closest('.layout-banner');
         let elements = event_registration_form.querySelectorAll('.form-item:not(.webform-actions, .post-button-text), .fieldgroup');
 
         // Hide most of the form inputs by default.
@@ -110,17 +109,6 @@
         form_overlay.style.inset = '0px';
         form_overlay.style.cursor = 'pointer';
         form_overlay.addEventListener('click', function (event) {
-
-          if (inBannerLayout) { // Open the form in the sidebar.
-            // @TODO: Refactor to remove dependency on arbitrary layout classes.
-            const event_registration_form_overlay = document.querySelector('.layout--twocol-section .field--field-registration-form > div:last-of-type');
-
-            if (event_registration_form_overlay) {
-              event_registration_form_overlay.click();
-            }
-            return;
-          }
-
           event_registration_form.dataset.collapsed = 0;
           event.target.style.display = 'none';
           event_registration_form.scrollIntoView({ behavior: "smooth" })
@@ -131,20 +119,18 @@
         });
         event_registration_form.appendChild(form_overlay);
 
-        if (!inBannerLayout) {
-          let form_close = document.createElement('button');
-          form_close.setAttribute('title', 'Close');
-          form_close.classList.add('registration-form-collapse');
-          form_close.innerHTML = '<span>Close</span>';
-          form_close.addEventListener('click', function (event) {
-            for (const element of elements) {
-              element.style.display = 'none';
-            }
-            event_registration_form.dataset.collapsed = 1;
-            form_overlay.style.display = 'block';
-          });
-          event_registration_form.appendChild(form_close);
-        }
+        let form_close = document.createElement('button');
+        form_close.setAttribute('title', 'Close');
+        form_close.classList.add('registration-form-collapse');
+        form_close.innerHTML = '<span>Close</span>';
+        form_close.addEventListener('click', function (event) {
+          for (const element of elements) {
+            element.style.display = 'none';
+          }
+          event_registration_form.dataset.collapsed = 1;
+          form_overlay.style.display = 'block';
+        });
+        event_registration_form.appendChild(form_close);
       }
     }
   }
