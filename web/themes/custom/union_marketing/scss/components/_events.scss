@@ -318,7 +318,7 @@
     .event-when-where__date,
     .event-when-where__location {
       display: grid;
-      column-gap: var(--cu-ms0);
+      column-gap: var(--cu-ps-1);
       grid-template-columns: auto 1fr;
 
       > * {
@@ -358,12 +358,9 @@
       display: flex;
       flex-direction: column;
 
-      h3.cu-heading {
-        display: none;
-      }
-
       .cu-icon {
         padding: 0;
+        --cu-text-color: #C1B7B1;
       }
 
       .field--event-date {
@@ -375,6 +372,15 @@
         --cu-font-weight: 400;
         --cu-text-color: revert;
       }
+
+      .cu-heading {
+        --cu-font-size: var(--cu-ms-2);
+        --cu-font-weight: 700;
+      }
+    }
+
+    .event-when-where__date .cu-heading {
+      display: none;
     }
 
     .webform-submission-event-registration-form .webform-actions,
