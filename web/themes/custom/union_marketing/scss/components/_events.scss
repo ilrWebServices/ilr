@@ -464,7 +464,10 @@
   display: grid;
   grid-template-columns: auto auto 1fr;
   gap: var(--cu-vr0) var(--cu-ps0);
-  align-self: start;
+
+  @include breakpoint(md) {
+    align-self: center;
+  }
 
   .cu-heading {
     margin-bottom: 0;
@@ -485,7 +488,7 @@
 
 .cu-banner--event_landing_page .banner__right {
   @include breakpoint(md) {
-    min-height: 400px;
+    min-height: 350px;
   }
 }
 
