@@ -292,10 +292,10 @@
     --cu-font-weight: 400;
   }
 
-  // The body field is displayed twice on the full page
   .field--body.field--label-above {
     --cu-font-weight: 300;
     margin-top: revert;
+    padding-top: 0;
   }
 
   .cu-section--left {
