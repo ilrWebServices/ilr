@@ -223,7 +223,7 @@ third_party_settings:
                   view_mode: default
                   link: ''
                 third_party_settings: {  }
-            weight: 7
+            weight: 8
             additional: {  }
           d35bc236-4c4d-4df8-a4dc-dc7b89a8b5dc:
             uuid: d35bc236-4c4d-4df8-a4dc-dc7b89a8b5dc
@@ -246,25 +246,6 @@ third_party_settings:
               print_css: ''
               facebook_app_id: ''
             weight: -2
-            additional: {  }
-          e3e872af-d4df-4a0c-894b-b70d246a2d6e:
-            uuid: e3e872af-d4df-4a0c-894b-b70d246a2d6e
-            region: first
-            configuration:
-              id: 'field_block:node:event_landing_page:field_sponsor'
-              label: Co-Sponsors
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: entity_reference_entity_view
-                label: above
-                settings:
-                  view_mode: teaser
-                third_party_settings: {  }
-            weight: 5
             additional: {  }
           0c3fe114-2c92-4fbf-9143-05f019c05aae:
             uuid: 0c3fe114-2c92-4fbf-9143-05f019c05aae
@@ -320,6 +301,25 @@ third_party_settings:
                 settings: {  }
                 third_party_settings: {  }
             weight: -1
+            additional: {  }
+          e3e872af-d4df-4a0c-894b-b70d246a2d6e:
+            uuid: e3e872af-d4df-4a0c-894b-b70d246a2d6e
+            region: first
+            configuration:
+              id: 'field_block:node:event_landing_page:field_sponsor'
+              label: Co-Sponsors
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_entity_view
+                label: above
+                settings:
+                  view_mode: teaser
+                third_party_settings: {  }
+            weight: 7
             additional: {  }
         third_party_settings: {  }
 id: node.event_landing_page.default
