@@ -93,6 +93,25 @@
 
       const event_registration_forms = context.querySelectorAll('.field--field-registration-form');
 
+      if (event_registration_forms.length === 0) {
+        return;
+      }
+
+      const regFormObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.body.classList.remove('registration-form-previously-visible');
+            document.body.classList.add('form-visible');
+          }
+          else {
+            if (entry.boundingClientRect.top < entry.rootBounds.top) {
+              // Form has scrolled *past* the top of the screen
+              document.body.classList.add('registration-form-previously-visible');
+            }
+          }
+        });
+      });
+
       for (const event_registration_form of event_registration_forms) {
         let elements = event_registration_form.querySelectorAll('.form-item:not(.webform-actions, .post-button-text), .fieldgroup');
 
@@ -131,6 +150,9 @@
           form_overlay.style.display = 'block';
         });
         event_registration_form.appendChild(form_close);
+
+        // Add the intersection obsverver.
+        regFormObserver.observe(event_registration_form);
       }
     }
   }
