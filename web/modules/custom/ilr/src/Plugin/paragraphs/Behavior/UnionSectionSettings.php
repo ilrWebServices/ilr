@@ -124,7 +124,7 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function view(array &$build, Paragraph $paragraphs_entity, EntityViewDisplayInterface $display, $view_mode) {
-    if (!$paragraphs_entity->isPublished()) {
+    if (!$paragraphs_entity->isPublished() && \Drupal::routeMatch()->getRouteName() !== 'paragraphs_previewer.form_preview') {
       $build = [];
     }
   }
