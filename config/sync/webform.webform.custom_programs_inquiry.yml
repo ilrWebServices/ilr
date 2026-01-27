@@ -247,7 +247,7 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: ilrcutomerservice@cornell.edu
+      to_mail: ilrcustomerservice@cornell.edu
       to_options: {  }
       bcc_mail: ''
       bcc_options: {  }
