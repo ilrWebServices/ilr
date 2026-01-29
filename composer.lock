@@ -1891,10 +1891,10 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/collection.git",
-                "reference": "8659294af02b8ba7ec819b285ff9d8ee89e6bf19"
+                "reference": "b42e4b3198d76cfcc441bfc498002293e024c149"
             },
             "require": {
-                "drupal/core": "^9.4 || ^10",
+                "drupal/core": "^9.4 || ^10 || ^11",
                 "drupal/dynamic_entity_reference": "^2.0 || ^4",
                 "drupal/inline_entity_form": "^1.0@rc || ^3.0@rc",
                 "drupal/key_value_field": "^1.0"
@@ -1909,8 +1909,8 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "3.0.0+6-dev",
-                    "datestamp": "1746647986",
+                    "version": "3.0.1+4-dev",
+                    "datestamp": "1769712745",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -4061,26 +4061,26 @@
         },
         {
             "name": "drupal/key_value_field",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/key_value_field.git",
-                "reference": "8.x-1.3"
+                "reference": "8.x-1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/key_value_field-8.x-1.3.zip",
-                "reference": "8.x-1.3",
-                "shasum": "f76d97da2f4a2a3b4f3ee0b35cf5b1f9e77dc767"
+                "url": "https://ftp.drupal.org/files/projects/key_value_field-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "faccb00f32891414e8c00d20eedbd170a7520f8b"
             },
             "require": {
-                "drupal/core": ">=8.9 <11.0.0-stable"
+                "drupal/core": "^9.5 || ^10 || ^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.3",
-                    "datestamp": "1661273961",
+                    "version": "8.x-1.4",
+                    "datestamp": "1753199467",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5211,16 +5211,16 @@
         },
         {
             "name": "drupal/rat",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/rat.git",
-                "reference": "28202b02262a39ac8dbbfd43696b67c0c8c46b71"
+                "reference": "f13fcfb83445e505ffa84d2137231d91cd8c8146"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://git.drupalcode.org/api/v4/projects/project%2Frat/repository/archive.zip?sha=28202b02262a39ac8dbbfd43696b67c0c8c46b71",
-                "reference": "28202b02262a39ac8dbbfd43696b67c0c8c46b71",
+                "url": "https://git.drupalcode.org/api/v4/projects/project%2Frat/repository/archive.zip?sha=f13fcfb83445e505ffa84d2137231d91cd8c8146",
+                "reference": "f13fcfb83445e505ffa84d2137231d91cd8c8146",
                 "shasum": ""
             },
             "require": {
@@ -5247,9 +5247,9 @@
                 }
             ],
             "support": {
-                "source": "https://git.drupalcode.org/project/rat/-/tree/1.0.0"
+                "source": "https://git.drupalcode.org/project/rat/-/tree/1.0.1"
             },
-            "time": "2023-07-19T22:22:22+00:00"
+            "time": "2025-12-29T15:30:47+00:00"
         },
         {
             "name": "drupal/recreate_block_content",
