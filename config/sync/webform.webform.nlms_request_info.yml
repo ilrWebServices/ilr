@@ -29,7 +29,6 @@ elements: |-
       '#title': 'Type of request'
       '#options':
         'Immediate service': 'Immediate service'
-        'Become a service provider': 'Become a service provider'
         'Subscribe for updates': 'Subscribe for updates'
       '#required': true
     first_name:
