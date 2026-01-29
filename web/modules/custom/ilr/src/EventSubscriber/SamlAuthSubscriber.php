@@ -47,6 +47,8 @@ class SamlAuthSubscriber implements EventSubscriberInterface {
     // Assign the field_common_name value.
     $account->set('field_common_name', $saml_attributes['urn:oid:2.5.4.3']);
 
+    // TODO: Set the mail field from SAML data if the account value is empty.
+
     // Set the account and mark it changed. The docs in SamlauthUserSyncEvent
     // specifially say to not save the account here.
     $event->setAccount($account);
