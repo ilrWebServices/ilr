@@ -1,0 +1,65 @@
+{#
+/**
+ * @file
+ * Theme override for the Research Directory view.
+ *
+ * Adds a custom header bar with result count, share via email link,
+ * and sort dropdown.
+ */
+#}
+{%
+  set classes = [
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title }}
+  {{ title_suffix }}
+
+  {% if rows %}
+    <div class="research-directory__header">
+      <div class="research-directory__result-count">
+        {{ header }}
+      </div>
+      <div class="research-directory__actions">
+        <a href="mailto:?subject={{ 'Research Directory'|url_encode }}&body={{ url('<current>')|render|url_encode }}" class="research-directory__share-email">
+          {% trans %}Share via Email{% endtrans %}
+          <svg class="cu-icon__image" width="1.2em" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <title>{% trans %}Email{% endtrans %}</title>
+            <use href="{{ union_file('/images/icons.svg') }}#envelope" />
+          </svg>
+        </a>
+        <div class="research-directory__sort">
+          <label for="research-directory-sort">{% trans %}Sort by:{% endtrans %}</label>
+          <select id="research-directory-sort">
+            <option value="DESC">{% trans %}Newest{% endtrans %}</option>
+            <option value="ASC">{% trans %}Oldest{% endtrans %}</option>
+          </select>
+        </div>
+        {{ attach_library('union_marketing/research_directory_sort') }}
+      </div>
+    </div>
+  {% endif %}
+
+  {{ exposed }}
+  {{ attachment_before }}
+
+  {% if rows -%}
+    {{ rows }}
+  {% elseif empty -%}
+    {{ empty }}
+  {% endif %}
+  {{ pager }}
+
+  {{ attachment_after }}
+  {{ more }}
+
+  {% if footer %}
+    <footer>
+      {{ footer }}
+    </footer>
+  {% endif %}
+
+  {{ feed_icons }}
+</div>
