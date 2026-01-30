@@ -1851,10 +1851,40 @@ function ilr_collection_item_access(EntityInterface $entity, $op, AccountInterfa
  * Implements hook_form_alter().
  */
 function ilr_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Customize the Research Directory exposed form.
+  if ($form_id === 'views_exposed_form' && ($form_state->get('view'))?->id() === 'research_directory') {
+    if (isset($form['search'])) {
+      $form['search']['#title'] = t('Search');
+      $form['search']['#title_display'] = 'before';
+    }
+    if (isset($form['topic']['#options']['All'])) {
+      $form['topic']['#options']['All'] = t('Select Topic');
+    }
+    if (isset($form['state']['#options']['All'])) {
+      $form['state']['#options']['All'] = t('Select State');
+    }
+    // Replace the reset button with a JS-powered clear link.
+    if (isset($form['actions']['reset'])) {
+      $form['actions']['reset']['#access'] = FALSE;
+    }
+    $form['actions']['clear_filters'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'button',
+      '#value' => t('Clear Filters'),
+      '#attributes' => [
+        'type' => 'button',
+        'class' => ['research-directory__clear-filters'],
+        'onclick' => "this.closest('form').querySelectorAll('input[type=text], input[type=search]').forEach(function(i){i.value='';});this.closest('form').querySelectorAll('select').forEach(function(s){s.selectedIndex=0;});",
+      ],
+      '#weight' => 100,
+    ];
+  }
+
   if ($form_id === 'editor_link_dialog' && isset($form['attributes']['media_library'])) {
     $form['attributes']['media_library']['#value'] = t('Document Library');
   }
 }
+
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter().
@@ -1949,5 +1979,25 @@ function ilr_entity_access(EntityInterface $entity, $op, AccountInterface $accou
 function ilr_persona_display_name_alter(&$display_name, PersonaInterface $persona) {
   if ($persona->hasField('field_display_name_override') && !$persona->field_display_name_override->isEmpty()) {
     $display_name = $persona->field_display_name_override->value;
+  }
+}
+
+/**
+ * Implements hook_views_query_alter().
+ *
+ * Applies sort order from the query string for the Research Directory view.
+ * The sort dropdown is rendered in the view header template rather than the
+ * exposed form, so we read sort_order from the URL and apply it directly.
+ */
+function ilr_views_query_alter(\Drupal\views\ViewExecutable $view, \Drupal\views\Plugin\views\query\QueryPluginBase $query) {
+  if ($view->id() === 'research_directory') {
+    $sort_order = \Drupal::request()->query->get('sort_order', 'DESC');
+    if (in_array($sort_order, ['ASC', 'DESC'], TRUE)) {
+      foreach ($query->orderby as &$orderby) {
+        if (isset($orderby['field']) && str_contains($orderby['field'], 'field_publ')) {
+          $orderby['direction'] = $sort_order;
+        }
+      }
+    }
   }
 }

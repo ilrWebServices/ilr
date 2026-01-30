@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Theme override to display a report summary node teaser.
+ */
+#}
+{% set rendered_content %}
+  {{ title_suffix }}
+  {{ content.field_topics }}
+{% endset %}
+
+{% set media_content %}
+  {{ content.field_representative_image }}
+{% endset %}
+
+{% include '@union/_card.twig' with {
+  card_content: rendered_content,
+  card_media: media_content,
+  card_link_url: url,
+  card_link_alt: label,
+  heading: label,
+  heading_element: 'h3',
+  link_attributes: url_attributes,
+  attributes: attributes.addClass([
+    'node--' ~ node.bundle|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'cu-card--teaser',
+    'cu-colorscheme--light'
+  ])
+} only %}

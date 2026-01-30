@@ -59,6 +59,13 @@ lottie_80years:
     - core/jquery
     - union_marketing/lottie
 
+research_directory_sort:
+  version: 1.x
+  js:
+    js/research-directory-sort.js: {}
+  dependencies:
+    - core/drupal
+
 report_summary:
   version: 1.x
   css:

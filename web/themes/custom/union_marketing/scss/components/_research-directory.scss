@@ -1,0 +1,218 @@
+// Research Directory report summary teaser cards.
+.node--report-summary.cu-card--teaser {
+  --cu-colorscheme-background: transparent;
+  border-bottom: 1px solid $color-border;
+  padding-bottom: var(--cu-vr1);
+  margin-bottom: var(--cu-vr1);
+  @include breakpoint(sm) {
+    display: grid;
+    grid-template-columns: 165px 1fr auto;
+    gap: var(--cu-ps1);
+    align-items: center;
+  }
+
+  // Red arrow indicator on the right.
+  &::after {
+    content: '\2192';
+    color: $cornell-red;
+    font-size: 1.5rem;
+    align-self: center;
+    order: 3;
+    display: none;
+
+    @include breakpoint(sm) {
+      display: block;
+    }
+  }
+
+  .cu-card__media {
+    order: 1;
+    margin: 0;
+
+    .cu-image {
+      width: 165px;
+      height: 165px;
+      object-fit: cover;
+    }
+  }
+
+  .cu-card__content {
+    order: 2;
+    padding: 0;
+  }
+
+  .cu-card__link {
+    order: 4;
+  }
+
+  // Topic pills.
+  .field--field-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--cu-ps-2);
+    margin-top: var(--cu-vr-1);
+
+    .field__item {
+      font-family: var(--cu-font-family);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 24px;
+      background-color: $gray-lightest;
+      color: var(--cu-color-medium-gray);
+      border-radius: 100px;
+      padding: 2px 10px;
+    }
+  }
+}
+
+// Research Directory header bar (result count, share, sort).
+.research-directory__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $color-border;
+  padding-bottom: var(--cu-vr0);
+  margin-bottom: var(--cu-vr1);
+  gap: var(--cu-ps0);
+}
+
+.research-directory__result-count {
+  font-family: var(--cu-font-family);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: $black;
+}
+
+.research-directory__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--cu-ps1);
+}
+
+.research-directory__header a.research-directory__share-email {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  font-family: var(--cu-font-family);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $black;
+
+  svg {
+    width: 1.1em;
+    height: auto;
+  }
+}
+
+.research-directory__sort {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+
+  label {
+    font-family: var(--cu-font-family);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: $black;
+  }
+
+  select {
+    border: 1px solid $color-border;
+    border-radius: 4px;
+    padding: 0.25em 0.5em;
+    font-size: inherit;
+    background: $white;
+  }
+}
+
+// Research Directory exposed filter layout.
+#views-exposed-form-research-directory-block-1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--cu-vr0);
+
+  @include breakpoint(sm) {
+    grid-template-columns: 1fr 1fr auto;
+  }
+
+  // The search text field spans the full width above the dropdowns.
+  > .cu-input-list__item:first-of-type {
+    @include breakpoint(sm) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  // Align dropdowns to bottom so they line up with Search button.
+  > .cu-input-list__item {
+    align-self: end;
+  }
+
+  // Fix input text color in dark-background contexts.
+  .cu-input:not(.form-submit) {
+    color: $black;
+  }
+
+  // Left-align labels.
+  .cu-label {
+    text-align: left;
+  }
+
+  // Match field heights across dropdowns and search button.
+  select.cu-input,
+  .form-submit {
+    height: 48px;
+    box-sizing: border-box;
+  }
+
+  // Search button styles.
+  .form-submit[data-drupal-selector="edit-submit-research-directory"] {
+    width: 176px;
+    height: 48px;
+    padding: 0 40px;
+    border: 2px solid $cornell-red;
+    background: $cornell-red;
+    color: $white;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-sizing: border-box;
+  }
+
+  .cu-form__actions,
+  .form-actions {
+    align-self: end;
+    position: relative;
+  }
+
+  // Style Clear Filters as plain text below Search button.
+  .research-directory__clear-filters {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: none;
+    border: none;
+    color: $white;
+    font-size: var(--cu-ms-1);
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
