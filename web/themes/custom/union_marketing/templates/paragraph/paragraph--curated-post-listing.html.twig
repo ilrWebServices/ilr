@@ -38,6 +38,18 @@
  * @ingroup themeable
  */
 #}
+{% if carousel_items %}
+{% include '@union/_gallery.twig' with {
+  title: paragraph.field_heading.value,
+  attribution: content.field_body,
+  items: carousel_items,
+  attributes: attributes.addClass([
+    'cu-component',
+    'cu-component--' ~ paragraph.bundle|clean_class,
+    'cu-gallery--content'
+  ])
+} only %}
+{% else %}
 {% include '@union/_grid.twig' with {
   grid_content: content.field_items,
   attributes: attributes.addClass([
@@ -46,4 +58,4 @@
     'collection-listing'
   ])
 } only %}
-
+{% endif %}

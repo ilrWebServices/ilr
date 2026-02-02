@@ -226,6 +226,14 @@ class ListStyle extends ParagraphsBehaviorBase {
         if (isset($variables['content']['listing']['items'])) {
           $variables['carousel_items'] = $variables['content']['listing']['items'];
         }
+        elseif (isset($variables['content']['field_items'])) {
+          foreach ($variables['content']['field_items'] as $key => $value) {
+            if (is_numeric($key)) {
+              $render_items[$key] = $value;
+            }
+          }
+          $variables['carousel_items'] = $render_items;
+        }
       }
 
       // @todo Replace with CSS logic based on data-itemcount.
