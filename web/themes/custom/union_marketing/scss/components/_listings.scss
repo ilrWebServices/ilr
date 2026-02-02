@@ -1,4 +1,5 @@
-.cu-list--carousel {
+.cu-list--carousel.cu-component--curated-post-listing,
+.cu-list--carousel.cu-component--simple-collection-listing {
   .node--view-mode-compact-media {
     .cu-composite-heading__heading {
       --cu-font-size: var(--cu-ms3);
@@ -21,6 +22,17 @@
   .cu-gallery__item:nth-child(odd) {
     .cu-image {
       aspect-ratio: 6/5;
+    }
+  }
+
+  &:has(.cu-gallery__item.active) .cu-gallery__item {
+    transition: opacity .5s ease, filter .5s ease-out;
+    opacity: .8;
+    filter: grayscale(1);
+
+    &.active {
+      opacity: 1;
+      filter: unset;
     }
   }
 }
