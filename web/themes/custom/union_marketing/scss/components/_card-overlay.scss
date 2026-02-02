@@ -123,6 +123,12 @@
       .cu-button {
         margin-top: 15px;
         margin-bottom: 0;
+
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0 0 0 0;
+        }
       }
     }
 
