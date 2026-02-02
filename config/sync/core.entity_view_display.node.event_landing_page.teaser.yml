@@ -56,6 +56,21 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  extra_field_delivery_method:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  extra_field_event_registration_details:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  extra_field_register_link_button:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_representative_image:
     type: media_thumbnail
     label: hidden

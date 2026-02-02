@@ -1,4 +1,4 @@
-uuid: null
+uuid: e9594fd3-89ce-486a-8c81-1b40dc4c9fce
 langcode: en
 status: true
 dependencies:
@@ -101,6 +101,7 @@ display:
         type: full
         options:
           offset: 0
+          pagination_heading_level: h4
           items_per_page: 25
           total_pages: null
           id: 0
@@ -118,7 +119,6 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
-          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
@@ -421,10 +421,10 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          type: select
-          limit: true
           vid: report_topics
+          type: select
           hierarchy: false
+          limit: true
           error_message: true
         field_address_administrative_area:
           id: field_address_administrative_area
@@ -434,11 +434,6 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: administrative_area
-          country:
-            country_source: static
-            country_argument_id: ''
-            country_filter_id: ''
-            country_static_code: US
           operator: in
           value: {  }
           group: 1
@@ -446,7 +441,6 @@ display:
           expose:
             operator_id: field_address_administrative_area_op
             label: State
-            label_type: static
             description: ''
             use_operator: false
             operator: field_address_administrative_area_op
@@ -463,6 +457,7 @@ display:
               editor: '0'
               content_administrator: '0'
             reduce: false
+            label_type: static
           is_grouped: false
           group_info:
             label: ''
@@ -475,6 +470,11 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+          country:
+            country_source: static
+            country_argument_id: ''
+            country_filter_id: ''
+            country_static_code: US
       filter_groups:
         operator: AND
         groups:
@@ -539,9 +539,9 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      exposed_block: true
       display_extenders: {  }
       block_description: 'Research directory'
-      exposed_block: true
     cache_metadata:
       max-age: -1
       contexts:
