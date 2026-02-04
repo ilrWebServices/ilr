@@ -15,7 +15,11 @@
             {% include '@union/_icon.twig' with paragraph.cu_icon only %}
         {% endif %}
         {% if content.field_heading %}
+          {% if render_page_heading %}
+            <h1 class="cu-heading cu-composite-heading__heading">{{ paragraph.field_heading.value }}</h1>
+          {% else %}
             <h2 class="cu-heading cu-composite-heading__heading">{{ paragraph.field_heading.value }}</h2>
+          {% endif %}
         {% endif %}
         {% if content.field_heading %}
             <h3 class="cu-heading cu-composite-heading__eyebrow-heading {{ content.field_enlarge_eyebrow_heading|render|striptags|trim == 'On' ? 'cu-composite-heading__eyebrow-heading__enlarge' : '' }}">
