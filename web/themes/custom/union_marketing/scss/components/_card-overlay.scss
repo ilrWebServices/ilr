@@ -232,16 +232,27 @@
 
 // Manually override colorschemes in specific dark/light combos.
 .cu-component--card-overlay.cu-colorscheme--dark,
-.cu-section.cu-colorscheme--dark .cu-component--card-overlay {
+.cu-section.cu-colorscheme--dark .cu-component--card-overlay,
+.cu-component--card-overlay.cu-colorscheme--light,
+.cu-section.cu-colorscheme--light .cu-component--card-overlay {
   .media-wrapper img {
     opacity: 1;
+    mix-blend-mode: overlay;
   }
-   .cu-card {
-      background-color: var(--cu-color-light-gray);
-      --cu-text-color: var(--cu-color-dark);
+}
 
-      .cu-button {
-        color: var(--cu-color-dark);
+.cu-component--card-overlay.cu-colorscheme--dark,
+.cu-section.cu-colorscheme--dark .cu-component--card-overlay {
+  .cu-card {
+    background-color: var(--cu-color-light-gray);
+    --cu-text-color: var(--cu-color-dark);
+
+    .cu-button {
+      color: var(--cu-color-dark);
+
+      &:hover {
+        color: var(--cu-color-white);
       }
-   }
+    }
+  }
 }
