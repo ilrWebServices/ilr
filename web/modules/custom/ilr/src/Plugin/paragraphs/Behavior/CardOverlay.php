@@ -31,6 +31,16 @@ class CardOverlay extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'expand_on_hover') ?? FALSE,
     ];
 
+    $form['media_overlay_opacity'] = [
+      '#type' => 'range',
+      '#min' => -2,
+      '#max' => 2,
+      '#step' => 1,
+      '#title' => $this->t('Adjust background media brightness'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'media_overlay_opacity') ?? '0',
+      '#description' => $this->t('Adjust opacity of the background media element. In most cases, the best result is acheived by leaving this setting centered.'),
+    ];
+
     return $form;
   }
 
@@ -40,6 +50,12 @@ class CardOverlay extends ParagraphsBehaviorBase {
   public function preprocess(&$variables) {
     if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'expand_on_hover')) {
       $variables['attributes']['class'][] = 'cu-card-overlay--hover-expand';
+    }
+
+    $overlay_opacity = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'media_overlay_opacity') ?? 0;
+
+    if (!empty($overlay_opacity)) {
+      $variables['attributes']['style'][] = '--cu-media-brightness-adjustment: ' . $overlay_opacity / 10 . ';';
     }
   }
 

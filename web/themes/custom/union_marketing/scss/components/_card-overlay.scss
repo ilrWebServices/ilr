@@ -61,7 +61,7 @@
         height: 100%;
         mix-blend-mode: multiply;
         filter: grayscale(1);
-        opacity: .2;
+        opacity: calc(var(--cu-media-brightness-adjustment, 0) / 2 + .2); // .2 is the default value.
       }
     }
   }
