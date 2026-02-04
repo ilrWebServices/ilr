@@ -102,23 +102,11 @@
 
     .cu-component--card-overlay-item--card-body {
       --cu-font-size: var(--cu-ms-1);
-
-      @include breakpoint(md) {
-        opacity: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: opacity 0.3s ease-out, max-height 0.3s ease-out;
-      }
     }
 
     &__content {
       align-items: center;
       text-align: center;
-
-      .cu-composite-heading {
-        gap: 20px;
-        margin-bottom: 10px;
-      }
 
       .cu-button {
         margin-top: 15px;
@@ -129,13 +117,6 @@
           position: absolute;
           inset: 0 0 0 0;
         }
-      }
-    }
-
-    &:hover {
-      .cu-component--card-overlay-item--card-body {
-        opacity: 1;
-        max-height: 100%;
       }
     }
   }
@@ -163,6 +144,22 @@
     @media (max-width: 1200px) {
       flex-wrap: wrap;
       justify-content: center;
+    }
+  }
+
+  &.cu-card-overlay--hover-expand .cu-component--card-overlay-item--card-body {
+    @include breakpoint(md) {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease-out, max-height 0.3s ease-out;
+
+      &:hover {
+        .cu-component--card-overlay-item--card-body {
+          opacity: 1;
+          max-height: 100%;
+        }
+      }
     }
   }
 }
