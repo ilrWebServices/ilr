@@ -15,11 +15,11 @@ behavior_plugins:
   ilr_color:
     enabled: true
     color_schemes:
-      none: none
       light: light
       dark: dark
       vibrant: vibrant
-    color_scheme_default: none
+      none: 0
+    color_scheme_default: light
     allow_framed_media: 0
   ilr_icon:
     enabled: true
