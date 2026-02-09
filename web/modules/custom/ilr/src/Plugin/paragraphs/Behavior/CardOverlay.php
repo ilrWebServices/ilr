@@ -28,7 +28,7 @@ class CardOverlay extends ParagraphsBehaviorBase {
     $form['expand_on_hover'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Expand card content on hover'),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'expand_on_hover') ?? FALSE,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'expand_on_hover') ?? TRUE,
     ];
 
     $form['media_overlay_opacity'] = [
