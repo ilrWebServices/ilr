@@ -10,6 +10,8 @@ icon_uuid: null
 icon_default: null
 description: ''
 behavior_plugins:
+  card_overlay:
+    enabled: true
   ilr_color:
     enabled: true
     color_schemes:
