@@ -8,14 +8,9 @@
     padding: var(--cu-vr1) var(--cu-ps1) 100px;
     background-color: var(--cu-colorscheme-background, var(--cu-color-light-gray));
 
-    > * {
-      z-index: 2;
-    }
-
     &:after {
       display: none;
     }
-
 
     @include breakpoint(md) {
       padding: var(--cu-vr3) var(--cu-ps3) 140px;
@@ -26,9 +21,11 @@
       }
     }
 
+    h1.cu-heading,
     h2.cu-heading {
       --cu-font-family: 'futura-pt';
       text-transform: uppercase;
+      z-index: 2;
 
       @include breakpoint(md) {
         --cu-font-size: var(--cu-ms8);
@@ -36,8 +33,22 @@
       }
     }
 
+    .cu-heading,
+    .cu-icon {
+      z-index: 2;
+    }
+
     .cu-composite-heading__body {
       max-width: 80%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--cu-vr0);
+      align-items: center;
+
+      * {
+        position: relative;
+        z-index: 2;
+      }
 
       @include breakpoint(md) {
         max-width: 50%;
@@ -61,7 +72,7 @@
         height: 100%;
         mix-blend-mode: multiply;
         filter: grayscale(1);
-        opacity: .2;
+        opacity: calc(var(--cu-media-brightness-adjustment, 0) / 2 + .2); // .2 is the default value.
       }
     }
   }
@@ -81,10 +92,14 @@
   .cu-card {
     --cu-colorscheme-accent: var(--cu-color-brand); // Force the accent color on all cards.
     display: flex;
-    padding: var(--cu-vr2) var(--cu-ps2);
     flex-direction: column;
     align-items: center;
     flex: 1 0 0;
+    padding: var(--cu-vr2) var(--cu-ps2);
+
+    .layout-banner & {
+      padding: var(--cu-vr3) var(--cu-ps3);
+    }
 
     @media (max-width: 1200px) {
       flex: 1 0 calc(50% - 32px);
@@ -97,39 +112,30 @@
     }
 
     .cu-heading {
-      font-size: var(--cu-ms2);
+      font-size: var(--cu-ms3);
     }
 
     .cu-component--card-overlay-item--card-body {
       --cu-font-size: var(--cu-ms-1);
-
-      @include breakpoint(md) {
-        opacity: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: opacity 0.3s ease-out, max-height 0.3s ease-out;
-      }
     }
 
     &__content {
       align-items: center;
       text-align: center;
 
-      .cu-composite-heading {
-        gap: 20px;
-        margin-bottom: 10px;
-      }
-
       .cu-button {
         margin-top: 15px;
         margin-bottom: 0;
-      }
-    }
 
-    &:hover {
-      .cu-component--card-overlay-item--card-body {
-        opacity: 1;
-        max-height: 100%;
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0 0 0 0;
+        }
+
+        &:hover {
+          background-color: var(--cu-color-brand);
+        }
       }
     }
   }
@@ -157,6 +163,30 @@
     @media (max-width: 1200px) {
       flex-wrap: wrap;
       justify-content: center;
+    }
+  }
+
+  .cu-component--card-overlay-item {
+    .cu-composite-heading__heading {
+      --cu-font-size: var(--cu-ms8);
+    }
+  }
+
+  &.cu-card-overlay--hover-expand .cu-component--card-overlay-item {
+    @include breakpoint(md) {
+      .cu-component--card-overlay-item--card-body {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease-out, max-height 0.3s ease-out;
+      }
+
+      &:hover {
+        .cu-component--card-overlay-item--card-body {
+          opacity: 1;
+          max-height: 100%;
+        }
+      }
     }
   }
 }
@@ -206,16 +236,27 @@
 
 // Manually override colorschemes in specific dark/light combos.
 .cu-component--card-overlay.cu-colorscheme--dark,
-.cu-section.cu-colorscheme--dark .cu-component--card-overlay {
+.cu-section.cu-colorscheme--dark .cu-component--card-overlay,
+.cu-component--card-overlay.cu-colorscheme--light,
+.cu-section.cu-colorscheme--light .cu-component--card-overlay {
   .media-wrapper img {
     opacity: 1;
+    mix-blend-mode: overlay;
   }
-   .cu-card {
-      background-color: var(--cu-color-light-gray);
-      --cu-text-color: var(--cu-color-dark);
+}
 
-      .cu-button {
-        color: var(--cu-color-dark);
+.cu-component--card-overlay.cu-colorscheme--dark,
+.cu-section.cu-colorscheme--dark .cu-component--card-overlay {
+  .cu-card {
+    background-color: var(--cu-color-light-gray);
+    --cu-text-color: var(--cu-color-dark);
+
+    .cu-button {
+      color: var(--cu-color-dark);
+
+      &:hover {
+        color: var(--cu-color-white);
       }
-   }
+    }
+  }
 }

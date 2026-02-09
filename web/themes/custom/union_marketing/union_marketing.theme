@@ -639,6 +639,17 @@ function union_marketing_preprocess_paragraph__link_listing(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_paragraph().
+ *
+ * Render `h1` tags on card overlays when placed via block content.
+ */
+function union_marketing_preprocess_paragraph__card_overlay(&$variables) {
+  if ($variables['paragraph']->getParentEntity()->getEntityTypeId() === 'block_content') {
+    $variables['render_page_heading'] = TRUE;
+  }
+}
+
+/**
  * Implements hook_preprocess_field().
  */
 function union_marketing_preprocess_field__paragraph__field_heading__promo(&$variables) {

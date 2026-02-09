@@ -1,5 +1,5 @@
 {%
-    set classes = [
+  set classes = [
     'cu-component',
     'cu-component--' ~ paragraph.bundle|clean_class,
     'paragraph',
@@ -9,34 +9,27 @@
 ]
 %}
 <div{{ attributes.addClass(classes) }}>
-    {% block content %}
-    <div class="cu-section__heading cu-composite-heading">
-        {% if paragraph.cu_icon %}
-            {% include '@union/_icon.twig' with paragraph.cu_icon only %}
-        {% endif %}
-        {% if content.field_heading %}
-            <h2 class="cu-heading cu-composite-heading__heading">{{ paragraph.field_heading.value }}</h2>
-        {% endif %}
-        {% if content.field_heading %}
-            <h3 class="cu-heading cu-composite-heading__eyebrow-heading {{ content.field_enlarge_eyebrow_heading|render|striptags|trim == 'On' ? 'cu-composite-heading__eyebrow-heading__enlarge' : '' }}">
-                {{ content.field_subheading|render|striptags|trim }}
-            </h3>
-        {% endif %}
+  {% block content %}
+    {% set overlay_body %}
+      {{ content.field_body }}
+      {% include '@union/_button.twig' with {
+        text: content.field_link[0]['#title'],
+        url: content.field_link[0]['#url'],
+        attributes: { class: ['cu-composite-heading__link', 'cu-button--dark'] }
+      } only %}
+      <div class="media-wrapper">
+        {{ content.field_media }}
+      </div>
+    {% endset %}
 
-        <div class="cu-composite-heading__body">
-            {{ content.field_body }}
-        </div>
-        {% include '@union/_button.twig' with {
-            text: content.field_link[0]['#title'],
-            url: content.field_link[0]['#url'],
-            attributes: { class: ['cu-composite-heading__link', 'cu-button--dark'] }
-        } only %}
+    {% include '@union/_composite-heading.twig' with {
+      icon_data: paragraph.cu_icon ? paragraph.cu_icon : NULL,
+      eyebrow_heading: content.field_subheading|render|striptags|trim,
+      heading: paragraph.field_heading.value,
+      heading_element: render_page_heading ? 'h1' : 'h2',
+      body: overlay_body,
+    } only %}
 
-        <div class="media-wrapper">
-            {{ content.field_media }}
-        </div>
-    </div>
-    {{ content.field_components }}
-    {% endblock %}
+  {{ content.field_components }}
+  {% endblock %}
 </div>
-
