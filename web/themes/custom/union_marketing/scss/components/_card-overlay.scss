@@ -132,6 +132,10 @@
           position: absolute;
           inset: 0 0 0 0;
         }
+
+        &:hover {
+          background-color: var(--cu-color-brand);
+        }
       }
     }
   }
