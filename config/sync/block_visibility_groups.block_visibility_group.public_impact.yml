@@ -1,0 +1,17 @@
+uuid: dd785b89-2aaa-4e5b-81a5-c51cda038fbd
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+id: public_impact
+label: 'Public Impact'
+logic: and
+conditions:
+  ddf69aae-fb9a-4831-850c-87ae487b6a52:
+    id: request_path
+    negate: false
+    uuid: ddf69aae-fb9a-4831-850c-87ae487b6a52
+    context_mapping: {  }
+    pages: '/public-impact*'
+allow_other_conditions: false
