@@ -12,6 +12,11 @@
     margin-bottom: var(--cu-vr0);
   }
 
+  .node--post & {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   summary {
     margin-left: calc(1.25rem * -1);
     cursor: pointer;
