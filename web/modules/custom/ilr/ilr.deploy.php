@@ -257,3 +257,27 @@ function ilr_deploy_milr_visit_form_submission_lead_mapping_delete(&$sandbox) {
   // because the mapping config depends on ignored webform config.
   $mapping->delete();
 }
+
+/**
+ * Swap body field for rich text paragraphs on simple page nodes
+ */
+function ilr_deploy_enable_section_rich_text(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $node_storage = $entity_type_manager->getStorage('node');
+  $node_query = $node_storage->getQuery();
+  $node_query->accessCheck(FALSE);
+  $node_query->condition('type', 'simple_page');
+  $simple_page_nids = $node_query->execute();
+  $simple_pages = $node_storage->loadMultiple($simple_page_nids);
+  $paragraph_storage = $entity_type_manager->getStorage('paragraph');
+
+  foreach ($simple_pages as $simple_page) {
+    $rich_text_paragraph = $paragraph_storage->create([
+      'type' => 'rich_text',
+    ]);
+
+    $rich_text_paragraph->field_body->value = $simple_page->body->value;
+    $simple_page->field_components->appendItem($rich_text_paragraph);
+    $simple_page->save();
+  }
+}
