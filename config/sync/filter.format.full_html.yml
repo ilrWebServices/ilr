@@ -4,7 +4,6 @@ status: true
 dependencies:
   module:
     - editor
-    - footnotes
     - ilr
     - linkit
     - media
@@ -44,15 +43,6 @@ filters:
     status: true
     weight: -50
     settings: {  }
-  filter_footnotes:
-    id: filter_footnotes
-    provider: footnotes
-    status: true
-    weight: 0
-    settings:
-      footnotes_collapse: 0
-      footnotes_html: 0
-      footnotes_css: 1
   filter_html:
     id: filter_html
     provider: filter
@@ -112,6 +102,7 @@ filters:
     weight: -47
     settings:
       title: true
+      media_substitution: metadata
   media_embed:
     id: media_embed
     provider: media
