@@ -8,6 +8,10 @@ name: 'Inline SVG'
 format: inline_svg
 weight: 0
 filters:
+  filter_footnotes:
+    settings:
+      footnotes_footer_disable: false
+      footnotes_dialog: false
   filter_html:
     id: filter_html
     provider: filter

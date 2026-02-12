@@ -16,6 +16,10 @@ filters:
     status: true
     weight: 0
     settings: {  }
+  filter_footnotes:
+    settings:
+      footnotes_footer_disable: false
+      footnotes_dialog: false
   filter_html_escape:
     id: filter_html_escape
     provider: filter

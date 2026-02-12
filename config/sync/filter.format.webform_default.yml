@@ -8,4 +8,8 @@ dependencies:
 name: 'Webform (Default) - DO NOT EDIT'
 format: webform_default
 weight: 100
-filters: {  }
+filters:
+  filter_footnotes:
+    settings:
+      footnotes_footer_disable: false
+      footnotes_dialog: false

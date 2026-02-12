@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.media.embedded
   module:
     - editor
+    - footnotes
     - ilr
     - ilr_employee_data
     - linkit
@@ -46,13 +47,23 @@ filters:
     status: true
     weight: -45
     settings: {  }
+  filter_footnotes:
+    id: filter_footnotes
+    provider: footnotes
+    status: true
+    weight: -50
+    settings:
+      footnotes_collapse: false
+      footnotes_css: true
+      footnotes_dialog: false
+      footnotes_footer_disable: false
   filter_html:
     id: filter_html
     provider: filter
     status: true
     weight: -46
     settings:
-      allowed_html: '<br> <p class="shout accented vibrant text-align-left text-align-center text-align-right text-align-justify"> <h2 class="cu-heading--column text-align-left text-align-center text-align-right text-align-justify"> <h3 class="cu-heading--column cu-heading--strong text-align-left text-align-center text-align-right text-align-justify"> <a class href data-entity-type data-entity-uuid data-entity-substitution aria-label title id target="_blank" rel> <ol class="accentuated" reversed start> <ul class="cu-factlist"> <strong> <em> <blockquote> <li> <hr> <drupal-media data-entity-type data-entity-uuid alt data-caption data-align>'
+      allowed_html: '<br> <p class="shout accented vibrant text-align-left text-align-center text-align-right text-align-justify"> <h2 class="cu-heading--column text-align-left text-align-center text-align-right text-align-justify"> <h3 class="cu-heading--column cu-heading--strong text-align-left text-align-center text-align-right text-align-justify"> <a class href data-entity-type data-entity-uuid data-entity-substitution aria-label title id target="_blank" rel> <ol class="accentuated" reversed start> <ul class="cu-factlist"> <strong> <em> <blockquote> <li> <hr> <drupal-media data-entity-type data-entity-uuid alt data-caption data-align > <footnotes-placeholder> <footnotes data-text data-value>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_html_escape:
@@ -112,6 +123,7 @@ filters:
     weight: -50
     settings:
       title: true
+      media_substitution: metadata
   media_embed:
     id: media_embed
     provider: media
