@@ -64,27 +64,11 @@
     --cu-font-size: var(--cu-ms6);
   }
 
-  blockquote {
-    font-size: var(--cu-ms3);
-    font-weight: 600;
-    line-height: 1.3;
-    font-family: "freight-text-pro", serif;
-    text-align: center;
-    margin: var(--cu-vr1) var(--cu-ps1);
-
+  blockquote,
+  p.shout {
     @include breakpoint(sm) {
-      font-size: var(--cu-ms5);
-      margin: var(--cu-vr2) var(--post-media-offset-margin);
-      clear: both;
-    }
-
-    p + p:last-of-type {
-      font-family: Replica;
-      text-transform: uppercase;
-      font-size: var(--cu-ms-3);
-      color: #6C6C6C;
-      font-weight: 400;
-      letter-spacing: 0.1em;
+      margin-left: var(--post-media-offset-margin);
+      margin-right: var(--post-media-offset-margin);
     }
   }
 

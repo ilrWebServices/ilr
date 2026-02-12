@@ -45,7 +45,7 @@ settings:
             - Source
   plugins:
     stylescombo:
-      styles: p.shout|Shout
+      styles: p.shout|Shout (deprecated)
     drupallink:
       linkit_enabled: true
       linkit_profile: ilr_content
