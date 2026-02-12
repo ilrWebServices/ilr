@@ -96,3 +96,14 @@ span.strong {
   break-before: column;
   -webkit-column-break-before: always;
 }
+
+.cu-component--rich-text > *,
+.cu-section__heading {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &.cu-media {
+    max-width: unset;
+  }
+}
