@@ -27,5 +27,7 @@ behavior_plugins:
     enabled: true
   in_page_nav:
     enabled: true
+  scheduled_visibility:
+    enabled: true
   union_section_settings:
     enabled: true
