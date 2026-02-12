@@ -18,13 +18,6 @@
       // Add a class so we can better target opacity in css.
       imageTarget.classList.add('js-observed');
     });
-
-    let shoutTargets = document.querySelectorAll('.shout');
-    shoutTargets.forEach(function (shoutTarget) {
-      onScreenObserver.observe(shoutTarget);
-      // Add a class for progressive enhancement
-      shoutTarget.classList.add('js-observed');
-    });
   });
 
 })(window, document);
