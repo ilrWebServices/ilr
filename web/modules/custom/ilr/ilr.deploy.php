@@ -277,6 +277,7 @@ function ilr_deploy_enable_section_rich_text(&$sandbox) {
     ]);
 
     $rich_text_paragraph->field_body->value = $simple_page->body->value;
+    $rich_text_paragraph->field_body->format = 'standard_formatting';
     $simple_page->field_components->appendItem($rich_text_paragraph);
     $simple_page->save();
   }
