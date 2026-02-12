@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.node.simple_page.body
+    - field.field.node.simple_page.field_components
     - node.type.simple_page
   module:
+    - entity_reference_revisions
     - ilr
     - layout_builder
     - layout_discovery
@@ -61,21 +63,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 0
             additional: {  }
-          d7090ae3-950d-47c6-82be-cf73ed18e702:
-            uuid: d7090ae3-950d-47c6-82be-cf73ed18e702
-            region: second
-            configuration:
-              id: 'field_block:node:simple_page:body'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: text_default
-                label: hidden
-                settings: {  }
-                third_party_settings: {  }
-            weight: 1
-            additional: {  }
           77b04683-c3cd-4a04-ab11-e37cffe029df:
             uuid: 77b04683-c3cd-4a04-ab11-e37cffe029df
             region: second
@@ -118,12 +105,25 @@ third_party_settings:
               context_mapping: {  }
             weight: 0
             additional: {  }
-        third_party_settings: {  }
-      -
-        layout_id: layout_onecol
-        layout_settings:
-          label: ''
-        components: {  }
+          18e3cc96-aab2-4c78-be80-5f45e378b361:
+            uuid: 18e3cc96-aab2-4c78-be80-5f45e378b361
+            region: second
+            configuration:
+              id: 'field_block:node:simple_page:field_components'
+              label: Content
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: hidden
+                settings:
+                  view_mode: default
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
         third_party_settings: {  }
 id: node.simple_page.default
 targetEntityType: node
@@ -136,6 +136,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 101
+    region: content
+  field_components:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 103
     region: content
   links:
     settings: {  }

@@ -1,26 +1,19 @@
-uuid: 373b1a67-5f6b-466a-b0b1-1259cbb25237
+uuid: f2f322e7-26b0-4747-9e2e-97641e37bf83
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_components
-    - node.type.post
+    - node.type.simple_page
     - paragraphs.paragraphs_type.accordion
-    - paragraphs.paragraphs_type.curated_post_listing
-    - paragraphs.paragraphs_type.gallery
-    - paragraphs.paragraphs_type.image
-    - paragraphs.paragraphs_type.media_deck
-    - paragraphs.paragraphs_type.picture_in_picture
     - paragraphs.paragraphs_type.rich_text
-    - paragraphs.paragraphs_type.simple_collection_listing
-    - paragraphs.paragraphs_type.video
   module:
     - entity_reference_revisions
-id: node.post.field_components
+id: node.simple_page.field_components
 field_name: field_components
 entity_type: node
-bundle: post
-label: 'Post content'
+bundle: simple_page
+label: Content
 description: ''
 required: false
 translatable: false
@@ -31,13 +24,6 @@ settings:
   handler_settings:
     target_bundles:
       rich_text: rich_text
-      image: image
-      video: video
-      simple_collection_listing: simple_collection_listing
-      curated_post_listing: curated_post_listing
-      media_deck: media_deck
-      picture_in_picture: picture_in_picture
-      gallery: gallery
       accordion: accordion
     negate: 0
     target_bundles_drag_drop:
@@ -76,7 +62,7 @@ settings:
         enabled: false
       curated_post_listing:
         weight: -6
-        enabled: true
+        enabled: false
       deck:
         weight: 0
         enabled: false
@@ -88,13 +74,13 @@ settings:
         enabled: false
       gallery:
         weight: 36
-        enabled: true
+        enabled: false
       honors_and_awards:
         weight: 47
         enabled: false
       image:
         weight: -9
-        enabled: true
+        enabled: false
       instagram_listing:
         weight: 0
         enabled: false
@@ -103,7 +89,7 @@ settings:
         enabled: false
       media_deck:
         weight: -5
-        enabled: true
+        enabled: false
       milestone:
         weight: 71
         enabled: false
@@ -124,7 +110,7 @@ settings:
         enabled: false
       picture_in_picture:
         weight: -4
-        enabled: true
+        enabled: false
       professional_activities:
         weight: 56
         enabled: false
@@ -151,7 +137,7 @@ settings:
         enabled: false
       simple_collection_listing:
         weight: -7
-        enabled: true
+        enabled: false
       slide:
         weight: 87
         enabled: false
@@ -187,5 +173,5 @@ settings:
         enabled: false
       video:
         weight: -8
-        enabled: true
+        enabled: false
 field_type: entity_reference_revisions
