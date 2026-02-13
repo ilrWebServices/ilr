@@ -52,7 +52,7 @@ filters:
     status: true
     weight: -46
     settings:
-      allowed_html: '<br> <p class="shout accented vibrant"> <h2 class="cu-heading--column"> <h3 class="cu-heading--column cu-heading--strong"> <a class="cu-button" href data-entity-type data-entity-uuid data-entity-substitution> <ol class="accentuated" reversed start> <ul class="cu-factlist"> <strong> <em> <blockquote> <li> <hr> <drupal-media data-entity-type data-entity-uuid alt data-caption data-align>'
+      allowed_html: '<br> <p class="shout accented vibrant text-align-left text-align-center text-align-right text-align-justify"> <h2 class="cu-heading--column text-align-left text-align-center text-align-right text-align-justify"> <h3 class="cu-heading--column cu-heading--strong text-align-left text-align-center text-align-right text-align-justify"> <a class href data-entity-type data-entity-uuid data-entity-substitution aria-label title id target="_blank" rel> <ol class="accentuated" reversed start> <ul class="cu-factlist"> <strong> <em> <blockquote> <li> <hr> <drupal-media data-entity-type data-entity-uuid alt data-caption data-align>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_html_escape:

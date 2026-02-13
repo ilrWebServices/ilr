@@ -15,6 +15,7 @@ settings:
       - italic
       - heading
       - style
+      - alignment
       - '|'
       - link
       - '|'
@@ -28,6 +29,12 @@ settings:
       - removeFormat
       - sourceEditing
   plugins:
+    ckeditor5_alignment:
+      enabled_alignments:
+        - center
+        - justify
+        - left
+        - right
     ckeditor5_heading:
       enabled_headings:
         - heading2

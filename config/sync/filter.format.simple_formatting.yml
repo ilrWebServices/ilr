@@ -50,7 +50,7 @@ filters:
     status: true
     weight: -50
     settings:
-      allowed_html: '<br> <p> <h2> <h3> <a class="cu-button" href> <strong> <em> <ul> <ol> <li>'
+      allowed_html: '<br> <p class="text-align-left text-align-center text-align-right text-align-justify"> <h2 class="text-align-left text-align-center text-align-right text-align-justify"> <h3 class="text-align-left text-align-center text-align-right text-align-justify"> <a class="cu-button" href> <strong> <em> <ul> <ol> <li>'
       filter_html_help: false
       filter_html_nofollow: false
   filter_html_escape:
