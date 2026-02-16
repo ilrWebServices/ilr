@@ -259,6 +259,36 @@ function ilr_deploy_milr_visit_form_submission_lead_mapping_delete(&$sandbox) {
 }
 
 /**
+ * Update emeritus persona migrate mappings to manually created personas.
+ */
+function ilr_deploy_update_emeritus_persona_migration_mappings() {
+  $database = \Drupal::database();
+
+  $mappings = [
+    1014895 => 529,
+    1021426 => 1694,
+    1013382 => 1695,
+    1000130 => 1699,
+    1007100 => 1692,
+    1010081 => 1690,
+    1008698 => 1696,
+    1003458 => 1700,
+    1010424 => 1693,
+    1014607 => 1701,
+    1010719 => 1698,
+    1000531 => 1702,
+    1002621 => 1703,
+  ];
+
+  foreach ($mappings as $source_id => $dest_id) {
+    $database->update('migrate_map_ilr_employee_personas')
+      ->fields(['destid1' => $dest_id])
+      ->condition('sourceid1', $source_id)
+      ->execute();
+  }
+}
+
+/**
  * Swap body field for rich text paragraphs on simple page nodes
  */
 function ilr_deploy_enable_section_rich_text(&$sandbox) {
