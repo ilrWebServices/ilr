@@ -519,3 +519,7 @@
     min-height: 350px;
   }
 }
+
+.cu-section:has(.event-listing--hide-empty[data-itemcount="0"]) {
+  display: none;
+}
