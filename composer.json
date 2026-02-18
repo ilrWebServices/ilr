@@ -71,6 +71,7 @@
     "drupal/block_visibility_groups": "^2.0",
     "drupal/campaign_monitor_rest_client": "^1.0.0",
     "drupal/captcha": "^2",
+    "drupal/ckeditor": "^1.0",
     "drupal/collection": "3.x-dev@dev",
     "drupal/collegenet2sf": "^2",
     "drupal/condition_path": "^2.0",
@@ -86,9 +87,10 @@
     "drupal/entity_usage": "2.x-dev@dev",
     "drupal/extra_field": "^2.0.0",
     "drupal/facets": "^3.0",
+    "drupal/fakeobjects": "^2.0",
     "drupal/filehash": "^3",
     "drupal/focal_point": "^2",
-    "drupal/footnotes": "^3.0",
+    "drupal/footnotes": "^4.0",
     "drupal/friendly_captcha_challenge": "^0.9.18",
     "drupal/friendlycaptcha": "^1",
     "drupal/google_tag": "^2.0",
@@ -216,9 +218,6 @@
         "Issue #2979223: Add option to show current search string in facet summary": "https://git.drupalcode.org/issue/facets-2979223/-/commit/871c779a67704275f975541af803e6e2c81373f8.diff",
         "Error: Call to a member function getAllowedBundles() on null": "https://git.drupalcode.org/issue/facets-3458558/-/commit/95a9c9f71d033b9751b25d06892b81609598c747.diff",
         "Issue #2937191: Render using theme input and select instead of lists with links for checkboxes and dropdown": "https://www.drupal.org/files/issues/2025-03-12/facets-n2937191-95-v3.patch"
-      },
-      "drupal/footnotes": {
-        "Issue #3381366: Warnings when leaving values empty": "https://www.drupal.org/files/issues/2023-08-23/fix-warnings-when-leaving-values-empty-3381366-5_0.patch"
       },
       "drupal/salesforce": {
         "Issue #3221747: Improve performance of asynchronous salesforce push": "https://git.drupalcode.org/issue/salesforce-3221747/-/commit/03a3308d7d1796f007dfb8d0f5648d31ec373f03.diff"

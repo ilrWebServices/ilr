@@ -1,0 +1,26 @@
+status: true
+dependencies:
+  module:
+    - footnotes
+name: Footnote
+format: footnote
+filters:
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<br> <p> <strong> <em> <a href>'
+      filter_html_help: true
+      filter_html_nofollow: false
+  filter_footnotes:
+    id: filter_footnotes
+    provider: footnotes
+    status: false
+    weight: 0
+    settings:
+      footnotes_collapse: false
+      footnotes_css: true
+      footnotes_dialog: false
+      footnotes_footer_disable: false

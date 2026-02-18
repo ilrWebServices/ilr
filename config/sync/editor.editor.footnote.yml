@@ -1,0 +1,15 @@
+status: true
+dependencies:
+  config:
+    - filter.format.footnote
+  module:
+    - ckeditor5
+format: footnote
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - bold
+      - italic
+      - link
+image_upload: {  }
