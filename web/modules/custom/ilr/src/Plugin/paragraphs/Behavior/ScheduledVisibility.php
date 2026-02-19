@@ -37,29 +37,27 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'visiblity_scheduled') ?? FALSE,
     ];
 
-    $form['visiblity_scheduled_start'] = [
-      '#type' => 'date',
-      '#title' => $this->t('Show on:'),
-      '#description' => $this->t('Leave blank to show immediately.<br><br>'),
+    $form['date_container'] = [
+      '#type' => 'container',
       '#states' => [
         'visible' => [
           ':input[name="' . $parents_input_name . '[visiblity_scheduled]"]' => ['checked' => TRUE],
         ],
       ],
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'visiblity_scheduled_start') ?? '',
     ];
 
-    $form['visiblity_scheduled_end'] = [
-      '#type' => 'date',
+    $form['date_container']['visiblity_scheduled_start'] = [
+      '#type' => 'datetime',
+      '#title' => $this->t('Show on:'),
+      '#description' => $this->t('Leave blank to show immediately.<br><br>'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_start']) ?? [],
+    ];
+
+    $form['date_container']['visiblity_scheduled_end'] = [
+      '#type' => 'datetime',
       '#title' => $this->t('Hide on:'),
       '#description' => $this->t('Leave blank to show indefinitely.'),
-      '#states' => [
-        'visible' => [
-          ':input[name="' . $parents_input_name . '[visiblity_scheduled]"]' => ['checked' => TRUE],
-        ],
-      ],
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'visiblity_scheduled_end') ?? [],
-
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_end']) ?? [],
     ];
 
     return $form;
@@ -72,7 +70,7 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
     if ($paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'visiblity_scheduled')) {
       $today = new DrupalDateTime();
 
-      if ($show_on = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'visiblity_scheduled_start')) {
+      if ($show_on = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_start'])) {
         if ($show_on > $today) {
           $seconds_remaining = $show_on->getTimestamp() - $today->getTimestamp();
 
@@ -88,7 +86,7 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
         }
       }
 
-      if ($hide_on = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'visiblity_scheduled_end')) {
+      if ($hide_on = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_end'])) {
         if ($hide_on < $today) {
           $build = [
             '#type' => 'markup',
