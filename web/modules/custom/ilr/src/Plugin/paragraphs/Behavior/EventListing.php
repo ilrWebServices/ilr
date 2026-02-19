@@ -153,6 +153,13 @@ class EventListing extends ParagraphsBehaviorBase {
       '#description' => $this->t('This can be useful when displaying a list of events in the past with the most recent showing first.'),
     ];
 
+    $form['hide_when_empty'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Hide the parent section if there are no events'),
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'hide_when_empty') ?? FALSE,
+      '#description' => $this->t('Note that checking this box will also hide any other components in this section when there are no events.'),
+    ];
+
     $keyword_terms_options = [];
 
     if ($keyword_terms_ids = $this->entityTypeManager->getStorage('taxonomy_term')->loadByProperties(['vid' => 'event_keywords'])) {
@@ -234,6 +241,15 @@ class EventListing extends ParagraphsBehaviorBase {
 
     $filtered_values['keywords'] = $keyword_data;
     $paragraph->setBehaviorSettings($this->getPluginId(), $filtered_values);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preprocess(&$variables) {
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'hide_when_empty')) {
+      $variables['attributes']['class'][] = 'event-listing--hide-empty';
+    }
   }
 
   /**
