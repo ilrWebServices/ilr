@@ -2,9 +2,11 @@
 
 namespace Drupal\ilr\Plugin\paragraphs\Behavior;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Markup;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\ParagraphsBehaviorBase;
@@ -72,14 +74,30 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
 
       if ($show_on = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'visiblity_scheduled_start')) {
         if ($show_on > $today) {
-          $build = [];
+          $seconds_remaining = $show_on->getTimestamp() - $today->getTimestamp();
+
+          $build = [
+            '#type' => 'markup',
+            '#markup' => Markup::create(sprintf('<!-- Scheduled visibility placeholder: pending for %d -->', $paragraphs_entity->id())),
+            '#cache' => [
+              'max-age' => $seconds_remaining,
+            ],
+          ];
+
           return;
         }
       }
 
       if ($hide_on = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'visiblity_scheduled_end')) {
         if ($hide_on < $today) {
-          $build = [];
+          $build = [
+            '#type' => 'markup',
+            '#markup' => Markup::create(sprintf('<!-- Scheduled visibility placeholder: expired for %d -->', $paragraphs_entity->id())),
+            '#cache' => [
+              'max-age' => Cache::PERMANENT,
+            ],
+          ];
+
           return;
         }
       }
