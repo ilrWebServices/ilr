@@ -23,3 +23,8 @@ ilr_webform_datalayer:
     js/ilr_webform_datalayer.js: {}
   dependencies:
     - core/drupal
+ilr_datetime_enhancements:
+  version: 1.x
+  js:
+    js/ilr.datetime.enhancements.js: {}
+  dependencies: {}
