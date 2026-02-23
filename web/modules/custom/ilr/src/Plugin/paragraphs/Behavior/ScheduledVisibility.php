@@ -46,6 +46,10 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
       ],
     ];
 
+    // Attach custom javascript to set a default time value.
+    // @see ilr.datetime.enhancements.js.
+    $form['date_container']['#attached']['library'][] = 'ilr/ilr_datetime_enhancements';
+
     $form['date_container']['visiblity_scheduled_start'] = [
       '#type' => 'datetime',
       '#title' => $this->t('Show on:'),
