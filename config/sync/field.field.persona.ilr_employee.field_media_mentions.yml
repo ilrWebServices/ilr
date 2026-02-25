@@ -10,8 +10,8 @@ id: persona.ilr_employee.field_media_mentions
 field_name: field_media_mentions
 entity_type: persona
 bundle: ilr_employee
-label: 'Media mentions'
-description: 'Media mentions that reference this employee.'
+label: 'Curated media mentions'
+description: 'Media mentions added manually here will always display, regarldess of the date.'
 required: false
 translatable: false
 default_value: {  }
