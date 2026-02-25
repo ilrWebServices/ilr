@@ -1,0 +1,23 @@
+uuid: 193aeb14-52d4-406b-98fc-c58b8f75ec35
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.behavior_suppress_media_mentions
+    - person.persona_type.ilr_employee
+id: persona.ilr_employee.behavior_suppress_media_mentions
+field_name: behavior_suppress_media_mentions
+entity_type: persona
+bundle: ilr_employee
+label: 'Suppress media mentions'
+description: 'When checked, media mentions will be hidden on this employee profile.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean
