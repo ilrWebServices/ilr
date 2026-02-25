@@ -41,6 +41,11 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  extra_field_media_mentions:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 15
+    region: content
   extra_field_profile:
     settings: {  }
     third_party_settings: {  }
