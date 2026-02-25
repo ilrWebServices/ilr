@@ -15,6 +15,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_fax
     - field.field.persona.ilr_employee.field_first_name
     - field.field.persona.ilr_employee.field_last_name
+    - field.field.persona.ilr_employee.field_media_mentions
     - field.field.persona.ilr_employee.field_netid
     - field.field.persona.ilr_employee.field_other_expertise
     - field.field.persona.ilr_employee.field_phone
@@ -106,6 +107,14 @@ content:
       title: ''
     third_party_settings: {  }
     weight: 5
+    region: content
+  field_media_mentions:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 13
     region: content
   field_other_expertise:
     type: basic_string

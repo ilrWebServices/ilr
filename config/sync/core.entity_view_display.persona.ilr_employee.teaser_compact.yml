@@ -16,6 +16,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_fax
     - field.field.persona.ilr_employee.field_first_name
     - field.field.persona.ilr_employee.field_last_name
+    - field.field.persona.ilr_employee.field_media_mentions
     - field.field.persona.ilr_employee.field_netid
     - field.field.persona.ilr_employee.field_other_expertise
     - field.field.persona.ilr_employee.field_phone
@@ -74,6 +75,7 @@ hidden:
   field_fax: true
   field_first_name: true
   field_last_name: true
+  field_media_mentions: true
   field_netid: true
   field_other_expertise: true
   field_phone: true
