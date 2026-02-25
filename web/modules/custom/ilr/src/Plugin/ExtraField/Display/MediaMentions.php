@@ -56,6 +56,10 @@ class MediaMentions extends ExtraFieldDisplayBase implements ContainerFactoryPlu
     $elements = [];
     $media_mentions = [];
 
+    if ($entity->hasField('behavior_suppress_media_mentions') && $entity->behavior_suppress_media_mentions->value) {
+      return [];
+    }
+
     if ($entity->hasField('field_media_mentions')) {
       $media_mentions = $entity->field_media_mentions->referencedEntities();
     }

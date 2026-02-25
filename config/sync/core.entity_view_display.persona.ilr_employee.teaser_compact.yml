@@ -22,6 +22,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_phone
     - field.field.persona.ilr_employee.field_photo
     - field.field.persona.ilr_employee.field_sections
+    - field.field.persona.ilr_employee.behavior_suppress_media_mentions
     - field.field.persona.ilr_employee.field_websites
     - image.style.small_5x4
     - person.persona_type.ilr_employee
@@ -50,6 +51,11 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
+  extra_field_media_mentions:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_photo:
     type: media_thumbnail
     label: hidden
@@ -62,6 +68,7 @@ content:
     weight: 2
     region: content
 hidden:
+  behavior_suppress_media_mentions: true
   extra_field_profile: true
   field_areas_of_expertise: true
   field_bio: true

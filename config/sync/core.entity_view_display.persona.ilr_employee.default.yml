@@ -21,6 +21,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_phone
     - field.field.persona.ilr_employee.field_photo
     - field.field.persona.ilr_employee.field_sections
+    - field.field.persona.ilr_employee.behavior_suppress_media_mentions
     - field.field.persona.ilr_employee.field_websites
     - image.style.thumbnail_square
     - person.persona_type.ilr_employee
@@ -36,6 +37,16 @@ targetEntityType: persona
 bundle: ilr_employee
 mode: default
 content:
+  behavior_suppress_media_mentions:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 16
+    region: content
   extra_field_ilr_employee_positions:
     settings: {  }
     third_party_settings: {  }

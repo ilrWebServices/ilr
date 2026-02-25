@@ -1,0 +1,18 @@
+uuid: 708ed7dc-0515-4b35-8eca-f55430d691ae
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.behavior_suppress_media_mentions
+field_name: behavior_suppress_media_mentions
+entity_type: persona
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
