@@ -1,0 +1,29 @@
+uuid: 26ecc6b6-3788-4351-9a98-7dd4bf38b116
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_media_mentions
+    - node.type.media_mention
+    - person.persona_type.ilr_employee
+id: persona.ilr_employee.field_media_mentions
+field_name: field_media_mentions
+entity_type: persona
+bundle: ilr_employee
+label: 'Media mentions'
+description: 'Media mentions that reference this employee.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      media_mention: media_mention
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
