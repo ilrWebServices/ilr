@@ -45,6 +45,224 @@ use Drupal\person\PersonaInterface;
 use Drupal\salesforce_mapping\Entity\MappedObjectInterface;
 
 /**
+ * Implements hook_form_views_exposed_form_alter().
+ */
+function ilr_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\views\ViewExecutable $view */
+  $view = $form_state->get('view');
+
+  if (!$view || $view->id() !== 'programs') {
+    return;
+  }
+
+  $database = \Drupal::database();
+  $request = \Drupal::request();
+  $now = (new \DateTime('now', new \DateTimeZone('UTC')))->format('Y-m-d\TH:i:s');
+
+  $topic_ids_raw = $request->query->get('topic_ids') ?? '';
+  $active_topics = array_filter(array_map('trim', explode(',', $topic_ids_raw)));
+  $active_format = $request->query->get('format') ?? '';
+  $active_date_min = $request->query->get('date_min') ?? '';
+  $active_date_max = $request->query->get('date_max') ?? '';
+  $active_title = trim($request->query->get('title') ?? '');
+
+  // upcoming classes joined to their parent course.
+  $base = function() use ($database, $now) {
+    $query = $database->select('node__field_date_start', 'ds');
+    $query->join('node_field_data', 'n', 'n.nid = ds.entity_id AND n.type = :type AND n.status = 1', [':type' => 'class']);
+    $query->join('node__field_course', 'fc', 'fc.entity_id = n.nid');
+    $query->join('node_field_data', 'cn', 'cn.nid = fc.field_course_target_id AND cn.status = 1');
+    $query->condition('ds.field_date_start_value', $now, '>=');
+    return $query;
+  };
+
+  $form['topic']['#wrapper_attributes']['class'][] = 'visually-hidden';
+  $form['topic']['#attributes']['class'][] = 'visually-hidden';
+
+  $form['topic_ids'] = [
+    '#type' => 'hidden',
+    '#value' => implode(',', $active_topics),
+    '#name' => 'topic_ids',
+    '#attributes' => ['class' => ['program-finder-topic-ids']],
+  ];
+
+  $topic_query = $base();
+  $topic_query->join('node__field_topics', 'ft', 'ft.entity_id = cn.nid');
+  $topic_query->join('taxonomy_term_field_data', 'td', 'td.tid = ft.field_topics_target_id AND td.langcode = :lang', [':lang' => 'en']);
+  $topic_query->addField('td', 'tid');
+  $topic_query->addField('td', 'name');
+  $topic_query->addExpression('COUNT(DISTINCT cn.nid)', 'course_count');
+  if ($active_format) {
+    $topic_query->join('node__field_delivery_method', 'dm', 'dm.entity_id = n.nid');
+    $topic_query->condition('dm.field_delivery_method_value', $active_format);
+  }
+  if ($active_date_min && $active_date_max) {
+    $topic_query->condition('ds.field_date_start_value', $active_date_min, '>=');
+    $topic_query->condition('ds.field_date_start_value', $active_date_max, '<=');
+  }
+  if ($active_title) {
+    $topic_query->condition('cn.title', '%' . $database->escapeLike($active_title) . '%', 'LIKE');
+  }
+  $topic_query->groupBy('td.tid')->groupBy('td.name')->orderBy('td.name');
+  $topic_rows = $topic_query->execute()->fetchAllAssoc('tid');
+
+  $topic_items = [];
+  foreach ($topic_rows as $tid => $row) {
+    $active = in_array((string) $tid, array_map('strval', $active_topics));
+    $topic_items[] = [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#attributes' => [
+        'class' => array_filter(['program-finder__filter-option', 'program-finder-topic-option', $active ? 'is-active' : '']),
+        'data-value' => (string) $tid,
+        'role' => 'checkbox',
+        'aria-checked' => $active ? 'true' : 'false',
+        'tabindex' => '0',
+      ],
+      '#value' => $row->name . ' <span class="program-finder__filter-option__count">' . $row->course_count . '</span>',
+    ];
+  }
+  $form['topic_filter'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Topic'),
+    '#weight' => 1,
+    '#attributes' => ['class' => ['program-finder-topics']],
+    'options' => $topic_items,
+  ];
+
+  // Format filter — hide the original select, show custom divs with counts.
+  // Counts reflect the current topic/date selection but not the format itself.
+  $form['format']['#wrapper_attributes']['class'][] = 'visually-hidden';
+  $form['format']['#attributes']['class'][] = 'program-finder-format-input';
+
+  $format_query = $base();
+  $format_query->join('node__field_delivery_method', 'dm2', 'dm2.entity_id = n.nid');
+  $format_query->addField('dm2', 'field_delivery_method_value', 'format_val');
+  $format_query->addExpression('COUNT(DISTINCT cn.nid)', 'course_count');
+  if (!empty($active_topics)) {
+    $format_query->join('node__field_topics', 'ft2', 'ft2.entity_id = cn.nid');
+    $format_query->condition('ft2.field_topics_target_id', $active_topics, 'IN');
+  }
+  if ($active_date_min && $active_date_max) {
+    $format_query->condition('ds.field_date_start_value', $active_date_min, '>=');
+    $format_query->condition('ds.field_date_start_value', $active_date_max, '<=');
+  }
+  if ($active_title) {
+    $format_query->condition('cn.title', '%' . $database->escapeLike($active_title) . '%', 'LIKE');
+  }
+  $format_query->groupBy('dm2.field_delivery_method_value')->orderBy('dm2.field_delivery_method_value');
+  $format_rows = $format_query->execute()->fetchAllAssoc('format_val');
+
+  // Map raw delivery method values to the labels used in the preprocess hook.
+  $format_labels = [
+    'Classroom'              => (string) t('In-Person'),
+    'In Person (Not Classroom)' => (string) t('In-Person'),
+    'Online (Date Driven)'   => (string) t('Live Online'),
+    'Online (Synchronous)'   => (string) t('Live Online'),
+    'On Demand/Self Paced'   => (string) t('Self-Paced Online'),
+  ];
+
+  // Multiple raw values map to the same label (e.g. two types of "Live Online"),
+  // so merge them and sum their counts.
+  $merged_formats = [];
+  foreach ($format_rows as $val => $row) {
+    $label = $format_labels[$val] ?? $val;
+    if (!isset($merged_formats[$label])) {
+      $merged_formats[$label] = ['value' => $val, 'count' => 0, 'active' => FALSE];
+    }
+    $merged_formats[$label]['count'] += (int) $row->course_count;
+    if ($active_format === $val) {
+      $merged_formats[$label]['active'] = TRUE;
+    }
+  }
+
+  $format_items = [];
+  foreach ($merged_formats as $label => $info) {
+    $format_items[] = [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#attributes' => [
+        'class' => array_filter(['program-finder__filter-option', 'program-finder-format-option', $info['active'] ? 'is-active' : '']),
+        'data-value' => $info['value'],
+        'role' => 'checkbox',
+        'aria-checked' => $info['active'] ? 'true' : 'false',
+        'tabindex' => '0',
+      ],
+      '#value' => $label . ' <span class="program-finder__filter-option__count">' . $info['count'] . '</span>',
+    ];
+  }
+  $form['format_filter'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Format'),
+    '#weight' => 2,
+    '#attributes' => ['class' => ['program-finder-formats']],
+    'options' => $format_items,
+  ];
+
+  // Month filter — hide the date_min/date_max inputs and replace with
+  // clickable month divs that JS converts back into a date range.
+  $form['date_min']['#wrapper_attributes']['class'][] = 'visually-hidden';
+  $form['date_min']['#attributes']['class'][] = 'program-finder-date-min';
+  $form['date_max']['#wrapper_attributes']['class'][] = 'visually-hidden';
+  $form['date_max']['#attributes']['class'][] = 'program-finder-date-max';
+
+  $month_query = $base();
+  $month_query->addExpression("DATE_FORMAT(ds.field_date_start_value, '%Y-%m')", 'month');
+  $month_query->addExpression('COUNT(DISTINCT cn.nid)', 'course_count');
+  if (!empty($active_topics)) {
+    $month_query->join('node__field_topics', 'ft3', 'ft3.entity_id = cn.nid');
+    $month_query->condition('ft3.field_topics_target_id', $active_topics, 'IN');
+  }
+  if ($active_format) {
+    $month_query->join('node__field_delivery_method', 'dm3', 'dm3.entity_id = n.nid');
+    $month_query->condition('dm3.field_delivery_method_value', $active_format);
+  }
+  if ($active_title) {
+    $month_query->condition('cn.title', '%' . $database->escapeLike($active_title) . '%', 'LIKE');
+  }
+  $month_query->groupBy('month')->orderBy('month', 'ASC');
+  $month_rows = $month_query->execute()->fetchAll();
+
+  $month_names = [
+    1 => 'January', 2 => 'February', 3 => 'March', 4 => 'April',
+    5 => 'May', 6 => 'June', 7 => 'July', 8 => 'August',
+    9 => 'September', 10 => 'October', 11 => 'November', 12 => 'December',
+  ];
+
+  $month_items = [];
+  foreach ($month_rows as $row) {
+    [$year, $month_num] = explode('-', $row->month);
+    $first = $row->month . '-01';
+    $last_day = date('t', mktime(0, 0, 0, (int) $month_num, 1, (int) $year));
+    $last = $row->month . '-' . $last_day;
+    $label = $month_names[(int) $month_num] . ' ' . $year . ' <span class="program-finder__filter-option__count">' . $row->course_count . '</span>';
+    $active = ($active_date_min && $active_date_max && $active_date_min <= $last && $active_date_max >= $first);
+    $month_items[] = [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#attributes' => [
+        'class' => array_filter(['program-finder__filter-option', 'program-finder-month-option', $active ? 'is-active' : '']),
+        'data-month' => $row->month,
+        'data-first' => $first,
+        'data-last'  => $last,
+        'role' => 'checkbox',
+        'aria-checked' => $active ? 'true' : 'false',
+        'tabindex' => '0',
+      ],
+      '#value' => $label,
+    ];
+  }
+  $form['month_filter'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Start Month'),
+    '#weight' => 5,
+    '#attributes' => ['class' => ['program-finder-months']],
+    'options' => $month_items,
+  ];
+
+}
+
+/**
  * Implements hook_theme().
  */
 function ilr_theme($existing, $type, $theme, $path) {
@@ -747,6 +965,32 @@ function ilr_preprocess_node__course__teaser(&$variables) {
     // @todo Future Drupal/PHP will not allow object properties to be added like this.
     $upcoming_class->entity->computed_delivery_method = $computed_delivery_method;
     $variables['upcoming_classes'][] = $upcoming_class->entity;
+  }
+}
+
+/**
+ * Implements template_preprocess_node().
+ */
+function ilr_preprocess_node__course__program_finder(&$variables) {
+  $variables['upcoming_classes'] = [];
+
+  foreach ($variables['node']->classes as $upcoming_class) {
+    $class = $upcoming_class->entity;
+
+    switch ($class->field_delivery_method->value) {
+      case 'Classroom':
+        $computed_delivery_method = t('In-Person');
+        break;
+      case 'On Demand/Self Paced':
+        $computed_delivery_method = t('Self-Paced Online');
+        break;
+      default:
+        $computed_delivery_method = t('Live Online');
+    }
+
+    // @todo Future Drupal/PHP will not allow object properties to be added like this.
+    $class->computed_delivery_method = $computed_delivery_method;
+    $variables['upcoming_classes'][] = $class;
   }
 }
 
@@ -2000,4 +2244,27 @@ function ilr_views_query_alter(\Drupal\views\ViewExecutable $view, \Drupal\views
       }
     }
   }
+
+  if ($view->id() === 'programs') {
+    $request = \Drupal::request();
+    $topic_ids_raw = $request->query->get('topic_ids') ?? $request->request->get('topic_ids') ?? '';
+    $topic_ids = array_filter(array_map('intval', explode(',', $topic_ids_raw)));
+
+    if (!empty($topic_ids)) {
+      // Remove any Views-generated taxonomy condition first.
+      foreach ($query->where as $group_id => &$group) {
+        foreach ($group['conditions'] as $cid => $condition) {
+          $field = $condition['field'] ?? '';
+          if (is_string($field) && str_contains($field, 'field_topics_target_id')) {
+            unset($query->where[$group_id]['conditions'][$cid]);
+          }
+        }
+      }
+      // Ensure the topics table is joined — Views won't add it when the
+      // exposed select is empty.
+      $alias = $query->ensureTable('node__field_topics');
+      $query->addWhere(0, "$alias.field_topics_target_id", $topic_ids, 'IN');
+    }
+  }
+
 }

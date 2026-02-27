@@ -1,0 +1,94 @@
+{#
+/**
+ * @file
+ * Program finder listing item: course title + all upcoming class rows.
+ *
+ * Available variables:
+ * - node: The course node entity.
+ * - label: The course title.
+ * - url: URL to the course node.
+ * - content: Rendered fields (body, field_topics).
+ * - upcoming_classes: Array of class node entities, populated by
+ *   ilr_preprocess_node__course__program_finder().
+ */
+#}
+<article{{ attributes.addClass('program-finder-course') }}>
+
+    <div class="program-finder-course__header">
+        {% if content.field_topics %}
+            <div class="program-finder-course__topics">
+                {{- content.field_topics -}}
+            </div>
+        {% endif %}
+
+        {{ title_prefix }}
+        <a href="{{ url }}" class="program-finder-course__title">{{ label|render|striptags }}</a>
+        {{ title_suffix }}
+
+        {% if content.body %}
+            <div class="program-finder-course__description">
+                {{- content.body -}}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="program-finder-course__classes">
+        {% if upcoming_classes|length > 0 %}
+            <span class="program-finder-course__classes-heading">Start Dates</span>
+            <div class="program-finder-course__class-list">
+                {% for class in upcoming_classes %}
+                    {% set cancelled = class.field_class_cancelled.value == '1' %}
+                    {% set full = class.field_class_full.value == '1' %}
+
+                    {% set register_url = '' %}
+                    {% if not class.field_external_link.isEmpty() %}
+                        {% set register_url = class.field_external_link.uri %}
+                    {% endif %}
+
+                    <div class="program-finder-course__class-row{% if cancelled %} is-cancelled{% elseif full %} is-full{% endif %}">
+                        <div class="program-finder-course__class-date">
+                            {{ drupal_field('field_class_date', 'node', class.id(), 'teaser') }}
+                        </div>
+
+                        <div class="program-finder-course__class-meta">
+                            {% if not class.field_close_registration.isEmpty() %}
+                                <span class="program-finder-course__meta-label">{{ 'Registration Deadline'|t }}</span>
+                                <span class="program-finder-course__reg-date">{{ class.field_close_registration|view({'label': 'hidden', 'type': 'datetime_default', 'settings': {'timezone_override': '', 'format_type': 'ilr_date'}}) }}</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="program-finder-course__class-meta">
+                            {% if not class.field_price.isEmpty() %}
+                                <span class="program-finder-course__meta-label">{{ 'Cost'|t }}</span>
+                                <span class="program-finder-course__price">${{ class.field_price.value }}</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="program-finder-course__class-meta">
+                            <span class="program-finder-course__meta-label">{{ 'Format'|t }}</span>
+                            <span class="program-finder-course__format">{{ class.computed_delivery_method }}</span>
+                        </div>
+
+                        <div class="program-finder-course__class-action">
+                            {% if cancelled %}
+                                <span class="program-finder-course__status program-finder-course__status--cancelled">{{ 'Cancelled'|t }}</span>
+                            {% elseif full %}
+                                <span class="program-finder-course__status program-finder-course__status--full">{{ 'Full'|t }}</span>
+                            {% elseif register_url %}
+                                <a href="{{ register_url }}">{{ 'Register'|t }}</a>
+                            {% else %}
+                                <a href="{{ url }}">{{ 'Learn more'|t }}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="program-finder-course__no-dates">
+                <em>{{ 'Dates for sessions will be posted as soon as they are available.'|t }}</em>
+            </p>
+            <a href="{{ url }}">{{ 'Learn more'|t }}</a>
+        {% endif %}
+    </div>
+
+</article>
