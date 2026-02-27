@@ -59,6 +59,15 @@ lottie_80years:
     - core/jquery
     - union_marketing/lottie
 
+program_finder:
+  version: 1.x
+  js:
+    js/program-finder.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+
 research_directory_sort:
   version: 1.x
   js:
