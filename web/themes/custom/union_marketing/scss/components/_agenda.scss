@@ -73,5 +73,10 @@
   > .field--field-body {
     grid-column: 2;
     grid-row: 1/-1;
+
+    a {
+      --cu-text-color: #b31b1b;
+      --cu-font-weight: 400;
+    }
   }
 }
