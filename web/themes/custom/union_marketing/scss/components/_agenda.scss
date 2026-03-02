@@ -43,6 +43,10 @@
       content: '–';
     }
   }
+
+  &:has(+ .paragraph--type--agenda) {
+    --cu-component-margin-bottom: var(--cu-vr1);
+  }
 }
 
 .cu-section[class*="cu-colorscheme"] .paragraph--type--agenda {
