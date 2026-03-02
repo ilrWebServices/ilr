@@ -40,10 +40,7 @@
                     {% set cancelled = class.field_class_cancelled.value == '1' %}
                     {% set full = class.field_class_full.value == '1' %}
 
-                    {% set register_url = '' %}
-                    {% if not class.field_external_link.isEmpty() %}
-                        {% set register_url = class.field_external_link.uri %}
-                    {% endif %}
+                    {% set register_url = class.computed_register_url %}
 
                     <div class="program-finder-course__class-row{% if cancelled %} is-cancelled{% elseif full %} is-full{% endif %}">
                         <div class="program-finder-course__class-date">
@@ -75,9 +72,17 @@
                             {% elseif full %}
                                 <span class="program-finder-course__status program-finder-course__status--full">{{ 'Full'|t }}</span>
                             {% elseif register_url %}
-                                <a href="{{ register_url }}">{{ 'Register'|t }}</a>
+                                {% include '@union/_button.twig' with {
+                                    text: 'Register'|t,
+                                    url: register_url,
+                                    attributes: {'class': 'cu-button--alt', 'target': '_blank'}
+                                } only %}
                             {% else %}
-                                <a href="{{ url }}">{{ 'Learn more'|t }}</a>
+                                {% include '@union/_button.twig' with {
+                                    text: 'Learn more'|t,
+                                    url: url,
+                                    attributes: {'class': 'cu-button--alt'}
+                                } only %}
                             {% endif %}
                         </div>
                     </div>
@@ -87,7 +92,10 @@
             <p class="program-finder-course__no-dates">
                 <em>{{ 'Dates for sessions will be posted as soon as they are available.'|t }}</em>
             </p>
-            <a href="{{ url }}">{{ 'Learn more'|t }}</a>
+            {% include '@union/_button.twig' with {
+                text: 'Learn more'|t,
+                url: url
+            } only %}
         {% endif %}
     </div>
 

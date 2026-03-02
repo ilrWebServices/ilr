@@ -988,8 +988,18 @@ function ilr_preprocess_node__course__program_finder(&$variables) {
         $computed_delivery_method = t('Live Online');
     }
 
+    $register_url = '';
+    if ($mapped_object = $class->getClassNodeSalesforceMappedObject()) {
+      $registration_base_url = \Drupal::configFactory()->get('ilr_registration_system.settings')->get('url');
+      $register_url = $registration_base_url . $mapped_object->salesforce_id->getString();
+    }
+    if (!$class->field_external_link->isEmpty()) {
+      $register_url = $class->field_external_link->uri;
+    }
+
     // @todo Future Drupal/PHP will not allow object properties to be added like this.
     $class->computed_delivery_method = $computed_delivery_method;
+    $class->computed_register_url = $register_url;
     $variables['upcoming_classes'][] = $class;
   }
 }
