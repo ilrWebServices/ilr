@@ -20,5 +20,8 @@ behavior_plugins:
       dark: dark
       vibrant: vibrant
     color_scheme_default: light
+    allow_framed_media: 0
   ilr_icon:
+    enabled: true
+  scheduled_visibility:
     enabled: true
