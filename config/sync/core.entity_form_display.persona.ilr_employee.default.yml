@@ -15,11 +15,13 @@ dependencies:
     - field.field.persona.ilr_employee.field_fax
     - field.field.persona.ilr_employee.field_first_name
     - field.field.persona.ilr_employee.field_last_name
+    - field.field.persona.ilr_employee.field_media_mentions
     - field.field.persona.ilr_employee.field_netid
     - field.field.persona.ilr_employee.field_other_expertise
     - field.field.persona.ilr_employee.field_phone
     - field.field.persona.ilr_employee.field_photo
     - field.field.persona.ilr_employee.field_sections
+    - field.field.persona.ilr_employee.behavior_suppress_media_mentions
     - field.field.persona.ilr_employee.field_websites
     - person.persona_type.ilr_employee
   module:
@@ -45,6 +47,13 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  behavior_suppress_media_mentions:
+    type: boolean_checkbox
+    weight: 52
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   default:
     type: boolean_checkbox
@@ -169,6 +178,16 @@ content:
     weight: 4
     region: content
     settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_media_mentions:
+    type: entity_reference_autocomplete
+    weight: 51
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
     third_party_settings: {  }

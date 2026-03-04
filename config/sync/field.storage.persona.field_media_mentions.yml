@@ -1,0 +1,20 @@
+uuid: 09def121-6ffe-4cf5-9776-6d10563c4401
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - person
+id: persona.field_media_mentions
+field_name: field_media_mentions
+entity_type: persona
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 3
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
