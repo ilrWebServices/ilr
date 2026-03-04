@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_components
     - node.type.post
     - paragraphs.paragraphs_type.accordion
+    - paragraphs.paragraphs_type.call_to_action
     - paragraphs.paragraphs_type.curated_post_listing
     - paragraphs.paragraphs_type.gallery
     - paragraphs.paragraphs_type.image
@@ -39,6 +40,7 @@ settings:
       picture_in_picture: picture_in_picture
       gallery: gallery
       accordion: accordion
+      call_to_action: call_to_action
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -55,7 +57,7 @@ settings:
         enabled: false
       call_to_action:
         weight: 54
-        enabled: false
+        enabled: true
       card_overlay:
         weight: 55
         enabled: false

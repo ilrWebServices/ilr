@@ -18,3 +18,6 @@ behavior_plugins:
       dark: dark
       vibrant: vibrant
     color_scheme_default: light
+    allow_framed_media: 0
+  scheduled_visibility:
+    enabled: true
