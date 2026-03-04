@@ -34,6 +34,7 @@ dependencies:
     - path
     - text
     - webform
+    - webform_reference_category_select
 id: node.event_landing_page.default
 targetEntityType: node
 bundle: event_landing_page
@@ -102,10 +103,11 @@ content:
     region: content
     settings:
       default_data: true
-      webforms:
-        - event_registration
-        - labor_conf_event_registration
-    third_party_settings: {  }
+      webforms: {  }
+    third_party_settings:
+      webform_reference_category_select:
+        categories:
+          - 'event registration'
   field_representative_image:
     type: media_library_widget
     weight: 19
