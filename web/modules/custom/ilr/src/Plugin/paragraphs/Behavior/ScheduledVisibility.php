@@ -113,7 +113,7 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
           break;
 
         case ScheduleBehaviorInfo::PAST:
-          $label = 'Hidden';
+          $label = 'Expired';
           $class_modifier = 'past';
           break;
 
@@ -124,8 +124,8 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
       }
 
       $summary[] = [
-        'label' => $this->t($label),
-        'value' => Markup::create('<span class="scheduled scheduled--' . $class_modifier . '">⏰</span>'),
+        'label' => Markup::create('<span class="scheduled scheduled--' . $class_modifier . '">⏰</span>'),
+        'value' => $this->t($label),
       ];
     }
 
