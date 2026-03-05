@@ -7,6 +7,7 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
+use Drupal\ilr\ScheduleBehaviorInfo;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\ParagraphsBehaviorBase;
@@ -77,28 +78,21 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
     }
 
     if ($paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'visiblity_scheduled')) {
-      $scheduled_status = $this->getScheduledStatus($paragraphs_entity);
-      $timestamp = array_key_first($scheduled_status);
+      $scheduled_info = $this->getScheduledInfo($paragraphs_entity);
 
-      if (reset($scheduled_status) === 'future') {
+      if ($scheduled_info->status === FALSE) {
+        // Overwrite the build to replace the paragraph.
         $build = [
           '#type' => 'markup',
-          '#markup' => Markup::create(sprintf('<!-- Scheduled visibility placeholder: pending for %d -->', $paragraphs_entity->id())),
-          '#cache' => [
-            'max-age' => $timestamp,
-          ],
+          '#markup' => Markup::create(sprintf('<!-- Scheduled visibility placeholder: %s for %d -->',
+            $scheduled_info->reason === ScheduleBehaviorInfo::FUTURE ? 'pending' : 'expired',
+            $paragraphs_entity->id()
+          )),
         ];
-        return;
       }
 
-      if (reset($scheduled_status) === 'past') {
-        $build = [
-          '#type' => 'markup',
-          '#markup' => Markup::create(sprintf('<!-- Scheduled visibility placeholder: expired for %d -->', $paragraphs_entity->id())),
-          '#cache' => [
-            'max-age' => Cache::PERMANENT,
-          ],
-        ];
+      if ($scheduled_info->secondsTillShowOrHide) {
+        $build['#cache']['max-age'] = $scheduled_info->secondsTillShowOrHide;
       }
     }
   }
@@ -110,25 +104,28 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
     $summary = [];
 
     if ($paragraph->getBehaviorSetting($this->getPluginId(), 'visiblity_scheduled')) {
-      $scheduled_status = $this->getScheduledStatus($paragraph);
+      $scheduled_info = $this->getScheduledInfo($paragraph);
 
-      switch (reset($scheduled_status)) {
-        case 'present':
+      switch ($scheduled_info->reason) {
+        case ScheduleBehaviorInfo::PRESENT:
           $label = 'Visible';
+          $class_modifier = 'present';
           break;
 
-        case 'past':
+        case ScheduleBehaviorInfo::PAST:
           $label = 'Hidden';
+          $class_modifier = 'past';
           break;
 
-        case 'future':
+        case ScheduleBehaviorInfo::FUTURE:
           $label = 'Scheduled';
+          $class_modifier = 'future';
           break;
       }
 
       $summary[] = [
         'label' => $this->t($label),
-        'value' => Markup::create('<span class="scheduled scheduled--'. reset($scheduled_status).'">⏰</span>'),
+        'value' => Markup::create('<span class="scheduled scheduled--' . $class_modifier . '">⏰</span>'),
       ];
     }
 
@@ -141,27 +138,13 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
    * @param Drupal\paragraphs\ParagraphInterface $paragraph
    *   The paragraphs entity.
    *
-   * @return array
-   *   An single array with a human-readable value and some date
-   *   info (when relevant).
+   * @return ScheduleBehaviorInfo
    */
-  protected function getScheduledStatus($paragraph):array {
-    $today = new DrupalDateTime();
-
-    if ($show_on = $paragraph->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_start'])) {
-      if ($show_on > $today) {
-        $seconds_remaining = $show_on->getTimestamp() - $today->getTimestamp();
-        return [$seconds_remaining => 'future'];
-      }
-    }
-
-    if ($hide_on = $paragraph->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_end'])) {
-      if ($hide_on < $today) {
-        return [$hide_on->getTimestamp() => 'past'];
-      }
-    }
-
-    return ['present'];
+  protected function getScheduledInfo($paragraph): ScheduleBehaviorInfo {
+    return new ScheduleBehaviorInfo(
+      $paragraph->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_start']),
+      $paragraph->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_end'])
+    );
   }
 
 }
