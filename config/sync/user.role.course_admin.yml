@@ -6,6 +6,7 @@ dependencies:
     - node.type.certificate
     - node.type.course
     - node.type.instructor
+    - taxonomy.vocabulary.topics
   module:
     - contextual
     - file
@@ -13,6 +14,7 @@ dependencies:
     - media
     - node
     - system
+    - taxonomy
 id: course_admin
 label: 'Course Admin'
 weight: 5
@@ -29,6 +31,7 @@ permissions:
   - 'edit any certificate content'
   - 'edit any course content'
   - 'edit any instructor content'
+  - 'edit terms in topics'
   - 'revert certificate revisions'
   - 'revert course revisions'
   - 'revert instructor revisions'
