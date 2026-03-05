@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Config\FileStorage;
+
 /**
  * @file
  * Installation and uninstallation functions.
@@ -17,4 +19,21 @@ function ilr_update_last_removed() {
  */
 function ilr_update_100101() {
   \Drupal::service('module_installer')->install(['config_ignore_pattern'], TRUE);
+}
+
+/**
+ * Install the new kissoff action configuration.
+ */
+function ilr_update_100201() {
+  $config_name = 'system.action.ilr_user_kissoff_action';
+  $config_path = \Drupal::service('extension.list.module')->getPath('ilr') . '/config/install';
+  $config_storage = new FileStorage($config_path);
+  $data = $config_storage->read($config_name);
+
+  if ($data) {
+    \Drupal::configFactory()->getEditable($config_name)
+      ->setData($data)
+      ->save(TRUE);
+    \Drupal::logger('mymodule')->notice('Adding "ILR user kissoff action" to available actions.');
+  }
 }
