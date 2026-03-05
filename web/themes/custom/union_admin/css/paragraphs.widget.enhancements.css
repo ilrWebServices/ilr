@@ -30,3 +30,17 @@
 .js .field--widget-paragraphs .paragraphs-dropbutton-wrapper .dropbutton-widget {
   position: relative;
 }
+
+/* Note these selectors are highly specific (since scheduled components can be
+nested) and are therefore slightly brittle. */
+tr.draggable:has(> td > div > .form-wrapper > .paragraph-top .summary-plugin .scheduled--present) {
+  background-color: rgb(212, 239, 212);
+}
+
+tr.draggable:has(> td > div > .form-wrapper > .paragraph-top .summary-plugin .scheduled--past) {
+  background-color: rgb(255, 230, 230);
+}
+
+tr.draggable:has(> td > div > .form-wrapper > .paragraph-top .summary-plugin .scheduled--future) {
+  background-color: rgba(255, 250, 230);
+}

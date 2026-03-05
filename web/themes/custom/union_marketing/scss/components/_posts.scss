@@ -90,6 +90,15 @@
       width: 50%;
       margin-left: -25%;
     }
+
+    .cu-component--call-to-action {
+      margin-left: calc((var(--post-max-width) - var(--post-max-width-text)) / 2 * -1);
+      margin-right: calc((var(--post-max-width) - var(--post-max-width-text)) / 2 * -1);
+
+      .cu-call-to-action__heading {
+        font-size: var(--cu-ms8);
+      }
+    }
   }
 
   // Ensure that embedded videos have width.
@@ -183,6 +192,11 @@
       margin-bottom: var(--cu-vr1);
     }
   }
+
+  .cu-component--rich-text:has(+ .cu-component--rich-text) {
+    --cu-component-margin-bottom: var(--cu-vr1);
+  }
+
 }
 
 // Posts in modals
@@ -319,4 +333,3 @@
     }
   }
 }
-
