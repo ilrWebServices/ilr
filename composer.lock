@@ -3052,22 +3052,23 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/entity_usage.git",
-                "reference": "07472c033dc170a752f413a9e8475c7997fb3be9"
+                "reference": "5fbd626772f20faacb559bdf127419688b3530f5"
             },
             "require": {
-                "drupal/core": "^10.2 || ^11"
+                "drupal/core": "^10.3 || ^11"
             },
             "require-dev": {
                 "drupal/block_field": "~1.0",
-                "drupal/ckeditor": "^1.0",
-                "drupal/dynamic_entity_reference": "~1.0 || ^2.0 || ^4.0",
+                "drupal/dynamic_entity_reference": "^3.0",
                 "drupal/entity_browser": "~2.0",
-                "drupal/entity_browser_block": "~1.0",
-                "drupal/entity_embed": "~1.0",
+                "drupal/entity_browser_block": "~1.0 || ^2.0",
+                "drupal/entity_embed": "^1.7",
                 "drupal/entity_reference_revisions": "~1.0",
                 "drupal/inline_entity_form": "^1.0@RC || ^3.0@RC",
                 "drupal/paragraphs": "~1.0",
-                "drupal/webform": "^6.0.0-alpha4"
+                "drupal/redirect": "^1.11",
+                "drupal/trash": "~3.0",
+                "drupal/webform": "^6.0.0"
             },
             "type": "drupal-module",
             "extra": {
@@ -3075,8 +3076,8 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0-beta17+17-dev",
-                    "datestamp": "1738661204",
+                    "version": "8.x-2.0-beta28+1-dev",
+                    "datestamp": "1772626564",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -3093,6 +3094,10 @@
                 "GPL-2.0+"
             ],
             "authors": [
+                {
+                    "name": "alexpott",
+                    "homepage": "https://www.drupal.org/user/157725"
+                },
                 {
                     "name": "lullabot",
                     "homepage": "https://www.drupal.org/user/3815489"
