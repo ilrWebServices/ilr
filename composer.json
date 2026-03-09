@@ -74,8 +74,7 @@
     "drupal/ckeditor": "^1.0",
     "drupal/collection": "3.x-dev@dev",
     "drupal/collegenet2sf": "^2",
-    "drupal/condition_path": "^2.0",
-    "drupal/config_filter": "^1",
+    "drupal/condition_path": "^3",
     "drupal/config_ignore_pattern": "^1",
     "drupal/config_split": "^2",
     "drupal/core-composer-scaffold": "^10",
@@ -85,7 +84,7 @@
     "drupal/easy_breadcrumb": "^2.0.0",
     "drupal/entity_browser": "^2.9",
     "drupal/entity_usage": "2.x-dev@dev",
-    "drupal/extra_field": "^2.0.0",
+    "drupal/extra_field": "^3",
     "drupal/facets": "^3.0",
     "drupal/fakeobjects": "^2.0",
     "drupal/filehash": "^3",
@@ -153,7 +152,7 @@
     "drupal/entity_clone": "^2.0",
     "drupal/stage_file_proxy": "^3",
     "drupal/twig_vardumper": "^3.0",
-    "palantirnet/drupal-rector": "^0.20.3",
+    "palantirnet/drupal-rector": "^0.21",
     "phpcompatibility/php-compatibility": "dev-develop"
   },
   "conflict": {
