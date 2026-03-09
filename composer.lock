@@ -4346,17 +4346,17 @@
         },
         {
             "name": "drupal/media_remote",
-            "version": "1.9.1",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/media_remote.git",
-                "reference": "1.9.1"
+                "reference": "1.10.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_remote-1.9.1.zip",
-                "reference": "1.9.1",
-                "shasum": "d89d423029af38bb8c6e4c7027824df50d50f97e"
+                "url": "https://ftp.drupal.org/files/projects/media_remote-1.10.0.zip",
+                "reference": "1.10.0",
+                "shasum": "735ef5be9123e1141f1e1c86063c23264a5e6d1f"
             },
             "require": {
                 "drupal/core": "^9 || ^10 || ^11"
@@ -4364,8 +4364,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.9.1",
-                    "datestamp": "1729150362",
+                    "version": "1.10.0",
+                    "datestamp": "1747985830",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4378,7 +4378,7 @@
             ],
             "authors": [
                 {
-                    "name": "Lullabot",
+                    "name": "lullabot",
                     "homepage": "https://www.drupal.org/user/3815489"
                 },
                 {
