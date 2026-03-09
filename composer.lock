@@ -5885,21 +5885,21 @@
         },
         {
             "name": "drupal/svg_image_field",
-            "version": "2.3.4",
+            "version": "2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/svg_image_field.git",
-                "reference": "2.3.4"
+                "reference": "2.3.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/svg_image_field-2.3.4.zip",
-                "reference": "2.3.4",
-                "shasum": "c4452fb1b63b7bb15c807748fe30bd76e641e718"
+                "url": "https://ftp.drupal.org/files/projects/svg_image_field-2.3.7.zip",
+                "reference": "2.3.7",
+                "shasum": "85cb941ff9b858d747a81d4b0ed9838bcd79cd49"
             },
             "require": {
                 "drupal/core": "^9.3 || ^10 || ^11",
-                "enshrined/svg-sanitize": "~0.15",
+                "enshrined/svg-sanitize": "~0.22",
                 "php": ">=8.0"
             },
             "require-dev": {
@@ -5909,8 +5909,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.3.4",
-                    "datestamp": "1739299498",
+                    "version": "2.3.7",
+                    "datestamp": "1764706797",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5927,7 +5927,7 @@
                     "homepage": "https://www.drupal.org/node/2863622/committers"
                 },
                 {
-                    "name": "dunodunott",
+                    "name": "dunot",
                     "homepage": "https://www.drupal.org/user/3562626"
                 },
                 {
