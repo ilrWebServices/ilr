@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b684575c86d78ede22402dc483ad66f",
+    "content-hash": "37c236445d9454b010a71912a9be9abe",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3175,26 +3175,32 @@
         },
         {
             "name": "drupal/extra_field",
-            "version": "2.3.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/extra_field.git",
-                "reference": "8.x-2.3"
+                "reference": "3.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/extra_field-8.x-2.3.zip",
-                "reference": "8.x-2.3",
-                "shasum": "ef46b8577b36ff751effbc63d409ee9298471813"
+                "url": "https://ftp.drupal.org/files/projects/extra_field-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "fe2a42d5933cecb472dbf6fef4f050792041394d"
             },
             "require": {
-                "drupal/core": "^9 || ^10"
+                "drupal/core": "^10.2 || ^11"
+            },
+            "conflict": {
+                "drush/drush": "<12"
+            },
+            "require-dev": {
+                "chi-teck/drupal-code-generator": "^4"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.3",
-                    "datestamp": "1664136134",
+                    "version": "3.0.0",
+                    "datestamp": "1768906714",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3202,28 +3208,29 @@
                 },
                 "drush": {
                     "services": {
-                        "drush.services.yml": "^10"
+                        "drush.services.yml": ">=10"
                     }
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
-                    "name": "louisnagtegaal",
-                    "homepage": "https://www.drupal.org/user/1040494"
+                    "name": "pcambra",
+                    "homepage": "https://www.drupal.org/user/122101"
                 },
                 {
-                    "name": "Sutharsan",
+                    "name": "sutharsan",
                     "homepage": "https://www.drupal.org/user/73854"
                 }
             ],
             "description": "Provides a plugin type for extra fields that look like real fields, but do not store data.",
             "homepage": "https://www.drupal.org/project/extra_field",
             "support": {
-                "source": "https://git.drupalcode.org/project/extra_field"
+                "source": "https://www.drupal.org/project/extra_field",
+                "issues": "https://www.drupal.org/project/issues/extra_field"
             }
         },
         {
