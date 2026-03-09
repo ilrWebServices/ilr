@@ -5832,26 +5832,26 @@
         },
         {
             "name": "drupal/summary_word_limit",
-            "version": "2.0.2",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/summary_word_limit.git",
-                "reference": "2.0.2"
+                "reference": "2.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/summary_word_limit-2.0.2.zip",
-                "reference": "2.0.2",
-                "shasum": "52801483a01b1774703f1b0035d899798371ca27"
+                "url": "https://ftp.drupal.org/files/projects/summary_word_limit-2.0.3.zip",
+                "reference": "2.0.3",
+                "shasum": "56fc3661fdf86fd0c42d4d34d344b1c7f81038a4"
             },
             "require": {
-                "drupal/core": "^8 || ^9 || ^10"
+                "drupal/core": "^10 || ^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.2",
-                    "datestamp": "1690656836",
+                    "version": "2.0.3",
+                    "datestamp": "1756263881",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5872,7 +5872,7 @@
                     "homepage": "https://www.drupal.org/user/397127"
                 },
                 {
-                    "name": "VladimirAus",
+                    "name": "vladimiraus",
                     "homepage": "https://www.drupal.org/user/673120"
                 }
             ],
