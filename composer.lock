@@ -4891,29 +4891,29 @@
         },
         {
             "name": "drupal/multiple_selects",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/multiple_selects.git",
-                "reference": "8.x-1.2"
+                "reference": "8.x-1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/multiple_selects-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "e7b5a6781e7a630c78b79ae64cf0081f3afc56b4"
+                "url": "https://ftp.drupal.org/files/projects/multiple_selects-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "37c416da89e3b0423d845532876941c2cc21c7b5"
             },
             "require": {
-                "drupal/core": "^8 || ^9 || ^10 || ^11"
+                "drupal/core": "^8.8 || ^9 || ^10 || ^11"
             },
             "require-dev": {
-                "drupal/select2": "^1.0"
+                "drupal/select2": "^1.0 || ^2.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1726239909",
+                    "version": "8.x-1.3",
+                    "datestamp": "1751462495",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
