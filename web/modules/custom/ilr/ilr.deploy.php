@@ -5,6 +5,8 @@
  * Drupal hooks provided by the Drush package.
  */
 
+use Drupal\Core\Config\FileStorage;
+
 /**
  * Put the cahrs member orgs vocabulary in the cahrs collection.
  */
@@ -310,5 +312,22 @@ function ilr_deploy_enable_section_rich_text(&$sandbox) {
     $rich_text_paragraph->field_body->format = 'standard_formatting';
     $simple_page->field_components->appendItem($rich_text_paragraph);
     $simple_page->save();
+  }
+}
+
+/**
+ * Install the new kissoff action configuration.
+ */
+function ilr_deploy_add_kissoff_action() {
+  $config_name = 'system.action.ilr_user_kissoff_action';
+  $config_path = \Drupal::service('extension.list.module')->getPath('ilr') . '/config/install';
+  $config_storage = new FileStorage($config_path);
+  $data = $config_storage->read($config_name);
+
+  if ($data) {
+    \Drupal::configFactory()->getEditable($config_name)
+      ->setData($data)
+      ->save(TRUE);
+    \Drupal::logger('mymodule')->notice('Adding "ILR user kissoff action" to available actions.');
   }
 }
