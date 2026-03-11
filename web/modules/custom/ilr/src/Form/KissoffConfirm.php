@@ -86,6 +86,10 @@ class KissoffConfirm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
+    if ($referrer = \Drupal::request()->headers->get('referer')) {
+      return Url::fromUri($referrer);
+    }
+
     return new Url('entity.user.collection');
   }
 
