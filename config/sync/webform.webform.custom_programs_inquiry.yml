@@ -38,6 +38,11 @@ elements: |-
       '#title': 'Your Email'
       '#required': true
       '#default_value': '[current-user:mail]'
+    company:
+      '#type': webform_autocomplete
+      '#title': Organization
+      '#autocomplete_items': certified_organizations
+      '#required': true
     comments:
       '#type': textarea
       '#title': "Tell us what you're looking for"
