@@ -5,10 +5,9 @@ namespace Drupal\ilr\Plugin\Action;
 use Drupal\Core\Action\ActionBase;
 use Drupal\Core\Action\Attribute\Action;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\externalauth\AuthmapInterface;
+use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -17,23 +16,24 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 #[Action(
   id: 'ilr_user_kissoff_action',
   label: new TranslatableMarkup('Remove the selected ILR user and clean up their account.'),
-  type: 'user'
+  type: 'user',
+  confirm_form_route_name: 'ilr.kissoff_confirm'
 )]
 class UserKissoff extends ActionBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The entity type manager.
+   * The tempstore factory.
    *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   * @var \Drupal\Core\TempStore\PrivateTempStoreFactory
    */
-  protected $entityTypeManager;
+  protected $tempStoreFactory;
 
   /**
-   * The Authmap service.
+   * The current user.
    *
-   * @var \Drupal\externalauth\AuthmapInterface
+   * @var \Drupal\Core\Session\AccountInterface
    */
-  protected $authmap;
+  protected $currentUser;
 
   /**
    * Constructs a UserKissoff object.
@@ -44,14 +44,14 @@ class UserKissoff extends ActionBase implements ContainerFactoryPluginInterface 
    *   The plugin ID for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager.
-   * @param \Drupal\externalauth\AuthmapInterface $authmap
-   *   The authmap service.
+   * @param \Drupal\Core\TempStore\PrivateTempStoreFactory $temp_store_factory
+   *   The tempstore factory.
+   * @param \Drupal\Core\Session\AccountInterface $current_user
+   *   Current user.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, AuthmapInterface $authmap) {
-    $this->entityTypeManager = $entity_type_manager;
-    $this->authmap = $authmap;
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, PrivateTempStoreFactory $temp_store_factory, AccountInterface $current_user) {
+    $this->currentUser = $current_user;
+    $this->tempStoreFactory = $temp_store_factory;
 
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
@@ -64,76 +64,23 @@ class UserKissoff extends ActionBase implements ContainerFactoryPluginInterface 
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager'),
-      $container->get('externalauth.authmap')
+      $container->get('tempstore.private'),
+      $container->get('current_user')
     );
   }
 
   /**
    * {@inheritdoc}
    */
+  public function executeMultiple(array $entities) {
+    $this->tempStoreFactory->get('ilr_user_kissoff_action')->set($this->currentUser->id(), $entities);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function execute($account = NULL) {
-    $netid = $this->authmap->get($account->id(), 'samlauth');
-
-    if (!$netid) {
-      $this->messenger()->addMessage('The referenced account does not appear to have a netID');
-    }
-
-    if ($netid) {
-      // Remove all roles from the user account.
-      $all_roles = $account->getRoles();
-      $keep_roles = ['authenticated'];
-      $roles_to_remove = array_diff($all_roles, $keep_roles);
-      $removed_roles = [];
-      foreach ($roles_to_remove as $role_id) {
-        $account->removeRole($role_id);
-        $removed_roles[] = $role_id;
-      }
-
-      if (!empty($removed_roles)) {
-        $this->messenger()->addMessage('The following roles were removed: ' . implode(',', $removed_roles));
-      }
-
-      // Remove the user from all Collections.
-      $user_collections = $this->entityTypeManager->getStorage('collection')->loadByProperties([
-        'user_id' => [$account->id()],
-      ]);
-      $removed_collections = [];
-
-      foreach ($user_collections as $user_collection) {
-        $owners = $user_collection->get('user_id')->getValue();
-        $account_id = $account->id();
-
-        $new_owners = array_filter($owners, function ($item) use ($account_id) {
-          return $item['target_id'] != $account_id;
-        });
-
-        $user_collection->set('user_id', $new_owners);
-
-        $user_collection->save();
-        $removed_collections[$user_collection->id()] = $user_collection->label();
-      }
-
-      if (!empty($removed_collections)) {
-        $this->messenger()->addMessage('The user was removed from the following collections: ' . implode(', ', $removed_collections));
-      }
-
-      // Unpublish their employee persona.
-      $ilr_employee_persona = $this->entityTypeManager->getStorage('persona')->loadByProperties([
-        'type' => 'ilr_employee',
-        'field_netid' => $netid,
-      ]);
-
-      if (!empty($ilr_employee_persona)) {
-        $persona = reset($ilr_employee_persona);
-        $persona->status = 0;
-        $persona->save();
-
-        $this->messenger()->addMessage("The user's ILR employee persona was unpublished.");
-      }
-
-      $account->save();
-    }
+    $this->executeMultiple([$account]);
   }
 
   /**
