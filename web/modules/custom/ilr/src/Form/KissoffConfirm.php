@@ -8,6 +8,8 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
+use Drupal\person\Entity\Persona;
+use Drupal\user\Entity\User;
 use Drupal\user\UserStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -119,57 +121,87 @@ class KissoffConfirm extends ConfirmFormBase {
     $form['accounts'] = ['#tree' => TRUE];
 
     foreach ($accounts as $account) {
-      $uid = $account->id();
+      if ($account instanceof User) {
+        $uid = $account->id();
 
-      if ($uid <= 1) {
-        continue;
-      }
-
-      $items[$uid] = [
-        '#type' => 'item',
-        '#title' => $account->label(),
-      ];
-
-      if ($roles = $this->getRoles($account)) {
-        $items[$uid]['roles'] = [
-          '#prefix' => $this->t('The following roles will be removed:'),
-          '#theme' => 'item_list',
-          '#items' => $roles,
-        ];
-      }
-
-      if ($user_collections = $this->getUserCollections($account)) {
-        $collection_labels = [];
-        foreach ($user_collections as $user_collection) {
-          $collection_labels[] = $user_collection->label();
+        if ($uid <= 1) {
+          continue;
         }
-        $items[$uid]['collections'] = [
-          '#prefix' => $this->t('The account will be removed from the following collections:'),
-          '#theme' => 'item_list',
-          '#items' => $collection_labels,
+
+        $items[$uid] = [
+          '#type' => 'item',
+          '#title' => $account->label(),
+        ];
+
+        if ($roles = $this->getRoles($account)) {
+          $items[$uid]['roles'] = [
+            '#prefix' => $this->t('The following roles will be removed:'),
+            '#theme' => 'item_list',
+            '#items' => $roles,
+          ];
+        }
+        else {
+          $items[$uid]['roles'] = [
+            '#markup' => Markup::create($this->t('<p>The user has no roles to remove.</p>')),
+          ];
+        }
+
+        if ($user_collections = $this->getUserCollections($account)) {
+          $collection_labels = [];
+          foreach ($user_collections as $user_collection) {
+            $collection_labels[] = $user_collection->label();
+          }
+          $items[$uid]['collections'] = [
+            '#prefix' => $this->t('The account will be removed from the following collections:'),
+            '#theme' => 'item_list',
+            '#items' => $collection_labels,
+          ];
+        }
+        else {
+          $items[$uid]['collections'] = [
+            '#type' => 'markup',
+            '#markup' => Markup::create('<p>No associated collections were found.</p>')
+          ];
+        }
+
+        if ($ilr_employee_persona = $this->getEmployeePersona($account)) {
+          if ($ilr_employee_persona->isPublished()) {
+            $items[$uid]['ilr_employee_persona'] = [
+              '#prefix' => $this->t('The account has an employee profile that will be unpublished: '),
+              '#type' => 'link',
+              '#title' => $ilr_employee_persona->getDisplayName(),
+              '#url' => $ilr_employee_persona->toUrl(),
+            ];
+          }
+        } else {
+          $items[$uid]['ilr_employee_persona'] = [
+            '#type' => 'markup',
+            '#markup' => Markup::create('<p>No ILR employee persona was found.</p>')
+          ];
+        }
+
+        $form['accounts'][$uid] = [
+          '#type' => 'hidden',
+          '#value' => $uid,
         ];
       }
-
-      if ($ilr_employee_persona = $this->getEmployeePersona($account)) {
+      elseif ($account instanceof Persona) {
+        $ilr_employee_persona = $account;
         if ($ilr_employee_persona->isPublished()) {
-          $items[$uid]['ilr_employee_persona'] = [
+          $items['ilr_employee_persona'] = [
             '#prefix' => $this->t('The account has an employee profile that will be unpublished: '),
             '#type' => 'link',
             '#title' => $ilr_employee_persona->getDisplayName(),
             '#url' => $ilr_employee_persona->toUrl(),
           ];
         }
-      } else {
-        $items[$uid]['ilr_employee_persona'] = [
-          '#type' => 'markup',
-          '#markup' => Markup::create('No ILR employee persona was found.')
-        ];
+        else {
+          $items['ilr_employee_persona'] = [
+            '#type' => 'markup',
+            '#markup' => Markup::create('No ILR employee persona was found.')
+          ];
+        }
       }
-
-      $form['accounts'][$uid] = [
-        '#type' => 'hidden',
-        '#value' => $uid,
-      ];
     }
 
     $form['account']['info'] = [
@@ -218,19 +250,17 @@ class KissoffConfirm extends ConfirmFormBase {
   /**
    * Get employee persona for an account.
    *
+   * @param string $netid
+   *   The net id for the user.
    * @return \Drupal\person\PersonaInterface
    *    The employee persona.
    */
   protected function getEmployeePersona($account) {
-    $netid = \Drupal::service('externalauth.authmap')->get($account->id(), 'samlauth');
-
-    if (!$netid) {
-      return FALSE;
-    }
+    $netId = \Drupal::service('externalauth.authmap')->get($account->id(), 'samlauth');
 
     $ilr_employee_persona = $this->entityTypeManager->getStorage('persona')->loadByProperties([
       'type' => 'ilr_employee',
-      'field_netid' => $netid,
+      'field_netid' => $netId,
     ]);
 
     if (!empty($ilr_employee_persona)) {

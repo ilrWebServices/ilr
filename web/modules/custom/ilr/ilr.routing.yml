@@ -12,6 +12,13 @@ course.feed:
     _controller: '\Drupal\ilr\Controller\CourseJsonFeed::content'
   requirements:
     _permission: 'access content'
+ilr.kissoff:
+  path: '/admin/user/kissoff'
+  defaults:
+    _form: '\Drupal\ilr\Form\Kissoff'
+    _title: 'Kissoff'
+  requirements:
+    _permission: 'administer users'
 ilr.kissoff_confirm:
   path: '/admin/user/kissoff-confirm'
   defaults:
