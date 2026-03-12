@@ -45,7 +45,7 @@ class SamlAuthSubscriber implements EventSubscriberInterface {
     $saml_attributes = $event->getAttributes();
 
     // Assign the field_common_name value.
-    $account->set('field_common_name', $saml_attributes['urn:oid:2.5.4.3']);
+    $account->set('field_common_name', $saml_attributes['cn']);
 
     // TODO: Set the mail field from SAML data if the account value is empty.
 
