@@ -13,14 +13,14 @@ course.feed:
   requirements:
     _permission: 'access content'
 ilr.kissoff:
-  path: '/admin/user/kissoff'
+  path: '/admin/user-kissoff'
   defaults:
     _form: '\Drupal\ilr\Form\Kissoff'
     _title: 'Kissoff'
   requirements:
     _permission: 'administer users'
 ilr.kissoff_confirm:
-  path: '/admin/user/kissoff-confirm'
+  path: '/admin/user-kissoff/confirm'
   defaults:
     _form: '\Drupal\ilr\Form\KissoffConfirm'
     _title: 'Confirm'
