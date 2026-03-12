@@ -70,7 +70,6 @@ class CertificateBasicsBlock extends BlockBase implements ContainerFactoryPlugin
     /** @var \Drupal\ilr\Entity\CertificateNode $node */
     if ($node->field_required_courses_text->isEmpty()) {
 
-
       $required_courses_text = [
         '#type' => 'inline_template',
         '#template' => <<<EOL
@@ -81,8 +80,8 @@ class CertificateBasicsBlock extends BlockBase implements ContainerFactoryPlugin
         </p>
         EOL,
         '#context' => [
-            'course_required_count' => count($node->getCourseCertificates('Required')),
-            'course_elective_count' => $node->field_required_elective_count->value ?? 0
+          'course_required_count' => count($node->getCourseCertificates('Required')),
+          'course_elective_count' => $node->field_required_elective_count->value ?? 0,
         ],
       ];
     }

@@ -29,7 +29,7 @@ class IlrEmployeePositionsDescription extends ExtraFieldFormBase implements Cont
     array $configuration,
     string $plugin_id,
     mixed $plugin_definition,
-    protected EntityTypeManagerInterface $entityTypeManager
+    protected EntityTypeManagerInterface $entityTypeManager,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }

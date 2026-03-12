@@ -214,7 +214,7 @@ class CollectionSubsitesSubscriber implements EventSubscriberInterface {
 
         // Leave negate conditions alone. They're used, for example if a subsite
         // has a blog collection in it as well, such as the Worker Institute.
-        // @todo - Update collection module event to include the original value
+        // @todo Update collection module event to include the original value
         // for comparison.
         // @todo consider removing this, as negated conditions could still need an update of their path.
         if ($condition_config['negate'] === TRUE) {

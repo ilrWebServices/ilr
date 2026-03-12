@@ -6,6 +6,9 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\ilr\BundleFieldDefinition;
 use Drupal\node\Entity\Node;
 
+/**
+ *
+ */
 abstract class EventNodeBase extends Node {
 
   /**
@@ -53,22 +56,22 @@ abstract class EventNodeBase extends Node {
         'langcode_override' => '',
         'field_overrides' => [
           'givenName' => [
-            'override' => 'hidden'
+            'override' => 'hidden',
           ],
           'additionalName' => [
-            'override' => 'hidden'
+            'override' => 'hidden',
           ],
           'familyName' => [
-            'override' => 'hidden'
+            'override' => 'hidden',
           ],
           'organization' => [
-            'override' => 'hidden'
+            'override' => 'hidden',
           ],
           'sortingCode' => [
-            'override' => 'hidden'
+            'override' => 'hidden',
           ],
           'dependentLocality' => [
-            'override' => 'hidden'
+            'override' => 'hidden',
           ],
         ],
         'fields' => [],
@@ -78,7 +81,7 @@ abstract class EventNodeBase extends Node {
       ->setDisplayOptions('view', [
         'label' => 'hidden',
         'type' => 'address_default',
-        'weight' => -5
+        'weight' => -5,
       ])
       ->setDisplayOptions('form', [
         'type' => 'address_default',

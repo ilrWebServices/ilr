@@ -3,7 +3,6 @@
 namespace Drupal\ilr_employee_data;
 
 use GuzzleHttp\Client;
-use SimpleXMLElement;
 use Spatie\SchemaOrg\Schema;
 
 /**
@@ -12,15 +11,16 @@ use Spatie\SchemaOrg\Schema;
 class RemoteDataHelper {
 
   public function __construct(
-    protected Client $client
+    protected Client $client,
   ) {}
 
   /**
    * Get publications for a given person via their netid.
    *
    * @param string $netid
-   * @param boolean $published_only
-   * @param boolean $public_only
+   * @param bool $published_only
+   * @param bool $public_only
+   *
    * @return array
    *   An array of schema.org objects keyed by publication categories (e.g.
    *   News Articles, Books).
@@ -37,7 +37,7 @@ class RemoteDataHelper {
    * Get awards and honors for a given person via their netid.
    *
    * @param string $netid
-   * @param boolean $public_only
+   * @param bool $public_only
    *
    * @return \Spatie\SchemaOrg\EducationalOccupationalCredential[]
    *   An array of \Spatie\SchemaOrg\EducationalOccupationalCredential objects.
@@ -54,7 +54,7 @@ class RemoteDataHelper {
    * Get professional activities for a given person via their netid.
    *
    * @param string $netid
-   * @param boolean $public_only
+   * @param bool $public_only
    *
    * @return \Spatie\SchemaOrg\Event[]
    *   An array of \Spatie\SchemaOrg\Event objects.
@@ -67,6 +67,9 @@ class RemoteDataHelper {
     return $this->getActivityInsightActivities($netid, $public_only);
   }
 
+  /**
+   *
+   */
   protected function validateNetid(string $netid): bool {
     // Do basic validation of NetID.
     return (bool) preg_match('/^[a-z]{2,4}\d{1,5}$/', $netid);
@@ -76,8 +79,9 @@ class RemoteDataHelper {
    * Get publications from Activity Insight for a given netid.
    *
    * @param string $netid
-   * @param boolean $published_only
-   * @param boolean $public_only
+   * @param bool $published_only
+   * @param bool $public_only
+   *
    * @return array
    *   An array of schema.org objects keyed by publication categories (e.g.
    *   News Articles, Books).
@@ -107,7 +111,7 @@ class RemoteDataHelper {
     }
 
     $data = [];
-    $ai_person_xml = new SimpleXMLElement($remote_data);
+    $ai_person_xml = new \SimpleXMLElement($remote_data);
 
     if (empty($ai_person_xml)) {
       return $data;
@@ -241,7 +245,7 @@ class RemoteDataHelper {
    * Get awards and honors from Activity Insight for a given netid.
    *
    * @param string $netid
-   * @param boolean $public_only
+   * @param bool $public_only
    *
    * @return \Spatie\SchemaOrg\EducationalOccupationalCredential[]
    *   An array of \Spatie\SchemaOrg\EducationalOccupationalCredential objects.
@@ -271,7 +275,7 @@ class RemoteDataHelper {
     }
 
     $data = [];
-    $ai_person_xml = new SimpleXMLElement($remote_data);
+    $ai_person_xml = new \SimpleXMLElement($remote_data);
 
     if (empty($ai_person_xml)) {
       return $data;
@@ -295,7 +299,7 @@ class RemoteDataHelper {
    * Get activities from Activity Insight for a given netid.
    *
    * @param string $netid
-   * @param boolean $public_only
+   * @param bool $public_only
    *
    * @return \Spatie\SchemaOrg\Event[]
    *   An array of \Spatie\SchemaOrg\Event objects.
@@ -325,7 +329,7 @@ class RemoteDataHelper {
     }
 
     $data = [];
-    $ai_person_xml = new SimpleXMLElement($remote_data);
+    $ai_person_xml = new \SimpleXMLElement($remote_data);
 
     if (empty($ai_person_xml)) {
       return $data;

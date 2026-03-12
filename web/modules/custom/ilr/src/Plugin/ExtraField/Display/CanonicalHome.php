@@ -5,7 +5,6 @@ namespace Drupal\ilr\Plugin\ExtraField\Display;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\collection\CollectionContentManager;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

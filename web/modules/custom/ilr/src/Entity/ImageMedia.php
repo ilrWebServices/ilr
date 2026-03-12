@@ -5,6 +5,9 @@ namespace Drupal\ilr\Entity;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\media\Entity\Media;
 
+/**
+ *
+ */
 class ImageMedia extends Media {
 
   /**

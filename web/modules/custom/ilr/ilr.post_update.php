@@ -312,7 +312,7 @@ function ilr_post_update_unpublish_older_cahrs_media(&$sandbox) {
   $query->condition('type', 'resource_library_item');
   $query->condition('field_resource_type', array_keys($cutoff_dates_by_type), 'IN');
   // Only get documents that are old enough to qualify.
-  $query->condition('created', $cutoff_dates_by_type['News'], '<=' );
+  $query->condition('created', $cutoff_dates_by_type['News'], '<=');
   $cids = $query->execute();
   $document_post_items = CollectionItem::loadMultiple($cids);
 
@@ -355,9 +355,9 @@ function ilr_post_update_merge_dupe_event_sponsors(&$sandbox) {
   // These term ids are dupes in the event_sponsors vocabulary. We'll keep the
   // first one and merge the rest.
   $dupes = [
-    [351,346,484,494],
-    [349,350,483,496],
-    [329,345],
+    [351, 346, 484, 494],
+    [349, 350, 483, 496],
+    [329, 345],
   ];
 
   $entity_type_manager = \Drupal::service('entity_type.manager');

@@ -8,7 +8,7 @@ use Drupal\migrate\Plugin\migrate\source\SqlBase;
  * Custom HTML media mentions from paragraph text field source plugin.
  *
  * Available configuration keys:
- * - paragraph_ids
+ * - paragraph_ids.
  *
  * @MigrateSource(
  *   id = "rich_text_paragraph_media_mentions",
@@ -17,10 +17,14 @@ use Drupal\migrate\Plugin\migrate\source\SqlBase;
  */
 class HtmlMediaMentionsParagraphs extends SqlBase {
 
-  // https://regex101.com/r/HF9dxl/1
+  /**
+   * Https://regex101.com/r/HF9dxl/1.
+   */
   protected $itemRegex = '/(?<source>.*)\s+[-–]\s+(?<date>.*)\s+(?:(?:[-–]\s+)|(?:[-–]&nbsp;))(?<expert>.*)<.*\n.*(?<url>https?:\/\/.*)".*>(?<title>.*)</mUu';
 
-  // https://regex101.com/r/qu8ym0/1
+  /**
+   * Https://regex101.com/r/qu8ym0/1.
+   */
   protected $monthSplitRegex = '/<h\d>(?:.|\n)*\s+(?<year>\d{4})<\/h\d>/mU';
 
   /**
@@ -54,10 +58,10 @@ class HtmlMediaMentionsParagraphs extends SqlBase {
 
     return str_replace([
       'MSN - Money,',
-      'Money - MSN.com,'
+      'Money - MSN.com,',
     ], [
       'MSN Money -',
-      'MSN Money -'
+      'MSN Money -',
     ], $text);
   }
 
@@ -88,7 +92,7 @@ class HtmlMediaMentionsParagraphs extends SqlBase {
         continue;
       }
 
-      if ( $element->nodeName === 'h3') {
+      if ($element->nodeName === 'h3') {
         $year = preg_match('/(?<year>\d{4})/mU', $element->nodeValue, $matches) ? $matches['year'] : '';
       }
       else {

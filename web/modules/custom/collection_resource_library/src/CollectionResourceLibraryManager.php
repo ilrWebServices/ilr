@@ -6,22 +6,27 @@ use Drupal\collection\Entity\CollectionInterface;
 use Drupal\collection_tools\CollectionVocabularyTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 
+/**
+ *
+ */
 class CollectionResourceLibraryManager {
 
   use CollectionVocabularyTrait;
 
-  // @todo Refactor to load and analyze all collection_item types to determine if they can contain resource items and cache here.
+  /**
+   * @todo Refactor to load and analyze all collection_item types to determine if they can contain resource items and cache here.
+   */
   public function __construct(
-    public EntityTypeManagerInterface $entityTypeManager
+    public EntityTypeManagerInterface $entityTypeManager,
   ) {}
 
   /**
    * Determine if a Collection can contain resource items.
    *
-   * @param CollectionInterface $collection
+   * @param \Drupal\collection\Entity\CollectionInterface $collection
    *   A Collection entity.
    *
-   * @return boolean
+   * @return bool
    *   TRUE if the Collection can collect items that are marked as 'is_resource_item'.
    */
   public function collectionCanContainResourceItems(CollectionInterface $collection): bool {

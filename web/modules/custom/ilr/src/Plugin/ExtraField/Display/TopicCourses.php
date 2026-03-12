@@ -33,7 +33,7 @@ class TopicCourses extends ExtraFieldDisplayBase implements ContainerFactoryPlug
     protected string $plugin_id,
     protected mixed $plugin_definition,
     protected EntityTypeManagerInterface $entityTypeManager,
-    protected RequestStack $requestStack
+    protected RequestStack $requestStack,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }

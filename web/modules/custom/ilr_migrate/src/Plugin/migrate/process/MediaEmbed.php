@@ -44,7 +44,7 @@ class MediaEmbed extends ProcessPluginBase implements ContainerFactoryPluginInte
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration = NULL) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, ?MigrationInterface $migration = NULL) {
     $instance = new static(
       $configuration,
       $plugin_id,

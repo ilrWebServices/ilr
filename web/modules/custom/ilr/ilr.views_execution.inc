@@ -7,7 +7,7 @@
  * @see https://git.drupalcode.org/project/view_unpublished/-/blob/8.x-1.x/view_unpublished.views_execution.inc
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\node\Entity\NodeType;
 use Drupal\views\ViewExecutable;

@@ -3,7 +3,6 @@
 namespace Drupal\ilr\Plugin\Validation\Constraint;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\Core\Url;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 

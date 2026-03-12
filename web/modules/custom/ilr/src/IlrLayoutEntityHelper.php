@@ -11,4 +11,5 @@ class IlrLayoutEntityHelper {
   use LayoutEntityHelperTrait {
     getEntitySections as public;
   }
+
 }

@@ -3,7 +3,6 @@
 namespace Drupal\person\Plugin\Validation\Constraint;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\Core\Url;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
@@ -18,8 +17,8 @@ class UniquePersonaAdminLabelValidator extends ConstraintValidator implements Co
   use StringTranslationTrait;
 
   public function __construct(
-    protected EntityTypeManagerInterface $entityTypeManager
-  ){}
+    protected EntityTypeManagerInterface $entityTypeManager,
+  ) {}
 
   /**
    * {@inheritdoc}

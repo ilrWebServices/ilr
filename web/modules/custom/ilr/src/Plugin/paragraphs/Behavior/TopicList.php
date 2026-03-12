@@ -75,7 +75,7 @@ class TopicList extends ParagraphsBehaviorBase {
         if ($id) {
           $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($id);
           $configured_view_modes = \Drupal::service('entity_display.repository')->getViewModeOptionsByBundle($entity->getEntityTypeId(), $entity->bundle());
-          
+
           if ($entity && array_key_exists('inline', $configured_view_modes)) {
             $url = NULL;
 

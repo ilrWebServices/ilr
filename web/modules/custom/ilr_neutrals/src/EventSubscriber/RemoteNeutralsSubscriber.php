@@ -14,8 +14,8 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 final class RemoteNeutralsSubscriber implements EventSubscriberInterface {
 
   public function __construct(
-    protected ?\SplFileObject $file = null
-  ){}
+    protected ?\SplFileObject $file = NULL,
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -53,7 +53,8 @@ final class RemoteNeutralsSubscriber implements EventSubscriberInterface {
         $this->file = new \SplFileObject($url, 'r');
         $this->file->setFlags(\SplFileObject::READ_CSV);
         $headers = $this->file->fgetcsv();
-      } catch (\Exception $e) {
+      }
+      catch (\Exception $e) {
         return;
       }
 
@@ -63,7 +64,7 @@ final class RemoteNeutralsSubscriber implements EventSubscriberInterface {
 
         if (!empty($filters)) {
           foreach ($filters as $key => $value) {
-            // TODO: This is where the operator
+            // @todo This is where the operator
             if ($current[$key] === $value) {
               $event->addResult(new ResultRow($current));
             }

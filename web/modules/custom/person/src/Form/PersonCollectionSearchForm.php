@@ -5,12 +5,21 @@ namespace Drupal\person\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ *
+ */
 class PersonCollectionSearchForm extends FormBase {
 
+  /**
+   *
+   */
   public function getFormId() {
     return 'person_search_form';
   }
 
+  /**
+   *
+   */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $request = \Drupal::request();
 
@@ -48,6 +57,9 @@ class PersonCollectionSearchForm extends FormBase {
     return $form;
   }
 
+  /**
+   *
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $query = [];
     $name = $form_state->getValue('name') ?? 0;
@@ -59,6 +71,9 @@ class PersonCollectionSearchForm extends FormBase {
     $form_state->setRedirect('entity.person.collection', $query);
   }
 
+  /**
+   *
+   */
   public function resetForm(array $form, FormStateInterface &$form_state) {
     $form_state->setRedirect('entity.person.collection');
   }

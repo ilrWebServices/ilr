@@ -122,7 +122,7 @@ class OrgListing extends ParagraphsBehaviorBase {
         '#multiple' => TRUE,
         '#attributes' => [
           'class' => [
-            'organization-selection'
+            'organization-selection',
           ],
         ],
         '#prefix' => '<div id="edit-org-terms">',

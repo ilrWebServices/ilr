@@ -64,7 +64,7 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration = NULL) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, ?MigrationInterface $migration = NULL) {
     return new static(
       $configuration,
       $plugin_id,
@@ -82,12 +82,12 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
     $type = $row->getSourceProperty('type');
     $vid = 'blog_' . $collection_id . '_categories';
 
-    // Scheinman blog
+    // Scheinman blog.
     if ($collection_id === 14) {
       $category = 'About Scheinman';
     }
 
-    // ILR Student blog
+    // ILR Student blog.
     if ($collection_id === 18) {
       $category = 'Archived';
 
@@ -102,7 +102,7 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
       }
     }
 
-    // Graduate Programs Blog
+    // Graduate Programs Blog.
     if ($collection_id === 38) {
       $category = 'Uncategorized';
 
@@ -114,12 +114,12 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
       }
     }
 
-    // ICS
+    // ICS.
     if ($collection_id === 24) {
       $category = 'About ICS';
     }
 
-    // Buffalo Co-Lab
+    // Buffalo Co-Lab.
     if ($collection_id === 35) {
       $category = 'Co-Lab News';
 
@@ -137,7 +137,7 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
       }
     }
 
-    // Labor Dynamics Institute
+    // Labor Dynamics Institute.
     if ($collection_id === 36) {
       $category = 'LDI News';
 
@@ -147,12 +147,12 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
       }
     }
 
-    // Worker Institute
+    // Worker Institute.
     if ($collection_id === 10) {
       $category = 'News';
     }
 
-    // Mobilizing Against Inequality
+    // Mobilizing Against Inequality.
     if ($collection_id === 37) {
       $category = 'News';
 
@@ -193,7 +193,7 @@ class TermCollectionCategory extends ProcessPluginBase implements ContainerFacto
       }
     }
 
-    // News
+    // News.
     if ($collection_id === 26) {
       $category = 'About ILR';
 

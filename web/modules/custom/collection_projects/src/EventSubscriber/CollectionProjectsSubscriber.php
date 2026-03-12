@@ -100,10 +100,10 @@ class CollectionProjectsSubscriber implements EventSubscriberInterface {
   /**
    * Create a focus areas vocabulary for a given Collection.
    *
-   * @param CollectionInterface $collection
+   * @param \Drupal\collection\Entity\CollectionInterface $collection
    *   A Collection entity.
    *
-   * @return CollectionItemInterface|boolean
+   * @return \Drupal\collection\Entity\CollectionItemInterface|bool
    *   A Collection Item entity referencing the new vocabulary.
    */
   protected function createCollectionFocusAreaVocab(CollectionInterface $collection): CollectionItemInterface|bool {

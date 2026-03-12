@@ -16,10 +16,7 @@ use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\ParagraphsBehaviorBase;
 use Drupal\ilr\QueryString;
-use ErrorException;
-use Exception;
 use GuzzleHttp\ClientInterface;
-use ReflectionClass;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -47,7 +44,7 @@ class EventListing extends ParagraphsBehaviorBase {
     $plugin_definition,
     EntityFieldManagerInterface $entity_field_manager,
     protected EntityTypeManagerInterface $entityTypeManager,
-    protected ClientInterface $httpClient
+    protected ClientInterface $httpClient,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_field_manager);
   }
@@ -186,7 +183,7 @@ class EventListing extends ParagraphsBehaviorBase {
     // bundle class that extends EventNodeBase.
     foreach (\Drupal::service('entity_type.bundle.info')->getBundleInfo('node') as $bundle => $bundle_info) {
       if (isset($bundle_info['class'])) {
-        $class = new ReflectionClass($bundle_info['class']);
+        $class = new \ReflectionClass($bundle_info['class']);
 
         if ($class->isSubclassOf('\Drupal\ilr\Entity\EventNodeBase')) {
           $event_node_bundles[$bundle] = $bundle_info['label'];
@@ -347,16 +344,15 @@ class EventListing extends ParagraphsBehaviorBase {
 
     // Sort all events by start date.
     if ($reverse) {
-      usort($events, function($a, $b) {
+      usort($events, function ($a, $b) {
         return $b->event_start <=> $a->event_start;
       });
     }
     else {
-      usort($events, function($a, $b) {
+      usort($events, function ($a, $b) {
         return $a->event_start <=> $b->event_start;
       });
     }
-
 
     // Shorten the array to the limit.
     if ($events_shown) {
@@ -399,7 +395,7 @@ class EventListing extends ParagraphsBehaviorBase {
             }
           }
           catch (\Exception $e) {
-            $photo_url = $this->getStaticImageData()  ;
+            $photo_url = $this->getStaticImageData();
           }
 
           $event->object['ilr_image'] = [
@@ -427,7 +423,7 @@ class EventListing extends ParagraphsBehaviorBase {
   }
 
   /**
-   * Get Localist events for given keywords
+   * Get Localist events for given keywords.
    *
    * @see https://developer.localist.com/doc/api
    *
@@ -437,7 +433,7 @@ class EventListing extends ParagraphsBehaviorBase {
    * @return array
    *   An array of Localist events.
    */
-  protected function getLocalistEvents(array $keywords, string $daterange_start = 'now', string $daterange_end = '', string $events_shown = NULL): array {
+  protected function getLocalistEvents(array $keywords, string $daterange_start = 'now', string $daterange_end = '', ?string $events_shown = NULL): array {
     $cid = 'localist_events:' . implode(',', $keywords) . ':' . $daterange_start . ':' . $daterange_end . ':' . $events_shown;
     $json_cache_item = \Drupal::cache()->get($cid);
 
@@ -486,8 +482,8 @@ class EventListing extends ParagraphsBehaviorBase {
 
     // @todo Swap this for a Guzzle implementation that includes better exception handling.
     set_error_handler(
-      function($severity, $message, $file, $line) {
-        throw new ErrorException($message, $severity, $severity, $file, $line);
+      function ($severity, $message, $file, $line) {
+        throw new \ErrorException($message, $severity, $severity, $file, $line);
       }
     );
 
@@ -503,7 +499,7 @@ class EventListing extends ParagraphsBehaviorBase {
 
       \Drupal::cache()->set($cid, $data, time() + (60 * 60 * 2));
     }
-    catch (Exception $e) {
+    catch (\Exception $e) {
       $data = [];
       $this->getLogger('event listing')->error($e->getMessage());
     }
@@ -560,6 +556,9 @@ class EventListing extends ParagraphsBehaviorBase {
     return !$paragraphs_type->isNew() && strpos($paragraphs_type->id(), 'event') !== FALSE;
   }
 
+  /**
+   *
+   */
   public function getStaticImageData() {
     return 'data:image/jpeg;base64,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';
   }

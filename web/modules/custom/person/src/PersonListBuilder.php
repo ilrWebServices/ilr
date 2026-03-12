@@ -35,7 +35,7 @@ class PersonListBuilder extends EntityListBuilder {
   public function __construct(
     EntityTypeInterface $entityType,
     EntityStorageInterface $storage,
-    protected Request $request
+    protected Request $request,
   ) {
     parent::__construct($entityType, $storage);
   }

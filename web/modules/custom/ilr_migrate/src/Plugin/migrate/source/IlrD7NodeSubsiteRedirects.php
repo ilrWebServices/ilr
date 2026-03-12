@@ -21,7 +21,9 @@ namespace Drupal\ilr_migrate\Plugin\migrate\source;
  */
 class IlrD7NodeSubsiteRedirects extends IlrD7Node {
 
-  // This is the mapping of D7 tags to path prefixes.
+  /**
+   * This is the mapping of D7 tags to path prefixes.
+   */
   protected $tag_redirect_prefixes = [
     'ics' => 'institute-for-compensation-studies',
     'Buffalo Co-Lab News' => 'buffalo-co-lab',

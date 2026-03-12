@@ -52,7 +52,7 @@ class TaxonomyUniqueNameValidator extends ConstraintValidator {
 
       $this->context->addViolation($message, [
         '%term' => $term->label(),
-        '%vocabulary'=> $vocab->label(),
+        '%vocabulary' => $vocab->label(),
       ]);
     }
   }

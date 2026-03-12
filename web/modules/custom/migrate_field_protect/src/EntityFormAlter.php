@@ -24,13 +24,13 @@ class EntityFormAlter {
   public function __construct(
     protected AccountProxy $account,
     protected ConfigFactoryInterface $configFactory,
-    protected MigrationPluginManagerInterface $migrationPluginManager
+    protected MigrationPluginManagerInterface $migrationPluginManager,
   ) {}
 
   /**
    * Alter a content entity edit form.
    *
-   * @see migrate_field_protect_form_alter().
+   * @see migrate_field_protect_form_alter()
    */
   public function alterForm(array &$form, FormStateInterface $form_state, string $form_id) {
     $form_object = $form_state->getFormObject();
@@ -46,7 +46,7 @@ class EntityFormAlter {
     }
 
     $migration_definitions = $this->migrationPluginManager->getDefinitions();
-    $recurring_migrations = array_filter($migration_definitions, function($v) {
+    $recurring_migrations = array_filter($migration_definitions, function ($v) {
       return isset($v['destination']['overwrite_properties']);
     });
 
@@ -71,7 +71,7 @@ class EntityFormAlter {
 
       // Check the migration destination config to see if it imports the same
       // kind of entity type.
-      // Another way to do it: dump(preg_match('/' . $entity->getEntityTypeId() . '$/', $destination_config_plugin));
+      // Another way to do it: dump(preg_match('/' . $entity->getEntityTypeId() . '$/', $destination_config_plugin));.
       if (!str_ends_with($destination_config['plugin'], $entity->getEntityTypeId())) {
         continue;
       }

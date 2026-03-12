@@ -33,7 +33,7 @@ class RemotePublications extends ParagraphsBehaviorBase {
     $plugin_id,
     $plugin_definition,
     protected EntityFieldManagerInterface $entity_field_manager,
-    protected RemoteDataHelper $remoteDataHelper
+    protected RemoteDataHelper $remoteDataHelper,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_field_manager);
   }
@@ -77,7 +77,7 @@ class RemotePublications extends ParagraphsBehaviorBase {
         '#description' => $this->t('Select the publication types to include. You may also sort them in the order they should appear.'),
         '#default_value' => empty($publication_group_options) ? $publications_types : $publication_group_options,
         '#attached' => [
-          'library' => ['ilr_employee_data/remote-pubs-enhancements']
+          'library' => ['ilr_employee_data/remote-pubs-enhancements'],
         ],
         '#attributes' => [
           'class' => ['publication-group-options'],
@@ -92,7 +92,7 @@ class RemotePublications extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function validateBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
-    // @TODO Validate netid.
+    // @todo Validate netid.
   }
 
   /**

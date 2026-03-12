@@ -53,7 +53,7 @@ class PersonaController extends EntityController {
   /**
    * {@inheritdoc}
    */
-  public function title(RouteMatchInterface $route_match, EntityInterface $_entity = NULL) {
+  public function title(RouteMatchInterface $route_match, ?EntityInterface $_entity = NULL) {
     if ($entity = $this->doGetEntity($route_match, $_entity)) {
       return $entity->getDisplayName();
     }
@@ -62,7 +62,7 @@ class PersonaController extends EntityController {
   /**
    * {@inheritdoc}
    */
-  public function editTitle(RouteMatchInterface $route_match, EntityInterface $_entity = NULL) {
+  public function editTitle(RouteMatchInterface $route_match, ?EntityInterface $_entity = NULL) {
     if ($entity = $this->doGetEntity($route_match, $_entity)) {
       return $this->t('Edit %label @bundle persona', [
         '%label' => $entity->label(),

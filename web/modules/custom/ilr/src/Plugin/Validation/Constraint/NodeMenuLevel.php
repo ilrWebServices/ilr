@@ -14,4 +14,5 @@ use Symfony\Component\Validator\Constraint;
  */
 class NodeMenuLevel extends Constraint {
   public $message = 'Please choose a parent for the menu link.';
+
 }

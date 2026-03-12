@@ -119,7 +119,7 @@ class PostFields extends ProcessorPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function getPropertyDefinitions(DatasourceInterface $datasource = NULL) {
+  public function getPropertyDefinitions(?DatasourceInterface $datasource = NULL) {
     $properties = [];
 
     if ($datasource && $datasource->getEntityTypeId() === 'collection_item') {
@@ -133,7 +133,7 @@ class PostFields extends ProcessorPluginBase {
       $properties['ilr_post_node_fields']->setEntityTypeId('node');
       $properties['ilr_post_node_fields']->setBundles([
         'post_document',
-        'video_post'
+        'video_post',
       ]);
     }
 
@@ -157,7 +157,7 @@ class PostFields extends ProcessorPluginBase {
       $datasource = $field->getDatasource();
       $property_path = $field->getPropertyPath();
 
-      list($direct, $nested) = Utility::splitPropertyPath($property_path, FALSE);
+      [$direct, $nested] = Utility::splitPropertyPath($property_path, FALSE);
 
       if ($datasource
           && $datasource->getEntityTypeId() === 'collection_item'
@@ -182,7 +182,7 @@ class PostFields extends ProcessorPluginBase {
     // pretty bad idea, so this might blow up in some use cases. If not
     // required, the foreach block should thus be commented out.
     if (isset($to_extract[''])) {
-      // foreach ($to_extract[''] as $field) {
+      // Foreach ($to_extract[''] as $field) {
       //   $field->setValues([$post_node]);
       // }
       unset($to_extract['']);
@@ -192,4 +192,3 @@ class PostFields extends ProcessorPluginBase {
   }
 
 }
-

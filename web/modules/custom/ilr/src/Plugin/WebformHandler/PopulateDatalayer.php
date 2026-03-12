@@ -77,7 +77,7 @@ class PopulateDatalayer extends WebformHandlerBase {
       'result' => [
         'count' => 1,
         'message' => $message ?? 'unknown',
-      ]
+      ],
     ];
 
     if (isset($this->configuration['datalayer']['elements'])) {

@@ -18,8 +18,8 @@ use Drupal\migrate\Row;
 class DoubleDelimLinks extends ProcessPluginBase {
 
   /**
-  * {@inheritdoc}
-  */
+   * {@inheritdoc}
+   */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $value_array = [];
 

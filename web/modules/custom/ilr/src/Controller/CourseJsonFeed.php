@@ -23,7 +23,6 @@ class CourseJsonFeed extends ControllerBase {
     // Limit to the following topics terms:
     // Human Resources (7), Leadership Development (8), Employee Relations
     // and Investigations (3), IDEA (18), Labor Relations (5).
-
     $course_query = $node_storage->getQuery()
       ->accessCheck(TRUE)
       ->condition('type', 'course')

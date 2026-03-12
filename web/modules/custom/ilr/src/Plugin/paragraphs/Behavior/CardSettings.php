@@ -185,18 +185,22 @@ class CardSettings extends ParagraphsBehaviorBase {
         case 'panel-left':
           $image_style = 'large_6_5';
           break;
+
         case 'cinematic':
         case 'cinematic-reversed':
           $image_style = 'large_21_9_1200x514_';
           break;
+
         case 'popout':
         case 'popout-left':
           $image_style = 'large_2_1';
           break;
+
         case 'promo':
         case 'inset':
           $image_style = 'large_preserve_aspect';
           break;
+
         default:
           // Use what is in the display configuration.
           $image_style = $variables['content']['field_media'][0]['#image_style'];

@@ -89,7 +89,7 @@ class ColorSettings extends ParagraphsBehaviorBase {
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
     $config = $this->getConfiguration();
 
-    $color_scheme_options = array_filter($this->colorSchemes, function($k) use ($config) {
+    $color_scheme_options = array_filter($this->colorSchemes, function ($k) use ($config) {
       return (bool) $config['color_schemes'][$k];
     }, ARRAY_FILTER_USE_KEY);
 
@@ -137,7 +137,6 @@ class ColorSettings extends ParagraphsBehaviorBase {
     return $form;
   }
 
-
   /**
    * {@inheritdoc}
    */
@@ -158,7 +157,6 @@ class ColorSettings extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function view(array &$build, Paragraph $paragraphs_entity, EntityViewDisplayInterface $display, $view_mode) {}
-
 
   /**
    * {@inheritdoc}

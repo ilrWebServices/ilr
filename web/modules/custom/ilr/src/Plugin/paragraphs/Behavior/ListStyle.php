@@ -342,7 +342,7 @@ class ListStyle extends ParagraphsBehaviorBase {
    * @return string
    *   A node view mode.
    */
-  public function getViewModeForListStyle($list_style, ParagraphInterface $paragraph = NULL) {
+  public function getViewModeForListStyle($list_style, ?ParagraphInterface $paragraph = NULL) {
     // Some entities, such as personas, have a teaser_featured view mode.
     $has_personas = $paragraph && in_array($paragraph->bundle(), ['people_listing', 'people_listing_dynamic']);
     if ($has_personas && $list_style === 'grid-featured') {

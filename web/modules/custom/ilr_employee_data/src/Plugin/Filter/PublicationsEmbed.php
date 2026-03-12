@@ -17,7 +17,6 @@ use Drupal\filter\Attribute\Filter;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\ilr_employee_data\RemoteDataHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Spatie\SchemaOrg\BaseType;
 
 /**
  * Provides a filter to embed publication items using a custom tag.
@@ -46,7 +45,7 @@ class PublicationsEmbed extends FilterBase implements ContainerFactoryPluginInte
     $plugin_definition,
     protected RemoteDataHelper $remoteDataHelper,
     protected RendererInterface $renderer,
-    protected LoggerChannelFactoryInterface $loggerFactory
+    protected LoggerChannelFactoryInterface $loggerFactory,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
@@ -102,7 +101,7 @@ class PublicationsEmbed extends FilterBase implements ContainerFactoryPluginInte
           '#items' => [],
         ];
 
-        /** @var BaseType $item */
+        /** @var \Spatie\SchemaOrg\BaseType $item */
         foreach ($items as $item) {
           $build[$clean_pubgroup]['#items'][] = [
             '#type' => 'component',

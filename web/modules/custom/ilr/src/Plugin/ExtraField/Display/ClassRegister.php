@@ -31,7 +31,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
     array $configuration,
     protected string $plugin_id,
     protected mixed $plugin_definition,
-    protected ConfigFactoryInterface $config
+    protected ConfigFactoryInterface $config,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
@@ -69,7 +69,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
       ];
 
       foreach ($class->sessions as $session) {
-        $session_date = new \stdClass;
+        $session_date = new \stdClass();
         $session_date->start = new DrupalDateTime($session->entity->session_date->value, DateTimeItemInterface::STORAGE_TIMEZONE);
         $session_date->end = new DrupalDateTime($session->entity->session_date->end_value, DateTimeItemInterface::STORAGE_TIMEZONE);
         $info['session_dates'][] = $session_date;

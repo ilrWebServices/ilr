@@ -25,7 +25,7 @@ class PersonPersonasListBuilder extends EntityListBuilder {
    */
   public function __construct(
     protected array $personas,
-    EntityTypeInterface $entityType
+    EntityTypeInterface $entityType,
   ) {
     $this->entityType = $entityType;
     $this->user = \Drupal::currentUser();
@@ -80,7 +80,7 @@ class PersonPersonasListBuilder extends EntityListBuilder {
     if ($this->usage && $this->user->hasPermission('access entity usage statistics')) {
       $usages = $this->usage->listSources($entity);
       $usage_link = Link::createFromRoute($this->t('Yes'), 'entity.persona.entity_usage', [
-        'persona' => $entity->id()
+        'persona' => $entity->id(),
       ]);
       $row['used'] = $usages ? $usage_link : $this->t('No');
     }

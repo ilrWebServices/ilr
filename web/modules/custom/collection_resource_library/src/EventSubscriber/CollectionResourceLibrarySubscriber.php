@@ -100,10 +100,10 @@ class CollectionResourceLibrarySubscriber implements EventSubscriberInterface {
   /**
    * Create a topics vocabulary for a given Collection.
    *
-   * @param CollectionInterface $collection
+   * @param \Drupal\collection\Entity\CollectionInterface $collection
    *   A Collection entity.
    *
-   * @return CollectionItemInterface|boolean
+   * @return \Drupal\collection\Entity\CollectionItemInterface|bool
    *   A Collection Item entity referencing the new vocabulary.
    */
   protected function createCollectionResearchTopicsVocab(CollectionInterface $collection): CollectionItemInterface|bool {

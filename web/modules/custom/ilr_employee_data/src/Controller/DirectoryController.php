@@ -5,8 +5,14 @@ namespace Drupal\ilr_employee_data\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ *
+ */
 class DirectoryController extends ControllerBase {
 
+  /**
+   *
+   */
   public function view(Request $request): array {
     $persona_storage = $this->entityTypeManager()->getStorage('persona');
     $position_storage = $this->entityTypeManager()->getStorage('ilr_employee_position');
@@ -170,7 +176,7 @@ class DirectoryController extends ControllerBase {
       $this_employee_departments = [];
       $this_employee_titles = [];
       $this_employee_positions = $position_storage->loadByProperties([
-        'persona' => $employee_persona->id()
+        'persona' => $employee_persona->id(),
       ]);
 
       foreach ($this_employee_positions as $this_employee_position) {

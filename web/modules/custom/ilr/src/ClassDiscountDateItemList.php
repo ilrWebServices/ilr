@@ -28,7 +28,7 @@ class ClassDiscountDateItemList extends FieldItemList {
   }
 
   /**
-   * Undocumented function
+   * Undocumented function.
    *
    * @return void
    */

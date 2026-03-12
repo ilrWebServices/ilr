@@ -30,7 +30,7 @@ class ClassDiscountPriceItemList extends FieldItemList {
   /**
    * Get any automatic discount price for this class.
    *
-   * @return float|FALSE
+   * @return float|false
    */
   protected function getDiscountPrice(): float|FALSE {
     /** @var \Drupal\ilr\Entity\ClassNodeInterface */

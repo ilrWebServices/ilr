@@ -26,6 +26,9 @@ class RemoteDataRow extends RowPluginBase {
    */
   protected $usesFields = TRUE;
 
+  /**
+   *
+   */
   protected function defineOptions() {
     $options = parent::defineOptions();
 
@@ -49,6 +52,9 @@ class RemoteDataRow extends RowPluginBase {
     ];
   }
 
+  /**
+   *
+   */
   public function render($row) {
     $props = (array) $row;
     $props['display'] = $this->view->total_rows === 1 ? 'full' : 'teaser';

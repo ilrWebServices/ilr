@@ -66,7 +66,8 @@ class CcpDefaultExceptionHtmlSubscriber extends HttpExceptionSubscriberBase {
   /**
    * Adds a login messsage with destination parameter back to the current url.
    *
-   * @param ContentEntityInterface $entity
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *
    * @return void
    */
   private function setLoginMessage(ContentEntityInterface $entity) {

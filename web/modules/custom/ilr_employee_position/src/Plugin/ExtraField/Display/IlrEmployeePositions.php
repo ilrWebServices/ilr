@@ -32,7 +32,7 @@ class IlrEmployeePositions extends ExtraFieldDisplayBase implements ContainerFac
     protected $configuration,
     protected $pluginId,
     protected $pluginDefinition,
-    protected EntityTypeManagerInterface $entityTypeManager
+    protected EntityTypeManagerInterface $entityTypeManager,
   ) {}
 
   /**

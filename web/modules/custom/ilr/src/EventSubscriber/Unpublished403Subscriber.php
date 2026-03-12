@@ -23,7 +23,7 @@ class Unpublished403Subscriber extends HttpExceptionSubscriberBase {
   protected $currentUser;
 
   /**
-   * The redirect repository service
+   * The redirect repository service.
    *
    * @var \Drupal\redirect\RedirectRepository
    */

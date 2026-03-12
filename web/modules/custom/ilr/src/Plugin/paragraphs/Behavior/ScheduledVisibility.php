@@ -2,8 +2,6 @@
 
 namespace Drupal\ilr\Plugin\paragraphs\Behavior;
 
-use Drupal\Core\Cache\Cache;
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
@@ -138,7 +136,7 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
    * @param Drupal\paragraphs\ParagraphInterface $paragraph
    *   The paragraphs entity.
    *
-   * @return ScheduleBehaviorInfo
+   * @return \Drupal\ilr\ScheduleBehaviorInfo
    */
   protected function getScheduledInfo($paragraph): ScheduleBehaviorInfo {
     return new ScheduleBehaviorInfo(

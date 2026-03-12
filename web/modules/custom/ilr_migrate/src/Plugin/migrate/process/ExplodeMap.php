@@ -6,7 +6,6 @@ use Drupal\migrate\Plugin\migrate\process\Explode;
 // use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\Row;
-use Drupal\Component\Utility\NestedArray;
 // use Drupal\migrate\Plugin\migrate\process\StaticMap;
 
 /**

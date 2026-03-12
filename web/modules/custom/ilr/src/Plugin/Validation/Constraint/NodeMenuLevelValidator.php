@@ -25,7 +25,7 @@ class NodeMenuLevelValidator extends ConstraintValidator {
         return;
       }
 
-      list($menu_name, $parent) = explode(':', $menu_form_values['menu_parent'], 2);
+      [$menu_name, $parent] = explode(':', $menu_form_values['menu_parent'], 2);
 
       if ($menu_name === 'main' && empty($parent)) {
         if (!empty($menu_form_values['entity_id'])) {

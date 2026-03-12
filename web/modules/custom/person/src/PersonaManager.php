@@ -5,7 +5,6 @@ namespace Drupal\person;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\person\Entity\Person;
-use Drupal\person\PersonaInterface;
 
 /**
  * The persona manager service.
@@ -63,7 +62,7 @@ class PersonaManager {
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity.
-   * @param string|boolean $access
+   * @param string|bool $access
    *   The access level to check, or false to return all items.
    *
    * @return \Drupal\person\Entity\Person|null

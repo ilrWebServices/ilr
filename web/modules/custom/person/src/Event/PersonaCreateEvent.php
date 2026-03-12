@@ -14,9 +14,12 @@ class PersonaCreateEvent extends Event {
    * Constructs the object.
    */
   public function __construct(
-    protected Persona $persona
+    protected Persona $persona,
   ) {}
 
+  /**
+   *
+   */
   public function getPersona() {
     return $this->persona;
   }

@@ -19,7 +19,7 @@ class ScheduleBehaviorInfo {
 
   public function __construct(
     public readonly ?DrupalDateTime $showOn = NULL,
-    public readonly ?DrupalDateTime $hideOn = NULL
+    public readonly ?DrupalDateTime $hideOn = NULL,
   ) {
     $today = new DrupalDateTime();
 

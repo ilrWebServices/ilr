@@ -143,7 +143,7 @@ class PeopleListing extends ParagraphsBehaviorBase {
     return $behavior_form['tags'];
   }
 
-    /**
+  /**
    * {@inheritdoc}
    */
   public function validateBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {

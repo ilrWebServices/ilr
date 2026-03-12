@@ -20,4 +20,3 @@ class TaxonomyUniqueName extends Constraint {
   public $duplicate = self::DUPE_MESSAGE;
 
 }
-

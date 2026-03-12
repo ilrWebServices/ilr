@@ -8,7 +8,6 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\image\Entity\ImageStyle;
 
 /**
  * Course Instructors extra field display.
@@ -88,7 +87,7 @@ class CourseInstructors extends ExtraFieldDisplayBase implements ContainerFactor
 
     foreach ($participant_nodes as $participant_node) {
       $instructor = $participant_node->field_instructor->entity;
-      $image_render = null;
+      $image_render = NULL;
 
       if ($instructor && $instructor->isPublished()) {
         if (empty($instructors[$instructor->id()])) {
@@ -106,8 +105,8 @@ class CourseInstructors extends ExtraFieldDisplayBase implements ContainerFactor
           $instructors[$instructor->id()] = [
             '#theme' => 'ilr_course_instructor',
             '#name' => $instructor->label(),
-            '#title' => $instructor->field_job_title->value ?? null,
-            '#img' => $image_render ?? null,
+            '#title' => $instructor->field_job_title->value ?? NULL,
+            '#img' => $image_render ?? NULL,
             '#class_dates' => [],
             '#class_ids' => [],
             '#instructor_id' => $instructor->id(),

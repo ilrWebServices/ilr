@@ -161,7 +161,7 @@ class SalesforceEventOptions extends FormElement {
         'End__c',
         'Delivery_Method__c',
         'Event_Location_City__c',
-        'Event_Location_State__c'
+        'Event_Location_State__c',
       ];
       // @todo Ensure that SFIDs are formatted correctly to prevent an error.
       $query->addCondition('Id', $eventids, 'IN');
@@ -201,7 +201,7 @@ class SalesforceEventOptions extends FormElement {
       }
     }
 
-    uksort($options, function($sfid1, $sfid2) use ($eventids) {
+    uksort($options, function ($sfid1, $sfid2) use ($eventids) {
       return (array_search($sfid1, $eventids) <=> array_search($sfid2, $eventids));
     });
 

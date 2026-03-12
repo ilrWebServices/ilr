@@ -13,7 +13,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Undocumented class
+ * Undocumented class.
  */
 class ContentEntityCollectionRequest extends FormBase {
 
@@ -199,7 +199,7 @@ class ContentEntityCollectionRequest extends FormBase {
 
     $this->messenger()->addMessage(t('Collection request for %entity added to %collection.', [
       '%entity' => $entity->label(),
-      '%collection' => $collection->label()
+      '%collection' => $collection->label(),
     ]));
   }
 

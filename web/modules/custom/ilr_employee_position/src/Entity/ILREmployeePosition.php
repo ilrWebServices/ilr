@@ -93,7 +93,7 @@ final class ILREmployeePosition extends RevisionableContentEntityBase implements
   public function label() {
     return $this->t('@title position for @persona_name', [
       '@title' => $this->title->value,
-      '@persona_name' => $this->persona->entity->label()
+      '@persona_name' => $this->persona->entity->label(),
     ]);
   }
 
@@ -112,7 +112,7 @@ final class ILREmployeePosition extends RevisionableContentEntityBase implements
         'handler' => 'default:persona',
         'handler_settings' => [
           'target_bundles' => ['ilr_employee' => 'ilr_employee'],
-        ]
+        ],
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('form', [
@@ -150,13 +150,13 @@ final class ILREmployeePosition extends RevisionableContentEntityBase implements
         'handler_settings' => [
           'target_bundles' => ['organizational_units' => 'organizational_units'],
           'sort' => ['field' => 'name', 'direction' => 'asc'],
-        ]
+        ],
       ])
       ->setDisplayConfigurable('view', TRUE)
       ->setDisplayOptions('view', [
         'label' => 'hidden',
         'type' => 'entity_reference_label',
-        'settings' => ['link' => false],
+        'settings' => ['link' => FALSE],
         'weight' => 2,
       ])
       ->setDisplayConfigurable('form', TRUE)
@@ -168,7 +168,6 @@ final class ILREmployeePosition extends RevisionableContentEntityBase implements
           'match_limit' => 20,
         ],
       ]);
-
 
     $fields['primary'] = BaseFieldDefinition::create('boolean')
       ->setRevisionable(TRUE)

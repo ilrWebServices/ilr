@@ -27,4 +27,5 @@ class MinimumItemCount extends Constraint {
    * @var int
    */
   public ?int $minItems;
+
 }

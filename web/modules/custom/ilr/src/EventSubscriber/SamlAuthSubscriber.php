@@ -47,8 +47,7 @@ class SamlAuthSubscriber implements EventSubscriberInterface {
     // Assign the field_common_name value.
     $account->set('field_common_name', $saml_attributes['cn']);
 
-    // TODO: Set the mail field from SAML data if the account value is empty.
-
+    // @todo Set the mail field from SAML data if the account value is empty.
     // Add the ilr_employee role if there's a published persona for this netid.
     if (!$account->hasRole('ilr_employee')) {
       $ilr_employee_persona = \Drupal::service('entity_type.manager')->getStorage('persona')->loadByProperties([

@@ -17,7 +17,7 @@ class PathProcessor implements OutboundPathProcessorInterface {
   /**
    * {@inheritdoc}
    */
-  public function processOutbound($path, &$options = [], Request $request = NULL, BubbleableMetadata $bubbleable_metadata = NULL) {
+  public function processOutbound($path, &$options = [], ?Request $request = NULL, ?BubbleableMetadata $bubbleable_metadata = NULL) {
     $entity = FALSE;
 
     if (!empty($options['entity'])) {
@@ -45,7 +45,7 @@ class PathProcessor implements OutboundPathProcessorInterface {
 
       // Change the path for entities with external links to that external URL.
       // See https://drupal.stackexchange.com/a/295256/58785
-      if ($view && $entity instanceof ContentEntityInterface && $entity->hasField('field_external_link') && !$entity->field_external_link->isEmpty() ) {
+      if ($view && $entity instanceof ContentEntityInterface && $entity->hasField('field_external_link') && !$entity->field_external_link->isEmpty()) {
         $url_override = $entity->field_external_link->first()->getUrl()->toString();
       }
 
@@ -55,7 +55,7 @@ class PathProcessor implements OutboundPathProcessorInterface {
         $url_override = $entity->field_document->first()->entity->toUrl()->toString();
       }
 
-      if ($view && $entity instanceof MediaInterface && $entity->hasField('field_media_media_remote') && !$entity->field_media_media_remote->isEmpty() ) {
+      if ($view && $entity instanceof MediaInterface && $entity->hasField('field_media_media_remote') && !$entity->field_media_media_remote->isEmpty()) {
         $url_override = $entity->field_media_media_remote->value;
       }
 

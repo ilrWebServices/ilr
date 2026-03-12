@@ -15,7 +15,7 @@ class MigrateImportEventSubscriber implements EventSubscriberInterface {
   /**
    * The config factory.
    *
-   * @var \Drupal\Core\Config\ConfigFactoryInterface;
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
 
@@ -72,4 +72,5 @@ class MigrateImportEventSubscriber implements EventSubscriberInterface {
       $redirect_config->save();
     }
   }
+
 }

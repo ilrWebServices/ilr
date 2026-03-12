@@ -38,7 +38,7 @@ class Persona extends WidgetBase {
     $form = parent::getForm($original_form, $form_state, $additional_widget_parameters);
     $allowed_bundles = $this->getConfiguration()['settings']['target_bundles'] ?? [];
 
-    // steps: person_search, persona_list, new_persona
+    // steps: person_search, persona_list, new_persona.
     $step = $form_state->get('step') ?? 'person_search';
 
     $form['search_wrapper'] = [
@@ -198,7 +198,6 @@ class Persona extends WidgetBase {
     //   $step = 'new_persona';
     //   $form_state->set('persona_type', array_values($allowed_bundles)[0]);
     // }
-
     if ($step === 'new_persona_type') {
       $persona_type_storage = $this->entityTypeManager->getStorage('persona_type');
 
@@ -272,11 +271,17 @@ class Persona extends WidgetBase {
     return $form;
   }
 
+  /**
+   *
+   */
   public static function submitPersonSearch(array &$form, FormStateInterface $form_state) {
     $form_state->set('step', 'persona_list');
     $form_state->setRebuild();
   }
 
+  /**
+   *
+   */
   public static function newPersonaType(array &$form, FormStateInterface $form_state) {
     $form_state->set('step', 'new_persona_type');
 
@@ -289,6 +294,9 @@ class Persona extends WidgetBase {
     $form_state->setRebuild();
   }
 
+  /**
+   *
+   */
   public static function newPersona(array &$form, FormStateInterface $form_state) {
     $form_state->set('step', 'new_persona');
     $trigger = $form_state->getTriggeringElement();

@@ -35,7 +35,7 @@ class RelatedPosts extends ExtraFieldDisplayBase implements ContainerFactoryPlug
     protected EntityTypeManagerInterface $entityTypeManager,
     protected CollectionContentManager $collectionContentManager,
     protected PathAliasEntities $pathAliasEntities,
-    protected array $collectionItemsForNids = []
+    protected array $collectionItemsForNids = [],
   ) {}
 
   /**

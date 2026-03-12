@@ -64,7 +64,7 @@ class TermCollectionTags extends ProcessPluginBase implements ContainerFactoryPl
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration = NULL) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, ?MigrationInterface $migration = NULL) {
     return new static(
       $configuration,
       $plugin_id,
@@ -83,7 +83,7 @@ class TermCollectionTags extends ProcessPluginBase implements ContainerFactoryPl
     $vid = 'blog_' . $collection_id . '_tags';
     $terms = [];
 
-    // Worker Institute
+    // Worker Institute.
     if ($collection_id === 10) {
       if ($this->in_array_any(['NLLI News', 'NLLI'], $tags)) {
         $terms['NLLI'] = 0;
@@ -102,14 +102,14 @@ class TermCollectionTags extends ProcessPluginBase implements ContainerFactoryPl
       }
     }
 
-    // ILR Student Blog
+    // ILR Student Blog.
     if ($collection_id === 18) {
       if ($this->in_array_any(['dublin'], $tags)) {
         $terms['Dublin'] = 0;
       }
     }
 
-    // Buffalo Co-Lab
+    // Buffalo Co-Lab.
     if ($collection_id === 35 && $type === 'experience_report') {
       foreach (range(2009, 2020) as $year) {
         if ($this->in_array_all(['high road', $year], $tags)) {
@@ -118,7 +118,7 @@ class TermCollectionTags extends ProcessPluginBase implements ContainerFactoryPl
       }
     }
 
-    // News
+    // News.
     if ($collection_id === 26) {
       // Big hash of old terms to new tags.
       $tag_hash = <<<EOT

@@ -2,7 +2,6 @@
 
 namespace Drupal\ilr\Plugin\WebformExporter;
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\webform\Plugin\WebformExporter\DelimitedWebformExporter;
 use Drupal\webform\WebformSubmissionInterface;
 
@@ -110,7 +109,6 @@ class ExploreDelimitedWebformExporter extends DelimitedWebformExporter {
 
     return $header;
   }
-
 
   /**
    * {@inheritdoc}

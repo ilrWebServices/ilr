@@ -6,7 +6,6 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
-use Drupal\person\PersonaManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

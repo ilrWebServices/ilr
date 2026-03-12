@@ -4,7 +4,6 @@ namespace Drupal\collection_request\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\collection_request\CollectionRequestListBuilder;
 use Drupal\Core\Cache\Cache;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -86,7 +85,7 @@ class CollectionRequestBlock extends BlockBase implements ContainerFactoryPlugin
         'list' => $list_builder->render(),
       ],
       '#attributes' => [
-        'class' => ['collection-requests']
+        'class' => ['collection-requests'],
       ],
     ];
 

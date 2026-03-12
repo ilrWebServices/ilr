@@ -9,8 +9,6 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Core\Url;
-use Drupal\externalauth\Authmap;
 use Drupal\externalauth\AuthmapInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

@@ -165,7 +165,7 @@ class TouchpointHandler extends WebformHandlerBase {
       return;
     }
 
-    // TODO: Figure out why the data is slightly different when submitting via the Edit and Notes forms. In our case, the `Texting_Opt_In__c` field is sometimes a string and sometimes an int.
+    // @todo Figure out why the data is slightly different when submitting via the Edit and Notes forms. In our case, the `Texting_Opt_In__c` field is sometimes a string and sometimes an int.
     $data = $webform_submission->getData();
     $touchpoint_vars = $this->createMergeVars($data);
     $touchpoint_type = $touchpoint_vars['Source__c'] ?? '';
@@ -291,7 +291,7 @@ class TouchpointHandler extends WebformHandlerBase {
       // Split by newline.
       $values = preg_split('/\r\n|\r|\n/', $extra_values);
 
-      foreach($values as $value) {
+      foreach ($values as $value) {
         $options[$value] = $this->t('Value:') . ' ' . $value;
       }
     }
@@ -320,8 +320,8 @@ class TouchpointHandler extends WebformHandlerBase {
       }
       // Composite element.
       elseif (strpos($submission_key, ':') !== FALSE && strpos($submission_key, 'token(') === FALSE) {
-        list($submission_key_1, $submission_key_2) = explode(':', $submission_key);
-        $merge_vars[$destination_key] = $values[$submission_key_1][$submission_key_2] ?? NUll;
+        [$submission_key_1, $submission_key_2] = explode(':', $submission_key);
+        $merge_vars[$destination_key] = $values[$submission_key_1][$submission_key_2] ?? NULL;
       }
       // Add extra mapping values.
       elseif (in_array($submission_key, preg_split('/\r\n|\r|\n/', $extra_values))) {

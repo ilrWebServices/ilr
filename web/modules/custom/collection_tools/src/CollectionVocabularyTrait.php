@@ -5,17 +5,20 @@ namespace Drupal\collection_tools;
 use Drupal\collection\Entity\CollectionInterface;
 use Drupal\taxonomy\VocabularyInterface;
 
+/**
+ *
+ */
 trait CollectionVocabularyTrait {
 
   /**
    * Get a collected vocabulary with a given attribute key.
    *
-   * @param CollectionInterface $collection
+   * @param \Drupal\collection\Entity\CollectionInterface $collection
    *   A Collection entity.
    * @param string $key
    *   The name of a collection item entity attribute key.
    *
-   * @return VocabularyInterface|boolean
+   * @return \Drupal\taxonomy\VocabularyInterface|bool
    *   A Vocabulary entity or FALSE.
    */
   public function getCollectedVocabularyByKey(CollectionInterface $collection, string $key): VocabularyInterface|bool {

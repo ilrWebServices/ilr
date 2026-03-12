@@ -91,7 +91,7 @@ class TermCollection extends ProcessPluginBase {
     }
 
     if ($this->in_array_any(['mobilizing against inequality'], $tags)) {
-      // Mobilizing Against Inequality
+      // Mobilizing Against Inequality.
       return 37;
     }
 

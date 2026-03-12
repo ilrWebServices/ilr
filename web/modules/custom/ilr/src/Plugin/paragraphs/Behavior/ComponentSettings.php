@@ -48,7 +48,7 @@ class ComponentSettings extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function preprocess(&$variables) {
-    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'remove_bottom_margin') ) {
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'remove_bottom_margin')) {
       $variables['attributes']['class'][] = $variables['paragraph']->bundle() === 'section'
         ? 'cu-section--gapless'
         : 'cu-component--no-bottom-margin';

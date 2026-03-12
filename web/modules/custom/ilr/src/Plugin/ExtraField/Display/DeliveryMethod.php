@@ -30,7 +30,7 @@ class DeliveryMethod extends ExtraFieldDisplayBase implements ContainerFactoryPl
     array $configuration,
     protected string $plugin_id,
     protected mixed $plugin_definition,
-    protected ConfigFactoryInterface $config
+    protected ConfigFactoryInterface $config,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
@@ -78,4 +78,5 @@ class DeliveryMethod extends ExtraFieldDisplayBase implements ContainerFactoryPl
 
     return $build;
   }
+
 }

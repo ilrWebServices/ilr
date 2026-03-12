@@ -96,21 +96,21 @@ final class IlrCommands extends DrushCommands {
 
     while (!$file->eof()) {
       $row = $file->fgetcsv();
-      list($netid, $path) = $row;
+      [$netid, $path] = $row;
 
       if ($netid === 'netid') {
         continue;
       }
 
       // Is there an existing path alias?
-      $existing_path_alias = $this->entityTypeManager->getStorage('path_alias')->loadByProperties([ 'alias' => '/' . $path ]);
+      $existing_path_alias = $this->entityTypeManager->getStorage('path_alias')->loadByProperties(['alias' => '/' . $path]);
 
       if (!empty($existing_path_alias)) {
         continue;
       }
 
       // Is there an existing redirect?
-      $existing_redirect = $this->entityTypeManager->getStorage('redirect')->loadByProperties([ 'redirect_source__path' => $path ]);
+      $existing_redirect = $this->entityTypeManager->getStorage('redirect')->loadByProperties(['redirect_source__path' => $path]);
 
       if (!empty($existing_redirect)) {
         continue;
@@ -159,7 +159,7 @@ final class IlrCommands extends DrushCommands {
     }
 
     // See if one of the personas is of the ilr_employee type.
-    $ilr_employee_persona = false;
+    $ilr_employee_persona = FALSE;
 
     foreach ($personas as $persona) {
       if ($persona->bundle() === 'ilr_employee') {
@@ -206,7 +206,7 @@ final class IlrCommands extends DrushCommands {
   #[CLI\Argument(name: 'pid', description: 'The paragraphs item id.')]
   #[CLI\Option(name: 'browser', description: 'Open the URL in the default browser. Use --no-browser to avoid opening a browser.')]
   #[CLI\Usage(name: 'ilr:paragraphs-host 1234', description: 'Output the url for the host entity for paragraph 1234')]
-  public function pheCommand($pid, $options = ['browser' => true]) {
+  public function pheCommand($pid, $options = ['browser' => TRUE]) {
     $paragraph_storage = $this->entityTypeManager->getStorage('paragraph');
 
     if (!$paragraph = $paragraph_storage->load($pid)) {
@@ -215,7 +215,7 @@ final class IlrCommands extends DrushCommands {
 
     if ($host_entity = $this->getNonParagraphParentReferencingEntity($paragraph)) {
       $link = $host_entity->toUrl('canonical', ['absolute' => TRUE])->toString();
-      $this->startBrowser($link, 0, null, $options['browser']);
+      $this->startBrowser($link, 0, NULL, $options['browser']);
       return $this->output()->writeln('Found on ' . $link);
     }
     else {
@@ -229,7 +229,7 @@ final class IlrCommands extends DrushCommands {
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity that might be a paragraph.
    *
-   * @return Drupal\Core\Entity\EntityInterface $entity
+   * @return Drupal\Core\Entity\EntityInterface
    *   The entity, or the root parent entity of nested paragraphs.
    */
   protected function getNonParagraphParentReferencingEntity(EntityInterface $entity) {

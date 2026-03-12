@@ -2,6 +2,9 @@
 
 namespace Drupal\ilr_migrate;
 
+/**
+ *
+ */
 trait InArrayMulti {
 
   /**
@@ -34,6 +37,6 @@ trait InArrayMulti {
    */
   protected function in_array_all($needles, $haystack) {
     return empty(array_diff($needles, $haystack));
- }
+  }
 
 }

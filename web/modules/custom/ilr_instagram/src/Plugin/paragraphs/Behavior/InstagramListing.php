@@ -10,7 +10,6 @@ use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
-use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -79,7 +78,7 @@ class InstagramListing extends ParagraphsBehaviorBase {
       '#type' => 'textfield',
       '#title' => $this->t('Instagram feed URL'),
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'feed_url') ?? $this->defaultConfiguration()['feed_url'],
-      '#description' => $this->t('Zapier can create feeds for Instagram accounts.')
+      '#description' => $this->t('Zapier can create feeds for Instagram accounts.'),
     ];
 
     $form['item_limit'] = [
@@ -115,7 +114,7 @@ class InstagramListing extends ParagraphsBehaviorBase {
       '#theme' => 'container__instagram_listing',
       '#children' => [],
       '#attributes' => [
-        'class' => ['instagram-listing']
+        'class' => ['instagram-listing'],
       ],
     ];
 
@@ -124,7 +123,7 @@ class InstagramListing extends ParagraphsBehaviorBase {
         '#theme' => 'container__instagram_post',
         '#children' => [],
         '#attributes' => [
-          'class' => ['instagram-post']
+          'class' => ['instagram-post'],
         ],
       ];
 

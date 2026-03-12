@@ -58,7 +58,7 @@ class UtmValues extends WebformCompositeBase {
         '#type' => 'textfield',
         '#maxlength' => 255,
       ];
-     }
+    }
   }
 
   /**

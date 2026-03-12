@@ -9,6 +9,9 @@ use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\webform\Utility\WebformElementHelper;
 
+/**
+ *
+ */
 class WebformHooks {
 
   use StringTranslationTrait;

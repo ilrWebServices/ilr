@@ -14,7 +14,9 @@ use Symfony\Component\Validator\Constraint;
  */
 class UniqueMediaMentionExternalLink extends Constraint {
 
-  // The message that will be shown if the URL is used in another media mention.
+  /**
+   * The message that will be shown if the URL is used in another media mention.
+   */
   public $duplicate = 'There is an existing media mention for %url. You may wish to <a href="@create_crosspost_url">create a cross-post</a> instead.';
 
 }

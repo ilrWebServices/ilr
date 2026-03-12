@@ -77,6 +77,7 @@ class ExtendedPostManager {
    * Public API for configuring "extended" post types.
    *
    * @param string $bundle
+   *
    * @return void
    */
   public function configureExtendedPostType($bundle) {
@@ -120,6 +121,7 @@ class ExtendedPostManager {
    * Add or update the field config (instance).
    *
    * @param string $field_name
+   *
    * @return void
    */
   protected function addOrUpdateField($field_name) {
@@ -141,6 +143,7 @@ class ExtendedPostManager {
    * configuration.
    *
    * @param string $component_name
+   *
    * @return void
    */
   protected function configureFormDisplayComponent($component_name) {
@@ -150,6 +153,9 @@ class ExtendedPostManager {
     $extended_post_display->save();
   }
 
+  /**
+   *
+   */
   protected function getFieldConfiguration($field_name) {
     $field_config = [
       'body' => [
@@ -205,7 +211,7 @@ class ExtendedPostManager {
             'sort' => ['field' => '_none'],
             'auto_create' => FALSE,
             'auto_create_bundle' => '',
-          ]
+          ],
         ],
         'field_type' => 'entity_reference',
       ],

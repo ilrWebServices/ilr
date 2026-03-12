@@ -14,7 +14,6 @@ class ILR80WordmarkBlock extends ILRWordmarkBlock {
 
   /**
    * {@inheritdoc}
-   *
    */
   public function build() {
     $build = [];

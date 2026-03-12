@@ -77,7 +77,7 @@ class MetatagSimple extends MetatagFirehose implements ContainerFactoryPluginInt
       "#title_display" => "before",
       "#description" => "",
       "#field_parents" => [],
-      "#required" => false,
+      "#required" => FALSE,
       "#delta" => 0,
       "#weight" => 0,
       "#type" => "details",
@@ -104,7 +104,7 @@ class MetatagSimple extends MetatagFirehose implements ContainerFactoryPluginInt
   /**
    * Decode the different versions of encoded values supported by Metatag.
    *
-   * @see metatag_data_decode().
+   * @see metatag_data_decode()
    *
    * @param string $string
    *   The string to decode.
@@ -133,4 +133,5 @@ class MetatagSimple extends MetatagFirehose implements ContainerFactoryPluginInt
 
     return $data;
   }
+
 }

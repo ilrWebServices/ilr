@@ -106,10 +106,10 @@ function ilr_deploy_highroad_post_consolidatereror_final_v2(&$sandbox) {
   $items = $collection_item_storage->loadMultiple($item_ids);
 
   foreach ($items as $item) {
-    // tid 136 is 'High Road' in the Buffalo Colab collection.
+    // Tid 136 is 'High Road' in the Buffalo Colab collection.
     if ((!$item->field_blog_categories->isEmpty() && $item->field_blog_categories->entity->id() === '136') || $item->collection->entity->id() === '55') {
       $item->set('collection', 70);
-      // tid 771 is 'Buffalo' in the High Road collection. tid 773 is 'New York
+      // Tid 771 is 'Buffalo' in the High Road collection. tid 773 is 'New York
       // City' in the High Road collection.
       $item->set('field_blog_categories', (!$item->field_blog_categories->isEmpty() && $item->field_blog_categories->entity->id() === '136') ? 771 : 773);
       $item->save();
@@ -291,7 +291,7 @@ function ilr_deploy_update_emeritus_persona_migration_mappings() {
 }
 
 /**
- * Swap body field for rich text paragraphs on simple page nodes
+ * Swap body field for rich text paragraphs on simple page nodes.
  */
 function ilr_deploy_enable_section_rich_text(&$sandbox) {
   $entity_type_manager = \Drupal::service('entity_type.manager');
@@ -333,7 +333,7 @@ function ilr_deploy_add_kissoff_action() {
 }
 
 /**
- * Assign employee role to all Users with a profile
+ * Assign employee role to all Users with a profile.
  */
 function ilr_deploy_assign_employee_role(&$sandbox) {
   $entity_type_manager = \Drupal::service('entity_type.manager');

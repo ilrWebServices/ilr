@@ -19,7 +19,9 @@ use Drupal\Core\Url;
  */
 class FilterInternalLinks extends FilterBase {
 
-  // See also ProblemInternalLinkValidator::internalHosts.
+  /**
+   * See also ProblemInternalLinkValidator::internalHosts.
+   */
   protected $internalHosts = [
     'ilr.cornell.edu',
     'www.ilr.cornell.edu',

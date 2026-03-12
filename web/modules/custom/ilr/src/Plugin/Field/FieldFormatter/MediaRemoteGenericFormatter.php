@@ -77,4 +77,3 @@ class MediaRemoteGenericFormatter extends MediaRemoteFormatterBase {
   }
 
 }
-

@@ -8,6 +8,9 @@ use Drupal\ilr\BundleFieldDefinition;
 use Drupal\node\Entity\Node;
 use Drupal\salesforce_mapping\Entity\MappedObjectInterface;
 
+/**
+ *
+ */
 class ClassNode extends Node implements ClassNodeInterface {
 
   protected $classNodeSaleforceMappedObject = NULL;
@@ -66,26 +69,26 @@ class ClassNode extends Node implements ClassNodeInterface {
         'weight' => '0',
       ]);
 
-      $definitions['ilroutreach_discount_date'] = BundleFieldDefinition::create('daterange')
-        // This is essential: The array key is NOT used as the field machine
-        // name, so it MUST be specified here!
-        ->setName('ilroutreach_discount_date')
-        // These two are essential: They define the entity type and the bundle
-        // that the field is on.
-        ->setTargetEntityTypeId($entity_type->id())
-        ->setTargetBundle($bundle)
-        // Further define the field as you would with a base field.
-        ->setLabel(t('ILR outreach discount dates'))
-        ->setComputed(TRUE)
-        ->setClass('\Drupal\ilr\ClassDiscountDateItemList')
-        ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
-        ->setDescription(t('A discount start and end dates computed from an automatic discount code, if available and eligible.'))
-        ->setSetting('datetime_type', 'date')
-        ->setDisplayConfigurable('view', TRUE)
-        ->setDisplayOptions('view', [
-          'type' => 'date_range_without_time',
-          'weight' => '0',
-        ]);
+    $definitions['ilroutreach_discount_date'] = BundleFieldDefinition::create('daterange')
+      // This is essential: The array key is NOT used as the field machine
+      // name, so it MUST be specified here!
+      ->setName('ilroutreach_discount_date')
+      // These two are essential: They define the entity type and the bundle
+      // that the field is on.
+      ->setTargetEntityTypeId($entity_type->id())
+      ->setTargetBundle($bundle)
+      // Further define the field as you would with a base field.
+      ->setLabel(t('ILR outreach discount dates'))
+      ->setComputed(TRUE)
+      ->setClass('\Drupal\ilr\ClassDiscountDateItemList')
+      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
+      ->setDescription(t('A discount start and end dates computed from an automatic discount code, if available and eligible.'))
+      ->setSetting('datetime_type', 'date')
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'date_range_without_time',
+        'weight' => '0',
+      ]);
 
     return $definitions;
   }

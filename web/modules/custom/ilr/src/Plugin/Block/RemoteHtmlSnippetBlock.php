@@ -4,7 +4,6 @@ namespace Drupal\ilr\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Cache\Cache;
 use Drupal\Component\Utility\Xss;
 
 /**

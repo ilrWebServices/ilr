@@ -6,6 +6,9 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
+/**
+ *
+ */
 class IlrHooks {
 
   use StringTranslationTrait;
@@ -30,7 +33,7 @@ class IlrHooks {
   public function missingRepresetativeImageNotice(ContentEntityInterface $entity) {
     if ($entity->hasField('field_representative_image') && $entity->field_representative_image->isEmpty()) {
       $message = $this->t('This %entity_type is missing a representative image. While not required, please note that this will prevent the content from appearing in some listings and will behave unpredictably in search results and social sharing links.', [
-        '%entity_type' => $entity->type->entity->label()
+        '%entity_type' => $entity->type->entity->label(),
       ]);
       \Drupal::messenger()->addWarning($message);
     }

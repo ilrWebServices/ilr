@@ -18,7 +18,7 @@ class PersonPersonasController extends ControllerBase {
    * Constructs a PersonPersonasController object.
    */
   public function __construct(
-    protected PersonaManager $personaManager
+    protected PersonaManager $personaManager,
   ) {}
 
   /**
@@ -30,6 +30,9 @@ class PersonPersonasController extends ControllerBase {
     );
   }
 
+  /**
+   *
+   */
   public function content(PersonInterface $person) {
     $persona_definition = $this->entityTypeManager()->getDefinition('persona');
     $personas = $this->personaManager->getPersonas($person);
@@ -50,6 +53,9 @@ class PersonPersonasController extends ControllerBase {
     return $build;
   }
 
+  /**
+   *
+   */
   public function title(RouteMatchInterface $route_match, PersonInterface $person) {
     return $this->t('Personas for @name', ['@name' => $person->label()]);
   }

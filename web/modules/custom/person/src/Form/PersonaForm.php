@@ -26,7 +26,7 @@ class PersonaForm extends ContentEntityForm {
     EntityTypeBundleInfoInterface $entityTypeBundleInfo,
     TimeInterface $time,
     protected DateFormatterInterface $dateFormatter,
-    protected AccountProxyInterface $account
+    protected AccountProxyInterface $account,
   ) {
     parent::__construct($entityRepository, $entityTypeBundleInfo, $time);
   }

@@ -1,7 +1,7 @@
 <?php
+
 namespace Drupal\ilr\Plugin\Validation\Constraint;
 
-use Drupal\Component\Utility\UrlHelper;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -10,7 +10,9 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class ProblemInternalLinkValidator extends ConstraintValidator {
 
-  // See also FilterInternalLinks::internalHosts.
+  /**
+   * See also FilterInternalLinks::internalHosts.
+   */
   protected $internalHosts = [
     'ilr.cornell.edu',
     'www.ilr.cornell.edu',

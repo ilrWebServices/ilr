@@ -32,14 +32,14 @@ class WordPaste extends CKEditorPluginBase implements CKEditorPluginContextualIn
   }
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   public function getButtons() {
     return [];
   }
 
   /**
-   * @inheritDoc
+   * {@inheritDoc}
    */
   public function isEnabled(Editor $editor) {
     return TRUE;

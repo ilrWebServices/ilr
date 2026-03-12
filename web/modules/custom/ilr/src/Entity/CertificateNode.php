@@ -60,8 +60,8 @@ class CertificateNode extends Node implements CertificateNodeInterface {
         'handler' => 'default:node',
         'handler_settings' => [
           'target_bundles' => [
-            'course_certificate' => 'course_certificate'
-          ]
+            'course_certificate' => 'course_certificate',
+          ],
         ],
       ])
       ->setDisplayConfigurable('view', TRUE)
@@ -82,8 +82,8 @@ class CertificateNode extends Node implements CertificateNodeInterface {
         'handler' => 'default:node',
         'handler_settings' => [
           'target_bundles' => [
-            'course_certificate' => 'course_certificate'
-          ]
+            'course_certificate' => 'course_certificate',
+          ],
         ],
         'required_status' => 'required',
       ])
@@ -105,8 +105,8 @@ class CertificateNode extends Node implements CertificateNodeInterface {
         'handler' => 'default:node',
         'handler_settings' => [
           'target_bundles' => [
-            'course_certificate' => 'course_certificate'
-          ]
+            'course_certificate' => 'course_certificate',
+          ],
         ],
         'required_status' => 'elective',
       ])

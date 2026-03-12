@@ -32,7 +32,7 @@ class RemoteAwards extends ParagraphsBehaviorBase {
     $plugin_id,
     $plugin_definition,
     protected EntityFieldManagerInterface $entity_field_manager,
-    protected RemoteDataHelper $remoteDataHelper
+    protected RemoteDataHelper $remoteDataHelper,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_field_manager);
   }
@@ -68,7 +68,7 @@ class RemoteAwards extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function validateBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
-    // @TODO Validate netid.
+    // @todo Validate netid.
   }
 
   /**

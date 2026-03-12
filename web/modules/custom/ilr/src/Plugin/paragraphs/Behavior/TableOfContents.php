@@ -3,10 +3,8 @@
 namespace Drupal\ilr\Plugin\paragraphs\Behavior;
 
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
-use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\ParagraphsBehaviorBase;
 
 /**
@@ -42,7 +40,8 @@ class TableOfContents extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    *
    * Rather than a summary, the admin label is rendered in the form element.
-   * @see ilr_field_widget_paragraphs_form_alter().
+   *
+   * @see ilr_field_widget_paragraphs_form_alter()
    */
   public function settingsSummary(Paragraph $paragraph) {}
 

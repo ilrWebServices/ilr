@@ -2,7 +2,6 @@
 
 namespace Drupal\ilr_instagram;
 
-use Drupal\Component\Serialization\Json;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Psr\Log\LoggerInterface;
 use GuzzleHttp\ClientInterface;
@@ -50,6 +49,9 @@ class InstagramFeedProcessor {
     $this->logger = $logger;
   }
 
+  /**
+   *
+   */
   public function getPosts($feed_url) {
     $posts = $this->cacheData->get('instagram_posts_' . hash('crc32', $feed_url));
 

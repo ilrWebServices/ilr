@@ -10,18 +10,20 @@ class CollectionProjectsManager {
 
   use CollectionVocabularyTrait;
 
-  // @todo Refactor to load and analyze all node types to determine if they can contain project and cache here.
+  /**
+   * @todo Refactor to load and analyze all node types to determine if they can contain project and cache here.
+   */
   public function __construct(
-    public EntityTypeManagerInterface $entityTypeManager
+    public EntityTypeManagerInterface $entityTypeManager,
   ) {}
 
   /**
    * Determine if a Collection can contain project nodes.
    *
-   * @param CollectionInterface $collection
+   * @param \Drupal\collection\Entity\CollectionInterface $collection
    *   A Collection entity.
    *
-   * @return boolean
+   * @return bool
    *   TRUE if the Collection can collect nodes that are marked as 'is_project'.
    */
   public function collectionCanContainProjects(CollectionInterface $collection): bool {
@@ -40,6 +42,9 @@ class CollectionProjectsManager {
     return FALSE;
   }
 
+  /**
+   *
+   */
   public function getProjectTypesWithLabels(): array {
     $project_types = [];
 

@@ -104,7 +104,7 @@ class EntityAutocompleteMatcherOverride extends EntityAutocompleteMatcher {
   /**
    * Return a human readable bundle label, if possible, for an entity.
    *
-   * @param EntityInterface $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *
    * @return string
    *   The human readable bundle label or the machine name.

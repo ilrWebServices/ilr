@@ -69,7 +69,7 @@ class AtomFeed extends ControllerBase {
   /**
    * The `content` route responds with the atom feed items.
    */
-  public function content(CollectionInterface $collection, TermInterface $taxonomy_term = NULL, Request $request) {
+  public function content(CollectionInterface $collection, ?TermInterface $taxonomy_term = NULL, Request $request) {
     $response = new Response();
 
     if (!($post_types = $this->extendedPostManager->getPostTypes())) {

@@ -54,11 +54,10 @@ class SalesforceEventOptions extends WebformElementBase {
   /**
    * {@inheritdoc}
    */
-  public function prepare(array &$element, WebformSubmissionInterface $webform_submission = NULL) {
+  public function prepare(array &$element, ?WebformSubmissionInterface $webform_submission = NULL) {
     parent::prepare($element, $webform_submission);
 
     // @todo Try to get eventids from a query param.
-
     // Get the eventid option from the default values of the webform reference
     // widget.
     if ($source_entity = $webform_submission->getSourceEntity()) {
@@ -68,7 +67,7 @@ class SalesforceEventOptions extends WebformElementBase {
 
       /** @var \Drupal\Core\Entity\ContentEntityInterface $source_entity */
       if ($source_entity->hasField('field_registration_form')) {
-        $default_data = new Yaml;
+        $default_data = new Yaml();
         $default_data = $default_data->parse($source_entity->field_registration_form->default_data);
         $element['#eventids'] = $default_data['eventid'] ?? '';
       }

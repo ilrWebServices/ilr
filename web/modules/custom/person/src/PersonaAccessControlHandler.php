@@ -26,7 +26,7 @@ class PersonaAccessControlHandler extends EntityAccessControlHandler implements 
    */
   public function __construct(
     EntityTypeInterface $entity_type,
-    protected EntityTypeManagerInterface $entityTypeManager
+    protected EntityTypeManagerInterface $entityTypeManager,
   ) {
     parent::__construct($entity_type);
   }

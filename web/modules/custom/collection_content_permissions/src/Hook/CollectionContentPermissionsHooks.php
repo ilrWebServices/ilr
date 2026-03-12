@@ -13,8 +13,6 @@ use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\Core\Url;
-use Drupal\node\Plugin\views\filter\Access;
 
 class CollectionContentPermissionsHooks {
 
