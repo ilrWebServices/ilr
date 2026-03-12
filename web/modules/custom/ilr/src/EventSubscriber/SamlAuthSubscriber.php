@@ -49,6 +49,19 @@ class SamlAuthSubscriber implements EventSubscriberInterface {
 
     // TODO: Set the mail field from SAML data if the account value is empty.
 
+    // Add the ilr_employee role if there's a published persona for this netid.
+    if (!$account->hasRole('ilr_employee')) {
+      $ilr_employee_persona = \Drupal::service('entity_type.manager')->getStorage('persona')->loadByProperties([
+        'type' => 'ilr_employee',
+        'status' => 1,
+        'field_netid' => $saml_attributes['uid'],
+      ]);
+
+      if (!empty($ilr_employee_persona)) {
+        $account->addRole('ilr_employee');
+      }
+    }
+
     // Set the account and mark it changed. The docs in SamlauthUserSyncEvent
     // specifially say to not save the account here.
     $event->setAccount($account);
