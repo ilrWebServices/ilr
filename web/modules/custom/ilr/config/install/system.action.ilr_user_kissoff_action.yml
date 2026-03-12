@@ -1,0 +1,6 @@
+langcode: en
+status: true
+id: ilr_user_kissoff_action
+label: 'Perform ILR-related cleanup to the user(s)'
+type: user
+plugin: ilr_user_kissoff_action

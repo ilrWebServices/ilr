@@ -1,0 +1,14 @@
+uuid: 0fa277c8-22fe-4cab-b012-9a0d418a3496
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.ilr_employee
+  module:
+    - user
+id: user_remove_role_action.ilr_employee
+label: 'Remove the ILR employee role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: ilr_employee

@@ -43,6 +43,7 @@ use Drupal\ilr\Hook\IlrHooks;
 use Drupal\node\NodeInterface;
 use Drupal\person\PersonaInterface;
 use Drupal\salesforce_mapping\Entity\MappedObjectInterface;
+use Drupal\user\UserInterface;
 
 /**
  * Implements hook_theme().
@@ -1955,6 +1956,10 @@ function ilr_entity_access(EntityInterface $entity, $op, AccountInterface $accou
   }
 
   if ($entity->hasField('field_netid') && \Drupal::moduleHandler()->moduleExists('externalauth')) {
+    if (!$account->hasPermission('edit employee profiles')) {
+      return AccessResult::neutral();
+    }
+
     $authmap = \Drupal::service('externalauth.authmap');
     $netid = $authmap->get($account->id(), 'samlauth');
 
@@ -1998,6 +2003,28 @@ function ilr_views_query_alter(\Drupal\views\ViewExecutable $view, \Drupal\views
           $orderby['direction'] = $sort_order;
         }
       }
+    }
+  }
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function ilr_user_login(UserInterface $account) {
+  if ($account->hasRole('ilr_employee')) {
+    return;
+  }
+
+  if ($netid = \Drupal::service('externalauth.authmap')->get($account->id(), 'samlauth')) {
+    $ilr_employee_persona = \Drupal::service('entity_type.manager')->getStorage('persona')->loadByProperties([
+      'type' => 'ilr_employee',
+      'status' => 1,
+      'field_netid' => $netid,
+    ]);
+
+    if (!empty($ilr_employee_persona)) {
+      $account->addRole('ilr_employee');
+      $account->save();
     }
   }
 }

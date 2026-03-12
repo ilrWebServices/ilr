@@ -1,0 +1,12 @@
+uuid: 347bb0e7-12f2-4119-8b9e-770e3b310fa2
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: ilr_employee
+label: 'ILR employee'
+weight: 15
+is_admin: null
+permissions:
+  - 'edit employee profiles'

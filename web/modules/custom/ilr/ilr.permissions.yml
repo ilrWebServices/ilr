@@ -12,5 +12,7 @@ set alternate display:
   title: 'Set alternate display for content'
 edit homepage:
   title: 'Edit the homepage'
+edit employee profiles:
+  title: 'Edit employee profiles'
 permission_callbacks:
   - Drupal\ilr\UnpublishedPermissions::nodeTypePermissions
