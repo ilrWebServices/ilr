@@ -331,3 +331,32 @@ function ilr_deploy_add_kissoff_action() {
     \Drupal::logger('mymodule')->notice('Adding "ILR user kissoff action" to available actions.');
   }
 }
+
+/**
+ * Assign employee role to all Users with a profile
+ */
+function ilr_deploy_assign_employee_role(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $authmap = \Drupal::service('externalauth.authmap');
+  $user_storage = $entity_type_manager->getStorage('user');
+  $uids = \Drupal::entityQuery('user')
+    ->condition('status', 1)
+    ->accessCheck(FALSE)
+    ->execute();
+  $users = $user_storage->loadMultiple($uids);
+
+  foreach ($users as $user) {
+    $netId = $authmap->get($user->id(), 'samlauth');
+
+    $ilr_employee_persona = $entity_type_manager->getStorage('persona')->loadByProperties([
+      'type' => 'ilr_employee',
+      'status' => 1,
+      'field_netid' => $netId,
+    ]);
+
+    if (!empty($ilr_employee_persona)) {
+      $user->addRole('ilr_employee');
+      $user->save();
+    }
+  }
+}

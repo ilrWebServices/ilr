@@ -1955,6 +1955,10 @@ function ilr_entity_access(EntityInterface $entity, $op, AccountInterface $accou
   }
 
   if ($entity->hasField('field_netid') && \Drupal::moduleHandler()->moduleExists('externalauth')) {
+    if (!$account->hasPermission('edit employee profiles')) {
+      return AccessResult::neutral();
+    }
+
     $authmap = \Drupal::service('externalauth.authmap');
     $netid = $authmap->get($account->id(), 'samlauth');
 

@@ -1,0 +1,14 @@
+uuid: b74fabcd-cf16-4ddd-8493-17b5d67a3b15
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.ilr_employee
+  module:
+    - user
+id: user_add_role_action.ilr_employee
+label: 'Add the ILR employee role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: ilr_employee
