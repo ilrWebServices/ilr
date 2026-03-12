@@ -17,7 +17,6 @@ dependencies:
     - file
     - filter
     - media
-    - media_pdf_thumbnail
     - paragraphs
     - paragraphs_previewer
     - simple_gse_search
@@ -49,7 +48,6 @@ permissions:
   - 'view content_section collection'
   - 'view media'
   - 'view own collections'
-  - 'view private pdf thumbnails'
   - 'view publication_issue collection'
   - 'view resource_library collection'
   - 'view restricted collection'
