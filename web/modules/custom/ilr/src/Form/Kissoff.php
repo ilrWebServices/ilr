@@ -10,7 +10,7 @@ use Drupal\externalauth\ExternalauthInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a form for searching NetIDs and names for ILR-related cleanup of users.
+ * Provides form for searching NetIDs for ILR-related cleanup of users.
  *
  * @internal
  */
@@ -53,7 +53,7 @@ class Kissoff extends FormBase {
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\externalauth\ExternalauthInterface $externalauth
+   * @param \Drupal\externalauth\ExternalauthInterface $external_auth
    *   The externalauth service.
    * @param \Drupal\Core\TempStore\PrivateTempStoreFactory $temp_store_factory
    *   The temp store factory.
@@ -78,7 +78,7 @@ class Kissoff extends FormBase {
     $form['netid'] = [
       '#type' => 'textfield',
       '#title' => $this->t('NetID'),
-      '#description' => $this->t('The employee\'s NetID:'),
+      '#description' => $this->t("The employee's NetID."),
       '#required' => TRUE,
     ];
 
@@ -98,7 +98,8 @@ class Kissoff extends FormBase {
     // Look for a User that has the NetID value:
     if ($account = $this->externalAuth->load($netid, 'samlauth')) {
       $this->tempStoreFactory->get('ilr_user_kissoff_action')->set($this->currentUser()->id(), [$account]);
-    } // Look for a persona that has the NetID value:
+    }
+    // Look for a persona that has the NetID value:
     elseif ($employee_persona = $this->entityTypeManager->getStorage('persona')->loadByProperties(['field_netid' => $netid])) {
       $this->tempStoreFactory->get('ilr_user_kissoff_action')->set($this->currentUser()->id(), $employee_persona);
     }
@@ -122,4 +123,5 @@ class Kissoff extends FormBase {
       $form_state->setError($form['netid'], $this->t('This does not appear to be a vaild NetID.'));
     }
   }
+
 }

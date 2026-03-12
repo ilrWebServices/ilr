@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
+use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Url;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\person\Entity\Persona;
@@ -146,7 +147,7 @@ class KissoffConfirm extends ConfirmFormBase {
         }
         else {
           $items[$uid]['roles'] = [
-            '#markup' => Markup::create($this->t('<p>The user has no roles to remove.</p>')),
+            '#markup' => Markup::create('<p>' . $this->t('The user has no roles to remove.') . '</p>'),
           ];
         }
 
@@ -164,23 +165,24 @@ class KissoffConfirm extends ConfirmFormBase {
         else {
           $items[$uid]['collections'] = [
             '#type' => 'markup',
-            '#markup' => Markup::create('<p>No associated collections were found.</p>')
+            '#markup' => Markup::create('<p>' . $this->t('No associated collections were found.') . '</p>'),
           ];
         }
 
         if ($ilr_employee_persona = $this->getEmployeePersona($account)) {
           if ($ilr_employee_persona->isPublished()) {
             $items[$uid]['ilr_employee_persona'] = [
-              '#prefix' => $this->t('The account has an employee profile that will be unpublished: '),
+              '#prefix' => $this->t('The account has an employee profile that will be unpublished:') . ' ',
               '#type' => 'link',
               '#title' => $ilr_employee_persona->getDisplayName(),
               '#url' => $ilr_employee_persona->toUrl(),
             ];
           }
-        } else {
+        }
+        else {
           $items[$uid]['ilr_employee_persona'] = [
             '#type' => 'markup',
-            '#markup' => Markup::create('<p>No ILR employee persona was found.</p>')
+            '#markup' => Markup::create('<p>' . $this->t('No ILR employee persona was found.') . '</p>'),
           ];
         }
 
@@ -193,7 +195,7 @@ class KissoffConfirm extends ConfirmFormBase {
         $ilr_employee_persona = $account;
         if ($ilr_employee_persona->isPublished()) {
           $items['ilr_employee_persona'] = [
-            '#prefix' => $this->t('The account has an employee profile that will be unpublished: '),
+            '#prefix' => $this->t('The account has an employee profile that will be unpublished:') . ' ',
             '#type' => 'link',
             '#title' => $ilr_employee_persona->getDisplayName(),
             '#url' => $ilr_employee_persona->toUrl(),
@@ -202,7 +204,7 @@ class KissoffConfirm extends ConfirmFormBase {
         else {
           $items['ilr_employee_persona'] = [
             '#type' => 'markup',
-            '#markup' => Markup::create('No ILR employee persona was found.')
+            '#markup' => Markup::create($this->t('No ILR employee persona was found.')),
           ];
         }
       }
@@ -244,7 +246,7 @@ class KissoffConfirm extends ConfirmFormBase {
    * @return array
    *   An array of collection entities.
    */
-  protected function getUserCollections($account) {
+  protected function getUserCollections(AccountProxyInterface $account) {
     $user_collections = $this->entityTypeManager->getStorage('collection')->loadByProperties([
       'user_id' => [$account->id()],
     ]);
@@ -254,10 +256,11 @@ class KissoffConfirm extends ConfirmFormBase {
   /**
    * Get employee persona for an account.
    *
-   * @param string $netid
-   *   The net id for the user.
+   * @param \Drupal\Core\Session\AccountProxyInterface $account
+   *   A user account.
+   *
    * @return \Drupal\person\PersonaInterface
-   *    The employee persona.
+   *   The employee persona.
    */
   protected function getEmployeePersona($account) {
     $netId = \Drupal::service('externalauth.authmap')->get($account->id(), 'samlauth');
@@ -272,7 +275,6 @@ class KissoffConfirm extends ConfirmFormBase {
       return $persona;
     }
   }
-
 
   /**
    * {@inheritdoc}
@@ -311,8 +313,8 @@ class KissoffConfirm extends ConfirmFormBase {
             $user_collection->save();
 
             $this->messenger()->addMessage($this->t('Collections were removed from @account.', [
-            '@account' => $account->label(),
-          ]));
+              '@account' => $account->label(),
+            ]));
           }
         }
 
