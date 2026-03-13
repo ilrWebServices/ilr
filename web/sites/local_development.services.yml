@@ -14,8 +14,6 @@ parameters:
       contexts: ['session', 'user']
       tags: []
     debug: true
-  persistent_visitor_parameters.options:
-    cookie_domain: .ilr.test
 services:
   cache.backend.null:
     class: Drupal\Core\Cache\NullBackendFactory

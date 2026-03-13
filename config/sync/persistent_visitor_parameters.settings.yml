@@ -1,6 +1,16 @@
-get_parameters: utm_source|utm_medium|utm_campaign|utm_term|utm_content|ilr_discount_code
-server_parameters: ''
-cookie_expire: '0'
-custom_expire: '2592000'
-dont_respect_dnt: 0
-mode: '1'
+get_parameters:
+  - utm_source
+  - utm_medium
+  - utm_campaign
+  - utm_term
+  - utm_content
+  - ilr_discount_code
+server_parameters: {  }
+mode: first_touch
+persistor: persistor_cookie
+persistor_key: pvp_stored_variables
+persistor_expire: 0
+respect_dnt: true
+server_parameters_on_get_parameters_only: false
+allow_unsafe_deserialization: false
+persistor_domain: .ilr.test

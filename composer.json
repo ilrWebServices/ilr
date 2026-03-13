@@ -20,7 +20,6 @@
       "type": "composer",
       "url": "https://packages.drupal.org/8",
       "exclude": [
-        "drupal/persistent_visitor_parameters",
         "drupal/sftp_client",
         "drupal/date_range_formatter"
       ]
@@ -44,10 +43,6 @@
     {
       "type": "vcs",
       "url": "https://github.com/ilrWebServices/ilr_outreach_discount_api.git"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/ilrWebServices/persistent_visitor_parameters.git"
     },
     {
       "type": "vcs",
@@ -123,7 +118,7 @@
     "drupal/paragraphs": "^1.9",
     "drupal/paragraphs_previewer": "^1.4",
     "drupal/pathauto": "^1.4",
-    "drupal/persistent_visitor_parameters": "^3",
+    "drupal/persistent_visitor_parameters": "^2",
     "drupal/prepopulate": "^2.2",
     "drupal/recreate_block_content": "^3.0",
     "drupal/redirect": "^1.4",
@@ -239,6 +234,9 @@
       },
       "drupal/upgrade_status": {
         "Ignore `Unsafe usage of new static()` warnings": "./patches/upgrade_status_ignore_static.patch"
+      },
+      "drupal/persistent_visitor_parameters": {
+        "feat: #3579209 Allow cookie domain to be configured": "https://git.drupalcode.org/issue/persistent_visitor_parameters-3579209/-/commit/e19c7a40f4db84e81202dfecca57b7e03b205c51.patch"
       }
     },
     "installer-paths": {
