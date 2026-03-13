@@ -51,7 +51,7 @@ class CSVUrl extends CSV {
     if (!$csv) {
       throw new \RuntimeException(sprintf('File "%s" could not be opened.', $path));
     }
-    return Reader::createFromStream($csv);
+    return Reader::from($csv);
   }
 
 }

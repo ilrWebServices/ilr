@@ -59,6 +59,8 @@ class PersonaTypeForm extends EntityForm {
     }
 
     $form_state->setRedirectUrl($persona_type->toUrl('collection'));
+
+    return $status;
   }
 
 }

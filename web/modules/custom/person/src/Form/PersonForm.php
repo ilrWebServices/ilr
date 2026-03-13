@@ -43,6 +43,8 @@ class PersonForm extends ContentEntityForm {
     $form_state->setRedirect('entity.persona.add_page', options: [
       'query' => ['person' => $this->entity->id()],
     ]);
+
+    return $status;
   }
 
 }

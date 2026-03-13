@@ -318,9 +318,6 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
         'label' => 'Name',
         'provider' => 'layout_builder',
         'label_display' => 0,
-        'context_mapping' => [
-          'entity' => 'layout_builder.entity',
-        ],
         'formatter' => [
           'label' => 'hidden',
           'type' => 'string',
@@ -338,9 +335,6 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
         'label' => 'Intro text',
         'provider' => 'layout_builder',
         'label_display' => 0,
-        'context_mapping' => [
-          'entity' => 'layout_builder.entity',
-        ],
         'formatter' => [
           'label' => 'hidden',
           'type' => 'text_default',
@@ -359,9 +353,6 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
         'label' => 'Page content',
         'provider' => 'layout_builder',
         'label_display' => 0,
-        'context_mapping' => [
-          'entity' => 'layout_builder.entity',
-        ],
         'formatter' => [
           'label' => 'hidden',
           'type' => 'entity_reference_revisions_entity_view',

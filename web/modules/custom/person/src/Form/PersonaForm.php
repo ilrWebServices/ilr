@@ -147,6 +147,8 @@ class PersonaForm extends ContentEntityForm {
     }
 
     $form_state->setRedirect('entity.persona.canonical', ['persona' => $this->entity->id()]);
+
+    return $status;
   }
 
 }
