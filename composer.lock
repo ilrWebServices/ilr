@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94c4419805ea9abffaf05bb84da635d2",
+    "content-hash": "3d1dcf9d2780dc71fc591bf7feff80a6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5564,29 +5564,29 @@
         },
         {
             "name": "drupal/seven",
-            "version": "1.0.0",
+            "version": "1.1.0-beta3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/seven.git",
-                "reference": "1.0.0"
+                "reference": "1.1.0-beta3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/seven-1.0.0.zip",
-                "reference": "1.0.0",
-                "shasum": "88e86926388c7e6cf66b0502d13a0470ce2399cd"
+                "url": "https://ftp.drupal.org/files/projects/seven-1.1.0-beta3.zip",
+                "reference": "1.1.0-beta3",
+                "shasum": "284d3b983882327c05e05ae362095610d5c13833"
             },
             "require": {
-                "drupal/core": "^9 || ^10"
+                "drupal/core": ">=10.3 <11.3"
             },
             "type": "drupal-theme",
             "extra": {
                 "drupal": {
-                    "version": "1.0.0",
-                    "datestamp": "1758908691",
+                    "version": "1.1.0-beta3",
+                    "datestamp": "1772666167",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -5620,7 +5620,7 @@
                     "homepage": "https://www.drupal.org/user/305669"
                 }
             ],
-            "description": "The Seven theme from Drupal 8/9 moved to contrib",
+            "description": "The Seven theme from Drupal 9 moved to a contrib project.",
             "homepage": "https://www.drupal.org/project/seven",
             "support": {
                 "source": "https://git.drupalcode.org/project/seven"
