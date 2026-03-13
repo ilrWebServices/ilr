@@ -21,7 +21,8 @@
       "url": "https://packages.drupal.org/8",
       "exclude": [
         "drupal/persistent_visitor_parameters",
-        "drupal/sftp_client"
+        "drupal/sftp_client",
+        "drupal/date_range_formatter"
       ]
     },
     {
@@ -55,6 +56,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/ilrWebServices/ilr-analytics-session.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/ilrWebServices/date_range_formatter.git"
     }
   ],
   "require": {

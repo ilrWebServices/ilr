@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e447e6c6b5112b1c524973a403f618e8",
+    "content-hash": "814aa86b0f8e67d9265675df70c70e1f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2613,48 +2613,32 @@
         },
         {
             "name": "drupal/date_range_formatter",
-            "version": "dev-9.0.x",
+            "version": "9.0.x-dev",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/date_range_formatter.git",
-                "reference": "d909818f1de39d7498e771a2c334ca7b9b4b350e"
+                "url": "https://github.com/ilrWebServices/date_range_formatter.git",
+                "reference": "c8b449dd316ea6813cdcb74320119f8ed87c31bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ilrWebServices/date_range_formatter/zipball/c8b449dd316ea6813cdcb74320119f8ed87c31bf",
+                "reference": "c8b449dd316ea6813cdcb74320119f8ed87c31bf",
+                "shasum": ""
             },
             "require": {
-                "drupal/core": "^8 || ^9 || ^10"
+                "drupal/core": "^8 || ^9 || ^10 || ^11"
             },
+            "default-branch": true,
             "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-9.0.x": "9.0.x-dev"
-                },
-                "drupal": {
-                    "version": "9.0.x-dev",
-                    "datestamp": "1718887202",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
-            "authors": [
-                {
-                    "name": "maximpodorov",
-                    "homepage": "https://www.drupal.org/user/515310"
-                },
-                {
-                    "name": "sudishth",
-                    "homepage": "https://www.drupal.org/user/1440562"
-                }
-            ],
-            "description": "Formats date ranges.",
-            "homepage": "https://www.drupal.org/project/date_range_formatter",
+            "description": "Provides custom formatters for date ranges.",
             "support": {
-                "source": "https://git.drupalcode.org/project/date_range_formatter"
-            }
+                "source": "https://github.com/ilrWebServices/date_range_formatter/tree/9.0.x",
+                "issues": "https://github.com/ilrWebServices/date_range_formatter/issues"
+            },
+            "time": "2026-03-13T18:39:05+00:00"
         },
         {
             "name": "drupal/dynamic_entity_reference",
