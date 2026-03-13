@@ -231,6 +231,9 @@
       },
       "drupal/linkit": {
         "Issue #3436733: Linkit Link field: Double-encoded file links": "https://www.drupal.org/files/issues/2024-09-26/3436733-7-linkit_base_url_decode_fix.patch"
+      },
+      "drupal/upgrade_status": {
+        "Ignore `Unsafe usage of new static()` warnings": "./patches/upgrade_status_ignore_static.patch"
       }
     },
     "installer-paths": {
