@@ -239,11 +239,12 @@
   margin-right: -50vw;
 }
 
-.cu-component__frame {
+// Todo: Unify framing approaches with side-by-side.
+.cu-component__frame:not(.cu-side-by-side) {
   --frame-color: #ccc;
   --frame-width: 16px;
 
-  &.cu-component--rich-text .cu-media {
+  .cu-image {
     --cu-line-height: 0;
 
     padding: var(--frame-width) var(--frame-width) var(--frame-width) 0;
