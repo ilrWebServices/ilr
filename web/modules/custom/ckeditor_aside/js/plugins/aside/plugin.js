@@ -7,24 +7,22 @@
 
 (function ($, Drupal, CKEDITOR) {
 
-    function noBlockLeft( asideBlock ) {
-        for ( var i = 0, length = asideBlock.getChildCount(), child; i < length && ( child = asideBlock.getChild( i ) ); i++ ) {
-            if ( child.type == CKEDITOR.NODE_ELEMENT && child.isBlockBoundary() ) {
-                return FALSE;
-            }
-        }
-        return TRUE;
-    }
+	function noBlockLeft( asideBlock ) {
+		for ( var i = 0, length = asideBlock.getChildCount(), child; i < length && ( child = asideBlock.getChild( i ) ); i++ ) {
+			if ( child.type == CKEDITOR.NODE_ELEMENT && child.isBlockBoundary() )
+				return false;
+		}
+		return true;
+	}
 
   var commandObject = {
-    exec: function ( editor ) {
+    exec: function( editor ) {
       var state = editor.getCommand( 'aside' ).state,
         selection = editor.getSelection(),
         range = selection && selection.getRanges()[ 0 ];
 
-      if ( !range ) {
+      if ( !range )
         return;
-      }
 
       var bookmarks = selection.createBookmarks();
 
@@ -40,7 +38,7 @@
           cursor = bookmarkStart;
           while ( ( cursor = cursor.getNext() ) ) {
             if ( cursor.type == CKEDITOR.NODE_ELEMENT && cursor.isBlockBoundary() ) {
-              bookmarkStart.move( cursor, TRUE );
+              bookmarkStart.move( cursor, true );
               break;
             }
           }
@@ -63,9 +61,8 @@
 
       if ( state == CKEDITOR.TRISTATE_OFF ) {
         var paragraphs = [];
-        while ( ( block = iterator.getNextParagraph() ) ) {
+        while ( ( block = iterator.getNextParagraph() ) )
           paragraphs.push( block );
-        }
 
         // If no paragraphs, create one from the current selection position.
         if ( paragraphs.length < 1 ) {
@@ -75,7 +72,7 @@
           para.append( new CKEDITOR.dom.text( '\ufeff', editor.document ) );
           range.moveToBookmark( firstBookmark );
           range.selectNodeContents( para );
-          range.collapse( TRUE );
+          range.collapse( true );
           firstBookmark = range.createBookmark();
           paragraphs.push( para );
           bookmarks.unshift( firstBookmark );
@@ -91,21 +88,18 @@
 
         // The common parent must not be the following tags: table, tbody, tr, ol, ul.
         var denyTags = { table: 1, tbody: 1, tr: 1, ol: 1, ul: 1 };
-        while ( denyTags[ commonParent.getName() ] ) {
+        while ( denyTags[ commonParent.getName() ] )
           commonParent = commonParent.getParent();
-        }
 
         // Reconstruct the block list to be processed such that all resulting blocks
         // satisfy parentNode.equals( commonParent ).
-        var lastBlock = NULL;
+        var lastBlock = null;
         while ( paragraphs.length > 0 ) {
           block = paragraphs.shift();
-          while ( !block.getParent().equals( commonParent ) ) {
+          while ( !block.getParent().equals( commonParent ) )
             block = block.getParent();
-          }
-          if ( !block.equals( lastBlock ) ) {
+          if ( !block.equals( lastBlock ) )
             tmp.push( block );
-          }
           lastBlock = block;
         }
 
@@ -139,8 +133,8 @@
           database = {};
 
         while ( ( block = iterator.getNextParagraph() ) ) {
-          var bqParent = NULL,
-            bqChild = NULL;
+          var bqParent = null,
+            bqChild = null;
           while ( block.getParent() ) {
             if ( block.getParent().getName() == 'aside' ) {
               bqParent = block.getParent();
@@ -154,7 +148,7 @@
           // to prevent duplicates.
           if ( bqParent && bqChild && !bqChild.getCustomData( 'aside_moveout' ) ) {
             moveOutNodes.push( bqChild );
-            CKEDITOR.dom.element.setMarker( database, bqChild, 'aside_moveout', TRUE );
+            CKEDITOR.dom.element.setMarker( database, bqChild, 'aside_moveout', true );
           }
         }
 
@@ -171,11 +165,11 @@
           // If the node is located at the beginning or the end, just take it out
           // without splitting. Otherwise, split the aside node and move the
           // paragraph in between the two aside nodes.
-          if ( !node.getPrevious() ) {
+          if ( !node.getPrevious() )
             node.remove().insertBefore( asideBlock );
-          } else if ( !node.getNext() ) {
+          else if ( !node.getNext() )
             node.remove().insertAfter( asideBlock );
-          } else {
+          else {
             node.breakParent( node.getParent() );
             processedAsideBlocks.push( node.getNext() );
           }
@@ -183,7 +177,7 @@
           // Remember the aside node so we can clear it later (if it becomes empty).
           if ( !asideBlock.getCustomData( 'aside_processed' ) ) {
             processedAsideBlocks.push( asideBlock );
-            CKEDITOR.dom.element.setMarker( database, asideBlock, 'aside_processed', TRUE );
+            CKEDITOR.dom.element.setMarker( database, asideBlock, 'aside_processed', true );
           }
 
           movedNodes.push( node );
@@ -194,34 +188,30 @@
         // Clear aside nodes that have become empty.
         for ( i = processedAsideBlocks.length - 1; i >= 0; i-- ) {
           asideBlock = processedAsideBlocks[ i ];
-          if ( noBlockLeft( asideBlock ) ) {
+          if ( noBlockLeft( asideBlock ) )
             asideBlock.remove();
-          }
         }
 
         if ( editor.config.enterMode == CKEDITOR.ENTER_BR ) {
-          var firstTime = TRUE;
+          var firstTime = true;
           while ( movedNodes.length ) {
             node = movedNodes.shift();
 
             if ( node.getName() == 'div' ) {
               docFrag = new CKEDITOR.dom.documentFragment( editor.document );
               var needBeginBr = firstTime && node.getPrevious() && !( node.getPrevious().type == CKEDITOR.NODE_ELEMENT && node.getPrevious().isBlockBoundary() );
-              if ( needBeginBr ) {
+              if ( needBeginBr )
                 docFrag.append( editor.document.createElement( 'br' ) );
-              }
 
               var needEndBr = node.getNext() && !( node.getNext().type == CKEDITOR.NODE_ELEMENT && node.getNext().isBlockBoundary() );
-              while ( node.getFirst() ) {
+              while ( node.getFirst() )
                 node.getFirst().remove().appendTo( docFrag );
-              }
 
-              if ( needEndBr ) {
+              if ( needEndBr )
                 docFrag.append( editor.document.createElement( 'br' ) );
-              }
 
               docFrag.replace( node );
-              firstTime = FALSE;
+              firstTime = false;
             }
           }
         }
@@ -231,7 +221,7 @@
       editor.focus();
     },
 
-    refresh: function ( editor, path ) {
+    refresh: function( editor, path ) {
       // Check if inside of aside.
       var firstBlock = path.block || path.blockLimit;
       this.setState( editor.elementPath( firstBlock ).contains( 'aside', 1 ) ? CKEDITOR.TRISTATE_ON : CKEDITOR.TRISTATE_OFF );
@@ -245,7 +235,7 @@
 
   CKEDITOR.plugins.add('aside', {
     icons: 'aside',
-    hidpi: FALSE,
+    hidpi: false,
 
     beforeInit: function beforeInit(editor) {
       // var dtd = CKEDITOR.dtd;
