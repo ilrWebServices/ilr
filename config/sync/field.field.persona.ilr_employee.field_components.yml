@@ -8,6 +8,7 @@ dependencies:
     - paragraphs.paragraphs_type.professional_activities
     - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.publications
+    - paragraphs.paragraphs_type.tout
     - person.persona_type.ilr_employee
   module:
     - entity_reference_revisions
@@ -29,13 +30,29 @@ settings:
       honors_and_awards: honors_and_awards
       professional_activities: professional_activities
       promo: promo
+      tout: tout
     negate: 0
     target_bundles_drag_drop:
+      accordion:
+        weight: 51
+        enabled: false
       agenda:
         weight: -60
         enabled: false
       agenda_item:
         weight: -59
+        enabled: false
+      anchor_button_to_form:
+        weight: 54
+        enabled: false
+      call_to_action:
+        weight: 55
+        enabled: false
+      card_overlay:
+        weight: 56
+        enabled: false
+      card_overlay_item:
+        weight: 57
         enabled: false
       carousel:
         weight: -58
@@ -61,6 +78,9 @@ settings:
       form:
         weight: -51
         enabled: false
+      gallery:
+        weight: 66
+        enabled: false
       honors_and_awards:
         weight: -64
         enabled: true
@@ -70,8 +90,17 @@ settings:
       instagram_listing:
         weight: -49
         enabled: false
+      link_listing:
+        weight: 70
+        enabled: false
       media_deck:
         weight: -48
+        enabled: false
+      milestone:
+        weight: 72
+        enabled: false
+      milestone_section:
+        weight: 73
         enabled: false
       organization_listing:
         weight: -47
@@ -95,11 +124,14 @@ settings:
         weight: -43
         enabled: false
       promo:
-        weight: -62
+        weight: -61
         enabled: true
       publications:
         weight: -65
         enabled: true
+      report_summary_listing:
+        weight: 83
+        enabled: false
       rich_text:
         weight: -61
         enabled: false
@@ -112,8 +144,26 @@ settings:
       simple_collection_listing:
         weight: -40
         enabled: false
+      slide:
+        weight: 88
+        enabled: false
+      slide_deck:
+        weight: 89
+        enabled: false
+      stat:
+        weight: 90
+        enabled: false
+      stats:
+        weight: 91
+        enabled: false
+      tab_item:
+        weight: 94
+        enabled: false
       table_of_contents:
         weight: -39
+        enabled: false
+      tabs:
+        weight: 93
         enabled: false
       testimonial:
         weight: -38
@@ -121,9 +171,15 @@ settings:
       testimonial_deck:
         weight: -37
         enabled: false
+      text_with_media:
+        weight: 97
+        enabled: false
       topic_list:
         weight: -36
         enabled: false
+      tout:
+        weight: -62
+        enabled: true
       video:
         weight: -35
         enabled: false
