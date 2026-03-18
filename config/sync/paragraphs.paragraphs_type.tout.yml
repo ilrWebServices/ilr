@@ -21,3 +21,5 @@ behavior_plugins:
     allow_framed_media: 0
   layout_settings:
     enabled: true
+  scheduled_visibility:
+    enabled: true
