@@ -390,6 +390,15 @@ function union_marketing_preprocess_persona(&$variables) {
       $has_meta = TRUE;
     }
     $variables['has_meta'] = $has_meta;
+
+    if (!empty($variables['content']['field_components']['#items'])) {
+      foreach ($variables['content']['field_components']['#items']->referencedEntities() as $key => $paragraph) {
+        if ($paragraph->bundle() === 'tout') {
+          $variables['content']['tout'] = $variables['content']['field_components'][$key];
+          unset($variables['content']['field_components'][$key]);
+        }
+      }
+    }
   }
 
   $current_url = Url::fromRoute('<current>');
