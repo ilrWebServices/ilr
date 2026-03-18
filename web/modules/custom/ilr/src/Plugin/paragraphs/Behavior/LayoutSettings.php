@@ -80,7 +80,7 @@ class LayoutSettings extends ParagraphsBehaviorBase {
    * This behavior is applicable to paragraphs that support layout settings.
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {
-    return in_array($paragraphs_type->id(), ['text_with_media']);
+    return in_array($paragraphs_type->id(), ['text_with_media', 'tout']);
   }
 
 }
