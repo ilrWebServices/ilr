@@ -1,0 +1,58 @@
+uuid: 36f7f9c5-bcd1-4cf6-8924-a0f0a98dc825
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.tout.field_body
+    - field.field.paragraph.tout.field_heading
+    - field.field.paragraph.tout.field_link
+    - field.field.paragraph.tout.field_media
+    - paragraphs.paragraphs_type.tout
+  module:
+    - linkit
+    - media_library
+    - media_library_edit
+    - text
+id: paragraph.tout.default
+targetEntityType: paragraph
+bundle: tout
+mode: default
+content:
+  field_body:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_link:
+    type: linkit
+    weight: 2
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      linkit_profile: ilr_content
+      linkit_auto_link_text: false
+    third_party_settings: {  }
+  field_media:
+    type: media_library_widget
+    weight: 0
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: true
+hidden:
+  created: true
+  status: true
