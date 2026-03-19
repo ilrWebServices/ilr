@@ -542,7 +542,7 @@ variants:
     settings:
       debug: false
       settings: {  }
-      elements: "opt_in:\r\n  '#title': Opt-in for updates from The Worker Institute\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Which events will you attend?'\r\n  '#type': checkboxes\r\n  '#options':\r\n    'Friday': 'Friday evening'\r\n    'Saturday': 'Saturday'\r\n  '#states':\r\n    visible:\r\n      ':input[name=\"eventid\"]':\r\n        'value': a0iPK000001pAHhYAM\r\n    enabled:\r\n      ':input[name=\"eventid\"]':\r\n        'value': a0iPK000001pAHhYAM"
+      elements: "opt_in:\r\n  '#title': Opt-in for updates from The Worker Institute\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'What day(s) will you be attending?'\r\n  '#type': checkboxes\r\n  '#options':\r\n    'Friday': 'Friday, June 5'\r\n    'Saturday': 'Saturday, June 6'\r\n  '#states':\r\n    visible:\r\n      ':input[name=\"eventid\"]':\r\n        'value': a0iPK00000D54JdYAJ\r\n    enabled:\r\n      ':input[name=\"eventid\"]':\r\n        'value': a0iPK00000D54JdYAJ"
       handlers: {  }
   buffalo_nlrb:
     id: override
