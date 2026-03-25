@@ -10,6 +10,7 @@ use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Url;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\person\Entity\Persona;
+use Drupal\person\PersonaInterface;
 use Drupal\user\Entity\User;
 use Drupal\user\UserStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -259,10 +260,10 @@ class KissoffConfirm extends ConfirmFormBase {
    * @param \Drupal\Core\Session\AccountProxyInterface $account
    *   A user account.
    *
-   * @return \Drupal\person\PersonaInterface
+   * @return \Drupal\person\PersonaInterface|NULL
    *   The employee persona.
    */
-  protected function getEmployeePersona($account) {
+  protected function getEmployeePersona($account): ?PersonaInterface {
     $netId = \Drupal::service('externalauth.authmap')->get($account->id(), 'samlauth');
 
     $ilr_employee_persona = $this->entityTypeManager->getStorage('persona')->loadByProperties([
@@ -274,6 +275,8 @@ class KissoffConfirm extends ConfirmFormBase {
       $persona = reset($ilr_employee_persona);
       return $persona;
     }
+
+    return NULL;
   }
 
   /**

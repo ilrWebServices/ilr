@@ -44,15 +44,6 @@ class AdminSectionLabel extends ParagraphsBehaviorBase {
   /**
    * {@inheritdoc}
    *
-   * Rather than a summary, the admin label is rendered in the form element.
-   *
-   * @see ilr_field_widget_paragraphs_form_alter()
-   */
-  public function settingsSummary(Paragraph $paragraph) {}
-
-  /**
-   * {@inheritdoc}
-   *
    * This behavior is only applicable to paragraphs that are of type 'section'.
    */
   public static function isApplicable(ParagraphsType $paragraphs_type) {

@@ -404,6 +404,7 @@ handlers:
       attachments: false
       twig: true
       theme_name: ''
+      langcode: ''
       parameters: {  }
       debug: false
   submission_detail_email:
@@ -441,6 +442,7 @@ handlers:
       attachments: false
       twig: false
       theme_name: ''
+      langcode: ''
       parameters: {  }
       debug: false
   populate_datalayer:

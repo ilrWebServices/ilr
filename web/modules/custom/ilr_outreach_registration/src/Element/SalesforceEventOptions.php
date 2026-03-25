@@ -3,7 +3,7 @@
 namespace Drupal\ilr_outreach_registration\Element;
 
 use Drupal\salesforce\SelectQuery;
-use Drupal\Core\Render\Element\FormElement;
+use Drupal\Core\Render\Element\FormElementBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\Html as HtmlUtility;
 use Drupal\Core\Render\Element\CompositeFormElementTrait;
@@ -28,7 +28,7 @@ use Drupal\ilr_outreach_registration\EventOption;
  * );
  * @endcode
  */
-class SalesforceEventOptions extends FormElement {
+class SalesforceEventOptions extends FormElementBase {
 
   use CompositeFormElementTrait;
 

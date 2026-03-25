@@ -303,6 +303,7 @@ handlers:
       custom_options: ''
       file_data: true
       cast: false
+      check_access: false
       debug: false
       completed_url: 'https://hooks.zapier.com/hooks/catch/SEE/ENV_VARS/'
       completed_custom_data: ''

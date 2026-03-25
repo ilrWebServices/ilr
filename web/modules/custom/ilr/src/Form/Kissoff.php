@@ -6,7 +6,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
-use Drupal\externalauth\ExternalauthInterface;
+use Drupal\externalauth\ExternalAuthInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -53,7 +53,7 @@ class Kissoff extends FormBase {
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\externalauth\ExternalauthInterface $external_auth
+   * @param \Drupal\externalauth\ExternalAuthInterface $external_auth
    *   The externalauth service.
    * @param \Drupal\Core\TempStore\PrivateTempStoreFactory $temp_store_factory
    *   The temp store factory.

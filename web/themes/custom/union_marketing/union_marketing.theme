@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\node\NodeInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\crop\Entity\Crop;
 use Drupal\Component\Utility\Html;
@@ -9,7 +10,7 @@ use Drupal\Core\Template\Attribute;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\easy_breadcrumb\EasyBreadcrumbConstants;
 use Drupal\ilr\Entity\EventNodeBase;
-use Drupal\Core\URL;
+use Drupal\Core\Url;
 use Drupal\image\Entity\ImageStyle;
 
 /**
@@ -250,7 +251,7 @@ function union_marketing_theme_suggestions_paragraph_alter(array &$suggestions, 
   $parent = $paragraph->getParentEntity();
 
   // Make sure the parent exists and is a node.
-  if ($parent instanceof \Drupal\node\NodeInterface) {
+  if ($parent instanceof NodeInterface) {
     $node_type = $parent->bundle();
     $paragraph_type = $paragraph->bundle();
     $suggestions[] = 'paragraph__node__' . $node_type . '__' . $paragraph_type;

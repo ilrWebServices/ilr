@@ -4,6 +4,8 @@
  * @file
  * Contains ilr.module.
  */
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\node\NodeForm;
 use Drupal\user\Entity\User;
 use Drupal\address\Plugin\Field\FieldWidget\AddressDefaultWidget;
@@ -1994,7 +1996,7 @@ function ilr_persona_display_name_alter(&$display_name, PersonaInterface $person
  * The sort dropdown is rendered in the view header template rather than the
  * exposed form, so we read sort_order from the URL and apply it directly.
  */
-function ilr_views_query_alter(\Drupal\views\ViewExecutable $view, \Drupal\views\Plugin\views\query\QueryPluginBase $query) {
+function ilr_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
   if ($view->id() === 'research_directory') {
     $sort_order = \Drupal::request()->query->get('sort_order', 'DESC');
     if (in_array($sort_order, ['ASC', 'DESC'], TRUE)) {

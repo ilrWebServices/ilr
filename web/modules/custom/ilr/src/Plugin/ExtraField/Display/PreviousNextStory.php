@@ -26,6 +26,18 @@ class PreviousNextStory extends ExtraFieldDisplayBase implements ContainerFactor
   use StringTranslationTrait;
 
   /**
+   * @var Drupal\Core\Entity\Sql\SqlContentEntityStorage
+   */
+  protected $collectionItemStorage;
+
+  /**
+   * The entity type bundle info service.
+   *
+   * @var \Drupal\path_alias_entities\PathAliasEntities
+   */
+  protected $pathAliasEntitiesManager;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {

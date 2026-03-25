@@ -20,8 +20,8 @@
       "type": "composer",
       "url": "https://packages.drupal.org/8",
       "exclude": [
-        "drupal/persistent_visitor_parameters",
-        "drupal/sftp_client"
+        "drupal/sftp_client",
+        "drupal/date_range_formatter"
       ]
     },
     {
@@ -46,15 +46,15 @@
     },
     {
       "type": "vcs",
-      "url": "https://github.com/ilrWebServices/persistent_visitor_parameters.git"
-    },
-    {
-      "type": "vcs",
       "url": "https://github.com/ilrWebServices/sftp_client.git"
     },
     {
       "type": "vcs",
       "url": "https://github.com/ilrWebServices/ilr-analytics-session.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/ilrWebServices/date_range_formatter.git"
     }
   ],
   "require": {
@@ -93,7 +93,7 @@
     "drupal/friendly_captcha_challenge": "^0.9.18",
     "drupal/friendlycaptcha": "^1",
     "drupal/google_tag": "^2.0",
-    "drupal/honeypot": "2.1.4",
+    "drupal/honeypot": "^2",
     "drupal/ilr_analytics_session": "dev-main",
     "drupal/ilr_outreach_discount_api": "^1",
     "drupal/ilr_outreach_order_submitter": "1.x-dev",
@@ -108,7 +108,7 @@
     "drupal/media_remote": "^1.8",
     "drupal/menu_item_extras": "^3.0",
     "drupal/metatag": "^2.0",
-    "drupal/migrate_file": "^2.0",
+    "drupal/migrate_file": "^3",
     "drupal/migrate_plus": "^6.0",
     "drupal/migrate_scheduler": "^1.0@RC",
     "drupal/migrate_source_csv": "^3.5",
@@ -118,17 +118,17 @@
     "drupal/paragraphs": "^1.9",
     "drupal/paragraphs_previewer": "^1.4",
     "drupal/pathauto": "^1.4",
-    "drupal/persistent_visitor_parameters": "^3",
+    "drupal/persistent_visitor_parameters": "^2",
     "drupal/prepopulate": "^2.2",
     "drupal/recreate_block_content": "^3.0",
     "drupal/redirect": "^1.4",
     "drupal/salesforce": "^5",
     "drupal/samlauth": "^3.0",
     "drupal/search_api": "^1.14",
-    "drupal/seven": "^1.0",
+    "drupal/seven": "^1.1",
     "drupal/sftp_client": "^2",
     "drupal/simple_gse_search": "^2.0",
-    "drupal/smart_read_more_link": "^2.0",
+    "drupal/smart_read_more_link": "2.0.x-dev@dev",
     "drupal/summary_word_limit": "^2.0",
     "drupal/svg_image_field": "^2.1",
     "drupal/token_filter": "^2.0",
@@ -137,7 +137,7 @@
     "drupal/union_organizer": "dev-master",
     "drupal/views_autocomplete_filters": "^2",
     "drupal/views_remote_data": "^1.0",
-    "drupal/webform": "^6",
+    "drupal/webform": "^6.3",
     "drush/drush": "^13",
     "firebase/php-jwt": "^6.0",
     "ilrwebservices/campaign-monitor-rest-api-client": "^1.0.0",
@@ -152,6 +152,7 @@
     "drupal/entity_clone": "^2.0",
     "drupal/stage_file_proxy": "^3",
     "drupal/twig_vardumper": "^3.0",
+    "drupal/upgrade_status": "^4.3",
     "palantirnet/drupal-rector": "^0.21",
     "phpcompatibility/php-compatibility": "dev-develop"
   },
@@ -230,6 +231,13 @@
       },
       "drupal/linkit": {
         "Issue #3436733: Linkit Link field: Double-encoded file links": "https://www.drupal.org/files/issues/2024-09-26/3436733-7-linkit_base_url_decode_fix.patch"
+      },
+      "drupal/upgrade_status": {
+        "Ignore `Unsafe usage of new static()` warnings": "./patches/upgrade_status_ignore_static.patch"
+      },
+      "drupal/persistent_visitor_parameters": {
+        "feat: #3579209 Allow cookie domain to be configured": "https://git.drupalcode.org/issue/persistent_visitor_parameters-3579209/-/commit/e19c7a40f4db84e81202dfecca57b7e03b205c51.patch",
+        "fix: #3581510 Revert changes to update hooks for 2.x": "https://git.drupalcode.org/project/persistent_visitor_parameters/-/merge_requests/23.diff"
       }
     },
     "installer-paths": {

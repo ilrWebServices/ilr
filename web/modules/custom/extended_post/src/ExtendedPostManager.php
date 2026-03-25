@@ -277,9 +277,6 @@ class ExtendedPostManager {
         'label' => 'Post content',
         'provider' => 'layout_builder',
         'label_display' => 0,
-        'context_mapping' => [
-          'entity' => 'layout_builder.entity',
-        ],
         'formatter' => [
           'label' => 'hidden',
           'type' => 'string',
@@ -297,9 +294,6 @@ class ExtendedPostManager {
         'label' => 'Published date',
         'provider' => 'layout_builder',
         'label_display' => 0,
-        'context_mapping' => [
-          'entity' => 'layout_builder.entity',
-        ],
         'formatter' => [
           'label' => 'hidden',
           'type' => 'datetime_default',
@@ -318,9 +312,6 @@ class ExtendedPostManager {
         'label' => 'Title',
         'provider' => 'layout_builder',
         'label_display' => 0,
-        'context_mapping' => [
-          'entity' => 'layout_builder.entity',
-        ],
         'formatter' => [
           'label' => 'hidden',
           'type' => 'string',
@@ -335,9 +326,6 @@ class ExtendedPostManager {
         'label' => 'Representative image',
         'provider' => 'layout_builder',
         'label_display' => 0,
-        'context_mapping' => [
-          'entity' => 'layout_builder.entity',
-        ],
         'formatter' => [
           'label' => 'hidden',
           'type' => 'media_thumbnail',

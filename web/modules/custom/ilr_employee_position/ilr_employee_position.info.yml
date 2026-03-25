@@ -2,7 +2,7 @@ name: 'ILR employee position'
 type: module
 description: 'Adds an ILR employee position entity for ILR employee persona types.'
 package: 'ILR'
-core_version_requirement: ^10
+core_version_requirement: ^10 || ^11
 dependencies:
   - drupal:field
   - ilr

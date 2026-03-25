@@ -1,0 +1,12 @@
+diff --git a/deprecation_testing_template.neon b/deprecation_testing_template.neon
+index 175b691..32c6ca2 100644
+--- a/deprecation_testing_template.neon
++++ b/deprecation_testing_template.neon
+@@ -12,6 +12,7 @@ parameters:
+ 		- '#Plugin definitions cannot be altered.#'
+ 		- '#Missing cache backend declaration for performance.#'
+ 		- '#Plugin manager has cache backend specified but does not declare cache tags.#'
++		- "#^Unsafe usage of new static#"
+ 	# FROM mglaman/drupal-check/phpstan/base_config.neon
+ 	reportUnmatchedIgnoredErrors: false
+ 	excludePaths:

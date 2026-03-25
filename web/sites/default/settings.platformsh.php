@@ -199,6 +199,6 @@ if ($platformsh->onProduction()) {
   // Ensure that campaign monitor sends new class notifications for real.
   $config['ilr_campaigns.settings']['campaign_send'] = TRUE;
 
-  // Load the production services file alongside this settings file.
-  $settings['container_yamls'][] = __DIR__ . '/production.services.yml';
+  // Override the persistent_visitor_parameter cookie domain.
+  $config['persistent_visitor_parameters.settings']['persistor_domain'] = '.ilr.cornell.edu';
 }
