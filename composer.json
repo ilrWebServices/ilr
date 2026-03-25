@@ -236,7 +236,8 @@
         "Ignore `Unsafe usage of new static()` warnings": "./patches/upgrade_status_ignore_static.patch"
       },
       "drupal/persistent_visitor_parameters": {
-        "feat: #3579209 Allow cookie domain to be configured": "https://git.drupalcode.org/issue/persistent_visitor_parameters-3579209/-/commit/e19c7a40f4db84e81202dfecca57b7e03b205c51.patch"
+        "feat: #3579209 Allow cookie domain to be configured": "https://git.drupalcode.org/issue/persistent_visitor_parameters-3579209/-/commit/e19c7a40f4db84e81202dfecca57b7e03b205c51.patch",
+        "fix: #3581510 Revert changes to update hooks for 2.x": "https://git.drupalcode.org/project/persistent_visitor_parameters/-/merge_requests/23.diff"
       }
     },
     "installer-paths": {
