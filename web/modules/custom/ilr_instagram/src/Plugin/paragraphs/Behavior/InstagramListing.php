@@ -137,7 +137,7 @@ class InstagramListing extends ParagraphsBehaviorBase {
       $post_item['#children']['image'] = [
         '#theme' => 'imagecache_external__instagram_post',
         '#uri' => $post['url'],
-        '#style_name' => 'thumbnail',
+        '#style_name' => 'medium_preserve_aspect',
         '#alt' => 'Instagram image for post at ' . $post['link'],
       ];
 
