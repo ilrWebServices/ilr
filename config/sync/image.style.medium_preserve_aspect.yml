@@ -3,13 +3,13 @@ langcode: en
 status: true
 dependencies: {  }
 name: medium_preserve_aspect
-label: 'Medium preserve aspect ratio (400x400 max)'
+label: 'Medium preserve aspect ratio (800x800 max)'
 effects:
   b078e2e2-c3d8-4da8-bc0d-d1b8da9378a2:
     uuid: b078e2e2-c3d8-4da8-bc0d-d1b8da9378a2
     id: image_scale
     weight: 2
     data:
-      width: 1200
-      height: 1200
+      width: 800
+      height: 800
       upscale: false
