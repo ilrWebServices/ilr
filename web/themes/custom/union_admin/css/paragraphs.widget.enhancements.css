@@ -44,3 +44,7 @@ tr.draggable:has(> td > div > .form-wrapper > .paragraph-top .summary-plugin .sc
 tr.draggable:has(> td > div > .form-wrapper > .paragraph-top .summary-plugin .scheduled--future) {
   background-color: rgba(255, 250, 230);
 }
+
+.paragraphs-tabs-wrapper .paragraphs-tabs.tabs {
+  display: none;
+}
