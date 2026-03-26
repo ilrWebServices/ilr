@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1e57cd7bbc47713f72b81cff753ebe0b",
+    "content-hash": "c7bb596557003528de914ad5b7cb7f67",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1892,7 +1892,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/collection.git",
-                "reference": "f9f3b68132b199d132a55e6ca5b22f90f838ab2a"
+                "reference": "914da169a8a295bd6392e3ff6e2df3bde4451a3f"
             },
             "require": {
                 "drupal/core": "^9.4 || ^10 || ^11",
@@ -1910,8 +1910,8 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "3.0.1+6-dev",
-                    "datestamp": "1774453763",
+                    "version": "3.1.0+1-dev",
+                    "datestamp": "1774537240",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -1930,10 +1930,6 @@
                 {
                     "name": "jeffam",
                     "homepage": "https://www.drupal.org/user/397127"
-                },
-                {
-                    "name": "xen",
-                    "homepage": "https://www.drupal.org/user/91385"
                 }
             ],
             "description": "Allows collections of content and configuration entities",
