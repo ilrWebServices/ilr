@@ -18,3 +18,16 @@ function ilr_update_last_removed() {
 function ilr_update_100101() {
   \Drupal::service('module_installer')->install(['config_ignore_pattern'], TRUE);
 }
+
+/**
+ * Fix mismatched entity and/or field definitions errors.
+ */
+function ilr_update_100601() {
+  $definition_manager = \Drupal::entityDefinitionUpdateManager();
+  $change_summary = $definition_manager->getChangeSummary();
+
+  foreach ($change_summary as $entity_type_id => $changes) {
+    $entity_type = \Drupal::entityTypeManager()->getDefinition($entity_type_id);
+    $definition_manager->installEntityType($entity_type);
+  }
+}
