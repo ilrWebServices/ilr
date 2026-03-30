@@ -1,0 +1,19 @@
+uuid: 84261a1d-c727-4393-b128-d6ed05d5a15a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.tout
+id: paragraph.tout.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: tout
+label: Heading
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

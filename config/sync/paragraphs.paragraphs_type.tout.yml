@@ -1,0 +1,25 @@
+uuid: 7d35fe6b-d99d-463c-a620-0efb1450a821
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: tout
+label: Tout
+icon_uuid: null
+icon_default: null
+description: '<em>Touts</em> are used for promoting content like recent books, articles or appearances.'
+behavior_plugins:
+  ilr_color:
+    enabled: true
+    color_schemes:
+      none: none
+      light: light
+      dark: dark
+      vibrant: 0
+    color_scheme_default: none
+    allow_framed_media: 0
+  layout_settings:
+    enabled: true
+  scheduled_visibility:
+    enabled: true
