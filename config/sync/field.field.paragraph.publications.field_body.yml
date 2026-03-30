@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_body
+    - filter.format.embedded_content
     - filter.format.simple_formatting
     - paragraphs.paragraphs_type.publications
   module:
@@ -20,5 +21,6 @@ default_value: {  }
 default_value_callback: ''
 settings:
   allowed_formats:
+    - embedded_content
     - simple_formatting
 field_type: text_long

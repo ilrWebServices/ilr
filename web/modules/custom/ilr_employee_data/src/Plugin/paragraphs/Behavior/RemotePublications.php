@@ -12,6 +12,7 @@ use Drupal\paragraphs\ParagraphsBehaviorBase;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\ilr_employee_data\RemoteDataHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Spatie\SchemaOrg\BaseType;
 
 /**
  * Provides a Remote Publications plugin.

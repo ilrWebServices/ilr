@@ -1,0 +1,32 @@
+uuid: 4ffab422-360b-4d0f-80f0-dbba7089f8b0
+langcode: en
+status: true
+dependencies:
+  module:
+    - embedded_content
+    - ilr
+name: 'Embedded content'
+format: embedded_content
+weight: 0
+filters:
+  embedded_content:
+    id: embedded_content
+    provider: embedded_content
+    status: true
+    weight: 100
+    settings: {  }
+  filter_cu_heading:
+    id: filter_cu_heading
+    provider: ilr
+    status: true
+    weight: 0
+    settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<br> <p> <h2> <h3> <strong> <em> <embedded-content data-plugin-config data-plugin-id data-button-id> <embedded-content-inline data-plugin-config data-plugin-id data-button-id>'
+      filter_html_help: true
+      filter_html_nofollow: false
