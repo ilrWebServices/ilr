@@ -1135,6 +1135,27 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
       $form['field_editors']['#group'] = 'meta';
     }
 
+    $form['persona_meta'] = [
+      '#type' => 'details',
+      '#title' => t('Additional info'),
+      '#group' => 'advanced',
+      '#weight' => -10,
+      '#optional' => TRUE,
+      '#open' => TRUE,
+    ];
+
+    if (isset($form['field_fax'])) {
+      $form['field_fax']['#group'] = 'persona_meta';
+    }
+
+    if (isset($form['field_cv'])) {
+      $form['field_cv']['#group'] = 'persona_meta';
+    }
+
+    if (isset($form['field_websites'])) {
+      $form['field_websites']['#group'] = 'persona_meta';
+    }
+
     $form['inherited']['#group'] = 'advanced';
     $form['inherited']['#weight'] = -9;
 
