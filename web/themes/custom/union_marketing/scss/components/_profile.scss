@@ -23,6 +23,7 @@
   .profile__banner {
     display: grid;
     grid-template-columns: 1fr;
+    align-items: start;
     column-gap: var(--cu-ps1);
 
     @include breakpoint(md) {
