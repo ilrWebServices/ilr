@@ -2029,3 +2029,30 @@ function ilr_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
     }
   }
 }
+
+/**
+ * Implements hook_oembed_providers_alter().
+ */
+function ilr_media_source_info_alter(array &$sources) {
+  // $providers[] = [
+  //   'provider_name' => 'Cornell Video on Demand (Kaltura)',
+  //   'provider_url' => 'https://vod.video.cornell.edu/',
+  //   'endpoints' => [
+  //     [
+  //       'schemes' => [
+  //         'https://vod.video.cornell.edu/id/*',
+  //       ],
+  //       'url' => 'https://vod.video.cornell.edu/oembed',
+  //       'discovery' => 'true',
+  //     ],
+  //   ],
+  // ];
+  $sources['oembed:video']['providers'][] = 'Namchey';
+  dump($sources);
+}
+
+// function mymodule_media_source_info_alter(array &$sources) {
+//   // Allow specific providers for the 'oembed:video' source.
+//   // Provider names must match those in https://oembed.com/providers.json
+//   $sources['oembed:video']['providers'][] = 'NewProviderName';
+// }
