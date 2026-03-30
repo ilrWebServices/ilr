@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c7bb596557003528de914ad5b7cb7f67",
+    "content-hash": "80e9c34c7814237d56eeafd18973bf50",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -876,12 +876,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union.git",
-                "reference": "26bfbd23e472f1a7819088cd483dc795cc257b42"
+                "reference": "8953990007513ea38907a5035b60490f3cfdabc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/26bfbd23e472f1a7819088cd483dc795cc257b42",
-                "reference": "26bfbd23e472f1a7819088cd483dc795cc257b42",
+                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/8953990007513ea38907a5035b60490f3cfdabc1",
+                "reference": "8953990007513ea38907a5035b60490f3cfdabc1",
                 "shasum": ""
             },
             "require": {
@@ -915,7 +915,7 @@
                 "source": "https://github.com/ilrWebServices/union/tree/master",
                 "issues": "https://github.com/ilrWebServices/union/issues"
             },
-            "time": "2026-03-18T16:47:29+00:00"
+            "time": "2026-03-30T20:36:22+00:00"
         },
         {
             "name": "cweagans/composer-patches",
