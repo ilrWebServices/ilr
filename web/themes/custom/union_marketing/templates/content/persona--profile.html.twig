@@ -49,15 +49,17 @@
     {{ drupal_block('system_breadcrumb_block') }}
 
     <div class="profile__banner">
-      <h1 class="cu-heading">{{ label }}</h1>
-      <div class="profile__eyebrow">{% trans %}<span>People/</span>{% endtrans %}<span class="employee-role">{{ employee_role }}</span></div>
-      {% if persona.bundle() == 'visiting_fellow' %}
-        {{ content.field_place_of_origin }}
-        {{ content.field_visiting_period }}
-        {{ content.field_faculty_sponsor_text }}
-      {% else %}
-        {{ content.extra_field_ilr_employee_positions }}
-      {% endif %}
+      <div class="profile__banner-content">
+        <h1 class="cu-heading">{{ label }}</h1>
+        <div class="profile__eyebrow">{% trans %}<span>People/</span>{% endtrans %}<span class="employee-role">{{ employee_role }}</span></div>
+        {% if persona.bundle() == 'visiting_fellow' %}
+          {{ content.field_place_of_origin }}
+          {{ content.field_visiting_period }}
+          {{ content.field_faculty_sponsor_text }}
+        {% else %}
+          {{ content.extra_field_ilr_employee_positions }}
+        {% endif %}
+      </div>
       <div class="profile__secondary">
       {% if has_photo %}
         {{ persona.field_photo|view({type: 'media_thumbnail', label: 'hidden', settings: {image_style: 'medium_3_2'}}) }}

@@ -3,9 +3,9 @@
   row-gap: var(--cu-vr3);
 
   @include breakpoint(md) {
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2.24fr 1fr;
     grid-template-rows: repeat(3, auto);
-    column-gap: var(--cu-ps4);
+    column-gap: 232px;
   }
 
   .profile__header,
@@ -15,47 +15,50 @@
 
   .profile__footer {
     @include breakpoint(md) {
-      padding-left: var(--cu-ps4);
-      padding-right: var(--cu-ps4);
+      padding-left: 116px;
+      padding-right: 116px;
     }
   }
 
   .profile__banner {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto auto;
-    column-gap: var(--cu-ps4);
-    padding: 0 0 0 var(--cu-ps2);
-
-    background:
-     linear-gradient($black 0 0) top left / var(--cu-ps1) 16px,
-     linear-gradient($black 0 0) left / 16px 100%,
-     linear-gradient($black 0 0) bottom left / var(--cu-ps5) 16px, transparent;
-    background-repeat: no-repeat;
+    column-gap: var(--cu-ps1);
 
     @include breakpoint(md) {
-      grid-template-columns: 1fr 1.125fr;
-      grid-template-rows: auto 1fr auto 75px;
-      padding: 0 0 0 var(--cu-ps4);
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .profile__banner-content {
+      display: flex;
+      flex-direction: column;
+      padding: 0 0 var(--cu-vr2) var(--cu-ps2);
       background:
-       linear-gradient($black 0 0) top left / var(--cu-ps3) 16px,
-       linear-gradient($black 0 0) left / 16px 100%,
-       linear-gradient($black 0 0) bottom left / var(--cu-ps5) 16px, transparent;
-      background-repeat: no-repeat;
+        linear-gradient($black 0 0) top left / var(--cu-ps1) 16px,
+        linear-gradient($black 0 0) left / 16px 100%,
+        linear-gradient($black 0 0) bottom left / var(--cu-ps5) 16px, transparent;
+        background-repeat: no-repeat;
+
+      @include breakpoint(md) {
+        padding: 0 0 calc(var(--cu-vr2) + 16px) 116px;
+        background:
+          linear-gradient($black 0 0) top left / var(--cu-ps3) 16px,
+          linear-gradient($black 0 0) left / 16px 100%,
+          linear-gradient($black 0 0) bottom left / var(--cu-ps5) 16px, transparent;
+          background-repeat: no-repeat;
+      }
     }
 
     .profile__secondary {
-      margin: var(--cu-vr1) 0 var(--cu-vr2) 0;
+      margin: var(--cu-vr1) 0 0 0;
 
       @include breakpoint(md) {
-        grid-row: 1/-1;
-        grid-column: 2;
         margin: unset;
       }
     }
 
     .profile__eyebrow {
-      grid-row: 1;
+      order: -1;
       text-transform: uppercase;
       opacity: 0.7;
       font-size: var(--cu-ms-4);
@@ -72,19 +75,29 @@
       --cu-font-family: 'futura-pt';
       text-transform: uppercase;
       line-height: 1;
+      margin-bottom: var(--cu-vr1);
 
       @include breakpoint(md) {
         --cu-font-size: var(--cu-ms10);
+        margin-bottom: var(--cu-vr2);
       }
     }
 
     .profile-positions {
       display: flex;
       flex-direction: column;
-      gap: var(--cu-vr-1);
+      gap: var(--cu-vr0);
+
+      @include breakpoint(md) {
+        gap: var(--cu-vr1);
+      }
     }
 
     .ilr-employee-position {
+      display: flex;
+      flex-direction: column;
+      gap: var(--cu-vr-3);
+
       .field--title {
         --cu-font-weight: 400;
         --cu-line-height: 1.25;
@@ -103,7 +116,7 @@
     @include breakpoint(md) {
       grid-column: 1;
       grid-row: 2;
-      padding-left: var(--cu-ps4);
+      padding-left: 116px;
     }
 
     // This is the spacing between items in the main content column.
@@ -137,7 +150,6 @@
 
     @include breakpoint(md) {
       grid-column: 2;
-      padding-right: var(--cu-ps4);
       margin-bottom: unset;
     }
   }
