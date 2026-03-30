@@ -7,7 +7,7 @@ dependencies:
     - field.field.paragraph.tout.field_heading
     - field.field.paragraph.tout.field_link
     - field.field.paragraph.tout.field_media
-    - image.style.small_preserve_aspect
+    - image.style.medium_preserve_aspect
     - paragraphs.paragraphs_type.tout
   module:
     - link
@@ -50,7 +50,7 @@ content:
     label: hidden
     settings:
       image_link: ''
-      image_style: small_preserve_aspect
+      image_style: medium_preserve_aspect
       image_loading:
         attribute: lazy
     third_party_settings: {  }
