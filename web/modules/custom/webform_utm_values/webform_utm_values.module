@@ -9,7 +9,7 @@ use Drupal\webform_utm_values\Plugin\WebformElement\UtmValues;
 function webform_utm_values_webform_submission_presave(EntityInterface $entity) {
   /** @var \Drupal\webform\Entity\WebformSubmission $entity */
 
-  $pvps = \Drupal::service('persistent_visitor_parameters.cookie_manager')->getCookie();
+  $pvps = \Drupal::service('persistent_visitor_parameters.persistor_cookie')->load();
 
   if (empty($pvps)) {
     return;
