@@ -360,3 +360,24 @@ function ilr_deploy_assign_employee_role(&$sandbox) {
     }
   }
 }
+
+/**
+ * Transform rich text paragraphs to use standard formatting.
+ */
+function ilr_deploy_remove_simplecolumns() {
+  $simple_column_pids = \Drupal::entityQuery('paragraph')
+    ->accessCheck(FALSE)
+    // ->condition('type', ['rich_text', 'text_with_media'], 'IN')
+    ->condition('field_body', 'simple-columns', 'CONTAINS')
+    ->execute();
+
+  // Transform all simple column paragraphs.
+  $simple_column_paragraphs = \Drupal::entityTypeManager()->getStorage('paragraph')->loadMultiple($simple_column_pids);
+
+  /** @var \Drupal\paragraphs\ParagraphInterface $simple_column_paragraph */
+  foreach ($simple_column_paragraphs as $simple_column_paragraph) {
+    $simple_column_paragraph->field_body->format = 'standard_formatting';
+    $simple_column_paragraph->setBehaviorSettings('column_settings', ['columns' => '2']);
+    $simple_column_paragraph->save();
+  }
+}
