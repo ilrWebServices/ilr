@@ -379,3 +379,132 @@ function ilr_deploy_remove_simplecolumns() {
     $simple_column_paragraph->save();
   }
 }
+
+/**
+ * Transform textformats for all collections.
+ */
+function ilr_deploy_transform_ckeditor4_collections() {
+  $type = 'collection';
+  $field_name = 'body';
+  $storage = \Drupal::entityTypeManager()->getStorage($type);
+
+  $query = $storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition($field_name . '.format', ['basic_formatting','basic_formatting_with_media'], 'IN');
+  $entity_ids = $query->execute();
+
+  foreach ($storage->loadMultiple($entity_ids) as $entity) {
+    $new_format = ($entity->$field_name->format === 'basic_formatting')
+      ? 'simple_formatting'
+      : 'standard_formatting';
+    $entity->$field_name->format = $new_format;
+    $entity->save();
+  }
+
+  return t('Processed @total collections.', ['@total' => count($entity_ids)]);
+}
+
+/**
+ * Transform textformats for all nodes.
+ */
+function ilr_deploy_transform_ckeditor4_nodes(array &$sandbox) {
+  $type = 'node';
+  $field_name = 'body';
+  $batch_size = 50;
+  $storage = \Drupal::entityTypeManager()->getStorage($type);
+
+  if (!isset($sandbox['total'])) {
+    $query = $storage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition($field_name . '.format', ['basic_formatting','basic_formatting_with_media'], 'IN');
+
+    $entity_ids = $query->execute();
+    $sandbox['total'] = count($entity_ids);
+    $sandbox['ids'] = array_values($entity_ids);
+    $sandbox['current'] = 0;
+  }
+
+  $to_process = array_slice($sandbox['ids'], $sandbox['current'], $batch_size);
+
+  foreach ($storage->loadMultiple($to_process) as $entity) {
+    $new_format = ($entity->$field_name->format === 'basic_formatting')
+      ? 'simple_formatting'
+      : 'standard_formatting';
+    $entity->$field_name->format = $new_format;
+    $entity->save();
+    $sandbox['current']++;
+  }
+
+  $sandbox['#finished'] = ($sandbox['total'] > 0) ? ($sandbox['current'] / $sandbox['total']) : 1;
+  return t('Processed @current of @total nodes.', ['@current' => $sandbox['current'], '@total' => $sandbox['total']]);
+}
+
+/**
+ * Transform textformats for all paragraph items.
+ */
+function ilr_deploy_transform_ckeditor4_paragraphs(array &$sandbox) {
+  $type = 'paragraph';
+  $field_name = 'field_body';
+  $batch_size = 100;
+  $storage = \Drupal::entityTypeManager()->getStorage($type);
+
+  if (!isset($sandbox['total'])) {
+    $query = $storage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition($field_name . '.format', ['basic_formatting','basic_formatting_with_media'], 'IN');
+
+    $entity_ids = $query->execute();
+    $sandbox['total'] = count($entity_ids);
+    $sandbox['ids'] = array_values($entity_ids);
+    $sandbox['current'] = 0;
+  }
+
+  $to_process = array_slice($sandbox['ids'], $sandbox['current'], $batch_size);
+
+  foreach ($storage->loadMultiple($to_process) as $entity) {
+    $new_format = ($entity->$field_name->format === 'basic_formatting')
+      ? 'simple_formatting'
+      : 'standard_formatting';
+    $entity->$field_name->format = $new_format;
+    $entity->save();
+    $sandbox['current']++;
+  }
+
+  $sandbox['#finished'] = ($sandbox['total'] > 0) ? ($sandbox['current'] / $sandbox['total']) : 1;
+  return t('Processed @current of @total paragraph items.', ['@current' => $sandbox['current'], '@total' => $sandbox['total']]);
+}
+
+/**
+ * Transform textformats for all terms.
+ */
+function ilr_deploy_transform_ckeditor4_terms(array &$sandbox) {
+  $type = 'taxonomy_term';
+  $field_name = 'field_body';
+  $batch_size = 100;
+  $storage = \Drupal::entityTypeManager()->getStorage($type);
+
+  if (!isset($sandbox['total'])) {
+    $query = $storage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition($field_name . '.format', ['basic_formatting','basic_formatting_with_media'], 'IN');
+
+    $entity_ids = $query->execute();
+    $sandbox['total'] = count($entity_ids);
+    $sandbox['ids'] = array_values($entity_ids);
+    $sandbox['current'] = 0;
+  }
+
+  $to_process = array_slice($sandbox['ids'], $sandbox['current'], $batch_size);
+
+  foreach ($storage->loadMultiple($to_process) as $entity) {
+    $new_format = ($entity->$field_name->format === 'basic_formatting')
+      ? 'simple_formatting'
+      : 'standard_formatting';
+    $entity->$field_name->format = $new_format;
+    $entity->save();
+    $sandbox['current']++;
+  }
+
+  $sandbox['#finished'] = ($sandbox['total'] > 0) ? ($sandbox['current'] / $sandbox['total']) : 1;
+  return t('Processed @current of @total terms.', ['@current' => $sandbox['current'], '@total' => $sandbox['total']]);
+}
