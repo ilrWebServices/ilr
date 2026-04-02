@@ -1,0 +1,18 @@
+uuid: 6370d85f-3da9-4778-a049-a7f2aaba29bf
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_entity_embed
+_core:
+  default_config_hash: 3jVoYpSR2ShbuMqe5rN-xMHdwMItu9lWs0t-PPK2bcc
+label: Aside
+id: paragraphs
+type_id: paragraphs_entity_embed
+type_settings:
+  enable_paragraph_type_filter: true
+  paragraphs_type_filter:
+    rich_text: rich_text
+  paragraphs_add_mode: button
+icon: {  }
+icon_uuid: null
