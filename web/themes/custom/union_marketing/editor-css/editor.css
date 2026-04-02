@@ -27,6 +27,17 @@ img {
   margin-left: 1em;
 }
 
+aside.align-right {
+  background: #efefef;
+  padding: 1em;
+}
+
+aside.align-right::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 ol.accentuated li::marker {
   color: #B1313B;
   font-weight: bold;

@@ -69,7 +69,8 @@
 }
 
 /*----------  Sidebars  ----------*/
-.cu-component--rich-text .sidebar {
+.cu-component--rich-text .sidebar,
+.cu-component--rich-text aside {
   font-size: var(--cu-ms-1);
   border: 1px solid #ddd;
   padding: var(--cu-vr1) var(--cu-ps1);
@@ -96,10 +97,15 @@
   :first-child {
     margin-top: 0;
   }
+
+  .cu-component {
+    margin-bottom: unset;
+  }
 }
 
 @include breakpoint(md) {
-  .cu-component--rich-text .sidebar {
+  .cu-component--rich-text .sidebar,
+  .cu-component--rich-text aside  {
     width: 50%;
     float: right;
     margin-top: .5em;
@@ -109,6 +115,16 @@
     .article--postalicious & {
       width: 70%;
       margin-right: -50%;
+    }
+  }
+
+  .cu-component--rich-text aside.align-left {
+    float: left;
+    margin-right: var(--cu-ps1);
+
+    .article--postalicious & {
+      width: 70%;
+      margin-left: -50%;
     }
   }
 }
