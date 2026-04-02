@@ -1497,6 +1497,23 @@ function ilr_field_widget_single_element_paragraphs_form_alter(&$element, FormSt
 }
 
 /**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function ilr_form_embedded_paragraphs_paragraphs_entity_embed_form_alter(&$form, FormStateInterface $form_state) {
+  // Hide the behavior plugins.
+  $form['paragraph']['widget'][0]['behavior_plugins']['#access'] = FALSE;
+
+  // Only allow new paragraphs (no re-use).
+  $form['existing_or_new']['#access'] = FALSE;
+  $form['existing']['#access'] = FALSE;
+
+  // Remove alignment.
+  // @TODO - revisit this decision.
+  $form['attributes']['data-align']['#default_value'] = 'right';
+  $form['attributes']['data-align']['#access'] = FALSE;
+}
+
+/**
  * Implements hook_field_widget_single_element_WIDGET_TYPE_form_alter().
  */
 function ilr_field_widget_single_element_paragraphs_previewer_form_alter(&$element, FormStateInterface &$form_state, $context) {
