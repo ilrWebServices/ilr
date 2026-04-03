@@ -36,7 +36,7 @@ class Aside extends EmbeddedContentPluginBase implements EmbeddedContentInterfac
     $form['content'] = [
       '#type' => 'text_format',
       '#title' => $this->t('Aside content'),
-      '#format' => 'simple_formatting',
+      '#format' => $this->configuration['content']['format'] ?? 'simple_formatting',
       '#default_value' => $this->configuration['content']['value'],
       '#required' => TRUE,
     ];
