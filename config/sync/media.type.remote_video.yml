@@ -1,7 +1,12 @@
 uuid: 527e0e83-3788-435d-ba57-96f6b39db898
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - crop
+third_party_settings:
+  crop:
+    image_field: null
 id: remote_video
 label: 'Remote video'
 description: 'A remotely hosted video from YouTube or Vimeo.'
@@ -14,5 +19,6 @@ source_configuration:
   providers:
     - YouTube
     - Vimeo
+    - 'Video on Demand'
 field_map:
   title: name
