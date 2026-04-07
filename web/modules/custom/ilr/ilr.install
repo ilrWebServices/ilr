@@ -31,3 +31,12 @@ function ilr_update_100601() {
     $definition_manager->installEntityType($entity_type);
   }
 }
+
+/**
+ * Remove the cached oembed providers list.
+ */
+function ilr_update_100602() {
+  // The data from providers.json is stored for a week. It is deleted here to
+  // ensure that our replacement version is used right away.
+  \Drupal::keyValue('media')->delete('oembed_providers');
+}
