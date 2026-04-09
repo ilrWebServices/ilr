@@ -69,8 +69,11 @@
 }
 
 /*----------  Sidebars  ----------*/
+.cu-component--rich-text blockquote.aside,
 .cu-component--rich-text .sidebar {
   font-size: var(--cu-ms-1);
+  font-family: revert;
+  font-weight: revert;
   border: 1px solid #ddd;
   padding: var(--cu-vr1) var(--cu-ps1);
   margin-top: var(--cu-vr1);
@@ -99,6 +102,7 @@
 }
 
 @include breakpoint(md) {
+  .cu-component--rich-text blockquote.aside,
   .cu-component--rich-text .sidebar {
     width: 50%;
     float: right;
