@@ -1,0 +1,14 @@
+uuid: 97466c4f-dd1a-4160-8c6e-a2c1ef857067
+langcode: en
+status: true
+dependencies:
+  config:
+    - key.key.test
+    - webform.webform.yti_newsletter
+id: yti_newsletter_remote_post_auth
+label: 'YTI Newsletter Remote Post Auth'
+config_type: webform
+config_prefix: webform.webform
+config_name: yti_newsletter
+config_item: handlers.yti_newsletter_webhook.settings.custom_options
+key_id: test
