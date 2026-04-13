@@ -13,9 +13,33 @@ title: 'YTI Newsletter'
 description: '<p>This one is special: It sends info to a custom webhook rather than a touchpoint.&nbsp;</p>'
 categories: {  }
 elements: |-
-  email:
-    '#type': email
-    '#title': Email
+  content_container:
+    '#type': container
+    '#attributes':
+      class:
+        - form-title
+    '#markup': |-
+      <h2 class="cu-heading">
+        YTI Monthly Newsletter
+      </h2>
+      <p>Bringing you disability-related research, policy, events, training, consultation, and more.</p>
+  element_container:
+    '#type': container
+    '#attributes':
+      class:
+        - form-fields
+    email:
+      '#type': email
+      '#title': Email
+    actions:
+      '#type': webform_actions
+      '#title': 'Submit button(s)'
+      '#update__label': Subscribe
+  ga_client_id:
+    '#type': hidden
+    '#title': 'GA client id'
+    '#attributes':
+      id: ga_client_id
 css: ''
 javascript: ''
 settings:
@@ -28,7 +52,7 @@ settings:
   page_submit_path: ''
   page_confirm_path: ''
   page_theme_name: ''
-  form_title: both
+  form_title: source_entity_webform
   form_submit_once: false
   form_open_message: ''
   form_close_message: ''
@@ -58,7 +82,10 @@ settings:
   form_access_denied_attributes: {  }
   form_file_limit: ''
   form_file_limit_message: ''
-  form_attributes: {  }
+  form_attributes:
+    class:
+      - ilr-webform-duo
+      - webform--with-content
   form_method: ''
   form_action: ''
   share: false
