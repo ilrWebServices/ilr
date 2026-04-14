@@ -6,6 +6,13 @@ dependencies:
     - block_content.type.component
     - block_content.type.media
     - block_content.type.simple_text
+    - core.entity_view_display.collection.blog.default
+    - core.entity_view_display.collection.content_section.default
+    - core.entity_view_display.collection.subsite.default
+    - core.entity_view_display.collection.subsite_blog.default
+    - core.entity_view_display.node.course.default
+    - core.entity_view_display.node.event_landing_page.default
+    - core.entity_view_display.node.page.default
     - entity_browser.browser.persona_browser
     - filter.format.full_html
   module:
@@ -17,6 +24,7 @@ dependencies:
     - file
     - filter
     - ilr
+    - layout_builder
     - media
     - node
     - paragraphs
@@ -56,6 +64,13 @@ permissions:
   - 'administer taxonomy'
   - 'administer users in collections'
   - 'bypass node access'
+  - 'configure editable blog collection layout overrides'
+  - 'configure editable content_section collection layout overrides'
+  - 'configure editable course node layout overrides'
+  - 'configure editable event_landing_page node layout overrides'
+  - 'configure editable page node layout overrides'
+  - 'configure editable subsite collection layout overrides'
+  - 'configure editable subsite_blog collection layout overrides'
   - 'create media'
   - 'create url aliases'
   - 'delete any media'
