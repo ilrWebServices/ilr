@@ -508,3 +508,23 @@ function ilr_deploy_transform_ckeditor4_terms(array &$sandbox) {
   $sandbox['#finished'] = ($sandbox['total'] > 0) ? ($sandbox['current'] / $sandbox['total']) : 1;
   return t('Processed @current of @total terms.', ['@current' => $sandbox['current'], '@total' => $sandbox['total']]);
 }
+
+/**
+ * Swap all ckEditor4 asides for the new ckEditor5 version.
+ */
+function ilr_deploy_replace_ckeditor4_asides(&$sandbox) {
+  $aside_pids = \Drupal::entityQuery('paragraph')
+    ->accessCheck(FALSE)
+    ->condition('field_body', '<aside class="sidebar"', 'CONTAINS')
+    ->execute();
+
+  $aside_paragraphs = \Drupal::entityTypeManager()->getStorage('paragraph')->loadMultiple($aside_pids);
+  $pattern = '/(<aside class="sidebar">)([\s\S]*?)(<\/aside>)/i';
+
+  foreach ($aside_paragraphs as $aside_paragraph) {
+    $replacement = '<blockquote class="aside">$2</blockquote>';
+    $result = preg_replace($pattern, $replacement, $aside_paragraph->field_body->value);
+    $aside_paragraph->field_body->value = $result;
+    $aside_paragraph->save();
+  }
+}
