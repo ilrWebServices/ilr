@@ -209,7 +209,9 @@ function union_marketing_preprocess_media_oembed_iframe(&$variables) {
 
     // Add an inline border style, since we just removed the frameborder.
     if ($iframe->hasAttribute('style')) {
-      $iframe->setAttribute('style', $iframe->getAttribute('style') . ' border: 0;');
+      // Remove width and height attributes from the iframe. See
+      // https://regex101.com/r/4DwtmT/1
+      $iframe->setAttribute('style', preg_replace('/(width|height):\s+\d+px;?/', '', $iframe->getAttribute('style')) . ' border: 0;');
     }
     else {
       $iframe->setAttribute('style', 'border: 0;');

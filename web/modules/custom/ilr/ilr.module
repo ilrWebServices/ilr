@@ -2029,3 +2029,10 @@ function ilr_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
     }
   }
 }
+
+/**
+ * Implements hook_media_source_info_alter().
+ */
+function ilr_media_source_info_alter(array &$sources) {
+  $sources['oembed:video']['providers'][] = 'Video on Demand';
+}
