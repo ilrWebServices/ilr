@@ -1,6 +1,6 @@
 uuid: 1fcaf704-682d-4b07-939e-93f3c83d1287
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.media.embedded
@@ -45,10 +45,6 @@ filters:
     status: true
     weight: -48
     settings: {  }
-  filter_footnotes:
-    settings:
-      footnotes_footer_disable: false
-      footnotes_dialog: false
   filter_html:
     id: filter_html
     provider: filter

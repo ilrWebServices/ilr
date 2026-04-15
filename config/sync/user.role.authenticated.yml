@@ -3,8 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - filter.format.basic_formatting
-    - filter.format.basic_formatting_with_media
     - filter.format.footnote
     - filter.format.inline_svg
     - filter.format.simple_formatting
@@ -36,8 +34,6 @@ permissions:
   - 'create image media'
   - 'delete own files'
   - 'edit behavior plugin settings'
-  - 'use text format basic_formatting'
-  - 'use text format basic_formatting_with_media'
   - 'use text format footnote'
   - 'use text format inline_svg'
   - 'use text format simple_formatting'
