@@ -4,6 +4,9 @@ status: true
 dependencies:
   config:
     - field.storage.persona.field_bio
+    - filter.format.full_html
+    - filter.format.simple_formatting
+    - filter.format.standard_formatting
     - person.persona_type.staff
   module:
     - text
@@ -20,5 +23,8 @@ default_value_callback: ''
 settings:
   display_summary: true
   required_summary: false
-  allowed_formats: {  }
+  allowed_formats:
+    - full_html
+    - simple_formatting
+    - standard_formatting
 field_type: text_with_summary

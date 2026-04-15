@@ -5,6 +5,8 @@ dependencies:
   config:
     - block_content.type.simple_text
     - field.storage.block_content.body
+    - filter.format.simple_formatting
+    - filter.format.standard_formatting
   module:
     - text
 id: block_content.simple_text.body
@@ -20,4 +22,7 @@ default_value_callback: ''
 settings:
   display_summary: false
   required_summary: false
+  allowed_formats:
+    - standard_formatting
+    - simple_formatting
 field_type: text_with_summary

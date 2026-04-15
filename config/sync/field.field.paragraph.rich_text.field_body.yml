@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_body
-    - filter.format.basic_formatting_with_media
+    - filter.format.standard_formatting
     - filter.format.full_html
     - paragraphs.paragraphs_type.rich_text
   module:
@@ -22,6 +22,5 @@ default_value_callback: ''
 settings:
   allowed_formats:
     - standard_formatting
-    - basic_formatting_with_media
     - full_html
 field_type: text_long

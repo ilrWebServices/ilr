@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
-    - filter.format.basic_formatting_with_media
     - filter.format.standard_formatting
     - node.type.landing_page
   module:
@@ -24,5 +23,4 @@ settings:
   required_summary: true
   allowed_formats:
     - standard_formatting
-    - basic_formatting_with_media
 field_type: text_with_summary

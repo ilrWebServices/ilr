@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_body
+    - filter.format.simple_formatting
+    - filter.format.standard_formatting
     - paragraphs.paragraphs_type.call_to_action
   module:
     - text
@@ -18,5 +20,7 @@ translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  allowed_formats: {  }
+  allowed_formats:
+    - simple_formatting
+    - filter.format.standard_formatting
 field_type: text_long
