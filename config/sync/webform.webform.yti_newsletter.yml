@@ -47,6 +47,7 @@ elements: |-
       email:
         '#type': email
         '#title': Email
+        '#required': true
       actions:
         '#type': webform_actions
         '#title': 'Submit button(s)'
