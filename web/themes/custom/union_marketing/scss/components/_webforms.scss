@@ -160,3 +160,15 @@
 .cu-input--file {
   width: 100%;
 }
+
+@include breakpoint(md) {
+  .webform-submission-form .inline-flex {
+    display: flex;
+    gap: var(--cu-ps0);
+    align-items: center;
+  }
+}
+
+.webform-type-processed-text {
+  padding: 0;
+}

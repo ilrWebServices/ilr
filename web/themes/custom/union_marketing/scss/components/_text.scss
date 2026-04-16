@@ -113,3 +113,8 @@ span.strong {
     letter-spacing: 0.1em;
   }
 }
+
+.webform-submission-form a:not([class*="cu-"]) {
+  --cu-text-color: #b31b1b;
+  --cu-font-weight: 400;
+}
