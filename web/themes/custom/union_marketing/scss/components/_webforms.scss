@@ -1,7 +1,7 @@
 // TODO: clean up webform classes to improve reusability.
 .webform-submission-your-story-form,
 .ilr-webform-duo {
-  background: #efefed;
+  background: var(--cu-color-light-gray);
   padding: var(--cu-vr2) var(--cu-ps2);
   margin: var(--cu-vr3) 0;
 
@@ -159,4 +159,16 @@
 .cu-input.cu-input--url,
 .cu-input--file {
   width: 100%;
+}
+
+@include breakpoint(md) {
+  .webform-submission-form .inline-flex {
+    display: flex;
+    gap: var(--cu-ps0);
+    align-items: center;
+  }
+}
+
+.webform-type-processed-text {
+  padding: 0;
 }
