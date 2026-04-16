@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80e9c34c7814237d56eeafd18973bf50",
+    "content-hash": "d188adc72c5300273f8ed408d93fe098",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4211,57 +4211,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/media_library_edit",
                 "issues": "https://www.drupal.org/project/issues/media_library_edit"
-            }
-        },
-        {
-            "name": "drupal/media_pdf_thumbnail",
-            "version": "6.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/media_pdf_thumbnail.git",
-                "reference": "6.0.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/media_pdf_thumbnail-6.0.1.zip",
-                "reference": "6.0.1",
-                "shasum": "79a9458f9bf5e1bc9bcc56b65f68c3476adc69e8"
-            },
-            "require": {
-                "drupal/core": "^9 || ^10",
-                "ext-imagick": "*",
-                "php": ">=8.0",
-                "spatie/pdf-to-image": "^2.1.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "6.0.1",
-                    "datestamp": "1711186273",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "sgostanyan",
-                    "homepage": "https://www.drupal.org/user/3569364"
-                }
-            ],
-            "description": "Media PDF Thumbnail",
-            "homepage": "https://www.drupal.org/project/media_pdf_thumbnail",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/media_pdf_thumbnail",
-                "issues": "http://drupal.org/project/issues/media_pdf_thumbnail"
             }
         },
         {
@@ -9352,66 +9301,6 @@
                 }
             ],
             "time": "2024-03-02T06:30:58+00:00"
-        },
-        {
-            "name": "spatie/pdf-to-image",
-            "version": "2.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/pdf-to-image.git",
-                "reference": "7c68cc95c0a5e63d712b705ff55459071c2a7b54"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/7c68cc95c0a5e63d712b705ff55459071c2a7b54",
-                "reference": "7c68cc95c0a5e63d712b705ff55459071c2a7b54",
-                "shasum": ""
-            },
-            "require": {
-                "ext-imagick": "*",
-                "php": "^7.2|^8.0"
-            },
-            "require-dev": {
-                "pestphp/pest": "^1.21"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\PdfToImage\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Convert a pdf to an image",
-            "homepage": "https://github.com/spatie/pdf-to-image",
-            "keywords": [
-                "convert",
-                "image",
-                "pdf",
-                "pdf-to-image",
-                "spatie"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/pdf-to-image/issues",
-                "source": "https://github.com/spatie/pdf-to-image/tree/2.3.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/spatie",
-                    "type": "github"
-                }
-            ],
-            "time": "2024-03-07T09:42:07+00:00"
         },
         {
             "name": "spatie/schema-org",
