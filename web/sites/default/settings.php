@@ -1007,6 +1007,13 @@ if (getenv('SMTP_HOST')) {
 }
 
 /**
+ * Add the auth token for the YTI newsletter form remote post handler.
+ */
+if (getenv('YTI_NEWSLETTER_FORM_REMOTE_AUTH_TOKEN')) {
+  $config['webform.webform.yti_newsletter']['handlers']['yti_newsletter_webhook']['settings']['custom_options'] = "headers:\r\n  Authorization: \"Bearer base64:" . getenv('YTI_NEWSLETTER_FORM_REMOTE_AUTH_TOKEN') . '"';
+}
+
+/**
  * Configure Zapier webform webhook handlers.
  */
 $config['webform.webform.request_info']['handlers']['zapier_295202085']['settings']['completed_url'] = getenv('ZAP_295202085_WEBHOOK_URL');

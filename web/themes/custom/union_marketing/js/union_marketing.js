@@ -429,4 +429,29 @@
     }
   };
 
+  // Enhance the YTI newsletter signup process.
+  Drupal.behaviors.union_marketing_yti_newsletter_form = {
+    attach: function (context, settings) {
+      if (context !== document) {
+        return;
+      }
+
+      const signup_field = context.querySelector('#block-union-marketing-yti-newsletter-form #edit-email');
+      const signup_links = context.querySelectorAll('a[href^="https://newsletter.yangtaninstitute.org"]');
+
+      if (!signup_field || !signup_links) {
+        return;
+      }
+
+      for (const signup_link of signup_links) {
+        // Take over the click handler for existing YTI newsletter signup links
+        // and focus on the form.
+        signup_link.addEventListener('click', function(e) {
+          e.preventDefault();
+          signup_field.focus();
+        });
+      }
+    }
+  }
+
 })(window, document, Drupal);
