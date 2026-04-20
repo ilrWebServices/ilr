@@ -22,5 +22,5 @@ default_value_callback: ''
 settings:
   allowed_formats:
     - simple_formatting
-    - filter.format.standard_formatting
+    - standard_formatting
 field_type: text_long
