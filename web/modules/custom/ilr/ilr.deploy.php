@@ -403,7 +403,7 @@ function ilr_deploy_replace_ckeditor4_asides(&$sandbox) {
 /**
  * Update all Basic Formatting with Media and Basic Formatting text formats.
  */
-function ilr_deploy_update_text_formatss(&$sandbox) {
+function ilr_deploy_update_text_formats(&$sandbox) {
   $entity_type_manager = \Drupal::entityTypeManager();
 
   if (!isset($sandbox['entities_to_update'])) {
