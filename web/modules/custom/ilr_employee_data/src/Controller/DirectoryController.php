@@ -3,12 +3,13 @@
 namespace Drupal\ilr_employee_data\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Security\TrustedCallbackInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  *
  */
-class DirectoryController extends ControllerBase {
+class DirectoryController extends ControllerBase implements TrustedCallbackInterface {
 
   /**
    *
@@ -22,8 +23,7 @@ class DirectoryController extends ControllerBase {
     $dept_filter = $request->query->get('dept') ?? '';
 
     $build = [];
-    // $build['#cache'] = ['max-age' => 0];
-    $build['#cache'] = ['tags' => ['persona_list:ilr_employee', 'taxonomy_term:ilr_employee_role', 'taxonomy_term:organizational_units']];
+    $build['#cache'] = ['tags' => ['taxonomy_term:ilr_employee_role', 'taxonomy_term:organizational_units']];
     $build = [
       '#theme' => 'container__employee_directory',
       '#children' => [
@@ -168,43 +168,65 @@ class DirectoryController extends ControllerBase {
       return $build;
     }
 
-    $employee_personas = $persona_storage->loadMultiple($employee_persona_ids);
-    $persona_view_builder = $this->entityTypeManager()->getViewBuilder('persona');
-
     /** @var \Drupal\person\PersonaInterface $employee_persona */
-    foreach ($employee_personas as $employee_persona) {
-      $this_employee_departments = [];
-      $this_employee_titles = [];
-      $this_employee_positions = $position_storage->loadByProperties([
-        'persona' => $employee_persona->id(),
-      ]);
-
-      foreach ($this_employee_positions as $this_employee_position) {
-        $this_employee_departments[] = $this_employee_position->department->entity->name->value;
-        $this_employee_titles[] = $this_employee_position->title->value;
-      }
-
-      $search_index = [
-        $employee_persona->getDisplayName(),
-        $employee_persona->field_first_name->value,
-        $employee_persona->field_last_name->value,
-        $employee_persona->field_display_name_override->value ?? '',
-        implode('  ', $this_employee_departments),
-        implode('  ', $this_employee_titles),
+    foreach ($employee_persona_ids as $employee_persona_id) {
+      $build['#children']['personas']['#children'][$employee_persona_id] = [
+        '#lazy_builder' => [static::class . '::renderDirectoryPersona', [$employee_persona_id]],
+        '#create_placeholder' => TRUE,
+        '#cache' => ['max-age' => 0],
       ];
-
-      $search_index = array_map('strtolower', $search_index);
-
-      $directory_view = $persona_view_builder->view($employee_persona, 'directory');
-      $directory_view['#attributes']['data-display-name'] = $employee_persona->getDisplayName();
-      $directory_view['#attributes']['data-first-name'] = $employee_persona->field_first_name->value;
-      $directory_view['#attributes']['data-last-name'] = $employee_persona->field_last_name->value;
-      $directory_view['#attributes']['data-departments'] = implode("\t", $this_employee_departments);
-      $directory_view['#attributes']['data-role'] = $employee_persona->field_employee_role->entity->name->value;
-      $directory_view['#attributes']['data-search-index'] = implode("\t", $search_index);
-      $build['#children']['personas']['#children'][$employee_persona->id()] = $directory_view;
     }
 
+    return $build;
+  }
+
+  /**
+   * @inheritDoc
+   */
+  public static function trustedCallbacks() {
+    return [
+      'renderDirectoryPersona',
+    ];
+  }
+
+  /**
+   * LazyBuilder callback for persona directory item.
+   */
+  public static function renderDirectoryPersona($pid) {
+    $persona_storage = \Drupal::entityTypeManager()->getStorage('persona');
+    $position_storage = \Drupal::entityTypeManager()->getStorage('ilr_employee_position');
+    $employee_persona = $persona_storage->load($pid);
+    $persona_view_builder = \Drupal::entityTypeManager()->getViewBuilder('persona');
+
+    $this_employee_departments = [];
+    $this_employee_titles = [];
+    $this_employee_positions = $position_storage->loadByProperties([
+      'persona' => $employee_persona->id(),
+    ]);
+
+    foreach ($this_employee_positions as $this_employee_position) {
+      $this_employee_departments[] = $this_employee_position->department->entity->name->value;
+      $this_employee_titles[] = $this_employee_position->title->value;
+    }
+
+    $search_index = [
+      $employee_persona->getDisplayName(),
+      $employee_persona->field_first_name->value,
+      $employee_persona->field_last_name->value,
+      $employee_persona->field_display_name_override->value ?? '',
+      implode('  ', $this_employee_departments),
+      implode('  ', $this_employee_titles),
+    ];
+
+    $search_index = array_map('strtolower', $search_index);
+
+    $build = $persona_view_builder->view($employee_persona, 'directory');
+    $build['#attributes']['data-display-name'] = $employee_persona->getDisplayName();
+    $build['#attributes']['data-first-name'] = $employee_persona->field_first_name->value;
+    $build['#attributes']['data-last-name'] = $employee_persona->field_last_name->value;
+    $build['#attributes']['data-departments'] = implode("\t", $this_employee_departments);
+    $build['#attributes']['data-role'] = $employee_persona->field_employee_role->entity->name->value;
+    $build['#attributes']['data-search-index'] = implode("\t", $search_index);
     return $build;
   }
 
