@@ -78,7 +78,11 @@
 %}
 {% set rendered_content %}
 {{ title_suffix }}
+{% if node.field_subtitle is not empty %}
+<p class="cu-x-event__description">{{ node.field_subtitle.value }}</p>
+{% else %}
 {{ content.body }}
+{% endif %}
 {% endset %}
 {# Note the use of `node.label` here. Plain `label` includes some field
 wrapper HTML and is difficult to trim for use as the link `title` attribute. #}
