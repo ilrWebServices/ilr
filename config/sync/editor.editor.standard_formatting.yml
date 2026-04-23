@@ -76,8 +76,9 @@ settings:
         -
           label: 'Vibrant accent'
           element: '<p class="accented vibrant">'
-    ckeditor_media_frame_frame:
-      apply_media_frame: true
+        -
+          label: Aside
+          element: '<blockquote class="aside">'
     linkit_extension:
       linkit_enabled: true
       linkit_profile: ilr_content

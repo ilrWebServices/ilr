@@ -43,17 +43,13 @@ filters:
     status: true
     weight: -50
     settings: {  }
-  filter_footnotes:
-    settings:
-      footnotes_footer_disable: false
-      footnotes_dialog: false
   filter_html:
     id: filter_html
     provider: filter
     status: false
     weight: -44
     settings:
-      allowed_html: '<em> <strong> <cite> <blockquote cite> <code> <ul type> <li> <dl> <dt> <dd> <h2 id> <h4 id> <h5 id> <h6 id> <img src alt data-entity-type data-entity-uuid> <p class="shout"> <h1> <pre> <a href hreflang data-entity-substitution data-entity-type data-entity-uuid title> <fn> <h3 id class="cu-heading--strong"> <ol type start class="accentuated">'
+      allowed_html: '<h3 class="cu-heading--strong"> <p class="shout"> <ol class="accentuated">'
       filter_html_help: true
       filter_html_nofollow: false
   filter_html_escape:

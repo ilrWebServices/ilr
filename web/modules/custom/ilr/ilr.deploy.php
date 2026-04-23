@@ -360,3 +360,136 @@ function ilr_deploy_assign_employee_role(&$sandbox) {
     }
   }
 }
+
+/**
+ * Transform paragraphs that use simple columns.
+ */
+function ilr_deploy_remove_simplecolumns() {
+  $simple_column_pids = \Drupal::entityQuery('paragraph')
+    ->accessCheck(FALSE)
+    ->condition('field_body', 'simple-columns', 'CONTAINS')
+    ->execute();
+
+  $simple_column_paragraphs = \Drupal::entityTypeManager()->getStorage('paragraph')->loadMultiple($simple_column_pids);
+
+  /** @var \Drupal\paragraphs\ParagraphInterface $simple_column_paragraph */
+  foreach ($simple_column_paragraphs as $simple_column_paragraph) {
+    $simple_column_paragraph->field_body->format = 'standard_formatting';
+    $simple_column_paragraph->setBehaviorSettings('column_settings', ['columns' => '2']);
+    $simple_column_paragraph->save();
+  }
+}
+
+/**
+ * Swap all ckEditor4 asides for the new ckEditor5 version.
+ */
+function ilr_deploy_replace_ckeditor4_asides(&$sandbox) {
+  $aside_pids = \Drupal::entityQuery('paragraph')
+    ->accessCheck(FALSE)
+    ->condition('field_body', '<aside class="sidebar"', 'CONTAINS')
+    ->execute();
+
+  $aside_paragraphs = \Drupal::entityTypeManager()->getStorage('paragraph')->loadMultiple($aside_pids);
+  $pattern = '/(<aside class="sidebar">)([\s\S]*?)(<\/aside>)/i';
+
+  foreach ($aside_paragraphs as $aside_paragraph) {
+    $replacement = '<blockquote class="aside">$2</blockquote>';
+    $result = preg_replace($pattern, $replacement, $aside_paragraph->field_body->value);
+    $aside_paragraph->field_body->value = $result;
+    $aside_paragraph->save();
+  }
+}
+
+/**
+ * Update all Basic Formatting with Media and Basic Formatting text formats.
+ */
+function ilr_deploy_update_text_formats(&$sandbox) {
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  if (!isset($sandbox['entities_to_update'])) {
+    /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $field_storage_config_storage */
+    $field_storage_config_storage = $entity_type_manager->getStorage('field_storage_config');
+    $field_storage_configs = $field_storage_config_storage->loadMultipleOverrideFree();
+
+    // An array of formatted text fields with the keys: [entity_type_id][bundle] = [field_names].
+    $sandbox['text_fields'] = [];
+    $sandbox['entities_to_update'] = [];
+    $sandbox['current'] = 0;
+
+    foreach ($field_storage_configs as $field_storage_config) {
+      if (in_array($field_storage_config->getType(), ['text_with_summary', 'text_long'])) {
+        $entity_type = $field_storage_config->getTargetEntityTypeId();
+        $field_name = $field_storage_config->getName();
+
+        foreach ($field_storage_config->getBundles() as $bundle) {
+          $sandbox['text_fields'][$entity_type][$bundle][] = $field_name;
+        }
+      }
+    }
+
+    foreach ($sandbox['text_fields'] as $entity_type_id => $bundles) {
+      $storage = $entity_type_manager->getStorage($entity_type_id);
+
+      foreach ($bundles as $bundle => $field_names) {
+        $query = $storage->getQuery()->accessCheck(FALSE);
+
+        if ($storage->getEntityType()->getKey('bundle')) {
+          $query->condition($storage->getEntityType()->getKey('bundle'), $bundle);
+        }
+
+        $entity_ids = $query->execute();
+
+        foreach (array_chunk($entity_ids, 50) as $chunk) {
+          $sandbox['entities_to_update'][] = [
+            $entity_type_id => $chunk,
+          ];
+        }
+      }
+    }
+
+    $sandbox['total'] = count($sandbox['entities_to_update']);
+  }
+
+  // Process the rows/chunks.
+  foreach ($sandbox['entities_to_update'][$sandbox['current']] as $entity_type_id => $ids) {
+    $storage = $entity_type_manager->getStorage($entity_type_id);
+    $entities = $storage->loadMultiple($ids);
+
+    foreach ($entities as $entity) {
+      $entity_needs_save = FALSE;
+
+      // Loop over field names.
+      $field_names = $sandbox['text_fields'][$entity_type_id][$entity->bundle()];
+
+      foreach ($field_names as $field_name) {
+        if ($entity->$field_name->isEmpty()) {
+          continue;
+        }
+
+        // Check the current format of this field.
+        $current_format = $entity->$field_name->format;
+
+        // If 'basic_formatting_with_media', set to 'standard_formatting'.
+        if ($current_format === 'basic_formatting_with_media') {
+          $entity->$field_name->format = 'standard_formatting';
+          $entity_needs_save = TRUE;
+        }
+        // If 'basic_formatting', set to 'simple_formatting'.
+        elseif ($current_format === 'basic_formatting') {
+          $entity->$field_name->format = 'simple_formatting';
+          $entity_needs_save = TRUE;
+        }
+      }
+
+      // Save this entity. Try to preserve changed time?
+      if ($entity_needs_save) {
+        $result = $entity->save();
+      }
+    }
+
+    $sandbox['current']++;
+  }
+
+  $sandbox['#finished'] = ($sandbox['total'] > 0) ? ($sandbox['current'] / $sandbox['total']) : 1;
+  return t('Processed @current of @total chunks.', ['@current' => $sandbox['current'], '@total' => $sandbox['total']]);
+}

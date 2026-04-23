@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.storage.node.body
+    - filter.format.simple_formatting
+    - filter.format.standard_formatting
     - node.type.instructor
   module:
     - text
@@ -20,4 +22,7 @@ default_value_callback: ''
 settings:
   display_summary: false
   required_summary: false
+  allowed_formats:
+    - standard_formatting
+    - simple_formatting
 field_type: text_with_summary

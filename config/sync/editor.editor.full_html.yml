@@ -1,52 +1,104 @@
-uuid: 098b13b1-8f77-4003-b226-c6c637a94075
+uuid: 11e5a9cd-fad2-4c23-87f2-884346de972f
 langcode: en
 status: true
 dependencies:
   config:
     - filter.format.full_html
   module:
-    - ckeditor
+    - ckeditor5
 format: full_html
-editor: ckeditor
+editor: ckeditor5
 settings:
   toolbar:
-    rows:
-      -
-        -
-          name: Formatting
-          items:
-            - Bold
-            - Italic
-            - Format
-            - Styles
-        -
-          name: Layout
-          items:
-            - SimpleColumns
-            - SimpleColumnBreak
-        -
-          name: Links
-          items:
-            - DrupalLink
-            - DrupalUnlink
-        -
-          name: Lists
-          items:
-            - BulletedList
-            - NumberedList
-        -
-          name: Media
-          items:
-            - Blockquote
-            - DrupalImage
-        -
-          name: Tools
-          items:
-            - Source
+    items:
+      - bold
+      - italic
+      - heading
+      - codeBlock
+      - style
+      - '|'
+      - link
+      - '|'
+      - bulletedList
+      - numberedList
+      - '|'
+      - blockQuote
+      - drupalInsertImage
+      - '|'
+      - sourceEditing
   plugins:
-    stylescombo:
-      styles: "h3.cu-heading--strong|Alternate heading\r\np.shout|Quote\r\nol.accentuated|Accentuated\r\n"
-    drupallink:
+    ckeditor5_codeBlock:
+      languages:
+        -
+          label: 'Plain text'
+          language: plaintext
+        -
+          label: C
+          language: c
+        -
+          label: 'C#'
+          language: cs
+        -
+          label: C++
+          language: cpp
+        -
+          label: CSS
+          language: css
+        -
+          label: Diff
+          language: diff
+        -
+          label: HTML
+          language: html
+        -
+          label: Java
+          language: java
+        -
+          label: JavaScript
+          language: javascript
+        -
+          label: PHP
+          language: php
+        -
+          label: Python
+          language: python
+        -
+          label: Ruby
+          language: ruby
+        -
+          label: TypeScript
+          language: typescript
+        -
+          label: XML
+          language: xml
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+        - heading5
+        - heading6
+    ckeditor5_imageResize:
+      allow_resize: true
+    ckeditor5_list:
+      properties:
+        reversed: true
+        startIndex: true
+      multiBlock: true
+    ckeditor5_sourceEditing:
+      allowed_tags: {  }
+    ckeditor5_style:
+      styles:
+        -
+          label: 'Alternate heading'
+          element: '<h3 class="cu-heading--strong">'
+        -
+          label: Quote
+          element: '<p class="shout">'
+        -
+          label: Accentuated
+          element: '<ol class="accentuated">'
+    linkit_extension:
       linkit_enabled: true
       linkit_profile: ilr_content
 image_upload:

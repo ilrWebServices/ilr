@@ -164,8 +164,8 @@ class ExtendedPostManager {
         'settings' => ['display_summary' => TRUE, 'required_summary' => TRUE],
         'third_party_settings' => [
           'allowed_formats' => [
-            'basic_formatting' => 'basic_formatting',
-            'basic_formatting_with_media' => '0',
+            'simple_formatting' => 'simple_formatting',
+            'standard_formatting' => '0',
             'full_html' => '0',
             'inline_svg' => '0',
             'plain_text' => '0',
