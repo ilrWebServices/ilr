@@ -1,9 +1,0 @@
-.simple-columns--column-break {
-  border-top: 2px dashed green;
-}
-
-@supports (break-before: column) {
-  .simple-columns--column-break {
-    border-top: none;
-  }
-}
