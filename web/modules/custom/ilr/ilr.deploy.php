@@ -487,6 +487,12 @@ function ilr_deploy_update_text_formats(&$sandbox) {
       }
     }
 
+    // Clear the entity cache to save memory.
+    $storage->resetCache();
+
+    // Force garbage collection
+    gc_collect_cycles();
+
     $sandbox['current']++;
   }
 
