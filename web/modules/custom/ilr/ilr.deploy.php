@@ -437,6 +437,14 @@ function ilr_deploy_update_text_formats(&$sandbox) {
           $query->condition($storage->getEntityType()->getKey('bundle'), $bundle);
         }
 
+        $field_format_group = $query->orConditionGroup();
+
+        foreach ($field_names as $field_name) {
+          $field_format_group->condition("{$field_name}.format", ['basic_formatting_with_media', 'basic_formatting'], 'IN');
+        }
+
+        $query->condition($field_format_group);
+
         $entity_ids = $query->execute();
 
         foreach (array_chunk($entity_ids, 50) as $chunk) {
@@ -486,6 +494,12 @@ function ilr_deploy_update_text_formats(&$sandbox) {
         $result = $entity->save();
       }
     }
+
+    // Clear the entity cache to save memory.
+    $storage->resetCache();
+
+    // Force garbage collection.
+    gc_collect_cycles();
 
     $sandbox['current']++;
   }
