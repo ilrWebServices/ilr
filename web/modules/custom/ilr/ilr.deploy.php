@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Config\FileStorage;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Put the cahrs member orgs vocabulary in the cahrs collection.
@@ -506,4 +507,30 @@ function ilr_deploy_update_text_formats(&$sandbox) {
 
   $sandbox['#finished'] = ($sandbox['total'] > 0) ? ($sandbox['current'] / $sandbox['total']) : 1;
   return t('Processed @current of @total chunks.', ['@current' => $sandbox['current'], '@total' => $sandbox['total']]);
+}
+
+/**
+ * Set the allowed_values format for 'field_body' on all vocabularies.
+ */
+function ilr_deploy_fix_taxonomy_allowed_values_formats(&$sandbox) {
+  $updated_count = 0;
+  $allowed_formats = ['standard_formatting', 'simple_formatting'];
+  $field_configs = \Drupal::entityTypeManager()
+    ->getStorage('field_config')
+    ->loadByProperties(['field_name' => 'field_body', 'entity_type' => 'taxonomy_term']);
+
+  foreach ($field_configs as $field_config) {
+    /** @var FieldConfig $field_config */
+    $field_config->setSetting('allowed_formats', $allowed_formats);
+
+    foreach ($field_config->getThirdPartySettings('allowed_formats') as $key => $value) {
+      $field_config->unsetThirdPartySetting('allowed_formats', $key);
+    }
+
+    // $field_config->calculateDependencies();
+    $field_config->save();
+    $updated_count++;
+  }
+
+  return t('Updated field_body on @count vocabularies.', ['@count' => $updated_count]);
 }

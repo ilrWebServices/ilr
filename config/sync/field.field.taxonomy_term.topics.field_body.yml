@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.storage.taxonomy_term.field_body
+    - filter.format.simple_formatting
+    - filter.format.standard_formatting
     - taxonomy.vocabulary.topics
   module:
     - text
@@ -20,4 +22,7 @@ default_value_callback: ''
 settings:
   display_summary: true
   required_summary: false
+  allowed_formats:
+    - standard_formatting
+    - simple_formatting
 field_type: text_with_summary
