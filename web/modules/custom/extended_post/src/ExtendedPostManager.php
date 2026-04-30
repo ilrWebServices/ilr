@@ -161,8 +161,9 @@ class ExtendedPostManager {
       'body' => [
         'label' => $this->t('Intro Text'),
         'description' => $this->t('Summaries added here are used in smaller components, such as cards. The summary will also be used when sharing this page via social media.'),
-        'settings' => ['display_summary' => TRUE, 'required_summary' => TRUE],
-        'third_party_settings' => [
+        'settings' => [
+          'display_summary' => TRUE,
+          'required_summary' => TRUE,
           'allowed_formats' => [
             'simple_formatting' => 'simple_formatting',
             'standard_formatting' => '0',
@@ -170,6 +171,8 @@ class ExtendedPostManager {
             'inline_svg' => '0',
             'plain_text' => '0',
           ],
+        ],
+        'third_party_settings' => [
           'summary_word_limit' => [
             'summary_word_limit_count' => '50',
           ],

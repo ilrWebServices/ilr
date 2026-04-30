@@ -527,7 +527,6 @@ function ilr_deploy_fix_taxonomy_allowed_values_formats(&$sandbox) {
       $field_config->unsetThirdPartySetting('allowed_formats', $key);
     }
 
-    // $field_config->calculateDependencies();
     $field_config->save();
     $updated_count++;
   }

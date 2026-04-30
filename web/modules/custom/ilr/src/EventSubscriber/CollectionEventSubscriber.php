@@ -190,13 +190,6 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
         'field_config' => [
           'field_storage' => FieldStorageConfig::loadByName('taxonomy_term', 'field_body'),
           'third_party_settings' => [
-            'allowed_formats' => [
-              'simple_formatting' => 'simple_formatting',
-              'standard_formatting' => '0',
-              'full_html' => '0',
-              'inline_svg' => '0',
-              'plain_text' => '0',
-            ],
             'summary_word_limit' => [
               'summary_word_limit_count' => '50',
             ],
@@ -207,6 +200,13 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
           'settings' => [
             'display_summary' => TRUE,
             'required_summary' => TRUE,
+            'allowed_formats' => [
+              'simple_formatting' => 'simple_formatting',
+              'standard_formatting' => '0',
+              'full_html' => '0',
+              'inline_svg' => '0',
+              'plain_text' => '0',
+            ],
           ],
         ],
         'form_display' => [
