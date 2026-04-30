@@ -669,7 +669,7 @@ display:
           empty: true
           content:
             value: 'There are no collection item entities yet.'
-            format: basic_formatting
+            format: simple_formatting
           tokenize: false
       sorts:
         weight:

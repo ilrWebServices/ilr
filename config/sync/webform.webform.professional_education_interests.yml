@@ -64,7 +64,7 @@ elements: |-
         - cu-text--small
     '#text': |
       <p><span>By submitting this request, you are providing your express written consent for Cornell University, directly or by third-parties acting on its behalf, to send marketing information regarding furthering your education, including texts, e-mail and calls made using an automated dialing system to the number that you provided above. Accepting this consent is not required to obtain any good or service.</span></p>
-    '#format': basic_formatting_with_media
+    '#format': simple_formatting
   utm_values:
     '#type': utm_values
   ga_client_id:

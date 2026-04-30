@@ -161,7 +161,7 @@ display:
           empty: true
           content:
             value: 'No neutrals were found.'
-            format: basic_formatting_with_media
+            format: simple_formatting
           tokenize: false
       sorts: {  }
       arguments: {  }

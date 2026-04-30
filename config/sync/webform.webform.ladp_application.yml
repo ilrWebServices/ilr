@@ -234,7 +234,7 @@ elements: |-
         </ol>
 
         <p>You may wish to write your essay in a word processor and paste it here to retain some formatting.</p>
-      '#format': basic_formatting
+      '#format': simple_formatting
     essay:
       '#type': text_format
       '#title': Essay
