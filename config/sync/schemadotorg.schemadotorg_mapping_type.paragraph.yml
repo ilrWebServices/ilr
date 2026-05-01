@@ -1,0 +1,93 @@
+uuid: 2d83af04-9768-4e5a-b1b0-b7a7095b48b4
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+_core:
+  default_config_hash: 3FkPLrx3Rv0gWeaUCLd3DEJ_J7BtZ5nE4qckmDF6YJc
+id: paragraph
+target_entity_type_id: paragraph
+multiple: false
+label_prefix: ''
+id_prefix: ''
+recommended_schema_types:
+  quick_start:
+    label: 'Quick Start'
+    types:
+      - NutritionInformation
+      - Offer
+      - Question
+      - WebContent
+  common:
+    label: Common
+    types:
+      - ContactPoint
+      - PostalAddress
+      - Language
+      - Occupation
+  web:
+    label: Web
+    types:
+      - DefinedTerm
+      - ItemList
+  content:
+    label: Content
+    types:
+      - WebContent
+      - Question
+      - HowToSupply
+      - HowToTool
+      - HowToDirection
+      - HowToTip
+      - HowToStep
+      - HowToSection
+  organization:
+    label: Organization
+    types:
+      - OpeningHoursSpecification
+      - ServiceChannel
+      - ProgramMembership
+  food:
+    label: Food
+    types:
+      - NutritionInformation
+      - MenuSection
+      - MenuItem
+  education:
+    label: Education
+    types:
+      - EducationalOccupationalProgram
+  medical:
+    label: Medical
+    types:
+      - MedicalAudience
+      - MedicalContraindication
+      - MedicalIndication
+      - MedicalCause
+      - MedicalProcedure
+      - MedicalRiskFactor
+      - MedicalTest
+      - MedicalTherapy
+      - MedicalSignOrSymptom
+default_schema_types: {  }
+default_schema_type_properties:
+  MedicalProcedure:
+    - '!bodyLocation'
+    - '!followup'
+    - '!howPerformed'
+    - '!preparation'
+  MedicalRiskFactor:
+    - '!increasesRiskOf'
+  MedicalTest:
+    - '!usedToDiagnose'
+    - '!usesDevice'
+default_schema_type_view_displays: {  }
+default_base_fields:
+  uuid: {  }
+  created: {  }
+  langcode:
+    - inLanguage
+default_component_weights:
+  langcode: 200
+default_component_weights_update: true

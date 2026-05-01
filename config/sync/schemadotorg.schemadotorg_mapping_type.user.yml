@@ -1,0 +1,33 @@
+uuid: 59bfb47c-63a0-4024-bd35-e92fef357a26
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: SqfK3-4Usr98wCre4-PvZy-Sn8BDqvlR3giWW3KiSiY
+id: user
+target_entity_type_id: user
+multiple: false
+label_prefix: ''
+id_prefix: ''
+recommended_schema_types: {  }
+default_schema_types:
+  user: Person
+default_schema_type_properties: {  }
+default_schema_type_view_displays: {  }
+default_base_fields:
+  uuid: {  }
+  langcode:
+    - inLanguage
+  name:
+    - name
+  mail:
+    - email
+  user_picture:
+    - image
+default_component_weights:
+  user_picture: 0
+  langcode: 200
+  member_for: 200
+default_component_weights_update: true
