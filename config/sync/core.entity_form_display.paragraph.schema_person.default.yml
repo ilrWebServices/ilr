@@ -1,0 +1,41 @@
+uuid: 549d9dde-5cdb-4a09-ac04-0002b5118144
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_person.schema_additional_name
+    - field.field.paragraph.schema_person.schema_family_name
+    - field.field.paragraph.schema_person.schema_given_name
+    - paragraphs.paragraphs_type.schema_person
+id: paragraph.schema_person.default
+targetEntityType: paragraph
+bundle: schema_person
+mode: default
+content:
+  schema_additional_name:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  schema_family_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  schema_given_name:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

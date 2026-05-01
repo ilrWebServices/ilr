@@ -1,0 +1,19 @@
+uuid: d374f7ff-0c85-439a-af6d-d3bd865a8246
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.schema_additional_name
+    - paragraphs.paragraphs_type.schema_person
+id: paragraph.schema_person.schema_additional_name
+field_name: schema_additional_name
+entity_type: paragraph
+bundle: schema_person
+label: 'Middle name'
+description: 'An additional name for a Person, can be used for a middle name.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

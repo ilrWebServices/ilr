@@ -1,0 +1,19 @@
+uuid: 3ef57eee-e63d-4ce8-8e89-bc38097fcac9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.schema_name
+    - paragraphs.paragraphs_type.schema_article
+id: paragraph.schema_article.schema_name
+field_name: schema_name
+entity_type: paragraph
+bundle: schema_article
+label: Title
+description: 'The name of the item.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

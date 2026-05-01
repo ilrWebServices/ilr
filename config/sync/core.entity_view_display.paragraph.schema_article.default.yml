@@ -1,0 +1,79 @@
+uuid: 21d79ef1-8c44-4f86-9778-2cfb15d27a8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_article.schema_author
+    - field.field.paragraph.schema_article.schema_date_published
+    - field.field.paragraph.schema_article.schema_is_part_of
+    - field.field.paragraph.schema_article.schema_name
+    - field.field.paragraph.schema_article.schema_publisher
+    - field.field.paragraph.schema_article.schema_url
+    - paragraphs.paragraphs_type.schema_article
+  module:
+    - datetime
+    - entity_reference_revisions
+    - link
+id: paragraph.schema_article.default
+targetEntityType: paragraph
+bundle: schema_article
+mode: default
+content:
+  schema_author:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 22
+    region: content
+  schema_date_published:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  schema_is_part_of:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 161
+    region: content
+  schema_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  schema_publisher:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 161
+    region: content
+  schema_url:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 141
+    region: content
+hidden:
+  search_api_excerpt: true

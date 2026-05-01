@@ -1,0 +1,69 @@
+uuid: f01fd8ce-4dd0-406f-bde5-66d8d90aa604
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_book.schema_author
+    - field.field.paragraph.schema_book.schema_date_published
+    - field.field.paragraph.schema_book.schema_name
+    - field.field.paragraph.schema_book.schema_publisher
+    - field.field.paragraph.schema_book.schema_url
+    - paragraphs.paragraphs_type.schema_book
+  module:
+    - datetime
+    - entity_reference_revisions
+    - link
+id: paragraph.schema_book.default
+targetEntityType: paragraph
+bundle: schema_book
+mode: default
+content:
+  schema_author:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 22
+    region: content
+  schema_date_published:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  schema_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  schema_publisher:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 161
+    region: content
+  schema_url:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 141
+    region: content
+hidden:
+  search_api_excerpt: true

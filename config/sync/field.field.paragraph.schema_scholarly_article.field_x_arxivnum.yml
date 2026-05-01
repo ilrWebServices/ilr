@@ -1,0 +1,19 @@
+uuid: 5646b1f7-ece8-413d-8f32-04936b83052e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_x_arxivnum
+    - paragraphs.paragraphs_type.schema_scholarly_article
+id: paragraph.schema_scholarly_article.field_x_arxivnum
+field_name: field_x_arxivnum
+entity_type: paragraph
+bundle: schema_scholarly_article
+label: x_arxivnum
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

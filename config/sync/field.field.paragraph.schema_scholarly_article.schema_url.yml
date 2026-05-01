@@ -1,0 +1,23 @@
+uuid: 3f011471-1400-49d9-889a-751d572732f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.schema_url
+    - paragraphs.paragraphs_type.schema_scholarly_article
+  module:
+    - link
+id: paragraph.schema_scholarly_article.schema_url
+field_name: schema_url
+entity_type: paragraph
+bundle: schema_scholarly_article
+label: URL
+description: 'URL of the item.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

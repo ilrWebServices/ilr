@@ -1,0 +1,19 @@
+uuid: e1655e86-aab6-438e-8098-9e19bfe0b48a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_x_pmid
+    - paragraphs.paragraphs_type.schema_scholarly_article
+id: paragraph.schema_scholarly_article.field_x_pmid
+field_name: field_x_pmid
+entity_type: paragraph
+bundle: schema_scholarly_article
+label: x_pmid
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

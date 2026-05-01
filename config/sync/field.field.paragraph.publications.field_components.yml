@@ -1,0 +1,43 @@
+uuid: 7e74e4cb-36b9-4344-88a6-06521d1ec422
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_components
+    - paragraphs.paragraphs_type.publications
+    - paragraphs.paragraphs_type.schema_article
+    - paragraphs.paragraphs_type.schema_book
+    - paragraphs.paragraphs_type.schema_chapter
+    - paragraphs.paragraphs_type.schema_creative_work
+    - paragraphs.paragraphs_type.schema_news_article
+    - paragraphs.paragraphs_type.schema_scholarly_article
+  module:
+    - entity_reference_revisions
+id: paragraph.publications.field_components
+field_name: field_components
+entity_type: paragraph
+bundle: publications
+label: Publications
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'schemadotorg:paragraph'
+  handler_settings:
+    target_type: paragraph
+    schema_types:
+      CreativeWork: CreativeWork
+    excluded_schema_types:
+      PublicationVolume: PublicationVolume
+      PublicationIssue: PublicationIssue
+    ignore_additional_mappings: false
+    target_bundles:
+      schema_article: schema_article
+      schema_book: schema_book
+      schema_chapter: schema_chapter
+      schema_creative_work: schema_creative_work
+      schema_news_article: schema_news_article
+      schema_scholarly_article: schema_scholarly_article
+field_type: entity_reference_revisions

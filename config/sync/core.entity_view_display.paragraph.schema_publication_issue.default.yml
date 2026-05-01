@@ -1,0 +1,35 @@
+uuid: 99fce440-9306-41d6-925d-64746e30e183
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_publication_issue.schema_is_part_of
+    - field.field.paragraph.schema_publication_issue.schema_issue_number
+    - paragraphs.paragraphs_type.schema_publication_issue
+  module:
+    - entity_reference_revisions
+id: paragraph.schema_publication_issue.default
+targetEntityType: paragraph
+bundle: schema_publication_issue
+mode: default
+content:
+  schema_is_part_of:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 161
+    region: content
+  schema_issue_number:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 110
+    region: content
+hidden:
+  search_api_excerpt: true

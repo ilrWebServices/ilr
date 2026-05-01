@@ -1,0 +1,20 @@
+uuid: 63abf3e5-3136-4078-a2dd-9666a5b04c6f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_person.schema_additional_name
+    - field.field.paragraph.schema_person.schema_family_name
+    - field.field.paragraph.schema_person.schema_given_name
+    - paragraphs.paragraphs_type.schema_person
+  module:
+    - paragraphs
+id: paragraph.schema_person
+target_entity_type_id: paragraph
+target_bundle: schema_person
+schema_type: Person
+schema_properties:
+  schema_additional_name: additionalName
+  schema_family_name: familyName
+  schema_given_name: givenName
+additional_mappings: {  }

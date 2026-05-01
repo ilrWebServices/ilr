@@ -1,0 +1,19 @@
+uuid: de8b3ca6-deeb-4fd7-a3b8-ac127e04f21d
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - paragraphs
+id: paragraph.schema_url
+field_name: schema_url
+entity_type: paragraph
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

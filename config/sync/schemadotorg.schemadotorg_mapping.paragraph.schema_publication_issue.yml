@@ -1,0 +1,19 @@
+uuid: e6d2fd05-86b6-4273-b9ef-ac1b1a6c1124
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_publication_issue.schema_is_part_of
+    - field.field.paragraph.schema_publication_issue.schema_issue_number
+    - paragraphs.paragraphs_type.schema_publication_issue
+  module:
+    - paragraphs
+id: paragraph.schema_publication_issue
+target_entity_type_id: paragraph
+target_bundle: schema_publication_issue
+schema_type: PublicationIssue
+schema_properties:
+  langcode: inLanguage
+  schema_is_part_of: isPartOf
+  schema_issue_number: issueNumber
+additional_mappings: {  }

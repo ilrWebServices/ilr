@@ -1,0 +1,20 @@
+uuid: 06d0998a-1c5b-4db9-b80c-c37ca14dff60
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.schema_issue_number
+field_name: schema_issue_number
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

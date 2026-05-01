@@ -1,0 +1,115 @@
+uuid: ce7bd399-45fe-484d-a5a1-2142cf3a75c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_scholarly_article.field_x_arxivnum
+    - field.field.paragraph.schema_scholarly_article.field_x_doi
+    - field.field.paragraph.schema_scholarly_article.field_x_pmcid
+    - field.field.paragraph.schema_scholarly_article.field_x_pmid
+    - field.field.paragraph.schema_scholarly_article.schema_author
+    - field.field.paragraph.schema_scholarly_article.schema_date_published
+    - field.field.paragraph.schema_scholarly_article.schema_is_part_of
+    - field.field.paragraph.schema_scholarly_article.schema_name
+    - field.field.paragraph.schema_scholarly_article.schema_publisher
+    - field.field.paragraph.schema_scholarly_article.schema_url
+    - paragraphs.paragraphs_type.schema_scholarly_article
+  module:
+    - datetime
+    - entity_reference_revisions
+    - link
+id: paragraph.schema_scholarly_article.default
+targetEntityType: paragraph
+bundle: schema_scholarly_article
+mode: default
+content:
+  field_x_arxivnum:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 162
+    region: content
+  field_x_doi:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 163
+    region: content
+  field_x_pmcid:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 165
+    region: content
+  field_x_pmid:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 164
+    region: content
+  schema_author:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 22
+    region: content
+  schema_date_published:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  schema_is_part_of:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 161
+    region: content
+  schema_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  schema_publisher:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 161
+    region: content
+  schema_url:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 141
+    region: content
+hidden:
+  search_api_excerpt: true

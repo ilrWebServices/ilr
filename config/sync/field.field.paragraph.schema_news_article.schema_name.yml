@@ -1,0 +1,19 @@
+uuid: c35f2f64-40f1-41ce-b16a-2675c7587e0f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.schema_name
+    - paragraphs.paragraphs_type.schema_news_article
+id: paragraph.schema_news_article.schema_name
+field_name: schema_name
+entity_type: paragraph
+bundle: schema_news_article
+label: Title
+description: 'The name of the item.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

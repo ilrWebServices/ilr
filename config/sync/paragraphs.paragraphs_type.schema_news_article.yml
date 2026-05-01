@@ -1,0 +1,10 @@
+uuid: 18763f2d-2f9e-4976-8015-97b066377021
+langcode: en
+status: true
+dependencies: {  }
+id: schema_news_article
+label: 'News Article'
+icon_uuid: null
+icon_default: null
+description: 'A NewsArticle is an article whose content reports news, or provides background context and supporting materials for understanding the news.'
+behavior_plugins: {  }

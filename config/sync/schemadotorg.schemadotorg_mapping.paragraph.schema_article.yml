@@ -1,0 +1,27 @@
+uuid: f1db7756-705c-435f-be90-87c2545e9b7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_article.schema_author
+    - field.field.paragraph.schema_article.schema_date_published
+    - field.field.paragraph.schema_article.schema_is_part_of
+    - field.field.paragraph.schema_article.schema_name
+    - field.field.paragraph.schema_article.schema_publisher
+    - field.field.paragraph.schema_article.schema_url
+    - paragraphs.paragraphs_type.schema_article
+  module:
+    - paragraphs
+id: paragraph.schema_article
+target_entity_type_id: paragraph
+target_bundle: schema_article
+schema_type: Article
+schema_properties:
+  schema_author: author
+  schema_date_published: datePublished
+  langcode: inLanguage
+  schema_is_part_of: isPartOf
+  schema_name: name
+  schema_publisher: publisher
+  schema_url: url
+additional_mappings: {  }

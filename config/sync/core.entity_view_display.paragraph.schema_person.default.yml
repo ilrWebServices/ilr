@@ -1,0 +1,40 @@
+uuid: f51bb9c8-73a9-4adb-b1c0-a546dfab83e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_person.schema_additional_name
+    - field.field.paragraph.schema_person.schema_family_name
+    - field.field.paragraph.schema_person.schema_given_name
+    - paragraphs.paragraphs_type.schema_person
+id: paragraph.schema_person.default
+targetEntityType: paragraph
+bundle: schema_person
+mode: default
+content:
+  schema_additional_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  schema_family_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  schema_given_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 110
+    region: content
+hidden:
+  search_api_excerpt: true

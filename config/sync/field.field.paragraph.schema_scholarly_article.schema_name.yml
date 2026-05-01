@@ -1,0 +1,19 @@
+uuid: f115a78f-4a0f-4540-80c1-1530d1190fd8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.schema_name
+    - paragraphs.paragraphs_type.schema_scholarly_article
+id: paragraph.schema_scholarly_article.schema_name
+field_name: schema_name
+entity_type: paragraph
+bundle: schema_scholarly_article
+label: Title
+description: 'The name of the item.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

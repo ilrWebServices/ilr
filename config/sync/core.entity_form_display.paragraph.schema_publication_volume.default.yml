@@ -1,0 +1,23 @@
+uuid: a231b64f-b828-4876-bd01-bc0f2f277f44
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_publication_volume.schema_volume_number
+    - paragraphs.paragraphs_type.schema_publication_volume
+id: paragraph.schema_publication_volume.default
+targetEntityType: paragraph
+bundle: schema_publication_volume
+mode: default
+content:
+  schema_volume_number:
+    type: string_textfield
+    weight: 110
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

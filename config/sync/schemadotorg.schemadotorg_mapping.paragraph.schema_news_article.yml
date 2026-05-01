@@ -1,0 +1,25 @@
+uuid: 57ee3db4-c253-4fd3-bf4c-4c7bd041a6e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_news_article.schema_author
+    - field.field.paragraph.schema_news_article.schema_date_published
+    - field.field.paragraph.schema_news_article.schema_name
+    - field.field.paragraph.schema_news_article.schema_publisher
+    - field.field.paragraph.schema_news_article.schema_url
+    - paragraphs.paragraphs_type.schema_news_article
+  module:
+    - paragraphs
+id: paragraph.schema_news_article
+target_entity_type_id: paragraph
+target_bundle: schema_news_article
+schema_type: NewsArticle
+schema_properties:
+  schema_author: author
+  schema_date_published: datePublished
+  langcode: inLanguage
+  schema_name: name
+  schema_publisher: publisher
+  schema_url: url
+additional_mappings: {  }

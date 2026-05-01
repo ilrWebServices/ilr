@@ -1,0 +1,19 @@
+uuid: 2f36106c-bdc0-4a0e-8125-aa50a7d158cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.schema_given_name
+    - paragraphs.paragraphs_type.schema_person
+id: paragraph.schema_person.schema_given_name
+field_name: schema_given_name
+entity_type: paragraph
+bundle: schema_person
+label: 'First name'
+description: 'Given name.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

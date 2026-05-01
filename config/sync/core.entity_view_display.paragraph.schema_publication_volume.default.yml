@@ -1,0 +1,22 @@
+uuid: 6c1fdf83-fe3f-42bf-84d5-c58da72c4cf6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_publication_volume.schema_volume_number
+    - paragraphs.paragraphs_type.schema_publication_volume
+id: paragraph.schema_publication_volume.default
+targetEntityType: paragraph
+bundle: schema_publication_volume
+mode: default
+content:
+  schema_volume_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 110
+    region: content
+hidden:
+  search_api_excerpt: true

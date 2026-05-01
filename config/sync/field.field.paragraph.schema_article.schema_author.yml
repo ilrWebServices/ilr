@@ -1,0 +1,32 @@
+uuid: 7d27265e-b633-4d5c-81e3-5d090e9b4fa8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.schema_author
+    - paragraphs.paragraphs_type.schema_article
+  module:
+    - entity_reference_revisions
+id: paragraph.schema_article.schema_author
+field_name: schema_author
+entity_type: paragraph
+bundle: schema_article
+label: Authors
+description: 'The author of this content or rating.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'schemadotorg:paragraph'
+  handler_settings:
+    target_type: paragraph
+    schema_types:
+      Organization: Organization
+      Person: Person
+    excluded_schema_types: {  }
+    ignore_additional_mappings: false
+    target_bundles:
+      schema_organization: schema_organization
+      schema_person: schema_person
+field_type: entity_reference_revisions

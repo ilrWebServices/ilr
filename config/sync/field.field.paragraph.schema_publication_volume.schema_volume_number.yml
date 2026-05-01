@@ -1,0 +1,19 @@
+uuid: 3a07a137-593d-40c0-931e-e081148a8648
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.schema_volume_number
+    - paragraphs.paragraphs_type.schema_publication_volume
+id: paragraph.schema_publication_volume.schema_volume_number
+field_name: schema_volume_number
+entity_type: paragraph
+bundle: schema_publication_volume
+label: 'Volume number'
+description: 'Identifies the volume of publication or multi-part work; for example, "iii" or "2".'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

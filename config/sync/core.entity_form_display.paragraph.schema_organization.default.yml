@@ -1,0 +1,23 @@
+uuid: 5a6e4afa-aca2-49ae-8af6-5ce2a0fd082f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_organization.schema_name
+    - paragraphs.paragraphs_type.schema_organization
+id: paragraph.schema_organization.default
+targetEntityType: paragraph
+bundle: schema_organization
+mode: default
+content:
+  schema_name:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

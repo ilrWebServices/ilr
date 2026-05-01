@@ -1,0 +1,16 @@
+uuid: a4805450-5c13-440d-a302-b55dc6a08b91
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_organization.schema_name
+    - paragraphs.paragraphs_type.schema_organization
+  module:
+    - paragraphs
+id: paragraph.schema_organization
+target_entity_type_id: paragraph
+target_bundle: schema_organization
+schema_type: Organization
+schema_properties:
+  schema_name: name
+additional_mappings: {  }

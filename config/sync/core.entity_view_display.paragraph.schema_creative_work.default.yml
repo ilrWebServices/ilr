@@ -1,0 +1,59 @@
+uuid: 88502873-7280-4f6c-8f62-aa2316b639bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_creative_work.schema_author
+    - field.field.paragraph.schema_creative_work.schema_date_published
+    - field.field.paragraph.schema_creative_work.schema_name
+    - field.field.paragraph.schema_creative_work.schema_url
+    - paragraphs.paragraphs_type.schema_creative_work
+  module:
+    - datetime
+    - entity_reference_revisions
+    - link
+id: paragraph.schema_creative_work.default
+targetEntityType: paragraph
+bundle: schema_creative_work
+mode: default
+content:
+  schema_author:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 22
+    region: content
+  schema_date_published:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  schema_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  schema_url:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 141
+    region: content
+hidden:
+  search_api_excerpt: true

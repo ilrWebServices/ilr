@@ -1,0 +1,21 @@
+uuid: ccba2f98-d8d8-4222-a3ee-09bdab1005fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.schema_date_published
+    - paragraphs.paragraphs_type.schema_creative_work
+  module:
+    - datetime
+id: paragraph.schema_creative_work.schema_date_published
+field_name: schema_date_published
+entity_type: paragraph
+bundle: schema_creative_work
+label: 'Date published'
+description: 'Date of first publication or broadcast.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

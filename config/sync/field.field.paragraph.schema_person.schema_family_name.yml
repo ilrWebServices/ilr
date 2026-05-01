@@ -1,0 +1,19 @@
+uuid: 9d4a6ba4-b865-4a90-b8eb-a737bce2f81a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.schema_family_name
+    - paragraphs.paragraphs_type.schema_person
+id: paragraph.schema_person.schema_family_name
+field_name: schema_family_name
+entity_type: paragraph
+bundle: schema_person
+label: 'Last name'
+description: 'Family name.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

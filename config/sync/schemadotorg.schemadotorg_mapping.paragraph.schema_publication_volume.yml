@@ -1,0 +1,17 @@
+uuid: a9bcc9e0-5d65-4c29-8c5f-094e3b19f8df
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_publication_volume.schema_volume_number
+    - paragraphs.paragraphs_type.schema_publication_volume
+  module:
+    - paragraphs
+id: paragraph.schema_publication_volume
+target_entity_type_id: paragraph
+target_bundle: schema_publication_volume
+schema_type: PublicationVolume
+schema_properties:
+  langcode: inLanguage
+  schema_volume_number: volumeNumber
+additional_mappings: {  }

@@ -1,0 +1,22 @@
+uuid: c9233ffd-2b98-4cef-9c4c-52f01c6e90a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.schema_organization.schema_name
+    - paragraphs.paragraphs_type.schema_organization
+id: paragraph.schema_organization.default
+targetEntityType: paragraph
+bundle: schema_organization
+mode: default
+content:
+  schema_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  search_api_excerpt: true
