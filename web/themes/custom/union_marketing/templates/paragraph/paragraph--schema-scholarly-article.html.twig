@@ -1,0 +1,13 @@
+{{ include('ilr_employee_data:scholarlyarticle', {
+  name: paragraph.schema_name.value,
+  datePublished: paragraph.schema_date_published.value,
+  url: paragraph.schema_url.0.url,
+  author: spatie_authors,
+  publisher: spatie_publisher,
+  isPartOf: spatie_is_part_of,
+  pagination: '1',
+  x_arxivnum: paragraph.x_arxivnum.value,
+  x_doi: paragraph.x_doi.value,
+  x_pmid: paragraph.x_pmid.value,
+  x_pmcid: paragraph.x_pmcid.value
+}, with_context = false) }}

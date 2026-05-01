@@ -12,6 +12,7 @@ use Drupal\easy_breadcrumb\EasyBreadcrumbConstants;
 use Drupal\ilr\Entity\EventNodeBase;
 use Drupal\Core\Url;
 use Drupal\image\Entity\ImageStyle;
+use Spatie\SchemaOrg\Schema;
 
 /**
  * @file Theme file for the union_marketing.theme.
@@ -451,6 +452,46 @@ function union_marketing_preprocess_links(&$variables) {
         'classes' => ['ui-dialog' => 'cu-modal'],
       ]),
     ]);
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function union_marketing_preprocess_paragraph(&$variables) {
+  $paragraph = $variables['paragraph'];
+
+  if (strpos($paragraph->bundle(), 'schema_') === 0) {
+    // Place author data in spatie/schema-org author objects, since our existing
+    // single directory component already expects that.
+    if ($paragraph->hasField('schema_author')) {
+      $variables['spatie_authors'] = [];
+
+      foreach ($paragraph->schema_author->referencedEntities() as $author) {
+        $variables['spatie_authors'][] = Schema::person()
+          ->givenName((string) $author->schema_given_name->value)
+          ->familyName((string) $author->schema_family_name->value)
+          ->additionalName((string) $author->schema_additional_name->value);
+      }
+    }
+
+    // Place publisher data in a spatie/schema-org organization object, since
+    // our existing single directory component already expects that.
+    if ($paragraph->hasField('schema_publisher')) {
+      $variables['spatie_publisher'] = Schema::organization()->name((string) $paragraph->schema_publisher->entity->schema_name->value);
+    }
+
+    // Place publisher data in spatie/schema-org publicationIssue and
+    // publicationVolume objects.
+    // TODO: Lots more error checking.
+    if ($paragraph->hasField('schema_is_part_of')) {
+      $variables['spatie_is_part_of'] = Schema::publicationIssue()
+        ->issueNumber((string) $paragraph->schema_is_part_of->entity->schema_issue_number->value)
+        ->isPartOf(
+          Schema::publicationVolume()
+            ->volumeNumber((string) $paragraph->schema_is_part_of->entity->schema_is_part_of->entity->schema_volume_number->value)
+        );
+    }
   }
 }
 
