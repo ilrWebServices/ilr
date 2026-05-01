@@ -18,6 +18,7 @@ settings:
       - italic
       - bulletedList
       - numberedList
+      - paragraphs
       - link
   plugins:
     ckeditor5_alignment:
@@ -40,7 +41,5 @@ settings:
         -
           label: Button
           element: '<a class="cu-button">'
-    linkit_extension:
-      linkit_enabled: false
 image_upload:
   status: false

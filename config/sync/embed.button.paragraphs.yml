@@ -1,0 +1,19 @@
+uuid: 589ada10-4797-4b8a-b73f-5be07376c56c
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_entity_embed
+_core:
+  default_config_hash: 3jVoYpSR2ShbuMqe5rN-xMHdwMItu9lWs0t-PPK2bcc
+label: Paragraphs
+id: paragraphs
+type_id: paragraphs_entity_embed
+type_settings:
+  enable_paragraph_type_filter: true
+  paragraphs_type_filter:
+    schema_book: schema_book
+    schema_scholarly_article: schema_scholarly_article
+  paragraphs_add_mode: button
+icon: {  }
+icon_uuid: null
