@@ -4,13 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.schema_is_part_of
-    - paragraphs.paragraphs_type.schema_article
-    - paragraphs.paragraphs_type.schema_book
-    - paragraphs.paragraphs_type.schema_chapter
-    - paragraphs.paragraphs_type.schema_creative_work
-    - paragraphs.paragraphs_type.schema_news_article
-    - paragraphs.paragraphs_type.schema_publication_issue
-    - paragraphs.paragraphs_type.schema_publication_volume
     - paragraphs.paragraphs_type.schema_scholarly_article
   module:
     - entity_reference_revisions
@@ -29,16 +22,9 @@ settings:
   handler_settings:
     target_type: paragraph
     schema_types:
-      CreativeWork: CreativeWork
+      PublicationIssue: PublicationIssue
     excluded_schema_types: {  }
     ignore_additional_mappings: true
     target_bundles:
-      schema_article: schema_article
-      schema_book: schema_book
-      schema_chapter: schema_chapter
-      schema_creative_work: schema_creative_work
-      schema_news_article: schema_news_article
       schema_publication_issue: schema_publication_issue
-      schema_publication_volume: schema_publication_volume
-      schema_scholarly_article: schema_scholarly_article
 field_type: entity_reference_revisions

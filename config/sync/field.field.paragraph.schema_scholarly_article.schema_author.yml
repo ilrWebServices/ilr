@@ -22,11 +22,9 @@ settings:
   handler_settings:
     target_type: paragraph
     schema_types:
-      Organization: Organization
       Person: Person
     excluded_schema_types: {  }
     ignore_additional_mappings: false
     target_bundles:
-      schema_organization: schema_organization
       schema_person: schema_person
 field_type: entity_reference_revisions
