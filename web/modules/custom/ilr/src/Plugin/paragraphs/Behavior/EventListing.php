@@ -466,6 +466,10 @@ class EventListing extends ParagraphsBehaviorBase {
       $query_params->add('days', 364);
     }
 
+    // Also retrieve any events that tagged "restricted" in localist.
+    // https://help.concept3d.com/hc/en-us/articles/11940613344915-Localist-API#h_01HEV6Y4TBZSVDZFXJV7W484Q4
+    $query_params->add('for', 'widget');
+
     // If a limit was set, limit the results per-page (pp). This may be limited
     // further if node events are selected, too, but we'll never need _more_
     // than the limit.
