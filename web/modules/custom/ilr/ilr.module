@@ -1135,6 +1135,21 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
       $form['field_editors']['#group'] = 'meta';
     }
 
+    // Add a link to the help page for employee profiles. We do this here, and
+    // not in a local task or action, because it's easier to limit it to a
+    // single bundle.
+    $form['profile_help'] = [
+      '#type' => 'container'
+    ];
+    $form['profile_help']['button'] = [
+      '#title' => t('Profile edit help'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('entity.node.canonical', ['node' => 21606]),
+      '#attributes' => [
+        'class' => ['button', 'button--primary', 'button--small'],
+      ],
+    ];
+
     $form['persona_meta'] = [
       '#type' => 'details',
       '#title' => t('Additional info'),
