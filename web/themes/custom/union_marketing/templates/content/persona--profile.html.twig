@@ -84,6 +84,6 @@
     {{ content.field_sections }}
     {{ content.extra_field_media_mentions }}
     {{ content.field_education }}
-    <div class="edit">{{ drupal_link('Edit this profile'|t, 'node/21606') }} {% trans %}if it's yours{% endtrans %}.</div>
+    <div class="edit">{{ drupal_link('Edit this profile'|t, 'user/ilr-profile-edit/' ~ persona.id()) }} {% trans %}if it's yours{% endtrans %}.</div>
   </div>
 </div>
