@@ -2051,3 +2051,12 @@ function ilr_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
 function ilr_media_source_info_alter(array &$sources) {
   $sources['oembed:video']['providers'][] = 'Video on Demand';
 }
+
+/**
+ * Implements hook_toolbar_alter().
+ */
+function ilr_toolbar_alter(&$items) {
+  if (isset($items['user']['tray']['user_links'])) {
+    $items['user']['tray']['user_links']['#lazy_builder'] = ['ilr.user.toolbar_link_builder:renderToolbarLinks', []];
+  }
+}

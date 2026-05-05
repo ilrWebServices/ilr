@@ -34,3 +34,6 @@ services:
   Drupal\ilr\Hook\IlrHooks:
     class: Drupal\ilr\Hook\IlrHooks
     autowire: true
+  ilr.user.toolbar_link_builder:
+    class: Drupal\ilr\UserToolbarLinkBuilder
+    arguments: ['@current_user', '@externalauth.authmap', '@entity_type.manager']
