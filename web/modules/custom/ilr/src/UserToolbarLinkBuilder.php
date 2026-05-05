@@ -56,6 +56,13 @@ class UserToolbarLinkBuilder extends ToolbarLinkBuilder {
 
         $links += [
           'ilr_employee_profile' => [
+            'title' => $this->t('View employee profile'),
+            'url' => $profile_persona->toUrl(),
+            'attributes' => [
+              'title' => $this->t('View your ILR employee profile'),
+            ],
+          ],
+          'ilr_employee_profile_edit' => [
             'title' => $this->t('Edit employee profile'),
             'url' => $profile_persona->toUrl('edit-form'),
             'attributes' => [
