@@ -31,6 +31,7 @@ use Drupal\Core\Field\WidgetInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\taxonomy\VocabularyInterface;
 use Drupal\collection\Entity\CollectionItemInterface;
+use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Database\Query\AlterableInterface;
 use Drupal\Core\Hook\Attribute\LegacyHook;
@@ -1812,7 +1813,7 @@ function ilr_preprocess_views_view_field(&$variables) {
 /**
  * Implements hook_ENTITY_TYPE_create_access() for entity type 'paragraph'.
  */
-function ilr_paragraph_create_access(AccountInterface $account = NULL, array $context = array(), $entity_bundle = NULL) {
+function ilr_paragraph_create_access(AccountInterface $account, array $context, $entity_bundle): AccessResultInterface {
   if ($entity_bundle === 'instagram_listing') {
     // We use this restrictive permission to hide the instagram_listing
     // paragraph from most content editors.
@@ -1822,6 +1823,8 @@ function ilr_paragraph_create_access(AccountInterface $account = NULL, array $co
 
     return AccessResult::forbidden()->cachePerPermissions();
   }
+
+  return AccessResult::neutral();
 }
 
 /**
