@@ -5,3 +5,14 @@ ilr_employee_data.directory:
     _controller: '\Drupal\ilr_employee_data\Controller\DirectoryController::view'
   requirements:
     _permission: 'access content'
+ilr_employee_data.edit:
+  path: 'user/ilr-profile-edit/{persona}'
+  defaults:
+    _title: 'ILR People Profile Edit'
+    _controller: '\Drupal\ilr_employee_data\Controller\UserProfileEditController::view'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      persona:
+        type: entity:persona
