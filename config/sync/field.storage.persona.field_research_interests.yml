@@ -1,0 +1,21 @@
+uuid: 699060d0-961b-48d9-9b0f-06a36563f897
+langcode: en
+status: true
+dependencies:
+  module:
+    - person
+id: persona.field_research_interests
+field_name: field_research_interests
+entity_type: persona
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 6
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

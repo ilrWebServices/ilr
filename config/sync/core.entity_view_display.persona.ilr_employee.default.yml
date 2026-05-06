@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.persona.ilr_employee.behavior_suppress_media_mentions
     - field.field.persona.ilr_employee.field_areas_of_expertise
     - field.field.persona.ilr_employee.field_bio
     - field.field.persona.ilr_employee.field_campus_address
@@ -20,8 +21,8 @@ dependencies:
     - field.field.persona.ilr_employee.field_other_expertise
     - field.field.persona.ilr_employee.field_phone
     - field.field.persona.ilr_employee.field_photo
+    - field.field.persona.ilr_employee.field_research_interests
     - field.field.persona.ilr_employee.field_sections
-    - field.field.persona.ilr_employee.behavior_suppress_media_mentions
     - field.field.persona.ilr_employee.field_websites
     - image.style.thumbnail_square
     - person.persona_type.ilr_employee
@@ -157,6 +158,14 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_research_interests:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 17
     region: content
   field_sections:
     type: entity_reference_revisions_entity_view
