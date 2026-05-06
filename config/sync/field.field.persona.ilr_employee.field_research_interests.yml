@@ -1,0 +1,19 @@
+uuid: d5688db1-2b9c-4fa9-9c7b-87fd51220ff1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.persona.field_research_interests
+    - person.persona_type.ilr_employee
+id: persona.ilr_employee.field_research_interests
+field_name: field_research_interests
+entity_type: persona
+bundle: ilr_employee
+label: 'Research interests'
+description: 'Please enter up to six bullet points of specific research interests.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
