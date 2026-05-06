@@ -6,7 +6,6 @@ dependencies:
     - field.storage.persona.field_components
     - paragraphs.paragraphs_type.honors_and_awards
     - paragraphs.paragraphs_type.professional_activities
-    - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.publications
     - paragraphs.paragraphs_type.tout
     - person.persona_type.ilr_employee
@@ -29,7 +28,6 @@ settings:
       publications: publications
       honors_and_awards: honors_and_awards
       professional_activities: professional_activities
-      promo: promo
       tout: tout
     negate: 0
     target_bundles_drag_drop:
@@ -125,7 +123,7 @@ settings:
         enabled: false
       promo:
         weight: -61
-        enabled: true
+        enabled: false
       publications:
         weight: -65
         enabled: true
