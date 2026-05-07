@@ -37,7 +37,7 @@ elements: |-
         - form-fields
     newsletter_info:
       '#type': processed_text
-      '#text': '<h3>YTI Newsletter</h3><p><em>Bringing you disability-related research, policy, events, training, consultation, and more</em></p><p><a href="/yti/newsletter-current" data-entity-type="node" data-entity-uuid="a2d6e703-cdc8-445c-bff1-8db12359c1aa" data-entity-substitution="canonical">Read newsletter online</a></p>'
+      '#text': '<h3>YTI Newsletter</h3><p><em>Bringing you disability-related research, policy, events, training, consultation, and more</em></p><p><a href="/yti/newsletter-current">Read newsletter online</a></p>'
       '#format': standard_formatting
     flex_container:
       '#type': container
