@@ -65,7 +65,9 @@
             }
           }
           else {
-            alert('No people that match that search. Sorry!')
+            for (const persona of personas) {
+              persona.style.display = 'none';
+            }
           }
         }
       });
