@@ -60,3 +60,17 @@
 .employee-directory .filters .cu-input {
   margin: 0;
 }
+
+.employee-directory .filters .search-filter .cu-label,
+.employee-directory .filters .search-filter.has-float-label #search {
+  padding-left: 1em;
+}
+
+.employee-directory .filters .search-filter .cu-input {
+  border-radius: 1.5em;
+}
+
+/* Center clear link even if submit button not present. */
+.filter-actions {
+  display: flex;
+}

@@ -32,7 +32,7 @@ class DirectoryController extends ControllerBase {
           '#children' => [
             'search' => [
               '#type' => 'inline_template',
-              '#template' => '<div class="search-filter form-item cu-input-list__item has-float-label"><label for="search" class="cu-label">Search for people</label><input id="search" name="s" value="{{ default }}" class="form-text cu-input cu-input--text is-touched"></div>',
+              '#template' => '<div class="search-filter form-item cu-input-list__item has-float-label"><label for="search" class="cu-label">Search for people</label><input type="search" id="search" name="s" value="{{ default }}" class="form-text cu-input cu-input--text is-touched"></div>',
               '#context' => [
                 'default' => '',
               ],

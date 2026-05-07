@@ -71,6 +71,23 @@
       });
 
       filter_form.querySelector('#search').focus();
+
+      // Add an auto-submitter for the filters.
+      let debounceTimer;
+
+      filter_form.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+
+        debounceTimer = setTimeout(() => {
+          filter_form.requestSubmit(); // HTML5 method that triggers submit event
+        }, 300); // milliseconds to wait after typing stops
+      });
+
+      // Hide the submit button.
+      const submitButton = filter_form.querySelector('input[type="submit"]');
+      if (submitButton) {
+        submitButton.style.display = 'none';
+      }
     }
   };
 
