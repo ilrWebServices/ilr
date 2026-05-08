@@ -19,8 +19,7 @@
     }
   }
 
-  .cu-page-nav__item {
-    padding: 0 0 var(--cu-vr1) var(--cu-ps3);
+  .cu-page-nav__item:not(:has(.cu-page-nav__select-trigger)) {
     position: relative;
     display: flex;
     align-items: center;
@@ -33,6 +32,10 @@
       font-weight: bold;
       font-size: var(--cu-ms5);
       text-align: center;
+    }
+
+    @include breakpoint(sm) {
+      padding: 0 0 var(--cu-vr1) var(--cu-ps3);
     }
   }
 
