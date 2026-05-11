@@ -189,8 +189,8 @@ class DirectoryController extends ControllerBase {
         $employee_persona->field_first_name->value,
         $employee_persona->field_last_name->value,
         $employee_persona->field_display_name_override->value ?? '',
-        implode('  ', $this_employee_departments),
-        implode('  ', $this_employee_titles),
+        // implode('  ', $this_employee_departments),
+        // implode('  ', $this_employee_titles),
       ];
 
       $search_index = array_map('strtolower', $search_index);
