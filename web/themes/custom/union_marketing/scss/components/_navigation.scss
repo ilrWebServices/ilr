@@ -1,7 +1,6 @@
 // Main menu
 // @todo fix broken subsite nav on mobile
-#block-union-marketing-primary-nav,
-nav[id^="block-union-marketing-menu-subsite"] {
+#block-union-marketing-primary-nav {
   order: 4;
   line-height: 1;
 
@@ -352,40 +351,6 @@ body.node--landing-page .nav-trigger {
   }
 }
 
-nav[id^="block-union-marketing-menu-subsite"] .cu-menu__list--subsite {
-  --cu-text-color: #{$black};
-  font-size: var(--cu-ms-1);
-  list-style-type: none;
-  justify-content: flex-start;
-
-  @include breakpoint(md) {
-    padding: var(--cu-vr1) 0 0 0;
-    border-top: 1px solid $gray-medium;
-
-    &::before {
-      content: '';
-      display: block;
-      height: 1.5rem;
-      width: 1px;
-      background-color: $gray-medium;
-    }
-  }
-
-  .cu-menu__list--subsite-submenu {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-
-    @include breakpoint(md) {
-      display: none;
-    }
-  }
-
-  .cu-menu__link {
-    display: block;
-  }
-}
-
 .cu-menu__item--home {
   margin-bottom: var(--cu-vr0);
   text-wrap: nowrap;
@@ -402,44 +367,6 @@ nav[id^="block-union-marketing-menu-subsite"] .cu-menu__list--subsite {
 
     @include breakpoint(md) {
       font-size: var(--cu-ms-2);
-    }
-  }
-}
-
-.cu-menu__list--subsite .cu-menu__item {
-  @include breakpoint(md) {
-    display: inline-block;
-  }
-}
-
-.cu-menu__list--subsite .cu-menu__link {
-  text-decoration: none;
-  padding: 0;
-
-  &.is-active {
-    --cu-text-color: #{$cornell-red};
-    font-weight: bold;
-  }
-}
-
-// @todo: Note that this should move with the union main-menu header styles refactor.
-nav[id^="block-union-marketing-menu-subsite"] {
-  @include breakpoint(sm) {
-    flex-basis: 100%;
-    flex-grow: 1;
-  }
-
-  label[for="nav-trigger"] {
-    top: -12px; // Half its height, for vertical centering.
-    right: 0;
-
-    @include breakpoint(xs) {
-      right: var(--cu-vr1);
-    }
-
-    @include breakpoint(sm) {
-      left: 0;
-      top: 0.5em;
     }
   }
 }
