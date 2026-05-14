@@ -1,0 +1,14 @@
+uuid: af95c661-7deb-4ab3-a59d-52dc31cecab6
+langcode: en
+status: true
+dependencies: {  }
+id: mealtimes
+label: Mealtimes
+category: ILR
+likert: false
+options: |-
+  Breakfast: Breakfast
+  'AM snack': 'AM snack'
+  Lunch: Lunch
+  'PM snack': 'PM snack'
+  Dinner: Dinner
