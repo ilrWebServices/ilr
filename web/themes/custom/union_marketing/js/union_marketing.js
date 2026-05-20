@@ -454,4 +454,35 @@
     }
   }
 
+  // Enhance subsite navigation.
+  Drupal.behaviors.union_marketing_subnavigation_enhance = {
+    attach: function (context, settings) {
+      if (context !== document) {
+        return;
+      }
+
+      const subnavigation = context.querySelector('nav[id^="block-union-marketing-menu-subsite"]');
+      const subnav_links = subnavigation.querySelectorAll(':scope > ul > li:has(.cu-menu__list--subsite-submenu) > .cu-menu__link');
+
+      for (const subnav_link of subnav_links) {
+        let js_link_target = document.createElement('span');
+        js_link_target.classList.add('js-link-target');
+        subnav_link.appendChild(js_link_target);
+      }
+
+      subnavigation.addEventListener('click', function(e) {
+        if (e.target.matches('.js-link-target')) {
+          e.preventDefault();
+
+          if (e.target.classList.contains('active')) {
+            e.target.classList.remove('active');
+          }
+          else {
+            e.target.classList.add('active');
+          }
+        }
+      });
+    }
+  }
+
 })(window, document, Drupal);

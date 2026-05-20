@@ -17,14 +17,14 @@
 
     > ul {
       @include breakpoint(md) {
-        gap: var(--cu-ps2);
+        column-gap: var(--cu-ps2);
         align-items: center;
       }
     }
 
-    ul > li > ul {
-      display: none;
-    }
+    // ul > li > ul {
+    //   display: none;
+    // }
   }
 
   #block-union-marketing-utility-nav {

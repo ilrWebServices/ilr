@@ -1,0 +1,214 @@
+nav[id^="block-union-marketing-menu-subsite"] {
+  order: 4;
+  line-height: 1;
+
+  .cu-menu__link {
+    --cu-font-size: var(--cu-ms1);
+    text-decoration: none;
+    font-weight: 400;
+    white-space: nowrap;
+
+    @include breakpoint(md) {
+      font-size: var(--cu-ms-2);
+      column-gap: 20px;
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  > ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--cu-vr-1);
+    flex-wrap: wrap;
+    z-index: 10;
+    background-color: white;
+
+    @include breakpoint(md) {
+      flex-direction: initial;
+      gap: var(--cu-ps0);
+      justify-content: space-evenly;
+      align-items: flex-end;
+      position: unset;
+      width: 100%;
+      min-width: unset;
+      box-shadow: unset;
+      padding: unset;
+    }
+  }
+
+  > ul > li:has(.cu-menu__list--subsite-submenu) > .cu-menu__link {
+    width: 100%;
+    display: flex;
+    gap: 0px;
+    justify-content: space-between;
+    align-items: end;
+  }
+
+  > ul > li:has(.cu-menu__list--subsite-submenu) > .cu-menu__link::after {
+    content: url("data:image/svg+xml,%3Csvg width='14' height='10' viewBox='0 0 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m 0,0 5,5 5,-5 v 0' style='fill:none;stroke:%23222;stroke-width:1;stroke-linecap:round;stroke-linejoin:round' /%3E%3C/svg%3E ");
+    transition: transform .25s;
+
+    @include breakpoint(md) {
+      // Only the width is changed here.
+      content: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m 0,0 5,5 5,-5 v 0' style='fill:none;stroke:%23222;stroke-width:1;stroke-linecap:round;stroke-linejoin:round' /%3E%3C/svg%3E ");
+      text-wrap: nowrap;
+      margin-left: .25rem;
+    }
+  }
+
+  > ul > li:has(.cu-menu__list--subsite-submenu):hover > .cu-menu__link::after,
+  > ul > li:has(.js-link-target.active) > .cu-menu__link::after {
+    transform: rotate(180deg);
+  }
+
+  > ul > li > ul {
+    display: none;
+    background: white;
+    padding: var(--cu-vr0) var(--cu-ps1);
+    min-width: calc(var(--cu-ps1) * 2 + 8rem);
+    text-align: initial;
+
+    @include breakpoint(md) {
+      margin-left: calc(var(--cu-ps1) * -1);
+      position: absolute;
+    }
+  }
+
+  > ul > li:hover > ul {
+    @include breakpoint(md) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: var(--cu-ps-1);
+      z-index: 5;
+      box-shadow: 0 5px 10px rgba(0,0,0,.25);
+    }
+  }
+
+  > ul > li:has(.js-link-target.active) > ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--cu-vr-1);
+    // border-bottom: 1px solid var(--cu-color-gray);
+    // padding-left: 0;
+
+    .cu-menu__link {
+      --cu-font-size: var(--cu-ms0);
+    }
+  }
+
+  .cu-menu__item--home {
+    margin-bottom: var(--cu-vr0);
+    text-wrap: nowrap;
+
+    @include breakpoint(md) {
+      margin-left: calc((7rem + var(--cu-ps2)) * -1);
+      margin-bottom: unset;
+      order: -1;
+    }
+
+    .cu-menu__link {
+      --cu-font-size: var(--cu-ms-1);
+      font-weight: 300;
+      color: #6c6c6c;
+
+      @include breakpoint(md) {
+        --cu-font-size: var(--cu-ms-2);
+      }
+    }
+  }
+
+  .js-link-target {
+    position: absolute;
+    right: -15px;
+    width: 44px;
+    height: 100%;
+    // background-color: yellow;
+    opacity: .75;
+    z-index: 1;
+  }
+}
+
+nav[id^="block-union-marketing-menu-subsite"] .cu-menu__list--subsite {
+  --cu-text-color: #{$black};
+  --cu-font-size: var(--cu-ms-1);
+  list-style-type: none;
+  justify-content: flex-start;
+
+  @include breakpoint(md) {
+    padding: var(--cu-vr0) 0 0 calc(7rem + var(--cu-ps2));
+    row-gap: 0;
+    border-top: 1px solid $gray-medium;
+
+    &::before {
+      content: '';
+      display: block;
+      height: 1.5rem;
+      width: 1px;
+      background-color: $gray-medium;
+    }
+  }
+
+  .cu-menu__link {
+    position: relative;
+  }
+}
+
+// @todo: Note that this should move with the union main-menu header styles refactor.
+nav[id^="block-union-marketing-menu-subsite"] {
+  @include breakpoint(sm) {
+    flex-basis: 100%;
+    flex-grow: 1;
+  }
+
+  label[for="nav-trigger"] {
+    top: -12px; // Half its height, for vertical centering.
+    right: 0;
+
+    @include breakpoint(xs) {
+      right: var(--cu-vr1);
+    }
+
+    @include breakpoint(sm) {
+      left: 0;
+      top: 0.5em;
+    }
+  }
+}
+
+.cu-menu__list--subsite .cu-menu__item {
+  @include breakpoint(md) {
+    display: inline-block;
+    line-height: 1;
+    position: relative;
+  }
+}
+
+.cu-menu__list--subsite .cu-menu__link {
+  display: inline-block;
+  text-decoration: none;
+
+  @include breakpoint(md) {
+    padding: var(--cu-vr-1) 0;
+  }
+
+  &.is-active {
+    --cu-text-color: #{$cornell-red};
+    font-weight: bold;
+  }
+}
+
+.cu-menu__list--subsite-submenu .cu-menu__link {
+  padding: 0;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
+  }
+}
