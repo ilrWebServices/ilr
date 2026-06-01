@@ -193,22 +193,20 @@ nav[id^="block-union-marketing-menu-subsite"] {
   display: inline-block;
   text-decoration: none;
 
-  @include breakpoint(md) {
-    padding: var(--cu-vr-1) 0;
+  &:hover {
+    color: var(--cu-color-brand);
   }
 
   &.is-active {
     --cu-text-color: #{$cornell-red};
     font-weight: bold;
   }
+
+  @include breakpoint(md) {
+    padding: var(--cu-vr-1) 0;
+  }
 }
 
 .cu-menu__list--subsite-submenu .cu-menu__link {
   padding: 0;
-
-  &:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 6px;
-  }
 }
