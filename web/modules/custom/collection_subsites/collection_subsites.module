@@ -139,6 +139,16 @@ function collection_subsites_entity_field_storage_info(EntityTypeInterface $enti
       ->setName('address')
       ->setTargetEntityTypeId('collection')
       ->setRevisionable(TRUE);
+
+    $definitions['email'] = FieldStorageDefinition::create('email')
+      ->setName('email')
+      ->setTargetEntityTypeId('collection')
+      ->setRevisionable(TRUE);
+
+    $definitions['webform'] = FieldStorageDefinition::create('webform')
+      ->setName('webform')
+      ->setTargetEntityTypeId('collection')
+      ->setRevisionable(FALSE);
   }
 
   return $definitions;
@@ -162,6 +172,8 @@ function collection_subsites_entity_bundle_field_info(EntityTypeInterface $entit
     $custom_field_storage = collection_subsites_entity_field_storage_info($entity_type);
     $fields[$custom_field_storage['logo']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['logo']);
     $fields[$custom_field_storage['address']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['address']);
+    $fields[$custom_field_storage['email']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['email']);
+    $fields[$custom_field_storage['webform']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['webform']);
 
     $fields[$custom_field_storage['logo']->getName()]
       ->setLabel(t('SVG Logo'))
@@ -190,6 +202,37 @@ function collection_subsites_entity_bundle_field_info(EntityTypeInterface $entit
       ])
       ->setDisplayOptions('form', [
         'type' => 'address_default',
+        'weight' => 11,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields[$custom_field_storage['email']->getName()]
+      ->setLabel(t('Contact email'))
+      ->setDescription(t('The contact email address for this group/organization.'))
+      ->setRequired(FALSE)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'email',
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'email',
+        'weight' => 12,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields[$custom_field_storage['webform']->getName()]
+      ->setLabel(t('Footer form'))
+      ->setDescription(t('Setting this form will make it appear on the footer of every page of this subsite.'))
+      ->setRequired(FALSE)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'webform',
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'webform_entity_reference_select',
+        'weight' => 13,
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
