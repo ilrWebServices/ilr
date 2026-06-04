@@ -5,6 +5,8 @@
  * Contains collection_subsites.module.
  */
 
+use CommerceGuys\Addressing\AddressFormat\AddressField;
+use CommerceGuys\Addressing\AddressFormat\FieldOverride;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\collection\Entity\CollectionType;
@@ -78,6 +80,33 @@ function collection_subsites_form_collection_form_alter(&$form, FormStateInterfa
   ];
 
   $form['logo']['#group'] = 'branding';
+
+  // Customize the address field for subsite collections.
+  $collection = $form_state->getFormObject()->getEntity();
+  $collection_type = \Drupal::service('entity_type.manager')->getStorage('collection_type')->load($collection->bundle());
+  $is_subsite = (bool) $collection_type->getThirdPartySetting('collection_subsites', 'contains_subsites');
+
+  if ($is_subsite) {
+    if (isset($form['address']['widget'][0])) {
+      $form['address']['widget'][0]['address']['#field_overrides'] = [
+        AddressField::GIVEN_NAME => FieldOverride::HIDDEN,
+        AddressField::FAMILY_NAME => FieldOverride::HIDDEN,
+        AddressField::ORGANIZATION => FieldOverride::HIDDEN,
+        AddressField::ADDRESS_LINE1 => FieldOverride::OPTIONAL,
+        AddressField::LOCALITY => FieldOverride::OPTIONAL,
+        AddressField::ADMINISTRATIVE_AREA => FieldOverride::OPTIONAL,
+        AddressField::POSTAL_CODE => FieldOverride::OPTIONAL,
+      ];
+
+      if ($collection->address->isEmpty()) {
+        $form['address']['widget'][0]['address']['#default_value'] = [
+          'country_code' => 'US',
+        ];
+      }
+
+      $form['address']['widget'][0]['address']['#required'] = FALSE;
+    }
+  }
 }
 
 /**
@@ -105,6 +134,11 @@ function collection_subsites_entity_field_storage_info(EntityTypeInterface $enti
       ->setRevisionable(TRUE)
       ->setTargetEntityTypeId($entity_type->id())
       ->setSetting('target_type', 'media');
+
+    $definitions['address'] = FieldStorageDefinition::create('address')
+      ->setName('address')
+      ->setTargetEntityTypeId('collection')
+      ->setRevisionable(TRUE);
   }
 
   return $definitions;
@@ -127,6 +161,7 @@ function collection_subsites_entity_bundle_field_info(EntityTypeInterface $entit
   if ($is_subsite) {
     $custom_field_storage = collection_subsites_entity_field_storage_info($entity_type);
     $fields[$custom_field_storage['logo']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['logo']);
+    $fields[$custom_field_storage['address']->getName()] = FieldDefinition::createFromFieldStorageDefinition($custom_field_storage['address']);
 
     $fields[$custom_field_storage['logo']->getName()]
       ->setLabel(t('SVG Logo'))
@@ -144,6 +179,20 @@ function collection_subsites_entity_bundle_field_info(EntityTypeInterface $entit
         'type' => 'media_library_widget',
         'weight' => 1,
       ]);
+
+    $fields[$custom_field_storage['address']->getName()]
+      ->setLabel(t('Address'))
+      ->setDescription(t('The public address for this insitute or group.'))
+      ->setRequired(FALSE)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'address_default',
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'address_default',
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
   }
 
   return $fields;
