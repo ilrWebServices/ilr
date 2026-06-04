@@ -1,0 +1,37 @@
+.subsite-footer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: var(--cu-ps1);
+
+  > * {
+    grid-column: 1;
+  }
+
+  .subsite-footer__link {
+    grid-row: 1;
+    max-width: 45%;
+    margin-bottom: var(--cu-vr1);
+  }
+
+  .cu-menu__list--subsite {
+    margin: 0;
+    grid-column: 2;
+    grid-row: 2;
+    columns: unset;
+
+    .cu-menu__item {
+      display: block;
+    }
+  }
+
+  .webform-submission-form {
+    grid-row: 2/4;
+    grid-column: 3/5;
+    background-color: transparent;
+    padding: 0;
+
+    &.webform--with-content {
+      margin: 0;
+    }
+  }
+}
