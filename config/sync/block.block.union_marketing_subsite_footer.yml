@@ -1,0 +1,29 @@
+uuid: b2203c72-7dc9-4997-9584-482170724866
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - ilr
+  theme:
+    - union_marketing
+id: union_marketing_subsite_footer
+theme: union_marketing
+region: footer
+weight: -1
+provider: null
+plugin: subsite_footer_block
+settings:
+  id: null
+  label: 'Subsite footer'
+  label_display: '0'
+  provider: null
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+  root_path_entity_bundle:
+    id: root_path_entity_bundle
+    root_entity_bundles: {  }
+    negate: 0

@@ -30,6 +30,16 @@ function collection_subsites_theme() {
       ],
       'render element' => 'children',
     ],
+    'subsite_footer_block' => [
+      'variables' => [
+        'subsite_logo' => NULL,
+        'subsite_address' => NULL,
+        'subsite_email' => NULL,
+        'subsite_menu' => NULL,
+        'subsite_form' => NULL,
+      ],
+      'render element' => 'children',
+    ],
   ];
 }
 
