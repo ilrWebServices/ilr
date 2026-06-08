@@ -14,6 +14,8 @@ use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\extended_post\ExtendedPostManager;
 use Drupal\Core\Pager\PagerManagerInterface;
+use Drupal\person\Entity\Person;
+use Drupal\person\PersonaManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -50,6 +52,13 @@ class PostListing extends ParagraphsBehaviorBase {
   protected $pagerManager;
 
   /**
+   * The persona manager.
+   *
+   * @var \Drupal\person\PersonaManager
+   */
+  protected $personaManager;
+
+  /**
    * Count threshold before a pager is required.
    *
    * @var int
@@ -73,12 +82,15 @@ class PostListing extends ParagraphsBehaviorBase {
    *   The extended post manager service.
    * @param \Drupal\Core\Pager\PagerManagerInterface $pager_manager
    *   The pager manager service.
+   * @param \Drupal\person\PersonaManager $persona_manager
+   *   The persona manager service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityFieldManagerInterface $entity_field_manager, EntityTypeManagerInterface $entity_type_manager, ExtendedPostManager $extended_post_manager, PagerManagerInterface $pager_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityFieldManagerInterface $entity_field_manager, EntityTypeManagerInterface $entity_type_manager, ExtendedPostManager $extended_post_manager, PagerManagerInterface $pager_manager, PersonaManager $persona_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_field_manager);
     $this->entityTypeManager = $entity_type_manager;
     $this->postTypes = $extended_post_manager->getPostTypesWithLabels();
     $this->pagerManager = $pager_manager;
+    $this->personaManager = $persona_manager;
   }
 
   /**
@@ -92,7 +104,8 @@ class PostListing extends ParagraphsBehaviorBase {
       $container->get('entity_field.manager'),
       $container->get('entity_type.manager'),
       $container->get('extended_post.manager'),
-      $container->get('pager.manager')
+      $container->get('pager.manager'),
+      $container->get('persona.manager')
     );
   }
 
@@ -185,6 +198,16 @@ class PostListing extends ParagraphsBehaviorBase {
       '#validated' => 'true',
     ];
 
+    $form['related_people'] = [
+      '#type' => 'entity_autocomplete',
+      '#title' => $this->t('Related people'),
+      '#description' => $this->t('Comma-separated list of experts referenced in this listing, e.g. Media mentions.'),
+      '#target_type' => 'person',
+      '#tags' => TRUE,
+      '#maxlength' => 1024,
+      '#default_value' => Person::loadMultiple(array_keys($paragraph->getBehaviorSetting($this->getPluginId(), 'related_people', []))),
+    ];
+
     $form['count'] = [
       '#type' => 'number',
       '#required' => TRUE,
@@ -244,11 +267,27 @@ class PostListing extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function submitBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    $filtered_values = $this->filterBehaviorFormSubmitValues($paragraph, $form, $form_state);
+
     if (empty($form_state->getValue(['blog_terms', 'post_categories']))) {
       $form_state->setValue('negate_category', FALSE);
     }
 
-    parent::submitBehaviorForm($paragraph, $form, $form_state);
+    if (!empty($filtered_values['related_people'])) {
+      // Change the related_people array to `$pid => label()`. This helps with
+      // the summary display.
+      $related_people_data = [];
+
+      foreach ($filtered_values['related_people'] as $related_person_pid) {
+        if ($related_person = $this->entityTypeManager->getStorage('person')->load($related_person_pid['target_id'])) {
+          $related_people_data[$related_person->id()] = $related_person->label();
+        }
+      }
+
+      $filtered_values['related_people'] = $related_people_data;
+    }
+
+    $paragraph->setBehaviorSettings($this->getPluginId(), $filtered_values);
   }
 
   /**
@@ -322,6 +361,24 @@ class PostListing extends ParagraphsBehaviorBase {
       }
     }
 
+    if ($expert_references = $paragraph->getBehaviorSetting($this->getPluginId(), 'related_people')) {
+      $person_storage = $this->entityTypeManager->getStorage('person');
+      $persona_ids = [];
+
+      foreach ($expert_references as $expert_reference_person_id => $expert_reference_name) {
+        $person = $person_storage->load($expert_reference_person_id);
+
+        foreach ($this->personaManager->getPersonas($person) as $persona) {
+          $persona_ids[] = $persona->id();
+        }
+      }
+
+      $related_people_group = $query->orConditionGroup();
+      $related_people_group->condition('item.entity:node.field_experts', $persona_ids, 'IN');
+      $related_people_group->condition('item.entity:node.field_authors', $persona_ids, 'IN');
+      $query->condition($related_people_group);
+    }
+
     $list_style = $paragraph->getBehaviorSetting('list_styles', 'list_style') ?? 'grid';
 
     // Two of the grid list styles require the posts to have images.
@@ -348,7 +405,6 @@ class PostListing extends ParagraphsBehaviorBase {
         $query->range(0, $limit);
       }
     }
-
     $result = $query->execute();
 
     foreach ($collection_item_storage->loadMultiple($result) as $collection_item) {
@@ -460,6 +516,13 @@ class PostListing extends ParagraphsBehaviorBase {
       'label' => 'Tags',
       'value' => $tags_labels ? implode(', ', $tags_labels) : 'All',
     ];
+
+    if ($related_people = $paragraph->getBehaviorSetting($this->getPluginId(), 'related_people')) {
+      $summary[] = [
+        'label' => 'People',
+        'value' => implode(', ', $related_people),
+      ];
+    }
 
     $summary[] = [
       'label' => 'Show',
