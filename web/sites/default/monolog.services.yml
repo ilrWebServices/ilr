@@ -2,6 +2,7 @@ parameters:
   monolog.channel_handlers:
     'page not found': ['grist_link_log']
     webform_touchpoint: ['slack_webhook', 'drupal.dblog']
+    'collegenet to salesforce': ['slack_webhook', 'drupal.dblog']
     default: ['drupal.dblog']
 
 services:
