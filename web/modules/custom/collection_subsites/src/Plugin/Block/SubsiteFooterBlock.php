@@ -8,18 +8,19 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\collection\Entity\CollectionInterface;
+use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
- * Provides a 'SubsiteBrandingBlock' block.
- *
- * @Block(
- *   id = "subsite_footer_block",
- *   admin_label = @Translation("Subsite footer")
- * )
+ * Provides a 'SubsiteFooterBlock' block.
  */
+#[Block(
+  id: "subsite_footer_block",
+  admin_label: new TranslatableMarkup("Subsite footer")
+)]
 class SubsiteFooterBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   public function __construct(
