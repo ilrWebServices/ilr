@@ -690,3 +690,25 @@ ilr.utility.give:
   options:
     attributes:
       class: ilr-menu-button
+
+ilr.footer.privacy:
+  title: 'Privacy Policy'
+  menu_name: disclosures
+  url: 'internal:/privacy-policy'
+  weight: 1
+
+ilr.footer.accessibility:
+  title: 'Web Accessibility'
+  menu_name: disclosures
+  url: 'internal:/web-accessibility'
+  weight: 2
+
+ilr.footer.eee:
+  title: 'Equal Education & Employment'
+  menu_name: disclosures
+  url: 'https://hr.cornell.edu/about/workplace-rights/equal-education-and-employment'
+  weight: 3
+  options:
+    attributes:
+      class: ilr-menu-link--offsite
+      target: _blank
