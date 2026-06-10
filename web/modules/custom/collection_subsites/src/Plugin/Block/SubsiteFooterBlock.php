@@ -103,6 +103,7 @@ class SubsiteFooterBlock extends BlockBase implements ContainerFactoryPluginInte
     $query = $collection_item_storage->getQuery()
       ->condition('item__target_type', 'menu')
       ->condition('item__target_id', 'subsite', 'CONTAINS')
+      ->condition('collection', $subsite_collection->id())
       ->accessCheck(TRUE); // Always enforce entity access
 
     $menu_collection_item_id = $query->execute();
