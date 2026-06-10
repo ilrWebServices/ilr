@@ -90,33 +90,6 @@ function collection_subsites_form_collection_form_alter(&$form, FormStateInterfa
   ];
 
   $form['logo']['#group'] = 'branding';
-
-  // Customize the address field for subsite collections.
-  $collection = $form_state->getFormObject()->getEntity();
-  $collection_type = \Drupal::service('entity_type.manager')->getStorage('collection_type')->load($collection->bundle());
-  $is_subsite = (bool) $collection_type->getThirdPartySetting('collection_subsites', 'contains_subsites');
-
-  if ($is_subsite) {
-    if (isset($form['address']['widget'][0])) {
-      $form['address']['widget'][0]['address']['#field_overrides'] = [
-        AddressField::GIVEN_NAME => FieldOverride::HIDDEN,
-        AddressField::FAMILY_NAME => FieldOverride::HIDDEN,
-        AddressField::ORGANIZATION => FieldOverride::HIDDEN,
-        AddressField::ADDRESS_LINE1 => FieldOverride::OPTIONAL,
-        AddressField::LOCALITY => FieldOverride::OPTIONAL,
-        AddressField::ADMINISTRATIVE_AREA => FieldOverride::OPTIONAL,
-        AddressField::POSTAL_CODE => FieldOverride::OPTIONAL,
-      ];
-
-      if ($collection->address->isEmpty()) {
-        $form['address']['widget'][0]['address']['#default_value'] = [
-          'country_code' => 'US',
-        ];
-      }
-
-      $form['address']['widget'][0]['address']['#required'] = FALSE;
-    }
-  }
 }
 
 /**
@@ -206,6 +179,14 @@ function collection_subsites_entity_bundle_field_info(EntityTypeInterface $entit
       ->setLabel(t('Address'))
       ->setDescription(t('The public address for this insitute or group.'))
       ->setRequired(FALSE)
+      ->setSettings([
+        'available_countries' => ['US'],
+        'field_overrides' => [
+          AddressField::GIVEN_NAME => ['override' => FieldOverride::HIDDEN],
+          AddressField::FAMILY_NAME => ['override' => FieldOverride::HIDDEN],
+          AddressField::ORGANIZATION => ['override' => FieldOverride::HIDDEN],
+        ],
+      ])
       ->setDisplayOptions('view', [
         'label' => 'hidden',
         'type' => 'address_default',
