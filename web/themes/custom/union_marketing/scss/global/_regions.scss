@@ -36,6 +36,8 @@ footer {
     justify-self: stretch;
     width: 100%;
     display: grid;
+    row-gap: var(--cu-vr2);
+    margin-bottom: 0;
 
     @include breakpoint(sm) {
       grid-template-columns: 1fr 1fr;
@@ -50,14 +52,11 @@ footer {
     --cu-text-color: #222 !important;
     list-style-type: none;
     padding: 0;
+    margin: 0;
   }
 
   ul:not(:has(.ilr-menu-link--offsite)) {
     columns: 2;
-  }
-
-  .ilr-wordmark {
-    margin-bottom: var(--cu-vr2);
   }
 
   .social-follow {
