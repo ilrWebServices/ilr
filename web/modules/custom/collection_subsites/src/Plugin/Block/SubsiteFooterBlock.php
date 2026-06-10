@@ -29,7 +29,9 @@ class SubsiteFooterBlock extends BlockBase implements ContainerFactoryPluginInte
     protected array $pathEntities,
     protected EntityTypeManagerInterface $entityTypeManager,
     protected MenuLinkTreeInterface $menuTree,
-  ) {}
+  ) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+  }
 
   /**
    * {@inheritdoc}
