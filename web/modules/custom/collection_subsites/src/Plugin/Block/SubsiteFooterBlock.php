@@ -87,7 +87,7 @@ class SubsiteFooterBlock extends BlockBase implements ContainerFactoryPluginInte
 
     if ($email = $subsite_collection->email->value) {
       $build['#subsite_email'] = [
-        '#markup' => '<a href="mailto:' . $email . '">' . $email . '</a>',
+        '#markup' => '<a href="mailto:' . $email . '" class="subsite-footer__email">' . $email . '</a>',
       ];
     }
 

@@ -12,22 +12,24 @@
  * @ingroup themeable
  */
 #}
-<div class="subsite-footer">
-  {% if subsite_logo %}
-    <a href="{{ subsite_path }}" rel="home" class="subsite-footer__link">
-      {{ subsite_logo }}
-    </a>
-  {% endif %}
+{% if subsite_logo %}
+  <a href="{{ subsite_path }}" rel="home" class="subsite-footer__link">
+    {{ subsite_logo }}
+  </a>
+{% endif %}
+{% if subsite_address or subsite_email %}
+<div class="subsite-footer__contact">
   {% if subsite_address %}
     {{ subsite_address }}
   {% endif %}
   {% if subsite_email %}
     {{ subsite_email }}
   {% endif %}
-  {% if subsite_menu %}
-    {{ subsite_menu }}
-  {% endif %}
-  {% if subsite_form %}
-    {{ subsite_form }}
-  {% endif %}
 </div>
+{% endif %}
+{% if subsite_menu %}
+  {{ subsite_menu }}
+{% endif %}
+{% if subsite_form %}
+  {{ subsite_form }}
+{% endif %}

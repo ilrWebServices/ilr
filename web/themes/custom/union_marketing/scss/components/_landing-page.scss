@@ -299,6 +299,17 @@
         display: revert;
       }
     }
+
+    #block-copyright {
+      &::before {
+        display: none;
+        // background-color: transparent;
+      }
+
+      ul {
+        display: none;
+      }
+    }
   }
 
   // If a section has only a single stats component, remove top and bottom padding.
