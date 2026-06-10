@@ -33,7 +33,6 @@ aside.layout-sidebar-first {
 // @todo: Discuss where this should live
 footer {
   .cu-section {
-    justify-self: stretch;
     width: 100%;
     display: grid;
     row-gap: var(--cu-vr2);
@@ -87,11 +86,16 @@ footer {
   #block-copyright {
     grid-column: 1 / -1;
     display: flex;
+    flex-direction: column;
     gap: var(--cu-ps1);
     justify-content: space-between;
     padding: var(--cu-vr-1) 0;
     --cu-font-size: var(--cu-ms-2);
     // --cu-font-weight: 400;
+
+    @include breakpoint(sm) {
+      flex-direction: unset;
+    }
 
     > *:not(.contextual) {
       position: inherit;
@@ -109,10 +113,24 @@ footer {
       margin-left: -50vw;
     }
 
+    .field--body {
+      order: 1;
+
+      @include breakpoint(sm) {
+        order: unset;
+      }
+    }
+
     ul:not(.contextual-links) {
       display: flex;
-      gap: var(--cu-ps1);
+      flex-direction: column;
+      gap: var(--cu-vr-1);
       margin: 0;
+
+      @include breakpoint(sm) {
+        gap: var(--cu-ps1);
+        flex-direction: unset;
+      }
     }
 
     a {
