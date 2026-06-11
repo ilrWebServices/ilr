@@ -17,10 +17,13 @@
     {{ subsite_logo }}
   </a>
 {% endif %}
-{% if subsite_address or subsite_email %}
+{% if subsite_address or subsite_email or subsite_phone %}
 <div class="subsite-footer__contact">
   {% if subsite_address %}
     {{ subsite_address }}
+  {% endif %}
+  {% if subsite_phone %}
+    {{ subsite_phone }}
   {% endif %}
   {% if subsite_email %}
     {{ subsite_email }}

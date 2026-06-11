@@ -1680,6 +1680,10 @@ function ilr_form_collection_form_alter(&$form, FormStateInterface $form_state) 
       $form['address']['#group'] = 'ilr_meta';
     }
 
+    if (isset($form['phone'])) {
+      $form['phone']['#group'] = 'ilr_meta';
+    }
+
     if (isset($form['email'])) {
       $form['email']['#group'] = 'ilr_meta';
     }

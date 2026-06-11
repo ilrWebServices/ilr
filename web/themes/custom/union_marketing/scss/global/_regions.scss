@@ -170,7 +170,7 @@ footer {
   }
 
   .address {
-    margin-bottom: var(--cu-vr-2);
+    margin-bottom: 0;
 
     .country {
       display: none;
@@ -178,10 +178,10 @@ footer {
   }
 
   .subsite-footer__contact {
-    .subsite-footer__email {
+    a {
       text-decoration: none;
     }
-    .subsite-footer__email:hover {
+    a:hover {
       text-decoration: underline;
     }
   }
