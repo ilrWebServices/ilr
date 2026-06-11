@@ -57,10 +57,11 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     }
 
     if ($event->getMapping()->id() === 'class_session') {
-      // Add time fields the `class_session` mapping, to be used in
+      // Add date and time fields the `class_session` mapping, to be used in
       // self::pullPresaveClassSession().
-      $query->fields[] = "End_Time__c";
+      $query->fields[] = "Session_Date__c";
       $query->fields[] = "Start_Time__c";
+      $query->fields[] = "End_Time__c";
     }
 
     if ($event->getMapping()->id() === 'cahrs_event_node') {
@@ -192,6 +193,10 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
     $start_time = substr($sf->field('Start_Time__c'), 0, 8);
     $end_time = substr($sf->field('End_Time__c'), 0, 8);
 
+    // As of 2026-06, the Session_Date__c, Start_Time__c, and End_Time__c fields
+    // in Salesforce are stored as text, essentially, and assumed to be in
+    // America/New_York, even if the event is in another time zone. So we hard
+    // code the time zone here so that Drupal will store it properly.
     $start_datetime = new DrupalDateTime("$session_date $start_time", 'America/New_York');
     $start_datetime->setTimezone(new \DateTimeZone('UTC'));
     $class_session->session_date->value = $start_datetime->format('Y-m-d\TH:i:s');

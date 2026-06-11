@@ -27,12 +27,6 @@ drupal_entity_type: class_session
 drupal_bundle: class_session
 field_mappings:
   -
-    drupal_field_type: properties
-    drupal_field_value: session_date
-    direction: sf_drupal
-    salesforce_field: Session_Date__c
-    id: 0
-  -
     drupal_field_type: RelatedIDs
     drupal_field_value: class
     direction: sf_drupal
