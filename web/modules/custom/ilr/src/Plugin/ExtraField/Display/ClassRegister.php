@@ -72,6 +72,7 @@ class ClassRegister extends ExtraFieldDisplayBase implements ContainerFactoryPlu
         $session_date = new \stdClass();
         $session_date->start = new DrupalDateTime($session->entity->session_date->value, DateTimeItemInterface::STORAGE_TIMEZONE);
         $session_date->end = new DrupalDateTime($session->entity->session_date->end_value, DateTimeItemInterface::STORAGE_TIMEZONE);
+        $session_date->display_time_zone = $session->entity->display_time_zone->value;
         $info['session_dates'][] = $session_date;
       }
 
