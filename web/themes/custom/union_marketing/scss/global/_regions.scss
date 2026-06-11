@@ -96,6 +96,7 @@ footer {
     justify-content: space-between;
     padding: var(--cu-vr-1) 0;
     --cu-font-size: var(--cu-ms-2);
+    position: relative;
     // --cu-font-weight: 400;
 
     @include breakpoint(sm) {
