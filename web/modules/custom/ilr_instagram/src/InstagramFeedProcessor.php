@@ -5,7 +5,6 @@ namespace Drupal\ilr_instagram;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Psr\Log\LoggerInterface;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
 
 /**
  * Process an RSS feed of Instagram posts.
@@ -62,7 +61,7 @@ class InstagramFeedProcessor {
     try {
       $response = $this->httpClient->get($feed_url);
     }
-    catch (RequestException $e) {
+    catch (\Exception $e) {
       $this->logger->error('Request error for %url: @message', [
         '%url' => $feed_url,
         '@message' => $e->getMessage(),
