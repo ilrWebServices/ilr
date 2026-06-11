@@ -1675,6 +1675,18 @@ function ilr_form_collection_form_alter(&$form, FormStateInterface $form_state) 
     if (isset($form['behavior_alt_display'])) {
       $form['behavior_alt_display']['#group'] = 'ilr_meta';
     }
+
+    if (isset($form['address'])) {
+      $form['address']['#group'] = 'ilr_meta';
+    }
+
+    if (isset($form['email'])) {
+      $form['email']['#group'] = 'ilr_meta';
+    }
+
+    if (isset($form['webform'])) {
+      $form['webform']['#group'] = 'ilr_meta';
+    }
   }
 
   // Enable new revisions by default.

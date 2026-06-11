@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a subsite footer block.
+ *
+ * Available variables:
+ * - subsite_logo: Logo for the subsite.
+ * - subsite_address: Address for the subsite.
+ * - subsite_email: Contact email for subsite.
+ * - subsite_menu: The menu for this subsite.
+ *
+ * @ingroup themeable
+ */
+#}
+{% if subsite_logo %}
+  <a href="{{ subsite_path }}" rel="home" class="subsite-footer__link">
+    {{ subsite_logo }}
+  </a>
+{% endif %}
+{% if subsite_address or subsite_email %}
+<div class="subsite-footer__contact">
+  {% if subsite_address %}
+    {{ subsite_address }}
+  {% endif %}
+  {% if subsite_email %}
+    {{ subsite_email }}
+  {% endif %}
+</div>
+{% endif %}
+{% if subsite_menu %}
+  {{ subsite_menu }}
+{% endif %}
+{% if subsite_form %}
+  {{ subsite_form }}
+{% endif %}

@@ -1,30 +1,30 @@
-uuid: 23cef696-3b29-4fad-8a6e-2c0121102412
+uuid: b2203c72-7dc9-4997-9584-482170724866
 langcode: en
-status: false
+status: true
 dependencies:
   config:
-    - block_visibility_groups.block_visibility_group.default_footer
+    - block_visibility_groups.block_visibility_group.subsite_footer
   module:
     - block_visibility_groups
     - ilr
   theme:
     - union_marketing
-id: union_marketing_ilrwordmark
+id: union_marketing_subsite_footer
 theme: union_marketing
 region: footer
-weight: 0
+weight: -1
 provider: null
-plugin: ilrwordmark_block
+plugin: subsite_footer_block
 settings:
-  id: ilrwordmark_block
-  label: 'ILR Wordmark'
+  id: null
+  label: 'Subsite footer'
   label_display: '0'
-  provider: ilr
+  provider: null
 visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: default_footer
+    block_visibility_group: subsite_footer
   root_path_entity_bundle:
     id: root_path_entity_bundle
     root_entity_bundles: {  }

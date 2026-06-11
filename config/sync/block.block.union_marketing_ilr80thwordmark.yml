@@ -2,6 +2,8 @@ uuid: 2532226a-d7e4-465c-8306-11be286a9fe6
 langcode: en
 status: true
 dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.default_footer
   module:
     - block_visibility_groups
     - ilr
@@ -22,7 +24,7 @@ visibility:
   condition_group:
     id: condition_group
     negate: false
-    block_visibility_group: ''
+    block_visibility_group: default_footer
   root_path_entity_bundle:
     id: root_path_entity_bundle
     root_entity_bundles: {  }

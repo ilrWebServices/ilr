@@ -11,3 +11,19 @@
 function collection_subsites_update_last_removed() {
   return 8101;
 }
+
+/**
+ * Adds new base fields to subsite collections to support custom footers.
+ */
+function collection_subsites_update_10601(&$sandbox) {
+  $definition_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $collection_entity_type = $definition_update_manager->getEntityType('collection');
+  $custom_field_storage = collection_subsites_entity_field_storage_info($collection_entity_type);
+  $new_fields = ['address', 'email', 'webform'];
+
+  foreach ($new_fields as $new_field) {
+    $definition_update_manager->installFieldStorageDefinition($new_field, 'collection', 'collection_subsites', $custom_field_storage[$new_field]);
+  }
+
+  return t('New base fields added to subsite collections.');
+}
