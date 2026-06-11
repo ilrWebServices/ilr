@@ -161,7 +161,11 @@ footer {
   // Subsite logo
   .subsite-footer__link {
     grid-column: 1 / -1;
-    max-width: 45%;
+
+    img {
+      height: 100%;
+      max-height: 69px;
+    }
   }
 
   .address {
