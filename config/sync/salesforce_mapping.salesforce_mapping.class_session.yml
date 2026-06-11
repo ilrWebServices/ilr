@@ -32,12 +32,21 @@ field_mappings:
     direction: sf_drupal
     salesforce_field: Event_Class__c
     id: 1
+    description: ''
   -
     drupal_field_type: properties
     drupal_field_value: title
     direction: sf_drupal
     salesforce_field: Title__c
     id: 2
+    description: ''
+  -
+    drupal_field_type: properties
+    drupal_field_value: display_time_zone
+    direction: sf_drupal
+    salesforce_field: Time_Zone__c
+    id: 3
+    description: ''
 status: true
 dependencies:
   module:

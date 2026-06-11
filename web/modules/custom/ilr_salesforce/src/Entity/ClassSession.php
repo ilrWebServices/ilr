@@ -99,6 +99,19 @@ class ClassSession extends ContentEntityBase implements ContentEntityInterface {
       ->setLabel(t('Address'))
       ->setDescription(t('Address for the session.'));
 
+    $fields['display_time_zone'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Display time zone'))
+      ->setDescription(t('Not a real time zone. Just a string to display next to the session dates, which are all (as of 2026-06) in Americal/New_York.'))
+      ->setSettings([
+        'max_length' => 50,
+        'text_processing' => 0,
+      ])
+      ->setDefaultValue('ET')
+      ->setDisplayOptions('form', [
+        'type' => 'string',
+        'weight' => 0,
+      ]);
+
     return $fields;
   }
 

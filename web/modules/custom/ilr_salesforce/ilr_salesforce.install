@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Adds 'display_time_zone' base field to class_session entities.
+ */
+function ilr_salesforce_update_10601(&$sandbox) {
+  $update_manager = \Drupal::entityDefinitionUpdateManager();
+  $field_definitions = \Drupal::service('entity_field.manager')->getBaseFieldDefinitions('class_session');
+  $update_manager->installFieldStorageDefinition(
+    'display_time_zone',
+    'class_session',
+    'ilr_salesforce',
+    $field_definitions['display_time_zone']
+  );
+
+  return t('Display time zone base field added to class_session entities.');
+}
