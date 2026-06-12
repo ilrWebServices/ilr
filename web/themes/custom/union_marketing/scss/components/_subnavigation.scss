@@ -113,6 +113,9 @@ nav[id^="block-union-marketing-menu-subsite"] {
     }
 
     .cu-menu__link {
+      display: flex;
+      align-items: center;
+      gap: var(--cu-ps-1);
       --cu-font-size: var(--cu-ms-1);
       font-weight: 300;
       color: #6c6c6c;
