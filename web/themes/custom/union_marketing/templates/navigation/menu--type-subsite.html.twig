@@ -31,7 +31,7 @@
   {% if items %}
     {% if menu_level == 0 %}
       <ul{{attributes.addClass('cu-menu__list cu-menu__list--subsite')}}>
-        <li class="cu-menu__item cu-menu__item--home"><a href="/" class="cu-menu__link">{% trans %}<svg width="8" height="12" viewBox="0 0 8 12" focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:currentColor;stroke-width:1.5;" d="M 7,1 2,6 7,11" /></svg> &nbsp; Back to ILR{% endtrans %}</a></li>
+        <li class="cu-menu__item cu-menu__item--home"><a href="/" class="cu-menu__link"><svg width="8" height="12" viewBox="0 0 8 12" focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:currentColor;stroke-width:1.5;" d="M 7,1 2,6 7,11" /></svg> <span>{% trans %}ILR Home{% endtrans %}</span></a></li>
     {% else %}
       <ul class="cu-menu__list--subsite-submenu">
     {% endif %}
