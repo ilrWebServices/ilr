@@ -6,6 +6,7 @@ dependencies:
     - block_visibility_groups.block_visibility_group.subsite_footer
   module:
     - block_visibility_groups
+    - collection_subsites
     - ilr
   theme:
     - union_marketing
