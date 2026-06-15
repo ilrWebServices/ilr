@@ -13,3 +13,8 @@ services:
     arguments:
       - '@entity_type.manager'
       - '@collection.content_manager'
+  cache_context.route.subsite_collection:
+    class: Drupal\collection_subsites\Cache\CollectionCacheContext
+    arguments: ['@current_route_match', '@path_alias.entities']
+    tags:
+      - { name: cache.context}
