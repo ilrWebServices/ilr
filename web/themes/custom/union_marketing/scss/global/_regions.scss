@@ -216,6 +216,11 @@ footer {
     padding: 0;
     background-color: unset;
     display: block;
+
+    .inline-flex .form-item,
+    .inline-flex .cu-input {
+      margin: 0;
+    }
   }
 
   .cu-input--submit {
