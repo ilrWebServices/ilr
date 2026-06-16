@@ -1,0 +1,21 @@
+uuid: e3c0039b-459d-4485-a06e-d15d98129686
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_start
+    - node.type.remote_program
+  module:
+    - datetime
+id: node.remote_program.field_date_start
+field_name: field_date_start
+entity_type: node
+bundle: remote_program
+label: 'Next Course Start Date'
+description: "This is the next start date of this program (or a course in this program) e.g. soonest start date of any course in an eCornell certificate.\r\n\r\nThis is only used internally - a calculated field for 'upcoming_courses' will use the value as a compatibility layer with our other professional education programs."
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

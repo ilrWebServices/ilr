@@ -1,0 +1,42 @@
+uuid: fa271597-7652-4b67-b4db-481f47ec8080
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.email
+    - field.field.node.remote_program.body
+    - field.field.node.remote_program.field_course_number
+    - field.field.node.remote_program.field_date_start
+    - field.field.node.remote_program.field_delivery_method
+    - field.field.node.remote_program.field_topics
+    - node.type.remote_program
+  module:
+    - datetime
+    - user
+id: node.remote_program.email
+targetEntityType: node
+bundle: remote_program
+mode: email
+content:
+  field_date_start:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: ilr_time
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  field_course_number: true
+  field_delivery_method: true
+  field_topics: true
+  footnotes_group: true
+  langcode: true
+  search_api_excerpt: true
