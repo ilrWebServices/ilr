@@ -298,6 +298,10 @@ footer {
     background-color: unset;
     display: block;
 
+    @include breakpoint(md) {
+      padding: 0 0 0 116px;
+    }
+
     .cu-heading {
       --cu-font-size: var(--cu-ms2);
       margin-bottom: var(--cu-vr-2);
