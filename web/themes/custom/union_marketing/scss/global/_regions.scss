@@ -33,6 +33,7 @@ aside.layout-sidebar-first {
 // @todo: Discuss where this should live
 footer {
   --cu-colorscheme-background: var(--cu-color-light-gray);
+  --cu-font-size: var(--cu-ms-2);
   margin-top: var(--cu-vr1);
 
   @include breakpoint(sm) {
@@ -41,6 +42,7 @@ footer {
 
   .node--landing-page & {
     --cu-colorscheme-background: var(--cu-color-dark);
+    --cu-font-size: var(--cu-ms0);
   }
 
   .cu-section {
@@ -236,6 +238,10 @@ footer {
   .address {
     margin-bottom: 0;
 
+    .address-line1 {
+      font-weight: 400;
+    }
+
     .country {
       display: none;
     }
@@ -280,6 +286,11 @@ footer {
     padding: 0;
     background-color: unset;
     display: block;
+
+    .cu-heading {
+      --cu-font-size: var(--cu-ms2);
+      margin-bottom: var(--cu-vr-2);
+    }
 
     .inline-flex .form-item,
     .inline-flex .cu-input {
