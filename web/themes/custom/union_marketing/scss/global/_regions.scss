@@ -32,14 +32,30 @@ aside.layout-sidebar-first {
 
 // @todo: Discuss where this should live
 footer {
+  --cu-colorscheme-background: var(--cu-color-light-gray);
+  --cu-font-size: var(--cu-ms-2);
+  margin-top: var(--cu-vr1);
+
+  @include breakpoint(sm) {
+    margin-top: var(--cu-vr3);
+  }
+
+  .node--landing-page & {
+    --cu-colorscheme-background: var(--cu-color-dark);
+    --cu-font-size: var(--cu-ms0);
+  }
+
   .cu-section {
     width: 100%;
     display: grid;
     row-gap: var(--cu-vr2);
     margin-bottom: 0;
+    padding-top: var(--cu-vr1);
+    background-color: var(--cu-colorscheme-background);
 
     @include breakpoint(sm) {
       grid-template-columns: 1fr 1fr;
+      padding-top: var(--cu-vr3);
 
       &:has(.webform-submission-form):has(.cu-menu__list--subsite):has(.subsite-footer__contact) {
         grid-template-columns: 1fr 1fr 2.1fr;
@@ -50,10 +66,28 @@ footer {
     :first-child {
       grid-column: 1 / -1;
     }
+
+    &.cu-section--wide {
+      position: relative;
+
+      &::before {
+        content: '';
+        background-color: var(--cu-colorscheme-background);
+        position: absolute;
+        width: 100vw;
+        height: 100%;
+        top: 0;
+        left: 50%;
+        margin-left: -50vw;
+      }
+    }
+
+    *:not(.contextual) {
+      position: relative;
+    }
   }
 
   ul {
-    --cu-text-color: #222 !important;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -89,6 +123,7 @@ footer {
   }
 
   .block-ilr-copyright-disclosure {
+    --cu-text-color: white;
     grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
@@ -96,10 +131,13 @@ footer {
     column-gap: var(--cu-ps1);
     row-gap: var(--cu-vr-1);
     justify-content: space-between;
-    padding: var(--cu-vr-1) 0;
-    --cu-font-size: var(--cu-ms-2);
+    padding: var(--cu-vr1) 0;
     position: relative;
     // --cu-font-weight: 400;
+
+    a {
+      color: white;
+    }
 
     @include breakpoint(sm) {
       flex-direction: unset;
@@ -112,7 +150,7 @@ footer {
     &::before {
       width: 150vw;
       content: '';
-      background-color: var(--cu-color-light-gray);
+      background-color: var(--cu-color-dark);
       position: absolute;
       width: 100vw;
       height: 100%;
@@ -198,7 +236,12 @@ footer {
   }
 
   .address {
+    padding-top: 9px;
     margin-bottom: 0;
+
+    .address-line1 {
+      font-weight: 400;
+    }
 
     .country {
       display: none;
@@ -217,6 +260,7 @@ footer {
   .cu-menu__list--subsite {
     display: flex;
     flex-direction: column;
+    padding-top: 5px;
     // --cu-font-weight: 400;
 
     .cu-menu__item--home {
@@ -236,6 +280,15 @@ footer {
 
     .cu-menu__link {
       padding: var(--cu-vr-3) 0;
+
+      &.is-active {
+        color: inherit;
+        font-weight: inherit;
+      }
+    }
+
+    .cu-menu__list--subsite-submenu {
+      display: none;
     }
   }
 
@@ -244,6 +297,15 @@ footer {
     padding: 0;
     background-color: unset;
     display: block;
+
+    @include breakpoint(md) {
+      padding: 0 0 0 116px;
+    }
+
+    .cu-heading {
+      --cu-font-size: var(--cu-ms2);
+      margin-bottom: var(--cu-vr-2);
+    }
 
     .inline-flex .form-item,
     .inline-flex .cu-input {
