@@ -1,0 +1,25 @@
+uuid: 9d96610a-1d5a-4e19-925a-66365bb50831
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.curated_event_listing.field_posts
+    - paragraphs.paragraphs_type.curated_event_listing
+id: paragraph.curated_event_listing.default
+targetEntityType: paragraph
+bundle: curated_event_listing
+mode: default
+content:
+  field_posts:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -12,6 +12,7 @@ dependencies:
     - paragraphs.paragraphs_type.collection_listing
     - paragraphs.paragraphs_type.collection_listing_publication
     - paragraphs.paragraphs_type.curated_course_listing
+    - paragraphs.paragraphs_type.curated_event_listing
     - paragraphs.paragraphs_type.curated_post_listing
     - paragraphs.paragraphs_type.deck
     - paragraphs.paragraphs_type.event_listing
@@ -93,6 +94,7 @@ settings:
       publications: publications
       tabs: tabs
       accordion: accordion
+      curated_event_listing: curated_event_listing
       slide_deck: slide_deck
       report_summary_listing: report_summary_listing
     negate: 0
@@ -129,6 +131,9 @@ settings:
         enabled: true
       curated_course_listing:
         weight: -54
+        enabled: true
+      curated_event_listing:
+        weight: -57
         enabled: true
       curated_post_listing:
         weight: -69
