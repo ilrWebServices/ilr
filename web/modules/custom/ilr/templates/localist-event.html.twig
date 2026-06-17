@@ -29,6 +29,7 @@
 {% include '@union/_event-card.twig' with {
   attributes: attributes.addClass(classes),
   event_date: event.event_instances.0.event_instance.start,
+  eyebrow_heading: event.series,
   heading: event.title,
   media: event.ilr_image,
   datetime_format: is_past ? 'M j, Y',
