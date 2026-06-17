@@ -236,8 +236,9 @@ footer {
   }
 
   .address {
-    padding-top: 9px;
+    padding-top: 5px;
     margin-bottom: 0;
+    line-height: 1.6;
 
     .address-line1 {
       font-weight: 400;
@@ -279,7 +280,7 @@ footer {
     }
 
     .cu-menu__link {
-      padding: var(--cu-vr-3) 0;
+      padding: var(--cu-vr-5) 0;
 
       &.is-active {
         color: inherit;
@@ -304,7 +305,7 @@ footer {
 
     .cu-heading {
       --cu-font-size: var(--cu-ms2);
-      margin-bottom: var(--cu-vr-2);
+      margin-bottom: var(--cu-vr-4);
     }
 
     .inline-flex .form-item,
