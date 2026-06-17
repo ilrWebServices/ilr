@@ -86,7 +86,6 @@ footer {
   }
 
   ul {
-    --cu-text-color: #222 !important;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -122,6 +121,7 @@ footer {
   }
 
   .block-ilr-copyright-disclosure {
+    --cu-text-color: white;
     grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
@@ -129,10 +129,13 @@ footer {
     column-gap: var(--cu-ps1);
     row-gap: var(--cu-vr-1);
     justify-content: space-between;
-    padding: var(--cu-vr-1) 0;
-    --cu-font-size: var(--cu-ms-2);
+    padding: var(--cu-vr1) 0;
     position: relative;
     // --cu-font-weight: 400;
+
+    a {
+      color: white;
+    }
 
     @include breakpoint(sm) {
       flex-direction: unset;
@@ -145,7 +148,7 @@ footer {
     &::before {
       width: 150vw;
       content: '';
-      background-color: var(--cu-color-light-gray);
+      background-color: var(--cu-color-dark);
       position: absolute;
       width: 100vw;
       height: 100%;
