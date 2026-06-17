@@ -236,6 +236,7 @@ footer {
   }
 
   .address {
+    padding-top: 9px;
     margin-bottom: 0;
 
     .address-line1 {
@@ -259,6 +260,7 @@ footer {
   .cu-menu__list--subsite {
     display: flex;
     flex-direction: column;
+    padding-top: 5px;
     // --cu-font-weight: 400;
 
     .cu-menu__item--home {
