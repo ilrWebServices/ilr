@@ -32,14 +32,28 @@ aside.layout-sidebar-first {
 
 // @todo: Discuss where this should live
 footer {
+  --cu-colorscheme-background: var(--cu-color-light-gray);
+  margin-top: var(--cu-vr1);
+
+  @include breakpoint(sm) {
+    margin-top: var(--cu-vr3);
+  }
+
+  .node--landing-page & {
+    --cu-colorscheme-background: var(--cu-color-dark);
+  }
+
   .cu-section {
     width: 100%;
     display: grid;
     row-gap: var(--cu-vr2);
     margin-bottom: 0;
+    padding-top: var(--cu-vr1);
+    background-color: var(--cu-colorscheme-background);
 
     @include breakpoint(sm) {
       grid-template-columns: 1fr 1fr;
+      padding-top: var(--cu-vr3);
 
       &:has(.webform-submission-form):has(.cu-menu__list--subsite):has(.subsite-footer__contact) {
         grid-template-columns: 1fr 1fr 2.1fr;
@@ -49,6 +63,25 @@ footer {
 
     :first-child {
       grid-column: 1 / -1;
+    }
+
+    &.cu-section--wide {
+      position: relative;
+
+      &::before {
+        content: '';
+        background-color: var(--cu-colorscheme-background);
+        position: absolute;
+        width: 100vw;
+        height: 100%;
+        top: 0;
+        left: 50%;
+        margin-left: -50vw;
+      }
+    }
+
+    *:not(.contextual) {
+      position: relative;
     }
   }
 
