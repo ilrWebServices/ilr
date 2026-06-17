@@ -278,6 +278,15 @@ footer {
 
     .cu-menu__link {
       padding: var(--cu-vr-3) 0;
+
+      &.is-active {
+        color: inherit;
+        font-weight: inherit;
+      }
+    }
+
+    .cu-menu__list--subsite-submenu {
+      display: none;
     }
   }
 
