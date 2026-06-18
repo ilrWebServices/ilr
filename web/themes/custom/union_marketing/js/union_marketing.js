@@ -485,4 +485,53 @@
     }
   }
 
+  Drupal.behaviors.union_marketing_persona_modal = {
+    attach: function (context, settings) {
+      if (context !== document) {
+        return;
+      }
+
+      window.addEventListener('dialog:aftercreate', function (event) {
+        const content = event.target;
+
+        if (!content.querySelector || !content.querySelector('.persona--full')) {
+          return;
+        }
+
+        const dialog = content.closest('.ui-dialog');
+
+        dialog.classList.add('cu-modal--persona');
+
+        const overlays = document.querySelectorAll('.ui-widget-overlay');
+        const overlay = overlays[overlays.length - 1];
+        if (overlay) {
+          overlay.classList.add('cu-modal-overlay--persona');
+        }
+
+        if (!dialog.parentNode.classList.contains('cu-modal-scroll')) {
+          const scroller = document.createElement('div');
+          scroller.className = 'cu-modal-scroll';
+          dialog.parentNode.insertBefore(scroller, dialog);
+          scroller.appendChild(dialog);
+
+          scroller.addEventListener('mousedown', function (e) {
+            if (e.target === scroller) {
+              dialog.querySelector('.ui-dialog-titlebar-close').click();
+            }
+          });
+        }
+      });
+
+      window.addEventListener('dialog:beforeclose', function (event) {
+        const dialog = event.target.closest('.ui-dialog');
+        const scroller = dialog && dialog.parentNode;
+
+        if (scroller && scroller.classList.contains('cu-modal-scroll')) {
+          scroller.parentNode.insertBefore(dialog, scroller);
+          scroller.remove();
+        }
+      });
+    }
+  };
+
 })(window, document, Drupal);
