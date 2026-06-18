@@ -104,6 +104,7 @@ footer {
     gap: var(--cu-ps0);
     justify-content: flex-start;
     align-items: center;
+    align-self: end;
 
     @include breakpoint(sm) {
       justify-content: flex-end;
