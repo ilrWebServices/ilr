@@ -1,6 +1,6 @@
 parameters:
   monolog.channel_handlers:
-    'page not found': ['grist_link_log']
+    'page not found': ['null_handler']
     webform_touchpoint: ['slack_webhook', 'drupal.dblog']
     'collegenet to salesforce': ['slack_webhook', 'drupal.dblog']
     default: ['drupal.dblog']
@@ -16,3 +16,5 @@ services:
     arguments:
       $webhookUrl: 'This webhook URL is set in IlrServiceProvider::alter().'
       $level: 'ERROR'
+  monolog.handler.null_handler:
+    class: Monolog\Handler\NullHandler
