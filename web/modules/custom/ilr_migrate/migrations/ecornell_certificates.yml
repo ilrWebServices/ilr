@@ -1,0 +1,31 @@
+id: ecornell_certificates
+label: eCornell certificates
+migration_group: default
+migration_tags:
+  - Custom
+source:
+  plugin: 'ecornell_remote_program'
+  ids:
+    - id
+  track_changes: true
+process:
+  uid:
+    plugin: default_value
+    default_value: 1
+  title: title
+  body/value: description
+  body/format:
+    plugin: default_value
+    default_value: standard_formatting
+  field_course_number: id
+  field_delivery_method:
+    plugin: default_value
+    default_value: 'Asynchronous Online'
+  field_date_start: next_course_start_date
+destination:
+  plugin: entity:node
+  default_bundle: remote_program
+  validate: true
+migration_dependencies:
+  required: {  }
+  optional: {  }
