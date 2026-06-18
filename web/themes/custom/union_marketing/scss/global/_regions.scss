@@ -55,11 +55,11 @@ footer {
 
     @include breakpoint(sm) {
       grid-template-columns: 1fr 1fr;
+      column-gap: var(--cu-ps1);
       padding-top: var(--cu-vr3);
 
       &:has(.webform-submission-form):has(.cu-menu__list--subsite):has(.subsite-footer__contact) {
-        grid-template-columns: 1fr 1fr 2.1fr;
-        column-gap: var(--cu-ps1);
+        grid-template-columns: 23.3% 31.9% 1fr;
       }
     }
 
@@ -299,10 +299,6 @@ footer {
     padding: 0;
     background-color: unset;
     display: block;
-
-    @include breakpoint(md) {
-      padding: 0 0 0 116px;
-    }
 
     .cu-heading {
       --cu-font-size: var(--cu-ms2);
