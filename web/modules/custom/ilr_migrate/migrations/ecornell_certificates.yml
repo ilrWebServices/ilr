@@ -22,6 +22,7 @@ process:
     plugin: default_value
     default_value: 'Asynchronous Online'
   field_date_start: next_course_start_date
+  field_external_link: url
 destination:
   plugin: entity:node
   default_bundle: remote_program

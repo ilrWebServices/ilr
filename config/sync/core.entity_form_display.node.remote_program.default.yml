@@ -7,10 +7,12 @@ dependencies:
     - field.field.node.remote_program.field_course_number
     - field.field.node.remote_program.field_date_start
     - field.field.node.remote_program.field_delivery_method
+    - field.field.node.remote_program.field_external_link
     - field.field.node.remote_program.field_topics
     - node.type.remote_program
   module:
     - datetime
+    - link
     - path
     - text
 id: node.remote_program.default
@@ -55,6 +57,14 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_external_link:
+    type: link_default
+    weight: 130
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
   field_topics:
     type: entity_reference_autocomplete
