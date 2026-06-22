@@ -37,6 +37,13 @@ destination:
   plugin: entity:node
   default_bundle: remote_program
   validate: true
+  overwrite_properties:
+    - title
+    - body
+    - field_course_number
+    - field_date_start
+    - field_external_link
+    - field_topics
 migration_dependencies:
   required: {  }
   optional: {  }
