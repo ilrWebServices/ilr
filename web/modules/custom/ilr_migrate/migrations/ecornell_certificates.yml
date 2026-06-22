@@ -23,6 +23,16 @@ process:
     default_value: 'Asynchronous Online'
   field_date_start: next_course_start_date
   field_external_link: url
+  field_topics:
+    plugin: static_map
+    source: vertical
+    map:
+      'Human Resources': 7
+      'Leadership': 8
+      'Other': 4
+      'Diversity & Inclusion': 18
+      'Business and Finance': 8
+    default_value: null
 destination:
   plugin: entity:node
   default_bundle: remote_program
