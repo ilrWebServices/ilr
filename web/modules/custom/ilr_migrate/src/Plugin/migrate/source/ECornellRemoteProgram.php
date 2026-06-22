@@ -2,6 +2,7 @@
 
 namespace Drupal\ilr_migrate\Plugin\migrate\source;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\migrate\Plugin\migrate\source\SourcePluginBase;
 use Drupal\migrate\Plugin\MigrationInterface;
@@ -109,7 +110,32 @@ class ECornellRemoteProgram extends SourcePluginBase implements ContainerFactory
       ];
 
       $cert_data_details = $this->apiCall('certificate/' . $cert_code . '?include=sections&include=titles');
-      // dump($cert_data_details);
+
+      // Get the next course start date.
+      $cert_data['next_course_start_date'] = '';
+
+      // First, check the stream (but don't cross it!) for the first course.
+      if (isset($cert_data_details['streams'][0]['courses'][0])) {
+        $first_course_code = $cert_data_details['streams'][0]['courses'][0];
+
+        if (isset($cert_data_details['sections'][$first_course_code][0])) {
+          $first_course_section_data = $cert_data_details['sections'][$first_course_code];
+
+          // Filter future items and sort by start_date.
+          $current_time = time() * 1000;
+          $future_items = array_filter($first_course_section_data, fn($item) => $item['start_date'] > $current_time);
+
+          if (!empty($future_items)) {
+            usort($future_items, fn($a, $b) => $a['start_date'] <=> $b['start_date']);
+            $next_start_datetime = new DrupalDateTime();
+            $next_start_datetime->setTimezone(new \DateTimeZone('UTC'));
+            $next_start_datetime->setTimestamp($future_items[0]['start_date'] / 1000);
+
+            // TODO: Do we use this value if the enrollment start date is in the future?
+            $cert_data['next_course_start_date'] = $next_start_datetime->format('Y-m-d\TH:i:s');
+          }
+        }
+      }
 
       $cert_data['description'] = $cert_data_details['description'] ?? '';
       $cert_data['url'] = $cert_data_details['url'] ?? '';
