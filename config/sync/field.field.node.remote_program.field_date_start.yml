@@ -13,7 +13,7 @@ entity_type: node
 bundle: remote_program
 label: 'Next Course Start Date'
 description: "This is the next start date of this program (or a course in this program) e.g. soonest start date of any course in an eCornell certificate.\r\n\r\nThis is only used internally - a calculated field for 'upcoming_courses' will use the value as a compatibility layer with our other professional education programs."
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
