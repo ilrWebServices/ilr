@@ -31,6 +31,14 @@
     }
   }
 
+  .article--postalicious {
+    border-top: unset !important;
+
+    .block-field-block--node--video-post--field-video {
+      margin-top: unset !important;
+    }
+  }
+
   .ui-dialog-titlebar-close {
     top: 24px;
     right: 24px;
