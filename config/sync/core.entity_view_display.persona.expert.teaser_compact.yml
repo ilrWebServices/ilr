@@ -35,11 +35,6 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  extra_field_profile:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
-    region: content
   field_email:
     type: email_mailto
     label: hidden
@@ -75,6 +70,7 @@ content:
     weight: 1
     region: content
 hidden:
+  extra_field_profile: true
   field_bio: true
   field_first_name: true
   field_last_name: true
