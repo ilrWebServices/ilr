@@ -16,15 +16,19 @@ behavior_plugins:
     enabled: true
     list_styles:
       grid: grid
-      grid-compact: grid-compact
       tabular-list: tabular-list
+      grid-compact: 0
       list-compact: 0
+      list-summary: 0
       grid-bricks: 0
       grid-bricks--reversed: 0
       grid-featured: 0
+      grid-featured--wide: 0
       banner: 0
       select-list: 0
       main_content: 0
+      link-cloud: 0
+      carousel: 0
     columns_enabled: 1
-    columns_min: '1'
+    columns_min: '3'
     columns_max: '4'
