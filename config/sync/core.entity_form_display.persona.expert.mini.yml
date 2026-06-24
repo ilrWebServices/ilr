@@ -8,6 +8,7 @@ dependencies:
     - field.field.persona.expert.field_email
     - field.field.persona.expert.field_first_name
     - field.field.persona.expert.field_last_name
+    - field.field.persona.expert.field_link
     - field.field.persona.expert.field_phone
     - field.field.persona.expert.field_photo
     - field.field.persona.expert.field_title
@@ -88,7 +89,7 @@ content:
       media_types: {  }
     third_party_settings:
       media_library_edit:
-        show_edit: '1'
+        show_edit: true
   field_title:
     type: string_textfield
     weight: 7
@@ -106,6 +107,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  field_link: true
   path: true
   person: true
   status: true

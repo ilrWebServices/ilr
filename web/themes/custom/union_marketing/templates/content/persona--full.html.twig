@@ -37,6 +37,9 @@
             {{ content.field_phone }}
             {{ content.field_fax }}
             {{ content.extra_field_profile }}
+            {%- if not content.extra_field_profile %}
+              {{- content.field_link }}
+            {% endif -%}
         </div>
         <div class="persona--bio">
             {{ content.field_bio }}

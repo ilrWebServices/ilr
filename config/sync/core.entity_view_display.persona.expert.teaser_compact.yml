@@ -8,6 +8,7 @@ dependencies:
     - field.field.persona.expert.field_email
     - field.field.persona.expert.field_first_name
     - field.field.persona.expert.field_last_name
+    - field.field.persona.expert.field_link
     - field.field.persona.expert.field_phone
     - field.field.persona.expert.field_photo
     - field.field.persona.expert.field_title
@@ -74,5 +75,6 @@ hidden:
   field_bio: true
   field_first_name: true
   field_last_name: true
+  field_link: true
   note: true
   search_api_excerpt: true
