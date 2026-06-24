@@ -13,7 +13,7 @@ dependencies:
     - field.field.persona.expert.field_photo
     - field.field.persona.expert.field_title
     - field.field.persona.expert.note
-    - image.style.thumbnail_square
+    - image.style.small_5x4
     - person.persona_type.expert
   module:
     - layout_builder
@@ -70,7 +70,9 @@ content:
     label: hidden
     settings:
       image_link: content
-      image_style: thumbnail_square
+      image_style: small_5x4
+      image_loading:
+        attribute: lazy
     third_party_settings: {  }
     weight: 4
     region: content
