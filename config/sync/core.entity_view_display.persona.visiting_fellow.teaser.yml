@@ -14,7 +14,7 @@ dependencies:
     - field.field.persona.visiting_fellow.field_place_of_origin
     - field.field.persona.visiting_fellow.field_sections
     - field.field.persona.visiting_fellow.field_visiting_period
-    - image.style.thumbnail_square
+    - image.style.small_5x4
     - person.persona_type.visiting_fellow
   module:
     - address
@@ -52,7 +52,7 @@ content:
     label: hidden
     settings:
       image_link: content
-      image_style: thumbnail_square
+      image_style: small_5x4
       image_loading:
         attribute: lazy
     third_party_settings: {  }

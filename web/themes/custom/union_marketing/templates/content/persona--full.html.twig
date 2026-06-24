@@ -25,7 +25,7 @@
 <div{{attributes.addClass(classes)}}>
   {% if content %}
   <div class="persona--photo">
-  {{ content.field_photo }}
+  {{ persona.field_photo|view({type: 'media_thumbnail', label: 'hidden', settings: {image_style: 'medium_1_1'}}) }}
   </div>
   <div class="persona--primary">
   <h1 class="cu-heading">{{ label }}</h1>
