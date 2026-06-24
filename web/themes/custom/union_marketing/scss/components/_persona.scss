@@ -114,6 +114,7 @@ body.persona .cu-header {
     padding-left: 0;
     margin-bottom: 0;
 
+    // ???
     &:before,
     &:after {
       content: none;
@@ -343,6 +344,13 @@ body.persona .cu-header {
 
   .profile-link {
     // margin-top: var(--cu-vr0);
+  }
+
+  // In modals, only show the first ILR Employee profile position.
+  .cu-modal & .profile-positions {
+    .ilr-employee-position--full:not(:first-child) {
+      display: none;
+    }
   }
 }
 
