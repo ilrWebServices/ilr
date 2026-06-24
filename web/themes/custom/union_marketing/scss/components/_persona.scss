@@ -121,6 +121,11 @@ body.persona .cu-header {
     }
   }
 
+  h2.cu-heading {
+    --cu-font-size: var(--cu-ms1);
+    --cu-font-weight: 300;
+  }
+
   .field--field-title,
   .ilr-employee-position .field--title {
     --cu-text-color: #{$black};
@@ -156,22 +161,19 @@ body.persona .cu-header {
     font-weight: 300;
     line-height: 24px;
     letter-spacing: 0.32px;
+    text-decoration: none;
 
     &:hover,
     &:focus {
       --cu-text-color: #{$cornell-red};
       color: $cornell-red;
+      text-decoration: underline;
     }
   }
 
-  .field--field-phone {
-    .field__label {
-      display: none;
-    }
-
-    a {
-      text-decoration: none;
-    }
+  .field--field-phone .field__label,
+  .cu-modal & .field--field-bio .field__label {
+    display: none;
   }
 
   .profile-link {
@@ -179,13 +181,9 @@ body.persona .cu-header {
   }
 
   .persona--bio {
-    p {
-      margin-bottom: var(--cu-vr0);
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 24px;
-      letter-spacing: 0.32px;
-    }
+    --cu-font-size: var(--cu-ms-2);
+    --cu-font-weight: 300;
+    letter-spacing: .016rem;
   }
 
 }
