@@ -16,8 +16,8 @@ behavior_plugins:
     enabled: true
     list_styles:
       grid: grid
+      grid-compact: grid-compact
       tabular-list: tabular-list
-      grid-compact: 0
       list-compact: 0
       list-summary: 0
       grid-bricks: 0
