@@ -151,7 +151,7 @@ class Persona extends WidgetBase {
           'class' => ['use-ajax'],
           'data-dialog-type' => 'modal',
           'data-dialog-options' => Json::encode([
-            'width' => '90%',
+            'width' => '664px',
             'classes' => ['ui-dialog' => 'cu-modal'],
           ]),
         ]);

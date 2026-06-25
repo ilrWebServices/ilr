@@ -25,7 +25,7 @@ dependencies:
     - field.field.persona.ilr_employee.field_research_interests
     - field.field.persona.ilr_employee.field_sections
     - field.field.persona.ilr_employee.field_websites
-    - image.style.thumbnail_square
+    - image.style.small_5x4
     - person.persona_type.ilr_employee
   module:
     - layout_builder
@@ -82,7 +82,7 @@ content:
     label: hidden
     settings:
       image_link: content
-      image_style: thumbnail_square
+      image_style: small_5x4
       image_loading:
         attribute: lazy
     third_party_settings: {  }

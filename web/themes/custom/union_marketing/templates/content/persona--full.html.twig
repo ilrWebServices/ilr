@@ -1,5 +1,5 @@
 {#
-* Theme override for a persona full view.
+* Theme override for a persona full view (often in a modal).
 *
 * Available variables:
 * - persona: The persona entity with limited access to object properties and methods.
@@ -23,7 +23,7 @@
 <div{{ attributes.addClass(classes) }}>
     {% if content %}
         <div class="persona--photo">
-            {{ content.field_photo }}
+            {{ persona.field_photo|view({type: 'media_thumbnail', label: 'hidden', settings: {image_style: 'medium_1_1'}}) }}
         </div>
         <div class="persona--primary">
             <h1 class="cu-heading">{{ label }}</h1>
@@ -32,11 +32,12 @@
             {{ content.field_department }}
         </div>
         <div class="persona--secondary">
-            {{ content.field_campus_address }}
             {{ content.field_email }}
             {{ content.field_phone }}
-            {{ content.field_fax }}
             {{ content.extra_field_profile }}
+            {%- if not content.extra_field_profile %}
+              {{- content.field_link }}
+            {% endif -%}
         </div>
         <div class="persona--bio">
             {{ content.field_bio }}

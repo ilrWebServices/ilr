@@ -533,3 +533,36 @@ function ilr_deploy_fix_taxonomy_allowed_values_formats(&$sandbox) {
 
   return t('Updated field_body on @count vocabularies.', ['@count' => $updated_count]);
 }
+
+/**
+ * Update people listing paragraph settings.
+ */
+function ilr_deploy_ppl_paragraph_grid_switcherooniebay() {
+  $pids = \Drupal::entityQuery('paragraph')
+    ->accessCheck(FALSE)
+    ->condition('type', ['people_listing', 'people_listing_dynamic'], 'IN')
+    ->execute();
+
+  $paragraphs = \Drupal::entityTypeManager()->getStorage('paragraph')->loadMultiple($pids);
+
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  foreach ($paragraphs as $paragraph) {
+    $settings = $paragraph->getAllBehaviorSettings();
+    $needs_save = FALSE;
+
+    if (isset($settings['list_styles']['list_style']) && $settings['list_styles']['list_style'] === 'grid-compact') {
+      $settings['list_styles']['list_style'] = 'grid';
+      $needs_save = TRUE;
+    }
+
+    if (isset($settings['list_styles']['columns']) && $settings['list_styles']['columns'] === '2') {
+      $settings['list_styles']['columns'] = '3';
+      $needs_save = TRUE;
+    }
+
+    if ($needs_save) {
+      $paragraph->setAllBehaviorSettings($settings);
+      $paragraph->save();
+    }
+  }
+}

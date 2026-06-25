@@ -146,7 +146,7 @@ function union_marketing_preprocess_node(&$variables) {
     $variables['url_attributes']->setAttribute('class', ['use-ajax', 'cu-link--modal']);
     $variables['url_attributes']->setAttribute('data-dialog-type', 'modal');
     $variables['url_attributes']->setAttribute('data-dialog-options', Json::encode([
-      'width' => 700,
+      'width' => '900px',
       'classes' => ['ui-dialog' => 'cu-modal'],
     ]));
   }
@@ -408,7 +408,7 @@ function union_marketing_preprocess_persona(&$variables) {
         'class' => ['use-ajax'],
         'data-dialog-type' => 'modal',
         'data-dialog-options' => Json::encode([
-          'width' => '90%',
+          'width' => '664px',
           'classes' => ['ui-dialog' => 'cu-modal'],
         ]),
       ]);
@@ -447,7 +447,7 @@ function union_marketing_preprocess_links(&$variables) {
       'class' => ['use-ajax', 'cu-link--modal'],
       'data-dialog-type' => 'modal',
       'data-dialog-options' => Json::encode([
-        'width' => '90%',
+        'width' => '664px',
         'classes' => ['ui-dialog' => 'cu-modal'],
       ]),
     ]);

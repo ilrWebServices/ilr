@@ -7,6 +7,7 @@ dependencies:
     - field.field.persona.expert.field_email
     - field.field.persona.expert.field_first_name
     - field.field.persona.expert.field_last_name
+    - field.field.persona.expert.field_link
     - field.field.persona.expert.field_phone
     - field.field.persona.expert.field_photo
     - field.field.persona.expert.field_title
@@ -14,6 +15,7 @@ dependencies:
     - image.style.thumbnail_square
     - person.persona_type.expert
   module:
+    - link
     - media
     - telephone
     - text
@@ -40,6 +42,18 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: _blank
+    third_party_settings: {  }
+    weight: 6
     region: content
   field_phone:
     type: telephone_link

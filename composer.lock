@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5654e2f0ebc7b7e8b7334f790f14a35b",
+    "content-hash": "20b6f2ee1bfcdebaa00b94157663b710",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -876,12 +876,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union.git",
-                "reference": "65c960151302d0252eb26a3aaed1ab82d16b536b"
+                "reference": "4cee1c20bf03ade75d4fbeac0a6bad8af96b9999"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/65c960151302d0252eb26a3aaed1ab82d16b536b",
-                "reference": "65c960151302d0252eb26a3aaed1ab82d16b536b",
+                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/4cee1c20bf03ade75d4fbeac0a6bad8af96b9999",
+                "reference": "4cee1c20bf03ade75d4fbeac0a6bad8af96b9999",
                 "shasum": ""
             },
             "require": {
@@ -915,7 +915,7 @@
                 "source": "https://github.com/ilrWebServices/union/tree/master",
                 "issues": "https://github.com/ilrWebServices/union/issues"
             },
-            "time": "2026-05-07T19:20:44+00:00"
+            "time": "2026-06-24T21:26:40+00:00"
         },
         {
             "name": "cweagans/composer-patches",
@@ -3971,6 +3971,50 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/key_value_field",
                 "issues": "https://www.drupal.org/project/issues/key_value_field"
+            }
+        },
+        {
+            "name": "drupal/link_text_options",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/link_text_options.git",
+                "reference": "1.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/link_text_options-1.0.1.zip",
+                "reference": "1.0.1",
+                "shasum": "b0eff7c931942353fdabbebbc5e7689aa022779b"
+            },
+            "require": {
+                "drupal/core": "^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.1",
+                    "datestamp": "1748313872",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "2pha",
+                    "homepage": "https://www.drupal.org/user/364126"
+                }
+            ],
+            "description": "Adds a setting to link fields to restrict link text via options.",
+            "homepage": "https://www.drupal.org/project/link_text_options",
+            "support": {
+                "source": "https://git.drupalcode.org/project/link_text_options"
             }
         },
         {
