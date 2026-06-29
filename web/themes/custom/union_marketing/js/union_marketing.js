@@ -462,6 +462,11 @@
       }
 
       const subnavigation = context.querySelector('nav[id^="block-union-marketing-menu-subsite"]');
+
+      if (subnavigation === null) {
+        return;
+      }
+
       const subnav_links = subnavigation.querySelectorAll(':scope > ul > li:has(.cu-menu__list--subsite-submenu) > .cu-menu__link');
 
       for (const subnav_link of subnav_links) {
