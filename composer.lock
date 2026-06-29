@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20b6f2ee1bfcdebaa00b94157663b710",
+    "content-hash": "30a014a69e38d775cc6c15911ff186bb",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -872,16 +872,16 @@
         },
         {
             "name": "cornell/union",
-            "version": "dev-master",
+            "version": "dev-event-card-updates",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union.git",
-                "reference": "4cee1c20bf03ade75d4fbeac0a6bad8af96b9999"
+                "reference": "a78b50576415566e8f4523b613d387e35564859c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/4cee1c20bf03ade75d4fbeac0a6bad8af96b9999",
-                "reference": "4cee1c20bf03ade75d4fbeac0a6bad8af96b9999",
+                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/a78b50576415566e8f4523b613d387e35564859c",
+                "reference": "a78b50576415566e8f4523b613d387e35564859c",
                 "shasum": ""
             },
             "require": {
@@ -890,7 +890,6 @@
                 "symfony/yaml": "^4.4.19 || ^5 || ^6",
                 "twig/twig": "^2 || ^3"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -912,10 +911,10 @@
             ],
             "description": "A component-based design system",
             "support": {
-                "source": "https://github.com/ilrWebServices/union/tree/master",
+                "source": "https://github.com/ilrWebServices/union/tree/event-card-updates",
                 "issues": "https://github.com/ilrWebServices/union/issues"
             },
-            "time": "2026-06-24T21:26:40+00:00"
+            "time": "2026-06-29T17:03:32+00:00"
         },
         {
             "name": "cweagans/composer-patches",

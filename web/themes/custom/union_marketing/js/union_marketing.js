@@ -534,4 +534,40 @@
     }
   };
 
+  Drupal.behaviors.union_marketing_event_card_line_clamp = {
+    attach: function (context, settings) {
+      if (context !== document) {
+        return;
+      }
+
+      document.querySelectorAll('.cu-event-card .cu-composite-heading__heading').forEach(el => {
+        const style = window.getComputedStyle(el);
+        const lineHeight = parseFloat(style.lineHeight);
+        const lines = 3;
+        const tolerance = 1;
+
+        if (!isNaN(lineHeight)) {
+          const maxHeight = Math.floor(lineHeight * lines);
+          const originalText = el.textContent.trim();
+
+          // Check if clamping is needed at all
+          if (el.scrollHeight <= maxHeight + tolerance) {
+            return; // Fits already — leave text unchanged
+          }
+
+          const words = originalText.split(/\s+/);
+
+          // Trim by words with tolerance
+          while (words.length > 0) {
+            el.textContent = words.join(' ') + '…';
+            if (el.scrollHeight <= maxHeight + tolerance) {
+              break;
+            }
+            words.pop();
+          }
+        }
+      });
+    }
+  };
+
 })(window, document, Drupal);

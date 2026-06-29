@@ -76,9 +76,17 @@
     is_past ? 'eventalicious-past-event',
   ]
 %}
+{% set label %}
+  {% if node.field_subtitle is not empty %}
+  {{ node.label }}: {{ node.field_subtitle.value }}
+  {% else %}
+  {{ node.label }}
+  {% endif %}
+{% endset %}
 {% include '@union/_event-card.twig' with {
   event_date: node.event_date.value,
-  heading: node.label,
+  eyebrow_heading: node.field_series_name.value,
+  heading: label,
   datetime_format: is_past ? 'M j, Y',
   link_url: url,
   link_alt: node.label,
