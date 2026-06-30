@@ -1,5 +1,96 @@
 .cu-modal {
-  max-width: 800px;
+  max-width: 664px;
+  background: $white;
+  border: none;
+  border-radius: 9px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+
+  .ui-dialog-titlebar {
+    background: none;
+    border: none;
+    padding: 0;
+
+    .ui-dialog-title {
+      display: none;
+    }
+  }
+
+  .ui-dialog-content {
+    padding-top: 63px;
+  }
+
+  &:has(.persona--full) .ui-dialog-content {
+    padding: var(--cu-ps2) var(--cu-ps1);
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+
+    @include breakpoint(sm) {
+      padding: 63px 65px;
+    }
+  }
+
+  .article--postalicious {
+    border-top: unset !important;
+
+    .block-field-block--node--video-post--field-video {
+      margin-top: unset !important;
+    }
+  }
+
+  .ui-dialog-titlebar-close {
+    top: 24px;
+    right: 24px;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    z-index: 1000;
+
+    .ui-icon,
+    .ui-button-icon,
+    .ui-button-icon-space,
+    span {
+      display: none;
+    }
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 22px;
+      height: 1px;
+      background: $black;
+      transform-origin: center;
+    }
+
+    &:before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &:after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    &:hover,
+    &:focus {
+      &:before,
+      &:after {
+        background: $cornell-red;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $cornell-red;
+      outline-offset: 4px;
+    }
+  }
 
   a,
   a:active,
@@ -8,18 +99,23 @@
   }
 }
 
-.cu-modal .ui-dialog-titlebar {
-  background: none;
-  border: none;
-  padding: 0;
+.cu-modal-scroll {
+  position: fixed;
+  inset: 0;
+  z-index: 101;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 100px;
 
-  .ui-dialog-title {
-    display: none;
+  .cu-modal--persona {
+    position: relative !important;
+    inset: auto !important;
+    max-height: none !important;
+    margin: 40px auto;
   }
 }
 
-.cu-modal .ui-dialog-titlebar-close {
-  border-radius: 50%;
-  right: -15px;
-  top: -5px;
+.ui-widget-overlay.cu-modal-overlay--persona {
+  background: $white;
+  opacity: 0.8;
 }

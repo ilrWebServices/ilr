@@ -462,6 +462,11 @@
       }
 
       const subnavigation = context.querySelector('nav[id^="block-union-marketing-menu-subsite"]');
+
+      if (subnavigation === null) {
+        return;
+      }
+
       const subnav_links = subnavigation.querySelectorAll(':scope > ul > li:has(.cu-menu__list--subsite-submenu) > .cu-menu__link');
 
       for (const subnav_link of subnav_links) {
@@ -484,5 +489,90 @@
       });
     }
   }
+
+  Drupal.behaviors.union_marketing_persona_modal = {
+    attach: function (context, settings) {
+      if (context !== document) {
+        return;
+      }
+
+      window.addEventListener('dialog:aftercreate', function (event) {
+        const content = event.target;
+
+        if (!content.querySelector || !content.querySelector('.persona--full')) {
+          return;
+        }
+
+        const dialog = content.closest('.ui-dialog');
+
+        dialog.classList.add('cu-modal--persona');
+
+        const overlays = document.querySelectorAll('.ui-widget-overlay');
+        const overlay = overlays[overlays.length - 1];
+        if (overlay) {
+          overlay.classList.add('cu-modal-overlay--persona');
+        }
+
+        if (!dialog.parentNode.classList.contains('cu-modal-scroll')) {
+          const scroller = document.createElement('div');
+          scroller.className = 'cu-modal-scroll';
+          dialog.parentNode.insertBefore(scroller, dialog);
+          scroller.appendChild(dialog);
+
+          scroller.addEventListener('mousedown', function (e) {
+            if (e.target === scroller) {
+              dialog.querySelector('.ui-dialog-titlebar-close').click();
+            }
+          });
+        }
+      });
+
+      window.addEventListener('dialog:beforeclose', function (event) {
+        const dialog = event.target.closest('.ui-dialog');
+        const scroller = dialog && dialog.parentNode;
+
+        if (scroller && scroller.classList.contains('cu-modal-scroll')) {
+          scroller.parentNode.insertBefore(dialog, scroller);
+          scroller.remove();
+        }
+      });
+    }
+  };
+
+  Drupal.behaviors.union_marketing_event_card_line_clamp = {
+    attach: function (context, settings) {
+      if (context !== document) {
+        return;
+      }
+
+      document.querySelectorAll('.cu-event-card .cu-composite-heading__heading').forEach(el => {
+        const style = window.getComputedStyle(el);
+        const lineHeight = parseFloat(style.lineHeight);
+        const lines = 3;
+        const tolerance = 2;
+
+        if (!isNaN(lineHeight)) {
+          const maxHeight = Math.floor(lineHeight * lines);
+          const originalText = el.textContent.trim();
+
+          // Check if clamping is needed at all
+          if (el.scrollHeight <= maxHeight + tolerance) {
+            return;
+          }
+
+          const words = originalText.split(/\s+/);
+
+          // Trim by words with tolerance
+          while (words.length > 0) {
+            el.textContent = words.join(' ') + '…';
+            if (el.scrollHeight <= maxHeight + tolerance) {
+              break;
+            }
+            words.pop();
+          }
+        }
+      });
+    }
+  };
 
 })(window, document, Drupal);
