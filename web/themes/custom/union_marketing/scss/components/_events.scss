@@ -445,6 +445,7 @@
   --cu-font-size: var(--cu-ms-2);
 }
 
+.cu-event-card__content .cu-composite-heading:has(.cu-composite-heading__eyebrow-heading) .cu-composite-heading__heading,
 .cu-event-card__content .field--body,
 .cu-event-card__content .cu-x-event__description {
   overflow: hidden;
