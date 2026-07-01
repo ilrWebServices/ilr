@@ -323,6 +323,7 @@ class ListStyle extends ParagraphsBehaviorBase {
       'curated_post_listing',
       'collection_listing_publication',
       'curated_course_listing',
+      'curated_event_listing',
       'event_listing',
       'people_listing',
       'people_listing_dynamic',
