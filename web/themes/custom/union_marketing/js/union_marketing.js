@@ -544,8 +544,9 @@
       if (context !== document) {
         return;
       }
+      const selector = '.cu-event-card .cu-composite-heading:not(:has(.cu-composite-heading__eyebrow-heading)) .cu-composite-heading__heading';
 
-      document.querySelectorAll('.cu-event-card .cu-composite-heading__heading').forEach(el => {
+      document.querySelectorAll(selector).forEach(el => {
         const style = window.getComputedStyle(el);
         const lineHeight = parseFloat(style.lineHeight);
         const lines = 3;
