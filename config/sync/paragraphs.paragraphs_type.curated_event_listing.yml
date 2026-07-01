@@ -1,0 +1,34 @@
+uuid: 9024e227-882c-4350-b989-c881847fb7b2
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr
+id: curated_event_listing
+label: 'Curated event listing'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  list_styles:
+    enabled: true
+    list_styles:
+      grid: grid
+      grid-compact: 0
+      list-compact: 0
+      list-summary: 0
+      grid-bricks: 0
+      grid-bricks--reversed: 0
+      grid-featured: 0
+      grid-featured--wide: 0
+      banner: 0
+      tabular-list: 0
+      select-list: 0
+      main_content: 0
+      link-cloud: 0
+      carousel: 0
+    columns_enabled: 0
+    columns_min: ''
+    columns_max: ''
+  scheduled_visibility:
+    enabled: true

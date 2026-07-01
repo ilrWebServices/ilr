@@ -6,6 +6,7 @@ use Drupal\crop\Entity\Crop;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Serialization\Json;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\easy_breadcrumb\EasyBreadcrumbConstants;
@@ -462,19 +463,24 @@ function union_marketing_preprocess_paragraph__rich_text(&$variables) {
 /**
  * Implements hook_preprocess_paragraph().
  *
- * Set grids column count on curated post listings (defaults to 3, 4 on story
- * nodes).
+ * Remove past events from curated event listings.
  */
-function union_marketing_preprocess_paragraph__curated_post_listing(&$variables) {
-  if (!$variables['paragraph']->getParentEntity() || $variables['paragraph']->getParentEntity()->bundle() !== 'section') {
-    return;
+function union_marketing_preprocess_paragraph__curated_event_listing(&$variables) {
+  $future_event_count = 0;
+
+  foreach ($variables['content']['field_posts']['#items'] as $delta => $item) {
+    if ($item->entity->bundle() == 'event_landing_page') {
+      $now = new DrupalDateTime('now');
+      if ($now > $item->entity->event_date->value) {
+        $variables['content']['field_posts'][$delta]['#access'] = FALSE;
+        continue;
+      }
+
+      $future_event_count++;
+    }
   }
 
-  if ($variables['paragraph']->getParentEntity()->getParentEntity()) {
-    $variables['attributes']['class'][] = ($variables['paragraph']->getParentEntity()->getParentEntity()->bundle() === 'story')
-      ? 'cu-grid--4col'
-      : 'cu-grid--3col';
-  }
+  $variables['attributes']['data-itemcount'] = $future_event_count;
 }
 
 /**
