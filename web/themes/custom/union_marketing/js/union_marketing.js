@@ -527,4 +527,16 @@
     }
   };
 
+  // Force all persona links to external sites to open in a new window.
+  Drupal.behaviors.union_marketing_person_link_blank = {
+    attach: function (context, settings) {
+      const links = context.querySelectorAll('.cu-person-wrapper a[href^="http"]');
+      console.log(links);
+
+      for (const link of links) {
+        link.setAttribute('target', '_blank');
+      }
+    }
+  }
+
 })(window, document, Drupal);
