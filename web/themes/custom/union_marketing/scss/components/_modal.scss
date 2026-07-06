@@ -19,17 +19,6 @@
     padding-top: 63px;
   }
 
-  &:has(.persona--full) .ui-dialog-content {
-    padding: var(--cu-ps2) var(--cu-ps1);
-    max-height: none !important;
-    height: auto !important;
-    overflow: visible !important;
-
-    @include breakpoint(sm) {
-      padding: 63px 65px;
-    }
-  }
-
   .article--postalicious {
     border-top: unset !important;
 
