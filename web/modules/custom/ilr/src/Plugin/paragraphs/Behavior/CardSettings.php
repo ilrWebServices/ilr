@@ -223,7 +223,7 @@ class CardSettings extends ParagraphsBehaviorBase {
       $variables['url_attributes']->setAttribute('class', ['use-ajax', 'cu-link--modal']);
       $variables['url_attributes']->setAttribute('data-dialog-type', 'modal');
       $variables['url_attributes']->setAttribute('data-dialog-options', Json::encode([
-        'width' => 800,
+        'width' => 'calc(var(--cu-max-width-section) + 2em)',
         'classes' => ['ui-dialog' => 'cu-modal'],
       ]));
     }
