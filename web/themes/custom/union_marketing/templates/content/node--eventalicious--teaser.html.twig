@@ -78,13 +78,18 @@
 %}
 {% set rendered_content %}
 {{ title_suffix }}
+{% if node.field_subtitle is not empty %}
+<p class="cu-x-event__description">{{ node.field_subtitle.value }}</p>
+{% else %}
 {{ content.body }}
+{% endif %}
 {% endset %}
 {# Note the use of `node.label` here. Plain `label` includes some field
 wrapper HTML and is difficult to trim for use as the link `title` attribute. #}
 {% include '@union/_event-card.twig' with {
   event_date: node.event_date.value,
   heading: node.label,
+  eyebrow_heading: node.field_series_name.value,
   media: node.field_representative_image.isEmpty() ? false : content.field_representative_image,
   datetime_format: is_past ? 'M j, Y',
   link_url: url,
