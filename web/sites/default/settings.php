@@ -1041,6 +1041,7 @@ $config['webform.webform.hr_program_request_info']['handlers']['zapier_319018624
   */
 $settings['config_ignore_patterns'] = [
   '/^block_visibility_groups\.block_visibility_group\.(subsite|publication_issue)_(\d+)$/',
+  '/^core\.menu\.static_menu_link_overrides$/',
   '/^system\.menu\.(section|subsite)-(\d+)$/',
   '/^taxonomy\.vocabulary\.blog_(\d+)_(categories|tags)$/',
   '/^taxonomy\.vocabulary\.project_(\d+)_focus_areas$/',
