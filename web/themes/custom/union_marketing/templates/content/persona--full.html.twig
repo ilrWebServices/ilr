@@ -23,7 +23,6 @@
   ]
 %}
 <div{{attributes.addClass(classes)}}>
-  {% if content %}
   <div class="persona--photo">
   {{ persona.field_photo|view({type: 'media_thumbnail', label: 'hidden', settings: {image_style: 'medium_1_1'}}) }}
   </div>
@@ -32,8 +31,6 @@
   {{ content.field_title }}
   {{ content.extra_field_ilr_employee_positions }}
   {{ content.field_department }}
-  {{ content.field_bio }}
-  {{ content.field_education }}
   </div>
   <div class="persona--secondary">
   {{ content.field_email }}
@@ -42,5 +39,8 @@
   {{ content.extra_field_profile }}
   {% endif %}
   </div>
-  {% endif %}
+  <div class="persona--bottom">
+    {{ content.field_bio }}
+    {{ content.field_education }}
+  </div>
 </div>
