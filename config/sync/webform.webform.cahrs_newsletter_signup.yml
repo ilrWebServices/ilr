@@ -124,10 +124,10 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_file_limit_message: ''
   form_attributes:
     class:
       - webform--with-content
-      - webform--dark
       - webform--cahrs-newsletter-signup
   form_method: ''
   form_action: ''
@@ -368,6 +368,7 @@ variants:
     weight: 0
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: ''
       handlers: {  }
