@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.persona.author.field_bio
     - field.field.persona.author.field_email
+    - field.field.persona.author.field_external_link
     - field.field.persona.author.field_first_name
     - field.field.persona.author.field_last_name
     - field.field.persona.author.field_phone
@@ -14,6 +15,7 @@ dependencies:
     - image.style.thumbnail_square
     - person.persona_type.author
   module:
+    - link
     - media
     - telephone
     - text
@@ -40,6 +42,18 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_external_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 6
     region: content
   field_phone:
     type: telephone_link
