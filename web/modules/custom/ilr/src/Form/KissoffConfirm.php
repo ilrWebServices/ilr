@@ -6,12 +6,12 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
-use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Url;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\person\Entity\Persona;
 use Drupal\person\PersonaInterface;
 use Drupal\user\Entity\User;
+use Drupal\user\UserInterface;
 use Drupal\user\UserStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -227,10 +227,13 @@ class KissoffConfirm extends ConfirmFormBase {
   /**
    * Get roles for an account.
    *
+   * @param \Drupal\user\UserInterface $account
+   *   The user account.
+   *
    * @return array
    *   The roles for this account.
    */
-  protected function getRoles($account) {
+  protected function getRoles(UserInterface $account) {
     $all_roles = $account->getRoles();
     $keep_roles = ['authenticated'];
     $roles_to_remove = array_diff($all_roles, $keep_roles);
@@ -244,10 +247,13 @@ class KissoffConfirm extends ConfirmFormBase {
   /**
    * Get collections owned by an account.
    *
+   * @param \Drupal\user\UserInterface $account
+   *   The user account.
+   *
    * @return array
    *   An array of collection entities.
    */
-  protected function getUserCollections(AccountProxyInterface $account) {
+  protected function getUserCollections(UserInterface $account) {
     $user_collections = $this->entityTypeManager->getStorage('collection')->loadByProperties([
       'user_id' => [$account->id()],
     ]);
@@ -257,13 +263,13 @@ class KissoffConfirm extends ConfirmFormBase {
   /**
    * Get employee persona for an account.
    *
-   * @param \Drupal\Core\Session\AccountProxyInterface $account
-   *   A user account.
+   * @param \Drupal\user\UserInterface $account
+   *   The user account.
    *
-   * @return \Drupal\person\PersonaInterface|NULL
+   * @return \Drupal\person\PersonaInterface|null
    *   The employee persona.
    */
-  protected function getEmployeePersona($account): ?PersonaInterface {
+  protected function getEmployeePersona(UserInterface $account): ?PersonaInterface {
     $netId = \Drupal::service('externalauth.authmap')->get($account->id(), 'samlauth');
 
     $ilr_employee_persona = $this->entityTypeManager->getStorage('persona')->loadByProperties([
