@@ -1,0 +1,48 @@
+# Zoom API notes
+# drush state:set zoom-api-auth '{ "client_id": "test", "client_secret": "sekrit", "account_id": "1234" }'
+
+@clientId = YOUR_ZOOM_CLIENT_ID
+@clientSecret = YOUR_ZOOM_CLIENT_SECRET
+# jeff
+@accountId = 199163
+
+@baseUrl = https://api.zoom.us/v2
+
+# Get auth token.
+# @name fetchToken
+POST https://zoom.us/oauth/token
+Authorization: Basic {{clientId}} {{clientSecret}}
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=account_credentials
+&account_id={{accountId}}
+
+###
+
+@accessToken = {{fetchToken.response.body.access_token}}
+
+###
+
+GET {{baseUrl}}/users/me
+Authorization: Bearer {{accessToken}}
+# Content-Type: application/json
+
+###
+
+POST https://hooks.zapier.com/hooks/catch/25649121/4uvbbju/
+Content-Type: application/json
+
+{
+  "name": "Sheb Wooley",
+  "email": "sheb@aaaaauugh.com",
+  "webinar_id": 1234
+}
+
+###
+
+POST https://cornell.zoom.us/webinar/register/WN_dlSh_l1jQH-RiO9_00lZMQ
+Content-Type: application/x-www-form-urlencoded
+
+question_first_name=Sheb
+&question_last_name=Wooley
+&question_email=sheb@aaaaugh.net
