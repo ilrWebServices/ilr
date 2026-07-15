@@ -1,0 +1,24 @@
+uuid: 85ae338c-0f7b-4e00-8ca8-fc8d44791191
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_citations
+    - paragraphs.paragraphs_type.citation_section
+  module:
+    - ilr_employee_data
+third_party_settings:
+  ilr_employee_data:
+    enable_citation_parsing_formatter: 1
+id: paragraph.citation_section.field_citations
+field_name: field_citations
+entity_type: paragraph
+bundle: citation_section
+label: Citations
+description: 'Paste Bibtex or plain text citations here. Bibtex is most reliable, and can be exported by most reference managers. When pasting plain text, a citation style like MLA or APA is preferred.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

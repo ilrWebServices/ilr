@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5654e2f0ebc7b7e8b7334f790f14a35b",
+    "content-hash": "6a9acf2daaded51583d7f6bc6ddad8b4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -9115,6 +9115,69 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
+            "name": "renanbr/bibtex-parser",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/renanbr/bibtex-parser.git",
+                "reference": "ae177e8ab1f3bec2bd041ace042c148b02fcace1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/renanbr/bibtex-parser/zipball/ae177e8ab1f3bec2bd041ace042c148b02fcace1",
+                "reference": "ae177e8ab1f3bec2bd041ace042c148b02fcace1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2 | ^8.3 | ^8.4 | ^8.5"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.95.1",
+                "phpstan/phpstan": "^2.1.47",
+                "phpunit/phpunit": "^10.5.47 | ^11.5.26 | ^12.5.19",
+                "ueberdosis/pandoc": "^0.9"
+            },
+            "suggest": {
+                "ueberdosis/pandoc": "Needed to support LaTeX decoder in class RenanBr\\BibTexParser\\Processor\\LatexToUnicodeProcessor"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RenanBr\\BibTexParser\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Renan de Lima Barbosa",
+                    "email": "renandelima@gmail.com"
+                }
+            ],
+            "description": "BibTex Parser provides an API to read .bib files programmatically",
+            "keywords": [
+                "Bibliography",
+                "bib",
+                "bibtex",
+                "citation",
+                "cite",
+                "latex",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/renanbr/bibtex-parser/issues",
+                "source": "https://github.com/renanbr/bibtex-parser/tree/2.3.0"
+            },
+            "time": "2026-04-13T20:01:43+00:00"
         },
         {
             "name": "robrichards/xmlseclibs",

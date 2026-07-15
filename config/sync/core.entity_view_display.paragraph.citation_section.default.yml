@@ -1,0 +1,32 @@
+uuid: 49309502-6458-4890-b365-47806cbf9dfa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.citation_section.field_citations
+    - field.field.paragraph.citation_section.field_subheading
+    - paragraphs.paragraphs_type.citation_section
+  module:
+    - ilr_employee_data
+id: paragraph.citation_section.default
+targetEntityType: paragraph
+bundle: citation_section
+mode: default
+content:
+  field_citations:
+    type: ilr_employee_data_citation_parsing_formatter
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_subheading:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

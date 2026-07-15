@@ -1,0 +1,181 @@
+uuid: 0b7e56df-3d4e-49ae-8069-38a8d0d03c68
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_citation_sections
+    - paragraphs.paragraphs_type.citation_section
+    - paragraphs.paragraphs_type.publications
+  module:
+    - entity_reference_revisions
+id: paragraph.publications.field_citation_sections
+field_name: field_citation_sections
+entity_type: paragraph
+bundle: publications
+label: 'Citation sections'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      citation_section: citation_section
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 53
+        enabled: false
+      agenda:
+        weight: 54
+        enabled: false
+      agenda_item:
+        weight: 55
+        enabled: false
+      anchor_button_to_form:
+        weight: 56
+        enabled: false
+      call_to_action:
+        weight: 57
+        enabled: false
+      card_overlay:
+        weight: 58
+        enabled: false
+      card_overlay_item:
+        weight: 59
+        enabled: false
+      carousel:
+        weight: 60
+        enabled: false
+      citation_section:
+        weight: 52
+        enabled: true
+      collection_listing:
+        weight: 61
+        enabled: false
+      collection_listing_publication:
+        weight: 62
+        enabled: false
+      curated_course_listing:
+        weight: 63
+        enabled: false
+      curated_post_listing:
+        weight: 64
+        enabled: false
+      deck:
+        weight: 65
+        enabled: false
+      event_listing:
+        weight: 66
+        enabled: false
+      form:
+        weight: 67
+        enabled: false
+      gallery:
+        weight: 68
+        enabled: false
+      honors_and_awards:
+        weight: 69
+        enabled: false
+      image:
+        weight: 70
+        enabled: false
+      instagram_listing:
+        weight: 71
+        enabled: false
+      link_listing:
+        weight: 72
+        enabled: false
+      media_deck:
+        weight: 73
+        enabled: false
+      milestone:
+        weight: 74
+        enabled: false
+      milestone_section:
+        weight: 75
+        enabled: false
+      organization_listing:
+        weight: 76
+        enabled: false
+      people_listing:
+        weight: 77
+        enabled: false
+      people_listing_dynamic:
+        weight: 78
+        enabled: false
+      person:
+        weight: 79
+        enabled: false
+      picture_in_picture:
+        weight: 80
+        enabled: false
+      professional_activities:
+        weight: 81
+        enabled: false
+      project_listing:
+        weight: 82
+        enabled: false
+      promo:
+        weight: 83
+        enabled: false
+      publications:
+        weight: 84
+        enabled: false
+      report_summary_listing:
+        weight: 85
+        enabled: false
+      rich_text:
+        weight: 86
+        enabled: false
+      section:
+        weight: 87
+        enabled: false
+      section_navigation:
+        weight: 88
+        enabled: false
+      simple_collection_listing:
+        weight: 89
+        enabled: false
+      slide:
+        weight: 90
+        enabled: false
+      slide_deck:
+        weight: 91
+        enabled: false
+      stat:
+        weight: 92
+        enabled: false
+      stats:
+        weight: 93
+        enabled: false
+      tab_item:
+        weight: 94
+        enabled: false
+      table_of_contents:
+        weight: 95
+        enabled: false
+      tabs:
+        weight: 96
+        enabled: false
+      testimonial:
+        weight: 97
+        enabled: false
+      testimonial_deck:
+        weight: 98
+        enabled: false
+      text_with_media:
+        weight: 99
+        enabled: false
+      topic_list:
+        weight: 100
+        enabled: false
+      tout:
+        weight: 101
+        enabled: false
+      video:
+        weight: 102
+        enabled: false
+field_type: entity_reference_revisions

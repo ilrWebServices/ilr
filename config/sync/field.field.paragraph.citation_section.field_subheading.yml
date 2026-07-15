@@ -1,0 +1,21 @@
+uuid: 36d08b07-350a-4c2e-9df0-d56bff1c67ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subheading
+    - paragraphs.paragraphs_type.citation_section
+  module:
+    - ilr_employee_data
+id: paragraph.citation_section.field_subheading
+field_name: field_subheading
+entity_type: paragraph
+bundle: citation_section
+label: Subheading
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -4,3 +4,49 @@
  * @file
  * Primary module hooks for ILR employee data module.
  */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\field\Entity\FieldConfig;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function ilr_employee_data_form_field_config_edit_form_alter(array &$form, FormStateInterface $form_state): void {
+  $field_config = $form_state->getFormObject()->getEntity();
+
+  if ($field_config->getType() !== 'string_long') {
+    return;
+  }
+
+  $form['ilr_employee_data'] = [
+    '#type' => 'details',
+    '#title' => t('ILR Employee Data Settings'),
+    '#open' => TRUE,
+  ];
+
+  $form['ilr_employee_data']['enable_citation_parsing_formatter'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Enable the citation parsing formatter'),
+    '#description' => t('When enabled, a citation parsing formatter becomes available on the Manage display page for this field.'),
+    '#default_value' => $field_config->getThirdPartySetting('ilr_employee_data', 'enable_citation_parsing_formatter'),
+  ];
+
+  // Store the checkbox value as a field config third-party setting.
+  $form['#entity_builders'][] = 'ilr_employee_data_field_config_entity_builder';
+}
+
+/**
+ * Entity builder for the field config form.
+ */
+function ilr_employee_data_field_config_entity_builder(string $entity_type, FieldConfig $field_config, array &$form, FormStateInterface $form_state): void {
+  if ($field_config->getType() !== 'string_long') {
+    return;
+  }
+
+  if ($form_state->getValue('enable_citation_parsing_formatter')) {
+    $field_config->setThirdPartySetting('ilr_employee_data', 'enable_citation_parsing_formatter', $form_state->getValue('enable_citation_parsing_formatter'));
+    return;
+  }
+
+  $field_config->unsetThirdPartySetting('ilr_employee_data', 'enable_citation_parsing_formatter');
+}

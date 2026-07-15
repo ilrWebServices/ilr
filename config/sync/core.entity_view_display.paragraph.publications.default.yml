@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.publications.field_body
+    - field.field.paragraph.publications.field_citation_sections
     - field.field.paragraph.publications.field_heading
     - paragraphs.paragraphs_type.publications
   module:
+    - entity_reference_revisions
     - text
 id: paragraph.publications.default
 targetEntityType: paragraph
@@ -19,6 +21,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_citation_sections:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
     region: content
   field_heading:
     type: string

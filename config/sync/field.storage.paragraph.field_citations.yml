@@ -1,0 +1,19 @@
+uuid: 22fafb1d-1fce-4ed8-bbea-77a586d1925e
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_citations
+field_name: field_citations
+entity_type: paragraph
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
