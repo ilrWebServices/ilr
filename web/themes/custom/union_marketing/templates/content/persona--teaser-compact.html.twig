@@ -37,10 +37,7 @@
   attributes: {
     class: [
       'cu-icon--inline',
-      'use-ajax',
     ],
-    'data-dialog-type': 'modal',
-    'data-dialog-options': '{"width":"664px","classes":{"ui-dialog":"cu-modal"}}',
     role: 'button',
     'aria-pressed': "false"
   }
@@ -49,7 +46,7 @@
 
 {% include "@union/_person.twig" with {
   attributes: attributes.addClass([
-    'cu-person--adaptive',
+    'cu-person--horizontal',
     'cu-colorscheme--light',
     'persona--' ~ persona.bundle|clean_class,
     not persona.isPublished() ? 'persona--unpublished',

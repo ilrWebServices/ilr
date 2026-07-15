@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ExtraFieldDisplay(
  *   id = "profile",
- *   label = @Translation("Profile"),
+ *   label = @Translation("Profile link"),
  *   bundles = {
  *     "persona.*",
  *   },

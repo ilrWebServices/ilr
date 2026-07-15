@@ -394,32 +394,14 @@ function union_marketing_preprocess_persona(&$variables) {
     }
     $variables['has_meta'] = $has_meta;
   }
-
-  $current_url = Url::fromRoute('<current>');
-  $path = $current_url->toString();
-
-  if (strpos($path,'/people') === 0) {
-    return;
-  }
-
-  foreach (['display_name', 'field_photo'] as $field) {
-    if (!empty($variables['content'][$field][0]['#url'])) {
-      $variables['content'][$field][0]['#url']->setOption('attributes', [
-        'class' => ['use-ajax'],
-        'data-dialog-type' => 'modal',
-        'data-dialog-options' => Json::encode([
-          'width' => '664px',
-          'classes' => ['ui-dialog' => 'cu-modal'],
-        ]),
-      ]);
-    }
-  }
 }
 
 /**
  * Implements hook_preprocess_links().
  *
  * Update the read more links for personas.
+ *
+ * TODO: Remove this?
  */
 function union_marketing_preprocess_links(&$variables) {
   if (isset($variables['links']['body-readmore'])) {

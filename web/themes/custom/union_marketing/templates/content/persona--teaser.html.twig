@@ -11,14 +11,6 @@
  * - url: Direct URL of the current node.
  */
 #}
-{% set rendered_content %}
-  {{ content.field_bio }}
-{% endset %}
-
-{% set additional_info %}
-  {{ content|without('display_name', 'field_title', 'field_photo', 'field_bio', 'extra_field_ilr_employee_positions') }}
-{% endset %}
-
 {% set title = [] %}
 {% if content.field_title %}
 {% for key, item in content.field_title|filter((v, k) => k|first != '#') %}
@@ -34,14 +26,33 @@
 {% endfor %}
 {% endif -%}
 
-<div{{ attributes }}>
+{% set additional_info %}
+{{ content|without('display_name', 'field_title', 'field_photo', 'field_bio', 'extra_field_ilr_employee_positions') }}
+{{ title_suffix }}
+{% include "@union/_icon.twig" with {
+  title: 'More about ...',
+  icon: 'right-arrow',
+  size: '32px',
+  link: url,
+  attributes: {
+    class: [
+      'cu-icon--inline',
+    ],
+    role: 'button',
+    'aria-pressed': "false"
+  }
+} only %}
+{% endset %}
+
 {% include "@union/_person.twig" with {
-  attributes: {class: ['cu-person--thumb']},
+  attributes: attributes.addClass([
+    'cu-colorscheme--light',
+    'persona--' ~ persona.bundle|clean_class,
+    not persona.isPublished() ? 'persona--unpublished',
+    view_mode ? 'persona--view-mode-' ~ view_mode|clean_class
+  ]),
   name: label,
   title: title,
   additional_info: additional_info,
-  content: rendered_content,
   img: content.field_photo
 } only %}
-{{ title_suffix }}
-</div>

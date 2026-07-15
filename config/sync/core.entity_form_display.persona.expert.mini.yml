@@ -6,6 +6,7 @@ dependencies:
     - core.entity_form_mode.persona.mini
     - field.field.persona.expert.field_bio
     - field.field.persona.expert.field_email
+    - field.field.persona.expert.field_external_link
     - field.field.persona.expert.field_first_name
     - field.field.persona.expert.field_last_name
     - field.field.persona.expert.field_phone
@@ -88,7 +89,7 @@ content:
       media_types: {  }
     third_party_settings:
       media_library_edit:
-        show_edit: '1'
+        show_edit: true
   field_title:
     type: string_textfield
     weight: 7
@@ -106,6 +107,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  field_external_link: true
   path: true
   person: true
   status: true

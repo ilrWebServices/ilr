@@ -98,7 +98,7 @@ body.persona .cu-header {
     }
   }
 
-  .persona--bio {
+  .persona--bottom {
     @include breakpoint(sm) {
       grid-column: 1 / -1;
       grid-row: 3;
@@ -114,11 +114,17 @@ body.persona .cu-header {
     padding-left: 0;
     margin-bottom: 0;
 
+    // ???
     &:before,
     &:after {
       content: none;
       display: none;
     }
+  }
+
+  h2.cu-heading {
+    --cu-font-size: var(--cu-ms1);
+    --cu-font-weight: 300;
   }
 
   .field--field-title,
@@ -156,36 +162,29 @@ body.persona .cu-header {
     font-weight: 300;
     line-height: 24px;
     letter-spacing: 0.32px;
+    text-decoration: none;
 
     &:hover,
     &:focus {
       --cu-text-color: #{$cornell-red};
       color: $cornell-red;
+      text-decoration: underline;
     }
   }
 
-  .field--field-phone {
-    .field__label {
-      display: none;
-    }
-
-    a {
-      text-decoration: none;
-    }
+  .field--field-phone .field__label,
+  .cu-modal & .field--field-bio .field__label {
+    display: none;
   }
 
   .profile-link {
     margin-top: 0;
   }
 
-  .persona--bio {
-    p {
-      margin-bottom: var(--cu-vr0);
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 24px;
-      letter-spacing: 0.32px;
-    }
+  .persona--bottom {
+    --cu-font-size: var(--cu-ms-2);
+    --cu-font-weight: 300;
+    letter-spacing: .016rem;
   }
 
 }
@@ -345,9 +344,16 @@ body.persona .cu-header {
   .profile-link {
     // margin-top: var(--cu-vr0);
   }
+
+  // In modals, only show the first ILR Employee profile position.
+  .cu-modal & .profile-positions {
+    .ilr-employee-position--full:not(:first-child) {
+      display: none;
+    }
+  }
 }
 
-.cu-person--adaptive {
+.cu-person {
   .cu-composite-heading__body {
     flex-grow: 2;
     display: flex;

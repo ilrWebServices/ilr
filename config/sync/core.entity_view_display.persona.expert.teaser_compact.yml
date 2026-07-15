@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.persona.teaser_compact
     - field.field.persona.expert.field_bio
     - field.field.persona.expert.field_email
+    - field.field.persona.expert.field_external_link
     - field.field.persona.expert.field_first_name
     - field.field.persona.expert.field_last_name
     - field.field.persona.expert.field_phone
@@ -32,11 +33,6 @@ content:
     label: hidden
     settings:
       link_to_entity: true
-    third_party_settings: {  }
-    weight: 0
-    region: content
-  extra_field_profile:
-    settings: {  }
     third_party_settings: {  }
     weight: 0
     region: content
@@ -75,7 +71,9 @@ content:
     weight: 1
     region: content
 hidden:
+  extra_field_profile: true
   field_bio: true
+  field_external_link: true
   field_first_name: true
   field_last_name: true
   note: true

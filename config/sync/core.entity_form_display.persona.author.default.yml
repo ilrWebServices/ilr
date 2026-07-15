@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.persona.author.field_bio
     - field.field.persona.author.field_email
+    - field.field.persona.author.field_external_link
     - field.field.persona.author.field_first_name
     - field.field.persona.author.field_last_name
     - field.field.persona.author.field_phone
@@ -13,6 +14,7 @@ dependencies:
     - field.field.persona.author.note
     - person.persona_type.author
   module:
+    - link
     - media_library
     - media_library_edit
     - path
@@ -57,6 +59,14 @@ content:
       placeholder: ''
       size: 60
     third_party_settings: {  }
+  field_external_link:
+    type: link_default
+    weight: 31
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
   field_first_name:
     type: string_textfield
     weight: 3
@@ -88,7 +98,7 @@ content:
       media_types: {  }
     third_party_settings:
       media_library_edit:
-        show_edit: '1'
+        show_edit: true
   field_title:
     type: string_textfield
     weight: 8
