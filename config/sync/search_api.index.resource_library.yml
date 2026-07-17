@@ -31,11 +31,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.collection_item.field_keywords_text
-  field_published_date:
-    label: 'Post fields » Published Date'
-    datasource_id: 'entity:collection_item'
-    property_path: 'ilr_post_node_fields:field_published_date'
-    type: date
   field_research_topics:
     label: 'Research topics'
     datasource_id: 'entity:collection_item'
@@ -61,6 +56,11 @@ field_settings:
     dependencies:
       module:
         - collection
+  resource_date:
+    label: 'Resource date'
+    datasource_id: 'entity:collection_item'
+    property_path: resource_date
+    type: date
   status:
     label: 'Post fields » Published'
     datasource_id: 'entity:collection_item'
@@ -86,6 +86,7 @@ processor_settings:
     fields:
       field_research_topics: taxonomy_term-parent
   ilr_post_fields: {  }
+  ilr_resource_item_fields: {  }
   language_with_fallback: {  }
   rendered_item: {  }
   stemmer:
@@ -160,6 +161,7 @@ tracker_settings:
     indexing_order: fifo
 options:
   cron_limit: 50
+  delete_on_fail: true
   index_directly: true
   track_changes_in_references: true
 server: database

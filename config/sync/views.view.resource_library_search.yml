@@ -221,10 +221,10 @@ display:
             label: ''
             field_identifier: ''
           exposed: false
-        field_published_date:
-          id: field_published_date
+        resource_date:
+          id: resource_date
           table: search_api_index_resource_library
-          field: field_published_date
+          field: resource_date
           relationship: none
           group_type: group
           admin_label: ''
