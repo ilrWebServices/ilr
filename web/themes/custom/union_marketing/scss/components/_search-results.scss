@@ -94,7 +94,12 @@
     margin-bottom: var(--cu-vr-2);
 
     a {
+      --cu-text-color: var(--cu-color-brand);
       color: var(--cu-color-brand);
+    }
+
+    .field--title {
+      display: inline;
     }
 
     .post__info {
@@ -103,7 +108,8 @@
       font-size: .8rem;
       line-height: 1;
 
-      .field--field-published-date {
+      .field--field-published-date,
+      .field--event-date {
         display: inline;
       }
     }

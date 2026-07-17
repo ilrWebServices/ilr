@@ -10,6 +10,9 @@ third_party_settings:
 id: resource_library_item
 label: 'Resource library item'
 allowed_bundles:
+  - node.event_landing_page
+  - node.page
+  - node.post
   - node.post_document
   - node.video_post
 attributes_access: administrators
