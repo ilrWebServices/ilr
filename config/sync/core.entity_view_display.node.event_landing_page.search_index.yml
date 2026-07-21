@@ -37,7 +37,7 @@ content:
     label: inline
     settings:
       timezone_override: ''
-      date_format: 'Y'
+      date_format: 'M j, Y'
       from_to: start_date
       separator: '-'
     third_party_settings: {  }
