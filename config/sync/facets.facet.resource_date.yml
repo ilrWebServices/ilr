@@ -15,7 +15,7 @@ missing: false
 missing_label: others
 url_alias: resource_date
 facet_source_id: 'search_api:views_block__resource_library_search__block_contextual'
-field_identifier: field_published_date
+field_identifier: resource_date
 query_operator: or
 hard_limit: 0
 exclude: false

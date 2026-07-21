@@ -2,107 +2,34 @@
 
 namespace Drupal\ilr\Plugin\search_api\processor;
 
+use Drupal\search_api\Attribute\SearchApiProcessor;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\collection\Entity\CollectionItemInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\search_api\Processor\EntityProcessorProperty;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\IndexInterface;
 use Drupal\search_api\Item\ItemInterface;
 use Drupal\search_api\Processor\ProcessorPluginBase;
-use Drupal\search_api\Utility\FieldsHelperInterface;
 use Drupal\search_api\Utility\Utility;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Add the post node fields for this collection item for indexing.
  *
- * @SearchApiProcessor(
- *   id = "ilr_post_fields",
- *   label = @Translation("ILR Post fields"),
- *   description = @Translation("Add the post node fields for this collection item."),
- *   stages = {
- *     "add_properties" = 20,
- *   },
- *   locked = true,
- *   hidden = true,
- * )
- *
  * @see https://www.drupal.org/docs/8/modules/search-api/developer-documentation/adding-an-entity-reference-via-a-processor
+ *
+ * @todo This might be better named `collected_item_fields` since it could work with any collected content entity.
  */
+#[SearchApiProcessor(
+  id: 'ilr_post_fields',
+  label: new TranslatableMarkup('ILR Post fields'),
+  description: new TranslatableMarkup('Add the post node fields for this collection item.'),
+  stages: [
+    'add_properties' => 20,
+  ],
+  locked: TRUE,
+  hidden: TRUE,
+)]
 class PostFields extends ProcessorPluginBase {
-
-  /**
-   * The entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface|null
-   */
-  protected $entityTypeManager;
-
-  /**
-   * The fields helper.
-   *
-   * @var \Drupal\search_api\Utility\FieldsHelperInterface|null
-   */
-  protected $fieldsHelper;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    /** @var static $processor */
-    $processor = parent::create($container, $configuration, $plugin_id, $plugin_definition);
-
-    $processor->setEntityTypeManager($container->get('entity_type.manager'));
-    $processor->setFieldsHelper($container->get('search_api.fields_helper'));
-
-    return $processor;
-  }
-
-  /**
-   * Retrieves the entity type manager.
-   *
-   * @return \Drupal\Core\Entity\EntityTypeManagerInterface
-   *   The entity type manager.
-   */
-  public function getEntityTypeManager() {
-    return $this->entityTypeManager ?: \Drupal::entityTypeManager();
-  }
-
-  /**
-   * Sets the entity type manager.
-   *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The new entity type manager.
-   *
-   * @return $this
-   */
-  public function setEntityTypeManager(EntityTypeManagerInterface $entity_type_manager) {
-    $this->entityTypeManager = $entity_type_manager;
-    return $this;
-  }
-
-  /**
-   * Retrieves the fields helper.
-   *
-   * @return \Drupal\search_api\Utility\FieldsHelperInterface
-   *   The fields helper.
-   */
-  public function getFieldsHelper() {
-    return $this->fieldsHelper ?: \Drupal::service('search_api.fields_helper');
-  }
-
-  /**
-   * Sets the fields helper.
-   *
-   * @param \Drupal\search_api\Utility\FieldsHelperInterface $fields_helper
-   *   The new fields helper.
-   *
-   * @return $this
-   */
-  public function setFieldsHelper(FieldsHelperInterface $fields_helper) {
-    $this->fieldsHelper = $fields_helper;
-    return $this;
-  }
 
   /**
    * {@inheritdoc}
@@ -134,6 +61,7 @@ class PostFields extends ProcessorPluginBase {
       $properties['ilr_post_node_fields']->setBundles([
         'post_document',
         'video_post',
+        'post',
       ]);
     }
 
@@ -170,9 +98,8 @@ class PostFields extends ProcessorPluginBase {
       return;
     }
 
-    $post_node = $this->getEntityTypeManager()
-      ->getStorage('node')
-      ->load($collection_item->item->entity->id());
+    $post_node = $collection_item->item->entity;
+
     if (!$post_node) {
       return;
     }
