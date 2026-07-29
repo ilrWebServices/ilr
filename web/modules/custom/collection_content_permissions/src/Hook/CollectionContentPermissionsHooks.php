@@ -96,4 +96,22 @@ class CollectionContentPermissionsHooks {
     return AccessResult::neutral();
   }
 
+  #[Hook('entity_create_access')]
+  public function createTermInCollectedVocabularyAccess(AccountInterface $account, array $context, $entity_bundle) {
+    if (($context['entity_type_id'] ?? NULL) === 'taxonomy_term') {
+      $vocabulary_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_vocabulary');
+      $vocabulary = $vocabulary_storage->load($entity_bundle);
+
+      $collection_items = \Drupal::service('collection.content_manager')->getCollectionItemsForEntity($vocabulary, FALSE);
+
+      foreach ($collection_items as $collection_item) {
+        if ($collection_item->isCanonical() && $collection_item->collection->entity->access('update', $account)) {
+          return AccessResult::allowedIfHasPermission($account, 'create terms in canonically collected vocabularies in editable collections');
+        }
+      }
+    }
+
+    return AccessResult::neutral();
+  }
+
 }

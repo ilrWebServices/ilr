@@ -34,3 +34,12 @@ function collection_content_permissions_entity_access(EntityInterface $entity, $
   $restricted_collection_access_result = \Drupal::service(CollectionContentPermissionsHooks::class)->restrictedCollectionViewAccess($entity, $op, $account);
   return $unpub_access_result->orIf($edit_access_result)->orIf($restricted_collection_access_result);
 }
+
+/**
+ * Implements hook_entity_create_access().
+ */
+#[LegacyHook]
+function collection_content_permissions_entity_create_access(AccountInterface $account, array $context, $entity_bundle) {
+  $create_term_result = \Drupal::service(CollectionContentPermissionsHooks::class)->createTermInCollectedVocabularyAccess($account, $context, $entity_bundle);
+  return $create_term_result;
+}
