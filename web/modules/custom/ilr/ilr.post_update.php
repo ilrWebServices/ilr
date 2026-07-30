@@ -508,3 +508,37 @@ function ilr_post_update_create_homepage_banner_component_block(&$sandbox) {
   $block->info = "Homepage Banner";
   $block->save();
 }
+
+/**
+ * Update the Public Impact collection bundle from blog to content_section.
+ */
+function ilr_post_update_convert_public_impact_to_content_section(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $collection = $entity_type_manager->getStorage('collection')->load(32);
+  $collection_machine_name = 'section-' . $collection->id();
+  $collection_item_storage = $entity_type_manager->getStorage('collection_item');
+
+  // Create the subsite menu.
+  $menu = $entity_type_manager->getStorage('menu')->create([
+    'langcode' => 'en',
+    'status' => TRUE,
+    'id' => $collection_machine_name,
+    'label' => $collection->label() . ' navigation',
+    'description' => 'Auto-generated menu for ' . $collection->label() . ' section',
+  ]);
+  $menu->save();
+
+  // Add the menu to the collection.
+  $collection_item_menu = $collection_item_storage->create([
+    'type' => 'default',
+    'collection' => $collection->id(),
+    'weight' => 10,
+  ]);
+  $collection_item_menu->item = $menu;
+  $collection_item_menu->setAttribute('section_collection_id', $collection->id());
+  $collection_item_menu->save();
+
+  // Update the collection type.
+  $collection->type = 'content_section';
+  $collection->save();
+}
