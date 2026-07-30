@@ -39,6 +39,7 @@
   --cu-component-margin-bottom: .25em;
 }
 
+.node--remote-program.node--view-mode-teaser .cu-card__content,
 .node--course.node--view-mode-teaser .cu-card__content,
 .node--view-mode-teaser-compact.cu-card--teaser .cu-card__content {
   padding-top: var(--cu-vr1);

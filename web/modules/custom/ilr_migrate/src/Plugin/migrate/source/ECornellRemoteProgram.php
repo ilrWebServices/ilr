@@ -63,9 +63,9 @@ class ECornellRemoteProgram extends SourcePluginBase implements ContainerFactory
       'description' => $this->t('Certificate Description'),
       'delivery_method' => $this->t('Certificate Delivery Method'),
       'next_course_start_date' => $this->t('Next Course Start Date'),
-      'cost' => $this->t('Certificate Cost'), // TODO: Is this info in the API?
       'url' => $this->t('Certificate URL'),
       'vertical' => $this->t('Certificate Vertical'),
+      'retail_price' => $this->t('Retail Price'),
     ];
   }
 
@@ -139,8 +139,9 @@ class ECornellRemoteProgram extends SourcePluginBase implements ContainerFactory
       }
 
       $cert_data['description'] = $cert_data_details['description'] ?? '';
-      $cert_data['url'] = $cert_data_details['url'] ?? '';
+      $cert_data['url'] = $cert_data_details['url'][0]['value'] ?? '';
       $cert_data['vertical'] = $cert_data_details['vertical'] ?? '';
+      $cert_data['retail_price'] = $cert_data_details['retail_price'] ?? 0;
       $this->dataRows[] = $cert_data;
     }
   }

@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.remote_program.field_date_start
     - field.field.node.remote_program.field_delivery_method
     - field.field.node.remote_program.field_external_link
+    - field.field.node.remote_program.field_price
     - field.field.node.remote_program.field_topics
     - node.type.remote_program
   module:
@@ -27,6 +28,17 @@ content:
       format_type: ilr_time
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_price:
+    type: number_decimal
+    label: hidden
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 0
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
     region: content
   links:
     settings: {  }

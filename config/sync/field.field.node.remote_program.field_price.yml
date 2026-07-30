@@ -1,0 +1,23 @@
+uuid: 3f723e69-6d15-4de0-aa86-d72f3e29be9f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_price
+    - node.type.remote_program
+id: node.remote_program.field_price
+field_name: field_price
+entity_type: node
+bundle: remote_program
+label: Price
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: $
+  suffix: ''
+field_type: decimal

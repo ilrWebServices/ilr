@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.remote_program.field_date_start
     - field.field.node.remote_program.field_delivery_method
     - field.field.node.remote_program.field_external_link
+    - field.field.node.remote_program.field_price
     - field.field.node.remote_program.field_topics
     - node.type.remote_program
   module:
@@ -65,6 +66,13 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_price:
+    type: number
+    weight: 122
+    region: content
+    settings:
+      placeholder: ''
     third_party_settings: {  }
   field_topics:
     type: entity_reference_autocomplete
