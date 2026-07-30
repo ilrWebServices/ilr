@@ -260,16 +260,13 @@ handlers:
       from_mail: _default
       from_options: {  }
       from_name: _default
-      reply_to: ilrweb@cornell.edu
+      reply_to: '[webform_submission:values:email:raw]'
       return_path: ''
       sender_mail: ''
       sender_name: ''
       subject: 'LAI Contact Form Submission'
-      body: '<p>Submitted on [webform_submission:created]</p><p>Submitted values are:</p><p>[webform_submission:values]</p>'
-      excluded_elements:
-        submission_url: submission_url
-        utm_values: utm_values
-        ga_client_id: ga_client_id
+      body: '<p>Submitted on [webform_submission:created]</p><p>Submitted by: [webform_submission:values:first_name] [webform_submission:values:last_name]</p><p>Message:<br>[webform_submission:values:message]</p><p>Phone:<br>[webform_submission:values:phone]</p>'
+      excluded_elements: {  }
       ignore_access: false
       exclude_empty: true
       exclude_empty_checkbox: false
