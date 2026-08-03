@@ -1,0 +1,17 @@
+uuid: cd26201d-ad16-421c-b8b4-75e53f4dec7d
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Remote Program'
+type: remote_program
+description: 'Initially used for eCornell programs.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

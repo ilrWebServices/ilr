@@ -1,0 +1,19 @@
+uuid: 55cf3302-555b-485e-813b-e24e9d64553a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_delivery_method
+    - node.type.remote_program
+id: node.remote_program.field_delivery_method
+field_name: field_delivery_method
+entity_type: node
+bundle: remote_program
+label: 'Delivery Method'
+description: 'TODO: Not sure where this data comes from in the API.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

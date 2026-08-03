@@ -1,0 +1,67 @@
+uuid: e8b21b2c-1492-4ee1-90a8-19cfef52851c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.remote_program.body
+    - field.field.node.remote_program.field_course_number
+    - field.field.node.remote_program.field_date_start
+    - field.field.node.remote_program.field_delivery_method
+    - field.field.node.remote_program.field_external_link
+    - field.field.node.remote_program.field_price
+    - field.field.node.remote_program.field_topics
+    - node.type.remote_program
+  module:
+    - datetime
+    - text
+    - user
+id: node.remote_program.teaser
+targetEntityType: node
+bundle: remote_program
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 300
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_date_start:
+    type: datetime_custom
+    label: hidden
+    settings:
+      timezone_override: ''
+      date_format: 'M j, Y'
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_delivery_method:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_price:
+    type: number_decimal
+    label: hidden
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 0
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  field_course_number: true
+  field_external_link: true
+  field_topics: true
+  footnotes_group: true
+  langcode: true
+  links: true
+  search_api_excerpt: true
