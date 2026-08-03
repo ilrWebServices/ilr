@@ -1057,6 +1057,8 @@ $settings['config_ignore_pattern_debug'] = TRUE;
 
 /**
  * Recurring migrations.
+ *
+ * @todo Ensure that these migrations don't cause performance issues if/when they run at the same time.
  */
 $config['migrate_scheduler']['migrations'] = [
   'ilr_employee_personas' => [
@@ -1064,6 +1066,10 @@ $config['migrate_scheduler']['migrations'] = [
   ],
   'ilr_employee_personas_positions' => [
     'time' => 21600,
+    'sync' => TRUE,
+  ],
+  'ecornell_certificates' => [
+    'time' => 43200,
     'sync' => TRUE,
   ],
 ];
