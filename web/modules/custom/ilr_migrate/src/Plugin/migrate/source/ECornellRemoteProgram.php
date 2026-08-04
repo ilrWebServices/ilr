@@ -139,7 +139,7 @@ class ECornellRemoteProgram extends SourcePluginBase implements ContainerFactory
       }
 
       $cert_data['description'] = $cert_data_details['description'] ?? '';
-      $cert_data['url'] = $cert_data_details['url'][0]['value'] ?? '';
+      $cert_data['url'] = $cert_data_details['url'][0] ?? '';
       $cert_data['vertical'] = $cert_data_details['vertical'] ?? '';
       $cert_data['retail_price'] = $cert_data_details['retail_price'] ?? 0;
       $this->dataRows[] = $cert_data;
