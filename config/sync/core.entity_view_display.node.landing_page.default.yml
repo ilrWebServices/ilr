@@ -13,6 +13,7 @@ dependencies:
   module:
     - better_social_sharing_buttons
     - entity_reference_revisions
+    - ilr
     - layout_builder
     - layout_discovery
     - text
@@ -24,13 +25,53 @@ third_party_settings:
     allow_custom: false
     sections:
       -
-        layout_id: layout_onecol
+        layout_id: banner_col
         layout_settings:
           label: ''
+          context_mapping: {  }
+          color_scheme: light
+          hide_frame: true
+          text_align: left
+          full_bleed: false
         components:
-          1fee7342-0ccf-4bda-bbd4-27c39b103460:
-            uuid: 1fee7342-0ccf-4bda-bbd4-27c39b103460
-            region: content
+          a4a20d73-1aa6-476f-a10c-6e5755724d85:
+            uuid: a4a20d73-1aa6-476f-a10c-6e5755724d85
+            region: left
+            configuration:
+              id: 'field_block:node:landing_page:field_subtitle'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          8e190da3-b7d0-4f31-824c-dd329fffed20:
+            uuid: 8e190da3-b7d0-4f31-824c-dd329fffed20
+            region: left
+            configuration:
+              id: 'field_block:node:landing_page:title'
+              label: Title
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: -1
+            additional: {  }
+          0eaf06f2-88a4-4d04-baf8-72e018dc5ae3:
+            uuid: 0eaf06f2-88a4-4d04-baf8-72e018dc5ae3
+            region: right
             configuration:
               id: 'field_block:node:landing_page:field_representative_image'
               label: 'Representative Image'
@@ -44,11 +85,26 @@ third_party_settings:
                 label: hidden
                 settings:
                   image_link: ''
-                  image_style: large_21_9_1200x514_
+                  image_style: large_2_1
                   image_loading:
                     attribute: lazy
                 third_party_settings: {  }
-            weight: 5
+            weight: 0
+            additional: {  }
+          168f21b7-d383-4687-a67d-f6e3fde2585f:
+            uuid: 168f21b7-d383-4687-a67d-f6e3fde2585f
+            region: left
+            configuration:
+              id: 'extra_field_block:node:landing_page:extra_field_ilr_action_button'
+              label: 'Action button'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
             additional: {  }
         third_party_settings: {  }
       -
@@ -58,22 +114,6 @@ third_party_settings:
           context_mapping: {  }
           column_widths: 67-33
         components:
-          a4a20d73-1aa6-476f-a10c-6e5755724d85:
-            uuid: a4a20d73-1aa6-476f-a10c-6e5755724d85
-            region: first
-            configuration:
-              id: 'field_block:node:landing_page:field_subtitle'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: string
-                label: hidden
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-            weight: 2
-            additional: {  }
           bdbc7172-422e-43c8-a71f-7fc55039ae14:
             uuid: bdbc7172-422e-43c8-a71f-7fc55039ae14
             region: second
@@ -115,25 +155,6 @@ third_party_settings:
               print_css: ''
               facebook_app_id: ''
             weight: 4
-            additional: {  }
-          8e190da3-b7d0-4f31-824c-dd329fffed20:
-            uuid: 8e190da3-b7d0-4f31-824c-dd329fffed20
-            region: first
-            configuration:
-              id: 'field_block:node:landing_page:title'
-              label: Title
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: string
-                label: hidden
-                settings:
-                  link_to_entity: false
-                third_party_settings: {  }
-            weight: 3
             additional: {  }
           97cffa24-e6ae-40b6-aa4c-2ec5c5c32d29:
             uuid: 97cffa24-e6ae-40b6-aa4c-2ec5c5c32d29
