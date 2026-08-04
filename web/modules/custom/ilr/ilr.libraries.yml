@@ -28,3 +28,7 @@ ilr_datetime_enhancements:
   js:
     js/ilr.datetime.enhancements.js: {}
   dependencies: {}
+action_button:
+  version: 1.x
+  js:
+    js/action_button.js: {}

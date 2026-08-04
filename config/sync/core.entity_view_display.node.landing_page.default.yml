@@ -247,6 +247,11 @@ content:
     third_party_settings: {  }
     weight: 101
     region: content
+  extra_field_ilr_action_button:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_form:
     type: webform_entity_reference_entity_view
     label: above
@@ -289,5 +294,6 @@ content:
     region: content
 hidden:
   field_mobile_form_anchor_text: true
+  footnotes_group: true
   langcode: true
   search_api_excerpt: true
