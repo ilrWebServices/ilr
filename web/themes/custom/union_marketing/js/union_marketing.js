@@ -531,7 +531,6 @@
   Drupal.behaviors.union_marketing_person_link_blank = {
     attach: function (context, settings) {
       const links = context.querySelectorAll('.cu-person-wrapper a[href^="http"]');
-      console.log(links);
 
       for (const link of links) {
         link.setAttribute('target', '_blank');
