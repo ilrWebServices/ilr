@@ -17,16 +17,18 @@
 
       if (type === 'node.landing_page') {
         const form = document.querySelector('.block-field-block--node--landing-page--field-form');
+        let form_title;
 
         if (form) {
-          const form_title = form.querySelector('.webform-section-title');
-
-          if (form_title) {
+          if (this.textContent.trim()) {
+            button_text = this.textContent;
+          }
+          else if (form_title = form.querySelector('.webform-section-title')) {
             button_text = form_title.innerText;
           }
 
           const button_text_el = document.createTextNode(button_text);
-          this.append(button_text_el);
+          this.replaceChildren(button_text_el);
           this.classList.add('active');
         }
 

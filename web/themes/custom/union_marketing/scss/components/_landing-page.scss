@@ -44,17 +44,6 @@
       .block-field-block--node--landing-page--body + .block-field-block--node--landing-page--body {
         margin-top: var(--cu-vr2);
       }
-
-      .block-field-block--node--landing-page--field-mobile-form-anchor-text {
-        //Anchor button to scroll users to form
-        .cu-button--anchor {
-          display: inline-block;
-
-          @include breakpoint(md) {
-            display: none;
-          }
-        }
-      }
     }
 
     > .layout__region--second {
@@ -355,7 +344,6 @@
   .cu-section.cu-component--anchor-button-to-form {
     padding-top: 0;
     text-align: center;
-    margin: 0 auto;
     display: block;
 
     @include breakpoint(md) {

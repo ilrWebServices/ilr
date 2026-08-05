@@ -30,13 +30,19 @@ class ActionButton extends ExtraFieldDisplayBase {
    */
   public function view(ContentEntityInterface $entity) {
     $build = [];
+    $default_text = '';
+
+    if ($entity->hasField('field_mobile_form_anchor_text') && !$entity->field_mobile_form_anchor_text->isEmpty()) {
+      $default_text = $entity->field_mobile_form_anchor_text->value;
+    }
 
     $build['ilr_action_button'] = [
       '#type' => 'inline_template',
-      '#template' => '<ilr-action-button class="cu-button cu-colorscheme--vibrant" type="{{ entity_type }}.{{ bundle }}"></ilr-actionbutton>',
+      '#template' => '<ilr-action-button class="cu-button cu-colorscheme--vibrant" type="{{ entity_type }}.{{ bundle }}">{{ default_text }}</ilr-actionbutton>',
       '#context' => [
         'entity_type' => $entity->getEntityTypeId(),
         'bundle' => $entity->bundle(),
+        'default_text' => $default_text,
       ],
       '#attached' => [
         'library' => [
