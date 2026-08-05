@@ -1,0 +1,4 @@
+services:
+  ilr_unified_programs.manager:
+    class: Drupal\ilr_unified_programs\UnifiedProgramsManager
+    arguments: ['@entity_type.manager']

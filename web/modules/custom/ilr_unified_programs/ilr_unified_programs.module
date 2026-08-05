@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for ilr_unified_programs module.
+ */
+
+/**
+ * Implements hook_entity_bundle_info_alter().
+ */
+function ilr_unified_programs_entity_bundle_info_alter(array &$bundles): void {
+  if (isset($bundles['node']['course'])) {
+    // phpcs:ignore Drupal.Classes.FullyQualifiedNamespace.UseStatementMissing
+    $bundles['node']['course']['class'] = \Drupal\ilr_unified_programs\Entity\Node\Course::class;
+  }
+  if (isset($bundles['node']['remote_program'])) {
+    // phpcs:ignore Drupal.Classes.FullyQualifiedNamespace.UseStatementMissing
+    $bundles['node']['remote_program']['class'] = \Drupal\ilr_unified_programs\Entity\Node\RemoteProgram::class;
+  }
+}
