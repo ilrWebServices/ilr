@@ -305,6 +305,12 @@ function ilr_entity_bundle_field_info_alter(array &$fields, EntityTypeInterface 
       $fields['field_url']->addConstraint('EventRegistrationSingleMethod');
     }
   }
+
+  if (($entity_type->id() === 'node') && ($bundle === 'video_post')) {
+    if (isset($fields['field_video'])) {
+      $fields['field_video']->addConstraint('UniqueVideoPostMedia');
+    }
+  }
 }
 
 /**
