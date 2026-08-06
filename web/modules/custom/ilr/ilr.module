@@ -305,6 +305,12 @@ function ilr_entity_bundle_field_info_alter(array &$fields, EntityTypeInterface 
       $fields['field_url']->addConstraint('EventRegistrationSingleMethod');
     }
   }
+
+  if (($entity_type->id() === 'node') && ($bundle === 'video_post')) {
+    if (isset($fields['field_video'])) {
+      $fields['field_video']->addConstraint('UniqueVideoPostMedia');
+    }
+  }
 }
 
 /**
@@ -870,6 +876,7 @@ function ilr_tokens($type, $tokens, array $data, array $options, BubbleableMetad
 function ilr_entity_type_alter(array &$entity_types) {
   $entity_types['node']->addConstraint('NodeMenuLevel');
   $entity_types['paragraph']->addConstraint('MinimumItemCount', ['minItems' => 4]);
+  $entity_types['media']->addConstraint('UniqueMediaOembedVideo');
 }
 
 /**
