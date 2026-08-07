@@ -59,7 +59,7 @@ final class RemoteNeutralsSubscriber implements EventSubscriberInterface {
       }
 
       while (!$this->file->eof()) {
-        $next_row = $this->file->fgetcsv();
+        $next_row = $this->file->fgetcsv(escape: "");
         $current = array_combine($headers, $next_row);
 
         if (!empty($filters)) {
