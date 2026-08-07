@@ -465,7 +465,7 @@ function ilr_node_view(array &$build, EntityInterface $entity, EntityViewDisplay
     // Derive a media outlet logo host and domain name (e.g. `nytimes.com`,
     // `bloomberg.com`) from the link host. See https://regex101.com/r/XvagCu/7
     // to test this regex.
-    if (preg_match('/^(?:[^\.]+\.)*([^\.]+\.[a-z]{2,4})$/U', $external_link_host, $matches)) {
+    if ($external_link_host && preg_match('/^(?:[^\.]+\.)*([^\.]+\.[a-z]{2,4})$/U', $external_link_host, $matches)) {
       $host = $matches[0];
       $domain = $matches[1];
 
