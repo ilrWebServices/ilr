@@ -133,8 +133,13 @@ class CollectionMenu extends ParagraphsBehaviorBase {
       ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
     ];
     $tree = $this->menuTree->transform($tree, $manipulators);
-    $build['collection_menu'] = $this->menuTree->build($tree);
-    $build['collection_menu']['#theme'] .= '_collection_menu_paragraph';
+    $collection_menu = $this->menuTree->build($tree);
+
+    if (isset($collection_menu['#theme'])) {
+      $build['collection_menu'] = $collection_menu;
+      $build['collection_menu']['#theme'] .= '_collection_menu_paragraph';
+    }
+
     $build['#cache']['contexts'][] = 'url.path';
   }
 
