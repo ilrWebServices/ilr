@@ -9,14 +9,7 @@ id: paragraph.anchor_button_to_form.default
 targetEntityType: paragraph
 bundle: anchor_button_to_form
 mode: default
-content:
-  field_button_text:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 0
-    region: content
+content: {  }
 hidden:
+  field_button_text: true
   search_api_excerpt: true

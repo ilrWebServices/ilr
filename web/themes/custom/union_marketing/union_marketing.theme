@@ -635,6 +635,38 @@ function union_marketing_preprocess_paragraph__card_overlay(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_paragraph().
+ */
+function union_marketing_preprocess_paragraph__anchor_button_to_form(&$variables) {
+  if (!$variables['paragraph']->getParentEntity()) {
+    return;
+  }
+
+  if (!$variables['paragraph']->field_button_text->isEmpty()) {
+    $button_text = $variables['paragraph']->field_button_text->value;
+  }
+  else {
+    $button_text = '';
+  }
+
+  $variables['content']['ilr_action_button'] = [
+    '#type' => 'inline_template',
+    '#template' => '<ilr-action-button class="cu-button cu-colorscheme--vibrant" type="{{ entity_type }}.{{ bundle }}">{{ default_text }}</ilr-actionbutton>',
+    '#context' => [
+      'entity_type' => $variables['paragraph']->getParentEntity()->getEntityTypeId(),
+      'bundle' => $variables['paragraph']->getParentEntity()->bundle(),
+      'default_text' => $button_text,
+    ],
+    '#attached' => [
+      'library' => [
+        'union_organizer/button',
+        'ilr/action_button',
+      ],
+    ],
+  ];
+}
+
+/**
  * Implements hook_preprocess_field().
  */
 function union_marketing_preprocess_field__paragraph__field_heading__promo(&$variables) {
@@ -682,19 +714,6 @@ function union_marketing_preprocess_field__field_representative_image(&$variable
 
   if ($entity->hasField('field_representative_img_caption') && !$entity->field_representative_img_caption->isEmpty()) {
     $variables['attributes']['aria-labelledby'][] = 'media__caption-' . $entity->id();
-  }
-}
-
-/**
- * Implements hook_preprocess_field().
- *
- * Adds webform ID to the field template for anchor_button_to_form paragraphs.
- */
-function union_marketing_preprocess_field__paragraph__field_button_text__anchor_button_to_form(&$variables) {
-  $node = \Drupal::routeMatch()->getParameter('node');
-  if ($node && $node->hasField('field_form') && !$node->get('field_form')->isEmpty()) {
-    $form_id = $node->get('field_form')->target_id;
-    $variables['content']['#webform_id'] = $form_id;
   }
 }
 

@@ -19,6 +19,8 @@ use Drupal\Core\Url;
  *   },
  *   visible = true
  * )
+ *
+ * @todo Consider replacing with the new `ilr_action_button`.
  */
 class RegisterLinkButton extends ExtraFieldDisplayBase {
 

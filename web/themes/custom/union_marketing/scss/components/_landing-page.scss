@@ -1,3 +1,22 @@
+.node--landing-page header.cu-header {
+  border-bottom: unset;
+}
+
+.node--landing-page .layout-banner--2col .banner__left::before {
+  content: '';
+  display: block;
+  background-color: var(--cu-color-brand);
+  // background-color: var(--cu-color-dark);
+  height: 6px;
+  width: 20%;
+  margin-bottom: var(--cu-vr0);
+  // border-radius: 3px;
+}
+
+.node--landing-page .block-field-block--node--landing-page--title {
+  order: -1;
+}
+
 .node--landing-page .layout-container {
   max-width: 1120px;
   margin: 0 auto;
@@ -25,17 +44,6 @@
       .block-field-block--node--landing-page--body + .block-field-block--node--landing-page--body {
         margin-top: var(--cu-vr2);
       }
-
-      .block-field-block--node--landing-page--field-mobile-form-anchor-text {
-        //Anchor button to scroll users to form
-        .cu-button--anchor {
-          display: inline-block;
-
-          @include breakpoint(md) {
-            display: none;
-          }
-        }
-      }
     }
 
     > .layout__region--second {
@@ -56,13 +64,27 @@
 
   .loquacious h1.cu-heading {
     --cu-font-family: revert;
+    --cu-font-weight: 700;
     --cu-line-height: 1.2;
     text-transform: revert;
     --cu-font-size: var(--cu-ms7);
   }
 
   .field--field-subtitle {
-    --cu-font-size: var(--cu-ms3);
+    --cu-font-size: var(--cu-ms2);
+  }
+
+  ilr-action-button {
+    display: none;
+  }
+
+  ilr-action-button.active {
+    display: inline-block;
+    --cu-font-weight: 400;
+    --cu-font-size: var(--cu-ms-1);
+    border: unset;
+    padding-left: var(--cu-ps2);
+    padding-right: var(--cu-ps2);
   }
 
   .block-field-block--node--landing-page--body .cu-media {
@@ -322,7 +344,6 @@
   .cu-section.cu-component--anchor-button-to-form {
     padding-top: 0;
     text-align: center;
-    margin: 0 auto;
     display: block;
 
     @include breakpoint(md) {
