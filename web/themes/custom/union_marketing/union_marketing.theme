@@ -638,6 +638,10 @@ function union_marketing_preprocess_paragraph__card_overlay(&$variables) {
  * Implements hook_preprocess_paragraph().
  */
 function union_marketing_preprocess_paragraph__anchor_button_to_form(&$variables) {
+  if (!$variables['paragraph']->getParentEntity()) {
+    return;
+  }
+
   if (!$variables['paragraph']->field_button_text->isEmpty()) {
     $button_text = $variables['paragraph']->field_button_text->value;
   }
