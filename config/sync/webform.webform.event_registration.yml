@@ -517,6 +517,7 @@ variants:
     weight: 0
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "opt_in:\r\n  '#title': Opt-in for updates from The Worker Institute"
       handlers: {  }
@@ -530,6 +531,7 @@ variants:
     weight: 0
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "email:\r\n  '#weight': 6\r\nopt_in:\r\n  '#title': Opt-in for updates from The Climate Jobs Institute\r\naccessible_accommodation:\r\n  '#access': false"
       handlers: {  }
@@ -543,6 +545,7 @@ variants:
     weight: 2
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "opt_in:\r\n  '#title': Opt-in for updates from The Worker Institute\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'What day(s) will you be attending?'\r\n  '#type': checkboxes\r\n  '#options':\r\n    'Friday': 'Friday, June 5'\r\n    'Saturday': 'Saturday, June 6'\r\n  '#states':\r\n    visible:\r\n      ':input[name=\"eventid\"]':\r\n        'value': a0iPK00000D54JdYAJ\r\n    enabled:\r\n      ':input[name=\"eventid\"]':\r\n        'value': a0iPK00000D54JdYAJ"
       handlers: {  }
@@ -556,6 +559,7 @@ variants:
     weight: 3
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "email:\r\n  '#weight': 6\r\nopt_in:\r\n  '#title': Opt-in for updates from Buffalo Co-Lab Institute\r\ncustom_1_answer:\r\n  '#type': textarea\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Questions for panelists'"
       handlers: {  }
@@ -569,6 +573,7 @@ variants:
     weight: 3
     settings:
       debug: false
+      properties: {  }
       settings:
         confirmation_message: "Thank you for registering for <em>[webform_submission:source-title]</em>. You'll receive more information regarding the event in the next few days."
       elements: "company:\r\n  '#access': false\r\ncompany_account:\r\n  '#access': true\r\n  '#title': CAHRS Partner Company\r\n  '#description': '<p>If you don''t belong to a partner company and still want to attend, please email <a href=\"mailto:cahrs@cornell.edu\"><em>cahrs@cornell.edu</em></a> and include your company and reason you want to attend.</p>'\r\n  '#options': cahrs_companies\r\n  '#sort_options': true\r\nphone:\r\n  '#access': true\r\naddress_intl:\r\n  '#access': false\r\naccessible_accommodation:\r\n  '#access': false\r\nopt_in:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Optional activities'\r\n  '#description': 'Please tell us which optional activities you’ll attend.'\r\n  '#type': checkboxes\r\n  '#options': cahrs_session_details\r\n  '#wrapper_attributes':\r\n    class:\r\n      - cahrs-session-details-element"
@@ -587,6 +592,7 @@ variants:
     weight: 3
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "attending_online:\r\n  '#type': checkbox"
       handlers: {  }
@@ -600,6 +606,7 @@ variants:
     weight: 8
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "address:\r\n  '#access': false\r\naddress_intl:\r\n  '#access': false"
       handlers: {  }
@@ -613,6 +620,7 @@ variants:
     weight: 9
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "eventid:\r\n  '#required': false"
       handlers: {  }
@@ -626,6 +634,7 @@ variants:
     weight: 10
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: ''
       handlers:
@@ -660,6 +669,7 @@ variants:
     weight: 10
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: ''
       handlers:
@@ -703,6 +713,7 @@ variants:
     weight: 8
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "address:\r\n  '#access': false\r\naddress_intl:\r\n  '#access': true\r\n  '#default_value':\r\n    country_code: US\r\n    given_name: null\r\n    additional_name: null\r\n    family_name: null\r\n    organization: null\r\n    address_line1: null\r\n    address_line2: null\r\n    postal_code: null\r\n    sorting_code: null\r\n    dependent_locality: null\r\n    locality: null\r\n    administrative_area: null\r\n    langcode: null"
       handlers: {  }
@@ -716,6 +727,7 @@ variants:
     weight: 11
     settings:
       debug: false
+      properties: {  }
       settings:
         form_close_message: 'Registration is closed, please contact rh363@cornell.edu to be added to our waitlist.'
       elements: ''
@@ -730,6 +742,7 @@ variants:
     weight: 12
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: ''
       handlers:
@@ -778,6 +791,7 @@ variants:
     weight: 13
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "company:\r\n  '#title': 'Organization / organización'\r\ntitle:\r\n  '#title': 'Role / función'\r\nfirst_name:\r\n  '#title': 'First Name / nombre de pila'\r\nlast_name:\r\n  '#title': 'Last Name / apellido'\r\nemail:\r\n  '#title': 'Email / correo electrónico'\r\nphone:\r\n  '#title': 'Phone / Número de teléfono'\r\naddress:\r\n  '#title': 'Address / Dirección'\r\n  '#city__title': 'City / ciudad'\r\n  '#state_province__title': 'State / estado'\r\naccessible_accommodation:\r\n  '#title': 'Accommodations / alojamientos'\r\n  '#description': 'We strive to host inclusive, accessible events that enable all individuals to engage and participate fully. Please list any reasonable accommodations you may need, such as alternate formats, interpreters, or sign-language interpreters. Nos esforzamos a organizar eventos inclusivos y accesibles que permitan a todas las personas puedan tomar parte y participar plenamente. Enumere las adaptaciones razonables que pueda necesitar, como formatos alternativos, intérpretes o intérpretes de lenguaje de señas.'\r\nopt_in:\r\n  '#title': 'Opt-in for updates on similar programs / Suscríbase para recibir actualizaciones sobre programas similares'"
       handlers: {  }
@@ -791,6 +805,7 @@ variants:
     weight: 15
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: ''
       handlers:
@@ -806,6 +821,7 @@ variants:
     weight: 16
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "custom_1_answer:\r\n  '#type': textarea\r\n  '#access': true\r\n  '#required': false\r\n  '#title': 'Memory'\r\n  '#description': 'Please share a fond, funny, or interesting memory of Ed Vargas.'"
       handlers: {  }
@@ -819,6 +835,7 @@ variants:
     weight: 16
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "company:\r\n  '#access': false\r\ntitle:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#type': select\r\n  '#title': 'What is your role at Cornell?'\r\n  '#options':\r\n    Faculty: Faculty\r\n    Staff: Staff\r\n    Student: Student\r\n    Alumni: Alumni\r\n    Other: Other\r\ncustom_2_answer:\r\n  '#access': true\r\n  '#type': number\r\n  '#title': 'What is your graduation year?'\r\n  '#states':\r\n    visible:\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Student\r\n      - xor\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Alumni\r\n  '#min': 1950\r\n  '#max': 2030"
       handlers:
@@ -852,6 +869,7 @@ variants:
     weight: 16
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "opt_in:\r\n  '#access': false\r\nopt_in_multiple:\r\n  '#access': true\r\n  '#options':\r\n    CJI: CJI\r\n    CAROW: CAROW"
       handlers: {  }
@@ -865,6 +883,7 @@ variants:
     weight: 16
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "attending_online:\r\n  '#type': checkbox\r\nopt_in:\r\n  '#access': false\r\n"
       handlers:
@@ -908,6 +927,7 @@ variants:
     weight: 16
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "requires_translation:\r\n  '#type': checkbox\r\n  '#title': 'I will need Spanish translation services / Necesito servicios de traducción al español.'\r\n  '#access': true"
       handlers: {  }
@@ -921,6 +941,7 @@ variants:
     weight: 16
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "company:\r\n  '#access': false\r\ntitle:\r\n  '#access': false\r\nopt_in:\r\n  '#access': false\r\ncustom_1_answer:\r\n  '#access': true\r\n  '#type': select\r\n  '#title': 'What is your role at Cornell?'\r\n  '#options':\r\n    Faculty: Faculty\r\n    Staff: Staff\r\n    Student: Student\r\n    Alumni: Alumni\r\n    Other: Other\r\ncustom_2_answer:\r\n  '#access': true\r\n  '#type': number\r\n  '#title': 'What is your graduation year?'\r\n  '#states':\r\n    visible:\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Student\r\n      - xor\r\n      - ':input[name=\"custom_1_answer\"]':\r\n          value: Alumni\r\n  '#min': 1950\r\n  '#max': 2030"
       handlers:
@@ -954,6 +975,7 @@ variants:
     weight: 9
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "eventid:\r\n '#type': salesforce_event_options\r\n '#title': 'How will you be attending?'\r\n '#required': true"
       handlers:
@@ -970,6 +992,7 @@ variants:
     weight: 16
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "custom_1_answer:\r\n  '#type': checkbox\r\n  '#title': 'I am an existing solar worker'\r\n  '#access': true\r\n  '#required': false"
       handlers: {  }
@@ -983,6 +1006,7 @@ variants:
     weight: 3
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "company:\r\n  '#access': false\r\ncompany_account:\r\n  '#access': true\r\n  '#title': CAHRS Partner Company\r\n  '#description': '<p>If you don''t belong to a partner company and still want to attend, please email <a href=\"mailto:cahrs@cornell.edu\"><em>cahrs@cornell.edu</em></a> and include your company and reason you want to attend.</p>'\r\n  '#options': cahrs_companies\r\n  '#sort_options': true\r\nphone:\r\n  '#access': true\r\naddress_intl:\r\n  '#access': false\r\naccessible_accommodation:\r\n  '#access': false\r\nopt_in:\r\n  '#access': false"
       handlers:
@@ -1011,6 +1035,7 @@ variants:
     weight: 25
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "company:\r\n  '#title': 'Organization / Organização'\r\ntitle:\r\n  '#title': 'Role / Cargo'\r\nfirst_name:\r\n  '#title': 'First Name / Nome'\r\nlast_name:\r\n  '#title': 'Last Name / Sobrenome'\r\nemail:\r\n  '#title': 'Email / E-mail'\r\nphone:\r\n  '#title': 'Phone / Número de teléfono'\r\naddress:\r\n  '#title': 'Address / Endereço'\r\n  '#city__title': 'City / Cidade'\r\n  '#state_province__title': 'State / Estado'\r\n  '#postal_code__title': 'Zip / Código postal'\r\naccessible_accommodation:\r\n  '#title': 'Accommodations / Local do evento'\r\n  '#description': 'We strive to host inclusive, accessible events that enable all individuals to engage and participate fully. Please list any reasonable accommodations you may need, such as alternate formats, interpreters, or sign-language interpreters. Nós nos esforçamos para hospedar eventos inclusivos e acessíveis que permitam que todos os indivíduos se envolvam e participem plenamente. Por favor, liste todas as acomodações necessárias, como formatos alternativos, intérpretes de idioma ou intérpretes de linguagem de sinais.'\r\nopt_in:\r\n  '#title': 'Opt-in for updates on similar programs / Registre-se aqui para receber atualizações sobre programações semelhantes'"
       handlers: {  }
@@ -1024,6 +1049,7 @@ variants:
     weight: 8
     settings:
       debug: false
+      properties: {  }
       settings:
         form_attributes:
           class:
@@ -1040,6 +1066,7 @@ variants:
     weight: 27
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: ''
       handlers:
@@ -1089,6 +1116,7 @@ variants:
     weight: 27
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: ''
       handlers:
@@ -1136,6 +1164,7 @@ variants:
     weight: 28
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "accessible_accommodation:\r\n  '#title': Accommodations/dietary restrictions\r\n  '#description': 'We strive to host inclusive, accessible events that enable all individuals to engage and participate fully. Please list any reasonable accommodations you may need, such as alternate formats, interpreters, sign-language interpreters, or dietary restrictions.'"
       handlers: {  }
