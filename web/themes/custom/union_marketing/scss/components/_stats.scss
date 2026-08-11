@@ -29,7 +29,7 @@
 
     @include breakpoint(md) {
       display: flex;
-      align-items: center;
+      align-items: start;
       justify-content: center;
     }
   }
@@ -64,6 +64,7 @@
     --cu-font-size: var(--cu-ms4);
     text-transform: uppercase;
     line-height: 1;
+    white-space: nowrap;
 
     @include breakpoint(md) {
       --cu-font-size: var(--cu-ms8);
