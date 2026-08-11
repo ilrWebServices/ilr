@@ -18,11 +18,11 @@ ilr.kissoff:
     _form: '\Drupal\ilr\Form\Kissoff'
     _title: 'Kissoff'
   requirements:
-    _permission: 'administer users'
+    _permission: 'remove employees'
 ilr.kissoff_confirm:
   path: '/admin/user-kissoff/confirm'
   defaults:
     _form: '\Drupal\ilr\Form\KissoffConfirm'
     _title: 'Confirm'
   requirements:
-    _permission: 'administer users'
+    _permission: 'remove employees'

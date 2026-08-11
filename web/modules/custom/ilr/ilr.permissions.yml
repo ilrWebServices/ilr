@@ -14,5 +14,7 @@ edit homepage:
   title: 'Edit the homepage'
 edit employee profiles:
   title: 'Edit employee profiles'
+remove employees:
+  title: 'Remove employees'
 permission_callbacks:
   - Drupal\ilr\UnpublishedPermissions::nodeTypePermissions
