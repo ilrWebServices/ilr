@@ -134,28 +134,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 5
             additional: {  }
-          5d676b8e-a4eb-48f2-a52e-57dd17b8e504:
-            uuid: 5d676b8e-a4eb-48f2-a52e-57dd17b8e504
-            region: second
-            configuration:
-              id: social_sharing_buttons_block
-              label: 'Better Social Sharing Buttons'
-              label_display: '0'
-              provider: better_social_sharing_buttons
-              context_mapping: {  }
-              iconset: social-icons--no-color
-              services:
-                facebook: facebook
-                x: x
-                email: email
-                linkedin: linkedin
-                copy: copy
-              width: 35px
-              radius: 100%
-              print_css: ''
-              facebook_app_id: ''
-            weight: 4
-            additional: {  }
           97cffa24-e6ae-40b6-aa4c-2ec5c5c32d29:
             uuid: 97cffa24-e6ae-40b6-aa4c-2ec5c5c32d29
             region: first
