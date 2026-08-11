@@ -336,7 +336,7 @@ class KissoffConfirm extends ConfirmFormBase {
         }
       }
     }
-    $form_state->setRedirect('entity.user.collection');
+    $form_state->setRedirect('ilr.kissoff');
   }
 
 }
