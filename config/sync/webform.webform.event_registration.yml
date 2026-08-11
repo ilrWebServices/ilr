@@ -870,31 +870,33 @@ variants:
       handlers:
         confirmation_email:
           settings:
-            subject: 'Thank you for registering for the 2024 Milton Konvitz Lecture - Thirty Years Out of Genocide: Lessons on Conflict Resolution and Peace Building in Rwanda.'
+            subject: 'Thank you for registering for the 2026 Milton Konvitz Lecture - From Institutional Mission to Administrative Means: The Bureaucratization of Universities'
             body: |-
               <p>Dear {{ data.first_name }},</p>
-              <p>Thank you for registering for the 2024 Milton Konvitz Lecture - Thirty Years Out of Genocide: Lessons on Conflict Resolution and Peace Building in Rwanda.</p>
+              <p>Thank you for registering for the 2026 Milton Konvitz Lecture - From Institutional Mission to Administrative Means: The Bureaucratization of Universities.</p>
+
               <p>This event is geared toward an in-person audience, so we strongly prefer you join us on our Ithaca campus. If this is not possible, please use the below Zoom information.</p>
+
               <p>This is a public event, which will be photographed and filmed and/or otherwise recorded. Your registration for this event constitutes your consent to such photography, live streaming, filming and/or recording, and any use in all media.</p>
               <p>DATE AND TIME<br/>
-              Date: March 13, 2024<br/>
-              Time: 4:30 – 5:30 pm ET</p>
+              Date: September 17, 2026<br/>
+              Time: 5:00 – 6:00 pm ET</p>
               <p>LOCATION<br/>
               ILR School<br/>
               105 Ives Hall<br/>
               Ithaca, NY 14853</p>
               <p>We look forward to your attendance.</p>
-              <p>Join Online: https://cornell.zoom.us/j/95013164890?pwd=cFV4WHRLT2hpVC9laWM1OElhdWFwQT09</p>
+              <p>Register to attend via Zoom: https://cornell.zoom.us/webinar/register/WN_ikpuRKR-Q_yyh9ZEqwdzAw#/registration</p>
         submission_detail_email:
           settings:
             to_mail: ilrschool@cornell.edu
-            subject: '2024 Konvitz lecture registration: [webform_submission:source-title]'
+            subject: '2026 Konvitz lecture registration'
             body: |-
-              {{ data.first_name }} {{ data.last_name }} has just registered for the 2024 Konvitz lecture. The data they submitted follows:<br/>
+              {{ data.first_name }} {{ data.last_name }} has just registered for the 2026 Konvitz lecture. The data they submitted follows:<br/>
               <br/>
               {{ webform_token('[webform_submission:values]', webform_submission) }}<br/>
               <br/>
-              To see a list of all submissions log in at <a href="https://d8-edit.ilr.cornell.edu/user">https://d8-edit.ilr.cornell.edu/user</a> and then go to <a href="https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A18616">https://d8-edit.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A18616</a>
+              To see a list of all submissions log in at <a href="https://www.ilr.cornell.edu/user">https://www.ilr.cornell.edu/user</a> and then go to <a href="https://www.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A23612">https://www.ilr.cornell.edu/admin/structure/webform/manage/event_registration/results/submissions?entity=node%3A23612</a>
             twig: true
   spanish_translation:
     id: override
