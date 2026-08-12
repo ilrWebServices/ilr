@@ -70,3 +70,8 @@ figure.cu-media,
 .paragraphs-previewer-html .cu-section.paragraph--unpublished {
   display: unset;
 }
+
+// Left-align right texts paragraphs in wide sections (rather than centering them).
+.cu-section--wide.cu-section--compact .cu-composite-heading--compact + .cu-section__content .cu-component--rich-text {
+  margin-left: 0;
+}
