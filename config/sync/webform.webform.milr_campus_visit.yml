@@ -141,7 +141,7 @@ elements: |-
     '#title': 'Submission URL'
     '#display_on': view
     '#mode': text
-    '#template': "{{ webform_token('[webform_submission:url]', webform_submission)|replace({'www.ilr.cornell.edu': 'd8-edit.ilr.cornell.edu'}) }}"
+    '#template': "{{ webform_token('[webform_submission:url]', webform_submission) }}"
   utm_values:
     '#type': utm_values
   ga_client_id:
