@@ -750,6 +750,9 @@ function ilr_preprocess_node__course__teaser(&$variables) {
       case 'On Demand/Self Paced':
         $computed_delivery_method = t('Self-Paced Online');
         break;
+      case 'Online (Date Driven)':
+        $computed_delivery_method = t('Online');
+        break;
       default:
         $computed_delivery_method = t('Live Online');
     }
