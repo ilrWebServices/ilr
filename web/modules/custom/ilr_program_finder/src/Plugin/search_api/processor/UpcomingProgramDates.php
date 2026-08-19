@@ -55,24 +55,30 @@ class UpcomingProgramDates extends ProcessorPluginBase {
    */
   public function addFieldValues(ItemInterface $item) {
     $node = $item->getOriginalObject()->getValue();
+    $datetimes = [];
 
     if ($node->bundle() === 'course' && $node->classes->count()) {
-      // Since `classes` is a computed field, and it is sorted by upcoming class
-      // dates, using `first()` will ensure that the next upcoming class will be
-      // used for the course.
-      $datetime = $node->classes->first()->entity->field_date_start->date;
+      // `classes` is a computed field, and it is sorted by upcoming class
+      // dates.
+      foreach ($node->classes->referencedEntities() as $class_node) {
+        $datetimes[] = $class_node->field_date_start->date->getTimestamp();
+      }
     }
     elseif ($node->bundle() === 'remote_program') {
-      $datetime = $node->field_date_start->date;
+      $datetimes[] = $node->field_date_start->date->getTimestamp();
     }
     else {
+      return;
+    }
+
+    if (empty($datetimes)) {
       return;
     }
 
     $fields = $this->getFieldsHelper()->filterForPropertyPath($item->getFields(), 'entity:node', 'upcoming_dates');
 
     foreach ($fields as $field) {
-      $field->setValues([$datetime->getTimestamp()]);
+      $field->setValues($datetimes);
     }
   }
 
