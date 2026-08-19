@@ -23,3 +23,9 @@
 .ilr-program-finder__facet-heading {
   margin-top: 0;
 }
+
+ilr-program-finder-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cu-vr2);
+}

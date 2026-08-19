@@ -1,3 +1,17 @@
-[data-component-id="union_marketing:program_finder_item"] {
-  /* @todo Add your styles here. */
+.program-finder-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cu-vr-1);
+}
+
+.program-finder-item.hidden {
+  display: none;
+}
+
+.program-finder-item__title {
+  margin: 0;
+}
+
+.program-finder-item__topics {
+  order: -1;
 }
