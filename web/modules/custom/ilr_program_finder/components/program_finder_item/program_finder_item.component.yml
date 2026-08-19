@@ -1,0 +1,52 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+
+name: Program Finder Item
+
+# Status can be: "experimental", "stable", "deprecated", "obsolete".
+status: experimental
+
+description: Shown in Program Finder listings
+
+props:
+  type: object
+  properties:
+    item_id:
+      type: string
+      title: Item ID
+    status:
+      type: boolean
+      title: Status
+      examples: []
+    delivery_method:
+      type: string
+      title: Delivery method
+      examples:
+        - 'Online (Synchronous)'
+        - 'Classroom'
+        - 'Online (Date Driven)'
+        - 'Asynchronous Online'
+        - 'On Demand/Self Paced'
+    topics:
+      type: array
+      title: Topics
+      examples: []
+    type:
+      type: string
+      title: Type
+      enum:
+        - course
+        - remote_program
+    upcoming_dates:
+      type: array
+      title: Upcoming Dates
+slots:
+  title:
+    title: Title
+    description: Title of item.
+  summary:
+    title: Summary
+    description: Summary of item.
+
+# libraryOverrides:
+#   dependencies:
+#     - ilr_program_finder:program_finder

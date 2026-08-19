@@ -1,0 +1,19 @@
+{%- set delimiter = "\t" -%}
+<div {{ attributes.addClass('program-finder-item') }} data-facet-item-id="{{ item_id }}" data-facet-delivery-method="{{ delivery_method }}" data-facet-dates="{{ upcoming_dates|join(delimiter) }}" data-facet-topics="{{ topics|join(delimiter) }}">
+  {# Keep the outer div whenever possible it is a nice way to ensure the presence of "attributes" #}
+  <h2 class="program-finder-item__title cu-heading">{{ title }}</h2>
+  {%- if topics %}
+  <div class="program-finder-item__topics">{{ topics|join(', ') }}</div>
+  <ul class="program-finder-item__topics">
+    {% for topic in topics %}
+    <li>{{ topic }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <div class="program-finder-item__dates">{{ upcoming_dates|join(delimiter) }}</div>
+  <div class="program-finder-item__summary">
+  {% block summary %}
+    The contents of the example block
+  {% endblock %}
+  </div>
+</div>
