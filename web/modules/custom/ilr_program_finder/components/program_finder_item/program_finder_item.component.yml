@@ -17,9 +17,9 @@ props:
       type: boolean
       title: Status
       examples: []
-    delivery_method:
-      type: string
-      title: Delivery method
+    delivery_methods:
+      type: array
+      title: Delivery methods
       examples:
         - 'Online (Synchronous)'
         - 'Classroom'

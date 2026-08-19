@@ -3,12 +3,14 @@
 namespace Drupal\ilr_program_finder\Plugin\paragraphs\Behavior;
 
 use DateTime;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Url;
 use Drupal\paragraphs\Attribute\ParagraphsBehavior;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
@@ -89,6 +91,10 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
     $results = $query->execute();
     $items = [];
 
+    if ($results->getResultCount() == 0) {
+      return;
+    }
+
     /** @var \Drupal\search_api\Item\Item $item  */
     foreach ($results->getResultItems() as $item) {
       $dates = $item->getField('upcoming_dates')->getValues() ?? [];
@@ -98,6 +104,7 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
         return $datetime->format('F Y');
       }, $dates);
 
+      $summary = $item->getField('summary')->getValues()[0] ?? '';
 
       $items[] = [
         '#type' => 'component',
@@ -105,12 +112,14 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
         '#props' => [
           'item_id' => $item->getId(),
           'topics' => $item->getField('topic')->getValues() ?? [],
-          'delivery_method' => $item->getField('delivery_method')->getValues()[0] ?? '',
+          'delivery_methods' => $item->getField('delivery_methods')->getValues() ?? [],
+          'program_instances' => $item->getField('program_instances')->getValues() ?? [],
           'upcoming_dates' => $facet_dates,
+          'url' => $item->getField('url')->getValues()[0],
         ],
         '#slots' => [
           'title' => $item->getField('title')->getValues()[0] ?? '',
-          'summary' => $item->getField('summary')->getValues()[0] ?? '',
+          'summary' => Html::decodeEntities(strip_tags($summary)),
         ],
       ];
 
@@ -137,6 +146,7 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
       '#slots' => [
         'items' => $items,
       ],
+      '#attached' => ['library' => ['union_organizer/button']],
     ];
   }
 

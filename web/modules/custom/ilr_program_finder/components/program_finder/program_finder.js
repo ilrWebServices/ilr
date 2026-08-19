@@ -26,7 +26,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
           summary: 'string',
           topics: 'enum[]',
           dates: 'enum[]',
-          format: 'enum'
+          format: 'enum[]'
         }
       });
 
@@ -40,7 +40,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
           summary: item.querySelector('.program-finder-item__summary').textContent,
           topics: item.dataset.facetTopics.split("\t"),
           dates: item.dataset.facetDates.split("\t"),
-          format: item.dataset.facetDeliveryMethod,
+          format: item.dataset.facetDeliveryMethods.split("\t"),
         });
       });
 
@@ -116,7 +116,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
       }
 
       if (url_params.get('format')) {
-        enabled_facets_where.format = { eq: url_params.get('format') };
+        enabled_facets_where.format = { containsAll: url_params.getAll('format') };
       }
 
       if (enabled_facets_where) {

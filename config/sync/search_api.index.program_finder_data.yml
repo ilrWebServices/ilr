@@ -3,8 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
-    - field.storage.node.field_delivery_method
     - field.storage.node.field_topics
     - search_api.server.database
   module:
@@ -17,14 +15,11 @@ name: 'Program finder data'
 description: 'Stores normalized data for course-like content (e.g. Courses, Remote Programs) to be used in the program finder faceted search.'
 read_only: false
 field_settings:
-  delivery_method:
-    label: 'Delivery Method'
+  delivery_methods:
+    label: 'Delivery methods (fancy)'
     datasource_id: 'entity:node'
-    property_path: field_delivery_method
+    property_path: delivery_methods
     type: string
-    dependencies:
-      config:
-        - field.storage.node.field_delivery_method
   group:
     label: Group
     property_path: custom_value
@@ -38,6 +33,11 @@ field_settings:
     indexed_locked: true
     type_locked: true
     hidden: true
+  program_instances:
+    label: 'Upcoming date instance data'
+    datasource_id: 'entity:node'
+    property_path: program_instances
+    type: string
   status:
     label: Status
     datasource_id: 'entity:node'
@@ -49,13 +49,10 @@ field_settings:
       module:
         - node
   summary:
-    label: Summary
+    label: 'Body (Summary or trimmed)'
     datasource_id: 'entity:node'
-    property_path: 'body:summary_processed'
+    property_path: body_summary_or_trimmed
     type: string
-    dependencies:
-      config:
-        - field.storage.node.body
   title:
     label: Title
     datasource_id: 'entity:node'
@@ -96,7 +93,13 @@ field_settings:
     label: 'Upcoming dates'
     datasource_id: 'entity:node'
     property_path: upcoming_dates
-    type: date
+    type: string
+  url:
+    label: URI
+    property_path: search_api_url
+    type: string
+    configuration:
+      absolute: false
 datasource_settings:
   'entity:node':
     bundles:
@@ -116,23 +119,6 @@ processor_settings:
   custom_value: {  }
   entity_status: {  }
   entity_type: {  }
-  html_filter:
-    weights:
-      preprocess_index: -15
-      preprocess_query: -15
-    all_fields: false
-    fields:
-      - summary
-    title: false
-    alt: false
-    tags:
-      b: 2.0
-      em: 1.5
-      h1: 5.0
-      h2: 3.0
-      h3: 2.0
-      strong: 2.0
-      u: 1.5
   ignorecase:
     weights:
       preprocess_index: -20
@@ -140,6 +126,9 @@ processor_settings:
     all_fields: false
     fields:
       - type
+  ilr_body_summary_or_trimmed: {  }
+  ilr_delivery_methods: {  }
+  ilr_program_instances: {  }
   ilr_resource_item_fields: {  }
   ilr_upcoming_program_dates: {  }
   language_with_fallback: {  }
