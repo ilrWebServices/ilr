@@ -68,7 +68,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
     delegate(event) {
       const url_params = new URLSearchParams(window.location.search);
 
-      if (event.target.matches('input')) {
+      if (event.target.matches('input[type="checkbox"]')) {
         if (event.target.checked) {
           url_params.append(event.target.name, event.target.value);
         }
@@ -80,7 +80,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
         this.update();
       }
 
-      if (event.target.matches('button')) {
+      if (event.target.matches('button[data-key]')) {
         url_params.delete(event.target.dataset.key, event.target.textContent);
         history.pushState({}, '', window.location.pathname + '?' + url_params.toString());
         this.update();
@@ -105,13 +105,13 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
     }
 
     update() {
-      const sidebar = this.querySelector('ilr-program-finder-sidebar');
       const search_input_element = this.querySelector('.program-finder__search');
+      const facet_wrapper = this.querySelector('.program-finder__facets');
       const url_params = new URLSearchParams(window.location.search);
       const enabled_facets_where = {};
-      const header = this.querySelector('ilr-program-finder-header');
+      const header = this.querySelector('.program-finder__header');
 
-      // Clear the header.
+      // Empty the header. Updated summary buttons will go here.
       header.replaceChildren();
 
       for (const [key, value] of url_params.entries()) {
@@ -122,16 +122,16 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
         header.appendChild(button_element);
       }
 
-      // Nuke the sidebar. We'll replace the content with the updated facets.
-      sidebar.replaceChildren();
+      // Empty the facet_wrapper. We'll replace the content with the updated facets.
+      facet_wrapper.replaceChildren();
 
       const search_options = {
         limit: this.#items.length,
         // @todo Define these facets elsewhere? Maybe using the facet module API?
         facets: {
           "topics": {},
-          "dates": {},
           "format": {},
+          "dates": {},
         },
       };
 
@@ -171,12 +171,14 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
         let heading_element = document.createElement('h3');
         facet_element.classList.add('ilr-program-finder__facet');
         heading_element.classList.add('ilr-program-finder__facet-heading');
-        heading_element.textContent = facet_name;
+        heading_element.classList.add('cu-heading');
+        heading_element.textContent = this.getFacetLabel(facet_name);
         facet_element.appendChild(heading_element);
 
         for (const [value_name, value] of Object.entries(facet.values)) {
           let facet_item_label_element = document.createElement('label');
           let facet_item_element = document.createElement('input');
+          facet_item_label_element.classList.add('cu-text');
           facet_item_element.setAttribute('type', 'checkbox');
           facet_item_element.setAttribute('name', facet_name);
           facet_item_element.setAttribute('value', value_name);
@@ -187,11 +189,12 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
           }
 
           facet_item_label_element.appendChild(facet_item_element);
-          facet_item_label_element.insertAdjacentText('beforeend', value_name + ' (' + value + ')');
+          facet_item_label_element.insertAdjacentText('beforeend', value_name);
+          facet_item_label_element.insertAdjacentHTML('beforeend', `<span>${value}</span>`);
           facet_element.appendChild(facet_item_label_element);
         }
 
-        sidebar.appendChild(facet_element);
+        facet_wrapper.appendChild(facet_element);
       }
 
       // Hide all items.
@@ -213,6 +216,13 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
         this.#message.textContent = 'No results.';
         header.appendChild(this.#message);
       }
+    }
+
+    getFacetLabel(facet_name) {
+      return {
+        'topics': 'Topic',
+        'dates': "Start Month"
+      }[facet_name] ?? facet_name.charAt(0).toUpperCase() + facet_name.slice(1);
     }
 
   }

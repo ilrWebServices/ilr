@@ -1,7 +1,10 @@
-<ilr-program-finder {{ attributes }}>
-  <ilr-program-finder-sidebar></ilr-program-finder-sidebar>
-  <ilr-program-finder-header></ilr-program-finder-header>
-  <ilr-program-finder-items>
+<ilr-program-finder role="region" {{ attributes.addClass('program-finder') }}>
+  <header class="program-finder__header">Javascript is required for search functionality.</header>
+  <aside role="search" class="program-finder__sidebar">
+    <h2 class="program-finder__sidebar-header cu-heading">{% trans %}Filter by:{% endtrans %}</h2>
+    <div class="program-finder__facets"></div>
+  </aside>
+  <div class="program-finder__items">
   {% block items %}{% endblock %}
-  </ilr-program-finder-items>
+  </div>
 </ilr-program-finder>

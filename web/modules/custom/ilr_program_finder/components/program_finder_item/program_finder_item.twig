@@ -3,9 +3,9 @@
   {# Keep the outer div whenever possible it is a nice way to ensure the presence of "attributes" #}
   <h2 class="program-finder-item__title cu-heading"><a href="{{ url }}">{{ title }}</a></h2>
   {%- if topics %}
-  <div class="program-finder-item__topics">{{ topics|join(', ') }}</div>
+  <div class="program-finder-item__topics cu-text">{{ topics|join(', ') }}</div>
   {% endif %}
-  <div class="program-finder-item__summary">
+  <div class="program-finder-item__summary cu-text">
   {% block summary %}
     The contents of the example block
   {% endblock %}
@@ -13,10 +13,10 @@
   <table>
     <thead>
       <tr>
-        <td>Start dates</td>
-        <td>Cost</td>
-        <td>Format</td>
-        <td></td>
+        <th scope="col">Start dates</th>
+        <th scope="col">Cost</th>
+        <th scope="col">Format</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
