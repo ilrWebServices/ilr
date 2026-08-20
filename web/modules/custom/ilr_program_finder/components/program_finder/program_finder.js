@@ -12,9 +12,12 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
 
     #db;
     #items;
+    #message;
 
     constructor() {
       super();
+      this.#message = document.createElement('div');
+      this.#message.classList.add('program-finder__message');
     }
 
     async connectedCallback() {
@@ -204,6 +207,11 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
           }
         });
       });
+
+      if (results.count === 0) {
+        this.#message.textContent = 'No results.';
+        header.appendChild(this.#message);
+      }
     }
 
   }
