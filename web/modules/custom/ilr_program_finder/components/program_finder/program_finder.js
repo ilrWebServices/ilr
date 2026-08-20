@@ -152,7 +152,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
         enabled_facets_where.dates = { containsAll: url_params.getAll('dates') };
       }
 
-      if (url_params.get('format')) {
+      if (url_params.getAll('format').length) {
         enabled_facets_where.format = { containsAll: url_params.getAll('format') };
       }
 
