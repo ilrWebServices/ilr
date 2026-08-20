@@ -47,9 +47,16 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
       insertMultiple(this.#db, docs);
 
       this.addEventListener('click', this.delegate);
+      this.addEventListener('submit', this.delegate);
 
       // This ensures that facet state added to the URL via pushState updates the page.
       addEventListener("popstate", (event) => { this.update() });
+
+      // Add the text search form.
+      this.querySelector('.program-finder__sidebar-header').insertAdjacentHTML('beforebegin', `<form method="get">
+        <input type="search" name="q" placeholder="Search" class="program-finder__search"></input>
+        <button aria-label="Search" title="Search"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inherit; width: 100%; height: 100%;"><path clip-rule="evenodd" d="M16.296 16.996a8 8 0 11.707-.708l3.909 3.91-.707.707-3.909-3.909zM18 11a7 7 0 00-14 0 7 7 0 1014 0z" fill-rule="evenodd"></path></svg></button>
+      </form>`);
 
       // Initialize the search facets.
       this.update();
@@ -75,10 +82,28 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
         history.pushState({}, '', window.location.pathname + '?' + url_params.toString());
         this.update();
       }
+
+      if (event.target.matches('form')) {
+        event.preventDefault();
+        const input = event.target.firstElementChild;
+        const current_search = url_params.get('q');
+
+        if (input.value !== current_search) {
+          url_params.delete(input.name);
+
+          if (input.value) {
+            url_params.append(input.name, input.value);
+          }
+
+          history.pushState({}, '', window.location.pathname + '?' + url_params.toString());
+          this.update();
+        }
+      }
     }
 
     update() {
       const sidebar = this.querySelector('ilr-program-finder-sidebar');
+      const search_input_element = this.querySelector('.program-finder__search');
       const url_params = new URLSearchParams(window.location.search);
       const enabled_facets_where = {};
       const header = this.querySelector('ilr-program-finder-header');
@@ -106,6 +131,18 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
           "format": {},
         },
       };
+
+      if (url_params.get('q')) {
+        search_options.term = url_params.get('q');
+        search_options.properties = ['title', 'summary'];
+        search_options.boost = {
+          title: 2,
+        };
+        search_input_element.value = url_params.get('q');
+      }
+      else {
+        search_input_element.value = '';
+      }
 
       if (url_params.getAll('topics').length) {
         enabled_facets_where.topics = { containsAll: url_params.getAll('topics') };
