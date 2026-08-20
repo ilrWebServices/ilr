@@ -62,3 +62,7 @@
 .program-finder-item td {
   padding: var(--cu-vr-1) 0;
 }
+
+.program-finder-item__date {
+  font-weight: 700;
+}

@@ -23,7 +23,7 @@
       {%- for program_instance in program_instances %}
       {% set instance_data = program_instance|split("\t") %}
       <tr>
-        <td>{{ instance_data.0 }}</td>
+        <td class="program-finder-item__date">{{ instance_data.0 }}</td>
         <td>${{ instance_data.1|round }}</td>
         <td>{{ instance_data.2 }}</td>
         <td><a href="{{ url }}" class="cu-button">Register</a></td>
