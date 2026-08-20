@@ -199,11 +199,12 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
         item.classList.add('hidden');
       });
 
-      // Show only the hits.
-      results.hits.forEach((result_hit, index) => {
+      // Show only the hits, in search result order.
+      results.hits.forEach((result_hit, result_index) => {
         this.#items.forEach((item, index) => {
           if (item.dataset.facetItemId === result_hit.id) {
             item.classList.remove('hidden');
+            item.style.order = result_index;
           }
         });
       });
