@@ -169,13 +169,23 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
       for (const [facet_name, facet] of Object.entries(results.facets)) {
         let facet_element = document.createElement('div');
         let heading_element = document.createElement('h3');
+        let facet_values = [];
         facet_element.classList.add('ilr-program-finder__facet');
         heading_element.classList.add('ilr-program-finder__facet-heading');
         heading_element.classList.add('cu-heading');
         heading_element.textContent = this.getFacetLabel(facet_name);
         facet_element.appendChild(heading_element);
 
-        for (const [value_name, value] of Object.entries(facet.values)) {
+        if (facet_name === 'dates') {
+          facet_values = Object.entries(facet.values).sort((a, b) => {
+            return new Date(a) - new Date(b);
+          });
+        }
+        else {
+          facet_values = Object.entries(facet.values).sort();
+        }
+
+        for (const [value_name, value] of facet_values) {
           let facet_item_label_element = document.createElement('label');
           let facet_item_element = document.createElement('input');
           facet_item_label_element.classList.add('cu-text');
