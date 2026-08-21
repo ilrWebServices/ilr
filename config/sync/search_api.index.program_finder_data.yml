@@ -93,7 +93,7 @@ field_settings:
     label: 'Upcoming dates'
     datasource_id: 'entity:node'
     property_path: upcoming_dates
-    type: string
+    type: date
   url:
     label: URI
     property_path: search_api_url
