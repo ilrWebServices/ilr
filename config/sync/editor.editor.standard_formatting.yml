@@ -66,6 +66,9 @@ settings:
           label: 'Link button'
           element: '<a class="cu-button">'
         -
+          label: 'Link button (alt)'
+          element: '<a class="cu-button cu-button--alt">'
+        -
           label: Accentuated
           element: '<ol class="accentuated">'
         -
