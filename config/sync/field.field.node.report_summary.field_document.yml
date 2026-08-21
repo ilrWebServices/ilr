@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_document
     - media.type.file
+    - media.type.remote_url
     - node.type.report_summary
 id: node.report_summary.field_document
 field_name: field_document
@@ -21,6 +22,7 @@ settings:
   handler_settings:
     target_bundles:
       file: file
+      remote_url: remote_url
     sort:
       field: _none
       direction: ASC
