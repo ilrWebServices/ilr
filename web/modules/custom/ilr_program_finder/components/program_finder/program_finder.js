@@ -57,7 +57,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
 
       // Add the text search form.
       this.querySelector('.program-finder__sidebar-header').insertAdjacentHTML('beforebegin', `<form method="get">
-        <input type="search" name="q" placeholder="Search" class="program-finder__search"></input>
+        <input type="search" name="q" placeholder="Search" maxlength="100" class="program-finder__search"></input>
         <button aria-label="Search" title="Search"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 24 24" width="24" focusable="false" aria-hidden="true" style="pointer-events: none; display: inherit; width: 100%; height: 100%;"><path clip-rule="evenodd" d="M16.296 16.996a8 8 0 11.707-.708l3.909 3.91-.707.707-3.909-3.909zM18 11a7 7 0 00-14 0 7 7 0 1014 0z" fill-rule="evenodd"></path></svg></button>
       </form>`);
 
@@ -132,11 +132,11 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
           "topics": {},
           "format": {},
           "dates": {},
-        },
+        }
       };
 
       if (url_params.get('q')) {
-        search_options.term = url_params.get('q');
+        search_options.term = url_params.get('q').slice(0, 100);
         search_options.properties = ['title', 'summary'];
         search_options.boost = {
           title: 2,
