@@ -147,6 +147,10 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
         'items' => $items,
       ],
       '#attached' => ['library' => ['union_organizer/button']],
+      '#cache' => [
+        'max-age' => 7200,
+        'tags' => ['node_list:course', 'node_list:class', 'node_list:remote_program'],
+      ],
     ];
   }
 
