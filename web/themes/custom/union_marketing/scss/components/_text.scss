@@ -118,3 +118,7 @@ span.strong {
   --cu-text-color: #b31b1b;
   --cu-font-weight: 400;
 }
+
+.cu-component--rich-text .cu-button + .cu-button {
+  margin-left: var(--cu-ps1);
+}
