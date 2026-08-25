@@ -1,4 +1,5 @@
 // Card grid styling
+// @todo Check if we still need this.
 .cu-hero-card-grid {
   margin-top: calc(var(--cu-vr1) * -1);
   position: relative;
@@ -46,21 +47,66 @@
   }
 }
 
-.region-highlighted .cu-banner--hero .cu-banner__content {
-  padding-left: 0;
-  padding-right: 0;
+header.cu-header:has(+ main .cu-banner--hero) {
+  border-bottom: none;
 }
 
-.region-highlighted .cu-banner--hero .cu-banner__media video[src*="ilr_hero_80years"] {
-  object-position: bottom;
+.region-highlighted .cu-banner--hero .cu-banner__meta .cu-heading {
+  --cu-font-size: var(--cu-ms5);
+  letter-spacing: -5%;
+  line-height: .8;
+
+  @include breakpoint(sm) {
+    --cu-font-size: var(--cu-ms7);
+  }
+
+  @include breakpoint(md) {
+    --cu-font-size: var(--cu-ms10);
+  }
 }
 
-// 80 Years Logo Lottie Animation
-.lottie-80years-container {
-  &.cu-banner--80years {
-    @include breakpoint(lg) {
-      transform: scale(1.10);
+.cu-banner--hero {
+  margin-bottom: var(--cu-vr1);
+
+  @include breakpoint(md) {
+    display: grid;
+    grid-template-columns: calc(30% - 100px) 100px 1fr;
+    margin-bottom: var(--cu-vr2);
+    margin-left: -64px;
+    margin-right: -64px;
+
+    .cu-banner__content {
+      grid-column: 1/3;
+      grid-row: 1;
+      justify-content: unset;
+      align-self: center;
     }
+
+    .cu-banner__media {
+      grid-column: 2/-1;
+      grid-row: 1;
+    }
+  }
+}
+
+.cu-banner--hero .cu-banner__media::before {
+  content: unset;
+}
+
+.cu-banner--hero .cu-banner__media {
+  position: unset;
+}
+
+.region-highlighted .cu-banner--hero .cu-banner__content {
+  padding-right: 0;
+  max-width: unset;
+
+  @include breakpoint(md) {
+    padding-left: 64px;
+  }
+
+  > * {
+    max-width: 90%;
   }
 }
 

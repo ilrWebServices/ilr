@@ -56,28 +56,3 @@
     margin-bottom: -15%;
   }
 }
-
-.region-highlighted .cu-banner--hero.cu-banner--video .cu-banner__media {
-  @include breakpoint(md) {
-    @include full-width();
-    position: absolute;
-  }
-}
-
-#block-union-marketing-homepage-banner {
-
-  margin-bottom: var(--cu-vr1);
-
-  @include breakpoint(md) {
-    margin-bottom: var(--cu-vr2);
-  }
-
-  .cu-grid {
-    width: 100%;
-    max-width: $max-width;
-  }
-
-  .cu-component--mobile.cu-banner--video .cu-banner__content {
-    padding-bottom: 0;
-  }
-}
