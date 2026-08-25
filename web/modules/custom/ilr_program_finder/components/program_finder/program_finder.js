@@ -115,6 +115,10 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
       header.replaceChildren();
 
       for (const [key, value] of url_params.entries()) {
+        if (!['topics', 'format', 'dates', 'q'].includes(key)) {
+          continue;
+        }
+
         let button_element = document.createElement('button');
         button_element.classList.add('ilr-program-finder__button');
         button_element.dataset.key = key;
