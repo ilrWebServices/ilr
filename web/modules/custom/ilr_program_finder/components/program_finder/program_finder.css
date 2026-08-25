@@ -1,6 +1,9 @@
 [data-component-id="ilr_program_finder:program_finder"] {
+  --pf-scrollbar-width: 20px;
+
   display: flex;
   flex-direction: column;
+  gap: calc(32px - var(--pf-scrollbar-width));
   gap: 32px;
 }
 
@@ -117,6 +120,15 @@
     background-color: unset;
     padding-right: var(--cu-ps-2);
   }
+}
+
+.program-finder__facets {
+  position: sticky;
+  top: 0;
+  overflow-y: scroll;
+  max-height: 100vh;
+  padding-right: var(--pf-scrollbar-width);
+  margin-right: calc(var(--pf-scrollbar-width) * -1);
 }
 
 .program-finder__facets,

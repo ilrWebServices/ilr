@@ -230,6 +230,8 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
         this.#message.textContent = 'No results.';
         header.appendChild(this.#message);
       }
+
+      header.scrollIntoView({ behavior: "smooth"});
     }
 
     getFacetLabel(facet_name) {
