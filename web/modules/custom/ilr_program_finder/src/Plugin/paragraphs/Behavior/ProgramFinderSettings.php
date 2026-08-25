@@ -16,6 +16,7 @@ use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\paragraphs\Entity\ParagraphsType;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\paragraphs\ParagraphsBehaviorBase;
+use Drupal\search_api\Query\ConditionGroup;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -59,23 +60,38 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
-    $form['reverse_component'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Reverse Component'),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'reverse_component') ?? FALSE,
-      '#description' => $this->t('When checked, the image will be aligned to the left in the side-by-side layout.'),
+    /** @var \Drupal\search_api\Entity\Index $index  */
+    $index = $this->entityTypeManager->getStorage('search_api_index')->load('program_finder_data');
+    $query = $index->query();
+    $query->addCondition('upcoming_dates', time(), '>');
+    $results = $query->execute();
+    $tags = [];
+
+    foreach ($results->getResultItems() as $item) {
+      foreach ($item->getField('tags')->getValues() as $value) {
+        $tags[$value] = $value;
+      }
+    }
+
+    ksort($tags);
+
+    $form['tags'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Tags'),
+      '#options' => $tags,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'tags') ?? FALSE,
+      '#description' => $this->t('Lots of esplainin to do here.'),
+    ];
+
+    $form['tag_query_type'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('Tag query type'),
+      '#options' => ['Any' => 'Any', 'All' => 'All'],
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'tag_query_type') ?? 'Any',
+      '#description' => $this->t('Lots more esplainin to do here.'),
     ];
 
     return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function preprocess(&$variables) {
-    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'reverse_component')) {
-      $variables['attributes']['class'][] = 'cu-layoutscheme--reversed';
-    }
   }
 
   /**
@@ -87,6 +103,22 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
 
     $query = $index->query();
     $query->addCondition('upcoming_dates', time(), '>');
+
+    if ($tags = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'tags')) {
+      if ($paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'tag_query_type') === 'All') {
+        $tag_group = new ConditionGroup('AND');
+
+        foreach ($tags as $tag) {
+          $tag_group->addCondition('tags', $tag);
+        }
+
+        $query->addConditionGroup($tag_group);
+      }
+      else {
+        $query->addCondition('tags', $tags, 'IN');
+      }
+    }
+
     $query->sort('upcoming_dates');
     $results = $query->execute();
     $items = [];
@@ -122,19 +154,6 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
           'summary' => Html::decodeEntities(strip_tags($summary)),
         ],
       ];
-
-      // $data[] = [
-      //   'id' => $item->getId(),
-      //   // 'score' => $item->getScore(),
-      //   'group' => $item->getField('group')->getValues()[0],
-      //   'title' => $item->getField('title')->getValues()[0] ?? '',
-      //   'status' => $item->getField('status')->getValues()[0],
-      //   'delivery_method' => $item->getField('delivery_method')->getValues()[0] ?? '',
-      //   'summary' => $item->getField('summary')->getValues()[0] ?? '',
-      //   'topics' => $item->getField('topic')->getValues() ?? [],
-      //   'type' => $item->getField('type')->getValues()[0] ?? '',
-      //   'upcoming_dates' => $item->getField('upcoming_dates')->getValues(),
-      // ];
     }
 
     $build['items'] = [
@@ -160,10 +179,17 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
   public function settingsSummary(Paragraph $paragraph) {
     $summary = [];
 
-    if ($paragraph->getBehaviorSetting($this->getPluginId(), 'reverse_component')) {
+    if ($paragraph->getBehaviorSetting($this->getPluginId(), 'tags')) {
       $summary[] = [
-        'label' => 'Reversed Component',
-        'value' => 'True',
+        'label' => 'Tags',
+        'value' => implode(', ', array_values($paragraph->getBehaviorSetting($this->getPluginId(), 'tags'))),
+      ];
+    }
+
+    if ($paragraph->getBehaviorSetting($this->getPluginId(), 'tag_query_type')) {
+      $summary[] = [
+        'label' => 'Type',
+        'value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'tag_query_type'),
       ];
     }
 

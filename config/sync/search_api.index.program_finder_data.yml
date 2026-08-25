@@ -53,6 +53,11 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: body_summary_or_trimmed
     type: string
+  tags:
+    label: 'Program finder item tags'
+    datasource_id: 'entity:node'
+    property_path: program_finder_tags
+    type: string
   title:
     label: Title
     datasource_id: 'entity:node'
@@ -128,6 +133,7 @@ processor_settings:
       - type
   ilr_body_summary_or_trimmed: {  }
   ilr_delivery_methods: {  }
+  ilr_program_finder_tags: {  }
   ilr_program_instances: {  }
   ilr_resource_item_fields: {  }
   ilr_upcoming_program_dates: {  }
