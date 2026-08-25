@@ -38,8 +38,11 @@ settings:
     ckeditor5_style:
       styles:
         -
-          label: Button
+          label: Link button
           element: '<a class="cu-button">'
+        -
+          label: 'Link button (alt)'
+          element: '<a class="cu-button cu-button--alt">'
     linkit_extension:
       linkit_enabled: false
 image_upload:
