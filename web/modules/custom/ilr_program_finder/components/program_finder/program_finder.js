@@ -29,6 +29,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
           summary: 'string',
           topics: 'enum[]',
           dates: 'enum[]',
+          locations: 'enum[]',
           format: 'enum[]'
         }
       });
@@ -43,6 +44,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
           summary: item.querySelector('.program-finder-item__summary').textContent,
           topics: item.dataset.facetTopics.split("\t"),
           dates: item.dataset.facetDates.split("\t"),
+          locations: item.dataset.facetLocations ? item.dataset.facetLocations.split("\t") : [],
           format: item.dataset.facetDeliveryMethods.split("\t"),
         });
       });
@@ -115,7 +117,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
       header.replaceChildren();
 
       for (const [key, value] of url_params.entries()) {
-        if (!['topics', 'format', 'dates', 'q'].includes(key)) {
+        if (!['topics', 'format', 'dates', 'locations', 'q'].includes(key)) {
           continue;
         }
 
@@ -135,6 +137,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
         facets: {
           "topics": {},
           "format": {},
+          "locations": {},
           "dates": {},
         }
       };
@@ -157,6 +160,10 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
 
       if (url_params.getAll('dates').length) {
         enabled_facets_where.dates = { containsAll: url_params.getAll('dates') };
+      }
+
+      if (url_params.getAll('locations').length) {
+        enabled_facets_where.locations = { containsAll: url_params.getAll('locations') };
       }
 
       if (url_params.getAll('format').length) {

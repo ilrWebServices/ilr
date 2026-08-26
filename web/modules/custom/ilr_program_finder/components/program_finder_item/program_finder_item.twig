@@ -1,5 +1,5 @@
 {%- set delimiter = "\t" -%}
-<div {{ attributes.addClass('program-finder-item') }} data-facet-item-id="{{ item_id }}" data-facet-delivery-methods="{{ delivery_methods|join(delimiter) }}" data-facet-dates="{{ upcoming_dates|join(delimiter) }}" data-facet-topics="{{ topics|join(delimiter) }}">
+<div {{ attributes.addClass('program-finder-item') }} data-facet-item-id="{{ item_id }}" data-facet-delivery-methods="{{ delivery_methods|join(delimiter) }}" data-facet-dates="{{ upcoming_dates|join(delimiter) }}" data-facet-locations="{{ locations|join(delimiter) }}" data-facet-topics="{{ topics|join(delimiter) }}">
   {# Keep the outer div whenever possible it is a nice way to ensure the presence of "attributes" #}
   <h2 class="program-finder-item__title cu-heading"><a href="{{ url }}">{{ title }}</a></h2>
   {%- if topics %}

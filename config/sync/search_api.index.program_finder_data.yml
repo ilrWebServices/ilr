@@ -31,6 +31,11 @@ field_settings:
         - field.storage.node.field_keywords
       module:
         - taxonomy
+  locations:
+    label: Locations
+    datasource_id: 'entity:node'
+    property_path: locations
+    type: string
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
@@ -141,6 +146,7 @@ processor_settings:
   ilr_delivery_methods: {  }
   ilr_program_finder_tags: {  }
   ilr_program_instances: {  }
+  ilr_program_locations: {  }
   ilr_resource_item_fields: {  }
   ilr_upcoming_program_dates: {  }
   language_with_fallback: {  }

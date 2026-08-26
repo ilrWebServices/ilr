@@ -39,6 +39,9 @@ props:
     upcoming_dates:
       type: array
       title: Upcoming Dates
+    locations:
+      type: array
+      title: Locations
 slots:
   title:
     title: Title

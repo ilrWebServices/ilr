@@ -153,6 +153,7 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
           'delivery_methods' => $item->getField('delivery_methods')->getValues() ?? [],
           'program_instances' => $item->getField('program_instances')->getValues() ?? [],
           'upcoming_dates' => $facet_dates,
+          'locations' => $item->getField('locations')->getValues() ?? [],
           'url' => $item->getField('url')->getValues()[0],
         ],
         '#slots' => [
