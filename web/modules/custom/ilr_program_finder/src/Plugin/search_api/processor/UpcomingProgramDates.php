@@ -67,6 +67,9 @@ class UpcomingProgramDates extends ProcessorPluginBase {
     elseif ($node->bundle() === 'remote_program') {
       $datetimes[] = $node->field_date_start->date->getTimestamp();
     }
+    elseif ($node->bundle() === 'event_landing_page') {
+      $datetimes[] = $node->event_date->start_date->getTimestamp();
+    }
     else {
       return;
     }

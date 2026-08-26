@@ -71,6 +71,9 @@ class ProgramDeliveryMethods extends ProcessorPluginBase {
     elseif ($node->bundle() === 'remote_program') {
       $delivery_methods[] = $node->field_delivery_method->value;
     }
+    elseif ($node->bundle() === 'event_landing_page') {
+      $delivery_methods[] = $node->field_delivery_method->value ?? 'In Person';
+    }
     else {
       return;
     }

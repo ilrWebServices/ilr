@@ -75,6 +75,13 @@ class ProgramInstances extends ProcessorPluginBase {
         $node->field_delivery_method->value,
       ]);
     }
+    elseif ($node->bundle() === 'event_landing_page') {
+      $instances[] = vsprintf($format, [
+        $node->event_date->start_date->format('M d, Y'),
+        0,
+        $node->field_delivery_method->value ?? 'In Person',
+      ]);
+    }
     else {
       return;
     }
