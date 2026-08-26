@@ -61,8 +61,8 @@ field_settings:
     dependencies:
       module:
         - node
-  topic:
-    label: Topic
+  topics:
+    label: Topics
     datasource_id: 'entity:node'
     property_path: 'field_topics:entity:name'
     type: string
