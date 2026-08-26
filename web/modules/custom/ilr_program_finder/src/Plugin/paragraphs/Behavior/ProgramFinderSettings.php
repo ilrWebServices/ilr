@@ -62,8 +62,9 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
     /** @var \Drupal\search_api\Entity\Index $index  */
     $index = $this->entityTypeManager->getStorage('search_api_index')->load('program_finder_data');
+    $today = new DrupalDateTime('midnight yesterday');
     $query = $index->query();
-    $query->addCondition('upcoming_dates', time(), '>');
+    $query->addCondition('upcoming_dates', $today->getTimestamp(), '>=');
     $results = $query->execute();
     $tags = [];
 
@@ -100,9 +101,10 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
   public function view(array &$build, Paragraph $paragraphs_entity, EntityViewDisplayInterface $display, $view_mode) {
     /** @var \Drupal\search_api\Entity\Index $index  */
     $index = $this->entityTypeManager->getStorage('search_api_index')->load('program_finder_data');
+    $today = new DrupalDateTime('midnight yesterday');
 
     $query = $index->query();
-    $query->addCondition('upcoming_dates', time(), '>');
+    $query->addCondition('upcoming_dates', $today->getTimestamp(), '>=');
 
     if ($tags = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'tags')) {
       if ($paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'tag_query_type') === 'All') {
