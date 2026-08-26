@@ -41,8 +41,10 @@
   border-collapse: collapse;
 }
 
-.program-finder-item > table td:last-child {
-  text-align: right;
+@media (min-width: 37rem) {
+  .program-finder-item > table td:last-child {
+    text-align: right;
+  }
 }
 
 .program-finder-item th {
@@ -51,7 +53,6 @@
   opacity: .75;
   font-weight: 700;
 }
-
 
 .program-finder-item th,
 .program-finder-item td {
