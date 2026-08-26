@@ -162,3 +162,7 @@
     /* flex-grow: 2; */
   }
 }
+
+.ilr-program-finder__facet:not(:has(input)) {
+  display: none;
+}
