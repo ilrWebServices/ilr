@@ -145,7 +145,7 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
         '#component' => 'ilr_program_finder:program_finder_item',
         '#props' => [
           'item_id' => $item->getId(),
-          'topics' => $item->getField('topic')->getValues() ?? [],
+          'topics' => $item->getField('topic')->getValues() ?: ['Uncategorized'],
           'delivery_methods' => $item->getField('delivery_methods')->getValues() ?? [],
           'program_instances' => $item->getField('program_instances')->getValues() ?? [],
           'upcoming_dates' => $facet_dates,
