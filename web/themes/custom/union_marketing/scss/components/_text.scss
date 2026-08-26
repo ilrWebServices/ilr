@@ -120,5 +120,10 @@ span.strong {
 }
 
 .cu-component--rich-text .cu-button + .cu-button {
-  margin-left: var(--cu-ps1);
+  margin-top: var(--cu-vr0);
+
+  @include breakpoint(sm) {
+    margin-top: 0;
+    margin-left: var(--cu-ps1);
+  }
 }
