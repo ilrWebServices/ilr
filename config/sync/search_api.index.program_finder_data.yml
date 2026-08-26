@@ -20,12 +20,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: delivery_methods
     type: string
-  group:
-    label: Group
-    property_path: custom_value
     type: string
-    configuration:
-      value: programs
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
