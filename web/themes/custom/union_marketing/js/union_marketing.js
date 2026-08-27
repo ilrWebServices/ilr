@@ -252,6 +252,7 @@
   Drupal.behaviors.union_marketing_registration_form = {
     attach: function (context, settings) {
       const registrationForms = context.querySelectorAll('.cu-registration-form');
+      const url_params = new URLSearchParams(window.location.search);
 
       if (!registrationForms) {
         return;
@@ -295,6 +296,12 @@
 
         let available_inputs = registrationForm.querySelectorAll('input[name="' + input_name + '"]:not([disabled])');
         let checked_input = registrationForm.querySelector('input[name="' + input_name + '"]:checked');
+
+        available_inputs.forEach(function (input) {
+          if (input.dataset.date === url_params.get('date')) {
+            checked_input = input;
+          }
+        });
 
         if (checked_input) {
           checked_input.checked = true;

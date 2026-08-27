@@ -26,7 +26,7 @@
         <td class="program-finder-item__date" data-header="Start date">{{ instance_data.0 }}</td>
         <td data-header="Cost">${{ instance_data.1|round }}</td>
         <td data-header="Format">{{ instance_data.2 }}</td>
-        <td><a href="{{ url }}" class="cu-button">Register</a></td>
+        <td><a href="{{ url }}?date={{ instance_data.0|date('Ymd') }}" class="cu-button">Register</a></td>
       </tr>
       {% endfor -%}
     </tbody>

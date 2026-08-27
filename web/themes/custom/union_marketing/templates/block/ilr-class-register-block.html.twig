@@ -68,6 +68,7 @@
     'value': class.register_url,
     'data-price': '$'~class.entity.field_price.value|round,
     'data-classid': class.entity.id,
+    'data-date': class.entity.field_date_start.date|date('Ymd'),
     'data-full': full,
     'data-cancelled': cancelled,
     'data-registration-closed': registration_closed,
