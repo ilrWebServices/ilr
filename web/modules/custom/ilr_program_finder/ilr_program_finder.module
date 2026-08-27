@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Implements hook_page_attachments().
+ */
+function ilr_program_finder_page_attachments(array &$attachments) {
+  /** Add hash integrity check for the orama library.
+   *
+   * @see https://srihash.org/
+   * @see program_finder.js
+   */
+  $attachments['#attached']['html_head_link'][] = [
+    [
+      'rel' => 'modulepreload',
+      'href' => 'https://cdn.jsdelivr.net/npm/@orama/orama@3.1.18/+esm',
+      'integrity' => 'sha384-yyjtcr8ya0P6Ny15F2ZcqGgUUh5g+U7xvKqDsp57vm7xKXUUHxFd7ezuei9batTO',
+      'crossorigin' => 'anonymous'
+    ],
+    TRUE,
+  ];
+}
