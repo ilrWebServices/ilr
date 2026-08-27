@@ -10,6 +10,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
    */
   class ilrProgramFinder extends HTMLElement {
 
+    #initialized = false;
     #db;
     #items;
     #message;
@@ -238,7 +239,12 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
         header.appendChild(this.#message);
       }
 
-      header.scrollIntoView({ behavior: "smooth"});
+      if (this.#initialized) {
+        header.scrollIntoView({ behavior: "smooth"});
+      }
+      else {
+        this.#initialized = true;
+      }
     }
 
     getFacetLabel(facet_name) {
