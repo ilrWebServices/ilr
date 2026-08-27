@@ -152,6 +152,10 @@
   display: flex;
   justify-content: space-between;
 
+  &::-webkit-details-marker {
+    display: none;
+  }
+
   &::after {
     content: "+";
     font-weight: 300;
