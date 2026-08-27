@@ -27,6 +27,9 @@
 }
 
 .program-finder__header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
   grid-column: 2;
   grid-row: 1;
   order: 2;
@@ -40,21 +43,20 @@
 }
 
 .ilr-program-finder__button[data-key] {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
   font-size: var(--cu-ms-3);
-  margin-right: var(--cu-ps-1);
   height: 1.5rem;
   border-radius: 1.5rem;
   border: none;
   background-color: var(--cu-color-light-gray);
-  padding: 0 var(--cu-ps0) 0 var(--cu-ps-2);
+  padding: 0 var(--cu-ps0) 0 var(--cu-ps-1);
   color: #222;
 
   &::before {
-    content: '﹢';
-    display: inline-block;
-    width: 16px;
-    padding-right: 5px;
-    transform: rotate(45deg);
+    content: url('data:image/svg+xml;utf8,<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.25 7.75L7.75 0.25" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.75 7.75L0.25 0.25" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    height: 17px;
   }
 }
 
@@ -164,10 +166,6 @@
   [open] &::after {
     content: "−";
   }
-}
-
-.ilr-program-finder__facet summary::marker {
-  content: "+ ";
 }
 
 .ilr-program-finder__facet label {
