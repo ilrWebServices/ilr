@@ -94,7 +94,7 @@
 }
 
 .ilr-program-finder__facet-heading {
-  margin-bottom: var(--cu-vr-1);
+  margin-bottom: var(--cu-vr-2);
   opacity: .65;
 }
 
@@ -135,13 +135,35 @@
 .ilr-program-finder__facet {
   display: flex;
   flex-direction: column;
-  gap: var(--cu-vr0);
 }
 
 .ilr-program-finder__facet {
   gap: var(--cu-vr-3);
   border-top: 1px solid var(--cu-color-gray);
   padding-top: var(--cu-vr-1);
+}
+
+.ilr-program-finder__facet[open] {
+  padding-bottom: var(--cu-vr-1);
+}
+
+.ilr-program-finder__facet summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+
+  &::after {
+    content: "+";
+    font-weight: 300;
+  }
+
+  [open] &::after {
+    content: "−";
+  }
+}
+
+.ilr-program-finder__facet summary::marker {
+  content: "+ ";
 }
 
 .ilr-program-finder__facet label {

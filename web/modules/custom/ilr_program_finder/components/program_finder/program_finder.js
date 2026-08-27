@@ -179,14 +179,16 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
       // console.log(results);
 
       for (const [facet_name, facet] of Object.entries(results.facets)) {
-        let facet_element = document.createElement('div');
-        let heading_element = document.createElement('h3');
+        const computed_style = window.getComputedStyle(this);
+        let facet_element = document.createElement('details');
+        let heading_element = document.createElement('summary');
         let facet_values = [];
         facet_element.classList.add('ilr-program-finder__facet');
         heading_element.classList.add('ilr-program-finder__facet-heading');
         heading_element.classList.add('cu-heading');
         heading_element.textContent = this.getFacetLabel(facet_name);
         facet_element.appendChild(heading_element);
+        facet_element.open = computed_style.display === 'grid';
 
         if (facet_name === 'dates') {
           facet_values = Object.entries(facet.values).sort((a, b) => {
@@ -208,6 +210,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
           if (url_params.has(facet_name, value_name)) {
             facet_item_element.setAttribute('checked', 'checked');
             facet_item_element.checked = true;
+            facet_element.open = true;
           }
 
           facet_item_label_element.appendChild(facet_item_element);
