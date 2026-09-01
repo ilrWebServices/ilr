@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\Core\Url;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Returns responses for Persona routes.
@@ -29,7 +30,7 @@ class PersonaController extends EntityController {
    * Pass along the `person` query parameter to the links on the add persona
    * page.
    */
-  public function addPage($entity_type_id) {
+  public function addPage($entity_type_id, ?Request $request = NULL) {
     $build = parent::addPage($entity_type_id);
 
     if ($build instanceof RedirectResponse) {
