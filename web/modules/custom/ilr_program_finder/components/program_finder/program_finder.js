@@ -200,6 +200,10 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
         }
 
         for (const [value_name, value] of facet_values) {
+          if (facet_name === 'locations' && value < 2) {
+            continue;
+          }
+
           let facet_item_label_element = document.createElement('label');
           let facet_item_element = document.createElement('input');
           facet_item_label_element.classList.add('cu-text');
