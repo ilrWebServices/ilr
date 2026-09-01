@@ -76,8 +76,8 @@
     "drupal/condition_path": "^3",
     "drupal/config_ignore_pattern": "^1",
     "drupal/config_split": "^2",
-    "drupal/core-composer-scaffold": "^10",
-    "drupal/core-recommended": "^10",
+    "drupal/core-composer-scaffold": "^11.4",
+    "drupal/core-recommended": "^11.4",
     "drupal/date_range_formatter": "^9",
     "drupal/dynamic_entity_reference": "^4",
     "drupal/easy_breadcrumb": "^2.0.0",
@@ -123,7 +123,7 @@
     "drupal/salesforce": "^5",
     "drupal/samlauth": "^3.0",
     "drupal/search_api": "^1.14",
-    "drupal/seven": "^1.1",
+    "drupal/seven": "^2",
     "drupal/sftp_client": "^2",
     "drupal/simple_gse_search": "^2.0",
     "drupal/smart_read_more_link": "2.0.x-dev@dev",
@@ -145,7 +145,7 @@
     "symfony/dotenv": "^7.1"
   },
   "require-dev": {
-    "drupal/core-dev": "^10",
+    "drupal/core-dev": "^11.4",
     "drupal/devel": "^5.0",
     "drupal/entity_clone": "^2.0",
     "drupal/stage_file_proxy": "^3",
@@ -169,6 +169,7 @@
       "drupal/core-composer-scaffold": true,
       "php-http/discovery": true,
       "phpstan/extension-installer": true,
+      "symfony/runtime": true,
       "tbachert/spi": false
     }
   },
@@ -204,10 +205,7 @@
       "drupal/core": {
         "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch",
         "Allow custom session cookie name": "./patches/2983612-custom-session-cookie-name.patch",
-        "Use sqlite database connection in dblog controller": "./patches/dblog_sqlite.diff",
-        "Allow node menu widget to some non-admins": "./patches/menu_ui_access.patch",
-        "Issue #3446368: SymfonyMailer RfcComplianceException when sending to multiple comma-separated addresses": "https://www.drupal.org/files/issues/2024-05-10/3446368-14.patch",
-        "Issue #34165856: alter local.module to properly check whether a JS file is local or not": "https://git.drupalcode.org/project/drupal/-/commit/f2687c85d02466e90979c36b025c8b8ec1cdcaf8.diff"
+        "Issue #3416586: alter local.module to properly check whether a JS file is local or not": "https://git.drupalcode.org/project/drupal/-/commit/f2687c85d02466e90979c36b025c8b8ec1cdcaf8.diff"
       },
       "drupal/paragraphs_previewer": {
         "Entities using layoutbuilder cannot get fields previewed": "https://gist.githubusercontent.com/a-fro/1c9b5fcf778edcc49eb39dab292cbc0c/raw/c2352a640270412d2d73232a1e5d3ca69a606726/paragraphs-preview-no-output-layout-builder.patch"
@@ -229,9 +227,6 @@
       },
       "drupal/linkit": {
         "Issue #3436733: Linkit Link field: Double-encoded file links": "https://www.drupal.org/files/issues/2024-09-26/3436733-7-linkit_base_url_decode_fix.patch"
-      },
-      "drupal/seven": {
-        "Backport fix for Button is not hidden with 'js-hide' class": "https://git.drupalcode.org/issue/seven-3582275/-/commit/f14bdcf6a7460535558c3da13ba8ba11202d918f.diff"
       },
       "drupal/upgrade_status": {
         "Ignore `Unsafe usage of new static()` warnings": "./patches/upgrade_status_ignore_static.patch"

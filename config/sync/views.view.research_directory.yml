@@ -3,16 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_address
-    - field.storage.node.field_published_date
-    - field.storage.node.field_topics
+    - node.type.report_summary
     - taxonomy.vocabulary.report_topics
   module:
     - address
     - collection
     - datetime
     - dynamic_entity_reference
-    - ilr
     - node
     - taxonomy
 id: research_directory
@@ -354,10 +351,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-              content_administrator: '0'
             placeholder: ''
             autocomplete_filter: 0
             autocomplete_min_chars: '0'
@@ -404,10 +397,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-              content_administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -452,10 +441,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-              content_administrator: '0'
             reduce: false
             label_type: static
           is_grouped: false
