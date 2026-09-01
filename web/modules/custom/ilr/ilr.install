@@ -40,3 +40,24 @@ function ilr_update_100602() {
   // ensure that our replacement version is used right away.
   \Drupal::keyValue('media')->delete('oembed_providers');
 }
+
+/**
+ * Set allow_other_conditions to FALSE for all block visibility groups.
+ */
+function ilr_update_100603() {
+  /** @var \Drupal\block_visibility_groups\Entity\BlockVisibilityGroup[] $groups */
+  $storage = \Drupal::entityTypeManager()->getStorage('block_visibility_group');
+  $groups = $storage->loadMultiple();
+  $updated = 0;
+
+  /** @var \Drupal\block_visibility_groups\Entity\BlockVisibilityGroup $group */
+  foreach ($groups as $group) {
+    if (empty($group->get('allow_other_conditions'))) {
+      $group->set('allow_other_conditions', FALSE);
+      $group->save();
+      $updated++;
+    }
+  }
+
+  return t('Updated @count block visibility group(s).', ['@count' => $updated]);
+}
