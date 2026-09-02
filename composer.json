@@ -203,7 +203,7 @@
     },
     "patches": {
       "drupal/core": {
-        "Entity query doesn't allow relationship specifier for base entity fields": "https://www.drupal.org/files/issues/core-patch-2915512-7.patch",
+        "Entity query doesn't allow relationship specifier for base entity fields": "./patches/2915512-entity-query-base-entity-fields.diff",
         "Allow custom session cookie name": "./patches/2983612-custom-session-cookie-name.patch",
         "Issue #3416586: alter local.module to properly check whether a JS file is local or not": "https://git.drupalcode.org/project/drupal/-/commit/f2687c85d02466e90979c36b025c8b8ec1cdcaf8.diff"
       },
