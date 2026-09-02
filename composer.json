@@ -204,6 +204,7 @@
     "patches": {
       "drupal/core": {
         "Entity query doesn't allow relationship specifier for base entity fields": "./patches/2915512-entity-query-base-entity-fields.diff",
+        "Use sqlite database connection in dblog controller": "./patches/dblog_sqlite.diff",
         "Issue #3416586: alter local.module to properly check whether a JS file is local or not": "https://git.drupalcode.org/project/drupal/-/commit/f2687c85d02466e90979c36b025c8b8ec1cdcaf8.diff"
       },
       "drupal/paragraphs_previewer": {
