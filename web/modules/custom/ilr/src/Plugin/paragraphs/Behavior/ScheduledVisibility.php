@@ -2,6 +2,7 @@
 
 namespace Drupal\ilr\Plugin\paragraphs\Behavior;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Markup;
@@ -29,6 +30,7 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
     $parents = $form['#parents'];
     $parents_input_name = array_shift($parents);
     $parents_input_name .= '[' . implode('][', $parents) . ']';
+    $scheduled_info = $this->getScheduledInfo($paragraph);
 
     $form['visiblity_scheduled'] = [
       '#type' => 'checkbox',
@@ -54,17 +56,33 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
       '#type' => 'datetime',
       '#title' => $this->t('Show on:'),
       '#description' => $this->t('Leave blank to show immediately.<br><br>'),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_start']) ?? [],
+      '#default_value' => $scheduled_info->showOn,
     ];
 
     $form['date_container']['visiblity_scheduled_end'] = [
       '#type' => 'datetime',
       '#title' => $this->t('Hide on:'),
       '#description' => $this->t('Leave blank to show indefinitely.'),
-      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_end']) ?? [],
+      '#default_value' => $scheduled_info->hideOn,
     ];
 
     return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    $filtered_values = $this->filterBehaviorFormSubmitValues($paragraph, $form, $form_state);
+
+    if (isset($filtered_values['date_container']['visiblity_scheduled_start']) && $filtered_values['date_container']['visiblity_scheduled_start'] instanceof DrupalDateTime) {
+      $filtered_values['date_container']['visiblity_scheduled_start'] = $filtered_values['date_container']['visiblity_scheduled_start']->__toString();
+    }
+    if (isset($filtered_values['date_container']['visiblity_scheduled_end']) && $filtered_values['date_container']['visiblity_scheduled_end'] instanceof DrupalDateTime) {
+      $filtered_values['date_container']['visiblity_scheduled_end'] = $filtered_values['date_container']['visiblity_scheduled_end']->__toString();
+    }
+
+    $paragraph->setBehaviorSettings($this->getPluginId(), $filtered_values);
   }
 
   /**
@@ -139,9 +157,23 @@ class ScheduledVisibility extends ParagraphsBehaviorBase {
    * @return \Drupal\ilr\ScheduleBehaviorInfo
    */
   protected function getScheduledInfo($paragraph): ScheduleBehaviorInfo {
+    $visibility_scheduled_start = $paragraph->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_start']);
+    $visibility_scheduled_end = $paragraph->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_end']);
+
+    $visibility_scheduled_start_datetime = NULL;
+    $visibility_scheduled_end_datetime = NULL;
+
+    if ($visibility_scheduled_start) {
+      $visibility_scheduled_start_datetime = new DrupalDateTime($visibility_scheduled_start);
+    }
+
+    if ($visibility_scheduled_end) {
+      $visibility_scheduled_end_datetime = new DrupalDateTime($visibility_scheduled_end);
+    }
+
     return new ScheduleBehaviorInfo(
-      $paragraph->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_start']),
-      $paragraph->getBehaviorSetting($this->getPluginId(), ['date_container', 'visiblity_scheduled_end'])
+      $visibility_scheduled_start_datetime,
+      $visibility_scheduled_end_datetime
     );
   }
 
