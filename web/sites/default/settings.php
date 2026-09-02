@@ -753,7 +753,7 @@ $settings['locale_custom_strings_en'][''] = [
  *
  * @see https://www.drupal.org/node/3537128
  */
-# $settings['enable_html5_validation'] = TRUE;
+$settings['enable_html5_validation'] = FALSE;
 
 /**
  * Load services definition file.
