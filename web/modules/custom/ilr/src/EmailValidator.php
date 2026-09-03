@@ -7,7 +7,7 @@ use Drupal\Component\Utility\EmailValidatorInterface;
 use Egulias\EmailValidator\Validation\EmailValidation;
 use Egulias\EmailValidator\Validation\DNSCheckValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
-use Egulias\EmailValidator\Validation\RFCValidation;
+use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 
 /**
  * Validates email addresses.
@@ -36,9 +36,10 @@ class EmailValidator extends EmailValidatorUtility implements EmailValidatorInte
     // This is where we differ from Drupal\Component\Utility\EmailValidator.
     // This is done because the `RFCValidation` that core uses allows addresses
     // like `test@example` which, while valid, cause issues with internet-routed
-    // email. In addition to `RFCValidation`, the `DNSCheckValidation` is used.
+    // email. In addition to `NoRFCWarningsValidation`, the `DNSCheckValidation`
+    // is used.
     $validations = new MultipleValidationWithAnd([
-      new RFCValidation(),
+      new NoRFCWarningsValidation(),
       new DNSCheckValidation(),
     ]);
 
