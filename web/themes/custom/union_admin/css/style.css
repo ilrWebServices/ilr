@@ -18,7 +18,7 @@ paragraph type labels on the Sections field. */
 }
 
 .paragraph-type--section .paragraph-type-label--admin-label {
-  color: #888;
+  opacity: .5;
 }
 
 .emp-details .fieldset-wrapper .form-checkboxes {

@@ -1,8 +1,8 @@
 name: Union Admin
 type: theme
-description: 'A custom admin theme based on Seven (for now)'
+description: 'A custom admin theme based on Claro (for now)'
 package: Union
 core_version_requirement: ^10 || ^11
 libraries:
   - union_admin/global
-base theme: seven
+base theme: claro
