@@ -19,7 +19,12 @@
       }
 
       // @todo Traverse the DOM to find this in relation to the widget_wrapper.
-      let default_data_textarea = context.querySelector('.form-item-field-registration-form-0-settings-default-data textarea');
+      let default_data_textarea = context.querySelector('textarea[name$="_form[0][settings][default_data]"]');
+
+      if (!default_data_textarea) {
+        return;
+      }
+
       let config_line = default_data_textarea.value.match(/^# CONFIG \(DO NOT DELETE\).*\n?/gm);
 
       if (config_line) {
@@ -67,10 +72,10 @@
       }
 
       // @todo Traverse the DOM to find this in relation to the widget_wrapper.
-      let default_data_textarea = context.querySelector('.form-item-field-registration-form-0-settings-default-data textarea');
+      let default_data_textarea = context.querySelector('textarea[name$="_form[0][settings][default_data]"]');
 
       if (!default_data_textarea) {
-        default_data_textarea = context.querySelector('.form-item-field-form-0-settings-default-data textarea');
+        return;
       }
 
       let config_line = default_data_textarea.value.match(/^outreach_marketing_personas:.*$/gm);
