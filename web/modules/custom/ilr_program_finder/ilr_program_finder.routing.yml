@@ -1,0 +1,8 @@
+ilr_program_finder.data:
+  path: '/ilr-program-finder/data'
+  defaults:
+    _title: 'Program Finder Data'
+    _controller: '\Drupal\ilr_program_finder\Controller\IlrProgramFinderController'
+  requirements:
+    _permission: 'access content'
+  methods: [GET]

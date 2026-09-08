@@ -25,6 +25,7 @@ dependencies:
     - paragraphs.paragraphs_type.people_listing
     - paragraphs.paragraphs_type.people_listing_dynamic
     - paragraphs.paragraphs_type.picture_in_picture
+    - paragraphs.paragraphs_type.program_finder
     - paragraphs.paragraphs_type.project_listing
     - paragraphs.paragraphs_type.promo
     - paragraphs.paragraphs_type.publications
@@ -64,6 +65,7 @@ settings:
       promo: promo
       deck: deck
       text_with_media: text_with_media
+      card_overlay: card_overlay
       media_deck: media_deck
       image: image
       video: video
@@ -71,13 +73,13 @@ settings:
       testimonial: testimonial
       testimonial_deck: testimonial_deck
       call_to_action: call_to_action
-      card_overlay: card_overlay
       people_listing: people_listing
       people_listing_dynamic: people_listing_dynamic
       project_listing: project_listing
       event_listing: event_listing
       link_listing: link_listing
       organization_listing: organization_listing
+      report_summary_listing: report_summary_listing
       collection_listing_publication: collection_listing_publication
       curated_course_listing: curated_course_listing
       collection_listing: collection_listing
@@ -93,8 +95,8 @@ settings:
       publications: publications
       tabs: tabs
       accordion: accordion
+      program_finder: program_finder
       slide_deck: slide_deck
-      report_summary_listing: report_summary_listing
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -184,6 +186,9 @@ settings:
       professional_activities:
         weight: -39
         enabled: false
+      program_finder:
+        weight: 52
+        enabled: true
       project_listing:
         weight: -58
         enabled: true
@@ -241,6 +246,9 @@ settings:
       topic_list:
         weight: -46
         enabled: true
+      tout:
+        weight: 101
+        enabled: false
       video:
         weight: -64
         enabled: true
