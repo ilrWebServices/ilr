@@ -156,3 +156,7 @@ button.ck-media-library {
 #edit-profile-help {
   margin-top: 1em;
 }
+
+.node-form .entity-meta .field--widget-media-library-widget .media-library-item--grid {
+  width: 100%;
+}
