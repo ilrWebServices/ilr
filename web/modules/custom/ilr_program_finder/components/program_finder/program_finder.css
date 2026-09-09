@@ -193,3 +193,13 @@
 .ilr-program-finder__facet:not(:has(input)) {
   display: none;
 }
+
+/* Hackery! */
+.ilr-program-finder__facet-items label:has(input[value="Live"]) {
+  order: 1;
+  margin-left: var(--cu-ps1);
+}
+
+.ilr-program-finder__facet-items:has(input[value="Online"]:not(:checked)) label:has(input[value="Live"]:not(:checked)) {
+  display: none;
+}
