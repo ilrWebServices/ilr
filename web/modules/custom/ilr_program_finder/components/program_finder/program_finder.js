@@ -182,12 +182,15 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
         const computed_style = window.getComputedStyle(this);
         let facet_element = document.createElement('details');
         let heading_element = document.createElement('summary');
+        let facet_items_element = document.createElement('div');
         let facet_values = [];
         facet_element.classList.add('ilr-program-finder__facet');
         heading_element.classList.add('ilr-program-finder__facet-heading');
         heading_element.classList.add('cu-heading');
         heading_element.textContent = this.getFacetLabel(facet_name);
+        facet_items_element.classList.add('ilr-program-finder__facet-items');
         facet_element.appendChild(heading_element);
+        facet_element.appendChild(facet_items_element);
         facet_element.open = computed_style.display === 'grid';
 
         if (facet_name === 'dates') {
@@ -220,7 +223,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
           facet_item_label_element.appendChild(facet_item_element);
           facet_item_label_element.insertAdjacentText('beforeend', value_name);
           facet_item_label_element.insertAdjacentHTML('beforeend', `<span>${value}</span>`);
-          facet_element.appendChild(facet_item_label_element);
+          facet_items_element.appendChild(facet_item_label_element);
         }
 
         facet_wrapper.appendChild(facet_element);
