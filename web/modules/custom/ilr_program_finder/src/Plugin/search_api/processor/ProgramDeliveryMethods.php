@@ -4,6 +4,7 @@ namespace Drupal\ilr_program_finder\Plugin\search_api\processor;
 
 use Drupal\search_api\Attribute\SearchApiProcessor;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\ilr_program_finder\DeliveryMethodNormalizer;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Item\ItemInterface;
 use Drupal\search_api\Processor\ProcessorPluginBase;
@@ -29,6 +30,8 @@ use Drupal\search_api\Processor\ProcessorProperty;
   hidden: TRUE,
 )]
 class ProgramDeliveryMethods extends ProcessorPluginBase {
+
+  use DeliveryMethodNormalizer;
 
   /**
    * {@inheritdoc}
@@ -65,56 +68,14 @@ class ProgramDeliveryMethods extends ProcessorPluginBase {
       // `classes` is a computed field, and it is sorted by upcoming class
       // dates.
       foreach ($node->classes->referencedEntities() as $class_node) {
-        $class_format = $class_node->field_delivery_method->value;
-
-        // The following values are possible from Salesforce:
-        // Classroom
-        // In Person (Not Classroom)
-        // On Demand/Self Paced
-        // Online (Date Driven)
-        // Online (Synchronous)
-        switch ($class_format) {
-          case 'Classroom':
-          case 'In Person (Not Classroom)':
-            $delivery_methods[] = 'In Person';
-            break;
-          case 'Online (Synchronous)':
-            $delivery_methods[] = 'Online';
-            $delivery_methods[] = 'Live Online';
-            break;
-          default:
-            $delivery_methods[] = 'Online';
-        }
+        array_push($delivery_methods, ...$this->getNormalizedDeliveryMethods($class_node->field_delivery_method->value));
       }
     }
     elseif ($node->bundle() === 'remote_program') {
-      // $delivery_methods[] = $node->field_delivery_method->value;
-      // @todo Update the actual field values in an update hook.
-      $delivery_methods[] = 'Online';
+      $delivery_methods = $this->getNormalizedDeliveryMethods($node->field_delivery_method->value);
     }
     elseif ($node->bundle() === 'event_landing_page') {
-      // Hybrid
-      // In Person
-      // In-person
-      // Live-Virtual
-      // Online
-      switch ($node->field_delivery_method->value) {
-        case 'Live-Virtual':
-          $delivery_methods[] = 'Online';
-          $delivery_methods[] = 'Live Online';
-          break;
-        case 'Hybrid':
-          $delivery_methods[] = 'In Person';
-          $delivery_methods[] = 'Online';
-          $delivery_methods[] = 'Live Online';
-          break;
-        case 'In Person':
-        case 'In-person':
-          $delivery_methods[] = 'In Person';
-          break;
-        default:
-          $delivery_methods[] = 'Online';
-      }
+      $delivery_methods = $this->getNormalizedDeliveryMethods($node->field_delivery_method->value, 'In Person');
     }
     else {
       return;
