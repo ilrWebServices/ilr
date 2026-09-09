@@ -24,11 +24,6 @@ elements: |-
     '#title_attributes':
       class:
         - cu-heading
-    email:
-      '#type': email
-      '#title': Email
-      '#required': true
-      '#default_value': '[current-user:mail]'
     first_name:
       '#type': textfield
       '#title': 'First name'
@@ -37,6 +32,11 @@ elements: |-
       '#type': textfield
       '#title': 'Last name'
       '#required': true
+    email:
+      '#type': email
+      '#title': Email
+      '#required': true
+      '#default_value': '[current-user:mail]'
     phone:
       '#type': tel
       '#title': 'Mobile phone'
@@ -369,6 +369,7 @@ variants:
     weight: 0
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: ''
       handlers:
@@ -384,6 +385,7 @@ variants:
     weight: 0
     settings:
       debug: false
+      properties: {  }
       settings: {  }
       elements: "request_info:\r\n  '#title': ''"
       handlers: {  }
