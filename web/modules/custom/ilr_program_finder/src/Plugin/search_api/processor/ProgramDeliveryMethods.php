@@ -4,6 +4,7 @@ namespace Drupal\ilr_program_finder\Plugin\search_api\processor;
 
 use Drupal\search_api\Attribute\SearchApiProcessor;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\ilr_program_finder\DeliveryMethodNormalizer;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Item\ItemInterface;
 use Drupal\search_api\Processor\ProcessorPluginBase;
@@ -29,6 +30,8 @@ use Drupal\search_api\Processor\ProcessorProperty;
   hidden: TRUE,
 )]
 class ProgramDeliveryMethods extends ProcessorPluginBase {
+
+  use DeliveryMethodNormalizer;
 
   /**
    * {@inheritdoc}
@@ -65,14 +68,14 @@ class ProgramDeliveryMethods extends ProcessorPluginBase {
       // `classes` is a computed field, and it is sorted by upcoming class
       // dates.
       foreach ($node->classes->referencedEntities() as $class_node) {
-        $delivery_methods[] = $class_node->field_delivery_method->value;
+        array_push($delivery_methods, ...$this->getNormalizedDeliveryMethods($class_node->field_delivery_method->value));
       }
     }
     elseif ($node->bundle() === 'remote_program') {
-      $delivery_methods[] = $node->field_delivery_method->value;
+      $delivery_methods = $this->getNormalizedDeliveryMethods($node->field_delivery_method->value);
     }
     elseif ($node->bundle() === 'event_landing_page') {
-      $delivery_methods[] = $node->field_delivery_method->value ?? 'In Person';
+      $delivery_methods = $this->getNormalizedDeliveryMethods($node->field_delivery_method->value, 'In Person');
     }
     else {
       return;

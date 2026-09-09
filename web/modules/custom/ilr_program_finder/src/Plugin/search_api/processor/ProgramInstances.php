@@ -4,6 +4,7 @@ namespace Drupal\ilr_program_finder\Plugin\search_api\processor;
 
 use Drupal\search_api\Attribute\SearchApiProcessor;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\ilr_program_finder\DeliveryMethodNormalizer;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Item\ItemInterface;
 use Drupal\search_api\Processor\ProcessorPluginBase;
@@ -25,6 +26,8 @@ use Drupal\search_api\Processor\ProcessorProperty;
   hidden: TRUE,
 )]
 class ProgramInstances extends ProcessorPluginBase {
+
+  use DeliveryMethodNormalizer;
 
   /**
    * {@inheritdoc}
@@ -64,7 +67,7 @@ class ProgramInstances extends ProcessorPluginBase {
         $instances[] = vsprintf($format, [
           $class_node->field_date_start->date->format('M d, Y'),
           $class_node->field_price->value,
-          $class_node->field_delivery_method->value,
+          implode(', ', $this->getNormalizedDeliveryMethods($class_node->field_delivery_method->value)),
         ]);
       }
     }
@@ -72,14 +75,14 @@ class ProgramInstances extends ProcessorPluginBase {
       $instances[] = vsprintf($format, [
         $node->field_date_start->date->format('M d, Y'),
         $node->field_price->value,
-        $node->field_delivery_method->value,
+        implode(', ', $this->getNormalizedDeliveryMethods($node->field_delivery_method->value)),
       ]);
     }
     elseif ($node->bundle() === 'event_landing_page') {
       $instances[] = vsprintf($format, [
         $node->event_date->start_date->format('M d, Y'),
         0,
-        $node->field_delivery_method->value ?? 'In Person',
+        implode(', ', $this->getNormalizedDeliveryMethods($node->field_delivery_method->value, 'In Person')),
       ]);
     }
     else {

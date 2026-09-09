@@ -20,7 +20,7 @@ process:
   field_course_number: id
   field_delivery_method:
     plugin: default_value
-    default_value: 'Online (Asynchronous)'
+    default_value: 'Online'
   field_date_start: next_course_start_date
   field_external_link: url
   field_topics:
@@ -46,6 +46,7 @@ destination:
     - field_external_link
     - field_topics
     - field_price
+    - field_delivery_method
 migration_dependencies:
   required: {  }
   optional: {  }
