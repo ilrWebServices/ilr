@@ -65,14 +65,56 @@ class ProgramDeliveryMethods extends ProcessorPluginBase {
       // `classes` is a computed field, and it is sorted by upcoming class
       // dates.
       foreach ($node->classes->referencedEntities() as $class_node) {
-        $delivery_methods[] = $class_node->field_delivery_method->value;
+        $class_format = $class_node->field_delivery_method->value;
+
+        // The following values are possible from Salesforce:
+        // Classroom
+        // In Person (Not Classroom)
+        // On Demand/Self Paced
+        // Online (Date Driven)
+        // Online (Synchronous)
+        switch ($class_format) {
+          case 'Classroom':
+          case 'In Person (Not Classroom)':
+            $delivery_methods[] = 'In Person';
+            break;
+          case 'Online (Synchronous)':
+            $delivery_methods[] = 'Online';
+            $delivery_methods[] = 'Live Online';
+            break;
+          default:
+            $delivery_methods[] = 'Online';
+        }
       }
     }
     elseif ($node->bundle() === 'remote_program') {
-      $delivery_methods[] = $node->field_delivery_method->value;
+      // $delivery_methods[] = $node->field_delivery_method->value;
+      // @todo Update the actual field values in an update hook.
+      $delivery_methods[] = 'Online';
     }
     elseif ($node->bundle() === 'event_landing_page') {
-      $delivery_methods[] = $node->field_delivery_method->value ?? 'In Person';
+      // Hybrid
+      // In Person
+      // In-person
+      // Live-Virtual
+      // Online
+      switch ($node->field_delivery_method->value) {
+        case 'Live-Virtual':
+          $delivery_methods[] = 'Online';
+          $delivery_methods[] = 'Live Online';
+          break;
+        case 'Hybrid':
+          $delivery_methods[] = 'In Person';
+          $delivery_methods[] = 'Online';
+          $delivery_methods[] = 'Live Online';
+          break;
+        case 'In Person':
+        case 'In-person':
+          $delivery_methods[] = 'In Person';
+          break;
+        default:
+          $delivery_methods[] = 'Online';
+      }
     }
     else {
       return;
