@@ -191,6 +191,8 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
         'tags' => array_map(fn($item) => 'node_list:' . $item, $content_types),
       ],
     ];
+
+    $build['items']['#cache']['tags'][] = 'search_api_list:program_finder_data';
   }
 
   /**
