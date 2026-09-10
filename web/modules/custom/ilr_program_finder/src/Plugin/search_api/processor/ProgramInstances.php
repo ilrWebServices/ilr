@@ -89,10 +89,6 @@ class ProgramInstances extends ProcessorPluginBase {
       return;
     }
 
-    if (empty($instances)) {
-      return;
-    }
-
     $fields = $this->getFieldsHelper()->filterForPropertyPath($item->getFields(), 'entity:node', 'program_instances');
 
     foreach ($fields as $field) {
