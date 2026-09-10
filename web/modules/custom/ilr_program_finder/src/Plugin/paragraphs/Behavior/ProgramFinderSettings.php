@@ -101,7 +101,7 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
   public function view(array &$build, Paragraph $paragraphs_entity, EntityViewDisplayInterface $display, $view_mode) {
     /** @var \Drupal\search_api\Entity\Index $index  */
     $index = $this->entityTypeManager->getStorage('search_api_index')->load('program_finder_data');
-    $today = new DrupalDateTime('midnight yesterday');
+    $today = new DrupalDateTime('midnight today');
 
     $query = $index->query();
     $query->addCondition('upcoming_dates', $today->getTimestamp(), '>=');
