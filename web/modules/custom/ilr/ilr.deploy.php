@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\field\Entity\FieldConfig;
 
 /**
@@ -557,6 +558,46 @@ function ilr_deploy_ppl_paragraph_grid_switcheroo() {
 
     if (isset($settings['list_styles']['columns']) && $settings['list_styles']['columns'] === '2') {
       $settings['list_styles']['columns'] = '3';
+      $needs_save = TRUE;
+    }
+
+    if ($needs_save) {
+      $paragraph->setAllBehaviorSettings($settings);
+      $paragraph->save();
+    }
+  }
+}
+
+/**
+ * Update paragraph visibility settings.
+ */
+function ilr_deploy_paragraph_visibility_settings_update() {
+  $pids = \Drupal::entityQuery('paragraph')
+    ->accessCheck(FALSE)
+    ->condition('type', ['call_to_action', 'promo', 'section', 'tout'], 'IN')
+    ->execute();
+
+  $paragraphs = \Drupal::entityTypeManager()->getStorage('paragraph')->loadMultiple($pids);
+
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  foreach ($paragraphs as $paragraph) {
+    $settings = $paragraph->getAllBehaviorSettings();
+    $needs_save = FALSE;
+
+    if (empty($settings['scheduled_visibility']['date_container'])) {
+      continue;
+    }
+
+    $visibility_scheduled_start = $settings['scheduled_visibility']['date_container']['visiblity_scheduled_start'] ?? FALSE;
+    $visibility_scheduled_end = $settings['scheduled_visibility']['date_container']['visiblity_scheduled_end'] ?? FALSE;
+
+    if ($visibility_scheduled_start instanceof DrupalDateTime) {
+      $settings['scheduled_visibility']['date_container']['visiblity_scheduled_start'] = $visibility_scheduled_start->__toString();
+      $needs_save = TRUE;
+    }
+
+    if ($visibility_scheduled_end instanceof DrupalDateTime) {
+      $settings['scheduled_visibility']['date_container']['visiblity_scheduled_end'] = $visibility_scheduled_end->__toString();
       $needs_save = TRUE;
     }
 

@@ -541,17 +541,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-              content_administrator: '0'
-              course_admin: '0'
-              form_admin: '0'
-              advanced_editor: '0'
-              event_admin: '0'
-              explore_form_admin: '0'
-              reviewer: '0'
-              cahrs_admin: '0'
             reduce: true
           is_grouped: false
           group_info:
@@ -591,17 +580,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-              content_administrator: '0'
-              course_admin: '0'
-              form_admin: '0'
-              advanced_editor: '0'
-              event_admin: '0'
-              explore_form_admin: '0'
-              reviewer: '0'
-              cahrs_admin: '0'
             placeholder: ''
             autocomplete_filter: 0
             autocomplete_min_chars: '0'
@@ -655,17 +633,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-              content_administrator: '0'
-              course_admin: '0'
-              form_admin: '0'
-              advanced_editor: '0'
-              event_admin: '0'
-              explore_form_admin: '0'
-              reviewer: '0'
-              cahrs_admin: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -706,17 +673,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-              content_administrator: '0'
-              course_admin: '0'
-              form_admin: '0'
-              advanced_editor: '0'
-              event_admin: '0'
-              explore_form_admin: '0'
-              reviewer: '0'
-              cahrs_admin: '0'
             placeholder: ''
             autocomplete_filter: 0
             autocomplete_min_chars: '0'
