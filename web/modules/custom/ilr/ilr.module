@@ -1185,6 +1185,20 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
     $form['inherited']['#group'] = 'advanced';
     $form['inherited']['#weight'] = -9;
 
+    // Prevent hiding some fields in the inherited section. At present, only the
+    // bio field on employee personas.
+    if ($persona = $form_state->getFormObject()->getEntity()) {
+      $excluded_inherited_persona_fields = [
+        'ilr_employee' => 'field_bio',
+      ];
+
+      foreach ($excluded_inherited_persona_fields as $bundle => $field_name) {
+        if ($persona->bundle() === $bundle && array_key_exists($field_name, $form)) {
+          unset($form[$field_name]['#group']);
+        }
+      }
+    }
+
     if (!empty($form['imported_info'])) {
       $form['imported_info']['#description'] = t('Imported information can be modified in @workday_link.', [
         '@workday_link' => Link::fromTextAndUrl('Workday', Url::fromUri('https://shibidp.cit.cornell.edu/idp/profile/SAML2/Unsolicited/SSO?providerId=http://www.workday.com'))->toString(),
