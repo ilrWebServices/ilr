@@ -51,7 +51,7 @@ function union_admin_form_taxonomy_term_form_alter(&$form, FormStateInterface $f
     '#type' => 'vertical_tabs',
     '#weight' => 99,
     '#attributes' => [
-      'class' => 'entity-meta'
+      'class' => ['entity-meta']
     ],
   ];
 

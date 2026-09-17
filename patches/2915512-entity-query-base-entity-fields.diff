@@ -1,0 +1,16 @@
+diff --git a/core/lib/Drupal/Core/Entity/Query/Sql/Tables.php b/core/lib/Drupal/Core/Entity/Query/Sql/Tables.php
+index 8aaeae953f4..2727c2a91a3 100644
+--- a/core/lib/Drupal/Core/Entity/Query/Sql/Tables.php
++++ b/core/lib/Drupal/Core/Entity/Query/Sql/Tables.php
+@@ -294,6 +294,11 @@ public function addField($field, $type, $langcode) {
+             // Do not process it again.
+             $key++;
+           }
++          // It this is Relationship specifier
++          elseif (strpos($next, ':') !== FALSE) {
++            $next = $field_storage->getMainPropertyName();
++            $sql_column = $table_mapping->getFieldColumnName($field_storage, $next);
++          }
+         }
+         // If there are no additional specifiers but the field has a main
+         // property, use that to look up the column name.
