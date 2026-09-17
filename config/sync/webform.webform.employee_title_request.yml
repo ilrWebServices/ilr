@@ -47,6 +47,23 @@ elements: |-
       visible:
         ':input[name="is_this_an_additional_title_or_an_update"]':
           value: 'Additional title'
+  title_update_select:
+    '#type': radios
+    '#title': 'Which title would you like to update?'
+    '#options':
+      'defined in code': 'defined in code'
+    '#states':
+      visible:
+        ':input[name="is_this_an_additional_title_or_an_update"]':
+          value: 'Updated title'
+      required:
+        ':input[name="is_this_an_additional_title_or_an_update"]':
+          value: 'Updated title'
+  pid:
+    '#type': hidden
+    '#title': 'Employee Persona Id'
+    '#default_value': 'current-page:query:pid'
+    '#prepopulate': true
   status:
     '#type': select
     '#title': Status
@@ -254,7 +271,7 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: 'ilrcommunications@cornell.edu'
+      to_mail: ilrcommunications@cornell.edu
       to_options: {  }
       bcc_mail: ''
       bcc_options: {  }
@@ -268,7 +285,7 @@ handlers:
       sender_mail: ''
       sender_name: ''
       subject: 'Job title update requested by [current-user:field_common_name]'
-      body: "{% set site_url = webform_token('[site:url]', webform_submission) %}\r\n<p>An updated tiltte title has been submitted for approval.</p>\r\n\r\n<p><a href=\"{{ site_url }}admin/structure/webform/manage/{{ webform_token('[webform:id]', webform_submission) }}/results/submission/{{ webform_token('[webform_submission:id]', webform_submission) }}edit\">Please reiview the request</a> and request approval with HR if appropriate.</p>\r\n\r\n<hr />\r\n\r\n<p>Submitted on {{ webform_token('[webform_submission:created]', webform_submission) }}</p>\r\n\r\n<p>Submitted by: {{ webform_token('[webform_submission:user]', webform_submission) }}</p>\r\n\r\n<p>Submitted values are:</p>\r\n{{ webform_token('[webform_submission:values]', webform_submission) }}"
+      body: "{% set site_url = webform_token('[site:url]', webform_submission) %}\r\n<p>An updated tiltte title has been submitted for approval.</p>\r\n\r\n<p><a href=\"{{ site_url }}admin/structure/webform/manage/{{ webform_token('[webform:id]', webform_submission) }}/submission/{{ webform_token('[webform_submission:sid]', webform_submission) }}/edit\">Please reiview the request</a> and request approval with HR if appropriate.</p>\r\n\r\n<hr />\r\n\r\n<p>Submitted on {{ webform_token('[webform_submission:created]', webform_submission) }}</p>\r\n\r\n<p>Submitted by: {{ webform_token('[webform_submission:user]', webform_submission) }}</p>\r\n\r\n<p>Submitted values are:</p>\r\n{{ webform_token('[webform_submission:values]', webform_submission) }}"
       excluded_elements: {  }
       ignore_access: false
       exclude_empty: true

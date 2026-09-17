@@ -542,3 +542,21 @@ function ilr_post_update_convert_public_impact_to_content_section(&$sandbox) {
   $collection->type = 'content_section';
   $collection->save();
 }
+
+/**
+ * Add the appropriate NetID values to all person records for ILR Employees
+ */
+function ilr_post_update_add_netid_value_to_person_entities(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $personas = $entity_type_manager->getStorage('persona')->loadByProperties([
+    'type' => 'ilr_employee',
+  ]);
+
+  foreach ($personas as $persona) {
+    if ($netid = $persona->field_netid->value) {
+      $person = $persona->person->entity;
+      $person->field_netid->value = $netid;
+      $person->save();
+    }
+  }
+}
