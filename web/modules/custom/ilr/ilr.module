@@ -47,6 +47,8 @@ use Drupal\node\NodeInterface;
 use Drupal\person\PersonaInterface;
 use Drupal\salesforce_mapping\Entity\MappedObjectInterface;
 use Drupal\user\UserInterface;
+use Drupal\webform\Entity\Webform;
+use Psy\Util\Json;
 
 /**
  * Implements hook_theme().
@@ -1214,6 +1216,34 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
     // Only show the display name override if the display_name is disabled.
     if (!isset($form['display_name']['#disabled']) || !$form['display_name']['#disabled']) {
       $form['field_display_name_override']['#access'] = FALSE;
+    }
+
+    // Add the custom title webform
+    // Load your specific webform by machine name
+    $title_request_webform = Webform::load('employee_title_request');
+
+    if ($title_request_webform) {
+      $form['webform_link_wrapper'] = [
+        '#type' => 'container',
+        '#group' => 'imported_info',
+        '#weight' => 10,
+      ];
+
+      $form['webform_link_wrapper']['webform_link'] = [
+        '#type' => 'link',
+        '#title' => t('Request a title update'),
+        '#url' => Url::fromRoute('entity.webform.canonical', ['webform' => 'employee_title_request', [
+          'pid' => $form_state->getFormObject()->getEntity()->id(),
+        ]]),
+        '#attributes' => [
+          'class' => ['use-ajax', 'button', 'button--small'],
+          'data-dialog-type' => 'modal',
+          'data-dialog-options' => Json::encode([
+            'width' => 880,
+          ]),
+        ],
+      ];
+
     }
   }
 

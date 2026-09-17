@@ -15,5 +15,6 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access contextual links'
+  - 'administer ilr_employee_position'
   - 'edit any ilr_employee persona'
   - 'remove employees'

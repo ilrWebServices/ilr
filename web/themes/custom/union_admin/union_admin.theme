@@ -86,3 +86,9 @@ function union_admin_form_taxonomy_term_form_alter(&$form, FormStateInterface $f
 
 }
 
+function union_admin_preprocess_webform(&$variables) {
+  $webform_id = $variables['element']['#webform_id'] ?? NULL;
+  if ($webform_id === 'employee_title_request') {
+    $variables['#attached']['library'][] = 'core/drupal.dialog.ajax';
+  }
+}
