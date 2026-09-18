@@ -127,8 +127,7 @@ class Persona extends WidgetBase {
             '#attributes' => ['class' => ['link']],
           ];
 
-          if (!$person->field_photo->isEmpty()) {
-            $file = $person->field_photo->entity->field_media_image->entity;
+          if (!$person->field_photo->isEmpty() && $file = $person->field_photo->entity->field_media_image->entity) {
             $image_uri = $file->getFileUri();
 
             $form['people_items']['person_' . $person->id()]['photo'] = [
