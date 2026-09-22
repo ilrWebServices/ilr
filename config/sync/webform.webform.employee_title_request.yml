@@ -52,6 +52,21 @@ elements: |-
       'Updating a title': 'Updating a title'
       'Removing a title': 'Removing a title'
     '#required': true
+  title_update_select:
+    '#type': radios
+    '#title': 'Which title would you like to update or remove?'
+    '#options':
+      'defined in code': 'defined in code'
+    '#states':
+      visible:
+        - ':input[name="type_of_request"]':
+            value: 'Updating a title'
+        - xor
+        - ':input[name="type_of_request"]':
+            value: 'Removing a title'
+      required:
+        ':input[name="type_of_request"]':
+          value: 'Updated title'
   pid:
     '#type': hidden
     '#title': 'Employee Persona Id'
