@@ -6,7 +6,7 @@
  */
 use Drupal\views\ViewExecutable;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
-use Drupal\node\NodeForm;
+use Drupal\node\Form\NodeForm;
 use Drupal\user\Entity\User;
 use Drupal\address\Plugin\Field\FieldWidget\AddressDefaultWidget;
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -47,6 +47,8 @@ use Drupal\node\NodeInterface;
 use Drupal\person\PersonaInterface;
 use Drupal\salesforce_mapping\Entity\MappedObjectInterface;
 use Drupal\user\UserInterface;
+use Drupal\webform\Entity\Webform;
+use Psy\Util\Json;
 
 /**
  * Implements hook_theme().
@@ -1136,6 +1138,9 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\person\PersonaInterface $persona */
+  $persona = $form_state->getFormObject()->getEntity();
+
   // Move collection items into the advanced group.
   $form['ief_collection_items']['#group'] = 'advanced';
 
@@ -1185,6 +1190,20 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
     $form['inherited']['#group'] = 'advanced';
     $form['inherited']['#weight'] = -9;
 
+    // Prevent hiding some fields in the inherited section. At present, only the
+    // bio field on employee personas.
+    if ($persona = $form_state->getFormObject()->getEntity()) {
+      $excluded_inherited_persona_fields = [
+        'ilr_employee' => 'field_bio',
+      ];
+
+      foreach ($excluded_inherited_persona_fields as $bundle => $field_name) {
+        if ($persona->bundle() === $bundle && array_key_exists($field_name, $form)) {
+          unset($form[$field_name]['#group']);
+        }
+      }
+    }
+
     if (!empty($form['imported_info'])) {
       $form['imported_info']['#description'] = t('Imported information can be modified in @workday_link.', [
         '@workday_link' => Link::fromTextAndUrl('Workday', Url::fromUri('https://shibidp.cit.cornell.edu/idp/profile/SAML2/Unsolicited/SSO?providerId=http://www.workday.com'))->toString(),
@@ -1201,13 +1220,38 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
     if (!isset($form['display_name']['#disabled']) || !$form['display_name']['#disabled']) {
       $form['field_display_name_override']['#access'] = FALSE;
     }
+
+    // Add the employee title rquest webform.
+    $title_request_webform = Webform::load('employee_title_request');
+
+    if ($title_request_webform) {
+      $form['webform_link_wrapper'] = [
+        '#type' => 'container',
+        '#group' => 'imported_info',
+        '#weight' => 10,
+      ];
+
+      $form['webform_link_wrapper']['webform_link'] = [
+        '#type' => 'link',
+        '#title' => t('Request a title update'),
+        '#url' => Url::fromRoute('entity.webform.canonical', ['webform' => 'employee_title_request', [
+          'pid' => $persona->id(),
+        ]]),
+        '#attributes' => [
+          'class' => ['use-ajax', 'button', 'button--small'],
+          'data-dialog-type' => 'modal',
+          'data-dialog-options' => Json::encode([
+            'width' => 880,
+          ]),
+        ],
+      ];
+      // Attach the ajax dialogue library.
+      $form['#attached']['library'][] = 'core/drupal.dialog.ajax';
+    }
   }
 
   // @Add a tab for ULR Redirects.
   // @see redirect_form_node_form_alter().
-  /** @var \Drupal\person\PersonaInterface $persona */
-  $persona = $form_state->getFormObject()->getEntity();
-
   if (!$persona->isNew() && \Drupal::currentUser()->hasPermission('administer redirects')) {
 
     $pid = $persona->id();
@@ -1402,6 +1446,44 @@ function ilr_webform_options_undergraduate_application_date_alter(array &$option
 
   // Cache these options for 24 hours.
   \Drupal::cache()->set($cid, $options, time() + 60 * 60 * 24);
+}
+
+/**
+ * Implements hook_webform_element_alter().
+ *
+ * Add the employee titles when requesting a title addition, update or removal.
+ */
+function ilr_webform_element_alter(array &$element, FormStateInterface $form_state, array $context) {
+  if (empty($element['#webform'])) {
+    return;
+  }
+
+  if ($element['#webform'] === 'employee_title_request' &&  $element['#webform_key'] === "title_update_select") {
+    $pid = \Drupal::request()->query->get('pid');
+
+    if (!$pid && $submission = $context['form']['information']['#webform_submission']) {
+      $data = $submission->getData();
+      if (isset($data['pid'])) {
+        $pid = $data['pid'];
+      }
+    }
+    $titles = [];
+
+    if ($pid) {
+      $manager = Drupal::service('ilr_employee_position.manager');
+      $employee_positions = $manager->getEmployeePositions($pid);
+
+      if (empty($employee_positions)) {
+        $element['#access'] = FALSE;
+      }
+
+      foreach ($employee_positions as $employee_position) {
+        $titles[$employee_position->title->value] = $employee_position->title->value;
+      }
+    }
+
+    $element['#options'] = $titles;
+  }
 }
 
 /**

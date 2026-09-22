@@ -201,11 +201,7 @@ class CollectionEventSubscriber implements EventSubscriberInterface {
             'display_summary' => TRUE,
             'required_summary' => TRUE,
             'allowed_formats' => [
-              'simple_formatting' => 'simple_formatting',
-              'standard_formatting' => '0',
-              'full_html' => '0',
-              'inline_svg' => '0',
-              'plain_text' => '0',
+              'simple_formatting',
             ],
           ],
         ],

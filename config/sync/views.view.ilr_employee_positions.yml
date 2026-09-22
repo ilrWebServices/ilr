@@ -5,6 +5,7 @@ dependencies:
   module:
     - ilr_employee_position
     - person
+    - user
 id: ilr_employee_positions
 label: 'ILR Employee Positions'
 module: views
@@ -511,8 +512,9 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: none
-        options: {  }
+        type: perm
+        options:
+          perm: 'administer ilr_employee_position'
       cache:
         type: tag
         options: {  }
@@ -576,17 +578,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-              content_administrator: '0'
-              course_admin: '0'
-              form_admin: '0'
-              advanced_editor: '0'
-              event_admin: '0'
-              explore_form_admin: '0'
-              reviewer: '0'
-              cahrs_admin: '0'
             placeholder: ''
             autocomplete_filter: 0
             autocomplete_min_chars: '0'
@@ -637,17 +628,6 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-              content_administrator: '0'
-              course_admin: '0'
-              form_admin: '0'
-              advanced_editor: '0'
-              event_admin: '0'
-              explore_form_admin: '0'
-              reviewer: '0'
-              cahrs_admin: '0'
             placeholder: ''
             autocomplete_filter: 0
             autocomplete_min_chars: '0'
@@ -743,6 +723,7 @@ display:
           empty_table: false
           caption: ''
           description: ''
+          class: ''
       row:
         type: fields
       query:
@@ -775,6 +756,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.permissions
       tags: {  }
   page_1:
     id: page_1
@@ -800,4 +782,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.permissions
       tags: {  }

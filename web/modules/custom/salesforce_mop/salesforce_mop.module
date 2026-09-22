@@ -4,7 +4,7 @@
  * @file
  * Contains salesforce_mop.module.
  */
-use Drupal\node\NodeForm;
+use Drupal\node\Form\NodeForm;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormStateInterface;
 

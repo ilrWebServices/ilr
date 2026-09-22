@@ -582,6 +582,10 @@ variants:
           conditions: {  }
           settings:
             reply_to: cahrs@cornell.edu
+        submission_detail_email:
+          settings:
+            to_mail: cahrs@cornell.edu
+            subject: 'CAHRS Event registration: [webform_submission:source-title]'
   hybrid:
     id: override
     variant_id: hybrid

@@ -18,7 +18,7 @@ paragraph type labels on the Sections field. */
 }
 
 .paragraph-type--section .paragraph-type-label--admin-label {
-  color: #888;
+  opacity: .5;
 }
 
 .emp-details .fieldset-wrapper .form-checkboxes {
@@ -153,6 +153,19 @@ button.ck-media-library {
   box-shadow: unset;
 }
 
+.entity-meta .details .details {
+  border: 1px solid green;
+  margin: 2em 0;
+}
+
+.profile-positions {
+  margin: 2em 0;
+}
+
 #edit-profile-help {
   margin-top: 1em;
+}
+
+.node-form .entity-meta .field--widget-media-library-widget .media-library-item--grid {
+  width: 100%;
 }

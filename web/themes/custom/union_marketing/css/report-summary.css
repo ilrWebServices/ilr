@@ -29,13 +29,17 @@
   width: calc(100% - 2 * var(--cu-ps0));
   margin: calc(var(--cu-vr2) * -1) auto 0;
   padding: var(--cu-vr1) var(--cu-ps1);
-  --cu-text-color: var(--cu-color-dark);
   background-color: var(--cu-color-white);
   z-index: 1;
   --cu-font-size: var(--cu-ms-2);
   display: flex;
   flex-direction: column;
   gap: var(--cu-vr-1);
+}
+
+/* Sadly, additional specificity is required. */
+.node--report_summary .cu-banner--page.cu-banner--with-media .cu-banner__content_side {
+  --cu-text-color: var(--cu-color-dark);
 }
 
 .cu-banner--report_summary .cu-banner__content_side .field__label {
@@ -109,13 +113,18 @@
   font-size: var(--cu-ms-2);
   text-decoration: none;
   white-space: nowrap;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid var(--cu-color-gray);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--cu-text-color);
+  border: 1px solid color-mix(in srgb, var(--cu-text-color) 50%, transparent);
 }
 
 /* In-page links on report summary nodes */
 .node--report_summary .cu-page-nav {
   margin-bottom: var(--cu-vr2);
+}
+
+.node--report_summary .cu-banner--page.cu-banner--with-media .cu-banner__content {
+  --cu-text-color: revert;
 }
 
 @media (min-width: 61rem) {

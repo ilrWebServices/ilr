@@ -34,11 +34,12 @@ settings:
       properties:
         reversed: false
         startIndex: false
+        styles: false
       multiBlock: true
     ckeditor5_style:
       styles:
         -
-          label: Link button
+          label: 'Link button'
           element: '<a class="cu-button">'
         -
           label: 'Link button (alt)'
