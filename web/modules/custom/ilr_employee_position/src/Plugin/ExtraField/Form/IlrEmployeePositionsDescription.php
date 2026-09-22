@@ -71,7 +71,7 @@ class IlrEmployeePositionsDescription extends ExtraFieldFormBase implements Cont
     $view_builder = $this->entityTypeManager->getViewBuilder('ilr_employee_position');
     $element['profile_positions'] = [
       '#theme' => 'item_list__profile_positions',
-      '#title' => $this->t('Titles'),
+      '#title' => $this->t('Title(s)'),
       '#items' => [],
       '#attributes' => ['class' => 'profile-positions'],
     ];
