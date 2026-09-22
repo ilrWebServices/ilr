@@ -47,6 +47,8 @@ use Drupal\node\NodeInterface;
 use Drupal\person\PersonaInterface;
 use Drupal\salesforce_mapping\Entity\MappedObjectInterface;
 use Drupal\user\UserInterface;
+use Drupal\webform\Entity\Webform;
+use Psy\Util\Json;
 
 /**
  * Implements hook_theme().
@@ -1136,6 +1138,9 @@ function ilr_form_node_form_alter(&$form, FormStateInterface $form_state, $form_
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\person\PersonaInterface $persona */
+  $persona = $form_state->getFormObject()->getEntity();
+
   // Move collection items into the advanced group.
   $form['ief_collection_items']['#group'] = 'advanced';
 
@@ -1215,13 +1220,38 @@ function ilr_form_persona_form_alter(&$form, FormStateInterface $form_state, $fo
     if (!isset($form['display_name']['#disabled']) || !$form['display_name']['#disabled']) {
       $form['field_display_name_override']['#access'] = FALSE;
     }
+
+    // Add the employee title rquest webform.
+    $title_request_webform = Webform::load('employee_title_request');
+
+    if ($title_request_webform) {
+      $form['webform_link_wrapper'] = [
+        '#type' => 'container',
+        '#group' => 'imported_info',
+        '#weight' => 10,
+      ];
+
+      $form['webform_link_wrapper']['webform_link'] = [
+        '#type' => 'link',
+        '#title' => t('Request a title update'),
+        '#url' => Url::fromRoute('entity.webform.canonical', ['webform' => 'employee_title_request', [
+          'pid' => $persona->id(),
+        ]]),
+        '#attributes' => [
+          'class' => ['use-ajax', 'button', 'button--small'],
+          'data-dialog-type' => 'modal',
+          'data-dialog-options' => Json::encode([
+            'width' => 880,
+          ]),
+        ],
+      ];
+      // Attach the ajax dialogue library.
+      $form['#attached']['library'][] = 'core/drupal.dialog.ajax';
+    }
   }
 
   // @Add a tab for ULR Redirects.
   // @see redirect_form_node_form_alter().
-  /** @var \Drupal\person\PersonaInterface $persona */
-  $persona = $form_state->getFormObject()->getEntity();
-
   if (!$persona->isNew() && \Drupal::currentUser()->hasPermission('administer redirects')) {
 
     $pid = $persona->id();
