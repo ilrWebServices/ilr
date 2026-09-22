@@ -1449,6 +1449,44 @@ function ilr_webform_options_undergraduate_application_date_alter(array &$option
 }
 
 /**
+ * Implements hook_webform_element_alter().
+ *
+ * Add the employee titles when requesting a title addition, update or removal.
+ */
+function ilr_webform_element_alter(array &$element, FormStateInterface $form_state, array $context) {
+  if (empty($element['#webform'])) {
+    return;
+  }
+
+  if ($element['#webform'] === 'employee_title_request' &&  $element['#webform_key'] === "title_update_select") {
+    $pid = \Drupal::request()->query->get('pid');
+
+    if (!$pid && $submission = $context['form']['information']['#webform_submission']) {
+      $data = $submission->getData();
+      if (isset($data['pid'])) {
+        $pid = $data['pid'];
+      }
+    }
+    $titles = [];
+
+    if ($pid) {
+      $manager = Drupal::service('ilr_employee_position.manager');
+      $employee_positions = $manager->getEmployeePositions($pid);
+
+      if (empty($employee_positions)) {
+        $element['#access'] = FALSE;
+      }
+
+      foreach ($employee_positions as $employee_position) {
+        $titles[$employee_position->title->value] = $employee_position->title->value;
+      }
+    }
+
+    $element['#options'] = $titles;
+  }
+}
+
+/**
  * Implements hook_field_widget_single_element_WIDGET_TYPE_form_alter().
  *
  * @see ilr_field_widget_single_element_paragraphs_previewer_form_alter().
