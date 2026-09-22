@@ -74,10 +74,6 @@ class UpcomingProgramDates extends ProcessorPluginBase {
       return;
     }
 
-    if (empty($datetimes)) {
-      return;
-    }
-
     $fields = $this->getFieldsHelper()->filterForPropertyPath($item->getFields(), 'entity:node', 'upcoming_dates');
 
     foreach ($fields as $field) {

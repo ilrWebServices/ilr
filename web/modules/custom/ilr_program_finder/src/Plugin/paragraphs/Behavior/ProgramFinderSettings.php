@@ -101,7 +101,7 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
   public function view(array &$build, Paragraph $paragraphs_entity, EntityViewDisplayInterface $display, $view_mode) {
     /** @var \Drupal\search_api\Entity\Index $index  */
     $index = $this->entityTypeManager->getStorage('search_api_index')->load('program_finder_data');
-    $today = new DrupalDateTime('midnight yesterday');
+    $today = new DrupalDateTime('midnight today');
 
     $query = $index->query();
     $query->addCondition('upcoming_dates', $today->getTimestamp(), '>=');
@@ -124,6 +124,7 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
     $query->sort('upcoming_dates');
     $results = $query->execute();
     $items = [];
+    $content_types = [];
 
     if ($results->getResultCount() == 0) {
       return;
@@ -161,7 +162,19 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
           'summary' => Html::decodeEntities(strip_tags($summary)),
         ],
       ];
+
+      // Prep for cache tags based on node bundle.
+      if (!empty($item->getField('type')->getValues()[0])) {
+        $content_types[] = $item->getField('type')->getValues()[0];
+
+        // If this is a course, we should also include `class` nodes.
+        if ($item->getField('type')->getValues()[0] === 'course') {
+          $content_types[] = 'class';
+        }
+      }
     }
+
+    $content_types = array_unique($content_types);
 
     $build['items'] = [
       '#type' => 'component',
@@ -175,9 +188,11 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
       '#attached' => ['library' => ['union_organizer/button']],
       '#cache' => [
         'max-age' => 7200,
-        'tags' => ['node_list:course', 'node_list:class', 'node_list:remote_program'],
+        'tags' => array_map(fn($item) => 'node_list:' . $item, $content_types),
       ],
     ];
+
+    $build['items']['#cache']['tags'][] = 'search_api_list:program_finder_data';
   }
 
   /**
