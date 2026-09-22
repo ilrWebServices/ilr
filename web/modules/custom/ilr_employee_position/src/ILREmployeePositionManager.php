@@ -41,4 +41,16 @@ class ILREmployeePositionManager {
 
     return $positions;
   }
+
+  public function getEmployeePositionByTitle(int $pid, string $title): array {
+    $position_storage = $this->entityTypeManager->getStorage('ilr_employee_position');
+
+    $position = $position_storage->loadByProperties([
+      'persona' => $pid,
+      'title' => $title,
+    ]);
+
+    return $position ?? [];
+  }
+
 }
