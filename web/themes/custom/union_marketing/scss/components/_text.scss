@@ -127,3 +127,16 @@ span.strong {
     margin-left: var(--cu-ps1);
   }
 }
+
+.cu-component--rich-text:not(:has(img)):not(:has(blockquote)):not(:has(table)):not([class^="cu-component--columns"]):not(:has(p.text-align-center)) {
+  max-width: 59ch; // 6 grid columns.
+}
+
+.banner__content p,
+.cu-card__content p {
+  max-width: 59ch; // 6 grid columns.
+}
+
+.cu-section__heading:has(+ .cu-section__content > .field--field-components > .cu-component--rich-text) {
+  align-items: start;
+}
