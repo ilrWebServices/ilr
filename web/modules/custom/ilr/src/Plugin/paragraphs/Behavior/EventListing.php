@@ -75,6 +75,7 @@ class EventListing extends ParagraphsBehaviorBase {
       'daterange_end' => NULL,
       'reverse' => NULL,
       'past_only' => NULL,
+      'query_match' => 'any',
     ];
   }
 
@@ -199,6 +200,14 @@ class EventListing extends ParagraphsBehaviorBase {
       '#required' => TRUE,
     ];
 
+    $form['query_match'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Keyword filtering'),
+      '#options' => ['any' => 'Any', 'all' => 'All'],
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'query_match') ?? 'any',
+      '#description' => $this->t('Choose whether results must match all selected keywords or just one or more of them.'),
+    ];
+
     return $form;
   }
 
@@ -264,6 +273,7 @@ class EventListing extends ParagraphsBehaviorBase {
     $sources = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'sources') ?? [];
     $node_view_builder = $this->entityTypeManager->getViewBuilder('node');
     $list_style = $paragraphs_entity->getBehaviorSetting('list_styles', 'list_style');
+    $query_match = $paragraphs_entity->getBehaviorSetting($this->getPluginId(), 'query_match');
     $view_mode = $paragraphs_entity->type->entity->getBehaviorPlugin('list_styles')->getViewModeForListStyle($list_style);
 
     if (empty($sources)) {
@@ -271,7 +281,7 @@ class EventListing extends ParagraphsBehaviorBase {
     }
 
     // Get Localist events, if set as source and any are found.
-    if (array_key_exists('_localist', $sources) && $localist_data = $this->getLocalistEvents($keywords, $daterange_start, $daterange_end, $events_shown)) {
+    if (array_key_exists('_localist', $sources) && $localist_data = $this->getLocalistEvents($keywords, $daterange_start, $daterange_end, $events_shown, $query_match)) {
       foreach ($localist_data['events'] as $localist_event) {
         $events[] = new IlrEvent(
           $localist_event['event']['title'],
@@ -313,13 +323,18 @@ class EventListing extends ParagraphsBehaviorBase {
       $query->condition('event_date.value', $daterange_end, '<=');
     }
 
-    $keywords_group = $query->orConditionGroup();
-
-    foreach ($keywords as $keyword_tid => $keyword) {
-      $keywords_group->condition('field_keywords', $keyword_tid);
+    if ($query_match === 'all') {
+      foreach ($keywords as $keyword_tid => $keyword) {
+        $individual_group = $query->andConditionGroup();
+        $individual_group->condition('field_keywords', $keyword_tid);
+        $query->condition($individual_group);
+      }
+    }
+    else {
+      $keyword_ids = array_keys($keywords);
+      $query->condition('field_keywords', $keyword_ids, 'IN');
     }
 
-    $query->condition($keywords_group);
     $query->sort('event_date.value', 'ASC');
 
     // If a limit was set, limit the query. This may be limited further if
@@ -437,8 +452,8 @@ class EventListing extends ParagraphsBehaviorBase {
    * @return array
    *   An array of Localist events.
    */
-  protected function getLocalistEvents(array $keywords, string $daterange_start = 'now', string $daterange_end = '', ?string $events_shown = NULL): array {
-    $cid = 'localist_events:' . implode(',', $keywords) . ':' . $daterange_start . ':' . $daterange_end . ':' . $events_shown;
+  protected function getLocalistEvents(array $keywords, string $daterange_start = 'now', string $daterange_end = '', ?string $events_shown = NULL, ?string $query_match = 'any'): array {
+    $cid = 'localist_events:' . implode(',', $keywords) . ':' . $daterange_start . ':' . $daterange_end . ':' . $events_shown . ':' . $query_match;
     $json_cache_item = \Drupal::cache()->get($cid);
 
     if ($json_cache_item) {
@@ -479,10 +494,11 @@ class EventListing extends ParagraphsBehaviorBase {
     // than the limit.
     $query_params->add('pp', $events_shown ?: 100);
 
-    // Multiple keywords appear to be OR'd.
     foreach ($keywords as $keyword) {
       $query_params->add('keyword[]', $keyword);
     }
+
+    $query_params->add('match', $query_match);
 
     // Add a random string to avoid the realpath cache.
     $query_params->add('rand', mt_rand());
@@ -548,6 +564,13 @@ class EventListing extends ParagraphsBehaviorBase {
       $summary[] = [
         'label' => 'Keywords',
         'value' => implode(', ', $keywords),
+      ];
+    }
+
+    if ($filter = $paragraph->getBehaviorSetting($this->getPluginId(), 'query_match')) {
+      $summary[] = [
+        'label' => 'Filter',
+        'value' => $filter,
       ];
     }
 
