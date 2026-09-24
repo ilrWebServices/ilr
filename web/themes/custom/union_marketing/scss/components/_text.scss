@@ -185,3 +185,11 @@ span.strong {
   margin-left: auto;
   margin-right: auto;
 }
+
+.cu-card--stacked .cu-card__content:not(:has(.text-align-center)) {
+  align-items: start;
+
+  h2, h3, p, ul {
+    text-align: left;
+  }
+}
