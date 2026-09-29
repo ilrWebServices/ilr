@@ -1,0 +1,31 @@
+uuid: 306b89a7-423c-4d94-8246-0af2acde5813
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.content
+    - field.field.paragraph.professional_activities.field_body
+    - field.field.paragraph.professional_activities.field_heading
+    - paragraphs.paragraphs_type.professional_activities
+  module:
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: paragraph.professional_activities.content
+targetEntityType: paragraph
+bundle: professional_activities
+mode: content
+content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_heading: true
+  search_api_excerpt: true

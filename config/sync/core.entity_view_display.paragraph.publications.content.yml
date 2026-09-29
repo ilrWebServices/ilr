@@ -1,0 +1,31 @@
+uuid: cfffbb1a-e5f5-4e66-8b8e-a02c1a237384
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.content
+    - field.field.paragraph.publications.field_body
+    - field.field.paragraph.publications.field_heading
+    - paragraphs.paragraphs_type.publications
+  module:
+    - layout_builder
+    - text
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: paragraph.publications.content
+targetEntityType: paragraph
+bundle: publications
+mode: content
+content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_heading: true
+  search_api_excerpt: true
