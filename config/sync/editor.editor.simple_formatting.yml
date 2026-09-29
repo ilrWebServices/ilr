@@ -19,6 +19,7 @@ settings:
       - bulletedList
       - numberedList
       - link
+      - sourceEditing
   plugins:
     ckeditor5_alignment:
       enabled_alignments:
@@ -36,6 +37,10 @@ settings:
         startIndex: false
         styles: false
       multiBlock: true
+    ckeditor5_sourceEditing:
+      allowed_tags:
+        - '<span itemprop>'
+        - '<div itemscope itemtype>'
     ckeditor5_style:
       styles:
         -
@@ -44,7 +49,5 @@ settings:
         -
           label: 'Link button (alt)'
           element: '<a class="cu-button cu-button--alt">'
-    linkit_extension:
-      linkit_enabled: false
 image_upload:
   status: false
