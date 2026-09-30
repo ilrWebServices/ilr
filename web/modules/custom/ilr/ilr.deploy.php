@@ -706,3 +706,66 @@ function ilr_deploy_ilr_event_keyword_cleanup() {
     $term->delete();
   }
 }
+
+/**
+ * Save watermark remote data for each ilr_employee persona.
+ */
+function ilr_deploy_save_watermark_data(&$sandbox) {
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+  $renderer = \Drupal::service('renderer');
+  $persona_storage = $entity_type_manager->getStorage('persona');
+  $remote_paragraph_types = [
+    'publications' => 'remote_publications',
+    'honors_and_awards' => 'remote_awards',
+    'professional_activities' => 'remote_activities',
+  ];
+
+  $pids = \Drupal::entityQuery('persona')
+    ->condition('status', 1)
+    ->condition('type', 'ilr_employee')
+    ->accessCheck(FALSE)
+    ->execute();
+
+  $ilr_employee_personas = $persona_storage->loadMultiple($pids);
+
+  foreach ($ilr_employee_personas as $ilr_employee_perona) {
+    if ($watermark_paragraphs = $ilr_employee_perona->get('field_components')->referencedEntities()) {
+      foreach ($watermark_paragraphs as $watermark_paragraph) {
+        $type = $watermark_paragraph->bundle();
+
+        if (!isset($remote_paragraph_types[$type])) {
+          continue;
+        }
+
+        $behaviors = $watermark_paragraph->getAllBehaviorSettings();
+
+        if (!array_key_exists('netid', $behaviors[$remote_paragraph_types[$type]])) {
+          continue;
+        }
+
+        // Note that the `content` display was created for this purpose.
+        // It's not otherwise used.
+        $render_array = $view_builder->view($watermark_paragraph, 'content');
+
+        try {
+          if ($rendered_html = $renderer->renderInIsolation($render_array)) {
+            $watermark_paragraph->field_body->value = $rendered_html;
+            $watermark_paragraph->field_body->format = 'simple_formatting';
+            unset($behaviors[$remote_paragraph_types[$type]]);
+            $watermark_paragraph->setAllBehaviorSettings($behaviors);
+            $watermark_paragraph->save();
+          }
+          else {
+            // It was an empty render array (for reasons, there are many on the site).
+            $watermark_paragraph->delete();
+          }
+        }
+        catch (Exception $e) {
+          print_r('Failure on paragraph ' . $watermark_paragraph->id());
+        }
+      }
+    }
+  }
+}
+
