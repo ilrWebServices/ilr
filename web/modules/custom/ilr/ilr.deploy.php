@@ -711,61 +711,129 @@ function ilr_deploy_ilr_event_keyword_cleanup() {
  * Save watermark remote data for each ilr_employee persona.
  */
 function ilr_deploy_save_watermark_data(&$sandbox) {
-  $entity_type_manager = \Drupal::service('entity_type.manager');
-  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
-  $renderer = \Drupal::service('renderer');
+  $batch_size = 25;
+  $entity_type_manager = \Drupal::entityTypeManager();
   $persona_storage = $entity_type_manager->getStorage('persona');
+  $paragraph_storage = $entity_type_manager->getStorage('paragraph');
+  $view_builder = $entity_type_manager->getViewBuilder('paragraph');
+  $renderer = \Drupal::service('renderer');
+  $logger = \Drupal::logger('ilr_deploy');
+
   $remote_paragraph_types = [
     'publications' => 'remote_publications',
     'honors_and_awards' => 'remote_awards',
     'professional_activities' => 'remote_activities',
   ];
 
+  // Initialize the sandbox once.
+  if (!isset($sandbox['initialized'])) {
+    $sandbox['initialized'] = TRUE;
+    $sandbox['last_pid'] = 0;
+    $sandbox['current'] = 0;
+
+    $sandbox['max'] = (int) \Drupal::entityQuery('persona')
+      ->condition('status', 1)
+      ->condition('type', 'ilr_employee')
+      ->accessCheck(FALSE)
+      ->count()
+      ->execute();
+
+    if ($sandbox['max'] === 0) {
+      $sandbox['#finished'] = 1;
+      return;
+    }
+  }
+
+  // Fetch the next group by ID. This is preferable to range offsets.
   $pids = \Drupal::entityQuery('persona')
     ->condition('status', 1)
     ->condition('type', 'ilr_employee')
+    ->condition('pid', $sandbox['last_pid'], '>')
+    ->sort('pid', 'ASC')
+    ->range(0, $batch_size)
     ->accessCheck(FALSE)
     ->execute();
 
-  $ilr_employee_personas = $persona_storage->loadMultiple($pids);
+  // No more entities remain.
+  if (!$pids) {
+    $sandbox['#finished'] = 1;
+    return;
+  }
 
-  foreach ($ilr_employee_personas as $ilr_employee_perona) {
-    if ($watermark_paragraphs = $ilr_employee_perona->get('field_components')->referencedEntities()) {
-      foreach ($watermark_paragraphs as $watermark_paragraph) {
-        $type = $watermark_paragraph->bundle();
+  $pids = array_values($pids);
+  $personas = $persona_storage->loadMultiple($pids);
 
-        if (!isset($remote_paragraph_types[$type])) {
-          continue;
+  foreach ($personas as $persona) {
+    foreach ($persona->get('field_components')->referencedEntities() as $paragraph) {
+      $paragraph_type = $paragraph->bundle();
+
+      if (!isset($remote_paragraph_types[$paragraph_type])) {
+        continue;
+      }
+
+      $behavior_plugin_id = $remote_paragraph_types[$paragraph_type];
+      $behaviors = $paragraph->getAllBehaviorSettings();
+
+      // Avoid warnings if the behavior plugin has no settings yet.
+      if (
+        empty($behaviors[$behavior_plugin_id]) ||
+        !is_array($behaviors[$behavior_plugin_id]) ||
+        !array_key_exists('netid', $behaviors[$behavior_plugin_id])
+      ) {
+        continue;
+      }
+
+      try {
+        // The "content" display mode should be dedicated to this export/render.
+        $render_array = $view_builder->view($paragraph, 'content');
+        $rendered_html = (string) $renderer->renderInIsolation($render_array);
+
+        if ($rendered_html !== '') {
+          $existing_content = $paragraph->field_body->value ?? '';
+
+          $paragraph->set('field_body', [
+            'value' => $rendered_html . "\n" . $existing_content,
+            'format' => 'simple_formatting',
+          ]);
+
+          // Remove the remote behavior after replacing it with static HTML.
+          unset($behaviors[$behavior_plugin_id]);
+          $paragraph->setAllBehaviorSettings($behaviors);
+          $paragraph->save();
         }
-
-        $behaviors = $watermark_paragraph->getAllBehaviorSettings();
-
-        if (!array_key_exists('netid', $behaviors[$remote_paragraph_types[$type]])) {
-          continue;
+        else {
+          // Remove paragraphs with no output.
+          $paragraph->delete();
         }
-
-        // Note that the `content` display was created for this purpose.
-        // It's not otherwise used.
-        $render_array = $view_builder->view($watermark_paragraph, 'content');
-
-        try {
-          if ($rendered_html = $renderer->renderInIsolation($render_array)) {
-            $watermark_paragraph->field_body->value = $rendered_html;
-            $watermark_paragraph->field_body->format = 'simple_formatting';
-            unset($behaviors[$remote_paragraph_types[$type]]);
-            $watermark_paragraph->setAllBehaviorSettings($behaviors);
-            $watermark_paragraph->save();
-          }
-          else {
-            // It was an empty render array (for reasons, there are many on the site).
-            $watermark_paragraph->delete();
-          }
-        }
-        catch (Exception $e) {
-          print_r('Failure on paragraph ' . $watermark_paragraph->id());
-        }
+      }
+      catch (\Throwable $e) {
+        $logger->error(
+          'Failed processing paragraph @pid: @message',
+          [
+            '@pid' => $paragraph->id(),
+            '@message' => $e->getMessage(),
+          ]
+        );
       }
     }
   }
+
+  // Advance the cursor only after this batch has been processed.
+  $sandbox['last_pid'] = (int) end($pids);
+  $sandbox['current'] += count($pids);
+
+  // Avoid entity static-cache growth in a long-running update.
+  $persona_storage->resetCache($pids);
+  $paragraph_storage->resetCache();
+
+  $sandbox['#finished'] = min(1, $sandbox['current'] / max(1, $sandbox['max']));
+
+  $sandbox['#message'] = t(
+    'Processed @current of approximately @max employee personas.',
+    [
+      '@current' => $sandbox['current'],
+      '@max' => $sandbox['max'],
+    ]
+  );
 }
 
