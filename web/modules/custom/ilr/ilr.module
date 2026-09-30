@@ -1492,6 +1492,14 @@ function ilr_field_widget_single_element_paragraphs_form_alter(&$element, FormSt
 
   // Wrap behavior settings elements in a details container.
   if (!empty($element['behavior_plugins'])) {
+    // This is temporary and will be deleted once these behaviors are fully removed.
+    $hidden_behavior_bundles = ['publications', 'honors_and_awards', 'professional_activities'];
+
+    if (in_array($paragraphs_entity->bundle(), $hidden_behavior_bundles)) {
+      // unset($element['behavior_plugins']);
+      // return;
+    }
+
     $element['behavior_plugins']['#type'] = 'details';
     $element['behavior_plugins']['#title'] = t('@type Settings', [
       '@type' => $paragraphs_entity->type->entity->label(),
