@@ -607,3 +607,102 @@ function ilr_deploy_paragraph_visibility_settings_update() {
     }
   }
 }
+
+/**
+ * Remove `ilr` event keyword (342) and behaviors referencing it.
+ */
+function ilr_deploy_ilr_event_keyword_cleanup() {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $old_term_id = 342; // ILR
+  $new_term_id = 343; // ILR School
+
+  $pids = \Drupal::entityQuery('paragraph')
+    ->accessCheck(FALSE)
+    ->condition('type', 'event_listing')
+    ->execute();
+
+  $event_listing_paragraphs = $entity_type_manager->getStorage('paragraph')->loadMultiple($pids);
+
+  /** @var \Drupal\paragraphs\ParagraphInterface $event_listing_paragraph */
+  foreach ($event_listing_paragraphs as $event_listing_paragraph) {
+    $needs_save = FALSE;
+    $settings = $event_listing_paragraph->getAllBehaviorSettings();
+    $keywords = $settings['ilr_event_listing']['keywords'] ?? [];
+
+    if (!is_array($keywords) || empty($keywords)) {
+      continue;
+    }
+
+    if (isset($keywords[$old_term_id])) {
+      unset($keywords[$old_term_id]);
+      // Ensure sure that the new term is in the settings.
+      $keywords[$new_term_id] = 'ILR School';
+      $needs_save = TRUE;
+    }
+
+    if ($needs_save) {
+      $settings['ilr_event_listing']['keywords'] = $keywords;
+      $event_listing_paragraph->setAllBehaviorSettings($settings);
+      $event_listing_paragraph->save();
+    }
+  }
+
+  // Find nodes with this field referencing term 342.
+  $node_storage = $entity_type_manager->getStorage('node');
+
+  $nids = \Drupal::entityQuery('node')
+    ->accessCheck(FALSE)
+    ->condition('type', 'event_landing_page')
+    ->condition('field_keywords' . '.target_id', $old_term_id)
+    ->execute();
+
+  foreach (array_chunk($nids, 100, TRUE) as $nid_chunk) {
+    $nodes = $node_storage->loadMultiple($nid_chunk);
+
+    /** @var \Drupal\node\NodeInterface $node */
+    foreach ($nodes as $node) {
+      $values = $node->get('field_keywords')->getValue();
+      $updated_values = [];
+      $has_new_term = FALSE;
+      $changed = FALSE;
+
+      foreach ($values as $item) {
+        $target_id = (int) ($item['target_id'] ?? 0);
+
+        // Remove all references to term 342.
+        if ($target_id === $old_term_id) {
+          $changed = TRUE;
+          continue;
+        }
+
+        if ($target_id === $new_term_id) {
+          $has_new_term = TRUE;
+        }
+
+        $updated_values[] = $item;
+      }
+
+      // Add term 343 only when the node does not already reference it.
+      if (!$has_new_term) {
+        $updated_values[] = ['target_id' => $new_term_id];
+        $changed = TRUE;
+      }
+
+      if (!$changed) {
+        continue;
+      }
+
+      $node->set('field_keywords', $updated_values);
+      $node->save();
+    }
+
+    $node_storage->resetCache($nid_chunk);
+  }
+
+  // Now delete the old term.
+  $term = $entity_type_manager->getStorage('taxonomy_term')->load($old_term_id);
+
+  if ($term) {
+    $term->delete();
+  }
+}
