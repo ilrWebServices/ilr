@@ -128,27 +128,49 @@ span.strong {
   }
 }
 
-.field--field-sections:not(:has(.cu-section--left)) {
+// Settings to make text more readable
+.field--field-sections {
   .cu-component--rich-text:not(:has(blockquote)):not([class^="cu-component--columns"]):not(:has(p.text-align-center)):not(:has(.org-deck)):not(:has(.cu-feature-list)):not(:has(.cu-feature-list)):not(:has(~ .cu-component--deck)) {
-    margin: 0 auto;
     max-width: 59ch; // 6 grid columns.
+  }
+
+  :has(p.text-align-center) {
+    margin-left: auto;
+    margin-right: auto;
+
+    .cu-component--rich-text:has(p.text-align-center) {
+      max-width: 59ch; // 6 grid columns.
+    }
   }
 
   .cu-section__heading:has(+ .cu-section__content > .field--field-components > .cu-component--rich-text) {
     max-width: 59ch;
-    margin-left: auto;
-    margin-right: auto;
 
     &.cu-composite-heading--compact:has(.cu-composite-heading__link) {
       max-width: unset;
     }
+
+    &.cu-composite-heading {
+      max-width: 59ch;
+      align-items: start;
+
+      &:has(p.text-align-center) {
+        align-items: center;
+      }
+    }
+
+    :has(p.text-align-center) {
+      margin-left: auto;
+      margin-right: auto;
+      align-items: center;
+    }
+
   }
 }
 
 // Deal with tables
 @include breakpoint(md) {
   .cu-component--rich-text table {
-    margin-left: -116px;
     width: calc(100% + 2*116px);
   }
 }
@@ -176,12 +198,4 @@ span.strong {
 .banner__content p,
 .cu-card__content p {
   max-width: 59ch; // 6 grid columns.
-}
-
-// Left align headings in specific cases.
-// Generally, the `compact heading` setting might be a better way to approach left-aligning headings.
-.cu-section__heading:not(.cu-composite-heading--left):not(.cu-composite-heading--minimal):has(+ .cu-section__content > .field--field-components > .cu-component--rich-text) {
-  align-items: start;
-  margin-left: auto;
-  margin-right: auto;
 }
