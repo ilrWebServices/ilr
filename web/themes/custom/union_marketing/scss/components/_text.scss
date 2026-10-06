@@ -199,3 +199,16 @@ span.strong {
 .cu-card__content p {
   max-width: 59ch; // 6 grid columns.
 }
+
+.block-field-block--node--course--field-target-audience,
+.block-field-block--node--course--field-key-outcomes,
+.block-field-block--node--course--body,
+.block-field-block--taxonomy-term--topics--field-body {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 59ch; // 6 grid columns.
+
+  .banner__content & {
+    margin-left: 0;
+  }
+}
