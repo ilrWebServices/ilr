@@ -34,50 +34,46 @@
 
 // Resonsive table implementation. @see union_marketing_responsive_tables.js
 // Instead of mobile first, we are mobile-only with the following styles.
-@media only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 37.5rem) {
-
-  /* Force table to not be like tables anymore */
-  .cu-component--rich-text table,
-  .cu-component--rich-text table caption,
-  .cu-component--rich-text thead,
-  .cu-component--rich-text tbody,
-  .cu-component--rich-text th,
-  .cu-component--rich-text td,
-  .cu-component--rich-text tr {
-    display: block;
-  }
-
-  .cu-component--rich-text table {
+@media only screen and (max-width: 37rem) {
+  table:has(td[data-header]) {
     border: none;
-  }
 
-  .cu-component--rich-text table caption {
-    border-bottom: 1px solid var(--border-color);
-  }
+    caption,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
 
-  /* Hide table headers (but not display: none;, for accessibility) */
-  .cu-component--rich-text thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
+    caption {
+      border-bottom: 1px solid var(--border-color);
+    }
 
-  .cu-component--rich-text tr {
-    padding: var(--cu-vr-2) 0;
-    border-bottom: 2px solid var(--border-color);
-  }
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
 
-  .cu-component--rich-text td {
-    padding-left: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: var(--cu-ps1);
-    border: none;
-  }
+    tr {
+      padding: var(--cu-vr-2) 0;
+      border-bottom: 2px solid var(--border-color);
+    }
 
-  .cu-component--rich-text td:before {
-    content: attr(data-header);
+    td[data-header] {
+      padding-left: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: var(--cu-ps1);
+      border: none;
+    }
+
+    td:before {
+      content: attr(data-header);
+    }
   }
 }
 

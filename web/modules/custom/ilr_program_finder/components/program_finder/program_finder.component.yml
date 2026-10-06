@@ -1,0 +1,22 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+
+name: Program Finder
+
+# Status can be: "experimental", "stable", "deprecated", "obsolete".
+status: experimental
+
+props:
+  type: object
+  properties:
+    status:
+      type: boolean
+      title: Status
+
+slots:
+  items:
+    title: Items
+    description: Program finder items (e.g. Courses and Remote Programs).
+
+libraryOverrides:
+  js:
+    program_finder.js: { attributes: { type: module }, preprocess: false }

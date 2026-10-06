@@ -1,0 +1,34 @@
+{%- set delimiter = "\t" -%}
+<div {{ attributes.addClass('program-finder-item') }} data-facet-item-id="{{ item_id }}" data-facet-delivery-methods="{{ delivery_methods|join(delimiter) }}" data-facet-dates="{{ upcoming_dates|join(delimiter) }}" data-facet-locations="{{ locations|join(delimiter) }}" data-facet-topics="{{ topics|join(delimiter) }}">
+  {# Keep the outer div whenever possible it is a nice way to ensure the presence of "attributes" #}
+  <h2 class="program-finder-item__title cu-heading"><a href="{{ url }}">{{ title }}</a></h2>
+  {%- if topics %}
+  <div class="program-finder-item__topics cu-text">{{ topics|join(', ') }}</div>
+  {% endif %}
+  <div class="program-finder-item__summary cu-text">
+  {% block summary %}
+    The contents of the example block
+  {% endblock %}
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Start date</th>
+        <th scope="col">Cost</th>
+        <th scope="col">Format</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for program_instance in program_instances %}
+      {% set instance_data = program_instance|split("\t") %}
+      <tr>
+        <td class="program-finder-item__date" data-header="Start date">{{ instance_data.0 }}</td>
+        <td data-header="Cost">${{ instance_data.1|round }}</td>
+        <td data-header="Format">{{ instance_data.2 }}</td>
+        <td><a href="{{ url }}?date={{ instance_data.0|date('Ymd') }}" class="cu-button">Register</a></td>
+      </tr>
+      {% endfor -%}
+    </tbody>
+  </table>
+</div>
