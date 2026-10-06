@@ -128,10 +128,74 @@ span.strong {
   }
 }
 
-.cu-card--stacked .cu-card__content:not(:has(.text-align-center)) {
-  align-items: start;
-
-  h2, h3, p, ul {
-    text-align: left;
+// Settings to make text more readable
+.field--field-sections {
+  .cu-component--rich-text:not(:has(blockquote)):not([class^="cu-component--columns"]):not(:has(p.text-align-center)):not(:has(.org-deck)):not(:has(.cu-feature-list)):not(:has(.cu-feature-list)):not(:has(~ .cu-component--deck)) {
+    max-width: 59ch; // 6 grid columns.
   }
+
+  :has(p.text-align-center) {
+    margin-left: auto;
+    margin-right: auto;
+
+    .cu-component--rich-text:has(p.text-align-center) {
+      max-width: 59ch; // 6 grid columns.
+    }
+  }
+
+  .cu-section__heading:has(+ .cu-section__content > .field--field-components > .cu-component--rich-text) {
+    max-width: 59ch;
+
+    &.cu-composite-heading--compact:has(.cu-composite-heading__link) {
+      max-width: unset;
+    }
+
+    &.cu-composite-heading {
+      max-width: 59ch;
+      align-items: start;
+
+      &:has(p.text-align-center) {
+        align-items: center;
+      }
+    }
+
+    :has(p.text-align-center) {
+      margin-left: auto;
+      margin-right: auto;
+      align-items: center;
+    }
+
+  }
+}
+
+// Deal with tables
+@include breakpoint(md) {
+  .cu-component--rich-text table {
+    width: calc(100% + 2*116px);
+  }
+}
+
+// Deal with images
+@include breakpoint(md) {
+  .cu-component--rich-text .cu-media.align-center {
+    margin-left: -116px;
+    margin-right: -116px;
+    width: calc(100% + 2*116px);
+  }
+
+  .cu-component--rich-text .cu-media.align-right {
+    margin-right: -116px;
+    width: calc(50% + 116px);
+  }
+
+  .cu-component--rich-text .cu-media.align-left {
+    margin-left: -116px;
+    width: calc(50% + 116px);
+  }
+}
+
+// Fix a few random places where text can get way too wide.
+.banner__content p,
+.cu-card__content p {
+  max-width: 59ch; // 6 grid columns.
 }
