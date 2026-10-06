@@ -51,9 +51,10 @@
 
   > ul > li > ul {
     display: none;
-    position: fixed;
-    left: 0;
-    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
     background: white;
     border-bottom: 2px solid #ccc;
     padding-top: var(--cu-vr1);
