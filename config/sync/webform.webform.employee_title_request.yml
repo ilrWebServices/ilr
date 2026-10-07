@@ -228,11 +228,13 @@ access:
     users: {  }
     permissions: {  }
   view_any:
-    roles: {  }
+    roles:
+      - employee_admin
     users: {  }
     permissions: {  }
   update_any:
-    roles: {  }
+    roles:
+      - employee_admin
     users: {  }
     permissions: {  }
   delete_any:
