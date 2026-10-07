@@ -129,9 +129,13 @@ span.strong {
 }
 
 // Settings to make text more readable
+:root {
+  --cu-character-max-width: 69ch; // 7 grid columns.
+}
+
 .field--field-sections {
   .cu-component--rich-text:not(:has(blockquote)):not([class^="cu-component--columns"]):not(:has(p.text-align-center)):not(:has(.org-deck)):not(:has(.cu-feature-list)):not(:has(.cu-feature-list)):not(:has(~ .cu-component--deck)) {
-    max-width: 59ch; // 6 grid columns.
+    max-width: var(--cu-character-max-width);
   }
 
   :has(p.text-align-center) {
@@ -139,19 +143,19 @@ span.strong {
     margin-right: auto;
 
     .cu-component--rich-text:has(p.text-align-center) {
-      max-width: 59ch; // 6 grid columns.
+      max-width: var(--cu-character-max-width);
     }
   }
 
   .cu-section__heading:has(+ .cu-section__content > .field--field-components > .cu-component--rich-text) {
-    max-width: 59ch;
+    max-width: var(--cu-character-max-width);
 
     &.cu-composite-heading--compact:has(.cu-composite-heading__link) {
       max-width: unset;
     }
 
     &.cu-composite-heading {
-      max-width: 59ch;
+      max-width: var(--cu-character-max-width);
       align-items: start;
 
       &:has(p.text-align-center) {
@@ -197,5 +201,18 @@ span.strong {
 // Fix a few random places where text can get way too wide.
 .banner__content p,
 .cu-card__content p {
-  max-width: 59ch; // 6 grid columns.
+  max-width: var(--cu-character-max-width);
+}
+
+.block-field-block--node--course--field-target-audience,
+.block-field-block--node--course--field-key-outcomes,
+.block-field-block--node--course--body,
+.block-field-block--taxonomy-term--topics--field-body {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--cu-character-max-width);
+
+  .banner__content & {
+    margin-left: 0;
+  }
 }
