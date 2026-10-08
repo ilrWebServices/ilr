@@ -39,4 +39,13 @@ class IlrHooks {
     }
   }
 
+  #[Hook('collection_pathauto_alias_alter')]
+  public function preserveEmployeeAlias(&$alias, array &$context) {
+    if ($collection_item = $context['collection_item']) {
+      if ($collection_item->bundle() === 'persona_item' && $collection_item->item->entity->bundle() === 'ilr_employee') {
+        $alias = $context['original_alias'];
+      }
+    }
+  }
+
 }
