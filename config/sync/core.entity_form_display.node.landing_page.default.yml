@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.landing_page.body
     - field.field.node.landing_page.field_form
+    - field.field.node.landing_page.field_metatags
     - field.field.node.landing_page.field_mobile_form_anchor_text
     - field.field.node.landing_page.field_representative_image
     - field.field.node.landing_page.field_sections
@@ -58,6 +59,14 @@ content:
       webform_reference_category_select:
         categories:
           - 'Landing Page'
+  field_metatags:
+    type: metatag_simple
+    weight: 22
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
+    third_party_settings: {  }
   field_mobile_form_anchor_text:
     type: string_textfield
     weight: 10
