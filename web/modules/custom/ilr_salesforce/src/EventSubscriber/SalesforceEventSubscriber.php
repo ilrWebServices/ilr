@@ -155,6 +155,11 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
         $tids_for_course[] = $course_topic_term->id();
       }
 
+      // Check for sponsor Yang-Tan Institute on Employment and Disability (765)
+      if (empty($tids_for_course) && $course_sponsor_term->id() === 765) {
+        $tids_for_course[] = 16;
+      }
+
       $course_node->set('field_topics', $tids_for_course);
     }
   }
