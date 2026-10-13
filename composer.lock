@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5380e2d038a1f4a45f5e37cc9fd13d81",
+    "content-hash": "ffdea7055ee66aabdd65eb1ea5b25c48",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -873,16 +873,16 @@
         },
         {
             "name": "cornell/union",
-            "version": "dev-master",
+            "version": "dev-temp",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilrWebServices/union.git",
-                "reference": "732d78edcf4d6d9b84e7def174e2faea6e60bd0b"
+                "reference": "3ab1ab6d2915b602ea8680327aa8fa160c834422"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/732d78edcf4d6d9b84e7def174e2faea6e60bd0b",
-                "reference": "732d78edcf4d6d9b84e7def174e2faea6e60bd0b",
+                "url": "https://api.github.com/repos/ilrWebServices/union/zipball/3ab1ab6d2915b602ea8680327aa8fa160c834422",
+                "reference": "3ab1ab6d2915b602ea8680327aa8fa160c834422",
                 "shasum": ""
             },
             "require": {
@@ -891,7 +891,6 @@
                 "symfony/yaml": "^6 || ^7",
                 "twig/twig": "^2 || ^3"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -913,10 +912,10 @@
             ],
             "description": "A component-based design system",
             "support": {
-                "source": "https://github.com/ilrWebServices/union/tree/master",
+                "source": "https://github.com/ilrWebServices/union/tree/temp",
                 "issues": "https://github.com/ilrWebServices/union/issues"
             },
-            "time": "2026-09-01T15:01:53+00:00"
+            "time": "2026-10-08T20:24:12+00:00"
         },
         {
             "name": "cweagans/composer-patches",
