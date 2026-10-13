@@ -198,7 +198,8 @@ access:
     permissions: {  }
   view_any:
     roles: {  }
-    users: {  }
+    users:
+      - 287
     permissions: {  }
   update_any:
     roles: {  }
