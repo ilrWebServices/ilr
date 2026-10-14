@@ -81,7 +81,7 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
       '#title' => $this->t('Tags'),
       '#options' => $tags,
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'tags') ?? FALSE,
-      '#description' => $this->t('Lots of esplainin to do here.'),
+      '#description' => $this->t('Tags control which types of content appear in this program finder. Currently the component supports collections, salesforce departments, and content types.'),
     ];
 
     $form['tag_query_type'] = [
@@ -89,7 +89,7 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
       '#title' => $this->t('Tag query type'),
       '#options' => ['Any' => 'Any', 'All' => 'All'],
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'tag_query_type') ?? 'Any',
-      '#description' => $this->t('Lots more esplainin to do here.'),
+      '#description' => $this->t('<strong>Any</strong>: Show programs matching at least one selected tag.<br/><strong>All</strong>: Show programs matching every selected tag.'),
     ];
 
     return $form;
