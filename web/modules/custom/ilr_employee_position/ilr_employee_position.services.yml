@@ -1,0 +1,4 @@
+services:
+  ilr_employee_position.manager:
+    class: Drupal\ilr_employee_position\ILREmployeePositionManager
+    arguments: ['@entity_type.manager']

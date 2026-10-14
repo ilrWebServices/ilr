@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.main_content
     - field.field.node.landing_page.body
     - field.field.node.landing_page.field_form
+    - field.field.node.landing_page.field_metatags
     - field.field.node.landing_page.field_mobile_form_anchor_text
     - field.field.node.landing_page.field_representative_image
     - field.field.node.landing_page.field_sections
@@ -18,6 +19,11 @@ targetEntityType: node
 bundle: landing_page
 mode: main_content
 content:
+  extra_field_ilr_action_button:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_subtitle:
     type: string
     label: above
@@ -34,8 +40,10 @@ content:
 hidden:
   body: true
   field_form: true
+  field_metatags: true
   field_mobile_form_anchor_text: true
   field_representative_image: true
   field_sections: true
+  footnotes_group: true
   langcode: true
   search_api_excerpt: true
