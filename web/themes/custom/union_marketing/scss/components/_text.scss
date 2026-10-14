@@ -158,7 +158,8 @@ span.strong {
       max-width: var(--cu-character-max-width);
       align-items: start;
 
-      &:has(p.text-align-center) {
+      &:has(p.text-align-center),
+      &:has(.cu-composite-heading__link) {
         align-items: center;
       }
     }
@@ -195,6 +196,14 @@ span.strong {
   .cu-component--rich-text .cu-media.align-left {
     margin-left: -116px;
     width: calc(50% + 116px);
+  }
+}
+
+.cu-section--center-aligned {
+  .cu-composite-heading,
+  .cu-component--rich-text {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

@@ -75,6 +75,14 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
       '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'first_component_to_blurb'),
     ];
 
+    $form['center_rich_text_components'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Center text components in this section'),
+      '#description' => $this->t('This setting centers the component, not the text inside of it.'),
+      '#min' => 1,
+      '#default_value' => $paragraph->getBehaviorSetting($this->getPluginId(), 'center_rich_text_components'),
+    ];
+
     $form['frame_position'] = [
       '#type' => 'radios',
       '#title' => $this->t('Frame position'),
@@ -102,6 +110,10 @@ class UnionSectionSettings extends ParagraphsBehaviorBase {
 
     if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'compact')) {
       $variables['attributes']['class'][] = 'cu-section--compact';
+    }
+
+    if ($variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'center_rich_text_components')) {
+      $variables['attributes']['class'][] = 'cu-section--center-aligned';
     }
 
     if ($frame_position = $variables['paragraph']->getBehaviorSetting($this->getPluginId(), 'frame_position')) {
