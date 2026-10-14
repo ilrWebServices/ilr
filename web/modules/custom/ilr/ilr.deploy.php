@@ -756,3 +756,22 @@ function ilr_deploy_add_yti_course_topics() {
     $node_storage->resetCache($nid_chunk);
   }
 }
+
+/**
+ * Add topics to all LAICONF courses.
+ */
+function ilr_deploy_add_laiconf_course_topics() {
+  $topic_tids = [4, 5]; // 'Conflict Resolution' and 'Labor Relations'
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+
+  $nids = \Drupal::entityQuery('node')
+    ->accessCheck(FALSE)
+    ->condition('type', 'course')
+    ->condition('field_course_number', 'LAICONF', 'CONTAINS')
+    ->execute();
+
+  foreach ($node_storage->loadMultiple($nids) as $node) {
+    $node->set('field_topics', $topic_tids);
+    $node->save();
+  }
+}
