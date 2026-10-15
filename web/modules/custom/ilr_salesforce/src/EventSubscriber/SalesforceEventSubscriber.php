@@ -155,6 +155,17 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
         $tids_for_course[] = $course_topic_term->id();
       }
 
+      // Check for sponsor Yang-Tan Institute on Employment and Disability (765)
+      if (empty($tids_for_course) && $course_sponsor_term->id() === 765) {
+        $tids_for_course[] = 16;
+      }
+
+      // Add topics by default to LAICONF events.
+      if (isset($sf->field['Course_Number__c']) && strpos($sf->field['Course_Number__c'], 'LAICONF' ) === 0) {
+        $tids_for_course[] = 4; // Conflict Resolution
+        $tids_for_course[] = 5; // Labor Relations
+      }
+
       $course_node->set('field_topics', $tids_for_course);
     }
   }

@@ -1,0 +1,14 @@
+uuid: 6ee4d73a-b540-4618-a17a-07ace032a4bc
+langcode: en
+status: true
+dependencies:
+  module:
+    - ilr_program_finder
+id: program_finder
+label: 'Program finder'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins:
+  ilr_program_finder:
+    enabled: true
