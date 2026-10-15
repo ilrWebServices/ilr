@@ -706,3 +706,72 @@ function ilr_deploy_ilr_event_keyword_cleanup() {
     $term->delete();
   }
 }
+
+/**
+ * Add Disability and Employment topic to all YTI courses.
+ */
+function ilr_deploy_add_yti_course_topics() {
+  $disability_tid = 16;
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+
+  $nids = \Drupal::entityQuery('node')
+    ->accessCheck(FALSE)
+    ->condition('type', 'course')
+    ->condition('field_sponsor' . '.target_id', 765)
+    ->execute();
+
+  foreach (array_chunk($nids, 100, TRUE) as $nid_chunk) {
+    $nodes = $node_storage->loadMultiple($nid_chunk);
+
+    /** @var \Drupal\node\NodeInterface $node */
+    foreach ($nodes as $node) {
+      $values = $node->get('field_topics')->getValue();
+      $updated_values = [];
+      $has_new_term = FALSE;
+      $changed = FALSE;
+
+      foreach ($values as $item) {
+        $target_id = (int) ($item['target_id'] ?? 0);
+
+        if ($target_id === $disability_tid) {
+          $has_new_term = TRUE;
+        }
+
+        $updated_values[] = $item;
+      }
+
+      if (!$has_new_term) {
+        $updated_values[] = ['target_id' => $disability_tid];
+        $changed = TRUE;
+      }
+
+      if (!$changed) {
+        continue;
+      }
+
+      $node->set('field_topics', $updated_values);
+      $node->save();
+    }
+
+    $node_storage->resetCache($nid_chunk);
+  }
+}
+
+/**
+ * Add topics to all LAICONF courses.
+ */
+function ilr_deploy_add_laiconf_course_topics() {
+  $topic_tids = [4, 5]; // 'Conflict Resolution' and 'Labor Relations'
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+
+  $nids = \Drupal::entityQuery('node')
+    ->accessCheck(FALSE)
+    ->condition('type', 'course')
+    ->condition('field_course_number', 'LAICONF', 'CONTAINS')
+    ->execute();
+
+  foreach ($node_storage->loadMultiple($nids) as $node) {
+    $node->set('field_topics', $topic_tids);
+    $node->save();
+  }
+}
