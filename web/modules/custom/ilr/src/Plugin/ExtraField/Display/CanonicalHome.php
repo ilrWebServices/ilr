@@ -16,6 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   label = @Translation("Canonical home"),
  *   bundles = {
  *     "collection_item.blog",
+ *     "collection_item.default",
  *   },
  *   visible = true
  * )

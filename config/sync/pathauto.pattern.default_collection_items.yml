@@ -1,0 +1,22 @@
+uuid: 68a9cc7c-9f8f-444b-93d0-25b0fd9a13da
+langcode: en
+status: true
+dependencies:
+  module:
+    - collection
+id: default_collection_items
+label: 'Collection items (default)'
+type: 'canonical_entities:collection_item'
+pattern: '[collection_item:collection:entity:url:path]/[collection_item:item:entity]/i'
+selection_criteria:
+  630f75ff-ce09-4489-bb49-89eea386dacb:
+    id: 'entity_bundle:collection_item'
+    negate: false
+    context_mapping:
+      collection_item: collection_item
+    bundles:
+      default: default
+    uuid: 630f75ff-ce09-4489-bb49-89eea386dacb
+selection_logic: and
+weight: -5
+relationships: {  }

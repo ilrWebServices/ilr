@@ -4,20 +4,19 @@ status: true
 dependencies:
   module:
     - collection
-    - ctools
 id: collection_items
-label: 'Collection items'
+label: 'Collection items (blog)'
 type: 'canonical_entities:collection_item'
 pattern: '[collection_item:collection:entity:url:path]/[collection_item:field_blog_categories:entity:name]/[collection_item:item:entity]/i'
 selection_criteria:
-  ee2e30f1-3d3d-465b-b83b-7aeb6d81e81d:
+  55ee5964-f196-40e9-8032-876eca94d143:
     id: 'entity_bundle:collection_item'
     negate: false
-    uuid: ee2e30f1-3d3d-465b-b83b-7aeb6d81e81d
     context_mapping:
       collection_item: collection_item
     bundles:
       blog: blog
+    uuid: 55ee5964-f196-40e9-8032-876eca94d143
 selection_logic: and
 weight: 0
 relationships: {  }
