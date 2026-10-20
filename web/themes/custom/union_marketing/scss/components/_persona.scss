@@ -444,3 +444,8 @@ body.persona .cu-header {
     }
   }
 }
+
+// Ensure person cards can stand out from light section background color.
+.cu-section.cu-colorscheme--light .cu-person.cu-colorscheme--light {
+  --cu-colorscheme-background: rgb(250, 250, 250);
+}
