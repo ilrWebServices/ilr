@@ -134,6 +134,10 @@ class ProgramFinderSettings extends ParagraphsBehaviorBase {
     foreach ($results->getResultItems() as $item) {
       $dates = $item->getField('upcoming_dates')->getValues() ?? [];
 
+      if (empty($dates)) {
+        continue;
+      }
+
       $facet_dates = array_map(function($date) {
         $datetime = DrupalDateTime::createFromTimestamp($date);
         return $datetime->format('F Y');

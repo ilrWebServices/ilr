@@ -100,40 +100,6 @@
     margin-bottom: var(--cu-vr0);
   }
 
-  .social-sharing-buttons {
-    position: revert;
-    flex-direction: unset;
-    gap: var(--cu-ps0);
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  .layout__region--first .social-sharing-buttons {
-    margin-top: var(--cu-vr0);
-    margin-bottom: var(--cu-vr0);
-  }
-
-  .layout__region--second .social-sharing-buttons {
-    display: none;
-    margin-bottom: var(--cu-vr1);
-  }
-
-  @include breakpoint(md) {
-    .layout__region--first .social-sharing-buttons {
-      display: none;
-    }
-
-    .layout__region--second .social-sharing-buttons {
-      display: flex;
-    }
-  }
-
-  .social-sharing-buttons-button {
-    background-color: #F7F6F6;
-    border-radius: 3px;
-    padding: 3px;
-  }
-
   .block-field-block--node--landing-page--field-form {
     --cu-font-size: var(--cu-ms-1);
     position: relative;

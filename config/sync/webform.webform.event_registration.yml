@@ -1172,3 +1172,17 @@ variants:
       settings: {  }
       elements: "accessible_accommodation:\r\n  '#title': Accommodations/dietary restrictions\r\n  '#description': 'We strive to host inclusive, accessible events that enable all individuals to engage and participate fully. Please list any reasonable accommodations you may need, such as alternate formats, interpreters, sign-language interpreters, or dietary restrictions.'"
       handlers: {  }
+  simple:
+    id: override
+    variant_id: simple
+    element_key: variant
+    label: Simple
+    notes: ''
+    status: true
+    weight: 28
+    settings:
+      debug: false
+      properties: {  }
+      settings: {  }
+      elements: "company:\r\n  '#access': false\r\naddress_intl:\r\n  '#access': false\r\ntitle:\r\n  '#access': false\r\naccessible_accommodation:\r\n  '#access': false\r\nopt_in:\r\n  '#access': false"
+      handlers: {  }
