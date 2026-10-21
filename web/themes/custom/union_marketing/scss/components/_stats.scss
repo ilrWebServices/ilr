@@ -64,7 +64,6 @@
     --cu-font-size: var(--cu-ms4);
     text-transform: uppercase;
     line-height: 1;
-    white-space: nowrap;
 
     @include breakpoint(md) {
       --cu-font-size: var(--cu-ms8);
@@ -99,6 +98,10 @@
 }
 
 .cu-component--stat {
+  .cu-heading {
+    white-space: no-wrap;
+  }
+
   &:last-of-type:nth-of-type(odd) {
     grid-column: 1/-1;
   }
