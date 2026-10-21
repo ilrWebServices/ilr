@@ -12,7 +12,6 @@ dependencies:
     - field.field.node.landing_page.field_subtitle
     - node.type.landing_page
   module:
-    - better_social_sharing_buttons
     - entity_reference_revisions
     - ilr
     - layout_builder
@@ -169,28 +168,6 @@ third_party_settings:
                   trim_length: 600
                 third_party_settings: {  }
             weight: 4
-            additional: {  }
-          39b865cd-cfe3-4640-9589-4f3c259c5ee5:
-            uuid: 39b865cd-cfe3-4640-9589-4f3c259c5ee5
-            region: first
-            configuration:
-              id: social_sharing_buttons_block
-              label: 'Better Social Sharing Buttons'
-              label_display: '0'
-              provider: better_social_sharing_buttons
-              context_mapping: {  }
-              iconset: social-icons--no-color
-              services:
-                facebook: facebook
-                x: x
-                email: email
-                linkedin: linkedin
-                copy: copy
-              width: 35px
-              radius: 100%
-              print_css: ''
-              facebook_app_id: ''
-            weight: 7
             additional: {  }
         third_party_settings: {  }
       -
