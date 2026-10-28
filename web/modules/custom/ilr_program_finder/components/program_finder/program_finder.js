@@ -200,7 +200,15 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
 
         // Override to show all topics all the time.
         if (facet_name === 'topics') {
-          facet_values = Object.entries(results_all.facets.topics.values).sort();
+          const enabled_facets_where_keys = Object.keys(enabled_facets_where);
+
+          // If enabled_facets_where is empty or only has topics, show all.
+          if (enabled_facets_where_keys.length === 0 || (enabled_facets_where_keys.length === 1 && enabled_facets_where_keys[0] === 'topics')) {
+            facet_values = Object.entries(results_all.facets.topics.values).sort();
+          }
+          else {
+            facet_values = Object.entries(facet.values).sort();
+          }
         }
         else if (facet_name === 'dates') {
           facet_values = Object.entries(facet.values).sort((a, b) => {
