@@ -156,7 +156,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
       }
 
       if (url_params.getAll('topics').length) {
-        enabled_facets_where.topics = { containsAll: url_params.getAll('topics') };
+        enabled_facets_where.topics = { containsAny: url_params.getAll('topics') };
       }
 
       if (url_params.getAll('dates').length) {
@@ -176,7 +176,12 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
       }
 
       const results = search(this.#db, search_options);
-      // console.log(results);
+      const results_all = search(this.#db, {
+        limit: this.#items.length,
+        facets: {
+          "topics": {},
+        }
+      });
 
       for (const [facet_name, facet] of Object.entries(results.facets)) {
         const computed_style = window.getComputedStyle(this);
@@ -193,7 +198,11 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
         facet_element.appendChild(facet_items_element);
         facet_element.open = computed_style.display === 'grid';
 
-        if (facet_name === 'dates') {
+        // Override to show all topics all the time.
+        if (facet_name === 'topics') {
+          facet_values = Object.entries(results_all.facets.topics.values).sort();
+        }
+        else if (facet_name === 'dates') {
           facet_values = Object.entries(facet.values).sort((a, b) => {
             return new Date(a) - new Date(b);
           });
