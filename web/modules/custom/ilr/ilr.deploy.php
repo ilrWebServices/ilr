@@ -777,12 +777,11 @@ function ilr_deploy_add_laiconf_course_topics() {
 }
 
 /*
- * Save watermark remote data for each ilr_employee persona.
+ * Store all watermark remote data statically for ilr_employee personas.
  */
 function ilr_deploy_save_watermark_data(&$sandbox) {
   $batch_size = 25;
   $entity_type_manager = \Drupal::entityTypeManager();
-  $persona_storage = $entity_type_manager->getStorage('persona');
   $paragraph_storage = $entity_type_manager->getStorage('paragraph');
   $view_builder = $entity_type_manager->getViewBuilder('paragraph');
   $renderer = \Drupal::service('renderer');
@@ -797,12 +796,12 @@ function ilr_deploy_save_watermark_data(&$sandbox) {
   // Initialize the sandbox once.
   if (!isset($sandbox['initialized'])) {
     $sandbox['initialized'] = TRUE;
-    $sandbox['last_pid'] = 0;
+    $sandbox['last_id'] = 0;
     $sandbox['current'] = 0;
 
-    $sandbox['max'] = (int) \Drupal::entityQuery('persona')
+    $sandbox['max'] = (int) \Drupal::entityQuery('paragraph')
       ->condition('status', 1)
-      ->condition('type', 'ilr_employee')
+      ->condition('type', array_keys($remote_paragraph_types), 'IN')
       ->accessCheck(FALSE)
       ->count()
       ->execute();
@@ -814,91 +813,78 @@ function ilr_deploy_save_watermark_data(&$sandbox) {
   }
 
   // Fetch the next group by ID. This is preferable to range offsets.
-  $pids = \Drupal::entityQuery('persona')
+  $ids = \Drupal::entityQuery('paragraph')
     ->condition('status', 1)
-    ->condition('type', 'ilr_employee')
-    ->condition('pid', $sandbox['last_pid'], '>')
-    ->sort('pid', 'ASC')
+    ->condition('type', array_keys($remote_paragraph_types), 'IN')
+    ->condition('id', $sandbox['last_id'], '>')
+    ->sort('id', 'ASC')
     ->range(0, $batch_size)
     ->accessCheck(FALSE)
     ->execute();
 
   // No more entities remain.
-  if (!$pids) {
+  if (!$ids) {
     $sandbox['#finished'] = 1;
     return;
   }
 
-  $pids = array_values($pids);
-  $personas = $persona_storage->loadMultiple($pids);
+  $ids = array_values($ids);
+  $paragraphs = $paragraph_storage->loadMultiple($ids);
 
-  foreach ($personas as $persona) {
-    foreach ($persona->get('field_components')->referencedEntities() as $paragraph) {
-      $paragraph_type = $paragraph->bundle();
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  foreach ($paragraphs as $paragraph) {
+    $paragraph_type = $paragraph->bundle();
+    $behavior_plugin_id = $remote_paragraph_types[$paragraph_type];
+    $behaviors = $paragraph->getAllBehaviorSettings();
 
-      if (!isset($remote_paragraph_types[$paragraph_type])) {
-        continue;
+    // Avoid warnings if the behavior plugin has no settings yet.
+    if (!$paragraph->getBehaviorSetting($behavior_plugin_id, 'netid')) {
+      continue;
+    }
+
+    try {
+      // The "content" display mode should be dedicated to this export/render.
+      $render_array = $view_builder->view($paragraph, 'content'); // Maybe 'default' is fine?
+      $rendered_html = (string) $renderer->renderInIsolation($render_array);
+
+      if ($rendered_html !== '') {
+        $paragraph->set('field_body', [
+          'value' => $rendered_html . "\n" . $paragraph->field_body->value ?? '',
+          'format' => 'simple_formatting',
+        ]);
+
+        // Remove the remote behavior after replacing it with static HTML.
+        unset($behaviors[$behavior_plugin_id]);
+        $paragraph->setAllBehaviorSettings($behaviors);
+        $paragraph->save();
       }
-
-      $behavior_plugin_id = $remote_paragraph_types[$paragraph_type];
-      $behaviors = $paragraph->getAllBehaviorSettings();
-
-      // Avoid warnings if the behavior plugin has no settings yet.
-      if (
-        empty($behaviors[$behavior_plugin_id]) ||
-        !is_array($behaviors[$behavior_plugin_id]) ||
-        !array_key_exists('netid', $behaviors[$behavior_plugin_id])
-      ) {
-        continue;
+      else {
+        // Remove paragraphs with no output.
+        $paragraph->delete();
       }
-
-      try {
-        // The "content" display mode should be dedicated to this export/render.
-        $render_array = $view_builder->view($paragraph, 'content');
-        $rendered_html = (string) $renderer->renderInIsolation($render_array);
-
-        if ($rendered_html !== '') {
-          $existing_content = $paragraph->field_body->value ?? '';
-
-          $paragraph->set('field_body', [
-            'value' => $rendered_html . "\n" . $existing_content,
-            'format' => 'simple_formatting',
-          ]);
-
-          // Remove the remote behavior after replacing it with static HTML.
-          unset($behaviors[$behavior_plugin_id]);
-          $paragraph->setAllBehaviorSettings($behaviors);
-          $paragraph->save();
-        }
-        else {
-          // Remove paragraphs with no output.
-          $paragraph->delete();
-        }
-      }
-      catch (\Throwable $e) {
-        $logger->error(
-          'Failed processing paragraph @pid: @message',
-          [
-            '@pid' => $paragraph->id(),
-            '@message' => $e->getMessage(),
-          ]
-        );
-      }
+    }
+    catch (\Throwable $e) {
+      $logger->error(
+        'Failed processing paragraph @pid: @message',
+        [
+          '@pid' => $paragraph->id(),
+          '@message' => $e->getMessage(),
+        ]
+      );
     }
   }
 
   // Advance the cursor only after this batch has been processed.
-  $sandbox['last_pid'] = (int) end($pids);
-  $sandbox['current'] += count($pids);
+  $sandbox['last_id'] = (int) end($ids);
+  $sandbox['current'] += count($ids);
 
   // Avoid entity static-cache growth in a long-running update.
-  $persona_storage->resetCache($pids);
-  $paragraph_storage->resetCache();
+  $paragraph_storage->resetCache($ids);
 
   $sandbox['#finished'] = min(1, $sandbox['current'] / max(1, $sandbox['max']));
 
   $sandbox['#message'] = t(
-    'Processed @current of approximately @max employee personas.',
+    'Processed @current of approximately @max paragraphs.',
     [
       '@current' => $sandbox['current'],
       '@max' => $sandbox['max'],
