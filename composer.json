@@ -215,6 +215,9 @@
         "Error: Call to a member function getAllowedBundles() on null": "https://git.drupalcode.org/issue/facets-3458558/-/commit/95a9c9f71d033b9751b25d06892b81609598c747.diff",
         "Issue #2937191: Render using theme input and select instead of lists with links for checkboxes and dropdown": "https://www.drupal.org/files/issues/2025-03-12/facets-n2937191-95-v3.patch"
       },
+      "drupal/footnotes": {
+        "#3576605: Bug when any other classes are defined in the span element": "./patches/remove-span-elements-patch.txt"
+      },
       "drupal/salesforce": {
         "Issue #3221747: Improve performance of asynchronous salesforce push": "https://git.drupalcode.org/issue/salesforce-3221747/-/commit/17b3110d7359bbca20ce794833fd7bc240a50954.diff"
       },
