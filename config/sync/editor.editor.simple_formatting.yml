@@ -11,14 +11,14 @@ editor: ckeditor5
 settings:
   toolbar:
     items:
-      - heading
-      - style
-      - alignment
       - bold
       - italic
       - bulletedList
       - numberedList
       - link
+      - alignment
+      - heading
+      - style
       - sourceEditing
   plugins:
     ckeditor5_alignment:
