@@ -54,6 +54,9 @@ class RemoteAwards extends ParagraphsBehaviorBase {
    * {@inheritdoc}
    */
   public function buildBehaviorForm(ParagraphInterface $paragraph, array &$form, FormStateInterface $form_state) {
+    // Temporary while we migrate the remote content.
+    $form['#disabled'] = TRUE;
+
     $form['netid'] = [
       '#type' => 'textfield',
       '#title' => $this->t('NetID'),

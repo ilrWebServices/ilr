@@ -59,6 +59,9 @@ class RemotePublications extends ParagraphsBehaviorBase {
     $publication_group_options = $paragraph->getBehaviorSetting($this->getPluginId(), 'publication_group_options') ?? [];
     $publications_types_indexed_options = array_combine($publication_group_options, $publication_group_options);
 
+    // Temporary while we migrate the remote content.
+    $form['#disabled'] = TRUE;
+
     $form['netid'] = [
       '#type' => 'textfield',
       '#title' => $this->t('NetID'),
