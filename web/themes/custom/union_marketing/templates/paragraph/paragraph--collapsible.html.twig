@@ -57,7 +57,7 @@
 {{ content }}
 {%- endset -%}
 
-{%- if rendered_content|length > 10000 -%}
+{%- if rendered_content|length > 10000 and view_mode|clean_class != 'content' -%}
 {{- attach_library('union_marketing/readmore_expander') -}}
 
 <div{{attributes.addClass(classes)}}>
