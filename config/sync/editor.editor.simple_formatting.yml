@@ -11,14 +11,15 @@ editor: ckeditor5
 settings:
   toolbar:
     items:
-      - heading
-      - style
-      - alignment
       - bold
       - italic
       - bulletedList
       - numberedList
       - link
+      - alignment
+      - heading
+      - style
+      - sourceEditing
   plugins:
     ckeditor5_alignment:
       enabled_alignments:
@@ -36,6 +37,11 @@ settings:
         startIndex: false
         styles: false
       multiBlock: true
+    ckeditor5_sourceEditing:
+      allowed_tags:
+        - '<div class itemprop itemscope itemtype>'
+        - '<span class itemprop>'
+        - '<$text-container itemprop>'
     ckeditor5_style:
       styles:
         -
@@ -44,7 +50,5 @@ settings:
         -
           label: 'Link button (alt)'
           element: '<a class="cu-button cu-button--alt">'
-    linkit_extension:
-      linkit_enabled: false
 image_upload:
   status: false

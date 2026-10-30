@@ -775,3 +775,119 @@ function ilr_deploy_add_laiconf_course_topics() {
     $node->save();
   }
 }
+
+/*
+ * Store all watermark remote data statically for ilr_employee personas.
+ */
+function ilr_deploy_save_watermark_data(&$sandbox) {
+  $batch_size = 25;
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $paragraph_storage = $entity_type_manager->getStorage('paragraph');
+  $view_builder = $entity_type_manager->getViewBuilder('paragraph');
+  $renderer = \Drupal::service('renderer');
+  $logger = \Drupal::logger('ilr_deploy');
+
+  $remote_paragraph_types = [
+    'publications' => 'remote_publications',
+    'honors_and_awards' => 'remote_awards',
+    'professional_activities' => 'remote_activities',
+  ];
+
+  // Initialize the sandbox once.
+  if (!isset($sandbox['initialized'])) {
+    $sandbox['initialized'] = TRUE;
+    $sandbox['last_id'] = 0;
+    $sandbox['current'] = 0;
+
+    $sandbox['max'] = (int) \Drupal::entityQuery('paragraph')
+      ->condition('status', 1)
+      ->condition('type', array_keys($remote_paragraph_types), 'IN')
+      ->accessCheck(FALSE)
+      ->count()
+      ->execute();
+
+    if ($sandbox['max'] === 0) {
+      $sandbox['#finished'] = 1;
+      return;
+    }
+  }
+
+  // Fetch the next group by ID. This is preferable to range offsets.
+  $ids = \Drupal::entityQuery('paragraph')
+    ->condition('status', 1)
+    ->condition('type', array_keys($remote_paragraph_types), 'IN')
+    ->condition('id', $sandbox['last_id'], '>')
+    ->sort('id', 'ASC')
+    ->range(0, $batch_size)
+    ->accessCheck(FALSE)
+    ->execute();
+
+  // No more entities remain.
+  if (!$ids) {
+    $sandbox['#finished'] = 1;
+    return;
+  }
+
+  $ids = array_values($ids);
+  $paragraphs = $paragraph_storage->loadMultiple($ids);
+
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  foreach ($paragraphs as $paragraph) {
+    $paragraph_type = $paragraph->bundle();
+    $behavior_plugin_id = $remote_paragraph_types[$paragraph_type];
+    $behaviors = $paragraph->getAllBehaviorSettings();
+
+    // Avoid warnings if the behavior plugin has no settings yet.
+    if (!$paragraph->getBehaviorSetting($behavior_plugin_id, 'netid')) {
+      continue;
+    }
+
+    try {
+      // The "content" display mode should be dedicated to this export/render.
+      $render_array = $view_builder->view($paragraph, 'content'); // Maybe 'default' is fine?
+      $rendered_html = (string) $renderer->renderInIsolation($render_array);
+
+      if ($rendered_html !== '') {
+        $paragraph->set('field_body', [
+          'value' => $rendered_html . "\n" . $paragraph->field_body->value ?? '',
+          'format' => 'simple_formatting',
+        ]);
+
+        // Remove the remote behavior after replacing it with static HTML.
+        unset($behaviors[$behavior_plugin_id]);
+        $paragraph->setAllBehaviorSettings($behaviors);
+        $paragraph->save();
+      }
+      else {
+        // Remove paragraphs with no output.
+        $paragraph->delete();
+      }
+    }
+    catch (\Throwable $e) {
+      $logger->error(
+        'Failed processing paragraph @pid: @message',
+        [
+          '@pid' => $paragraph->id(),
+          '@message' => $e->getMessage(),
+        ]
+      );
+    }
+  }
+
+  // Advance the cursor only after this batch has been processed.
+  $sandbox['last_id'] = (int) end($ids);
+  $sandbox['current'] += count($ids);
+
+  // Avoid entity static-cache growth in a long-running update.
+  $paragraph_storage->resetCache($ids);
+
+  $sandbox['#finished'] = min(1, $sandbox['current'] / max(1, $sandbox['max']));
+
+  $sandbox['#message'] = t(
+    'Processed @current of approximately @max paragraphs.',
+    [
+      '@current' => $sandbox['current'],
+      '@max' => $sandbox['max'],
+    ]
+  );
+}
