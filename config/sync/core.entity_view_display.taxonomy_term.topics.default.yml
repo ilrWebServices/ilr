@@ -27,7 +27,7 @@ dependencies:
 third_party_settings:
   layout_builder:
     enabled: true
-    allow_custom: false
+    allow_custom: true
     sections:
       -
         layout_id: layout_onecol
@@ -45,7 +45,7 @@ third_party_settings:
               provider: views
               context_mapping: {  }
               views_label: ''
-              items_per_page: none
+              items_per_page: 0
             weight: 0
             additional: {  }
         third_party_settings: {  }
@@ -55,6 +55,9 @@ third_party_settings:
           label: ''
           context_mapping: {  }
           color_scheme: dark
+          hide_frame: false
+          text_align: left
+          full_bleed: false
         components:
           bb5a47b5-52d3-46f0-955b-4d3382dc7787:
             uuid: bb5a47b5-52d3-46f0-955b-4d3382dc7787
@@ -225,7 +228,7 @@ third_party_settings:
               provider: views
               context_mapping: {  }
               views_label: ''
-              items_per_page: none
+              items_per_page: 0
             weight: 1
             additional: {  }
         third_party_settings: {  }

@@ -9,6 +9,7 @@ dependencies:
     - field.field.taxonomy_term.topics.field_media_section
     - field.field.taxonomy_term.topics.field_page_links
     - field.field.taxonomy_term.topics.field_representative_image
+    - field.field.taxonomy_term.topics.layout_builder__layout
     - taxonomy.vocabulary.topics
   module:
     - link
@@ -112,3 +113,4 @@ content:
     third_party_settings: {  }
 hidden:
   description: true
+  layout_builder__layout: true
