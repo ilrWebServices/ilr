@@ -12,17 +12,10 @@
  */
 #}
 
-{% set primary_title = '' %}
 {% set first_title = '' %}
 {% if content.extra_field_ilr_employee_positions is not empty %}
 {% for key, item in content.extra_field_ilr_employee_positions|filter((v, k) => k|first != '#') %}
   {% set position = item['#ilr_employee_position']%}
-  {% if position.primary.value == "1" %}
-  {% set primary_title %}
-  <span class="persona--directory-card-title"><strong>{{ position.title.value }}</strong></span><br/>
-  <span class="persona--directory-card-dept">{{ position.department.entity.name.value }}</span>
-  {% endset %}
-  {% endif %}
   {% if key == 0 %}
   {% set first_title %}
   <span class="persona--directory-card-title"><strong>{{ position.title.value }}</strong></span><br/>
@@ -59,7 +52,7 @@
     view_mode ? 'persona--view-mode-' ~ view_mode|clean_class
   ]),
   name: label,
-  title: primary_title ?: first_title,
+  title: first_title,
   eyebrow_heading: content.field_employee_role,
   additional_info: additional_info,
   img: content.field_photo,
