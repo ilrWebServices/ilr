@@ -254,7 +254,7 @@ import { create, insertMultiple, search } from 'https://cdn.jsdelivr.net/npm/@or
       });
 
       if (results.count === 0) {
-        this.#message.textContent = 'No results.';
+        this.#message.textContent = 'No programs match your current selection.';
         header.appendChild(this.#message);
       }
 
