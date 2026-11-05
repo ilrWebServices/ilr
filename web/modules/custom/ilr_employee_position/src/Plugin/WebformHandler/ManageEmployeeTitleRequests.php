@@ -111,6 +111,14 @@ class ManageEmployeeTitleRequests extends WebformHandlerBase implements Containe
           $title_to_remove->save();
         }
       }
+      elseif ($data['type_of_request'] === 'Reorder titles'){
+        if ($title_to_prioritize = $this->positionManager->getEmployeePositionByTitle($pid, $data['title_update_select'])) {
+          $title_to_prioritize = reset($title_to_prioritize);
+          $lowest_weight = $this->positionManager->getEmployeePositionLowestWeight($pid);
+          $title_to_prioritize->weight = ($lowest_weight ?? 0) - 1;
+          $title_to_prioritize->save();
+        }
+      }
 
       if ($needs_new_title) {
         $new_position = $this->entityTypeManager->getStorage('ilr_employee_position')->create([
