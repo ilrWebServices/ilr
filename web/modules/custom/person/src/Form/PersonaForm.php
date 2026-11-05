@@ -54,13 +54,25 @@ class PersonaForm extends ContentEntityForm {
     $persona = $this->entity;
 
     if (isset($form['person']) && isset($persona->person->entity)) {
-      $form['person']['widget']['#disabled'] = !$this->account->hasPermission('administer persons');
-      $form['person']['widget']['info'] = [
-        '#type' => 'link',
-        '#title' => $this->t('Edit') . ' ' . $persona->person->entity->label(),
-        '#url' => $persona->person->entity->toUrl('edit-form'),
-        '#access' => $this->account->hasPermission('administer persons'),
-      ];
+      $form['person']['widget']['#disabled'] = !$persona->person->entity->access('update');
+
+      if ($persona->person->entity->access('update')) {
+        $form['person']['widget']['info'] = [
+          '#type' => 'link',
+          '#title' => $this->t('Edit') . ' ' . $persona->person->entity->label(),
+          '#url' => $persona->person->entity->toUrl('edit-form'),
+        ];
+      }
+      else {
+        $form['person']['widget']['#access'] = FALSE;
+        $form['person']['info'] = [
+          '#type' => 'inline_template',
+          '#template' => '<h3>This is a persona for {{ name }}</h3><p>If you need to add a new person or persona, please use the <em>Add person</em> option.</p>',
+          '#context' => [
+            'name' => $persona->person->entity->label()
+          ],
+        ];
+      }
 
       $form['inherited'] = [
         '#type' => 'details',
