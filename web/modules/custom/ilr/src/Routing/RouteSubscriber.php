@@ -17,6 +17,10 @@ class RouteSubscriber extends RouteSubscriberBase {
     if ($route = $collection->get('entity.user.canonical')) {
       $route->setOption('_admin_route', TRUE);
     }
+
+    if ($route = $collection->get('view.classes_for_course.page')) {
+      // $route->setRequirement('_entity_bundles', 'node:course');
+    }
   }
 
 }

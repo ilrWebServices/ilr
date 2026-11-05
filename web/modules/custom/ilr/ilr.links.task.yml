@@ -1,0 +1,5 @@
+ilr.course_node_class_nodes:
+  route_name: view.classes_for_course.page
+  title: 'Classes'
+  base_route: entity.node.canonical
+  weight: 10

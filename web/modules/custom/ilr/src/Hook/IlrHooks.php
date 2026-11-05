@@ -48,4 +48,11 @@ class IlrHooks {
     }
   }
 
+  #[Hook('menu_local_tasks_alter')]
+  public function menuLocalTasksAlter(&$data, $route_name) {
+    if ($route_name === 'view.classes_for_course.page') {
+
+    }
+  }
+
 }
