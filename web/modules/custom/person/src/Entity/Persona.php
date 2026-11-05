@@ -90,7 +90,7 @@ class Persona extends EditorialContentEntityBase implements PersonaInterface {
    */
   public function access($operation, ?AccountInterface $account = NULL, $return_as_object = FALSE) {
     if ($operation == 'view' && $this->isPublished()) {
-      return AccessResult::allowed();
+      return $return_as_object ? AccessResult::allowed() : TRUE;
     }
     return parent::access($operation, $account, $return_as_object);
   }
