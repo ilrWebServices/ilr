@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - ilr
+    - ilr_section_navigation
 id: form
 label: Form
 icon_uuid: null
@@ -18,3 +19,8 @@ behavior_plugins:
       dark: dark
       vibrant: vibrant
     color_scheme_default: none
+    allow_framed_media: 0
+  in_page_nav:
+    enabled: true
+    allow_modalize: 1
+    allow_title: 0
