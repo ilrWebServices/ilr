@@ -145,7 +145,7 @@ span.strong {
   --cu-character-max-width: 69ch; // 7 grid columns.
 }
 
-.field--field-sections {
+.paragraph--type--section {
   .cu-component--rich-text:not(:has(blockquote)):not([class^="cu-component--columns"]):not(:has(p.text-align-center)):not(:has(.org-deck)):not(:has(.cu-feature-list)):not(:has(~ .cu-component--deck)) {
     max-width: var(--cu-character-max-width);
   }
