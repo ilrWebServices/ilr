@@ -156,7 +156,7 @@ class SalesforceEventSubscriber implements EventSubscriberInterface {
       }
 
       // Check for sponsor Yang-Tan Institute on Employment and Disability (765)
-      if (empty($tids_for_course) && $course_sponsor_term->id() === 765) {
+      if (empty($tids_for_course) && (int) $course_sponsor_term->id() === 765) {
         $tids_for_course[] = 16;
       }
 
