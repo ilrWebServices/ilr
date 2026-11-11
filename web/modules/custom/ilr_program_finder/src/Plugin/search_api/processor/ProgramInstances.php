@@ -71,7 +71,7 @@ class ProgramInstances extends ProcessorPluginBase {
         ]);
       }
     }
-    elseif ($node->bundle() === 'remote_program') {
+    elseif ($node->bundle() === 'remote_program' && !$node->field_date_start->isEmpty()) {
       $instances[] = vsprintf($format, [
         $node->field_date_start->date->format('M d, Y'),
         $node->field_price->value,
