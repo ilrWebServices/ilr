@@ -1,0 +1,19 @@
+.modalized[popover] {
+  border: none;
+  margin: auto;
+  padding: 0;
+  width: 90vw;
+  max-width: 896px;
+  max-height: 85vh;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+  border-radius: 5px;
+  overflow-y: auto;
+
+  form {
+    margin: 0;
+  }
+}
+
+.modalized[popover]::backdrop {
+  background-color: rgba(0, 0, 0, .5);
+}
