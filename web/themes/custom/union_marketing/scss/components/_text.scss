@@ -128,12 +128,24 @@ span.strong {
   }
 }
 
+.cu-card--stacked .cu-card__content:not(:has(.text-align-center)) {
+  align-items: start;
+
+  h2, h3, h4, p, ul {
+    text-align: left;
+  }
+
+  .cu-composite-heading + ul {
+    margin-top: 0;
+  }
+}
+
 // Settings to make text more readable
 :root {
   --cu-character-max-width: 69ch; // 7 grid columns.
 }
 
-.field--field-sections {
+.paragraph--type--section {
   .cu-component--rich-text:not(:has(blockquote)):not([class^="cu-component--columns"]):not(:has(p.text-align-center)):not(:has(.org-deck)):not(:has(.cu-feature-list)):not(:has(~ .cu-component--deck)) {
     max-width: var(--cu-character-max-width);
   }

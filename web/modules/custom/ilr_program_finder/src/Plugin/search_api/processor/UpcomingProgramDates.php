@@ -64,7 +64,7 @@ class UpcomingProgramDates extends ProcessorPluginBase {
         $datetimes[] = $class_node->field_date_start->date->getTimestamp();
       }
     }
-    elseif ($node->bundle() === 'remote_program') {
+    elseif ($node->bundle() === 'remote_program' && !$node->field_date_start->isEmpty()) {
       $datetimes[] = $node->field_date_start->date->getTimestamp();
     }
     elseif ($node->bundle() === 'event_landing_page') {

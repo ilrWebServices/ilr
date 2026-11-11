@@ -60,6 +60,7 @@ class IlrEmployeePositionsDescription extends ExtraFieldFormBase implements Cont
       ->accessCheck(FALSE)
       ->condition('persona', $persona->id())
       ->condition('status', 1)
+      ->sort('weight')
       ->sort('primary', 'DESC')
       ->execute();
 

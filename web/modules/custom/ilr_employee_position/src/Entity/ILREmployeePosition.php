@@ -83,6 +83,10 @@ final class ILREmployeePosition extends RevisionableContentEntityBase implements
   public function postSave(EntityStorageInterface $storage, $update = TRUE) {
     parent::postSave($storage, $update);
 
+    if (!$this->persona->entity) {
+      return;
+    }
+
     // Remove the related persona from the cache when saving this position.
     Cache::invalidateTags($this->persona->entity->getCacheTags());
   }
@@ -91,6 +95,10 @@ final class ILREmployeePosition extends RevisionableContentEntityBase implements
    * {@inheritdoc}
    */
   public function label() {
+    if (!$this->persona->entity) {
+      return;
+    }
+
     return $this->t('@title position for @persona_name', [
       '@title' => $this->title->value,
       '@persona_name' => $this->persona->entity->label(),
@@ -183,6 +191,18 @@ final class ILREmployeePosition extends RevisionableContentEntityBase implements
         'weight' => 3,
       ]);
 
+    $fields['weight'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Weight'))
+      ->setDescription(t('The weight of this term in relation to other terms.'))
+      ->setInitialValue(0)
+      ->setDefaultValue(0)
+      ->setDisplayConfigurable('view', FALSE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayOptions('form', [
+        'type' => 'number',
+        'weight' => 5,
+      ]);;
+
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setRevisionable(TRUE)
       ->setLabel(t('Status'))
@@ -194,7 +214,7 @@ final class ILREmployeePosition extends RevisionableContentEntityBase implements
         'settings' => [
           'display_label' => FALSE,
         ],
-        'weight' => 4,
+        'weight' => 6,
       ]);
 
     $fields['created'] = BaseFieldDefinition::create('created')
@@ -204,7 +224,7 @@ final class ILREmployeePosition extends RevisionableContentEntityBase implements
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayOptions('form', [
         'type' => 'datetime_timestamp',
-        'weight' => 20,
+        'weight' => 4,
       ]);
 
     $fields['changed'] = BaseFieldDefinition::create('changed')

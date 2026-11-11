@@ -26,10 +26,50 @@ elements: |-
     '#default_value': '[current-user:field_common_name]'
     '#access_create_roles':
       - authenticated
+  type_of_request:
+    '#type': radios
+    '#title': 'What kind of title change are you requesting?'
+    '#options':
+      'Adding a title': 'Adding a title'
+      'Updating a title': 'Updating a title'
+      'Removing a title': 'Removing a title'
+      'Reorder titles': 'Reorder titles'
+    '#required': true
+  title_update_select:
+    '#type': radios
+    '#title': 'Which title would you like to update, remove, or display first?'
+    '#options':
+      'defined in code': 'defined in code'
+    '#states':
+      visible:
+        - ':input[name="type_of_request"]':
+            value: 'Updating a title'
+        - xor
+        - ':input[name="type_of_request"]':
+            value: 'Removing a title'
+        - xor
+        - ':input[name="type_of_request"]':
+            value: 'Reorder titles'
+      required:
+        - ':input[name="type_of_request"]':
+            value: 'Updated title'
+        - xor
+        - ':input[name="type_of_request"]':
+            value: 'Removing a title'
+        - xor
+        - ':input[name="type_of_request"]':
+            value: 'Reorder titles'
   title:
     '#type': textfield
-    '#title': Title
+    '#title': 'New title'
     '#required': true
+    '#states':
+      visible:
+        - ':input[name="type_of_request"]':
+            value: 'Adding a title'
+        - xor
+        - ':input[name="type_of_request"]':
+            value: 'Updating a title'
   department:
     '#type': entity_autocomplete
     '#title': Department
@@ -44,29 +84,13 @@ elements: |-
         direction: asc
       auto_create: false
       auto_create_bundle: ''
-  type_of_request:
-    '#type': radios
-    '#title': 'What kind of title change are you requesting?'
-    '#options':
-      'Adding a title': 'Adding a title'
-      'Updating a title': 'Updating a title'
-      'Removing a title': 'Removing a title'
-    '#required': true
-  title_update_select:
-    '#type': radios
-    '#title': 'Which title would you like to update or remove?'
-    '#options':
-      'defined in code': 'defined in code'
     '#states':
       visible:
         - ':input[name="type_of_request"]':
-            value: 'Updating a title'
+            value: 'Adding a title'
         - xor
         - ':input[name="type_of_request"]':
-            value: 'Removing a title'
-      required:
-        ':input[name="type_of_request"]':
-          value: 'Updated title'
+            value: 'Updating a title'
   pid:
     '#type': hidden
     '#title': 'Employee Persona Id'
@@ -295,7 +319,7 @@ handlers:
       sender_mail: ''
       sender_name: ''
       subject: 'Job title update requested by [current-user:field_common_name]'
-      body: "{% set site_url = webform_token('[site:url]', webform_submission) %}\r\n<p>An updated tiltte title has been submitted for approval.</p>\r\n\r\n<p><a href=\"{{ site_url }}admin/structure/webform/manage/{{ webform_token('[webform:id]', webform_submission) }}/submission/{{ webform_token('[webform_submission:sid]', webform_submission) }}/edit\">Please reiview the request</a> and request approval with HR if appropriate.</p>\r\n\r\n<hr />\r\n\r\n<p>Submitted on {{ webform_token('[webform_submission:created]', webform_submission) }}</p>\r\n\r\n<p>Submitted by: {{ webform_token('[webform_submission:user]', webform_submission) }}</p>\r\n\r\n<p>Submitted values are:</p>\r\n{{ webform_token('[webform_submission:values]', webform_submission) }}"
+      body: "{% set site_url = webform_token('[site:url]', webform_submission) %}\r\n<p>An updated title has been submitted for approval.</p>\r\n\r\n<p><a href=\"{{ site_url }}admin/structure/webform/manage/{{ webform_token('[webform:id]', webform_submission) }}/submission/{{ webform_token('[webform_submission:sid]', webform_submission) }}/edit\">Please review the request</a> and request approval with HR if appropriate.</p>\r\n\r\n<hr />\r\n\r\n<p>Submitted on {{ webform_token('[webform_submission:created]', webform_submission) }}</p>\r\n\r\n<p>Submitted by: {{ webform_token('[webform_submission:user]', webform_submission) }}</p>\r\n\r\n<p>Submitted values are:</p>\r\n{{ webform_token('[webform_submission:values]', webform_submission) }}"
       excluded_elements: {  }
       ignore_access: false
       exclude_empty: true

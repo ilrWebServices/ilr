@@ -28,7 +28,7 @@ trait DeliveryMethodNormalizer {
    *
    * @return string[]
    */
-  public function getNormalizedDeliveryMethods(?string $delivery_method, string $default_value = 'Online'): array {
+  public function getNormalizedDeliveryMethods(?string $delivery_method, string $default_value = 'Self-paced Online'): array {
     $delivery_methods = [];
 
     switch ($delivery_method) {
@@ -37,20 +37,17 @@ trait DeliveryMethodNormalizer {
         $delivery_methods[] = 'In Person';
         break;
       case 'Online':
-        $delivery_methods[] = 'Online';
+        $delivery_methods[] = 'Self-paced Online';
         break;
       case 'Online (Synchronous)':
-        $delivery_methods[] = 'Online';
-        $delivery_methods[] = 'Live';
+        $delivery_methods[] = 'Live Online';
         break;
       case 'Live-Virtual':
-        $delivery_methods[] = 'Online';
-        $delivery_methods[] = 'Live';
+        $delivery_methods[] = 'Live Online';
         break;
       case 'Hybrid':
         $delivery_methods[] = 'In Person';
-        $delivery_methods[] = 'Online';
-        $delivery_methods[] = 'Live';
+        $delivery_methods[] = 'Live Online';
         break;
       case 'In Person':
       case 'In-person':

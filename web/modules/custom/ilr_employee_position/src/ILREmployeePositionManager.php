@@ -23,6 +23,8 @@ class ILREmployeePositionManager {
     $position_query = $position_storage->getQuery()
       ->accessCheck(FALSE)
       ->condition('persona', $pid)
+      ->condition('status', 1)
+      ->sort('weight')
       ->sort('primary', 'DESC');
 
     if ($limit_published) {
@@ -51,6 +53,18 @@ class ILREmployeePositionManager {
     ]);
 
     return $position ?? [];
+  }
+
+  public function getEmployeePositionLowestWeight(int $pid): ?int {
+    $position_storage = $this->entityTypeManager->getStorage('ilr_employee_position');
+
+    $result = \Drupal::entityQueryAggregate('ilr_employee_position')
+      ->condition('persona', $pid)
+      ->aggregate('weight', 'MIN')
+      ->accessCheck(TRUE)
+      ->execute();
+
+    return $result[0]['weight_min'] ?? NULL;
   }
 
 }

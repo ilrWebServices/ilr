@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Add 'weight' base field to ilr_employee_position.
+ */
+function ilr_employee_position_update_11001() {
+  $field_manager = \Drupal::service('entity_field.manager');
+  $update_manager = \Drupal::service('entity.definition_update_manager');
+
+  // Load the definition from the updated code structure
+  $field_definitions = $field_manager->getFieldStorageDefinitions('ilr_employee_position');
+
+  if (isset($field_definitions['weight'])) {
+    $update_manager->installFieldStorageDefinition(
+      'weight',
+      'ilr_employee_position',
+      'ilr_employee_position',
+      $field_definitions['weight']
+    );
+  }
+}
