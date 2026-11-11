@@ -1,14 +1,13 @@
-# ILR Drupal 10 Site
+# ILR Drupal Marketing Site
 
-This is the Drupal 10 version of https://www.ilr.cornell.edu, AKA The Marketing Site.
+This is the Drupal version of https://www.ilr.cornell.edu, AKA The Marketing Site.
 
 It is based on the [Composer template for Drupal projects][].
 
 ## Requirements
 
 - git
-- PHP 8.2 or greater
-- the PHP [ImageMagick extension][] (for PDF thumbnail generation)
+- PHP 8.4 or greater
 - Composer
 - Drush (included in this project; use the bash/zsh `drush` function below to use it)
 - Node.js 18.x or greater (for theming; a `.tool-versions` file is included for use with [asdf][])
