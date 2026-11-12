@@ -55,7 +55,7 @@ elements: |-
     actions:
       '#type': webform_actions
       '#title': 'Submit button(s)'
-      '#submit__label': 'Notify me'
+      '#submit__label': Submit
   consent:
     '#type': processed_text
     '#wrapper_attributes':
