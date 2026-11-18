@@ -4,12 +4,8 @@ status: true
 dependencies:
   config:
     - collection.collection_type.resource_library
-    - facets.facet.research_topics
-    - facets.facet.resource_date
-    - facets.facet.resource_type
     - views.view.resource_library_search
   module:
-    - facets
     - ilr
     - layout_builder
     - system
@@ -25,6 +21,9 @@ third_party_settings:
           label: Banner
           context_mapping: {  }
           color_scheme: dark
+          hide_frame: false
+          text_align: left
+          full_bleed: false
         components:
           9b608b30-9762-435c-9640-00e60aa364f2:
             uuid: 9b608b30-9762-435c-9640-00e60aa364f2
@@ -71,41 +70,20 @@ third_party_settings:
               provider: views
               context_mapping: {  }
               views_label: ''
-              items_per_page: none
+              items_per_page: 0
             weight: 0
             additional: {  }
-          e17416e7-c277-44d0-8084-8b97195bad06:
-            uuid: e17416e7-c277-44d0-8084-8b97195bad06
+          d9d33f49-40f3-4974-9aa4-3c01f953b985:
+            uuid: d9d33f49-40f3-4974-9aa4-3c01f953b985
             region: first
             configuration:
-              id: 'facet_block:research_topics'
-              label: 'Research topics'
-              label_display: visible
-              provider: facets
+              id: 'views_exposed_filter_block:resource_library_search-block_contextual'
+              label: ''
+              label_display: '0'
+              provider: views
               context_mapping: {  }
-            weight: 0
-            additional: {  }
-          f31dee2f-9903-4afa-b8e7-da47cf79b685:
-            uuid: f31dee2f-9903-4afa-b8e7-da47cf79b685
-            region: first
-            configuration:
-              id: 'facet_block:resource_date'
-              label: 'Resource date'
-              label_display: visible
-              provider: facets
-              context_mapping: {  }
-            weight: 1
-            additional: {  }
-          6352fa9b-37ac-4a4e-8d20-e84cbf570c03:
-            uuid: 6352fa9b-37ac-4a4e-8d20-e84cbf570c03
-            region: first
-            configuration:
-              id: 'facet_block:resource_type'
-              label: 'Resource type'
-              label_display: visible
-              provider: facets
-              context_mapping: {  }
-            weight: 2
+              views_label: ''
+            weight: 4
             additional: {  }
         third_party_settings: {  }
 id: collection.resource_library.default
