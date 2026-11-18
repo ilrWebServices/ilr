@@ -247,7 +247,7 @@ display:
                   hide_label: false
                   field_classes: resource-facets
                 select_all_none: false
-                select_all_none_nested: false
+                select_all_none_nested: true
                 display_inline: false
                 soft_limit: 0
                 soft_limit_label_less: 'Show less'
@@ -497,13 +497,18 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          hierarchy: false
+          hierarchy: true
           label_display: visible
           facet:
             query_operator: or
             min_count: 1
             show_numbers: true
             processor_configs:
+              hierarchy_processor:
+                processor_id: hierarchy_processor
+                weights:
+                  build: 100
+                settings: {  }
               translate_entity:
                 processor_id: translate_entity
                 weights:
@@ -515,6 +520,8 @@ display:
                   sort: 40
                 settings:
                   sort: ASC
+            hierarchy: taxonomy
+            expand_hierarchy: 0
         facets_resource_date:
           id: facets_resource_date
           table: search_api_index_resource_library
