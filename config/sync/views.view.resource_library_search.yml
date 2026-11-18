@@ -509,6 +509,12 @@ display:
                 weights:
                   build: 5
                 settings: {  }
+              display_value_widget_order:
+                processor_id: display_value_widget_order
+                weights:
+                  sort: 40
+                settings:
+                  sort: ASC
         facets_resource_date:
           id: facets_resource_date
           table: search_api_index_resource_library
@@ -563,6 +569,12 @@ display:
                   granularity: 6
                   date_format: ''
                   hierarchy: false
+              raw_value_widget_order:
+                processor_id: raw_value_widget_order
+                weights:
+                  sort: 50
+                settings:
+                  sort: DESC
         facets_field_resource_type:
           id: facets_field_resource_type
           table: search_api_index_resource_library
@@ -607,7 +619,13 @@ display:
             query_operator: or
             min_count: 1
             show_numbers: true
-            processor_configs: {  }
+            processor_configs:
+              display_value_widget_order:
+                processor_id: display_value_widget_order
+                weights:
+                  sort: 40
+                settings:
+                  sort: ASC
       filter_groups:
         operator: AND
         groups:
