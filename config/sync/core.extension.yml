@@ -6,6 +6,7 @@ module:
   admin_toolbar: 0
   allowed_formats: 0
   autocomplete_decorator: 0
+  better_exposed_filters: 0
   better_social_sharing_buttons: 0
   block: 0
   block_content: 0
@@ -54,7 +55,7 @@ module:
   extended_post: 0
   extra_field: 0
   facets: 0
-  facets_summary: 0
+  facets_exposed_filters: 0
   field: 0
   field_ui: 0
   file: 0
@@ -158,6 +159,7 @@ module:
   user: 0
   views: 0
   views_autocomplete_filters: 0
+  views_filters_summary: 0
   views_remote_data: 0
   webform: 0
   webform_email_confirm: 0

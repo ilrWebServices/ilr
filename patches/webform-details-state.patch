@@ -1,0 +1,13 @@
+diff --git a/js/webform.element.details.save.js b/js/webform.element.details.save.js
+index 46479701d..c754cafcd 100644
+--- a/js/webform.element.details.save.js
++++ b/js/webform.element.details.save.js
+@@ -33,7 +33,7 @@
+       }
+ 
+       // Summary click event handler.
+-      $(once('webform-details-summary-save', 'details > summary', context)).on('click', function () {
++      $(once('webform-details-summary-save', '.webform-submission-form details > summary', context)).on('click', function () {
+         var $details = $(this).parent();
+ 
+         // @see https://css-tricks.com/snippets/jquery/make-an-jquery-hasattr/

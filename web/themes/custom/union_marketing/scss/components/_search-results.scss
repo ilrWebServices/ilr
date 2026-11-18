@@ -31,14 +31,14 @@
     margin-right: .4em; // This might add to the theme debugging.
   }
 
-  .block-facets {
+  details:has(.resource-facets) {
     border: 2px solid #ccc;
     margin-bottom: var(--cu-vr1);
     padding: .5em 1em;
     border-radius: 3px;
 
     summary {
-      margin-bottom: 0;
+      font-weight: 400;
     }
 
     .facets-widget-checkbox {
@@ -48,44 +48,35 @@
 }
 
 .resource-library-search-view {
-  header ~ .cu-heading {
-    margin-top: var(--cu-vr1);
+  header:has(.views-filters-summary) {
+    margin-bottom: var(--cu-vr1);
   }
 
   header {
     padding: 0;
 
-    .block-facets-summary ul {
-      list-style-type: none;
-      padding: 0 0 var(--cu-vr1) 0;
-      margin: 0;
-      columns: unset; // This is from the global layout footer, which we should fix.
+    .views-filters-summary .items {
       display: flex;
       gap: var(--cu-ps-1);
     }
 
-    .facet-summary-item--facet,
-    .facet-summary-item--search-string {
+    .value-container {
       padding: var(--cu-vr-2) var(--cu-ps-1);
-      // border: 1px solid #ccc;
       border-radius: 3px;
       background-color: var(--cu-color-brand);
+      color: var(--cu-color-white);
+      display: flex;
 
-      a {
-        color: white;
-        font-weight: 400;
-        text-decoration: none;
-        display: flex;
-        gap: var(--cu-ps-1);
-
-        &:after {
-          content: '✕';
-          display: block;
-        }
+      .value {
+        border: unset;
+        margin: 0;
       }
 
-      .facet-item__status {
-        padding-left: .5em;
+      .remove-filter {
+        color: white;
+        background-color: unset;
+        font-weight: 400;
+        text-decoration: none;
       }
     }
   }
