@@ -257,7 +257,11 @@
       "file-mapping": {
         "[web-root]/robots.txt": {
           "append": "patches/robots-additions.txt"
-        }
+        },
+        "[web-root]/INSTALL.txt": false,
+        "[web-root]/README.md": false,
+        "[web-root]/update.php": false,
+        "[web-root]/web.config": false
       }
     }
   }
