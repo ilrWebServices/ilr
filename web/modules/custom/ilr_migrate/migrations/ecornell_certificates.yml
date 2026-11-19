@@ -34,6 +34,7 @@ process:
       'Business and Finance': 8
     default_value: null
   field_price: retail_price
+  field_instructor_remote_id: author_netid
 destination:
   plugin: entity:node
   default_bundle: remote_program
@@ -47,6 +48,7 @@ destination:
     - field_topics
     - field_price
     - field_delivery_method
+    - field_instructor_remote_id
 migration_dependencies:
   required: {  }
   optional: {  }
