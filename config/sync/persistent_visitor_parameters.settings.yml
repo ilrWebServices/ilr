@@ -6,7 +6,7 @@ get_parameters:
   - utm_content
   - ilr_discount_code
 server_parameters: {  }
-mode: first_touch
+mode: last_touch
 persistor: persistor_cookie
 persistor_key: pvp_stored_variables
 persistor_expire: 0
