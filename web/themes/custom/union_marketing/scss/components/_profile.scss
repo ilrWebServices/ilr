@@ -173,7 +173,8 @@
     margin-bottom: var(--cu-vr0);
   }
 
-  .profile__class-roster-items {
+  .profile__class-roster-items,
+  .profile__ecornell-certificates-items {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -182,7 +183,8 @@
     gap: var(--cu-vr-1);
   }
 
-  .profile__class-roster-item-link {
+  .profile__class-roster-item-link,
+  .profile__ecornell-certificates-item-link {
     display: inline-block;
     --cu-line-height: 1.3;
     --cu-font-size: var(--cu-ms-1);
