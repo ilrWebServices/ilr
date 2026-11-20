@@ -56,6 +56,7 @@ class CoursesTaught extends ExtraFieldDisplayBase implements ContainerFactoryPlu
     }
 
     $active_rosters = $this->getActiveRosters();
+    $course_count = 0;
 
     if (empty($active_rosters)) {
       return $build;
@@ -115,11 +116,13 @@ class CoursesTaught extends ExtraFieldDisplayBase implements ContainerFactoryPlu
               'title' => $roster_class['titleLong'],
             ],
           ];
+
+          $course_count++;
         }
       }
     }
 
-    return $build;
+    return $course_count ? $build : [];
   }
 
   protected function apiCall(string $path): string|array {
