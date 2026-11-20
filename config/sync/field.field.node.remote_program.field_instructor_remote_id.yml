@@ -1,0 +1,19 @@
+uuid: 139676d8-e751-4bd3-bf89-4a949adc9446
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_instructor_remote_id
+    - node.type.remote_program
+id: node.remote_program.field_instructor_remote_id
+field_name: field_instructor_remote_id
+entity_type: node
+bundle: remote_program
+label: 'Instructor Remote ID'
+description: 'The ID of this instructor in the remote system. E.g. NetID in the case of eCornell.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

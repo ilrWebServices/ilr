@@ -66,6 +66,7 @@ class ECornellRemoteProgram extends SourcePluginBase implements ContainerFactory
       'url' => $this->t('Certificate URL'),
       'vertical' => $this->t('Certificate Vertical'),
       'retail_price' => $this->t('Retail Price'),
+      'author_netid' => $this->t('Author NetID'),
     ];
   }
 
@@ -138,10 +139,26 @@ class ECornellRemoteProgram extends SourcePluginBase implements ContainerFactory
         }
       }
 
+      // Get authors for all courses.
+      $cert_data['author_netid'] = [];
+
+      foreach ($cert_data_details['streams'][0]['courses'] as $course_id) {
+        $course_data = $this->apiCall('course/' . $course_id);
+
+        if (!empty($course_data['authors'])) {
+          foreach ($course_data['authors'] as $author) {
+            if (!empty($author['net_id'])) {
+              $cert_data['author_netid'][] = trim($author['net_id']);
+            }
+          }
+        }
+      }
+
       $cert_data['description'] = $cert_data_details['description'] ?? '';
       $cert_data['url'] = $cert_data_details['url'][0] ?? '';
       $cert_data['vertical'] = $cert_data_details['vertical'] ?? '';
       $cert_data['retail_price'] = $cert_data_details['retail_price'] ?? 0;
+      $cert_data['author_netid'] = array_values(array_unique($cert_data['author_netid']));
       $this->dataRows[] = $cert_data;
     }
   }

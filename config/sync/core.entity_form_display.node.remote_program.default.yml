@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.remote_program.field_date_start
     - field.field.node.remote_program.field_delivery_method
     - field.field.node.remote_program.field_external_link
+    - field.field.node.remote_program.field_instructor_remote_id
     - field.field.node.remote_program.field_price
     - field.field.node.remote_program.field_topics
     - node.type.remote_program
@@ -66,6 +67,14 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_instructor_remote_id:
+    type: string_textfield
+    weight: 131
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_price:
     type: number

@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.remote_program.field_date_start
     - field.field.node.remote_program.field_delivery_method
     - field.field.node.remote_program.field_external_link
+    - field.field.node.remote_program.field_instructor_remote_id
     - field.field.node.remote_program.field_price
     - field.field.node.remote_program.field_topics
     - node.type.remote_program
@@ -50,6 +51,7 @@ hidden:
   field_course_number: true
   field_delivery_method: true
   field_external_link: true
+  field_instructor_remote_id: true
   field_topics: true
   footnotes_group: true
   langcode: true
